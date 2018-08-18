@@ -585,10 +585,11 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
  * @param  {string} accountName
  * @param  {object} [navigator=null]
  * @param  {function} genFn
+ * @param  {function} notificationFn - New transaction callback function
  *
  * @returns {function} dispatch
  */
-export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
+export const getAccountInfo = (seed, accountName, navigator = null, genFn, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
@@ -598,7 +599,7 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(syncAccount)(existingAccountState, seed, genFn)
+        )(syncAccount)(existingAccountState, seed, genFn, notificationFn)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(accountInfoFetchSuccess(result));

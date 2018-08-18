@@ -107,8 +107,13 @@
     },
     "linux": {
       "target": [
-        "tar.gz"
-      ]
+        "AppImage"
+      ],
+      "desktop": {
+        "Name": "Trinity",
+        "Comment": "Desktop wallet for IOTA",
+        "Categories": "Office;Network;Finance"
+      }
     },
     "mac": {
       "category": "public.app-category.finance",
