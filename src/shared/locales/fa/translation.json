@@ -614,9 +614,7 @@
         "local": "محلی",
         "remote": "از راه دور",
         "powUpdated": "تنظیمات اثبات کار",
-        "powUpdatedExplanation": "اثبات کار پیکربندی شما به روز رسانی شد.",
-        "noWebGLSupport": "WebGL پشتیبانی نمی شود",
-        "noWebGLSupportExplanation": "کامپیوتر شما WebGL پشتیبانی نمی کند. لطفا از اثبات کار از راه دور استفاده کنید."
+        "powUpdatedExplanation": "اثبات کار پیکربندی شما به روز رسانی شد."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "تنظیمات ارتقا خودکار",
