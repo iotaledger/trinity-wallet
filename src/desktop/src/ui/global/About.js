@@ -51,6 +51,16 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.1-rc.1</h5>
+                            <ul>
+                                <li>Update: Execute PoW and address generation in non-blocking way</li>
+                                <li>Fix: Transactions promotion allways results in error</li>
+                                <li>Fix: Adding additional account results in empty account name</li>
+                                <li>Fix: Non existing tray icon update triggered on linux/windows</li>
+                                <li>Fix: Windows size is not restored on windows/linux</li>
+                                <li>Fix: Account name capitalised in sidebar</li>
+                                <li>Fix: Minor layout tweaks</li>
+                            </ul>
                             <h5>0.3.0</h5>
                             <ul>
                                 <li>New: Native Proof of Work and address generation</li>
