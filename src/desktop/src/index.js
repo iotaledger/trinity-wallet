@@ -47,16 +47,9 @@ const persistConfig =
 
 const persistor = persistStore(store, persistConfig, (err, restoredState) => {
     const node = get(restoredState, 'settings.node');
-    const bgColor = get(restoredState, 'settings.theme.body.bg');
 
     if (node) {
         changeIotaNode(node);
-    }
-
-    if (bgColor) {
-        document.body.style.background = bgColor;
-    } else {
-        document.body.style.background = themes.Default.body.bg;
     }
 });
 
