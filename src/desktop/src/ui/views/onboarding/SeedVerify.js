@@ -99,10 +99,6 @@ class SeedVerify extends React.PureComponent {
             history.push('/onboarding/account-name');
         } else {
             if (!firstAccount) {
-                setAdditionalAccountInfo({
-                    addingAdditionalAccount: true,
-                    additionalAccountName: this.state.name,
-                });
                 history.push('/onboarding/login');
             } else {
                 history.push('/onboarding/account-password');
