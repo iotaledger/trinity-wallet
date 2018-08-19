@@ -671,11 +671,11 @@
         "agree": "Nõustun"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "Tegumiriba taotlus",
         "trayExplanation": "Annab teile kiire ülevaate teie kontojäägi ja hiljutise ajaloo kohta.",
         "notLoggedIn": "Te pole sisse loginud",
         "setupIncomplete": "Rahakoti seadistus on mittetäielik",
-        "completeSetup": "Complete setup"
+        "completeSetup": "Lõpeta seadistus"
     },
     "notifications": {
         "notifications": "Teated",
