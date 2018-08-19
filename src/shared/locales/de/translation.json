@@ -672,7 +672,7 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Dies gibt dir einen schnellen Überblick über deinen Kontostand und Transaktionsverlauf.",
         "notLoggedIn": "Du bist nicht angemeldet",
         "setupIncomplete": "Einrichtung des Wallet abgeschlossen",
         "completeSetup": "Einrichtung abschließen"
@@ -680,12 +680,12 @@
     "notifications": {
         "notifications": "Benachrichtigungen",
         "notificationExplanation": "Systemweite Benachrichtigungen über neue Transaktionen erhalten.",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "typeConfirmations": "Über Bestätigungen informieren",
+        "typeMessages": "Über Null-Wert Transaktionen benachrichtigen",
+        "multipleTx": "Du hast mehrere Transaktionen in {{account}} erhalten",
+        "valueTx": "Du hast {{value}} in {{account}} erhalten",
+        "messageTx": "Du hast eine Nachricht in {{account}} erhalten",
+        "confirmedIn": "Eine eingehende Transaktion im Wert von {{value}} wurde in {{account}} bestätigt",
+        "confirmedOut": "Eine ausgehende Transaktion im Wert von {{value}} wurde in {{account}} bestätigt"
     }
 }
