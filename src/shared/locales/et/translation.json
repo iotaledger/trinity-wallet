@@ -679,7 +679,7 @@
     },
     "notifications": {
         "notifications": "Teated",
-        "notificationExplanation": "Saage kogu süsteemi teateid uute tehingute kohta",
+        "notificationExplanation": "Receive system wide notifications about new transactions.",
         "typeConfirmations": "Teatage kinnituste kohta",
         "typeMessages": "Teatage nullväärtusega tehingute kohta",
         "multipleTx": "Teile laekus mitu tehingut kontole {{account}}",
