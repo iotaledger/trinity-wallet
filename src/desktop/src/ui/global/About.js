@@ -51,6 +51,20 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.0</h5>
+                            <ul>
+                                <li>New: Native Proof of Work and address generation</li>
+                                <li>New: macOS Menu bar app</li>
+                                <li>New: Transaction notifications</li>
+                                <li>New: Fresh Default (old one is now Classic) and Lucky themes</li>
+                                <li>New: Error log available via main menu</li>
+                                <li>New: Show seed checksum in Account settings</li>
+                                <li>Update: Dispose alerts on wallet route change</li>
+                                <li>Update: Disable auto node switch functionality</li>
+                                <li>Update: Add disabled Clipboard warning</li>
+                                <li>Fix: Inaccurate chart tooltip date/time information</li>
+                                <li>Fix: Wallet narrow layout bugfixes</li>
+                            </ul>
                             <h5>0.2.1</h5>
                             <ul>
                                 <li>Update: Dashboard sidebar scroll for multiple accounts</li>
