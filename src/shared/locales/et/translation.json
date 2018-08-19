@@ -7,6 +7,7 @@
         "refresh": "Värskenda",
         "balanceError": "Pole piisavalt vahendeid",
         "balanceErrorMessage": "Teil ei ole selle ülekande tegemiseks piisavalt IOTAsid.",
+        "totalBalance": "Kontojääk kokku",
         "transferError": "Ülekande viga",
         "transferErrorMessage": "Midagi läks ülekande tegemisel valesti. Palun proovige uuesti.",
         "transferSent": "Ülekanne tehtud",
@@ -88,7 +89,7 @@
         "reattached": "Tehing edukalt kinnitatud",
         "reattachedExplanation": "Tehing uuesti kinnitatud räsiga {{hash}}",
         "promotingTransaction": "Tehingu edutamine",
-        "rebroadcastError": "Tehingu edastamine ebaõnnestus",
+        "rebroadcastError": "Tehingu uuesti edastamine ebaõnnestus",
         "promoted": "Tehingu edutamine õnnestus",
         "promotedExplanation": "Tehing edutatud räsiga {{hash}}",
         "autopromotionError": "Tehingut automaatne edutamine ebaõnnestus",
@@ -123,7 +124,7 @@
         "seedThief": "Kui kellelgi on teie seeme siis saab ta varastada teie IOTA.",
         "googlePlayServicesNotAvailable": "Google Play teenused pole saadaval",
         "couldNotVerifyDeviceIntegrity": "Seadme õigsust ei saanud kontrollida, sest Google Play teenused pole saadaval.",
-        "clear": "Clear",
+        "clear": "Puhasta",
         "noNetworkConnection": "Puudub võrguühendus",
         "noNetworkConnectionExplanation": "Internetiühendus paistab olevat väljas.",
         "spentAddressExplanation": "Hoiatus: Vahendid on kasutatud aadressil",
@@ -138,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse sätetesse ning sooritage hetkvõtte üleminek.",
         "usingTrinityWalletWithKeePass": "Trinity Walleti kasutamine Keepass2Androidiga",
         "signedTrytesBroadcastErrorExplanation": "Teie tehingu edastamisel tekkis viga.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Tehingu edastamine ebaõnnestus",
+        "addressesAlreadySpentFrom": "Ühelt või mitmelt teie aadressilt on juba kulutatud.",
+        "problemSendingYourTransaction": "Tehingu saatmisel tekkis probleem.",
+        "problemPerformingProofOfWork": "Töötõendi tegemisel tekkis probleem.",
+        "tryingAgainWithLocalPoW": "Kohaliku töötõendiga uuesti proovimine.",
+        "tryingAgainWithDifferentNode": "Uue sõlmega uuesti proovimine.",
+        "errorFetchingAccountInformation": "Konto teabe hankimisel tekkis viga."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -315,8 +316,8 @@
         "incorrectSeedExplanation": "Sisestatud seeme on vale. Palun proovige uuesti.",
         "ifYouHaveNotSaved": "Kui te pole oma seemet varundanud, siis palun minge tagasi ja tehke seda.",
         "enterSeedBelow": "Sisestage oma äsja loodud seeme allpool, et kinnitada, et olete selle õigesti varundanud",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Ärge kopeeri kleepige oma seemet",
+        "clipboardWarningExplanation": "HOIATUS. Kopeeri kleebi on teie turvalisuse huvides keelatud."
     },
     "send": {
         "invalidAddress": "Vigane aadress",
@@ -613,9 +614,7 @@
         "local": "Kohalik",
         "remote": "Kaug",
         "powUpdated": "Töötõendi sätted",
-        "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud.",
-        "noWebGLSupport": "WebGL pole toetatud",
-        "noWebGLSupportExplanation": "Teie arvuti ei toeta WebGLi. Palun kasutage kaugtöö tõendit."
+        "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Automaatse edutamise sätted",
@@ -660,7 +659,7 @@
         "skipUpdate": "Jätke värskendus vahele"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Veateadete logi"
     },
     "terms": {
         "termsAndConditions": "Kasutustingimused",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Privaatsuspoliitika",
         "agree": "Nõustun"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Annab teile kiire ülevaate teie kontojäägi ja hiljutise ajaloo kohta.",
+        "notLoggedIn": "Te pole sisse loginud",
+        "setupIncomplete": "Rahakoti seadistus on mittetäielik",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Teated",
+        "notificationExplanation": "Saage kogu süsteemi teateid uute tehingute kohta",
+        "typeConfirmations": "Teatage kinnituste kohta",
+        "typeMessages": "Teatage nullväärtusega tehingute kohta",
+        "multipleTx": "Teile laekus mitu tehingut kontole {{account}}",
+        "valueTx": "Teile laeukus {{value}} kontole {{account}}",
+        "messageTx": "Teile saabus sõnum {{account}}",
+        "confirmedIn": "Sissetulev {{value}} tehing kinnitati {{account}}",
+        "confirmedOut": "Väljaminev {{value}} tehing kinnitati {{account}}"
     }
 }

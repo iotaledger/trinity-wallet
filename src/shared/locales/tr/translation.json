@@ -7,6 +7,7 @@
         "refresh": "Yenile",
         "balanceError": "Yetersiz bakiye",
         "balanceErrorMessage": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
+        "totalBalance": "Total balance",
         "transferError": "Aktarım hatası",
         "transferErrorMessage": "Transferinizi gönderirken bir şeyler yanlış gitti. lütfen tekrar deneyin.",
         "transferSent": "Transfer Gönder",
@@ -613,9 +614,7 @@
         "local": "Yerel",
         "remote": "Uzak",
         "powUpdated": "İş kanıtı ayarları",
-        "powUpdatedExplanation": "İş kanıtı yapılandırması güncellendi.",
-        "noWebGLSupport": "WebGL desteklenmiyor",
-        "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
+        "powUpdatedExplanation": "İş kanıtı yapılandırması güncellendi."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
         "agree": "I agree"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

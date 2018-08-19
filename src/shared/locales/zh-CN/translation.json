@@ -7,6 +7,7 @@
         "refresh": "刷新",
         "balanceError": "余额不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
+        "totalBalance": "Total balance",
         "transferError": "交易错误",
         "transferErrorMessage": "发送交易信息出错，请重试。",
         "transferSent": "交易已发出",
@@ -613,9 +614,7 @@
         "local": "本地",
         "remote": "远程",
         "powUpdated": "工作量证明设置",
-        "powUpdatedExplanation": "您的工作量证明配置已更新",
-        "noWebGLSupport": "不支持WebGL",
-        "noWebGLSupportExplanation": "您的计算机不支持WebGL。请使用远程PoW。"
+        "powUpdatedExplanation": "您的工作量证明配置已更新"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "自动提升促进设置。",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "隐私政策",
         "agree": "我同意"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
