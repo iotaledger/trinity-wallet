@@ -671,8 +671,8 @@
         "agree": "Zgadzam się"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayApplication": "Ikona w zasobniku",
+        "trayExplanation": "Ikona ta daje możliwość szybkiego podglądu swojego stanu konta oraz ostatnich transakcji.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
