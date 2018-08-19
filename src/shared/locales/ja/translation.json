@@ -672,13 +672,13 @@
     },
     "tray": {
         "trayApplication": "トレイアプリケーション",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayExplanation": "残高と最近の履歴の概要が見れます。",
+        "notLoggedIn": "ログインしていません",
+        "setupIncomplete": "ウォレットの設定が不十分です",
+        "completeSetup": "セットアップ完了"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "通知設定",
         "notificationExplanation": "Receive system wide notifications about new transactions.",
         "typeConfirmations": "Notify about confirmations",
         "typeMessages": "Notify about zero value transactions",
