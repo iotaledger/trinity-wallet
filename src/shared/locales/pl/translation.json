@@ -680,12 +680,12 @@
     "notifications": {
         "notifications": "Powiadomienia",
         "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
-        "typeConfirmations": "Powiadamiaj o potwierdzeniu transakcji",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "typeConfirmations": "Powiadomienie o potwierdzeniu transakcji",
+        "typeMessages": "Powiadamiaj o transakcjach zerowych",
+        "multipleTx": "Otrzymano kilka transakcji na konto {{account}}",
+        "valueTx": "Otrzymano {{value}} na konto {{account}}",
+        "messageTx": "Otrzymano wiadomość na konto {{account}}",
+        "confirmedIn": "Przychodząca transakcja {{value}} została potwierdzona na koncie {{account}}",
+        "confirmedOut": "Wychodząca transakcja {{value}} została potwierdzona na koncie {{account}}"
     }
 }
