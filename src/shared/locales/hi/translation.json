@@ -7,6 +7,7 @@
         "refresh": "रिफ्रेश",
         "balanceError": "अपर्याप्त बैलेंस",
         "balanceErrorMessage": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
+        "totalBalance": "Total balance",
         "transferError": "स्थानांतरण त्रुटि",
         "transferErrorMessage": "ट्रांसफर करते समय कुछ गड़बड़ हो गई । कृपया पुन: प्रयास करें ।",
         "transferSent": "ट्रांसफर पूर्ण हुवा",
@@ -613,9 +614,7 @@
         "local": "स्थानीय",
         "remote": "दूरस्थ",
         "powUpdated": "कार्य सेटिंग्स का प्रमाण",
-        "powUpdatedExplanation": "आपका कार्य कॉन्फ़िगरेशन का प्रमाण अपडेट किया गया है ।",
-        "noWebGLSupport": "WebGL सपोर्ट नहीं करता",
-        "noWebGLSupportExplanation": "आपका कंप्यूटर WebGL का सपोर्ट नहीं करता । कृपया दूरस्थ PoW का उपयोग करें ।"
+        "powUpdatedExplanation": "आपका कार्य कॉन्फ़िगरेशन का प्रमाण अपडेट किया गया है ।"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "ऑटो प्रमोशन सेटिंग",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "गोपनीयता नीति",
         "agree": "मैं सहमत हूँ"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

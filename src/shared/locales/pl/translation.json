@@ -7,6 +7,7 @@
         "refresh": "Odśwież",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
+        "totalBalance": "Total balance",
         "transferError": "Błąd transferu",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
         "transferSent": "Transfer wykonany",
@@ -138,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
         "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Nie można wykonać transferu",
+        "addressesAlreadySpentFrom": "Zużyto już jeden lub więcej adresów.",
+        "problemSendingYourTransaction": "Wystąpił błąd podczas przetwarzania transakcji.",
+        "problemPerformingProofOfWork": "Wystąpił problem podczas wykonywania Proof of Work.",
+        "tryingAgainWithLocalPoW": "Ponawianie próby przy użyciu lokalnego trybu PoW.",
+        "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
+        "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -613,9 +614,7 @@
         "local": "Lokalnie",
         "remote": "Zdalnie",
         "powUpdated": "Konfiguracja PoW",
-        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana.",
-        "noWebGLSupport": "WebGL nieobsługiwane",
-        "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
+        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Ustawienia autopromowania",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Polityka prywatności",
         "agree": "Zgadzam się"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
