@@ -679,7 +679,7 @@
     },
     "notifications": {
         "notifications": "Notifiche",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
+        "notificationExplanation": "Ricevi notifiche di sistema sulle nuove transazioni.",
         "typeConfirmations": "Notifica sulle conferme",
         "typeMessages": "Notifica sulle transazioni a valore zero",
         "multipleTx": "Hai ricevuto più transazioni sul conto {{account}}",
