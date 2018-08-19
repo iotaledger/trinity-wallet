@@ -393,7 +393,10 @@ const checkAttachToTangleAsync = (node) => {
     return fetch(node, {
         method: 'POST',
         body: JSON.stringify({ command: 'attachToTangle' }),
-        headers: { 'X-IOTA-API-Version': '1' },
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'X-IOTA-API-Version': '1',
+        }),
     })
         .then((res) => res.json())
         .catch(() => {
