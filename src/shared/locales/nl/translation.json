@@ -1,12 +1,13 @@
 {
     "global": {
         "send": "VERZEND",
-        "cancel": "Cancel",
+        "cancel": "Annuleren",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "GEEN RECENTE GESCHIEDENIS",
         "refresh": "Ververs",
         "balanceError": "Onvoldoende saldo",
         "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze transactie te voltooien.",
+        "totalBalance": "Total balance",
         "transferError": "Transactiefout",
         "transferErrorMessage": "Er is iets misgegaan tijdens het verzenden van uw transactie. Probeer het opnieuw.",
         "transferSent": "Transactie verzonden",
@@ -23,12 +24,12 @@
         "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
         "seed": "Seed",
         "checksum": "Controlesom",
-        "back": "Back",
+        "back": "Terug",
         "goBack": "Ga terug",
         "goBackStep": "Ga een stap terug",
-        "done": "Done",
+        "done": "Voltooid",
         "prev": "VORIGE",
-        "next": "Next",
+        "next": "Volgende",
         "apply": "Toepassen",
         "save": "Opslaan",
         "close": "Sluit",
@@ -53,9 +54,9 @@
         "fifthWallet": "VIJFDE ACCOUNT",
         "sixthWallet": "ZESDE ACCOUNT",
         "otherWallet": "ANDER ACCOUNT",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Ja",
+        "no": "Nee",
+        "okay": "Oké",
         "password": "Wachtwoord",
         "unrecognisedPassword": "Onjuist wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
@@ -180,17 +181,17 @@
         "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
         "reasonRow": "Straight rows of keys are easy to guess.",
         "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
+        "reasonNames": "Alledaagse namen en achternamen zijn makkelijk te raden.",
+        "reasonRepeats": "Herhalingen als 'aaa' zijn makkelijk te raden.",
+        "reasonRepeats2": "Herhalingen als 'abcabcabc' zijn maar net iets moeilijker te raden dan 'abc'.",
+        "reasonSequence": "Opeenvolgingen als abc of 54321 zijn makkelijk te raden.",
+        "reasonYears": "Recente jaren zijn makkelijk te raden.",
+        "reasonDates": "Datums zijn vaak makkelijk te raden.",
         "reasonTop10": "This is a top 10 common password.",
         "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonCommon": "Dit is een zeer alledaags wachtwoord.",
+        "reasonSimilar": "Dit is vergelijkbaar met een veelgebruikt wachtwoord.",
+        "reasonWord": "Een enkel woord is makkelijk te raden."
     },
     "setPassword": {
         "choosePassword": "Kies een nieuw wachtwoord",
@@ -613,9 +614,7 @@
         "local": "Lokaal",
         "remote": "Extern",
         "powUpdated": "Bewijs van inspanning instellingen",
-        "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt.",
-        "noWebGLSupport": "WebGL wordt niet ondersteund",
-        "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
+        "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotie instellingen",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Privacybeleid",
         "agree": "Ik ga akkoord"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

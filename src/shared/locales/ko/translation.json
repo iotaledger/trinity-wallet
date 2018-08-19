@@ -7,6 +7,7 @@
         "refresh": "새로고침",
         "balanceError": "잔고 부족",
         "balanceErrorMessage": "잔고가 부족하여 거래를 완료할 수 없습니다.",
+        "totalBalance": "Total balance",
         "transferError": "전송 오류",
         "transferErrorMessage": "전송 중에 오류가 발생했습니다. 다시 시도해주세요.",
         "transferSent": "전송 완료",
@@ -613,9 +614,7 @@
         "local": "기기",
         "remote": "노드",
         "powUpdated": "작업증명 설정",
-        "powUpdatedExplanation": "작업증명 설정이 저장되었습니다.",
-        "noWebGLSupport": "WebGL 미지원",
-        "noWebGLSupportExplanation": "사용하시는 컴퓨터는 WebGL을 지원하지 않습니다. 노드 작업증명을 사용해 주십시오."
+        "powUpdatedExplanation": "작업증명 설정이 저장되었습니다."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "자동 프로모트 설정",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "개인정보 정책",
         "agree": "동의합니다"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
