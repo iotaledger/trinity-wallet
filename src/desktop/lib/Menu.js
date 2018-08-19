@@ -159,7 +159,6 @@ const initMenu = (app, getWindow) => {
             {
                 label: language.quit,
                 accelerator: 'Command+Q',
-                enabled: state.enabled,
                 click: function() {
                     app.quit();
                 },
