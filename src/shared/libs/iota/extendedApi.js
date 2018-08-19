@@ -172,7 +172,7 @@ const promoteTransactionAsync = (provider, powFn) => (
         .then((trytes) => {
             cached.trytes = trytes;
 
-            return getTransactionsToApproveAsync(provider)(hash, depth);
+            return getTransactionsToApproveAsync(provider)({ reference: hash }, depth);
         })
         .then(({ trunkTransaction, branchTransaction }) =>
             attachToTangleAsync(provider, powFn)(
@@ -215,7 +215,7 @@ const replayBundleAsync = (provider, powFn) => (
             cached.trytes = map(bundle, convertToTrytes);
             cached.transactionObjects = bundle;
 
-            return getTransactionsToApproveAsync(provider)(null, depth);
+            return getTransactionsToApproveAsync(provider)({}, depth);
         })
         .then(({ trunkTransaction, branchTransaction }) =>
             attachToTangleAsync(provider, powFn)(
@@ -297,7 +297,7 @@ const sendTransferAsync = (provider, powFn) => (
         .then((trytes) => {
             cached.trytes = trytes;
 
-            return getTransactionsToApproveAsync(provider)(null, depth);
+            return getTransactionsToApproveAsync(provider)({}, depth);
         })
         .then(({ trunkTransaction, branchTransaction }) =>
             attachToTangleAsync(provider, powFn)(
