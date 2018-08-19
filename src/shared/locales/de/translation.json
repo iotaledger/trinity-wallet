@@ -7,7 +7,7 @@
         "refresh": "Aktualisieren",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Gesamtsaldo",
         "transferError": "Übertragungsfehler",
         "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
@@ -378,7 +378,7 @@
         "nicknameChanged": "Kontoname geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
         "accountDeleted": "Konto gelöscht",
-        "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
+        "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet entfernt.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
         "hide": "Ausblenden",
@@ -671,7 +671,7 @@
         "agree": "Ich stimme zu"
     },
     "tray": {
-        "trayApplication": "Tray-Symbol",
+        "trayApplication": "Tray-Anwendung",
         "trayExplanation": "Dies gibt dir einen schnellen Überblick über deinen Kontostand und den Transaktionsverlauf.",
         "notLoggedIn": "Du bist nicht angemeldet",
         "setupIncomplete": "Einrichtung des Wallet abgeschlossen",
