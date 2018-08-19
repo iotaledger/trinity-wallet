@@ -671,7 +671,7 @@
         "agree": "同意します"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "トレイアプリケーション",
         "trayExplanation": "Gives you a quick overview of your balance and recent history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
