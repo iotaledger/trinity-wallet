@@ -7,7 +7,7 @@
         "refresh": "Rafraîchir",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Solde total",
         "transferError": "Erreur de transfert",
         "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
         "transferSent": "Transfert effectué",
@@ -672,14 +672,14 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayExplanation": "Vous donne un aperçu rapide de votre solde et de l’histoire récent.",
+        "notLoggedIn": "Vous n'êtes pas identifié",
+        "setupIncomplete": "Paramétrage du portefeuille incomplet",
+        "completeSetup": "Configuration terminée"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
+        "notificationExplanation": "Recevoir les notifications complètes du système à propos des nouvelles transactions.",
         "typeConfirmations": "Notify about confirmations",
         "typeMessages": "Notify about zero value transactions",
         "multipleTx": "You received multiple transactions to {{account}}",
