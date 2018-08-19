@@ -7,7 +7,7 @@
         "refresh": "Odśwież",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Całkowite saldo",
         "transferError": "Błąd transferu",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
         "transferSent": "Transfer wykonany",
@@ -672,15 +672,15 @@
     },
     "tray": {
         "trayApplication": "Ikona w zasobniku",
-        "trayExplanation": "Ikona ta daje możliwość szybkiego podglądu swojego stanu konta oraz ostatnich transakcji.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayExplanation": "Możliwość szybkiego podglądu swojego stanu konta oraz ostatnich transakcji.",
+        "notLoggedIn": "Nie jesteś zalogowany",
+        "setupIncomplete": "Konfiguracja portfela niekompletna",
+        "completeSetup": "Zakończ konfigurację"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
+        "notifications": "Powiadomienia",
+        "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
+        "typeConfirmations": "Powiadamiaj o potwierdzeniu transakcji",
         "typeMessages": "Notify about zero value transactions",
         "multipleTx": "You received multiple transactions to {{account}}",
         "valueTx": "You received {{value}} to {{account}}",
