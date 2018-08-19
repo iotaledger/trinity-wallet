@@ -317,7 +317,7 @@
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
         "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
         "clipboardWarning": "Kopiera/klistra inte in din seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarningExplanation": "Varning: Kopiera/klistra in är avaktiverad för din säkerhet."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
@@ -659,7 +659,7 @@
         "skipUpdate": "Hoppa över uppdatering"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Fellogg"
     },
     "terms": {
         "termsAndConditions": "Villkor",
@@ -671,21 +671,21 @@
         "agree": "Jag samtycker"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Aktivitetsfälts-applikation",
+        "trayExplanation": "Ger dig en snabb överblick över ditt saldo och historik.",
+        "notLoggedIn": "Du är inte inloggad",
+        "setupIncomplete": "Plånboksinstallationen ofullständig",
+        "completeSetup": "Installation fullständig"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "notifications": "Aviseringar",
+        "notificationExplanation": "Ta emot skrivbordsaviseringar om nya transaktioner.",
+        "typeConfirmations": "Meddela om bekräftade transaktioner",
+        "typeMessages": "Meddela om nollvärdestransaktioner",
+        "multipleTx": "Du har mottagit flera transaktioner till {{account}}",
+        "valueTx": "Du har mottagit {{value}} till {{account}}",
+        "messageTx": "Du har mottagit ett meddelande till {{account}}",
+        "confirmedIn": "Inkommande {{value}} transaktion bekräftades på {{account}}",
         "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
