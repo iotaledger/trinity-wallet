@@ -10,7 +10,7 @@ const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
 const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
-const { powFunc, genFunc } = require('entangled-node');
+const Entangled = require('../Entangled');
 
 const trytesTrits = [
     [0, 0, 0],
@@ -106,7 +106,7 @@ const Electron = {
      * @returns {string} Proof of Work
      */
     powFn: async (trytes, mwm) => {
-        return await powFunc(trytes, mwm);
+        return await Entangled.powFn(trytes, mwm);
     },
 
     /**
@@ -119,13 +119,13 @@ const Electron = {
      */
     genFn: async (seed, index, security, total) => {
         if (!total || total === 1) {
-            return await genFunc(seed, index, security);
+            return await Entangled.genFn(seed, index, security);
         }
 
         const addresses = [];
 
         for (let i = 0; i < total; i++) {
-            const address = await genFunc(seed, index + i, security);
+            const address = await Entangled.genFn(seed, index + i, security);
             addresses.push(address);
         }
 
