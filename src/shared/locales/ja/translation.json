@@ -685,7 +685,7 @@
         "multipleTx": "{{account}}に複数のトランザクションを受け取りました",
         "valueTx": "{{account}}に{{value}}を受け取りました",
         "messageTx": "{{account}}にメッセージを受け取りました",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "入金{{value}}が{{account}}で確定しました",
+        "confirmedOut": "出金{{value}}が{{account}}で確定しました"
     }
 }
