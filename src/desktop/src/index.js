@@ -12,8 +12,6 @@ import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
 
-import themes from 'themes/themes';
-
 import Index from 'ui/Index';
 import Tray from 'ui/Tray';
 

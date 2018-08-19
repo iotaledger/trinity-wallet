@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getMarketData, getChartData, getPrice } from 'actions/marketData';
+import { getMarketData, getChartData, getPrice, setTimeframe } from 'actions/marketData';
 import { addAccountName, setOnboardingComplete, accountInfoFetchSuccess } from 'actions/accounts';
 import { updateTheme } from 'actions/settings';
 import themes from 'themes/themes';
@@ -45,6 +45,8 @@ class Theme extends PureComponent {
         getPrice: PropTypes.func.isRequired,
         /** @ignore */
         getMarketData: PropTypes.func.isRequired,
+        /** @ignore */
+        setTimeframe: PropTypes.func.isRequired,
     };
 
     state = {
@@ -107,14 +109,15 @@ class Theme extends PureComponent {
             }
 
             if (routes[routeIndex + 1] === '/onboarding/login') {
-                this.props.addAccountName('Puppeteer');
+                this.props.addAccountName('Main');
                 this.props.setOnboardingComplete(true);
+                this.props.setTimeframe('1h');
             }
 
             if (routes[routeIndex + 1] === '/wallet') {
                 this.props.accountInfoFetchSuccess({
-                    accountName: 'Puppeteer',
-                    balance: 1000000,
+                    accountName: 'Main',
+                    balance: 45000000,
                     addresses: [],
                     hashes: [],
                     transfers: {
@@ -226,6 +229,7 @@ const mapDispatchToProps = {
     getChartData,
     getPrice,
     getMarketData,
+    setTimeframe,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Theme);
