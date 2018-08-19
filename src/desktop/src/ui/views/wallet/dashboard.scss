@@ -153,6 +153,7 @@
 
     > div:nth-child(2) {
         transition: opacity 420ms ease-out, transform 420ms ease-out;
+        border-radius: 4px;
         &.openMid {
             opacity: 0.2;
             transform: scale(0.92);
