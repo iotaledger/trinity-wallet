@@ -715,7 +715,7 @@
     },
     "notifications": {
       "notifications": "Notifications",
-      "notificationExplanation": "Receive system wide notifications about new transactions",
+      "notificationExplanation": "Receive system wide notifications about new transactions.",
       "typeConfirmations": "Notify about confirmations",
       "typeMessages": "Notify about zero value transactions",
       "multipleTx": "You received multiple transactions to {{account}}",
