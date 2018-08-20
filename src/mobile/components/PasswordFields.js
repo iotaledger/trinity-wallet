@@ -26,9 +26,11 @@ class PasswordFields extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
+        /** Called if password(s) meet requirements */
         onAcceptPassword: PropTypes.func.isRequired,
-        /** @ignore */
+        /** Callback function returning PasswordFields component instance as an argument */
+        /** @param {object} instance - PasswordFields instance
+         */
         onRef: PropTypes.func.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
