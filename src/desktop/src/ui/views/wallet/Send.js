@@ -35,8 +35,6 @@ class Send extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        balance: PropTypes.number.isRequired,
-        /** @ignore */
         availableBalance: PropTypes.number.isRequired,
         /** @ignore */
         settings: PropTypes.shape({
@@ -101,7 +99,7 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { fields, isSending, balance, availableBalance, settings, progress, t } = this.props;
+        const { fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
