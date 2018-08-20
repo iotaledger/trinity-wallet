@@ -7,6 +7,7 @@ import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
+import includes from 'lodash/includes';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -322,7 +323,8 @@ export const forceTransactionPromotion = (
     powFn = null,
     depth = DEFAULT_DEPTH,
 ) => (dispatch, getState) => {
-    if (!consistentTail) {
+    // Reattach a transaction and promote newly reattached transaction
+    const reattachAndPromote = () => {
         // Grab first tail transaction hash
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
@@ -349,30 +351,18 @@ export const forceTransactionPromotion = (
 
             return promoteTransactionAsync(null, powFn)(tailTransaction.hash);
         });
+    };
+
+    if (!consistentTail) {
+        return reattachAndPromote();
     }
 
     return promoteTransactionAsync(null, powFn)(consistentTail.hash, depth).catch((error) => {
-        const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
-        const hasDefaultDepth = depth === DEFAULT_DEPTH;
-
-        if (isReferenceTxOld && hasDefaultDepth) {
-            return dispatch(
-                forceTransactionPromotion(
-                    accountName,
-                    consistentTail,
-                    tailTransactionHashes,
-                    shouldGenerateAlert,
-                    powFn,
-                    depth * 2,
-                ),
-            );
-        } else if (isReferenceTxOld && !hasDefaultDepth) {
-            return dispatch(
-                forceTransactionPromotion(accountName, null, tailTransactionHashes, shouldGenerateAlert, powFn),
-            );
+        if (includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT)) {
+            return reattachAndPromote();
         }
 
-        throw new Error(error.message);
+        throw error;
     });
 };
 
@@ -681,7 +671,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 }, 5000);
             })
             .catch((error) => {
-
                 dispatch(sendTransferError());
 
                 // Only keep the failed trytes locally if the bundle was valid
