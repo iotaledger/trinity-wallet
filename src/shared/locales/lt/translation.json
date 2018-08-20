@@ -348,7 +348,7 @@
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
-        "canUseMultipleSeeds": "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
+        "canUseMultipleSeeds": "Su šia pinigine jūs galite naudoti daugybę užraktų. Kiekvienas užraktas turi turėti paskyros vardą.",
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
