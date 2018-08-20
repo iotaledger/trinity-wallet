@@ -129,7 +129,7 @@ class ChangePassword extends Component {
         } else if (this.state.newPassword === this.state.currentPassword) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
-        this.PasswordFields.checkPassword();
+        this.passwordFields.checkPassword();
     }
 
     render() {
@@ -168,7 +168,7 @@ class ChangePassword extends Component {
                         />
                         <PasswordFields
                             onRef={(ref) => {
-                                this.PasswordFields = ref;
+                                this.passwordFields = ref;
                             }}
                             onAcceptPassword={() => this.onAcceptPassword()}
                             password={newPassword}

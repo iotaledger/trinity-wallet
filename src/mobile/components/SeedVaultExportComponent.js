@@ -55,21 +55,23 @@ class SeedVaultExportComponent extends Component {
         seed: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
+        /** Returns to page before starting the Seed Vault Export process */
         goBack: PropTypes.func.isRequired,
-        /** @ignore */
+        /** Current step of the Seed Vault Export process */
         step: PropTypes.string.isRequired,
-        /** @ignore */
+        /** Sets the current step of the Seed Vault Export process */
         setProgressStep: PropTypes.func.isRequired,
-        /** @ignore */
+        /** Callback function returning SeedVaultExportComponent instance as an argument */
+        /** @param {object} instance - SeedVaultExportComponent instance
+         */
         onRef: PropTypes.func.isRequired,
-        /** @ignore */
+        /** Determines whether user needs to enter wallet password */
         isAuthenticated: PropTypes.bool.isRequired,
         /** @ignore */
         storedPasswordHash: PropTypes.object.isRequired,
-        /** @ignore */
+        /** Triggered when user enters the correct wallet password */
         setAuthenticated: PropTypes.func,
-        /** @ignore */
+        /** Sets seed variable in parent component following successful SeedVault import */
         setSeed: PropTypes.func.isRequired,
     };
 
@@ -90,7 +92,7 @@ class SeedVaultExportComponent extends Component {
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
-            async (vault) => {
+            (vault) => {
                 this.onGenerateVault(vault);
             },
             this,
@@ -169,7 +171,7 @@ class SeedVaultExportComponent extends Component {
         } else if (step === 'isViewingPasswordInfo') {
             return this.navigateToStep('isSettingPassword');
         }
-        this.PasswordFields.checkPassword();
+        this.passwordFields.checkPassword();
     }
 
     /**
@@ -318,7 +320,7 @@ class SeedVaultExportComponent extends Component {
                 <View style={styles.viewContainer}>
                     <PasswordFields
                         onRef={(ref) => {
-                            this.PasswordFields = ref;
+                            this.passwordFields = ref;
                         }}
                         onAcceptPassword={() => this.navigateToStep('isExporting')}
                         password={password}
