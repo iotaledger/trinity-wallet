@@ -9,7 +9,7 @@
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "totalBalance": "Bendras balansas",
         "transferError": "Pavedimo klaida",
-        "transferErrorMessage": "Įvyko klaida atliekant pavedimą. Bandykite dar kartą.",
+        "transferErrorMessage": "Įvyko klaida apdorojant jūsų pavedimą. Bandykite dar kartą.",
         "transferSent": "Pavedimas atliktas",
         "transferSentMessage": "Jūsų pavedimas išsiųstas į Tangle.",
         "messageSent": "Žinutė išsiųsta",
@@ -18,7 +18,7 @@
         "keyReuseError": "Negalima atlikti pavedimo adresu, iš kurio jau buvo atliktas pavedimas.",
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccount": "Įvyko klaida įkeliant Jūsų paskyros duomenis. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -36,7 +36,7 @@
         "export": "Iškelti",
         "import": "Įkelti",
         "continue": "Tęsti",
-        "enable": "Įgalinti",
+        "enable": "Įjungti",
         "disable": "Išjungti",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
@@ -143,9 +143,9 @@
         "addressesAlreadySpentFrom": "Vienas ar daugiau adresų jau buvo panaudoti.",
         "problemSendingYourTransaction": "Įvyko klaida apdorojant jūsų pavedimą.",
         "problemPerformingProofOfWork": "Įvyko klaida atliekant apskaičiavimus.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
+        "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
+        "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -659,7 +659,7 @@
         "skipUpdate": "Praleisti atnaujinimus"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Klaidų žurnalas"
     },
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
@@ -673,8 +673,8 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
+        "notLoggedIn": "Jūs neprisijungęs",
+        "setupIncomplete": "Piniginės nustatymai nebaigti",
         "completeSetup": "Complete setup"
     },
     "notifications": {
