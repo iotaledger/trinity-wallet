@@ -161,33 +161,36 @@ const promoteTransactionAsync = (provider, powFn) => (
         trytes: [],
     };
 
-    return isPromotable(provider)(hash)
-        .then((isPromotable) => {
-            if (!isPromotable) {
-                throw new Error(Errors.INCONSISTENT_SUBTANGLE);
-            }
+    return (
+        isPromotable(provider)(hash, { rejectWithReason: true })
+            // rejectWithReason only resolves if provided hashes are consistent
+            .then(() => prepareTransfersAsync(provider)(transfer.address, [transfer]))
+            .then((trytes) => {
+                cached.trytes = trytes;
 
-            return prepareTransfersAsync(provider)(transfer.address, [transfer]);
-        })
-        .then((trytes) => {
-            cached.trytes = trytes;
+                return getTransactionsToApproveAsync(provider)(
+                    {
+                        reference: hash,
+                        adjustDepth: true,
+                    },
+                    depth,
+                );
+            })
+            .then(({ trunkTransaction, branchTransaction }) =>
+                attachToTangleAsync(provider, powFn)(
+                    trunkTransaction,
+                    branchTransaction,
+                    cached.trytes,
+                    minWeightMagnitude,
+                ),
+            )
+            .then(({ trytes }) => {
+                cached.trytes = trytes;
 
-            return getTransactionsToApproveAsync(provider)({ reference: hash }, depth);
-        })
-        .then(({ trunkTransaction, branchTransaction }) =>
-            attachToTangleAsync(provider, powFn)(
-                trunkTransaction,
-                branchTransaction,
-                cached.trytes,
-                minWeightMagnitude,
-            ),
-        )
-        .then(({ trytes }) => {
-            cached.trytes = trytes;
-
-            return storeAndBroadcastAsync(provider)(cached.trytes);
-        })
-        .then(() => hash);
+                return storeAndBroadcastAsync(provider)(cached.trytes);
+            })
+            .then(() => hash)
+    );
 };
 
 /**
@@ -588,8 +591,8 @@ const generateAddressesAsync = (seed, options, addressesGenFn = null) => {
  *
  * @returns {function(string): (Promise<boolean>)}
  */
-const isPromotable = (provider) => (tailTransactionHash) =>
-    getIotaInstance(provider).api.isPromotable(tailTransactionHash);
+const isPromotable = (provider) => (tailTransactionHash, options = {}) =>
+    getIotaInstance(provider).api.isPromotable(tailTransactionHash, options);
 
 export {
     getIotaInstance,
