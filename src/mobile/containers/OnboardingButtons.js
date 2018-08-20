@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 /** Onboarding buttons component */
 class OnboardingButtons extends PureComponent {
     static propTypes = {
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Id for automated screenshots */
         leftButtonTestID: PropTypes.string,

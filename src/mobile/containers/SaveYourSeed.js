@@ -94,27 +94,19 @@ class SaveYourSeed extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Determines whether onboarding steps for wallet setup are completed */
+        /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Sets status if a user has visited the seed share tutorial link
-         * @param {boolean} status
-         */
+        /** @ignore */
         setSeedShareTutorialVisitationStatus: PropTypes.func.isRequired,
-        /** Determines if a user has visited the seed share tutorial link */
+        /** @ignore */
         hasVisitedSeedShareTutorial: PropTypes.bool.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -147,7 +139,8 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Hide navbar when returning from print
+     * Hide navigation bar when returning from print
+     * @method onNavigatorEvent
      */
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
@@ -157,6 +150,10 @@ class SaveYourSeed extends Component {
         }
     }
 
+    /**
+     * Navigates to save seed confirmation screen
+     * @method onDonePress
+     */
     onDonePress() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -174,6 +171,10 @@ class SaveYourSeed extends Component {
         this.clearClipboard();
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method onBackPress
+     */
     onBackPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.pop({
@@ -189,6 +190,10 @@ class SaveYourSeed extends Component {
         });
     }
 
+    /**
+     * Navigates to write seed down screen
+     * @method onWriteSeedDown
+     */
     onWriteSeedDown() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -206,6 +211,10 @@ class SaveYourSeed extends Component {
         });
     }
 
+    /**
+     * Shows modal
+     * @method onPrintPaperWallet
+     */
     onPrintPaperWallet() {
         this.openModal('printModal');
     }
@@ -216,6 +225,7 @@ class SaveYourSeed extends Component {
 
     /**
      * Generates html for seed qr
+     * @method getQrHTMLString
      */
     getQrHTMLString(seed) {
         const qr = new QRCode(-1, 1);
@@ -242,7 +252,8 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Constucts html text components for all seed characters
+     * Constructs html text components for all seed characters
+     * @method getSeedHTMLString
      */
     getSeedHTMLString(seed) {
         let seedChars = '';
@@ -260,6 +271,7 @@ class SaveYourSeed extends Component {
 
     /**
      * Constructs paper wallet html string for printing
+     * @method getHTMLContent
      */
     getHTMLContent() {
         const { seed } = this.props;
@@ -278,6 +290,7 @@ class SaveYourSeed extends Component {
 
     /**
      * iOS: Alerts the user that the clipboard was cleared
+     * @method clearClipboard
      */
     clearClipboard() {
         const { t } = this.props;
@@ -299,6 +312,7 @@ class SaveYourSeed extends Component {
 
     /**
      *  Triggers paper wallet print
+     *  @method print
      */
     async print() {
         this.hideModal();
@@ -358,6 +372,7 @@ class SaveYourSeed extends Component {
     /**
      * iOS: Copies seed to the clipboard and clears after 60 seconds
      * Android: Passes seed to Keepass share intent
+     * @method copy
      */
     copy() {
         const { t, seed } = this.props;

@@ -110,57 +110,91 @@ const styles = StyleSheet.create({
 
 export class Send extends Component {
     static propTypes = {
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
         currency: PropTypes.string.isRequired,
+        /** Balance for selected account */
         balance: PropTypes.number.isRequired,
+        /** Available balance for selected account */
         availableBalance: PropTypes.number.isRequired,
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
         seedIndex: PropTypes.number.isRequired,
+        /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** @ignore */
         conversionRate: PropTypes.number.isRequired,
+        /** @ignore */
         usdPrice: PropTypes.number.isRequired,
+        /** @ignore */
         isGettingSensitiveInfoToMakeTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
         makeTransaction: PropTypes.func.isRequired,
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
         getFromKeychainRequest: PropTypes.func.isRequired,
+        /** @ignore */
         getFromKeychainSuccess: PropTypes.func.isRequired,
+        /** @ignore */
         getFromKeychainError: PropTypes.func.isRequired,
+        /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
+        /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
         bar: PropTypes.object.isRequired,
+        /** @ignore */
         body: PropTypes.object.isRequired,
+        /** @ignore */
         primary: PropTypes.object.isRequired,
+        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
         address: PropTypes.string.isRequired,
+        /** @ignore */
         amount: PropTypes.string.isRequired,
+        /** @ignore */
         message: PropTypes.string.isRequired,
+        /** @ignore */
         setSendAddressField: PropTypes.func.isRequired,
+        /** @ignore */
         setSendAmountField: PropTypes.func.isRequired,
+        /** @ignore */
         setSendMessageField: PropTypes.func.isRequired,
+        /** @ignore */
         setSendDenomination: PropTypes.func.isRequired,
+        /** @ignore */
         startTrackingProgress: PropTypes.func.isRequired,
+        /** @ignore */
         denomination: PropTypes.string.isRequired,
+        /** @ignore */
         activeStepIndex: PropTypes.number.isRequired,
+        /** @ignore */
         activeSteps: PropTypes.array.isRequired,
+        /** @ignore */
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
+        /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
         generateTransferErrorAlert: PropTypes.func.isRequired,
-        /** Determines if the wallet has just opened a deep link */
+        /** @ignore */
         deepLinkActive: PropTypes.bool.isRequired,
-        /** Resets deep link status */
+        /** @ignore */
         setDeepLinkInactive: PropTypes.func.isRequired,
-        /** Determines if user has activated fingerprint auth */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
-        /** Allow deny application to minimize
-         * @param {boolean} status
-         */
+        /** @ignore */
         setDoNotMinimise: PropTypes.func.isRequired,
-        /** Determines whether keyboard is open on iOS */
+        /** @ignore */
         isKeyboardActive: PropTypes.bool.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
     };
 
@@ -306,6 +340,12 @@ export class Send extends Component {
         }
     }
 
+    /**
+     * Send button event callback method
+     *
+     * @method onSendPress
+     * @returns {function}
+     */
     onSendPress() {
         const { t, amount, address, message, denomination, isKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
@@ -475,6 +515,12 @@ export class Send extends Component {
         return conversionText;
     }
 
+    /**
+     * Generates an alert if address paste is detected
+     *
+     * @method detectAddressInClipboard
+     * @returns {Promise<void>}
+     */
     async detectAddressInClipboard() {
         const { t } = this.props;
         const clipboardContent = await Clipboard.getString();
@@ -519,6 +565,12 @@ export class Send extends Component {
         this.props.toggleModalActivity();
     };
 
+    /**
+     * Determines if user's balance is less than the entered amount
+     *
+     * @method enoughBalance
+     * @returns {boolean}
+     */
     enoughBalance() {
         const { amount, balance } = this.props;
         const multiplier = this.getUnitMultiplier();
@@ -540,12 +592,21 @@ export class Send extends Component {
         return false;
     }
 
+    /**
+     * Activates progress bar steps
+     * @param {boolean} isZeroValueTransaction
+     */
     startTrackingTransactionProgress(isZeroValueTransaction) {
         const steps = isZeroValueTransaction ? ProgressSteps.zeroValueTransaction : ProgressSteps.valueTransaction;
 
         this.props.startTrackingProgress(steps);
     }
 
+    /**
+     * Gets seed from keychain and initiates transfer
+     *
+     * @method sendTransfer
+     */
     sendTransfer() {
         const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
 
@@ -601,6 +662,11 @@ export class Send extends Component {
         timer.setTimeout('delaySend', () => this.sendTransfer(), 200);
     }
 
+    /**
+     * Activates fingerprint scanner
+     *
+     * @method activateFingerprintScanner
+     */
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
@@ -626,6 +692,10 @@ export class Send extends Component {
             });
     }
 
+    /**
+     * Blurs out address, amount and message text fields
+     * @method blurTextFields
+     */
     blurTextFields() {
         this.addressField.blur();
         this.amountField.blur();

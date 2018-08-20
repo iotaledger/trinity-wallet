@@ -46,9 +46,7 @@ export class QRScanner extends Component {
     }
 
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** QrCodeScanner onRead event callback function
          * @param {object} data
@@ -56,8 +54,9 @@ export class QRScanner extends Component {
         onQRRead: PropTypes.func.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
-        /** Content base colors */
+        /** @ignore */
         body: PropTypes.object.isRequired,
+        /** @ignore */
         primary: PropTypes.object.isRequired,
         /** Mount lifecycle method calback function  */
         onMount: PropTypes.func,

@@ -104,60 +104,44 @@ const styles = StyleSheet.create({
 
 class SnapshotTransition extends Component {
     static propTypes = {
-        /** Snapshot transitioning state */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Make snapshot transition
-         * @param {string} seed
-         * @param {array} addresses
-         */
+        /** @ignore */
         transitionForSnapshot: PropTypes.func.isRequired,
-        /** Total computed balance during transition */
+        /** @ignore */
         transitionBalance: PropTypes.number.isRequired,
-        /** Determines whether to display balance check */
+        /** @ignore */
         balanceCheckFlag: PropTypes.bool.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Generates addresses and checks for balance
-         * @param {string} seed
-         * @param {number} index
-         * @param {function} genFn - Native address generation function
-         */
+        /** @ignore */
         generateAddressesAndGetBalance: PropTypes.func.isRequired,
-        /** Generated addresses during snapshot transition */
+        /** @ignore */
         transitionAddresses: PropTypes.array.isRequired,
-        /** Attach addresses to tangle for completing snapshot transition
-         * @param {string} seed
-         * @param {string} selectedAccountName
-         * @param {array} transitionAddresses
-         */
+        /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Set new setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
         /** Determines whether to allow snapshot transition actions */
         shouldPreventAction: PropTypes.bool.isRequired,
-        /** Attaching to tangle state */
+        /** @ignore */
         isAttachingToTangle: PropTypes.bool.isRequired,
-        /** Wallet password  */
+        /** @ignore */
         password: PropTypes.object.isRequired,
         activeStepIndex: PropTypes.number.isRequired,
+        /** @ignore */
         activeSteps: PropTypes.array.isRequired,
+        /** @ignore */
         setBalanceCheckFlag: PropTypes.func.isRequired,
+        /** @ignore */
         cancelSnapshotTransition: PropTypes.func.isRequired,
     };
 
@@ -187,6 +171,10 @@ class SnapshotTransition extends Component {
         }
     }
 
+    /**
+     * Dispatch an action to complete snapshot transition (Start attaching addresses to Tangle)
+     * @method onBalanceCompletePress
+     */
     onBalanceCompletePress() {
         const { transitionAddresses, selectedAccountName, password } = this.props;
         setTimeout(() => {
@@ -207,6 +195,10 @@ class SnapshotTransition extends Component {
         }, 300);
     }
 
+    /**
+     * Generates bulk of addresses if a user doesn't find their correct balance
+     * @method onBalanceIncompletePress
+     */
     onBalanceIncompletePress() {
         const genFn = getMultiAddressGenFn();
         const { transitionAddresses, password, selectedAccountName } = this.props;
@@ -223,6 +215,11 @@ class SnapshotTransition extends Component {
         }, 300);
     }
 
+    /**
+     * Generates a bulk of addresses starting from index 0
+     * Finds balance for those addresses and displays a modal asking the user to confirm the balance
+     * @method onSnapshotTransitionPress
+     */
     onSnapshotTransitionPress() {
         const { addresses, shouldPreventAction, password, selectedAccountName, t } = this.props;
         if (!shouldPreventAction) {
@@ -241,6 +238,10 @@ class SnapshotTransition extends Component {
         }
     }
 
+    /**
+     * Cancels snapshot transition and navigates to advanced settings screen
+     * @method cancel
+     */
     cancel() {
         this.props.cancelSnapshotTransition();
         this.props.setSetting('advancedSettings');

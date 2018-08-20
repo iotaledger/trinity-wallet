@@ -79,44 +79,31 @@ class SetPassword extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Sets wallet's onboarding status
-         * @param {boolean} - status
-         */
+        /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** Clears wallet reducer data */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Wipes seed from reducer */
+        /** @ignore */
         clearSeed: PropTypes.func.isRequired,
-        /** Increment number of seeds stored on device */
+        /** @ignore */
         increaseSeedCount: PropTypes.func.isRequired,
-        /** Add account name to the list of account names stored on device
-         * @param {string} - accountName
-         */
+        /** @ignore */
         addAccountName: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Set basic account information
-         * @param {object} accountInfo
-         */
+        /** @ignore */
         setBasicAccountInfo: PropTypes.func.isRequired,
-        /** Determines if a user used an existing seed or generated a seed using wallet */
+        /** @ignore */
         usedExistingSeed: PropTypes.bool.isRequired,
     };
 
@@ -132,6 +119,11 @@ class SetPassword extends Component {
         leaveNavigationBreadcrumb('SetPassword');
     }
 
+    /**
+     * Stores seed in keychain and clears seed from state
+     * @method onDonePress
+     * @returns {Promise<void>}
+     */
     async onDonePress() {
         const { theme: { body }, usedExistingSeed } = this.props;
         const ifNoKeychainDuplicates = (pwdHash, salt, seed, accountName) => {
@@ -214,6 +206,10 @@ class SetPassword extends Component {
         }
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method onBackPress
+     */
     onBackPress() {
         this.props.navigator.pop({
             animated: false,

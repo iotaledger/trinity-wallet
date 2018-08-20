@@ -19,23 +19,15 @@ const styles = StyleSheet.create({
  */
 class AccountManagement extends Component {
     static propTypes = {
-        /** Total number of added seeds */
+        /** @ignore */
         seedCount: PropTypes.number.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -43,6 +35,11 @@ class AccountManagement extends Component {
         leaveNavigationBreadcrumb('AccountManagement');
     }
 
+    /**
+     * Navigate to delete account setting screen
+     *
+     * @method deleteAccount
+     */
     deleteAccount() {
         const { seedCount, t } = this.props;
 
@@ -57,6 +54,13 @@ class AccountManagement extends Component {
         return this.props.setSetting('deleteAccount');
     }
 
+    /**
+     * Renders setting screen rows
+     *
+     * @method renderSettingsContent
+     *
+     * @returns {function}
+     */
     renderSettingsContent() {
         const { theme, t } = this.props;
         const rows = [
@@ -68,6 +72,7 @@ class AccountManagement extends Component {
             { name: t('addNewAccount'), icon: 'plus', function: () => this.props.setSetting('addNewAccount') },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
+
         return renderSettingsRows(rows, theme);
     }
 

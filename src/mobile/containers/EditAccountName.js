@@ -67,29 +67,19 @@ export class EditAccountName extends Component {
     static propTypes = {
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** List of all account names added to wallet */
+        /** @ignore */
         accountNames: PropTypes.array.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Updates account name
-         * @param {object} options - Contains old account name and new account name
-         */
+        /** @ignore */
         changeAccountName: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
@@ -111,6 +101,12 @@ export class EditAccountName extends Component {
         }
     }
 
+    /**
+     * Updates new account name in store and keychain
+     * Generates an alert if the user enters a duplicate account name
+     *
+     * @method save
+     */
     save(accountName) {
         const { accountNames, password, selectedAccountName, t } = this.props;
 
