@@ -480,7 +480,8 @@
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "Add new account",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
