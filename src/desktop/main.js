@@ -28,6 +28,8 @@ let deeplinkingUrl = null;
 
 let tray = null;
 
+let windowSizeTimer = null;
+
 /**
  * Define wallet windows
  */
@@ -147,6 +149,15 @@ function createWindow() {
      * Attach window close event
      */
     windows.main.on('close', hideOnClose);
+
+    /**
+     * Attach window resize event
+     */
+
+    windows.main.on('resize', () => {
+        clearTimeout(windowSizeTimer);
+        windowSizeTimer = setTimeout(updateWindowSize, 1000);
+    });
 
     /**
      * Load tray window url and attach blur event
@@ -327,7 +338,7 @@ app.on('window-all-closed', () => {
 /**
  * Save window location/size state before closing the wallet
  */
-app.on('before-quit', () => {
+const updateWindowSize = () => {
     if (windows.main && !windows.main.isDestroyed()) {
         const bounds = windows.main.getBounds();
 
@@ -338,9 +349,14 @@ app.on('before-quit', () => {
             height: bounds.height,
             maximized: windows.main.isMaximized(),
         });
-
-        windows.main.removeListener('close', hideOnClose);
     }
+};
+
+/**
+ * Remove close event on application quit
+ */
+app.on('before-quit', () => {
+    windows.main.removeListener('close', hideOnClose);
 });
 
 /**
@@ -379,6 +395,10 @@ ipc.on('request.deepLink', () => {
  * Proxy storage update event to tray window
  */
 ipc.on('storage.update', (e, payload) => {
+    if (process.platform !== 'darwin') {
+        return;
+    }
+
     if (windows.tray && !windows.tray.isDestroyed()) {
         windows.tray.webContents.send('storage.update', payload);
     }
