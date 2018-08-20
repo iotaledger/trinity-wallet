@@ -191,7 +191,7 @@
         "reasonTop100": "Voila un top 100 des mots de passe les plus courants.",
         "reasonCommon": "C'est un mot de passe très courant.",
         "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé.",
-        "reasonWord": "Un simple mot est facile à deviner."
+        "reasonWord": "Un seul mot est facile à deviner."
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -316,8 +316,8 @@
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire.",
         "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardée correctement",
-        "clipboardWarning": "Ne pas copier coller votre seed",
-        "clipboardWarningExplanation": "AVERTISSEMENT : Le copier coller est désactivé pour votre sécurité."
+        "clipboardWarning": "Ne faites pas de copier-coller votre seed",
+        "clipboardWarningExplanation": "AVERTISSEMENT : Le copier-coller est désactivé pour votre sécurité."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -672,16 +672,16 @@
     },
     "tray": {
         "trayApplication": "Réduire dans la barre de tache",
-        "trayExplanation": "Vous donne un aperçu rapide de votre solde et de l’histoire récent.",
-        "notLoggedIn": "Vous n'êtes pas identifié",
+        "trayExplanation": "Vous donne un aperçu rapide de votre solde et de l’historique récent.",
+        "notLoggedIn": "Vous n'êtes pas connecté",
         "setupIncomplete": "Paramétrage du portefeuille incomplet",
         "completeSetup": "Configuration terminée"
     },
     "notifications": {
         "notifications": "Notifications",
         "notificationExplanation": "Recevoir les notifications complètes du système à propos des nouvelles transactions.",
-        "typeConfirmations": "Notification à propos des confirmations",
-        "typeMessages": "Notification à propos des transactions nulles",
+        "typeConfirmations": "Notifier les confirmations",
+        "typeMessages": "Notifier les transactions nulles",
         "multipleTx": "Vous avez reçu plusieurs transactions sur {{account}}",
         "valueTx": "Vous avez reçu {{value}} sur {{account}}",
         "messageTx": "Vous avez reçu un message à {{account}}",
