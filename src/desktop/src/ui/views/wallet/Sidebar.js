@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import { shorten } from 'libs/helpers';
+import { shorten, capitalize } from 'libs/helpers';
 import { formatIota } from 'libs/iota/utils';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
@@ -122,7 +122,7 @@ class Sidebar extends React.PureComponent {
                 <nav className={isBusy ? css.disabled : null}>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
-                        <strong>{t('home:settings').toLowerCase()}</strong>
+                        <strong>{capitalize(t('home:settings'))}</strong>
                     </NavLink>
                     <a onClick={this.toggleLogout}>
                         <Icon icon="logout" size={20} />

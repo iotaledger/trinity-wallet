@@ -363,6 +363,9 @@
                 display: block;
                 font-family: 'SourceCodePro';
                 word-break: break-word;
+                > span {
+                    display: block;
+                }
             }
         }
 
