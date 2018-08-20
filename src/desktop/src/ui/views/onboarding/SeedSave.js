@@ -54,7 +54,7 @@ class SeedSave extends PureComponent {
                             <h4>{t('saveYourSeed:writeYourSeedDown')}</h4>
                         </a>
                         <a onClick={() => this.setState({ exportVisible: true })} className={css.secure}>
-                            <h3>{t('saveYourSeed:mostSecure')}</h3>
+                            <h3>{t('saveYourSeed:recommended')}</h3>
                             <div>
                                 <Icon icon="vault" size={28} />
                             </div>
