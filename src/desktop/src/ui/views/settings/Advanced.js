@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { clearVault, getSeed } from 'libs/crypto';
-import { formatValue, formatUnit } from 'libs/iota/utils';
-import { round } from 'libs/utils';
+import { clearVault } from 'libs/crypto';
 
-import { manuallySyncAccount } from 'actions/accounts';
 import {
     changePowSettings,
     changeAutoPromotionSettings,
@@ -16,21 +13,11 @@ import {
     setTray,
     setNotifications,
 } from 'actions/settings';
-import {
-    transitionForSnapshot,
-    completeSnapshotTransition,
-    setBalanceCheckFlag,
-    generateAddressesAndGetBalance,
-} from 'actions/wallet';
-import { generateAlert } from 'actions/alerts';
-import { toggleModalActivity } from 'actions/ui';
 
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
+import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
-import ModalConfirm from 'ui/components/modal/Confirm';
-import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
 import Checkbox from 'ui/components/Checkbox';
 import TextInput from 'ui/components/input/Text';
@@ -44,6 +31,12 @@ import css from './index.scss';
 class Advanced extends PureComponent {
     static propTypes = {
         /** @ignore */
+        settings: PropTypes.object.isRequired,
+        /** @ignore */
+        setTray: PropTypes.func.isRequired,
+        /** @ignore */
+        setNotifications: PropTypes.func.isRequired,
+        /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
@@ -55,61 +48,11 @@ class Advanced extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        settings: PropTypes.object.isRequired,
-        /** @ignore */
-        wallet: PropTypes.object.isRequired,
-        /** @ignore */
-        ui: PropTypes.object.isRequired,
-        /** @ignore */
-        isTransitioning: PropTypes.bool.isRequired,
-        /** @ignore */
-        transitionBalance: PropTypes.number.isRequired,
-        /** @ignore */
-        transitionAddresses: PropTypes.array.isRequired,
-        /** @ignore */
-        isAttachingToTangle: PropTypes.bool.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
-        /** @ignore */
-        toggleModalActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        balanceCheckFlag: PropTypes.bool.isRequired,
-        /** @ignore */
-        selectedAccountName: PropTypes.string.isRequired,
-        /** @ignore */
-        completeSnapshotTransition: PropTypes.func.isRequired,
-        /** @ignore */
-        setBalanceCheckFlag: PropTypes.func.isRequired,
-        /** @ignore */
-        manuallySyncAccount: PropTypes.func.isRequired,
-        /** @ignore */
-        generateAddressesAndGetBalance: PropTypes.func.isRequired,
-        /** @ignore */
-        transitionForSnapshot: PropTypes.func.isRequired,
-        /** @ignore */
-        setTray: PropTypes.func.isRequired,
-        /** @ignore */
-        setNotifications: PropTypes.func.isRequired,
     };
 
     state = {
         resetConfirm: false,
     };
-
-    componentWillReceiveProps(newProps) {
-        const { balanceCheckFlag } = this.props;
-        if (balanceCheckFlag !== newProps.balanceCheckFlag) {
-            this.props.toggleModalActivity();
-            return;
-        }
-        const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
-        if (isTransitioning || isAttachingToTangle || isModalActive) {
-            Electron.updateMenu('enabled', false);
-        } else {
-            Electron.updateMenu('enabled', true);
-        }
-    }
 
     /**
      * Hard reset wallet
@@ -144,55 +87,6 @@ class Advanced extends PureComponent {
         this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
     };
 
-    /**
-     * Trigger manual account sync Worker task
-     * @returns {Promise}
-     */
-    syncAccount = async () => {
-        const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
-
-        this.props.manuallySyncAccount(seed, selectedAccountName, Electron.genFn);
-    };
-
-    /**
-     * Trigger snapshot transition Worker task
-     * @returns {Promise}
-     */
-    startSnapshotTransition = async () => {
-        const { wallet, addresses, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
-
-        this.props.transitionForSnapshot(seed, addresses, Electron.genFn);
-    };
-
-    /**
-     * Trigger snapshot transition completion
-     * @returns {Promise}
-     */
-    transitionBalanceOk = async () => {
-        this.props.setBalanceCheckFlag(false);
-        const { wallet, transitionAddresses, selectedAccountName, settings } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
-
-        const powFn = !settings.remotePoW ? Electron.powFn : null;
-
-        this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
-    };
-
-    /**
-     * rigger snapshot transition
-     * @returns {Promise}
-     */
-    transitionBalanceWrong = async () => {
-        this.props.setBalanceCheckFlag(false);
-        const { wallet, transitionAddresses, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
-        const currentIndex = transitionAddresses.length;
-
-        this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);
-    };
-
     render() {
         const {
             settings,
@@ -201,38 +95,10 @@ class Advanced extends PureComponent {
             lockScreenTimeout,
             setTray,
             setNotifications,
-            ui,
             t,
         } = this.props;
 
-        // snapshot transition
-        const { isTransitioning, isAttachingToTangle, isModalActive, transitionBalance } = this.props;
         const { resetConfirm } = this.state;
-
-        if ((isTransitioning || isAttachingToTangle) && !isModalActive) {
-            return (
-                <Loading
-                    loop
-                    transparent={false}
-                    title={t('advancedSettings:snapshotTransition')}
-                    subtitle={
-                        <React.Fragment>
-                            {!isAttachingToTangle ? (
-                                <div>
-                                    {t('snapshotTransition:transitioning')} <br />
-                                    {t('snapshotTransition:generatingAndDetecting')} {t('global:pleaseWaitEllipses')}
-                                </div>
-                            ) : (
-                                <div>
-                                    {t('snapshotTransition:attaching')} <br />
-                                    {t('loading:thisMayTake')} {t('global:pleaseWaitEllipses')}
-                                </div>
-                            )}
-                        </React.Fragment>
-                    }
-                />
-            );
-        }
 
         return (
             <div className={css.scroll}>
@@ -259,15 +125,19 @@ class Advanced extends PureComponent {
                     <p>{t('advancedSettings:autoPromotionExplanation')}</p>
                     <hr />
 
-                    <h3>{t('tray:trayApplication')}</h3>
-                    <Toggle
-                        checked={settings.isTrayEnabled}
-                        onChange={() => setTray(!settings.isTrayEnabled)}
-                        on={t('enabled')}
-                        off={t('disabled')}
-                    />
-                    <p>{t('tray:trayExplanation')}</p>
-                    <hr />
+                    {Electron.getOS() === 'darwin' && (
+                        <React.Fragment>
+                            <h3>{t('tray:trayApplication')}</h3>
+                            <Toggle
+                                checked={settings.isTrayEnabled}
+                                onChange={() => setTray(!settings.isTrayEnabled)}
+                                on={t('enabled')}
+                                off={t('disabled')}
+                            />
+                            <p>{t('tray:trayExplanation')}</p>
+                            <hr />
+                        </React.Fragment>
+                    )}
 
                     <h3>{t('notifications:notifications')}</h3>
                     <Toggle
@@ -291,57 +161,6 @@ class Advanced extends PureComponent {
                         onChange={(value) => setNotifications({ type: 'messages', enabled: value })}
                     />
                     <p>{t('notifications:notificationExplanation')}</p>
-                    <hr />
-
-                    <h3>{t('advancedSettings:snapshotTransition')}</h3>
-                    <p>
-                        {t('snapshotTransition:snapshotExplanation')} <br />
-                        {t('snapshotTransition:hasSnapshotTakenPlace')}
-                    </p>
-                    <Button
-                        className="small"
-                        onClick={this.startSnapshotTransition}
-                        loading={isTransitioning || isAttachingToTangle}
-                    >
-                        {t('snapshotTransition:transition')}
-                    </Button>
-                    <ModalConfirm
-                        isOpen={isModalActive}
-                        category="primary"
-                        onConfirm={this.transitionBalanceOk}
-                        onCancel={this.transitionBalanceWrong}
-                        content={{
-                            title: t('snapshotTransition:detectedBalance', {
-                                amount: round(formatValue(transitionBalance), 1),
-                                unit: formatUnit(transitionBalance),
-                            }),
-                            message: t('snapshotTransition:isThisCorrect'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
-                        }}
-                    />
-                    <hr />
-
-                    <h3>{t('advancedSettings:manualSync')}</h3>
-                    {ui.isSyncing ? (
-                        <p>
-                            {t('manualSync:syncingYourAccount')} <br />
-                            {t('manualSync:thisMayTake')}
-                        </p>
-                    ) : (
-                        <p>
-                            {t('manualSync:outOfSync')} <br />
-                            {t('manualSync:pressToSync')}
-                        </p>
-                    )}
-                    <Button
-                        onClick={this.syncAccount}
-                        className="small"
-                        loading={ui.isSyncing}
-                        disabled={isTransitioning || isAttachingToTangle}
-                    >
-                        {t('manualSync:syncAccount')}
-                    </Button>
                     <hr />
 
                     <TextInput
@@ -396,18 +215,8 @@ class Advanced extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
-    ui: state.ui,
-    selectedAccountName: getSelectedAccountName(state),
-    addresses: getAddressesForSelectedAccount(state),
     settings: state.settings,
     lockScreenTimeout: state.settings.lockScreenTimeout,
-    transitionBalance: state.wallet.transitionBalance,
-    balanceCheckFlag: state.wallet.balanceCheckFlag,
-    transitionAddresses: state.wallet.transitionAddresses,
-    isAttachingToTangle: state.ui.isAttachingToTangle,
-    isTransitioning: state.ui.isTransitioning,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
@@ -415,12 +224,6 @@ const mapDispatchToProps = {
     changePowSettings,
     changeAutoPromotionSettings,
     setLockScreenTimeout,
-    toggleModalActivity,
-    completeSnapshotTransition,
-    manuallySyncAccount,
-    transitionForSnapshot,
-    generateAddressesAndGetBalance,
-    setBalanceCheckFlag,
     setTray,
     setNotifications,
 };

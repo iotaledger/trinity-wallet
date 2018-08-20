@@ -9,6 +9,7 @@ import Icon from 'ui/components/Icon';
 import Name from 'ui/views/account/Name';
 import Seed from 'ui/views/account/Seed';
 import Addresses from 'ui/views/account/Addresses';
+import Tools from 'ui/views/account/Tools';
 import Remove from 'ui/views/account/Remove';
 
 import css from '../settings/index.scss';
@@ -48,11 +49,19 @@ class Account extends React.PureComponent {
                                 <Icon icon="bookmark" size={20} />{' '}
                                 <strong>{t('accountManagement:viewAddresses')}</strong>
                             </NavLink>
+                            <hr />
+                            <NavLink to="/account/tools">
+                                <Icon icon="settingsAlt" size={20} />{' '}
+                                <strong>{t('accountManagement:tools')}</strong>
+                            </NavLink>
                             {accountNames.length > 1 ? (
-                                <NavLink to="/account/remove">
-                                    <Icon icon="trash" size={20} />{' '}
-                                    <strong>{t('accountManagement:deleteAccount')}</strong>
-                                </NavLink>
+                                <React.Fragment>
+                                    <hr />
+                                    <NavLink to="/account/remove">
+                                        <Icon icon="trash" size={20} />{' '}
+                                        <strong>{t('accountManagement:deleteAccount')}</strong>
+                                    </NavLink>
+                                </React.Fragment>
                             ) : null}
                         </nav>
                     </section>
@@ -66,6 +75,7 @@ class Account extends React.PureComponent {
                             <Route path="/account/name" component={Name} />
                             <Route path="/account/seed" component={Seed} />
                             <Route path="/account/addresses" component={Addresses} />
+                            <Route path="/account/tools" component={Tools} />
                             <Route path="/account/remove" component={Remove} />
                             <Redirect from="/account/" to="/account/name" />
                         </Switch>
