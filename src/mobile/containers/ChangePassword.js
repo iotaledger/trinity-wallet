@@ -71,27 +71,17 @@ const styles = StyleSheet.create({
  */
 class ChangePassword extends Component {
     static propTypes = {
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -109,6 +99,14 @@ class ChangePassword extends Component {
         leaveNavigationBreadcrumb('ChangePassword');
     }
 
+    /**
+     * Checks validity for user's entered password
+     *
+     * @method isValid
+     * @param {object} currentPwdHash
+     *
+     * @returns {boolean}
+     */
     isValid(currentPwdHash) {
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { password } = this.props;
@@ -124,6 +122,13 @@ class ChangePassword extends Component {
         );
     }
 
+    /**
+     * Changes user password
+     *
+     * @method changePassword
+     *
+     * @returns {Promise<*>}
+     */
     async changePassword() {
         const { setPassword, generateAlert, t } = this.props;
         const { newPassword, currentPassword } = this.state;
@@ -150,6 +155,11 @@ class ChangePassword extends Component {
         return this.renderInvalidSubmissionAlerts(currentPwdHash);
     }
 
+    /**
+     * Reset component state properties
+     *
+     * @method fallbackToInitialState
+     */
     fallbackToInitialState() {
         this.setState({
             currentPassword: '',
@@ -191,6 +201,14 @@ class ChangePassword extends Component {
         return <CustomTextInput {...props} />;
     }
 
+    /**
+     * Generates alert when a user enters an incorrect/invalid password
+     *
+     * @method renderInvalidSubmissionAlerts
+     * @param {object} currentPwdHash
+     *
+     * @returns {function}
+     */
     renderInvalidSubmissionAlerts(currentPwdHash) {
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { password, generateAlert, t } = this.props;

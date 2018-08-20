@@ -1115,15 +1115,19 @@ describe('libs: iota/addresses', () => {
         });
 
         it('should categorise spent addresses', () => {
-            return addressesUtils.categoriseAddressesBySpentStatus()(addresses).then((result) => {
-                expect(result.spent).to.eql(['B'.repeat(81), 'D'.repeat(81)]);
-            });
+            return addressesUtils
+                .categoriseAddressesBySpentStatus()(addresses)
+                .then((result) => {
+                    expect(result.spent).to.eql(['B'.repeat(81), 'D'.repeat(81)]);
+                });
         });
 
         it('should categorise unspent addresses', () => {
-            return addressesUtils.categoriseAddressesBySpentStatus()(addresses).then((result) => {
-                expect(result.unspent).to.eql(['A'.repeat(81), 'C'.repeat(81)]);
-            });
+            return addressesUtils
+                .categoriseAddressesBySpentStatus()(addresses)
+                .then((result) => {
+                    expect(result.unspent).to.eql(['A'.repeat(81), 'C'.repeat(81)]);
+                });
         });
     });
 });

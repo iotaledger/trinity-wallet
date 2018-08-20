@@ -55,26 +55,19 @@ const defaultLanguageLabel = selectLocale(defaultLocale);
 
 class LanguageSetup extends Component {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Change selected language
-         * @param {string} language
-         */
+        /** @ignore */
         setLanguage: PropTypes.func.isRequired,
-        /**
-         * Change selected locale
-         * @param {string}
-         */
+        /** @ignore */
         setLocale: PropTypes.func.isRequired,
-        /** Determines whether a user has accepted privacy agreement */
+        /** @ignore */
         acceptedPrivacy: PropTypes.bool.isRequired,
-        /** Determines whether a user has accepted terms and conditions */
+        /** @ignore */
         acceptedTerms: PropTypes.bool.isRequired,
     };
 

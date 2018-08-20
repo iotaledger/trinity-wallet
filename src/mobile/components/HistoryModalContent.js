@@ -127,9 +127,7 @@ export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         /** Container element press event callback function */
         onPress: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
@@ -163,11 +161,7 @@ export default class HistoryModalContent extends PureComponent {
                 unit: PropTypes.string.isRequired,
             }),
         ).isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification titleinactivityLogoutContainer
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Content styles */
         style: PropTypes.shape({
@@ -183,11 +177,9 @@ export default class HistoryModalContent extends PureComponent {
          * @param {string} bundleHash
          */
         isFailedTransaction: PropTypes.func.isRequired,
-        /** Retries failed transaction
-         * @param {string} bundleHash
-         */
+        /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
-        /** Determines if a failed transaction is being retried */
+        /** @ignore */
         isRetryingFailedTransaction: PropTypes.bool.isRequired,
     };
 

@@ -60,34 +60,25 @@ export class SetAccountName extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Set account name
-         * @param {string} accountName
-         */
+        /** @ignore */
         setAccountName: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Set additional account information in store
-         * @param {object} info - (addingAdditionalAccount, additionalAccountName)
-         */
+        /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Determines whether onboarding steps for wallet setup are completed */
+        /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
-        /** Total number of accounts in the wallet */
+        /** @ignore */
         seedCount: PropTypes.number.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
+        /** Determines whether to prevent new account setup */
         shouldPreventAction: PropTypes.bool.isRequired,
     };
 
@@ -113,6 +104,10 @@ export class SetAccountName extends Component {
         }
     }
 
+    /**
+     * Navigates to loading screen and fetches seed information from the Tangle
+     * @method onDonePress
+     */
     onDonePress() {
         const { t, onboardingComplete, seed, password, shouldPreventAction } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
@@ -173,6 +168,10 @@ export class SetAccountName extends Component {
         }
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method onBackPress
+     */
     onBackPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.pop({
@@ -187,6 +186,12 @@ export class SetAccountName extends Component {
         });
     }
 
+    /**
+     * Gets a default account name
+     *
+     * @method getDefaultAccountName
+     * @returns {*}
+     */
     getDefaultAccountName() {
         const { t, seedCount } = this.props;
         if (seedCount === 0) {
@@ -207,6 +212,11 @@ export class SetAccountName extends Component {
         return '';
     }
 
+    /**
+     * Navigates to the provided screen name
+     * @method navigateTo
+     * @param {string} screen
+     */
     navigateTo(screen) {
         const { theme: { body } } = this.props;
 

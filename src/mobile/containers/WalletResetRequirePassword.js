@@ -48,38 +48,27 @@ const styles = StyleSheet.create({
  */
 class WalletResetRequirePassword extends Component {
     static propTypes = {
-        /** Hash for wallet password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Resets wallet to default state */
+        /** @ignore */
         resetWallet: PropTypes.func.isRequired,
-        /** Sets wallet's first use
-         * @param {boolean} - true
-         */
+        /** @ignore */
         setFirstUse: PropTypes.func.isRequired,
-        /** Sets wallet's onboarding status
-         * @param {boolean} - status
-         */
+        /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** Clears wallet reducer data */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** @ignore */
         setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
     };
 
@@ -106,6 +95,10 @@ class WalletResetRequirePassword extends Component {
         BackHandler.removeEventListener('hardwareBackPress');
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
     goBack() {
         const { theme: { body } } = this.props;
         this.props.navigator.pop({
@@ -120,12 +113,20 @@ class WalletResetRequirePassword extends Component {
         });
     }
 
+    /**
+     * Checks if password is correct
+     * @method isAuthenticated
+     */
     async isAuthenticated() {
         const { password } = this.props;
         const pwdHash = await getPasswordHash(this.state.password);
         return isEqual(password, pwdHash);
     }
 
+    /**
+     * Navigates to language setup screen
+     * @method redirectToInitialScreen
+     */
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
 
@@ -149,6 +150,10 @@ class WalletResetRequirePassword extends Component {
         });
     }
 
+    /**
+     * Resets wallet's state
+     * @method resetWallet
+     */
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
         const { t } = this.props;
