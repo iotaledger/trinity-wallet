@@ -6,6 +6,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { setOnboardingName } from 'actions/ui';
+import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Icon from 'ui/components/Icon';
 import Waves from 'ui/components/Waves';
@@ -37,6 +38,8 @@ class Onboarding extends React.PureComponent {
         location: PropTypes.object,
         /** @ignore */
         history: PropTypes.object,
+        /** @ignore */
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
     };
 
     state = {
@@ -52,17 +55,21 @@ class Onboarding extends React.PureComponent {
     }
 
     /**
-     * Reset onboarding seed, navigate to Dashboard view
-     * @returns {undefined}
+     * Reset Onboarding data on close if user authorised
      */
-    closeOnboarding = () => {
-        const { setOnboardingName } = this.props;
+    componentWillUnmount() {
+        const { isAuthorised, setOnboardingName, setAdditionalAccountInfo } = this.props;
 
-        Electron.setOnboardingSeed(null);
-        setOnboardingName('');
-        this.props.history.push('/wallet/');
-    };
+        if (isAuthorised) {
+            setAdditionalAccountInfo({
+                addingAdditionalAccount: false,
+                additionalAccountName: '',
+            });
 
+            Electron.setOnboardingSeed(null);
+            setOnboardingName('');
+        }
+    }
     /**
      * Render onboarding completion steps
      * @param {string} currentKey - Current onboarding view slug
@@ -98,7 +105,7 @@ class Onboarding extends React.PureComponent {
     }
 
     render() {
-        const { location, complete, isAuthorised } = this.props;
+        const { history, location, complete, isAuthorised } = this.props;
 
         const indexComponent = complete ? Login : Welcome;
 
@@ -110,7 +117,7 @@ class Onboarding extends React.PureComponent {
                     {!isAuthorised ? (
                         this.steps(currentKey)
                     ) : (
-                        <a onClick={this.closeOnboarding}>
+                        <a onClick={() => history.push('/wallet/')}>
                             <Icon icon="cross" size={24} />
                         </a>
                     )}
@@ -143,4 +150,8 @@ const mapStateToProps = (state) => ({
     isAuthorised: state.wallet.ready,
 });
 
-export default withRouter(connect(mapStateToProps)(Onboarding));
+const mapDispatchToProps = {
+    setAdditionalAccountInfo,
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Onboarding));
