@@ -671,7 +671,7 @@
         "agree": "Ich stimme zu"
     },
     "tray": {
-        "trayApplication": "Tray-Anwendung",
+        "trayApplication": "Tray-Icon",
         "trayExplanation": "Dies gibt dir einen schnellen Überblick über deinen Kontostand und den Transaktionsverlauf.",
         "notLoggedIn": "Du bist nicht angemeldet",
         "setupIncomplete": "Einrichtung des Wallet abgeschlossen",
