@@ -81,6 +81,9 @@ class Send extends React.PureComponent {
             this.props.setSendMessageField(message);
         }
         if (amount) {
+            if (typeof amount === 'number') {
+                amount = amount.toString();
+            }
             this.props.setSendAmountField(amount);
         }
     }
