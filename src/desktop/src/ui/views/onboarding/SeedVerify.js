@@ -8,7 +8,6 @@ import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { uniqueSeed } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
-import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Button from 'ui/components/Button';
 import SeedInput from 'ui/components/input/Seed';
@@ -22,8 +21,6 @@ class SeedVerify extends React.PureComponent {
         firstAccount: PropTypes.bool.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -65,7 +62,7 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, firstAccount, password, generateAlert, setAdditionalAccountInfo, t } = this.props;
+        const { history, firstAccount, password, generateAlert, t } = this.props;
         const { seed, isGenerated } = this.state;
 
         if (
@@ -99,10 +96,6 @@ class SeedVerify extends React.PureComponent {
             history.push('/onboarding/account-name');
         } else {
             if (!firstAccount) {
-                setAdditionalAccountInfo({
-                    addingAdditionalAccount: true,
-                    additionalAccountName: this.state.name,
-                });
                 history.push('/onboarding/login');
             } else {
                 history.push('/onboarding/account-password');
@@ -155,7 +148,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    setAdditionalAccountInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));

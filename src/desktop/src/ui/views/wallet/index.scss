@@ -46,7 +46,6 @@ $sidebar-narrow: 70px;
                 text-decoration: none;
                 line-height: 60px;
                 padding-left: 18px;
-                text-transform: capitalize;
                 white-space: nowrap;
                 max-width: 200px;
                 overflow: hidden;
@@ -141,7 +140,7 @@ $sidebar-narrow: 70px;
 
                 > a,
                 > div > a {
-                    padding-left: 0px;
+                    padding-left: 4px;
                     text-align: center;
                     width: 100%;
                     height: 60px;
@@ -181,7 +180,8 @@ $sidebar-narrow: 70px;
             > div {
                 text-align: center;
                 flex: 0 0 100px;
-                margin-bottom: 100px;
+                margin-bottom: 86px;
+                padding-top: 20px;
                 > div {
                     width: 38px !important;
                     height: 38px !important;
