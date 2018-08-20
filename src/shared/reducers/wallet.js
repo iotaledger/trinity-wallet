@@ -49,10 +49,6 @@ const initialState = {
      */
     addingAdditionalAccount: false,
     /**
-     * Determines if wallet is adding first account
-     */
-    addingFirstAccount: false,
-    /**
      * Displays balance check request during snapshot transition
      */
     balanceCheckFlag: false,
@@ -72,11 +68,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-            };
-        case ActionTypes.SET_FIRST_ACCOUNT_INFO:
-            return {
-                ...state,
-                addingFirstAccount: true,
             };
         case UiActionTypes.SET_ONBOARDING_SEED:
             return {
@@ -146,8 +137,7 @@ export default (state = initialState, action) => {
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
-                ready: false,
-                addingFirstAccount: false,
+                ready: false
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
