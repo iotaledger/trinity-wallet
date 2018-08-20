@@ -82,82 +82,51 @@ const styles = StyleSheet.create({
 /** Loading screen component */
 class Loading extends Component {
     static propTypes = {
-        /** Determines whether this is the first time user is going to log in */
+        /** @ignore */
         firstUse: PropTypes.bool.isRequired,
-        /** Determines whether user is adding an additional account */
+        /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Fetch latest account info from the tangle
-         * @param {string} seed
-         * @param {string} accountName
-         * @param {string} navigationObject
-         * @param {string} genFn - Native address generation function
-         */
+        /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
-        /** Fetch latest account info for first account
-         * @param {string} seed
-         * @param {string} accountName
-         * @param {string} navigationObject
-         * @param {string} genFn - Native address generation function
-         */
+        /** @ignore */
         getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
-        /** Fetch latest account info for additional account
-         * @param {string} seed
-         * @param {string} accountName
-         * @param {string} passwordHash
-         * @param {promise} storeInKeychainPromise
-         * @param {string} navigationObject
-         * @param {string} genFn - Native address generation function
-         */
+        /** @ignore */
         getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
         /** Name for currently selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Fetch latest market information */
+        /** @ignore */
         getMarketData: PropTypes.func.isRequired,
-        /** Fetch latest price information */
+        /** @ignore */
         getPrice: PropTypes.func.isRequired,
-        /** Fetch latest chart information */
+        /** @ignore */
         getChartData: PropTypes.func.isRequired,
-        /** Fetch latest currency information
-         * @param {string} currency
-         */
+        /** @ignore */
         getCurrencyData: PropTypes.func.isRequired,
-        /** Additional account name */
+        /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Currently selected currency */
+        /** @ignore */
         currency: PropTypes.string.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Determines if the account information was successfully fetched from the tangle */
+        /** @ignore */
         ready: PropTypes.bool.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Updates home screen children route name
-         * @param {string} name - route name
-         */
+        /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** If user has opened a deep link */
+        /** @ignore */
         deepLinkActive: PropTypes.bool.isRequired,
-        /** Sets which login page should be displayed
-         * @param {string} route - current route
-         */
+        /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
     };
 

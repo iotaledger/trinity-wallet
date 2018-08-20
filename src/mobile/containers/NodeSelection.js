@@ -69,27 +69,21 @@ const styles = StyleSheet.create({
 /** Node Selection component */
 class NodeSelection extends Component {
     static propTypes = {
-        /** Currently selected IRI node */
+        /** @ignore */
         node: PropTypes.string.isRequired,
-        /** Available IRI nodes */
+        /** @ignore */
         nodes: PropTypes.array.isRequired,
         /** Navigate to previous screen */
         backPress: PropTypes.func.isRequired,
-        /** Set new IRI node
-         * @param {string} node
-         */
+        /** @ignore */
         setFullNode: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines whether the node is being changed */
+        /** @ignore */
         isChangingNode: PropTypes.bool.isRequired,
-        /** Sets which login page should be displayed
-         * @param {string} route - current route
-         */
+        /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
     };
 

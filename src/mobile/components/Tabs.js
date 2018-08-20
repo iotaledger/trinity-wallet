@@ -39,7 +39,7 @@ Tabs.propTypes = {
     onPress: PropTypes.func.isRequired,
     /** Currently selected home screen route */
     currentRoute: PropTypes.string.isRequired,
-    /** Theme settings */
+    /** @ignore */
     theme: PropTypes.object.isRequired,
 };
 

@@ -47,7 +47,7 @@ class ModalButtons extends PureComponent {
         buttonWidth: PropTypes.object,
         /** Component container width */
         containerWidth: PropTypes.object,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Buttons opacity */
         opacity: PropTypes.number,

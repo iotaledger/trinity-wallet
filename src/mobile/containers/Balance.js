@@ -92,16 +92,15 @@ const styles = StyleSheet.create({
  */
 export class Balance extends Component {
     static propTypes = {
+        /** @ignore */
         usdPrice: PropTypes.number.isRequired,
-        /** Index of currently selected account in accountNames list */
+        /** @ignore */
         seedIndex: PropTypes.number.isRequired,
         /** Balance for currently selected account */
         balance: PropTypes.number.isRequired,
         /** Transactions for currently selected account */
         transfers: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
@@ -109,17 +108,17 @@ export class Balance extends Component {
          * @param {string} - Default to 'history'
          */
         onTabSwitch: PropTypes.func.isRequired,
-        /** Currently selected currency */
+        /** @ignore */
         currency: PropTypes.string.isRequired,
-        /** Currency coversion rate */
+        /** @ignore */
         conversionRate: PropTypes.number.isRequired,
-        /** Theme setting */
+        /** @ignore */
         primary: PropTypes.object.isRequired,
-        /** Theme setting */
+        /** @ignore */
         secondary: PropTypes.object.isRequired,
-        /** Theme setting */
+        /** @ignore */
         body: PropTypes.object.isRequired,
-        /** Determines whether account is being manually refreshed */
+        /** @ignore */
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
         onRefresh: PropTypes.func.isRequired,
@@ -129,7 +128,7 @@ export class Balance extends Component {
 
     /**
      * Make balance human-readable
-     * @param  {int} n Balance
+     * @param {int} n Balance
      * @return {int}   Human-readable balance
      */
     static getDecimalPlaces(n) {

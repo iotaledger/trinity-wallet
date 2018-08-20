@@ -58,7 +58,7 @@ export default () => (C) => {
     WithBackPressGoToHome.propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
