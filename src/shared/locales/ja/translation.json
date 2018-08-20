@@ -7,6 +7,7 @@
         "refresh": "更新",
         "balanceError": "残高不足",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
+        "totalBalance": "Total balance",
         "transferError": "送金エラー",
         "transferErrorMessage": "送金中に不具合が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
@@ -59,6 +60,7 @@
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "capsLockIsOn": "Caps Lock キーが有効になっています",
         "syncInProgress": "同期中",
         "syncInProgressExplanation": "同期が完了するまでお待ちください。",
         "somethingWentWrong": "不具合が発生しました。",
@@ -71,6 +73,7 @@
         "attachToTangleUnavailableExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
         "attachToTangleUnavailableExplanationShort": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
+        "all": "すべて",
         "sent": "送金完了",
         "received": "受取完了",
         "sending": "送金中",
@@ -135,7 +138,14 @@
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
         "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する",
-        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。"
+        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。",
+        "broadcastError": "送金をブロードキャストできませんでした。",
+        "addressesAlreadySpentFrom": "１つ以上のアドレスが既に使用済みです。",
+        "problemSendingYourTransaction": "取引情報の送信中に問題が発生しました。",
+        "problemPerformingProofOfWork": "プルーフ・オブ・ワークを実行中に問題が発生しました。",
+        "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでやり直してください。",
+        "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
+        "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -305,7 +315,9 @@
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
-        "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。"
+        "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
+        "clipboardWarning": "シードをコピーアンドペーストしないでください。",
+        "clipboardWarningExplanation": "警告：コピーアンドペーストは使用できません！"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -602,9 +614,7 @@
         "local": "ローカル",
         "remote": "リモート",
         "powUpdated": "プルーフ・オブ・ワークの設定",
-        "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。",
-        "noWebGLSupport": "WebGLがサポートされていません。",
-        "noWebGLSupportExplanation": "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
+        "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "自動促進の設定",
@@ -649,14 +659,33 @@
         "skipUpdate": "更新をスキップ"
     },
     "notificationLog": {
-        "errorLog": "エラー ログ"
+        "errorLog": "エラーログ"
     },
     "terms": {
         "termsAndConditions": "利用規約",
-        "accept": "承諾する"
+        "accept": "承諾する",
+        "readAllToContinue": "続けるにはすべてのテキストをお読みください"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
         "agree": "同意します"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

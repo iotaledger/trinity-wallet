@@ -7,6 +7,7 @@
         "refresh": "Aggiorna",
         "balanceError": "Saldo insufficiente",
         "balanceErrorMessage": "Non hai abbastanza IOTA per completare questo trasferimento.",
+        "totalBalance": "Saldo totale",
         "transferError": "Errore di trasferimento",
         "transferErrorMessage": "Qualcosa è andato storto nell'invio del trasferimento. Prova di nuovo.",
         "transferSent": "Trasferimento inviato",
@@ -59,6 +60,7 @@
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "capsLockIsOn": "Blocco maiuscole è attivo",
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
         "somethingWentWrong": "Si è verificato un errore",
@@ -71,6 +73,7 @@
         "attachToTangleUnavailableExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Scegli un altro nodo oppure imposta \"prova di lavoro locale\" in \"impostazioni avanzate\".",
         "attachToTangleUnavailableExplanationShort": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato.",
         "wallet": "Portafoglio",
+        "all": "Tutti",
         "sent": "Inviato",
         "received": "Ricevuto",
         "sending": "Invio",
@@ -96,8 +99,8 @@
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
         "transactionAlreadyConfirmed": "Transazione già confermata",
         "transactionAlreadyConfirmedExplanation": "La transazione che si sta tentando di promuovere è già confermata.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Invio a un indirizzo di input",
+        "cannotSendToOwnExplanation": "Non è possibile inviare a un indirizzo che viene utilizzato come input per la transazione.",
         "pleaseWait": "Attendere, per favore",
         "pleaseWaitEllipses": "Attendere prego...",
         "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
@@ -121,7 +124,7 @@
         "seedThief": "Se qualcun altro ha il tuo seme può rubare i tuoi IOTA.",
         "googlePlayServicesNotAvailable": "Servizio Google Play non disponibile",
         "couldNotVerifyDeviceIntegrity": "Impossibile verificare l'integrità del dispositivo perché il servizio Google Play non è disponibile.",
-        "clear": "CANCELLA",
+        "clear": "Pulisci",
         "noNetworkConnection": "Nessuna connessione di rete",
         "noNetworkConnectionExplanation": "La connessione internet sembra essere non disponibile.",
         "spentAddressExplanation": "AVVISO: Fondi su indirizzi spesi",
@@ -135,7 +138,14 @@
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
         "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot.",
         "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione."
+        "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione.",
+        "broadcastError": "Non è stato possibile trasmettere la transazione",
+        "addressesAlreadySpentFrom": "Uno o più indirizzi sono già stati usati per spendere.",
+        "problemSendingYourTransaction": "C'è stato un problema durante l'invio della transazione.",
+        "problemPerformingProofOfWork": "C'è stato un problema nell'esecuzione della prova di lavoro.",
+        "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
+        "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
+        "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -305,7 +315,9 @@
         "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare indietro e farlo.",
-        "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup"
+        "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup",
+        "clipboardWarning": "Non usare copia incolla per il tuo seme",
+        "clipboardWarningExplanation": "AVVISO: Copia incolla è disattivato per la vostra sicurezza."
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
@@ -602,9 +614,7 @@
         "local": "Locale",
         "remote": "Remoto",
         "powUpdated": "Impostazioni proof-of-work",
-        "powUpdatedExplanation": "Configurazione proof-of-work aggiornata.",
-        "noWebGLSupport": "WebGL non supportato",
-        "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
+        "powUpdatedExplanation": "Configurazione proof-of-work aggiornata."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Impostazioni auto promozione",
@@ -649,14 +659,33 @@
         "skipUpdate": "Salta l'aggiornamento"
     },
     "notificationLog": {
-        "errorLog": "LOG DEGLI ERRORI"
+        "errorLog": "Registro degli errori"
     },
     "terms": {
         "termsAndConditions": "Termini e condizioni",
-        "accept": "Accetto"
+        "accept": "Accetto",
+        "readAllToContinue": "Si prega di leggere tutto il testo per continuare"
     },
     "privacyPolicy": {
         "privacyPolicy": "Informativa Privacy",
         "agree": "Concordo"
+    },
+    "tray": {
+        "trayApplication": "Icona nell'area di notifica",
+        "trayExplanation": "Fornisce una rapida panoramica del saldo e la cronologia recente.",
+        "notLoggedIn": "Non hai effettuato l'accesso",
+        "setupIncomplete": "Incompleta configurazione del portafoglio",
+        "completeSetup": "Completa la configurazione"
+    },
+    "notifications": {
+        "notifications": "Notifiche",
+        "notificationExplanation": "Ricevi notifiche di sistema sulle nuove transazioni",
+        "typeConfirmations": "Notifica sulle conferme",
+        "typeMessages": "Notifica sulle transazioni a valore zero",
+        "multipleTx": "Hai ricevuto più transazioni sul conto {{account}}",
+        "valueTx": "Hai ricevuto {{value}} sul conto {{account}}",
+        "messageTx": "Hai ricevuto un messaggio sul conto {{account}}",
+        "confirmedIn": "Accredito di {{value}} è stato confermato sul conto {{account}}",
+        "confirmedOut": "Addebito di {{value}} è stato confermato sul conto {{account}}"
     }
 }

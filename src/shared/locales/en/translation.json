@@ -7,6 +7,7 @@
         "refresh": "Refresh",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "totalBalance": "Total balance",
         "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
@@ -129,7 +130,7 @@
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity":
             "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR",
+        "clear": "Clear",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
@@ -145,7 +146,14 @@
             "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -330,7 +338,9 @@
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -639,9 +649,7 @@
         "local": "Local",
         "remote": "Remote",
         "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
@@ -687,7 +695,7 @@
         "skipUpdate": "Skip update"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
@@ -697,5 +705,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
         "agree": "I agree"
+    },
+    "tray": {
+         "trayApplication": "Tray application",
+         "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+         "notLoggedIn": "You are not logged in",
+         "setupIncomplete": "Wallet setup incomplete",
+         "completeSetup": "Complete setup"
+    },
+    "notifications": {
+      "notifications": "Notifications",
+      "notificationExplanation": "Receive system wide notifications about new transactions.",
+      "typeConfirmations": "Notify about confirmations",
+      "typeMessages": "Notify about zero value transactions",
+      "multipleTx": "You received multiple transactions to {{account}}",
+      "valueTx": "You received {{value}} to {{account}}",
+      "messageTx": "You received a message to {{account}}",
+      "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+      "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

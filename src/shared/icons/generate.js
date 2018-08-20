@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const SVGIcons2SVGFontStream = require('svgicons2svgfont');
 const svg2ttf = require('svg2ttf');
 const fs = require('fs');

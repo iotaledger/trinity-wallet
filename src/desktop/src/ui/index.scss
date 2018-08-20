@@ -1,6 +1,6 @@
-@import "style/reset";
-@import "style/typography";
-@import "style/animations";
+@import 'style/reset';
+@import 'style/typography';
+@import 'style/animations';
 
 html,
 body {
@@ -13,6 +13,7 @@ body {
 
 body {
     color: var(--body);
+    background: var(--body-bg);
 }
 
 main {

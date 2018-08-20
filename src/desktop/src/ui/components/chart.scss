@@ -4,6 +4,17 @@
     padding: 20px;
     position: relative;
     color: var(--body);
+    overflow: hidden;
+
+    h3 {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 14px;
+
+        @media screen and (max-width: 860px) {
+            display: none;
+        }
+    }
 
     svg {
         overflow: visible;
@@ -11,14 +22,15 @@
 
     > div {
         position: absolute;
-        top: 30px;
-        left: 20px;
-        width: calc(100% - 40px);
-        height: calc(100% - 200px);
+        top: 70px;
+        left: 0px;
+        width: calc(100% - 20px);
+        height: calc(100% - 240px);
         font-size: 11px;
 
         @media screen and (max-width: 860px) {
-            height: calc(100% - 100px);
+            top: 20px;
+            height: calc(100% - 85px);
         }
 
         > span {
@@ -72,8 +84,8 @@
         }
 
         nav {
-            margin-bottom: 20px;
-            padding-top: 20px;
+            margin-bottom: 16px;
+            padding-top: 24px;
             position: relative;
 
             @media screen and (max-width: 860px) {
@@ -89,9 +101,8 @@
                 top: 0px;
                 left: 0px;
                 width: 100%;
-                height: 2px;
-                background: var(--body);
-                opacity: 0.1;
+                height: 1px;
+                background: var(--body-bg);
             }
             p {
                 line-height: 34px;
@@ -114,7 +125,7 @@
     .label {
         background: var(--body-bg);
         color: var(--secondary);
-        padding: 4px 6px;
+        padding: 4px 12px;
         border-radius: 4px;
         font-size: 12px;
     }

@@ -15,7 +15,7 @@ describe('Reducer: settings', () => {
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
-                autoNodeSwitching: true,
+                autoNodeSwitching: false,
                 availableCurrencies: [
                     'USD',
                     'GBP',
@@ -65,6 +65,12 @@ describe('Reducer: settings', () => {
                 acceptedPrivacy: false,
                 autoPromotion: true,
                 hideEmptyTransactions: false,
+                isTrayEnabled: true,
+                notifications: {
+                    general: true,
+                    confirmations: true,
+                    messages: true,
+                },
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -314,66 +320,6 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe('SET_UPDATE_ERROR', () => {
-        it('should set "done" prop in "update" to false if "force" prop is true in payload', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
-                payload: {
-                    force: true,
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: false,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.done).to.eql(expectedState.update.done);
-        });
-
-        it('should set "error" prop in "update" to true', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
-                payload: {},
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: true,
-                    error: true,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.error).to.eql(expectedState.update.error);
-        });
-    });
-
     describe('SET_2FA_STATUS', () => {
         it('should set is2FAEnabled to payload', () => {
             const initialState = {
@@ -436,6 +382,48 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasVisitedSeedShareTutorial: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_TRAY', () => {
+        it('should set isTrayEnabled to payload', () => {
+            const initialState = {
+                isTrayEnabled: true,
+            };
+
+            const action = actions.setTray(false);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isTrayEnabled: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_NOTIFICATIONS', () => {
+        it('should set notifications.general to payload', () => {
+            const initialState = {
+                notifications: {
+                    general: true,
+                    confirmations: true,
+                    messages: true,
+                },
+            };
+
+            const action = actions.setNotifications({ type: 'general', enabled: false });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                notifications: {
+                    general: false,
+                    confirmations: true,
+                    messages: true,
+                },
             };
 
             expect(newState).to.eql(expectedState);

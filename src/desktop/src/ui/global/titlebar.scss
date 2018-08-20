@@ -16,6 +16,10 @@
     justify-content: flex-end;
     padding: 0 20px;
 
+    @media (max-width: 940px) {
+        padding-left: 26px;
+    }
+
     > a {
         margin-left: 40px;
         width: 21px;

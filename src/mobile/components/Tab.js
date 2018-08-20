@@ -51,7 +51,7 @@ class Tab extends PureComponent {
                 <View
                     style={
                         isActive
-                            ? [styles.button, { backgroundColor: bar.alt, borderTopColor: primary.color }]
+                            ? [styles.button, { backgroundColor: bar.hover, borderTopColor: primary.color }]
                             : styles.button
                     }
                 >

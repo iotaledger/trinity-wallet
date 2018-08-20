@@ -136,9 +136,6 @@ class SnapshotTransition extends Component {
         isAttachingToTangle: PropTypes.bool.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** @ignore */
-        remotePoW: PropTypes.bool.isRequired,
-        /** @ignore */
         activeStepIndex: PropTypes.number.isRequired,
         /** @ignore */
         activeSteps: PropTypes.array.isRequired,
@@ -179,18 +176,19 @@ class SnapshotTransition extends Component {
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
-        const { transitionAddresses, selectedAccountName, password, remotePoW } = this.props;
+        const { transitionAddresses, selectedAccountName, password } = this.props;
         setTimeout(() => {
             getSeedFromKeychain(password, selectedAccountName)
                 .then((seed) => {
                     if (seed === null) {
                         throw new Error('Error');
                     } else {
-                        let powFn = null;
-                        if (remotePoW) {
-                            powFn = getPowFn();
-                        }
-                        this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
+                        this.props.completeSnapshotTransition(
+                            seed,
+                            selectedAccountName,
+                            transitionAddresses,
+                            getPowFn(),
+                        );
                     }
                 })
                 .catch((err) => console.error(err));
@@ -411,7 +409,6 @@ const mapStateToProps = (state) => ({
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
     isModalActive: state.ui.isModalActive,
-    remotePoW: state.settings.remotePoW,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
 });

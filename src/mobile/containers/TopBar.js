@@ -433,7 +433,7 @@ class TopBar extends Component {
                     <View
                         style={[
                             styles.childView,
-                            { backgroundColor: isSelected ? bar.alt : bar.bg },
+                            { backgroundColor: isSelected ? bar.hover : bar.bg },
                             isSelected ? activeHighlight : null,
                         ]}
                     >
@@ -513,7 +513,7 @@ class TopBar extends Component {
                         style={[
                             styles.container,
                             {
-                                backgroundColor: bar.hover,
+                                backgroundColor: bar.alt,
                             },
                         ]}
                     >
