@@ -74,7 +74,7 @@ class Login extends React.Component {
 
         const { wallet } = this.props;
 
-        if (wallet.ready && wallet.addingAdditionalAccount) {
+        if (wallet.addingFirstAccount || (wallet.ready && wallet.addingAdditionalAccount)) {
             this.setupAccount();
         } else {
             this.props.clearWalletData();

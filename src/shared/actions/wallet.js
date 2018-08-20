@@ -26,6 +26,7 @@ export const ActionTypes = {
     CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
     SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
+    SET_FIRST_ACCOUNT_INFO: 'IOTA/WALLET/SET_FIRST_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
     SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
@@ -171,6 +172,18 @@ export const setSetting = (payload) => ({
 export const setAdditionalAccountInfo = (payload) => ({
     type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
+});
+
+/**
+ * Dispatch to temporarily store first account addition state
+ *
+ * @method setFirstAccountInfo
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setFirstAccountInfo = () => ({
+    type: ActionTypes.SET_FIRST_ACCOUNT_INFO,
 });
 
 /**

@@ -15,6 +15,7 @@ describe('Reducer: wallet', () => {
                 transitionBalance: 0,
                 transitionAddresses: [],
                 addingAdditionalAccount: false,
+                addingFirstAccount: false,
                 balanceCheckFlag: false,
                 deepLinkActive: false,
                 hasConnection: true,
@@ -37,6 +38,25 @@ describe('Reducer: wallet', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 foo: {},
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/WALLET/SET_FIRST_ACCOUNT_INFO', () => {
+        it('should assign payload to state', () => {
+            const initialState = {
+                addingFirstAccount: false,
+            };
+
+            const action = {
+                type: 'IOTA/WALLET/SET_FIRST_ACCOUNT_INFO',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                addingFirstAccount: true,
             };
 
             expect(newState).to.eql(expectedState);
@@ -342,6 +362,23 @@ describe('Reducer: wallet', () => {
             expect(newState.addingAdditionalAccount).to.equal(expectedState.addingAdditionalAccount);
         });
 
+        it('should set "addingFirstAccount" in state to false', () => {
+            const initialState = {
+                addingFirstAccount: true,
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                addingFirstAccount: false,
+            };
+
+            expect(newState.addingFirstAccount).to.equal(expectedState.addingFirstAccount);
+        });
+
         it('should set "additionalAccountName" in state to an empty string', () => {
             const initialState = {
                 additionalAccountName: 'foo',
@@ -364,6 +401,7 @@ describe('Reducer: wallet', () => {
         it('should set "ready" in state to false', () => {
             const initialState = {
                 ready: true,
+                addingFirstAccount: true,
             };
 
             const action = {
@@ -373,6 +411,7 @@ describe('Reducer: wallet', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 ready: false,
+                addingFirstAccount: false,
             };
 
             expect(newState).to.eql(expectedState);

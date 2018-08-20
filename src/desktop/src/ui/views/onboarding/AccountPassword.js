@@ -7,7 +7,7 @@ import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
 import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'actions/accounts';
-import { setPassword } from 'actions/wallet';
+import { setPassword, setFirstAccountInfo } from 'actions/wallet';
 import { setOnboardingName } from 'actions/ui';
 
 import { setSeed, setTwoFA, hash, clearVault } from 'libs/crypto';
@@ -33,6 +33,8 @@ class AccountPassword extends React.PureComponent {
         setOnboardingName: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
+        /** @ignore */
+        setFirstAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         onboarding: PropTypes.object.isRequired,
         /** @ignore */
@@ -62,6 +64,7 @@ class AccountPassword extends React.PureComponent {
             increaseSeedCount,
             setOnboardingName,
             setOnboardingComplete,
+            setFirstAccountInfo,
             seedCount,
             history,
             generateAlert,
@@ -117,6 +120,8 @@ class AccountPassword extends React.PureComponent {
 
         setOnboardingName('');
         setOnboardingComplete(true);
+
+        setFirstAccountInfo(true);
 
         history.push('/onboarding/done');
     };
@@ -187,6 +192,7 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     generateAlert,
     increaseSeedCount,
+    setFirstAccountInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));
