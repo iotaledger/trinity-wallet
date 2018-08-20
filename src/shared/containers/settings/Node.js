@@ -41,7 +41,7 @@ export default function withNodeData(NodeComponent) {
 
             // Check if URL is valid
             if (!isValidUrl(nodeSelected)) {
-                generateAlert('error', t('customNodeCouldNotBeAdded'), t('invalidURL'));
+                generateAlert('error', t('addCustomNode:customNodeCouldNotBeAdded'), t('addCustomNode:invalidURL'));
                 return;
             }
 
