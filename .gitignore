@@ -110,6 +110,6 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/windows
 
 # nodejs-mobile-react-native
-nodejs-project/sample-package.json
-nodejs-project/sample-main.js
-nodejs-assets/build-native-modules*
+src/mobile/nodejs-assets/nodejs-project/sample-package.json
+src/mobile/nodejs-assets/nodejs-project/sample-main.js
+src/mobile/nodejs-assets/build-native-modules*
