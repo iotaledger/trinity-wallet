@@ -682,10 +682,10 @@
         "notificationExplanation": "新しいトランザクションに関するシステム全体の通知を受け取ります。",
         "typeConfirmations": "取引の確定を通知する",
         "typeMessages": "０値のトランザクションを通知する",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
+        "multipleTx": "{{account}}に複数の取引を受け取っています",
+        "valueTx": "{{account}}に{{value}}を受け取っています",
         "messageTx": "{{account}}にメッセージを受け取りました",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "{{account}}への入金{{value}}が確定しました",
+        "confirmedOut": "{{account}}からの出金{{value}}が確定しました"
     }
 }
