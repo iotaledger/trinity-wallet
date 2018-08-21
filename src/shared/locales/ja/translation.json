@@ -300,7 +300,7 @@
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
         "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
         "whatIsChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
@@ -352,10 +352,10 @@
         "youCanAdd": "設定メニューでシードを追加できます。"
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "上級",
         "standard": "標準",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "上級モードでは、より詳細な技術的情報が表示されます。",
+        "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
     },
     "settings": {
         "transferSending": "送金中",
