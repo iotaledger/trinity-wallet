@@ -46,21 +46,15 @@ class EnterPassword extends Component {
          * @param {string} password
          */
         onLoginPress: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification titleinactivityLogoutContainer
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Set application activity state to active = true*/
+        /** Set application activity state to active = true */
         setUserActive: PropTypes.func.isRequired,
-        /** Determines if user has activated fingerprint auth */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
@@ -87,12 +81,22 @@ class EnterPassword extends Component {
         }
     }
 
+    /**
+     * Wrapper method for onLoginPress prop method
+     *
+     * @method handleLogin
+     */
     handleLogin = () => {
         const { onLoginPress } = this.props;
         const { password } = this.state;
         onLoginPress(password);
     };
 
+    /**
+     * Activates fingerprint authentication
+     *
+     * @method activateFingerprintScanner
+     */
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {

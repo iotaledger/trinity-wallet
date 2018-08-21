@@ -50,9 +50,9 @@ const figmaFiles = [
         fileId: '0OhvVCtdb4RHB9mdPfCHhj',
     },
     {
-       title: 'Lucky',
-       fileId: 'DF9OBjsoPACnFoNoQsnyzo'
-    }
+        title: 'Lucky',
+        fileId: 'DF9OBjsoPACnFoNoQsnyzo',
+    },
 ];
 
 (async () => {

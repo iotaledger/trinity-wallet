@@ -41,9 +41,7 @@ export class RootDetectionModal extends PureComponent {
         closeApp: PropTypes.func.isRequired,
         /** Hides active modal */
         hideModal: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Modal background color */
         backgroundColor: PropTypes.string.isRequired,

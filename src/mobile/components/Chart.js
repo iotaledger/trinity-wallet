@@ -106,7 +106,7 @@ const getChartCurrencySymbol = (currency) => {
  */
 class Chart extends PureComponent {
     static propTypes = {
-        /* Current price data for selected currency */
+        /* @ignore */
         priceData: PropTypes.shape({
             currency: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
@@ -123,23 +123,22 @@ class Chart extends PureComponent {
                 ticks: PropTypes.array.isRequired,
             }),
         }).isRequired,
-        /* Change chart currency */
+        /* @ignore */
         setCurrency: PropTypes.func.isRequired,
-        /* Change chart time frame */
+        /* @ignore */
         setTimeframe: PropTypes.func.isRequired,
         /* Style price to current currency format
-         * @param {Number} price value to format
+         * @param {number} price value to format
          */
         getPriceFormat: PropTypes.func.isRequired,
-        /* Theme settings
-         * @ignore
-         */
+        /* @ignore */
         theme: PropTypes.object.isRequired,
-        /* Translation helper
-         * @param {String} locale identifier to be translated
-         * @ignore
-         */
+        /* @ignore */
         t: PropTypes.func.isRequired,
+        /**
+         * Gets price for a specific currency
+         * @param {string} currency
+         */
         getPriceForCurrency: PropTypes.func.isRequired,
     };
 

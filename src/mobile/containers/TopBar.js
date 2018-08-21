@@ -102,35 +102,57 @@ const styles = StyleSheet.create({
 
 class TopBar extends Component {
     static propTypes = {
+        /** Balance for selected account */
         balance: PropTypes.number.isRequired,
+        /** @ignore */
         accountNames: PropTypes.array.isRequired,
+        /** @ignore */
         accountInfo: PropTypes.object.isRequired,
+        /** @ignore */
         seedIndex: PropTypes.number.isRequired,
+        /** @ignore */
         currentSetting: PropTypes.string.isRequired,
+        /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
         childRoute: PropTypes.string.isRequired,
+        /** @ignore */
         isTopBarActive: PropTypes.bool.isRequired,
+        /** @ignore */
         toggleTopBarDisplay: PropTypes.func.isRequired,
+        /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
+        /** Selected account information */
         selectedAccount: PropTypes.object.isRequired,
+        /** @ignore */
         body: PropTypes.object.isRequired,
+        /** @ignore */
         bar: PropTypes.object.isRequired,
+        /** @ignore */
         primary: PropTypes.object.isRequired,
+        /** @ignore */
         setPollFor: PropTypes.func.isRequired,
+        /** @ignore */
         notificationLog: PropTypes.array.isRequired,
+        /** @ignore */
         clearLog: PropTypes.func.isRequired,
+        /** Top bar height */
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
+        /** Determines if on screen keyboard is active */
         isKeyboardActive: PropTypes.bool.isRequired,
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Currently selected mode */
-        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
-        /** Determines if the application is minimised */
+        /** @ignore */
+        mode: PropTypes.oneOf(['Advanced', 'Standard']).isRequired,
+        /** @ignore */
         minimised: PropTypes.bool.isRequired,
-        /** Determines if there is already a network call going on for fetching latest acocunt info */
+        /** @ignore */
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
-        /** Currently selected home screen route */
+        /** @ignore */
         currentRoute: PropTypes.string.isRequired,
     };
 
@@ -138,6 +160,13 @@ class TopBar extends Component {
         return filter(accountNames, (t, i) => i !== currentSeedIndex);
     }
 
+    /**
+     * Formats balance for selected account
+     *
+     * @method humanizeBalance
+     * @param {number} balance
+     * @returns {string}
+     */
     static humanizeBalance(balance) {
         const decimalPlaces = (n) => {
             const s = ` +${n}`;
@@ -187,6 +216,12 @@ class TopBar extends Component {
         }
     }
 
+    /**
+     * Sets account info as the next item to poll for
+     *
+     * @method onChange
+     * @param {number} newSeedIdx
+     */
     onChange(newSeedIdx) {
         const { isGeneratingReceiveAddress } = this.props;
         const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
@@ -208,6 +243,12 @@ class TopBar extends Component {
         this.setState({ scrollable: false });
     }
 
+    /**
+     * Determines when to disable topbar press events
+     *
+     * @method shouldDisable
+     * @returns {boolean}
+     */
     shouldDisable() {
         const {
             isGeneratingReceiveAddress,
@@ -291,7 +332,7 @@ class TopBar extends Component {
                                     justifyContent: 'space-between',
                                 }}
                             >
-                                {hasNotifications && !isKeyboardActive && mode === 'Expert' ? (
+                                {hasNotifications && !isKeyboardActive && mode === 'Advanced' ? (
                                     <TouchableOpacity
                                         hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
                                         style={styles.notificationContainer}

@@ -123,7 +123,7 @@ class About extends React.PureComponent {
                             </ul>
                             <h5>0.1.7.</h5>
                             <ul>
-                                <li>New: Wallet Expert mode settings</li>
+                                <li>New: Wallet Advanced mode settings</li>
                                 <li>New: Manual promote and rebroadcast functionality</li>
                                 <li>New: Auto-promotion enable/disable settings</li>
                                 <li>Fixed: On send incorrect progress steps displayed</li>

@@ -65,17 +65,13 @@ export class PasswordManagerModal extends PureComponent {
         hideModal: PropTypes.func.isRequired,
         /** Copy or add to password manager */
         copy: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Determines if a user has visited the seed share tutorial link */
+        /** @ignore */
         hasVisitedSeedShareTutorial: PropTypes.bool.isRequired,
-        /** Sets status if a user has visited the seed share tutorial link
-         * @param {boolean} status
-         */
+        /** @ignore */
         setSeedShareTutorialVisitationStatus: PropTypes.func.isRequired,
     };
 

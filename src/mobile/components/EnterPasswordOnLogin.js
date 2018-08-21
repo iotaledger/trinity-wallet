@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
 export class EnterPasswordOnLogin extends Component {
     static propTypes = {
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Password text */
         password: PropTypes.string.isRequired,
@@ -82,14 +82,11 @@ export class EnterPasswordOnLogin extends Component {
         onLoginPress: PropTypes.func.isRequired,
         /** Navigate to node selection screen */
         navigateToNodeOptions: PropTypes.func.isRequired,
-        /** Set updated text field password */
-        /** @param {string} password - Updated password in the text field */
+        /** @ignore */
         setLoginPasswordField: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Determines whether fingerprint auth is enabled */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 

@@ -76,8 +76,11 @@ const styles = StyleSheet.create({
 
 export default class SeedPicker extends Component {
     static propTypes = {
+        /** @ignore */
         seed: PropTypes.string.isRequired,
+        /** Callback for value change event */
         onValueChange: PropTypes.func.isRequired,
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
