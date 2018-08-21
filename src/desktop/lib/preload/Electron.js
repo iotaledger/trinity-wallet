@@ -390,6 +390,7 @@ const Electron = {
                     .replace(/[-:]/g, '')
                     .replace('T', '-')}.kdbx`,
                 buttonLabel: 'Export',
+                filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
 
             if (!path) {
