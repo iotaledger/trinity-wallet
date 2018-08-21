@@ -290,7 +290,7 @@
         "spent": "Kulutatud",
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "QR-koodide jagamiseks on vaja failisüsteemi luba.",
-        "tag": "Märgis"
+        "tag": "Silt"
     },
     "saveYourSeed": {
         "saveYourSeed": "Varunda oma seeme",
