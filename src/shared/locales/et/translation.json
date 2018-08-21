@@ -300,7 +300,7 @@
         "paperWallet": "Paber rahakott",
         "writeYourSeedDown": "Kirjutage oma seeme üles",
         "seedClearedExplanation": "Seeme on turvalisuse kaalutlusel teie lõikelaualt puhastatud.",
-        "letsWriteDownYourSeed": "Kirjutame teie seemne üles",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Korraga saate esile tõsta 9 tähemärki",
         "printBlankWallet": "Prindi tühi rahakott",
         "whatIsChecksum": "Igal seemnel on vastav 3-kohaline kontrollsumma",
@@ -352,10 +352,10 @@
         "youCanAdd": "Te saate seemneid juurde lisada Sätete menüüst."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "advanced": "Advanced",
         "standard": "Tavaline",
-        "expertModeExplanation": "Ekspert režiim annab juurdepääsu lisafunktsioone nagu käsitsi edutamine ja uuesti kinnitamine.",
-        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Toimub ülekanne",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportige seemnehoidla",
-        "seedVaultExplanation": "Seemnehoidla on krüptitud faili teie seeme turvaliseks hoiustamiseks. Seeme on krüptitud parooli taha ja sellele ei saa ilma paroolita ligi pääseda. On soovitatav varundada fail paroolihaldurisse nagu Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
         "errorRetrievingUpdateDataExplanation": "Värskendusteabe allalaadimisel ilmnes viga. Palun proovige uuesti.",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
-        "noUpdatesAvailableExplanation": "Teil on IOTA Trinity rahakoti uusim versioon!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Uus versioon saadaval",
-        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> versioon <strong>{{version}}</strong> on saadaval. Palun lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Laadige värskendus alla",
         "skipUpdate": "Jätke värskendus vahele"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Kasutustingimused",
         "accept": "Nõustun",
-        "readAllToContinue": "Palun lugege kogu tekst jätkamiseks"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privaatsuspoliitika",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tegumiriba taotlus",
-        "trayExplanation": "Annab teile kiire ülevaate teie kontojäägi ja hiljutise ajaloo kohta.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "Te pole sisse loginud",
         "setupIncomplete": "Rahakoti seadistus on mittetäielik",
         "completeSetup": "Lõpeta seadistus"
     },
     "notifications": {
         "notifications": "Teated",
-        "notificationExplanation": "Saage kogu süsteemi teateid uute tehingute kohta.",
-        "typeConfirmations": "Teatage kinnituste kohta",
-        "typeMessages": "Teatage nullväärtusega tehingute kohta",
-        "multipleTx": "Teile laekus mitu tehingut kontole {{account}}",
-        "valueTx": "Teile laeukus {{value}} kontole {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "Teile saabus sõnum {{account}}",
-        "confirmedIn": "Sissetulev {{value}} tehing kinnitati {{account}}",
-        "confirmedOut": "Väljaminev {{value}} tehing kinnitati {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
