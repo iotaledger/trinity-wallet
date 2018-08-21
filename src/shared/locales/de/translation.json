@@ -355,7 +355,7 @@
         "advanced": "Erweitert",
         "standard": "Standard",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "Ein SeedVault ist eine Möglichkeit deinen Seed sicher zu speichern. Dein Seed wird verschlüsselt in einer Datei gespeichert und kann ohne das dazugehörige Passwort nicht eingesehen werden.",
         "seedVaultWarning": "Stelle sicher dass du die Datei an verschiedenen Orten ablegst (zum Beispiel auf einer externen Festplatte, einem Cloudspeicher, etc.). Falls du die Datei verlierst und dein Seed nicht an einem weiteren Ort gespeichert wurde, wirst du deine IOTA verlieren.",
         "exportFail": "SeedVault Export fehlgeschlagen",
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
@@ -654,7 +654,7 @@
         "noUpdatesAvailable": "Keine Updates verfügbar",
         "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
         "newVersionAvailable": "Neue Version verfügbar",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
         "downloadRelease": "Update herunterladen",
         "skipUpdate": "Update überspringen"
     },
