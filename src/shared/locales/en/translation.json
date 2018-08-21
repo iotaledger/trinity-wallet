@@ -320,7 +320,7 @@
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -377,12 +377,12 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "advancedModeExplanation":
+            "Advanced mode will provide access to additional content like full bundle contents and an error log.",
         "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+            "Only enable Advanced mode if you are experienced using the Tangle. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -617,7 +617,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
