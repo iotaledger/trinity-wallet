@@ -300,7 +300,7 @@
         "paperWallet": "Portafoglio su carta",
         "writeYourSeedDown": "Annota il seme",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
-        "letsWriteDownYourSeed": "Consente di annotare il vostro seme",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "È possibile evidenziare 9 caratteri alla volta",
         "printBlankWallet": "Stampare un portafoglio vuoto",
         "whatIsChecksum": "Ogni seme ha un corrispondente checksum di 3 caratteri",
@@ -352,10 +352,10 @@
         "youCanAdd": "Nel menu impostazioni, è possibile aggiungere più semi."
     },
     "modeSelection": {
-        "expert": "Esperto",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation": "La modalità Esperto fornirà accesso a funzioni aggiuntive come promozione e ricollegamento manuali.",
-        "modesExplanation": "Abilita la modalità Esperto solo se hai esperienza nell'uso del Tangle. Altrimenti potresti trovarti disorientato."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Invio transazione",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
-        "seedVaultExplanation": "Un SeedVault è un file crittografato in cui è archiviato in modo sicuro il tuo seme. Il seme viene crittografato dietro una password e non è possibile accedervi senza la password. Si consiglia di memorizzare il file in un gestore di password come Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Assicurarsi di eseguire un backup del file in più posizioni (per esempio hard disk, nel cloud, USB). Se perdi questo file e non hai archiviato il seme altrove, perderai i tuoi IOTA.",
         "exportFail": "Esportazione come SeedVault fallita",
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
         "errorRetrievingUpdateDataExplanation": "C'è stato un errore nel reperimento dell'aggiornamento. Per favore riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
-        "noUpdatesAvailableExplanation": "Hai l'ultima versione desktop del portafoglio IOTA Trinity!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Una nuova versione è disponibile",
-        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Si prega di leggere attentamente i dettagli di rilascio e verificare l'origine del download prima di eseguire l'aggiornamento:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Scarica la versione",
         "skipUpdate": "Salta l'aggiornamento"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Termini e condizioni",
         "accept": "Accetto",
-        "readAllToContinue": "Si prega di leggere tutto il testo per continuare"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Informativa Privacy",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Icona nell'area di notifica",
-        "trayExplanation": "Fornisce una rapida panoramica del saldo e la cronologia recente.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "Non hai effettuato l'accesso",
         "setupIncomplete": "Incompleta configurazione del portafoglio",
         "completeSetup": "Completa la configurazione"
     },
     "notifications": {
         "notifications": "Notifiche",
-        "notificationExplanation": "Ricevi notifiche di sistema sulle nuove transazioni.",
-        "typeConfirmations": "Notifica sulle conferme",
-        "typeMessages": "Notifica sulle transazioni a valore zero",
-        "multipleTx": "Hai ricevuto più transazioni sul conto {{account}}",
-        "valueTx": "Hai ricevuto {{value}} sul conto {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "Hai ricevuto un messaggio sul conto {{account}}",
-        "confirmedIn": "Accredito di {{value}} è stato confermato sul conto {{account}}",
-        "confirmedOut": "Addebito di {{value}} è stato confermato sul conto {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
