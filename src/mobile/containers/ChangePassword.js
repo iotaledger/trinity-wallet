@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { changePassword, getPasswordHash } from '../utils/keychain';
-import { generatePasswordHash, getRandomBytes } from '../utils/crypto';
+import { generatePasswordHash, getSalt } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 class ChangePassword extends Component {
     static propTypes = {
         /** @ignore */
-        password: PropTypes.object.isRequired,
+        currentPwdHash: PropTypes.object.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
@@ -103,11 +103,11 @@ class ChangePassword extends Component {
      * @method onAcceptPassword
      */
     async onAcceptPassword() {
-        const { password, setPassword, generateAlert, t } = this.props;
+        const { currentPwdHash, setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
-        const salt = await getRandomBytes(32);
+        const salt = await getSalt();
         const newPwdHash = await generatePasswordHash(newPassword, salt);
-        changePassword(password, newPwdHash, salt)
+        changePassword(currentPwdHash, newPwdHash, salt)
             .then(() => {
                 setPassword(newPwdHash);
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
@@ -122,9 +122,9 @@ class ChangePassword extends Component {
      * @method isPasswordChangeValid
      */
     async isPasswordChangeValid() {
-        const { t, password, generateAlert } = this.props;
+        const { t, currentPwdHash, generateAlert } = this.props;
         const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
-        if (!isEqual(password, currentPasswordHash)) {
+        if (!isEqual(currentPwdHash, currentPasswordHash)) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (this.state.newPassword === this.state.currentPassword) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
@@ -214,7 +214,7 @@ class ChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.wallet.password,
+    currentPwdHash: state.wallet.password,
     theme: state.settings.theme,
 });
 
