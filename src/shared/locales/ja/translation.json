@@ -679,9 +679,9 @@
     },
     "notifications": {
         "notifications": "通知設定",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
+        "notificationExplanation": "新しいトランザクションに関するシステム全体の通知を受け取ります。",
+        "typeConfirmations": "取引の確定を通知する",
+        "typeMessages": "０値のトランザクションを通知する",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "{{account}}にメッセージを受け取りました",
