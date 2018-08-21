@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza. Seed zostaje zaszyfrowany hasłem i nie jest dostępny bez jego podania.",
         "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, USB). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
         "exportFail": "Błąd eksportu SeedVault",
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
@@ -672,7 +672,7 @@
     },
     "tray": {
         "trayApplication": "Ikona w zasobniku",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Możliwość podglądu salda oraz ostatniej aktywności Twojego konta.",
         "notLoggedIn": "Nie jesteś zalogowany",
         "setupIncomplete": "Konfiguracja portfela niekompletna",
         "completeSetup": "Zakończ konfigurację"
