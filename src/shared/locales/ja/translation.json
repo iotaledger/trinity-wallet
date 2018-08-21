@@ -300,7 +300,7 @@
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
         "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
-        "letsWriteDownYourSeed": "シードを書き写しましょう。",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
         "whatIsChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
@@ -352,10 +352,10 @@
         "youCanAdd": "設定メニューでシードを追加できます。"
     },
     "modeSelection": {
-        "expert": "上級",
+        "advanced": "Advanced",
         "standard": "標準",
-        "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
-        "modesExplanation": "経験豊富なタングルユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "送金中",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
-        "seedVaultExplanation": "シード金庫はシードを安全に保管するための暗号化されたファイルです。シードはパスワードを使って暗号化されており、パスワードなしではアクセスできません。Keepassのようなパスワードマネージャーにシード金庫を保存することをお勧めします。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
         "exportFail": "シード金庫の書き出しに失敗しました",
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "更新データの取得エラー",
         "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
-        "noUpdatesAvailableExplanation": "最新版のIOTA Trinity デスクトップウォレットです。",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
-        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認ください：",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "リリースをダウンロード",
         "skipUpdate": "更新をスキップ"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "利用規約",
         "accept": "承諾する",
-        "readAllToContinue": "続けるにはすべてのテキストをお読みください"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "トレイアプリケーション",
-        "trayExplanation": "残高と最近の履歴の概要が見れます。",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "ログインしていません",
         "setupIncomplete": "ウォレットの設定が不十分です",
         "completeSetup": "セットアップ完了"
     },
     "notifications": {
         "notifications": "通知設定",
-        "notificationExplanation": "新しいトランザクションに関するシステム全体の通知を受け取る。",
-        "typeConfirmations": "トランザクションの確定を通知する",
-        "typeMessages": "０値のトランザクションを通知する",
-        "multipleTx": "{{account}}に複数のトランザクションを受け取りました",
-        "valueTx": "{{account}}に{{value}}を受け取りました",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "{{account}}にメッセージを受け取りました",
-        "confirmedIn": "入金{{value}}が{{account}}で確定しました",
-        "confirmedOut": "出金{{value}}が{{account}}で確定しました"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
