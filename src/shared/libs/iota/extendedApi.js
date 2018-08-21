@@ -13,6 +13,7 @@ import {
     DEFAULT_DEPTH,
     DEFAULT_MIN_WEIGHT_MAGNITUDE,
     NODE_REQUEST_TIMEOUT,
+    IRI_API_VERSION,
 } from '../../config';
 import { performPow, sortTransactionTrytesArray } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
@@ -395,7 +396,7 @@ const checkAttachToTangleAsync = (node) => {
         body: JSON.stringify({ command: 'attachToTangle' }),
         headers: new Headers({
             'Content-Type': 'application/json',
-            'X-IOTA-API-Version': '1',
+            'X-IOTA-API-Version': IRI_API_VERSION,
         }),
     })
         .then((res) => res.json())
