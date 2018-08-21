@@ -300,7 +300,7 @@
         "paperWallet": "Papierowy portfel",
         "writeYourSeedDown": "Zanotuj swój seed",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "letsWriteDownYourSeed": "Zapiszmy Twój seed",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Możesz wyróżnić 9 znaków naraz",
         "printBlankWallet": "Drukuj pusty portfel",
         "whatIsChecksum": "Każdy seed posiada swoją 3-znakową sumę kontrolną",
@@ -352,10 +352,10 @@
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "advanced": "Advanced",
         "standard": "Standardowy",
-        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i reattach transakcji.",
-        "modesExplanation": "Włącz tryb eksperta jedynie, jeśli jesteś doświadczonym użytkownikiem sieci Tangle. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Wykonywanie transferu",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
-        "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza seed. Seed jest zaszyfrowany hasłem i nie jest dostępny bez jego podania. Zaleca się przechowywanie tego pliku w menedżerze haseł, takim jak Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, USB). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
         "exportFail": "Błąd eksportu SeedVault",
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
         "errorRetrievingUpdateDataExplanation": "Wystąpił błąd podczas pobierania danych aktualizacji. Proszę spróbować ponownie.",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
-        "noUpdatesAvailableExplanation": "Masz już najnowszą wersję portfela IOTA Trinity!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Pobierz aktualizację",
         "skipUpdate": "Pomiń aktualizację"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Warunki i zasady",
         "accept": "Akceptuję",
-        "readAllToContinue": "Przeczytaj cały tekst, aby kontynuować"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Polityka prywatności",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Ikona w zasobniku",
-        "trayExplanation": "Możliwość szybkiego podglądu swojego stanu konta oraz ostatnich transakcji.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "Nie jesteś zalogowany",
         "setupIncomplete": "Konfiguracja portfela niekompletna",
         "completeSetup": "Zakończ konfigurację"
     },
     "notifications": {
         "notifications": "Powiadomienia",
-        "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
-        "typeConfirmations": "Powiadomienie o potwierdzeniu transakcji",
-        "typeMessages": "Powiadamiaj o transakcjach zerowych",
-        "multipleTx": "Otrzymano kilka transakcji na konto {{account}}",
-        "valueTx": "Otrzymano {{value}} na konto {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "Otrzymano wiadomość na konto {{account}}",
-        "confirmedIn": "Przychodząca transakcja {{value}} została potwierdzona na koncie {{account}}",
-        "confirmedOut": "Wychodząca transakcja {{value}} została potwierdzona na koncie {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
