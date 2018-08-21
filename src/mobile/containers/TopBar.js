@@ -147,7 +147,7 @@ class TopBar extends Component {
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
         /** @ignore */
-        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
+        mode: PropTypes.oneOf(['Advanced', 'Standard']).isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
@@ -332,7 +332,7 @@ class TopBar extends Component {
                                     justifyContent: 'space-between',
                                 }}
                             >
-                                {hasNotifications && !isKeyboardActive && mode === 'Expert' ? (
+                                {hasNotifications && !isKeyboardActive && mode === 'Advanced' ? (
                                     <TouchableOpacity
                                         hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
                                         style={styles.notificationContainer}

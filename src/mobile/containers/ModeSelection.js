@@ -92,7 +92,7 @@ class ModeSelection extends Component {
 
     changeMode() {
         const { mode } = this.props;
-        const nextMode = mode === 'Expert' ? 'Standard' : 'Expert';
+        const nextMode = mode === 'Advanced' ? 'Standard' : 'Advanced';
         this.props.setMode(nextMode);
         this.props.generateAlert('success', 'Mode updated', `You have changed to ${nextMode} mode.`);
     }
@@ -110,7 +110,7 @@ class ModeSelection extends Component {
                             body={body}
                             text={
                                 <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('advancedModeExplanation')}</Text>
                                     <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                                         {t('modesExplanation')}
                                     </Text>
@@ -129,14 +129,14 @@ class ModeSelection extends Component {
                                     </Text>
                                 </View>
                                 <Toggle
-                                    active={mode === 'Expert'}
+                                    active={mode === 'Advanced'}
                                     bodyColor={body.color}
                                     primaryColor={primary.color}
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
-                                        {t('expert')}
+                                        {t('advanced')}
                                     </Text>
                                 </View>
                             </View>
