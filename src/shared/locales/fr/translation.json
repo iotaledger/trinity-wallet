@@ -300,7 +300,7 @@
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Écrivez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsChecksum": "Chaque seed a une somme de contrôle de 3 caractères",
@@ -352,9 +352,9 @@
         "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avancé",
         "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
