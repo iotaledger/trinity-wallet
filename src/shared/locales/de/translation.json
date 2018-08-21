@@ -300,7 +300,7 @@
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
         "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
-        "letsWriteDownYourSeed": "Notiere deinen Seed",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Leeres Paper-Wallet drucken",
         "whatIsChecksum": "Jeder Seed hat eine dreistellige Prüfsumme",
@@ -352,10 +352,10 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "modeSelection": {
-        "expert": "Experte",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation": "Der Experten-Modus bietet Zugriff auf zusätzliche Funktionen wie manuelles Promoten und Reattachen.",
-        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist. Es könnte dich sonst verwirren."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
-        "seedVaultExplanation": "Ein SeedVault ist eine verschlüsselte Datei, die deinen Seed enthält. Dein Seed wird in dieser Datei mit einem Passwort gesichert. Deine SeedVault-Datei solltest du in einem Passwortmanager wie KeePass aufbewahren.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Stelle sicher dass du die Datei an verschiedenen Orten ablegst (zum Beispiel auf einer externen Festplatte, einem Cloudspeicher, etc.). Falls du die Datei verlierst und dein Seed nicht an einem weiteren Ort gespeichert wurde, wirst du deine IOTA verlieren.",
         "exportFail": "SeedVault Export fehlgeschlagen",
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
         "errorRetrievingUpdateDataExplanation": "Es gab einen Fehler beim Abrufen der Aktualisierungsdaten. Bitte versuche es nochmal.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
-        "noUpdatesAvailableExplanation": "Du hast die neueste Version der IOTA Trinity Desktop-Wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Neue Version verfügbar",
-        "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Update herunterladen",
         "skipUpdate": "Update überspringen"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
         "accept": "Ich stimme zu",
-        "readAllToContinue": "Bitte lies den kompletten Text um fortfahren zu können"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tray-Icon",
-        "trayExplanation": "Dies gibt dir einen schnellen Überblick über deinen Kontostand und den Transaktionsverlauf.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "Du bist nicht angemeldet",
         "setupIncomplete": "Einrichtung des Wallet abgeschlossen",
         "completeSetup": "Einrichtung abschließen"
     },
     "notifications": {
         "notifications": "Benachrichtigungen",
-        "notificationExplanation": "Systemweite Benachrichtigungen über neue Transaktionen erhalten.",
-        "typeConfirmations": "Über Bestätigungen benachrichtigen",
-        "typeMessages": "Über Null-Wert Transaktionen benachrichtigen",
-        "multipleTx": "Du hast mehrere Transaktionen in {{account}} erhalten",
-        "valueTx": "Du hast {{value}} in {{account}} erhalten",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "Du hast eine Nachricht in {{account}} erhalten",
-        "confirmedIn": "Eine eingehende Transaktion im Wert von {{value}} wurde in {{account}} bestätigt",
-        "confirmedOut": "Eine ausgehende Transaktion im Wert von {{value}} wurde in {{account}} bestätigt"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
