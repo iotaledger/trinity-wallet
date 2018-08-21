@@ -51,13 +51,11 @@ class TermsAndConditions extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** User confirms that they agree to the terms and conditions */
+        /** @ignore */
         acceptTerms: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -89,6 +87,10 @@ class TermsAndConditions extends Component {
         leaveNavigationBreadcrumb('TermsAndConditions');
     }
 
+    /**
+     * Navigates to privacy policy screen
+     * @method onNextPress
+     */
     onNextPress() {
         const { theme } = this.props;
         this.props.acceptTerms();

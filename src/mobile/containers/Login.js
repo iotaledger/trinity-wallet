@@ -32,49 +32,31 @@ const styles = StyleSheet.create({
 /** Login component */
 class Login extends Component {
     static propTypes = {
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines whether two factor authentication is enabled */
+        /** @ignore */
         is2FAEnabled: PropTypes.bool.isRequired,
-        /** Set application activity state
-         * @param {object} options - minimised, active, inactive
-         */
+        /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
-        /** Set password
-         * @param {string} password
-         */
+        /** @ignore */
         setLoginPasswordField: PropTypes.func.isRequired,
-        /** Password value */
+        /** @ignore */
         password: PropTypes.string.isRequired,
         /** Hash for wallet's password */
         pwdHash: PropTypes.object.isRequired,
-        /** Set new IRI node
-         * @param {string} node
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Set send amount params
-         * @param {string} - amount
-         * @param {string} - address
-         * @param {string} - message
-         */
+        /** @ignore */
         setDeepLink: PropTypes.func.isRequired,
-        /** Determines which page should be displayed at login */
+        /** @ignore */
         loginRoute: PropTypes.string.isRequired,
-        /** Sets which login page should be displayed
-         * @param {string} route - current route
-         */
+        /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
-        /** Determines whether fingerprint auth is enabled */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 

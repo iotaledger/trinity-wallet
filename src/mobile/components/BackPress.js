@@ -99,15 +99,11 @@ export default () => (C) => {
     WithBackPress.propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** Current setting */
         currentSetting: PropTypes.string.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

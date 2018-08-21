@@ -20,7 +20,9 @@ class Toggle extends PureComponent {
     static propTypes = {
         /** Determines whether the toggle is active or not */
         active: PropTypes.bool.isRequired,
+        /** @ignore */
         bodyColor: PropTypes.string.isRequired,
+        /** @ignore */
         primaryColor: PropTypes.string.isRequired,
         scale: PropTypes.number,
         opacity: PropTypes.number,

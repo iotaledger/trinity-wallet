@@ -9,20 +9,41 @@ import CustomTextInput from './CustomTextInput';
 
 class MultiTextInput extends Component {
     static propTypes = {
+        /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** On change text event callback
+         * @param {string}
+         */
         setAmount: PropTypes.func.isRequired,
+        /** On denomination press event callback
+         * @param {string}
+         */
         setDenomination: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** Text entered in text field */
         amount: PropTypes.string.isRequired,
+        /** Selected denomination */
         denomination: PropTypes.string.isRequired,
+        /** @ignore */
         currency: PropTypes.string.isRequired,
+        /** Multiplier used in converting IOTA denominations */
         multiplier: PropTypes.number.isRequired,
+        /** @ignore */
         conversionRate: PropTypes.number.isRequired,
+        /** @ignore */
         usdPrice: PropTypes.number.isRequired,
+        /** Returns the rendered component instance
+         * @param {object} instance - Component instance
+         */
         onRef: PropTypes.func,
+        /** Text field label */
         label: PropTypes.string,
+        /** CustomTextField component container style */
         containerStyle: PropTypes.object.isRequired,
+        /** On submit editing event callback */
         onSubmitEditing: PropTypes.func,
+        /** Determines if the text field is editable */
         editable: PropTypes.bool,
     };
 
@@ -35,6 +56,7 @@ class MultiTextInput extends Component {
 
     /**
      *   Updates amount field.
+     *
      *   @method onAmountType
      **/
     onAmountType(amount) {

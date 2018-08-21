@@ -76,23 +76,15 @@ const styles = StyleSheet.create({
 /** Fingerprint enable component */
 class FingerprintEnable extends Component {
     static propTypes = {
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Sets fingerprint security status
-         * @param {boolean} - status
-         */
+        /** @ignore */
         setFingerprintStatus: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Determines whether fingerprint is enabled */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
@@ -118,6 +110,9 @@ class FingerprintEnable extends Component {
         }
     }
 
+    /**
+     * Wrapper method for activation/deactivation of fingerprint
+     */
     onFingerprintPress() {
         const { isFingerprintEnabled } = this.props;
         if (isFingerprintEnabled) {
