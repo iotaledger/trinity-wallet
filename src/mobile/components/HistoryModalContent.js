@@ -138,7 +138,7 @@ export default class HistoryModalContent extends PureComponent {
         /** Transaction boolean confirmation state */
         confirmationBool: PropTypes.bool.isRequired,
         /** Currently selected mode */
-        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
+        mode: PropTypes.oneOf(['Advanced', 'Standard']).isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
         /** Transaction value without rounding */
@@ -337,7 +337,7 @@ export default class HistoryModalContent extends PureComponent {
                                             <View style={styles.bundleSeparator} />
                                         </TouchableOpacity>
                                     </View>
-                                    {mode === 'Expert' && (
+                                    {mode === 'Advanced' && (
                                         <View>
                                             <Text style={[styles.heading, style.defaultTextColor]}>
                                                 {t('addresses')}:

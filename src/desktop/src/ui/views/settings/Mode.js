@@ -22,7 +22,7 @@ class Mode extends React.PureComponent {
     render() {
         const { mode, setMode, t } = this.props;
 
-        const targetMode = mode === 'Expert' ? 'Standard' : 'Expert';
+        const targetMode = mode === 'Advanced' ? 'Standard' : 'Advanced';
 
         return (
             <form>
@@ -30,11 +30,11 @@ class Mode extends React.PureComponent {
                 <Toggle
                     checked={targetMode === 'Standard'}
                     onChange={() => setMode(targetMode)}
-                    on={t('modeSelection:expert')}
+                    on={t('modeSelection:advanced')}
                     off={t('modeSelection:standard')}
                 />
                 <p>
-                    {t('modeSelection:expertModeExplanation')} {t('modeSelection:modesExplanation')}
+                    {t('modeSelection:advancedModeExplanation')} {t('modeSelection:modesExplanation')}
                 </p>
             </form>
         );
