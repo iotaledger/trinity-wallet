@@ -290,7 +290,7 @@
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
-        "tag": "Žyma"
+        "tag": "Etiketė"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
