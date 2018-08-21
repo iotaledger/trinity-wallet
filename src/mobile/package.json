@@ -39,7 +39,7 @@
     "lodash": "^4.17.10",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
-    "nodejs-mobile-react-native": "0.2.1",
+    "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",

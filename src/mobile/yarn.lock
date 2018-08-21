@@ -4356,9 +4356,9 @@ nodejs-mobile-gyp@^0.2.0:
     tar "^3.1.3"
     which "1"
 
-nodejs-mobile-react-native@0.2.1:
+"nodejs-mobile-react-native@https://github.com/rajivshah3/nodejs-mobile-react-native":
   version "0.2.1"
-  resolved "https://registry.yarnpkg.com/nodejs-mobile-react-native/-/nodejs-mobile-react-native-0.2.1.tgz#79cade48efc65da73c35cef59cb8838db2635a30"
+  resolved "https://github.com/rajivshah3/nodejs-mobile-react-native#e8337cfb03f72cfa88acf7b2d16d29fe848af174"
   dependencies:
     mkdirp "^0.5.1"
     ncp "^2.0.0"
