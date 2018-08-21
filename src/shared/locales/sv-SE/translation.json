@@ -686,6 +686,6 @@
         "valueTx": "Tar emot {{value}} till {{account}}",
         "messageTx": "Du har mottagit ett meddelande till {{account}}",
         "confirmedIn": "Inkommande {{value}} till {{account}} har bekräftats",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedOut": "Utgående {{value}} från {{account}} har bekräftats"
     }
 }
