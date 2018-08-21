@@ -300,7 +300,7 @@
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
         "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Leeres Paper-Wallet drucken",
         "whatIsChecksum": "Jeder Seed hat eine dreistellige Prüfsumme",
@@ -354,7 +354,7 @@
     "modeSelection": {
         "advanced": "Erweitert",
         "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Der erweiterte Modus zeigt detaillierte technische Informationen.",
         "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist."
     },
     "settings": {
