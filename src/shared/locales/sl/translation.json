@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "Pošlji",
-        "cancel": "Cancel",
+        "cancel": "PREKLIČI",
         "continue?": "Ali ste prepričani da želite nadaljevati?",
         "noTransactions": "NI NEDAVNE ZGODOVINE",
         "refresh": "Refresh",
@@ -24,10 +24,10 @@
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Generirano število",
         "checksum": "Kontrolna vsota",
-        "back": "Back",
+        "back": "Nazaj",
         "goBack": "Go back",
         "goBackStep": "Go back a step",
-        "done": "Done",
+        "done": "Končano",
         "prev": "PREV",
         "next": "Next",
         "apply": "Potrdi",
@@ -41,8 +41,8 @@
         "enabled": "Enabled",
         "disabled": "Disabled",
         "enterPassword": "Enter password",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
+        "paperWallet": "Natisnite kopijo",
+        "addToPasswordManager": "Dodajte v upravitelja gesel",
         "shareSeed": "Share seed",
         "proceed": "Proceed",
         "qr": "QR",
@@ -173,7 +173,7 @@
         "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
         "oldPassword": "Ni mogoče nastavite starega gesla",
         "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 11 znakov.",
         "currentPassword": "Trenutno Geslo",
         "newPassword": "Novo Geslo",
         "confirmPassword": "Potrdite Novo Geslo",
@@ -294,12 +294,12 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
+        "seedCleared": "Generiranava vrednost odstranjena",
         "mostSecure": "Most Secure",
         "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
+        "paperWallet": "Papirnata denarnica",
         "writeYourSeedDown": "Write your seed down",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
         "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
@@ -420,11 +420,11 @@
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
@@ -456,7 +456,7 @@
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNode": "Custom node",
         "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "invalidNodeResponse": "Vozlišče je vrnilo neveljaven odziv",
         "add": "Dodaj",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
@@ -597,7 +597,7 @@
         "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "Tržna kapitalizacija",
         "change": "Change (24h)",
         "volume": "Volume (24h)",
         "error": "Error fetching chart data"
