@@ -300,7 +300,7 @@
         "paperWallet": "紙錢包",
         "writeYourSeedDown": "寫下您的種子碼",
         "seedClearedExplanation": "為保您的安全，種子碼已從剪貼簿清除。",
-        "letsWriteDownYourSeed": "請寫下您的種子碼",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
         "whatIsChecksum": "每個種子碼會有相對應 3 字元的檢查碼",
@@ -352,10 +352,10 @@
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
     "modeSelection": {
-        "expert": "專業",
+        "advanced": "Advanced",
         "standard": "標準",
-        "expertModeExplanation": "專業模式將會提供像是手動促進和重新連接等額外功能。",
-        "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用專業模式，否則您可能會誤用進階功能。"
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "傳送交易",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "SeedVault 是個能夠安全儲存您的種子碼的加密檔案。種子碼會透過您輸入的密碼加密，而且只能夠用該密碼取得。建議您將檔案儲存在像是 Keepass 這樣的密碼管理器中。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
         "errorRetrievingUpdateDataExplanation": "取得更新資料時發生錯誤，請再試一次。",
         "noUpdatesAvailable": "尚無更新",
-        "noUpdatesAvailableExplanation": "您的 IOTA Trinity 桌面版錢包已經是最新版本！",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "有新版本可用",
-        "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "下載更新版本",
         "skipUpdate": "跳過更新"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "使用條款",
         "accept": "我接受",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "隱私權政策",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
