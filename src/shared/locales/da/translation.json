@@ -300,7 +300,7 @@
         "paperWallet": "Papirtegnebog",
         "writeYourSeedDown": "Nedskriv din hovednøgle",
         "seedClearedExplanation": "Hovednøglen er ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "letsWriteDownYourSeed": "Lad os nedskrive din hovednøgle",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Du kan markere 9 tegn ad gangen",
         "printBlankWallet": "Udskriv en tom tegnebog",
         "whatIsChecksum": "Hver hovednøgle har en korresponderende 3-tegns kontrolsum",
@@ -352,10 +352,10 @@
         "youCanAdd": "Du kan tilføje flere hovednøgler i menuen Indstillinger."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom manuel validering og gensendelse af transaktioner.",
-        "modesExplanation": "Aktivér kun Eksperttilstand, hvis du er en erfaren Tangle-bruger. Det vil ellers kunne virke forvirrende."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Sender transaktion",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportere SeedVault",
-        "seedVaultExplanation": "En SeedVault er en krypteret fil til sikker lagring af din hovednøgle. Hovednøglen er krypteret bag en adgangskode og kan ikke tilgås uden adgangskoden. Det anbefales, at du gemmer filen i en adgangskodehåndterings-app, f.eks. Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Sørg for, at du opretter flere sikkerhedskopier af filen (på f.eks. harddisk, Sky, USB-nøgle). Mister du denne fil, og har du ikke lagret din hovednøgle andetsteds, vil du miste dine IOTA.",
         "exportFail": "SeedVault-eksport mislykkedes",
         "exportFailExplanation": "Der opstod et problem ved eksport af SeedVault. Kontrollér at du har de nødvendige tilladelser og tilstrækkelig ledig lagerplads.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
         "errorRetrievingUpdateDataExplanation": "En fejl opstod under indhentning af opdateringsdata. Forsøg igen.",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
-        "noUpdatesAvailableExplanation": "Du har den seneste version af IOTA Trinity-computertegnebogen!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny version tilgængelig",
-        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Download version",
         "skipUpdate": "Spring opdatering over"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Betingelser og Vilkår",
         "accept": "Jeg accepterer",
-        "readAllToContinue": "Læs hele teksten for at fortsætte"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Fortrolighedspolitik",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
