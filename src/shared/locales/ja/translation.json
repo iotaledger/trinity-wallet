@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "更新データの取得エラー",
         "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "最新バージョンを利用しています。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。アップデートする前に、リリースノートを注意深く読み、ダウンロード元をご確認ください：",
         "downloadRelease": "リリースをダウンロード",
         "skipUpdate": "更新をスキップ"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "利用規約",
         "accept": "承諾する",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "全文をお読みください"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
@@ -672,7 +672,7 @@
     },
     "tray": {
         "trayApplication": "トレイアプリケーション",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "アカウント残高と最近の取引履歴の概要を示します。",
         "notLoggedIn": "ログインしていません",
         "setupIncomplete": "ウォレットの設定が不十分です",
         "completeSetup": "セットアップ完了"
