@@ -66,27 +66,17 @@ const styles = StyleSheet.create({
 /** Mode Selection component */
 class ModeSelection extends Component {
     static propTypes = {
-        /** Currently selected wallet mode (Expert or Standard) */
+        /** @ignore */
         mode: PropTypes.string.isRequired,
-        /** Change current mode
-         * @param {string} mode
-         */
+        /** @ignore */
         setMode: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -102,7 +92,7 @@ class ModeSelection extends Component {
 
     changeMode() {
         const { mode } = this.props;
-        const nextMode = mode === 'Expert' ? 'Standard' : 'Expert';
+        const nextMode = mode === 'Advanced' ? 'Standard' : 'Advanced';
         this.props.setMode(nextMode);
         this.props.generateAlert('success', 'Mode updated', `You have changed to ${nextMode} mode.`);
     }
@@ -120,7 +110,7 @@ class ModeSelection extends Component {
                             body={body}
                             text={
                                 <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('expertModeExplanation')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('advancedModeExplanation')}</Text>
                                     <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                                         {t('modesExplanation')}
                                     </Text>
@@ -139,14 +129,14 @@ class ModeSelection extends Component {
                                     </Text>
                                 </View>
                                 <Toggle
-                                    active={mode === 'Expert'}
+                                    active={mode === 'Advanced'}
                                     bodyColor={body.color}
                                     primaryColor={primary.color}
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
-                                        {t('expert')}
+                                        {t('advanced')}
                                     </Text>
                                 </View>
                             </View>

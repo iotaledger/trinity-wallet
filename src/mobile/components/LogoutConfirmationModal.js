@@ -34,9 +34,7 @@ const styles = StyleSheet.create({
 
 export class LogoutConfirmationModal extends PureComponent {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,

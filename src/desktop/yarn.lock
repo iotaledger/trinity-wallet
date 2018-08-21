@@ -3418,7 +3418,7 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-"iota.crypto.js@github:iotaledger/iota.crypto.js":
+iota.crypto.js@iotaledger/iota.crypto.js:
   version "0.4.2"
   resolved "https://codeload.github.com/iotaledger/iota.crypto.js/tar.gz/05c5b4485ad8232fd5b9145e02fe988a035a7704"
   dependencies:

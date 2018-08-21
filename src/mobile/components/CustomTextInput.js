@@ -81,7 +81,7 @@ class CustomTextInput extends Component {
         /** Text Change event callback function */
         /** @param {string} text - Updated text in the text field */
         onChangeText: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Label for text field */
         label: PropTypes.string,

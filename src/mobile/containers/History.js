@@ -75,45 +75,37 @@ class History extends Component {
         transfers: PropTypes.object.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Promotes bundle
-         * @param {string} bundle - bundle hash
-         */
+        /** @ignore */
         promoteTransaction: PropTypes.func.isRequired,
-        /** Determines if wallet is manually syncing account information */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** Determines if wallet is making a transaction */
+        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
-        /** Determines if wallet is generating receive address */
+        /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        /** Determines if wallet is doing snapshot transition */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Determines if wallet is manually promoting transaction */
+        /** @ignore */
         isPromotingTransaction: PropTypes.bool.isRequired,
-        /** Currently selected mode for wallet */
+        /** @ignore */
         mode: PropTypes.string.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Determines if wallet is autopromoting transaction */
+        /** @ignore */
         isAutoPromoting: PropTypes.bool.isRequired,
-        /** Bundle hash for the transaction that is currently being promoted */
+        /** @ignore */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
-        /** Determines whether account is being manually refreshed */
+        /** @ignore */
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
         onRefresh: PropTypes.func.isRequired,
@@ -121,13 +113,9 @@ class History extends Component {
         addresses: PropTypes.array.isRequired,
         /** Failed transactions bundle hashes for selected account */
         failedBundleHashes: PropTypes.object.isRequired,
-        /** Make a retry attempt for a failed transaction
-         * @param {string} accountName
-         * @param {string} bundleHash
-         * @param {function} powFn
-         */
+        /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
-        /** Determines if a failed transaction is being retried */
+        /** @ignore */
         isRetryingFailedTransaction: PropTypes.bool.isRequired,
     };
 
@@ -251,6 +239,9 @@ class History extends Component {
         return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
+    /**
+     * Reset modal props from internal state
+     */
     resetModalProps() {
         this.setState({ modalProps: null });
         this.props.toggleModalActivity();

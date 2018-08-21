@@ -56,11 +56,9 @@ export class RootDetectionModal extends PureComponent {
         hideModal: PropTypes.func.isRequired,
         /** Prints paper wallet */
         print: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

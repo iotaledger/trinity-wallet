@@ -349,7 +349,7 @@ class List extends React.PureComponent {
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
-                                {mode === 'Expert' && this.listAddresses(activeTransfer)}
+                                {mode === 'Advanced' && this.listAddresses(activeTransfer)}
                                 <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>

@@ -63,26 +63,17 @@ const currentLanguageLabel = selectLocale(currentLocale);
 /** Language Selection component */
 class LanguageSelection extends Component {
     static propTypes = {
-        /** Set new setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Set language
-         * @param {string} language - newly selected language
-         */
+        /** @ignore */
         setLanguage: PropTypes.func.isRequired,
-        /**
-         * Set locale
-         * @param {string} locale - newly selected locale
-         */
+        /** @ignore */
         setLocale: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Selected language */
+        /** @ignore */
         language: PropTypes.string.isRequired,
     };
 
@@ -96,6 +87,9 @@ class LanguageSelection extends Component {
         leaveNavigationBreadcrumb('LanguageSelection');
     }
 
+    /**
+     * Saves user-selected language
+     */
     saveLanguageSelection() {
         const nextLanguage = this.languageSelected;
 

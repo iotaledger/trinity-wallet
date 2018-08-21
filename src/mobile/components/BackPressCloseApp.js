@@ -45,10 +45,7 @@ export default () => (C) => {
     }
 
     WithBackPressCloseApp.propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,

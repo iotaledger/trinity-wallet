@@ -20,15 +20,11 @@ const styles = StyleSheet.create({
  */
 class AddNewAccount extends Component {
     static propTypes = {
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -42,6 +38,11 @@ class AddNewAccount extends Component {
         leaveNavigationBreadcrumb('AddNewAccount');
     }
 
+    /**
+     * Navigate to new seed setup screen
+     *
+     * @method addNewSeed
+     */
     addNewSeed() {
         const { theme } = this.props;
         Navigation.startSingleScreenApp({
@@ -65,6 +66,13 @@ class AddNewAccount extends Component {
         BackHandler.removeEventListener('homeBackPress');
     }
 
+    /**
+     * Render setting rows
+     *
+     * @method renderSettingsContent
+     *
+     * @returns {function}
+     */
     renderSettingsContent() {
         const { theme, t } = this.props;
         const rows = [

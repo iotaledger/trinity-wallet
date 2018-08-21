@@ -47,9 +47,7 @@ class UsedAddressModal extends PureComponent {
     static propTypes = {
         /** Closes acive modal */
         hideModal: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Content text color */
         textColor: PropTypes.object.isRequired,

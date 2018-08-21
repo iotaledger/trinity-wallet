@@ -41,24 +41,15 @@ export default () => (C) => {
     }
 
     WithUserActivity.propTypes = {
-        /** Set application activity state
-         * @param {object} options - minimised, active, inactive
-         */
+        /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /**
-         * Disables app minimisation if necessary
-         * @type {bool}
-         */
+        /** @ignore */
         doNotMinimise: PropTypes.bool.isRequired,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
     };
 

@@ -321,7 +321,7 @@
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -378,12 +378,12 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "advancedModeExplanation":
+            "Advanced mode will display more detailed technical information.",
         "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+            "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -619,7 +619,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -689,10 +689,10 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
@@ -702,7 +702,7 @@
     "terms": {
         "termsAndConditions": "Terms & Conditions",
         "accept": "I accept",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
@@ -710,20 +710,20 @@
     },
     "tray": {
          "trayApplication": "Tray application",
-         "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
          "notLoggedIn": "You are not logged in",
          "setupIncomplete": "Wallet setup incomplete",
          "completeSetup": "Complete setup"
     },
     "notifications": {
       "notifications": "Notifications",
-      "notificationExplanation": "Receive system wide notifications about new transactions.",
-      "typeConfirmations": "Notify about confirmations",
-      "typeMessages": "Notify about zero value transactions",
-      "multipleTx": "You received multiple transactions to {{account}}",
-      "valueTx": "You received {{value}} to {{account}}",
+      "notificationExplanation": "Receive system-wide notifications about new transactions.",
+      "typeConfirmations": "Notify me about confirmations",
+      "typeMessages": "Notify me about zero value transactions",
+      "multipleTx": "Receiving multiple transactions to {{account}}",
+      "valueTx": "Receiving {{value}} to {{account}}",
       "messageTx": "You received a message to {{account}}",
-      "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-      "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+      "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+      "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
