@@ -38,6 +38,10 @@ export class Checksum extends Component {
         showModal: PropTypes.func.isRequired,
     };
 
+    /**
+     * Gets the checksum of a seed
+     * @return {string} Checksum or symbol to be shown
+     */
     getChecksumValue() {
         const { seed } = this.props;
         let checksumValue = '...';
@@ -53,6 +57,10 @@ export class Checksum extends Component {
         return checksumValue;
     }
 
+    /**
+     * Gets the color of the checksum
+     * @return {Object}
+     */
     getChecksumStyle() {
         const { theme, seed } = this.props;
         if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {

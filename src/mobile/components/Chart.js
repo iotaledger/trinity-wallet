@@ -89,8 +89,15 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * Gets the symbol for a currency
+ * @param  {string} currency Currency abbreviation
+ * @return {string}          Currency symbol
+ */
 const getChartCurrencySymbol = (currency) => {
     if (currency === 'BTC') {
+        // The official BTC symbol is not available on some Android devices
+        // To mitigate a crash, the Thai Baht symbol is used instead
         return isAndroid ? '฿' : '₿';
     } else if (currency === 'ETH') {
         return 'Ξ';

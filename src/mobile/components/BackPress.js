@@ -14,6 +14,11 @@ const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
 });
 
+/**
+ * Handles back button events on Android by wrapping a component
+ * @param {Component} C Component to be wrapped
+ * @return {Component} A wrapped component
+ */
 export default () => (C) => {
     class WithBackPress extends Component {
         constructor(props) {
