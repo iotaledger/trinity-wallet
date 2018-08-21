@@ -300,7 +300,7 @@
         "paperWallet": "Ví Giấy",
         "writeYourSeedDown": "Viết từ khoá xuống",
         "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
-        "letsWriteDownYourSeed": "Hãy ghi từ khóa xuống",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Bạn có thể đánh dấu 9 ký tự trong một lần",
         "printBlankWallet": "In một ví trống",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -352,10 +352,10 @@
         "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Đã có phiên bản mới",
-        "newVersionAvailableExplanation": "Phiên bản mới <strong>Trinity</strong> <strong>{{version}}</strong> đã có sẵn. Xin vui lòng đọc kĩ các chi tiết phát hành và xác minh mã nguồn tải về trước khi cập nhật:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Tải phiên bản",
         "skipUpdate": "Bỏ qua cập nhật"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Điều Khoản & Điều Kiện",
         "accept": "Tôi chấp nhận",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Chính Sách Quyền Riêng Tư",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
