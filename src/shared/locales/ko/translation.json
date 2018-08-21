@@ -300,7 +300,7 @@
         "paperWallet": "종이 지갑",
         "writeYourSeedDown": "시드 기록하기",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
-        "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "9글자 단위로 강조해서 볼 수 있습니다",
         "printBlankWallet": "빈 지갑 인쇄하기",
         "whatIsChecksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다",
@@ -352,10 +352,10 @@
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "modeSelection": {
-        "expert": "전문가",
+        "advanced": "Advanced",
         "standard": "기본",
-        "expertModeExplanation": "전문가 모드에서는 프로모트 및 다시 어태치를 직접 실행할 수 있습니다.",
-        "modesExplanation": "전문가 모드는 탱글에 익숙한 사용자만 사용하시길 권장합니다. 탱글에 익숙하지 않으면 사용하기 어려울 수 있습니다."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedValut 내보내기",
-        "seedVaultExplanation": "SeedVault는 암호화된 시드를 저장하는 파일입니다. 시드는 비밀번호를 사용해 암호화되며, 해당 비밀번호 없이는 시드에 접근할 수 없습니다. 이 파일을 Keepass와 같은 암호 관리자를 이용해 보관하는 것이 좋습니다.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "여러 위치(예: 하드 드라이브, 클라우드, USB)에 이 파일을 백업하십시오. 이 파일을 잃어버리고 별도로 시드를 보관하지 않은 경우 IOTA를 잃게 됩니다.",
         "exportFail": "SeedVault 내보내기 실패",
         "exportFailExplanation": "SeedVault를 내보내는 도중 문제가 발생하였습니다. 적절한 권한과 충분한 저장 공간이 있는지 다시 확인하세요.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
         "errorRetrievingUpdateDataExplanation": "업데이트 데이터를 받아오는 중 오류가 발생하였습니다. 다시 시도해 주세요.",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
-        "noUpdatesAvailableExplanation": "IOTA 트리니티 데스크탑 지갑의 최신 버전을 사용하고 있습니다!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "새 버전 이용 가능",
-        "newVersionAvailableExplanation": "<strong>트리니티</strong> 버전 <strong>{{version}}</strong>을 사용할 수 있습니다. 업데이트를 하기 전에 내역을 자세히 읽고 다운로드 출처를 확인해 주십시오:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "새 버전 다운로드",
         "skipUpdate": "업데이트 건너뛰기"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "이용 약관",
         "accept": "동의합니다",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "개인정보 정책",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions.",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
