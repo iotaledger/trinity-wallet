@@ -1,0 +1,9 @@
+steps:
+  - label: ":pipeline: Run Trinity Desktop (PRs) pipeline"
+    command: "./prs.sh"
+    agents:
+      queue: dev
+    plugins:
+      docker#v1.4.0:
+        image: "rajivshah/trinity-desktop-ci"
+        always-pull: true

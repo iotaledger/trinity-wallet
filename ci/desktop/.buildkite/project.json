@@ -4,7 +4,7 @@
     {
       "type": "script",
       "name": "Primary",
-      "command": "buildkite-agent pipeline upload ci/desktop/.buildkite/pipeline-primary.yml"
+      "command": "buildkite-agent pipeline upload ci/desktop/.buildkite/pipeline-prs.yml"
     }
   ]
 }

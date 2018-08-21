@@ -1,0 +1,9 @@
+steps:
+  - label: ":pipeline: Run Trinity Mobile (PRs) pipeline"
+    command: "./prs.sh"
+    agents:
+      queue: dev
+    plugins:
+      docker#v1.4.0:
+        image: "rajivshah/trinity-mobile-ci"
+        always-pull: true
