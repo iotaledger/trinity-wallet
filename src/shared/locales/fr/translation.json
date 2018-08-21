@@ -355,7 +355,7 @@
         "advanced": "Avancé",
         "standard": "Standard",
         "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -582,7 +582,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée derrière un mot de passe et n'est pas accessibles sans ce mot de passe.",
         "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
@@ -652,9 +652,9 @@
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
         "errorRetrievingUpdateDataExplanation": "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Vous avez la dernière version installé de Trinity Desktop.",
         "newVersionAvailable": "Une nouvelle version est disponible",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "La nouvelle version <strong>Trinity</strong> <strong>{{version}}</strong> est disponible. Veuillez lire les détails de cette version attentivement et vérifier la source du téléchargement avant la mise à jour :",
         "downloadRelease": "Télécharger la version",
         "skipUpdate": "Passer la mise a jour"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Termes et conditions",
         "accept": "J'accepte",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Merci de lire complètement le texte"
     },
     "privacyPolicy": {
         "privacyPolicy": "Politique de confidentialité",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Réduire dans la barre de tache",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Donne un aperçu de vos soldes des comptes et l’historique des transactions récentes.",
         "notLoggedIn": "Vous n'êtes pas connecté",
         "setupIncomplete": "Paramétrage du portefeuille incomplet",
         "completeSetup": "Configuration terminée"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
+        "notificationExplanation": "Recevoir les notifications complètes du système à propos des nouvelles transactions.",
+        "typeConfirmations": "Me notifier à propos des confirmations",
+        "typeMessages": "Me notifier à propos des transactions nulles",
+        "multipleTx": "Vous avez reçu plusieurs transactions sur {{account}}",
+        "valueTx": "Vous avez reçu {{value}} sur {{account}}",
         "messageTx": "Vous avez reçu un message à {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Transaction de {{value}} sur {{account}} confirmé",
+        "confirmedOut": "Transaction de {{value}} depuis {{account}} confirmé"
     }
 }
