@@ -352,7 +352,7 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Erweitert",
         "standard": "Standard",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
@@ -652,7 +652,7 @@
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
         "errorRetrievingUpdateDataExplanation": "Es gab einen Fehler beim Abrufen der Aktualisierungsdaten. Bitte versuche es nochmal.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Update herunterladen",
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
         "accept": "Ich stimme zu",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Bitte lies den kompletten Text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
@@ -672,20 +672,20 @@
     },
     "tray": {
         "trayApplication": "Tray-Icon",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Dies gibt dir eine Übersicht über deinen Kontostand und den Transaktionsverlauf.",
         "notLoggedIn": "Du bist nicht angemeldet",
         "setupIncomplete": "Einrichtung des Wallet abgeschlossen",
         "completeSetup": "Einrichtung abschließen"
     },
     "notifications": {
         "notifications": "Benachrichtigungen",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
+        "notificationExplanation": "Systemweite Benachrichtigungen über neue Transaktionen erhalten.",
+        "typeConfirmations": "Über Bestätigungen benachrichtigen",
+        "typeMessages": "Über Null-Wert Transaktionen benachrichtigen",
+        "multipleTx": "Du hast mehrere Transaktionen in {{account}} erhalten",
+        "valueTx": "Du hast {{value}} in {{account}} erhalten",
         "messageTx": "Du hast eine Nachricht in {{account}} erhalten",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Eine eingehende Transaktion über {{value}} in {{account}} wurde bestätigt",
+        "confirmedOut": "Eine ausgehende Transaktion über {{value}} in {{account}} wurde bestätigt"
     }
 }
