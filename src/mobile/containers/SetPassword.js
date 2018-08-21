@@ -162,7 +162,7 @@ class SetPassword extends Component {
     }
 
     onDonePress() {
-        this.PasswordFields.checkPassword();
+        this.passwordFields.checkPassword();
     }
 
     onBackPress() {
@@ -220,7 +220,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.2 }} />
                             <PasswordFields
                                 onRef={(ref) => {
-                                    this.PasswordFields = ref;
+                                    this.passwordFields = ref;
                                 }}
                                 onAcceptPassword={() => this.onAcceptPassword()}
                                 password={password}

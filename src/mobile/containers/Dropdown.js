@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 /** Dropdown component */
 export class Dropdown extends Component {
     static propTypes = {
-        /** Callback function returning dropdpown component instance as an argument */
+        /** Callback function returning dropdown component instance as an argument */
         /** @param {object} instance - dropdown instance
          */
         onRef: PropTypes.func,

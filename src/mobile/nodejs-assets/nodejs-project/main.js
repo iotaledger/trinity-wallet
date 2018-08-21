@@ -21,7 +21,7 @@ kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, paral
 };
 
 /**
- * Encrypt seed to .kdbx database frmat
+ * Encrypt seed to .kdbx database format
  * @method createSeedVault
  *
  * @param {string} Seed - Seed to be encrypted
