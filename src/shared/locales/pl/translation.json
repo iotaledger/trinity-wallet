@@ -654,7 +654,7 @@
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
         "downloadRelease": "Pobierz aktualizację",
         "skipUpdate": "Pomiń aktualizację"
     },
@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Warunki i zasady",
         "accept": "Akceptuję",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Przeczytaj cały tekst"
     },
     "privacyPolicy": {
         "privacyPolicy": "Polityka prywatności",
@@ -679,13 +679,13 @@
     },
     "notifications": {
         "notifications": "Powiadomienia",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
+        "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
+        "typeConfirmations": "Powiadom mnie o potwierdzeniu transakcji",
+        "typeMessages": "Powiadamiaj o transakcjach zerowych",
+        "multipleTx": "Odbieranie kilku transakcji na konto {{account}}",
+        "valueTx": "Odbieranie {{value}} na konto {{account}}",
         "messageTx": "Otrzymano wiadomość na konto {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Transakcja przychodząca {{value}} na konto {{account}} została potwierdzona",
+        "confirmedOut": "Transakcja wychodząca {{value}} z konta {{account}} została potwierdzona"
     }
 }
