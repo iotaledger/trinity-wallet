@@ -18,15 +18,3 @@ RUN dpkg --add-architecture i386 && \
     apt-add-repository https://dl.winehq.org/wine-builds/debian/ && \
     apt-get update && \
     apt-get install --install-recommends -y winehq-stable
-
-# Install shared dependencies
-COPY package.json yarn.lock /app/
-COPY src/shared/package.json src/shared/yarn.lock /app/src/shared/
-
-RUN yarn
-RUN cd src/shared && yarn
-
-# Install desktop dependencies
-COPY src/desktop/package.json src/desktop/yarn.lock /app/src/desktop/
-
-RUN cd src/desktop && yarn
