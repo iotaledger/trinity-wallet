@@ -46,8 +46,6 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
-nodejs-project/sample-package.json
-nodejs-project/sample-main.js
 
 # vscode
 .vscode/*
@@ -110,3 +108,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/windows
+
+# nodejs-mobile-react-native
+nodejs-project/sample-package.json
+nodejs-project/sample-main.js
+nodejs-assets/build-native-modules*
