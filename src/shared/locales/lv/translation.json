@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "Sūtīt",
-        "cancel": "Cancel",
+        "cancel": "CANCEL",
         "continue?": "Vai tiešām vēlaties turpināt?",
         "noTransactions": "NAV IEPRIEKŠĒJĀS VĒSTURES",
         "refresh": "Atjaunot",
@@ -256,7 +256,7 @@
     "newSeedSetup": {
         "generatedSeed": "Generated seed",
         "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Press individual letters to randomise them.",
@@ -424,7 +424,7 @@
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Thank you for downloading the IOTA wallet"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
@@ -515,7 +515,7 @@
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "thisMayTake": "This may take a while.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "Sync Account",
         "syncingYourAccount": "Syncing your account."
