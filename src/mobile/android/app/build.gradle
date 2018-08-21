@@ -97,6 +97,9 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        aaptOptions {
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
     }
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'

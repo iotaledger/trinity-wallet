@@ -19,7 +19,7 @@ import {
     getAllSeedsFromKeychain,
     storeSaltInKeychain,
 } from '../utils/keychain';
-import { generatePasswordHash, getRandomBytes } from '../utils/crypto';
+import { generatePasswordHash, getSalt } from '../utils/crypto';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { isAndroid } from '../utils/device';
@@ -118,7 +118,7 @@ class SetPassword extends Component {
 
     async onAcceptPassword() {
         const { t, seed, accountName } = this.props;
-        const salt = await getRandomBytes(32);
+        const salt = await getSalt();
         const pwdHash = await generatePasswordHash(this.state.password, salt);
         getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
             if (hasDuplicateAccountName(seedInfo, accountName)) {
@@ -152,13 +152,13 @@ class SetPassword extends Component {
                 this.props.setOnboardingComplete(true);
                 this.navigateToOnboardingComplete();
             })
-            .catch(() => {
+            .catch(() =>
                 this.props.generateAlert(
                     'error',
                     t('global:somethingWentWrong'),
                     t('global:somethingWentWrongRestart'),
-                );
-            });
+                ),
+            );
     }
 
     onDonePress() {

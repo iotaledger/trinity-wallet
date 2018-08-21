@@ -2,15 +2,20 @@ PODS:
   - CatCrypto (0.2.3)
 
 DEPENDENCIES:
-  - CatCrypto
+  - CatCrypto (from `https://github.com/cvarley100/CatCrypto`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - CatCrypto
+EXTERNAL SOURCES:
+  CatCrypto:
+    :git: https://github.com/cvarley100/CatCrypto
+
+CHECKOUT OPTIONS:
+  CatCrypto:
+    :commit: 9a59ae3fc0da6bb80391f1f2e3ea90cc52c0d696
+    :git: https://github.com/cvarley100/CatCrypto
 
 SPEC CHECKSUMS:
-  CatCrypto: 79e3af44d363c1f5511d1964c4da51f316dc74d0
+  CatCrypto: d3e607c328f7edc8befdf384515a38168e05c14e
 
-PODFILE CHECKSUM: 5e037145b2bf4107a0d0babb99cc33ad5c64b7a1
+PODFILE CHECKSUM: 7619b85bbe8ab7c8bba2f208b605b5da54ede984
 
 COCOAPODS: 1.5.3

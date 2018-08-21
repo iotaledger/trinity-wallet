@@ -22,7 +22,7 @@ import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/act
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../utils/keychain';
-import { generatePasswordHash, getRandomBytes, getOldPasswordHash, hexStringToByte } from '../utils/crypto';
+import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
@@ -88,8 +88,6 @@ class ForceChangePassword extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Hash for wallet's password */
-        password: PropTypes.object.isRequired,
         /** Set new password hash
          * @param {string} passwordHash
          */
@@ -135,12 +133,11 @@ class ForceChangePassword extends Component {
         const { newPassword, currentPassword } = this.state;
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
-        oldPwdHash = hexStringToByte(oldPwdHash);
-        const isValid = this.isValid();
-        const salt = await getRandomBytes(32);
+        oldPwdHash = hexToUint8(oldPwdHash);
+        const salt = await getSalt();
         const newPwdHash = await generatePasswordHash(newPassword, salt);
 
-        if (isValid) {
+        if (this.isNewPasswordValid()) {
             const throwError = (err) => {
                 if (err.message === 'Incorrect password') {
                     this.props.generateAlert(
@@ -155,7 +152,6 @@ class ForceChangePassword extends Component {
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         setPassword(newPwdHash);
-                        this.fallbackToInitialState();
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
                         timer.setTimeout(
@@ -175,7 +171,7 @@ class ForceChangePassword extends Component {
         return this.renderInvalidSubmissionAlerts();
     }
 
-    isValid() {
+    isNewPasswordValid() {
         const { newPassword, newPasswordReentry } = this.state;
         const score = zxcvbn(newPassword);
         return (
@@ -199,14 +195,6 @@ class ForceChangePassword extends Component {
                 statusBarColor: body.bg,
             },
             animated: false,
-        });
-    }
-
-    fallbackToInitialState() {
-        this.setState({
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
         });
     }
 
@@ -381,7 +369,6 @@ class ForceChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.wallet.password,
     theme: state.settings.theme,
 });
 

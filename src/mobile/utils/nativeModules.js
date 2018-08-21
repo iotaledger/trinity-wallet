@@ -34,3 +34,11 @@ export const getPowFn = () => {
 export const getDigestFn = () => {
     return isAndroid ? NativeModules.EntangledAndroid.getDigest : NativeModules.EntangledIOS.getDigest;
 };
+
+export const getHashFn = () => {
+    if (isAndroid) {
+        return NativeModules.Argon2Android.hash;
+    } else if (isIOS) {
+        return NativeModules.Argon2IOS.hash;
+    }
+};

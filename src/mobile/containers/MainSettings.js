@@ -57,15 +57,11 @@ export class MainSettings extends Component {
         setPassword: PropTypes.func.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
-
-        this.state = {
-            isModalActive: false,
-        };
-
         this.toggleModalDisplay = this.toggleModalDisplay.bind(this);
         this.logout = this.logout.bind(this);
     }
@@ -76,15 +72,13 @@ export class MainSettings extends Component {
 
     toggleModalDisplay() {
         this.props.toggleModalActivity();
-        this.setState({ isModalActive: !this.state.isModalActive });
     }
 
     logout() {
         const { theme: { body } } = this.props;
-
+        this.props.toggleModalActivity();
         this.props.clearWalletData();
         this.props.setPassword({});
-
         this.props.navigator.resetTo({
             screen: 'login',
             navigatorStyle: {
@@ -160,7 +154,7 @@ export class MainSettings extends Component {
     }
 
     render() {
-        const { theme } = this.props;
+        const { theme, isModalActive } = this.props;
 
         return (
             <View style={styles.container}>
@@ -175,7 +169,7 @@ export class MainSettings extends Component {
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.9}
                     style={styles.modal}
-                    isVisible={this.state.isModalActive}
+                    isVisible={isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
                     useNativeDriver={isAndroid ? true : false}
                     hideModalContentWhileAnimating
@@ -192,6 +186,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     themeName: state.settings.themeName,
     theme: state.settings.theme,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

@@ -1,6 +1,8 @@
+// Temporary solution until Argon2 support is added to Java lib
+
 const rnBridge = require('rn-bridge'); // eslint-disable-line import/no-unresolved
-const argon2 = require('argon2'); // eslint-disable-line import/no-unresolved
-const kdbxweb = require('kdbxweb'); // eslint-disable-line import/no-unresolved
+const argon2 = require('argon2');
+const kdbxweb = require('kdbxweb');
 
 /**
  * Bind kdbxweb and argon2
@@ -70,14 +72,13 @@ const getPassword = (arr) => {
 
 rnBridge.channel.on('message', async (msg) => {
     const message = msg.slice(7);
+    const password = getPassword(message.split(':'));
     if (msg.slice(0, 7).match('export:')) {
-        const password = getPassword(message.split(':'));
         const seed = message.split(':')[0];
         const vault = await createSeedVault(seed, password);
         const vaultUint8 = new Uint8Array(vault);
         return rnBridge.channel.send(vaultUint8);
     } else if (msg.slice(0, 7).match('import:')) {
-        const password = getPassword(message.split(':'));
         const bufferString = message.split(':')[0];
         const buffer = new Uint8Array(bufferString.split(',').map((num) => parseInt(num)));
         try {

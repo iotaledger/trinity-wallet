@@ -49,18 +49,4 @@ struct Argon2Core {
     return hash.value!
   }
 
-  /// Verifies a hash and password
-  ///
-  /// - Parameters:
-  ///   - hash: Hash to verify
-  ///   - password: Password to verify
-  ///   - params: Parameters to initialize Argon2 with
-  /// - Returns: Result of verification
-  static func argon2Verify(hash: String, password: String, params: [String: Any]) -> Bool {
-    // Initialize Argon2
-    let argon2Crypto = initialize(t_cost: params["t_cost"] as! Int, m_cost: params["m_cost"] as! Int, parallelism: params["parallelism"] as! Int, hashLength: params["hashLength"] as! Int)
-    // Verify the hash and password, then return the result
-    let result = argon2Crypto.verify(hash: hash, password: password)
-    return result.value
-  }
 }

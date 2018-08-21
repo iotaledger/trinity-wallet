@@ -6,13 +6,15 @@ import values from 'lodash/values';
 import keys from 'lodash/keys';
 import isString from 'lodash/isString';
 import * as Keychain from 'react-native-keychain';
+import { serialise } from 'iota-wallet-shared-modules/libs/utils';
 import {
-    getRandomBytes,
+    getNonce,
     createSecretBox,
     openSecretBox,
     encodeBase64,
     decodeBase64,
     generatePasswordHash,
+    stringToUInt8,
 } from './crypto';
 
 const keychain = {
@@ -52,9 +54,9 @@ const keychain = {
 
 export const getSecretBoxFromKeychainAndOpenIt = async (alias, keyUInt8) => {
     const secretBox = await keychain.get(alias);
-    const boxUInt8 = await decodeBase64(secretBox.item);
-    const nonceUInt8 = await decodeBase64(secretBox.nonce);
-    return await openSecretBox(boxUInt8, nonceUInt8, keyUInt8);
+    const box = await decodeBase64(secretBox.item);
+    const nonce = await decodeBase64(secretBox.nonce);
+    return await openSecretBox(box, nonce, keyUInt8);
 };
 
 export const getPasswordHash = async (password) => {
@@ -68,18 +70,16 @@ export const getSaltFromKeychain = async () => {
 };
 
 export const storeSaltInKeychain = async (salt) => {
-    const nonce = await getRandomBytes(24);
-    const nonce64 = await encodeBase64(nonce);
+    const nonce64 = await encodeBase64(await getNonce());
     const salt64 = await encodeBase64(salt);
     await keychain.set('salt', nonce64, salt64);
 };
 
 export const createAndStoreBoxInKeychain = async (key, message, alias) => {
-    const nonce = await getRandomBytes(24);
-    const box = await createSecretBox(message, nonce, key);
+    const nonce = await getNonce();
+    const box = await encodeBase64(await createSecretBox(stringToUInt8(serialise(message)), nonce, key));
     const nonce64 = await encodeBase64(nonce);
-    const box64 = await encodeBase64(box);
-    return await keychain.set(alias, nonce64, box64);
+    return await keychain.set(alias, nonce64, box);
 };
 
 export const storeSeedInKeychain = async (pwdHash, seed, name, alias = 'seeds') => {

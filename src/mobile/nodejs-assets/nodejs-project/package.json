@@ -4,5 +4,9 @@
     "description": "node part of the project",
     "main": "main.js",
     "author": "janeasystems",
-    "license": ""
+    "license": "",
+    "dependencies": {
+        "argon2": "^0.19.3",
+        "kdbxweb": "^1.2.4"
+    }
 }

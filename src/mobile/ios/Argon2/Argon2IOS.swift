@@ -29,24 +29,4 @@ class Argon2IOS: NSObject {
       reject("Argon2 hash", "Invalid parameters provided: " + params.debugDescription, nil)
     }
   }
-
-  /// Verifies a hash and password
-  ///
-  /// - Parameters:
-  ///   - params: Parameters to initialize Argon2 with
-  ///   - hash: Hash to verify
-  ///   - password: Password to verify
-  ///   - resolve: A JS Promise resolve block
-  ///   - reject: A JS Promise reject block
-  @objc func verify(_ hash: String, password: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
-    // Validate parameters
-    if params["t_cost"] is Int && params["m_cost"] is Int && params["parallelism"] is Int && params["hashLength"] is Int {
-      // Resolve the result
-      let r = Argon2Core.argon2Verify(hash: hash, password: password, params: params)
-      resolve(r)
-    } else {
-      // Reject with an error message containing the parameters passed
-      reject("Argon2 verify", "Invalid parameters provided: " + params.debugDescription, nil)
-    }
-  }
 }
