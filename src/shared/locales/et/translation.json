@@ -685,7 +685,7 @@
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "Teile saabus sõnum {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Sissetulev {{value}} kasutajale {{account}} on kinnitatud",
+        "confirmedOut": "Väljaminev {{value}} kasutajalt {{account}} on kinnitanud"
     }
 }
