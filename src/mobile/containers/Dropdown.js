@@ -121,6 +121,8 @@ export class Dropdown extends Component {
         background: PropTypes.bool,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** Determines how many rows should be visible */
+        visibleRows: PropTypes.number,
     };
 
     static defaultProps = {
@@ -132,6 +134,7 @@ export class Dropdown extends Component {
         saveSelection: () => {},
         title: '',
         dropdownWidth: { width: width / 1.15 },
+        visibleRows: 8,
     };
 
     constructor(props) {
@@ -209,11 +212,10 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { options, title, dropdownWidth, background, disableWhen, theme, shadow } = this.props;
+        const { options, title, dropdownWidth, background, disableWhen, theme, shadow, visibleRows } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
-        const heightValue =
-            options.length < 8 ? height / 22.4 * options.length + height / 70 : height / 22.4 * 8 + height / 70;
+        const heightValue = height / 22.4 * visibleRows + height / 70;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
         const backgroundColor = background ? { backgroundColor: theme.body.bg } : { backgroundColor: 'transparent' };
         const shadowColor = shadow ? { shadowColor: '#222' } : { shadowColor: 'transparent' };

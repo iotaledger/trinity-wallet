@@ -193,6 +193,7 @@ class ThemeCustomisation extends Component {
                                     }
                                     this.setState({ themeName: selection, theme: newTheme });
                                 }}
+                                visibleRows={Object.keys(THEMES).length}
                             />
                         </View>
                         <View
