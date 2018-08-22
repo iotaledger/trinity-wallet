@@ -1,7 +1,9 @@
-import { danger, fail, warn } from 'danger';
+import { danger, warn, message } from 'danger';
 import path from 'path';
+import fs from 'fs';
 import includes from 'lodash.includes';
 import some from 'lodash.some';
+import jest from 'danger-plugin-jest';
 
 const modifiedFiles = danger.git.modified_files;
 const prBodyLength = danger.github.pr.body.length;
@@ -21,6 +23,11 @@ if (prBodyLength < 10) {
 if (hasPackageJsonChanges || hasLockfileChanges) {
   warn('Detected changes to package.json or yarn.lock. This PR may require more time to review.');
   if (!hasLockfileChanges) {
-    warn('Detected changes to package.json with no corresponding changes to yarn.lock. Please update the yarn.lock if necessary.');
+    message('Detected changes to package.json with no corresponding changes to yarn.lock. Please update the yarn.lock if necessary.');
   }
+}
+
+// If mobile tests were run and failed, post the test report
+if (fs.existsSync(mobileTestReport)) {
+  jest({ testResultsJsonPath: mobileTestReport});
 }
