@@ -34,7 +34,10 @@
     "homepage": "https://gitlab.com/iota-community/wallet#README",
     "devDependencies": {
         "auditjs": "^2.4.3",
+        "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.2",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
         "danger": "^3.8.6",
         "danger-plugin-jest": "^1.1.0",
         "eslint": "^4.18.1",

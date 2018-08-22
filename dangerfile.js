@@ -7,9 +7,7 @@ const modifiedFiles = danger.git.modified_files;
 const prBodyLength = danger.github.pr.body.length;
 const packageJson = ['package.json', 'src/mobile/package.json', 'src/desktop/package.json', 'src/shared/package.json'];
 const yarnLock = ['yarn.lock', 'src/mobile/yarn.lock', 'src/desktop/yarn.lock', 'src/shared/yarn.lock'];
-
 const mobileTestReport = path.resolve(__dirname, 'src/mobile/test-results.json');
-console.log(mobileTestReport);
 
 const hasPackageJsonChanges = some(packageJson, (p) => includes(modifiedFiles, p));
 const hasLockfileChanges = some(yarnLock, (y) => includes(modifiedFiles, y));
