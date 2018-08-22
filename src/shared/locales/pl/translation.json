@@ -296,6 +296,7 @@
         "saveYourSeed": "Zapisywanie klucza seed",
         "seedCleared": "Seed wyczyszczony",
         "mostSecure": "Najbardziej bezpieczne",
+        "recommended": "Recommended",
         "leastSecure": "Najmniej bezpieczne",
         "paperWallet": "Papierowy portfel",
         "writeYourSeedDown": "Zanotuj swój seed",
@@ -450,7 +451,8 @@
         "viewAddresses": "Pokaż adresy",
         "editAccountName": "Zmień nazwę",
         "deleteAccount": "Usuń konto",
-        "addNewAccount": "Dodaj nowe konto"
+        "addNewAccount": "Dodaj nowe konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
