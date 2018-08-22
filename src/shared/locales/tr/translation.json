@@ -296,6 +296,7 @@
         "saveYourSeed": "Back up your seed",
         "seedCleared": "Cüzdan şifresi temizlendi",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
         "paperWallet": "Kağıt cüzdan",
         "writeYourSeedDown": "Write your seed down",
@@ -450,7 +451,8 @@
         "viewAddresses": "Adresleri görüntüle",
         "editAccountName": "Hesap adını Düzenle",
         "deleteAccount": "Hesabı Sil",
-        "addNewAccount": "Yeni hesap ekle"
+        "addNewAccount": "Yeni hesap ekle",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",
