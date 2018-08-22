@@ -296,6 +296,7 @@
         "saveYourSeed": "Back up your seed",
         "seedCleared": "تم مسح القيم",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
         "paperWallet": "محفظة ورقية",
         "writeYourSeedDown": "Write your seed down",
@@ -450,7 +451,8 @@
         "viewAddresses": "عرض العنواين",
         "editAccountName": "تحرير اسم الحساب",
         "deleteAccount": "حذف الحساب",
-        "addNewAccount": "إضافة حساب جديد"
+        "addNewAccount": "إضافة حساب جديد",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
