@@ -296,6 +296,7 @@
         "saveYourSeed": "Zálohujte Váš Seed",
         "seedCleared": "Seed vymazán",
         "mostSecure": "Nejbezpečnější",
+        "recommended": "Recommended",
         "leastSecure": "Nejméně bezpečné",
         "paperWallet": "Papírová peněženka",
         "writeYourSeedDown": "Zapište si Váš Seed",
@@ -450,7 +451,8 @@
         "viewAddresses": "Zobrazit adresu",
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
-        "addNewAccount": "Přidat nový účet"
+        "addNewAccount": "Přidat nový účet",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
