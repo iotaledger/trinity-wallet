@@ -296,6 +296,7 @@
         "saveYourSeed": "시드 저장하기",
         "seedCleared": "시드 삭제됨",
         "mostSecure": "안전함",
+        "recommended": "Recommended",
         "leastSecure": "덜 안전함",
         "paperWallet": "종이 지갑",
         "writeYourSeedDown": "시드 기록하기",
@@ -450,7 +451,8 @@
         "viewAddresses": "주소 보기",
         "editAccountName": "계정 이름 변경",
         "deleteAccount": "계정 삭제",
-        "addNewAccount": "새 계정 추가"
+        "addNewAccount": "새 계정 추가",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
