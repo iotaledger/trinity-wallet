@@ -6,7 +6,7 @@
   "homepage": "https://trinity.iota.org",
   "description": "Mobile wallet for IOTA",
   "author": "IOTA Foundation <contact@iota.org>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iotaledger/trinity-wallet.git"
