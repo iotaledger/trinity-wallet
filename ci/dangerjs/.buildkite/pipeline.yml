@@ -1,0 +1,8 @@
+steps:
+  - label: "Run DangerJS"
+    command:
+      - "yarn"
+      - "yarn danger ci"
+    plugins:
+      docker#v1.4.0:
+        image: "node:8.11.2-stretch"
