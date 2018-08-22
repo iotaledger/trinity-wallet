@@ -296,6 +296,7 @@
         "saveYourSeed": "Išsisaugokite savo užraktą",
         "seedCleared": "Užraktas išvalytas",
         "mostSecure": "Saugiausia",
+        "recommended": "Recommended",
         "leastSecure": "Mažiausiai saugu",
         "paperWallet": "Popierinė piniginė",
         "writeYourSeedDown": "Nusirašyti užraktą",
@@ -450,7 +451,8 @@
         "viewAddresses": "Rodyti adresus",
         "editAccountName": "Redaguoti paskyros vardą",
         "deleteAccount": "Ištrinti paskyrą",
-        "addNewAccount": "Pridėti naują paskyrą"
+        "addNewAccount": "Pridėti naują paskyrą",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
