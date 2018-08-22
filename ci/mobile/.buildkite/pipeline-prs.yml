@@ -1,6 +1,13 @@
 steps:
   - label: ":pipeline: Run Trinity Mobile (PRs) pipeline"
-    command: "./prs.sh"
+    command:
+      - "yarn"
+      - "cd src/shared && yarn && cd ../.."
+      - "cd src/mobile && yarn && cd ../.."
+      - "cd src/shared && yarn audit && cd ../mobile && yarn audit && cd ../.."
+      - "yarn lint:shared && yarn lint:mobile"
+      - "cd src/mobile && yarn test && cd ../.."
+      - "cd src/mobile && react-native bundle --entry-file index.android.js --platform android --bundle-output android/main.jsbundle --dev true"
     agents:
       queue: dev
     plugins:
