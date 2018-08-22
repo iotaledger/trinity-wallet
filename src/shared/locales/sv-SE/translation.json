@@ -296,6 +296,7 @@
         "saveYourSeed": "Spara din seed",
         "seedCleared": "Seed rensad",
         "mostSecure": "Mest säkert",
+        "recommended": "Recommended",
         "leastSecure": "Minst säkert",
         "paperWallet": "Pappersplånbok",
         "writeYourSeedDown": "Skriv ner din seed",
@@ -450,7 +451,8 @@
         "viewAddresses": "Visa adresser",
         "editAccountName": "Ändra kontonamn",
         "deleteAccount": "Radera konto",
-        "addNewAccount": "Lägg till konto"
+        "addNewAccount": "Lägg till konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
