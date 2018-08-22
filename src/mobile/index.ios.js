@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
-import Wallet from './routes/entry';
+import Wallet from 'ui/routes/entry';
 
 /*eslint-disable no-unused-vars*/
 /*eslint-disable no-console*/

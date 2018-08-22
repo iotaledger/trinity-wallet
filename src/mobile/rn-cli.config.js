@@ -1,5 +1,11 @@
 const path = require('path');
 
 module.exports = {
-    getProjectRoots: () => [__dirname, path.join(__dirname, '../shared')],
+  getProjectRoots() {
+    return [
+      __dirname,
+      path.join(__dirname, '..'),
+      path.join(__dirname, '.'),
+    ];
+  }
 };
