@@ -215,8 +215,7 @@ class Chart extends PureComponent {
                                         strokeWidth: 1.2,
                                     },
                                 }}
-                                interpolation="basis"
-                                scale={{ x: 'time', y: 'linear' }}
+                                interpolation="natural"
                                 animate={{
                                     duration: 450,
                                 }}
