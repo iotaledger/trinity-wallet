@@ -664,7 +664,7 @@
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
         "accept": "Ich stimme zu",
-        "readAllToContinue": "Bitte lies den kompletten Text"
+        "readAllToContinue": "Bitte lies den kompletten Text um fortfahren zu können"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
