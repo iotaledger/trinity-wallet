@@ -179,7 +179,7 @@ class ThemeCustomisation extends Component {
                                 onRef={(c) => {
                                     this.dropdown = c;
                                 }}
-                                title={t('mobile/src/ui/theme')}
+                                title={t('themeCustomisation:theme')}
                                 dropdownWidth={{ width: width / 1.45 }}
                                 background
                                 shadow
@@ -213,7 +213,7 @@ class ThemeCustomisation extends Component {
                                         color: body.color,
                                     }}
                                 >
-                                    {t('mobile/src/ui/themeCustomisation:mockup').toUpperCase()}
+                                    {t('themeCustomisation:mockup').toUpperCase()}
                                 </Text>
                             </View>
                             <View style={[styles.frameBar, { backgroundColor: bar.alt }]}>
@@ -288,6 +288,6 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default translate(['mobile/src/ui/themeCustomisation', 'global'])(
+export default translate(['theme', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(ThemeCustomisation),
 );

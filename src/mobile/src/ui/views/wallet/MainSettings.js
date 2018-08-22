@@ -123,9 +123,9 @@ export class MainSettings extends Component {
                 currentSetting: mode,
             },
             {
-                name: t('mobile/src/ui/theme'),
-                icon: 'mobile/src/ui/theme',
-                function: () => this.props.setSetting('mobile/src/ui/themeCustomisation'),
+                name: t('theme'),
+                icon: 'theme',
+                function: () => this.props.setSetting('themeCustomisation'),
                 currentSetting: themeName,
             },
             {

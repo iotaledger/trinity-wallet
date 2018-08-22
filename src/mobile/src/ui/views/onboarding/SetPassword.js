@@ -19,7 +19,7 @@ import {
     getAllSeedsFromKeychain,
     storeSaltInKeychain,
 } from 'mobile/src/libs/keychain';
-import { generatePasswordHash, getSalt } from 'shared/libs/crypto';
+import { generatePasswordHash, getSalt } from 'mobile/src/libs/crypto';
 import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
 import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
 import { isAndroid } from 'mobile/src/libs/device';
