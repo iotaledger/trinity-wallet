@@ -300,7 +300,7 @@
         "paperWallet": "Popierinė piniginė",
         "writeYourSeedDown": "Nusirašyti užraktą",
         "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
         "printBlankWallet": "Atspausdinti neužpildytą versiją",
         "whatIsChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
@@ -317,7 +317,7 @@
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
         "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarningExplanation": "ĮSPĖJIMAS: kopijavimas/įklijavimas atjungtas dėl jūsų saugumo."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
