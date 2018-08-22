@@ -65,9 +65,7 @@ class TransferConfirmationModal extends Component {
         hideModal: PropTypes.func.isRequired,
         /** Make transaction */
         sendTransfer: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Receive address */
         address: PropTypes.string.isRequired,
@@ -89,7 +87,7 @@ class TransferConfirmationModal extends Component {
         bar: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Determines if user has activated fingerprint auth */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Activates fingerprint scanner */
         activateFingerprintScanner: PropTypes.func.isRequired,

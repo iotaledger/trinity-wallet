@@ -65,24 +65,15 @@ const styles = StyleSheet.create({
 /** Enter seed component */
 class EnterSeed extends React.Component {
     static propTypes = {
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Sets seed in store
-         * @param {string} seed
-         * @param {boolean} isGenerated
-         */
+        /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Determines if the application is minimised */
         minimised: PropTypes.bool.isRequired,
@@ -144,11 +135,20 @@ class EnterSeed extends React.Component {
         }
     }
 
+    /**
+     * Navigates back to the previous active screen in navigation stack
+     * @method onBackPress
+     */
     onBackPress() {
         this.props.navigator.pop({
             animated: false,
         });
     }
+
+    /**
+     * Displays QR scanner modal
+     * @method onQRPress
+     */
     onQRPress() {
         this.showModal('qr');
     }

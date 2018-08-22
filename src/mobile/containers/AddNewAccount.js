@@ -25,11 +25,9 @@ class AddNewAccount extends Component {
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -43,6 +41,11 @@ class AddNewAccount extends Component {
         leaveNavigationBreadcrumb('AddNewAccount');
     }
 
+    /**
+     * Navigate to new seed setup screen
+     *
+     * @method addNewSeed
+     */
     addNewSeed() {
         const { theme: { body } } = this.props;
         this.props.navigator.resetTo({
@@ -61,6 +64,13 @@ class AddNewAccount extends Component {
         BackHandler.removeEventListener('homeBackPress');
     }
 
+    /**
+     * Render setting rows
+     *
+     * @method renderSettingsContent
+     *
+     * @returns {function}
+     */
     renderSettingsContent() {
         const { theme, t } = this.props;
         const rows = [

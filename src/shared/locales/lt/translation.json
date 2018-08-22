@@ -7,6 +7,7 @@
         "refresh": "Atnaujinti",
         "balanceError": "Nepakankamas likutis",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
+        "totalBalance": "Total balance",
         "transferError": "Pavedimo klaida",
         "transferErrorMessage": "Įvyko klaida atliekant pavedimą. Bandykite dar kartą.",
         "transferSent": "Pavedimas atliktas",
@@ -613,9 +614,7 @@
         "local": "Lokalus",
         "remote": "Nuotolinis",
         "powUpdated": "Skaičiavimų nustatymai",
-        "powUpdatedExplanation": "Jūsų skaičiavimų konfigūracija atnaujinta.",
-        "noWebGLSupport": "WebGL nepalaikomas",
-        "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
+        "powUpdatedExplanation": "Jūsų skaičiavimų konfigūracija atnaujinta."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Automatinio iškėlimo nustatymai",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Privatumo politika",
         "agree": "Sutinku"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

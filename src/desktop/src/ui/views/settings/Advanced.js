@@ -4,25 +4,35 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
-import { completeSnapshotTransition, setBalanceCheckFlag } from 'actions/wallet';
-import { generateAlert } from 'actions/alerts';
-
 import { clearVault, getSeed } from 'libs/crypto';
-import { getPoWFn } from 'libs/pow';
-
-import { toggleModalActivity } from 'actions/ui';
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 
-import { runTask } from 'worker';
+import { manuallySyncAccount } from 'actions/accounts';
+import {
+    changePowSettings,
+    changeAutoPromotionSettings,
+    setLockScreenTimeout,
+    setTray,
+    setNotifications,
+} from 'actions/settings';
+import {
+    transitionForSnapshot,
+    completeSnapshotTransition,
+    setBalanceCheckFlag,
+    generateAddressesAndGetBalance,
+} from 'actions/wallet';
+import { generateAlert } from 'actions/alerts';
+import { toggleModalActivity } from 'actions/ui';
+
+import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
 import ModalConfirm from 'ui/components/modal/Confirm';
 import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
+import Checkbox from 'ui/components/Checkbox';
 import TextInput from 'ui/components/input/Text';
 import Scrollbar from 'ui/components/Scrollbar';
 
@@ -33,10 +43,6 @@ import css from './index.scss';
  */
 class Advanced extends PureComponent {
     static propTypes = {
-        /** @ignore */
-        remotePoW: PropTypes.bool.isRequired,
-        /** @ignore */
-        autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
@@ -75,6 +81,16 @@ class Advanced extends PureComponent {
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
         setBalanceCheckFlag: PropTypes.func.isRequired,
+        /** @ignore */
+        manuallySyncAccount: PropTypes.func.isRequired,
+        /** @ignore */
+        generateAddressesAndGetBalance: PropTypes.func.isRequired,
+        /** @ignore */
+        transitionForSnapshot: PropTypes.func.isRequired,
+        /** @ignore */
+        setTray: PropTypes.func.isRequired,
+        /** @ignore */
+        setNotifications: PropTypes.func.isRequired,
     };
 
     state = {
@@ -135,7 +151,8 @@ class Advanced extends PureComponent {
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
-        runTask('manuallySyncAccount', [seed, selectedAccountName]);
+
+        this.props.manuallySyncAccount(seed, selectedAccountName, Electron.genFn);
     };
 
     /**
@@ -145,7 +162,8 @@ class Advanced extends PureComponent {
     startSnapshotTransition = async () => {
         const { wallet, addresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
-        runTask('transitionForSnapshot', [seed, addresses]);
+
+        this.props.transitionForSnapshot(seed, addresses, Electron.genFn);
     };
 
     /**
@@ -154,19 +172,11 @@ class Advanced extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
+        const { wallet, transitionAddresses, selectedAccountName, settings } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
 
-        let powFn = null;
-        if (!settings.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
+        const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        // we aren't using the taskRunner here because you can't pass in powFn since it's a function
         this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
     };
 
@@ -179,16 +189,18 @@ class Advanced extends PureComponent {
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
-        runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
+
+        this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);
     };
 
     render() {
         const {
-            remotePoW,
-            autoPromotion,
+            settings,
             changePowSettings,
             changeAutoPromotionSettings,
             lockScreenTimeout,
+            setTray,
+            setNotifications,
             ui,
             t,
         } = this.props;
@@ -227,7 +239,7 @@ class Advanced extends PureComponent {
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
                     <Toggle
-                        checked={remotePoW}
+                        checked={settings.remotePoW}
                         onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
@@ -239,12 +251,46 @@ class Advanced extends PureComponent {
 
                     <h3>{t('advancedSettings:autoPromotion')}</h3>
                     <Toggle
-                        checked={autoPromotion}
+                        checked={settings.autoPromotion}
                         onChange={() => changeAutoPromotionSettings()}
                         on={t('enabled')}
                         off={t('disabled')}
                     />
                     <p>{t('advancedSettings:autoPromotionExplanation')}</p>
+                    <hr />
+
+                    <h3>{t('tray:trayApplication')}</h3>
+                    <Toggle
+                        checked={settings.isTrayEnabled}
+                        onChange={() => setTray(!settings.isTrayEnabled)}
+                        on={t('enabled')}
+                        off={t('disabled')}
+                    />
+                    <p>{t('tray:trayExplanation')}</p>
+                    <hr />
+
+                    <h3>{t('notifications:notifications')}</h3>
+                    <Toggle
+                        checked={settings.notifications.general}
+                        onChange={() => setNotifications({ type: 'general', enabled: !settings.notifications.general })}
+                        on={t('enabled')}
+                        off={t('disabled')}
+                    />
+                    <Checkbox
+                        disabled={!settings.notifications.general}
+                        checked={settings.notifications.confirmations}
+                        label={t('notifications:typeConfirmations')}
+                        className="small"
+                        onChange={(value) => setNotifications({ type: 'confirmations', enabled: value })}
+                    />
+                    <Checkbox
+                        disabled={!settings.notifications.general}
+                        checked={settings.notifications.messages}
+                        label={t('notifications:typeMessages')}
+                        className="small"
+                        onChange={(value) => setNotifications({ type: 'messages', enabled: value })}
+                    />
+                    <p>{t('notifications:notificationExplanation')}</p>
                     <hr />
 
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
@@ -350,8 +396,6 @@ class Advanced extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    remotePoW: state.settings.remotePoW,
-    autoPromotion: state.settings.autoPromotion,
     wallet: state.wallet,
     ui: state.ui,
     selectedAccountName: getSelectedAccountName(state),
@@ -373,7 +417,12 @@ const mapDispatchToProps = {
     setLockScreenTimeout,
     toggleModalActivity,
     completeSnapshotTransition,
+    manuallySyncAccount,
+    transitionForSnapshot,
+    generateAddressesAndGetBalance,
     setBalanceCheckFlag,
+    setTray,
+    setNotifications,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));

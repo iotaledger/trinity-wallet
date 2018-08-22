@@ -57,71 +57,53 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Updates home screen children route name
-         * @param {string} name - route name
-         */
+        /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification titleinactivityLogoutContainer
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Set application activity state
-         * @param {object} options - minimised, active, inactive
-         */
+        /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
-        /** Determines if the application is inactive */
+        /** @ignore */
         inactive: PropTypes.bool.isRequired,
-        /** Determines if the application is minimised */
+        /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** Hash for wallet's password */
         storedPasswordHash: PropTypes.object.isRequired,
-        /** Determines if wallet is doing snapshot transition */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Determines if wallet is doing a manual sync */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** Determines if the newly added custom node is being checked */
+        /** @ignore */
         isCheckingCustomNode: PropTypes.bool.isRequired,
-        /** Determines if wallet is making a transaction */
+        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Determines if user has activated fingerprint auth */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
-        /** Currently selected setting */
+        /** @ignore */
         currentSetting: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines whether the top bar is currently open */
+        /** @ignore */
         isTopBarActive: PropTypes.bool.isRequired,
-        /** Opens/closes the top bar */
+        /** @ignore */
         toggleTopBarDisplay: PropTypes.func.isRequired,
-        /** Set send amount params
-         * @param {string} - amount
-         * @param {string} - address
-         * @param {string} - message
-         */
+        /** @ignore */
         setDeepLink: PropTypes.func.isRequired,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether to display the snapshot transition guide modal */
         shouldTransitionForSnapshot: PropTypes.bool.isRequired,
         /** Determines whether snapshot transition guide is already displayed for selected account */
         hasDisplayedSnapshotTransitionGuide: PropTypes.bool.isRequired,
-        /** Mark task for account as done
-         * @param {object} { accountName, task }
-         */
+        /** @ignore */
         markTaskAsDone: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
@@ -186,6 +168,11 @@ class Home extends Component {
         timer.clearTimeout('iOSKeyboardTimeout');
     }
 
+    /**
+     * Validates user provided password and sets wallet state as active
+     * @param {string} password
+     * @returns {Promise<void>}
+     */
     async onLoginPress(password) {
         const { t, storedPasswordHash } = this.props;
         const passwordHash = await getPasswordHash(password);
@@ -203,6 +190,10 @@ class Home extends Component {
         }
     }
 
+    /**
+     * Changes home screen child route
+     * @param {string} name
+     */
     onTabSwitch(name) {
         const { isSyncing, isTransitioning, isCheckingCustomNode } = this.props;
 
@@ -230,6 +221,9 @@ class Home extends Component {
         }
     }
 
+    /**
+     * Resets child routes on settings screen
+     */
     resetSettings() {
         const { currentSetting } = this.props;
         if (currentSetting !== 'mainSettings') {
@@ -305,6 +299,9 @@ class Home extends Component {
         this.setState({ isKeyboardActive: false });
     };
 
+    /**
+     * Mark the task of displaying snapshot transition modal as done
+     */
     completeTransitionTask() {
         // Just mark this task as done
         // Since most likely the account needs
@@ -315,6 +312,9 @@ class Home extends Component {
         });
     }
 
+    /**
+     * Displays snapshot transition guide modal
+     */
     displayUpdates() {
         const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot, isModalActive } = this.props;
 

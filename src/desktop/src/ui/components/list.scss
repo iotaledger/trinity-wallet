@@ -4,6 +4,11 @@
     margin: 0px 20px;
     height: 80px;
     border-bottom: 1px solid var(--body-bg);
+
+    @media (max-width: 320px) {
+        display: none;
+    }
+
     > a {
         color: var(--body);
         margin: 0 22px 0 0;
@@ -164,6 +169,14 @@
     height: calc(100% - 100px);
     padding: 0 0 20px 20px;
 
+    @media (max-width: 320px) {
+        padding: 20px 0;
+        top: 160px;
+        height: calc(100vh - 210px);
+        width: calc(100% + 20px);
+        background: var(--box-bg);
+    }
+
     a {
         list-style: none;
         font-size: 14px;
@@ -183,6 +196,9 @@
                 width: 30px;
                 margin-top: 10px;
                 padding-left: 0px;
+                @media (max-width: 320px) {
+                    padding-left: 10px;
+                }
             }
             > span:nth-child(2) {
                 text-align: left;
@@ -347,6 +363,9 @@
                 display: block;
                 font-family: 'SourceCodePro';
                 word-break: break-word;
+                > span {
+                    display: block;
+                }
             }
         }
 

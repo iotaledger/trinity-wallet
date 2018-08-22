@@ -80,29 +80,21 @@ const styles = StyleSheet.create({
  */
 class AddCustomNode extends Component {
     static propTypes = {
-        /** Currently selected IRI node */
+        /** @ignore */
         node: PropTypes.string.isRequired,
-        /** Available IRI nodes */
+        /** @ignore */
         nodes: PropTypes.array.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Set node
-         * @param {string} node
-         */
+        /** @ignore */
         setFullNode: PropTypes.func.isRequired,
         /** Navigate to previous screen */
         backPress: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Determines if the newly added custom node is being checked */
+        /** @ignore */
         isCheckingCustomNode: PropTypes.bool.isRequired,
     };
 
@@ -127,6 +119,11 @@ class AddCustomNode extends Component {
         }
     }
 
+    /**
+     * Generates an alert if a custom node could not added
+     *
+     * @method onAddNodeError
+     */
     onAddNodeError() {
         return this.props.generateAlert(
             'error',
@@ -135,6 +132,11 @@ class AddCustomNode extends Component {
         );
     }
 
+    /**
+     * Generates an alert if a duplicate node is added
+     *
+     * @method onDuplicateNodeError
+     */
     onDuplicateNodeError() {
         return this.props.generateAlert(
             'error',
@@ -143,6 +145,11 @@ class AddCustomNode extends Component {
         );
     }
 
+    /**
+     * Generates an alert when users adds a http node
+     *
+     * @method onAddHttpNodeError
+     */
     onAddHttpNodeError() {
         return this.props.generateAlert(
             'error',
@@ -151,11 +158,21 @@ class AddCustomNode extends Component {
         );
     }
 
+    /**
+     * Generates an alert when user tries to add node with empty text field
+     *
+     * @method onEmptyFieldError
+     */
     onEmptyFieldError() {
         const { t } = this.props;
         return this.props.generateAlert('error', t('nodeFieldEmpty'), t('nodeFieldEmptyExplanation'));
     }
 
+    /**
+     * Adds custom node
+     *
+     * @method addNode
+     */
     addNode() {
         const { nodes } = this.props;
 

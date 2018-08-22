@@ -7,6 +7,7 @@
         "refresh": "تازه کردن",
         "balanceError": "موجودی کافی نیست",
         "balanceErrorMessage": "شما آیوتا کافی برای تکمیل این انتقال ندارید.",
+        "totalBalance": "Total balance",
         "transferError": "خطای انتقال",
         "transferErrorMessage": "مشکلی در سفارش شما به وجود آمده است. لطفا دوباره تلاش کنید.",
         "transferSent": "انتقال فرستاده شد",
@@ -613,9 +614,7 @@
         "local": "محلی",
         "remote": "از راه دور",
         "powUpdated": "تنظیمات اثبات کار",
-        "powUpdatedExplanation": "اثبات کار پیکربندی شما به روز رسانی شد.",
-        "noWebGLSupport": "WebGL پشتیبانی نمی شود",
-        "noWebGLSupportExplanation": "کامپیوتر شما WebGL پشتیبانی نمی کند. لطفا از اثبات کار از راه دور استفاده کنید."
+        "powUpdatedExplanation": "اثبات کار پیکربندی شما به روز رسانی شد."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "تنظیمات ارتقا خودکار",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "سیاست حفظ حریم خصوصی",
         "agree": "می پذیرم"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

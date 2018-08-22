@@ -3,13 +3,14 @@ const { dialog } = require('electron').remote;
 const currentWindow = require('electron').remote.getCurrentWindow();
 const keytar = require('keytar');
 const fs = require('fs');
-const settings = require('electron-settings');
+const electronSettings = require('electron-settings');
 const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
 const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
+const Entangled = require('../Entangled');
 
 const trytesTrits = [
     [0, 0, 0],
@@ -45,6 +46,30 @@ const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
+/**
+ * Format iota value to thousand units
+ * @param {number} iota - Value in iotas
+ * @returns {string} - Formatted value
+ */
+const formatIotas = (iota) => {
+    if (!iota) {
+        return '0i';
+    }
+    const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti'];
+    const length = Math.floor(iota.toString().length / 3);
+    const pow = 1000 ** length;
+    const value = parseFloat((length !== 0 ? iota / pow : iota).toPrecision(2));
+    return value + units[length];
+};
+
+let locales = {
+    multipleTx: 'You received multiple transactions to {{account}}',
+    valueTx: 'You received {{value}} to {{account}}',
+    messageTx: 'You received a message to {{account}}',
+    confirmedIn: 'Incoming {{value}} transaction was confirmed at {{account}}',
+    confirmedOut: 'Outgoing {{value}} transaction was confirmed at {{account}}',
+};
+
 let onboardingSeed = null;
 let onboardingGenerated = false;
 
@@ -72,6 +97,39 @@ const Electron = {
         } else {
             clipboard.clear();
         }
+    },
+
+    /**
+     * Do Proof of Work
+     * @param {string} trytes - Input trytes
+     * @param {number} mwm - Min Weight Magnitude
+     * @returns {string} Proof of Work
+     */
+    powFn: async (trytes, mwm) => {
+        return await Entangled.powFn(trytes, mwm);
+    },
+
+    /**
+     * Generate address
+     * @param {string} seed - Input seed
+     * @param {number} index - Address index
+     * @param {number} security - Address generation security level
+     * @param {total} total - Amount of addresses to generate
+     * @returns {string} Generated address
+     */
+    genFn: async (seed, index, security, total) => {
+        if (!total || total === 1) {
+            return await Entangled.genFn(seed, index, security);
+        }
+
+        const addresses = [];
+
+        for (let i = 0; i < total; i++) {
+            const address = await Entangled.genFn(seed, index + i, security);
+            addresses.push(address);
+        }
+
+        return addresses;
     },
 
     /**
@@ -109,7 +167,7 @@ const Electron = {
      * @returns {any} Storage item value
      */
     getStorage(key) {
-        return settings.get(key);
+        return electronSettings.get(key);
     },
 
     /**
@@ -119,7 +177,8 @@ const Electron = {
      * @returns {boolean} If item update is succesfull
      */
     setStorage(key, item) {
-        return settings.set(key, item);
+        ipc.send('storage.update', JSON.stringify({ key, item }));
+        return electronSettings.set(key, item);
     },
 
     /**
@@ -128,7 +187,7 @@ const Electron = {
      * @returns {boolean} If item removal is succesfull
      */
     removeStorage(key) {
-        return settings.delete(key);
+        return electronSettings.delete(key);
     },
 
     /**
@@ -136,7 +195,7 @@ const Electron = {
      * @returns {undefined}
      */
     clearStorage() {
-        const keys = settings.getAll();
+        const keys = electronSettings.getAll();
         Object.keys(keys).forEach((key) => this.removeStorage(key));
     },
 
@@ -145,7 +204,7 @@ const Electron = {
      * @returns {array} Storage item keys
      */
     getAllStorage() {
-        const data = settings.getAll();
+        const data = electronSettings.getAll();
         const keys = Object.keys(data).filter((key) => key.indexOf('reduxPersist') === 0);
         return keys;
     },
@@ -225,6 +284,14 @@ const Electron = {
         } else {
             currentWindow.maximize();
         }
+    },
+
+    /**
+     * Focus main wallet window
+     * @param {string} view - optional view to navigate to
+     */
+    focus: (view) => {
+        ipc.send('window.focus', view);
     },
 
     /**
@@ -349,7 +416,50 @@ const Electron = {
     },
 
     /**
-     * Set native menu locales
+     * Create and show a native notification based on new transactions
+     * @param {string} accountName - target account name
+     * @param {array} transactions - new transactions
+     * @param {array} confirmations - recently confirmed transactions
+     */
+    notify: (accountName, transactions, confirmations) => {
+        if (!transactions.length && !confirmations.length) {
+            return;
+        }
+
+        const data = electronSettings.get('reduxPersist:settings');
+        const settings = JSON.parse(data);
+
+        if (!settings.notifications.general) {
+            return;
+        }
+
+        let message = '';
+
+        if (transactions.length > 1) {
+            message = locales.multipleTx;
+        } else if (transactions.length && transactions[0].transferValue === 0) {
+            if (!settings.notifications.messages) {
+                return;
+            }
+            message = locales.messageTx;
+        } else if (transactions.length) {
+            message = locales.valueTx.replace('{{value}}', formatIotas(transactions[0].transferValue));
+        } else if (settings.notifications.confirmations) {
+            message = confirmations[0].incoming ? locales.confirmedIn : locales.confirmedOut;
+            message = message.replace('{{value}}', formatIotas(confirmations[0].transferValue));
+        }
+
+        const notification = new Notification('Trinity', {
+            body: message.replace('{{account}}', accountName),
+        });
+
+        notification.onclick = () => {
+            currentWindow.webContents.send('account.switch', accountName);
+        };
+    },
+
+    /**
+     * Set native menu and notification locales
      * @param {function} t - i18n locale helper
      * @returns {undefiend}
      */
@@ -390,6 +500,14 @@ const Electron = {
             yes: t('yes'),
             no: t('no'),
         });
+
+        locales = {
+            multipleTx: t('notifications:multipleTx', { account: '{{account}}' }),
+            valueTx: t('notifications:valueTx', { account: '{{account}}', value: '{{value}}' }),
+            messageTx: t('notifications:messageTx', { account: '{{account}}', value: '{{value}}' }),
+            confirmedIn: t('notifications:confirmedIn', { account: '{{account}}', value: '{{value}}' }),
+            confirmedOut: t('notifications:confirmedOut', { account: '{{account}}', value: '{{value}}' }),
+        };
     },
 
     /**

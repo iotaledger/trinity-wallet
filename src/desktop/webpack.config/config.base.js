@@ -70,11 +70,6 @@ module.exports = {
                     },
                 ],
             },
-            {
-                test: /\.workers?\.js$/,
-                exclude: /node_modules/,
-                use: [{ loader: 'worker-loader', options: { publicPath: '../' } }, { loader: 'babel-loader' }],
-            },
             { test: /\.node$/, loader: 'node-loader' },
         ],
     },
@@ -90,6 +85,11 @@ module.exports = {
             inject: false,
             template: __dirname + '/index.html',
         }),
-        new CopyWebpackPlugin([{ from: 'assets/icon-128.png', to: 'icon.png' }]),
+        new CopyWebpackPlugin([
+            { from: 'assets/icon-128.png', to: 'icon.png' },
+            { from: 'assets/icon-64.png', to: 'tray@2x.png' },
+            { from: 'assets/icon.icns', to: 'icon.icns' },
+            { from: 'assets/icon.ico', to: 'icon.ico' },
+        ]),
     ],
 };

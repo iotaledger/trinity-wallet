@@ -118,30 +118,21 @@ class NewSeedSetup extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Set seed in reducer
-         * @param {string} seed
-         * @param {boolean} isGenerated
-         */
+        /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Determines whether onboarding steps for wallet setup are completed */
+        /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Wipes seed from reducer */
+        /** @ignore */
         clearSeed: PropTypes.func.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Determines if the application is minimised */
+        /** @ignore */
         minimised: PropTypes.bool.isRequired,
     };
 

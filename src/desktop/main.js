@@ -1,4 +1,4 @@
-const { ipcMain: ipc, app, protocol, shell } = require('electron');
+const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
@@ -12,6 +12,11 @@ const electronSettings = require('electron-settings');
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 /**
+ * Set AppUserModelID for Windows notifications functionallity
+ */
+app.setAppUserModelId('com.iotatoken.trinity');
+
+/**
  * Set environment mode
  */
 const devMode = process.env.NODE_ENV === 'development';
@@ -21,11 +26,16 @@ const devMode = process.env.NODE_ENV === 'development';
  */
 let deeplinkingUrl = null;
 
+let tray = null;
+
+let windowSizeTimer = null;
+
 /**
  * Define wallet windows
  */
 const windows = {
     main: null,
+    tray: null,
 };
 
 /**
@@ -72,7 +82,7 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings && settings.theme.body.bg) || '#1a373e';
+    let bgColor = (settings && settings.theme.body.bg) || 'rgb(3, 41, 62)';
 
     if (bgColor.indexOf('rgb') === 0) {
         bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
@@ -90,7 +100,10 @@ function createWindow() {
         minHeight: 720,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: `${__dirname}/dist/icon.png`,
+        icon:
+            process.platform === 'win32'
+                ? `${__dirname}/dist/icon.ico`
+                : process.platform === 'darwin' ? `${__dirname}/dist/icon.icns` : `${__dirname}/dist/icon.png`,
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
@@ -99,6 +112,25 @@ function createWindow() {
             webviewTag: false,
         },
     });
+
+    if (process.platform === 'darwin') {
+        windows.tray = new electron.BrowserWindow({
+            width: 300,
+            height: 450,
+            frame: false,
+            fullscreenable: false,
+            resizable: false,
+            transparent: true,
+            backgroundColor: bgColor,
+            show: false,
+            webPreferences: {
+                nodeIntegration: false,
+                preload: path.resolve(__dirname, 'lib/preload/tray.js'),
+                disableBlinkFeatures: 'Auxclick',
+                webviewTag: false,
+            },
+        });
+    }
 
     /**
      * Reinitate window maximize
@@ -119,10 +151,35 @@ function createWindow() {
     windows.main.on('close', hideOnClose);
 
     /**
+     * Attach window resize event
+     */
+
+    windows.main.on('resize', () => {
+        clearTimeout(windowSizeTimer);
+        windowSizeTimer = setTimeout(updateWindowSize, 1000);
+    });
+
+    /**
+     * Load tray window url and attach blur event
+     */
+    if (process.platform === 'darwin') {
+        windows.tray.loadURL(url);
+
+        windows.tray.on('blur', () => {
+            windows.tray.hide();
+        });
+    }
+
+    /**
      * Enable React and Redux devtools in development mode
      */
     if (devMode) {
-        windows.main.webContents.openDevTools();
+        windows.main.webContents.openDevTools({ mode: 'detach' });
+
+        if (process.platform === 'darwin') {
+            windows.tray.webContents.openDevTools({ mode: 'detach' });
+        }
+
         const {
             default: installExtension,
             REACT_DEVELOPER_TOOLS,
@@ -192,7 +249,52 @@ function createWindow() {
             } catch (error) {}
         }
     });
+
+    if (process.platform === 'darwin') {
+        const enabled = settings ? settings.isTrayEnabled : true;
+        setupTray(enabled);
+    }
 }
+
+/**
+ * Setup Tray icon
+ * @param {boolean} enabled - determine if tray is enabled
+ */
+const setupTray = (enabled) => {
+    if (enabled === false) {
+        if (tray && !tray.isDestroyed()) {
+            tray.destroy();
+        }
+        return;
+    }
+
+    if (enabled && tray && !tray.isDestroyed()) {
+        return;
+    }
+
+    tray = new Tray(`${__dirname}/dist/tray@2x.png`);
+
+    tray.on('click', () => {
+        toggleTray();
+    });
+};
+
+const toggleTray = () => {
+    if (windows.tray.isVisible()) {
+        windows.tray.hide();
+        return;
+    }
+
+    const windowBounds = windows.tray.getBounds();
+    const trayBounds = tray.getBounds();
+
+    const x = Math.round(trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2);
+    const y = Math.round(trayBounds.y + trayBounds.height + 4);
+
+    windows.tray.setPosition(x, y, false);
+    windows.tray.show();
+    windows.tray.focus();
+};
 
 /**
  * Lock and hide the window on macOS, close it on other platforms
@@ -236,7 +338,7 @@ app.on('window-all-closed', () => {
 /**
  * Save window location/size state before closing the wallet
  */
-app.on('before-quit', () => {
+const updateWindowSize = () => {
     if (windows.main && !windows.main.isDestroyed()) {
         const bounds = windows.main.getBounds();
 
@@ -247,9 +349,14 @@ app.on('before-quit', () => {
             height: bounds.height,
             maximized: windows.main.isMaximized(),
         });
-
-        windows.main.removeListener('close', hideOnClose);
     }
+};
+
+/**
+ * Remove close event on application quit
+ */
+app.on('before-quit', () => {
+    windows.main.removeListener('close', hideOnClose);
 });
 
 /**
@@ -281,6 +388,47 @@ ipc.on('request.deepLink', () => {
     if (deeplinkingUrl) {
         windows.main.webContents.send('url-params', deeplinkingUrl);
         deeplinkingUrl = null;
+    }
+});
+
+/**
+ * Proxy storage update event to tray window
+ */
+ipc.on('storage.update', (e, payload) => {
+    if (process.platform !== 'darwin') {
+        return;
+    }
+
+    if (windows.tray && !windows.tray.isDestroyed()) {
+        windows.tray.webContents.send('storage.update', payload);
+    }
+    try {
+        const data = JSON.parse(payload);
+        const items = JSON.parse(data.item);
+
+        if (data.key === 'reduxPersist:settings') {
+            setupTray(items.isTrayEnabled);
+        }
+    } catch (e) {}
+});
+
+/**
+ * Proxy menu update event to tray window
+ */
+ipc.on('menu.update', (e, payload) => {
+    if (windows.tray) {
+        windows.tray.webContents.send('menu.update', payload);
+    }
+});
+
+/**
+ * Proxy focus event from tray to main window
+ */
+ipc.on('window.focus', (e, payload) => {
+    if (windows.main) {
+        windows.main.show();
+        windows.main.focus();
+        windows.main.webContents.send('menu', payload);
     }
 });
 

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
 class SeedBox extends PureComponent {
     static propTypes = {
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
         /** SeedBox text color */
         textColor: PropTypes.object.isRequired,

@@ -71,11 +71,9 @@ class WalletResetConfirmation extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
@@ -90,6 +88,10 @@ class WalletResetConfirmation extends Component {
         leaveNavigationBreadcrumb('WalletResetConfirmation');
     }
 
+    /**
+     * Navigates to the provided screen
+     * @param {string} url
+     */
     navigateTo(url) {
         const { theme } = this.props;
 
@@ -107,12 +109,20 @@ class WalletResetConfirmation extends Component {
         });
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
     goBack() {
         this.props.navigator.pop({
             animated: false,
         });
     }
 
+    /**
+     * Navigates to require password screen
+     * @method requirePassword
+     */
     requirePassword() {
         this.navigateTo('walletResetRequirePassword');
     }

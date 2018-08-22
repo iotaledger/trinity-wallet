@@ -109,27 +109,19 @@ const styles = StyleSheet.create({
 /** View Seed screen component */
 class ViewSeed extends Component {
     static propTypes = {
-        /** Index of currently selected account in accountNames list */
+        /** @ignore */
         seedIndex: PropTypes.number.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -167,6 +159,12 @@ class ViewSeed extends Component {
         }
     }
 
+    /**
+     * Gets seed from keychain if correct password is provided
+     *
+     * @method viewSeed
+     * @returns {Promise<void>}
+     */
     async viewSeed() {
         const { password, selectedAccountName, t } = this.props;
         const pwdHash = await getPasswordHash(this.state.password);
@@ -194,6 +192,12 @@ class ViewSeed extends Component {
         }
     }
 
+    /**
+     * Hides seed from screen if application goes into inactive or background state
+     *
+     * @method handleAppStateChange
+     * @param {string} nextAppState
+     */
     handleAppStateChange(nextAppState) {
         if (nextAppState.match(/inactive|background/)) {
             this.hideSeed();
@@ -202,6 +206,10 @@ class ViewSeed extends Component {
         this.setState({ appState: nextAppState }); // eslint-disable-line react/no-unused-state
     }
 
+    /**
+     * Resets internal state of the component
+     * @method hideSeed
+     */
     hideSeed() {
         this.setState({
             seed: '',

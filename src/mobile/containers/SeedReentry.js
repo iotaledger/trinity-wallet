@@ -69,23 +69,17 @@ const styles = StyleSheet.create({
 /** Seed Reentry component */
 class SeedReentry extends Component {
     static propTypes = {
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Determines if the application is minimised */
+        /** @ignore */
         minimised: PropTypes.bool.isRequired,
     };
 
@@ -110,6 +104,10 @@ class SeedReentry extends Component {
         }
     }
 
+    /**
+     * Navigates to set account name screen
+     * @method onDonePress
+     */
     onDonePress() {
         const { t, seed, theme: { body } } = this.props;
         if (this.state.seed === seed) {
@@ -140,6 +138,10 @@ class SeedReentry extends Component {
         }
     }
 
+    /**
+     * Pops out the active screen from the navigation stack
+     * @method onBackPress
+     */
     onBackPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.pop({
@@ -154,6 +156,10 @@ class SeedReentry extends Component {
         });
     }
 
+    /**
+     * Wrapper method to activate/show QR scan modal
+     * @method onQRPress
+     */
     onQRPress() {
         this.showModal('qr');
     }

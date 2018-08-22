@@ -116,6 +116,11 @@ class SetPassword extends Component {
         leaveNavigationBreadcrumb('SetPassword');
     }
 
+    /**
+     * Validates correct password hash and checks for duplicate seed/account name
+     * @method onAcceptPassword
+     * @returns {Promise<void>}
+     */
     async onAcceptPassword() {
         const { t, seed, accountName } = this.props;
         const salt = await getSalt();
@@ -138,6 +143,11 @@ class SetPassword extends Component {
         });
     }
 
+    /**
+     * Stores seed in keychain and clears seed from state
+     * @method onAcceptInKeychain
+     * @returns {Promise<void>}
+     */
     onAcceptInKeychain(pwdHash, salt, seed, accountName) {
         const { t, usedExistingSeed } = this.props;
         storeSeedInKeychain(pwdHash, seed, accountName)
@@ -161,10 +171,18 @@ class SetPassword extends Component {
             );
     }
 
+    /**
+     * Triggers password validation
+     * @method onDonePress
+     */
     onDonePress() {
         this.passwordFields.checkPassword();
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method onBackPress
+     */
     onBackPress() {
         this.props.navigator.pop({
             animated: false,

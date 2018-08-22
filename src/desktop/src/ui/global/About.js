@@ -51,6 +51,30 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.1-rc.1</h5>
+                            <ul>
+                                <li>Update: Execute PoW and address generation in non-blocking way</li>
+                                <li>Fix: Transactions promotion allways results in error</li>
+                                <li>Fix: Adding additional account results in empty account name</li>
+                                <li>Fix: Non existing tray icon update triggered on linux/windows</li>
+                                <li>Fix: Windows size is not restored on windows/linux</li>
+                                <li>Fix: Account name capitalised in sidebar</li>
+                                <li>Fix: Minor layout tweaks</li>
+                            </ul>
+                            <h5>0.3.0</h5>
+                            <ul>
+                                <li>New: Native Proof of Work and address generation</li>
+                                <li>New: macOS Menu bar app</li>
+                                <li>New: Transaction notifications</li>
+                                <li>New: Fresh Default (old one is now Classic) and Lucky themes</li>
+                                <li>New: Error log available via main menu</li>
+                                <li>New: Show seed checksum in Account settings</li>
+                                <li>Update: Dispose alerts on wallet route change</li>
+                                <li>Update: Disable auto node switch functionality</li>
+                                <li>Update: Add disabled Clipboard warning</li>
+                                <li>Fix: Inaccurate chart tooltip date/time information</li>
+                                <li>Fix: Wallet narrow layout bugfixes</li>
+                            </ul>
                             <h5>0.2.1</h5>
                             <ul>
                                 <li>Update: Dashboard sidebar scroll for multiple accounts</li>
@@ -89,7 +113,7 @@ class About extends React.PureComponent {
                             </ul>
                             <h5>0.1.7.</h5>
                             <ul>
-                                <li>New: Wallet Expert mode settings</li>
+                                <li>New: Wallet Advanced mode settings</li>
                                 <li>New: Manual promote and rebroadcast functionality</li>
                                 <li>New: Auto-promotion enable/disable settings</li>
                                 <li>Fixed: On send incorrect progress steps displayed</li>

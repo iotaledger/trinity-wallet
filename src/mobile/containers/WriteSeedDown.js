@@ -71,15 +71,13 @@ class WriteSeedDown extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Determines if the application is minimised */
+        /** @ignore */
         minimised: PropTypes.bool.isRequired,
     };
 
@@ -106,6 +104,12 @@ class WriteSeedDown extends Component {
         }
     }
 
+    /**
+     * Hides navigation bar
+     *
+     * @method onNavigatorEvent
+     * @param {object} event
+     */
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
             this.props.navigator.toggleNavBar({
@@ -114,16 +118,25 @@ class WriteSeedDown extends Component {
         }
     }
 
+    /**
+     * Wrapper method for printing a blank paper wallet
+     * @method onPrintPress
+     */
     onPrintPress() {
         this.print();
     }
 
+    /**
+     * Navigates back to the previous active screen in navigation stack
+     * @method onDonePress
+     */
     onDonePress() {
         this.props.navigator.pop({ animated: false });
     }
 
     /**
      *  Triggers blank paper wallet print
+     *  @method print
      */
     async print() {
         const blankWalletHTML = `

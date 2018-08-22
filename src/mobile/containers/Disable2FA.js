@@ -51,23 +51,15 @@ const styles = StyleSheet.create({
 /** Disable Two Factor Authentication component */
 class Disable2FA extends Component {
     static propTypes = {
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Sets two factor security status
-         * @param {boolean} - status
-         */
+        /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
@@ -113,6 +105,11 @@ class Disable2FA extends Component {
             .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
+    /**
+     * Navigates to home screen
+     *
+     * @method goBack
+     */
     goBack() {
         const { theme: { bar, body } } = this.props;
         this.props.navigator.resetTo({

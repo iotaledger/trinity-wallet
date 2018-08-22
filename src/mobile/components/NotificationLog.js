@@ -75,13 +75,11 @@ export class NotificationLog extends PureComponent {
         barColor: PropTypes.string.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
-        /** List of notifications */
+        /** @ignore */
         notificationLog: PropTypes.array.isRequired,
-        /** Clears all notifications */
+        /** @ignore */
         clearLog: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

@@ -175,64 +175,51 @@ class Receive extends Component {
         selectedAccountData: PropTypes.object.isRequired,
         /** Name of currently selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Determines whether the wallet is manually syncing */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Receive address value */
+        /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
-        /** Determines whether the wallet is generating a new receive address */
+        /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        /** Determines whether the wallet is fetching sensitive info from keychain */
+        /** @ignore */
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
-        /** Generate receive address
-         * @param {string} seed
-         * @param {string} selectedAccountName
-         * @param {string} selectedAccountData
-         * @param {string} genFn - Native address generation function
-         */
+        /** @ignore */
         generateNewAddress: PropTypes.func.isRequired,
-        /** Close active top bar */
+        /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Request keychain access
-         * @param {string} screen - Active screen
-         * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
-         */
+        /** @ignore */
         getFromKeychainRequest: PropTypes.func.isRequired,
-        /** Successful keychain access callback function
-         * @param {string} screen - Active screen
-         * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
-         */
+        /** @ignore */
         getFromKeychainSuccess: PropTypes.func.isRequired,
-        /** On error callback function for keychain access
-         * @param {string} screen - Active screen
-         * @param {string} purpose - Purpose for accessing keychain e.g: addressGeneration
-         */
+        /** @ignore */
         getFromKeychainError: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines whether the wallet is doing a snapshot tranisition */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Determines whether card has been flipped */
+        /** @ignore */
         isCardFlipped: PropTypes.bool.isRequired,
-        /** Flips card between Your Address and QR Options */
+        /** @ignore */
         flipReceiveCard: PropTypes.func.isRequired,
+        /** @ignore */
         qrMessage: PropTypes.string.isRequired,
+        /** @ignore */
         qrAmount: PropTypes.string.isRequired,
+        /** @ignore */
         qrTag: PropTypes.string.isRequired,
+        /** @ignore */
         qrDenomination: PropTypes.string.isRequired,
+        /** @ignore */
         currency: PropTypes.string.isRequired,
+        /** @ignore */
         usdPrice: PropTypes.number.isRequired,
+        /** @ignore */
         conversionRate: PropTypes.number.isRequired,
     };
 

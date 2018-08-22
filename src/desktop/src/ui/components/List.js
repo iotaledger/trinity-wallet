@@ -1,13 +1,13 @@
+/* global Electron */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
-import { getPoWFn } from 'libs/pow';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -38,18 +38,12 @@ class List extends React.PureComponent {
         /** Hide empty transactions flag */
         hideEmptyTransactions: PropTypes.bool.isRequired,
         /** Should update history */
-        updateAccount: PropTypes.func.isRequired,
+        updateAccount: PropTypes.func,
         /** Toggle hide empty transactions */
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
-        transfers: PropTypes.object.isRequired,
-        /** Create a notification message
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         * @ignore
-         */
-        generateAlert: PropTypes.func.isRequired,
+        transfers: PropTypes.array.isRequired,
+        /** @ignore */
         failedHashes: PropTypes.object.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
@@ -128,17 +122,7 @@ class List extends React.PureComponent {
     promoteTransaction(e, bundle) {
         e.stopPropagation();
 
-        const { generateAlert, t } = this.props;
-
-        let powFn = null;
-
-        if (!this.props.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
+        const powFn = !this.props.remotePoW ? Electron.powFn : null;
 
         this.props.promoteTransaction(bundle, powFn);
     }
@@ -146,17 +130,7 @@ class List extends React.PureComponent {
     retryFailedTransaction(e, bundle) {
         e.stopPropagation();
 
-        const { generateAlert, t } = this.props;
-
-        let powFn = null;
-
-        if (!this.props.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
+        const powFn = !this.props.remotePoW ? Electron.powFn : null;
 
         this.props.retryFailedTransaction(bundle, powFn);
     }
@@ -180,7 +154,6 @@ class List extends React.PureComponent {
         const { filter, loaded, search } = this.state;
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
-        const transfersList = map(transfers, (tx) => tx);
 
         const totals = {
             All: 0,
@@ -189,7 +162,7 @@ class List extends React.PureComponent {
             Pending: 0,
         };
 
-        const historyTx = orderBy(transfersList, 'timestamp', ['desc']).filter((transfer) => {
+        const historyTx = orderBy(transfers, 'timestamp', ['desc']).filter((transfer) => {
             const isReceived = transfer.incoming;
             const isConfirmed = transfer.persistence;
 
@@ -276,12 +249,18 @@ class List extends React.PureComponent {
                         />
                         <Icon icon="search" size={20} />
                     </div>
-                    <a
-                        onClick={() => updateAccount()}
-                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
-                    >
-                        <Icon icon="sync" size={24} />
-                    </a>
+                    {updateAccount && (
+                        <a
+                            onClick={() => updateAccount()}
+                            className={classNames(
+                                css.refresh,
+                                isBusy ? css.busy : null,
+                                isLoading ? css.loading : null,
+                            )}
+                        >
+                            <Icon icon="sync" size={24} />
+                        </a>
+                    )}
                 </nav>
                 <hr />
                 <div className={css.list}>
@@ -328,7 +307,7 @@ class List extends React.PureComponent {
                             })
                         ) : (
                             <p className={css.empty}>
-                                {!transfersList.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                                {!transfers.length ? t('noTransactions') : t('history:noTransactionsFound')}
                             </p>
                         )}
                     </Scrollbar>
@@ -370,7 +349,7 @@ class List extends React.PureComponent {
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
-                                {mode === 'Expert' && this.listAddresses(activeTransfer)}
+                                {mode === 'Advanced' && this.listAddresses(activeTransfer)}
                                 <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>

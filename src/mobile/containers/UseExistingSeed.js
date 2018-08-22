@@ -85,43 +85,31 @@ const styles = StyleSheet.create({
 /** Use Existing Seed component */
 class UseExistingSeed extends Component {
     static propTypes = {
-        /** Total number of seeds stored on device */
+        /** @ignore */
         seedCount: PropTypes.number.isRequired,
-        /** List of account names  */
+        /** @ignore */
         accountNames: PropTypes.array.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
         /** Determines whether addition of new seed is allowed */
         shouldPreventAction: PropTypes.bool.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Set additional account information in store
-         * @param {object} info - (addingAdditionalAccount, additionalAccountName, seed)
-         */
+        /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Determines whether component can minimise
-         * @param {boolean} status
-         */
+        /** @ignore */
         setDoNotMinimise: PropTypes.func.isRequired,
     };
 
@@ -142,10 +130,21 @@ class UseExistingSeed extends Component {
         timer.clearTimeout('invalidSeedAlert');
     }
 
+    /**
+     * Displays QR scanner modal
+     * @method onQRPress
+     */
     onQRPress() {
         this.showModal('qr');
     }
 
+    /**
+     * Validates scanned QR data
+     * Generates an alert if invalid data is scanned
+     *
+     * @method onQRRead
+     * @param {string} data
+     */
     onQRRead(data) {
         const { t } = this.props;
         const dataString = data.toString();
@@ -168,6 +167,10 @@ class UseExistingSeed extends Component {
         }
     }
 
+    /**
+     * Gets a default account name
+     * @method getDefaultAccountName
+     */
     getDefaultAccountName() {
         const { t } = this.props;
         if (this.props.seedCount === 0) {
@@ -188,6 +191,11 @@ class UseExistingSeed extends Component {
         return '';
     }
 
+    /**
+     * Adds additional account information to store
+     * Navigates to loading screen
+     * @method fetchAccountInfo
+     */
     fetchAccountInfo(seed, accountName) {
         const { theme: { body } } = this.props;
 
@@ -213,6 +221,13 @@ class UseExistingSeed extends Component {
         });
     }
 
+    /**
+     * Validates seed and dispatches an action to fetch associated information
+     *
+     * @method addExistingSeed
+     * @param {string} seed
+     * @param {string} accountName
+     */
     addExistingSeed(seed, accountName) {
         const { t, accountNames, password, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {

@@ -1,10 +1,11 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import { shorten } from 'libs/helpers';
+import { shorten, capitalize } from 'libs/helpers';
 import { formatIota } from 'libs/iota/utils';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
@@ -34,7 +35,7 @@ class Sidebar extends React.PureComponent {
         /** @ignore */
         seedIndex: PropTypes.number,
         /** @ignore */
-        isReady: PropTypes.bool.isRequired,
+        isBusy: PropTypes.bool.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
@@ -44,6 +45,16 @@ class Sidebar extends React.PureComponent {
     state = {
         modalLogout: false,
     };
+
+    componentDidMount() {
+        Electron.updateMenu('enabled', !this.props.isBusy);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isBusy !== nextProps.isBusy) {
+            Electron.updateMenu('enabled', !nextProps.isBusy);
+        }
+    }
 
     accountSettings = (e, index) => {
         e.stopPropagation();
@@ -67,7 +78,7 @@ class Sidebar extends React.PureComponent {
     };
 
     render() {
-        const { accounts, seedIndex, setSeedIndex, t, location, history, isReady } = this.props;
+        const { accounts, seedIndex, setSeedIndex, t, location, history, isBusy } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -77,7 +88,7 @@ class Sidebar extends React.PureComponent {
                 </div>
 
                 <nav>
-                    <div className={isReady ? css.disabled : null}>
+                    <div className={isBusy ? css.disabled : null}>
                         <a aria-current={location.pathname === '/wallet/'}>
                             <Icon icon="wallet" size={20} />
                         </a>
@@ -108,10 +119,10 @@ class Sidebar extends React.PureComponent {
                         </ul>
                     </div>
                 </nav>
-                <nav className={isReady ? css.disabled : null}>
+                <nav className={isBusy ? css.disabled : null}>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
-                        <strong>{t('home:settings').toLowerCase()}</strong>
+                        <strong>{capitalize(t('home:settings'))}</strong>
                     </NavLink>
                     <a onClick={this.toggleLogout}>
                         <Icon icon="logout" size={20} />
@@ -136,7 +147,7 @@ class Sidebar extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
-    isReady:
+    isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
 
