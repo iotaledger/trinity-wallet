@@ -296,6 +296,7 @@
         "saveYourSeed": "备份您的种子",
         "seedCleared": "种子已清除",
         "mostSecure": "最安全的",
+        "recommended": "Recommended",
         "leastSecure": "最低安全的",
         "paperWallet": "纸钱包",
         "writeYourSeedDown": "写下您的种子",
@@ -450,7 +451,8 @@
         "viewAddresses": "查看地址",
         "editAccountName": "编辑帐户",
         "deleteAccount": "删除帐户",
-        "addNewAccount": "添加新帐户"
+        "addNewAccount": "添加新帐户",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
