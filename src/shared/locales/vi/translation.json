@@ -296,6 +296,7 @@
         "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
         "seedCleared": "Đã xoá từ khoá",
         "mostSecure": "An Toàn Tối Đa",
+        "recommended": "Recommended",
         "leastSecure": "An Toàn Tối Thiểu",
         "paperWallet": "Ví Giấy",
         "writeYourSeedDown": "Viết từ khoá xuống",
@@ -450,7 +451,8 @@
         "viewAddresses": "Xem địa chỉ",
         "editAccountName": "Sửa tên tài khoản",
         "deleteAccount": "Xoá tài khoản",
-        "addNewAccount": "Thêm tài khoản mới"
+        "addNewAccount": "Thêm tài khoản mới",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
