@@ -296,6 +296,7 @@
         "saveYourSeed": "備份您的種子碼",
         "seedCleared": "種子碼已清除",
         "mostSecure": "最安全",
+        "recommended": "Recommended",
         "leastSecure": "最不安全",
         "paperWallet": "紙錢包",
         "writeYourSeedDown": "寫下您的種子碼",
@@ -450,7 +451,8 @@
         "viewAddresses": "檢視地址",
         "editAccountName": "編輯帳戶名稱",
         "deleteAccount": "刪除帳戶",
-        "addNewAccount": "新增帳戶"
+        "addNewAccount": "新增帳戶",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
