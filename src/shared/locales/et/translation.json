@@ -296,6 +296,7 @@
         "saveYourSeed": "Varunda oma seeme",
         "seedCleared": "Seeme puhastatud",
         "mostSecure": "Kõige turvalisem",
+        "recommended": "Recommended",
         "leastSecure": "Kõige ebaturvalisem",
         "paperWallet": "Paber rahakott",
         "writeYourSeedDown": "Kirjutage oma seeme üles",
@@ -450,7 +451,8 @@
         "viewAddresses": "Vaata aadresse",
         "editAccountName": "Muuda konto nime",
         "deleteAccount": "Kustuta konto",
-        "addNewAccount": "Lisa uus konto"
+        "addNewAccount": "Lisa uus konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",
