@@ -4,8 +4,8 @@ import QRCode from 'qr.js/lib/QRCode';
 
 import { byteToChar } from 'libs/crypto';
 
-import paperWallet from 'themes/paper-wallet.svg';
-import paperWalletFilled from 'themes/paper-wallet-filled.svg';
+import paperWallet from 'images/paper-wallet.svg';
+import paperWalletFilled from 'images/paper-wallet-filled.svg';
 
 import css from './seedPrint.scss';
 
