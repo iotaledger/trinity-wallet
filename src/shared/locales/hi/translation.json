@@ -296,6 +296,7 @@
         "saveYourSeed": "अपने सीड का बैक अप लें",
         "seedCleared": "सीड हटाया गया",
         "mostSecure": "सबसे सुरक्षित",
+        "recommended": "Recommended",
         "leastSecure": "सबसे कम सुरक्षित",
         "paperWallet": "पेपर वॉलेट",
         "writeYourSeedDown": "सीड लिखें",
@@ -450,7 +451,8 @@
         "viewAddresses": "पते देखें",
         "editAccountName": "खाता नाम सुधार करें",
         "deleteAccount": "खाता नष्ट करें",
-        "addNewAccount": "नया खाता जोड़ें"
+        "addNewAccount": "नया खाता जोड़ें",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",
