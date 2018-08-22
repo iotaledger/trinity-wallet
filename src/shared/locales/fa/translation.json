@@ -296,6 +296,7 @@
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
         "seedCleared": "سید پاک شد",
         "mostSecure": "امن ترین",
+        "recommended": "Recommended",
         "leastSecure": "کمترین امنیت",
         "paperWallet": "کیف پول کاغذی",
         "writeYourSeedDown": "سید خود را بنویسید",
@@ -450,7 +451,8 @@
         "viewAddresses": "مشاهده آدرس",
         "editAccountName": "ویرایش نام حساب",
         "deleteAccount": "حذف حساب",
-        "addNewAccount": "اضافه کردن حساب جدید"
+        "addNewAccount": "اضافه کردن حساب جدید",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
