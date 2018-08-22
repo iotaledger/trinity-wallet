@@ -39,46 +39,8 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.onboarding.name.length ? this.props.onboarding.name : this.getDefaultAccountName(),
+        name: this.props.onboarding.name.length ? this.props.onboarding.name : (this.props.seedCount === 0) ? this.props.t('mainWallet') : ''
     };
-
-    /**
-     * Get default account name placeholder based on current account count
-     * @returns {string} Account name
-     */
-    getDefaultAccountName() {
-        const { accountInfo, seedCount, t } = this.props;
-
-        let defaultName = '';
-
-        switch (seedCount) {
-            case 0:
-                defaultName = t('mainWallet');
-                break;
-            case 1:
-                defaultName = t('secondWallet');
-                break;
-            case 2:
-                defaultName = t('thirdWallet');
-                break;
-            case 3:
-                defaultName = t('fourthWallet');
-                break;
-            case 4:
-                defaultName = t('fifthWallet');
-                break;
-            case 5:
-                defaultName = t('sixthWallet');
-                break;
-            default:
-                defaultName = t('otherWallet');
-                break;
-        }
-
-        const accountNames = Object.keys(accountInfo);
-
-        return accountNames.map((accountName) => accountName.toLowerCase()).indexOf(defaultName) < 0 ? defaultName : '';
-    }
 
     /**
      * 1. Check for valid accout name

@@ -51,6 +51,16 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.1-rc.2</h5>
+                            <ul>
+                                <li>Update: Set SeedVault as Recommended backup option</li>
+                                <li>Update: Login automatically after initial onboarding</li>
+                                <li>Update: Set default window size to 1280x720</li>
+                                <li>Fix: Fill Amount input on Max only with available balance</li>
+                                <li>Fix: Incorrect custom node alert locale</li>
+                                <li>Fix: Scanning QR does not fill amount</li>
+                                <li>Fix: Native menu not disabled on Lock screen</li>
+                            </ul>
                             <h5>0.3.1-rc.1</h5>
                             <ul>
                                 <li>Update: Execute PoW and address generation in non-blocking way</li>

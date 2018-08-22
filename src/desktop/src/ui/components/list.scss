@@ -452,11 +452,9 @@
 
     nav {
         text-align: center;
-        button {
-            margin-bottom: 10px;
-        }
         button:first-of-type {
-            margin-right: 10px;
+            margin-bottom: 10px;
+            min-width: 120px;
         }
     }
 }
