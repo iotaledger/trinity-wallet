@@ -137,7 +137,7 @@ export default (state = initialState, action) => {
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
-                ready: false,
+                ready: false
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
             return {
