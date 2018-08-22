@@ -296,6 +296,7 @@
         "saveYourSeed": "Sikkerhedskopiere din hovednøgle",
         "seedCleared": "Hovednøgle ryddet",
         "mostSecure": "Mest sikre",
+        "recommended": "Recommended",
         "leastSecure": "Mindst sikre",
         "paperWallet": "Papirtegnebog",
         "writeYourSeedDown": "Nedskriv din hovednøgle",
@@ -450,7 +451,8 @@
         "viewAddresses": "Se adresser",
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slet konto",
-        "addNewAccount": "Tilføj ny konto"
+        "addNewAccount": "Tilføj ny konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
