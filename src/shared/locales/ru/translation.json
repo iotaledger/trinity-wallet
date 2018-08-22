@@ -296,6 +296,7 @@
         "saveYourSeed": "Создать резервную копию Вашего ключа",
         "seedCleared": "Ключ удален из буфера обмена",
         "mostSecure": "Наиболее безопасно",
+        "recommended": "Recommended",
         "leastSecure": "Наименее безопасно",
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
@@ -450,7 +451,8 @@
         "viewAddresses": "Показать адреса",
         "editAccountName": "Изменить название счёта",
         "deleteAccount": "﻿Удалить счёт",
-        "addNewAccount": "Добавить новый счёт"
+        "addNewAccount": "Добавить новый счёт",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
