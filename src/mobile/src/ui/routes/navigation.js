@@ -24,7 +24,7 @@ import TermsAndConditions from 'ui/views/TermsAndConditions';
 import PrivacyPolicy from 'ui/views/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/SeedVaultBackup';
-import { isIPhoneX } from '../libs/device';
+import { isIPhoneX } from 'libs/device';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
