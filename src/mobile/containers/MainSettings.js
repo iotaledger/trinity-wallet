@@ -64,10 +64,18 @@ export class MainSettings extends Component {
         leaveNavigationBreadcrumb('MainSettings');
     }
 
+    /**
+     * Opens or closes modal
+     * @method toggleModalDisplay
+     */
     toggleModalDisplay() {
         this.props.toggleModalActivity();
     }
 
+    /**
+     * Clears temporary wallet data and navigates to login screen
+     * @method logout
+     */
     logout() {
         const { theme: { body } } = this.props;
         this.props.toggleModalActivity();

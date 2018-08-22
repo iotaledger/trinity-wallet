@@ -4,8 +4,8 @@ export default {
     bar: { bg: 'rgb(242, 242, 242)', hover: 'rgb(231, 231, 231)', alt: 'rgb(231, 231, 231)', color: 'rgb(0, 0, 0)' },
     label: { color: 'rgb(0, 0, 0)', hover: 'rgb(0, 0, 0)' },
     input: {
-        bg: 'rgb(247, 247, 247)',
-        border: 'rgba(0, 0, 0, 0.6)',
+        bg: 'rgb(251, 251, 251)',
+        border: 'rgb(210, 210, 210)',
         alt: 'rgb(0, 0, 0)',
         hover: 'rgba(0, 0, 0, 1)',
         color: 'rgb(30, 30, 30)',

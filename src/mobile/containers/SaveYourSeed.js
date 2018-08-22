@@ -190,6 +190,10 @@ class SaveYourSeed extends Component {
         });
     }
 
+    /**
+     * Navigates to write seed down screen
+     * @method onWriteSeedDownPress
+     */
     onWriteSeedDownPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -207,6 +211,10 @@ class SaveYourSeed extends Component {
         });
     }
 
+    /**
+     * Shows modal
+     * @method onPrintPaperWalletPress
+     */
     onPrintPaperWalletPress() {
         this.openModal('printModal');
     }
