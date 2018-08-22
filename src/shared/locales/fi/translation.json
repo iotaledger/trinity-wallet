@@ -296,6 +296,7 @@
         "saveYourSeed": "Tallenna seed-luku",
         "seedCleared": "Seed-luku tyhjennetty",
         "mostSecure": "Turvallisin",
+        "recommended": "Recommended",
         "leastSecure": "Vähiten Turvallinen",
         "paperWallet": "Paperilompakko",
         "writeYourSeedDown": "Kirjoita seed-luku paperille",
@@ -450,7 +451,8 @@
         "viewAddresses": "Näytä osoitteet",
         "editAccountName": "Muokkaa tilin nimeä",
         "deleteAccount": "Poista tili",
-        "addNewAccount": "Lisää uusi tili"
+        "addNewAccount": "Lisää uusi tili",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
