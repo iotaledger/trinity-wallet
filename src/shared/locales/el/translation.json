@@ -296,6 +296,7 @@
         "saveYourSeed": "Back up your seed",
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
         "paperWallet": "Χάρτινο Πορτοφόλι",
         "writeYourSeedDown": "Write your seed down",
@@ -450,7 +451,8 @@
         "viewAddresses": "Προβολή διευθύνσεων",
         "editAccountName": "Επεξεργαστείτε το όνομα του λογαριασμού",
         "deleteAccount": "Διαγραφή λογαριασμού",
-        "addNewAccount": "Προσθήκη νέου λογαριασμού"
+        "addNewAccount": "Προσθήκη νέου λογαριασμού",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
