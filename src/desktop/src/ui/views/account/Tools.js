@@ -98,7 +98,7 @@ class Addresses extends PureComponent {
     };
 
     /**
-     * rigger snapshot transition
+     * Trigger snapshot transition
      * @returns {Promise}
      */
     transitionBalanceWrong = async () => {
