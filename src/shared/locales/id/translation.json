@@ -296,6 +296,7 @@
         "saveYourSeed": "Simpang Seed anda",
         "seedCleared": "Seed telah dihapus",
         "mostSecure": "Paling Aman",
+        "recommended": "Recommended",
         "leastSecure": "Kurang Aman",
         "paperWallet": "Dompet Kertas",
         "writeYourSeedDown": "Tulis Seed Anda",
@@ -450,7 +451,8 @@
         "viewAddresses": "Lihat alamat",
         "editAccountName": "Ubah nama akun",
         "deleteAccount": "Hapus akun",
-        "addNewAccount": "Tambahkan akun baru"
+        "addNewAccount": "Tambahkan akun baru",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
