@@ -352,9 +352,9 @@
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Išplėstinis",
         "standard": "Standartinis",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Išplėstinis režimas rodys išsamesnę techninę informaciją.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
