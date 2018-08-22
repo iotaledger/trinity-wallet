@@ -35,7 +35,7 @@ class Send extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        balance: PropTypes.number.isRequired,
+        availableBalance: PropTypes.number.isRequired,
         /** @ignore */
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
@@ -81,6 +81,9 @@ class Send extends React.PureComponent {
             this.props.setSendMessageField(message);
         }
         if (amount) {
+            if (typeof amount === 'number') {
+                amount = amount.toString();
+            }
             this.props.setSendAmountField(amount);
         }
     }
@@ -99,7 +102,7 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { fields, isSending, balance, settings, progress, t } = this.props;
+        const { fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
@@ -136,7 +139,7 @@ class Send extends React.PureComponent {
                         settings={settings}
                         label={t('send:amount')}
                         labelMax={t('send:max')}
-                        balance={balance}
+                        balance={availableBalance}
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
                     <TextInput

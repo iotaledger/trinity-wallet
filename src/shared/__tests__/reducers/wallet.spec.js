@@ -363,7 +363,7 @@ describe('Reducer: wallet', () => {
     describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST', () => {
         it('should set "ready" in state to false', () => {
             const initialState = {
-                ready: true,
+                ready: true
             };
 
             const action = {
@@ -372,7 +372,7 @@ describe('Reducer: wallet', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                ready: false,
+                ready: false
             };
 
             expect(newState).to.eql(expectedState);

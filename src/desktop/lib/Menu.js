@@ -11,6 +11,10 @@ let language = {
     checkUpdate: 'Check for Updates',
     settings: 'Settings',
     accountSettings: 'Account management',
+    accountName: 'Account name',
+    viewSeed: 'View seed',
+    viewAddresses: 'View addresses',
+    tools: 'Tools',
     newAccount: 'Add new account',
     language: 'Language',
     node: 'Node',
@@ -197,8 +201,32 @@ const initMenu = (app, getWindow) => {
                     },
                     {
                         label: language.accountSettings,
-                        click: () => navigate('account/name'),
                         enabled: state.enabled,
+                        submenu: [
+                            {
+                                label: language.accountName,
+                                click: () => navigate('account/name'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                label: language.viewSeed,
+                                click: () => navigate('account/seed'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                label: language.viewAddresses,
+                                click: () => navigate('account/addresses'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                type: 'separator',
+                            },
+                            {
+                                label: language.tools,
+                                click: () => navigate('account/tools'),
+                                enabled: state.enabled,
+                            },
+                        ],
                     },
                     {
                         type: 'separator',

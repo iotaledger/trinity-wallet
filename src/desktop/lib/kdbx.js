@@ -27,6 +27,8 @@ const exportVault = async (seeds, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
     const db = kdbxweb.Kdbx.create(credentials, 'Trinity');
 
+    db.upgrade();
+
     for (let i = 0; i < seeds.length; i++) {
         const entry = db.createEntry(db.getDefaultGroup());
         entry.fields.Title = seeds[i].title || `IOTA Seed #${i + 1}`;
