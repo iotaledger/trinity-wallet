@@ -296,6 +296,7 @@
         "saveYourSeed": "Back up your seed",
         "seedCleared": "הסיד נוקה",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
@@ -450,7 +451,8 @@
         "viewAddresses": "צפה בכתובות",
         "editAccountName": "ערוך שם חשבון",
         "deleteAccount": "מחק חשבון",
-        "addNewAccount": "הוסף חשבון חדש"
+        "addNewAccount": "הוסף חשבון חדש",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
