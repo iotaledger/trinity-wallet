@@ -296,6 +296,7 @@
         "saveYourSeed": "Back uw seed up",
         "seedCleared": "Seed gewist",
         "mostSecure": "Meest Veilig",
+        "recommended": "Recommended",
         "leastSecure": "Minst Veilig",
         "paperWallet": "Papieren Portemonnee",
         "writeYourSeedDown": "Schrijf uw seed op",
@@ -450,7 +451,8 @@
         "viewAddresses": "Bekijk adressen",
         "editAccountName": "Accountnaam bewerken",
         "deleteAccount": "Account verwijderen",
-        "addNewAccount": "Nieuw account toevoegen"
+        "addNewAccount": "Nieuw account toevoegen",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
