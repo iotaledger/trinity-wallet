@@ -296,6 +296,7 @@
         "saveYourSeed": "Seed sichern",
         "seedCleared": "Seed gelöscht",
         "mostSecure": "Am sichersten",
+        "recommended": "Recommended",
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
@@ -450,7 +451,8 @@
         "viewAddresses": "Adressen anzeigen",
         "editAccountName": "Kontoname ändern",
         "deleteAccount": "Konto löschen",
-        "addNewAccount": "Neues Konto hinzufügen"
+        "addNewAccount": "Neues Konto hinzufügen",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
