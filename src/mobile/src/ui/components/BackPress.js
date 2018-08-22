@@ -4,7 +4,7 @@ import RNExitApp from 'react-native-exit-app';
 import { setSetting } from 'shared/actions/wallet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isAndroid } from 'libs/device';
+import { isAndroid } from 'mobile/src/libs/device';
 
 const mapDispatchToProps = {
     setSetting,

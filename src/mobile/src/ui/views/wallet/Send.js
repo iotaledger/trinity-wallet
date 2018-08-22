@@ -8,6 +8,10 @@ import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Key
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import {
+    round,
+    parse
+} from 'shared/libs/utils';
+import {
     isValidAddress,
     isValidMessage,
     isValidAmount,
@@ -15,7 +19,7 @@ import {
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
 } from 'shared/libs/iota/utils';
-import { setDeepLinkInactive } from 'actions/wallet';
+import { setDeepLinkInactive } from 'shared/actions/wallet';
 import {
     getCurrencySymbol,
     getNextDenomination,
@@ -26,7 +30,7 @@ import {
     getFromKeychainSuccess,
     getFromKeychainError,
 } from 'shared/actions/keychain';
-import { makeTransaction } from 'actions/transfers';
+import { makeTransaction } from 'shared/actions/transfers';
 import {
     setSendAddressField,
     setSendAmountField,
@@ -35,7 +39,6 @@ import {
     setDoNotMinimise,
     toggleModalActivity,
 } from 'shared/actions/ui';
-import { round, parse } from 'libs/utils';
 import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
@@ -46,24 +49,24 @@ import { generateAlert, generateTransferErrorAlert } from 'shared/actions/alerts
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import QRScannerComponent from 'ui/components/QrScanner';
-import Toggle from 'ui/components/Toggle';
-import FingerPrintModal from 'ui/components/FingerprintModal';
-import ProgressBar from 'ui/components/ProgressBar';
-import ProgressSteps from 'libs/progressSteps';
-import { getSeedFromKeychain } from 'libs/keychain';
-import TransferConfirmationModal from 'ui/components/TransferConfirmationModal';
-import UsedAddressModal from 'ui/components/UsedAddressModal';
-import UnitInfoModal from 'ui/components/UnitInfoModal';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import AmountTextInput from 'ui/components/AmountTextInput';
-import CtaButton from 'ui/components/CtaButton';
-import { Icon } from 'ui/theme/icons.js';
-import { height, width } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
-import { getAddressGenFn, getPowFn } from 'libs/nativeModules';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import QRScannerComponent from 'mobile/src/ui/components/QrScanner';
+import Toggle from 'mobile/src/ui/components/Toggle';
+import FingerPrintModal from 'mobile/src/ui/components/FingerprintModal';
+import ProgressBar from 'mobile/src/ui/components/ProgressBar';
+import ProgressSteps from 'mobile/src/libs/progressSteps';
+import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
+import TransferConfirmationModal from 'mobile/src/ui/components/TransferConfirmationModal';
+import UsedAddressModal from 'mobile/src/ui/components/UsedAddressModal';
+import UnitInfoModal from 'mobile/src/ui/components/UnitInfoModal';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import AmountTextInput from 'mobile/src/ui/components/AmountTextInput';
+import CtaButton from 'mobile/src/ui/components/CtaButton';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { height, width } from 'mobile/src/libs/dimensions';
+import { isAndroid } from 'mobile/src/libs/device';
+import { getAddressGenFn, getPowFn } from 'mobile/src/libs/nativeModules';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

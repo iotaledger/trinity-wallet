@@ -9,17 +9,17 @@ import { setAccountName, setAdditionalAccountInfo } from 'shared/actions/wallet'
 import { connect } from 'react-redux';
 import { shouldPreventAction } from 'shared/selectors/global';
 import { VALID_SEED_REGEX } from 'shared/libs/iota/utils';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import { width, height } from 'libs/dimensions';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
-import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import Header from 'ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'mobile/src/libs/keychain';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import Header from 'mobile/src/ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 console.ignoredYellowBox = true;
 

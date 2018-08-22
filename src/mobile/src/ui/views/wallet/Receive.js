@@ -31,16 +31,16 @@ import {
 } from 'shared/actions/keychain';
 import { isValidAmount } from 'shared/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getSeedFromKeychain } from 'libs/keychain';
-import GENERAL from 'ui/theme/general';
-import MultiTextInput from 'ui/components/MultiTextInput';
-import CustomQrCodeComponent from 'ui/components/CustomQRCode';
-import { Icon } from 'ui/theme/icons.js';
-import ScramblingText from 'ui/components/ScramblingText';
-import { width, height } from 'libs/dimensions';
-import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
-import { getAddressGenFn } from 'libs/nativeModules';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
+import GENERAL from 'mobile/src/ui/theme/general';
+import MultiTextInput from 'mobile/src/ui/components/MultiTextInput';
+import CustomQrCodeComponent from 'mobile/src/ui/components/CustomQRCode';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import ScramblingText from 'mobile/src/ui/components/ScramblingText';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { isAndroid, getAndroidFileSystemPermissions } from 'mobile/src/libs/device';
+import { getAddressGenFn } from 'mobile/src/libs/nativeModules';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

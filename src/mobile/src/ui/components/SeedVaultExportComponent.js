@@ -11,12 +11,12 @@ import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import CustomTextInput from './CustomTextInput';
-import GENERAL from 'ui/theme/general';
+import GENERAL from 'mobile/src/ui/theme/general';
 import PasswordFields from './PasswordFields';
 import InfoBox from './InfoBox';
-import { getPasswordHash, getSeedFromKeychain } from 'libs/keychain';
-import { width, height } from 'libs/dimensions';
-import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { getPasswordHash, getSeedFromKeychain } from 'mobile/src/libs/keychain';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { isAndroid, getAndroidFileSystemPermissions } from 'mobile/src/libs/device';
 
 const styles = StyleSheet.create({
     container: {

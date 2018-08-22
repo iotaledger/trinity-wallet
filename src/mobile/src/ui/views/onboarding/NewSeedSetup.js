@@ -12,17 +12,17 @@ import { generateAlert } from 'shared/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'shared/libs/crypto';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
-import WithUserActivity from 'ui/components/UserActivity';
-import CtaButton from 'ui/components/CtaButton';
-import { width, height } from 'libs/dimensions';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import GENERAL from 'ui/theme/general';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons.js';
-import { isAndroid } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import WithUserActivity from 'mobile/src/ui/components/UserActivity';
+import CtaButton from 'mobile/src/ui/components/CtaButton';
+import { width, height } from 'mobile/src/libs/dimensions';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import GENERAL from 'mobile/src/ui/theme/general';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { isAndroid } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

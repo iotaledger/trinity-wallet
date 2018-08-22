@@ -7,16 +7,16 @@ import { resetWallet, set2FAStatus } from 'shared/actions/settings';
 import { setFirstUse } from 'shared/actions/accounts';
 import { generateAlert } from 'shared/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import Fonts from 'ui/theme/fonts';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { getTwoFactorAuthKeyFromKeychain } from 'mobile/src/libs/keychain';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import Fonts from 'mobile/src/ui/theme/fonts';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

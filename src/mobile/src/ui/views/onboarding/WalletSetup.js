@@ -4,22 +4,22 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { MAX_SEED_LENGTH } from 'shared/libs/iota/utils';
 import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
 import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import { generateAlert } from 'shared/actions/alerts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons.js';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import Header from 'ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import RootDetectionModalComponent from 'ui/components/RootDetectionModal';
-import { doAttestationFromSafetyNet } from 'libs/safetynet';
-import { isAndroid } from 'libs/device';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import { width, height } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import Header from 'mobile/src/ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import RootDetectionModalComponent from 'mobile/src/ui/components/RootDetectionModal';
+import { doAttestationFromSafetyNet } from 'mobile/src/libs/safetynet';
+import { isAndroid } from 'mobile/src/libs/device';
 
 const styles = StyleSheet.create({
     container: {

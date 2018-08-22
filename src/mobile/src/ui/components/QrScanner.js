@@ -4,10 +4,10 @@ import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 're
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
 import DynamicStatusBar from './DynamicStatusBar';
-import GENERAL from 'ui/theme/general';
-import { isAndroid } from 'libs/device';
-import { width, height } from 'libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { isAndroid } from 'mobile/src/libs/device';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     qrInfoText: {

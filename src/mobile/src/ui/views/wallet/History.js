@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { generateAlert } from 'actions/alerts';
+import { generateAlert } from 'shared/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared/actions/transfers';
 import {
@@ -21,14 +21,14 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared/libs/utils';
 import { toggleModalActivity } from 'shared/actions/ui';
 import { formatValue, formatUnit } from 'shared/libs/iota/utils';
-import WithManualRefresh from 'ui/components/ManualRefresh';
-import TransactionRow from 'ui/components/TransactionRow';
-import HistoryModalContent from 'ui/components/HistoryModalContent';
-import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
-import { getPowFn } from 'libs/nativeModules';
-import CtaButton from 'ui/components/CtaButton';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import WithManualRefresh from 'mobile/src/ui/components/ManualRefresh';
+import TransactionRow from 'mobile/src/ui/components/TransactionRow';
+import HistoryModalContent from 'mobile/src/ui/components/HistoryModalContent';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { isAndroid } from 'mobile/src/libs/device';
+import { getPowFn } from 'mobile/src/libs/nativeModules';
+import CtaButton from 'mobile/src/ui/components/CtaButton';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -257,7 +257,7 @@ class History extends Component {
                 contentContainerStyle={noTransactions ? styles.flatList : null}
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
-                removeClippedSubui/components
+                removeClippedSubviews
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={

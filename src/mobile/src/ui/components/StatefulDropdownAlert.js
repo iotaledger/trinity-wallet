@@ -6,9 +6,9 @@ import { disposeOffAlert } from 'shared/actions/alerts';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
-import { width, height } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { isIPhoneX } from 'mobile/src/libs/device';
+import GENERAL from 'mobile/src/ui/theme/general';
 
 const errorIcon = require('shared/images/error.png');
 const successIcon = require('shared/images/successIcon.png');

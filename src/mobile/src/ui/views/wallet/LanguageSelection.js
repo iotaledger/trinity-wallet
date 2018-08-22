@@ -8,10 +8,10 @@ import { setLanguage, setLocale } from 'shared/actions/settings';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'shared/libs/i18n';
 import { selectLocale } from 'shared/libs/locale';
 import i18next from 'i18next';
-import DropdownComponent from 'ui/components/Dropdown';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import DropdownComponent from 'mobile/src/ui/components/Dropdown';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const { width } = Dimensions.get('window');
 const { height } = global;

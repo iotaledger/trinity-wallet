@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { getCurrencyData } from 'shared/actions/settings';
 import { setSetting } from 'shared/actions/wallet';
 import { translate } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
-import DropdownComponent from 'ui/components/Dropdown';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width, height } from 'mobile/src/libs/dimensions';
+import DropdownComponent from 'mobile/src/ui/components/Dropdown';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

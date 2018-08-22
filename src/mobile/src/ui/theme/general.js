@@ -1,4 +1,4 @@
-import { width } from 'libs/dimensions';
+import { width } from 'mobile/src/libs/dimensions';
 
 export default {
     borderRadius: width / 60,

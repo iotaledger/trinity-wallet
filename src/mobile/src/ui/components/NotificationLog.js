@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'shared/libs/date';
 import { translate } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import { locale } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width, height } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { locale } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 

@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
-import { width, height } from 'libs/dimensions';
-import Fonts from 'ui/theme/fonts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import { Icon } from 'ui/theme/icons.js';
-import InfoBox from 'ui/components/InfoBox';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import WithBackPressGoToHome from 'mobile/src/ui/components/BackPressGoToHome';
+import { width, height } from 'mobile/src/libs/dimensions';
+import Fonts from 'mobile/src/ui/theme/fonts';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

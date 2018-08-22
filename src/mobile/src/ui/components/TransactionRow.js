@@ -4,10 +4,10 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'shared/libs/date';
 import spinner from 'shared/animations/spinner.json';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { locale } from 'libs/device';
-import { Icon } from 'ui/theme/icons';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { locale } from 'mobile/src/libs/device';
+import { Icon } from 'mobile/src/ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

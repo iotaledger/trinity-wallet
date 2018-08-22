@@ -15,12 +15,12 @@ import { isValidUrl, isValidHttpsUrl } from 'shared/libs/utils';
 import { setCustomNodeCheckStatus } from 'shared/actions/ui';
 import { generateAlert } from 'shared/actions/alerts';
 import { translate } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import { isIOS } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width, height } from 'mobile/src/libs/dimensions';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { isIOS } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

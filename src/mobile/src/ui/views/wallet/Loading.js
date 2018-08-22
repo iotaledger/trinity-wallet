@@ -25,16 +25,16 @@ import { setSetting } from 'shared/actions/wallet';
 import { changeHomeScreenRoute } from 'shared/actions/home';
 import { generateAlert } from 'shared/actions/alerts';
 import { getSelectedAccountName } from 'shared/selectors/accounts';
-import GENERAL from 'ui/theme/general';
-import { getSeedFromKeychain, storeSeedInKeychain } from 'libs/keychain';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
-import { isAndroid } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import Button from 'ui/components/Button';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { getSeedFromKeychain, storeSeedInKeychain } from 'mobile/src/libs/keychain';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import { getAddressGenFn, getMultiAddressGenFn } from 'mobile/src/libs/nativeModules';
+import { isAndroid } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import Button from 'mobile/src/ui/components/Button';
 
-import { width, height } from 'libs/dimensions';
+import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

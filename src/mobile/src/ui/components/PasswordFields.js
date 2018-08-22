@@ -7,7 +7,7 @@ import { zxcvbn } from 'shared/libs/exports';
 import { generateAlert } from 'shared/actions/alerts';
 import { passwordReasons } from 'shared/libs/password';
 import CustomTextInput from './CustomTextInput';
-import { height, width } from 'libs/dimensions';
+import { height, width } from 'mobile/src/libs/dimensions';
 
 const MIN_PASSWORD_LENGTH = 11;
 

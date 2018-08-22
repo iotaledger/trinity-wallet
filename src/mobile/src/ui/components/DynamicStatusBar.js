@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import timer from 'react-native-timer';
-import { isAndroid, isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'mobile/src/libs/device';
 
 class DynamicStatusBar extends PureComponent {
     static propTypes = {

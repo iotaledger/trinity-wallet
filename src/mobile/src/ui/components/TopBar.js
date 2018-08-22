@@ -26,9 +26,9 @@ import { roundDown } from 'shared/libs/utils';
 import { formatValue, formatUnit } from 'shared/libs/iota/utils';
 import Modal from 'react-native-modal';
 import NotificationLogComponent from './NotificationLog';
-import { Icon } from 'ui/theme/icons.js';
-import { isAndroid } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { isAndroid } from 'mobile/src/libs/device';
+import GENERAL from 'mobile/src/ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
 

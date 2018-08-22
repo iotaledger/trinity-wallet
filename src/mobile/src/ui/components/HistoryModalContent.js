@@ -14,11 +14,11 @@ import {
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared/libs/date';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { isAndroid, locale } from 'libs/device';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { isAndroid, locale } from 'mobile/src/libs/device';
 import CtaButton from './CtaButton';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -3,9 +3,9 @@ import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import InfoBox from './InfoBox';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     infoTextBold: {

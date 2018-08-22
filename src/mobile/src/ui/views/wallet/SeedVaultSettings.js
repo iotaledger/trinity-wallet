@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
 import { setSetting } from 'shared/actions/wallet';
-import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import SeedVaultExportComponent from 'mobile/src/ui/components/SeedVaultExportComponent';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const { width } = Dimensions.get('window');
 const { height } = global;

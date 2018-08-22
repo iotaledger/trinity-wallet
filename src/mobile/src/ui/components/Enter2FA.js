@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
 import CustomTextInput from './CustomTextInput';
-import { width, height } from 'libs/dimensions';
+import { width, height } from 'mobile/src/libs/dimensions';
 import OnboardingButtons from './OnboardingButtons';
-import { Icon } from 'ui/theme/icons.js';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {

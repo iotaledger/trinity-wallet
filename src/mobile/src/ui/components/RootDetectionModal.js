@@ -3,9 +3,9 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import ModalButtons from './ModalButtons';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     modalContent: {

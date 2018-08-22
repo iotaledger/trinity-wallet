@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { width } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
+import { width } from 'mobile/src/libs/dimensions';
+import { isAndroid } from 'mobile/src/libs/device';
 
 const styles = StyleSheet.create({
     toggle: {

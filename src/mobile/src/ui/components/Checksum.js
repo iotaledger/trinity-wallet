@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { VALID_SEED_REGEX, getChecksum } from 'shared/libs/iota/utils';
 import { translate } from 'react-i18next';
-import { width } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons.js';
+import { width } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
 
 const styles = StyleSheet.create({
     checksumContainer: {

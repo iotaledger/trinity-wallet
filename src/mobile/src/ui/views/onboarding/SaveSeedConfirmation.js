@@ -3,23 +3,23 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import whiteCheckboxCheckedImagePath from 'images/checkbox-checked-white.png';
-import whiteCheckboxUncheckedImagePath from 'images/checkbox-unchecked-white.png';
-import blackCheckboxCheckedImagePath from 'images/checkbox-checked-black.png';
-import blackCheckboxUncheckedImagePath from 'images/checkbox-unchecked-black.png';
+import whiteCheckboxCheckedImagePath from 'shared/images/checkbox-checked-white.png';
+import whiteCheckboxUncheckedImagePath from 'shared/images/checkbox-unchecked-white.png';
+import blackCheckboxCheckedImagePath from 'shared/images/checkbox-checked-black.png';
+import blackCheckboxUncheckedImagePath from 'shared/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import InfoBox from 'ui/components/InfoBox';
-import Header from 'ui/components/Header';
-import GENERAL from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons.js';
-import { isAndroid } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import Header from 'mobile/src/ui/components/Header';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { isAndroid } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
-import { width, height } from 'libs/dimensions';
+import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

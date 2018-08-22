@@ -6,9 +6,9 @@ import { round } from 'shared/libs/utils';
 import { formatValue, formatUnit } from 'shared/libs/iota/utils';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import ModalButtons from './ModalButtons';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {

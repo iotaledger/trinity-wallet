@@ -11,16 +11,16 @@ import { getSelectedAccountName } from 'shared/selectors/accounts';
 import { shouldPreventAction } from 'shared/selectors/global';
 import { deleteAccount } from 'shared/actions/accounts';
 import { toggleModalActivity } from 'shared/actions/ui';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import Fonts from 'ui/theme/fonts';
-import { deleteSeedFromKeychain, getPasswordHash } from 'libs/keychain';
-import ModalButtons from 'ui/components/ModalButtons';
-import { width, height } from 'libs/dimensions';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import GENERAL from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons.js';
-import { isAndroid } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import Fonts from 'mobile/src/ui/theme/fonts';
+import { deleteSeedFromKeychain, getPasswordHash } from 'mobile/src/libs/keychain';
+import ModalButtons from 'mobile/src/ui/components/ModalButtons';
+import { width, height } from 'mobile/src/libs/dimensions';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { isAndroid } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {

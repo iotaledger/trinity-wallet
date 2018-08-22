@@ -13,18 +13,18 @@ import { setSeedShareTutorialVisitationStatus } from 'shared/actions/settings';
 import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
-import PrintModal from 'ui/components/PrintModal';
-import PasswordManagerModalContent from 'ui/components/PasswordManagerModal';
-import Button from 'ui/components/Button';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import Header from 'ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { isAndroid } from 'libs/device';
-import { Icon } from 'ui/theme/icons.js';
+import PrintModal from 'mobile/src/ui/components/PrintModal';
+import PasswordManagerModalContent from 'mobile/src/ui/components/PasswordManagerModal';
+import Button from 'mobile/src/ui/components/Button';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import Header from 'mobile/src/ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { isAndroid } from 'mobile/src/libs/device';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
 
 const styles = StyleSheet.create({
     container: {

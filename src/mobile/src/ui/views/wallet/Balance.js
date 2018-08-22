@@ -23,14 +23,14 @@ import {
     getAddressesForSelectedAccount,
 } from 'shared/selectors/accounts';
 import { getCurrencySymbol } from 'shared/libs/currency';
-import WithManualRefresh from 'ui/components/ManualRefresh';
-import SimpleTransactionRow from 'ui/components/SimpleTransactionRow';
-import Chart from 'ui/components/Chart';
-import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
-import TextWithLetterSpacing from 'ui/components/TextWithLetterSpacing';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import WithManualRefresh from 'mobile/src/ui/components/ManualRefresh';
+import SimpleTransactionRow from 'mobile/src/ui/components/SimpleTransactionRow';
+import Chart from 'mobile/src/ui/components/Chart';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { isAndroid } from 'mobile/src/libs/device';
+import TextWithLetterSpacing from 'mobile/src/ui/components/TextWithLetterSpacing';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

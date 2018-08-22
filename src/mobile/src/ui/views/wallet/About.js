@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'shared/actions/wallet';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import { Icon } from 'ui/theme/icons.js';
-import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { width, height } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

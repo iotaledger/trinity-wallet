@@ -7,11 +7,11 @@ import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import CustomTextInput from './CustomTextInput';
 import FingerPrintModal from './FingerprintModal';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import { isAndroid } from 'libs/device';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { isAndroid } from 'mobile/src/libs/device';
 import Button from './Button';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {

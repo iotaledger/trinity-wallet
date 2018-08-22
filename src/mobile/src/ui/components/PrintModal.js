@@ -8,10 +8,10 @@ import whiteCheckboxUncheckedImagePath from 'shared/images/checkbox-unchecked-wh
 import blackCheckboxCheckedImagePath from 'shared/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'shared/images/checkbox-unchecked-black.png';
 import ModalButtons from './ModalButtons';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
 import InfoBox from './InfoBox';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     checkboxContainer: {

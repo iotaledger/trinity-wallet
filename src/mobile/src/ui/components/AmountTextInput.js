@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { round } from 'libs/utils';
+import { round } from 'shared/libs/utils';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

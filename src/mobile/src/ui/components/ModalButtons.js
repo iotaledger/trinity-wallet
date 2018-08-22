@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     buttonsContainer: {

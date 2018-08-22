@@ -11,14 +11,14 @@ import { setFullNode } from 'shared/actions/settings';
 import { setPassword, setSetting, setDeepLink } from 'shared/actions/wallet';
 import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared/actions/ui';
 import { generateAlert } from 'shared/actions/alerts';
-import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import WithBackPressCloseApp from 'mobile/src/ui/components/BackPressCloseApp';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
 import NodeOptionsOnLogin from './NodeOptionsOnLogin';
-import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
-import Enter2FAComponent from 'ui/components/Enter2FA';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from 'libs/keychain';
-import { isAndroid } from 'libs/device';
+import EnterPasswordOnLoginComponent from 'mobile/src/ui/components/EnterPasswordOnLogin';
+import Enter2FAComponent from 'mobile/src/ui/components/Enter2FA';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from 'mobile/src/libs/keychain';
+import { isAndroid } from 'mobile/src/libs/device';
 
 const styles = StyleSheet.create({
     container: {

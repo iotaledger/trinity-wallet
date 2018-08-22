@@ -5,11 +5,11 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Act
 import { setLoginRoute } from 'shared/actions/ui';
 import { setFullNode } from 'shared/actions/settings';
 import { translate } from 'react-i18next';
-import DropdownComponent from 'ui/components/Dropdown';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import DropdownComponent from 'mobile/src/ui/components/Dropdown';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

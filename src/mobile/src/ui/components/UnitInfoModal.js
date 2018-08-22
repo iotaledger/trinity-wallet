@@ -4,10 +4,10 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons.js';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width, height } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {

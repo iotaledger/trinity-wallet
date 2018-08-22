@@ -4,9 +4,9 @@ import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
-import SettingsContent from 'ui/components/SettingsContent';
-import { height } from 'libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import SettingsContent from 'mobile/src/ui/components/SettingsContent';
+import { height } from 'mobile/src/libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -8,14 +8,14 @@ import { generateAlert } from 'shared/actions/alerts';
 import { shouldPreventAction } from 'shared/selectors/global';
 import { getSelectedAccountName } from 'shared/selectors/accounts';
 import { manuallySyncAccount } from 'shared/actions/accounts';
-import { getSeedFromKeychain } from 'libs/keychain';
-import { width, height } from 'libs/dimensions';
-import { getMultiAddressGenFn } from 'libs/nativeModules';
-import { Icon } from 'ui/theme/icons';
-import CtaButton from 'ui/components/CtaButton';
-import InfoBox from 'ui/components/InfoBox';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { getMultiAddressGenFn } from 'mobile/src/libs/nativeModules';
+import { Icon } from 'mobile/src/ui/theme/icons';
+import CtaButton from 'mobile/src/ui/components/CtaButton';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

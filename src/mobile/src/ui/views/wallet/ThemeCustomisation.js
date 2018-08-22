@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 import { setSetting } from 'shared/actions/wallet';
 import { updateTheme } from 'shared/actions/settings';
 import THEMES from 'shared/themes/themes';
-import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
-import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons.js';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Dropdown from 'mobile/src/ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
+import { width, height } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -179,7 +179,7 @@ class ThemeCustomisation extends Component {
                                 onRef={(c) => {
                                     this.dropdown = c;
                                 }}
-                                title={t('ui/theme')}
+                                title={t('mobile/src/ui/theme')}
                                 dropdownWidth={{ width: width / 1.45 }}
                                 background
                                 shadow
@@ -213,7 +213,7 @@ class ThemeCustomisation extends Component {
                                         color: body.color,
                                     }}
                                 >
-                                    {t('ui/themeCustomisation:mockup').toUpperCase()}
+                                    {t('mobile/src/ui/themeCustomisation:mockup').toUpperCase()}
                                 </Text>
                             </View>
                             <View style={[styles.frameBar, { backgroundColor: bar.alt }]}>
@@ -288,6 +288,6 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default translate(['ui/themeCustomisation', 'global'])(
+export default translate(['mobile/src/ui/themeCustomisation', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(ThemeCustomisation),
 );

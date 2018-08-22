@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import GENERAL from 'mobile/src/ui/theme/general';
 import InfoBox from './InfoBox';
 import CustomTextInput from './CustomTextInput';
 import ModalButtons from './ModalButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { width, height } from 'libs/dimensions';
+import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

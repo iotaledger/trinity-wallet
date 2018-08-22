@@ -21,16 +21,16 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { setCompletedForcedPasswordUpdate } from 'shared/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
-import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'libs/keychain';
-import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'libs/crypto';
-import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import { Icon } from 'ui/theme/icons.js';
-import InfoBox from 'ui/components/InfoBox';
-import { isAndroid } from 'libs/device';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'mobile/src/libs/keychain';
+import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'mobile/src/libs/crypto';
+import { width, height } from 'mobile/src/libs/dimensions';
+import GENERAL from 'mobile/src/ui/theme/general';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import { isAndroid } from 'mobile/src/libs/device';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

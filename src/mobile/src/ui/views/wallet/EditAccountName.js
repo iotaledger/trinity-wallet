@@ -8,12 +8,12 @@ import { getSelectedAccountName } from 'shared/selectors/accounts';
 import { generateAlert } from 'shared/actions/alerts';
 import { setSetting } from 'shared/actions/wallet';
 import { changeAccountName } from 'shared/actions/accounts';
-import { updateAccountNameInKeychain } from 'libs/keychain';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { updateAccountNameInKeychain } from 'mobile/src/libs/keychain';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

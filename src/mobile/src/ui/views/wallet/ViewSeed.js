@@ -8,17 +8,17 @@ import { setSetting } from 'shared/actions/wallet';
 import { generateAlert } from 'shared/actions/alerts';
 import { getSelectedAccountName } from 'shared/selectors/accounts';
 import FlagSecure from 'react-native-flag-secure-android';
-import Fonts from 'ui/theme/fonts';
-import Seedbox from 'ui/components/SeedBox';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import { getSeedFromKeychain, getPasswordHash } from 'libs/keychain';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import GENERAL from 'ui/theme/general';
-import CtaButton from 'ui/components/CtaButton';
-import InfoBox from 'ui/components/InfoBox';
-import { isAndroid } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Fonts from 'mobile/src/ui/theme/fonts';
+import Seedbox from 'mobile/src/ui/components/SeedBox';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import { getSeedFromKeychain, getPasswordHash } from 'mobile/src/libs/keychain';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import GENERAL from 'mobile/src/ui/theme/general';
+import CtaButton from 'mobile/src/ui/components/CtaButton';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import { isAndroid } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

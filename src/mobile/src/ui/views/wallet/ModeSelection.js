@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import { setMode } from 'shared/actions/settings';
 import { setSetting } from 'shared/actions/wallet';
 import { generateAlert } from 'shared/actions/alerts';
-import Fonts from 'ui/theme/fonts';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import InfoBox from 'ui/components/InfoBox';
-import Toggle from 'ui/components/Toggle';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Fonts from 'mobile/src/ui/theme/fonts';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import Toggle from 'mobile/src/ui/components/Toggle';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

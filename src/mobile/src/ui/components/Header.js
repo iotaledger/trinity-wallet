@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { width } from 'libs/dimensions';
+import { width } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

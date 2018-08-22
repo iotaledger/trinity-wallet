@@ -10,14 +10,14 @@ import {
     enPrivacyPolicyIOS,
     dePrivacyPolicyAndroid,
     dePrivacyPolicyIOS,
-} from 'markdown';
+} from 'shared/markdown';
 import i18next from 'i18next';
-import Button from 'ui/components/Button';
-import GENERAL from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import { isAndroid } from 'libs/device';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Button from 'mobile/src/ui/components/Button';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'mobile/src/libs/dimensions';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import { isAndroid } from 'mobile/src/libs/device';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

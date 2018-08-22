@@ -12,16 +12,16 @@ import { generateAlert } from 'shared/actions/alerts';
 import { shouldPreventAction } from 'shared/selectors/global';
 import { toggleModalActivity, setDoNotMinimise } from 'shared/actions/ui';
 import timer from 'react-native-timer';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
-import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'ui/components/PasswordValidationModal';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import QRScannerComponent from 'ui/components/QrScanner';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import { isAndroid } from 'libs/device';
-import GENERAL from 'ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'mobile/src/libs/keychain';
+import SeedVaultImport from 'mobile/src/ui/components/SeedVaultImportComponent';
+import PasswordValidation from 'mobile/src/ui/components/PasswordValidationModal';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import QRScannerComponent from 'mobile/src/ui/components/QrScanner';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { isAndroid } from 'mobile/src/libs/device';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

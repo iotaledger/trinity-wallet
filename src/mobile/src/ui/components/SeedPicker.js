@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, PanResponder } from 'react-native';
 import PropTypes from 'prop-types';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
-import { height, width } from 'libs/dimensions';
+import { height, width } from 'mobile/src/libs/dimensions';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const scaleMultiplier = height / 15;

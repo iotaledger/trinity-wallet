@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared/actions/accounts';
 import { getSelectedAccountName } from 'shared/selectors/accounts';
 import { translate } from 'react-i18next';
-import { getSeedFromKeychain } from 'libs/keychain';
+import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
 
 const mapDispatchToProps = {
     generateAlert,

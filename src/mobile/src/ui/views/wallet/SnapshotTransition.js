@@ -18,16 +18,16 @@ import { getSelectedAccountName, getAddressesForSelectedAccount } from 'shared/s
 import KeepAwake from 'react-native-keep-awake';
 import { shouldPreventAction } from 'shared/selectors/global';
 import { formatValue, formatUnit } from 'shared/libs/iota/utils';
-import ModalButtons from 'ui/components/ModalButtons';
-import GENERAL from 'ui/theme/general';
-import { getSeedFromKeychain } from 'libs/keychain';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons.js';
-import CtaButton from 'ui/components/CtaButton';
-import InfoBox from 'ui/components/InfoBox';
-import ProgressBar from 'ui/components/ProgressBar';
-import { getMultiAddressGenFn, getPowFn } from 'libs/nativeModules';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import ModalButtons from 'mobile/src/ui/components/ModalButtons';
+import GENERAL from 'mobile/src/ui/theme/general';
+import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import CtaButton from 'mobile/src/ui/components/CtaButton';
+import InfoBox from 'mobile/src/ui/components/InfoBox';
+import ProgressBar from 'mobile/src/ui/components/ProgressBar';
+import { getMultiAddressGenFn, getPowFn } from 'mobile/src/libs/nativeModules';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

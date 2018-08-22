@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import GENERAL from 'mobile/src/ui/theme/general';
 import InfoBox from './InfoBox';
-import { width, height } from 'libs/dimensions';
+import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     okButton: {

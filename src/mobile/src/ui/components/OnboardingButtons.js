@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import Button from './Button';
-import { width } from 'libs/dimensions';
+import { width } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

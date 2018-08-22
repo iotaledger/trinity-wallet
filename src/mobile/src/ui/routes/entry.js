@@ -13,11 +13,11 @@ import { ActionTypes } from 'shared/actions/wallet';
 import i18next from 'i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared/libs/i18n';
-import { isIOS } from 'libs/device';
-import keychain from 'libs/keychain';
+import { isIOS } from 'mobile/src/libs/device';
+import keychain from 'mobile/src/libs/keychain';
 import registerScreens from './navigation';
 import i18 from '../../../i18next';
-import { getDigestFn } from 'libs/nativeModules';
+import { getDigestFn } from 'mobile/src/libs/nativeModules';
 
 const clearKeychain = () => {
     if (isIOS) {

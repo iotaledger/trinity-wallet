@@ -8,15 +8,15 @@ import { setFirstUse, setOnboardingComplete } from 'shared/actions/accounts';
 import { clearWalletData, setPassword } from 'shared/actions/wallet';
 import { generateAlert } from 'shared/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import { persistor } from 'store';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import { clearKeychain, getPasswordHash } from 'libs/keychain';
-import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { Icon } from 'ui/theme/icons.js';
-import { width, height } from 'libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
+import { persistor } from 'mobile/store';
+import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import { clearKeychain, getPasswordHash } from 'mobile/src/libs/keychain';
+import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
+import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
+import { Icon } from 'mobile/src/ui/theme/icons.js';
+import { width, height } from 'mobile/src/libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

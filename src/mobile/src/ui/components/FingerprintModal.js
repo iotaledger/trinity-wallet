@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
-import Fonts from 'ui/theme/fonts';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import GENERAL from 'mobile/src/ui/theme/general';
+import Fonts from 'mobile/src/ui/theme/fonts';
+import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
-import { width, height } from 'libs/dimensions';
+import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     modalContent: {
