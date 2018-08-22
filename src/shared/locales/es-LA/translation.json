@@ -296,6 +296,7 @@
         "saveYourSeed": "Haga un respaldo de su semilla",
         "seedCleared": "Semilla removida",
         "mostSecure": "Más Seguro",
+        "recommended": "Recommended",
         "leastSecure": "Menos Seguro",
         "paperWallet": "Billetera de Papel",
         "writeYourSeedDown": "Anote su semilla",
@@ -450,7 +451,8 @@
         "viewAddresses": "Ver direcciones",
         "editAccountName": "Editar nombre de cuenta",
         "deleteAccount": "Borrar cuenta",
-        "addNewAccount": "Añadir nueva cuenta"
+        "addNewAccount": "Añadir nueva cuenta",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
