@@ -338,17 +338,14 @@ class SeedInput extends React.PureComponent {
                         <h1>Choose seed</h1>
                         <p>Your SeedFile contains multiple valid seeds, please choose which seed to import</p>
                         <Select
-                            value={accountIndex}
+                            value={accountIndex > -1 ? accounts[accountIndex].title : ''}
                             label={t('addAdditionalSeed:accountName')}
-                            onChange={(e) => this.setState({ accountIndex: e.target.value })}
-                        >
-                            <option style={{ display: 'none' }} disabled value="-1" />
-                            {accounts.map((account, index) => (
-                                <option key={`account-${index}`} value={index}>
-                                    {account.title}
-                                </option>
-                            ))}
-                        </Select>
+                            onChange={(value) => this.setState({ accountIndex: value })}
+                            options={accounts.map((account, index) => {
+                                return { value: index, label: account.title };
+                            })}
+                        />
+
                         <footer>
                             <Button onClick={() => this.setState({ accounts: [] })} variant="dark">
                                 {t('cancel')}

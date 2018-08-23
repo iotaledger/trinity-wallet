@@ -37,15 +37,13 @@ const styles = StyleSheet.create({
 
 export class ChecksumModal extends PureComponent {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Close active modal */
         closeModal: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         body: PropTypes.object.isRequired,
-        /** Theme settings */
+        /** @ignore */
         primary: PropTypes.object.isRequired,
     };
 

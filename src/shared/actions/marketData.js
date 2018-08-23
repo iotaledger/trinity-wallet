@@ -100,7 +100,7 @@ export function setPrice(data) {
 export function getPrice() {
     return (dispatch) => {
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+            .then((response) => response.json(), () => {})
             .then((json) => dispatch(setPrice(json)));
     };
 }
@@ -150,13 +150,14 @@ export function getChartData() {
                 each(results, (resultItem, index) => {
                     currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
                     currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                    const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+
+                    const formattedData = formatChartData(resultItem, currentTimeFrame);
 
                     if (actualCurrency !== currentCurrency) {
                         actualCurrency = currentCurrency;
                     }
 
-                    chartData[currentCurrency][currentTimeFrame] = formatedData;
+                    chartData[currentCurrency][currentTimeFrame] = formattedData;
                 });
 
                 dispatch(setChartData(chartData));

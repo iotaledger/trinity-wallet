@@ -11,8 +11,12 @@ export default class Checkbox extends React.PureComponent {
     static propTypes = {
         /** Is checkbox checked */
         checked: PropTypes.bool.isRequired,
+        /** Is ckeckbox disabled */
+        disabled: PropTypes.bool,
         /** Checkbox label */
         label: PropTypes.string,
+        /** Buttons secondary class */
+        className: PropTypes.oneOf(['small']),
         /** Address change event function
          * @param {Bool} Value - Current checkbox state
          * @returns {undefined}
@@ -21,10 +25,18 @@ export default class Checkbox extends React.PureComponent {
     };
 
     render() {
-        const { checked, label, onChange } = this.props;
+        const { checked, disabled, label, className, onChange } = this.props;
 
         return (
-            <div className={classNames(css.checkbox, checked ? css.on : null)} onClick={() => onChange(!checked)}>
+            <div
+                className={classNames(
+                    css.checkbox,
+                    checked ? css.on : null,
+                    disabled ? css.disabled : null,
+                    css[className],
+                )}
+                onClick={() => onChange(!checked)}
+            >
                 {label}
             </div>
         );

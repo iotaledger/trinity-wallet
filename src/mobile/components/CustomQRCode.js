@@ -6,8 +6,11 @@ import { isAndroid } from '../utils/device';
 
 class CustomQRCode extends PureComponent {
     static propTypes = {
+        /** Time to delay the initial render */
         waitFor: PropTypes.number,
+        /** Size of QR code */
         size: PropTypes.number.isRequired,
+        /** Background color of QR code */
         backgroundColor: PropTypes.string.isRequired,
     };
 

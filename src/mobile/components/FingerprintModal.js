@@ -26,9 +26,7 @@ const styles = StyleSheet.create({
 
 export class FingerprintModal extends PureComponent {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
@@ -40,7 +38,7 @@ export class FingerprintModal extends PureComponent {
         borderColor: PropTypes.object.isRequired,
         /** Determines in which instance the modal is being used*/
         instance: PropTypes.string.isRequired,
-        /** Determines if user has activated fingerprint auth */
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool,
     };
 

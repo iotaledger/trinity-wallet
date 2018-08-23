@@ -113,38 +113,29 @@ export default () => (C) => {
     }
 
     WithManualRefresh.propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Fetch latest account information
-         * @param {string} seed - seed value
-         * @param {string} selectedAccountName
-         */
+        /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification titleinactivityLogoutContainer
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Determines if there is already a network call going on for fetching latest account info */
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
         /** Determines if background poll is already fetching latest acocunt info */
         isPollingAccountInfo: PropTypes.bool.isRequired,
-        /** Determines if wallet is manually syncing account information */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** Determines if wallet is making a transaction */
+        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
-        /** Determines if wallet is generating receive address */
+        /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        /** Determines if wallet is doing snapshot transition */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Index of currently selected account in accountNames list */
+        /** @ignore */
         seedIndex: PropTypes.number.isRequired,
     };
 

@@ -32,29 +32,23 @@ const styles = StyleSheet.create({
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-        /** Currently selected application mode (Expert or Standard) */
+        /** @ignore */
         mode: PropTypes.string.isRequired,
-        /** Currently selected currency */
+        /** @ignore */
         currency: PropTypes.string.isRequired,
-        /** Currently selected theme name */
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Clears wallet reducer data */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
     };
 

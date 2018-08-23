@@ -35,4 +35,27 @@
             transform: rotate(45deg);
         }
     }
+
+    &.small {
+        line-height: 18px;
+        font-size: 14px;
+        &:before {
+            width: 18px;
+            height: 18px;
+        }
+        &:after {
+            left: 6px;
+            width: 6px;
+            height: 11px;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+}
+
+.checkbox + .checkbox {
+    margin-top: -10px;
 }

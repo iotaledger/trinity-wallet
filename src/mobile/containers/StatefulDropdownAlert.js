@@ -49,16 +49,25 @@ const styles = StyleSheet.create({
 
 class StatefulDropdownAlert extends Component {
     static propTypes = {
+        /** @ignore */
         alerts: PropTypes.object.isRequired,
+        /** @ignore */
         disposeOffAlert: PropTypes.func.isRequired,
+        /** @ignore */
         closeInterval: PropTypes.number,
+        /** Background color for dropdown alert */
         backgroundColor: PropTypes.string.isRequired,
+        /**
+         * Returns this component instance to the parent component
+         *
+         * @param {object} component instance
+         */
         onRef: PropTypes.func,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Determines whether has internet connection */
+        /** @ignore */
         hasConnection: PropTypes.bool.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
@@ -115,6 +124,9 @@ class StatefulDropdownAlert extends Component {
         return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
     }
 
+    /**
+     * Generates an alert if wallet has no internet connection
+     */
     generateAlertWhenNoConnection() {
         const { alerts: { category, title, message }, hasConnection } = this.props;
 
@@ -123,6 +135,9 @@ class StatefulDropdownAlert extends Component {
         }
     }
 
+    /**
+     * Automatically hides active alert when wallet restores internet connection
+     */
     disposeIfConnectionIsRestored(newProps) {
         if (!this.props.hasConnection && newProps.hasConnection && this.dropdown) {
             this.dropdown.close();

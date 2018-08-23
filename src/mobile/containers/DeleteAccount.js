@@ -114,37 +114,27 @@ const styles = StyleSheet.create({
 /** Delete Account component */
 class DeleteAccount extends Component {
     static propTypes = {
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Removes account and associated information
-         * @param {string} accountName
-         */
+        /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Promotion state for polling */
+        /** @ignore */
         isAutoPromoting: PropTypes.bool.isRequired,
         /** Determines whether to allow account deletion  */
         shouldPreventAction: PropTypes.bool.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Sets whether modal is active or inactive */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Determines whether modal is open */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
     };
 
@@ -161,6 +151,11 @@ class DeleteAccount extends Component {
         leaveNavigationBreadcrumb('DeleteAccount');
     }
 
+    /**
+     * Navigates to account management setting screen
+     *
+     * @method onBackPress
+     */
     onBackPress() {
         if (!this.state.pressedContinue) {
             this.props.setSetting('accountManagement');
@@ -169,6 +164,12 @@ class DeleteAccount extends Component {
         }
     }
 
+    /**
+     * Displays a confirmation modal for account deletion if user entered password is correct/valid
+     * Otherwise generates an alert
+     *
+     * @method onContinuePress
+     */
     async onContinuePress() {
         const { password, t } = this.props;
 
@@ -189,6 +190,11 @@ class DeleteAccount extends Component {
         );
     }
 
+    /**
+     * Deletes account
+     *
+     * @method onYesPress
+     */
     onYesPress() {
         const { t, isAutoPromoting } = this.props;
         if (isAutoPromoting || this.props.shouldPreventAction) {
@@ -198,10 +204,20 @@ class DeleteAccount extends Component {
         this.delete();
     }
 
+    /**
+     * Hides account deletion confirmation modal
+     *
+     * @method onNoPress
+     */
     onNoPress() {
         this.hideModal();
     }
 
+    /**
+     * Deletes account information from keychain and store
+     *
+     * @method delete
+     */
     delete() {
         const { password, selectedAccountName } = this.props;
 

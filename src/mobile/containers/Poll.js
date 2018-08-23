@@ -20,17 +20,29 @@ import {
 
 export class Poll extends Component {
     static propTypes = {
+        /** @ignore */
         pollFor: PropTypes.string.isRequired,
-        allPollingServices: PropTypes.array.isRequired, // oneOf
+        /** @ignore */
+        allPollingServices: PropTypes.array.isRequired,
+        /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
+        /** @ignore */
         isAutoPromotionEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
         setPollFor: PropTypes.func.isRequired,
+        /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
+        /** @ignore */
         fetchPrice: PropTypes.func.isRequired,
+        /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
+        /** @ignore */
         fetchChartData: PropTypes.func.isRequired,
+        /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
     };
 

@@ -7,6 +7,7 @@
         "refresh": "Odśwież",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
+        "totalBalance": "Total balance",
         "transferError": "Błąd transferu",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
         "transferSent": "Transfer wykonany",
@@ -59,6 +60,7 @@
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
+        "capsLockIsOn": "Caps Lock jest włączony",
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
@@ -71,6 +73,7 @@
         "attachToTangleUnavailableExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer lub ustaw lokalny tryb PoW w zaawansowanych ustawieniach aplikacji.",
         "attachToTangleUnavailableExplanationShort": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze.",
         "wallet": "Portfel",
+        "all": "Wszystkie",
         "sent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
@@ -117,11 +120,11 @@
         "nodeAutoChanged": "Autom. zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
-        "masterKey": "Twój seed IOTA jest głównym kluczem do Twoich funduszy.",
-        "seedThief": "Jeśli ktoś inny zdobędzie Twój klucz seed, będzie mógł on wykraść Twoje środki IOTA.",
+        "masterKey": "Seed IOTA jest głównym kluczem do Twoich funduszy.",
+        "seedThief": "Jeśli ktoś inny zdobędzie ten klucz, będzie mógł on wykraść Twoje środki IOTA.",
         "googlePlayServicesNotAvailable": "Usługi Google Play niedostępne",
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
-        "clear": "WYCZYŚĆ",
+        "clear": "Wyczyść",
         "noNetworkConnection": "Brak połączenia z siecią",
         "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu.",
         "spentAddressExplanation": "UWAGA: Środki na zużytym adresie",
@@ -135,7 +138,14 @@
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
         "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji."
+        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji.",
+        "broadcastError": "Nie można wykonać transferu",
+        "addressesAlreadySpentFrom": "Zużyto już jeden lub więcej adresów.",
+        "problemSendingYourTransaction": "Wystąpił błąd podczas przetwarzania transakcji.",
+        "problemPerformingProofOfWork": "Wystąpił problem podczas wykonywania Proof of Work.",
+        "tryingAgainWithLocalPoW": "Ponawianie próby przy użyciu lokalnego trybu PoW.",
+        "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
+        "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -305,7 +315,9 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
-        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię"
+        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
+        "clipboardWarning": "Nie kopiuj swojego klucza",
+        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest wyłączone dla Twojego bezpieczeństwa."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -409,7 +421,7 @@
         "yesINeedASeed": "Tak, potrzebuję klucza",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu.</3></0>",
         "loseSeed": "Jeśli utracisz klucz seed, stracisz swoje środki IOTA.",
-        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego klucza seed."
+        "keepSafe": "Zadbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA"
@@ -602,9 +614,7 @@
         "local": "Lokalnie",
         "remote": "Zdalnie",
         "powUpdated": "Konfiguracja PoW",
-        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana.",
-        "noWebGLSupport": "WebGL nieobsługiwane",
-        "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
+        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Ustawienia autopromowania",
@@ -649,14 +659,33 @@
         "skipUpdate": "Pomiń aktualizację"
     },
     "notificationLog": {
-        "errorLog": "DZIENNIK BŁĘDÓW"
+        "errorLog": "Dziennik błędów"
     },
     "terms": {
         "termsAndConditions": "Warunki i zasady",
-        "accept": "Akceptuję"
+        "accept": "Akceptuję",
+        "readAllToContinue": "Przeczytaj cały tekst, aby kontynuować"
     },
     "privacyPolicy": {
         "privacyPolicy": "Polityka prywatności",
         "agree": "Zgadzam się"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

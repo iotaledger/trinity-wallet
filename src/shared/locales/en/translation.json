@@ -7,6 +7,7 @@
         "refresh": "Refresh",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "totalBalance": "Total balance",
         "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
@@ -129,7 +130,7 @@
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity":
             "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR",
+        "clear": "Clear",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
@@ -145,7 +146,14 @@
             "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -308,11 +316,12 @@
         "saveYourSeed": "Back up your seed",
         "seedCleared": "Seed cleared",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -330,7 +339,9 @@
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -367,12 +378,12 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "advancedModeExplanation":
+            "Advanced mode will display more detailed technical information.",
         "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+            "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -470,7 +481,8 @@
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "Add new account",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
@@ -607,7 +619,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -639,9 +651,7 @@
         "local": "Local",
         "remote": "Remote",
         "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
@@ -678,22 +688,40 @@
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install Update and Restart",
-        "installUpdateExplanation": "Update downloaded, Trinity will quit and restart for update."
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
         "accept": "I accept",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
         "agree": "I agree"
+    },
+    "tray": {
+         "trayApplication": "Tray application",
+         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+         "notLoggedIn": "You are not logged in",
+         "setupIncomplete": "Wallet setup incomplete",
+         "completeSetup": "Complete setup"
+    },
+    "notifications": {
+      "notifications": "Notifications",
+      "notificationExplanation": "Receive system-wide notifications about new transactions.",
+      "typeConfirmations": "Notify me about confirmations",
+      "typeMessages": "Notify me about zero value transactions",
+      "multipleTx": "Receiving multiple transactions to {{account}}",
+      "valueTx": "Receiving {{value}} to {{account}}",
+      "messageTx": "You received a message to {{account}}",
+      "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+      "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

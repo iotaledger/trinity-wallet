@@ -90,21 +90,13 @@ export class ViewAddresses extends Component {
     static propTypes = {
         /** Selected account. Contains transfers, addresses and balance  */
         selectedAccount: PropTypes.object.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -112,6 +104,12 @@ export class ViewAddresses extends Component {
         leaveNavigationBreadcrumb('ViewAddresses');
     }
 
+    /**
+     * Converts address data (object) to an array and orders it by key index
+     *
+     * @method prepAddresses
+     * @returns {Array}
+     */
     prepAddresses() {
         const { addresses } = this.props.selectedAccount;
 
@@ -125,6 +123,11 @@ export class ViewAddresses extends Component {
         return orderBy(preparedAddresses, 'index', ['desc']);
     }
 
+    /**
+     * Copies address to clipboard
+     * @method copy
+     * @param {string} address
+     */
     copy(address) {
         const { t } = this.props;
 
