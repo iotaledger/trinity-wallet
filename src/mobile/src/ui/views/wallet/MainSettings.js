@@ -31,13 +31,9 @@ const styles = StyleSheet.create({
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-<<<<<<< HEAD:src/mobile/src/ui/views/wallet/MainSettings.js
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Currently selected application mode (Expert or Standard) */
-=======
-        /** @ignore */
->>>>>>> develop:src/mobile/containers/MainSettings.js
         mode: PropTypes.string.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
