@@ -14,7 +14,7 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 /**
  * Set AppUserModelID for Windows notifications functionallity
  */
-app.setAppUserModelId('com.iotatoken.trinity');
+app.setAppUserModelId('org.iota.trinity');
 
 /**
  * Set environment mode
