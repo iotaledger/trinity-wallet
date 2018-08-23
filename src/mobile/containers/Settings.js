@@ -25,17 +25,15 @@ const styles = StyleSheet.create({
 /** Settings component */
 class Settings extends Component {
     static propTypes = {
-        /** Currently selected setting */
+        /** @ignore */
         currentSetting: PropTypes.string.isRequired,
-        /** Determines if wallet is manually syncing account information */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Close active top bar */
+        /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
     };
 
@@ -51,6 +49,12 @@ class Settings extends Component {
         }
     }
 
+    /**
+     * Gets children props for SettingsContent component
+     *
+     * @param {string} child
+     * @returns {object}
+     */
     getChildrenProps(child) {
         const props = {
             nodeSelection: {

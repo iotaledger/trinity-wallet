@@ -16,20 +16,15 @@ const styles = StyleSheet.create({
 /** Security Setting component */
 class SecuritySettings extends Component {
     static propTypes = {
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines if two factor authentication is enabled */
+        /** @ignore */
         is2FAEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
@@ -39,6 +34,10 @@ class SecuritySettings extends Component {
         leaveNavigationBreadcrumb('SecuritySettings');
     }
 
+    /**
+     * Navigates to two factor authentication screen
+     * @method on2FASetupPress
+     */
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;
 
@@ -71,6 +70,10 @@ class SecuritySettings extends Component {
         }
     }
 
+    /**
+     * Navigates to fingerprint setup screen
+     * @method onFingerprintSetupPress
+     */
     onFingerprintSetupPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({

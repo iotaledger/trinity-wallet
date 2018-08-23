@@ -1,9 +1,22 @@
 actions_path 'actions/'
 default_platform :android
 
+def add_bugsnag_api_key(bugsnag_key)
+  UI.important "Adding Bugsnag API key"
+  set_meta_data(attribute: "com.bugsnag.android.API_KEY", value: bugsnag_key)
+end
+
 lane :release do
   package_json = load_json(json_path: '../package.json')
   version = package_json['version']
   increment_version_code
   increment_version_name(version_name: version)
+end
+
+lane :build_release do
+  if is_ci?
+    add_bugsnag_api_key(ENV['BUGSNAG_API_KEY'])
+  else
+    UI.error('This lane should only be run on CI!')
+  end
 end

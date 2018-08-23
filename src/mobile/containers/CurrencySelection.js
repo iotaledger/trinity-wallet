@@ -67,26 +67,19 @@ const styles = StyleSheet.create({
 /** Currency Selection component */
 export class CurrencySelection extends Component {
     static propTypes = {
-        /** Latest currency information fetch state */
+        /** @ignore */
         isFetchingCurrencyData: PropTypes.bool.isRequired,
-        /** Selected currency */
+        /** @ignore */
         currency: PropTypes.string.isRequired,
-        /** Available currencies */
+        /** @ignore */
         availableCurrencies: PropTypes.array.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Fetch latest currency information
-         * @param {string} currency
-         * @param {boolean} withAlerts - Flag to generate an alert in case something went wrong during the network call.
-         */
+        /** @ignore */
         getCurrencyData: PropTypes.func.isRequired,
     };
 
@@ -103,14 +96,6 @@ export class CurrencySelection extends Component {
         if (shouldNavigateBack) {
             props.setSetting('mainSettings');
         }
-    }
-
-    getNewlySelectedValue() {
-        if (this.dropdown) {
-            return this.dropdown.getSelected();
-        }
-
-        return this.props.currency; // Just return currency selected in the store as a fallback
     }
 
     renderBackOption() {

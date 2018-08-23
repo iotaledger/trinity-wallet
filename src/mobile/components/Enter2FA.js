@@ -32,13 +32,11 @@ export class Enter2FA extends Component {
         /** Verify two factor authentication token */
         /** @param {string} token - 2fa token */
         verify: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Cancel two factor authentication */
         cancel: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

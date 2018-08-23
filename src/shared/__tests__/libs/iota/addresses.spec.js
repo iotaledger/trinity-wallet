@@ -244,7 +244,7 @@ describe('libs: iota/addresses', () => {
         describe('when current latest address is not blacklisted', () => {
             it('should return current latest address', () => {
                 return addressesUtils
-                    .getAddressesUptoRemainder(addressData, seed, () => Promise.resolve([]), [
+                    .getAddressesUptoRemainder()(addressData, seed, () => Promise.resolve([]), [
                         'Z'.repeat(81),
                         'I'.repeat(81),
                     ])
@@ -271,7 +271,7 @@ describe('libs: iota/addresses', () => {
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
 
                     return addressesUtils
-                        .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
+                        .getAddressesUptoRemainder()(addressData, seed, addressGenFn, [
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                         ])
                         .then(({ remainderAddress }) => {
@@ -296,7 +296,7 @@ describe('libs: iota/addresses', () => {
                     const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
 
                     return addressesUtils
-                        .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
+                        .getAddressesUptoRemainder()(addressData, seed, addressGenFn, [
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                         ])
                         .then(({ addressDataUptoRemainder }) => {
@@ -350,7 +350,7 @@ describe('libs: iota/addresses', () => {
                     wereAddressesSpentFrom.onCall(3).yields(null, [false]);
 
                     return addressesUtils
-                        .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
+                        .getAddressesUptoRemainder()(addressData, seed, addressGenFn, [
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                             'U'.repeat(81),
                             'R'.repeat(81),
@@ -426,68 +426,28 @@ describe('libs: iota/addresses', () => {
 
         describe('when spent addresses is an empty array', () => {
             it('should filter spent addresses relying on wereAddressesSpentFrom network call', () => {
-                return addressesUtils.filterSpentAddresses(inputs, []).then((unspentInputs) => {
-                    expect(unspentInputs).to.eql([
-                        {
-                            address: 'U'.repeat(81),
-                        },
-                        {
-                            address: 'V'.repeat(81),
-                        },
-                    ]);
-                });
+                return addressesUtils
+                    .filterSpentAddresses()(inputs, [])
+                    .then((unspentInputs) => {
+                        expect(unspentInputs).to.eql([
+                            {
+                                address: 'U'.repeat(81),
+                            },
+                            {
+                                address: 'V'.repeat(81),
+                            },
+                        ]);
+                    });
             });
         });
 
         describe('when spent addresses is not an empty array', () => {
             it('should filter inputs containing spent addresses', () => {
-                return addressesUtils.filterSpentAddresses(inputs, ['U'.repeat(81)]).then((unspentInputs) => {
-                    expect(unspentInputs).to.eql([{ address: 'V'.repeat(81) }]);
-                });
-            });
-        });
-    });
-
-    describe('#isAnyAddressSpent', () => {
-        let transactionObjects;
-
-        before(() => {
-            transactionObjects = [
-                {
-                    address: 'U'.repeat(81),
-                },
-                {
-                    address: 'V'.repeat(81),
-                },
-                {
-                    address: 'Y'.repeat(81),
-                },
-            ];
-        });
-
-        describe('when none of the addresses is spent', () => {
-            it('should return false', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
-
-                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
-                    expect(isSpent).to.eql(false);
-                    wereAddressesSpentFrom.restore();
-                });
-            });
-        });
-
-        describe('when one or more addresses are spent', () => {
-            it('should return true', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, true, false]);
-
-                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
-                    expect(isSpent).to.equal(true);
-                    wereAddressesSpentFrom.restore();
-                });
+                return addressesUtils
+                    .filterSpentAddresses()(inputs, ['U'.repeat(81)])
+                    .then((unspentInputs) => {
+                        expect(unspentInputs).to.eql([{ address: 'V'.repeat(81) }]);
+                    });
             });
         });
     });
@@ -509,7 +469,7 @@ describe('libs: iota/addresses', () => {
             sandbox = sinon.sandbox.create();
 
             sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-            sandbox.stub(extendedApis, 'sendTransferAsync').resolves([{}, {}]);
+            sandbox.stub(extendedApis, 'sendTransferAsync').returns(() => Promise.resolve([{}, {}]));
         });
 
         afterEach(() => {
@@ -520,11 +480,13 @@ describe('libs: iota/addresses', () => {
             it('should throw with an error "Address already attached."', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
 
-                return addressesUtils.attachAndFormatAddress(address, addressIndex, 10, seed, null).catch((error) => {
-                    expect(error.message).to.equal('Address already attached.');
+                return addressesUtils
+                    .attachAndFormatAddress()(address, addressIndex, 10, seed, null)
+                    .catch((error) => {
+                        expect(error.message).to.equal('Address already attached.');
 
-                    findTransactions.restore();
-                });
+                        findTransactions.restore();
+                    });
             });
         });
 
@@ -532,26 +494,30 @@ describe('libs: iota/addresses', () => {
             it('should return an object with formatted address data', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
-                return addressesUtils.attachAndFormatAddress(address, addressIndex, 10, seed, null).then((result) => {
-                    expect(result.addressData).to.eql({
-                        ['U'.repeat(81)]: {
-                            balance: 10,
-                            checksum: 'NXELTUENX',
-                            spent: false,
-                            index: 11,
-                        },
+                return addressesUtils
+                    .attachAndFormatAddress()(address, addressIndex, 10, seed, null)
+                    .then((result) => {
+                        expect(result.addressData).to.eql({
+                            ['U'.repeat(81)]: {
+                                balance: 10,
+                                checksum: 'NXELTUENX',
+                                spent: false,
+                                index: 11,
+                            },
+                        });
+                        findTransactions.restore();
                     });
-                    findTransactions.restore();
-                });
             });
 
             it('should return an object with newly attached transaction object', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
-                return addressesUtils.attachAndFormatAddress(address, addressIndex, 10, seed, null).then((result) => {
-                    expect(result.transfer).to.eql([{}, {}]);
-                    findTransactions.restore();
-                });
+                return addressesUtils
+                    .attachAndFormatAddress()(address, addressIndex, 10, seed, null)
+                    .then((result) => {
+                        expect(result.transfer).to.eql([{}, {}]);
+                        findTransactions.restore();
+                    });
             });
         });
     });
@@ -795,7 +761,7 @@ describe('libs: iota/addresses', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
                     return addressesUtils
-                        .syncAddresses(seed, addressData, () => Promise.resolve('A'.repeat(81)))
+                        .syncAddresses()(seed, addressData, () => Promise.resolve('A'.repeat(81)))
                         .then((newAddressData) => {
                             expect(newAddressData).to.eql(addressData);
 
@@ -850,32 +816,37 @@ describe('libs: iota/addresses', () => {
                         getBalances.onCall(index).yields(null, { balances: [balance] }),
                     );
 
-                    return addressesUtils.syncAddresses(seed, addressData, addressGenFn).then((newAddressData) => {
-                        expect(newAddressData).to.not.eql(addressData);
+                    return addressesUtils
+                        .syncAddresses()(seed, addressData, addressGenFn)
+                        .then((newAddressData) => {
+                            expect(newAddressData).to.not.eql(addressData);
 
-                        // Validate that all existing data is preserved
-                        Object.keys(addressData).forEach((address) => {
-                            expect(newAddressData[address]).to.eql(addressData[address]);
+                            // Validate that all existing data is preserved
+                            Object.keys(addressData).forEach((address) => {
+                                expect(newAddressData[address]).to.eql(addressData[address]);
+                            });
+
+                            // Start index of new addresses will be
+                            // the (highest index of address in existing address data + 1)
+                            const startIndexForNewAddresses =
+                                maxBy(map(addressData, (data) => data), 'index').index + 1;
+
+                            // Then check if all new addresses are merged and have correct properties
+                            addresses.forEach((address, index) => {
+                                const thisAddressData = newAddressData[address];
+
+                                expect(thisAddressData.balance).to.equal(parseInt(balances[index]));
+                                expect(thisAddressData.spent).to.equal(spentStatuses[index]);
+                                expect(thisAddressData.index).to.equal(startIndexForNewAddresses + index);
+                                expect(iota.utils.isValidChecksum(`${address}${thisAddressData.checksum}`)).to.equal(
+                                    true,
+                                );
+                            });
+
+                            findTransactions.restore();
+                            wereAddressesSpentFrom.restore();
+                            getBalances.restore();
                         });
-
-                        // Start index of new addresses will be
-                        // the (highest index of address in existing address data + 1)
-                        const startIndexForNewAddresses = maxBy(map(addressData, (data) => data), 'index').index + 1;
-
-                        // Then check if all new addresses are merged and have correct properties
-                        addresses.forEach((address, index) => {
-                            const thisAddressData = newAddressData[address];
-
-                            expect(thisAddressData.balance).to.equal(parseInt(balances[index]));
-                            expect(thisAddressData.spent).to.equal(spentStatuses[index]);
-                            expect(thisAddressData.index).to.equal(startIndexForNewAddresses + index);
-                            expect(iota.utils.isValidChecksum(`${address}${thisAddressData.checksum}`)).to.equal(true);
-                        });
-
-                        findTransactions.restore();
-                        wereAddressesSpentFrom.restore();
-                        getBalances.restore();
-                    });
                 });
             });
         });
@@ -918,7 +889,7 @@ describe('libs: iota/addresses', () => {
                 const lastAddressIndex = 6;
 
                 return addressesUtils
-                    .removeUnusedAddresses(lastAddressIndex, latestUnusedAddress, addresses)
+                    .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
                     .then((finalAddresses) => {
                         expect(finalAddresses).to.eql([...addresses, latestUnusedAddress]);
 
@@ -939,7 +910,7 @@ describe('libs: iota/addresses', () => {
                 const lastAddressIndex = 6;
 
                 return addressesUtils
-                    .removeUnusedAddresses(lastAddressIndex, latestUnusedAddress, addresses)
+                    .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
                     .then((finalAddresses) => {
                         expect(finalAddresses).to.eql([addresses[0]]);
 
@@ -981,7 +952,7 @@ describe('libs: iota/addresses', () => {
                 const lastAddressIndex = 6;
 
                 return addressesUtils
-                    .removeUnusedAddresses(lastAddressIndex, latestUnusedAddress, addresses)
+                    .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
                     .then((finalAddresses) => {
                         // Till address EEE...EEE with DDD...DDD as the used address
                         // And EEE...EEE as the latest unused address
@@ -1093,27 +1064,70 @@ describe('libs: iota/addresses', () => {
         });
 
         it('should return addresses till one unused', () => {
-            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
-                expect(history.addresses).to.eql([...firstBatchOfAddresses, `${'A'.repeat(80)}9`]);
-            });
+            return addressesUtils
+                .getFullAddressHistory()(seed, addressGenFn)
+                .then((history) => {
+                    expect(history.addresses).to.eql([...firstBatchOfAddresses, `${'A'.repeat(80)}9`]);
+                });
         });
 
         it('should return transaction hashes associated with addresses', () => {
-            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
-                expect(history.hashes).to.eql(['9'.repeat(81)]);
-            });
+            return addressesUtils
+                .getFullAddressHistory()(seed, addressGenFn)
+                .then((history) => {
+                    expect(history.hashes).to.eql(['9'.repeat(81)]);
+                });
         });
 
         it('should return balances associated with addresses', () => {
-            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
-                expect(history.balances).to.eql([...firstBatchOfBalances.map((balance) => parseInt(balance)), 0]);
-            });
+            return addressesUtils
+                .getFullAddressHistory()(seed, addressGenFn)
+                .then((history) => {
+                    expect(history.balances).to.eql([...firstBatchOfBalances.map((balance) => parseInt(balance)), 0]);
+                });
         });
 
         it('should return spent statuses for addresses', () => {
-            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
-                expect(history.wereSpent).to.eql([...firstBatchOfSpentStatuses, false]);
-            });
+            return addressesUtils
+                .getFullAddressHistory()(seed, addressGenFn)
+                .then((history) => {
+                    expect(history.wereSpent).to.eql([...firstBatchOfSpentStatuses, false]);
+                });
+        });
+    });
+
+    describe('#categoriseAddressesBySpentStatus', () => {
+        let addresses;
+        let sandbox;
+
+        before(() => {
+            addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)];
+        });
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, true, false, true]);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        it('should categorise spent addresses', () => {
+            return addressesUtils
+                .categoriseAddressesBySpentStatus()(addresses)
+                .then((result) => {
+                    expect(result.spent).to.eql(['B'.repeat(81), 'D'.repeat(81)]);
+                });
+        });
+
+        it('should categorise unspent addresses', () => {
+            return addressesUtils
+                .categoriseAddressesBySpentStatus()(addresses)
+                .then((result) => {
+                    expect(result.unspent).to.eql(['A'.repeat(81), 'C'.repeat(81)]);
+                });
         });
     });
 });

@@ -49,6 +49,7 @@ class Idle extends React.Component {
         if (this.props.isAuthorised) {
             this.props.setPassword({});
             this.setState({ locked: true });
+            Electron.updateMenu('enabled', false);
         }
     }
 
@@ -57,6 +58,7 @@ class Idle extends React.Component {
         this.setState({
             locked: false,
         });
+        Electron.updateMenu('enabled', true);
     }
 
     attachEvents() {
@@ -100,7 +102,4 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Idle);
+export default connect(mapStateToProps, mapDispatchToProps)(Idle);

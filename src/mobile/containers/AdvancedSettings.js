@@ -19,29 +19,23 @@ const styles = StyleSheet.create({
  */
 export class AdvancedSettings extends PureComponent {
     static propTypes = {
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Currently selected IRI node */
+        /** @ignore */
         node: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Determines if wallet is making a transaction */
+        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
+        /** @ignore */
         remotePoW: PropTypes.bool.isRequired,
     };
 
@@ -57,6 +51,11 @@ export class AdvancedSettings extends PureComponent {
         leaveNavigationBreadcrumb('AdvancedSettings');
     }
 
+    /**
+     * Navigates to node selection setting screen
+     *
+     * @method onNodeSelection
+     */
     onNodeSelection() {
         if (this.props.isSendingTransfer) {
             this.generateChangeNodeAlert();
@@ -65,6 +64,11 @@ export class AdvancedSettings extends PureComponent {
         }
     }
 
+    /**
+     * Navigates to add custom node setting screen
+     *
+     * @method onAddCustomNode
+     */
     onAddCustomNode() {
         if (this.props.isSendingTransfer) {
             this.generateChangeNodeAlert();
@@ -73,6 +77,11 @@ export class AdvancedSettings extends PureComponent {
         }
     }
 
+    /**
+     * Generates an alert if a user tries to navigate to change node or add custom node screen when a transaction is in progress
+     *
+     * @method generateChangeNodeAlert
+     */
     generateChangeNodeAlert() {
         this.props.generateAlert(
             'error',
@@ -83,6 +92,11 @@ export class AdvancedSettings extends PureComponent {
         );
     }
 
+    /**
+     * Navigate to wallet reset confirmation screen
+     *
+     * @method reset
+     */
     reset() {
         const { theme } = this.props;
         this.props.navigator.push({
@@ -99,6 +113,12 @@ export class AdvancedSettings extends PureComponent {
         });
     }
 
+    /**
+     * Render setting rows
+     *
+     * @method renderSettingsContent
+     * @returns {function}
+     */
     renderSettingsContent() {
         const { theme, t, node, autoPromotion, remotePoW } = this.props;
         const rows = [

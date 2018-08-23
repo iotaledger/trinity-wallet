@@ -63,18 +63,31 @@ const styles = StyleSheet.create({
 
 class MultiTextInput extends Component {
     static propTypes = {
+        /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
         setQrMessage: PropTypes.func.isRequired,
+        /** @ignore */
         setQrAmount: PropTypes.func.isRequired,
+        /** @ignore */
         setQrTag: PropTypes.func.isRequired,
+        /** @ignore */
         setQrDenomination: PropTypes.func.isRequired,
+        /** @ignore */
         setSelectedQrTab: PropTypes.func.isRequired,
+        /** Selected tab name */
         selectedTab: PropTypes.string.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
         message: PropTypes.string.isRequired,
+        /** @ignore */
         amount: PropTypes.string.isRequired,
+        /** @ignore */
         denomination: PropTypes.string.isRequired,
+        /** Unit multiplier */
         multiplier: PropTypes.number.isRequired,
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
     };
 

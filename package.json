@@ -1,8 +1,16 @@
 {
-    "name": "iota-wallet",
+    "name": "trinity-wallet",
     "version": "0.0.0",
     "private": true,
-    "description": "",
+    "url": "https://trinity.iota.org",
+    "homepage": "https://trinity.iota.org",
+    "description": "Cross-platform wallet for IOTA",
+    "author": "IOTA Foundation <contact@iota.org>",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/iotaledger/trinity-wallet.git"
+    },
     "main": "index.js",
     "scripts": {
         "lint": "./node_modules/.bin/eslint .",
@@ -23,15 +31,6 @@
             "git add"
         ]
     },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@gitlab.com/iota-community/wallet.git"
-    },
-    "keywords": [],
-    "bugs": {
-        "url": "https://gitlab.com/iota-community/wallet/issues"
-    },
-    "homepage": "https://gitlab.com/iota-community/wallet#README",
     "devDependencies": {
         "auditjs": "^2.4.3",
         "babel-eslint": "^8.2.2",

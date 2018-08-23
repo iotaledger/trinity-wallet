@@ -46,17 +46,13 @@ const styles = StyleSheet.create({
 /** Node Selection component */
 class NodeOptionsOnLogin extends Component {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Sets which login page should be displayed
-         * @param {string} route - current route
-         */
+        /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
-        /** Determines which page should be displayed at login */
+        /** @ignore */
         loginRoute: PropTypes.string.isRequired,
     };
 

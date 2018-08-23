@@ -38,11 +38,9 @@ const styles = StyleSheet.create({
 
 export default class SnapshotTransitionModalContent extends PureComponent {
     static propTypes = {
-        /** Theming object */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Container element callback function */
         onPress: PropTypes.func.isRequired,
