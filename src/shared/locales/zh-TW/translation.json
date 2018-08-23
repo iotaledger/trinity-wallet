@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "轉帳",
-        "cancel": "Cancel",
+        "cancel": "取消",
         "continue?": "您確定要繼續嗎？",
         "noTransactions": "無最近歷史紀錄",
         "refresh": "重新整理",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
         "seed": "種子碼",
         "checksum": "檢查碼",
-        "back": "Back",
+        "back": "返回",
         "goBack": "返回",
         "goBackStep": "返回上一步",
-        "done": "Done",
+        "done": "完成",
         "prev": "上一步",
-        "next": "Next",
+        "next": "繼續",
         "apply": "套用",
         "save": "儲存",
         "close": "關閉",
@@ -54,9 +54,9 @@
         "fifthWallet": "第五帳戶",
         "sixthWallet": "第六帳戶",
         "otherWallet": "其他帳戶",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "是",
+        "no": "否",
+        "okay": "確定",
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
@@ -170,28 +170,28 @@
         "passwordsDoNotMatch": "密碼不符",
         "passwordsDoNotMatchExplanation": "密碼不符，請再試一次。",
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "你的密碼必須至少有 11 個字元長，請再試一次。",
         "oldPassword": "無法設置舊密碼",
         "oldPasswordExplanation": "無法將舊密碼設置為新密碼，請嘗試輸入新的密碼。",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "請確認您使用的密碼強度足夠且至少 11 個字元。",
         "currentPassword": "目前密碼",
         "newPassword": "新密碼",
         "confirmPassword": "確認新密碼",
         "passwordTooWeak": "密碼過弱",
         "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
+        "reasonRow": "直線狀的按鍵組合很容易猜測.",
+        "reasonPattern": "格式太短的按鍵組合很容易猜測.",
+        "reasonNames": "常見的名字和姓氏很容易猜測.",
+        "reasonRepeats": "像「aaa」這樣的重複格式很容易猜測.",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonSequence": "像「abc」或「54321」等一連串的格式很容易猜測.",
+        "reasonYears": "近幾年的年份很容易猜測.",
+        "reasonDates": "日期通常很容易猜測.",
+        "reasonTop10": "這次前十常見密碼.",
+        "reasonTop100": "這是前百常見密碼.",
+        "reasonCommon": "這是非常常見的密碼.",
+        "reasonSimilar": "這和常用密碼非常類似.",
+        "reasonWord": "只有一個單字很容易猜測."
     },
     "setPassword": {
         "choosePassword": "選擇新的密碼",
@@ -296,11 +296,12 @@
         "saveYourSeed": "備份您的種子碼",
         "seedCleared": "種子碼已清除",
         "mostSecure": "最安全",
+        "recommended": "Recommended",
         "leastSecure": "最不安全",
         "paperWallet": "紙錢包",
         "writeYourSeedDown": "寫下您的種子碼",
         "seedClearedExplanation": "為保您的安全，種子碼已從剪貼簿清除。",
-        "letsWriteDownYourSeed": "請寫下您的種子碼",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
         "whatIsChecksum": "每個種子碼會有相對應 3 字元的檢查碼",
@@ -352,10 +353,10 @@
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
     "modeSelection": {
-        "expert": "專業",
+        "advanced": "Advanced",
         "standard": "標準",
-        "expertModeExplanation": "專業模式將會提供像是手動促進和重新連接等額外功能。",
-        "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用專業模式，否則您可能會誤用進階功能。"
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "傳送交易",
@@ -450,7 +451,8 @@
         "viewAddresses": "檢視地址",
         "editAccountName": "編輯帳戶名稱",
         "deleteAccount": "刪除帳戶",
-        "addNewAccount": "新增帳戶"
+        "addNewAccount": "新增帳戶",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "SeedVault 是個能夠安全儲存您的種子碼的加密檔案。種子碼會透過您輸入的密碼加密，而且只能夠用該密碼取得。建議您將檔案儲存在像是 Keepass 這樣的密碼管理器中。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
         "errorRetrievingUpdateDataExplanation": "取得更新資料時發生錯誤，請再試一次。",
         "noUpdatesAvailable": "尚無更新",
-        "noUpdatesAvailableExplanation": "您的 IOTA Trinity 桌面版錢包已經是最新版本！",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "有新版本可用",
-        "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "下載更新版本",
         "skipUpdate": "跳過更新"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "使用條款",
         "accept": "我接受",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "隱私權政策",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

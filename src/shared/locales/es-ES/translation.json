@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "ENVIAR",
-        "cancel": "Cancel",
+        "cancel": "Cancelar",
         "continue?": "¿Seguro que quiere continuar?",
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
         "refresh": "Actualizar",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
         "seed": "Semilla",
         "checksum": "Checksum",
-        "back": "Back",
+        "back": "Atrás",
         "goBack": "Vuelva atrás",
         "goBackStep": "Vuelva al paso anterior",
-        "done": "Done",
+        "done": "Listo",
         "prev": "PREVIO",
-        "next": "Next",
+        "next": "Siguiente",
         "apply": "Aplicar",
         "save": "Guardar",
         "close": "Cerrar",
@@ -54,9 +54,9 @@
         "fifthWallet": "QUINTA CUENTA",
         "sixthWallet": "SEXTA CUENTA",
         "otherWallet": "OTRA CUENTA",
-        "yes": "Yes",
+        "yes": "Sí",
         "no": "No",
-        "okay": "Okay",
+        "okay": "De acuerdo",
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
@@ -296,11 +296,12 @@
         "saveYourSeed": "Haga una copia de respaldo de su semilla",
         "seedCleared": "Semilla borrada",
         "mostSecure": "Más Seguro",
+        "recommended": "Recommended",
         "leastSecure": "Menos Seguro",
         "paperWallet": "Cartera en papel",
         "writeYourSeedDown": "Anote su semilla",
         "seedClearedExplanation": "La semilla ha sido borrada del portapapeles para su seguridad.",
-        "letsWriteDownYourSeed": "Vamos a anotar su semilla",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
         "whatIsChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres",
@@ -352,10 +353,10 @@
         "youCanAdd": "Puede añadir más semillas en el menú de Ajustes."
     },
     "modeSelection": {
-        "expert": "Avanzado",
+        "advanced": "Advanced",
         "standard": "Normal",
-        "expertModeExplanation": "El modo experto le dará acceso a características adicionales como la promoción y revinculacion manuales.",
-        "modesExplanation": "Sólo active el modo experto si es un usuario experimentado con Tangle. De lo contrario, puede encontrarlo confuso."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transferencia en envío",
@@ -450,7 +451,8 @@
         "viewAddresses": "Ver direcciones",
         "editAccountName": "Editar nombre de cuenta",
         "deleteAccount": "Borrar cuenta",
-        "addNewAccount": "Añadir nueva cuenta"
+        "addNewAccount": "Añadir nueva cuenta",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "Un SeedVault es un archivo encriptado para almacenar su semilla con seguridad. La semilla se encripta mediante una contraseña y no se puede acceder a ella sin la contraseña. Se recomienda almacenar el archivo con un gestor de contraseñas como Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Asegúrese de copiar el archivo en varios lugares (ej. disco duro, nube, USB). Si pierde este archivo y no ha almacena su semilla en otro lugar, perderá sus IOTA.",
         "exportFail": "Fallo en la exportación de SeedVault",
         "exportFailExplanation": "Hubo un problema al exportar el SeedVault. Por favor asegúrese de que tiene los servicios apropiados y suficiente espacio libre.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
         "errorRetrievingUpdateDataExplanation": "Hubo un error al recuperar los datos de actualización. Reintente.",
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
-        "noUpdatesAvailableExplanation": "Tiene la última versión de IOTA Trinity para escritorio!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nueva versión disponible",
-        "newVersionAvailableExplanation": "Una nueva versión <strong>{{version}}</strong> <strong>Trinity</strong> está disponible. Por favor lea cuidadosamente los detalles de lanzamiento y verifique el origen de la descarga antes de actualizar:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Descargar versión",
         "skipUpdate": "Omitir actualización"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Términos y Condiciones",
         "accept": "Acepto",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Política de Privacidad",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

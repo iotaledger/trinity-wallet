@@ -7,7 +7,7 @@
         "refresh": "Aktualisieren",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Gesamtsaldo",
         "transferError": "Übertragungsfehler",
         "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
@@ -18,7 +18,7 @@
         "keyReuseError": "Du kannst an keine Adresse senden, von der bereits eine andere Transaktion ausgegangen ist.",
         "invalidResponse": "Nodefehler",
         "invalidResponseExplanation": "Der Node hat einen Fehler zurückgegeben. Versuche einen anderen Node.",
-        "invalidResponseFetchingAccount": "Der Node hat einen Fehler beim Abrufen der Kontoinformationen zurückgegeben. Versuche einen anderen Node.",
+        "invalidResponseFetchingAccount": "Der Node hat beim Abrufen der Kontoinformationen einen Fehler zurückgegeben. Versuche einen anderen Node.",
         "nodeOutOfSync": "Node nicht synchronisiert",
         "nodeOutOfSyncExplanation": "Dein gewählter Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
@@ -27,7 +27,7 @@
         "back": "Zurück",
         "goBack": "Zurück",
         "goBackStep": "Zurück",
-        "done": "Ausgeführt",
+        "done": "Fertig",
         "prev": "ZURÜCK",
         "next": "Weiter",
         "apply": "Anwenden",
@@ -296,13 +296,14 @@
         "saveYourSeed": "Seed sichern",
         "seedCleared": "Seed gelöscht",
         "mostSecure": "Am sichersten",
+        "recommended": "Recommended",
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
         "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
         "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
-        "printBlankWallet": "Ein leeres Wallet drucken",
+        "printBlankWallet": "Leeres Paper-Wallet drucken",
         "whatIsChecksum": "Jeder Seed hat eine dreistellige Prüfsumme",
         "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
         "checksumExplanation": "Bitte überprüfe jedes Mal wenn Du einen Seed dem Wallet hinzufügst, ob die automatisch generierte Prüfsumme mit jener übereinstimmt, die Du aufgeschrieben hast.",
@@ -352,10 +353,10 @@
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "modeSelection": {
-        "expert": "Experte",
+        "advanced": "Erweitert",
         "standard": "Standard",
-        "expertModeExplanation": "Der Experten-Modus bietet Zugriff auf zusätzliche Funktionen wie manuelles Promoten und Reattachen.",
-        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist. Es könnte dich sonst verwirren."
+        "advancedModeExplanation": "Der erweiterte Modus zeigt detaillierte technische Informationen.",
+        "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
@@ -378,7 +379,7 @@
         "nicknameChanged": "Kontoname geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
         "accountDeleted": "Konto gelöscht",
-        "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
+        "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet entfernt.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
         "hide": "Ausblenden",
@@ -450,7 +451,8 @@
         "viewAddresses": "Adressen anzeigen",
         "editAccountName": "Kontoname ändern",
         "deleteAccount": "Konto löschen",
-        "addNewAccount": "Neues Konto hinzufügen"
+        "addNewAccount": "Neues Konto hinzufügen",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
-        "seedVaultExplanation": "Ein SeedVault ist eine verschlüsselte Datei, die deinen Seed enthält. Dein Seed wird in dieser Datei mit einem Passwort gesichert. Deine SeedVault-Datei solltest du in einem Passwortmanager wie KeePass aufbewahren.",
+        "seedVaultExplanation": "Ein SeedVault ist eine Möglichkeit deinen Seed sicher zu speichern. Dein Seed wird verschlüsselt in einer Datei gespeichert und kann ohne das dazugehörige Passwort nicht eingesehen werden.",
         "seedVaultWarning": "Stelle sicher dass du die Datei an verschiedenen Orten ablegst (zum Beispiel auf einer externen Festplatte, einem Cloudspeicher, etc.). Falls du die Datei verlierst und dein Seed nicht an einem weiteren Ort gespeichert wurde, wirst du deine IOTA verlieren.",
         "exportFail": "SeedVault Export fehlgeschlagen",
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
@@ -652,7 +654,7 @@
         "errorRetrievingUpdateData": "Fehler beim Abrufen der Aktualisierungsdaten",
         "errorRetrievingUpdateDataExplanation": "Es gab einen Fehler beim Abrufen der Aktualisierungsdaten. Bitte versuche es nochmal.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
-        "noUpdatesAvailableExplanation": "Du hast die neueste Version der IOTA Trinity Desktop-Wallet!",
+        "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
         "downloadRelease": "Update herunterladen",
@@ -671,21 +673,21 @@
         "agree": "Ich stimme zu"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Tray-Icon",
+        "trayExplanation": "Dies gibt dir eine Übersicht über deinen Kontostand und den Transaktionsverlauf.",
+        "notLoggedIn": "Du bist nicht angemeldet",
+        "setupIncomplete": "Einrichtung des Wallet abgeschlossen",
+        "completeSetup": "Einrichtung abschließen"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "notifications": "Benachrichtigungen",
+        "notificationExplanation": "Systemweite Benachrichtigungen über neue Transaktionen erhalten.",
+        "typeConfirmations": "Über Bestätigungen benachrichtigen",
+        "typeMessages": "Über Null-Wert Transaktionen benachrichtigen",
+        "multipleTx": "Du hast mehrere Transaktionen in {{account}} erhalten",
+        "valueTx": "Du hast {{value}} in {{account}} erhalten",
+        "messageTx": "Du hast eine Nachricht in {{account}} erhalten",
+        "confirmedIn": "Eine eingehende Transaktion über {{value}} in {{account}} wurde bestätigt",
+        "confirmedOut": "Eine ausgehende Transaktion über {{value}} in {{account}} wurde bestätigt"
     }
 }
