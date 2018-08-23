@@ -14,6 +14,7 @@ import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
+import { setOnboardingName } from 'actions/ui';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -67,6 +68,11 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
+<<<<<<< HEAD
+=======
+        setOnboardingName: PropTypes.func.isRequired,
+        /** @ignore */
+>>>>>>> develop
         t: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLink: PropTypes.func.isRequired,
@@ -208,6 +214,8 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
+                this.props.setOnboardingName('');
+                Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
                 break;
             default:
@@ -280,6 +288,7 @@ const mapDispatchToProps = {
     generateAlert,
     fetchNodeList,
     updateTheme,
+    setOnboardingName,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

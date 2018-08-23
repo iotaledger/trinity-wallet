@@ -2,7 +2,7 @@ export const __DEV__ = process.env.NODE_ENV === 'development';
 export const __TEST__ = process.env.NODE_ENV === 'test';
 
 /** Default IRI node */
-export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://trinity.iota.fm:443';
+export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
 
 export const nodesWithPoWEnabled = [
     'https://pow1.iota.community:443',
@@ -12,8 +12,6 @@ export const nodesWithPoWEnabled = [
     'https://pow5.iota.community:443',
     'https://pow6.iota.community:443',
     'https://nodes.iota.fm:443',
-    'https://trinity.iota.fm:443',
-    'https://iri2.iota.fm:443',
     'https://iotanode.us:443',
 ];
 

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
+<<<<<<< HEAD
 import { clearVault, getSeed } from 'libs/crypto';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
@@ -26,11 +27,22 @@ import { generateAlert } from 'actions/alerts';
 import { toggleModalActivity } from 'actions/ui';
 
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
+=======
+import { clearVault } from 'libs/crypto';
+
+import {
+    changePowSettings,
+    changeAutoPromotionSettings,
+    setLockScreenTimeout,
+    setTray,
+    setNotifications,
+} from 'actions/settings';
+
+import { generateAlert } from 'actions/alerts';
+>>>>>>> develop
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
-import ModalConfirm from 'ui/components/modal/Confirm';
-import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
 import Checkbox from 'ui/components/Checkbox';
 import TextInput from 'ui/components/input/Text';
@@ -44,6 +56,15 @@ import css from './index.scss';
 class Advanced extends PureComponent {
     static propTypes = {
         /** @ignore */
+<<<<<<< HEAD
+=======
+        settings: PropTypes.object.isRequired,
+        /** @ignore */
+        setTray: PropTypes.func.isRequired,
+        /** @ignore */
+        setNotifications: PropTypes.func.isRequired,
+        /** @ignore */
+>>>>>>> develop
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
@@ -55,6 +76,7 @@ class Advanced extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+<<<<<<< HEAD
         /** @ignore */
         settings: PropTypes.object.isRequired,
         /** @ignore */
@@ -91,25 +113,13 @@ class Advanced extends PureComponent {
         setTray: PropTypes.func.isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
+=======
+>>>>>>> develop
     };
 
     state = {
         resetConfirm: false,
     };
-
-    componentWillReceiveProps(newProps) {
-        const { balanceCheckFlag } = this.props;
-        if (balanceCheckFlag !== newProps.balanceCheckFlag) {
-            this.props.toggleModalActivity();
-            return;
-        }
-        const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
-        if (isTransitioning || isAttachingToTangle || isModalActive) {
-            Electron.updateMenu('enabled', false);
-        } else {
-            Electron.updateMenu('enabled', true);
-        }
-    }
 
     /**
      * Hard reset wallet
@@ -144,6 +154,7 @@ class Advanced extends PureComponent {
         this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
     };
 
+<<<<<<< HEAD
     /**
      * Trigger manual account sync Worker task
      * @returns {Promise}
@@ -193,6 +204,8 @@ class Advanced extends PureComponent {
         this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);
     };
 
+=======
+>>>>>>> develop
     render() {
         const {
             settings,
@@ -201,38 +214,14 @@ class Advanced extends PureComponent {
             lockScreenTimeout,
             setTray,
             setNotifications,
+<<<<<<< HEAD
             ui,
+=======
+>>>>>>> develop
             t,
         } = this.props;
 
-        // snapshot transition
-        const { isTransitioning, isAttachingToTangle, isModalActive, transitionBalance } = this.props;
         const { resetConfirm } = this.state;
-
-        if ((isTransitioning || isAttachingToTangle) && !isModalActive) {
-            return (
-                <Loading
-                    loop
-                    transparent={false}
-                    title={t('advancedSettings:snapshotTransition')}
-                    subtitle={
-                        <React.Fragment>
-                            {!isAttachingToTangle ? (
-                                <div>
-                                    {t('snapshotTransition:transitioning')} <br />
-                                    {t('snapshotTransition:generatingAndDetecting')} {t('global:pleaseWaitEllipses')}
-                                </div>
-                            ) : (
-                                <div>
-                                    {t('snapshotTransition:attaching')} <br />
-                                    {t('loading:thisMayTake')} {t('global:pleaseWaitEllipses')}
-                                </div>
-                            )}
-                        </React.Fragment>
-                    }
-                />
-            );
-        }
 
         return (
             <div className={css.scroll}>
@@ -259,6 +248,7 @@ class Advanced extends PureComponent {
                     <p>{t('advancedSettings:autoPromotionExplanation')}</p>
                     <hr />
 
+<<<<<<< HEAD
                     <h3>{t('tray:trayApplication')}</h3>
                     <Toggle
                         checked={settings.isTrayEnabled}
@@ -268,6 +258,21 @@ class Advanced extends PureComponent {
                     />
                     <p>{t('tray:trayExplanation')}</p>
                     <hr />
+=======
+                    {Electron.getOS() === 'darwin' && (
+                        <React.Fragment>
+                            <h3>{t('tray:trayApplication')}</h3>
+                            <Toggle
+                                checked={settings.isTrayEnabled}
+                                onChange={() => setTray(!settings.isTrayEnabled)}
+                                on={t('enabled')}
+                                off={t('disabled')}
+                            />
+                            <p>{t('tray:trayExplanation')}</p>
+                            <hr />
+                        </React.Fragment>
+                    )}
+>>>>>>> develop
 
                     <h3>{t('notifications:notifications')}</h3>
                     <Toggle
@@ -280,6 +285,7 @@ class Advanced extends PureComponent {
                         disabled={!settings.notifications.general}
                         checked={settings.notifications.confirmations}
                         label={t('notifications:typeConfirmations')}
+<<<<<<< HEAD
                         className="small"
                         onChange={(value) => setNotifications({ type: 'confirmations', enabled: value })}
                     />
@@ -299,49 +305,19 @@ class Advanced extends PureComponent {
                         {t('snapshotTransition:hasSnapshotTakenPlace')}
                     </p>
                     <Button
+=======
+>>>>>>> develop
                         className="small"
-                        onClick={this.startSnapshotTransition}
-                        loading={isTransitioning || isAttachingToTangle}
-                    >
-                        {t('snapshotTransition:transition')}
-                    </Button>
-                    <ModalConfirm
-                        isOpen={isModalActive}
-                        category="primary"
-                        onConfirm={this.transitionBalanceOk}
-                        onCancel={this.transitionBalanceWrong}
-                        content={{
-                            title: t('snapshotTransition:detectedBalance', {
-                                amount: round(formatValue(transitionBalance), 1),
-                                unit: formatUnit(transitionBalance),
-                            }),
-                            message: t('snapshotTransition:isThisCorrect'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
-                        }}
+                        onChange={(value) => setNotifications({ type: 'confirmations', enabled: value })}
                     />
-                    <hr />
-
-                    <h3>{t('advancedSettings:manualSync')}</h3>
-                    {ui.isSyncing ? (
-                        <p>
-                            {t('manualSync:syncingYourAccount')} <br />
-                            {t('manualSync:thisMayTake')}
-                        </p>
-                    ) : (
-                        <p>
-                            {t('manualSync:outOfSync')} <br />
-                            {t('manualSync:pressToSync')}
-                        </p>
-                    )}
-                    <Button
-                        onClick={this.syncAccount}
+                    <Checkbox
+                        disabled={!settings.notifications.general}
+                        checked={settings.notifications.messages}
+                        label={t('notifications:typeMessages')}
                         className="small"
-                        loading={ui.isSyncing}
-                        disabled={isTransitioning || isAttachingToTangle}
-                    >
-                        {t('manualSync:syncAccount')}
-                    </Button>
+                        onChange={(value) => setNotifications({ type: 'messages', enabled: value })}
+                    />
+                    <p>{t('notifications:notificationExplanation')}</p>
                     <hr />
 
                     <TextInput
@@ -396,18 +372,15 @@ class Advanced extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+<<<<<<< HEAD
     wallet: state.wallet,
     ui: state.ui,
     selectedAccountName: getSelectedAccountName(state),
     addresses: getAddressesForSelectedAccount(state),
+=======
+>>>>>>> develop
     settings: state.settings,
     lockScreenTimeout: state.settings.lockScreenTimeout,
-    transitionBalance: state.wallet.transitionBalance,
-    balanceCheckFlag: state.wallet.balanceCheckFlag,
-    transitionAddresses: state.wallet.transitionAddresses,
-    isAttachingToTangle: state.ui.isAttachingToTangle,
-    isTransitioning: state.ui.isTransitioning,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
@@ -415,12 +388,15 @@ const mapDispatchToProps = {
     changePowSettings,
     changeAutoPromotionSettings,
     setLockScreenTimeout,
+<<<<<<< HEAD
     toggleModalActivity,
     completeSnapshotTransition,
     manuallySyncAccount,
     transitionForSnapshot,
     generateAddressesAndGetBalance,
     setBalanceCheckFlag,
+=======
+>>>>>>> develop
     setTray,
     setNotifications,
 };

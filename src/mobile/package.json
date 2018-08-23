@@ -1,12 +1,20 @@
 {
+<<<<<<< HEAD
   "name": "mobile",
+=======
+  "name": "trinity-mobile",
+>>>>>>> develop
   "version": "0.4.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Mobile wallet for IOTA",
   "author": "IOTA Foundation <contact@iota.org>",
+<<<<<<< HEAD
   "license": "MIT",
+=======
+  "license": "Apache-2.0",
+>>>>>>> develop
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iotaledger/trinity-wallet.git"

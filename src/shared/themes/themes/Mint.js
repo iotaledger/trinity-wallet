@@ -1,6 +1,6 @@
 export default {
     chart: { color: 'rgb(9, 249, 186)' },
-    box: { bg: 'rgb(5, 33, 50)', alt: 'rgb(13, 52, 76)', body: 'rgb(240, 242, 246)' },
+    box: { bg: 'rgb(2, 41, 55)', alt: 'rgb(0, 62, 79)', body: 'rgb(240, 242, 246)' },
     bar: { bg: 'rgb(20, 24, 37)', hover: 'rgb(25, 39, 51)', alt: 'rgb(20, 24, 37)', color: 'rgb(240, 242, 246)' },
     label: { color: 'rgb(240, 242, 246)', hover: 'rgb(9, 249, 186)' },
     input: {
@@ -10,8 +10,8 @@ export default {
         hover: 'rgba(255, 255, 255, 0.4)',
         color: 'rgb(255, 255, 255)',
     },
-    negative: { color: 'rgb(168, 89, 64)', hover: 'rgb(185, 64, 6)', body: 'rgb(255, 255, 255)' },
-    positive: { color: 'rgb(79, 158, 85)', hover: 'rgb(64, 149, 104)', body: 'rgb(255, 255, 255)' },
+    negative: { color: 'rgb(172, 69, 69)', hover: 'rgb(146, 57, 57)', body: 'rgb(255, 255, 255)' },
+    positive: { color: 'rgb(36, 147, 87)', hover: 'rgb(31, 126, 74)', body: 'rgb(255, 255, 255)' },
     dark: { color: 'rgb(0, 41, 56)', hover: 'rgb(30, 30, 30)', body: 'rgb(240, 242, 246)' },
     secondary: { color: 'rgb(0, 198, 255)', hover: 'rgb(0, 174, 224)', body: 'rgb(30, 30, 30)' },
     primary: {
