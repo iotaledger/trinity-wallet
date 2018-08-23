@@ -31,7 +31,7 @@
     "compile:win": "electron-builder --win --x64",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
     "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
-    "release": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
+    "release": "build -mwl"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

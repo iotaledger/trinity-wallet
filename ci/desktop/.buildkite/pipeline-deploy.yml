@@ -3,11 +3,8 @@ steps:
     command:
       - "yarn"
       - "cd src/shared && yarn && cd ../.."
-      - "cd src/desktop && yarn && cd ../.."
-      - "cd src/desktop && yarn build && node_modules/.bin/electron-builder -mwl"
+      - "cd src/desktop && yarn && yarn build && yarn release"
     artifact_paths:
       - "out/*"
-
-  - wait
-
-# TODO: GitHub release tasks
+    env:
+      - WIN_CSC_LINK: "./cert.p12"
