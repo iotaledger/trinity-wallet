@@ -1,4 +1,5 @@
 const { Menu, ipcMain, dialog, shell } = require('electron');
+const { autoUpdater } = require('electron-updater');
 
 const state = {
     authorised: false,
@@ -11,6 +12,10 @@ let language = {
     checkUpdate: 'Check for Updates',
     settings: 'Settings',
     accountSettings: 'Account management',
+    accountName: 'Account name',
+    viewSeed: 'View seed',
+    viewAddresses: 'View addresses',
+    tools: 'Tools',
     newAccount: 'Add new account',
     language: 'Language',
     node: 'Node',
@@ -39,7 +44,74 @@ let language = {
     logoutConfirm: 'Are you sure you want to log out?',
     yes: 'Yes',
     no: 'No',
+    updates: {
+        errorRetrievingUpdateData: 'Error retrieving update data',
+        noUpdatesAvailable: 'No updates available',
+        noUpdatesAvailableExplanation: 'You have the latest version of Trinity!',
+        newVersionAvailable: 'New version available',
+        newVersionAvailableExplanation: 'A new Trinity version is available. Do you want to update now?',
+        installUpdate: 'Install update and restart',
+        installUpdateExplanation: 'Download complete, Trinity will now restart to install the update',
+    },
 };
+
+// Disable automatic update downloads
+autoUpdater.autoDownload = false;
+
+/**
+ * On update error event callback
+ */
+autoUpdater.on('error', (error) => {
+    console.log(error);
+    dialog.showErrorBox(
+        language.updates.errorRetrievingUpdateData,
+        error === null ? 'unknown' : (error.stack || error).toString(),
+    );
+});
+
+/**
+ * On update available event callback
+ */
+autoUpdater.on('update-available', () => {
+    dialog.showMessageBox(
+        {
+            type: 'info',
+            title: language.updates.newVersionAvailable,
+            message: language.updates.newVersionAvailableExplanation,
+            buttons: [language.yes, language.no],
+        },
+        (buttonIndex) => {
+            if (buttonIndex === 0) {
+                autoUpdater.downloadUpdate();
+            }
+        },
+    );
+});
+
+/**
+ * On update not available event callback
+ */
+autoUpdater.on('update-not-available', () => {
+    dialog.showMessageBox({
+        title: language.updates.updates.noUpdatesAvailable,
+        message: language.updates.updates.noUpdatesAvailableExplanation,
+    });
+});
+
+/**
+ * On update ready to install event callback
+ */
+autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox(
+        {
+            title: language.updates.updates.installUpdate,
+            message: language.updates.updates.installUpdateExplanation,
+        },
+        () => {
+            setImmediate(() => autoUpdater.quitAndInstall());
+        },
+    );
+});
 
 /**
  * Create native menu tree and apply to the application window
@@ -70,13 +142,13 @@ const initMenu = (app, getWindow) => {
                     {
                         type: 'separator',
                     },
-                    /* TODO: Merge PR #208
                     {
                         label: `${language.checkUpdate}...`,
-                        click: () => {}, 
+                        click: () => {
+                            autoUpdater.checkForUpdates();
+                        },
                         enabled: state.enabled,
                     },
-                    */
                     {
                         label: language.errorLog,
                         click: () => navigate('errorlog'),
@@ -197,8 +269,32 @@ const initMenu = (app, getWindow) => {
                     },
                     {
                         label: language.accountSettings,
-                        click: () => navigate('account/name'),
                         enabled: state.enabled,
+                        submenu: [
+                            {
+                                label: language.accountName,
+                                click: () => navigate('account/name'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                label: language.viewSeed,
+                                click: () => navigate('account/seed'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                label: language.viewAddresses,
+                                click: () => navigate('account/addresses'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                type: 'separator',
+                            },
+                            {
+                                label: language.tools,
+                                click: () => navigate('account/tools'),
+                                enabled: state.enabled,
+                            },
+                        ],
                     },
                     {
                         type: 'separator',
@@ -244,7 +340,7 @@ const initMenu = (app, getWindow) => {
                 {
                     label: `${app.getName()} Help`,
                     click: function() {
-                        shell.openExternal('https://docs.iota.works/trinity');
+                        shell.openExternal('https://docs.iota.works/trinity/faqs');
                     },
                 },
             ],

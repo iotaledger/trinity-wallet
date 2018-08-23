@@ -67,22 +67,25 @@ class GenerateSeed extends React.PureComponent {
      * @param {number} position - Letter seed position index
      * @returns {undefined}
      */
-    updateLetter = (event, position) => {
-        const { seed, clicks } = this.state;
+    updateLetter = (e) => {
+        const { seed, clicks, scramble } = this.state;
 
-        if (event) {
-            event.preventDefault();
-        }
+        const position = e.target.value;
 
         const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
 
         const newSeed = seed.slice(0);
         newSeed[position] = createRandomSeed(1)[0];
 
+        scramble[position] = 64;
+
         this.setState(() => ({
             seed: newSeed,
             clicks: newClicks,
+            scramble: scramble,
         }));
+
+        this.unscramble();
     };
 
     /**
@@ -173,9 +176,9 @@ class GenerateSeed extends React.PureComponent {
                                 const letter = byteToChar(byte + offset);
                                 return (
                                     <button
-                                        onClick={(e) => this.updateLetter(e, index)}
+                                        onClick={this.updateLetter}
                                         key={`${index}${letter}`}
-                                        value={letter}
+                                        value={index}
                                         style={{ opacity: 1 - offset / 255 }}
                                     >
                                         {letter}

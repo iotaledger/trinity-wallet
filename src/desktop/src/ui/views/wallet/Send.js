@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
+import { getCurrencySymbol } from 'libs/currency';
+import { round } from 'libs/utils';
 
 import { getSeed } from 'libs/crypto';
 
@@ -35,7 +37,7 @@ class Send extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        balance: PropTypes.number.isRequired,
+        availableBalance: PropTypes.number.isRequired,
         /** @ignore */
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
@@ -81,6 +83,9 @@ class Send extends React.PureComponent {
             this.props.setSendMessageField(message);
         }
         if (amount) {
+            if (typeof amount === 'number') {
+                amount = amount.toString();
+            }
             this.props.setSendAmountField(amount);
         }
     }
@@ -99,12 +104,16 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { fields, isSending, balance, settings, progress, t } = this.props;
+        const { fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
             parseInt(fields.amount) > 0
-                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)}`
+                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
+                      settings.currency,
+                  )}${(
+                    round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
 
         return (
@@ -136,7 +145,7 @@ class Send extends React.PureComponent {
                         settings={settings}
                         label={t('send:amount')}
                         labelMax={t('send:max')}
-                        balance={balance}
+                        balance={availableBalance}
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
                     <TextInput

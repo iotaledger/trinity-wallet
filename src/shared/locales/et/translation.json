@@ -290,12 +290,13 @@
         "spent": "Kulutatud",
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "QR-koodide jagamiseks on vaja failisüsteemi luba.",
-        "tag": "Märgis"
+        "tag": "Silt"
     },
     "saveYourSeed": {
         "saveYourSeed": "Varunda oma seeme",
         "seedCleared": "Seeme puhastatud",
         "mostSecure": "Kõige turvalisem",
+        "recommended": "Recommended",
         "leastSecure": "Kõige ebaturvalisem",
         "paperWallet": "Paber rahakott",
         "writeYourSeedDown": "Kirjutage oma seeme üles",
@@ -352,9 +353,9 @@
         "youCanAdd": "Te saate seemneid juurde lisada Sätete menüüst."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "advanced": "Ekspert",
         "standard": "Tavaline",
-        "expertModeExplanation": "Ekspert režiim annab juurdepääsu lisafunktsioone nagu käsitsi edutamine ja uuesti kinnitamine.",
+        "advancedModeExplanation": "Ekspert režiimis kuvatakse üksikasjalist tehnilist informatsiooni.",
         "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena."
     },
     "settings": {
@@ -450,7 +451,8 @@
         "viewAddresses": "Vaata aadresse",
         "editAccountName": "Muuda konto nime",
         "deleteAccount": "Kustuta konto",
-        "addNewAccount": "Lisa uus konto"
+        "addNewAccount": "Lisa uus konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportige seemnehoidla",
-        "seedVaultExplanation": "Seemnehoidla on krüptitud faili teie seeme turvaliseks hoiustamiseks. Seeme on krüptitud parooli taha ja sellele ei saa ilma paroolita ligi pääseda. On soovitatav varundada fail paroolihaldurisse nagu Keepass.",
+        "seedVaultExplanation": "Seemnehoidla on krüptitud fail seemne turvalisena hoidmiseks. Seeme on krüptitud parooli taha ning sellele pole võimalik ilma paroolita ligi pääseda.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
         "errorRetrievingUpdateDataExplanation": "Värskendusteabe allalaadimisel ilmnes viga. Palun proovige uuesti.",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
-        "noUpdatesAvailableExplanation": "Teil on IOTA Trinity rahakoti uusim versioon!",
+        "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
         "newVersionAvailable": "Uus versioon saadaval",
-        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> versioon <strong>{{version}}</strong> on saadaval. Palun lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
+        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
         "downloadRelease": "Laadige värskendus alla",
         "skipUpdate": "Jätke värskendus vahele"
     },
@@ -664,28 +666,28 @@
     "terms": {
         "termsAndConditions": "Kasutustingimused",
         "accept": "Nõustun",
-        "readAllToContinue": "Palun lugege kogu tekst jätkamiseks"
+        "readAllToContinue": "Palun lugege kogu tekst"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privaatsuspoliitika",
         "agree": "Nõustun"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Annab teile kiire ülevaate teie kontojäägi ja hiljutise ajaloo kohta.",
+        "trayApplication": "Tegumiriba taotlus",
+        "trayExplanation": "Annab ülevaate teie kontojäägi ja tehingute ajaloo kohta.",
         "notLoggedIn": "Te pole sisse loginud",
         "setupIncomplete": "Rahakoti seadistus on mittetäielik",
-        "completeSetup": "Complete setup"
+        "completeSetup": "Lõpeta seadistus"
     },
     "notifications": {
         "notifications": "Teated",
-        "notificationExplanation": "Saage kogu süsteemi teateid uute tehingute kohta",
+        "notificationExplanation": "Saage kogu süsteemi teateid uute tehingute kohta.",
         "typeConfirmations": "Teatage kinnituste kohta",
         "typeMessages": "Teatage nullväärtusega tehingute kohta",
-        "multipleTx": "Teile laekus mitu tehingut kontole {{account}}",
-        "valueTx": "Teile laeukus {{value}} kontole {{account}}",
+        "multipleTx": "Mitme tehingu laekumine kasutajale {{account}}",
+        "valueTx": "Laekumine {{value}} kasutajale {{account}}",
         "messageTx": "Teile saabus sõnum {{account}}",
-        "confirmedIn": "Sissetulev {{value}} tehing kinnitati {{account}}",
-        "confirmedOut": "Väljaminev {{value}} tehing kinnitati {{account}}"
+        "confirmedIn": "Sissetulev {{value}} kasutajale {{account}} on kinnitatud",
+        "confirmedOut": "Väljaminev {{value}} kasutajalt {{account}} on kinnitanud"
     }
 }

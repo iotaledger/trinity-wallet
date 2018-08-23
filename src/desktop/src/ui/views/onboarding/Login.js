@@ -10,6 +10,7 @@ import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
+import { setOnboardingName } from 'actions/ui';
 
 import { getSelectedAccountName } from 'selectors/accounts';
 
@@ -60,6 +61,8 @@ class Login extends React.Component {
         /** @ignore */
         getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
         /** @ignore */
+        setOnboardingName: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -72,9 +75,10 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { wallet } = this.props;
+        const { wallet, ui } = this.props;
 
-        if (wallet.ready && wallet.addingAdditionalAccount) {
+        if (ui.onboarding.name || (wallet.ready && wallet.addingAdditionalAccount)) {
+            this.props.setOnboardingName('');
             this.setupAccount();
         } else {
             this.props.clearWalletData();
@@ -264,6 +268,7 @@ const mapDispatchToProps = {
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
     getAccountInfo,
+    setOnboardingName,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));

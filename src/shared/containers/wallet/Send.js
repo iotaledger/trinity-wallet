@@ -9,7 +9,7 @@ import { makeTransaction } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
-import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
+import { getSelectedAccountName, getBalanceForSelectedAccount, getAvailableBalanceForSelectedAccount } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
@@ -21,6 +21,7 @@ export default function withSendData(SendComponent) {
     class SendData extends React.Component {
         static propTypes = {
             balance: PropTypes.number.isRequired,
+            availableBalance: PropTypes.number.isRequired,
             accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
             wallet: PropTypes.object.isRequired,
@@ -170,6 +171,7 @@ export default function withSendData(SendComponent) {
         render() {
             const {
                 balance,
+                availableBalance,
                 settings,
                 marketData,
                 wallet,
@@ -217,6 +219,7 @@ export default function withSendData(SendComponent) {
                 accountName,
                 generateAlert,
                 balance,
+                availableBalance,
                 theme,
                 t,
             };
@@ -230,6 +233,7 @@ export default function withSendData(SendComponent) {
     const mapStateToProps = (state) => ({
         wallet: state.wallet,
         balance: getBalanceForSelectedAccount(state),
+        availableBalance: getAvailableBalanceForSelectedAccount(state),
         accountName: getSelectedAccountName(state),
         settings: state.settings,
         marketData: state.marketData,

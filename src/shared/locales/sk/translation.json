@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "ODOSLAŤ",
-        "cancel": "Cancel",
+        "cancel": "Zrušiť",
         "continue?": "Ste si istý, že chcete pokračovať?",
         "noTransactions": "ŽIADNA NEDÁVNA HISTÓRIA",
         "refresh": "Obnoviť",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",
         "seed": "Seed",
         "checksum": "Kontrolný súčet",
-        "back": "Back",
+        "back": "Späť",
         "goBack": "Naspäť",
         "goBackStep": "Návrat o krok späť",
-        "done": "Done",
+        "done": "Hotovo",
         "prev": "Predchádzajúci",
-        "next": "Next",
+        "next": "Ďalej",
         "apply": "Použiť",
         "save": "Uložiť",
         "close": "Zatvoriť",
@@ -54,9 +54,9 @@
         "fifthWallet": "PIATY ÚČET",
         "sixthWallet": "ŠIESTY ÚČET",
         "otherWallet": "INÝ ÚČET",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Áno",
+        "no": "Nie",
+        "okay": "Dobre",
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
@@ -296,11 +296,12 @@
         "saveYourSeed": "Zálohujte váš Seed",
         "seedCleared": "Seed bol vymazaný",
         "mostSecure": "Najbezpečnejšie",
+        "recommended": "Recommended",
         "leastSecure": "Najmenej bezpečné",
         "paperWallet": "Papierová peňaženka",
         "writeYourSeedDown": "Zapíšte si váš Seed",
         "seedClearedExplanation": "Kvôli väčšej bezpečnosti bol Seed zo schránky vymazaný.",
-        "letsWriteDownYourSeed": "Zapíšte si váš Seed",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
         "printBlankWallet": "Tlač prázdnej šablóny",
         "whatIsChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet",
@@ -352,10 +353,10 @@
         "youCanAdd": "Viac Seedov môžete pridať v menu Nastavenia."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Štandardný",
-        "expertModeExplanation": "Režim Expert umožní prístup k ďalším funkciám ako manuálna podpora a opätovné pripojenie.",
-        "modesExplanation": "Režim Expert aktivujte iba v prípade, že ste skúsený užívateľ Tangle. Inak pre vás môže byť mätúci."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Odosielanie transakcie",
@@ -450,7 +451,8 @@
         "viewAddresses": "Zobraziť adresy",
         "editAccountName": "Upraviť názov účtu",
         "deleteAccount": "Vymazať účet",
-        "addNewAccount": "Pridať nový účet"
+        "addNewAccount": "Pridať nový účet",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportovať SeedVault",
-        "seedVaultExplanation": "SeedVault je šifrovaný súbor pre bezpečné uchovanie Vášho seed-u. Seed je šifrovaný heslom a nemôže byť sprístupný bez hesla. Odporúča sa, aby ste si tento súbor uložili do správcu hesiel ako Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Uistite sa, že si zálohujete súbor na viacerých miestach (napríklad pevný disk, cloud, USB). Ak stratíte tento súbor a nebudete mať uložený Váš seed iným spôsobom, stratíte Vaše IOTA.",
         "exportFail": "Export SeedVault zlyhal",
         "exportFailExplanation": "Počas exportovania Vášho SeedVault nastal problém. Prosím, uistite sa, že máte povolenie na zápis súborov a dostatok miesta.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
         "errorRetrievingUpdateDataExplanation": "Pri aktualizácii došlo k chybe. Prosím skúste to znova.",
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
-        "noUpdatesAvailableExplanation": "Máte najnovšiu verziu IOTA Trinity Desktop peňaženky!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozícií je nová verzia",
-        "newVersionAvailableExplanation": "Je k dispozícii nová verzia<strong>Trinity</strong>peňaženky<strong>{{version}}</strong>. Pred aktualizáciou si pozorne prečítajte detaily k tomuto vydanie a overte si zdroj, z ktorého softvér sťahujete:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Stiahnuť aktualizáciu",
         "skipUpdate": "Aktualizovať neskôr"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Podmienky používania",
         "accept": "Akceptujem",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

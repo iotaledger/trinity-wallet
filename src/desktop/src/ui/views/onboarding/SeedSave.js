@@ -47,18 +47,18 @@ class SeedSave extends PureComponent {
                         </p>
                     </Trans>
                     <nav className={css.choice}>
-                        <a onClick={() => this.setState({ exportVisible: true })}>
-                            <div>
-                                <Icon icon="vault" size={28} />
-                            </div>
-                            <h4>{t('seedVault:exportSeedVault')}</h4>
-                        </a>
-                        <a onClick={() => this.setState({ writeVisible: true })} className={css.secure}>
-                            <h3>{t('saveYourSeed:mostSecure')}</h3>
+                        <a onClick={() => this.setState({ writeVisible: true })}>
                             <div>
                                 <Icon icon="write" size={24} />
                             </div>
                             <h4>{t('saveYourSeed:writeYourSeedDown')}</h4>
+                        </a>
+                        <a onClick={() => this.setState({ exportVisible: true })} className={css.secure}>
+                            <h3>{t('saveYourSeed:recommended')}</h3>
+                            <div>
+                                <Icon icon="vault" size={28} />
+                            </div>
+                            <h4>{t('seedVault:exportSeedVault')}</h4>
                         </a>
                         <a onClick={() => window.print()}>
                             <div>

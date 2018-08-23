@@ -1,14 +1,14 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.3.1-rc.1",
+  "version": "0.3.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
   "main": "main.js",
   "author": "IOTA Foundation <contact@iota.org>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "moduleRoots": [
     ".",
     "src",
@@ -27,7 +27,7 @@
     "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack --env=production --config webpack.config",
     "compile": "npm run build && npm run compile:linux && npm run compile:mac && npm run compile:win",
     "compile:linux": "electron-builder --linux --x64",
-    "compile:mac": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --x64",
+    "compile:mac": "cross-env electron-builder --mac --x64",
     "compile:win": "electron-builder --win --x64",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
     "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
@@ -74,7 +74,7 @@
       "buildResources": "./assets",
       "output": "./out"
     },
-    "appId": "com.iotatoken.trinity",
+    "appId": "org.iota.trinity",
     "asar": true,
     "protocols": [
       {
@@ -135,6 +135,7 @@
     "curl.lib.js": "^1.0.22",
     "date-fns": "^1.29.0",
     "electron-settings": "^3.2.0",
+    "electron-updater": "^3.0.3",
     "entangled-node": "rihardsgravis/entangled-node",
     "i18next": "^11.5.0",
     "iota.lib.js": "^0.4.7",

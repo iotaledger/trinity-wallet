@@ -3013,15 +3013,6 @@ iota.lib.js@^0.5.0:
     crypto-js "^3.1.9-1"
     xmlhttprequest "^1.8.0"
 
-"iota.lib.js@git+https://git@github.com/laumair/iota.lib.js#911e5e2":
-  version "0.4.7"
-  resolved "git+https://git@github.com/laumair/iota.lib.js#911e5e242e7eec5b3ed54dde3c2779906538d725"
-  dependencies:
-    async "^2.5.0"
-    bignumber.js "^4.1.0"
-    crypto-js "^3.1.9-1"
-    xmlhttprequest "^1.8.0"
-
 ip-regex@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-1.0.3.tgz#dc589076f659f419c222039a33316f1c7387effd"

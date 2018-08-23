@@ -14,7 +14,7 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 /**
  * Set AppUserModelID for Windows notifications functionallity
  */
-app.setAppUserModelId('com.iotatoken.trinity');
+app.setAppUserModelId('org.iota.trinity');
 
 /**
  * Set environment mode
@@ -51,8 +51,8 @@ if (!devMode) {
 let settings = null;
 
 let windowState = {
-    width: 1024,
-    height: 768,
+    width: 1280,
+    height: 720,
     x: null,
     y: null,
     maximized: false,

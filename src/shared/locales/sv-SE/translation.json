@@ -7,7 +7,7 @@
         "refresh": "Ladda om",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Totalt saldo",
         "transferError": "Överföringsfel",
         "transferErrorMessage": "Något gick fel under överföringen. Vänligen försök igen.",
         "transferSent": "Överföring skickad",
@@ -124,7 +124,7 @@
         "seedThief": "Om någon annan har din seed kan de stjäla dina IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjänsten är inte tillgänglig",
         "couldNotVerifyDeviceIntegrity": "Kunde inte verifiera enhetens integritet eftersom Google Play-tjänsten inte är tillgänglig.",
-        "clear": "Clear",
+        "clear": "Rensa",
         "noNetworkConnection": "Ingen nätverksanslutning",
         "noNetworkConnectionExplanation": "Din internetanslutning verkar vara offline.",
         "spentAddressExplanation": "VARNING: Tillgångar på förbrukade adresser",
@@ -139,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
         "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Kunde inte sända transaktionen",
+        "addressesAlreadySpentFrom": "En eller flera adresser har redan spenderats från.",
+        "problemSendingYourTransaction": "Ett problem uppstod with sändning av transaktionen.",
+        "problemPerformingProofOfWork": "Ett problem uppstod vid genomförandet av PoW.",
+        "tryingAgainWithLocalPoW": "Försöker igen med lokal PoW.",
+        "tryingAgainWithDifferentNode": "Försöker igen med en annan nod.",
+        "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -296,6 +296,7 @@
         "saveYourSeed": "Spara din seed",
         "seedCleared": "Seed rensad",
         "mostSecure": "Mest säkert",
+        "recommended": "Recommended",
         "leastSecure": "Minst säkert",
         "paperWallet": "Pappersplånbok",
         "writeYourSeedDown": "Skriv ner din seed",
@@ -316,8 +317,8 @@
         "incorrectSeedExplanation": "Den seed som du angav är felaktig. Vänligen försök igen.",
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
         "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Kopiera/klistra inte in din seed",
+        "clipboardWarningExplanation": "Varning: Kopiera/klistra in är avaktiverad för din säkerhet."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
@@ -352,9 +353,9 @@
         "youCanAdd": "Du kan lägga till fler seeds i inställningsmenyn."
     },
     "modeSelection": {
-        "expert": "Avancerat",
+        "advanced": "Avancerat",
         "standard": "Standard",
-        "expertModeExplanation": "Avancerat läge ger åtkomst till ytterligare inställningar som manuell befordran och återfästning.",
+        "advancedModeExplanation": "Avancerat läge visar mer detaljerad teknisk information.",
         "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars."
     },
     "settings": {
@@ -450,7 +451,8 @@
         "viewAddresses": "Visa adresser",
         "editAccountName": "Ändra kontonamn",
         "deleteAccount": "Radera konto",
-        "addNewAccount": "Lägg till konto"
+        "addNewAccount": "Lägg till konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportera SeedVault",
-        "seedVaultExplanation": "En SeedVault är en krypterad fil för att lagra din seed på ett säkert sätt. Seeden är krypterad bakom ett lösenord och kan inte nås utan lösenordet. Det rekommenderas att du sparar filen i en lösenordshanterare som Keepass.",
+        "seedVaultExplanation": "En SeedVault är en krypterad fil för att lagra din seed på ett säkert sätt. Din seed är krypterad bakom ett lösenord och kan inte nås utan lösenordet.",
         "seedVaultWarning": "Kontrollera att du säkerhetskopierar filen på flera platser (t.ex. hårddisk, molnet, USB). Om du förlorar denna fil och inte har lagrat din seed på annat håll, kommer du att förlora dina IOTA.",
         "exportFail": "SeedVault export misslyckades",
         "exportFailExplanation": "Ett problem uppstod vid export av SeedVault. Vänligen se till att du har rätt behörigheter och tillräckligt med ledigt utrymme.",
@@ -652,40 +654,40 @@
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
         "errorRetrievingUpdateDataExplanation": "Ett fel uppstod vid hämtning av uppdateringsdata. Vänligen försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
-        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
+        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
         "newVersionAvailable": "Ny version tillgänglig",
-        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
+        "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
         "downloadRelease": "Ladda ner version",
         "skipUpdate": "Hoppa över uppdatering"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Fellogg"
     },
     "terms": {
         "termsAndConditions": "Villkor",
         "accept": "Jag accepterar",
-        "readAllToContinue": "Läs all text för att fortsätta"
+        "readAllToContinue": "Vänligen läs hela texten"
     },
     "privacyPolicy": {
         "privacyPolicy": "Integritetspolicy",
         "agree": "Jag samtycker"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Aktivitetsfälts-applikation",
+        "trayExplanation": "Ger en översikt över dina kontosaldon och senaste transaktionshistorik.",
+        "notLoggedIn": "Du är inte inloggad",
+        "setupIncomplete": "Plånboksinstallationen ofullständig",
+        "completeSetup": "Installation fullständig"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "notifications": "Aviseringar",
+        "notificationExplanation": "Ta emot skrivbordsaviseringar om nya transaktioner.",
+        "typeConfirmations": "Meddela om bekräftade transaktioner",
+        "typeMessages": "Meddela om nollvärdestransaktioner",
+        "multipleTx": "Tar emot flera transaktioner till {{account}}",
+        "valueTx": "Tar emot {{value}} till {{account}}",
+        "messageTx": "Du har mottagit ett meddelande till {{account}}",
+        "confirmedIn": "Inkommande {{value}} till {{account}} har bekräftats",
+        "confirmedOut": "Utgående {{value}} från {{account}} har bekräftats"
     }
 }

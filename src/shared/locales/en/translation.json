@@ -316,6 +316,7 @@
         "saveYourSeed": "Back up your seed",
         "seedCleared": "Seed cleared",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
@@ -480,7 +481,8 @@
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "Add new account",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
@@ -685,14 +687,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Error log"

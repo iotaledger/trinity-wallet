@@ -7,9 +7,9 @@
         "refresh": "Atnaujinti",
         "balanceError": "Nepakankamas likutis",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Bendras balansas",
         "transferError": "Pavedimo klaida",
-        "transferErrorMessage": "Įvyko klaida atliekant pavedimą. Bandykite dar kartą.",
+        "transferErrorMessage": "Įvyko klaida apdorojant jūsų pavedimą. Bandykite dar kartą.",
         "transferSent": "Pavedimas atliktas",
         "transferSentMessage": "Jūsų pavedimas išsiųstas į Tangle.",
         "messageSent": "Žinutė išsiųsta",
@@ -18,7 +18,7 @@
         "keyReuseError": "Negalima atlikti pavedimo adresu, iš kurio jau buvo atliktas pavedimas.",
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccount": "Įvyko klaida įkeliant Jūsų paskyros duomenis. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -36,7 +36,7 @@
         "export": "Iškelti",
         "import": "Įkelti",
         "continue": "Tęsti",
-        "enable": "Įgalinti",
+        "enable": "Įjungti",
         "disable": "Išjungti",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
@@ -124,7 +124,7 @@
         "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
         "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
         "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
-        "clear": "Clear",
+        "clear": "Išvalyti",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
@@ -139,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Pavedimo ištransliuoti nepavyko",
+        "addressesAlreadySpentFrom": "Vienas ar daugiau adresų jau buvo panaudoti.",
+        "problemSendingYourTransaction": "Įvyko klaida apdorojant jūsų pavedimą.",
+        "problemPerformingProofOfWork": "Įvyko klaida atliekant apskaičiavimus.",
+        "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
+        "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
+        "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -290,12 +290,13 @@
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
-        "tag": "Žyma"
+        "tag": "Etiketė"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
         "seedCleared": "Užraktas išvalytas",
         "mostSecure": "Saugiausia",
+        "recommended": "Recommended",
         "leastSecure": "Mažiausiai saugu",
         "paperWallet": "Popierinė piniginė",
         "writeYourSeedDown": "Nusirašyti užraktą",
@@ -317,7 +318,7 @@
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
         "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarningExplanation": "ĮSPĖJIMAS: kopijavimas/įklijavimas atjungtas dėl jūsų saugumo."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
@@ -348,14 +349,14 @@
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
-        "canUseMultipleSeeds": "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
+        "canUseMultipleSeeds": "Su šia pinigine jūs galite naudoti daugybę užraktų. Kiekvienas užraktas turi turėti paskyros vardą.",
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
-        "expert": "Eksperto",
+        "advanced": "Išplėstinis",
         "standard": "Standartinis",
-        "expertModeExplanation": "Eksperto režimas suteikia prieigą prie papildomų funkcijų, tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
-        "modesExplanation": "Eksperto režimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
+        "advancedModeExplanation": "Išplėstinis režimas rodys išsamesnę techninę informaciją.",
+        "modesExplanation": "Išplėstinį režimą naudokite tik jeigu esate patyręs IOTA naudotojas. Kitu atveju jums gali kilti daug neaiškumų."
     },
     "settings": {
         "transferSending": "Pavedimas apdorojamas",
@@ -450,7 +451,8 @@
         "viewAddresses": "Rodyti adresus",
         "editAccountName": "Redaguoti paskyros vardą",
         "deleteAccount": "Ištrinti paskyrą",
-        "addNewAccount": "Pridėti naują paskyrą"
+        "addNewAccount": "Pridėti naują paskyrą",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportuoti SeedVault",
-        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas saugiai laikyti jūsų užraktą. Užraktas yra užšifruotas slaptažodžiu ir be slaptažodžio nepasiekiamas. Rekomenduojama failą laikyti slaptažodžių tvarkyklėje, pavyzdžiui, Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
         "exportFail": "SeedVault eksportavimo klaida",
         "exportFailExplanation": "Įvyko klaida eksportuojant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
@@ -652,19 +654,19 @@
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
         "errorRetrievingUpdateDataExplanation": "Įvyko klaida siunčiant atnaujinimus. Bandykite dar kartą.",
         "noUpdatesAvailable": "Atnaujinimų nėra",
-        "noUpdatesAvailableExplanation": "Jūs turite naujausią IOTA Trinity darbalaukio piniginės versiją!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation": "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Atidžiai perskaitykite naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Atsisiųsti leidinį",
         "skipUpdate": "Praleisti atnaujinimus"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Klaidų žurnalas"
     },
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
         "accept": "Sutinku",
-        "readAllToContinue": "Prašome viską perskaityti norėdami tęsti"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privatumo politika",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "notLoggedIn": "Jūs neprisijungęs",
+        "setupIncomplete": "Piniginės nustatymai nebaigti",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

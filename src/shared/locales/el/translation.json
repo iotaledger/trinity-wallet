@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "ΑΠΟΣΤΟΛΗ",
-        "cancel": "Cancel",
+        "cancel": "ΑΚΥΡΟ",
         "continue?": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;",
         "noTransactions": "ΚΑΜΙΑ ΠΡΟΣΦΑΤΗ ΙΣΤΟΡΙΑ",
         "refresh": "Ανανέωση",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "Αυτός ο κόμβος είναι εκτός συγχρονισμού. Παρακαλώ αλλάξτε κόμβο ή προσπαθήστε ξανά.",
         "seed": "Seed",
         "checksum": "Άθροισμα ελέγχου",
-        "back": "Back",
+        "back": "Πίσω",
         "goBack": "Πίσω",
         "goBackStep": "Πηγαίνετε πίσω ενα βήμα",
-        "done": "Done",
+        "done": "Τέλος",
         "prev": "Προηγούμενο",
-        "next": "Next",
+        "next": "Επόμενο",
         "apply": "Εφαρμογή",
         "save": "Αποθήκευση",
         "close": "Κλείσιμο",
@@ -54,9 +54,9 @@
         "fifthWallet": "ΠΕΜΠΤΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
         "sixthWallet": "ΕΚΤΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
         "otherWallet": "ΑΛΛΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Ναι",
+        "no": "Όχι",
+        "okay": "Εντάξει",
         "password": "Κωδικός πρόσβασης",
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
         "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
@@ -94,7 +94,7 @@
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
         "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
-        "promotionError": "Could not promote transaction",
+        "promotionError": "Η συναλλαγή δεν προωθήθηκε",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Η δέσμη που προσπαθείτε να προωθήσετε δεν είναι πλέον έγκυρη",
         "transactionAlreadyConfirmed": "Transaction already confirmed",
@@ -170,10 +170,10 @@
         "passwordsDoNotMatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
         "passwordsDoNotMatchExplanation": "Οι κωδικοί πρόσβασης δεν ταιριάζουν, παρακαλώ προσπαθήστε ξανά.",
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Τον κωδικό πρόσβασής σας πρέπει να είναι τουλάχιστον 11 χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "oldPassword": "Δεν μπορείτε ορίσετε τον παλιό κωδικό πρόσβασης",
         "oldPasswordExplanation": "Δεν μπορείτε να χρησιμοποιήσετε τον παλιό κωδικό πρόσβασης ως τον νέο σας κωδικό. Παρακαλούμε δοκιμάστε ξανά με ένα νέο κωδικό πρόσβασης.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 11 χαρακτήρων.",
         "currentPassword": "Τρέχων κωδικός πρόσβασης",
         "newPassword": "Νέος κωδικός πρόσβασης",
         "confirmPassword": "Επιβεβαίωση νέου κωδικού πρόσβασης",
@@ -294,13 +294,14 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
+        "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
+        "paperWallet": "Χάρτινο Πορτοφόλι",
         "writeYourSeedDown": "Write your seed down",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -352,10 +353,10 @@
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
     "modeSelection": {
-        "expert": "Ειδικός",
+        "advanced": "Advanced",
         "standard": "Κανονικός",
-        "expertModeExplanation": "Κατάσταση λειτουργίας  θα παρέχουν πρόσβαση σε πρόσθετες δυνατότητες όπως Χειροκίνητη προώθηση και την εκ νέου προσάρτηση.",
-        "modesExplanation": "Ενεργοποιήσετε την κατάσταση λειτουργίας  μόνο αν είστε ένας έμπειρος χρήστης Tangle. Μπορείτε να σας μπερδέψει   διαφορετικά"
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Αποστολή μεταφοράς",
@@ -399,7 +400,7 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Αναίρεση",
         "redo": "Επανάληψη",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "Σχετικά με το Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
         "nodeChangeSuccess": "Successfully changed node",
@@ -420,11 +421,11 @@
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Αλλά αν χάσετε το σπόρο σας, θα χάσετε επίσης τα ΙΟΤΑ σας.",
         "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Σας ευχαριστούμε για τη λήψη του Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Σημειώστε το seed και το checksum και</0> <1>επαληθεύστε</1> <2>ότι είναι σωστά.</2>",
@@ -450,13 +451,14 @@
         "viewAddresses": "Προβολή διευθύνσεων",
         "editAccountName": "Επεξεργαστείτε το όνομα του λογαριασμού",
         "deleteAccount": "Διαγραφή λογαριασμού",
-        "addNewAccount": "Προσθήκη νέου λογαριασμού"
+        "addNewAccount": "Προσθήκη νέου λογαριασμού",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNode": "Προσαρμοσμένος κόμβος",
         "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "invalidNodeResponse": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση",
         "add": "Προσθήκη",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
@@ -557,7 +559,7 @@
         "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "instructionsLogin": "Αγγίξτε τη συσκευή ανάγνωσης δακτυλικών αποτυπωμάτων για να συνδεθείτε"
     },
     "transferConfirmation": {
         "youAreAbout": "Είστε έτοιμοι να στείλετε {{contents}} στη διεύθυνση",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Terms & Conditions",
         "accept": "I accept",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

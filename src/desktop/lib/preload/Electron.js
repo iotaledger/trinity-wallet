@@ -390,6 +390,7 @@ const Electron = {
                     .replace(/[-:]/g, '')
                     .replace('T', '-')}.kdbx`,
                 buttonLabel: 'Export',
+                filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
 
             if (!path) {
@@ -471,6 +472,10 @@ const Electron = {
             sendFeedback: 'Send feedback',
             settings: capitalize(t('home:settings')),
             accountSettings: t('settings:accountManagement'),
+            accountName: t('addAdditionalSeed:accountName'),
+            viewSeed: t('accountManagement:viewSeed'),
+            viewAddresses: t('accountManagement:viewAddresses'),
+            tools: t('accountManagement:tools'),
             newAccount: t('accountManagement:addNewAccount'),
             language: t('languageSetup:language'),
             node: t('node'),
@@ -499,6 +504,15 @@ const Electron = {
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
             yes: t('yes'),
             no: t('no'),
+            updates: {
+               errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+               noUpdatesAvailable: t('updates:noUpdatesAvailable'),
+               noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
+               newVersionAvailable: t('updates:newVersionAvailable'),
+               newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
+               installUpdate: t('updates:installUpdate'),
+               installUpdateExplanation: t('updates:installUpdateExplanation'),
+           },
         });
 
         locales = {
