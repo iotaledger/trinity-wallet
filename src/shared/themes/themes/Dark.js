@@ -10,8 +10,8 @@ export default {
         hover: 'rgba(255, 255, 255, 0.5)',
         color: 'rgb(30, 30, 30)',
     },
-    negative: { color: 'rgb(219, 112, 59)', hover: 'rgb(155, 0, 13)', body: 'rgb(255, 255, 255)' },
-    positive: { color: 'rgb(85, 160, 91)', hover: 'rgb(24, 91, 72)', body: 'rgb(255, 255, 255)' },
+    negative: { color: 'rgb(172, 69, 69)', hover: 'rgb(146, 57, 57)', body: 'rgb(255, 255, 255)' },
+    positive: { color: 'rgb(85, 160, 91)', hover: 'rgb(31, 126, 74)', body: 'rgb(255, 255, 255)' },
     dark: { color: 'rgb(38, 38, 38)', hover: 'rgb(30, 30, 30)', body: 'rgb(242, 242, 242)' },
     secondary: { color: 'rgb(242, 242, 242)', hover: 'rgb(51, 51, 51)', body: 'rgb(0, 0, 0)' },
     primary: {
