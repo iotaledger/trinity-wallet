@@ -3,7 +3,9 @@ steps:
     command:
       - "yarn"
       - "cd src/shared && yarn && cd ../.."
-      - "cd src/desktop && yarn && yarn build && yarn release"
+      - "cd src/desktop && yarn"
+      - "./bugsnag.sh && node bugsnag.js"
+      - "yarn build && yarn release"
     artifact_paths:
       - "out/*"
     agents:
