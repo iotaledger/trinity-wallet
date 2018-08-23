@@ -657,7 +657,7 @@
         "newVersionAvailable": "Nowa wersja dostępna",
         "newVersionAvailableExplanation": "Dostępna jest nowa wersja portfela Trinity. Czy chcesz dokonać aktualizacji?",
         "installUpdate": "Zainstaluj aktualizację i zrestartuj",
-        "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie w celu aktualizacji."
+        "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie i zainstaluje aktualizację."
     },
     "notificationLog": {
         "errorLog": "Dziennik błędów"
