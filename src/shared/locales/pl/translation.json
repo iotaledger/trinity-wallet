@@ -318,7 +318,7 @@
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
         "clipboardWarning": "Nie kopiuj swojego klucza",
-        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest wyłączone dla Twojego bezpieczeństwa."
+        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
     },
     "send": {
         "invalidAddress": "Błędny adres",
