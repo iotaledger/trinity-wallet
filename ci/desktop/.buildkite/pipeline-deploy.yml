@@ -6,5 +6,7 @@ steps:
       - "cd src/desktop && yarn && yarn build && yarn release"
     artifact_paths:
       - "out/*"
+    agents:
+      queue: mac
     env:
-      - WIN_CSC_LINK: "./cert.p12"
+      WIN_CSC_LINK: "./cert.p12"
