@@ -89,8 +89,6 @@ Please note: **Trinity does not update account or market information if the appl
 
 To ensure transactions are confirmed on the Tangle, it is often necessary to promote or reattach them. An explanation of promotion and reattachment can be found [here](https://iota.stackexchange.com/a/801). If it is possible to promote a pending transaction, Trinity will do so automatically. However it is sometimes necessary to first attach the transaction to the Tangle before then promoting that reattachment. This will also occur automatically.
 
-Should you wish to enable **manual promotion and reattachment** please turn on **Expert** mode in the settings.
-
 Please note: **Trinity does not promote/reattach transfers if the application is minimised. Automatic promotion/reattachment only takes place if the app is currently open.**
 
 #### Address Management
