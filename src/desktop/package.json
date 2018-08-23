@@ -74,7 +74,7 @@
       "buildResources": "./assets",
       "output": "./out"
     },
-    "appId": "com.iotatoken.trinity",
+    "appId": "org.iota.trinity",
     "asar": true,
     "protocols": [
       {
@@ -135,6 +135,7 @@
     "curl.lib.js": "^1.0.22",
     "date-fns": "^1.29.0",
     "electron-settings": "^3.2.0",
+    "electron-updater": "^3.0.3",
     "entangled-node": "rihardsgravis/entangled-node",
     "i18next": "^11.5.0",
     "iota.lib.js": "^0.4.7",
