@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
-        "errorRetrievingUpdateDataExplanation": "C'è stato un errore nel reperimento dell'aggiornamento. Per favore riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
-        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Una nuova versione è disponibile",
-        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Leggi attentamente le note di rilascio e verifica l'origine del download prima di eseguire l'aggiornamento:",
-        "downloadRelease": "Scarica la versione",
-        "skipUpdate": "Salta l'aggiornamento"
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Registro degli errori"
