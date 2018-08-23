@@ -24,19 +24,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
     },
-    iconBorder: {
-        borderRadius: width / 56,
-        borderWidth: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 28,
-        height: width / 28,
-    },
-    iconContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 28,
-    },
 });
 
 export default class SimpleTransactionRow extends PureComponent {
@@ -65,17 +52,12 @@ export default class SimpleTransactionRow extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.6, alignItems: 'flex-start', justifyContent: 'center' }}>
-                    <View style={styles.iconContainer}>
-                        <Icon
-                            name={icon}
-                            size={width / 52}
-                            color={style.titleColor}
-                            iconStyle={{ position: 'absolute' }}
-                        />
-                        <View
-                            style={[styles.iconBorder, { borderColor: style.defaultTextColor, position: 'absolute' }]}
-                        />
-                    </View>
+                    <Icon
+                        name={icon}
+                        size={width / 30}
+                        color={style.titleColor}
+                        iconStyle={{ position: 'absolute' }}
+                    />
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>
