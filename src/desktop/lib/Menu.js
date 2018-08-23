@@ -272,7 +272,7 @@ const initMenu = (app, getWindow) => {
                 {
                     label: `${app.getName()} Help`,
                     click: function() {
-                        shell.openExternal('https://docs.iota.works/trinity');
+                        shell.openExternal('https://docs.iota.works/trinity/faqs');
                     },
                 },
             ],
