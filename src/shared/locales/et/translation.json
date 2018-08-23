@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
-        "errorRetrievingUpdateDataExplanation": "Värskendusteabe allalaadimisel ilmnes viga. Palun proovige uuesti.",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
-        "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Uus versioon saadaval",
-        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
-        "downloadRelease": "Laadige värskendus alla",
-        "skipUpdate": "Jätke värskendus vahele"
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Veateadete logi"
