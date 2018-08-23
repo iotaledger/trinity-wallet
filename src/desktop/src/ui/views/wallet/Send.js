@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
+import { getCurrencySymbol } from 'libs/currency';
+import { round } from 'libs/utils';
 
 import { getSeed } from 'libs/crypto';
 
@@ -107,7 +109,11 @@ class Send extends React.PureComponent {
 
         const transferContents =
             parseInt(fields.amount) > 0
-                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)}`
+                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
+                      settings.currency,
+                  )}${(
+                    round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
 
         return (
