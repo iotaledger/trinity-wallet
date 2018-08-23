@@ -119,7 +119,7 @@ export class Dropdown extends Component {
         dropdownWidth: PropTypes.object,
         /** Determines whether to render a background */
         background: PropTypes.bool,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
@@ -154,6 +154,12 @@ export class Dropdown extends Component {
         }
     }
 
+    /**
+     * Selects dropdown option in internal state
+     *
+     * @method onOptionPress
+     * @param {string} option
+     */
     onOptionPress(option) {
         this.setState({
             isDropdownOpen: false,
@@ -169,6 +175,11 @@ export class Dropdown extends Component {
         saveSelection(option);
     }
 
+    /**
+     * Show/hide dropdown options
+     *
+     * @method onDropdownTitlePress
+     */
     onDropdownTitlePress() {
         LayoutAnimation.configureNext(CustomLayoutSpring);
 
@@ -179,10 +190,20 @@ export class Dropdown extends Component {
         });
     }
 
+    /**
+     * Gets selected dropdown option
+     *
+     * @method getSelected
+     */
     getSelected() {
         return this.state.selectedOption;
     }
 
+    /**
+     * Hides dropdown options
+     *
+     * @method closeDropdown
+     */
     closeDropdown() {
         this.setState({ isDropdownOpen: false });
     }

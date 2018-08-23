@@ -28,13 +28,11 @@ const styles = StyleSheet.create({
 
 export class Checksum extends Component {
     static propTypes = {
-        /** Seed value */
+        /** @ignore */
         seed: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Show checksum modal */
         showModal: PropTypes.func.isRequired,

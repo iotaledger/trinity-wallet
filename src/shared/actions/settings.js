@@ -4,6 +4,7 @@ import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import { getSelectedNodeFromState } from '../selectors/accounts';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -38,6 +39,8 @@ export const ActionTypes = {
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
     TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
     SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
+    SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
+    SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
 };
 
 /**
@@ -314,6 +317,22 @@ export function setLocale(locale) {
         });
     };
 }
+
+/**
+ * Dispatch to change selected IRI node
+ *
+ * @method changeNode
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const changeNode = (payload) => (dispatch, getState) => {
+    if (getSelectedNodeFromState(getState()) !== payload) {
+        dispatch(setNode(payload));
+        // Change provider on global iota instance
+        changeIotaNode(payload);
+    }
+};
 
 /**
  * Fetch currency information (conversion rates) for wallet
@@ -635,4 +654,30 @@ export const setFingerprintStatus = (payload) => ({
 // FIXME: Temporarily needed for password migration
 export const setCompletedForcedPasswordUpdate = () => ({
     type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+});
+
+/**
+ * Dispatch to set if tray application is enabled
+ *
+ * @method setTray
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setTray = (payload) => ({
+    type: ActionTypes.SET_TRAY,
+    payload,
+});
+
+/**
+ * Dispatch to set if native notifications are enabled
+ *
+ * @method setNotifications
+ * @param {{type: {string}, enabled: {boolean}}}} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setNotifications = (payload) => ({
+    type: ActionTypes.SET_NOTIFICATIONS,
+    payload,
 });

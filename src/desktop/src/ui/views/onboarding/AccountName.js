@@ -39,46 +39,8 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.onboarding.name.length ? this.props.onboarding.name : this.getDefaultAccountName(),
+        name: this.props.onboarding.name.length ? this.props.onboarding.name : (this.props.seedCount === 0) ? this.props.t('mainWallet') : ''
     };
-
-    /**
-     * Get default account name placeholder based on current account count
-     * @returns {string} Account name
-     */
-    getDefaultAccountName() {
-        const { accountInfo, seedCount, t } = this.props;
-
-        let defaultName = '';
-
-        switch (seedCount) {
-            case 0:
-                defaultName = t('mainWallet');
-                break;
-            case 1:
-                defaultName = t('secondWallet');
-                break;
-            case 2:
-                defaultName = t('thirdWallet');
-                break;
-            case 3:
-                defaultName = t('fourthWallet');
-                break;
-            case 4:
-                defaultName = t('fifthWallet');
-                break;
-            case 5:
-                defaultName = t('sixthWallet');
-                break;
-            default:
-                defaultName = t('otherWallet');
-                break;
-        }
-
-        const accountNames = Object.keys(accountInfo);
-
-        return accountNames.map((accountName) => accountName.toLowerCase()).indexOf(defaultName) < 0 ? defaultName : '';
-    }
 
     /**
      * 1. Check for valid accout name
@@ -126,18 +88,36 @@ class AccountName extends React.PureComponent {
 
         setOnboardingName(this.state.name);
 
-        if (!Electron.getOnboardingSeed()) {
-            return history.push('/onboarding/seed-generate');
-        }
-
         if (!firstAccount) {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: this.state.name,
             });
-            history.push('/onboarding/login');
+        }
+
+        if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-save');
         } else {
-            history.push('/onboarding/account-password');
+            if (!firstAccount) {
+                history.push('/onboarding/login');
+            } else {
+                history.push('/onboarding/account-password');
+            }
+        }
+    };
+
+    stepBack = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+
+        const { history } = this.props;
+
+        if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-generate');
+        } else {
+            Electron.setOnboardingSeed(null);
+            history.push('/onboarding/seed-verify');
         }
     };
 
@@ -157,11 +137,7 @@ class AccountName extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button
-                        to={`/onboarding/seed-${!Electron.getOnboardingSeed() ? 'intro' : 'verify'}`}
-                        className="square"
-                        variant="dark"
-                    >
+                    <Button onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button type="submit" className="square" variant="primary">
@@ -186,7 +162,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));

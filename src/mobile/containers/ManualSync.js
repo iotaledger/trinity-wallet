@@ -72,35 +72,23 @@ const styles = StyleSheet.create({
 /** Manual Sync component */
 export class ManualSync extends Component {
     static propTypes = {
-        /** Determines whether the wallet is manually syncing account info */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
         /** Determines whether to allow manual sync action  */
         shouldPreventAction: PropTypes.bool.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Sync account with the tangle
-         * @param {string} seed
-         * @param {string} selectedAccountName
-         * @param {function} genFn - Native address generation function
-         */
+        /** @ignore */
         manuallySyncAccount: PropTypes.func.isRequired,
     };
 

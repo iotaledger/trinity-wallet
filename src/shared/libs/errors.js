@@ -16,9 +16,11 @@ export default {
     NODE_NOT_SYNCED: 'Node not synced',
     INCONSISTENT_SUBTANGLE: 'Inconsistent subtangle',
     INVALID_BUNDLE: 'Invalid bundle',
+    INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT: 'Invalid bundle constructed during reattachment.',
     INVALID_PARAMETERS: 'Invalid parameters',
-    ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses.',
+    ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses',
     REFERENCE_TRANSACTION_TOO_OLD: 'reference transaction is too old',
     ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
     SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
+    NO_NODE_TO_RETRY: 'No node to retry.',
 };

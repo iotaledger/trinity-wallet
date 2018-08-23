@@ -7,6 +7,7 @@
         "refresh": "Aktualisieren",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
+        "totalBalance": "Total balance",
         "transferError": "Übertragungsfehler",
         "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
@@ -27,7 +28,7 @@
         "goBack": "Zurück",
         "goBackStep": "Zurück",
         "done": "Ausgeführt",
-        "prev": "VORHERIGE",
+        "prev": "ZURÜCK",
         "next": "Weiter",
         "apply": "Anwenden",
         "save": "Speichern",
@@ -59,6 +60,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
+        "capsLockIsOn": "Feststelltaste ist aktiviert",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
@@ -71,6 +73,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
+        "all": "Alle",
         "sent": "Gesendet",
         "received": "Empfangen",
         "sending": "Sende...",
@@ -96,8 +99,8 @@
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
         "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Senden an Empfangsadresse",
+        "cannotSendToOwnExplanation": "Du kannst nicht an diese Adresse senden, da sie als ausgehende Adresse verwendet wird.",
         "pleaseWait": "Bitte warten",
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
@@ -121,7 +124,7 @@
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
-        "clear": "LEEREN",
+        "clear": "Löschen",
         "noNetworkConnection": "Keine Netzwerkverbindung",
         "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
         "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
@@ -135,7 +138,14 @@
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
-        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten."
+        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
+        "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
+        "addressesAlreadySpentFrom": "Von einer oder mehreren Adressen wurde bereits gesendet.",
+        "problemSendingYourTransaction": "Während dem Senden der Transaktion ist ein Fehler aufgetreten.",
+        "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
+        "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
+        "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
+        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -305,7 +315,9 @@
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn.",
-        "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast"
+        "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast",
+        "clipboardWarning": "Verwende nicht 'Kopieren und Einfügen' für deinen Seed",
+        "clipboardWarningExplanation": "WARNUNG: Kopieren und Einfügen ist aus Sicherheitsgründen deaktiviert."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -602,9 +614,7 @@
         "local": "Lokal",
         "remote": "Berechnung durch Node",
         "powUpdated": "\"Proof of Work\" Einstellungen",
-        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert.",
-        "noWebGLSupport": "WebGL nicht unterstützt",
-        "noWebGLSupportExplanation": "Dein Computer unterstützt WebGL nicht. Bitte verwende remote PoW."
+        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-Promotion Einstellungen",
@@ -649,14 +659,33 @@
         "skipUpdate": "Update überspringen"
     },
     "notificationLog": {
-        "errorLog": "FEHLERPROTOKOLL"
+        "errorLog": "Fehlerprotokoll"
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
-        "accept": "Ich stimme zu"
+        "accept": "Ich stimme zu",
+        "readAllToContinue": "Bitte lies den kompletten Text um fortfahren zu können"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
         "agree": "Ich stimme zu"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

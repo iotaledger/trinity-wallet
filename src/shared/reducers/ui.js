@@ -324,6 +324,7 @@ export default (state = initialState, action) => {
                 ...state,
                 isTransitioning: false,
             };
+        case WalletActionTypes.CANCEL_SNAPSHOT_TRANSITION:
         case WalletActionTypes.SNAPSHOT_TRANSITION_ERROR:
             return {
                 ...state,

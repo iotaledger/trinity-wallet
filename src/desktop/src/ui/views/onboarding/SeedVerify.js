@@ -18,6 +18,8 @@ import SeedInput from 'ui/components/input/Seed';
 class SeedVerify extends React.PureComponent {
     static propTypes = {
         /** @ignore */
+        firstAccount: PropTypes.bool.isRequired,
+        /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
@@ -35,9 +37,13 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
+        const { generateAlert, t } = this.props;
+
         if (Electron.getOnboardingSeed()) {
             Electron.garbageCollect();
         }
+
+        generateAlert('info', t('seedReentry:clipboardWarning'), t('seedReentry:clipboardWarningExplanation'));
     }
 
     onChange = (value) => {
@@ -56,7 +62,7 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, password, generateAlert, t } = this.props;
+        const { history, firstAccount, password, generateAlert, t } = this.props;
         const { seed, isGenerated } = this.state;
 
         if (
@@ -89,7 +95,11 @@ class SeedVerify extends React.PureComponent {
             Electron.setOnboardingSeed(seed, false);
             history.push('/onboarding/account-name');
         } else {
-            history.push('/onboarding/account-password');
+            if (!firstAccount) {
+                history.push('/onboarding/login');
+            } else {
+                history.push('/onboarding/account-password');
+            }
         }
     };
 
@@ -132,6 +142,7 @@ class SeedVerify extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+    firstAccount: !state.wallet.ready,
     password: state.wallet.password,
 });
 
@@ -139,7 +150,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));

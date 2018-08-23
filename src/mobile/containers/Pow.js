@@ -64,19 +64,15 @@ const styles = StyleSheet.create({
 /** Proof Of Work settings component */
 class Pow extends Component {
     static propTypes = {
-        /** Determines whether the proof of work should be off-loaded */
+        /** @ignore */
         remotePoW: PropTypes.bool.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Set proof of work settings */
+        /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 

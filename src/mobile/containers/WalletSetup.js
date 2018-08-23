@@ -84,17 +84,11 @@ class WalletSetup extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -110,6 +104,10 @@ class WalletSetup extends Component {
         this.showModalIfRooted();
     }
 
+    /**
+     * Navigates to enter seed screen
+     * @method redirectToEnterSeedScreen
+     */
     redirectToEnterSeedScreen() {
         const { theme } = this.props;
 
@@ -127,6 +125,10 @@ class WalletSetup extends Component {
         });
     }
 
+    /**
+     * Navigates to new seed setup screen
+     * @method redirectToNewSeedSetupScreen
+     */
     redirectToNewSeedSetupScreen() {
         const { theme } = this.props;
         this.props.navigator.push({
@@ -143,6 +145,10 @@ class WalletSetup extends Component {
         });
     }
 
+    /**
+     * Displays a modal if device is rooted (Android)
+     * @method showModalIfRooted
+     */
     showModalIfRooted() {
         // FIXME: Have UI indicators for this request
         if (isAndroid) {
@@ -181,10 +187,18 @@ class WalletSetup extends Component {
         }
     }
 
+    /**
+     * Hides active modal
+     * @method hideModal
+     */
     hideModal() {
         this.setState({ isModalVisible: false });
     }
 
+    /**
+     * Hides active modal and closes the application
+     * @method closeApp
+     */
     closeApp() {
         this.hideModal();
         RNExitApp.exitApp();

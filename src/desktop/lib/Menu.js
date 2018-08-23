@@ -8,9 +8,14 @@ const state = {
 
 let language = {
     about: 'About Trinity',
+    errorLog: 'Error log',
     checkUpdate: 'Check for Updates',
     settings: 'Settings',
     accountSettings: 'Account management',
+    accountName: 'Account name',
+    viewSeed: 'View seed',
+    viewAddresses: 'View addresses',
+    tools: 'Tools',
     newAccount: 'Add new account',
     language: 'Language',
     node: 'Node',
@@ -42,11 +47,11 @@ let language = {
     updates: {
         errorRetrievingUpdateData: 'Error retrieving update data',
         noUpdatesAvailable: 'No updates available',
-        noUpdatesAvailableExplanation: 'You have the latest version of IOTA Trinity desktop wallet!',
+        noUpdatesAvailableExplanation: 'You have the latest version of Trinity!',
         newVersionAvailable: 'New version available',
         newVersionAvailableExplanation: 'A new Trinity version is available. Do you want to update now?',
-        installUpdate: 'Install Update',
-        installUpdateExplanation: 'Update downloaded, Trinity will quit and restart for update.',
+        installUpdate: 'Install update and restart',
+        installUpdateExplanation: 'Download complete, Trinity will now restart to install the update',
     },
 };
 
@@ -57,6 +62,7 @@ autoUpdater.autoDownload = false;
  * On update error event callback
  */
 autoUpdater.on('error', (error) => {
+    console.log(error);
     dialog.showErrorBox(
         language.updates.errorRetrievingUpdateData,
         error === null ? 'unknown' : (error.stack || error).toString(),
@@ -144,6 +150,11 @@ const initMenu = (app, getWindow) => {
                         enabled: state.enabled,
                     },
                     {
+                        label: language.errorLog,
+                        click: () => navigate('errorlog'),
+                        enabled: state.enabled,
+                    },
+                    {
                         type: 'separator',
                     },
                     {
@@ -220,7 +231,6 @@ const initMenu = (app, getWindow) => {
             {
                 label: language.quit,
                 accelerator: 'Command+Q',
-                enabled: state.enabled,
                 click: function() {
                     app.quit();
                 },
@@ -259,8 +269,32 @@ const initMenu = (app, getWindow) => {
                     },
                     {
                         label: language.accountSettings,
-                        click: () => navigate('account/name'),
                         enabled: state.enabled,
+                        submenu: [
+                            {
+                                label: language.accountName,
+                                click: () => navigate('account/name'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                label: language.viewSeed,
+                                click: () => navigate('account/seed'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                label: language.viewAddresses,
+                                click: () => navigate('account/addresses'),
+                                enabled: state.enabled,
+                            },
+                            {
+                                type: 'separator',
+                            },
+                            {
+                                label: language.tools,
+                                click: () => navigate('account/tools'),
+                                enabled: state.enabled,
+                            },
+                        ],
                     },
                     {
                         type: 'separator',

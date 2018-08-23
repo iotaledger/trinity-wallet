@@ -10,16 +10,18 @@ import { translate } from 'react-i18next';
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
-import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
+import { setOnboardingName } from 'actions/ui';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
+import ErrorLog from 'ui/global/ErrorLog';
 
 import Loading from 'ui/components/Loading';
 
@@ -37,6 +39,10 @@ import css from './index.scss';
  **/
 class App extends React.Component {
     static propTypes = {
+        /** @ignore */
+        accounts: PropTypes.object.isRequired,
+        /** @ignore */
+        isBusy: PropTypes.bool.isRequired,
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
@@ -60,6 +66,10 @@ class App extends React.Component {
         /** @ignore */
         updateTheme: PropTypes.func.isRequired,
         /** @ignore */
+        setSeedIndex: PropTypes.func.isRequired,
+        /** @ignore */
+        setOnboardingName: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLink: PropTypes.func.isRequired,
@@ -74,9 +84,11 @@ class App extends React.Component {
 
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
+        this.onAccountSwitch = this.accountSwitch.bind(this);
         this.props.fetchNodeList();
 
         Electron.onEvent('menu', this.onMenuToggle);
+        Electron.onEvent('account.switch', this.onAccountSwitch);
 
         Electron.changeLanguage(this.props.t);
 
@@ -111,11 +123,17 @@ class App extends React.Component {
 
             this.props.history.push('/wallet/');
         }
+
+        // Dispose alerts on route change
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.props.disposeOffAlert();
+        }
     }
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
         Electron.removeEvent('url-params', this.onSetDeepUrl);
+        Electron.removeEvent('account.switch', this.onAccountSwitch);
     }
 
     /**
@@ -157,13 +175,32 @@ class App extends React.Component {
     }
 
     /**
+     * Switch to an account based on account name
+     * @param {string} accountName - target account name
+     */
+    accountSwitch(accountName) {
+        const accountIndex = this.props.accounts.accountNames.indexOf(accountName);
+        if (accountIndex > -1 && !this.props.isBusy) {
+            this.props.setSeedIndex(accountIndex);
+            this.props.history.push('/wallet');
+        }
+    }
+
+    /**
      * Proxy native menu triggers to an action
-     * @param {string} Item - Triggered menu item
+     * @param {string} item - Triggered menu item
      */
     menuToggle(item) {
+        if (!item) {
+            return;
+        }
+
         switch (item) {
             case 'about':
                 // Is processed in ui/global/About
+                break;
+            case 'errorlog':
+                // Is processed in ui/global/ErrorLog
                 break;
             case 'feedback':
                 // Is processed in ui/global/Feedback
@@ -174,6 +211,8 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
+                this.props.setOnboardingName('');
+                Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
                 break;
             default:
@@ -189,14 +228,14 @@ class App extends React.Component {
     };
 
     render() {
-        const { location } = this.props;
+        const { location, history } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
         if (this.state.fatalError) {
             return (
                 <div className={css.trintiy}>
-                    <Theme location={location} />
+                    <Theme history={history} />
                     <Titlebar />
                     <FatalError />
                 </div>
@@ -207,8 +246,9 @@ class App extends React.Component {
             <div className={css.trintiy}>
                 <Titlebar />
                 <About />
+                <ErrorLog />
                 <Idle />
-                <Theme location={location} />
+                <Theme history={history} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -228,24 +268,24 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    accounts: state.accounts,
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
+    isBusy:
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
 
 const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     setDeepLink,
+    setSeedIndex,
     disposeOffAlert,
     generateAlert,
     fetchNodeList,
     updateTheme,
+    setOnboardingName,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(withAutoNodeSwitching(App))),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

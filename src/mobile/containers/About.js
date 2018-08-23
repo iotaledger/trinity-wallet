@@ -44,15 +44,11 @@ const styles = StyleSheet.create({
  */
 class AdvancedSettings extends PureComponent {
     static propTypes = {
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
@@ -60,6 +56,12 @@ class AdvancedSettings extends PureComponent {
         leaveNavigationBreadcrumb('About');
     }
 
+    /**
+     * Gets current year
+     *
+     * @method getYear
+     * @returns {number}
+     */
     getYear() {
         const date = new Date();
         return date.getFullYear();

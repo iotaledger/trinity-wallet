@@ -30,7 +30,7 @@ class Tab extends PureComponent {
         icon: PropTypes.string.isRequired,
         /** Tab text */
         text: PropTypes.string.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Determines whether the tab is active or not */
         isActive: PropTypes.bool.isRequired,
@@ -51,7 +51,7 @@ class Tab extends PureComponent {
                 <View
                     style={
                         isActive
-                            ? [styles.button, { backgroundColor: bar.alt, borderTopColor: primary.color }]
+                            ? [styles.button, { backgroundColor: bar.hover, borderTopColor: primary.color }]
                             : styles.button
                     }
                 >

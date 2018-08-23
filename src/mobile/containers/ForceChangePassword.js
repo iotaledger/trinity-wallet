@@ -87,28 +87,19 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
         setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
     };
 
@@ -284,8 +275,8 @@ class ForceChangePassword extends Component {
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>
                                         With update 0.4.1, it is necessary to change your password before using Trinity.
-                                        If your current password fulfils the password strength requirements then you
-                                        may use your current password again.
+                                        If your current password fulfils the password strength requirements then you may
+                                        use your current password again.
                                     </Text>
                                 </View>
                             }

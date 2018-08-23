@@ -75,9 +75,7 @@ class UnitInfoModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Closes active modal */
         hideModal: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

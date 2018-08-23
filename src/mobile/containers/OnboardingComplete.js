@@ -60,13 +60,11 @@ const styles = StyleSheet.create({
 /** Onboarding Complete screen componenet */
 class OnboardingComplete extends Component {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 

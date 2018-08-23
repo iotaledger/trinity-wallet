@@ -69,21 +69,15 @@ const styles = StyleSheet.create({
 /** Two factor authentication setup component */
 export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Wallet's password hash */
+        /** @ignore */
         password: PropTypes.object.isRequired,
     };
 
@@ -102,6 +96,12 @@ export class TwoFactorSetupAddKey extends Component {
         leaveNavigationBreadcrumb('TwoFactorSetupAddKey');
     }
 
+    /**
+     * Copies two factor authentication key
+     *
+     * @method onKeyPress
+     * @param {string} key
+     */
     onKeyPress(key) {
         const { t } = this.props;
         if (key) {
@@ -110,12 +110,20 @@ export class TwoFactorSetupAddKey extends Component {
         }
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
     goBack() {
         this.props.navigator.pop({
             animated: false,
         });
     }
 
+    /**
+     * Navigates to enter token screen
+     * @method navigateToEnterToken
+     */
     navigateToEnterToken() {
         Clipboard.setString(' ');
         const { t, theme: { body }, password } = this.props;

@@ -67,19 +67,15 @@ const styles = StyleSheet.create({
 /** Auto-promotion settings component */
 class AutoPromotion extends Component {
     static propTypes = {
-        /** Determines whether auto-promotion is enabled */
+        /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Set auto-promotion settings */
+        /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
     };
 
@@ -93,6 +89,11 @@ class AutoPromotion extends Component {
         leaveNavigationBreadcrumb('AutoPromotion');
     }
 
+    /**
+     * Updates auto promotion configuration
+     *
+     * @method onChange
+     */
     onChange() {
         this.props.changeAutoPromotionSettings();
     }

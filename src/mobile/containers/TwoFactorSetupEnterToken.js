@@ -52,25 +52,17 @@ const styles = StyleSheet.create({
 /** Two factor authentication token verification component */
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Sets two factor security status
-         * @param {boolean} - status
-         */
+        /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Wallet's password hash */
+        /** @ignore */
         password: PropTypes.object.isRequired,
     };
 
@@ -97,6 +89,10 @@ class TwoFactorSetupEnterToken extends Component {
         BackHandler.removeEventListener('hardwareBackPress');
     }
 
+    /**
+     * Pops the active screen from the navigation stack
+     * @method goBack
+     */
     goBack() {
         const { theme: { body } } = this.props;
         this.props.navigator.pop({
@@ -111,6 +107,10 @@ class TwoFactorSetupEnterToken extends Component {
         });
     }
 
+    /**
+     * Navigates to home screen
+     * @method navigateToHome
+     */
     navigateToHome() {
         const { theme: { body, bar } } = this.props;
         this.props.navigator.push({
@@ -127,6 +127,10 @@ class TwoFactorSetupEnterToken extends Component {
         });
     }
 
+    /**
+     * Verifies user provided token and enables two factor authentication
+     * @method check2FA
+     */
     check2FA() {
         const { t, password } = this.props;
         getTwoFactorAuthKeyFromKeychain(password).then((key) => {
