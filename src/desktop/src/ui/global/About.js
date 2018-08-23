@@ -51,6 +51,12 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.1</h5>
+                            <ul>
+                                <li>Update: Show fiat value on Send confirmation</li>
+                                <li>Update: Update help link to external FAQ</li>
+                                <li>Update: Enable macOS signing</li>
+                            </ul>
                             <h5>0.3.1-rc.2</h5>
                             <ul>
                                 <li>Update: Set SeedVault as Recommended backup option</li>
