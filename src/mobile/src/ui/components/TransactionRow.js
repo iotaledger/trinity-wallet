@@ -78,14 +78,6 @@ const styles = StyleSheet.create({
         width: width / 14,
         height: width / 17,
     },
-    iconBorder: {
-        borderRadius: width / 30,
-        borderWidth: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 20,
-        height: width / 20,
-    },
     messageWrapper: {
         flex: 3,
         flexDirection: 'row',
@@ -160,11 +152,10 @@ export default class TransactionRow extends PureComponent {
                             <View style={styles.iconWrapper}>
                                 <Icon
                                     name={icon}
-                                    size={width / 36}
+                                    size={width / 22}
                                     color={style.titleColor}
                                     iconStyle={{ position: 'absolute' }}
                                 />
-                                <View style={[styles.iconBorder, style.borderColor, { position: 'absolute' }]} />
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>
