@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "GÖNDER",
-        "cancel": "Cancel",
+        "cancel": "İPTAL",
         "continue?": "Devam etmek istediğine emin misin?",
         "noTransactions": "GÖNDERİ GEÇMİŞİ YOK",
         "refresh": "Yenile",
@@ -24,10 +24,10 @@
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Oluşum",
         "checksum": "Sağlama",
-        "back": "Back",
+        "back": "Geri",
         "goBack": "Geri git",
         "goBackStep": "Bir adım geri git",
-        "done": "Done",
+        "done": "Tamam",
         "prev": "PREV",
         "next": "Next",
         "apply": "Uygula",
@@ -38,11 +38,11 @@
         "continue": "Devam Et",
         "enable": "Etkinleştir",
         "disable": "Devre Dışı Bırak",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "enabled": "Etkin",
+        "disabled": "Etkisiz",
         "enterPassword": "Enter password",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
+        "paperWallet": "Kağıdın bir kopyasını al",
+        "addToPasswordManager": "Şifre yöneticisine ekle",
         "shareSeed": "Share seed",
         "proceed": "Proceed",
         "qr": "QR",
@@ -173,7 +173,7 @@
         "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
         "oldPassword": "Eski parola ayarlayamazsınız",
         "oldPasswordExplanation": "Yeni şifreniz olarak eski parolayı kullanamazsınız. Lütfen yeni bir parola ile yeniden deneyin.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "En az 11 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
         "currentPassword": "Geçerli Şifre",
         "newPassword": "Yeni Şifre",
         "confirmPassword": "Yeni Şifreyi Onayla",
@@ -294,13 +294,14 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
+        "seedCleared": "Cüzdan şifresi temizlendi",
         "mostSecure": "Most Secure",
+        "recommended": "Recommended",
         "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
+        "paperWallet": "Kağıt cüzdan",
         "writeYourSeedDown": "Write your seed down",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -352,10 +353,10 @@
         "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
     },
     "modeSelection": {
-        "expert": "Uzman",
+        "advanced": "Advanced",
         "standard": "Standart",
-        "expertModeExplanation": "Uzman modu elle teşvik ve tekrar ekleme gibi ekstra özelliklere erişim sağlar.",
-        "modesExplanation": "Uzman modunu sadece deneyimli bir Tangle kullanıcıysanız aktifleştirin. Aksi halde size kafa karıştırıcı gelebilir."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer gönderiliyor",
@@ -420,11 +421,11 @@
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Fakat cüzdan şifrenizi kaybederseniz, IOTA'nızı da kaybedersiniz.",
         "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
@@ -450,7 +451,8 @@
         "viewAddresses": "Adresleri görüntüle",
         "editAccountName": "Hesap adını Düzenle",
         "deleteAccount": "Hesabı Sil",
-        "addNewAccount": "Yeni hesap ekle"
+        "addNewAccount": "Yeni hesap ekle",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -642,7 +644,7 @@
         "transition": "Transition",
         "transitioning": "Anlık görüntü için geçiş sağlanıyor.",
         "generatingAndDetecting": "Adresler yaratılıyor ve varlıklar algılanıyor.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Tangle'a adresler ekleniyor."
     },
     "deepLink": {
         "autofill": "Otomatik doldurma başarılı",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
         "errorRetrievingUpdateDataExplanation": "Güncelleme bilgisi alınırken bir hata oluştu. Lütfen tekrar deneyin.",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
-        "noUpdatesAvailableExplanation": "IOTA Trinity masaüstü cüzdanı'nın son versiyonuna sahipsin!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Yeni versiyon mevcut",
-        "newVersionAvailableExplanation": "Yeni bir <strong>Trinity</strong> <strong>{{version}}</strong> versiyonu mevcut. Lütfen güncellemeden önce güncelleme notlarını dikkatlice inceleyin ve indirme kaynağını doğrulayın:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Sürümü indir",
         "skipUpdate": "Güncelleştirmeyi atla"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Terms & Conditions",
         "accept": "I accept",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
