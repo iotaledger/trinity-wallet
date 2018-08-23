@@ -1,22 +1,13 @@
 steps:
   - label: ":hammer_and_wrench: Build for all platforms"
-    command: "cd src/desktop && node_modules/.bin/electron-builder -mwl"
+    command:
+      - "yarn"
+      - "cd src/shared && yarn && cd ../.."
+      - "cd src/desktop && yarn && cd ../.."
+      - "cd src/desktop && yarn build && node_modules/.bin/electron-builder -mwl"
     artifact_paths:
       - "out/*"
-    plugins:
-      docker#v1.4.0:
-        image: "rajivshah/trinity-desktop-ci"
 
   - wait
-
-  - block: ":package: Prepare release"
-    prompt: "Enter release details"
-    fields:
-      - text: "Version number"
-        key: "version-number"
-        required: true
-      - text: "Changelog"
-        key: "changelog"
-        required: false
 
 # TODO: GitHub release tasks
