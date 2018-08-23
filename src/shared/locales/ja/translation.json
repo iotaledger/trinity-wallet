@@ -296,7 +296,7 @@
         "saveYourSeed": "シードをバックアップしてください。",
         "seedCleared": "シードを消去しました。",
         "mostSecure": "最も安全",
-        "recommended": "Recommended",
+        "recommended": "推奨",
         "leastSecure": "最低限の安全",
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
@@ -452,7 +452,7 @@
         "editAccountName": "アカウント名を編集",
         "deleteAccount": "アカウントを削除",
         "addNewAccount": "新しいアカウントを追加",
-        "tools": "Tools"
+        "tools": "ツール"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
