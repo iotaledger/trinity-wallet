@@ -7,7 +7,7 @@
         "refresh": "Odśwież",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Całkowite saldo",
         "transferError": "Błąd transferu",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania Twojego transferu. Proszę spróbować ponownie.",
         "transferSent": "Transfer wykonany",
@@ -296,6 +296,7 @@
         "saveYourSeed": "Zapisywanie klucza seed",
         "seedCleared": "Seed wyczyszczony",
         "mostSecure": "Najbardziej bezpieczne",
+        "recommended": "Zalecane",
         "leastSecure": "Najmniej bezpieczne",
         "paperWallet": "Papierowy portfel",
         "writeYourSeedDown": "Zanotuj swój seed",
@@ -317,7 +318,7 @@
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
         "clipboardWarning": "Nie kopiuj swojego klucza",
-        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest wyłączone dla Twojego bezpieczeństwa."
+        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -352,10 +353,10 @@
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "advanced": "Zaawansowany",
         "standard": "Standardowy",
-        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i reattach transakcji.",
-        "modesExplanation": "Włącz tryb eksperta jedynie, jeśli jesteś doświadczonym użytkownikiem sieci Tangle. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
+        "advancedModeExplanation": "Tryb zaawansowany włącza wyświetlanie bardziej szczegółowych informacji technicznych.",
+        "modesExplanation": "Aktywuj tryb zaawansowany jedynie, jeśli jesteś doświadczonym użytkownikiem IOTA. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
     },
     "settings": {
         "transferSending": "Wykonywanie transferu",
@@ -450,7 +451,8 @@
         "viewAddresses": "Pokaż adresy",
         "editAccountName": "Zmień nazwę",
         "deleteAccount": "Usuń konto",
-        "addNewAccount": "Dodaj nowe konto"
+        "addNewAccount": "Dodaj nowe konto",
+        "tools": "Narzędzia"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nie można dodać serwera",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
-        "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza seed. Seed jest zaszyfrowany hasłem i nie jest dostępny bez jego podania. Zaleca się przechowywanie tego pliku w menedżerze haseł, takim jak Keepass.",
+        "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza. Seed zostaje zaszyfrowany hasłem i nie jest dostępny bez jego podania.",
         "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, USB). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
         "exportFail": "Błąd eksportu SeedVault",
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
@@ -652,7 +654,7 @@
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
         "errorRetrievingUpdateDataExplanation": "Wystąpił błąd podczas pobierania danych aktualizacji. Proszę spróbować ponownie.",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
-        "noUpdatesAvailableExplanation": "Masz już najnowszą wersję portfela IOTA Trinity!",
+        "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
         "newVersionAvailable": "Nowa wersja dostępna",
         "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
         "downloadRelease": "Pobierz aktualizację",
@@ -664,28 +666,28 @@
     "terms": {
         "termsAndConditions": "Warunki i zasady",
         "accept": "Akceptuję",
-        "readAllToContinue": "Przeczytaj cały tekst, aby kontynuować"
+        "readAllToContinue": "Przeczytaj cały tekst"
     },
     "privacyPolicy": {
         "privacyPolicy": "Polityka prywatności",
         "agree": "Zgadzam się"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Ikona w zasobniku",
+        "trayExplanation": "Możliwość podglądu salda oraz ostatniej aktywności Twojego konta.",
+        "notLoggedIn": "Nie jesteś zalogowany",
+        "setupIncomplete": "Konfiguracja portfela niekompletna",
+        "completeSetup": "Zakończ konfigurację"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "notifications": "Powiadomienia",
+        "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
+        "typeConfirmations": "Powiadom mnie o potwierdzeniu transakcji",
+        "typeMessages": "Powiadamiaj o transakcjach zerowych",
+        "multipleTx": "Odbieranie kilku transakcji na konto {{account}}",
+        "valueTx": "Odbieranie {{value}} na konto {{account}}",
+        "messageTx": "Otrzymano wiadomość na konto {{account}}",
+        "confirmedIn": "Transakcja przychodząca {{value}} na konto {{account}} została potwierdzona",
+        "confirmedOut": "Transakcja wychodząca {{value}} z konta {{account}} została potwierdzona"
     }
 }

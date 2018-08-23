@@ -7,7 +7,7 @@
         "refresh": "Rafraîchir",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Solde total",
         "transferError": "Erreur de transfert",
         "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
         "transferSent": "Transfert effectué",
@@ -27,7 +27,7 @@
         "back": "Retour",
         "goBack": "Retour",
         "goBackStep": "Revenez une étape en arrière",
-        "done": "Términé",
+        "done": "Terminé",
         "prev": "PREC",
         "next": "Suivant",
         "apply": "Appliquer",
@@ -56,7 +56,7 @@
         "otherWallet": "AUTRE COMPTE",
         "yes": "Oui",
         "no": "Non",
-        "okay": "D'accord",
+        "okay": "Ok",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
@@ -99,8 +99,8 @@
         "noLongerValid": "Le paquet que vous essayez de promouvoir n'est plus valide",
         "transactionAlreadyConfirmed": "Transaction déjà confirmée",
         "transactionAlreadyConfirmedExplanation": "La transaction que vous essayez de promouvoir est déjà confirmée.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "Vous ne pouvez pas envoyer à une adresse qui est utilisée comme une entrée dans la transaction.",
+        "cannotSendToOwn": "Envoi à votre propre adresse",
+        "cannotSendToOwnExplanation": "Vous ne pouvez pas envoyer à une adresse qui est utilisée comme point de départ de la transaction.",
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitEllipses": "Merci de patienter...",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
@@ -139,12 +139,12 @@
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
         "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Une erreur réseau est survenue lors de la retransmission de votre transaction.",
-        "broadcastError": "Impossible de retransmettre la transaction",
-        "addressesAlreadySpentFrom": "Une ou plusieurs des adresses ont déjà été dépensés depuis.",
-        "problemSendingYourTransaction": "Il y a eu un problème lors de l'envoi de votre transaction.",
-        "problemPerformingProofOfWork": "Il y avait un problème en durant la preuve de travail.",
-        "tryingAgainWithLocalPoW": "Essayer de nouveau avec une preuve de travail local.",
-        "tryingAgainWithDifferentNode": "Essayer de nouveau avec un autre nœud.",
+        "broadcastError": "Impossible de transmettre la transaction",
+        "addressesAlreadySpentFrom": "Une ou plusieurs adresses ont déjà été utilisées pour une transaction sortante.",
+        "problemSendingYourTransaction": "Un problème est survenu lors de l'envoi de votre transaction.",
+        "problemPerformingProofOfWork": "Un problème est survenu durant la preuve de travail.",
+        "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
+        "tryingAgainWithDifferentNode": "Réessayez avec un autre nœud.",
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte."
     },
     "addAdditionalSeed": {
@@ -183,7 +183,7 @@
         "reasonPattern": "Les suites de touches courtes (abcd) sont faciles à deviner.",
         "reasonNames": "Les noms communs et les surnoms sont faciles à deviner.",
         "reasonRepeats": "Les répétitions comme 'aaa' sont faciles à deviner.",
-        "reasonRepeats2": "Les répétitions comme 'abcabcabc' sont justes un peu plus dur à deviner que 'abc'.",
+        "reasonRepeats2": "Les répétitions comme 'abcabcabc' sont juste un peu plus dur à deviner que 'abc'.",
         "reasonSequence": "Les suites comme 'abc' ou '54321' sont faciles à deviner.",
         "reasonYears": "Les années récentes sont faciles à deviner.",
         "reasonDates": "Les dates sont souvent faciles à deviner.",
@@ -191,7 +191,7 @@
         "reasonTop100": "Voila un top 100 des mots de passe les plus courants.",
         "reasonCommon": "C'est un mot de passe très courant.",
         "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé.",
-        "reasonWord": "Un simple mot est facile à deviner."
+        "reasonWord": "Un seul mot est facile à deviner."
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -296,11 +296,12 @@
         "saveYourSeed": "Sauvegarder votre seed",
         "seedCleared": "Seed effacée",
         "mostSecure": "Plus sûr",
+        "recommended": "Recommended",
         "leastSecure": "Moins sécurisé",
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "letsWriteDownYourSeed": "Notez votre seed",
+        "letsWriteDownYourSeed": "Écrivez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsChecksum": "Chaque seed a une somme de contrôle de 3 caractères",
@@ -316,8 +317,8 @@
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire.",
         "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardée correctement",
-        "clipboardWarning": "Ne pas copier coller votre seed",
-        "clipboardWarningExplanation": "AVERTISSEMENT : Le copier coller est désactivé pour votre sécurité."
+        "clipboardWarning": "Ne faites pas de copier-coller votre seed",
+        "clipboardWarningExplanation": "AVERTISSEMENT : Le copier-coller est désactivé pour votre sécurité."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -352,10 +353,10 @@
         "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Avancé",
         "standard": "Standard",
-        "expertModeExplanation": "Le mode expert donnera accès à des fonctionnalités supplémentaires comme la promotion et le rattachement manuels.",
-        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur du Tangle expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
+        "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
+        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -450,7 +451,8 @@
         "viewAddresses": "Afficher les adresses",
         "editAccountName": "Modifier le nom du compte",
         "deleteAccount": "Supprimer le compte",
-        "addNewAccount": "Ajouter un nouveau compte"
+        "addNewAccount": "Ajouter un nouveau compte",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
-        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker une seed en toute sécurité. La seed est encryptée par un mot de passe et n'est pas accessible sans ce mot de passe. Il est recommandé d'enregistrer ce fichier dans un gestionnaire de mots de passe comme Keepass.",
+        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée derrière un mot de passe et n'est pas accessibles sans ce mot de passe.",
         "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
         "errorRetrievingUpdateDataExplanation": "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
-        "noUpdatesAvailableExplanation": "Vous avez déjà la dernière version du portefeuille IOTA Trinity !",
+        "noUpdatesAvailableExplanation": "Vous avez la dernière version installé de Trinity Desktop.",
         "newVersionAvailable": "Une nouvelle version est disponible",
-        "newVersionAvailableExplanation": "Une nouvelle version <strong>{{version}}</strong> <strong>de Trinity</strong> est disponible. Veuillez lire les détails de la version attentivement et vérifier la source du téléchargement avant la mise à jour :",
+        "newVersionAvailableExplanation": "La nouvelle version <strong>Trinity</strong> <strong>{{version}}</strong> est disponible. Veuillez lire les détails de cette version attentivement et vérifier la source du téléchargement avant la mise à jour :",
         "downloadRelease": "Télécharger la version",
         "skipUpdate": "Passer la mise a jour"
     },
@@ -664,28 +666,28 @@
     "terms": {
         "termsAndConditions": "Termes et conditions",
         "accept": "J'accepte",
-        "readAllToContinue": "Veuillez lire tout le texte pour continuer"
+        "readAllToContinue": "Merci de lire complètement le texte"
     },
     "privacyPolicy": {
         "privacyPolicy": "Politique de confidentialité",
         "agree": "J'accepte"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Réduire dans la barre de tache",
+        "trayExplanation": "Donne un aperçu de vos soldes des comptes et l’historique des transactions récentes.",
+        "notLoggedIn": "Vous n'êtes pas connecté",
+        "setupIncomplete": "Paramétrage du portefeuille incomplet",
+        "completeSetup": "Configuration terminée"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "notificationExplanation": "Recevoir les notifications complètes du système à propos des nouvelles transactions.",
+        "typeConfirmations": "Me notifier à propos des confirmations",
+        "typeMessages": "Me notifier à propos des transactions nulles",
+        "multipleTx": "Vous avez reçu plusieurs transactions sur {{account}}",
+        "valueTx": "Vous avez reçu {{value}} sur {{account}}",
+        "messageTx": "Vous avez reçu un message à {{account}}",
+        "confirmedIn": "Transaction de {{value}} sur {{account}} confirmé",
+        "confirmedOut": "Transaction de {{value}} depuis {{account}} confirmé"
     }
 }

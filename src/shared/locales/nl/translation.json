@@ -23,7 +23,7 @@
         "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
         "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
         "seed": "Seed",
-        "checksum": "Controlesom",
+        "checksum": "Checksum",
         "back": "Terug",
         "goBack": "Ga terug",
         "goBackStep": "Ga een stap terug",
@@ -133,7 +133,7 @@
         "androidCopyPasteWarning": "Kopieer/plak nooit uw seed op een Android apparaat.",
         "willNotCopyPasteSeed": "Ik zal mijn seed niet kopiëren/plakken",
         "mustBeStoredAppropriately": "Het moet adequaat worden opgeslagen.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Uw apparaat kan wellicht even niet reageren.",
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
@@ -170,25 +170,25 @@
         "passwordsDoNotMatch": "Wachtwoorden komen niet overeen",
         "passwordsDoNotMatchExplanation": "Wachtwoorden komen niet overeen. Probeer het opnieuw.",
         "passwordTooShort": "Het wachtwoord is te kort",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Je wachtwoord moet minstens 11 tekens lang zijn. Probeer aub opnieuw.",
         "oldPassword": "U kunt uw oude wachtwoord niet hergebruiken",
         "oldPasswordExplanation": "U kunt uw oude wachtwoord niet opnieuw gebruiken. Probeer het opnieuw met een ander wachtwoord.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Zorg ervoor dat u een sterk wachtwoord gebruikt van tenminste 11 karakters.",
         "currentPassword": "Huidig ​​wachtwoord",
         "newPassword": "Nieuw Wachtwoord",
         "confirmPassword": "Bevestig Nieuw Wachtwoord",
         "passwordTooWeak": "Wachtwoord te zwak",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
+        "passwordTooWeakReason": "Uw wachtwoord is te zwak. Gebruik een combinatie van woorden en vermijd alledaagse zinnen, namen of datums.",
+        "reasonRow": "Opeenvolgende toetsen afkomstig uit dezelfde rij zijn makkelijk te raden.",
+        "reasonPattern": "Korte patronen van toetsten zijn makkelijk te raden.",
         "reasonNames": "Alledaagse namen en achternamen zijn makkelijk te raden.",
         "reasonRepeats": "Herhalingen als 'aaa' zijn makkelijk te raden.",
         "reasonRepeats2": "Herhalingen als 'abcabcabc' zijn maar net iets moeilijker te raden dan 'abc'.",
         "reasonSequence": "Opeenvolgingen als abc of 54321 zijn makkelijk te raden.",
         "reasonYears": "Recente jaren zijn makkelijk te raden.",
         "reasonDates": "Datums zijn vaak makkelijk te raden.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
+        "reasonTop10": "Dit is een top 10 alledaags wachtwoord.",
+        "reasonTop100": "Dit is een top 100 alledaags wachtwoord.",
         "reasonCommon": "Dit is een zeer alledaags wachtwoord.",
         "reasonSimilar": "Dit is vergelijkbaar met een veelgebruikt wachtwoord.",
         "reasonWord": "Een enkel woord is makkelijk te raden."
@@ -296,11 +296,12 @@
         "saveYourSeed": "Back uw seed up",
         "seedCleared": "Seed gewist",
         "mostSecure": "Meest Veilig",
+        "recommended": "Recommended",
         "leastSecure": "Minst Veilig",
         "paperWallet": "Papieren Portemonnee",
         "writeYourSeedDown": "Schrijf uw seed op",
         "seedClearedExplanation": "De seed is gewist van uw kladblok voor uw veiligheid.",
-        "letsWriteDownYourSeed": "Laten we uw seed opschrijven",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "U kan 9 karakters tegelijk markeren",
         "printBlankWallet": "Print een lege portemonnee",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -352,10 +353,10 @@
         "youCanAdd": "U kunt meer seeds toevoegen in het Instellingen menu."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Standaard",
-        "expertModeExplanation": "De Expert modus geeft toegang tot extra functies, zoals handmatige promotie en opnieuw koppelen.",
-        "modesExplanation": "Schakel Expert modus alleen in als u een ervaren Tangle-gebruiker bent. Anders kan het verwarrend zijn."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transactie in behandeling",
@@ -420,11 +421,11 @@
         "noIHaveOne": "Nee, ik heb er een",
         "yesINeedASeed": "Ja, ik heb een seed nodig",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw seed veilig."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Bedankt voor het downloaden van Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>",
@@ -450,7 +451,8 @@
         "viewAddresses": "Bekijk adressen",
         "editAccountName": "Accountnaam bewerken",
         "deleteAccount": "Account verwijderen",
-        "addNewAccount": "Nieuw account toevoegen"
+        "addNewAccount": "Nieuw account toevoegen",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
         "errorRetrievingUpdateDataExplanation": "Er was een error bij het ophalen van update data. Probeer het opnieuw.",
         "noUpdatesAvailable": "Geen updates beschikbaar",
-        "noUpdatesAvailableExplanation": "U beschikt over de laatste versie van de IOTA Trinity desktop portemonnee!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
-        "newVersionAvailableExplanation": "Een nieuwe<strong>Trinity</strong> <strong>{{version}}</strong> versie is beschikbaar. Lees de opmerkingen aandacht door en zorg dat u de download bron verifieert voor het downloaden van de update:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Download versie",
         "skipUpdate": "Sla de update over"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Algemene Voorwaarden",
         "accept": "Ik ga akkoord",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacybeleid",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

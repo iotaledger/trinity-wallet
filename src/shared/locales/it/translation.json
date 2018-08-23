@@ -296,11 +296,12 @@
         "saveYourSeed": "Esegui il backup del tuo seme",
         "seedCleared": "Seme cancellato",
         "mostSecure": "Più sicuro",
+        "recommended": "Consigliato",
         "leastSecure": "Meno sicuro",
         "paperWallet": "Portafoglio su carta",
         "writeYourSeedDown": "Annota il seme",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
-        "letsWriteDownYourSeed": "Consente di annotare il vostro seme",
+        "letsWriteDownYourSeed": "Ti aiuto a scrivere il tuo seme",
         "youCanHighlightCharacters": "È possibile evidenziare 9 caratteri alla volta",
         "printBlankWallet": "Stampare un portafoglio vuoto",
         "whatIsChecksum": "Ogni seme ha un corrispondente checksum di 3 caratteri",
@@ -352,10 +353,10 @@
         "youCanAdd": "Nel menu impostazioni, è possibile aggiungere più semi."
     },
     "modeSelection": {
-        "expert": "Esperto",
+        "advanced": "Avanzata",
         "standard": "Standard",
-        "expertModeExplanation": "La modalità Esperto fornirà accesso a funzioni aggiuntive come promozione e ricollegamento manuali.",
-        "modesExplanation": "Abilita la modalità Esperto solo se hai esperienza nell'uso del Tangle. Altrimenti potresti trovarti disorientato."
+        "advancedModeExplanation": "Nella modalità Avanzata saranno visualizzate informazioni tecniche più dettagliate.",
+        "modesExplanation": "Abilita la modalità Avanzata solo se hai esperienza nell'uso di IOTA. Altrimenti potresti trovarti disorientato."
     },
     "settings": {
         "transferSending": "Invio transazione",
@@ -439,7 +440,7 @@
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti.",
         "messageCopied": "Messaggio copiato",
         "messageCopiedExplanation": "Il messaggio è stato copiato negli Appunti.",
-        "send": "Invia",
+        "send": "INVIA",
         "receive": "Ricevi",
         "empty": "Vuota",
         "retrying": "Sto riprovando",
@@ -450,7 +451,8 @@
         "viewAddresses": "Visualizza indirizzi",
         "editAccountName": "Modifica nome conto",
         "deleteAccount": "Cancella conto",
-        "addNewAccount": "Aggiungi nuovo conto"
+        "addNewAccount": "Aggiungi nuovo conto",
+        "tools": "Strumenti"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Impossibile aggiungere il nodo personalizzato",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
-        "seedVaultExplanation": "Un SeedVault è un file crittografato in cui è archiviato in modo sicuro il tuo seme. Il seme viene crittografato dietro una password e non è possibile accedervi senza la password. Si consiglia di memorizzare il file in un gestore di password come Keepass.",
+        "seedVaultExplanation": "Un SeedVault è un file crittografato per archiviare in modo sicuro il tuo seme. Il seme viene crittografato dietro una password e non è possibile accedere senza la password.",
         "seedVaultWarning": "Assicurarsi di eseguire un backup del file in più posizioni (per esempio hard disk, nel cloud, USB). Se perdi questo file e non hai archiviato il seme altrove, perderai i tuoi IOTA.",
         "exportFail": "Esportazione come SeedVault fallita",
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
         "errorRetrievingUpdateDataExplanation": "C'è stato un errore nel reperimento dell'aggiornamento. Per favore riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
-        "noUpdatesAvailableExplanation": "Hai l'ultima versione desktop del portafoglio IOTA Trinity!",
+        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity Desktop.",
         "newVersionAvailable": "Una nuova versione è disponibile",
-        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Si prega di leggere attentamente i dettagli di rilascio e verificare l'origine del download prima di eseguire l'aggiornamento:",
+        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Leggi attentamente le note di rilascio e verifica l'origine del download prima di eseguire l'aggiornamento:",
         "downloadRelease": "Scarica la versione",
         "skipUpdate": "Salta l'aggiornamento"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Termini e condizioni",
         "accept": "Accetto",
-        "readAllToContinue": "Si prega di leggere tutto il testo per continuare"
+        "readAllToContinue": "Si prega di leggere il testo completo"
     },
     "privacyPolicy": {
         "privacyPolicy": "Informativa Privacy",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Icona nell'area di notifica",
-        "trayExplanation": "Fornisce una rapida panoramica del saldo e la cronologia recente.",
+        "trayExplanation": "Fornisce una panoramica del saldo di ogni conto e la cronologia delle transazioni recenti.",
         "notLoggedIn": "Non hai effettuato l'accesso",
         "setupIncomplete": "Incompleta configurazione del portafoglio",
         "completeSetup": "Completa la configurazione"
     },
     "notifications": {
         "notifications": "Notifiche",
-        "notificationExplanation": "Ricevi notifiche di sistema sulle nuove transazioni",
-        "typeConfirmations": "Notifica sulle conferme",
-        "typeMessages": "Notifica sulle transazioni a valore zero",
-        "multipleTx": "Hai ricevuto più transazioni sul conto {{account}}",
-        "valueTx": "Hai ricevuto {{value}} sul conto {{account}}",
+        "notificationExplanation": "Ricevi notifiche di sistema sulle nuove transazioni.",
+        "typeConfirmations": "Notificami le conferme",
+        "typeMessages": "Notificami le transazioni a valore zero",
+        "multipleTx": "Sono in ricezione più transazioni sul conto {{account}}",
+        "valueTx": "In ricezione {{value}} sul conto {{account}}",
         "messageTx": "Hai ricevuto un messaggio sul conto {{account}}",
-        "confirmedIn": "Accredito di {{value}} è stato confermato sul conto {{account}}",
-        "confirmedOut": "Addebito di {{value}} è stato confermato sul conto {{account}}"
+        "confirmedIn": "Ricezione confermata di {{value}} sul conto {{account}}",
+        "confirmedOut": "Invio confermato di {{value}} dal conto {{account}}"
     }
 }

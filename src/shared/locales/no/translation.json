@@ -296,11 +296,12 @@
         "saveYourSeed": "Ta vare på hovednøkkelen",
         "seedCleared": "Hovednøkkelen er fjernet",
         "mostSecure": "Mest sikkert",
+        "recommended": "Recommended",
         "leastSecure": "Minst sikkert",
         "paperWallet": "Papirlommebok",
         "writeYourSeedDown": "Skriv ned hovednøkkelen",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
-        "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
         "whatIsChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum",
@@ -352,10 +353,10 @@
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "modeSelection": {
-        "expert": "Ekspert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation": "Ekspertmodus gir tilgang til flere funksjoner som manuell promotering og re-tilknytning av transaksjoner.",
-        "modesExplanation": "Aktiver kun ekspertmodus dersom du er en erfaren Tangle bruker. Hvis ikke kan dette være forvirrende."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Sender transaksjon",
@@ -450,7 +451,8 @@
         "viewAddresses": "Vis adresser",
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slett konto",
-        "addNewAccount": "Legge til ny konto"
+        "addNewAccount": "Legge til ny konto",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksporter SeedVault",
-        "seedVaultExplanation": "En SeedVault er en kryptert fil for å lagre din hovednøkkel sikkert. Hovednøkkelen din er kryptert bak et passord og kan ikke brukes uten passordet. Det anbefales at du lagrer filen i et passordverktøy som Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Pass på å sikkerhetskopiere filen flere steder (f.eks harddisk, nettsky, USB). Hvis du mister denne filen og du ikke har hovednøkkelen din lagret et annet sted, mister du tilgangen til dine IOTA.",
         "exportFail": "SeedVault eksport mislyktes",
         "exportFailExplanation": "Det oppstod et problem med å eksportere SeedVault. Kontroller at du har riktige tillatelser og nok plass.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
         "errorRetrievingUpdateDataExplanation": "Det oppstod en feil under innhenting av data. Vennligst forsøk igjen.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
-        "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av IOTA Trinity desktop lommeboken!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny versjon tilgjengelig",
-        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> versjon er tilgjengelig. Vennligst les utgivelses-notatene nøye og verifiser nedlastingskilden før oppdatering:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Last ned siste versjon",
         "skipUpdate": "Hopp over oppdatering"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Vilkår",
         "accept": "Jeg aksepterer",
-        "readAllToContinue": "Les hele teksten for å fortsette"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Personvernerklæring",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

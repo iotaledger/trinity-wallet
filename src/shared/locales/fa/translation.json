@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "ارسال",
-        "cancel": "Cancel",
+        "cancel": "لغو",
         "continue?": "آیا اطمینان دارید که می‌خواهید ادامه دهید؟",
         "noTransactions": "تاریخچه اخیری وجود ندارد",
         "refresh": "تازه کردن",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
         "seed": "سید",
         "checksum": "کد اعتبارسنجی",
-        "back": "Back",
+        "back": "برگشت",
         "goBack": "برگرد عقب",
         "goBackStep": "یک قدم به عقب برگرد",
-        "done": "Done",
+        "done": "انجام شد",
         "prev": "قبلی",
-        "next": "Next",
+        "next": "بعدی",
         "apply": "اعمال",
         "save": "ذخیره",
         "close": "بستن",
@@ -54,9 +54,9 @@
         "fifthWallet": "حساب پنجم",
         "sixthWallet": "حساب ششم",
         "otherWallet": "حساب دیگر",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "بله",
+        "no": "نه",
+        "okay": "باشه",
         "password": "گذرواژه",
         "unrecognisedPassword": "گذرواژه غیر قابل شناسایی",
         "unrecognisedPasswordExplanation": "گذرواژه شناسایی نشد لطفا دوباره تلاش کنید.",
@@ -170,28 +170,28 @@
         "passwordsDoNotMatch": "گذرواژه‌ ها یکسان نیستند",
         "passwordsDoNotMatchExplanation": "گذرواژه های ورودی مطابقت ندارند. لطفا دوباره تلاش کنید.",
         "passwordTooShort": "گذرواژه خیلی کوتاه است",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "گذرواژه شما باید حداقل 11 کاراکتر باشد. لطفا دوباره تلاش کنید.",
         "oldPassword": "گذرواژه قدیمی را نمیتوان تنظیم کرد",
         "oldPasswordExplanation": "شما نمی توانید از گذرواژه قدیمی به عنوان گذرواژه جدید خود استفاده کنید. لطفا دوباره با گذرواژه جدید تلاش کنید.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "اطمینان حاصل کنید که از یک گذرواژه قوی حداقل 11 کاراکتر استفاده می کنید.",
         "currentPassword": "گذرواژه فعلی",
         "newPassword": "گذرواژه جدید",
         "confirmPassword": "تایید گذرواژه جدید",
         "passwordTooWeak": "گذرواژه ضعیف است",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
+        "passwordTooWeakReason": "گذرواژه شما خیلی ضعیف است از ترکیب کلمات استفاده کنید و از عبارات رایج، نام ها یا تاریخ ها اجتناب کنید.",
+        "reasonRow": "استقاده از کلید های ردیفی یا سر راستی آسان و قابل حدس زدن میباشد.",
+        "reasonPattern": "الگوهای کوتاه از کلید ها آسان است قابل حدس زدن میباشد.",
+        "reasonNames": "نام و نام خانوادگی به راحتی قابل حدس زدن است.",
+        "reasonRepeats": "تکرار حرف ها کنار یکدیگر مانند 'aaa' آسان میباشند و قابل حدس زدن است.",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonSequence": "دنباله هایی مانند abc یا 54321 آسان است حدس بزنید.",
+        "reasonYears": "استفاده از سال های گذشته آسان است قابل حدس زدن میباشد.",
+        "reasonDates": "تاریخ ها اغلب آسان و قابل حدس زدن است.",
+        "reasonTop10": "این عبارت در 10 کلمه برتر گذرواژه است.",
+        "reasonTop100": "این عبارت در 100 کلمه برتر گذرواژه است.",
+        "reasonCommon": "این یک گذرواژه بسیار رایج است.",
+        "reasonSimilar": "این شبیه به یک گذرواژه معمولی است.",
+        "reasonWord": "یک کلمه ساده آسان و قابل حدس زدن است."
     },
     "setPassword": {
         "choosePassword": "یک گذرواژه جدید انتخاب کنید",
@@ -296,11 +296,12 @@
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
         "seedCleared": "سید پاک شد",
         "mostSecure": "امن ترین",
+        "recommended": "Recommended",
         "leastSecure": "کمترین امنیت",
         "paperWallet": "کیف پول کاغذی",
         "writeYourSeedDown": "سید خود را بنویسید",
         "seedClearedExplanation": "سید برای امنیت شما از کلیپ بورد پاکسازی شده است.",
-        "letsWriteDownYourSeed": "به نوشتن سید خود شروع کنید",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
         "whatIsChecksum": "هر سید یک کد اعتبارسنجی 3 حرفی دارد",
@@ -352,10 +353,10 @@
         "youCanAdd": "می توانید سید های بیشتری را از منوی تنظیمات اضافه کنید."
     },
     "modeSelection": {
-        "expert": "حرفه ای",
+        "advanced": "Advanced",
         "standard": "استاندارد",
-        "expertModeExplanation": "حالت حرفه ای دسترسی به ویژگی های اضافی مانند ارتقا دستی و پیوست مجدد را فراهم می کند.",
-        "modesExplanation": "اگر واقعا حرفه ای هستید این حالت را فعال کنید اگر شما یک کاربر کم تجربه باشید این حالت پیچیده است. ممکن است در این حالت گمراه شوید."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "انتقال فرستاده شد",
@@ -450,7 +451,8 @@
         "viewAddresses": "مشاهده آدرس",
         "editAccountName": "ویرایش نام حساب",
         "deleteAccount": "حذف حساب",
-        "addNewAccount": "اضافه کردن حساب جدید"
+        "addNewAccount": "اضافه کردن حساب جدید",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
-        "seedVaultExplanation": "سید Vault یک فایل رمزگذاری شده برای ذخیره سازی ایمن سید ها است. سید شما رمزگذاری شده است و نمی توانید بدون گذرواژه آن را ببینید. توصیه می شود که برای ذخیره فایل ها از مدیریت گذرواژه مانند Keepass استفاده کنید.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "اطمینان حاصل کنید که فایل را در چندین مکان (مانند هارد دیسک، فضای ابری، فلش) پشتیبان بگیرید. اگر این فایل را از دست بدهید و سید خود را در جایی ذخیره نکرده باشید، آیوتای خود را از دست خواهید داد.",
         "exportFail": "استخراج سید Vault ناموفق بود",
         "exportFailExplanation": "مشکل استخراج سید Vault وجود داشت. لطفا اطمینان حاصل کنید که مجوز های مناسب و فضای آزاد کافی دارید.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
         "errorRetrievingUpdateDataExplanation": "هنگام بازیابی داده های به روزرسانی مشکلی به وجود آمد. لطفا دوباره تلاش کنید.",
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
-        "noUpdatesAvailableExplanation": "شما آخرین نسخه از کیف پول دسکتاپ آیوتا Trinity را دریافت کرده اید!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "نسخه جدید موجود است",
-        "newVersionAvailableExplanation": "نسخه جدید <strong>Trinity</strong><strong>{{version}}</strong> در دسترس است. لطفا جزئیات نسخه جدید را به دقت بخوانید و قبل از به روز رسانی منبع دانلود را بررسی کنید:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "دانلود آخرین نسخه",
         "skipUpdate": "رد شدن از به روز رسانی"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "شرایط و ضوابط",
         "accept": "قبول می‌کنم",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "سیاست حفظ حریم خصوصی",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

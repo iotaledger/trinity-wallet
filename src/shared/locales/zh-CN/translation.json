@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "发送",
-        "cancel": "Cancel",
+        "cancel": "取消",
         "continue?": "是否确定继续？",
         "noTransactions": "没有最近的历史记录",
         "refresh": "刷新",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "此节点不同步，请更改节点或重试。",
         "seed": "种子",
         "checksum": "校验和",
-        "back": "Back",
+        "back": "退回",
         "goBack": "返回",
         "goBackStep": "返回上一步",
-        "done": "Done",
+        "done": "完成",
         "prev": "前一页",
-        "next": "Next",
+        "next": "下一页",
         "apply": "应用",
         "save": "保存",
         "close": "关闭",
@@ -54,9 +54,9 @@
         "fifthWallet": "第五个帐户",
         "sixthWallet": "第六个帐户",
         "otherWallet": "其他帐户",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "是",
+        "no": "否",
+        "okay": "好的",
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
@@ -173,7 +173,7 @@
         "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
         "oldPassword": "无法使用旧密码",
         "oldPasswordExplanation": "无法将旧密码设置为新密码。请尝试输入新密码。",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "请您确保使用至少 11 个字符的强密码。",
         "currentPassword": "当前密码",
         "newPassword": "新密码",
         "confirmPassword": "确认新密码",
@@ -187,10 +187,10 @@
         "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
         "reasonYears": "Recent years are easy to guess.",
         "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
+        "reasonTop10": "这是最常见的10个密码.",
+        "reasonTop100": "这是最常见的100个密码.",
+        "reasonCommon": "这是非常常见的密码.",
+        "reasonSimilar": "这类似于常见的密码.",
         "reasonWord": "A single word is easy to guess."
     },
     "setPassword": {
@@ -296,11 +296,12 @@
         "saveYourSeed": "备份您的种子",
         "seedCleared": "种子已清除",
         "mostSecure": "最安全的",
+        "recommended": "Recommended",
         "leastSecure": "最低安全的",
         "paperWallet": "纸钱包",
         "writeYourSeedDown": "写下您的种子",
         "seedClearedExplanation": "为了安全，已从剪贴板中清除掉了该种子。",
-        "letsWriteDownYourSeed": "让我们记下您的种子",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
         "whatIsChecksum": "每个种子都有相应的3字符校验和",
@@ -352,10 +353,10 @@
         "youCanAdd": "您可以在设置菜单中添加更多种子。"
     },
     "modeSelection": {
-        "expert": "专家",
+        "advanced": "Advanced",
         "standard": "标准",
-        "expertModeExplanation": "专家模式将提供对其他功能的访问, 如手动升级和复位。",
-        "modesExplanation": "只有当您是有经验的Tangle用户时才启用专家模式。否则您可能会觉得很混乱。"
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "正在发送交易",
@@ -450,7 +451,8 @@
         "viewAddresses": "查看地址",
         "editAccountName": "编辑帐户",
         "deleteAccount": "删除帐户",
-        "addNewAccount": "添加新帐户"
+        "addNewAccount": "添加新帐户",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
-        "seedVaultExplanation": "SeedVault 是一个加密的文件, 用于安全地存储种子。种子通过密码进行加密, 无法在没有密码的情况下访问。建议您将该文件存储在像 Keepass 这样的密码管理器中。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "请确保在多个位置备份文件 (例如硬盘、云、USB)。如果你失去了这个文件, 并没有在别处储存你的种子, 你就会失去你的IOTA。",
         "exportFail": "SeedVault 导出失败",
         "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
         "errorRetrievingUpdateDataExplanation": "检索更新数据时出错。请重试。",
         "noUpdatesAvailable": "没有可用的更新",
-        "noUpdatesAvailableExplanation": "你已经得到了最新版本的IOTA 三体桌面钱包!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "新版本可用",
-        "newVersionAvailableExplanation": "新的 <strong>三体</strong> <strong>{{version}}</strong> 版本可用。请仔细阅读软件发布详细信息, 并在更新前验证下载源:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "下载软件的发布版本",
         "skipUpdate": "忽略更新"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "条款和条件",
         "accept": "我接受",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "隐私政策",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }

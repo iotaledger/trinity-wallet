@@ -7,7 +7,7 @@
         "refresh": "更新",
         "balanceError": "残高不足",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
-        "totalBalance": "Total balance",
+        "totalBalance": "総残高",
         "transferError": "送金エラー",
         "transferErrorMessage": "送金中に不具合が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
@@ -296,6 +296,7 @@
         "saveYourSeed": "シードをバックアップしてください。",
         "seedCleared": "シードを消去しました。",
         "mostSecure": "最も安全",
+        "recommended": "推奨",
         "leastSecure": "最低限の安全",
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
@@ -352,10 +353,10 @@
         "youCanAdd": "設定メニューでシードを追加できます。"
     },
     "modeSelection": {
-        "expert": "上級",
+        "advanced": "上級",
         "standard": "標準",
-        "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
-        "modesExplanation": "経験豊富なタングルユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "advancedModeExplanation": "上級モードでは、より詳細な技術的情報が表示されます。",
+        "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
     },
     "settings": {
         "transferSending": "送金中",
@@ -450,7 +451,8 @@
         "viewAddresses": "アドレスを表示",
         "editAccountName": "アカウント名を編集",
         "deleteAccount": "アカウントを削除",
-        "addNewAccount": "新しいアカウントを追加"
+        "addNewAccount": "新しいアカウントを追加",
+        "tools": "ツール"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
-        "seedVaultExplanation": "シード金庫はシードを安全に保管するための暗号化されたファイルです。シードはパスワードを使って暗号化されており、パスワードなしではアクセスできません。Keepassのようなパスワードマネージャーにシード金庫を保存することをお勧めします。",
+        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。このシードはパスワードによって暗号化され、パスワードがなければアクセスできません。",
         "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
         "exportFail": "シード金庫の書き出しに失敗しました",
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "更新データの取得エラー",
         "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
-        "noUpdatesAvailableExplanation": "最新版のIOTA Trinity デスクトップウォレットです。",
+        "noUpdatesAvailableExplanation": "最新バージョンを利用しています。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
-        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認ください：",
+        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。アップデートする前に、リリースノートを注意深く読み、ダウンロード元をご確認ください：",
         "downloadRelease": "リリースをダウンロード",
         "skipUpdate": "更新をスキップ"
     },
@@ -664,28 +666,28 @@
     "terms": {
         "termsAndConditions": "利用規約",
         "accept": "承諾する",
-        "readAllToContinue": "続けるにはすべてのテキストをお読みください"
+        "readAllToContinue": "全文をお読みください"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
         "agree": "同意します"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "トレイアプリケーション",
+        "trayExplanation": "アカウント残高と最近の取引履歴の概要を示します。",
+        "notLoggedIn": "ログインしていません",
+        "setupIncomplete": "ウォレットの設定が不十分です",
+        "completeSetup": "セットアップ完了"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "notifications": "通知設定",
+        "notificationExplanation": "新しいトランザクションに関するシステム全体の通知を受け取ります。",
+        "typeConfirmations": "取引の確定を通知する",
+        "typeMessages": "０値のトランザクションを通知する",
+        "multipleTx": "{{account}}に複数の取引を受け取っています",
+        "valueTx": "{{account}}に{{value}}を受け取っています",
+        "messageTx": "{{account}}にメッセージを受け取りました",
+        "confirmedIn": "{{account}}への入金{{value}}が確定しました",
+        "confirmedOut": "{{account}}からの出金{{value}}が確定しました"
     }
 }

@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "GỬI",
-        "cancel": "Cancel",
+        "cancel": "Hủy",
         "continue?": "Bạn có muốn tiếp tục không?",
         "noTransactions": "KHÔNG CÓ LỊCH SỬ",
         "refresh": "Làm Mới",
@@ -24,12 +24,12 @@
         "thisNodeOutOfSync": "Nút mạng này không được đồng bộ. Hãy đổi nút mạng khác hoặc thử lại sau.",
         "seed": "Từ Khoá",
         "checksum": "Giá Trị Kiểm Tra",
-        "back": "Back",
+        "back": "Trở lại",
         "goBack": "Quay lại",
         "goBackStep": "Quay lại một bước",
-        "done": "Done",
+        "done": "Xong",
         "prev": "TRƯỚC",
-        "next": "Next",
+        "next": "Tiếp",
         "apply": "Áp Dụng",
         "save": "Lưu",
         "close": "Đóng",
@@ -54,9 +54,9 @@
         "fifthWallet": "TÀI KHOẢN THỨ NĂM",
         "sixthWallet": "TÀI KHOẢN THỨ SÁU",
         "otherWallet": "TÀI KHOẢN KHÁC",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Có",
+        "no": "Không",
+        "okay": "Đồng ý",
         "password": "Mật Khẩu",
         "unrecognisedPassword": "Không nhận dạng được mật khẩu",
         "unrecognisedPasswordExplanation": "Không xác nhận được mật khẩu. Xin vui lòng thử lại.",
@@ -133,7 +133,7 @@
         "androidCopyPasteWarning": "Không bao giờ được sao chép/dán chuỗi mật mã của bạn khi sử dụng thiết bị Android.",
         "willNotCopyPasteSeed": "Tôi sẽ không chép/dán từ khoá",
         "mustBeStoredAppropriately": "Nó phải được lưu giữ thích đáng.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Thiết bị của bạn có thể ngưng phản hồi trong một thời gian.",
         "isYourBalanceCorrect": "Bản quyết toán của bạn chính xác không?",
         "ifYourBalanceIsNotCorrect": "Nếu số dư của bạn là sai, có khả năng rằng bạn đang dử dụng chuỗi mật mã trước khi Snapshot gần đây nhất xảy ra.",
         "headToAdvancedSettingsForTransition": "Tới mục \"Cài đặt nâng cao\" để thực hiện quá trình chuyển đổi sang Snapshot mới nhất.",
@@ -170,28 +170,28 @@
         "passwordsDoNotMatch": "Mật khẩu không trùng khớp",
         "passwordsDoNotMatchExplanation": "Mật khẩu không trùng khớp. Xin vui lòng thử lại.",
         "passwordTooShort": "Mật khẩu quá ngắn",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 11 ký tự. Xin vui lòng thử lại.",
         "oldPassword": "Không thể dùng mật khẩu cũ",
         "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 11 ký tự.",
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
         "confirmPassword": "Xác Nhận Mật Khẩu Mới",
         "passwordTooWeak": "Mật khẩu quá yếu",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "passwordTooWeakReason": "Mật khẩu của bạn quá đơn giản. Chọn cách kết hợp nhiều từ và tránh dùng các cụm từ phổ biến, tên hoặc ngày tháng.",
+        "reasonRow": "Chữ trên một hàng của bàn phím dễ bị đoán ra.",
+        "reasonPattern": "Dòng chữ ngắn dễ bị đoán ra.",
+        "reasonNames": "Họ và tên thường gặp dễ bị đoán ra.",
+        "reasonRepeats": "Chuỗi từ lặp lại như 'aaa' dễ bị đoán ra.",
+        "reasonRepeats2": "Chuỗi từ lặp lại như 'abcabcabc' chỉ khó đoán hơn một chút so với 'abc'.",
+        "reasonSequence": "Chuỗi từ abc hoặc 54321 rất dễ bị đoán ra.",
+        "reasonYears": "Năm gần đây rất dễ bị đoán ra.",
+        "reasonDates": "Ngày rất dễ bị đoán ra.",
+        "reasonTop10": "Đây là 10 mật khẩu thường gặp nhất.",
+        "reasonTop100": "Đây là 100 mật khẩu thường gặp nhất.",
+        "reasonCommon": "Đây là mật khẩu thường gặp.",
+        "reasonSimilar": "Cái này tương tự với mật khẩu thường gặp.",
+        "reasonWord": "Một từ rất dễ bị đoán ra."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -296,11 +296,12 @@
         "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
         "seedCleared": "Đã xoá từ khoá",
         "mostSecure": "An Toàn Tối Đa",
+        "recommended": "Recommended",
         "leastSecure": "An Toàn Tối Thiểu",
         "paperWallet": "Ví Giấy",
         "writeYourSeedDown": "Viết từ khoá xuống",
         "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
-        "letsWriteDownYourSeed": "Hãy ghi từ khóa xuống",
+        "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Bạn có thể đánh dấu 9 ký tự trong một lần",
         "printBlankWallet": "In một ví trống",
         "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
@@ -352,10 +353,10 @@
         "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
     },
     "modeSelection": {
-        "expert": "Expert",
+        "advanced": "Advanced",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
@@ -424,7 +425,7 @@
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Cám ơn bạn đã tải ví Trinity về"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>",
@@ -450,13 +451,14 @@
         "viewAddresses": "Xem địa chỉ",
         "editAccountName": "Sửa tên tài khoản",
         "deleteAccount": "Xoá tài khoản",
-        "addNewAccount": "Thêm tài khoản mới"
+        "addNewAccount": "Thêm tài khoản mới",
+        "tools": "Tools"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNode": "Nút mạng tuỳ chỉnh",
         "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "invalidNodeResponse": "Nút mạng phản hồi không hợp lệ",
         "add": "Thêm",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
@@ -514,7 +516,7 @@
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Nhấn vào nút dưới đây để đồng bộ hóa tài khoản.",
         "thisMayTake": "Điều này sẽ mất một thời gian. Bạn sẽ thấy máy của bạn chậm hơn một chút.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "Sync Account",
@@ -557,7 +559,7 @@
         "buttonInstructionsEnable": "Nhấn vào nút dưới đây để kích hoạt xác thực vân tay.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "instructionsLogin": "Chạm đầu đọc vân tay để đăng nhập"
     },
     "transferConfirmation": {
         "youAreAbout": "Bạn chuẩn bị gửi {{contents}} đến địa chỉ",
@@ -582,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -652,9 +654,9 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Đã có phiên bản mới",
-        "newVersionAvailableExplanation": "Phiên bản mới <strong>Trinity</strong> <strong>{{version}}</strong> đã có sẵn. Xin vui lòng đọc kĩ các chi tiết phát hành và xác minh mã nguồn tải về trước khi cập nhật:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "downloadRelease": "Tải phiên bản",
         "skipUpdate": "Bỏ qua cập nhật"
     },
@@ -664,7 +666,7 @@
     "terms": {
         "termsAndConditions": "Điều Khoản & Điều Kiện",
         "accept": "Tôi chấp nhận",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Please read the full text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Chính Sách Quyền Riêng Tư",
@@ -672,20 +674,20 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system wide notifications about new transactions",
-        "typeConfirmations": "Notify about confirmations",
-        "typeMessages": "Notify about zero value transactions",
-        "multipleTx": "You received multiple transactions to {{account}}",
-        "valueTx": "You received {{value}} to {{account}}",
+        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "typeConfirmations": "Notify me about confirmations",
+        "typeMessages": "Notify me about zero value transactions",
+        "multipleTx": "Receiving multiple transactions to {{account}}",
+        "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
+        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
 }
