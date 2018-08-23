@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
-        "errorRetrievingUpdateDataExplanation": "Wystąpił błąd podczas pobierania danych aktualizacji. Proszę spróbować ponownie.",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
-        "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
-        "downloadRelease": "Pobierz aktualizację",
-        "skipUpdate": "Pomiń aktualizację"
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Dziennik błędów"
