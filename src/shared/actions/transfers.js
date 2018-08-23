@@ -313,7 +313,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *   @param {boolean} shouldGenerateAlert
  *   @param {function} powFn
  *   @param {number} maxReplays - Maximum number of reattachments if promotion fails because of transaction inconsistency
- *   @param {number} maxPromotionAttempts - Maximum number of promotion retry attempts if transaction i
+ *   @param {number} maxPromotionAttempts - Maximum number of promotion retry attempts
  *
  *   @returns {function} dispatch
  **/
