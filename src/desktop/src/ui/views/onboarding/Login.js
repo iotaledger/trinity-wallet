@@ -61,11 +61,8 @@ class Login extends React.Component {
         /** @ignore */
         getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
         /** @ignore */
-<<<<<<< HEAD
-=======
         setOnboardingName: PropTypes.func.isRequired,
         /** @ignore */
->>>>>>> develop
         t: PropTypes.func.isRequired,
     };
 
@@ -271,10 +268,7 @@ const mapDispatchToProps = {
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
     getAccountInfo,
-<<<<<<< HEAD
-=======
     setOnboardingName,
->>>>>>> develop
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));

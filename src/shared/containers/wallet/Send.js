@@ -9,7 +9,11 @@ import { makeTransaction } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
-import { getSelectedAccountName, getBalanceForSelectedAccount, getAvailableBalanceForSelectedAccount } from '../../selectors/accounts';
+import {
+    getSelectedAccountName,
+    getBalanceForSelectedAccount,
+    getAvailableBalanceForSelectedAccount,
+} from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 

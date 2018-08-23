@@ -68,11 +68,8 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
-<<<<<<< HEAD
-=======
         setOnboardingName: PropTypes.func.isRequired,
         /** @ignore */
->>>>>>> develop
         t: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLink: PropTypes.func.isRequired,

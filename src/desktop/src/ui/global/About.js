@@ -51,8 +51,6 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
-<<<<<<< HEAD
-=======
                             <h5>0.3.1-rc.2</h5>
                             <ul>
                                 <li>Update: Set SeedVault as Recommended backup option</li>
@@ -63,7 +61,6 @@ class About extends React.PureComponent {
                                 <li>Fix: Scanning QR does not fill amount</li>
                                 <li>Fix: Native menu not disabled on Lock screen</li>
                             </ul>
->>>>>>> develop
                             <h5>0.3.1-rc.1</h5>
                             <ul>
                                 <li>Update: Execute PoW and address generation in non-blocking way</li>
