@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Ett fel uppstod vid hämtning av uppdateringsdata. Vänligen försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
-        "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Ny version tillgänglig",
-        "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
-        "downloadRelease": "Ladda ner version",
-        "skipUpdate": "Hoppa över uppdatering"
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Fellogg"
