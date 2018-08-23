@@ -146,7 +146,7 @@ class WalletSetup extends Component {
     }
 
     /**
-     * Displays a modal if device is rooted (Android)
+     * Displays a modal if device is rooted
      * @method showModalIfRooted
      */
     showModalIfRooted() {

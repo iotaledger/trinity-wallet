@@ -169,6 +169,10 @@ class CustomTextInput extends Component {
         this.setState({ isFocused: false });
     }
 
+    /**
+     * Gets the label style
+     * @return {Object}
+     */
     getLabelStyle() {
         const { theme } = this.props;
         const focusedFieldLabel = { color: theme.primary.color, fontFamily: 'SourceSansPro-Regular' };
@@ -177,6 +181,11 @@ class CustomTextInput extends Component {
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
     }
 
+    /**
+     * Renders a camera icon for QR code scanning
+     * @param  {Object} widgetBorderColor
+     * @return {View}
+     */
     renderQR(widgetBorderColor) {
         const { theme, onQRPress, containerStyle } = this.props;
         return (
@@ -192,6 +201,10 @@ class CustomTextInput extends Component {
         );
     }
 
+    /**
+     * Renders a checkmark
+     * @return {View}
+     */
     renderPasswordCheck() {
         const { theme, containerStyle, isPasswordValid } = this.props;
         return (
@@ -207,6 +220,11 @@ class CustomTextInput extends Component {
         );
     }
 
+    /**
+     * Renders the denomination text
+     * @param  {Object} widgetBorderColor
+     * @return {View}
+     */
     renderDenomination(widgetBorderColor) {
         const { theme, onDenominationPress, denominationText } = this.props;
         return (
@@ -222,6 +240,11 @@ class CustomTextInput extends Component {
         );
     }
 
+    /**
+     * Renders a fingerprint icon
+     * @param  {Object} widgetBorderColor
+     * @return {View}
+     */
     renderFingerprintAuthentication(widgetBorderColor) {
         const { theme, onFingerprintPress, containerStyle, widget } = this.props;
 
@@ -238,6 +261,11 @@ class CustomTextInput extends Component {
         );
     }
 
+    /**
+     * Renders the currency conversion text
+     * @param  {string} conversionText Value
+     * @return {View}
+     */
     renderCurrencyConversion(conversionText) {
         const { theme, height } = this.props;
 
