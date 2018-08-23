@@ -504,6 +504,15 @@ const Electron = {
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
             yes: t('yes'),
             no: t('no'),
+            updates: {
+               errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+               noUpdatesAvailable: t('updates:noUpdatesAvailable'),
+               noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
+               newVersionAvailable: t('updates:newVersionAvailable'),
+               newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
+               installUpdate: t('updates:installUpdate'),
+               installUpdateExplanation: t('updates:installUpdateExplanation'),
+           },
         });
 
         locales = {
