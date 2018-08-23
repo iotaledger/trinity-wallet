@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fout bij het ophalen van de update data",
-        "errorRetrievingUpdateDataExplanation": "Er was een error bij het ophalen van update data. Probeer het opnieuw.",
         "noUpdatesAvailable": "Geen updates beschikbaar",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Download versie",
-        "skipUpdate": "Sla de update over"
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Error log"
