@@ -384,7 +384,7 @@ const Electron = {
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `trinity-${now
+                defaultPath: `seedvault-${now
                     .toISOString()
                     .slice(0, 16)
                     .replace(/[-:]/g, '')
