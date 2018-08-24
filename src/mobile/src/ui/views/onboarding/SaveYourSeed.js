@@ -485,25 +485,6 @@ class SaveYourSeed extends Component {
                     <View style={{ flex: 0.5 }} />
                     <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
                     <View style={[styles.line, lineColor]} />
-                    <View>
-                        <Button
-                            onPress={() => this.onWriteSeedDownPress()}
-                            style={{
-                                wrapper: {
-                                    width: width / 1.36,
-                                    height: height / 13,
-                                    borderRadius: height / 90,
-                                    backgroundColor: secondary.color,
-                                },
-                                children: {
-                                    color: secondary.body,
-                                },
-                            }}
-                        >
-                            {t('saveYourSeed:writeYourSeedDown')}
-                        </Button>
-                    </View>
-                    <View style={[styles.line, lineColor]} />
                     <Button
                         onPress={() => this.onExportSeedVaultPress()}
                         style={{
@@ -519,6 +500,23 @@ class SaveYourSeed extends Component {
                         }}
                     >
                         {t('seedVault:exportSeedVault')}
+                    </Button>
+                    <View style={[styles.line, lineColor]} />
+                    <Button
+                        onPress={() => this.onWriteSeedDownPress()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: secondary.color,
+                            },
+                            children: {
+                                color: secondary.body,
+                            },
+                        }}
+                    >
+                        {t('saveYourSeed:writeYourSeedDown')}
                     </Button>
                     <View style={[styles.line, lineColor]} />
                     {/* FIXME Temporarily disable paper wallet on Android */}
