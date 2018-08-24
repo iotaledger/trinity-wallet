@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
-        "errorRetrievingUpdateDataExplanation": "Güncelleme bilgisi alınırken bir hata oluştu. Lütfen tekrar deneyin.",
         "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Sürümü indir",
-        "skipUpdate": "Güncelleştirmeyi atla"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Error log"
