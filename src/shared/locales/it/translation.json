@@ -653,11 +653,11 @@
     "updates": {
         "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
+        "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity!",
         "newVersionAvailable": "Una nuova versione è disponibile",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
+        "installUpdate": "Installa l'aggiornamento e riavvia",
+        "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento."
     },
     "notificationLog": {
         "errorLog": "Registro degli errori"
