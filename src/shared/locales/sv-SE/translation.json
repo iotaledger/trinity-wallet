@@ -296,7 +296,7 @@
         "saveYourSeed": "Spara din seed",
         "seedCleared": "Seed rensad",
         "mostSecure": "Mest säkert",
-        "recommended": "Recommended",
+        "recommended": "Rekommenderad",
         "leastSecure": "Minst säkert",
         "paperWallet": "Pappersplånbok",
         "writeYourSeedDown": "Skriv ner din seed",
@@ -452,7 +452,7 @@
         "editAccountName": "Ändra kontonamn",
         "deleteAccount": "Radera konto",
         "addNewAccount": "Lägg till konto",
-        "tools": "Tools"
+        "tools": "Verktyg"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Ett fel uppstod vid hämtning av uppdateringsdata. Vänligen försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
         "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
         "newVersionAvailable": "Ny version tillgänglig",
         "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
-        "downloadRelease": "Ladda ner version",
-        "skipUpdate": "Hoppa över uppdatering"
+        "installUpdate": "Installera uppdateringen och starta om",
+        "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen."
     },
     "notificationLog": {
         "errorLog": "Fellogg"
