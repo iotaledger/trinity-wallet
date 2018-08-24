@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
-        "errorRetrievingUpdateDataExplanation": "Įvyko klaida siunčiant atnaujinimus. Bandykite dar kartą.",
         "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Atsisiųsti leidinį",
-        "skipUpdate": "Praleisti atnaujinimus"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Klaidų žurnalas"
