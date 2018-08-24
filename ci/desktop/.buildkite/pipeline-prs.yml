@@ -1,0 +1,15 @@
+steps:
+  - label: ":pipeline: Run Trinity Desktop (PRs) pipeline"
+    command:
+      - "yarn"
+      - "cd src/shared && yarn && cd ../.."
+      - "cd src/desktop && yarn && cd ../.."
+      - "cd src/shared && yarn audit && cd ../desktop && yarn audit && cd ../.."
+      - "yarn lint:shared && yarn lint:desktop"
+      - "cd src/desktop && yarn build"
+    agents:
+      queue: dev
+    plugins:
+      docker#v1.4.0:
+        image: "rajivshah/trinity-desktop-ci"
+        always-pull: true

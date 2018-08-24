@@ -1,0 +1,10 @@
+{
+  "name": "Trinity Mobile",
+  "steps": [
+    {
+      "type": "script",
+      "name": "Primary",
+      "command": "buildkite-agent pipeline upload ci/mobile/.buildkite/pipeline-prs.yml"
+    }
+  ]
+}
