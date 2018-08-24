@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Đã có phiên bản mới",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Tải phiên bản",
-        "skipUpdate": "Bỏ qua cập nhật"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Error log"
