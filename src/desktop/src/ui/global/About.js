@@ -51,6 +51,11 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.2</h5>
+                            <ul>
+                                <li>Update: Update currency order</li>
+                                <li>Update: Add auto retries to promotion/reattachment</li>
+                            </ul>
                             <h5>0.3.1</h5>
                             <ul>
                                 <li>Update: Show fiat value on Send confirmation</li>
