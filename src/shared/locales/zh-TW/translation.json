@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
-        "errorRetrievingUpdateDataExplanation": "取得更新資料時發生錯誤，請再試一次。",
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "有新版本可用",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "下載更新版本",
-        "skipUpdate": "跳過更新"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Error log"
