@@ -12,13 +12,13 @@ import {
     TouchableWithoutFeedback,
     ActivityIndicator,
 } from 'react-native';
-import { formatModalTime, convertUnixTimeToJSDate } from 'shared/libs/date';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid, locale } from 'mobile/src/libs/device';
+import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, locale } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import CtaButton from './CtaButton';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     container: {

@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { set2FAStatus } from 'shared/actions/settings';
-import { generateAlert } from 'shared/actions/alerts';
+import { set2FAStatus } from 'shared-modules/actions/settings';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { translate } from 'react-i18next';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
-import Fonts from 'mobile/src/ui/theme/fonts';
-import { getTwoFactorAuthKeyFromKeychain } from 'mobile/src/libs/keychain';
-import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import Fonts from 'ui/theme/fonts';
+import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

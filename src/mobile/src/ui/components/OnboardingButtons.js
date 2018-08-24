@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
+import { width } from 'libs/dimensions';
 import Button from './Button';
-import { width } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

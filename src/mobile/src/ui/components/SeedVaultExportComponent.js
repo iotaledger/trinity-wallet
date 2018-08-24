@@ -5,18 +5,18 @@ import PropTypes from 'prop-types';
 import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { generateAlert } from 'shared/actions/alerts';
-import { getSelectedAccountName } from 'shared/selectors/accounts';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import GENERAL from 'ui/theme/general';
+import { getPasswordHash, getSeedFromKeychain } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import CustomTextInput from './CustomTextInput';
-import GENERAL from 'mobile/src/ui/theme/general';
 import PasswordFields from './PasswordFields';
 import InfoBox from './InfoBox';
-import { getPasswordHash, getSeedFromKeychain } from 'mobile/src/libs/keychain';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid, getAndroidFileSystemPermissions } from 'mobile/src/libs/device';
 
 const styles = StyleSheet.create({
     container: {

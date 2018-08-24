@@ -2,13 +2,19 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
-import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
+import {
+    VictoryChart,
+    VictoryLine,
+    VictoryAxis,
+    Line,
+    VictoryLabel
+} from 'victory-native';
 import { translate } from 'react-i18next';
-import withChartData from 'shared/containers/components/Chart';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import withChartData from 'shared-modules/containers/components/Chart';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const chartWidth = width;
 const chartHeight = height * 0.36;

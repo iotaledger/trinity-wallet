@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
-import { setFingerprintStatus } from 'shared/actions/settings';
-import { generateAlert } from 'shared/actions/alerts';
+import { setFingerprintStatus } from 'shared-modules/actions/settings';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
-import WithBackPressGoToHome from 'mobile/src/ui/components/BackPressGoToHome';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import FingerPrintModal from 'mobile/src/ui/components/FingerprintModal';
-import Fonts from 'mobile/src/ui/theme/fonts';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import Button from 'mobile/src/ui/components/Button';
-import { isAndroid, isIPhoneX } from 'mobile/src/libs/device';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import FingerPrintModal from 'ui/components/FingerprintModal';
+import Fonts from 'ui/theme/fonts';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import Button from 'ui/components/Button';
+import { isAndroid, isIPhoneX } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

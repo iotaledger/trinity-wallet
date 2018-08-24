@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { round } from 'shared/libs/utils';
+import { round } from 'shared-modules/libs/utils';
 import {
     setSetting,
     transitionForSnapshot,
@@ -12,22 +12,22 @@ import {
     completeSnapshotTransition,
     setBalanceCheckFlag,
     cancelSnapshotTransition,
-} from 'shared/actions/wallet';
-import { generateAlert } from 'shared/actions/alerts';
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'shared/selectors/accounts';
+} from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { getSelectedAccountName, getAddressesForSelectedAccount } from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
-import { shouldPreventAction } from 'shared/selectors/global';
-import { formatValue, formatUnit } from 'shared/libs/iota/utils';
-import ModalButtons from 'mobile/src/ui/components/ModalButtons';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import CtaButton from 'mobile/src/ui/components/CtaButton';
-import InfoBox from 'mobile/src/ui/components/InfoBox';
-import ProgressBar from 'mobile/src/ui/components/ProgressBar';
-import { getMultiAddressGenFn, getPowFn } from 'mobile/src/libs/nativeModules';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import ModalButtons from 'ui/components/ModalButtons';
+import GENERAL from 'ui/theme/general';
+import { getSeedFromKeychain } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
+import ProgressBar from 'ui/components/ProgressBar';
+import { getMultiAddressGenFn, getPowFn } from 'libs/nativeModules';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

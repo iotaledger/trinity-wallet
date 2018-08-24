@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
-import { getSelectedAccountName } from 'shared/selectors/accounts';
-import { generateAlert } from 'shared/actions/alerts';
-import { setSetting } from 'shared/actions/wallet';
-import { changeAccountName } from 'shared/actions/accounts';
-import { updateAccountNameInKeychain } from 'mobile/src/libs/keychain';
-import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { changeAccountName } from 'shared-modules/actions/accounts';
+import { updateAccountNameInKeychain } from 'libs/keychain';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

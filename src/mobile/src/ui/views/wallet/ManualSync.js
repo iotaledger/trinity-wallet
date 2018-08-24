@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { setSetting } from 'shared/actions/wallet';
-import { generateAlert } from 'shared/actions/alerts';
-import { shouldPreventAction } from 'shared/selectors/global';
-import { getSelectedAccountName } from 'shared/selectors/accounts';
-import { manuallySyncAccount } from 'shared/actions/accounts';
-import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { getMultiAddressGenFn } from 'mobile/src/libs/nativeModules';
-import { Icon } from 'mobile/src/ui/theme/icons';
-import CtaButton from 'mobile/src/ui/components/CtaButton';
-import InfoBox from 'mobile/src/ui/components/InfoBox';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { manuallySyncAccount } from 'shared-modules/actions/accounts';
+import { getSeedFromKeychain } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { getMultiAddressGenFn } from 'libs/nativeModules';
+import { Icon } from 'ui/theme/icons';
+import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

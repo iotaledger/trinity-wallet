@@ -1,4 +1,8 @@
-import { isPlayServicesAvailable, generateNonce, sendAndVerifyAttestation } from 'react-native-google-safetynet';
+import {
+    isPlayServicesAvailable,
+    generateNonce,
+    sendAndVerifyAttestation
+} from 'react-native-google-safetynet';
 
 const API_KEY = 'fakeAPIkey';
 

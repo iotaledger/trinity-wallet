@@ -6,7 +6,7 @@ import values from 'lodash/values';
 import keys from 'lodash/keys';
 import isString from 'lodash/isString';
 import * as Keychain from 'react-native-keychain';
-import { serialise } from 'shared/libs/utils';
+import { serialise } from 'shared-modules/libs/utils';
 import {
     getNonce,
     createSecretBox,

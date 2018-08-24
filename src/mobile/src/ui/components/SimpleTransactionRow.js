@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { formatTime, convertUnixTimeToJSDate } from 'shared/libs/date';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { locale } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { Icon } from 'mobile/src/ui/theme/icons';
+import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
+import { width, height } from 'libs/dimensions';
+import { locale } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -52,12 +52,7 @@ export default class SimpleTransactionRow extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.6, alignItems: 'flex-start', justifyContent: 'center' }}>
-                    <Icon
-                        name={icon}
-                        size={width / 30}
-                        color={style.titleColor}
-                        iconStyle={{ position: 'absolute' }}
-                    />
+                    <Icon name={icon} size={width / 30} color={style.titleColor} iconStyle={{ position: 'absolute' }} />
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>

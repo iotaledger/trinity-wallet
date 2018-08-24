@@ -3,11 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { zxcvbn } from 'shared/libs/exports';
-import { generateAlert } from 'shared/actions/alerts';
-import { passwordReasons } from 'shared/libs/password';
+import { zxcvbn } from 'shared-modules/libs/exports';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { passwordReasons } from 'shared-modules/libs/password';
+import { height, width } from 'libs/dimensions';
 import CustomTextInput from './CustomTextInput';
-import { height, width } from 'mobile/src/libs/dimensions';
 
 const MIN_PASSWORD_LENGTH = 11;
 

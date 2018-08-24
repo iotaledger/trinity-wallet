@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { isAndroid } from 'mobile/src/libs/device';
+import { isAndroid } from 'libs/device';
 
 const ScramblingLetter = (props) => {
     const { textStyle, index, scramble, letter, scramblingLetters } = props;

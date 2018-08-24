@@ -3,14 +3,14 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { width, height } from 'mobile/src/libs/dimensions';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import Header from 'mobile/src/ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import SeedVaultExportComponent from 'mobile/src/ui/components/SeedVaultExportComponent';
+import { width, height } from 'libs/dimensions';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 
 const styles = StyleSheet.create({
     container: {

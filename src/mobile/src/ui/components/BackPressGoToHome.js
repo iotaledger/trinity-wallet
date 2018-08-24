@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isAndroid } from 'mobile/src/libs/device';
+import { isAndroid } from 'libs/device';
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,

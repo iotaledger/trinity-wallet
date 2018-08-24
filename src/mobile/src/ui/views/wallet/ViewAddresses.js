@@ -6,15 +6,15 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import { selectAccountInfo } from 'shared/selectors/accounts';
-import { round } from 'shared/libs/utils';
-import { formatValue, formatUnit } from 'shared/libs/iota/utils';
-import { generateAlert } from 'shared/actions/alerts';
-import { setSetting } from 'shared/actions/wallet';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { selectAccountInfo } from 'shared-modules/selectors/accounts';
+import { round } from 'shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

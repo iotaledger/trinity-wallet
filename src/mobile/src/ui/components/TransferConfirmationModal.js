@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { round } from 'shared/libs/utils';
-import { formatValue, formatUnit } from 'shared/libs/iota/utils';
+import { round } from 'shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import ModalButtons from './ModalButtons';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {

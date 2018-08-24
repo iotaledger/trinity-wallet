@@ -2,18 +2,18 @@ import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
-import { disposeOffAlert } from 'shared/actions/alerts';
+import { disposeOffAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isIPhoneX } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { isIPhoneX } from 'libs/device';
+import GENERAL from 'ui/theme/general';
 
-const errorIcon = require('shared/images/error.png');
-const successIcon = require('shared/images/successIcon.png');
-const warnIcon = require('shared/images/warnIcon.png');
-const infoIcon = require('shared/images/infoIcon.png');
+const errorIcon = require('shared-modules/images/error.png');
+const successIcon = require('shared-modules/images/successIcon.png');
+const warnIcon = require('shared-modules/images/warnIcon.png');
+const infoIcon = require('shared-modules/images/infoIcon.png');
 
 const styles = StyleSheet.create({
     dropdownTitle: {

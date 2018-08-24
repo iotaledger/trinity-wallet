@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DocumentPicker } from 'react-native-document-picker';
-import { generateAlert } from 'shared/actions/alerts';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { translate } from 'react-i18next';
-import { width } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { isAndroid } from 'mobile/src/libs/device';
+import { width } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     infoText: {

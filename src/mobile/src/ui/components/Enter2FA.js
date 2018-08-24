@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import CustomTextInput from './CustomTextInput';
-import { width, height } from 'mobile/src/libs/dimensions';
 import OnboardingButtons from './OnboardingButtons';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {

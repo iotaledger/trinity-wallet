@@ -15,32 +15,32 @@ import {
 import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
-import { generateNewAddress } from 'shared/actions/wallet';
-import { flipReceiveCard } from 'shared/actions/ui';
-import { generateAlert } from 'shared/actions/alerts';
+import { generateNewAddress } from 'shared-modules/actions/wallet';
+import { flipReceiveCard } from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     selectAccountInfo,
     getSelectedAccountName,
     selectLatestAddressFromAccountFactory,
-} from 'shared/selectors/accounts';
-import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared/libs/currency';
+} from 'shared-modules/selectors/accounts';
+import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
     getFromKeychainError,
-} from 'shared/actions/keychain';
-import { isValidAmount } from 'shared/libs/iota/utils';
+} from 'shared-modules/actions/keychain';
+import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
-import GENERAL from 'mobile/src/ui/theme/general';
-import MultiTextInput from 'mobile/src/ui/components/MultiTextInput';
-import CustomQrCodeComponent from 'mobile/src/ui/components/CustomQRCode';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import ScramblingText from 'mobile/src/ui/components/ScramblingText';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid, getAndroidFileSystemPermissions } from 'mobile/src/libs/device';
-import { getAddressGenFn } from 'mobile/src/libs/nativeModules';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { getSeedFromKeychain } from 'libs/keychain';
+import GENERAL from 'ui/theme/general';
+import MultiTextInput from 'ui/components/MultiTextInput';
+import CustomQrCodeComponent from 'ui/components/CustomQRCode';
+import { Icon } from 'ui/theme/icons';
+import ScramblingText from 'ui/components/ScramblingText';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { getAddressGenFn } from 'libs/nativeModules';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

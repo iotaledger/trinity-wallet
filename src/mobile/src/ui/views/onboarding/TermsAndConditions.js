@@ -7,17 +7,17 @@ import {
     enTermsAndConditionsIOS,
     deTermsAndConditionsAndroid,
     deTermsAndConditionsIOS,
-} from 'shared/markdown';
+} from 'shared-modules/markdown';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { acceptTerms } from 'shared/actions/settings';
-import Button from 'mobile/src/ui/components/Button';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import { acceptTerms } from 'shared-modules/actions/settings';
+import Button from 'ui/components/Button';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import i18next from 'i18next';
-import { isAndroid } from 'mobile/src/libs/device';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

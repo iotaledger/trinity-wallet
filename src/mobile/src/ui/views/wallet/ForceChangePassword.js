@@ -13,24 +13,24 @@ import {
     KeyboardAvoidingView,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { zxcvbn } from 'shared/libs/exports';
-import { setPassword, setSetting } from 'shared/actions/wallet';
-import { passwordReasons } from 'shared/libs/password';
-import { generateAlert } from 'shared/actions/alerts';
+import { zxcvbn } from 'shared-modules/libs/exports';
+import { setPassword, setSetting } from 'shared-modules/actions/wallet';
+import { passwordReasons } from 'shared-modules/libs/password';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { setCompletedForcedPasswordUpdate } from 'shared/actions/settings';
+import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
-import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'mobile/src/libs/keychain';
-import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'mobile/src/libs/crypto';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
-import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import InfoBox from 'mobile/src/ui/components/InfoBox';
-import { isAndroid } from 'mobile/src/libs/device';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'libs/keychain';
+import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'libs/crypto';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { Icon } from 'ui/theme/icons';
+import InfoBox from 'ui/components/InfoBox';
+import { isAndroid } from 'libs/device';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

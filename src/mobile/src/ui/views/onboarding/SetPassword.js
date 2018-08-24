@@ -9,27 +9,27 @@ import {
     addAccountName,
     setOnboardingComplete,
     setBasicAccountInfo,
-} from 'shared/actions/accounts';
-import { clearWalletData, clearSeed, setPassword } from 'shared/actions/wallet';
-import { generateAlert } from 'shared/actions/alerts';
+} from 'shared-modules/actions/accounts';
+import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     hasDuplicateSeed,
     hasDuplicateAccountName,
     storeSeedInKeychain,
     getAllSeedsFromKeychain,
     storeSaltInKeychain,
-} from 'mobile/src/libs/keychain';
-import { generatePasswordHash, getSalt } from 'mobile/src/libs/crypto';
-import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import { isAndroid } from 'mobile/src/libs/device';
-import { width, height } from 'mobile/src/libs/dimensions';
-import InfoBox from 'mobile/src/ui/components/InfoBox';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import GENERAL from 'mobile/src/ui/theme/general';
-import Header from 'mobile/src/ui/components/Header';
-import PasswordFields from 'mobile/src/ui/components/PasswordFields';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+} from 'libs/keychain';
+import { generatePasswordHash, getSalt } from 'libs/crypto';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { isAndroid } from 'libs/device';
+import { width, height } from 'libs/dimensions';
+import InfoBox from 'ui/components/InfoBox';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import Header from 'ui/components/Header';
+import PasswordFields from 'ui/components/PasswordFields';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 

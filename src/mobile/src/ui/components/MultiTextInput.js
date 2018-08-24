@@ -9,10 +9,10 @@ import {
     setQrTag,
     setSelectedQrTab,
     setQrDenomination,
-} from 'shared/actions/ui';
-import { generateAlert } from 'shared/actions/alerts';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
+} from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
 import AmountTextInput from './AmountTextInput';
 
 const styles = StyleSheet.create({

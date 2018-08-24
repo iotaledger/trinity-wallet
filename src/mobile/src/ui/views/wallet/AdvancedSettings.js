@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
-import { setSetting } from 'shared/actions/wallet';
-import { generateAlert } from 'shared/actions/alerts';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
-import { renderSettingsRows } from 'mobile/src/ui/components/SettingsContent';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {
