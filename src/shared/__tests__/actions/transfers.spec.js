@@ -172,6 +172,7 @@ describe('actions: transfers', () => {
                     },
                 })
                     .filteringRequestBody(() => '*')
+                    .persist()
                     .post('/', '*')
                     .reply(200, (_, body) => {
                         const resultMap = {
@@ -207,27 +208,6 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create an action of type IOTA/ALERTS/SHOW thrice', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
-
-                return store
-                    .dispatch(
-                        actions.promoteTransaction(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                            powFn,
-                        ),
-                    )
-                    .then(() => {
-                        expect(
-                            store
-                                .getActions()
-                                .map((action) => action.type)
-                                .filter((type) => type === 'IOTA/ALERTS/SHOW').length,
-                        ).to.equal(3);
-                    });
-            });
-
             it('should call accounts util "syncAccountAfterReattachment"', () => {
                 const store = mockStore({ accounts, settings: { remotePoW: false } });
 
@@ -239,7 +219,7 @@ describe('actions: transfers', () => {
                         ),
                     )
                     .then(() => {
-                        expect(syncAccountAfterReattachment.calledOnce).to.equal(true);
+                        expect(syncAccountAfterReattachment.called).to.equal(true);
                         syncAccountAfterReattachment.restore();
                     });
             });

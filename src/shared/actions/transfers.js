@@ -1,3 +1,4 @@
+import has from 'lodash/has';
 import head from 'lodash/head';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -7,6 +8,7 @@ import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
+import includes from 'lodash/includes';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -69,7 +71,7 @@ import {
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
-import { DEFAULT_DEPTH, DEFAULT_RETRIES } from '../config';
+import { DEFAULT_RETRIES } from '../config';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -310,7 +312,8 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *   @param {array} tailTransactionHashes
  *   @param {boolean} shouldGenerateAlert
  *   @param {function} powFn
- *   @param {number} depth
+ *   @param {number} maxReplays - Maximum number of reattachments if promotion fails because of transaction inconsistency
+ *   @param {number} maxPromotionAttempts - Maximum number of promotion retry attempts
  *
  *   @returns {function} dispatch
  **/
@@ -320,9 +323,46 @@ export const forceTransactionPromotion = (
     tailTransactionHashes,
     shouldGenerateAlert,
     powFn = null,
-    depth = DEFAULT_DEPTH,
+    maxReplays = 3,
+    maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
-    if (!consistentTail) {
+    let replayCount = 0;
+    let promotionAttempt = 0;
+
+    const promote = (hash) => {
+        promotionAttempt += 1;
+
+        return promoteTransactionAsync(null, powFn)(hash).catch((error) => {
+            const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
+
+            if (
+                isTransactionInconsistent &&
+                // If promotion attempt on this reference (hash) hasn't exceeded maximum promotion attempts
+                promotionAttempt < maxPromotionAttempts
+            ) {
+                // Retry promotion on same reference (hash)
+                return promote(hash);
+            } else if (
+                isTransactionInconsistent &&
+                promotionAttempt === maxPromotionAttempts &&
+                // If number of reattachments haven't exceeded max reattachments
+                replayCount < maxReplays
+            ) {
+                // Reset promotion attempt counter
+                promotionAttempt = 0;
+
+                // Reattach and try to promote with a newly reattached reference (hash)
+                return reattachAndPromote();
+            }
+
+            throw error;
+        });
+    };
+
+    // Reattach a transaction and promote newly reattached transaction
+    const reattachAndPromote = () => {
+        // Increment the reattachment's count
+        replayCount += 1;
         // Grab first tail transaction hash
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
@@ -344,36 +384,17 @@ export const forceTransactionPromotion = (
 
             // Update local store
             dispatch(updateAccountAfterReattachment(newState));
-
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promoteTransactionAsync(null, powFn)(tailTransaction.hash);
+            return promote(tailTransaction.hash);
         });
+    };
+
+    if (has(consistentTail, 'hash')) {
+        return promote(consistentTail.hash);
     }
 
-    return promoteTransactionAsync(null, powFn)(consistentTail.hash, depth).catch((error) => {
-        const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
-        const hasDefaultDepth = depth === DEFAULT_DEPTH;
-
-        if (isReferenceTxOld && hasDefaultDepth) {
-            return dispatch(
-                forceTransactionPromotion(
-                    accountName,
-                    consistentTail,
-                    tailTransactionHashes,
-                    shouldGenerateAlert,
-                    powFn,
-                    depth * 2,
-                ),
-            );
-        } else if (isReferenceTxOld && !hasDefaultDepth) {
-            return dispatch(
-                forceTransactionPromotion(accountName, null, tailTransactionHashes, shouldGenerateAlert, powFn),
-            );
-        }
-
-        throw new Error(error.message);
-    });
+    return reattachAndPromote();
 };
 
 /**
