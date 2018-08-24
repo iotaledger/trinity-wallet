@@ -296,7 +296,7 @@
         "saveYourSeed": "Sauvegarder votre seed",
         "seedCleared": "Seed effacée",
         "mostSecure": "Plus sûr",
-        "recommended": "Recommended",
+        "recommended": "Recommandé",
         "leastSecure": "Moins sécurisé",
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
@@ -452,7 +452,7 @@
         "editAccountName": "Modifier le nom du compte",
         "deleteAccount": "Supprimer le compte",
         "addNewAccount": "Ajouter un nouveau compte",
-        "tools": "Tools"
+        "tools": "Outils"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
-        "errorRetrievingUpdateDataExplanation": "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
         "noUpdatesAvailableExplanation": "Vous avez la dernière version installé de Trinity Desktop.",
         "newVersionAvailable": "Une nouvelle version est disponible",
         "newVersionAvailableExplanation": "La nouvelle version <strong>Trinity</strong> <strong>{{version}}</strong> est disponible. Veuillez lire les détails de cette version attentivement et vérifier la source du téléchargement avant la mise à jour :",
-        "downloadRelease": "Télécharger la version",
-        "skipUpdate": "Passer la mise a jour"
+        "installUpdate": "Installer la mise à jour et redémarrer",
+        "installUpdateExplanation": "Téléchargement complet, Trinity va maintenant redémarrer pour installer la mise à jour."
     },
     "notificationLog": {
         "errorLog": "Journal des erreurs"
