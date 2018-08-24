@@ -3,7 +3,7 @@
         "send": "ರವಾನಿಸು",
         "cancel": "ರದ್ದುಮಾಡು",
         "continue?": "ನಿಮಗೆ ಖಚಿತವಾಗಿಯೂ ಮುಂದುವರೆಸಬೇಕಾಗಿದೆಯೇ?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "ಇತ್ತೀಚಿನ ಪೂರ್ವಚರಿತ್ರೆಯಾವುದು ಇಲ್ಲ",
         "refresh": "Refresh",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
