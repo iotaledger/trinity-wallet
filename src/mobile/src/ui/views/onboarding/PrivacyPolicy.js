@@ -4,20 +4,20 @@ import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { acceptPrivacy } from 'shared/actions/settings';
+import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
     enPrivacyPolicyAndroid,
     enPrivacyPolicyIOS,
     dePrivacyPolicyAndroid,
     dePrivacyPolicyIOS,
-} from 'shared/markdown';
+} from 'shared-modules/markdown';
 import i18next from 'i18next';
-import Button from 'mobile/src/ui/components/Button';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import { isAndroid } from 'mobile/src/libs/device';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import Button from 'ui/components/Button';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

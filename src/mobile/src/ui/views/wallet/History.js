@@ -8,27 +8,27 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { generateAlert } from 'shared/actions/alerts';
-import { computeStatusText, formatRelevantTransactions } from 'shared/libs/iota/transfers';
-import { promoteTransaction, retryFailedTransaction } from 'shared/actions/transfers';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
+import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
     getSelectedAccountName,
     getAddressesForSelectedAccount,
     getFailedBundleHashesForSelectedAccount,
-} from 'shared/selectors/accounts';
+} from 'shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import { round } from 'shared/libs/utils';
-import { toggleModalActivity } from 'shared/actions/ui';
-import { formatValue, formatUnit } from 'shared/libs/iota/utils';
-import WithManualRefresh from 'mobile/src/ui/components/ManualRefresh';
-import TransactionRow from 'mobile/src/ui/components/TransactionRow';
-import HistoryModalContent from 'mobile/src/ui/components/HistoryModalContent';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid } from 'mobile/src/libs/device';
-import { getPowFn } from 'mobile/src/libs/nativeModules';
-import CtaButton from 'mobile/src/ui/components/CtaButton';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { round } from 'shared-modules/libs/utils';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import WithManualRefresh from 'ui/components/ManualRefresh';
+import TransactionRow from 'ui/components/TransactionRow';
+import HistoryModalContent from 'ui/components/HistoryModalContent';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { getPowFn } from 'libs/nativeModules';
+import CtaButton from 'ui/components/CtaButton';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -8,30 +8,30 @@ import {
     shouldTransitionForSnapshot,
     hasDisplayedSnapshotTransitionGuide,
     getSelectedAccountName,
-} from 'shared/selectors/accounts';
+} from 'shared-modules/selectors/accounts';
 import { connect } from 'react-redux';
-import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared/actions/home';
-import { markTaskAsDone } from 'shared/actions/accounts';
-import { setPassword, setSetting, setDeepLink } from 'shared/actions/wallet';
-import { setUserActivity, toggleModalActivity } from 'shared/actions/ui';
-import { generateAlert } from 'shared/actions/alerts';
-import { parseAddress } from 'shared/libs/iota/utils';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
+import { markTaskAsDone } from 'shared-modules/actions/accounts';
+import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { parseAddress } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getPasswordHash } from 'mobile/src/libs/keychain';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import UserInactivity from 'mobile/src/ui/components/UserInactivity';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import TopBar from 'mobile/src/ui/components/TopBar';
-import WithUserActivity from 'mobile/src/ui/components/UserActivity';
-import WithBackPress from 'mobile/src/ui/components/BackPress';
-import SnapshotTransitionModalContent from 'mobile/src/ui/components/SnapshotTransitionModalContent';
-import PollComponent from 'mobile/src/ui/components/Poll';
-import Tabs from 'mobile/src/ui/components/Tabs';
-import Tab from 'mobile/src/ui/components/Tab';
-import TabContent from 'mobile/src/ui/components/TabContent';
-import EnterPassword from 'mobile/src/ui/components/EnterPassword';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid, isIPhoneX } from 'mobile/src/libs/device';
+import { getPasswordHash } from 'libs/keychain';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import UserInactivity from 'ui/components/UserInactivity';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import TopBar from 'ui/components/TopBar';
+import WithUserActivity from 'ui/components/UserActivity';
+import WithBackPress from 'ui/components/BackPress';
+import SnapshotTransitionModalContent from 'ui/components/SnapshotTransitionModalContent';
+import PollComponent from 'ui/components/Poll';
+import Tabs from 'ui/components/Tabs';
+import Tab from 'ui/components/Tab';
+import TabContent from 'ui/components/TabContent';
+import EnterPassword from 'ui/components/EnterPassword';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     midContainer: {

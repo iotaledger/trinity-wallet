@@ -3,16 +3,16 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
 import tinycolor from 'tinycolor2';
-import whiteCheckboxCheckedImagePath from 'shared/images/checkbox-checked-white.png';
-import whiteCheckboxUncheckedImagePath from 'shared/images/checkbox-unchecked-white.png';
-import blackCheckboxCheckedImagePath from 'shared/images/checkbox-checked-black.png';
-import blackCheckboxUncheckedImagePath from 'shared/images/checkbox-unchecked-black.png';
+import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
+import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
+import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
+import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ModalButtons from './ModalButtons';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid } from 'mobile/src/libs/device';
 import InfoBox from './InfoBox';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
 
 const styles = StyleSheet.create({
     infoText: {

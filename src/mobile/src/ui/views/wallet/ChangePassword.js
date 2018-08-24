@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSetting } from 'shared/actions/wallet';
-import { generateAlert } from 'shared/actions/alerts';
-import { changePassword, getPasswordHash } from 'mobile/src/libs/keychain';
-import { generatePasswordHash, getSalt } from 'mobile/src/libs/crypto';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
-import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import InfoBox from 'mobile/src/ui/components/InfoBox';
-import PasswordFields from 'mobile/src/ui/components/PasswordFields';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { setPassword, setSetting } from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { changePassword, getPasswordHash } from 'libs/keychain';
+import { generatePasswordHash, getSalt } from 'libs/crypto';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { Icon } from 'ui/theme/icons';
+import InfoBox from 'ui/components/InfoBox';
+import PasswordFields from 'ui/components/PasswordFields';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
 import i18next from 'i18next';
-import { toggleModalActivity } from 'shared/actions/ui';
-import { selectLocale } from 'shared/libs/locale';
-import { setSetting, clearWalletData, setPassword } from 'shared/actions/wallet';
-import LogoutConfirmationModalComponent from 'mobile/src/ui/components/LogoutConfirmationModal';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid } from 'mobile/src/libs/device';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
-import { renderSettingsRows } from 'mobile/src/ui/components/SettingsContent';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { selectLocale } from 'shared-modules/libs/locale';
+import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
+import LogoutConfirmationModalComponent from 'ui/components/LogoutConfirmationModal';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {
@@ -31,13 +31,9 @@ const styles = StyleSheet.create({
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-<<<<<<< HEAD:src/mobile/src/ui/views/wallet/MainSettings.js
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Currently selected application mode (Expert or Standard) */
-=======
         /** @ignore */
->>>>>>> develop:src/mobile/containers/MainSettings.js
         mode: PropTypes.string.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,

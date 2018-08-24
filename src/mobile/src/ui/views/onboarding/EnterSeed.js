@@ -1,27 +1,27 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
-import { setOnboardingSeed } from 'shared/actions/ui';
-import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared/libs/iota/utils';
-import { generateAlert } from 'shared/actions/alerts';
+import { setOnboardingSeed } from 'shared-modules/actions/ui';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
-import WithUserActivity from 'mobile/src/ui/components/UserActivity';
-import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
-import InfoBox from 'mobile/src/ui/components/InfoBox';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import QRScannerComponent from 'mobile/src/ui/components/QrScanner';
-import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
-import SeedVaultImport from 'mobile/src/ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'mobile/src/ui/components/PasswordValidationModal';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { isAndroid } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
-import Header from 'mobile/src/ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import WithUserActivity from 'ui/components/UserActivity';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import InfoBox from 'ui/components/InfoBox';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import QRScannerComponent from 'ui/components/QrScanner';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
+import PasswordValidation from 'ui/components/PasswordValidationModal';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 

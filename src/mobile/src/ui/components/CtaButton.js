@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
 
 const styles = StyleSheet.create({
     ctaButton: {

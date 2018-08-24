@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { setLoginRoute } from 'shared/actions/ui';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import { translate } from 'react-i18next';
-import { width, height } from 'mobile/src/libs/dimensions';
-import CtaButton from 'mobile/src/ui/components/CtaButton';
-import NodeSelection from 'mobile/src/ui/views/wallet/NodeSelection';
-import AddCustomNode from 'mobile/src/ui/views/wallet/AddCustomNode';
-import { Icon } from 'mobile/src/ui/theme/icons';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { width, height } from 'libs/dimensions';
+import CtaButton from 'ui/components/CtaButton';
+import NodeSelection from 'ui/views/wallet/NodeSelection';
+import AddCustomNode from 'ui/views/wallet/AddCustomNode';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

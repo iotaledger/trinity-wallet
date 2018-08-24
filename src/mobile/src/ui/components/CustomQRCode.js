@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
 import QRCode from 'react-native-qrcode-svg';
-import { isAndroid } from 'mobile/src/libs/device';
+import { isAndroid } from 'libs/device';
 
 class CustomQRCode extends PureComponent {
     static propTypes = {

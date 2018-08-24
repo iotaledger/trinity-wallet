@@ -36,8 +36,8 @@ settings:
                 - .css
             paths:
                 - ./src/desktop/src
-                - ./src/shared
-
+                - ./src/shared/
+                - ./src/mobile/src
 rules:
     arrow-parens: [2, "always"]
     block-scoped-var: 2

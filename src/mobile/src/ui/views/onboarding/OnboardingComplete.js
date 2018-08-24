@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import balloonsImagePath from 'shared/images/balloons.png';
+import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
-import WithBackPressCloseApp from 'mobile/src/ui/components/BackPressCloseApp';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import Button from 'mobile/src/ui/components/Button';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import Button from 'ui/components/Button';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

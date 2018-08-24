@@ -2,8 +2,8 @@
   "presets": ["react-native"],
   "plugins": [
     ["module-resolver", {
-      "root": ["./src"],
-      "extensions": [".ios.js", ".android.js", ".js", ".json"]
+        "root": [".",  "src"],
+        "extensions": [".ios.js", ".android.js", ".js", ".json"]
     }]
   ]
 }

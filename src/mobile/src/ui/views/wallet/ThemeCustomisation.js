@@ -4,14 +4,14 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { setSetting } from 'shared/actions/wallet';
-import { updateTheme } from 'shared/actions/settings';
-import THEMES from 'shared/themes/themes';
-import Dropdown from 'mobile/src/ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { updateTheme } from 'shared-modules/actions/settings';
+import THEMES from 'shared-modules/themes/themes';
+import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

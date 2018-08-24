@@ -6,22 +6,22 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import Modal from 'react-native-modal';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared/libs/iota/utils';
-import { setSetting, setAdditionalAccountInfo } from 'shared/actions/wallet';
-import { generateAlert } from 'shared/actions/alerts';
-import { shouldPreventAction } from 'shared/selectors/global';
-import { toggleModalActivity, setDoNotMinimise } from 'shared/actions/ui';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'mobile/src/libs/keychain';
-import SeedVaultImport from 'mobile/src/ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'mobile/src/ui/components/PasswordValidationModal';
-import CustomTextInput from 'mobile/src/ui/components/CustomTextInput';
-import QRScannerComponent from 'mobile/src/ui/components/QrScanner';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { isAndroid } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
+import PasswordValidation from 'ui/components/PasswordValidationModal';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import QRScannerComponent from 'ui/components/QrScanner';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

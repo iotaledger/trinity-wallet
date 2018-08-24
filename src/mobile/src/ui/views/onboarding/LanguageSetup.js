@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
-import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'shared/libs/i18n';
-import { setLanguage, setLocale } from 'shared/actions/settings';
-import helloBackImagePath from 'shared/images/hello-back.png';
-import { detectLocale, selectLocale } from 'shared/libs/locale';
+import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'shared-modules/libs/i18n';
+import { setLanguage, setLocale } from 'shared-modules/actions/settings';
+import helloBackImagePath from 'shared-modules/images/hello-back.png';
+import { detectLocale, selectLocale } from 'shared-modules/libs/locale';
 import { connect } from 'react-redux';
-import { setSetting } from 'shared/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import i18next from 'i18next';
-import WithBackPressCloseApp from 'mobile/src/ui/components/BackPressCloseApp';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { isAndroid } from 'mobile/src/libs/device';
-import DropdownComponent from 'mobile/src/ui/components/Dropdown';
-import Button from 'mobile/src/ui/components/Button';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
+import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import DropdownComponent from 'ui/components/Dropdown';
+import Button from 'ui/components/Button';
+import { Icon } from 'ui/theme/icons';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

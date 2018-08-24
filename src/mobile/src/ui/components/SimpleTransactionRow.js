@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { formatTime, convertUnixTimeToJSDate } from 'shared/libs/date';
-import { width, height } from 'mobile/src/libs/dimensions';
-import { locale } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { Icon } from 'mobile/src/ui/theme/icons';
+import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
+import { width, height } from 'libs/dimensions';
+import { locale } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BackHandler, ToastAndroid } from 'react-native';
 import RNExitApp from 'react-native-exit-app';
-import { setSetting } from 'shared/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isAndroid } from 'mobile/src/libs/device';
+import { isAndroid } from 'libs/device';
 
 const mapDispatchToProps = {
     setSetting,

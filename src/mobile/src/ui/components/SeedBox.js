@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
-import { MAX_SEED_LENGTH } from 'shared/libs/iota/utils';
+import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { width, height } from 'mobile/src/libs/dimensions';
 
 const styles = StyleSheet.create({
     seedBox: {

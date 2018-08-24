@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
-import whiteLoadingAnimation from 'shared/animations/loading-white.json';
-import blackLoadingAnimation from 'shared/animations/loading-black.json';
-import whiteWelcomeAnimationPartOne from 'shared/animations/welcome-part-one-white.json';
-import whiteWelcomeAnimationPartTwo from 'shared/animations/welcome-part-two-white.json';
-import blackWelcomeAnimationPartOne from 'shared/animations/welcome-part-one-black.json';
-import blackWelcomeAnimationPartTwo from 'shared/animations/welcome-part-two-black.json';
+import whiteLoadingAnimation from 'shared-modules/animations/loading-white.json';
+import blackLoadingAnimation from 'shared-modules/animations/loading-black.json';
+import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-white.json';
+import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
+import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
+import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -16,25 +16,25 @@ import {
     getAccountInfo,
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
-} from 'shared/actions/accounts';
-import { setLoginRoute } from 'shared/actions/ui';
+} from 'shared-modules/actions/accounts';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
-import { getMarketData, getChartData, getPrice } from 'shared/actions/marketData';
-import { getCurrencyData } from 'shared/actions/settings';
-import { setSetting } from 'shared/actions/wallet';
-import { changeHomeScreenRoute } from 'shared/actions/home';
-import { generateAlert } from 'shared/actions/alerts';
-import { getSelectedAccountName } from 'shared/selectors/accounts';
-import GENERAL from 'mobile/src/ui/theme/general';
-import { getSeedFromKeychain, storeSeedInKeychain } from 'mobile/src/libs/keychain';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import { getAddressGenFn, getMultiAddressGenFn } from 'mobile/src/libs/nativeModules';
-import { isAndroid } from 'mobile/src/libs/device';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
-import Button from 'mobile/src/ui/components/Button';
+import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
+import { getCurrencyData } from 'shared-modules/actions/settings';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { changeHomeScreenRoute } from 'shared-modules/actions/home';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import GENERAL from 'ui/theme/general';
+import { getSeedFromKeychain, storeSeedInKeychain } from 'libs/keychain';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Button from 'ui/components/Button';
 
-import { width, height } from 'mobile/src/libs/dimensions';
+import { width, height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

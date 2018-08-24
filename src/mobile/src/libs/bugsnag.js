@@ -1,5 +1,5 @@
 import { Client, Configuration } from 'bugsnag-react-native';
-import packageJson from 'mobile/package';
+import packageJson from 'package';
 
 const configuration = new Configuration();
 configuration.appVersion = packageJson.version;

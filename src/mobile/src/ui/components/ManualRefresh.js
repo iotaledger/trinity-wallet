@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { generateAlert } from 'shared/actions/alerts';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAccountInfo } from 'shared/actions/accounts';
-import { getSelectedAccountName } from 'shared/selectors/accounts';
+import { getAccountInfo } from 'shared-modules/actions/accounts';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
 import { translate } from 'react-i18next';
-import { getSeedFromKeychain } from 'mobile/src/libs/keychain';
+import { getSeedFromKeychain } from 'libs/keychain';
 
 const mapDispatchToProps = {
     generateAlert,

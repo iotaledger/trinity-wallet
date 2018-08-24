@@ -6,19 +6,19 @@ import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import SplashScreen from 'react-native-splash-screen';
 import { Linking, StyleSheet, View } from 'react-native';
-import { parseAddress } from 'shared/libs/iota/utils';
-import { setFullNode } from 'shared/actions/settings';
-import { setPassword, setSetting, setDeepLink } from 'shared/actions/wallet';
-import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared/actions/ui';
-import { generateAlert } from 'shared/actions/alerts';
-import WithBackPressCloseApp from 'mobile/src/ui/components/BackPressCloseApp';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
+import { parseAddress } from 'shared-modules/libs/iota/utils';
+import { setFullNode } from 'shared-modules/actions/settings';
+import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
+import Enter2FAComponent from 'ui/components/Enter2FA';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from 'libs/keychain';
+import { isAndroid } from 'libs/device';
 import NodeOptionsOnLogin from './NodeOptionsOnLogin';
-import EnterPasswordOnLoginComponent from 'mobile/src/ui/components/EnterPasswordOnLogin';
-import Enter2FAComponent from 'mobile/src/ui/components/Enter2FA';
-import StatefulDropdownAlert from 'mobile/src/ui/components/StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from 'mobile/src/libs/keychain';
-import { isAndroid } from 'mobile/src/libs/device';
 
 const styles = StyleSheet.create({
     container: {

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BackHandler, View, StyleSheet } from 'react-native';
-import { setSetting } from 'shared/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import timer from 'react-native-timer';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
-import { renderSettingsRows } from 'mobile/src/ui/components/SettingsContent';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {

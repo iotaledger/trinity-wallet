@@ -6,19 +6,19 @@ import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import RNPrint from 'react-native-print';
-import { paperWallet } from 'shared/images/PaperWallets.js';
-import SeedPicker from 'mobile/src/ui/components/SeedPicker';
-import WithUserActivity from 'mobile/src/ui/components/UserActivity';
-import OnboardingButtons from 'mobile/src/ui/components/OnboardingButtons';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
-import DynamicStatusBar from 'mobile/src/ui/components/DynamicStatusBar';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { isAndroid } from 'mobile/src/libs/device';
-import Header from 'mobile/src/ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'mobile/src/libs/bugsnag';
-import ChecksumComponent from 'mobile/src/ui/components/Checksum';
-import ChecksumModalComponent from 'mobile/src/ui/components/ChecksumModal';
+import { paperWallet } from 'shared-modules/images/PaperWallets.js';
+import SeedPicker from 'ui/components/SeedPicker';
+import WithUserActivity from 'ui/components/UserActivity';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import ChecksumComponent from 'ui/components/Checksum';
+import ChecksumModalComponent from 'ui/components/ChecksumModal';
 
 const styles = StyleSheet.create({
     container: {

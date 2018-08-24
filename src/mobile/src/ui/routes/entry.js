@@ -3,21 +3,21 @@ import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
-import { changeIotaNode, SwitchingConfig } from 'shared/libs/iota';
+import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
 import iotaNativeBindings, {
     overrideAsyncTransactionObject,
-} from 'shared/libs/iota/nativeBindings';
-import { fetchNodeList as fetchNodes } from 'shared/actions/polling';
-import { setCompletedForcedPasswordUpdate } from 'shared/actions/settings';
-import { ActionTypes } from 'shared/actions/wallet';
+} from 'shared-modules/libs/iota/nativeBindings';
+import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
+import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import { ActionTypes } from 'shared-modules/actions/wallet';
 import i18next from 'i18next';
 import axios from 'axios';
-import { getLocaleFromLabel } from 'shared/libs/i18n';
-import { isIOS } from 'mobile/src/libs/device';
-import keychain from 'mobile/src/libs/keychain';
+import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
+import { isIOS } from 'libs/device';
+import keychain from 'libs/keychain';
+import i18 from 'libs/i18next';
+import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from './navigation';
-import i18 from '../../../i18next';
-import { getDigestFn } from 'mobile/src/libs/nativeModules';
 
 const clearKeychain = () => {
     if (isIOS) {

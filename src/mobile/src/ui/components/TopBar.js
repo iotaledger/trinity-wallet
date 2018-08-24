@@ -6,10 +6,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { toggleTopBarDisplay } from 'shared/actions/home';
-import { setSeedIndex } from 'shared/actions/wallet';
-import { clearLog } from 'shared/actions/alerts';
-import { getBalanceForSelectedAccount, selectAccountInfo } from 'shared/selectors/accounts';
+import { toggleTopBarDisplay } from 'shared-modules/actions/home';
+import { setSeedIndex } from 'shared-modules/actions/wallet';
+import { clearLog } from 'shared-modules/actions/alerts';
+import { getBalanceForSelectedAccount, selectAccountInfo } from 'shared-modules/selectors/accounts';
 import {
     View,
     Text,
@@ -21,14 +21,14 @@ import {
     Animated,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
-import { setPollFor } from 'shared/actions/polling';
-import { roundDown } from 'shared/libs/utils';
-import { formatValue, formatUnit } from 'shared/libs/iota/utils';
+import { setPollFor } from 'shared-modules/actions/polling';
+import { roundDown } from 'shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
 import Modal from 'react-native-modal';
 import NotificationLogComponent from './NotificationLog';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { isAndroid } from 'mobile/src/libs/device';
-import GENERAL from 'mobile/src/ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
 

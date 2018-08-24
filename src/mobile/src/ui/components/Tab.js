@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import { Icon } from 'mobile/src/ui/theme/icons.js';
-import { width, height } from 'mobile/src/libs/dimensions';
-import GENERAL from 'mobile/src/ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
 
 const styles = StyleSheet.create({
     button: {

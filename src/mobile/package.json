@@ -44,7 +44,7 @@
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
-    "iota-wallet-shared-modules": "../shared/",
+    "shared-modules": "../shared/",
     "iota.lib.js": "git+https://git@github.com/laumair/iota.lib.js#911e5e2",
     "lodash": "^4.17.10",
     "lottie-ios": "^2.1.5",
