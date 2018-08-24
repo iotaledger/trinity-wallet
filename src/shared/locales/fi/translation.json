@@ -652,13 +652,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
-        "errorRetrievingUpdateDataExplanation": "Päivitystietojen haussa tapahtui virhe. Yritä uudelleen.",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Uusi versio saatavilla",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Lataa päivitys",
-        "skipUpdate": "Ohita päivitys"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
         "errorLog": "Error log"
