@@ -1,8 +1,8 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "Cancel",
-        "continue?": "Are you sure you want to continue?",
+        "send": "ರವಾನಿಸು",
+        "cancel": "ರದ್ದುಮಾಡು",
+        "continue?": "ನಿಮಗೆ ಖಚಿತವಾಗಿಯೂ ಮುಂದುವರೆಸಬೇಕಾಗಿದೆಯೇ?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "Refresh",
         "balanceError": "Not enough balance",
@@ -229,7 +229,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "ರವಾನಿಸು",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
