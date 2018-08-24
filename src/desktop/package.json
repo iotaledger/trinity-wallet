@@ -119,7 +119,8 @@
       "target": [
         "dmg",
         "zip"
-      ]
+      ],
+      "entitlements": "./entitlements.mac.plist"
     },
     "publish": {
       "provider": "github",
