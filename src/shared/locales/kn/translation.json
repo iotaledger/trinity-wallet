@@ -93,9 +93,9 @@
         "promoted": "ವ್ಯವಹಾರವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬಡತಿಮಾಡಲಾಗಿದೆ",
         "promotedExplanation": "ಬಡತಿಮಾಡಲಾಗಿರುವ ವ್ಯವಹಾರದ ಹ್ಯಾಶ್ {{hash}}",
         "autopromotionError": "ವ್ಯವಹಾರವನ್ನು ಸ್ವಯಂ-ಬಡತಿಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
-        "promotionError": "Could not promote transaction",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "autopromotionErrorExplanation": "ದೂರ ಕೆಲಸದ ಪುರಾವೆ ನಿಮ್ಮ ಆಯ್ಕೆ ಮಾಡಿದ ನೋಡ್ ನಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನೋಡ್ ಬದಲಿಸಿ ಮತ್ತು ಸ್ವಯಂ ಬಡತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+        "promotionError": "ವ್ಯವಹಾರವನ್ನು ಬಡತಿಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+        "promotionErrorExplanation": "ನಿಮ್ಮ ವರ್ಗಾವಣೆಯನ್ನು ಬಡತಿಮಾಡುವಾಗ ಯಾವುದೋ ತಪ್ಪು ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "transactionAlreadyConfirmed": "Transaction already confirmed",
         "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
@@ -473,7 +473,7 @@
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
         "snapshotTransition": "Snapshot transition",
-        "pow": "Proof of Work",
+        "pow": "ಕೆಲಸದ ಪುರಾವೆ",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
@@ -615,7 +615,7 @@
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remote",
-        "powUpdated": "Proof of work settings",
+        "powUpdated": "ಕೆಲಸದ ಪುರಾವೆಯ ಸೆಟ್ಟಿಂಗ್ಸ್",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
