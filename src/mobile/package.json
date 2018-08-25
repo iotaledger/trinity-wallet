@@ -57,6 +57,7 @@
     "react": "16.0.0",
     "react-i18next": "^7.3.0",
     "react-native": "0.51.0",
+    "react-native-background-fetch": "^2.4.3",
     "react-native-camera": "^1.1.4",
     "react-native-crypto": "^2.0.2",
     "react-native-detect-navbar-android": "^0.2.0",
@@ -86,6 +87,7 @@
     "react-native-progress": "^3.4.0",
     "react-native-qrcode-scanner": "^1.0.1",
     "react-native-qrcode-svg": "^5.0.3",
+    "react-native-queue": "^1.2.1",
     "react-native-randombytes": "^3.2.0",
     "react-native-safe-area-view": "^0.2.0",
     "react-native-secure-clipboard": "^0.1.1",
@@ -118,6 +120,9 @@
     "victory-native": "^0.16.2",
     "vm-browserify": "0.0.4"
   },
+  "resolutions": {
+    "realm": "2.13.0"
+  },
   "devDependencies": {
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "3.0.1",
@@ -143,7 +148,7 @@
       "/shared/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/?!(react-native|iota-wallet-shared-modules)/"
+      "node_modules/?!(react-native|iota-wallet-shared-modules|realm)/"
     ]
   },
   "react-native": {
