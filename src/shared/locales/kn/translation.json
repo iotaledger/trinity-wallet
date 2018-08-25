@@ -189,9 +189,9 @@
         "reasonDates": "ದಿನಾಂಕಗಳು ಊಹಿಸಲು ಸುಲಭವಾಗಿದೆ.",
         "reasonTop10": "ಇದು ಅಗ್ರ 10 ಸಾಮಾನ್ಯ ಗುಪ್ತಪದ ಆಗಿದೆ.",
         "reasonTop100": "ಇದು ಅಗ್ರ 100 ಸಾಮಾನ್ಯ ಗುಪ್ತಪದ ಆಗಿದೆ.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonCommon": "ಇದು ಸಾಮಾನ್ಯ ಗುಪ್ತಪದ ಆಗಿದೆ.",
+        "reasonSimilar": "ಇದು ಸಾಮಾನ್ಯವಾಗಿ ಬಳಸುವ ಗುಪ್ತಪದವನ್ನು ಹೋಲುತ್ತದೆ.",
+        "reasonWord": "ಒಂದು ಪದ ಊಹಿಸಲು ಸುಲಭ."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
