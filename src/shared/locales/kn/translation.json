@@ -244,19 +244,19 @@
         "enterPassword": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ.",
         "login": "ಲಾಗ್ ಇನ್",
         "setNode": "ನೋಡ್ ಹೊಂದಿಸಿ",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಏಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ?",
+        "whyBiometricDisabledExplanation": "ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ಮೊದಲ ಅಪ್ಲಿಕೇಶನ್ ಲೋಡ್ನಲ್ಲಿ ಬಯೊಮೀಟ್ರಿಕ್ ಲಾಗಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಟ್ರಿನಿಟಿ ಬಳಸುವಾಗ, ನಿಷ್ಕ್ರಿಯತೆಗಾಗಿ ನೀವು ಲಾಗ್ ಔಟ್ ಆಗುತ್ತೀರಿ. ನಂತರ ನೀವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣದೊಂದಿಗೆ ಮತ್ತೆ ಪ್ರವೇಶಿಸಬಹುದು."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "loadingFirstTime": "ಮೊದಲ ಬಾರಿಗೆ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ.",
+        "thisMayTake": "ಇದು ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.",
+        "doNotMinimise": "ಅಪ್ಲಿಕೇಶನ್ ತೆರೆ ಕುಗ್ಗಿಸುಬೇಡಿ ಅಥವಾ ಮುಚ್ಚಬೇಡಿ.",
+        "takingAWhile": "ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತಿದೆ ಎಂದು ತೋರುತ್ತದೆ"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "generatedSeed": "ಉತ್ಪಾದಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
+        "seedNotGenerated": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಉತ್ಪಾದಿಸಲಾಗಿಲ್ಲ",
+        "seedNotGeneratedExplanation": "ದಯವಿಟ್ಟು ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಉತ್ಪಾದಿಸಿ.",
         "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Press individual letters to randomise them.",
