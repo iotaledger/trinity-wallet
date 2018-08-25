@@ -45,7 +45,7 @@
         "addToPasswordManager": "ಗುಪ್ತಪದದ ನಿರ್ವಾಹಕಕ್ಕೆ ಸೇರಿಸಿ",
         "shareSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹಂಚಿ",
         "proceed": "ಮುಂದುವರೆಯಿರಿ",
-        "qr": "QR ಕೋಡ್",
+        "qr": "QR",
         "enterSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ.",
         "mainWallet": "ಮುಖ್ಯ ಖಾತೆ",
         "secondWallet": "ಎರಡನೇ ಖಾತೆ",
@@ -127,7 +127,7 @@
         "clear": "ತೆರವುಗೊಳಿಸಿ",
         "noNetworkConnection": "ನೆಟ್ವರ್ಕ್ ಸಂಪರ್ಕವಿಲ್ಲ",
         "noNetworkConnectionExplanation": "ನಿಮ್ಮ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವು ಆಫ್ಲೈನ್ನಲ್ಲಿ ಗೋಚರಿಸುತ್ತದೆ.",
-        "spentAddressExplanation": "ಎಚ್ಚರಿಕೆ: ಕಳೆದ ವಿಳಾಸಗಳಲ್ಲಿ ಹಣ",
+        "spentAddressExplanation": "ಎಚ್ಚರಿಕೆ: ಖರ್ಚು ಮಾಡಿದ ವಿಳಾಸಗಳಲ್ಲಿ ಹಣ",
         "discordInformation": "ಅದೇ ವಿಳಾಸದಿಂದ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬಾರಿ ವ್ಯವಹರಿಸುವುದು ಅಪಾಯಕಾರಿ. ದಯವಿಟ್ಟು ನೀವು ಏನು ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಕಂಡುಹಿಡಿಯಲು IOTA ಡಿಸ್ಕೋರ್ಡ್ನಲ್ಲಿ #help ಚಾನಲ್ಗೆ ಹೋಗಿ.",
         "androidInsecureClipboardWarning": "ಆಂಡ್ರಾಯ್ಡ್ ಸುರಕ್ಷಿತ ಕ್ಲಿಪ್ಬೋರ್ಡ್ ಅನ್ನು ಒದಗಿಸುವುದಿಲ್ಲ.",
         "androidCopyPasteWarning": "ಆಂಡ್ರಾಯ್ಡ್ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಕಲಿಸಿಬೇಡಿ ಹಾಗು ಅಂಟಿಸಬೇಡಿ.",
@@ -280,25 +280,25 @@
     },
     "receive": {
         "yourAddress": "ನಿಮ್ಮ ವಿಳಾಸ",
-        "qrOptions": "QR ಕೋಡ್ ಆಯ್ಕೆಗಳು",
-        "shareQr": "QR ಕೋಡ್ ಹಂಚಿಕೊಳ್ಳಿ",
+        "qrOptions": "QR ಆಯ್ಕೆಗಳು",
+        "shareQr": "QR ಸಂಕೇತವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ",
         "copyAddress": "ವಿಳಾಸವನ್ನು ನಕಲಿಸಿ",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
         "addressCopiedExplanation": "ನಿಮ್ಮ ವಿಳಾಸವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "generateNewAddress": "ಹೊಸ ವಿಳಾಸ",
         "noAddresses": "ವಿಳಾಸವಿಲ್ಲ",
         "spent": "ಖರ್ಚು ಮಾಡಿದ",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
+        "missingPermissionExplanation": "QR ಸಂಕೇತಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಫೈಲ್ ವ್ಯವಸ್ಥೆಗೆ ಪ್ರವೇಶ ಅಗತ್ಯವಿರುತ್ತದೆ.",
         "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
-        "mostSecure": "Most Secure",
-        "recommended": "Recommended",
-        "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
+        "saveYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿಕೊಳ್ಳಿ",
+        "seedCleared": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ತೆರವುಗೊಳಿಸಲಾಗಿದೆ",
+        "mostSecure": "ಹೆಚ್ಚು ಸುರಕ್ಷಿತ",
+        "recommended": "ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ",
+        "leastSecure": "ಕನಿಷ್ಠ ಸುರಕ್ಷಿತ",
+        "paperWallet": "ಕಾಗದದ ವಾಲೆಟ್",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "letsWriteDownYourSeed": "Let's write down your seed",
@@ -493,7 +493,7 @@
         "logoutConfirmation": "Are you sure you want to log out?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "ನಿಮ್ಮ QR ಸಂಕೇತವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
