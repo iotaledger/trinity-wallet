@@ -239,11 +239,11 @@
         "letsGetStarted": "ನಾವೀಗ ಆರಂಭಿಸೋಣ"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "login": "Log In",
-        "setNode": "Set Node",
+        "emptyPassword": "ಖಾಲಿ ಗುಪ್ತಪದ",
+        "emptyPasswordExplanation": "ಲಾಗ್ ಇನ್ ಮಾಡಲು ನೀವು ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಬೇಕು. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "enterPassword": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ.",
+        "login": "ಲಾಗ್ ಇನ್",
+        "setNode": "ನೋಡ್ ಹೊಂದಿಸಿ",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
