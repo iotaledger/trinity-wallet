@@ -215,28 +215,28 @@
         "passwordManagerCheckbox": "ನಾನು ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕದಲ್ಲಿ ಸಂಗ್ರಹಿಸುತ್ತೇನೆ",
         "copy": "ನಕಲಿಸು",
         "noPasswordManagers": "ಬೆಂಬಲಿತವಾದ ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕವು ಯಾವುದೇ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ",
-        "noPasswordManagersExplanation": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಬೆಂಬಲಿತ ಗುಪ್ತಪದ ನಿರ್ವಾಹಕವು ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು Keepass2Android ಅನ್ನು ಸ್ಥಾಪಿಸಿ.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಬೆಂಬಲಿತ ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕವು ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು Keepass2Android ಅನ್ನು ಸ್ಥಾಪಿಸಿ.",
+        "followTutorialToSecurelyShareSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕದಲ್ಲಿ ಶೇಖರಿಸಿಡಲು ನೀವು ಬಯಸಿದರೆ, ನೀವು ಕೆಳಗಿನ ಲಿಂಕ್ನಿಂದ ಟ್ಯುಟೋರಿಯಲ್ ಅನ್ನು ಅನುಸರಿಸಬೇಕು"
     },
     "enterSeed": {
         "invalidCharacters": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
         "invalidCharactersExplanation": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು A-Z ಮತ್ತು 9 ನೆಯ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರುತ್ತವೆ. ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "seedTooShort": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ತುಂಬಾ ಚಿಕ್ಕದಾಗಿದೆ",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ತುಂಬಾ ಉದ್ದವಾಗಿದೆ",
         "seedTooShortExplanation": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು {{maxLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿರಬೇಕು. ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಪ್ರಸ್ತುತ {{currentLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಗಳು {{maxLength}} ಅಕ್ಷರಗಳಷ್ಟು ಉದ್ದವಾಗಿರಬೇಕು, ಮತ್ತು A-Z, ಅಥವಾ 9 ನಷ್ಟು ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು. {{maxLength}} ಅಕ್ಷರಗಳಿಗಿಂತಲೂ ನೀವು ಹೆಚ್ಚು ಉದ್ದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಗಳನ್ನು ಬಳಸಲಾಗುವುದಿಲ್ಲ.",
+        "neverShare": "ಯಾರೊಂದಿಗೂ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ"
     },
     "home": {
-        "balance": "BALANCE",
+        "balance": "ಖಾತೆಯ ಮೊತ್ತ",
         "send": "ರವಾನಿಸು",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "receive": "ಸ್ವೀಕರಿಸು",
+        "history": "ಹಳೆಯ ವ್ಯವಹಾರ",
+        "settings": "ಸೆಟ್ಟಿಂಗ್ಸ್"
     },
     "languageSetup": {
-        "language": "Language",
-        "letsGetStarted": "Let's get started"
+        "language": "ಭಾಷೆ",
+        "letsGetStarted": "ನಾವೀಗ ಆರಂಭಿಸೋಣ"
     },
     "login": {
         "emptyPassword": "Empty password",
@@ -366,7 +366,7 @@
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
-        "language": "Language",
+        "language": "ಭಾಷೆ",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
