@@ -116,7 +116,7 @@
         "nodeMustUseHTTPS": "ಅಮಾನ್ಯ ನೋಡ್ (ಅಲ್ಲದ HTTPS)",
         "nodeMustUseHTTPSExplanation": "HTTPS ಅನ್ನು ಬಳಸುವ ಕಸ್ಟಮ್ ನೋಡ್ ಗಳನ್ನೂ ಮಾತ್ರ ಅನುಮತಿಸಲಾಗಿದೆ.",
         "nodeDuplicated": "ನಕಲಿ ನೋಡ್",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeDuplicatedExplanation": "ಈ ಕಸ್ಟಮ್ ನೋಡ್ ಈಗಾಗಲೇ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆ.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
