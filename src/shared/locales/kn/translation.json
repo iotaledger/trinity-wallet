@@ -307,22 +307,22 @@
         "whatIsChecksum": "ಪ್ರತಿಯೊಂದು ಬೀಜವು ಅನುಗುಣವಾದ 3-ಪಾತ್ರದ ಖಾತೆ ಪರಿಶೀಲನೆಯನ್ನು ಹೊಂದಿರುತ್ತದೆ",
         "iHavesavedMySeed": "ನಾನು ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಉಳಿಸಿದೆ",
         "checksumExplanation": "ನಿಮ್ಮ ವ್ಯಾಲೆಟ್ಗೆ ನೀವು ಬೀಜವನ್ನು ಸೇರಿಸಿದಾಗಲೆಲ್ಲ, ನೀವು ಬರೆದಿರುವ ಒಂದು ವಾಲೆಟ್ ನಿಂದ ಉತ್ಪಾದಿಸಿದ ಖಾತೆ ಪರಿಶೀಲನೆಯ ಸಂಕೇತವನ್ನು ಹೋಲಿಸಿ ನೀವು ಖಾತ್ರಿಪಡಿಸಿಕೊಳ್ಳಬೇಕು.",
-        "mustSaveYourSeed": "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>ಕೆಳಗೆ ಪಟ್ಟಿ ಮಾಡಲಾದ ಆಯ್ಕೆಗಳಲ್ಲಿ ನಿಮ್ಮ ಬೀಜವನ್ನು</0><1>ಕನಿಷ್ಠ ಒಂದು</1><2>ನೊಂದಿಗೆ ಬ್ಯಾಕ್ಅಪ್ ಮಾಡಬೇಕು.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "pleaseConfirmYourSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ದೃಢೀಕರಿಸಿ",
+        "trinityWillNeverAskToReenter": "ನಿಮ್ಮ ವಾಲೆಟ್ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಮರುಹೊಂದಿಸದ ಹೊರತು ಟ್ರಿನಿಟಿ ಈ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಮತ್ತೆ ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮನ್ನು ಎಂದಿಗೂ ಕೇಳಿಕೊಳ್ಳುವುದಿಲ್ಲ.",
+        "enterYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ",
+        "incorrectSeed": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
+        "incorrectSeedExplanation": "ನೀವು ನಮೂದಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
+        "ifYouHaveNotSaved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕಪ್ ಮಾಡಿಲ್ಲದಿದ್ದರೆ, ದಯವಿಟ್ಟು ಹಿಂತಿರುಗಿ ಮತ್ತು ಬ್ಯಾಕಪ್ ಮಾಡಿ.",
+        "enterSeedBelow": "ನೀವು ಹೊಸದಾಗಿ ರಚಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಅದನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಲು ಕೆಳಗೆ ನಮೂದಿಸಿ",
+        "clipboardWarning": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಅಂಟಿಸಬೇಡಿ",
+        "clipboardWarningExplanation": "ಎಚ್ಚರಿಕೆ: ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ನಕಲಿಸಿ ಪೇಸ್ಟ್ ಮಾಡುವುದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddress": "ಅಮಾನ್ಯವಾದ ವಿಳಾಸ",
+        "invalidAddressExplanation1": "ವಿಳಾಸವು {{maxLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿರಬೇಕು ಮತ್ತು ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ ಇರಬೇಕು.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
