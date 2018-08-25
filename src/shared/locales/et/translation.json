@@ -296,7 +296,7 @@
         "saveYourSeed": "Varunda oma seeme",
         "seedCleared": "Seeme puhastatud",
         "mostSecure": "Kõige turvalisem",
-        "recommended": "Recommended",
+        "recommended": "Soovitatav",
         "leastSecure": "Kõige ebaturvalisem",
         "paperWallet": "Paber rahakott",
         "writeYourSeedDown": "Kirjutage oma seeme üles",
@@ -452,7 +452,7 @@
         "editAccountName": "Muuda konto nime",
         "deleteAccount": "Kustuta konto",
         "addNewAccount": "Lisa uus konto",
-        "tools": "Tools"
+        "tools": "Tööriistad"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",
@@ -656,8 +656,8 @@
         "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
         "newVersionAvailable": "Uus versioon saadaval",
         "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Installi värskendus ja taaskäivita",
+        "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks."
     },
     "notificationLog": {
         "errorLog": "Veateadete logi"
