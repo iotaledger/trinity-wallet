@@ -41,7 +41,7 @@
         "enabled": "Aktiviert",
         "disabled": "Deaktiviert",
         "enterPassword": "Passwort eingeben",
-        "paperWallet": "Drucken in Papierform",
+        "paperWallet": "Seed ausdrucken",
         "addToPasswordManager": "Zum Passwort-Manager hinzufügen",
         "shareSeed": "Seed teilen",
         "proceed": "Fortfahren",
