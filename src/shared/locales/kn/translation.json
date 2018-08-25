@@ -342,20 +342,20 @@
         "maximumSelected": "ಗರಿಷ್ಠ ಮೊತ್ತವನ್ನು ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ",
         "iotaUnits": "IOTA ಪ್ರಮಾಣಗಳು ವಿವರಿಸಿದೆ",
         "sendMax": "ಗರಿಷ್ಠವನ್ನು ಕಳುಹಿಸಿ",
-        "totalTime": "Total time",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID"
+        "totalTime": "ಒಟ್ಟು ಸಮಯ",
+        "addressPasteDetected": "ವಿಳಾಸ ಅಂಟಿಯನ್ನು ಕಂಡುಹಿಡಿದಿದೆ",
+        "addressPasteExplanation": "ನೀವು ವಿಳಾಸವನ್ನು ಅಂಟಿಸಲಾಗಿದೆ ಎಂದು ತೋರುತ್ತಿದೆ. ನೀವು ಕಳುಹಿಸಲು ಬಯಸುವ ವಿಳಾಸವನ್ನು ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
+        "invalid": "ಅಮಾನ್ಯವಾಗಿದೆ"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "letsAddName": "ನಾವು ಒಂದು ಹೆಸರನ್ನು ಸೇರಿಸೋಣ",
+        "canUseMultipleSeeds": "ನೀವು ಅನೇಕ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಗಳನ್ನು ಈ ವಾಲೆಟ್ನೊಂದಿಗೆ ಬಳಸಬಹುದು. ಪ್ರತಿಯೊಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಕ್ಕೂ ಖಾತೆಯ ಹೆಸರು ಬೇಕು.",
+        "youCanAdd": "ನೀವು ಸೆಟ್ಟಿಂಗ್ಸ್ ಸಲಹಾಕಾರನಲ್ಲಿ ಹೆಚ್ಚು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಗಳನ್ನು ಸೇರಿಸಬಹುದು."
     },
     "modeSelection": {
-        "advanced": "Advanced",
-        "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advanced": "ಮುಂದುವರೆದ",
+        "standard": "ಪ್ರಮಾಣಿತ",
+        "advancedModeExplanation": "ಮುಂದುವರೆದ ರೀತಿ ಹೆಚ್ಚು ವಿವರವಾದ ತಾಂತ್ರಿಕ ಮಾಹಿತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
