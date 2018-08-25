@@ -56,6 +56,9 @@ function selectLocale(lang) {
     if (lang === 'et') {
         return 'Eesti keel - Estonian';
     }
+    if (lang === 'fa') {
+        return 'فارسی - Persian';
+    }
     if (lang === 'fi') {
         return 'Suomi - Finnish';
     }
@@ -79,6 +82,9 @@ function selectLocale(lang) {
     }
     if (lang === 'ja') {
         return '日本語 - Japanese';
+    }
+    if (lang === 'kn') {
+        return 'ಕನ್ನಡ - Kannada';
     }
     if (lang === 'ko') {
         return '한국어 - Korean';

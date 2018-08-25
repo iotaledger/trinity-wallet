@@ -17,6 +17,7 @@ export default i18next.use(reactI18nextModule).init(
             es_ES: require('../shared/locales/es-ES/translation.json'),
             es_LA: require('../shared/locales/es-LA/translation.json'),
             et: require('../shared/locales/et/translation.json'),
+            fa: require('../shared/locales/fa/translation.json'),
             fi: require('../shared/locales/fi/translation.json'),
             fr: require('../shared/locales/fr/translation.json'),
             he: require('../shared/locales/he/translation.json'),
@@ -25,6 +26,7 @@ export default i18next.use(reactI18nextModule).init(
             id: require('../shared/locales/id/translation.json'),
             it: require('../shared/locales/it/translation.json'),
             ja: require('../shared/locales/ja/translation.json'),
+            kn: require('../shared/locales/kn/translation.json'),
             ko: require('../shared/locales/ko/translation.json'),
             lt: require('../shared/locales/lt/translation.json'),
             lv: require('../shared/locales/lv/translation.json'),
@@ -65,6 +67,7 @@ export default i18next.use(reactI18nextModule).init(
     },
     (err) => {
         if (err) {
+            // eslint-disable-next-line no-console
             console.error(err);
         }
     },
