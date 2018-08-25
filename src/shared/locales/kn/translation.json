@@ -69,7 +69,7 @@
         "node": "ನೋಡ್",
         "cannotPerformAction": "ಕ್ರಮ ನಿರ್ವಹಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ",
         "cannotPerformActionExplanation": "ವಾಲೆಟ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗೆ ಹೋಗಿ.",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailable": "ದೂರ ಕೆಲಸದ ಪುರಾವೆ ಲಭ್ಯವಿಲ್ಲ",
         "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Wallet",
