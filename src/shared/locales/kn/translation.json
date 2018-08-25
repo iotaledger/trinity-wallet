@@ -257,19 +257,19 @@
         "generatedSeed": "ಉತ್ಪಾದಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "seedNotGenerated": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಉತ್ಪಾದಿಸಲಾಗಿಲ್ಲ",
         "seedNotGeneratedExplanation": "ದಯವಿಟ್ಟು ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಉತ್ಪಾದಿಸಿ.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
-        "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "pressForNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಕ್ಕಾಗಿ ಒತ್ತಿರಿ",
+        "generateSuccess": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಯಶಸ್ವಿಯಾಗಿ ಉತ್ಪತ್ತಿಯಾಯಿತು",
+        "individualLetters": "ಅವುಗಳನ್ನು ಯಾದೃಚ್ಛಿಕಗೊಳಿಸಲು ವೈಯಕ್ತಿಕ ಅಕ್ಷರಗಳನ್ನು ಒತ್ತಿರಿ.",
+        "individualLetterCount": "ಅವುಗಳನ್ನು ಯಾದೃಚ್ಛಿಕಗೊಳಿಸಲು {{letterCount}} ಹೆಚ್ಚು ಪ್ರತ್ಯೇಕ ಅಕ್ಷರಗಳನ್ನು ಒತ್ತಿರಿ.",
+        "whatIsASeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಎಂದರೇನು?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "allDone": "ಎಲ್ಲವೂ ಪೂರೈಸಿದೆ!",
+        "openYourWallet": "ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ತೆರೆಯಿರಿ",
+        "walletReady": "ವಾಲೆಟ್ ಈಗ ಸ್ಥಾಪಿಸಲಾಯಿತು ಮತ್ತು ಬಳಸಲು ಸಿದ್ಧವಾಗಿದೆ. ಭವಿಷ್ಯದಲ್ಲಿ ನೀವು ಯಾವುದೇ ಬದಲಾವಣೆಗಳನ್ನು ಮಾಡಬೇಕಾದರೆ, ಸೆಟ್ಟಿಂಗ್ಸ್ ಮೆನುವಿನಲ್ಲಿ ನೋಡಿ."
     },
     "paperWallet": {
-        "neverShare": "Never share your seed with anyone.",
+        "neverShare": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.",
         "iotaLogo": "IOTA logo",
         "print": "PRINT",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
