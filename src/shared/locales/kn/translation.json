@@ -194,20 +194,20 @@
         "reasonWord": "ಒಂದು ಪದ ಊಹಿಸಲು ಸುಲಭ."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "ಹೊಸ ಗುಪ್ತಪದವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ",
         "passwordTooShort": "ಗುಪ್ತಪದ ತುಂಬಾ ಚಿಕ್ಕದಾಗಿದೆ",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "ನಿಮ್ಮ ಗುಪ್ತಪದ ಕನಿಷ್ಠ {{minLength}} ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು. ಇದು ಪ್ರಸ್ತುತ {{currentLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "passwordMismatch": "ಗುಪ್ತಪದಗಳು ಹೊಂದುತ್ತಿಲ್ಲ",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "retypePassword": "Retype Password"
+        "passwordMismatchExplanation": "ನೀವು ನಮೂದಿಸಿದ ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
+        "anEncryptedCopy": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ನಕಲನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ. ಭವಿಷ್ಯದಲ್ಲಿ ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ಪ್ರವೇಶಿಸಲು ನೀವು ಈ ಗುಪ್ತಪದ ಅನ್ನು ಬಳಸುತ್ತೀರಿ.",
+        "retypePassword": "ಗುಪ್ತಪದವನ್ನು ಮತ್ತೆ ನಮೂದಿಸಿ"
     },
     "copyToClipboard": {
-        "seedCleared": "Clipboard cleared",
-        "seedClearedExplanation": "The clipboard has been cleared for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "copyToClipboard": "Copy Seed",
+        "seedCleared": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ ತೆರವುಗೊಳಿಸಲಾಗಿದೆ",
+        "seedClearedExplanation": "ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ಕ್ಲಿಪ್ಬೋರ್ಡ್ ಅನ್ನು ತೆರವುಗೊಳಿಸಲಾಗಿದೆ.",
+        "seedCopied": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
+        "seedCopiedExplanation": "ನೀವು \"ಪೂರೈಸಿದೆ\" ಒತ್ತುವ ಮೂಲಕ ಅಥವಾ 60 ಸೆಕೆಂಡ್ಗಳು ಮುಗಿದ ನಂತರ ಬೀಜವನ್ನು ತೆರವುಗೊಳಿಸಲಾಗುತ್ತದೆ.",
+        "copyToClipboard": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಕಲಿಸಿ",
         "shareSeed": "Share your seed to a secure password manager",
         "storeEncrypted": "Store your seed encrypted in a password manager.",
         "doNotOpen": "Do not open any other apps during this process.",
