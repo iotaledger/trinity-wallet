@@ -5,7 +5,7 @@ export default `
 
 Diese Datenschutzrichtlinie ( **„Datenschutzrichtlinie zur App&quot;** ) beschreibt, wie die IOTA Stiftung ( **„IOTA Stiftung&quot;** , **„wir&#39;&#39;** , **„uns&#39;&#39;** , **„unser(e)&#39;&#39;**) Ihre personenbezogenen Daten in Verbindung mit der Nutzung der **„Trinity Wallet App&quot;** erhebt und verarbeitet.
 
-Diese Datenschutzrichtlinie zur App richtet sich an die Nutzer der Trinity Wallet App. Wenn Sie mehr darüber erfahren wollen, wie IOTA Stiftung personenbezogene Daten (wie nachstehend definiert) in Zusammenhang mit anderen Dienstleistungen und Aktivitäten der IOTA Stiftung erhebt und verarbeitet, können Sie die allgemeine [Datenschutzrichtlinie](https://www.iota.org/research/privacy-policy)der IOTA Stiftung einsehen.
+Diese Datenschutzrichtlinie zur App richtet sich an die Nutzer der Trinity Wallet App. Wenn Sie mehr darüber erfahren wollen, wie IOTA Stiftung personenbezogene Daten (wie nachstehend definiert) in Zusammenhang mit anderen Dienstleistungen und Aktivitäten der IOTA Stiftung erhebt und verarbeitet, können Sie die allgemeine [Datenschutzrichtlinie](https://www.iota.org/research/privacy-policy) der IOTA Stiftung einsehen.
 
 Bitte lesen Sie unsere Datenschutzrichtlinie zur App sorgfältig durch, um eine klare Vorstellung davon zu bekommen, wie wir mit den über die Trinity Wallet App über Sie erhobenen personenbezogenen Daten umgehen.
 
@@ -23,7 +23,7 @@ Darüber hinaus erhebt und verarbeitet die IOTA Stiftung personenbezogene Daten,
 - Sie der IOTA Stiftung aus irgendeinem Grund kontaktieren oder darum bitten, der IOTA Stiftung kontaktiert zu werden oder
 - Sie der IOTA Stiftung aus irgendeinem Grund Ihre personenbezogenen Daten zur Verfügung stellen.
 
-Um E-Mail-Benachrichtigungen an Sie zu ermöglichen, kann IOTA Stiftung Ihre E-Mail-Adresse auf ihren Servern speichern.
+Um E-Mail-Benachrichtigungen an Sie zu ermöglichen, kann die IOTA Stiftung Ihre E-Mail-Adresse auf ihren Servern speichern.
 
 ### **Welche personenbezogenen Daten wir erheben**
 
@@ -41,7 +41,6 @@ Wir verarbeiten personenbezogene Daten, um den Betrieb und die Nutzung der Trini
 
 Bei der Verarbeitung Ihrer personenbezogenen Daten in Verbindung mit den in der Datenschutzrichtlinie zur App genannten Zwecken können wir uns, je nach dem Umständen, auf eine oder mehrere der folgenden Rechtsgrundlagen stützen:
 
--
   - wir haben Ihre ausdrückliche Zustimmung zur Verarbeitung erhalten (diese Rechtsgrundlage wird nur in Verbindung mit einer vollkommen freiwilligen Verarbeitung herangezogen – sie wird nicht für eine Verarbeitung herangezogen, die in irgendeiner Weise erforderlich oder obligatorisch ist);
   - die Verarbeitung ist in Verbindung mit einer vertraglichen Beziehung erforderlich, die Sie gegebenenfalls mit uns eingehen;
   - die Verarbeitung ist aufgrund einschlägiger Gesetze erforderlich;
@@ -107,7 +106,7 @@ Wir benötigen Ihre personenbezogenen Daten, um Ihnen die Nutzung der Trinity Wa
 
 Jede Einwilligung wird freiwillig erteilt. Wenn Sie uns Ihre Einwilligung erteilen, haben Sie das Recht, diese jederzeit zu widerrufen. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung. Nach dem Widerruf Ihrer Einwilligung werden wir die Verarbeitung Ihrer personenbezogenen Daten einstellen und die personenbezogenen Daten auch nicht länger speichern, sofern die weitere Verarbeitung nicht auf anderer Rechtsgrundlage notwendig und rechtlich zulässig ist. Dieser Abschnitt gilt nur für eine vollkommen freiwillige Verarbeitung – er gilt nicht für eine Verarbeitung, die in irgendeiner Weise erforderlich oder obligatorisch ist, wie dies beispielsweise in Bezug auf diejenigen personenbezogenen Daten der Fall ist, die für die Installation und den Betrieb der Trinity Wallet App benötigt werden.
 
-Um Ihre Einwilligung zu widerrufen, senden Sie uns bitte eine E-Mail an [privacy@iota.org](mailto:privacy@iota.org)oder schreiben Sie an die IOTA Stiftung, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
+Um Ihre Einwilligung zu widerrufen, senden Sie uns bitte eine E-Mail an [privacy@iota.org](mailto:privacy@iota.org) oder schreiben Sie an die IOTA Stiftung, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
 
 ### **Wann wir Ihre personenbezogenen Daten löschen**
 
