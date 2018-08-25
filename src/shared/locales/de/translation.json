@@ -296,7 +296,7 @@
         "saveYourSeed": "Seed sichern",
         "seedCleared": "Seed gelöscht",
         "mostSecure": "Am sichersten",
-        "recommended": "Recommended",
+        "recommended": "Empfohlen",
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
@@ -656,8 +656,8 @@
         "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Update installieren und Trinity neu starten",
+        "installUpdateExplanation": "Der Download wurde abgeschlossen. Trinity wird jetzt neu starten um das Update zu installieren."
     },
     "notificationLog": {
         "errorLog": "Fehlerprotokoll"
