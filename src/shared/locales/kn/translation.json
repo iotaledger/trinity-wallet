@@ -541,7 +541,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>ನಿಮ್ಮ ಎಲ್ಲಾ ವಾಲೆಟ್ ಅ೦ಕಿ ಸ೦ಖ್ಯೆ ಮಾಹಿತಿ: </0><1> ಬೀಜಗಳು, ಪಾಸ್ವರ್ಡ್,</1><2> ಮತ್ತು </2><3>ಇತರ ಖಾತೆ ಮಾಹಿತಿ</3><4> ಕಳೆದುಹೋಗುತ್ತದೆ.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
