@@ -259,8 +259,8 @@
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "Pressione Para Obter Nova Seed",
         "generateSuccess": "Seed gerada com sucesso",
-        "individualLetters": "Pressione as letras individualmente para mudá-las.",
-        "individualLetterCount": "Pressione {{letterCount}} letras individuais a mais para embaralhar elas.",
+        "individualLetters": "Digite letras individuais para tornar o processo mais aleatório.",
+        "individualLetterCount": "Digite mais {{letterCount}} letras individuais para tornar mais aleatório.",
         "whatIsASeed": "O que é uma Seed?"
     },
     "onboardingComplete": {
@@ -288,7 +288,7 @@
         "generateNewAddress": "Novo Endereço",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
-        "missingPermission": "Permissões do sistema de arquivo necessário",
+        "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR.",
         "tag": "Etiqueta"
     },
@@ -299,13 +299,13 @@
         "recommended": "Recomendado",
         "leastSecure": "Menos Seguro",
         "paperWallet": "Carteira em Papel",
-        "writeYourSeedDown": "Anotar seed",
+        "writeYourSeedDown": "Anotar Seed",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "letsWriteDownYourSeed": "Vamos gravar sua seed",
-        "youCanHighlightCharacters": "Você pode destacar 9 caracteres de cada vez",
+        "youCanHighlightCharacters": "Você pode marcar 9 caracteres por vez",
         "printBlankWallet": "Imprimir uma carteira em branco",
-        "whatIsChecksum": "Toda seed tem uma soma de verificação correspondente a 3 caracteres",
-        "iHavesavedMySeed": "Eu salvei a minha seed",
+        "whatIsChecksum": "Toda Seed possui um Código de Verificação de 3 caracteres",
+        "iHavesavedMySeed": "Eu salvei a minha Seed",
         "checksumExplanation": "Sempre que você adicionar uma seed para a sua carteira, você deve verificar que as somas de verificação geradas pela carteira são iguais as quais você tem anotado.",
         "mustSaveYourSeed": "<0><0>Você deve salvar sua Seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
     },
@@ -324,7 +324,7 @@
         "invalidAddress": "Endereço inválido",
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e deve conter o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
-        "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
+        "invalidAddressExplanation3": "O endereço contém um Código de Verificação incorreto.",
         "invalidAddressExplanationGeneric": "Endereços válidos devem possuir 90 caracteres e conter apenas A-Z ou 9.",
         "notEnoughFunds": "Saldo insuficiente",
         "notEnoughFundsExplanation": "Você não possui IOTAs suficientes para realizar esta transferência.",
@@ -343,14 +343,14 @@
         "iotaUnits": "Explicação sobre Unidades IOTA",
         "sendMax": "ENVIAR O MÁXIMO",
         "totalTime": "Tempo total",
-        "addressPasteDetected": "Colação de endereço detectado",
+        "addressPasteDetected": "Colagem de endereço detectado",
         "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar.",
         "invalid": "INVÁLIDO"
     },
     "setSeedName": {
         "letsAddName": "Vamos adicionar um nome",
         "canUseMultipleSeeds": "Com sua carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
-        "youCanAdd": "Você poderá adicionar novas Seeds no menu de opções."
+        "youCanAdd": "Você poderá adicionar novas Seeds no menu de Configurações."
     },
     "modeSelection": {
         "advanced": "Avançado",
@@ -371,7 +371,7 @@
         "addNewSeed": "Adicionar nova Seed",
         "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
-        "advanced": "Opções Avançadas",
+        "advanced": "Configurações Avançadas",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
@@ -381,7 +381,7 @@
         "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Sua conta foi removida da carteira.",
         "cannotPerformAction": "Não é possível executar a ação",
-        "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
+        "cannotPerformActionExplanation": "Vá para Configurações Avançadas para redefinir a carteira.",
         "hide": "Ocultar",
         "hideOthers": "Ocultar Outros",
         "show": "Exibir",
