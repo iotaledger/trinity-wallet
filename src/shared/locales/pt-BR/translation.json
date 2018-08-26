@@ -196,8 +196,8 @@
     "setPassword": {
         "choosePassword": "Escolher uma nova senha",
         "passwordTooShort": "A senha é muito curta",
-        "passwordTooShortExplanation": "Sua senha deve ter pelo menos {{minLength}} caracteres. Atualmente é {{currentLength}} caracteres de comprimento. Por favor, tente novamente.",
-        "passwordMismatch": "As senhas não são iguais",
+        "passwordTooShortExplanation": "Sua senha deve ter pelo menos {{minLength}} caracteres. Atualmente ela possui {{currentLength}} caracteres. Por favor, tente novamente.",
+        "passwordMismatch": "As senhas não conferem",
         "passwordMismatchExplanation": "As senhas digitadas são diferentes. Tente novamente.",
         "anEncryptedCopy": "Um cópia criptografada da sua Seed será armazenada em seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
         "retypePassword": "Digite a Senha Novamente"
@@ -206,10 +206,10 @@
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "A Seed foi copiada para a área de transferência",
-        "seedCopiedExplanation": "A seed será removida quando você pressionar \"CONCLUÍDO\" ou ao passar 60 segundos.",
+        "seedCopiedExplanation": "A seed será removida quando você pressionar \"CONCLUIR\" ou após 60 segundos.",
         "copyToClipboard": "Copiar Seed",
         "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro",
-        "storeEncrypted": "Guardar sua Seed em um gerenciador de senhas.",
+        "storeEncrypted": "Armazenar sua Seed encriptografada em um gerenciador de senhas.",
         "doNotOpen": "Não abra outros aplicativos durante este processo.",
         "tapConfirm": "Por favor, toque a caixa de seleção abaixo para confirmar.",
         "passwordManagerCheckbox": "Eu vou armazenar minha Seed em um Gerenciador de senhas",
@@ -224,7 +224,7 @@
         "seedTooShort": "A Seed é muito curta",
         "seedTooLong": "A Seed é muito longa",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
-        "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
+        "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, e conter apenas letras maiúsculas (A-Z), e/ou o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
     },
     "home": {
@@ -232,7 +232,7 @@
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "OPÇÕES"
+        "settings": "CONFIGURAÇÕES"
     },
     "languageSetup": {
         "language": "Idioma",
