@@ -304,7 +304,7 @@
         "letsWriteDownYourSeed": "Laten we je seed opschrijven",
         "youCanHighlightCharacters": "U kan 9 karakters tegelijk markeren",
         "printBlankWallet": "Print een lege portemonnee",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Iedereen seed heeft een overeenkomende 3-karakter controlesleutel",
         "iHavesavedMySeed": "Ik heb mijn seed opgeslagen",
         "checksumExplanation": "Wanneer u uw seed toevoegt aan uw portemonnee, moet u er zeker van zijn dat de gegenereerde controlesom hetzelfde is als degene die u heeft opgeschreven.",
         "mustSaveYourSeed": "<0><0>U moet uw seed opslaan met </0><1>tenminste één</1><2> van de onderstaande opties.</2></0>"
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "De ingevoerde seed is onjuist. Probeer het nog eens.",
         "ifYouHaveNotSaved": "Als u uw seed nog niet opgeslagen heeft, ga dan terug en doe dit alsnog.",
         "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Gebruik geen kopiëren - plakken",
+        "clipboardWarningExplanation": "LET OP: kopiëren en plakken is uitgeschakeld voor jouw veiligheid."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
@@ -345,7 +345,7 @@
         "totalTime": "Totale tijd",
         "addressPasteDetected": "Adres plakken gedetecteerd",
         "addressPasteExplanation": "Het lijkt erop dat u een adres wil plakken. Zorg ervoor dat dit adres overeenkomt met het adres waarnaar u wilt zenden.",
-        "invalid": "INVALID"
+        "invalid": "ONGELDIG"
     },
     "setSeedName": {
         "letsAddName": "Laten we een naam toevoegen",
@@ -353,10 +353,10 @@
         "youCanAdd": "U kunt meer seeds toevoegen in het Instellingen menu."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Geavanceerd",
         "standard": "Standaard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Geavanceerde modus toont meer gedetailleerde technische informatie.",
+        "modesExplanation": "Schakel geavanceerde modus alleen in als je bekend bent met IOTA. Het kan anders verwarrend zijn."
     },
     "settings": {
         "transferSending": "Transactie in behandeling",
@@ -411,16 +411,16 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Voer uw wachtwoord in om de portemonnee opnieuw in te stellen.",
-        "reset": "Reset"
+        "reset": "Herstel"
     },
     "walletSetup": {
         "creatingSeed": "Seed aan het maken",
         "okay": "Oke. Laten we uw portemonnee instellen!",
         "doYouNeedASeed": "Wilt u een nieuwe seed maken?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Je IOTA seed is je hoofdsleutel tot je munten. Het is 81 karakters lang, en gebruikt alleen de letters A-Z of het nummer 9.",
         "noIHaveOne": "Nee, ik heb er een",
         "yesINeedASeed": "Ja, ik heb een seed nodig",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0><0>Je kan het gebruiken om je munten vanuit </0><1>iedere portemonnee te benaderen</1><2>, op</2><3> ieder apparaat</3></0>",
         "loseSeed": "Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw seed veilig."
     },
@@ -429,12 +429,12 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Scroll naar beneden"
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Geen transacties gevonden",
+        "hideZeroBalance": "Verberg nul saldo",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
@@ -442,9 +442,9 @@
         "messageCopiedExplanation": "Het bericht is gekopieerd naar het klembord.",
         "send": "Verstuur",
         "receive": "Ontvang",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "empty": "Leeg",
+        "retrying": "Opnieuw proberen...",
+        "yesterday": "Gisteren"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
@@ -452,17 +452,17 @@
         "editAccountName": "Accountnaam bewerken",
         "deleteAccount": "Account verwijderen",
         "addNewAccount": "Nieuw account toevoegen",
-        "tools": "Tools"
+        "tools": "Hulpmiddelen"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
         "customNode": "Aangepaste node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Aangepaste node verwijderen",
         "invalidNodeResponse": "De node stuurde een ongeldige reactie terug",
         "add": "Toevoegen",
         "nodeFieldEmpty": "Tekst veld is leeg",
         "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Voer een geldige URL in."
     },
     "addNewAccount": {
         "useExistingSeed": "Bestaande seed gebruiken",
