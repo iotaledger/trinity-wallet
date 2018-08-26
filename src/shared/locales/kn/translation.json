@@ -602,11 +602,11 @@
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
         "change": "ಬದಲಾವಣೆ (24 ಗಂಟೆ)",
         "volume": "ಘನ ಅಳತೆ (24 ಗಂಟೆ)",
-        "error": "Error fetching chart data"
+        "error": "ಚಾರ್ಟ್ ಅ೦ಕಿಯನ್ನು ಪಡೆಯುವಲ್ಲಿ ದೋಷ"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "appearsRooted": "Your device appears to be rooted.",
+        "warning": "ಎಚ್ಚರಿಕೆ",
+        "appearsRooted": "ನಿಮ್ಮ ಸಾಧನವು ಬೇರೂರಿದೆ ಎಂದು ತೋರುತ್ತಿದೆ.",
         "securityRisk": "This can pose a significant risk to the security of your wallet.",
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
@@ -680,13 +680,13 @@
     },
     "notifications": {
         "notifications": "ಅಧಿಸೂಚನೆಗಳು",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notificationExplanation": "ಹೊಸ ವ್ಯವಹಾರಗಳ ಬಗ್ಗೆ ವ್ಯವಸ್ಥೆ-ವ್ಯಾಪಕ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ.",
+        "typeConfirmations": "ದೃಢೀಕರಣಗಳ ಬಗ್ಗೆ ನನಗೆ ಸೂಚಿಸಿ",
+        "typeMessages": "ಶೂನ್ಯ ಮೌಲ್ಯ ವ್ಯವಹಾರಗಳ ಬಗ್ಗೆ ನನಗೆ ಸೂಚಿಸಿ",
+        "multipleTx": "{{account}} ಗೆ ಬಹು ವ್ಯವಹಾರಗಳನ್ನು ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿದೆ",
+        "valueTx": "{{account}} ಗೆ {{value}} ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿದೆ",
+        "messageTx": "{{account}} ಗೆ ನೀವು ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ",
+        "confirmedIn": "{{account}} ಗೆ ಒಳಬರುವ {{value}} ದೃಢಪಡಿಸಿದೆ",
+        "confirmedOut": "{{account}} ಗೆ ಹೊರಹೋಗುವ {{value}} ದೃಢಪಡಿಸಿದೆ"
     }
 }
