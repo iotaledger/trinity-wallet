@@ -355,19 +355,19 @@
     "modeSelection": {
         "advanced": "ಮುಂದುವರೆದ",
         "standard": "ಪ್ರಮಾಣಿತ",
-        "advancedModeExplanation": "ಮುಂದುವರೆದ ರೀತಿ ಹೆಚ್ಚು ವಿವರವಾದ ತಾಂತ್ರಿಕ ಮಾಹಿತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "ಮುಂದುವರೆದ ಮೋಡ್ ಹೆಚ್ಚು ವಿವರವಾದ ತಾಂತ್ರಿಕ ಮಾಹಿತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.",
+        "modesExplanation": "IOTA ಅನ್ನು ಬಳಸಿ ನಿಮಗೆ ಅನುಭವವಿದ್ದರೆ ಮಾತ್ರ ಮುಂದುವರೆದ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅದರಿಂದ ಗೊಂದಲಕ್ಕೊಳಗಾಗಬಹುದು."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "transferSending": "ಕಳುಹಿಸುವುದನ್ನು ವರ್ಗಾಯಿಸಿ",
+        "transferSendingExplanation": "ನಿಮ್ಮ ವರ್ಗಾವಣೆ ಕಳುಹಿಸುವವರೆಗೆ ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ.",
+        "mode": "ಮೋಡ್",
+        "theme": "ಥೀಮ್",
+        "currency": "ಚಲಾವಣೆಯ ನಾಣ್ಯ",
+        "cannotChangeNode": "ನೋಡ್ ಅನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ",
+        "cannotChangeNodeWhileSending": "ಕಳುಹಿಸುವಾಗ ನೋಡ್ ಅನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.",
         "language": "ಭಾಷೆ",
-        "accountManagement": "Account management",
+        "accountManagement": "ಖಾತೆ ನಿರ್ವಹಣೆ",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
@@ -483,11 +483,11 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme",
+        "theme": "ಥೀಮ್",
         "mockup": "Mockup"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "ಚಲಾವಣೆಯ ನಾಣ್ಯ"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Are you sure you want to log out?"
