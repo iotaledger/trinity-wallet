@@ -136,7 +136,7 @@
         "deviceMayBecomeUnresponsive": "ಸ್ವಲ್ಪ ಸಮಯದವರೆಗೆ ನಿಮ್ಮ ಸಾಧನ ಸ್ಪಂದಿಸದಿರಬಹುದು.",
         "isYourBalanceCorrect": "ನಿಮ್ಮ ಖಾತೆಯ ಉಳಿದ ಹಣವು ಸರಿಯಾಗಿದೆಯೇ?",
         "ifYourBalanceIsNotCorrect": "ನಿಮ್ಮ ಖಾತೆಯ ಉಳಿದ ಹಣವು ಸರಿಯಾಗಿಲ್ಲವಾದರೆ, ನೀವು ಪೂರ್ವ-ಸ್ನ್ಯಾಪ್ಶಾಟ್ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಬಳಸುತ್ತಿರುವಿರಿ.",
-        "headToAdvancedSettingsForTransition": "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳಿಗೆ ಹೋಗಿ ಮತ್ತು ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಟ್ರಾನ್ಸಿಶನ್ ಅನ್ನು ನಿರ್ವಹಿಸಿ.",
+        "headToAdvancedSettingsForTransition": "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್ಗಳಿಗೆ ಹೋಗಿ ಮತ್ತು ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆಯನ್ನು ನಿರ್ವಹಿಸಿ.",
         "usingTrinityWalletWithKeePass": "Keepass2Android ನೊಂದಿಗೆ ಟ್ರಿನಿಟಿ ವಾಲೆಟ್ ಬಳಸಿ",
         "signedTrytesBroadcastErrorExplanation": "ನಿಮ್ಮ ವ್ಯವಹಾರವನ್ನು ಪ್ರಕಟಿಸುವಾಗ ನೆಟ್ವರ್ಕ್ ದೋಷ ಕಂಡುಬಂದಿದೆ.",
         "broadcastError": "ವರ್ಗಾವಣೆಯನ್ನು ಪ್ರಕಟಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
@@ -472,11 +472,11 @@
         "selectNode": "ನೋಡ್ ಆಯ್ಕೆಮಾಡಿ",
         "addCustomNode": "ಕಸ್ಟಮ್ ನೋಡ್ ಸೇರಿಸಿ",
         "manualSync": "ಹಸ್ತಚಾಲಿತ ಒಡವಾಗುನಂಟು",
-        "snapshotTransition": "Snapshot transition",
+        "snapshotTransition": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆ",
         "pow": "ಕೆಲಸದ ಪುರಾವೆ",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "ಸ್ವಯಂ-ಬಡತಿ",
+        "autoPromotionExplanation": "ಟ್ಯಾಂಗಲ್ ಜಾಲದಲ್ಲಿ ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ಖಚಿತಪಡಿಸಲು ಸ್ವಯಂ-ಬಡತಿ ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ವ್ಯವಹಾರಗಳನ್ನು ದೃಢೀಕರಿಸಲು ನಿಮಗೆ ಕಷ್ಟವಾಗಿದ್ದರೆ ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+        "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ."
     },
     "advancedThemeCustomisation": {
         "background": "Background",
