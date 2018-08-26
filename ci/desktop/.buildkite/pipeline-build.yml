@@ -20,11 +20,8 @@ steps:
       - "yarn"
       - "cd src/shared && yarn && cd ../.."
       - "cd src/desktop && npm install"
-      - "./bugsnag.sh && node bugsnag.js"
       - "npm run build && electron-builder -mwl"
     artifact_paths:
       - "out/*"
     agents:
       queue: mac
-    env:
-      WIN_CSC_LINK: "./cert.p12"
