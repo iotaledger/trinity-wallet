@@ -616,18 +616,18 @@
         "local": "ಸ್ಥಳೀಯ",
         "remote": "ದೂರದ",
         "powUpdated": "ಕೆಲಸದ ಪುರಾವೆಯ ಸೆಟ್ಟಿಂಗ್ಸ್",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "powUpdatedExplanation": "ನಿಮ್ಮ ಕೆಲಸ ಪುರಾವೆಯ ಸಂರಚನೆಯ ನವೀಕರಿಸಲಾಗಿದೆ."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "ಸ್ವಯಂ-ಬಡತಿ ಸೆಟ್ಟಿಂಗ್ಸ್",
+        "autoPromotionUpdatedExplanation": "ನಿಮ್ಮ ಸ್ವಯಂ-ಬಡತಿ ಸಂರಚನೆಯನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
+        "checkingNodeHealth": "ನೋಡ್ ಆರೋಗ್ಯವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
+        "validatingReceiveAddress": "ಸ್ವೀಕರಿಸುವ ವಿಳಾಸವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
+        "syncingAccount": "ಖಾತೆ ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ",
+        "preparingInputs": "ಒಳಹರಿವು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
+        "preparingTransfers": "ವರ್ಗಾವಣೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
         "broadcasting": "Broadcasting"
