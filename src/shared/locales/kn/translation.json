@@ -599,9 +599,9 @@
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು."
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
+        "change": "ಬದಲಾವಣೆ (24 ಗಂಟೆ)",
+        "volume": "ಘನ ಅಳತೆ (24 ಗಂಟೆ)",
         "error": "Error fetching chart data"
     },
     "rootDetection": {
@@ -675,11 +675,11 @@
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
         "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "setupIncomplete": "ವಾಲೆಟ್ ಸೆಟಪ್ ಅಪೂರ್ಣವಾಗಿದೆ",
+        "completeSetup": "ಸೆಟಪ್ ಪೂರ್ಣಗೊಳಿಸಿ"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "ಅಧಿಸೂಚನೆಗಳು",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
