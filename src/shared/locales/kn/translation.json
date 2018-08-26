@@ -428,21 +428,21 @@
         "thankYou": "ಟ್ರಿನಿಟಿ ಡೌನ್ಲೋಡ್ ಮಾಡಿದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "writeDownYourSeed": "<0>ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತವನ್ನು ಬರೆದಿಟ್ಟುಕೊಳ್ಳಿ ಹಾಗು</0><1> ಮೂರು ಬಾರಿ ಪರಿಶೀಲಿಸಿ</1><2>ಅವರು ಸರಿಯಾಗಿವೆ ಎಂದು.</2>",
+        "scrollToBottom": "ಕೆಳಕ್ಕೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
+        "noTransactionsFound": "ಯಾವುದೇ ವ್ಯವಹಾರಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+        "hideZeroBalance": "ಖಾತೆಯ ಶೂನ್ಯ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ",
+        "bundleHashCopiedExplanation": "ವ್ಯವಹಾರ ಗುಂಪಿನ ಹ್ಯಾಶ್ ಅನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "addressCopiedExplanation": "ವಿಳಾಸವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
+        "messageCopied": "ಸಂದೇಶ ನಕಲಿಸಲಾಗಿದೆ",
+        "messageCopiedExplanation": "ಸಂದೇಶವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
         "send": "ಕಳುಹಿಸಿ",
         "receive": "ಸ್ವೀಕರಿಸು",
-        "empty": "Empty",
+        "empty": "ಖಾಲಿ",
         "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
