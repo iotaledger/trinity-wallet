@@ -7,7 +7,7 @@
         "refresh": "Ververs",
         "balanceError": "Onvoldoende saldo",
         "balanceErrorMessage": "U hoeft niet genoeg IOTA om deze transactie te voltooien.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Totaalsaldo",
         "transferError": "Transactiefout",
         "transferErrorMessage": "Er is iets misgegaan tijdens het verzenden van uw transactie. Probeer het opnieuw.",
         "transferSent": "Transactie verzonden",
@@ -34,7 +34,7 @@
         "save": "Opslaan",
         "close": "Sluit",
         "export": "Export",
-        "import": "Import",
+        "import": "Importeren",
         "continue": "Doorgaan",
         "enable": "Inschakelen",
         "disable": "Uitschakelen",
@@ -60,7 +60,7 @@
         "password": "Wachtwoord",
         "unrecognisedPassword": "Onjuist wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "Caps Lock staat aan",
         "syncInProgress": "Bezig met synchroniseren",
         "syncInProgressExplanation": "Wacht tot de synchronisatie is voltooid.",
         "somethingWentWrong": "Er ging iets mis",
@@ -73,7 +73,7 @@
         "attachToTangleUnavailableExplanation": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node. Verander de node of zet Bewijs van Inspanning naar Lokaal in Geavanceerde Instellingen.",
         "attachToTangleUnavailableExplanationShort": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node.",
         "wallet": "Portemonnee",
-        "all": "All",
+        "all": "Alle",
         "sent": "Verzonden",
         "received": "Ontvangen",
         "sending": "Uitgaand",
@@ -84,7 +84,7 @@
         "addresses": "Adressen",
         "reattach": "HERKOPPEL",
         "promote": "PROMOTEN",
-        "retry": "Retry",
+        "retry": "Opnieuw proberen",
         "pressBackAgain": "Druk nogmaals op terug om de app te sluiten",
         "reattached": "Transactie succesvol herkoppeld",
         "reattachedExplanation": "Transactie met hash {{hash}} herkoppeld",
@@ -99,8 +99,8 @@
         "noLongerValid": "De bundel die u probeert te promoten is niet langer geldig",
         "transactionAlreadyConfirmed": "Transactie al bevestigd",
         "transactionAlreadyConfirmedExplanation": "De transactie die u probeert te promoten is al bevestigd.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Versturen naar een input adres",
+        "cannotSendToOwnExplanation": "Je kunt niet versturen naar een adres wat als input wordt gebruikt in de transactie.",
         "pleaseWait": "Een ogenblik geduld",
         "pleaseWaitEllipses": "Een ogenblik geduld...",
         "pleaseWaitExplanation": "Trinity voert een andere functie uit. Wacht even en probeer het opnieuw.",
@@ -124,7 +124,7 @@
         "seedThief": "Als iemand anders uw seed heeft, kan diegene uw IOTA stelen.",
         "googlePlayServicesNotAvailable": "Google Play Services niet beschikbaar",
         "couldNotVerifyDeviceIntegrity": "Kon apparaat integriteit niet verifiëren omdat Google Play Services onbeschikbaar zijn.",
-        "clear": "Clear",
+        "clear": "Wis",
         "noNetworkConnection": "Geen netwerkverbinding",
         "noNetworkConnectionExplanation": "Uw internetverbinding lijkt offline te zijn.",
         "spentAddressExplanation": "WAARSCHUWING: Saldo op verbruikte adressen",
@@ -137,15 +137,15 @@
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "usingTrinityWalletWithKeePass": "Trinity Wallet gebruiken met Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Er was een netwerk fout tijdens het versturen van je transactie.",
+        "broadcastError": "Kon transactie niet verzenden",
+        "addressesAlreadySpentFrom": "Eén of meerdere adressen hebben al uitgaande transacties.",
+        "problemSendingYourTransaction": "Er was een probleem tijdens het versturen van je transactie.",
+        "problemPerformingProofOfWork": "Er was een probleem tijdens het uitvoeren van proof of work.",
+        "tryingAgainWithLocalPoW": "Probeer het nogmaals met lokale proof of work.",
+        "tryingAgainWithDifferentNode": "Probeer het nogmaals met een andere node.",
+        "errorFetchingAccountInformation": "Fout tijdens het ophalen van accountinformatie."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -154,8 +154,8 @@
         "seedTooShortExplanation": "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "nameInUse": "Deze accountnaam is al in gebruik",
         "nameInUseExplanation": "Gebruik een unieke accountnaam voor uw seed.",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "Accountnaam te lang",
+        "accountNameTooLongExplanation": "De maximale lengte voor accountnaam is {{maxLength}} karakters.",
         "accountName": "Accountnaam",
         "noNickname": "Geen accountnaam ingevoerd",
         "noNicknameExplanation": "Voer een accountnaam in voor uw seed.",
@@ -222,7 +222,7 @@
         "invalidCharacters": "Seed bevat ongeldige tekens",
         "invalidCharactersExplanation": "Seeds kunnen alleen de hoofdletters A-Z en het getal 9 bevatten. Uw seed bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Seed is te lang",
         "seedTooShortExplanation": "Seeds moeten minstens {{maxLength}} tekens lang zijn. Uw seed is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "seedExplanation": "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
         "neverShare": "DEEL UW SEED NOOIT MET IEMAND ANDERS"
@@ -244,8 +244,8 @@
         "enterPassword": "Voer uw wachtwoord in.",
         "login": "Log In",
         "setNode": "Kies Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Waarom is biometrische autenticatie uitgeschakeld?",
+        "whyBiometricDisabledExplanation": "Biometrisch inloggen is uitgeschakeld tijdens de eerste inlog voor jouw veiligheid. Bij het gebruik van Trinity wordt je uitgelogd bij inactiviteit. Daarna kun je opnieuw inloggen met biometrische autenticatie."
     },
     "loading": {
         "loadingFirstTime": "Seed voor de eerste keer laden.",
@@ -279,32 +279,32 @@
         "printerCheckbox": "Ik zal niet printen op een publieke printer"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Jouw adres",
+        "qrOptions": "QR opties",
+        "shareQr": "Deel QR code",
         "copyAddress": "Kopieer adres",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het klembord gekopieerd.",
         "generateNewAddress": "Nieuw Adres",
         "noAddresses": "GEEN ADRESSEN",
         "spent": "Uitgegeven",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "Toegang tot bestandsysteem vereist",
+        "missingPermissionExplanation": "Toegang tot het bestandsysteem is nodig om QR codes te delen.",
         "tag": "Label"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back uw seed up",
         "seedCleared": "Seed gewist",
         "mostSecure": "Meest Veilig",
-        "recommended": "Recommended",
+        "recommended": "Aanbevolen",
         "leastSecure": "Minst Veilig",
         "paperWallet": "Papieren Portemonnee",
         "writeYourSeedDown": "Schrijf uw seed op",
         "seedClearedExplanation": "De seed is gewist van uw kladblok voor uw veiligheid.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Laten we je seed opschrijven",
         "youCanHighlightCharacters": "U kan 9 karakters tegelijk markeren",
         "printBlankWallet": "Print een lege portemonnee",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Iedereen seed heeft een overeenkomende 3-karakter controlesleutel",
         "iHavesavedMySeed": "Ik heb mijn seed opgeslagen",
         "checksumExplanation": "Wanneer u uw seed toevoegt aan uw portemonnee, moet u er zeker van zijn dat de gegenereerde controlesom hetzelfde is als degene die u heeft opgeschreven.",
         "mustSaveYourSeed": "<0><0>U moet uw seed opslaan met </0><1>tenminste één</1><2> van de onderstaande opties.</2></0>"
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "De ingevoerde seed is onjuist. Probeer het nog eens.",
         "ifYouHaveNotSaved": "Als u uw seed nog niet opgeslagen heeft, ga dan terug en doe dit alsnog.",
         "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Gebruik geen kopiëren - plakken",
+        "clipboardWarningExplanation": "LET OP: kopiëren en plakken is uitgeschakeld voor jouw veiligheid."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
@@ -345,7 +345,7 @@
         "totalTime": "Totale tijd",
         "addressPasteDetected": "Adres plakken gedetecteerd",
         "addressPasteExplanation": "Het lijkt erop dat u een adres wil plakken. Zorg ervoor dat dit adres overeenkomt met het adres waarnaar u wilt zenden.",
-        "invalid": "INVALID"
+        "invalid": "ONGELDIG"
     },
     "setSeedName": {
         "letsAddName": "Laten we een naam toevoegen",
@@ -353,10 +353,10 @@
         "youCanAdd": "U kunt meer seeds toevoegen in het Instellingen menu."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Geavanceerd",
         "standard": "Standaard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Geavanceerde modus toont meer gedetailleerde technische informatie.",
+        "modesExplanation": "Schakel geavanceerde modus alleen in als je bekend bent met IOTA. Het kan anders verwarrend zijn."
     },
     "settings": {
         "transferSending": "Transactie in behandeling",
@@ -411,16 +411,16 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Voer uw wachtwoord in om de portemonnee opnieuw in te stellen.",
-        "reset": "Reset"
+        "reset": "Herstel"
     },
     "walletSetup": {
         "creatingSeed": "Seed aan het maken",
         "okay": "Oke. Laten we uw portemonnee instellen!",
         "doYouNeedASeed": "Wilt u een nieuwe seed maken?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Je IOTA seed is je hoofdsleutel tot je munten. Het is 81 karakters lang, en gebruikt alleen de letters A-Z of het nummer 9.",
         "noIHaveOne": "Nee, ik heb er een",
         "yesINeedASeed": "Ja, ik heb een seed nodig",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0><0>Je kan het gebruiken om je munten vanuit </0><1>iedere portemonnee te benaderen</1><2>, op</2><3> ieder apparaat</3></0>",
         "loseSeed": "Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw seed veilig."
     },
@@ -429,12 +429,12 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Scroll naar beneden"
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Geen transacties gevonden",
+        "hideZeroBalance": "Verberg nul saldo",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
@@ -442,9 +442,9 @@
         "messageCopiedExplanation": "Het bericht is gekopieerd naar het klembord.",
         "send": "Verstuur",
         "receive": "Ontvang",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "empty": "Leeg",
+        "retrying": "Opnieuw proberen...",
+        "yesterday": "Gisteren"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
@@ -452,17 +452,17 @@
         "editAccountName": "Accountnaam bewerken",
         "deleteAccount": "Account verwijderen",
         "addNewAccount": "Nieuw account toevoegen",
-        "tools": "Tools"
+        "tools": "Hulpmiddelen"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
         "customNode": "Aangepaste node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Aangepaste node verwijderen",
         "invalidNodeResponse": "De node stuurde een ongeldige reactie terug",
         "add": "Toevoegen",
         "nodeFieldEmpty": "Tekst veld is leeg",
         "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Voer een geldige URL in."
     },
     "addNewAccount": {
         "useExistingSeed": "Bestaande seed gebruiken",
