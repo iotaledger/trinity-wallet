@@ -19,7 +19,7 @@
         "invalidResponse": "Erro no servidor",
         "invalidResponseExplanation": "O servidor retornou um erro. Tente mudar o servidor.",
         "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta. Tente mudar de servidor.",
-        "nodeOutOfSync": "Servidor fora de sincronia",
+        "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor atualmente selecionado está fora de sincronia. Por favor, mude o servidor e tente novamente.",
         "thisNodeOutOfSync": "O servidor está fora de sincronia. Por favor, mude o servidor e tente novamente.",
         "seed": "Seed",
@@ -31,7 +31,7 @@
         "prev": "ANT",
         "next": "Próximo",
         "apply": "Aplicar",
-        "save": "Salvar",
+        "save": "Gravar",
         "close": "Fechar",
         "export": "Exportar",
         "import": "Importar",
@@ -584,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "Um \"cofre\" de Seed é um arquivo criptografado para armazenar sua semente com segurança. A semente é criptografada por uma senha e não pode ser acessada sem a mesma.",
         "seedVaultWarning": "Certifique-se de fazer backup do arquivo em vários locais (por exemplo, disco rígido, nuvem, USB). Se você perde esse arquivo e não armazenou sua semente em outro lugar, você vai perder seus IOTAs.",
         "exportFail": "SeedVault exportação falhou",
         "exportFailExplanation": "Houve um problema ao exportar o SeedVault. Por favor, certifique-se de que você tem as permissões apropriadas e espaço livre suficiente.",
@@ -672,8 +672,8 @@
         "agree": "Eu concordo"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Aplicações",
+        "trayExplanation": "Fornece uma visão geral do saldo de sua conta e um histórico recente de transações.",
         "notLoggedIn": "Você não está logado em",
         "setupIncomplete": "Configuração da carteira incompleta",
         "completeSetup": "Configuração completa"
