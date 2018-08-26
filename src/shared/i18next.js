@@ -38,6 +38,7 @@ export default i18next.init(
             ru: require('./locales/ru/translation.json'),
             sk: require('./locales/sk/translation.json'),
             sl: require('./locales/sl/translation.json'),
+            sr: require('./locales/sr/translation.json'),
             sv_SE: require('./locales/sv-SE/translation.json'),
             ta: require('./locales/ta/translation.json'),
             th: require('./locales/th/translation.json'),

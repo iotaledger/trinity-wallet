@@ -39,6 +39,7 @@ export default i18next.use(reactI18nextModule).init(
             ru: require('../shared/locales/ru/translation.json'),
             sk: require('../shared/locales/sk/translation.json'),
             sl: require('../shared/locales/sl/translation.json'),
+            sr: require('../shared/locales/sr/translation.json'),
             sv_SE: require('../shared/locales/sv-SE/translation.json'),
             ta: require('../shared/locales/ta/translation.json'),
             th: require('../shared/locales/th/translation.json'),

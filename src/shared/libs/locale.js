@@ -122,6 +122,9 @@ function selectLocale(lang) {
     if (lang === 'sl') {
         return 'Slovenščina - Slovenian';
     }
+    if (lang === 'sr') {
+        return 'Srpski (Latinica) - Serbian (Latin)';
+    }
     if (lang === 'sv_SE') {
         return 'Svenska - Swedish';
     }
