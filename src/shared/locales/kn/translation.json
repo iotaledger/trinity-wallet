@@ -504,19 +504,19 @@
         "one": "ಒಂದು"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "ನನ್ನ ಸಂಪೂರ್ಣ ಖಾತೆಯ ಮೊತ್ತವನ್ನು ನಾನು ಏಕೆ ಕಳೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ?",
+        "spentAddressExplanation": "ನೀವು ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಖರ್ಚಾದ ವಿಳಾಸಗಳಲ್ಲಿ ಹಣವನ್ನು ಹೊಂದಿರುತ್ತೀರಿ. IOTA ಯಲ್ಲಿ ವಿಳಾಸ ಮರುಬಳಕೆಯು ಅಪಾಯಕಾರಿಯಾಗಿದೆ, ಆದ್ದರಿಂದ ಈ ವ್ಯಾಲೆಟ್ ನೀವು ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬಾರಿ ಒಂದೇ ವಿಳಾಸದಿಂದ ಕಳುಹಿಸಲು ಅನುಮತಿಸುವುದಿಲ್ಲ.",
+        "discordInformation": "ದಯವಿಟ್ಟು ನೀವು ಏನು ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಕಂಡುಹಿಡಿಯಲು IOTA ಡಿಸ್ಕೋರ್ಡ್ನಲ್ಲಿ #help ಚಾನಲ್ಗೆ ಹೋಗಿ."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "<0></0><1>ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</1><2></2><3>{{accountName}}?</3>",
+        "yourSeedWillBeRemoved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ವ್ಯವಹಾರ ಇತಿಹಾಸವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.",
+        "thisAction": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.",
+        "enterPassword": "ಈ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
+        "outOfSync": "ನಿಮ್ಮ ವ್ಯವಹಾರದ ಇತಿಹಾಸವು ಒಡವಾಗುನಂನಂಟಿನಿಂದ ಹೊರಗಿರಬಹುದು ಎಂದು ತೋರುತ್ತದೆಯೇ?",
+        "pressToSync": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "Sync Account",
