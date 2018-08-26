@@ -404,22 +404,22 @@
         "lockScreenTimeout": "ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಸಮಯ ಮೀರಿದೆ (ನಿಮಿಷಗಳು)",
         "autoNodeSwitching": "ಆಯ್ಕೆ ಮಾಡದಿದ್ದಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನೋಡ್ ಅನ್ನು ಬದಲಾಯಿಸಿ",
         "nodeChangeSuccess": "ನೋಡ್ ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಗಿದೆ",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessNoRemotePow": "ನೋಡ್ {{node}} ಎಂದು ಬದಲಾಯಿಸಲಾಯಿತು. ಈ ನೋಡ್ ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.",
+        "nodeChangeSuccessExplanation": "ನೋಡ್ {{node}} ಎಂದು ಬದಲಾಯಿಸಲಾಯಿತು.",
+        "nodeChangeError": "ನೋಡ್ ಅನ್ನು ಬದಲಾಯಿಸುವಲ್ಲಿ ದೋಷ",
+        "nodeChangeErrorExplanation": "ನೋಡ್ ಅನ್ನು ಬದಲಾಯಿಸುವಲ್ಲಿ ದೋಷ ಕಂಡುಬಂದಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "reset": "Reset"
+        "enterPassword": "ವಾಲೆಟ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು ನಿಮ್ಮ ಗುಪ್ತಪದ ನಮೂದಿಸಿ.",
+        "reset": "ಮರುಹೊಂದಿಸಿ"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "creatingSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ರಚಿಸಲಾಗಿದೆ",
+        "okay": "ಸರಿ. ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ಹೊಂದಿಸೋಣ!",
+        "doYouNeedASeed": "ನೀವು ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ರಚಿಸಬೇಕೇ?",
+        "seedExplanation": "ನಿಮ್ಮ IOTA ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ನಿಮ್ಮ ನಿಧಿಯ ಪ್ರಮುಖ ಕೀಲಿಯಾಗಿರುತ್ತದೆ. A-Z ಅಕ್ಷರಗಳು ಅಥವಾ 9 ನೆಯ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಬಳಸಿಕೊಂಡು 81 ಅಕ್ಷರಗಳಷ್ಟು ಉದ್ದವಿದೆ.",
+        "noIHaveOne": "ಬೇಡ, ನನ್ನ ಬಳಿ ಒಂದಿದೆ",
+        "yesINeedASeed": "ಹೌದು, ನನಗೆ ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಬೇಕು",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
         "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Please keep your seed safe."
