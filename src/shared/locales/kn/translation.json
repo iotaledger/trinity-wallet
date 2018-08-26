@@ -638,16 +638,16 @@
         "transitionComplete": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲಾಗಿದೆ",
         "transitionCompleteExplanation": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆಯು ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ.",
         "detectedBalance": "ಪತ್ತೆಯಾದ ಖಾತೆಯ ಮೊತ್ತ: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "isThisCorrect": "ಇದು ಸರಿಯಾಗಿದಿಯೇ?",
+        "snapshotExplanation": "ಅನೇಕವೇಳೆ, ಟ್ಯಾಂಗಲ್ ಗಾತ್ರವನ್ನು ಕಡಿಮೆ ಮಾಡಲು ಒಂದು ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಅನ್ನು ನಡೆಸಲಾಗುತ್ತದೆ.",
+        "hasSnapshotTakenPlace": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ ನಡೆದಿದೆಯೇ? ಪರಿವರ್ತನೆಗಾಗಿ ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
+        "transition": "ಪರಿವರ್ತನೆ",
+        "transitioning": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ಗಾಗಿ ಪರಿವರ್ತನೆ.",
+        "generatingAndDetecting": "ವಿಳಾಸಗಳನ್ನು ಉತ್ಪಾದಿಸಲಾಗುತ್ತಿದೆ ಮತ್ತು ಖಾತೆಯ ಮೊತ್ತವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿದೆ.",
+        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ."
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "ಸ್ವಯಂತುಂಬುವಿಕೆ ಯಶಸ್ಸು",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
