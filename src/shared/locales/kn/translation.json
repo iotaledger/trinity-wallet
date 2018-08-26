@@ -607,14 +607,14 @@
     "rootDetection": {
         "warning": "ಎಚ್ಚರಿಕೆ",
         "appearsRooted": "ನಿಮ್ಮ ಸಾಧನವು ಬೇರೂರಿದೆ ಎಂದು ತೋರುತ್ತಿದೆ.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "securityRisk": "ಇದು ನಿಮ್ಮ ವಾಲೆಟ್ ನ ಸುರಕ್ಷತೆಗೆ ಗಮನಾರ್ಹ ಅಪಾಯವನ್ನುಂಟುಮಾಡುತ್ತದೆ.",
+        "continueDepsiteRisk": "ಈ ಅಪಾಯದ ಹೊರತಾಗಿಯೂ ನೀವು ಮುಂದುವರಿಸಲು ಬಯಸುವಿರಾ?"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
+        "feeless": "IOTA ನಲ್ಲಿ ಶುಲ್ಕವಿಲ್ಲದ ವ್ಯವಹಾರಗಳನ್ನು ಕಳುಹಿಸಲು ಸ್ವಲ್ಪ ಕೆಲಸದ ಪುರಾವೆ ಪೂರ್ಣಗೊಳಿಸಲು ಅಗತ್ಯ.",
+        "localOrRemote": "ಕೆಲಸದ ಪುರಾವೆ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸ್ಥಳೀಯವಾಗಿ ಪೂರ್ಣಗಳಿಸಬಹುದು, ಅಥವಾ ಒಂದು ನೋಡ್ಗೆ ಆಫ್ಲೋಡ್ ಮಾಡಬಹುದು.",
+        "local": "ಸ್ಥಳೀಯ",
+        "remote": "ದೂರದ",
         "powUpdated": "ಕೆಲಸದ ಪುರಾವೆಯ ಸೆಟ್ಟಿಂಗ್ಸ್",
         "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
