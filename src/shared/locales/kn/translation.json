@@ -517,25 +517,25 @@
     "manualSync": {
         "outOfSync": "ನಿಮ್ಮ ವ್ಯವಹಾರದ ಇತಿಹಾಸವು ಒಡವಾಗುನಂನಂಟಿನಿಂದ ಹೊರಗಿರಬಹುದು ಎಂದು ತೋರುತ್ತದೆಯೇ?",
         "pressToSync": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "thisMayTake": "ಇದು ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು. ನಿಮ್ಮ ಸಾಧನವು ನಿಧಾನವಾಗಿರುವುದನ್ನು ನೀವು ಗಮನಿಸಬಹುದು.",
+        "doNotClose": "ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ತೆರೆ ಕುಗ್ಗಿಸುವುದರಿಂದ ಅಪ್ಲಿಕೇಶನ್ ಒಡವಾಗುನಂಟು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುತ್ತದೆ.",
+        "syncAccount": "ಖಾತೆ ಒಡವಾಗುನಂಟು ಮಾಡಿ",
+        "syncingYourAccount": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "title": "ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ಖಾತೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.",
+        "incorrectFormat": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸ್ವರೂಪ",
+        "validSeedExplanation": "ಮಾನ್ಯವಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ 81 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "enterPassword": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಲು ಗುಪ್ತಪದ ನಮೂದಿಸಿ.",
+        "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
+        "hideSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮರೆಮಾಡಿ"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "alreadyHave": "I have backed up my seed",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "didSaveSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿದ್ದೀರಾ?",
+        "alreadyHave": "ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಾನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿದ್ದೇನೆ",
+        "reenterSeed": "ಮುಂದಿನ ಹಂತದಲ್ಲಿ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಮರು ನಮೂದಿಸಲು ನಿಮ್ಮನ್ನು ಕೇಳಲಾಗುತ್ತದೆ.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
