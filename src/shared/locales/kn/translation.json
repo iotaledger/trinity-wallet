@@ -479,29 +479,29 @@
         "autoPromotionPoW": "ದೂರ ಕೆಲಸದ ಪುರಾವೆಯನ್ನು ಬೆಂಬಲಿಸುವ ನೋಡ್ಗಳಲ್ಲಿ ಮಾತ್ರ ಸ್ವಯಂ-ಬಡತಿ ಸಾಧ್ಯ."
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "ಹಿನ್ನೆಲೆ",
+        "frame": "ಚೌಕಟ್ಟು"
     },
     "themeCustomisation": {
         "theme": "ಥೀಮ್",
-        "mockup": "Mockup"
+        "mockup": "ಅನುಕರಿಸು"
     },
     "currencySelection": {
         "currency": "ಚಲಾವಣೆಯ ನಾಣ್ಯ"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "ಲಾಗ್ ಔಟ್ ಮಾಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
     },
     "qrScanner": {
         "scan": "ನಿಮ್ಮ QR ಸಂಕೇತವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "ಪ್ರಮಾಣ ವ್ಯವಸ್ಥೆ",
+        "trillion": "ಟ್ರಿಲಿಯನ್",
+        "billion": "ಶತಕೋಟಿ",
+        "million": "ಹತ್ತುಲಕ್ಷ",
+        "thousand": "ಸಾವಿರ",
+        "one": "ಒಂದು"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
