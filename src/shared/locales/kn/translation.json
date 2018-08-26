@@ -420,12 +420,12 @@
         "seedExplanation": "ನಿಮ್ಮ IOTA ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ನಿಮ್ಮ ನಿಧಿಯ ಪ್ರಮುಖ ಕೀಲಿಯಾಗಿರುತ್ತದೆ. A-Z ಅಕ್ಷರಗಳು ಅಥವಾ 9 ನೆಯ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಬಳಸಿಕೊಂಡು 81 ಅಕ್ಷರಗಳಷ್ಟು ಉದ್ದವಿದೆ.",
         "noIHaveOne": "ಬೇಡ, ನನ್ನ ಬಳಿ ಒಂದಿದೆ",
         "yesINeedASeed": "ಹೌದು, ನನಗೆ ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಬೇಕು",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "explanation": "<0><0>ನಿಮ್ಮ ಹಣವನ್ನು</0><1>ಯಾವುದೇ ವ್ಯಾಲೆಟ್</1><2>,</2><3>ಯಾವುದೇ ಸಾಧನದಿಂದ ಪ್ರವೇಶಿಸಲು ನೀವು ಇದನ್ನು ಬಳಸಬಹುದು.</3></0>",
+        "loseSeed": "ಆದರೆ ನೀವು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಕಳೆದುಕೊಂಡರೆ, ನಿಮ್ಮ IOTA ವನ್ನೂ ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.",
+        "keepSafe": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಸುರಕ್ಷಿತವಾಗಿರಿಸಿಕೊಳ್ಳಿ."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "ಟ್ರಿನಿಟಿ ಡೌನ್ಲೋಡ್ ಮಾಡಿದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
