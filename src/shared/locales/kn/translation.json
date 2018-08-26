@@ -443,35 +443,35 @@
         "send": "ಕಳುಹಿಸಿ",
         "receive": "ಸ್ವೀಕರಿಸು",
         "empty": "ಖಾಲಿ",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "retrying": "ಮರುಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ",
+        "yesterday": "ನೆನ್ನೆ ದಿನ"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account",
-        "tools": "Tools"
+        "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
+        "viewAddresses": "ವಿಳಾಸಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+        "editAccountName": "ಖಾತೆ ಹೆಸರನ್ನು ಪರಿಷ್ಕರಿಸಿ",
+        "deleteAccount": "ಖಾತೆಯನ್ನು ಅಳಿಸಿ",
+        "addNewAccount": "ಹೊಸ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ",
+        "tools": "ಉಪಕರಣಗಳು"
     },
     "addCustomNode": {
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNode": "Custom node",
-        "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "add": "Add",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL."
+        "customNodeCouldNotBeAdded": "ಕಸ್ಟಮ್ ನೋಡ್ ಅನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ",
+        "customNode": "ಕಸ್ಟಮ್ ನೋಡ್",
+        "removeCustomNode": "ಕಸ್ಟಮ್ ನೋಡ್ ತೆಗೆದುಹಾಕಿ",
+        "invalidNodeResponse": "ನೋಡ್ ಅಮಾನ್ಯ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಹಿಂತಿರುಗಿಸಿದೆ",
+        "add": "ಸೇರಿಸಿ",
+        "nodeFieldEmpty": "ಪಠ್ಯ ಕ್ಷೇತ್ರ ಖಾಲಿಯಾಗಿದೆ",
+        "nodeFieldEmptyExplanation": "ದಯವಿಟ್ಟು ಕಸ್ಟಮ್ ನೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.",
+        "invalidURL": "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ URL ಅನ್ನು ನಮೂದಿಸಿ."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬಳಸಿ",
+        "createNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ರಚಿಸಿ"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "selectNode": "ನೋಡ್ ಆಯ್ಕೆಮಾಡಿ",
+        "addCustomNode": "ಕಸ್ಟಮ್ ನೋಡ್ ಸೇರಿಸಿ",
+        "manualSync": "ಹಸ್ತಚಾಲಿತ ಒಡವಾಗುನಂಟು",
         "snapshotTransition": "Snapshot transition",
         "pow": "ಕೆಲಸದ ಪುರಾವೆ",
         "autoPromotion": "Auto-promotion",
