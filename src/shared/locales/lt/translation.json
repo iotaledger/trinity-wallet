@@ -657,7 +657,7 @@
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus."
     },
     "notificationLog": {
         "errorLog": "Klaidų žurnalas"
@@ -665,7 +665,7 @@
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
         "accept": "Sutinku",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Prašome viską perskaityti"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privatumo politika",
