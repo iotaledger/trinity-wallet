@@ -36,7 +36,7 @@ class Seed extends PureComponent {
     /**
      * Trigger seed print after component is updated
      */
-    componentDidUpdate(prevState) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.state.action === 'print' && !prevState.seed && this.state.seed) {
             window.print();
         }
