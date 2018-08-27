@@ -459,52 +459,52 @@
         "customNode": "Custom node",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "A csomópont érvénytelen választ adott",
-        "add": "Add",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL."
+        "add": "Hozzáad",
+        "nodeFieldEmpty": "Üres szövegmező",
+        "nodeFieldEmptyExplanation": "Kérjük adjon meg egy saját csomópontot.",
+        "invalidURL": "Kérjük adjon meg egy helyes URL-t."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Meglévő mester jelszó használata",
+        "createNewSeed": "Új mester jelszó létrehozása"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition",
+        "selectNode": "Csomópont választás",
+        "addCustomNode": "Saját csomópont hozzáadása",
+        "manualSync": "Kézi szinkronizáció",
+        "snapshotTransition": "Pillanatkép utáni egyenlegátvezetés",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Automatikus előrehelyezés",
+        "autoPromotionExplanation": "Az automatikus előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
+        "autoPromotionPoW": "Az automatikus előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a távoli Proof of Work használatát."
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Háttér",
+        "frame": "Szegélyek"
     },
     "themeCustomisation": {
         "theme": "Kinézet",
-        "mockup": "Mockup"
+        "mockup": "Minta"
     },
     "currencySelection": {
         "currency": "Pénznem"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Biztosan ki szeretne jelentkezni?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QR kód beolvasása"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "Mértékegységek",
+        "trillion": "Trillió",
+        "billion": "Milliárd",
+        "million": "Millió",
+        "thousand": "Ezer",
+        "one": "Egy"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "cantSpendFullBalanceQuestion": "Miért nem tudom a teljes egyenlegem elkölteni?",
         "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
