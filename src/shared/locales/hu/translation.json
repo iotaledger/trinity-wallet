@@ -96,7 +96,7 @@
         "autopromotionErrorExplanation": "A Távoli Bizonyító Munka nem érhető el a kijelölt csomóponton. Módosítsa a csomópontot, és kapcsolja be az automatikus előreléptetését.",
         "promotionError": "Nem lehetett előléptetni a tranzakciót",
         "promotionErrorExplanation": "Hiba történt a tranzakció előreléptetése során. Kérjük próbálja újra.",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "noLongerValid": "A sorban előléptetni kívánt tranzakciócsomag érvényét veszítette",
         "transactionAlreadyConfirmed": "Transaction already confirmed",
         "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
         "cannotSendToOwn": "Sending to an input address",
