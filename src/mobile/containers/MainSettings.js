@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
-import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
+import { getLabelFromLocale } from 'iota-wallet-shared-modules/libs/i18n';
 import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import LogoutConfirmationModalComponent from '../components/LogoutConfirmationModal';
 import { width, height } from '../utils/dimensions';
@@ -141,7 +141,7 @@ export class MainSettings extends Component {
                 name: t('language'),
                 icon: 'language',
                 function: () => this.props.setSetting('languageSelection'),
-                currentSetting: selectLocale(i18next.language),
+                currentSetting: getLabelFromLocale(i18next.language),
             },
             { name: 'separator' },
             { name: t('accountManagement'), icon: 'user', function: () => this.props.setSetting('accountManagement') },
