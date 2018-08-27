@@ -505,12 +505,12 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miért nem tudom a teljes egyenlegem elkölteni?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "Az egyenlege egy vagy több címen oszlik szét. Mivel egy már használt címről, azaz olyanról, amiről korábban már költött, költeni komoly biztonsági kockázattal jár, ezért ez a tárca nem engedélyezi, hogy az ilyen címről újból költsön. Emiatt előfordulhat, hogy a tényleges egyenlegének csak egy részét tudja a tárcájából elkölteni.",
+        "discordInformation": "Kérjük keresse fel a #help csatornát az IOTA Discord-on, hogy további információt kapjon arról, mit tehet az emiatt nem hozzáférhető egyenlegének visszaszerzése érdekében."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "<0></0><1>Biztos, hogy törölni szeretné a</1><2></2><3>{{accountName}} számlát?</3>",
+        "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
     },
