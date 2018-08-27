@@ -149,7 +149,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
-        "seedInvalidCharsExplanation": "A mester jelszó csak nagy A-Z betűkből és a 9-es számból állhat. A megadott mester jelszó érvénytelen karaktereket tartalmaz. Kérjük, próbálja újra.",
+        "seedInvalidCharsExplanation": "A mester jelszó csak nagy A-Z betűkből és a 9-es számjegyből állhat. A megadott mester jelszó érvénytelen karaktereket tartalmaz. Kérjük, próbálja újra.",
         "seedTooShort": "A mester jelszó túl rövid",
         "seedTooShortExplanation": "A mester jelszónak pontosan {{maxLength}} hosszúnak kell lennie. A jelenleg megadott mester jelszó {{currentLength}} hosszú. Kérjük, próbálja újra.",
         "nameInUse": "Már létezik ilyen nevű számla",
@@ -220,11 +220,11 @@
     },
     "enterSeed": {
         "invalidCharacters": "A mester jelszó érvénytelen karaktereket tartalmaz",
-        "invalidCharactersExplanation": "A mester jelszó csak nagy A-Z betűkből és a 9-es számból állhat. A megadott mester jelszó érvénytelen karaktereket tartalmaz. Kérjük, próbálja újra.",
+        "invalidCharactersExplanation": "A mester jelszó csak nagy A-Z betűkből és a 9-es számjegyből állhat. A megadott mester jelszó érvénytelen karaktereket tartalmaz. Kérjük, próbálja újra.",
         "seedTooShort": "A mester jelszó túl rövid",
         "seedTooLong": "Túl hosszú mester jelszó",
         "seedTooShortExplanation": "A mester jelszónak pontosan {{maxLength}} hosszúnak kell lennie. A jelenleg megadott mester jelszó {{currentLength}} hosszú. Kérjük, próbálja újra.",
-        "seedExplanation": "A mester jelszó legfeljebb {{maxLength}} karakter hosszú lehet, és csak nagy A-Z betűkből valamint a 9-es számból állhat. Nem adhat meg {{maxLength}} karakternél hosszabb mester jelszót.",
+        "seedExplanation": "A mester jelszó legfeljebb {{maxLength}} karakter hosszú lehet, és csak nagy A-Z betűkből valamint a 9-es számjegyből állhat. Nem adhat meg {{maxLength}} karakternél hosszabb mester jelszót.",
         "neverShare": "SOHA, SENKIVEL NE OSSZA MEG MESTER JELSZAVÁT"
     },
     "home": {
@@ -528,32 +528,32 @@
         "validSeedExplanation": "A mester jelszónak pontosan 81 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "enterPassword": "Adja meg a jelszót a mester jelszó megjelenítéséhez.",
+        "viewSeed": "Mester jelszó megtekintése",
+        "hideSeed": "Mester jelszó elrejtése"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "alreadyHave": "I have backed up my seed",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
+        "alreadyHave": "Készítettem biztonsági másolatot a mester jelszavamról",
+        "reenterSeed": "A következő lépésben a rendszer kérni fogja, hogy adja meg újra a mester jelszavát.",
+        "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik vagy elveszik, az összes IOTA-ját elveszíti.",
+        "pleaseConfirm": "Kérjük, erősítse meg, hogy biztonságosan eltárolta a mester jelszavát."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "EZ A MŰVELET NEM VONHATÓ VISSZA.",
+        "warning": "<0><0>Minden tárca adat, beleértve a</0><1>mester jelszavakat, a jelszavakat,</1><2>és</2><3>egyéb számlainformációkat</3><4>el fog veszni.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "instructionsEnable": "Érintse meg az ujjlenyomat leolvasót az ujjlenyomat-azonosítás engedélyezéséhez",
+        "instructionsDisable": "Érintse meg az ujjlenyomat leolvasót az ujjlenyomat-azonosítás letiltásához",
+        "fingerprintAuthEnabled": "Biometrikus azonosítás engedélyezve",
+        "fingerprintAuthEnabledExplanation": "Sikeresen engedélyezte a biometrikus azonosítást.",
+        "fingerprintAuthDisabled": "Biometrikus azonosítás letiltva",
+        "fingerprintAuthDisabledExplanation": "Sikeresen letiltotta a biometrikus azonosítást.",
+        "fingerprintAuthFailed": "Sikertelen biometrikus azonosítás",
+        "fingerprintAuthFailedExplanation": "Az ujjlenyomat alapú azonosítás nem sikerült. Kérjük, próbálja újra.",
+        "status": "Állapot",
+        "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
