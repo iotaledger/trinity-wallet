@@ -317,7 +317,7 @@
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
-        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarning": "Kopijuoti/įklijuoti užraktą nerekomenduojama",
         "clipboardWarningExplanation": "ĮSPĖJIMAS: kopijavimas/įklijavimas atjungtas dėl jūsų saugumo."
     },
     "send": {
@@ -583,14 +583,14 @@
         "twoFaToken": "2FA kodas"
     },
     "seedVault": {
-        "exportSeedVault": "Eksportuoti SeedVault",
+        "exportSeedVault": "Iškelti SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
-        "exportFail": "SeedVault eksportavimo klaida",
-        "exportFailExplanation": "Įvyko klaida eksportuojant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
-        "exportSuccess": "SeedVault eksportuotas",
-        "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas eksportuotas sėkmingai.",
-        "importSeedVault": "Importuoti SeedVault",
+        "exportFail": "SeedVault iškėlimo klaida",
+        "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
+        "exportSuccess": "SeedVault iškeltas",
+        "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas iškeltas sėkmingai.",
+        "importSeedVault": "Įkelti SeedVault",
         "dropSeedVaultHere": "Įkelti SeedVault čia",
         "enterPasswordExplanation": "Įveskite slaptažodį norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
@@ -686,7 +686,7 @@
         "multipleTx": "Gaunami pavedimai į {{account}}",
         "valueTx": "Gaunama {{value}} į {{account}}",
         "messageTx": "Jūs gavote žinutę į {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Pavedimas {{value}} į {{account}} yra patvirtintas",
+        "confirmedOut": "Pavedimas {{value}} iš {{account}} yra patvirtintas"
     }
 }
