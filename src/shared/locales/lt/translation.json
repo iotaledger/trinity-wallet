@@ -679,13 +679,13 @@
         "completeSetup": "Complete setup"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "notifications": "Pranešimai",
+        "notificationExplanation": "Gauti pranešimus apie naujus pavedimus.",
+        "typeConfirmations": "Pranešti apie patvirtinimus",
+        "typeMessages": "Pranešti apie nulinės vertės pavedimus",
+        "multipleTx": "Gaunami pavedimai į {{account}}",
+        "valueTx": "Gaunama {{value}} į {{account}}",
+        "messageTx": "Jūs gavote žinutę į {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
