@@ -6,6 +6,7 @@ import { byteToChar } from 'libs/crypto';
 
 import paperWallet from 'themes/paper-wallet.svg';
 import paperWalletFilled from 'themes/paper-wallet-filled.svg';
+import SourceSansPro from 'custom-fonts/SourceSansPro-Regular.json';
 
 import css from './seedPrint.scss';
 
@@ -46,12 +47,14 @@ export default class SeedPrint extends PureComponent {
                         {seed.map((byte, index) => {
                             const letter = byteToChar(byte % 27);
                             const space = index % 9 > 5 ? 38 : index % 9 > 2 ? 19 : 0;
-                            const x = 193 + (index % 9) * 26 + space;
-                            const y = 365 + Math.floor(index / 9) * 32.8;
+                            const x = 190 + (index % 9) * 26 + space;
+                            const y = 348 + Math.floor(index / 9) * 32.8;
                             return (
-                                <text x={x} y={y} key={`${index}${letter}`}>
-                                    {letter}
-                                </text>
+                                <path
+                                    transform={`translate(${x},${y})`}
+                                    d={SourceSansPro[letter]}
+                                    key={`${index}${letter}`}
+                                />
                             );
                         })}
                         {cells.map((row, rowIndex) => {
@@ -66,9 +69,15 @@ export default class SeedPrint extends PureComponent {
                                 />
                             ));
                         })}
-                        <text x="278" y="735">
-                            {checksum}
-                        </text>
+                        {checksum.split('').map((letter, index) => {
+                            return (
+                                <path
+                                    transform={`translate(${276 + index * 14}, 724) scale(0.75)`}
+                                    d={SourceSansPro[letter]}
+                                    key={`${index}${letter}`}
+                                />
+                            );
+                        })}
                     </svg>
                 )}
                 <img width="auto" height="100vh" src={filled ? wallets.paperWallet : wallets.paperWalletFilled} />
