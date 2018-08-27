@@ -259,18 +259,18 @@
         "seedNotGeneratedExplanation": "Kérjük, generáljon egy új mester jelszót.",
         "pressForNewSeed": "Új mester jelszó",
         "generateSuccess": "Mester jelszó sikeresen előállítva",
-        "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetters": "Nyomja meg az egyes karaktereket, hogy véletlenszerű másik karakterre cserélje őket.",
+        "individualLetterCount": "Nyomjon meg további {{letterCount}} karaktert, hogy véletlenszerűen másikra cserélje őket.",
+        "whatIsASeed": "Mi az a mester jelszó (seed)?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "allDone": "Készen is vagyunk!",
+        "openYourWallet": "Tárca megnyitása",
+        "walletReady": "A tárca be lett állítva és készen áll a használatra. Ha a jövőben bármin módosítani kíván, nyissa meg a Beállítások menüpontot."
     },
     "paperWallet": {
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
+        "neverShare": "Soha, senkivel ne ossza meg a mester jelszavát.",
+        "iotaLogo": "IOTA logó",
         "print": "PRINT",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
@@ -331,10 +331,10 @@
         "recipientAddress": "Recipient address",
         "amount": "Amount",
         "max": "MAX",
-        "message": "Message",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
-        "invalidMessageTooLong": "Message too long",
+        "message": "Üzenet",
+        "invalidMessage": "Érvénytelen üzenet",
+        "invalidMessageExplanation": "Az üzenet érvénytelen karaktereket tartalmaz.",
+        "invalidMessageTooLong": "Túl hosszó üzenet",
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Küldés",
         "invalidAmount": "Incorrect amount entered",
