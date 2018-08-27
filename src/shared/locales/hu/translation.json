@@ -250,15 +250,15 @@
     "loading": {
         "loadingFirstTime": "Mester jelszó betöltése első alkalommal.",
         "thisMayTake": "Ez eltarthat egy ideig.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "doNotMinimise": "Ne tegye tálcára és ne zárja be az alkalmazást.",
+        "takingAWhile": "Úgy tűnik ez eltart egy darabig"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "generatedSeed": "Generált mester jelszó",
+        "seedNotGenerated": "Mester jelszó nem lett generálva",
+        "seedNotGeneratedExplanation": "Kérjük, generáljon egy új mester jelszót.",
+        "pressForNewSeed": "Új mester jelszó",
+        "generateSuccess": "Mester jelszó sikeresen előállítva",
         "individualLetters": "Press individual letters to randomise them.",
         "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "What is a seed?"
