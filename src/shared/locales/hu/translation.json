@@ -69,7 +69,7 @@
         "node": "Csomópont",
         "cannotPerformAction": "A művelet nem hajtható végre",
         "cannotPerformActionExplanation": "Lépjen be a Haladó beállításokba a tárca gyári állapotba való visszaállításához.",
-        "attachToTangleUnavailable": "A távoli Proof of Work nem támogatott",
+        "attachToTangleUnavailable": "A kiszabott munka távoli elvégzése nem támogatott",
         "attachToTangleUnavailableExplanation": "A távoli Proof of Work nem támogatott a kiválasztott csomóponton. Használjon másik csomópontot, vagy állítsa be a helyi Proof of Work használatát a Haladó beállításokban.",
         "attachToTangleUnavailableExplanationShort": "A távoli Proof of Work nem támogatott a kiválasztott csomópontot.",
         "wallet": "Tárca",
@@ -142,7 +142,7 @@
         "broadcastError": "A tranzakció küldése sikertelen",
         "addressesAlreadySpentFrom": "Legalább egy címről indított már korábban tranzakciót.",
         "problemSendingYourTransaction": "Hiba történt a tranzakció küldése során.",
-        "problemPerformingProofOfWork": "Hiba történt a Proof of Work elvégzése során.",
+        "problemPerformingProofOfWork": "Hiba történt a kiszabott munka elvégzése során.",
         "tryingAgainWithLocalPoW": "Újraprobálkozás helyi Proof of Work elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben."
@@ -629,7 +629,7 @@
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
-        "proofOfWork": "Munka elvégzése",
+        "proofOfWork": "Kiszabott munka elvégzése",
         "broadcasting": "Tranzakció elküldése"
     },
     "snapshotTransition": {
