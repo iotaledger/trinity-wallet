@@ -524,8 +524,8 @@
     },
     "useExistingSeed": {
         "title": "Adjon meg egy mester jelszót és egy számlanevet.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Helytelen mester jelszó formátum",
+        "validSeedExplanation": "A mester jelszónak pontosan 81 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat."
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
