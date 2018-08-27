@@ -683,10 +683,10 @@
         "notificationExplanation": "Rendszerszintű értesítéseket kaphat az új tranzakciókról.",
         "typeConfirmations": "Értesítsen a tranzakciók teljesüléséről",
         "typeMessages": "Értesítsen a nulla értékű tranzakciókról",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "{{value}} fogadása folyamatban a(z) {{account}} számlára",
+        "multipleTx": "Több tranzakció érkezik a(z) {{account}} számlájára",
+        "valueTx": "{{value}} értékű tranzakció érkezik a(z) {{account}} számlájára",
         "messageTx": "Kapott egy üzenetet a(z) {{account}} számlára",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "{{value}} értékű bejövő tranzakció jóváírva a(z) {{account}} számláján",
+        "confirmedOut": "{{value}} értékű tranzakció kiküldve a(z) {{account}} számlájáról"
     }
 }
