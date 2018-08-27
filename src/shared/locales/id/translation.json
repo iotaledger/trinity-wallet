@@ -7,7 +7,7 @@
         "refresh": "Perbarui",
         "balanceError": "Saldo tidak mencukupi",
         "balanceErrorMessage": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Jumlah Saldo",
         "transferError": "Kesalahan pengiriman",
         "transferErrorMessage": "Terjadi kesalahan saat pengiriman. Silakan coba lagi.",
         "transferSent": "Sudah terkirim",
@@ -73,7 +73,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work jarak jauh tidak tersedia di node ini. Harap ganti node atau ubah Proof of Work lokal di Aturan Lanjutan.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work jarak jauh tidak tersedia di node ini.",
         "wallet": "Dompet",
-        "all": "All",
+        "all": "Semua",
         "sent": "Terkirim",
         "received": "Diterima",
         "sending": "Mengirim",
@@ -124,7 +124,7 @@
         "seedThief": "Jika orang lain mempunyai Seed Anda, mereka bisa mencuri IOTA Anda.",
         "googlePlayServicesNotAvailable": "Google Play Services tidak tersedia",
         "couldNotVerifyDeviceIntegrity": "Tidak bisa memverifikasi perangkat karena Google Play Services tidak tersedia.",
-        "clear": "Clear",
+        "clear": "Hapus",
         "noNetworkConnection": "Tidak ada jaringan",
         "noNetworkConnectionExplanation": "Tidak ada koneksi internet.",
         "spentAddressExplanation": "PERINGATAN: Dana ada di alamat yang sudah digunakan",
@@ -139,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Buka Aturan Lanjutan dan lakukan Transisi Snapshot.",
         "usingTrinityWalletWithKeePass": "Gunakan Dompet Trinity dengan Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Ada kesalahan jaringan ketika menyiarkan transaksi Anda.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Tidak bisa menyiarkan transaksi",
+        "addressesAlreadySpentFrom": "Satu atau lebih alamat sudah digunakan.",
+        "problemSendingYourTransaction": "Ada masalah ketika mengirim transaksi Anda.",
+        "problemPerformingProofOfWork": "Ada masalah ketika melakukan Proof of Work.",
+        "tryingAgainWithLocalPoW": "Mencoba lagi dengan lokal Proof of Work.",
+        "tryingAgainWithDifferentNode": "Coba lagi dengan node yang berbeda.",
+        "errorFetchingAccountInformation": "Error ketika mengambil informasi akun."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -296,12 +296,12 @@
         "saveYourSeed": "Simpang Seed anda",
         "seedCleared": "Seed telah dihapus",
         "mostSecure": "Paling Aman",
-        "recommended": "Recommended",
+        "recommended": "Direkomendasikan",
         "leastSecure": "Kurang Aman",
         "paperWallet": "Dompet Kertas",
         "writeYourSeedDown": "Tulis Seed Anda",
         "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Mari tulis Seed Anda",
         "youCanHighlightCharacters": "Ada dapat menyoroti 9 karakter dalam satu waktu",
         "printBlankWallet": "Cetak dompet kosong",
         "whatIsChecksum": "Setiap Seed terdiri dari 3 karakter Checksum",
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
         "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Jangan kopi dan salin Seed Anda",
+        "clipboardWarningExplanation": "Peringatan: Kopi. Salin dimatikan untuk keamanan Anda."
     },
     "send": {
         "invalidAddress": "Alamat salah",
@@ -353,10 +353,10 @@
         "youCanAdd": "Anda dapat menambahkan Seed di menu Perkakas."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Lanjutan",
         "standard": "Standar",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Mode lanjutan akan menampilkan informasi teknis lebih rinci.",
+        "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda."
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
@@ -452,7 +452,7 @@
         "editAccountName": "Ubah nama akun",
         "deleteAccount": "Hapus akun",
         "addNewAccount": "Tambahkan akun baru",
-        "tools": "Tools"
+        "tools": "Peralatan"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
@@ -584,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Ekspor SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault adalah file yang dienkripsi untuk menyimpan Seed Anda dengan aman. Seed anda di enkripsi dibalik kata sandi dan tidak bisa diakses tanpa kata sandi.",
         "seedVaultWarning": "Pastikan anda buat cadangan di beberapa lokasi (seperti: Hard disk, Cloud, USB). Jika anda kehilangan file dan tidak mempunyai cadangan. Anda akan kehilangan IOTA.",
         "exportFail": "Gagal ekspor SeedVault",
         "exportFailExplanation": "Terjadi kesalahan mengekspor SeedVault. Pastikan anda mempunyai izin yang valid dan cukup ruang.",
