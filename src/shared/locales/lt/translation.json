@@ -584,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas saugiai laikyti savo užraktą. Užraktas yra užšifruojamas slaptažodžiu ir negali būti atskleistas be to slaptažodžio.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
         "exportFail": "SeedVault iškėlimo klaida",
         "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
