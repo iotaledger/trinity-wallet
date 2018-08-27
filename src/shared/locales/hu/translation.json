@@ -587,9 +587,9 @@
         "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát a számlához tartozó jelszóval titkosítjuk és a jelszó nélkül a master jelszó semmilyen módon nem visszafejthető.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük győzödjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
+        "exportSuccess": "SeedVault exportálva",
+        "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
         "importSeedVault": "Import SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here",
         "enterPasswordExplanation": "Enter your password to open the SeedVault",
@@ -660,32 +660,32 @@
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Hibanapló"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
-        "readAllToContinue": "Please read the full text"
+        "termsAndConditions": "Felhasználási feltételek",
+        "accept": "Elfogadom",
+        "readAllToContinue": "Kérjük, olvassa el a teljes szöveget"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Adatvédelmi szabályzat",
+        "agree": "Elfogadom"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Tálca alkalmazás",
+        "trayExplanation": "A számlaegyenlegről és a közelmúltban történt tranzakciókról nyújt áttekintést.",
+        "notLoggedIn": "Nincs bejelentkezve",
+        "setupIncomplete": "Tárca nem lett beállítva",
+        "completeSetup": "Beállítások befejezése"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
+        "notifications": "Értesítések",
+        "notificationExplanation": "Rendszerszintű értesítéseket kaphat az új tranzakciókról.",
+        "typeConfirmations": "Értesítsen a tranzakciók teljesüléséről",
+        "typeMessages": "Értesítsen a nulla értékű tranzakciókról",
         "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "valueTx": "{{value}} fogadása folyamatban a(z) {{account}} számlára",
+        "messageTx": "Kapott egy üzenetet a(z) {{account}} számlára",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
