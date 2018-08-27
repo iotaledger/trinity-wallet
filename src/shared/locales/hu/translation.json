@@ -45,7 +45,7 @@
         "addToPasswordManager": "Hozzáadás a jelszókezelőhöz",
         "shareSeed": "Mester jelszó megosztása",
         "proceed": "Folytatás",
-        "qr": "QR",
+        "qr": "QR kód",
         "enterSeed": "Kérjük, adja meg a személyes mester jelszavát.",
         "mainWallet": "Elsődleges számla",
         "secondWallet": "Második számla",
@@ -70,8 +70,8 @@
         "cannotPerformAction": "A művelet nem hajtható végre",
         "cannotPerformActionExplanation": "Lépjen be a Haladó beállításokba a tárca gyári állapotba való visszaállításához.",
         "attachToTangleUnavailable": "A kiszabott munka távoli elvégzése nem támogatott",
-        "attachToTangleUnavailableExplanation": "A távoli Proof of Work nem támogatott a kiválasztott csomóponton. Használjon másik csomópontot, vagy állítsa be a helyi Proof of Work használatát a Haladó beállításokban.",
-        "attachToTangleUnavailableExplanationShort": "A távoli Proof of Work nem támogatott a kiválasztott csomópontot.",
+        "attachToTangleUnavailableExplanation": "A kiszabott munka távoli elvégzése nem támogatott a kiválasztott csomóponton. Használjon másik csomópontot, vagy állítsa be a kiszabott munka helyi elvégzését a Haladó beállításokban.",
+        "attachToTangleUnavailableExplanationShort": "A kiszabott munka távoli elvégzése nem támogatott a kiválasztott csomóponton.",
         "wallet": "Tárca",
         "all": "Összes",
         "sent": "Elküldött",
@@ -83,17 +83,17 @@
         "bundleHash": "Tranzakciós csomag hash",
         "addresses": "Címek",
         "reattach": "Újracsatol",
-        "promote": "Előrehelyez",
+        "promote": "Tranzakció előrehelyezése",
         "retry": "Újra",
         "pressBackAgain": "Nyomja meg ismét a vissza gombot az alkalmazás bezárásához",
         "reattached": "A tranzakció sikeresen újracsatolva",
         "reattachedExplanation": "Tranzakció újracsatolva a következő hash kulccsal: {{hash}}",
         "promotingTransaction": "Tranzakció előrehelyezése folyamatban",
         "rebroadcastError": "A tranzakció újraküldése sikertelen",
-        "promoted": "A tranzakció előrehelyezése sikeres",
+        "promoted": "Tranzakció előrehelyezése sikeres",
         "promotedExplanation": "Tranzakció előrehelyezve a következő hash kulccsal: {{hash}}",
         "autopromotionError": "A tranzakció automatikus előrehelyezése sikertelen",
-        "autopromotionErrorExplanation": "A távoli Proof of Work nem támogatott a kiválasztott csomóponton. Használjon másik csomópontot és kapcsolja be ismét az automatikus előrehelyezést.",
+        "autopromotionErrorExplanation": "A kiszabott munka távoli elvégzése nem támogatott a kiválasztott csomóponton. Használjon másik csomópontot és kapcsolja be ismét az automatikus tranzakció előrehelyezést.",
         "promotionError": "A tranzakció előrehelyezése sikertelen",
         "promotionErrorExplanation": "Hiba történt a tranzakció előrehelyezése során. Kérjük próbálja újra.",
         "noLongerValid": "Az előrehelyezni kívánt tranzakciós csomag érvényét veszítette",
@@ -143,7 +143,7 @@
         "addressesAlreadySpentFrom": "Legalább egy címről indított már korábban tranzakciót.",
         "problemSendingYourTransaction": "Hiba történt a tranzakció küldése során.",
         "problemPerformingProofOfWork": "Hiba történt a kiszabott munka elvégzése során.",
-        "tryingAgainWithLocalPoW": "Újraprobálkozás helyi Proof of Work elvégzésével.",
+        "tryingAgainWithLocalPoW": "Újraprobálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben."
     },
@@ -404,7 +404,7 @@
         "lockScreenTimeout": "Automatikus kijelentkezés időkorlátja (perc)",
         "autoNodeSwitching": "Automatikus csomópont újraválasztás ha a kiválasztott nem elérhető",
         "nodeChangeSuccess": "Sikeres csomópont módosítás",
-        "nodeChangeSuccessNoRemotePow": "A csomópont a következőre változott: {{node}}. Ez a csomópont távoli Proof of Work-öt nem támogat.",
+        "nodeChangeSuccessNoRemotePow": "A csomópont a következőre változott: {{node}}. Ez a csomópont a kiszabott munka távoli elvégzését nem támogatja.",
         "nodeChangeSuccessExplanation": "A csomópont a következőre változott: {{node}}.",
         "nodeChangeError": "Sikertelen csomópont változtatás",
         "nodeChangeErrorExplanation": "Nem sikerült a csomópont megváltoztatása. Kérjük, próbálja újra."
@@ -473,10 +473,10 @@
         "addCustomNode": "Saját csomópont hozzáadása",
         "manualSync": "Kézi szinkronizáció",
         "snapshotTransition": "Pillanatkép utáni egyenlegátvezetés",
-        "pow": "Proof of Work",
-        "autoPromotion": "Automatikus előrehelyezés",
-        "autoPromotionExplanation": "Az automatikus előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
-        "autoPromotionPoW": "Az automatikus előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a távoli Proof of Work használatát."
+        "pow": "Kiszabott munka elvégzése",
+        "autoPromotion": "Automatikus tranzakció előrehelyezés",
+        "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
+        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a kiszabott munka távoli elvégzését."
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -611,16 +611,16 @@
         "continueDepsiteRisk": "A kockázat ellenére biztosan folytatni kívánja?"
     },
     "pow": {
-        "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett Proof of Work munkát kell elvégezni.",
-        "localOrRemote": "A munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a távoli munkavégzést.",
+        "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett kiszabott munkát kell elvégezni.",
+        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzést.",
         "local": "Helyi",
         "remote": "Távoli",
-        "powUpdated": "Munkavégzés beállításai",
-        "powUpdatedExplanation": "A munkavégzés beállításait frissítettük."
+        "powUpdated": "Kiszabott munka beállításai",
+        "powUpdatedExplanation": "A kiszabott munka beállításait frissítettük."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Automatikus előrehelyezés beállításai",
-        "autoPromotionUpdatedExplanation": "Az automatikus előrehelyezés beállításait frissítettük."
+        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés beállításai",
+        "autoPromotionUpdatedExplanation": "Az automatikus tranzakció előrehelyezés beállításait frissítettük."
     },
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
