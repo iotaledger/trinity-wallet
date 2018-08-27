@@ -40,7 +40,7 @@ cd trinity-wallet
 Now we need to install dependencies, such as the electron installer or the React code packager. Do this by running:
 
 ```
-npm full-setup
+npm run full-setup
 ```
 
 ### 3. Prepare Trinity desktop appplication
@@ -48,7 +48,7 @@ npm full-setup
 When the npm install is done you can prepare the wallet application for compilation by running:
 
 ```
-npm build
+npm run build
 ```
 
 
@@ -57,7 +57,7 @@ npm build
 After the application is prepared you can compile the wallet application by running:
 
 ```
-npm compile:mac
+npm run compile:mac
 ```
 
 Change `mac` to your operating system - `mac`, `win` or `linux`.
