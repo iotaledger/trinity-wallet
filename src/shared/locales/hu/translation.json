@@ -641,23 +641,23 @@
         "isThisCorrect": "Helyes ez az adat?",
         "snapshotExplanation": "Néha egy pillanatképet készítünk a Tangle-ről, hogy csökkenteni tudjuk az adatbázis méretét a csomópontokon.",
         "hasSnapshotTakenPlace": "Egy pillanatkép készült mostanában? Nyomja meg az alábbi gombot az egyenlegátvezetéshez.",
-        "transition": "Transition",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "transition": "Egyenlegátvezetés",
+        "transitioning": "Egyenlegátvezetés pillanatkép készítése után.",
+        "generatingAndDetecting": "Címek előállítása és az egyenleg átvezetése.",
+        "attaching": "Címek hozzácsatolása a Tangle-höz."
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Automatikus kitöltés sikeres",
+        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése deepLink alapján."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "noUpdatesAvailable": "No updates available",
+        "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
+        "noUpdatesAvailable": "Nincs elérhető frissítés",
         "noUpdatesAvailableExplanation": "Nem érhető el újabb Trinity verzió!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "Új verzió elérhető",
         "newVersionAvailableExplanation": "Elérhető a Trinity egy újabb verziója. Szeretné most frissíteni?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Frissítés telepítése és újraindítás",
+        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket."
     },
     "notificationLog": {
         "errorLog": "Hibanapló"
