@@ -452,7 +452,7 @@
         "editAccountName": "Redaguoti paskyros vardą",
         "deleteAccount": "Ištrinti paskyrą",
         "addNewAccount": "Pridėti naują paskyrą",
-        "tools": "Tools"
+        "tools": "Įrankiai"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
@@ -656,7 +656,7 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
