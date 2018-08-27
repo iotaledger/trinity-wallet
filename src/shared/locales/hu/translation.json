@@ -599,19 +599,19 @@
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fáljt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült."
     },
     "chart": {
-        "mcap": "MCAP",
-        "change": "Change (24h)",
-        "volume": "Volume (24h)",
-        "error": "Error fetching chart data"
+        "mcap": "Piaci kapitalizáció",
+        "change": "Változás (24 óra)",
+        "volume": "Mennyiség (24 óra)",
+        "error": "Diagram adatletöltési hiba"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "warning": "FIGYELMEZTETÉS",
+        "appearsRooted": "Úgy tűnik, hogy a készüléke root-olva lett.",
+        "securityRisk": "Ez a tárcára nézve jelentős biztonsági kockázatot jelent.",
+        "continueDepsiteRisk": "A kockázat ellenére biztosan folytatni kívánja?"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett Proof of Work munkát kell elvégezni.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
         "local": "Local",
         "remote": "Remote",
