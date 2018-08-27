@@ -250,7 +250,7 @@
     "loading": {
         "loadingFirstTime": "Mester jelszó betöltése első alkalommal.",
         "thisMayTake": "Ez eltarthat egy ideig.",
-        "doNotMinimise": "Ne tegye tálcára és ne zárja be az alkalmazást.",
+        "doNotMinimise": "Ne tegye háttérbe és ne zárja be az alkalmazást.",
         "takingAWhile": "Úgy tűnik ez eltart egy darabig"
     },
     "newSeedSetup": {
@@ -511,19 +511,19 @@
     "deleteAccount": {
         "areYouSure": "<0></0><1>Biztos, hogy törölni szeretné a</1><2></2><3>{{accountName}} számlát?</3>",
         "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "thisAction": "Ez a művelet nem vonható vissza.",
+        "enterPassword": "A számla törléséhez kérjük, adja meg jelszavát."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "outOfSync": "A tranzakciós előzmények úgy tűnnek nincsenek szinkronban?",
+        "pressToSync": "Nyomja meg az alábbi gombot a számla szinkronizálásához.",
+        "thisMayTake": "Ez eltarthat egy ideig. A készüléke most a megszokottnál lassabban reagálhat.",
+        "doNotClose": "Felhívjuk figyelmét, hogy az alkalmazás háttérbe helyezése megszakítja a szinkronizálást.",
+        "syncAccount": "Számla szinkronizálása",
+        "syncingYourAccount": "Számla szinkronizálása."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name.",
+        "title": "Adjon meg egy mester jelszót és egy számlanevet.",
         "incorrectFormat": "Incorrect seed format",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
