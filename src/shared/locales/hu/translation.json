@@ -612,35 +612,35 @@
     },
     "pow": {
         "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett Proof of Work munkát kell elvégezni.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "localOrRemote": "A munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a távoli munkavégzést.",
+        "local": "Helyi",
+        "remote": "Távoli",
+        "powUpdated": "Munkavégzés beállításai",
+        "powUpdatedExplanation": "A munkavégzés beállításait frissítettük."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Automatikus előrehelyezés beállításai",
+        "autoPromotionUpdatedExplanation": "Az automatikus előrehelyezés beállításait frissítettük."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "checkingNodeHealth": "Csomópont működésének ellenőrzése",
+        "validatingReceiveAddress": "Címzett címének ellenőrzése",
+        "syncingAccount": "Szálma szinkronizálása",
+        "preparingInputs": "Küldő címek összeállítása",
+        "preparingTransfers": "Tranzakciók előkészítése",
+        "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
+        "proofOfWork": "Munka elvégzése",
+        "broadcasting": "Tranzakció elküldése"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "cannotCompleteTransition": "Pillanatkép utáni egyenlegátvezetés sikertelen",
+        "cannotCompleteTransitionExplanation": "A pillantkép utáni egyenlegátvezetéshez a számláján 0-nál nagyobb egyenlegnek kell lennie.",
+        "transitionComplete": "Pillanatkép utáni egyenlegátvezetés sikeres",
+        "transitionCompleteExplanation": "A pillanatkép utáni egyenlegátvezetés sikeresen befejeződött.",
+        "detectedBalance": "Átvezetés után megtalált egyenleg: {{amount}} {{unit}}",
+        "isThisCorrect": "Helyes ez az adat?",
+        "snapshotExplanation": "Néha egy pillanatképet készítünk a Tangle-ről, hogy csökkenteni tudjuk az adatbázis méretét a csomópontokon.",
+        "hasSnapshotTakenPlace": "Egy pillanatkép készült mostanában? Nyomja meg az alábbi gombot az egyenlegátvezetéshez.",
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
