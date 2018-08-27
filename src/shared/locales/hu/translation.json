@@ -199,57 +199,57 @@
         "passwordTooShortExplanation": "A jelszónak minimum {{minLength}} karakterből kell állnia. A jelenleg megadott jelszó {{currentLength}} karakter hosszú. Kérjük, próbálja újra.",
         "passwordMismatch": "A jelszavak nem egyeznek meg",
         "passwordMismatchExplanation": "A megadott jelszavak nem egyeznek meg. Kérjük, próbálja újra.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "retypePassword": "Retype Password"
+        "anEncryptedCopy": "A mester jelszavát titkosított formában fogjuk tárolni a készülékén. A jelenleg megadott jelszót fogja tudni használni a jövőben a tárca megnyitásához.",
+        "retypePassword": "Jelszó újra"
     },
     "copyToClipboard": {
-        "seedCleared": "Clipboard cleared",
-        "seedClearedExplanation": "The clipboard has been cleared for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "copyToClipboard": "Copy Seed",
-        "shareSeed": "Share your seed to a secure password manager",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "seedCleared": "Vágólap törölve",
+        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük.",
+        "seedCopied": "Mester jelszó a vágólapra másolva",
+        "seedCopiedExplanation": "A mester jelszót a \"Kész\"-re klikkelés után, de legkésőbb 60 másodperc múlva töröljük a vágólapról.",
+        "copyToClipboard": "Mester jelszó másolása",
+        "shareSeed": "Mester jelszó tárolása biztonságos jelszókezelőben",
+        "storeEncrypted": "Tárolja le a titkosított mester jelszavát egy jelszókezelőben.",
+        "doNotOpen": "Ne nyisson meg semmilyen másik alkalmazást a folyamat során.",
+        "tapConfirm": "Az elfogadáshoz kérjük jelölje be az alábbi négyzetet.",
+        "passwordManagerCheckbox": "Jelszókezelőben fogom tárolni a mester jelszavam",
+        "copy": "Másolás",
+        "noPasswordManagers": "Nincs telepítve támogatott jelszókezelő alkalmazás",
+        "noPasswordManagersExplanation": "Nincs telepítve támogatott jelszókezelő alkalmazás a készülékén. Kérjük telepítse a Keepass2Android alkalmazást.",
+        "followTutorialToSecurelyShareSeed": "Ha a mester jelszavát egy jelszókezelőben kívánja tárolni, kövesse az alábbi oldalon található útmutatót"
     },
     "enterSeed": {
         "invalidCharacters": "A mester jelszó érvénytelen karaktereket tartalmaz",
         "invalidCharactersExplanation": "A mester jelszó csak nagy A-Z betűkből és a 9-es számból állhat. A megadott mester jelszó érvénytelen karaktereket tartalmaz. Kérjük, próbálja újra.",
         "seedTooShort": "A mester jelszó túl rövid",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Túl hosszú mester jelszó",
         "seedTooShortExplanation": "A mester jelszónak pontosan {{maxLength}} hosszúnak kell lennie. A jelenleg megadott mester jelszó {{currentLength}} hosszú. Kérjük, próbálja újra.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "A mester jelszó legfeljebb {{maxLength}} karakter hosszú lehet, és csak nagy A-Z betűkből valamint a 9-es számból állhat. Nem adhat meg {{maxLength}} karakternél hosszabb mester jelszót.",
+        "neverShare": "SOHA, SENKIVEL NE OSSZA MEG MESTER JELSZAVÁT"
     },
     "home": {
-        "balance": "BALANCE",
+        "balance": "Egyenleg",
         "send": "KÜLDÉS",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "receive": "Fogadás",
+        "history": "Tranzakciótörténet",
+        "settings": "Beállítások"
     },
     "languageSetup": {
-        "language": "Language",
-        "letsGetStarted": "Let's get started"
+        "language": "Nyelv",
+        "letsGetStarted": "Kezdjük el"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "login": "Log In",
-        "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "emptyPassword": "Üres jelszó",
+        "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
+        "enterPassword": "Kérjük, adja meg jelszavát.",
+        "login": "Belépés",
+        "setNode": "Csomópont beállítása",
+        "whyBiometricDisabled": "Miért van a biometrikus azonosítás kikapcsolva?",
+        "whyBiometricDisabledExplanation": "A biometrikus azonosítás az alkalmazás indításakor az Ön biztonsága érdekében nem elérhető. Ha a Trinity esetleges tétlenség után automatikusan kijelentkeztette, akkor tudja használja a biometrikus azonosítást az ismételt bejelentkezéshez."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
+        "loadingFirstTime": "Mester jelszó betöltése első alkalommal.",
+        "thisMayTake": "Ez eltarthat egy ideig.",
         "doNotMinimise": "Do not minimise or close the app.",
         "takingAWhile": "This seems to be taking a while"
     },
@@ -366,7 +366,7 @@
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
-        "language": "Language",
+        "language": "Nyelv",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
