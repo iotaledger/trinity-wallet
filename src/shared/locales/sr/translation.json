@@ -199,8 +199,8 @@
         "passwordTooShortExplanation": "Vaša lozinka mora imati najmanje {{minLength}} karaktera. Trenutno ima {{currentLength}} karaktera. Pokušajte ponovo.",
         "passwordMismatch": "Lozinke se ne podudaraju",
         "passwordMismatchExplanation": "Lozinke koje ste uneli se ne podudaraju. Pokušajte ponovo.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "retypePassword": "Retype Password"
+        "anEncryptedCopy": "Šifrovana kopija vašeg seed-a će biti sačuvana na vašem uređaju. Koristićete ovu lozinku da biste pristupili novčaniku u budućnosti.",
+        "retypePassword": "Ponovo ukucajte lozinku"
     },
     "copyToClipboard": {
         "seedCleared": "Clipboard cleared",
