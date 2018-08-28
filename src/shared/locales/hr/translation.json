@@ -189,12 +189,12 @@
         "reasonDates": "Datume je nerijetko lako pogoditi.",
         "reasonTop10": "Ova lozinka pripada u top 10 najčešće korištenih lozinki.",
         "reasonTop100": "Ova lozinka pripada u top 100 najčešće korištenih lozinki.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonCommon": "Ovo je vrlo često korištena lozinka.",
+        "reasonSimilar": "Ovo je slično često korištenoj lozinki.",
+        "reasonWord": "Jednu riječ je lako pogoditi."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Odaberite novu lozinku",
         "passwordTooShort": "Prekratka lozinka",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Lozinke nisu iste",
