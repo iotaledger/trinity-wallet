@@ -89,7 +89,7 @@
         "reattached": "Uspješno ponovno pridodana transakcija",
         "reattachedExplanation": "Ponovno pridodana transakcija sa hash-om {{hash}}",
         "promotingTransaction": "Promoviranje transakcije",
-        "rebroadcastError": "Could not rebroadcast transaction",
+        "rebroadcastError": "Nije bilo moguće ponovno emitirati transakciju",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
