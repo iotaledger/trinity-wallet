@@ -34,12 +34,12 @@ steps:
   - label: "Clean up workspace"
     command:
       # Uninstall Electron
-      "yarn global remove electron"
+      - "yarn global remove electron"
       # Clean the Yarn cache
-      "yarn cache clean"
+      - "yarn cache clean"
       # Uninstall NodeJS and Yarn
-      "brew uninstall yarn && brew install node@8"
+      - "brew uninstall yarn && brew install node@8"
       # Uninstall Homebrew
-      "ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+      - "ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)'"
     agents:
       queue: mac
