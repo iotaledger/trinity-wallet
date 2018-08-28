@@ -84,7 +84,7 @@
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJIT",
         "promote": "PODPOŘIT",
-        "retry": "Zkusit znovu",
+        "retry": "Opakovat",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "reattached": "Úspěšně znovupřipojená transakce",
         "reattachedExplanation": "Znovupřipojená transakce s hash {{hash}}",
