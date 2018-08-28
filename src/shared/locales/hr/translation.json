@@ -23,7 +23,7 @@
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Seed",
-        "checksum": "Checksum",
+        "checksum": "Kontrolni broj",
         "back": "Nazad",
         "goBack": "Vrati se",
         "goBackStep": "Go back a step",
@@ -290,7 +290,7 @@
         "spent": "Spent",
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
-        "tag": "Tag"
+        "tag": "Etiketa"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -441,7 +441,7 @@
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "Pošalji",
-        "receive": "Receive",
+        "receive": "Primi",
         "empty": "Prazno",
         "retrying": "Retrying",
         "yesterday": "Jučer"
