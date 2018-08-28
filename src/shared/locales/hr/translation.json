@@ -143,12 +143,12 @@
         "addressesAlreadySpentFrom": "Jedna ili više adresa je već upotrijebljeno.",
         "problemSendingYourTransaction": "Došlo je do greške prilikom slanja vaše transakcije.",
         "problemPerformingProofOfWork": "Došlo je do greške prilikom izvođenja PoW-a.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "tryingAgainWithLocalPoW": "Pokušajte ponovno s lokalnim PoW-om.",
+        "tryingAgainWithDifferentNode": "Pokušajte ponovno s drugim node-om.",
+        "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
+        "seedInvalidChars": "Seed sadrži nedopuštene znakove",
         "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed is too short",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
@@ -219,7 +219,7 @@
         "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharacters": "Seed sadrži nedopuštene znakove",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed is too short",
         "seedTooLong": "Seed is too long",
