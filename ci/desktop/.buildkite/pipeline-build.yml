@@ -2,8 +2,6 @@ steps:
   - label: ":inbox_tray: Download and install dependencies"
     command:
       # Based on https://github.com/why-jay/osx-init/blob/master/install.sh
-      # Install Xcode Command Line tools
-      - "curl -sL https://raw.githubusercontent.com/timsutton/osx-vm-templates/ce8df8a7468faa7c5312444ece1b977c1b2f77a4/scripts/xcode-cli-tools.sh | bash"
       # Install Homebrew
       - "ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'"
       # Install NodeJS and Yarn
