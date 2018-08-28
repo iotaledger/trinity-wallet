@@ -99,7 +99,7 @@
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
         "transactionAlreadyConfirmed": "Transakce již byla potvrzena",
         "transactionAlreadyConfirmedExplanation": "Transakce, kterou se snažíte podpořit je již potvrzena.",
-        "cannotSendToOwn": "Sending to an input address",
+        "cannotSendToOwn": "Odesíláte na vstupní adresu",
         "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitEllipses": "Prosím čekejte...",
