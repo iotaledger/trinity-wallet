@@ -196,11 +196,11 @@
     "setPassword": {
         "choosePassword": "Odaberite novu lozinku",
         "passwordTooShort": "Prekratka lozinka",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Minimalni broj znakova koji vaša lozinka mora sadržavati je {{minLength}}. Trenutni broj znakova je {{currentLength}}. Molimo pokušajte ponovno.",
         "passwordMismatch": "Lozinke nisu iste",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "retypePassword": "Retype Password"
+        "passwordMismatchExplanation": "Lozinke koje ste unijeli nisu iste. Molimo pokušajte ponovo.",
+        "anEncryptedCopy": "Kodirana kopija vašeg seed-a biti će pohranjena na vašem uređaju. Ovu lozinku ćete koristiti za pristup novčaniku u budućnosti.",
+        "retypePassword": "Ponovo unesite lozinku"
     },
     "copyToClipboard": {
         "seedCleared": "Clipboard cleared",
