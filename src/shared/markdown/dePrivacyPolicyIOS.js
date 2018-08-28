@@ -20,7 +20,7 @@ Wenn Sie die Trinity Wallet App auf Ihrem Telefon installieren und nutzen, erheb
 Darüber hinaus erhebt und verarbeitet die IOTA Stiftung personenbezogene Daten, wie Ihre E-Mail-Adresse oder Telefonnummer, wenn:
 
 - Sie der IOTA Stiftung solche personenbezogenen Daten zur Verfügung stellen, um Benachrichtigungen per E-Mail zu ermöglichen oder
-- Sie der IOTA Stiftung aus irgendeinem Grund kontaktieren oder darum bitten, der IOTA Stiftung kontaktiert zu werden oder
+- Sie die IOTA Stiftung aus irgendeinem Grund kontaktieren oder darum bitten, von der IOTA Stiftung kontaktiert zu werden oder
 - Sie der IOTA Stiftung aus irgendeinem Grund Ihre personenbezogenen Daten zur Verfügung stellen.
 
 Um E-Mail-Benachrichtigungen an Sie zu ermöglichen, kann die IOTA Stiftung Ihre E-Mail-Adresse auf ihren Servern speichern.
@@ -119,7 +119,7 @@ Sie können ferner eine Kopie der personenbezogenen Daten anfordern, die derzeit
 
 ### **Unsere Kontaktinformationen, unser Datenschutzbeauftragter**
 
-Sofern Sie mit uns in einer direkten Geschäftsbeziehung stehen, sind wir der Datenverantwortliche im Sinne von Art. 4 Abs. 7 DSGVO. Falls Sie Fragen oder Anliegen haben, können Sie uns wie folgt, erreichen:
+Sofern Sie mit uns in einer direkten Geschäftsbeziehung stehen, sind wir der Datenverantwortliche im Sinne von Art. 4 Abs. 7 DSGVO. Falls Sie Fragen oder Anliegen haben, können Sie uns wie folgt erreichen:
 
 IOTA Stiftung, c/o Nextland, Strassburgerstr. 55, 10405 Berlin,
 
