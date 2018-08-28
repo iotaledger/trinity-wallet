@@ -124,7 +124,7 @@
         "seedThief": "Kdo získá Váš Seed, ten by mohl ukrást vaše IOTA finance.",
         "googlePlayServicesNotAvailable": "Služby Google Play jsou nedostupné",
         "couldNotVerifyDeviceIntegrity": "Integrita zařízení nemůže být ověřena, protože služby Google Play nejsou nyní dostupné.",
-        "clear": "Clear",
+        "clear": "Vymazat",
         "noNetworkConnection": "Žádné síťové připojení",
         "noNetworkConnectionExplanation": "Internetové připojení se zdá byť offline.",
         "spentAddressExplanation": "VAROVÁNÍ: Zjištěny prostředky na již použitých adresách",
