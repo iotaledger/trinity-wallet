@@ -588,7 +588,7 @@
         "seedVaultWarning": "Ujistěte se, že si zálohujete soubor na více místech (například pevný disk, cloud, USB). Pokud ztratíte tento soubor a nebudete mít uložený Váš Seed jiným způsobem, ztratíte Vaše IOTA.",
         "exportFail": "Export SeedVault se nezdařil",
         "exportFailExplanation": "Během exportování Vašeho SeedVault nastal problém. Zkontrolujte zda máte oprávnění na zápis souboru a dostatek volného místa.",
-        "exportSuccess": "SeedVault exported",
+        "exportSuccess": "SeedVault export dokončen",
         "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
         "importSeedVault": "Import SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here",
