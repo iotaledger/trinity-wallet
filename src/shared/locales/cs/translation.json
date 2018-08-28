@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej.",
         "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Váš Seed nelze kopírovat ani vkládat",
+        "clipboardWarningExplanation": "UPOZORNĚNÍ: Kopírování a vkládání je zakázáno pro Vaši bezpečnost."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
