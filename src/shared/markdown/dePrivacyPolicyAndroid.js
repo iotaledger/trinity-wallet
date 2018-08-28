@@ -39,7 +39,7 @@ Wir verarbeiten personenbezogene Daten, um den Betrieb und die Nutzung der Trini
 
 ## **Rechtliche Grundlage für die Verarbeitung personenbezogener Daten**
 
-Bei der Verarbeitung Ihrer personenbezogenen Daten in Verbindung mit den in der Datenschutzrichtlinie zur App genannten Zwecken können wir uns, je nach dem Umständen, auf eine oder mehrere der folgenden Rechtsgrundlagen stützen:
+Bei der Verarbeitung Ihrer personenbezogenen Daten in Verbindung mit den in der Datenschutzrichtlinie zur App genannten Zwecken können wir uns, je nach den Umständen, auf eine oder mehrere der folgenden Rechtsgrundlagen stützen:
 
   - wir haben Ihre ausdrückliche Zustimmung zur Verarbeitung erhalten (diese Rechtsgrundlage wird nur in Verbindung mit einer vollkommen freiwilligen Verarbeitung herangezogen – sie wird nicht für eine Verarbeitung herangezogen, die in irgendeiner Weise erforderlich oder obligatorisch ist);
   - die Verarbeitung ist in Verbindung mit einer vertraglichen Beziehung erforderlich, die Sie gegebenenfalls mit uns eingehen;
@@ -88,7 +88,7 @@ Wir verwenden Google SafetyNet Attestation API der Google LLC, 1600 Amphitheatre
 
 Soweit wir Auftragsverarbeiter in die Erbringung unserer Dienste und die Erfüllung unserer vertraglichen Verpflichtungen miteinbeziehen und eine solche Einbeziehung die Übermittlung personenbezogener Daten erfordert, haben wir mit diesen Auftragsverarbeitern Vereinbarungen zur Auftragsverarbeitung gemäß Art. 28 der Europäischen Datenschutz-Grundverordnung 2016/679 ( **„DSGVO&quot;** ) abgeschlossen und, soweit erforderlich, weitere geeignete Garantien gemäß Art. 46-49 DSGVO vorgesehen. Sie können eine Liste der Auftragsverarbeiter, denen gegenüber wir Ihre personenbezogenen Daten offenlegen, anfordern, indem Sie uns eine E-Mail an [privacy@iota.org](mailto:privacy@iota.org) senden.
 
-**Bitte beachten Sie, dass IOTA Stiftung Ihre personenbezogenen Daten gegebenenfalls direkt aus dem Land bezieht, in dem Sie ansässig sind und diese Daten dann auf Servern in Europa und in den Vereinigten Staaten von Amerika speichert. Für die USA gibt es keinen Anerkennungsbeschluss der Europäischen Kommission, durch den ein angemessenes Datenschutzniveau garantiert wird. Aus diesem Grund hat IOTA Stiftung für geeignete Garantien gesorgt, um Ihre personenbezogenen Daten in den USA zu schützen. Sie können eine Kopie dieser Garantien anfordern, indem Sie eine E-Mail an** [**privacy@iota.org**](mailto:privacy@iota.org) **senden.**
+**Bitte beachten Sie, dass die IOTA Stiftung Ihre personenbezogenen Daten gegebenenfalls direkt aus dem Land bezieht, in dem Sie ansässig sind und diese Daten dann auf Servern in Europa und in den Vereinigten Staaten von Amerika speichert. Für die USA gibt es keinen Anerkennungsbeschluss der Europäischen Kommission, durch den ein angemessenes Datenschutzniveau garantiert wird. Aus diesem Grund hat die IOTA Stiftung für geeignete Garantien gesorgt, um Ihre personenbezogenen Daten in den USA zu schützen. Sie können eine Kopie dieser Garantien anfordern, indem Sie eine E-Mail an** [**privacy@iota.org**](mailto:privacy@iota.org) **senden.**
 
 ### **Verarbeitung Ihrer sensiblen personenbezogenen Daten**
 
