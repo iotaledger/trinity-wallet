@@ -26,6 +26,15 @@ class FatalError extends React.PureComponent {
                         Arch Linux: <pre>sudo pacman -S libsecret</pre>
                     </li>
                 </ul>
+                <p>
+                    For some desktop environments (e.g. Kubuntu or KDE), you may need to install an additional library
+                    for the communication with libsecret:
+                </p>
+                <ul>
+                    <li>
+                        <pre>sudo apt-get install gnome-keyring</pre>
+                    </li>
+                </ul>
             </form>
         );
     };
