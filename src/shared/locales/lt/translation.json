@@ -260,7 +260,7 @@
         "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "individualLetterCount": "Įveskite dar {{letterCount}} unikalius simbolius norėdami, kad jie būtų išmaišyti.",
+        "individualLetterCount": "Spustelėkite ant simbolio ir pakeiskite jį kitu. Dar liko pakeisti simbolių: {{letterCount}}.",
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
