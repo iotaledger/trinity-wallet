@@ -361,7 +361,6 @@ class Receive extends Component {
         const { currencySymbol } = this.state;
         const isFiat = qrDenomination === currencySymbol;
         const formattedAmount = isValidAmount(qrAmount, this.getUnitMultiplier(), isFiat) && qrAmount ? qrAmount : 0;
-        console.log(this.getUnitMultiplier());
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
         return value;
     }
@@ -374,10 +373,6 @@ class Receive extends Component {
     getUnitMultiplier() {
         const { usdPrice, conversionRate, qrDenomination } = this.props;
         const { currencySymbol } = this.state;
-        console.log(usdPrice);
-        console.log(conversionRate);
-        console.log(qrDenomination);
-        console.log(currencySymbol);
         if (qrDenomination === currencySymbol) {
             return 1000000 / usdPrice / conversionRate;
         }
