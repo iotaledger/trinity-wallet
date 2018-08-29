@@ -387,7 +387,7 @@
         "show": "Rodyti",
         "showAll": "Rodyti viską",
         "quit": "Išeiti",
-        "edit": "Redaguoti",
+        "edit": "Taisa",
         "cut": "Iškirpti",
         "copy": "Kopijuoti",
         "paste": "Įklijuoti",
@@ -398,8 +398,8 @@
         "couldNotFetchRatesExplanation": "Įvyko klaida užkraunant keitimo kursą {{currency}} valiutai.",
         "fetchedConversionRates": "Valiuta užkrauta",
         "fetchedConversionRatesExplanation": "Keitimo kursas sėkmingai užkrautas {{currency}} valiutai.",
-        "undo": "Anuliuoti",
-        "redo": "Perdaryti",
+        "undo": "Atšaukti",
+        "redo": "Atstatyti",
         "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
         "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
@@ -519,7 +519,7 @@
         "pressToSync": "Spauskite žemiau esantį mygtuką, norėdami sinchronizuoti paskyrą.",
         "thisMayTake": "Tai gali užtrukti. Jūsų įrenginio greitis gali sulėtėti.",
         "doNotClose": "Įspėjame, kad programėlės minimizavimas atšauks sinchronizaciją.",
-        "syncAccount": "Sinchronizuoti paskyrą",
+        "syncAccount": "Sinchronizuoti",
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
