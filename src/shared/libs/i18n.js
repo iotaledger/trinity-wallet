@@ -98,7 +98,7 @@ export const getLocaleFromLabel = (label) => {
 export const getLabelFromLocale = (locale) => {
     const languageIndex = I18N_LOCALES.findIndex((l) => l === locale);
     if (languageIndex === -1) {
-        return I18N_LOCALE_LABELS[0];
+        return 'English (International)';
     }
     return I18N_LOCALE_LABELS[languageIndex];
 };

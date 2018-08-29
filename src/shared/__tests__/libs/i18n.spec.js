@@ -11,9 +11,7 @@ describe('libs: i18n', () => {
         });
 
         describe('when an unsupported locale is passed', () => {
-            // FIXME: Prettier is using double quotes for strings with escaped single quotes
-            //eslint-disable-next-line quotes
-            it("should return 'English (International)'", () => {
+            it('should return "English (International)"', () => {
                 const locale = 'foo';
                 expect(getLabelFromLocale(locale)).to.equal('English (International)');
             });
