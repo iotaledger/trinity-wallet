@@ -1,0 +1,42 @@
+steps:
+  - label: ":inbox_tray: Download and install dependencies"
+    command:
+      # Based on https://github.com/why-jay/osx-init/blob/master/install.sh
+      # Install Homebrew
+      - "ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'"
+      # Install NodeJS and Yarn
+      - "brew install node@8 && brew install yarn --without-node"
+      # Install Electron
+      - "yarn global add electron"
+    agents:
+      queue: mac
+
+  - wait
+
+  - label: ":hammer_and_wrench: Build for all platforms"
+    command:
+      - "yarn"
+      - "cd src/shared && yarn && cd ../.."
+      - "cd src/desktop && npm install"
+      - "npm run build && electron-builder -mwl"
+    artifact_paths:
+      - "out/*"
+    agents:
+      queue: mac
+
+  - wait: ~
+    continue_on_failure: true
+    # We want to clean up the workspace even if the build failed
+
+  - label: "Clean up workspace"
+    command:
+      # Uninstall Electron
+      - "yarn global remove electron"
+      # Clean the Yarn cache
+      - "yarn cache clean"
+      # Uninstall NodeJS and Yarn
+      - "brew uninstall yarn && brew install node@8"
+      # Uninstall Homebrew
+      - "ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)'"
+    agents:
+      queue: mac
