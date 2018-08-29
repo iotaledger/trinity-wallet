@@ -5,11 +5,10 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
+import { selectLatestAddressFromAccountFactory, selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
 import { generateNewAddress } from 'actions/wallet';
-import { selectLatestAddressFromAccountFactory } from 'iota-wallet-shared-modules/selectors/accounts';
 
 import { byteToChar, getSeed, createRandomSeed } from 'libs/crypto';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';

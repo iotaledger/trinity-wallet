@@ -34,23 +34,13 @@ class Seed extends PureComponent {
     };
 
     /**
-     * Set seed to state, trigger print if necessary
-     * @param {string} Password - Unused
-     * @param {Array} Seed - Seed byte array
-     * @returns {undefined}
+     * Trigger seed print after component is updated
      */
-    setSeed = (password, seed) => {
-        const { action } = this.state;
-
-        if (action === 'print') {
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.action === 'print' && !prevState.seed && this.state.seed) {
             window.print();
         }
-
-        this.setState({
-            seed,
-            action: action !== 'print' ? action : null,
-        });
-    };
+    }
 
     render() {
         const { accountName, t } = this.props;
@@ -61,7 +51,7 @@ class Seed extends PureComponent {
                 <ModalPassword
                     isOpen
                     inline
-                    onSuccess={this.setSeed}
+                    onSuccess={(password, seed) => this.setState({ seed })}
                     onClose={() => this.setState({ action: null })}
                     seedName={accountName}
                     content={{
@@ -106,7 +96,10 @@ class Seed extends PureComponent {
                             )}
                     </p>
                     <fieldset>
-                        <Button className="small" onClick={() => this.setState({ action: !action ? 'view' : null })}>
+                        <Button
+                            className="small"
+                            onClick={() => this.setState({ action: action !== 'view' ? 'view' : null })}
+                        >
                             {action === 'view' ? t('settings:hide') : t('settings:show')}
                         </Button>
                         <Button
@@ -119,7 +112,7 @@ class Seed extends PureComponent {
                             {t('seedVault:exportSeedVault')}
                         </Button>
                     </fieldset>
-                    {seed && <SeedPrint seed={seed} checksum={checksum} filled />}
+                    <SeedPrint seed={seed} checksum={checksum} filled />
                 </form>
                 <Modal
                     variant="fullscreen"
