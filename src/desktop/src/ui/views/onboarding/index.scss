@@ -451,7 +451,7 @@ $footer: 70px;
 
 .tutorial {
     p {
-        max-width: 560px;
+        max-width: 580px;
         text-align: center;
     }
     ul {
@@ -473,5 +473,9 @@ $footer: 70px;
                 user-select: all;
             }
         }
+    }
+
+    ul + p {
+        margin-top: 20px;
     }
 }

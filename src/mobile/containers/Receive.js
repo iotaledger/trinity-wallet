@@ -372,7 +372,7 @@ class Receive extends Component {
      **/
     getUnitMultiplier() {
         const { usdPrice, conversionRate, qrDenomination } = this.props;
-        const currencySymbol = this.state;
+        const { currencySymbol } = this.state;
         if (qrDenomination === currencySymbol) {
             return 1000000 / usdPrice / conversionRate;
         }

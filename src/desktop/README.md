@@ -16,7 +16,7 @@ First you need to install Node.JS if you haven’t done that already.
 Then run the following command to install electron globally.
 
 ```
-yarn global add electron
+npm global add electron
 ```
 
 ### 2. Clone or download the Trinity repo from GitHub.
@@ -40,15 +40,24 @@ cd trinity-wallet
 Now we need to install dependencies, such as the electron installer or the React code packager. Do this by running:
 
 ```
-yarn full-setup
+npm run full-setup
 ```
 
-### 4. Build Trinity desktop appplication
+### 3. Prepare Trinity desktop appplication
 
-When the yarn install is done you can build the wallet application by running:
+When the npm install is done you can prepare the wallet application for compilation by running:
 
 ```
-yarn compile:mac
+npm run build
+```
+
+
+### 4. Compile Trinity desktop appplication
+
+After the application is prepared you can compile the wallet application by running:
+
+```
+npm run compile:mac
 ```
 
 Change `mac` to your operating system - `mac`, `win` or `linux`.
@@ -62,7 +71,7 @@ After the building is finished, the application executable and installation file
 To start the application in development mode, run
 
 ```
-yarn start
+npm start
 ```
 
 ## Trinity theming
@@ -70,7 +79,7 @@ yarn start
 To create proof checking screenshots of key wallet views for all Trinity themes, run
 
 ```
-yarn style:shots
+npm style:shots
 ```
 
 After the command finished, the screenshots will be located in the directory `/shots/`

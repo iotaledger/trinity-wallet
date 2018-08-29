@@ -62,7 +62,6 @@ autoUpdater.autoDownload = false;
  * On update error event callback
  */
 autoUpdater.on('error', (error) => {
-    console.log(error);
     dialog.showErrorBox(
         language.updates.errorRetrievingUpdateData,
         error === null ? 'unknown' : (error.stack || error).toString(),
@@ -93,8 +92,8 @@ autoUpdater.on('update-available', () => {
  */
 autoUpdater.on('update-not-available', () => {
     dialog.showMessageBox({
-        title: language.updates.updates.noUpdatesAvailable,
-        message: language.updates.updates.noUpdatesAvailableExplanation,
+        title: language.updates.noUpdatesAvailable,
+        message: language.updates.noUpdatesAvailableExplanation,
     });
 });
 
@@ -104,8 +103,8 @@ autoUpdater.on('update-not-available', () => {
 autoUpdater.on('update-downloaded', () => {
     dialog.showMessageBox(
         {
-            title: language.updates.updates.installUpdate,
-            message: language.updates.updates.installUpdateExplanation,
+            title: language.updates.installUpdate,
+            message: language.updates.installUpdateExplanation,
         },
         () => {
             setImmediate(() => autoUpdater.quitAndInstall());
