@@ -4,6 +4,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import join from 'lodash/join';
+import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
@@ -707,7 +708,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
-                    const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
+                    const { newState } = syncAccountOnValueTransactionFailure(
+                        // Sort in ascending order
+                        orderBy(cached.transactionObjects, ['currentIndex']),
+                        accountState,
+                    );
 
                     // Temporarily mark this transaction as failed.
                     // As the inputs were signed and already exposed to the network
