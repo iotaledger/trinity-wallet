@@ -316,7 +316,7 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
-        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
+        "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
         "clipboardWarning": "Nie kopiuj swojego klucza",
         "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
     },
