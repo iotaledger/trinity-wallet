@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -123,7 +123,8 @@
     },
     "publish": {
       "provider": "github",
-      "publishAutoUpdate": true
+      "publishAutoUpdate": true,
+      "vPrefixedTagName": false
     }
   },
   "dependencies": {

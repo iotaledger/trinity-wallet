@@ -51,6 +51,15 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.3</h5>
+                            <ul>
+                                <li>- New: Support for Persian, Kannada, and Serbian (Latin)</li>
+                                <li>- Update: Linux tutorial missing a required step</li>
+                                <li>- Fix: Printing paper wallet from settings prints a blank page on first try</li>
+                                <li>- Fix: Paper wallet prints with scrambled characters</li>
+                                <li>- Fix: Grammatical errors in German privacy policy</li>
+                                <li>- Fix: Auto update dialog raises missing locale error</li>
+                            </ul>
                             <h5>0.3.2</h5>
                             <ul>
                                 <li>Update: Update currency order</li>
