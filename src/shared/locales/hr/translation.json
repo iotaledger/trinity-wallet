@@ -416,12 +416,12 @@
     "walletSetup": {
         "creatingSeed": "Kreiranje seed-a",
         "okay": "U redu. Idemo postaviti vaš novčanik!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "doYouNeedASeed": "Trebate li kreirati novi seed?",
+        "seedExplanation": "Vaš IOTA seed je master ključ za vaša sredstva. Sastoji se od 81 znaka, te sadrži samo velika slova A-Z ili broj 9.",
+        "noIHaveOne": "Ne, već imam seed",
+        "yesINeedASeed": "Da, trebam novi seed",
+        "explanation": "<0><0>Možete ga koristiti za pristup svojim sredstvima pomoću</0><1> bilo kojeg novčanika</1><2>, na</2><3> bilo kojem uređaju.</3></0>",
+        "loseSeed": "No, ukoliko izgubite svoj seed, također gubite i svoje IOTA-e.",
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
