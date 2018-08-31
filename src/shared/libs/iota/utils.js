@@ -30,6 +30,8 @@ export const EMPTY_HASH_TRYTES = '9'.repeat(HASH_SIZE);
 
 export const EMPTY_TRANSACTION_TRYTES = '9'.repeat(TRANSACTION_TRYTES_SIZE);
 
+export const EMPTY_TRANSACTION_MESSAGE = 'Empty';
+
 /**
  * Converts trytes to bytes
  *
@@ -46,7 +48,7 @@ export const convertFromTrytes = (trytes) => {
         return message;
     }
 
-    return 'Empty';
+    return EMPTY_TRANSACTION_MESSAGE;
 };
 
 /**
