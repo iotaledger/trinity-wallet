@@ -243,7 +243,7 @@
         "emptyPasswordExplanation": "Za prijavu morate unijeti lozinku. Molimo pokušajte ponovno.",
         "enterPassword": "Molimo unesite vašu lozinku.",
         "login": "Prijavi se",
-        "setNode": "Set Node",
+        "setNode": "Postavi node",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
@@ -447,12 +447,12 @@
         "yesterday": "Jučer"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account",
-        "tools": "Tools"
+        "viewSeed": "Prikaži seed",
+        "viewAddresses": "Prikaži adrese",
+        "editAccountName": "Uredi ime računa",
+        "deleteAccount": "Izbriši račun",
+        "addNewAccount": "Dodaj novi račun",
+        "tools": "Alati"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
@@ -605,8 +605,8 @@
         "error": "Error fetching chart data"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "appearsRooted": "Your device appears to be rooted.",
+        "warning": "UPOZORENJE",
+        "appearsRooted": "Izgleda da je vaš uređaj rootan.",
         "securityRisk": "This can pose a significant risk to the security of your wallet.",
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
@@ -664,12 +664,12 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
-        "readAllToContinue": "Please read the full text"
+        "accept": "Prihvaćam",
+        "readAllToContinue": "Molimo pročitajte tekst u cijelosti"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Pravila o provatnosti",
+        "agree": "Slažem se"
     },
     "tray": {
         "trayApplication": "Tray application",
