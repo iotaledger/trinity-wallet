@@ -103,7 +103,7 @@
         "cannotSendToOwnExplanation": "Ne možete poslati na adresu koja se koristi kao ulazna adresa u transakciji.",
         "pleaseWait": "Molimo pričekajte",
         "pleaseWaitEllipses": "Molimo pričekajte...",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWaitExplanation": "Trinity trenutno izvršava neku drugu funkciju. Molimo pričekajte i pokušajte ponovno.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
         "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Nemojte kopirati/zalijepiti svoj seed",
+        "clipboardWarningExplanation": "UPOZORENJE: Kopiranje/zaljepljivanje je onemogućeno radi vaše sigurnosti."
     },
     "send": {
         "invalidAddress": "Neispravna adresa",
@@ -343,7 +343,7 @@
         "iotaUnits": "Objašnjenje IOTA jedinica",
         "sendMax": "POŠALJI MAX",
         "totalTime": "Ukupno vrijeme",
-        "addressPasteDetected": "Address paste detected",
+        "addressPasteDetected": "Detektirana kopija adrese u međuspremniku",
         "addressPasteExplanation": "Izgleda da ste zalijepili adresu. Provjerite da li je adresa istovjetna onoj na koju želite poslati.",
         "invalid": "NEISPRAVNO"
     },
