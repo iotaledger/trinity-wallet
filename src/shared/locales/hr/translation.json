@@ -401,21 +401,21 @@
         "undo": "Poništi",
         "redo": "Ponovi",
         "aboutTrinity": "O Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "lockScreenTimeout": "Vremenski period neaktivnosti prije zaključavanja zaslona (u minutama)",
+        "autoNodeSwitching": "Automatski promijeni node kada je odabrani nedostupan",
+        "nodeChangeSuccess": "Uspješno promijenjen node",
+        "nodeChangeSuccessNoRemotePow": "Node je promijenjen u {{node}}. Ovaj node ne podržava udaljeni PoW.",
+        "nodeChangeSuccessExplanation": "Node je promijenjen u {{node}}.",
+        "nodeChangeError": "Greška prilikom promjene node-a",
+        "nodeChangeErrorExplanation": "Došlo je do greške prilikom promjene node-a. Molimo pokušajte ponovno."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "reset": "Reset"
+        "enterPassword": "Unesite lozinku kako bi resetirali novčanik.",
+        "reset": "Resetiraj"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
-        "okay": "Okay. Let's set up your wallet!",
+        "creatingSeed": "Kreiranje seed-a",
+        "okay": "U redu. Idemo postaviti vaš novčanik!",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
