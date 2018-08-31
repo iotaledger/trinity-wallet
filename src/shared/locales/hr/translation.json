@@ -224,24 +224,24 @@
         "seedTooShort": "Seed je prekratak",
         "seedTooLong": "Seed je predugačak",
         "seedTooShortExplanation": "Seed mora sadržavati {{maxLength}} znak. Broj znakova u vašem seedu je trenutno {{currentLength}}. Molimo pokušajte ponovno.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "Seed bi se trebao sastojati od {{maxLength}} znaka, te bi trebao sadržavati velika slova A-Z, ili broj 9. Ne možete koristiti seed dulji od {{maxLength}} znaka.",
+        "neverShare": "NIKADA NEMOJTE PODIJELITI SVOJ SEED S BILO KIME"
     },
     "home": {
-        "balance": "BALANCE",
+        "balance": "SALDO",
         "send": "POŠALJI",
         "receive": "PRIMI",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "history": "POVIJEST",
+        "settings": "POSTAVKE"
     },
     "languageSetup": {
         "language": "Jezik",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Započnimo"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "emptyPassword": "Prazna lozinka",
+        "emptyPasswordExplanation": "Za prijavu morate unijeti lozinku. Molimo pokušajte ponovno.",
+        "enterPassword": "Molimo unesite vašu lozinku.",
         "login": "Prijavi se",
         "setNode": "Set Node",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
@@ -374,9 +374,9 @@
         "advanced": "Advanced settings",
         "logout": "Odjavi se",
         "reset": "Reset wallet",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
+        "syncingComplete": "Sinkroniziranje završeno",
+        "syncingCompleteExplanation": "Vaš račun je uspješno sinkroniziran.",
+        "nicknameChanged": "Ime računa promijenjeno",
         "nicknameChangedExplanation": "Your account name has been changed.",
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
