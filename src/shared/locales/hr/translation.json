@@ -100,7 +100,7 @@
         "transactionAlreadyConfirmed": "Transakcija je već potvrđena",
         "transactionAlreadyConfirmedExplanation": "Transakcija koju pokušavate promovirati je već potvrđena.",
         "cannotSendToOwn": "Slanje na ulaznu adresu",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Ne možete poslati na adresu koja se koristi kao ulazna adresa u transakciji.",
         "pleaseWait": "Molimo pričekajte",
         "pleaseWaitEllipses": "Molimo pričekajte...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
@@ -344,7 +344,7 @@
         "sendMax": "POŠALJI MAX",
         "totalTime": "Ukupno vrijeme",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "addressPasteExplanation": "Izgleda da ste zalijepili adresu. Provjerite da li je adresa istovjetna onoj na koju želite poslati.",
         "invalid": "NEISPRAVNO"
     },
     "setSeedName": {
@@ -359,13 +359,13 @@
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
-        "transferSending": "Transfer sending",
+        "transferSending": "Slanje transakcije",
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "mode": "Mode",
         "theme": "Tema",
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNodeWhileSending": "Nije moguće promijeniti node tijekom slanja.",
         "language": "Jezik",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
