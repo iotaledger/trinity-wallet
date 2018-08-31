@@ -230,7 +230,7 @@
     "home": {
         "balance": "BALANCE",
         "send": "POŠALJI",
-        "receive": "RECEIVE",
+        "receive": "PRIMI",
         "history": "HISTORY",
         "settings": "SETTINGS"
     },
