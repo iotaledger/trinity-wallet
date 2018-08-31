@@ -211,11 +211,11 @@
         "shareSeed": "Spremite svoj seed u sigurni upravljač lozinki",
         "storeEncrypted": "Spremite svoj seed kodirano u upravljač lozinki.",
         "doNotOpen": "Ne otvarajte niti jednu drugu aplikaciju tijekom ovog procesa.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "tapConfirm": "Molimo kliknite na kvadratić ispod za potvrdu.",
+        "passwordManagerCheckbox": "Spremit ću svoj seed u upravljač lozinkama",
+        "copy": "KOPIRAJ",
+        "noPasswordManagers": "Nije pronađen niti jedan podržani upravljač lozinkama",
+        "noPasswordManagersExplanation": "Na vašem uređaju nije pronađen niti jedan podržani upravljač lozinkama. Molimo instalirajte Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
