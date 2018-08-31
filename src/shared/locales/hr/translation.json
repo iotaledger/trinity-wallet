@@ -216,13 +216,13 @@
         "copy": "KOPIRAJ",
         "noPasswordManagers": "Nije pronađen niti jedan podržani upravljač lozinkama",
         "noPasswordManagersExplanation": "Na vašem uređaju nije pronađen niti jedan podržani upravljač lozinkama. Molimo instalirajte Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "followTutorialToSecurelyShareSeed": "Ako želite pohraniti svoj seed u upravljač lozinkama, morate slijediti upute sa sljedećeg linka"
     },
     "enterSeed": {
         "invalidCharacters": "Seed sadrži nedopuštene znakove",
         "invalidCharactersExplanation": "Seed smije sadržavati samo velika slova A-Z te broj 9 (slova Č, Ć, Đ, Š i Ž nisu dopuštena). Vaš seed sadrži nedopuštene znakove. Molimo pokušajte ponovno.",
         "seedTooShort": "Seed je prekratak",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Seed je predugačak",
         "seedTooShortExplanation": "Seed mora sadržavati {{maxLength}} znak. Broj znakova u vašem seedu je trenutno {{currentLength}}. Molimo pokušajte ponovno.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
