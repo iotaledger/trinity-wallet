@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0C2504A17226DF5FFD3C2A54AD060E8A /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D059D1D71ADA6B83851AE04A4B1989 /* libBugsnagReactNative.a */; };
 		0C51C393ABBB0B4BD4B93D710474ACE6 /* iotaWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBF0EEB7DBFA315A0D6839E79A5924 /* iotaWalletUITests.swift */; };
@@ -86,6 +85,8 @@
 		F43A0D26643270FD3A4BFD2691C35E43 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		F695E3B017504F2AD81D2965695DA403 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A278F7206668C3941E08E4900DD55E /* libLottieReactNative.a */; };
 		F834CDED8A9A63C142A683ADB8483369 /* iotaWalletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A81CE60367578E89DC687A3A32D03E /* iotaWalletTests.m */; };
+		9D281BC7AA0241C8A5C6FAB6 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BC331C8434A9B8F329D6E /* libRealmReact.a */; };
+		B4ED18F76E844B1EA3F58D04 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 779626F13AFC4214BC1504B3 /* libc++.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -760,6 +761,9 @@
 		FC0C813F80FE9398560C13E6CC59C201 /* iotaWallet-debug-config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iotaWallet-debug-config.xcconfig"; sourceTree = "<group>"; };
 		FF6707891F5797B0CC78F1267EB8F1A2 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		FFB7466768C43C0F61CFB10138358A32 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		BB7BC331C8434A9B8F329D6E /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		779626F13AFC4214BC1504B3 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -808,6 +812,8 @@
 				60BDD27C208D128D0085549F /* libRNSecureClipboard.a in Frameworks */,
 				4A4F5E775D301A641C32594E736C0E3A /* libz.tbd in Frameworks */,
 				CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */,
+				9D281BC7AA0241C8A5C6FAB6 /* libRealmReact.a in Frameworks */,
+				B4ED18F76E844B1EA3F58D04 /* libc++.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,6 +897,7 @@
 				F6D3ACED5A5A03890087B45B /* libPods-iotaWallet-tvOS.a */,
 				F94248EA7BCF6FA1B4742792 /* libPods-iotaWallet-tvOSTests.a */,
 				7E0F74EC093A52113A8EC89B /* Pods_iotaWalletTests.framework */,
+				779626F13AFC4214BC1504B3 /* libc++.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1099,6 +1106,7 @@
 				78457F3624D0D3C241289BCB545E290E /* ReactNativeFingerprintScanner.xcodeproj */,
 				E5626B12C0A7C28841B2397915C53A9D /* ReactNativeNavigation.xcodeproj */,
 				A01220F4B33D4A79B53254ED /* RNFastCrypto.xcodeproj */,
+				301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -2601,6 +2609,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iota.iotaWalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2631,6 +2640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
@@ -2678,6 +2688,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2735,6 +2746,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iota.iotaWalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2769,11 +2781,13 @@
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2809,6 +2823,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2836,12 +2851,14 @@
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2935,11 +2952,13 @@
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2970,12 +2989,14 @@
 					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -3020,6 +3041,7 @@
 					"${PODS_DEV_ROOT}/UIDevice-PasscodeStatus/**",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
