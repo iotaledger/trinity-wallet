@@ -99,7 +99,7 @@
         "noLongerValid": "Paket koji pokušavate promovirati više nije valjan",
         "transactionAlreadyConfirmed": "Transakcija je već potvrđena",
         "transactionAlreadyConfirmedExplanation": "Transakcija koju pokušavate promovirati je već potvrđena.",
-        "cannotSendToOwn": "Sending to an input address",
+        "cannotSendToOwn": "Slanje na ulaznu adresu",
         "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Molimo pričekajte",
         "pleaseWaitEllipses": "Molimo pričekajte...",
@@ -624,7 +624,7 @@
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
-        "validatingReceiveAddress": "Validating receive address",
+        "validatingReceiveAddress": "Provjera valjanosti adrese primatelja",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
@@ -680,12 +680,12 @@
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notificationExplanation": "Primanje sistemskih obavijesti o novim transakcijama.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "multipleTx": "Primanje višestrukih transakcija na {{account}} u tijeku",
+        "valueTx": "Primanje {{value}} na {{account}} u tijeku",
+        "messageTx": "Primili ste poruku na {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
