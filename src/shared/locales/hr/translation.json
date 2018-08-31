@@ -244,8 +244,8 @@
         "enterPassword": "Molimo unesite vašu lozinku.",
         "login": "Prijavi se",
         "setNode": "Postavi node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Zašto je biometrijska autorizacija onemogućena?",
+        "whyBiometricDisabledExplanation": "Biometrijska prijava je onemogućena prilikom prvog pokretanja aplikacije radi vaše sigurnosti. Prilikom korištenja Trinity novčanika bit ćete odjavljeni nakon određenog perioda neaktivnosti. Tek tada se možete ponovno prijaviti koristeći biometrijsku autorizaciju."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
