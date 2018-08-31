@@ -225,7 +225,7 @@
         "seedTooLong": "Užraktas per ilgas",
         "seedTooShortExplanation": "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
         "seedExplanation": "Užraktas turi būti iš {{maxLength}} simbolio, galimos tik didžiosios raidės (A-Z) arba skaičius 9. Užraktas negali turėti daugiau nei {{maxLength}} simbolį.",
-        "neverShare": "SU NIEKUO NESIDALINKITE SAVO UŽRAKTU"
+        "neverShare": "SU NIEKUO NESIDALINKITE SAVO UŽRAKTU."
     },
     "home": {
         "balance": "BALANSAS",
@@ -254,13 +254,13 @@
         "takingAWhile": "Atrodo, kad tai užtruks"
     },
     "newSeedSetup": {
-        "generatedSeed": "Sukurtas užraktas",
+        "generatedSeed": "Užraktas sukurtas",
         "seedNotGenerated": "Sukurti užrakto nepavyko",
         "seedNotGeneratedExplanation": "Susikurkite naują užraktą.",
         "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "individualLetterCount": "Įveskite dar {{letterCount}} unikalius simbolius norėdami, kad jie būtų išmaišyti.",
+        "individualLetterCount": "Spustelėkite ant simbolio ir pakeiskite jį kitu. Dar liko pakeisti simbolių: {{letterCount}}.",
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
@@ -296,7 +296,7 @@
         "saveYourSeed": "Išsisaugokite savo užraktą",
         "seedCleared": "Užraktas išvalytas",
         "mostSecure": "Saugiausia",
-        "recommended": "Recommended",
+        "recommended": "Rekomenduojama",
         "leastSecure": "Mažiausiai saugu",
         "paperWallet": "Popierinė piniginė",
         "writeYourSeedDown": "Nusirašyti užraktą",
@@ -317,7 +317,7 @@
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
-        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarning": "Kopijuoti/įklijuoti užraktą nerekomenduojama",
         "clipboardWarningExplanation": "ĮSPĖJIMAS: kopijavimas/įklijavimas atjungtas dėl jūsų saugumo."
     },
     "send": {
@@ -387,7 +387,7 @@
         "show": "Rodyti",
         "showAll": "Rodyti viską",
         "quit": "Išeiti",
-        "edit": "Redaguoti",
+        "edit": "Taisa",
         "cut": "Iškirpti",
         "copy": "Kopijuoti",
         "paste": "Įklijuoti",
@@ -398,8 +398,8 @@
         "couldNotFetchRatesExplanation": "Įvyko klaida užkraunant keitimo kursą {{currency}} valiutai.",
         "fetchedConversionRates": "Valiuta užkrauta",
         "fetchedConversionRatesExplanation": "Keitimo kursas sėkmingai užkrautas {{currency}} valiutai.",
-        "undo": "Anuliuoti",
-        "redo": "Perdaryti",
+        "undo": "Atšaukti",
+        "redo": "Atstatyti",
         "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
         "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
@@ -452,7 +452,7 @@
         "editAccountName": "Redaguoti paskyros vardą",
         "deleteAccount": "Ištrinti paskyrą",
         "addNewAccount": "Pridėti naują paskyrą",
-        "tools": "Tools"
+        "tools": "Įrankiai"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
@@ -519,7 +519,7 @@
         "pressToSync": "Spauskite žemiau esantį mygtuką, norėdami sinchronizuoti paskyrą.",
         "thisMayTake": "Tai gali užtrukti. Jūsų įrenginio greitis gali sulėtėti.",
         "doNotClose": "Įspėjame, kad programėlės minimizavimas atšauks sinchronizaciją.",
-        "syncAccount": "Sinchronizuoti paskyrą",
+        "syncAccount": "Sinchronizuoti",
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
@@ -583,14 +583,14 @@
         "twoFaToken": "2FA kodas"
     },
     "seedVault": {
-        "exportSeedVault": "Eksportuoti SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "exportSeedVault": "Iškelti SeedVault",
+        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas saugiai laikyti savo užraktą. Užraktas yra užšifruojamas slaptažodžiu ir negali būti atskleistas be to slaptažodžio.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
-        "exportFail": "SeedVault eksportavimo klaida",
-        "exportFailExplanation": "Įvyko klaida eksportuojant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
-        "exportSuccess": "SeedVault eksportuotas",
-        "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas eksportuotas sėkmingai.",
-        "importSeedVault": "Importuoti SeedVault",
+        "exportFail": "SeedVault iškėlimo klaida",
+        "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
+        "exportSuccess": "SeedVault iškeltas",
+        "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas iškeltas sėkmingai.",
+        "importSeedVault": "Įkelti SeedVault",
         "dropSeedVaultHere": "Įkelti SeedVault čia",
         "enterPasswordExplanation": "Įveskite slaptažodį norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
@@ -656,8 +656,8 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
+        "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus."
     },
     "notificationLog": {
         "errorLog": "Klaidų žurnalas"
@@ -665,7 +665,7 @@
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
         "accept": "Sutinku",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Prašome viską perskaityti"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privatumo politika",
@@ -679,14 +679,14 @@
         "completeSetup": "Complete setup"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "Pranešimai",
+        "notificationExplanation": "Gauti pranešimus apie naujus pavedimus.",
+        "typeConfirmations": "Pranešti apie patvirtinimus",
+        "typeMessages": "Pranešti apie nulinės vertės pavedimus",
+        "multipleTx": "Gaunami pavedimai į {{account}}",
+        "valueTx": "Gaunama {{value}} į {{account}}",
+        "messageTx": "Jūs gavote žinutę į {{account}}",
+        "confirmedIn": "Pavedimas {{value}} į {{account}} yra patvirtintas",
+        "confirmedOut": "Pavedimas {{value}} iš {{account}} yra patvirtintas"
     }
 }

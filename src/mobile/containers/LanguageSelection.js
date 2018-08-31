@@ -5,8 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutF
 import { translate } from 'react-i18next';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
-import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
+import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import i18next from '../i18next';
 import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
 });
 
 const currentLocale = i18next.language;
-const currentLanguageLabel = selectLocale(currentLocale);
+const currentLanguageLabel = getLabelFromLocale(currentLocale);
 
 /** Language Selection component */
 class LanguageSelection extends Component {

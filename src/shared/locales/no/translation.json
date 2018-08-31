@@ -7,7 +7,7 @@
         "refresh": "Oppdater",
         "balanceError": "Saldoen er for lav",
         "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Total saldo",
         "transferError": "Transaksjonsfeil",
         "transferErrorMessage": "Noe gikk galt under transaksjonen. Vennligst prøv igjen.",
         "transferSent": "Transaksjon sendt",
@@ -60,7 +60,7 @@
         "password": "Passord",
         "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "Caps Lock er på",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vennligst vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
@@ -296,7 +296,7 @@
         "saveYourSeed": "Ta vare på hovednøkkelen",
         "seedCleared": "Hovednøkkelen er fjernet",
         "mostSecure": "Mest sikkert",
-        "recommended": "Recommended",
+        "recommended": "Anbefalt",
         "leastSecure": "Minst sikkert",
         "paperWallet": "Papirlommebok",
         "writeYourSeedDown": "Skriv ned hovednøkkelen",
@@ -353,7 +353,7 @@
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avansert",
         "standard": "Standard",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
@@ -452,7 +452,7 @@
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slett konto",
         "addNewAccount": "Legge til ny konto",
-        "tools": "Tools"
+        "tools": "Verktøy"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",
@@ -674,14 +674,14 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "Du er ikke innlogget",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Varslinger",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "Varsle meg om bekreftelser",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",

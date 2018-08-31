@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
-import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
+import {
+    I18N_LOCALE_LABELS,
+    getLabelFromLocale,
+    getLocaleFromLabel,
+    detectLocale,
+} from 'iota-wallet-shared-modules/libs/i18n';
 import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
-import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from '../i18next';
@@ -49,9 +53,8 @@ const styles = StyleSheet.create({
     },
 });
 
-const locale = getDeviceLocale();
-const defaultLocale = detectLocale(locale);
-const defaultLanguageLabel = selectLocale(defaultLocale);
+const defaultLocale = detectLocale(getDeviceLocale());
+const defaultLanguageLabel = getLabelFromLocale(defaultLocale);
 
 class LanguageSetup extends Component {
     static propTypes = {

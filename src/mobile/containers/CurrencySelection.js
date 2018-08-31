@@ -1,8 +1,11 @@
+import includes from 'lodash/includes';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ActivityIndicator, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
+import { setQrDenomination, setSendDenomination } from 'iota-wallet-shared-modules/actions/ui';
+import { IOTA_DENOMINATIONS } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
@@ -72,6 +75,10 @@ export class CurrencySelection extends Component {
         /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
+        sendDenomination: PropTypes.string.isRequired,
+        /** @ignore */
+        qrDenomination: PropTypes.string.isRequired,
+        /** @ignore */
         availableCurrencies: PropTypes.array.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
@@ -81,6 +88,10 @@ export class CurrencySelection extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         getCurrencyData: PropTypes.func.isRequired,
+        /** @ignore */
+        setQrDenomination: PropTypes.func.isRequired,
+        /** @ignore */
+        setSendDenomination: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -91,10 +102,19 @@ export class CurrencySelection extends Component {
         const props = this.props;
 
         const wasFetchingCurrencyData = props.isFetchingCurrencyData && !newProps.isFetchingCurrencyData;
-        const shouldNavigateBack = wasFetchingCurrencyData && !newProps.hasErrorFetchingCurrencyData;
+        const hasFetchedCurrencyData = wasFetchingCurrencyData && !newProps.hasErrorFetchingCurrencyData;
 
-        if (shouldNavigateBack) {
+        if (hasFetchedCurrencyData) {
+            // Navigate to main settings
             props.setSetting('mainSettings');
+
+            if (!includes(IOTA_DENOMINATIONS, props.qrDenomination)) {
+                props.setQrDenomination(newProps.currency);
+            }
+
+            if (!includes(IOTA_DENOMINATIONS, props.sendDenomination)) {
+                props.setSendDenomination(newProps.currency);
+            }
         }
     }
 
@@ -178,6 +198,8 @@ export class CurrencySelection extends Component {
 
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
+    sendDenomination: state.ui.sendDenomination,
+    qrDenomination: state.ui.qrDenomination,
     availableCurrencies: state.settings.availableCurrencies,
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
     hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
@@ -187,6 +209,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getCurrencyData,
     setSetting,
+    setQrDenomination,
+    setSendDenomination,
 };
 
 export default translate(['currencySelection', 'global'])(
