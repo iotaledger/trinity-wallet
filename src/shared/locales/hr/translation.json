@@ -128,7 +128,7 @@
         "noNetworkConnection": "Nema mrežne veze",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "discordInformation": "Slanje s iste adrese više od jednom može biti opasno. Više informacija o tome i pomoć potražite na #help kanalu službenog Discorda.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
@@ -505,7 +505,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "Imate sredstva na jednoj ili više prethodno upotrijebljenih adresa. Ponovna upotreba već upotrijebljenih adresa je opasna kod IOTA-e, stoga ovaj novčanik ne podržava slanje s iste adrese više od jednom.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -562,7 +562,7 @@
         "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Poslat ćete {{contents}} na adresu",
         "aMessage": "poruka"
     },
     "twoFA": {
