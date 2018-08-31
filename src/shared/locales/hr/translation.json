@@ -422,28 +422,28 @@
         "yesINeedASeed": "Da, trebam novi seed",
         "explanation": "<0><0>Možete ga koristiti za pristup svojim sredstvima pomoću</0><1> bilo kojeg novčanika</1><2>, na</2><3> bilo kojem uređaju.</3></0>",
         "loseSeed": "No, ukoliko izgubite svoj seed, također gubite i svoje IOTA-e.",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Molimo vas, čuvajte svoj seed na sigurnom mjestu."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Hvala što ste preuzeli Trinity"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
+        "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbroj, te </0><1>provjerite barem 3 puta</1><2> da li su točni.</2>",
         "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Hash paketa kopiran",
+        "noTransactionsFound": "Nije pronađena niti jedna transakcija",
+        "hideZeroBalance": "Sakrij transakcije s nula sredstava",
+        "bundleHashCopiedExplanation": "Hash paketa je kopiran u međuspremnik.",
         "addressCopied": "Adresa kopirana",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "addressCopiedExplanation": "Adresa je kopirana u međuspremnik.",
+        "messageCopied": "Poruka kopirana",
+        "messageCopiedExplanation": "Poruka je kopirana u međuspremnik.",
         "send": "Pošalji",
         "receive": "Primi",
         "empty": "Prazno",
-        "retrying": "Retrying",
+        "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer"
     },
     "accountManagement": {
