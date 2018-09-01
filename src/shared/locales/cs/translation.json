@@ -280,7 +280,7 @@
     },
     "receive": {
         "yourAddress": "Vaše adresa",
-        "qrOptions": "QR options",
+        "qrOptions": "QR nastavení",
         "shareQr": "Share QR code",
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
@@ -411,7 +411,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
-        "reset": "Reset"
+        "reset": "Resetovat"
     },
     "walletSetup": {
         "creatingSeed": "Vytváření Seedu",
@@ -452,17 +452,17 @@
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
         "addNewAccount": "Přidat nový účet",
-        "tools": "Tools"
+        "tools": "Nástroje"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
         "customNode": "Vlastní Node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Odebrat vlastní Node",
         "invalidNodeResponse": "Node vrátil neplatnou odpověď",
         "add": "Přidat",
         "nodeFieldEmpty": "Textové pole je prázdné",
         "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Zadejte prosím platnou adresu URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -656,8 +656,8 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Nainstalujte aktualizaci a restartujte",
+        "installUpdateExplanation": "Stahování bylo dokončeno, Trinity restartuje a nainstaluje aktualizaci."
     },
     "notificationLog": {
         "errorLog": "Error log"
@@ -665,7 +665,7 @@
     "terms": {
         "termsAndConditions": "Obchodní podmínky",
         "accept": "Souhlasím",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Přečtěte si prosím celý text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobních údajů",
