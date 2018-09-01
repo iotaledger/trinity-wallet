@@ -586,11 +586,11 @@
         "exportSeedVault": "Export SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
-        "importSeedVault": "Import SeedVault",
+        "exportFail": "Izvoz SeedVault-a neuspješan",
+        "exportFailExplanation": "Došlo je do greške prilikom izvoza SeedVault-a. Molimo provjerite da li imate sva potrebna ovlaštenja i dovoljno slobodnog prostora na disku.",
+        "exportSuccess": "SeedVault izvezen",
+        "exportSuccessExplanation": "Vaša kodirana seed datoteka je uspješno izvezena.",
+        "importSeedVault": "Uvezi SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here",
         "enterPasswordExplanation": "Enter your password to open the SeedVault",
         "noSeedFound": "SeedVault does not contain a valid seed",
@@ -657,7 +657,7 @@
         "newVersionAvailable": "Dostupna je nova inačica",
         "newVersionAvailableExplanation": "Dostupna je nova <strong>Trinity</strong> <strong>{{version}}</strong> inačica. Pažljivo pročitajte informacije o novoj inačici i provjerite izvor preuzimanja prije ažuriranja aplikacije.",
         "installUpdate": "Instaliraj novu inačicu i ponovno pokreni aplikaciju",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje."
     },
     "notificationLog": {
         "errorLog": "Error log"
