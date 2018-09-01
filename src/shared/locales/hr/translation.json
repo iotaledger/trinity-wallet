@@ -248,17 +248,17 @@
         "whyBiometricDisabledExplanation": "Biometrijska prijava je onemogućena prilikom prvog pokretanja aplikacije radi vaše sigurnosti. Prilikom korištenja Trinity novčanika bit ćete odjavljeni nakon određenog perioda neaktivnosti. Tek tada se možete ponovno prijaviti koristeći biometrijsku autorizaciju."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "loadingFirstTime": "Prvotno učitavanje seed-a.",
+        "thisMayTake": "Ovo bi moglo potrajati.",
+        "doNotMinimise": "Nemojte minimizirati ili zatvoriti aplikaciju.",
+        "takingAWhile": "Izgleda da ovo traje neko vrijeme"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "generatedSeed": "Seed generiran",
+        "seedNotGenerated": "Seed nije generiran",
+        "seedNotGeneratedExplanation": "Molimo generirajte novi seed.",
+        "pressForNewSeed": "Pritisnite za novi seed",
+        "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Press individual letters to randomise them.",
         "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "What is a seed?"
