@@ -349,11 +349,11 @@
     },
     "setSeedName": {
         "letsAddName": "Dodajte naziv",
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "S ovim novčanikom možete koristiti više seed-ova. Svaki seed zahtijeva novi naziv računa.",
+        "youCanAdd": "U izborniku postavke možete dodati još seed-ova."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Napredni",
         "standard": "Standardno",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
@@ -361,19 +361,19 @@
     "settings": {
         "transferSending": "Slanje transakcije",
         "transferSendingExplanation": "Molimo pričekajte završetak slanja transakcije.",
-        "mode": "Mode",
+        "mode": "Način rada",
         "theme": "Tema",
-        "currency": "Currency",
-        "cannotChangeNode": "Cannot change node",
+        "currency": "Valuta",
+        "cannotChangeNode": "Nije bilo moguće promijeniti node",
         "cannotChangeNodeWhileSending": "Nije moguće promijeniti node tijekom slanja.",
         "language": "Jezik",
-        "accountManagement": "Account management",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
+        "accountManagement": "Upravljanje računima",
+        "addNewSeed": "Dodaj novi seed",
+        "twoFA": "Autorizacija s dva faktora",
+        "changePassword": "Promjena lozinke",
+        "advanced": "Napredne postavke",
         "logout": "Odjavi se",
-        "reset": "Reset wallet",
+        "reset": "Resetiraj novčanik",
         "syncingComplete": "Sinkroniziranje završeno",
         "syncingCompleteExplanation": "Vaš račun je uspješno sinkroniziran.",
         "nicknameChanged": "Ime računa promijenjeno",
@@ -487,7 +487,7 @@
         "mockup": "Mockup"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Valuta"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Are you sure you want to log out?"
