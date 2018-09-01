@@ -443,7 +443,7 @@
         "send": "Odeslat",
         "receive": "Příjem",
         "empty": "Prázdné",
-        "retrying": "Retrying",
+        "retrying": "Opakování",
         "yesterday": "Včera"
     },
     "accountManagement": {
