@@ -266,16 +266,16 @@
     "onboardingComplete": {
         "allDone": "Gotovo!",
         "openYourWallet": "Otvorite svoj novčanik",
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Novčanik je spreman za korištenje. Ukoliko poželite napraviti promjene u budućnosti, to možete učiniti u izborniku Postavke."
     },
     "paperWallet": {
-        "neverShare": "Never share your seed with anyone.",
+        "neverShare": "Nikada nemojte podijeliti svoj seed s bilo kime.",
         "iotaLogo": "IOTA logo",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
+        "print": "ISPIS",
+        "paperConvenience": "Ispis vašeg seed-a na papir je pogodan način za njegovo spremanje.",
+        "publicInsecure": "No ispis putem javno dostupnog wifi-a ili javno dostupnog pisača je nesigurno.",
+        "tapCheckboxes": "Molimo kliknite na kvadratiće ispod za potvrdu.",
+        "wifiCheckbox": "Neću ispisati seed putem javno dostupnog wifi-a",
         "printerCheckbox": "Neću vršiti ispis na javnom pisaču"
     },
     "receive": {
