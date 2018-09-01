@@ -473,10 +473,10 @@
         "addCustomNode": "Dodaj prilagođeni node",
         "manualSync": "Ručna sinkronizacija",
         "snapshotTransition": "Snapshot tranzicija",
-        "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "pow": "PoW",
+        "autoPromotion": "Automatska promocija",
+        "autoPromotionExplanation": "Automatska promocija pomaže potvrditi vašu transakciju na Tangle-u. Omogućite ovu postavku ako imate problema s potvrđivanjem vaših transakcija.",
+        "autoPromotionPoW": "Automatska promocija moguća je samo na node-ovima koji podržavaju udaljeni PoW."
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
@@ -490,7 +490,7 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Da li ste sigurni da se želite odjaviti?"
     },
     "qrScanner": {
         "scan": "Scan your QR code"
@@ -634,17 +634,17 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nije bilo moguće izvršiti snapshot tranziciju",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransitionExplanation": "Vaš saldo mora biti više od 0 da bi izvršili tranziciju.",
         "transitionComplete": "Snapshot tranzicija završena",
         "transitionCompleteExplanation": "Snapshot tranzicija je uspješno obavljena.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "detectedBalance": "Detektiran saldo: {{amount}} {{unit}}",
+        "isThisCorrect": "Da li je ovo točno?",
         "snapshotExplanation": "Periodično je potrebno obaviti snapshot radi kontrole veličine Tangle-a.",
         "hasSnapshotTakenPlace": "Da li je došlo do snapshot-a? Pritisnite gumb ispod za tranziciju.",
-        "transition": "Transition",
+        "transition": "Tranzicija",
         "transitioning": "Tranzicija snapshot-a u tijeku.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "generatingAndDetecting": "Generiranje adresa i detektiranje salda.",
+        "attaching": "Pridodavanje adresa na Tangle."
     },
     "deepLink": {
         "autofill": "Autofill success",
