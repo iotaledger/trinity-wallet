@@ -59,7 +59,7 @@ describe('libs: iota/accounts', () => {
                 nonce: 'QSFQG9999999999999999999999',
                 obsoleteTag: 'STINITY99999999999999999999',
                 signatureMessageFragment: '9'.repeat(2187),
-                value: 0,
+                value: 8,
                 tag: 'TRINITY99999999999999999999',
                 timestamp: 1528875229,
                 attachmentTimestamp: 1528875232150,
@@ -94,7 +94,6 @@ describe('libs: iota/accounts', () => {
             const result = syncAccountOnValueTransactionFailure(transactionObjects, accountState);
 
             const normalisedTransfer = {
-                hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
                 bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
                 timestamp: 1528875229,
                 attachmentTimestamp: 1528875232150,
@@ -104,6 +103,8 @@ describe('libs: iota/accounts', () => {
                         value: -10,
                         hash: 'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
                         checksum: 'GDMMKORSW',
+                        currentIndex: 1,
+                        lastIndex: 2,
                     },
                 ],
                 outputs: [
@@ -112,12 +113,16 @@ describe('libs: iota/accounts', () => {
                         value: 2,
                         hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
                         checksum: 'KWHYM9THA',
+                        currentIndex: 0,
+                        lastIndex: 2,
                     },
                     {
                         address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: 0,
+                        value: 8,
                         hash: 'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
                         checksum: 'GDMMKORSW',
+                        currentIndex: 2,
+                        lastIndex: 2,
                     },
                 ],
                 persistence: false,
@@ -173,7 +178,6 @@ describe('libs: iota/accounts', () => {
             );
 
             const normalisedTransfer = {
-                hash: '9'.repeat(81),
                 bundle: 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY',
                 timestamp: 1528875229,
                 attachmentTimestamp: 1528875232150,
@@ -183,6 +187,8 @@ describe('libs: iota/accounts', () => {
                         value: -10,
                         hash: '9'.repeat(81),
                         checksum: 'GDMMKORSW',
+                        currentIndex: 1,
+                        lastIndex: 2,
                     },
                 ],
                 outputs: [
@@ -191,12 +197,16 @@ describe('libs: iota/accounts', () => {
                         value: 2,
                         hash: '9'.repeat(81),
                         checksum: 'KWHYM9THA',
+                        currentIndex: 0,
+                        lastIndex: 2,
                     },
                     {
                         address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: 0,
+                        value: 8,
                         hash: '9'.repeat(81),
                         checksum: 'GDMMKORSW',
+                        currentIndex: 2,
+                        lastIndex: 2,
                     },
                 ],
                 persistence: false,
@@ -295,7 +305,6 @@ describe('libs: iota/accounts', () => {
             const bundle = 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY';
 
             const normalisedTransfer = {
-                hash: '9'.repeat(81),
                 bundle,
                 timestamp: 1528875229,
                 attachmentTimestamp: 1528875232150,
@@ -305,6 +314,8 @@ describe('libs: iota/accounts', () => {
                         value: -10,
                         hash: '9'.repeat(81),
                         checksum: 'GDMMKORSW',
+                        currentIndex: 1,
+                        lastIndex: 2,
                     },
                 ],
                 outputs: [
@@ -313,12 +324,16 @@ describe('libs: iota/accounts', () => {
                         value: 2,
                         hash: '9'.repeat(81),
                         checksum: 'KWHYM9THA',
+                        currentIndex: 0,
+                        lastIndex: 2,
                     },
                     {
                         address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                        value: 0,
+                        value: 8,
                         hash: '9'.repeat(81),
                         checksum: 'GDMMKORSW',
+                        currentIndex: 2,
+                        lastIndex: 2,
                     },
                 ],
                 persistence: false,

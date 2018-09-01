@@ -8,7 +8,6 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import {
     prepareTransferArray,
-    extractTailTransferFromBundle,
     categoriseTransactionsByPersistence,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
@@ -26,11 +25,13 @@ import {
     pickNewTailTransactions,
     retryFailedTransaction,
     sortTransactionTrytesArray,
+    getTransferValue,
+    computeTransactionMessage,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import * as mockTransactions from '../../__samples__/transactions';
-import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES } from '../../../libs/iota/utils';
+import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
 
 describe('libs: iota/transfers', () => {
     before(() => {
@@ -39,6 +40,55 @@ describe('libs: iota/transfers', () => {
 
     after(() => {
         SwitchingConfig.autoSwitch = true;
+    });
+
+    describe('#getTransferValue', () => {
+        describe('zero value transactions', () => {
+            it('should return zero', () => {
+                // Zero value transactions have no inputs
+                expect(
+                    getTransferValue(
+                        [],
+                        [{ value: 0, currentIndex: 0, lastIndex: 1 }, { value: 0, currentIndex: 1, lastIndex: 1 }],
+                    ),
+                ).to.equal(0);
+            });
+        });
+
+        describe('value transactions', () => {
+            it('should return transfer value', () => {
+                expect(
+                    getTransferValue(
+                        [
+                            { value: -10, currentIndex: 0, lastIndex: 4 },
+                            { value: -1, currentIndex: 1, lastIndex: 4 },
+                            { value: -40, currentIndex: 2, lastIndex: 4 },
+                        ],
+                        [{ value: 12, currentIndex: 3, lastIndex: 4 }, { value: 39, currentIndex: 4, lastIndex: 4 }],
+                    ),
+                ).to.equal(12);
+            });
+        });
+    });
+
+    describe('#computeTransactionMessage', () => {
+        describe('when bundle has no transaction with a message', () => {
+            it(`should return ${EMPTY_TRANSACTION_MESSAGE}`, () => {
+                expect(computeTransactionMessage([{ signatureMessageFragment: '9'.repeat(2187) }])).to.equal('Empty');
+            });
+        });
+
+        describe('when bundle has a transaction with message', () => {
+            it('should return message', () => {
+                const messageTrytes = 'CCOBBCCCEAWBOBBCBCKBQBOB';
+                expect(
+                    computeTransactionMessage([
+                        { signatureMessageFragment: '9'.repeat(2187) },
+                        { signatureMessageFragment: `${messageTrytes}${'9'.repeat(2187 - messageTrytes.length)}` },
+                    ]),
+                ).to.equal('TEST MESSAGE');
+            });
+        });
     });
 
     describe('#prepareTransferArray', () => {
@@ -98,36 +148,6 @@ describe('libs: iota/transfers', () => {
             const result = prepareTransferArray(...args);
 
             expect(result[1].address).to.equal(firstOwnAddress);
-        });
-    });
-
-    describe('#extractTailTransferFromBundle', () => {
-        describe('when not passed a valid bundle', () => {
-            it('should always return an object', () => {
-                const args = [undefined, null, [], {}, 'foo', 0];
-
-                args.forEach((arg) => {
-                    const result = extractTailTransferFromBundle(arg);
-                    expect(typeof result).to.equal('object');
-                    expect(Array.isArray(result)).to.equal(false);
-                    expect(result === null).to.equal(false);
-                    expect(result === undefined).to.equal(false);
-                });
-            });
-        });
-
-        describe('when passed a valid bundle', () => {
-            it('should return an object with currentIndex prop equals 0', () => {
-                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx }));
-
-                expect(extractTailTransferFromBundle(bundle)).to.eql({ currentIndex: 0 });
-            });
-
-            it('should return an empty object if there is no item with prop currentIndex 0', () => {
-                const bundle = Array.from(Array(5), (x, idx) => ({ currentIndex: idx + 1 }));
-
-                expect(extractTailTransferFromBundle(bundle)).to.eql({});
-            });
         });
     });
 
@@ -358,10 +378,6 @@ describe('libs: iota/transfers', () => {
         });
 
         // Note: Test internally used functions separately
-        it('should return an object with "hash" prop', () => {
-            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('hash');
-        });
-
         it('should return an object with "bundle" prop', () => {
             expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('bundle');
         });
@@ -685,6 +701,8 @@ describe('libs: iota/transfers', () => {
                 expect(categoriseBundleByInputsOutputs(bundle, [], 1).inputs).to.eql([
                     {
                         value: -2201,
+                        currentIndex: 1,
+                        lastIndex: 3,
                         address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
                         checksum: 'MCDWJFKKC',
                     },
@@ -700,16 +718,22 @@ describe('libs: iota/transfers', () => {
                         value: 1,
                         address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
                         checksum: 'BQGLCYXGY',
+                        currentIndex: 0,
+                        lastIndex: 3,
                     },
                     {
                         value: 0,
                         address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
                         checksum: 'MCDWJFKKC',
+                        currentIndex: 2,
+                        lastIndex: 3,
                     },
                     {
                         value: 2201,
                         address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
                         checksum: 'RYN9LQCEC',
+                        currentIndex: 3,
+                        lastIndex: 3,
                     },
                 ]);
             });
@@ -721,16 +745,22 @@ describe('libs: iota/transfers', () => {
                         value: 1,
                         address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
                         checksum: 'BQGLCYXGY',
+                        currentIndex: 0,
+                        lastIndex: 3,
                     },
                     {
                         value: 0,
                         address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
                         checksum: 'MCDWJFKKC',
+                        currentIndex: 2,
+                        lastIndex: 3,
                     },
                     {
                         value: 2201,
                         address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
                         checksum: 'RYN9LQCEC',
+                        currentIndex: 3,
+                        lastIndex: 3,
                     },
                 ]);
             });
@@ -747,11 +777,15 @@ describe('libs: iota/transfers', () => {
                         value: 1,
                         address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
                         checksum: 'BQGLCYXGY',
+                        currentIndex: 0,
+                        lastIndex: 3,
                     },
                     {
                         value: 2201,
                         address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
                         checksum: 'RYN9LQCEC',
+                        currentIndex: 3,
+                        lastIndex: 3,
                     },
                 ]);
             });
@@ -764,6 +798,8 @@ describe('libs: iota/transfers', () => {
                         value: 2201,
                         address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
                         checksum: 'RYN9LQCEC',
+                        currentIndex: 3,
+                        lastIndex: 3,
                     },
                 ]);
             });
