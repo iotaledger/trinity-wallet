@@ -33,7 +33,7 @@
         "apply": "Toepassen",
         "save": "Opslaan",
         "close": "Sluit",
-        "export": "Export",
+        "export": "Exporteer",
         "import": "Importeren",
         "continue": "Doorgaan",
         "enable": "Inschakelen",
@@ -585,7 +585,7 @@
     "seedVault": {
         "exportSeedVault": "Seedkluis exporteren",
         "seedVaultExplanation": "Een Seedkluis is een versleuteld bestand om uw seed veilig op te slaan. De seed is versleuteld met een wachtwoord en kan niet gebruikt worden zonder dat wachtwoord.",
-        "seedVaultWarning": "Zorg ervoor dat u het bestand op meerdere locaties backupt (bijvoorbeeld: harde schijf, cloud, USB). Raakt u dit bestand kwijt, en heeft u uw seed niet ergens opgeslagen, bent u uw IOTA kwijt.",
+        "seedVaultWarning": "Zorg ervoor dat u het bestand op meerdere locaties backupt (bijvoorbeeld: harde schijf, cloud, USB). Raakt u dit bestand kwijt en heeft u uw seed niet ergens opgeslagen, bent u uw IOTA kwijt.",
         "exportFail": "Exporteren van Seedkluis mislukt",
         "exportFailExplanation": "Er was een probleem met het exporteren van de Seedkluis. Zorg ervoor dat u de juiste bevoegdheden en genoeg vrije ruimte hebt.",
         "exportSuccess": "Seedkluis geëxporteerd",
