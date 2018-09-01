@@ -673,7 +673,7 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Poskytuje přehled zůstatků účtu a nedávné historie transakcí.",
         "notLoggedIn": "Nejste přihlášen(a)",
         "setupIncomplete": "Nastavení peněženky je neúplné",
         "completeSetup": "Dokončit nastavení"
