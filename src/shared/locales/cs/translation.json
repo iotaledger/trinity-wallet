@@ -680,11 +680,11 @@
     },
     "notifications": {
         "notifications": "Oznámení",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notificationExplanation": "Dostávat systémové upozornění o nových transakcí.",
         "typeConfirmations": "Informuj mě o potvrzení transakce",
         "typeMessages": "Informuj mě o nulových transakcích",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
+        "multipleTx": "Přijímání více transakcí na {{account}}",
+        "valueTx": "Přijímání {{value}} na {{account}}",
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
