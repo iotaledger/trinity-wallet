@@ -311,12 +311,12 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Molimo potvrdite svoj seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "trinityWillNeverAskToReenter": "Trinity nikad neće tražiti da ponovno unesete ovaj seed osim u slučaju resetiranja novčanika ili aplikacije.",
+        "enterYourSeed": "Unesite vaš seed",
+        "incorrectSeed": "Neispravan seed",
+        "incorrectSeedExplanation": "Seed koji ste unijeli je neispravan. Molimo pokušajte ponovno.",
+        "ifYouHaveNotSaved": "Ukoliko niste napravili sigurnosnu kopiju vašeg seeda, molimo vratite se natrag i učinite to.",
+        "enterSeedBelow": "Unesite svoj novo kreirani seed ispod kako bi potvrdili da ste uspješno izradili sigurnosnu kopiju istog",
         "clipboardWarning": "Nemojte kopirati/zalijepiti svoj seed",
         "clipboardWarningExplanation": "UPOZORENJE: Kopiranje/zaljepljivanje je onemogućeno radi vaše sigurnosti."
     },
@@ -348,7 +348,7 @@
         "invalid": "NEISPRAVNO"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Dodajte naziv",
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
