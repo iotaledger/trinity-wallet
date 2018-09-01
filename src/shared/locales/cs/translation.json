@@ -245,7 +245,7 @@
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
         "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "Biometrické přihlášení je zakázané při prvním načítání aplikace pro Vaší bezpečnost. Když budete při používání Trinity odhlášeni z důvodu nečinnosti, poté se můžete přihlásit zpět pomocí biometrického ověření."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
