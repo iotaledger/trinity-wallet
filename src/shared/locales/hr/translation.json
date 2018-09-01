@@ -305,12 +305,12 @@
         "youCanHighlightCharacters": "Možete označiti 9 znakova odjednom",
         "printBlankWallet": "Ispišite prazni novčanik",
         "whatIsChecksum": "Svaki seed ima pripadajući kontrolni zbroj od 3 znaka",
-        "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed": "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "iHavesavedMySeed": "Svoj seed imam spremljen",
+        "checksumExplanation": "Svaki put kada dodajete seed u svoj novčanik, pobrinite se da je kontrolni zbroj generiran od strane novčanika isti kao onaj koji ste zapisali.",
+        "mustSaveYourSeed": "<0><0>Morate napraviti sigurnosnu kopiju seed-a koristeći </0><1>barem jednu</1><2> od niže navedenih opcija.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
+        "pleaseConfirmYourSeed": "Molimo potvrdite svoj seed",
         "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Incorrect seed",
