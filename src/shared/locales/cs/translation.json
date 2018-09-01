@@ -141,10 +141,10 @@
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
         "broadcastError": "Nezdařilo se odeslat transakci",
         "addressesAlreadySpentFrom": "Jedna nebo více adres již byla použita.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Nový pokus s jiným Nodem.",
+        "problemSendingYourTransaction": "Při odesílání transakce došlo k chybě.",
+        "problemPerformingProofOfWork": "Při provádění proof of work došlo k chybě.",
+        "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
+        "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
         "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě."
     },
     "addAdditionalSeed": {
