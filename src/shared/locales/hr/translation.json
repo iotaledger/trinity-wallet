@@ -456,22 +456,22 @@
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
-        "customNode": "Custom node",
-        "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "customNode": "Prilagođeni node",
+        "removeCustomNode": "Ukloni prilagođeni node",
+        "invalidNodeResponse": "Node nije vratio valjan odgovor",
         "add": "Dodaj",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL."
+        "nodeFieldEmpty": "Tekstualno polje je prazno",
+        "nodeFieldEmptyExplanation": "Molimo unesite prilagođeni node.",
+        "invalidURL": "Molimo unesite valjani URL."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Koristi postojeći seed",
+        "createNewSeed": "Kreiraj novi seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "selectNode": "Odaberi node",
+        "addCustomNode": "Dodaj prilagođeni node",
+        "manualSync": "Ručna sinkronizacija",
         "snapshotTransition": "Snapshot transition",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
@@ -479,12 +479,12 @@
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "Pozadina",
         "frame": "Okvir"
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Približni izgled teme"
     },
     "currencySelection": {
         "currency": "Valuta"
