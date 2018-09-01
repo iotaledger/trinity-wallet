@@ -493,10 +493,10 @@
         "logoutConfirmation": "Da li ste sigurni da se želite odjaviti?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skeniraj QR kod"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "SUSTAV JEDINICA",
         "trillion": "Trilijun",
         "billion": "Milijarda",
         "million": "Milijun",
@@ -511,8 +511,8 @@
     "deleteAccount": {
         "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "thisAction": "Ova radnja se ne može poništiti.",
+        "enterPassword": "Unesite lozinku da bi izbrisali račun."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
@@ -529,18 +529,18 @@
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "Prikaži seed",
+        "hideSeed": "Sakrij seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "alreadyHave": "I have backed up my seed",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
+        "alreadyHave": "Napravio sam sigurnosnu kopiju svojeg seed-a",
+        "reenterSeed": "U sljedećem koraku morat ćete ponovno unijeti svoj seed.",
+        "reenterSeedWarning": "Ako niste napravili sigurnosnu kopiju svog seed-a, a vaš uređaj se pokvari, izgubit ćete svu svoju IOTA-u.",
+        "pleaseConfirm": "Molimo potvrdite da ste spremili svoj seed na sigurno."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "OVA RADNJA SE NE MOŽE PONIŠTITI.",
         "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
@@ -600,8 +600,8 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "change": "Promjena (24h)",
+        "volume": "Volumen (24h)",
         "error": "Error fetching chart data"
     },
     "rootDetection": {
@@ -652,7 +652,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Imate najnoviju inačicu Trinity Desktop-a!",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "Dostupna je nova <strong>Trinity</strong> <strong>{{version}}</strong> inačica. Pažljivo pročitajte informacije o novoj inačici i provjerite izvor preuzimanja prije ažuriranja aplikacije.",
@@ -674,15 +674,15 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "Niste prijavljeni",
+        "setupIncomplete": "Postavljanje novčanika nedovršeno",
+        "completeSetup": "Završi postavljanje"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Obavijesti",
         "notificationExplanation": "Primanje sistemskih obavijesti o novim transakcijama.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
+        "typeConfirmations": "Obavijesti me o potvrdama transakcija",
+        "typeMessages": "Obavijesti me o potvrdama transakcija s nula vrijednosti",
         "multipleTx": "Primanje višestrukih transakcija na {{account}} u tijeku",
         "valueTx": "Primanje {{value}} na {{account}} u tijeku",
         "messageTx": "Primili ste poruku na {{account}}",
