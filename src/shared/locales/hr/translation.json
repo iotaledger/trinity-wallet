@@ -654,9 +654,9 @@
         "errorRetrievingUpdateData": "Error retrieving update data",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Imate najnoviju inačicu Trinity Desktop-a!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "Dostupna je nova inačica",
         "newVersionAvailableExplanation": "Dostupna je nova <strong>Trinity</strong> <strong>{{version}}</strong> inačica. Pažljivo pročitajte informacije o novoj inačici i provjerite izvor preuzimanja prije ažuriranja aplikacije.",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "Instaliraj novu inačicu i ponovno pokreni aplikaciju",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
