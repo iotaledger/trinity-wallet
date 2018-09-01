@@ -259,13 +259,13 @@
         "seedNotGeneratedExplanation": "Molimo generirajte novi seed.",
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
-        "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
+        "individualLetterCount": "Pritisnite još {{letterCount}} individualnih slova da bi ih učinili nasumičnim.",
+        "whatIsASeed": "Što je seed?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Gotovo!",
+        "openYourWallet": "Otvorite svoj novčanik",
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
