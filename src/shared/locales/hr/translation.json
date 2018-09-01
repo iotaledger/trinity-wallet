@@ -355,8 +355,8 @@
     "modeSelection": {
         "advanced": "Napredni",
         "standard": "Standardno",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Napredni način rada prikazat će više detaljnih tehničkih informacija.",
+        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom."
     },
     "settings": {
         "transferSending": "Slanje transakcije",
@@ -455,7 +455,7 @@
         "tools": "Alati"
     },
     "addCustomNode": {
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeCouldNotBeAdded": "Nije bilo moguće dodati prilagođeni node",
         "customNode": "Custom node",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
