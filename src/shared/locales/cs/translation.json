@@ -679,10 +679,10 @@
         "completeSetup": "Complete setup"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Oznámení",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
+        "typeConfirmations": "Informuj mě o potvrzení transakce",
+        "typeMessages": "Informuj mě o nulových transakcích",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
