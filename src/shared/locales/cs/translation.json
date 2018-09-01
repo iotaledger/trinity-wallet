@@ -139,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "broadcastError": "Nezdařilo se odeslat transakci",
+        "addressesAlreadySpentFrom": "Jedna nebo více adres již byla použita.",
         "problemSendingYourTransaction": "There was a problem sending your transaction.",
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -281,7 +281,7 @@
     "receive": {
         "yourAddress": "Vaše adresa",
         "qrOptions": "QR nastavení",
-        "shareQr": "Share QR code",
+        "shareQr": "Sdílet QR kód",
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
@@ -674,8 +674,8 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
+        "notLoggedIn": "Nejste přihlášen(a)",
+        "setupIncomplete": "Nastavení peněženky je neúplné",
         "completeSetup": "Dokončit nastavení"
     },
     "notifications": {
