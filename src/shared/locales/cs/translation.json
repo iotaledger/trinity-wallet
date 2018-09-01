@@ -100,7 +100,7 @@
         "transactionAlreadyConfirmed": "Transakce již byla potvrzena",
         "transactionAlreadyConfirmedExplanation": "Transakce, kterou se snažíte podpořit je již potvrzena.",
         "cannotSendToOwn": "Odesíláte na vstupní adresu",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Nemůžete odeslat na adresu, která je použita jako vstup v transakci.",
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitEllipses": "Prosím čekejte...",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
@@ -672,7 +672,7 @@
         "agree": "Souhlasím"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "System Tray - Ikona v oznamovací oblasti",
         "trayExplanation": "Poskytuje přehled zůstatků účtu a nedávné historie transakcí.",
         "notLoggedIn": "Nejste přihlášen(a)",
         "setupIncomplete": "Nastavení peněženky je neúplné",
