@@ -627,10 +627,10 @@
         "validatingReceiveAddress": "Provjera valjanosti adrese primatelja",
         "syncingAccount": "Sinkroniziranje računa",
         "preparingInputs": "Priprema inputa",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "preparingTransfers": "Priprema transakcija",
+        "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
+        "proofOfWork": "Završetak PoW-a",
+        "broadcasting": "Emitiranje"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nije bilo moguće izvršiti snapshot tranziciju",
@@ -647,11 +647,11 @@
         "attaching": "Pridodavanje adresa na Tangle."
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Uspješno automatsko popunjavanje",
+        "autofillExplanation": "Podaci transakcije uspješno automatski popunjeni iz linka."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "Imate najnoviju inačicu Trinity Desktop-a!",
         "newVersionAvailable": "Dostupna je nova inačica",
@@ -660,10 +660,10 @@
         "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje."
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Evidencija grešaka"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
+        "termsAndConditions": "Uvjeti korištenja",
         "accept": "Prihvaćam",
         "readAllToContinue": "Molimo pročitajte tekst u cijelosti"
     },
