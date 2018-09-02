@@ -429,7 +429,7 @@
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbroj, te </0><1>provjerite barem 3 puta</1><2> da li su točni.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Pomaknite do kraja"
     },
     "history": {
         "bundleHashCopied": "Hash paketa kopiran",
@@ -672,8 +672,8 @@
         "agree": "Slažem se"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Tray ikona",
+        "trayExplanation": "Pruža pregled stanja vaših računa te nedavnu povijest transakcija.",
         "notLoggedIn": "Niste prijavljeni",
         "setupIncomplete": "Postavljanje novčanika nedovršeno",
         "completeSetup": "Završi postavljanje"
@@ -686,7 +686,7 @@
         "multipleTx": "Primanje višestrukih transakcija na {{account}} u tijeku",
         "valueTx": "Primanje {{value}} na {{account}} u tijeku",
         "messageTx": "Primili ste poruku na {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "Dolazna transakcija od {{value}} na {{account}} je potvrđena",
+        "confirmedOut": "Odlazna transakcija od {{value}} s {{account}} je potvrđena"
     }
 }
