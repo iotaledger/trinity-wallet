@@ -509,21 +509,21 @@
         "discordInformation": "Više informacija o tome i pomoć potražite na #help kanalu službenog Discorda."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "<0></0> <1>Jeste li sigurni da želite izbrisati</1> <2></2> <3>{{accountName}}.</3>",
+        "yourSeedWillBeRemoved": "Vaš seed i povijest transakcija će biti uklonjeni.",
         "thisAction": "Ova radnja se ne može poništiti.",
         "enterPassword": "Unesite lozinku da bi izbrisali račun."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "outOfSync": "Da li vaša povijest transakcija izgleda nesinkronizirano?",
+        "pressToSync": "Pritisnite donji gumb kako bi sinkronizirali račun.",
+        "thisMayTake": "Ovo bi moglo potrajati. Vaš uređaj bi mogao djelovati usporeno.",
+        "doNotClose": "Imajte na umu da će minimiziranje aplikacije otkazati sinkronizaciju.",
+        "syncAccount": "Sinkroniziraj račun",
+        "syncingYourAccount": "Sinkroniziranje računa u tijeku."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name.",
+        "title": "Unesite seed i naziv računa.",
         "incorrectFormat": "Incorrect seed format",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
