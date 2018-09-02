@@ -602,31 +602,31 @@
         "mcap": "MCAP",
         "change": "Promjena (24h)",
         "volume": "Volumen (24h)",
-        "error": "Error fetching chart data"
+        "error": "Došlo je do greške u dohvatu podataka grafikona"
     },
     "rootDetection": {
         "warning": "UPOZORENJE",
         "appearsRooted": "Izgleda da je vaš uređaj rootan.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "securityRisk": "Ovo može predstavljati značajan rizik za sigurnost vašeg novčanika.",
+        "continueDepsiteRisk": "Želite li nastaviti unatoč tom riziku?"
     },
     "pow": {
         "feeless": "Potrebno je izvršiti kratak PoW (Proof of Work) kako bi poslali transakcije bez naknade u IOTA-i.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "localOrRemote": "PoW može biti izvršen lokalno na vašem uređaju ili proslijeđen udaljenom node-u.",
+        "local": "Lokalni",
+        "remote": "Udaljeni",
+        "powUpdated": "PoW postavke",
+        "powUpdatedExplanation": "Vaše PoW postavke su spremljene."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Postavke automatske promocije",
+        "autoPromotionUpdatedExplanation": "Vaše postavke automatske promocije su spremljene."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Provjera zdravlja node-a",
         "validatingReceiveAddress": "Provjera valjanosti adrese primatelja",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
+        "syncingAccount": "Sinkroniziranje računa",
+        "preparingInputs": "Priprema inputa",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
