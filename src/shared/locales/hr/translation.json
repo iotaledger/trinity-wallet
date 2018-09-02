@@ -524,11 +524,11 @@
     },
     "useExistingSeed": {
         "title": "Unesite seed i naziv računa.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Neispravan format seed-a",
+        "validSeedExplanation": "Valjani seed bi se trebao sastojati od 81 znaka i sadržavati samo velika slova A-Z ili broj 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
+        "enterPassword": "Unesite lozinku kako bi vidjeli svoj seed.",
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed"
     },
