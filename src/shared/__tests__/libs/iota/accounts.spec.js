@@ -9,6 +9,7 @@ import mockAccounts from '../../__samples__/accounts';
 
 describe('libs: iota/accounts', () => {
     let transactionObjects;
+
     before(() => {
         transactionObjects = [
             {
@@ -78,11 +79,11 @@ describe('libs: iota/accounts', () => {
         it('should mark input addresses as spent', () => {
             const accountState = mockAccounts.accountInfo[accountName];
             const inputAddress = 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW';
-            expect(accountState.addresses[inputAddress].spent).to.equal(false);
+            expect(accountState.addresses[inputAddress].spent.local).to.equal(false);
 
             const result = syncAccountOnValueTransactionFailure(transactionObjects, accountState);
 
-            expect(result.newState.addresses[inputAddress].spent).to.equal(true);
+            expect(result.newState.addresses[inputAddress].spent.local).to.equal(true);
         });
 
         it('should assign normalised transfer to existing transfers', () => {
@@ -146,21 +147,6 @@ describe('libs: iota/accounts', () => {
 
         before(() => {
             accountName = 'TEST';
-        });
-
-        it('should mark input addresses as spent', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                ...mockAccounts.unconfirmedBundleTails,
-                hashes: [],
-            };
-
-            const inputAddress = 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW';
-            expect(accountState.addresses[inputAddress].spent).to.equal(false);
-
-            const result = syncAccountOnSuccessfulRetryAttempt(accountName, transactionObjects, accountState);
-
-            expect(result.newState.addresses[inputAddress].spent).to.equal(true);
         });
 
         it('should merge normalised transfer to existing transfers', () => {
