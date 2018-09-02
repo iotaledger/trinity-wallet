@@ -501,12 +501,12 @@
         "billion": "Milijarda",
         "million": "Milijun",
         "thousand": "Tisuću",
-        "one": "One"
+        "one": "Jedna"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "cantSpendFullBalanceQuestion": "Zašto ne mogu potrošiti cijeli iznos?",
         "spentAddressExplanation": "Imate sredstva na jednoj ili više prethodno upotrijebljenih adresa. Ponovna upotreba već upotrijebljenih adresa je opasna kod IOTA-e, stoga ovaj novčanik ne podržava slanje s iste adrese više od jednom.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "discordInformation": "Više informacija o tome i pomoć potražite na #help kanalu službenog Discorda."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
