@@ -52,7 +52,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <categoryy android:name="android.intent.category.CATEGORY_OPENABLE" />
+                <category android:name="android.intent.category.CATEGORY_OPENABLE" />
                 <data android:scheme="file" />
                 <data android:mimeType="*/*" />
                 <data android:pathPattern=".*\\.kdbx" />
