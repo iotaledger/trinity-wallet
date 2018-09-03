@@ -296,7 +296,7 @@
         "saveYourSeed": "Sauvegarder votre seed",
         "seedCleared": "Seed effacée",
         "mostSecure": "Plus sûr",
-        "recommended": "Recommandé¬",
+        "recommended": "Recommandé",
         "leastSecure": "Moins sécurisé",
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
@@ -687,6 +687,6 @@
         "valueTx": "Vous avez reçu {{value}} sur {{account}}",
         "messageTx": "Vous avez reçu un message à {{account}}",
         "confirmedIn": "Réception de {{value}} sur {{account}} confirmée",
-        "confirmedOut": "Transaction de {{value}} depuis {{account}} confirmé"
+        "confirmedOut": "Envoi de {{value}} depuis {{account}} confirmé"
     }
 }
