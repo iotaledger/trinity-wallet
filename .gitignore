@@ -33,8 +33,6 @@ Pods/
 
 # Android/IntelliJ
 #
-./src/mobile/android/app/build/*
-./src/mobile/android/build/*
 build/
 .idea
 .gradle/
@@ -115,4 +113,3 @@ src/mobile/nodejs-assets/nodejs-project/sample-main.js
 src/mobile/nodejs-assets/build-native-modules*
 src/mobile/android/build/nodejs-native-assets-temp-build*
 src/mobile/android/build/nodejs-assets*
-
