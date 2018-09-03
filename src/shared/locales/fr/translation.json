@@ -653,11 +653,11 @@
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
-        "noUpdatesAvailableExplanation": "Vous avez la dernière version installé de Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Vous avez la dernière version de Trinity !",
         "newVersionAvailable": "Une nouvelle version est disponible",
-        "newVersionAvailableExplanation": "La nouvelle version <strong>Trinity</strong> <strong>{{version}}</strong> est disponible. Veuillez lire les détails de cette version attentivement et vérifier la source du téléchargement avant la mise à jour :",
+        "newVersionAvailableExplanation": "Une nouvelle version de Trinity est disponible. Vous voulez mettre à jour maintenant ?",
         "installUpdate": "Installer la mise à jour et redémarrer",
-        "installUpdateExplanation": "Téléchargement complet, Trinity va maintenant redémarrer pour installer la mise à jour."
+        "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour."
     },
     "notificationLog": {
         "errorLog": "Journal des erreurs"
@@ -665,7 +665,7 @@
     "terms": {
         "termsAndConditions": "Termes et conditions",
         "accept": "J'accepte",
-        "readAllToContinue": "Merci de lire complètement le texte"
+        "readAllToContinue": "Merci de lire le texte en entier"
     },
     "privacyPolicy": {
         "privacyPolicy": "Politique de confidentialité",
@@ -673,20 +673,20 @@
     },
     "tray": {
         "trayApplication": "Réduire dans la barre de tache",
-        "trayExplanation": "Donne un aperçu de vos soldes des comptes et l’historique des transactions récentes.",
+        "trayExplanation": "Donne un aperçu des soldes de vos comptes et de l’historique des transactions récentes.",
         "notLoggedIn": "Vous n'êtes pas connecté",
         "setupIncomplete": "Paramétrage du portefeuille incomplet",
         "completeSetup": "Configuration terminée"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Recevoir les notifications complètes du système à propos des nouvelles transactions.",
-        "typeConfirmations": "Me notifier à propos des confirmations",
+        "notificationExplanation": "Recevoir les notifications complètes du système pour les nouvelles transactions.",
+        "typeConfirmations": "Me notifier les confirmations",
         "typeMessages": "Me notifier à propos des transactions nulles",
-        "multipleTx": "Vous avez reçu plusieurs transactions sur {{account}}",
+        "multipleTx": "Réception de plusieurs transactions sur {{account}}",
         "valueTx": "Vous avez reçu {{value}} sur {{account}}",
         "messageTx": "Vous avez reçu un message à {{account}}",
-        "confirmedIn": "Transaction de {{value}} sur {{account}} confirmé",
+        "confirmedIn": "Réception de {{value}} sur {{account}} confirmée",
         "confirmedOut": "Transaction de {{value}} depuis {{account}} confirmé"
     }
 }
