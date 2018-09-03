@@ -23,7 +23,7 @@
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
-        "checksum": "Code de Vérification",
+        "checksum": "Code de vérification",
         "back": "Retour",
         "goBack": "Retour",
         "goBackStep": "Revenez une étape en arrière",
@@ -296,7 +296,7 @@
         "saveYourSeed": "Sauvegarder votre seed",
         "seedCleared": "Seed effacée",
         "mostSecure": "Plus sûr",
-        "recommended": "Recommandé",
+        "recommended": "Recommandé¬",
         "leastSecure": "Moins sécurisé",
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
@@ -356,7 +356,7 @@
         "advanced": "Avancé",
         "standard": "Standard",
         "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
-        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
+        "modesExplanation": "N'activez le mode Avancé que si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -584,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
-        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée derrière un mot de passe et n'est pas accessibles sans ce mot de passe.",
+        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'un mot de passe et n'est pas accessible sans ce mot de passe.",
         "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
