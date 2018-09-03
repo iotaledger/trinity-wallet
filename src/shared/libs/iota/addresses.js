@@ -381,7 +381,7 @@ export const markAddressesAsSpentSync = (transfers, addressData) => {
  *
  * @returns {array}
  */
-const filterSpentAddressesSync = (addresses, addressData) =>
+export const filterSpentAddressesSync = (addresses, addressData) =>
     filter(addresses, (address) => !get(addressData, `${address}.spent.local`));
 
 /**

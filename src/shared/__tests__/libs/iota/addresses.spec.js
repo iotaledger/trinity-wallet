@@ -1144,4 +1144,99 @@ describe('libs: iota/addresses', () => {
             });
         });
     });
+
+    describe('#filterSpentAddressesSync', () => {
+        it('should filter addresses marked spent locally', () => {
+            const addresses = ['A'.repeat(81), 'B'.repeat(81)];
+
+            const addressData = {
+                ['A'.repeat(81)]: { spent: { local: true, remote: true } },
+                ['B'.repeat(81)]: { spent: { local: false, remote: false } },
+                ['C'.repeat(81)]: { spent: { local: true, remote: false } },
+            };
+
+            const result = addressesUtils.filterSpentAddressesSync(addresses, addressData);
+            expect(result).to.eql(['B'.repeat(81)]);
+        });
+    });
+
+    describe('#getLatestAddress', () => {
+        it('should return address with highest index', () => {
+            const addressData = {
+                ['A'.repeat(81)]: { index: 20 },
+                ['B'.repeat(81)]: { index: 5 },
+                ['C'.repeat(81)]: { index: -30 },
+                ['D'.repeat(81)]: { index: 99 },
+                ['E'.repeat(81)]: { index: 1 },
+            };
+
+            const result = addressesUtils.getLatestAddress(addressData);
+            expect(result).to.equal('D'.repeat(81));
+        });
+    });
+
+    describe('#getLatestAddressData', () => {
+        it('should return address data with highest index', () => {
+            const addressData = {
+                ['A'.repeat(81)]: { index: 20 },
+                ['B'.repeat(81)]: { index: 5 },
+                ['C'.repeat(81)]: { index: -30 },
+                ['D'.repeat(81)]: { index: 99 },
+                ['E'.repeat(81)]: { index: 1 },
+            };
+
+            const result = addressesUtils.getLatestAddressData(addressData);
+            expect(result).to.eql({ index: 99 });
+        });
+    });
+
+    describe('#findSpendStatusesFromTransactionObjects', () => {
+        it('should return spend status true for addresses used as inputs', () => {
+            const addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
+            const transactionObjects = [
+                {
+                    address: 'A'.repeat(81),
+                    value: -1,
+                },
+                {
+                    address: 'B'.repeat(81),
+                    value: 0,
+                },
+                {
+                    address: 'B'.repeat(81),
+                    value: -1,
+                },
+                {
+                    address: 'C'.repeat(81),
+                    value: 0,
+                },
+            ];
+
+            const result = addressesUtils.findSpendStatusesFromTransactionObjects(addresses, transactionObjects);
+            expect(result).to.eql([true, true, false]);
+        });
+    });
+
+    describe('#findSpendStatusesFromNormalisedTransactions', () => {
+        it('should return spend status true for addresses used as inputs', () => {
+            const addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
+
+            const normalisedTransactions = [
+                {
+                    inputs: [{ address: 'A'.repeat(81), value: -1 }],
+                    outputs: [{ address: 'Z'.repeat(81), value: 1 }],
+                },
+                {
+                    inputs: [],
+                    outputs: [{ address: 'Z'.repeat(81), value: 0 }],
+                },
+            ];
+
+            const result = addressesUtils.findSpendStatusesFromNormalisedTransactions(
+                addresses,
+                normalisedTransactions,
+            );
+            expect(result).to.eql([true, false, false]);
+        });
+    });
 });
