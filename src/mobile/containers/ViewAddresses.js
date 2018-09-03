@@ -138,6 +138,9 @@ export class ViewAddresses extends Component {
     renderAddress(address) {
         const { theme } = this.props;
 
+        const { spent } = address;
+        const isSpent = spent.local || spent.remote;
+
         return (
             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 25 }}>
                 <TouchableOpacity
@@ -149,8 +152,8 @@ export class ViewAddresses extends Component {
                             numberOfLines={2}
                             style={[
                                 styles.addressText,
-                                { textDecorationLine: address.spent ? 'line-through' : 'none' },
-                                { color: address.spent ? '#B21C17' : theme.body.color },
+                                { textDecorationLine: isSpent ? 'line-through' : 'none' },
+                                { color: isSpent ? '#B21C17' : theme.body.color },
                             ]}
                         >
                             {address.address}
