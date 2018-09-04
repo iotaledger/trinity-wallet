@@ -24,14 +24,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
     },
-    iconBorder: {
-        borderRadius: width / 56,
-        borderWidth: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 28,
-        height: width / 28,
-    },
     iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -68,12 +60,9 @@ export default class SimpleTransactionRow extends PureComponent {
                     <View style={styles.iconContainer}>
                         <Icon
                             name={icon}
-                            size={width / 52}
+                            size={width / 30}
                             color={style.titleColor}
                             iconStyle={{ position: 'absolute' }}
-                        />
-                        <View
-                            style={[styles.iconBorder, { borderColor: style.defaultTextColor, position: 'absolute' }]}
                         />
                     </View>
                 </View>

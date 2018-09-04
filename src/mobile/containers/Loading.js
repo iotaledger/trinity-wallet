@@ -20,7 +20,6 @@ import {
 import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { Navigation } from 'react-native-navigation';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
@@ -206,46 +205,16 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, theme: { body, bar } } = this.props;
+        const { ready, firstUse, addingAdditionalAccount } = this.props;
         const isReady = !ready && newProps.ready;
+        if ((isReady && this.state.animationPartOneDone) || (isReady && (firstUse || addingAdditionalAccount))) {
+            this.launchHomeScreen();
+        }
+    }
 
-        if (isReady) {
-            KeepAwake.deactivate();
-            this.clearTimeouts();
-            // FIXME: A quick workaround to stop history refresh flash on iOS.
-            if (isAndroid) {
-                this.props.navigator.push({
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: bar.alt,
-                    },
-                    animated: false,
-                });
-                timer.clearInterval('inactivityTimer');
-            } else {
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'home',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                            topBarElevationShadowEnabled: false,
-                            screenBackgroundColor: body.bg,
-                            drawUnderStatusBar: true,
-                            statusBarColor: bar.bg,
-                        },
-                    },
-                    appStyle: {
-                        orientation: 'portrait',
-                        keepStyleAcrossPush: true,
-                    },
-                });
-            }
+    componentWillUpdate(newProps, newState) {
+        if (this.props.ready && newState.animationPartOneDone) {
+            this.launchHomeScreen();
         }
     }
 
@@ -260,22 +229,17 @@ class Loading extends Component {
     onChangeNodePress() {
         const { theme: { body } } = this.props;
         this.props.setLoginRoute('nodeSelection');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 
@@ -291,6 +255,30 @@ class Loading extends Component {
         timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
     }
 
+    /**
+     * Navigates to home screen
+     *
+     * @method launchHomeScreen
+     */
+    launchHomeScreen() {
+        const { theme: { body, bar } } = this.props;
+        KeepAwake.deactivate();
+        this.props.navigator.resetTo({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: bar.alt,
+            },
+            animated: false,
+        });
+        this.clearTimeouts();
+        this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
+    }
+
     playAnimationTwo() {
         this.setState({ animationPartOneDone: true });
         this.animation.play();
@@ -301,6 +289,7 @@ class Loading extends Component {
             clearTimeout(this.timeout);
         }
         timer.clearTimeout('animationTimeout');
+        timer.clearTimeout('inactivityTimer');
         timer.clearTimeout('waitTimeout');
     }
 

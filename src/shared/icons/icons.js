@@ -29,6 +29,7 @@ module.exports = {
     history: '🕐',
     user: '👽',
     plus: '🔹',
+    plusAlt: '➕',
     minus: '➖',
     cross: '╳',
     bookmark: '📖',

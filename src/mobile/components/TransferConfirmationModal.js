@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     },
     addressText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: GENERAL.fontSize4,
+        fontFamily: 'SourceCodePro-Medium',
+        fontSize: GENERAL.fontSize3,
     },
     iotaText: {
         backgroundColor: 'transparent',

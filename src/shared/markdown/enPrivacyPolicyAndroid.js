@@ -140,4 +140,9 @@ This Trinity Wallet App Privacy Policy may be amended or updated from time to ti
 ### **Questions**
 
 If you have any questions regarding this Privacy Policy, please contact us at [privacy@iota.org](mailto:privacy@iota.org).
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 `;

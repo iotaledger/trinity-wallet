@@ -12,7 +12,6 @@ import {
     Keyboard,
     KeyboardAvoidingView,
 } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -23,7 +22,7 @@ import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/act
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../utils/keychain';
-import { generatePasswordHash, getRandomBytes, getOldPasswordHash, hexStringToByte } from '../utils/crypto';
+import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
@@ -87,7 +86,9 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** @ignore */
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
@@ -125,12 +126,11 @@ class ForceChangePassword extends Component {
         const { newPassword, currentPassword } = this.state;
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
-        oldPwdHash = hexStringToByte(oldPwdHash);
-        const isValid = this.isValid();
-        const salt = await getRandomBytes(32);
+        oldPwdHash = hexToUint8(oldPwdHash);
+        const salt = await getSalt();
         const newPwdHash = await generatePasswordHash(newPassword, salt);
 
-        if (isValid) {
+        if (this.isNewPasswordValid()) {
             const throwError = (err) => {
                 if (err.message === 'Incorrect password') {
                     this.props.generateAlert(
@@ -145,7 +145,6 @@ class ForceChangePassword extends Component {
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         setPassword(newPwdHash);
-                        this.fallbackToInitialState();
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
                         timer.setTimeout(
@@ -165,7 +164,7 @@ class ForceChangePassword extends Component {
         return this.renderInvalidSubmissionAlerts();
     }
 
-    isValid() {
+    isNewPasswordValid() {
         const { newPassword, newPasswordReentry } = this.state;
         const score = zxcvbn(newPassword);
         return (
@@ -178,30 +177,17 @@ class ForceChangePassword extends Component {
 
     navigateToLogin() {
         const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
-        });
-    }
-
-    fallbackToInitialState() {
-        this.setState({
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            animated: false,
         });
     }
 
@@ -274,7 +260,7 @@ class ForceChangePassword extends Component {
                             text={
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>
-                                        With update 0.4.1, it is necessary to change your password before using Trinity.
+                                        With update 0.5.0, it is necessary to change your password before using Trinity.
                                         If your current password fulfils the password strength requirements then you may
                                         use your current password again.
                                     </Text>
@@ -376,7 +362,6 @@ class ForceChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.wallet.password,
     theme: state.settings.theme,
 });
 

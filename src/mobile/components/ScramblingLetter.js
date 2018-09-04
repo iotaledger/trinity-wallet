@@ -1,11 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
+import { isAndroid } from '../utils/device';
 
 const ScramblingLetter = (props) => {
     const { textStyle, index, scramble, letter, scramblingLetters } = props;
     return (
-        <Text style={[textStyle, { opacity: scramble ? 0.5 : 1 }]}>{scramble ? scramblingLetters[index] : letter}</Text>
+        <Text style={[textStyle, { opacity: scramble ? (isAndroid ? 0.2 : 0.5) : 1 }]}>
+            {scramble ? scramblingLetters[index] : letter}
+        </Text>
     );
 };
 

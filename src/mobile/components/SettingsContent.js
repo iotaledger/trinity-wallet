@@ -26,6 +26,7 @@ import ManualSyncComponent from '../containers/ManualSync';
 import ThemeCustomisation from '../containers/ThemeCustomisation';
 import SnapshotTransition from '../containers/SnapshotTransition';
 import SecuritySettings from '../containers/SecuritySettings';
+import SeedVaultSettings from '../containers/SeedVaultSettings';
 import About from '../containers/About';
 import { Icon } from '../theme/icons';
 import { width, height } from '../utils/dimensions';
@@ -54,6 +55,7 @@ const SETTINGS_COMPONENTS = {
     pow: ProofOfWork,
     autoPromotion: AutoPromotion,
     about: About,
+    exportSeedVault: SeedVaultSettings,
 };
 
 const SettingsContent = ({ component, ...props }) => {

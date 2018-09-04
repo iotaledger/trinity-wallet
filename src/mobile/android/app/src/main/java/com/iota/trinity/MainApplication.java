@@ -13,7 +13,6 @@ import org.reactnative.camera.RNCameraPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
-import com.rnfs.RNFSPackage;
 import com.christopherdro.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
@@ -32,6 +31,10 @@ import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
+import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
+import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
+import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
+import com.RNFetchBlob.RNFetchBlobPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,6 +65,8 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new ReactNativeDocumentPicker(),
+            new RNNodeJsMobilePackage(),
             new RNFastCryptoPackage(),
             new TranslucentModalReactPackage(),
             new FlagSecurePackage(),
@@ -70,7 +75,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new RNOSModule(),
             new RNPrintPackage(),
 	          new RNCameraPackage(),
-	          new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new KCKeepAwakePackage(),
             new KeychainPackage(),
@@ -87,7 +91,8 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new ShareSecurePackage(),
             new RNReactNativeHapticFeedbackPackage(),
             new RNSharePackage(),
-            new RNViewShotPackage()
+            new RNViewShotPackage(),
+            new RNFetchBlobPackage()
     );
   }
 

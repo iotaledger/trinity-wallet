@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
-import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { getLabelFromLocale } from 'iota-wallet-shared-modules/libs/i18n';
@@ -32,7 +31,9 @@ const styles = StyleSheet.create({
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-        /** @ignore */
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Currently selected application mode (Expert or Standard) */
         mode: PropTypes.string.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
@@ -50,15 +51,11 @@ export class MainSettings extends Component {
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
-
-        this.state = {
-            isModalActive: false,
-        };
-
         this.toggleModalDisplay = this.toggleModalDisplay.bind(this);
         this.logout = this.logout.bind(this);
     }
@@ -67,34 +64,34 @@ export class MainSettings extends Component {
         leaveNavigationBreadcrumb('MainSettings');
     }
 
+    /**
+     * Opens or closes modal
+     * @method toggleModalDisplay
+     */
     toggleModalDisplay() {
         this.props.toggleModalActivity();
-        this.setState({ isModalActive: !this.state.isModalActive });
     }
 
+    /**
+     * Clears temporary wallet data and navigates to login screen
+     * @method logout
+     */
     logout() {
         const { theme: { body } } = this.props;
-
+        this.props.toggleModalActivity();
         this.props.clearWalletData();
         this.props.setPassword({});
-
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
-                overrideBackPress: true,
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 
@@ -159,7 +156,7 @@ export class MainSettings extends Component {
     }
 
     render() {
-        const { theme } = this.props;
+        const { theme, isModalActive } = this.props;
 
         return (
             <View style={styles.container}>
@@ -174,7 +171,7 @@ export class MainSettings extends Component {
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.9}
                     style={styles.modal}
-                    isVisible={this.state.isModalActive}
+                    isVisible={isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
                     useNativeDriver={isAndroid ? true : false}
                     hideModalContentWhileAnimating
@@ -191,6 +188,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     themeName: state.settings.themeName,
     theme: state.settings.theme,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

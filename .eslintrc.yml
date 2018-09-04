@@ -50,7 +50,7 @@ rules:
     eqeqeq: 2
     key-spacing: 2
     keyword-spacing: 2
-    linebreak-style: [2, "unix"]
+    linebreak-style: [0, "unix"]
     no-alert: 2
     no-console: 1
     no-else-return: 1

@@ -120,7 +120,7 @@ class TermsAndConditions extends Component {
                 </View>
                 <ScrollView
                     onScroll={(e) => {
-                        let paddingToBottom = 20;
+                        let paddingToBottom = height / 35;
                         paddingToBottom += e.nativeEvent.layoutMeasurement.height;
 
                         if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
@@ -137,15 +137,17 @@ class TermsAndConditions extends Component {
                     </Markdown>
                 </ScrollView>
                 {this.state.hasReadTerms && (
-                    <Button
-                        onPress={() => this.onNextPress()}
-                        style={{
-                            wrapper: { backgroundColor: primary.color },
-                            children: { color: primary.body },
-                        }}
-                    >
-                        {t('accept')}
-                    </Button>
+                    <View style={{ position: 'absolute', bottom: 0 }}>
+                        <Button
+                            onPress={() => this.onNextPress()}
+                            style={{
+                                wrapper: { backgroundColor: primary.color },
+                                children: { color: primary.body },
+                            }}
+                        >
+                            {t('accept')}
+                        </Button>
+                    </View>
                 )}
             </View>
         );
