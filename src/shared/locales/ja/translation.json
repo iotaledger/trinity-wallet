@@ -60,6 +60,7 @@
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock キーが有効になっています",
         "syncInProgress": "同期中",
         "syncInProgressExplanation": "同期が完了するまでお待ちください。",
@@ -590,13 +591,16 @@
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
         "exportSuccess": "シード金庫を書き出しました",
         "exportSuccessExplanation": "暗号化されたシード（シード金庫）は正常に書き出されました。",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
         "importSeedVault": "シード金庫を読み込む",
         "dropSeedVaultHere": "シード金庫をここにドロップしてください",
         "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
-        "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。"
+        "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "時価総額",
@@ -652,13 +656,12 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
-        "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
         "noUpdatesAvailableExplanation": "最新バージョンを利用しています。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
         "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。アップデートする前に、リリースノートを注意深く読み、ダウンロード元をご確認ください：",
-        "downloadRelease": "リリースをダウンロード",
-        "skipUpdate": "更新をスキップ"
+        "installUpdate": "インストール、アップデート、リスタートを行う",
+        "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
