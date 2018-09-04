@@ -60,6 +60,7 @@
         "password": "Salasana",
         "unrecognisedPassword": "Tunnistamaton salasana",
         "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synkronointi käynnissä",
         "syncInProgressExplanation": "Odota, kunnes synkronointi on valmis.",
@@ -590,13 +591,16 @@
         "exportFailExplanation": "SeedVault-tiedoston viennissä ilmeni ongelmia. Varmista että sinulla on riittävät oikeudet ja tarpeeksi tilaa levyllä.",
         "exportSuccess": "SeedVault-tiedoston vienti onnistui",
         "exportSuccessExplanation": "Salattu seed-tiedostosi on tallennettu onnistuneesti.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
         "importSeedVault": "Tuo Seedvault-tiedosto",
         "dropSeedVaultHere": "Pudota SeedVault-tiedosto tähän",
         "enterPasswordExplanation": "Kirjoita salasanasi avataksesi SeedVault-tiedostosi",
         "noSeedFound": "SeedVault-tiedosto ei sisällä kelvolista seed-lukua",
         "noSeedFoundExplanation": "SeedVault-tiedosto on joko tyhjä tai sisältää seed-luvun virheellisessä muodossa.",
         "seedFileError": "SeedVault-tiedoston avaaminen epäonnistui",
-        "seedFileErrorExplanation": "SeedVault-tiedoston avaamisessa ilmeni ongelmia. Varmista että sinulla on oikea tiedosto, eikä se ole korruptoitunut."
+        "seedFileErrorExplanation": "SeedVault-tiedoston avaamisessa ilmeni ongelmia. Varmista että sinulla on oikea tiedosto, eikä se ole korruptoitunut.",
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "MARVO",

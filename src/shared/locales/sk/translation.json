@@ -60,6 +60,7 @@
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Prebieha synchronizácia",
         "syncInProgressExplanation": "Počkajte prosím, kým prebehne synchronizácia.",
@@ -590,13 +591,16 @@
         "exportFailExplanation": "Počas exportovania Vášho SeedVault nastal problém. Prosím, uistite sa, že máte povolenie na zápis súborov a dostatok miesta.",
         "exportSuccess": "SeedVault je exportovaný",
         "exportSuccessExplanation": "Váš kryptovaný seed súbor bol úspešne exportovaný.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
         "importSeedVault": "Importovať SeedVault",
         "dropSeedVaultHere": "Preneste SeedVault sem",
         "enterPasswordExplanation": "Na otvorenie SeedVault zadajte Vaše heslo",
         "noSeedFound": "SeedVault neobsahuje platný seed",
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
-        "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený."
+        "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
