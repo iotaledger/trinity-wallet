@@ -60,6 +60,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Feststelltaste ist aktiviert",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
@@ -590,13 +591,16 @@
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
         "exportSuccess": "SeedVault exportiert",
         "exportSuccessExplanation": "Deine verschlüsselte Datei wurde erfolgreich exportiert.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
         "importSeedVault": "SeedVault importieren",
         "dropSeedVaultHere": "SeedVault hierher ziehen",
         "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
-        "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist."
+        "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
