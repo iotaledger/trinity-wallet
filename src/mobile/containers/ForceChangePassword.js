@@ -260,7 +260,7 @@ class ForceChangePassword extends Component {
                             text={
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>
-                                        With update 0.4.1, it is necessary to change your password before using Trinity.
+                                        With update 0.5.0, it is necessary to change your password before using Trinity.
                                         If your current password fulfils the password strength requirements then you may
                                         use your current password again.
                                     </Text>
