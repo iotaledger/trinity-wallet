@@ -674,12 +674,12 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "您尚未登入",
+        "setupIncomplete": "錢包設定未完成",
+        "completeSetup": "設定完成"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "通知",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
