@@ -7,7 +7,7 @@
         "refresh": "重新整理",
         "balanceError": "餘額不足",
         "balanceErrorMessage": "您沒有足夠的 IOTA 完成本次交易。",
-        "totalBalance": "Total balance",
+        "totalBalance": "總餘額",
         "transferError": "交易錯誤",
         "transferErrorMessage": "交易傳送時發生錯誤，請再試一次。",
         "transferSent": "交易送出",
@@ -60,7 +60,7 @@
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "大寫鎖定已啟用",
         "syncInProgress": "同步處理中",
         "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
@@ -73,7 +73,7 @@
         "attachToTangleUnavailableExplanation": "你選擇的節點無法作為遠端工作量證明所使用。您可以在進階設定中變更節點或是將工作量證明設定為本機。",
         "attachToTangleUnavailableExplanationShort": "您所選的節點無法作為遠端工作量證明所使用。",
         "wallet": "錢包",
-        "all": "All",
+        "all": "全部",
         "sent": "已支出",
         "received": "已接收",
         "sending": "轉帳中",
@@ -99,8 +99,8 @@
         "noLongerValid": "您嘗試促進的交易組已經無效",
         "transactionAlreadyConfirmed": "交易已確認",
         "transactionAlreadyConfirmedExplanation": "您嘗試促進的交易已經確認完成。",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "轉帳到正在出金的地址",
+        "cannotSendToOwnExplanation": "您無法轉帳到交易中輸入作為出金的地址。",
         "pleaseWait": "請稍候",
         "pleaseWaitEllipses": "請稍後...",
         "pleaseWaitExplanation": "Trinity 正在執行其他功能，請稍後再試。",
@@ -124,7 +124,7 @@
         "seedThief": "如果有人取得您的種子碼，代表他們就可以偷走您的 IOTA。",
         "googlePlayServicesNotAvailable": "Google Play 服務無法使用",
         "couldNotVerifyDeviceIntegrity": "因為 Google Play 服務無法使用，而無法檢驗裝置完整性。",
-        "clear": "Clear",
+        "clear": "清除",
         "noNetworkConnection": "沒有網路連線",
         "noNetworkConnectionExplanation": "您的網路連線顯示為離線。",
         "spentAddressExplanation": "警告：資金位於已支出的地址",
@@ -139,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "無法廣播交易",
+        "addressesAlreadySpentFrom": "有一或多筆地址已經使用過。",
+        "problemSendingYourTransaction": "傳送您的交易時發生錯誤。",
+        "problemPerformingProofOfWork": "進行工作量證明時發生錯誤。",
+        "tryingAgainWithLocalPoW": "請改為本地端工作量證明再試一次。",
+        "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
+        "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -178,12 +178,12 @@
         "newPassword": "新密碼",
         "confirmPassword": "確認新密碼",
         "passwordTooWeak": "密碼過弱",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
+        "passwordTooWeakReason": "您的密碼強度太弱，請使用單字組合，並避免常見的詞語、名稱或日期。",
         "reasonRow": "直線狀的按鍵組合很容易猜測.",
         "reasonPattern": "格式太短的按鍵組合很容易猜測.",
         "reasonNames": "常見的名字和姓氏很容易猜測.",
         "reasonRepeats": "像「aaa」這樣的重複格式很容易猜測.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats2": "像「abcabc」這樣的重複格式只比「abc」難猜測一點而已。",
         "reasonSequence": "像「abc」或「54321」等一連串的格式很容易猜測.",
         "reasonYears": "近幾年的年份很容易猜測.",
         "reasonDates": "日期通常很容易猜測.",
@@ -296,12 +296,12 @@
         "saveYourSeed": "備份您的種子碼",
         "seedCleared": "種子碼已清除",
         "mostSecure": "最安全",
-        "recommended": "Recommended",
+        "recommended": "推薦",
         "leastSecure": "最不安全",
         "paperWallet": "紙錢包",
         "writeYourSeedDown": "寫下您的種子碼",
         "seedClearedExplanation": "為保您的安全，種子碼已從剪貼簿清除。",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
         "whatIsChecksum": "每個種子碼會有相對應 3 字元的檢查碼",
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
         "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "請不要複製貼上您的種子碼",
+        "clipboardWarningExplanation": "警告：為了您的安全複製貼上已停用。"
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -353,10 +353,10 @@
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "進階",
         "standard": "標準",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "進階模式會顯示更多詳細技術資訊。",
+        "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用進階模式，否則您可能反而會一頭霧水。"
     },
     "settings": {
         "transferSending": "傳送交易",
@@ -411,7 +411,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
-        "reset": "Reset"
+        "reset": "重置"
     },
     "walletSetup": {
         "creatingSeed": "產生種子碼",
@@ -452,7 +452,7 @@
         "editAccountName": "編輯帳戶名稱",
         "deleteAccount": "刪除帳戶",
         "addNewAccount": "新增帳戶",
-        "tools": "Tools"
+        "tools": "工具"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
@@ -584,7 +584,7 @@
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault 是份能夠安全地保存種子碼的加密檔案。種子碼透過輸入的密碼加密，而沒有密碼的話也就無法取得。",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -656,16 +656,16 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "有新版本可用",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "安裝更新並重啟",
+        "installUpdateExplanation": "下載完成，Trinity 將會重啟並安裝更新。"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "錯誤日誌"
     },
     "terms": {
         "termsAndConditions": "使用條款",
         "accept": "我接受",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "請閱讀全文"
     },
     "privacyPolicy": {
         "privacyPolicy": "隱私權政策",
@@ -674,12 +674,12 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "您尚未登入",
+        "setupIncomplete": "錢包設定未完成",
+        "completeSetup": "設定完成"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "通知",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",

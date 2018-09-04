@@ -33,7 +33,7 @@
         "apply": "Toepassen",
         "save": "Opslaan",
         "close": "Sluit",
-        "export": "Export",
+        "export": "Exporteer",
         "import": "Importeren",
         "continue": "Doorgaan",
         "enable": "Inschakelen",
@@ -356,7 +356,7 @@
         "advanced": "Geavanceerd",
         "standard": "Standaard",
         "advancedModeExplanation": "Geavanceerde modus toont meer gedetailleerde technische informatie.",
-        "modesExplanation": "Schakel geavanceerde modus alleen in als je bekend bent met IOTA. Het kan anders verwarrend zijn."
+        "modesExplanation": "Schakel geavanceerde modus alleen in als u bekend bent met IOTA. Het kan anders verwarrend zijn."
     },
     "settings": {
         "transferSending": "Transactie in behandeling",
@@ -417,10 +417,10 @@
         "creatingSeed": "Seed aan het maken",
         "okay": "Oke. Laten we uw portemonnee instellen!",
         "doYouNeedASeed": "Wilt u een nieuwe seed maken?",
-        "seedExplanation": "Je IOTA seed is je hoofdsleutel tot je munten. Het is 81 karakters lang, en gebruikt alleen de letters A-Z of het nummer 9.",
+        "seedExplanation": "Uw IOTA seed is de hoofdsleutel tot uw munten. Het is 81 karakters lang, en gebruikt alleen de letters A-Z of het nummer 9.",
         "noIHaveOne": "Nee, ik heb er een",
         "yesINeedASeed": "Ja, ik heb een seed nodig",
-        "explanation": "<0><0>Je kan het gebruiken om je munten vanuit </0><1>iedere portemonnee te benaderen</1><2>, op</2><3> ieder apparaat</3></0>",
+        "explanation": "<0><0>U kunt het gebruiken om uw munten vanuit </0><1>iedere portemonnee te benaderen</1><2>, op</2><3> ieder apparaat</3></0>",
         "loseSeed": "Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw seed veilig."
     },
@@ -584,19 +584,19 @@
     },
     "seedVault": {
         "exportSeedVault": "Seedkluis exporteren",
-        "seedVaultExplanation": "Een Seedkluis is een versleuteld bestand om je seed veilig op te slaan. de seed is versleuteld met een wachtwoord en kan niet gebruikt worden zondat dat wachtwoord.",
-        "seedVaultWarning": "Zorg ervoor dat je het bestand op meerdere locaties backupped (bijvoorbeeld: harde schijf, cloud, USB). Raak je dit bestand kwijt, en heb je je je seed niet ergens opgeslagen, ben je je IOTA kwijt.",
+        "seedVaultExplanation": "Een Seedkluis is een versleuteld bestand om uw seed veilig op te slaan. De seed is versleuteld met een wachtwoord en kan niet gebruikt worden zonder dat wachtwoord.",
+        "seedVaultWarning": "Zorg ervoor dat u het bestand op meerdere locaties backupt (bijvoorbeeld: harde schijf, cloud, USB). Raakt u dit bestand kwijt en heeft u uw seed niet ergens opgeslagen, bent u uw IOTA kwijt.",
         "exportFail": "Exporteren van Seedkluis mislukt",
-        "exportFailExplanation": "Er was een probleem met het exporteren van de Seedkluis. Zorg ervoor dat je de juiste bevoegdheden en genoeg vrije ruimte hebt.",
+        "exportFailExplanation": "Er was een probleem met het exporteren van de Seedkluis. Zorg ervoor dat u de juiste bevoegdheden en genoeg vrije ruimte hebt.",
         "exportSuccess": "Seedkluis geëxporteerd",
-        "exportSuccessExplanation": "Je versleutelde seedbestand is met succes geëxporteerd.",
-        "importSeedVault": "Seedkluis impoteren",
+        "exportSuccessExplanation": "Uw versleutelde seedbestand is met succes geëxporteerd.",
+        "importSeedVault": "Seedkluis importeren",
         "dropSeedVaultHere": "Zet Seedkluis hier neer",
-        "enterPasswordExplanation": "Voer je wachtwoord in om de Seedkluis te openen",
+        "enterPasswordExplanation": "Voer uw wachtwoord in om de Seedkluis te openen",
         "noSeedFound": "Seedkluis bevat geen geldige seed",
         "noSeedFoundExplanation": "De Seedkluis is leeg, of heeft een seed in een ongeldig formaat.",
         "seedFileError": "Kan Seedkluis niet openen",
-        "seedFileErrorExplanation": "Er was een probleem tijdens het openen van de Seedkluis. Als je het juiste bestand hebt gekozen, kan het zijn dat deze corrupt is."
+        "seedFileErrorExplanation": "Er was een probleem tijdens het openen van de Seedkluis. Als u het juiste bestand hebt gekozen, kan het zijn dat dit corrupt is."
     },
     "chart": {
         "mcap": "MCAP",
@@ -673,8 +673,8 @@
     },
     "tray": {
         "trayApplication": "Systeemvak applicatie",
-        "trayExplanation": "Overzicht van je saldo en recente transactie geschiedenis.",
-        "notLoggedIn": "Je bent niet ingelogd",
+        "trayExplanation": "Overzicht van uw saldo en recente transactie geschiedenis.",
+        "notLoggedIn": "U bent niet ingelogd",
         "setupIncomplete": "Portomonnee setup onvolledig",
         "completeSetup": "Voltooi setup"
     },
@@ -685,7 +685,7 @@
         "typeMessages": "Informeer mij over nul-waarde transacties",
         "multipleTx": "Meerdere transacties ontvangen op {{account}}",
         "valueTx": "Ontvangst van {{value}} op {{account}}",
-        "messageTx": "Je hebt een bericht op {{account}}",
+        "messageTx": "U heeft een bericht op {{account}}",
         "confirmedIn": "Inkomende {{value}} op {{account}} is bevestigd",
         "confirmedOut": "Uitgaande {{value}} van {{account}} is bevestigd"
     }

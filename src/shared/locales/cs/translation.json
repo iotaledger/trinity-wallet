@@ -100,7 +100,7 @@
         "transactionAlreadyConfirmed": "Transakce již byla potvrzena",
         "transactionAlreadyConfirmedExplanation": "Transakce, kterou se snažíte podpořit je již potvrzena.",
         "cannotSendToOwn": "Odesíláte na vstupní adresu",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Nemůžete odeslat na adresu, která je použita jako vstup v transakci.",
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitEllipses": "Prosím čekejte...",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
@@ -139,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Nezdařilo se odeslat transakci",
+        "addressesAlreadySpentFrom": "Jedna nebo více adres již byla použita.",
+        "problemSendingYourTransaction": "Při odesílání transakce došlo k chybě.",
+        "problemPerformingProofOfWork": "Při provádění proof of work došlo k chybě.",
+        "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
+        "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
+        "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -245,7 +245,7 @@
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
         "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "Biometrické přihlášení je zakázané při prvním načítání aplikace pro Vaší bezpečnost. Když budete při používání Trinity odhlášeni z důvodu nečinnosti, poté se můžete přihlásit zpět pomocí biometrického ověření."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
@@ -279,9 +279,9 @@
         "printerCheckbox": "Nebudu tisknout na veřejné tiskárně"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Vaše adresa",
+        "qrOptions": "QR nastavení",
+        "shareQr": "Sdílet QR kód",
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
@@ -353,10 +353,10 @@
         "youCanAdd": "Můžete zadat více Seedů v menu Nastavení."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Pokočilý",
         "standard": "Výchozí",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Pokročilý režim zobrazí podrobnější technické informace.",
+        "modesExplanation": "Pokročilý režim povolte, pouze pokud jste zkušený uživatel IOTA. Jinak to pro Vás může být matoucí."
     },
     "settings": {
         "transferSending": "Odesílání transakce",
@@ -371,7 +371,7 @@
         "addNewSeed": "Přidat nový Seed",
         "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
-        "advanced": "Pokročilá nastavení",
+        "advanced": "Pokročilé nastavení",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
         "syncingComplete": "Synchronizace dokončena",
@@ -411,7 +411,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
-        "reset": "Reset"
+        "reset": "Resetovat"
     },
     "walletSetup": {
         "creatingSeed": "Vytváření Seedu",
@@ -443,7 +443,7 @@
         "send": "Odeslat",
         "receive": "Příjem",
         "empty": "Prázdné",
-        "retrying": "Retrying",
+        "retrying": "Opakování",
         "yesterday": "Včera"
     },
     "accountManagement": {
@@ -452,17 +452,17 @@
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
         "addNewAccount": "Přidat nový účet",
-        "tools": "Tools"
+        "tools": "Nástroje"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
         "customNode": "Vlastní Node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Odebrat vlastní Node",
         "invalidNodeResponse": "Node vrátil neplatnou odpověď",
         "add": "Přidat",
         "nodeFieldEmpty": "Textové pole je prázdné",
         "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Zadejte prosím platnou adresu URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -572,7 +572,7 @@
         "emptyCodeExplanation": "Prosím opakujte zadání kódu.",
         "keyCopied": "Klíč zkopírován do schránky",
         "keyCopiedExplanation": "Váš 2FA klíč byl zkopírován do schránky.",
-        "addKey": "Přidat tento klíč do Vaší 2FA aplikace",
+        "addKey": "Přidejte tento klíč do Vaší 2FA aplikace",
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
         "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvoufaktorovou autentifikaci 2FA.",
@@ -656,8 +656,8 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Nainstalujte aktualizaci a restartujte",
+        "installUpdateExplanation": "Stahování bylo dokončeno, Trinity restartuje a nainstaluje aktualizaci."
     },
     "notificationLog": {
         "errorLog": "Error log"
@@ -665,28 +665,28 @@
     "terms": {
         "termsAndConditions": "Obchodní podmínky",
         "accept": "Souhlasím",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Přečtěte si prosím celý text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobních údajů",
         "agree": "Souhlasím"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "System Tray - Ikona v oznamovací oblasti",
+        "trayExplanation": "Poskytuje přehled zůstatků účtu a nedávné historie transakcí.",
+        "notLoggedIn": "Nejste přihlášen(a)",
+        "setupIncomplete": "Nastavení peněženky je neúplné",
+        "completeSetup": "Dokončit nastavení"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "Oznámení",
+        "notificationExplanation": "Dostávat systémové upozornění o nových transakcí.",
+        "typeConfirmations": "Informuj mě o potvrzení transakce",
+        "typeMessages": "Informuj mě o nulových transakcích",
+        "multipleTx": "Přijímání více transakcí na {{account}}",
+        "valueTx": "Přijímání {{value}} na {{account}}",
+        "messageTx": "Dostali jste zprávu pro {{account}}",
+        "confirmedIn": "Byla potvrzena příchozí {{value}} pro {{account}}",
+        "confirmedOut": "Byla potvrzena odchozí {{value}} pro {{account}}"
     }
 }
