@@ -50,13 +50,12 @@ const launch = (store) => {
     // FIXME: Temporarily needed for password migration
     const updatedState = store.getState();
     const navigateToForceChangePassword =
-        updatedState.settings.versions.version === '0.4.1' && !updatedState.settings.completedForcedPasswordUpdate;
+        updatedState.settings.versions.version === '0.5.0' && !updatedState.settings.completedForcedPasswordUpdate;
 
     // Select initial screen
     const initialScreen = state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'home'
+        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
-
     renderInitialScreen(initialScreen);
 };
 
