@@ -60,6 +60,7 @@
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "캡스 락 켜짐",
         "syncInProgress": "동기화 진행 중",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
@@ -590,13 +591,16 @@
         "exportFailExplanation": "SeedVault를 내보내는 도중 문제가 발생하였습니다. 적절한 권한과 충분한 저장 공간이 있는지 다시 확인하세요.",
         "exportSuccess": "SeedVault 내보냄",
         "exportSuccessExplanation": "암호화된 시드 파일을 내보내는 데 성공했습니다.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
         "importSeedVault": "SeedValut 가져오기",
         "dropSeedVaultHere": "SeedVault를 여기에 끌어다 놓으세요",
         "enterPasswordExplanation": "SeedVault를 열기 위해 비밀번호를 입력하세요",
         "noSeedFound": "SeedVault 내 유효한 시드 없음",
         "noSeedFoundExplanation": "SeedVault가 비어있거나 시드가 유효하지 않은 형식으로 저장되어 있습니다.",
         "seedFileError": "SeedVault 열기 실패함",
-        "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다."
+        "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다.",
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "시가총액",
