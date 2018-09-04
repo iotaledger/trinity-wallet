@@ -39,6 +39,7 @@ import {
     syncAddresses,
     accumulateBalance,
     formatAddressData,
+    findSpendStatusesFromTransactionObjects,
 } from './addresses';
 import Errors from '../errors';
 import { EMPTY_HASH_TRYTES } from './utils';
@@ -136,6 +137,11 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
         .then((transactionObjects) => {
             cached.transactionObjects = transactionObjects;
 
+            // Get spent statuses of addresses from transaction objects
+            const spendStatuses = findSpendStatusesFromTransactionObjects(data.addresses, cached.transactionObjects);
+
+            data.wereSpent = map(data.wereSpent, (status, idx) => ({ ...status, local: spendStatuses[idx] }));
+
             each(transactionObjects, (tx) => {
                 if (tx.currentIndex === 0) {
                     // Keep track of all tail transactions to check confirmations
@@ -177,7 +183,7 @@ export const syncAccount = (provider) => (existingAccountState, seed, genFn, not
     const rescanAddresses = isString(seed);
 
     return (rescanAddresses
-        ? syncAddresses(provider)(seed, thisStateCopy.addresses, genFn)
+        ? syncAddresses(provider)(seed, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx), genFn)
         : Promise.resolve(thisStateCopy.addresses)
     )
         .then((latestAddressData) => {
@@ -258,8 +264,14 @@ export const syncAccount = (provider) => (existingAccountState, seed, genFn, not
                 );
             }
 
-            // Gets latest address data from ledger
-            return getAddressDataAndFormatBalance(provider)(keys(thisStateCopy.addresses));
+            const addresses = keys(thisStateCopy.addresses);
+            const keyIndexes = map(addresses, (address) => thisStateCopy.addresses[address].index);
+
+            return getAddressDataAndFormatBalance(provider)(
+                addresses,
+                map(thisStateCopy.transfers, (tx) => tx),
+                keyIndexes,
+            );
         })
         .then(({ addresses, balance }) => {
             thisStateCopy.addresses = addresses;
@@ -322,7 +334,7 @@ export const syncAccountAfterSpending = (provider) => (
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
-    return syncAddresses(provider)(seed, addressData, genFn).then((newAddressData) => {
+    return syncAddresses(provider)(seed, addressData, map(transfers, (tx) => tx), genFn).then((newAddressData) => {
         const newState = {
             ...accountState,
             transfers,
@@ -470,13 +482,6 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
     const bundle = get(transaction, '[0].bundle');
 
     const transfers = merge({}, accountState.transfers, { [bundle]: newNormalisedTransfer });
-
-    // Currently we solely rely on wereAddressesSpentFrom and since this failed transaction
-    // was never broadcast, the addresses would be marked false
-    // The transaction would still stop spending from these addresses because during input
-    // selection, local transaction history is also checked.
-    // FIXME: After using a permanent local address status, this would be unnecessary
-    const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(newNormalisedTransfer, accountState.addresses);
 
     const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
@@ -493,7 +498,6 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
         ...accountState,
         unconfirmedBundleTails,
         transfers,
-        addresses: addressData,
         hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
     };
 

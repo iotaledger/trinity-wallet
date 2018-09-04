@@ -409,17 +409,18 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                         return promise.then((result) => {
                             dispatch(setActiveStepIndex(index));
 
+                            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+
                             return attachAndFormatAddress()(
                                 address,
                                 index,
                                 relevantBalances[index],
                                 seed,
+                                map(existingAccountState.transfers, (tx) => tx),
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
                             )
                                 .then(({ addressData, transfer }) => {
-                                    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-
                                     const { newState } = syncAccountDuringSnapshotTransition(
                                         transfer,
                                         addressData,

@@ -407,6 +407,8 @@ describe('actions: transfers', () => {
                         .stub(accountsUtils, 'syncAccountAfterSpending')
                         .returns(() => Promise.resolve({}));
 
+                    const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
+
                     const store = mockStore({ accounts });
 
                     return store
@@ -430,6 +432,7 @@ describe('actions: transfers', () => {
                             ).to.equal(9);
 
                             syncAccountAfterSpending.restore();
+                            syncAccount.restore();
                             getUnspentInputs.restore();
                             prepareTransfers.restore();
                             wereAddressesSpentFrom.restore();
@@ -444,6 +447,7 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
+                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
                         const store = mockStore({ accounts });
 
@@ -466,6 +470,7 @@ describe('actions: transfers', () => {
 
                                 wereAddressesSpentFrom.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
+                                accountsUtils.syncAccount.restore();
                             });
                     });
                 });
@@ -490,6 +495,7 @@ describe('actions: transfers', () => {
                             }),
                         );
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
+                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
                         return store
                             .dispatch(
@@ -511,6 +517,7 @@ describe('actions: transfers', () => {
                                 wereAddressesSpentFrom.restore();
                                 inputUtils.getUnspentInputs.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
+                                accountsUtils.syncAccount.restore();
                             });
                     });
                 });
@@ -537,6 +544,7 @@ describe('actions: transfers', () => {
                             }),
                         );
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
+                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
                         return store
                             .dispatch(
@@ -560,6 +568,7 @@ describe('actions: transfers', () => {
                                 wereAddressesSpentFrom.restore();
                                 inputUtils.getUnspentInputs.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
+                                accountsUtils.syncAccount.restore();
                             });
                     });
                 });
@@ -589,6 +598,7 @@ describe('actions: transfers', () => {
                             }),
                         );
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
+                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
                         return store
                             .dispatch(
@@ -612,6 +622,7 @@ describe('actions: transfers', () => {
                                 wereAddressesSpentFrom.restore();
                                 inputUtils.getUnspentInputs.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
+                                accountsUtils.syncAccount.restore();
                             });
                     });
                 });

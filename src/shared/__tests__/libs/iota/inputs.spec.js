@@ -1,13 +1,8 @@
+import merge from 'lodash/merge';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import {
-    prepareInputs,
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
-    getSpentAddressesFromTransactions,
-} from '../../../libs/iota/inputs';
+import { prepareInputs, getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
-import * as mockTransactions from '../../__samples__/transactions';
 
 describe('libs: iota/inputs', () => {
     before(() => {
@@ -211,22 +206,34 @@ describe('libs: iota/inputs', () => {
         const addressData = {
             ['A'.repeat(81)]: {
                 balance: 0,
-                spent: true,
+                spent: {
+                    local: true,
+                    remote: true,
+                },
                 index: 0,
             },
             ['B'.repeat(81)]: {
                 balance: 1,
-                spent: false,
+                spent: {
+                    local: true,
+                    remote: true,
+                },
                 index: 1,
             },
             ['C'.repeat(81)]: {
                 balance: 4,
-                spent: false,
+                spent: {
+                    local: false,
+                    remote: false,
+                },
                 index: 2,
             },
             ['D'.repeat(81)]: {
                 balance: 10,
-                spent: true,
+                spent: {
+                    local: false,
+                    remote: false,
+                },
                 index: 3,
             },
         };
@@ -237,25 +244,29 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
 
-                return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(
+                    merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
+                    [],
+                    [],
+                    1,
+                    13,
+                    null,
+                ).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
-                            address:
-                                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+                            address: 'B'.repeat(81),
                             balance: 1,
                             keyIndex: 1,
                             security: 2,
                         },
                         {
-                            address:
-                                'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+                            address: 'C'.repeat(81),
                             balance: 4,
                             keyIndex: 2,
                             security: 2,
                         },
                         {
-                            address:
-                                'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD',
+                            address: 'D'.repeat(81),
                             balance: 10,
                             keyIndex: 3,
                             security: 2,
@@ -267,14 +278,20 @@ describe('libs: iota/inputs', () => {
             });
         });
 
-        describe('when any of the address is spent', () => {
+        describe('when address is marked spent locally', () => {
             it('should omit address from the final inputs', () => {
                 const wereAddressesSpentFrom = sinon
                     .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, true, false]);
+                    .yields(null, [false, false, false]);
 
-                return getUnspentInputs()(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
+                        {
+                            address: 'C'.repeat(81),
+                            balance: 4,
+                            keyIndex: 2,
+                            security: 2,
+                        },
                         {
                             address: 'D'.repeat(81),
                             balance: 10,
@@ -290,12 +307,125 @@ describe('libs: iota/inputs', () => {
             it('should keep the spent address in "spentAddresses"', () => {
                 const wereAddressesSpentFrom = sinon
                     .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, true, false]);
+                    .yields(null, [false, false, false]);
 
-                return getUnspentInputs()(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
-                    expect(inputs.spentAddresses).to.eql(['B'.repeat(81), 'C'.repeat(81)]);
+                return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
+                    expect(inputs.spentAddresses).to.eql(['B'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
+                });
+            });
+        });
+
+        describe('when address is marked unspent locally', () => {
+            describe('when address is used as an input in local transactions history', () => {
+                it('should omit address from the final inputs', () => {
+                    const wereAddressesSpentFrom = sinon
+                        .stub(iota.api, 'wereAddressesSpentFrom')
+                        .yields(null, [false, false, false]);
+
+                    return getUnspentInputs()(
+                        merge({}, addressData, {
+                            ['B'.repeat(81)]: {
+                                spent: { local: false },
+                            },
+                        }),
+                        [{ inputs: [{ address: 'B'.repeat(81) }] }],
+                        [],
+                        1,
+                        13,
+                        null,
+                    ).then((inputs) => {
+                        expect(inputs.inputs).to.eql([
+                            {
+                                address: 'C'.repeat(81),
+                                balance: 4,
+                                keyIndex: 2,
+                                security: 2,
+                            },
+                            {
+                                address: 'D'.repeat(81),
+                                balance: 10,
+                                keyIndex: 3,
+                                security: 2,
+                            },
+                        ]);
+
+                        wereAddressesSpentFrom.restore();
+                    });
+                });
+
+                it('should keep the spent address in "spentAddresses"', () => {
+                    const wereAddressesSpentFrom = sinon
+                        .stub(iota.api, 'wereAddressesSpentFrom')
+                        .yields(null, [false, false, false]);
+
+                    return getUnspentInputs()(
+                        merge({}, addressData, {
+                            ['B'.repeat(81)]: {
+                                spent: { local: false },
+                            },
+                        }),
+                        [{ inputs: [{ address: 'B'.repeat(81) }] }],
+                        [],
+                        1,
+                        13,
+                        null,
+                    ).then((inputs) => {
+                        expect(inputs.spentAddresses).to.eql(['B'.repeat(81)]);
+
+                        wereAddressesSpentFrom.restore();
+                    });
+                });
+            });
+
+            describe('when address is not used as an input in local transactions history', () => {
+                describe('when wereAddressesSpentFrom resolves address as spent', () => {
+                    it('should omit address from the final inputs', () => {
+                        const wereAddressesSpentFrom = sinon
+                            .stub(iota.api, 'wereAddressesSpentFrom')
+                            .yields(null, [true, true, true]);
+
+                        return getUnspentInputs()(
+                            merge({}, addressData, {
+                                ['B'.repeat(81)]: {
+                                    spent: { local: false },
+                                },
+                            }),
+                            [],
+                            [],
+                            1,
+                            13,
+                            null,
+                        ).then((inputs) => {
+                            expect(inputs.inputs).to.eql([]);
+
+                            wereAddressesSpentFrom.restore();
+                        });
+                    });
+
+                    it('should keep the spent address in "spentAddresses"', () => {
+                        const wereAddressesSpentFrom = sinon
+                            .stub(iota.api, 'wereAddressesSpentFrom')
+                            .yields(null, [true, true, true]);
+
+                        return getUnspentInputs()(
+                            merge({}, addressData, {
+                                ['B'.repeat(81)]: {
+                                    spent: { local: false },
+                                },
+                            }),
+                            [],
+                            [],
+                            1,
+                            13,
+                            null,
+                        ).then((inputs) => {
+                            expect(inputs.spentAddresses).to.eql(['B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)]);
+
+                            wereAddressesSpentFrom.restore();
+                        });
+                    });
                 });
             });
         });
@@ -305,6 +435,7 @@ describe('libs: iota/inputs', () => {
                 const wereAddressesSpentFrom = sinon
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
+
                 const pendingTransfers = [
                     {
                         inputs: [{ address: 'E'.repeat(81), value: -5 }],
@@ -312,7 +443,18 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs()(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(
+                    merge({}, addressData, {
+                        ['B'.repeat(81)]: {
+                            spent: { local: false },
+                        },
+                    }),
+                    [],
+                    pendingTransfers,
+                    1,
+                    13,
+                    null,
+                ).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address: 'B'.repeat(81),
@@ -343,21 +485,19 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs()(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(
+                    merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
+                    [],
+                    pendingTransfers,
+                    1,
+                    13,
+                    null,
+                ).then((inputs) => {
                     expect(inputs.addressesWithIncomingTransfers).to.eql(['C'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
                 });
             });
-        });
-    });
-
-    describe('#getSpentAddressesFromTransactions', () => {
-        it('should return addresses used as inputs', () => {
-            expect(getSpentAddressesFromTransactions(mockTransactions.normalizedBundles)).to.eql([
-                'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
-                'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
-            ]);
         });
     });
 });

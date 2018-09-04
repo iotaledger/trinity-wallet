@@ -6,31 +6,46 @@ export default {
                     balance: 0,
                     index: 0,
                     checksum: 'DARUNYEBC',
-                    spent: true,
+                    spent: {
+                        local: true,
+                        remote: true,
+                    },
                 },
                 KHTRKDYXLOYYZIYLKVIJGEYINCNEAVHDKTA9AHL9QHBNNNUCDEDZMPDI9MSMQZKHSUYOIGFAZEGPUHNSX: {
                     balance: 0,
                     index: 1,
                     checksum: 'AWRTCFFSY',
-                    spent: true,
+                    spent: {
+                        local: false,
+                        remote: false,
+                    },
                 },
                 OUZMDUNWHWWEEGAYDBOYLDREXOH9SCPRSKOXFJKISDBXAFLZBJNDSWTEQM9CKEQ9AG9VPGBFFQRMFFGND: {
                     balance: 0,
                     index: 2,
                     checksum: 'XGUUCJ9WX',
-                    spent: false,
+                    spent: {
+                        local: false,
+                        remote: false,
+                    },
                 },
                 MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW: {
                     balance: 10,
                     index: 3,
                     checksum: 'GDMMKORSW',
-                    spent: false,
+                    spent: {
+                        local: false,
+                        remote: false,
+                    },
                 },
                 NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW: {
                     balance: 100,
                     index: 4,
                     checksum: 'WSWWTDSVX',
-                    spent: false,
+                    spent: {
+                        local: false,
+                        remote: false,
+                    },
                 },
             },
             transfers: {
