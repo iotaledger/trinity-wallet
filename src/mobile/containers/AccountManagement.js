@@ -67,7 +67,7 @@ class AccountManagement extends Component {
             { name: t('viewAddresses'), icon: 'addresses', function: () => this.props.setSetting('viewAddresses') },
             { name: t('editAccountName'), icon: 'edit', function: () => this.props.setSetting('editAccountName') },
             { name: t('deleteAccount'), icon: 'trash', function: () => this.deleteAccount() },
-            { name: t('addNewAccount'), icon: 'plus', function: () => this.props.setSetting('addNewAccount') },
+            { name: t('addNewAccount'), icon: 'plusAlt', function: () => this.props.setSetting('addNewAccount') },
             { name: 'separator' },
             { name: t('viewSeed'), icon: 'eye', function: () => this.props.setSetting('viewSeed') },
             {

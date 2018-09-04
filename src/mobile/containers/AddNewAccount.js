@@ -75,7 +75,7 @@ class AddNewAccount extends Component {
         const { theme, t } = this.props;
         const rows = [
             { name: t('useExistingSeed'), icon: 'key', function: () => this.props.setSetting('addExistingSeed') },
-            { name: t('createNewSeed'), icon: 'plus', function: this.addNewSeed },
+            { name: t('createNewSeed'), icon: 'plusAlt', function: this.addNewSeed },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
         return renderSettingsRows(rows, theme);
