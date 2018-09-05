@@ -60,7 +60,7 @@
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
         "capsLockIsOn": "A nagybetűzár be van kapcsolva",
         "syncInProgress": "Szinkronizálás folyamatban",
         "syncInProgressExplanation": "Kérjük várjon, amíg a szinkronizálás befejeződik.",
@@ -591,8 +591,8 @@
         "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük győzödjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
         "exportSuccess": "SeedVault exportálva",
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "Mester jelszó tárolva",
+        "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "importSeedVault": "SeedVault importálása",
         "dropSeedVaultHere": "SeedVault fájlt tegye ide",
         "enterPasswordExplanation": "Adja meg a jelszót a SeedVault fájl megnyitásához",
@@ -600,7 +600,7 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fáljt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "A SeedVault fájl biztonságos tárolásához kérjük adjon megy egy jelszót. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a SeedVault biztonsági mentésből vissza szeretné állítani. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépésnél is használ."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
