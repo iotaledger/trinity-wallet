@@ -600,7 +600,7 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
     },
     "chart": {
         "mcap": "Market",
