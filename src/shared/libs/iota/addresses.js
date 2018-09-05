@@ -212,7 +212,7 @@ export const getFullAddressHistory = (provider) => (seed, addressGenFn) => {
                         addresses,
                         ...addressData,
                         // Append 0 balance to the latest unused address
-                        balances: [...addressData.balances.slice(0, sizeOfAddressesTillOneUnused), 0],
+                        balances: [...addressData.balances.slice(0, sizeOfAddressesTillOneUnused - 1), 0],
                         // Append false as spent status to the latest unused address
                         wereSpent: [
                             ...addressData.wereSpent.slice(0, sizeOfAddressesTillOneUnused - 1),
