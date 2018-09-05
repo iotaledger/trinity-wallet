@@ -7,7 +7,7 @@
         "refresh": "ACTUALIZAR",
         "balanceError": "No hay suficiente balance",
         "balanceErrorMessage": "No tienes suficientes IOTA para completar esta transferencia.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Balance total",
         "transferError": "Error de transferencia",
         "transferErrorMessage": "Algo salió mal al enviar tu transferencia. Por favor, inténtalo de nuevo.",
         "transferSent": "Transferencia enviada",
