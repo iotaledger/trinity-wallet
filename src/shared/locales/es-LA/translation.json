@@ -142,9 +142,9 @@
         "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción.",
         "broadcastError": "No se pudo transmitir la transacción",
         "addressesAlreadySpentFrom": "Una o más direcciones ya han sido utilizadas.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "problemSendingYourTransaction": "Ocurrio un problema cuando se estaba enviando su transacción.",
+        "problemPerformingProofOfWork": "Ocurrio un problema al realizar el PoW.",
+        "tryingAgainWithLocalPoW": "Intente nuevamente con PoW local.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information."
     },
