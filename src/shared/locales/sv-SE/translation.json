@@ -600,7 +600,7 @@
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Först måste vi säkra din SeedVault. Vänligen välj ett lösenord för att kryptera filen. Du behöver detta lösenord för att återställa din seed från din sparade SeedVault. Du kan använda samma lösenord som du använder för Trinity."
     },
     "chart": {
         "mcap": "MCAP",
