@@ -600,7 +600,7 @@
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Primero tenemos que garantizar su SeedVault. Por favor, elija una contraseña para cifrar el archivo. Usted necesitará esta contraseña para restaurar la semilla desde su SeedVault. No dude en utilizar la misma contraseña que utiliza para Trinity."
     },
     "chart": {
         "mcap": "Market cap",
@@ -660,37 +660,37 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nueva versión disponible",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "Instalar actualización y reiniciar",
+        "installUpdateExplanation": "Descarga completa, Trinity ahora se reiniciará para instalar la actualización."
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Error de log"
     },
     "terms": {
         "termsAndConditions": "Términos y Condiciones",
         "accept": "Acepto",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Por favor lea el texto completo"
     },
     "privacyPolicy": {
         "privacyPolicy": "Política de Privacidad",
         "agree": "De acuerdo"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Aplicación en bandeja",
+        "trayExplanation": "Proporciona una visión general de sus saldos de cuentas y el historial de transacciones recientes.",
+        "notLoggedIn": "No ha iniciado sesión",
+        "setupIncomplete": "Configuración de billetera incompleta",
+        "completeSetup": "Configuración completada"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "Notificaciones",
+        "notificationExplanation": "Recibir notificaciones sobre nuevas transacciones.",
+        "typeConfirmations": "Notificarme acerca de las confirmaciones",
+        "typeMessages": "Notificarme acerca de las transacciones de valor nulo",
+        "multipleTx": "Recibiendo múltiples transacciones a {{account}}",
+        "valueTx": "Recibiendo {{value}} a {{account}}",
+        "messageTx": "Recibiste un mensaje a {{account}}",
+        "confirmedIn": "Se confirmó el ingreso de {{value}} a {{account}}",
+        "confirmedOut": "Se confirmó la salida de {{value}} a {{account}}"
     }
 }
