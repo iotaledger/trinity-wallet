@@ -145,8 +145,8 @@
         "problemSendingYourTransaction": "Ocurrio un problema cuando se estaba enviando su transacción.",
         "problemPerformingProofOfWork": "Ocurrio un problema al realizar el PoW.",
         "tryingAgainWithLocalPoW": "Intente nuevamente con PoW local.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "tryingAgainWithDifferentNode": "Intente nuevamente con un nodo diferente.",
+        "errorFetchingAccountInformation": "Error al obtener la información de la cuenta."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -297,12 +297,12 @@
         "saveYourSeed": "Haga un respaldo de su semilla",
         "seedCleared": "Semilla removida",
         "mostSecure": "Más Seguro",
-        "recommended": "Recommended",
+        "recommended": "Recomendado",
         "leastSecure": "Menos Seguro",
         "paperWallet": "Billetera de Papel",
         "writeYourSeedDown": "Anote su semilla",
         "seedClearedExplanation": "Tu semilla ha sido bordada del portapapeles para tu seguridad.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una billetera en blanco",
         "whatIsChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres",
@@ -318,8 +318,8 @@
         "incorrectSeedExplanation": "La semilla que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
         "ifYouHaveNotSaved": "Si no has guardado tu semilla, por favor regresa y hazlo.",
         "enterSeedBelow": "Introduzca su semilla recientemente creada para confirmar que la guardado correctamente",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "No copie y pegue su semilla",
+        "clipboardWarningExplanation": "ADVERTENCIA: Copiar y pegar está deshabilitado para su seguridad."
     },
     "send": {
         "invalidAddress": "Dirección inválida",
@@ -354,10 +354,10 @@
         "youCanAdd": "Puedes añadir más semillas en el menú de ajustes."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avanzado",
         "standard": "Normal",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Modo avanzado mostrará información técnica más detallada.",
+        "modesExplanation": "Solo habilite modo avanzado si tiene experiencia usando IOTA. Puede resultar confuso de otra forma."
     },
     "settings": {
         "transferSending": "Transferencia en envío",
@@ -412,7 +412,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
-        "reset": "Reset"
+        "reset": "Reiniciar"
     },
     "walletSetup": {
         "creatingSeed": "Creando una semilla",
@@ -453,7 +453,7 @@
         "editAccountName": "Editar nombre de cuenta",
         "deleteAccount": "Borrar cuenta",
         "addNewAccount": "Añadir nueva cuenta",
-        "tools": "Tools"
+        "tools": "Herramientas"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
@@ -585,14 +585,14 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "Un SeedVault es un archivo cifrado para almacenar con seguridad su semilla. La semilla está encriptada detrás de una contraseña y no se puede acceder sin esta.",
         "seedVaultWarning": "Asegúrese de copiar el archivo en varios lugares (ej. disco duro, nube, USB). Si pierde este archivo y no ha almacenado su semilla en otro lugar, perderá sus IOTA.",
         "exportFail": "Fallo en la exportación de SeedVault",
         "exportFailExplanation": "Hubo un problema al exportar el SeedVault. Por favor asegúrese de que tiene los permisos apropiados y suficiente espacio libre.",
         "exportSuccess": "SeedVault exportado",
         "exportSuccessExplanation": "Su archivo con la semilla encriptada fue exportado con éxito.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "Semilla importada",
+        "importSuccessExplanation": "Su semilla fue importada con éxito.",
         "importSeedVault": "Importar SeedVault",
         "dropSeedVaultHere": "Dejar SeedVault aquí",
         "enterPasswordExplanation": "Introduzca su contraseña para abrir SeedVault",
