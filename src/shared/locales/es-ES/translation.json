@@ -60,7 +60,7 @@
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "Debe ingresar una contraseña. Por favor reintente.",
         "capsLockIsOn": "Bloq Mayús está activado",
         "syncInProgress": "Sincronización en progreso",
         "syncInProgressExplanation": "Por favor espere a que la sincronización esté completa.",
@@ -591,8 +591,8 @@
         "exportFailExplanation": "Hubo un problema al exportar el SeedVault. Por favor asegúrese de que tiene los servicios apropiados y suficiente espacio libre.",
         "exportSuccess": "SeedVault exportado",
         "exportSuccessExplanation": "Su archivo con la semilla encriptada fue exportado con éxito.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "Semilla importada",
+        "importSuccessExplanation": "Su semilla fue importada con éxito.",
         "importSeedVault": "Importar SeedVault",
         "dropSeedVaultHere": "Dejar SeedVault aquí",
         "enterPasswordExplanation": "Introduzca su contraseña para abrir SeedVault",
@@ -600,7 +600,7 @@
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Primero tenemos que garantizar su SeedVault. Por favor, elija una contraseña para cifrar el archivo. Usted necesitará esta contraseña para restaurar la semilla desde su SeedVault. No dude en utilizar la misma contraseña que utiliza para Trinity!"
     },
     "chart": {
         "mcap": "MCAP",
