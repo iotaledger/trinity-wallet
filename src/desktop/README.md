@@ -16,7 +16,7 @@ First you need to install Node.JS if you haven’t done that already.
 Then run the following command to install electron globally.
 
 ```
-npm global add electron
+npm install electron -g
 ```
 
 ### 2. Clone or download the Trinity repo from GitHub.
