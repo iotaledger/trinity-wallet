@@ -689,10 +689,10 @@
         "notificationExplanation": "收到關於新交易的系統通知",
         "typeConfirmations": "通知我交易確認",
         "typeMessages": "通知我零元交易",
-        "multipleTx": "收到多筆交易至 {{account}}",
-        "valueTx": "收到 {{value}} 至 {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "multipleTx": "{{account}} 收到多筆交易",
+        "valueTx": "{{account}} 收到 {{value}}",
+        "messageTx": "{{account}} 收到一筆訊息",
+        "confirmedIn": "{{account}} 收到的 {{value}} 已確認",
+        "confirmedOut": "{{account}} 轉出的 {{value}} 已確認"
     }
 }
