@@ -594,7 +594,7 @@
         "exportSuccessExplanation": "Zaszyfrowany klucz seed został pomyślnie wyeksportowany.",
         "importSuccess": "Seed zaimportowany",
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
-        "saveToDownloadFolder": "Zapisz do pobranych plików",
+        "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
         "dropSeedVaultHere": "Upuść plik SeedVault tutaj",
         "enterPasswordExplanation": "Wprowadź swoje hasło, aby otworzyć plik SeedVault",
@@ -602,7 +602,7 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultPasswordExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
+        "seedVaultPasswordExplanation": "Najpierw musisz zabezpieczyć swój SeedVault hasłem. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej pliku SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
     },
     "chart": {
         "mcap": "Market",
