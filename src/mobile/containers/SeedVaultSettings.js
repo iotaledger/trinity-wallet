@@ -8,6 +8,7 @@ import SeedVaultExportComponent from '../components/SeedVaultExportComponent';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
+import { isAndroid } from '../utils/device';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -83,6 +84,21 @@ class SeedVaultSettings extends Component {
         leaveNavigationBreadcrumb('SeedVaultSettings');
     }
 
+    /**
+     * Determines course of action on right button press dependent on current progress step
+     *
+     * @method onRightButtonPress
+     */
+    onRightButtonPress() {
+        const { step } = this.state;
+        if (step === 'isExporting' && !isAndroid) {
+            return this.SeedVaultExportComponent.onExportPress();
+        } else if (step === 'isSelectingSaveMethodAndroid') {
+            return this.props.setSetting('accountManagement');
+        }
+        this.SeedVaultExportComponent.onNextPress();
+    }
+
     render() {
         const { t, theme } = this.props;
         const { step, isAuthenticated, seed } = this.state;
@@ -96,7 +112,7 @@ class SeedVaultSettings extends Component {
                         <SeedVaultExportComponent
                             step={step}
                             setProgressStep={(step) => this.setState({ step })}
-                            goBack={() => this.props.setSetting('mainSettings')}
+                            goBack={() => this.props.setSetting('accountManagement')}
                             onRef={(ref) => {
                                 this.SeedVaultExportComponent = ref;
                             }}
@@ -118,16 +134,14 @@ class SeedVaultSettings extends Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() =>
-                                step === 'isExporting'
-                                    ? this.SeedVaultExportComponent.onExportPress()
-                                    : this.SeedVaultExportComponent.onNextPress()
-                            }
+                            onPress={() => this.onRightButtonPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>
-                                    {step === 'isExporting' ? t('global:export') : t('global:next')}
+                                    {step === 'isExporting' && !isAndroid
+                                        ? t('global:export')
+                                        : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')}
                                 </Text>
                                 <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>

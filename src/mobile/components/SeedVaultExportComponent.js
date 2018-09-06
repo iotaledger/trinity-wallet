@@ -14,16 +14,26 @@ import CustomTextInput from './CustomTextInput';
 import GENERAL from '../theme/general';
 import PasswordFields from './PasswordFields';
 import InfoBox from './InfoBox';
+import Button from '../components/Button';
 import { getPasswordHash, getSeedFromKeychain } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from '../utils/device';
+
+const steps = [
+    'isValidatingWalletPassword',
+    'isViewingGeneralInfo',
+    'isViewingPasswordInfo',
+    'isSettingPassword',
+    'isExporting',
+    'isSelectingSaveMethodAndroid',
+];
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: width * 5,
+        width: width * steps.length,
     },
     viewContainer: {
         width,
@@ -80,15 +90,15 @@ class SeedVaultExportComponent extends Component {
         this.state = {
             password: '',
             reentry: '',
-            exportPressed: false,
             path: '',
+            saveToDownloadFolder: false,
         };
     }
 
     componentWillMount() {
         const { isAuthenticated, onRef } = this.props;
         onRef(this);
-        this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
+        this.animatedValue = new Animated.Value(isAuthenticated ? width * 1.5 : width * 2.5);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
@@ -102,7 +112,7 @@ class SeedVaultExportComponent extends Component {
     componentWillUnmount() {
         this.props.onRef(undefined);
         nodejs.channel.removeAllListeners();
-        if (this.state.path !== '') {
+        if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
     }
@@ -135,16 +145,10 @@ class SeedVaultExportComponent extends Component {
             RNFetchBlob.fs
                 .createFile(path, vaultParsed, 'ascii')
                 .then(() => {
-                    Share.open({
-                        url: isAndroid ? 'file://' + path : path,
-                        type: 'application/octet-stream',
-                    })
-                        .then(() => {
-                            if (!isAndroid) {
-                                this.onExportSuccess(path);
-                            }
-                        })
-                        .catch(() => RNFetchBlob.fs.unlink(path));
+                    if (this.state.saveToDownloadFolder) {
+                        return this.onExportSuccess();
+                    }
+                    this.share(path);
                 })
                 .catch(() =>
                     this.props.generateAlert(
@@ -170,6 +174,8 @@ class SeedVaultExportComponent extends Component {
             return this.navigateToStep('isViewingPasswordInfo');
         } else if (step === 'isViewingPasswordInfo') {
             return this.navigateToStep('isSettingPassword');
+        } else if (step === 'isExporting') {
+            return this.navigateToStep('isSelectingSaveMethodAndroid');
         }
         this.passwordFields.checkPassword();
     }
@@ -179,10 +185,14 @@ class SeedVaultExportComponent extends Component {
      *
      * @method onExportSuccess
      */
-    onExportSuccess(path) {
+    onExportSuccess() {
         const { t } = this.props;
+        if (isAndroid) {
+            this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+            return this.props.goBack();
+        }
         RNFetchBlob.fs
-            .unlink(path)
+            .unlink(this.state.path)
             .then(() => {
                 this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
                 this.props.goBack();
@@ -202,9 +212,6 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        if (isAndroid) {
-            this.setState({ exportPressed: true });
-        }
         return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
     }
 
@@ -220,12 +227,24 @@ class SeedVaultExportComponent extends Component {
         } else if (step === 'isSettingPassword') {
             return this.navigateToStep('isViewingPasswordInfo');
         } else if (step === 'isExporting') {
-            if (isAndroid && this.state.exportPressed) {
-                return this.props.goBack();
-            }
             return this.navigateToStep('isSettingPassword');
+        } else if (step === 'isSelectingSaveMethodAndroid') {
+            return this.navigateToStep('isExporting');
         }
         this.props.goBack();
+    }
+
+    share(path) {
+        Share.open({
+            url: isAndroid ? 'file://' + path : path,
+            type: 'application/octet-stream',
+        })
+            .then(() => {
+                if (!isAndroid) {
+                    this.onExportSuccess(path);
+                }
+            })
+            .catch(() => RNFetchBlob.fs.unlink(path));
     }
 
     /**
@@ -262,15 +281,8 @@ class SeedVaultExportComponent extends Component {
      * @param {string} nextStep
      */
     navigateToStep(nextStep) {
-        const steps = [
-            'isValidatingWalletPassword',
-            'isViewingGeneralInfo',
-            'isViewingPasswordInfo',
-            'isSettingPassword',
-            'isExporting',
-        ];
         const stepIndex = steps.indexOf(nextStep);
-        const animatedValue = [2, 1, 0, -1, -2];
+        const animatedValue = [2.5, 1.5, 0.5, -0.5, -1.5, -2.5];
         Animated.spring(this.animatedValue, {
             toValue: animatedValue[stepIndex] * width,
             velocity: 3,
@@ -334,6 +346,43 @@ class SeedVaultExportComponent extends Component {
                         body={theme.body}
                         text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultWarning')}</Text>}
                     />
+                </View>
+                <View style={styles.viewContainer}>
+                    <Button
+                        onPress={() => {
+                            this.setState({ saveToDownloadFolder: true });
+                            this.onExportPress();
+                        }}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: theme.secondary.color,
+                            },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('saveToDownloadFolder')}
+                    </Button>
+                    <View style={{ flex: 0.5 }} />
+                    <Button
+                        onPress={() => {
+                            this.setState({ saveToDownloadFolder: false });
+                            this.onExportPress();
+                        }}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: theme.secondary.color,
+                            },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:share')}
+                    </Button>
                 </View>
             </Animated.View>
         );

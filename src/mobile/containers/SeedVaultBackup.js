@@ -11,6 +11,7 @@ import Header from '../components/Header';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import SeedVaultExportComponent from '../components/SeedVaultExportComponent';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -58,6 +59,21 @@ class SeedVaultBackup extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SeedVaultBackup');
+    }
+
+    /**
+     * Determines course of action on right button press dependent on current progress step
+     *
+     * @method onRightButtonPress
+     */
+    onRightButtonPress() {
+        const { step } = this.state;
+        if (step === 'isExporting' && !isAndroid) {
+            return this.SeedVaultExportComponent.onExportPress();
+        } else if (step === 'isSelectingSaveMethodAndroid') {
+            return this.goBack();
+        }
+        this.SeedVaultExportComponent.onNextPress();
     }
 
     /**
@@ -110,13 +126,13 @@ class SeedVaultBackup extends Component {
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
-                                onRightButtonPress={() =>
-                                    step === 'isExporting'
-                                        ? this.SeedVaultExportComponent.onExportPress()
-                                        : this.SeedVaultExportComponent.onNextPress()
-                                }
+                                onRightButtonPress={() => this.onRightButtonPress()}
                                 leftButtonText={t('global:back')}
-                                rightButtonText={step === 'isExporting' ? t('global:export') : t('global:next')}
+                                rightButtonText={
+                                    step === 'isExporting' && !isAndroid
+                                        ? t('global:export')
+                                        : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')
+                                }
                             />
                         </View>
                     </View>

@@ -1561,7 +1561,6 @@
 						TestTargetID = 4848851A00274CA2FFBE307BAEB5F278;
 					};
 					4848851A00274CA2FFBE307BAEB5F278 = {
-						DevelopmentTeam = UG77RJKZHH;
 						LastSwiftMigration = 920;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2809,7 +2808,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 19;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = UG77RJKZHH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
