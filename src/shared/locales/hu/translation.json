@@ -594,7 +594,7 @@
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
         "importSuccess": "Mester jelszó tárolva",
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
         "dropSeedVaultHere": "SeedVault fájlt tegye ide",
         "enterPasswordExplanation": "Adja meg a jelszót a SeedVault fájl megnyitásához",
