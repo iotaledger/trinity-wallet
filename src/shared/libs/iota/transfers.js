@@ -53,18 +53,26 @@ import Errors from './../errors';
  * @method getTransferValue
  * @param {array} inputs
  * @param {array} outputs
+ * @param {array} addresses
  *
  * @returns {number}
  */
-export const getTransferValue = (inputs, outputs) => {
-    const remainder = get(
+export const getTransferValue = (inputs, outputs, addresses) => {
+    const remainderValue = get(
         find(outputs, (output) => output.currentIndex === output.lastIndex && output.lastIndex !== 0),
         'value',
     );
 
-    const input = reduce(inputs, (acc, input) => acc + Math.abs(input.value), 0);
+    const ownInputs = filter(inputs, (input) => includes(addresses, input.address));
+    const inputsValue = reduce(inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
-    return input - remainder;
+    return size(ownInputs)
+        ? inputsValue - remainderValue
+        : reduce(
+              filter(outputs, (output) => includes(addresses, output.address)),
+              (acc, output) => acc + output.value,
+              0,
+          );
 };
 
 /**
@@ -315,7 +323,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
  **/
 export const isSentTransfer = (bundle, addresses) => {
     const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses);
-    const value = getTransferValue(bundle, addresses);
+    const value = getTransferValue(categorisedBundle.inputs, categorisedBundle.outputs, addresses);
 
     if (value === 0) {
         return (
@@ -662,7 +670,7 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
         outputs,
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
-        transferValue: getTransferValue(inputs, outputs),
+        transferValue: getTransferValue(inputs, outputs, addresses),
         message: computeTransactionMessage(bundle),
         tailTransactions: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => ({
             hash: tx.hash,
