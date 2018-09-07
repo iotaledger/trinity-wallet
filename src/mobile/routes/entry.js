@@ -30,6 +30,9 @@ const launch = (store) => {
     SwitchingConfig.autoSwitch = false;
 
     // Disable accessibility fonts
+    if (Text.defaultProps === null) {
+        Text.defaultProps = {};
+    }
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
