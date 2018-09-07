@@ -5322,9 +5322,9 @@ react-native-vector-icons@^4.5.0:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
-react-native-view-shot@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-2.3.0.tgz#ac01880d3c560f0dc918cd7cdf8854c6ff85ca31"
+"react-native-view-shot@git+https://github.com/cvarley100/react-native-view-shot#master":
+  version "2.4.0"
+  resolved "git+https://github.com/cvarley100/react-native-view-shot#b7af36520f10c212ff226c32dc72a6c0b9e1521e"
 
 react-native@0.51.0:
   version "0.51.0"
