@@ -43,30 +43,127 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#getTransferValue', () => {
+        let ownAddresses;
+
+        before(() => {
+            ownAddresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81), 'E'.repeat(81)];
+        });
+
         describe('zero value transactions', () => {
             it('should return zero', () => {
                 // Zero value transactions have no inputs
                 expect(
                     getTransferValue(
                         [],
-                        [{ value: 0, currentIndex: 0, lastIndex: 1 }, { value: 0, currentIndex: 1, lastIndex: 1 }],
+                        [
+                            {
+                                value: 0,
+                                currentIndex: 0,
+                                lastIndex: 1,
+                                // Own address
+                                address: 'A'.repeat(81),
+                            },
+                            {
+                                value: 0,
+                                currentIndex: 1,
+                                lastIndex: 1,
+                                // Other address
+                                address: 'Z'.repeat(81),
+                            },
+                        ],
+                        ownAddresses,
                     ),
                 ).to.equal(0);
             });
         });
 
         describe('value transactions', () => {
-            it('should return transfer value', () => {
-                expect(
-                    getTransferValue(
-                        [
-                            { value: -10, currentIndex: 0, lastIndex: 4 },
-                            { value: -1, currentIndex: 1, lastIndex: 4 },
-                            { value: -40, currentIndex: 2, lastIndex: 4 },
-                        ],
-                        [{ value: 12, currentIndex: 3, lastIndex: 4 }, { value: 39, currentIndex: 4, lastIndex: 4 }],
-                    ),
-                ).to.equal(12);
+            describe('with any input address belong to user addresses', () => {
+                it('should return a difference of inputs and remainder', () => {
+                    expect(
+                        getTransferValue(
+                            [
+                                {
+                                    value: -10,
+                                    currentIndex: 0,
+                                    lastIndex: 4,
+                                    address: 'A'.repeat(81),
+                                },
+                                {
+                                    value: -1,
+                                    currentIndex: 1,
+                                    lastIndex: 4,
+                                    address: 'B'.repeat(81),
+                                },
+                                {
+                                    value: -40,
+                                    currentIndex: 2,
+                                    lastIndex: 4,
+                                    address: 'C'.repeat(81),
+                                },
+                            ],
+                            [
+                                {
+                                    value: 12,
+                                    currentIndex: 3,
+                                    lastIndex: 4,
+                                    address: 'Z'.repeat(81),
+                                },
+                                {
+                                    value: 39,
+                                    currentIndex: 4,
+                                    lastIndex: 4,
+                                    address: 'D'.repeat(81),
+                                },
+                            ],
+                            ownAddresses,
+                        ),
+                    ).to.equal(12);
+                });
+            });
+
+            describe('with no input addresses belong to user addresses', () => {
+                it('should return a sum of all user output addresses', () => {
+                    expect(
+                        getTransferValue(
+                            [
+                                {
+                                    value: -10,
+                                    currentIndex: 0,
+                                    lastIndex: 4,
+                                    address: 'Y'.repeat(81),
+                                },
+                                {
+                                    value: -1,
+                                    currentIndex: 1,
+                                    lastIndex: 4,
+                                    address: 'Z'.repeat(81),
+                                },
+                                {
+                                    value: -40,
+                                    currentIndex: 2,
+                                    lastIndex: 4,
+                                    address: 'U'.repeat(81),
+                                },
+                            ],
+                            [
+                                {
+                                    value: 12,
+                                    currentIndex: 3,
+                                    lastIndex: 4,
+                                    address: 'D'.repeat(81),
+                                },
+                                {
+                                    value: 39,
+                                    currentIndex: 4,
+                                    lastIndex: 4,
+                                    address: 'W'.repeat(81),
+                                },
+                            ],
+                            ownAddresses,
+                        ),
+                    ).to.equal(12);
+                });
             });
         });
     });
