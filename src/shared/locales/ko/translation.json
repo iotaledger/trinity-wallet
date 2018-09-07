@@ -680,19 +680,19 @@
     "tray": {
         "trayApplication": "알림 아이콘",
         "trayExplanation": "계정 잔고 및 최근 거래 내역에 대한 개요를 보여줍니다.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "로그인하지 않았습니다",
+        "setupIncomplete": "지갑 설정이 완료되지 않음",
+        "completeSetup": "설정 완료"
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "알림",
+        "notificationExplanation": "새로운 거래에 대한 시스템 알림을 받습니다.",
+        "typeConfirmations": "거래 확인 알림",
+        "typeMessages": "0i 거래 알림",
+        "multipleTx": "계정 {{account}}에 여러 거래를 받는 중",
+        "valueTx": "계정 {{account}}에 {{value}}를 받는 중",
+        "messageTx": "계정 {{account}}에 메시지를 받았습니다",
+        "confirmedIn": "계정 {{account}}로 {{value}}를 받는 거래가 성공적으로 확인되었습니다",
+        "confirmedOut": "계정 {{account}}에서 {{value}}를 보내는 거래가 성공적으로 확인되었습니다"
     }
 }
