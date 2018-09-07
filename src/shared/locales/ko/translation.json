@@ -358,7 +358,7 @@
         "advanced": "고급",
         "standard": "기본",
         "advancedModeExplanation": "고급 모드에서는 기술적 정보가 더 자세하게 표시됩니다.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -413,7 +413,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
-        "reset": "Reset"
+        "reset": "재설정"
     },
     "walletSetup": {
         "creatingSeed": "시드 만들기",
@@ -454,7 +454,7 @@
         "editAccountName": "계정 이름 변경",
         "deleteAccount": "계정 삭제",
         "addNewAccount": "새 계정 추가",
-        "tools": "Tools"
+        "tools": "도구"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
@@ -586,15 +586,15 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedValut 내보내기",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault는 시드를 안전하게 저장하도록 암호화된 파일입니다. 시드는 비밀번호를 이용하여 암호화되고, 비밀번호 없이는 시드에 접근할 수 없습니다.",
         "seedVaultWarning": "여러 위치(예: 하드 드라이브, 클라우드, USB)에 이 파일을 백업하십시오. 이 파일을 잃어버리고 별도로 시드를 보관하지 않은 경우 IOTA를 잃게 됩니다.",
         "exportFail": "SeedVault 내보내기 실패",
         "exportFailExplanation": "SeedVault를 내보내는 도중 문제가 발생하였습니다. 적절한 권한과 충분한 저장 공간이 있는지 다시 확인하세요.",
         "exportSuccess": "SeedVault 내보냄",
         "exportSuccessExplanation": "암호화된 시드 파일을 내보내는 데 성공했습니다.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccess": "시드 가져옴",
+        "importSuccessExplanation": "시드를 성공적으로 가져왔습니다.",
+        "saveToDownloadFolder": "다운로드 폴더에 저장",
         "importSeedVault": "SeedValut 가져오기",
         "dropSeedVaultHere": "SeedVault를 여기에 끌어다 놓으세요",
         "enterPasswordExplanation": "SeedVault를 열기 위해 비밀번호를 입력하세요",
@@ -602,7 +602,7 @@
         "noSeedFoundExplanation": "SeedVault가 비어있거나 시드가 유효하지 않은 형식으로 저장되어 있습니다.",
         "seedFileError": "SeedVault 열기 실패함",
         "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "먼저 SeedVault를 암호화하여야 합니다. 파일을 암호화하는 데 사용할 비밀번호를 입력해 주세요. 이 비밀번호가 있어야 SeedVault에서 시드를 꺼낼 수 있습니다. 트리니티에 사용하는 암호와 같은 암호를 사용하여도 됩니다."
     },
     "chart": {
         "mcap": "시가총액",
@@ -662,24 +662,24 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "새 버전 이용 가능",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "업데이트를 설치하고 다시 시작",
+        "installUpdateExplanation": "다운로드가 완료되었습니다. 트리니티를 재시작하여 업데이트를 설치합니다."
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "오류 로그"
     },
     "terms": {
         "termsAndConditions": "이용 약관",
         "accept": "동의합니다",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "전체 내용을 읽어 주세요"
     },
     "privacyPolicy": {
         "privacyPolicy": "개인정보 정책",
         "agree": "동의합니다"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "알림 아이콘",
+        "trayExplanation": "계정 잔고 및 최근 거래 내역에 대한 개요를 보여줍니다.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
