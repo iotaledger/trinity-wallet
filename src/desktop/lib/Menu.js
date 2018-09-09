@@ -335,7 +335,7 @@ const initMenu = (app, getWindow) => {
         }
 
         template.push({
-            label: 'Help',
+            label: language.help,
             submenu: [
                 {
                     label: `${app.getName()} ${language.help}`,
