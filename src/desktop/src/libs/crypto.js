@@ -1,5 +1,6 @@
 /* global Electron */
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { trytesTrits } from 'libs/helpers';
 
 // Prefix for seed account titles stored in the vault
 const ACC_PREFIX = 'account';
@@ -15,7 +16,7 @@ export const MAX_ACC_LENGTH = 250;
  * @param {number} Max - Random byte max range
  * @returns {array} Random number array
  */
-function randomBytes(size, max) {
+export const randomBytes = (size, max) => {
     if (size !== parseInt(size, 10) || size < 0) {
         return false;
     }
@@ -31,7 +32,7 @@ function randomBytes(size, max) {
     }
 
     return Array.from(bytes);
-}
+};
 
 /**
  * Create random seed
@@ -39,7 +40,7 @@ function randomBytes(size, max) {
  * @returns {array} Random byte array seed
  */
 export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return randomBytes(length, 27);
+    return randomBytes(length, 27).map((byte) => trytesTrits[byte % 27]);
 };
 
 /**
@@ -188,9 +189,10 @@ export const updatePassword = async (passwordCurrent, passwordNew) => {
  * Get seed from keychain
  * @param {string} Password - Plain text password for decryption
  * @param {string} SeedName - Seed name to retreive from keychain
+ * @param {boolean} rawTrits - Should return raw trits
  * @returns {array} Derypted seed
  */
-export const getSeed = async (password, seedName) => {
+export const getSeed = async (password, seedName, rawTrits) => {
     const seedNameHash = await hashSeedName(seedName);
 
     const vault = await Electron.readKeychain(seedNameHash);
@@ -199,6 +201,15 @@ export const getSeed = async (password, seedName) => {
     }
     try {
         const decryptedVault = await decrypt(vault, password);
+        if (rawTrits) {
+            let trits = [];
+            for (let i = 0; i < decryptedVault.length; i++) {
+                trits = trits.concat(
+                    typeof decryptedVault[i] === 'number' ? trytesTrits[decryptedVault[i] % 27] : decryptedVault[i],
+                );
+            }
+            return trits;
+        }
         return decryptedVault;
     } catch (err) {
         throw err;
@@ -318,9 +329,17 @@ export const uniqueSeed = async (password, seed) => {
 
         for (let i = 0; i < accounts.length; i++) {
             const account = accounts[i];
-            
+
             const vaultSeed = await decrypt(account.password, password);
-            if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
+            if (
+                vaultSeed.length === seed.length &&
+                seed.every((v, x) => {
+                    // <0.3.3 support
+                    // Seed characters where stored as bytes not trits
+                    const trit = typeof vaultSeed[x] === 'number' ? trytesTrits[vaultSeed[x] % 27] : vaultSeed[x];
+                    return trit[0] === v[0] && trit[1] === v[1] && trit[2] === v[2];
+                })
+            ) {
                 return false;
             }
         }
@@ -378,15 +397,6 @@ const hashSeedName = async (seedName) => {
     const prefixName = `${ACC_PREFIX}-${seedName}`;
     const hash = await sha256(prefixName);
     return hash;
-};
-
-/**
- * Convert single character byte to string
- * @param {number} byte - Input byte
- * @returns {string} Output character
- */
-export const byteToChar = (byte) => {
-    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27);
 };
 
 /**

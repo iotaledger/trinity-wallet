@@ -10,7 +10,7 @@ import { selectLatestAddressFromAccountFactory, selectAccountInfo, getSelectedAc
 import { generateAlert } from 'actions/alerts';
 import { generateNewAddress } from 'actions/wallet';
 
-import { byteToChar, getSeed, createRandomSeed } from 'libs/crypto';
+import { getSeed, randomBytes } from 'libs/crypto';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -58,7 +58,7 @@ class Receive extends React.PureComponent {
             this.frame = 0;
 
             this.setState({
-                scramble: createRandomSeed(ADDRESS_LENGTH),
+                scramble: randomBytes(ADDRESS_LENGTH),
             });
 
             this.unscramble();
@@ -76,7 +76,7 @@ class Receive extends React.PureComponent {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seed = await getSeed(password, accountName);
+        const seed = await getSeed(password, accountName, true);
 
         this.props.generateNewAddress(seed, accountName, account, Electron.genFn);
     };
@@ -128,7 +128,10 @@ class Receive extends React.PureComponent {
                     >
                         <p>
                             {receiveAddress.split('').map((char, index) => {
-                                const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
+                                const scrambleChar =
+                                    scramble[index] > 0
+                                        ? '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(scramble[index] % 27)
+                                        : null;
                                 return <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>;
                             })}
                         </p>

@@ -77,7 +77,7 @@ class Addresses extends PureComponent {
      */
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
 
         this.props.manuallySyncAccount(seed, selectedAccountName, Electron.genFn);
     };
@@ -88,7 +88,7 @@ class Addresses extends PureComponent {
      */
     startSnapshotTransition = async () => {
         const { wallet, addresses, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
 
         this.props.transitionForSnapshot(seed, addresses, Electron.genFn);
     };
@@ -100,7 +100,7 @@ class Addresses extends PureComponent {
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
         const { wallet, selectedAccountName, settings } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
@@ -114,7 +114,7 @@ class Addresses extends PureComponent {
     transitionBalanceWrong = async () => {
         this.props.setBalanceCheckFlag(false);
         const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = wallet.transitionAddresses.length;
 
         this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);

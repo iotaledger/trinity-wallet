@@ -339,20 +339,23 @@ const Electron = {
 
     /**
      * Calculate seed checksum
-     * @param {array} bytes - Target seed byte array
+     * @param {array} trits - Target trit array
      * @returns {string | array} Seed checksum
      */
-    getChecksum: (bytes) => {
-        let trits = [];
+    getChecksum: (trits) => {
+        let rawTrits = [];
 
-        for (let i = 0; i < bytes.length; i++) {
-            trits = trits.concat(trytesTrits[bytes[i] % 27]);
+        for (let i = 0; i < trits.length; i++) {
+            const trit = trits[i];
+            // <0.3.3 support
+            // Seed characters where stored as bytes not trits
+            rawTrits = rawTrits.concat(typeof trit === 'number' ? trytesTrits[trit % 27] : trit);
         }
 
         const kerl = new Kerl();
         const checksumTrits = [];
         kerl.initialize();
-        kerl.absorb(trits, 0, trits.length);
+        kerl.absorb(rawTrits, 0, rawTrits.length);
         kerl.squeeze(checksumTrits, 0, Curl.HASH_LENGTH);
 
         const checksum = Converter.trytes(checksumTrits.slice(-9));

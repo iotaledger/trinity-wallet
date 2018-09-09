@@ -1,6 +1,7 @@
 const { fork } = require('child_process');
 const path = require('path');
 const { powFunc, genFunc } = require('entangled-node');
+const { tritToChar } = require('../src/libs/helpers');
 
 let timeout = null;
 
@@ -41,7 +42,7 @@ process.on('message', async (data) => {
     }
 
     if (payload.job === 'gen') {
-        const seedString = payload.seed.map((byte) => byteToChar(byte)).join('');
+        const seedString = payload.seed.map((trit) => tritToChar(trit)).join('');
         const address = await genFunc(seedString, payload.index, payload.security);
         process.send(address);
     }
@@ -54,15 +55,6 @@ const Entangled = {
     genFn: async (seed, index, security) => {
         return await exec(JSON.stringify({ job: 'gen', seed, index, security }));
     },
-};
-
-/**
- * Convert single character byte to string
- * @param {number} byte - Input byte
- * @returns {string} Output character
- */
-const byteToChar = (byte) => {
-    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27);
 };
 
 module.exports = Entangled;

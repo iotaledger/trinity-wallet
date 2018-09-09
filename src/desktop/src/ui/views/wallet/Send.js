@@ -97,7 +97,7 @@ class Send extends React.PureComponent {
             isTransferModalVisible: false,
         });
 
-        const seed = await getSeed(password, accountName);
+        const seed = await getSeed(password, accountName, true);
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
         sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn, Electron.genFn);

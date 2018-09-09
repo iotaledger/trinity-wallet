@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate, Interpolate } from 'react-i18next';
-import { createRandomSeed, byteToChar } from 'libs/crypto';
-import { capitalize } from 'libs/helpers';
+import { createRandomSeed, randomBytes } from 'libs/crypto';
+import { capitalize, tritToChar } from 'libs/helpers';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
@@ -25,7 +26,7 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: Electron.getOnboardingSeed() || createRandomSeed(),
-        scramble: Electron.getOnboardingSeed() ? new Array(81).fill(0) : createRandomSeed(),
+        scramble: Electron.getOnboardingSeed() ? new Array(MAX_SEED_LENGTH).fill(0) : randomBytes(MAX_SEED_LENGTH, 27),
         existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
     };
@@ -105,7 +106,7 @@ class GenerateSeed extends React.PureComponent {
         this.frame = 0;
 
         this.setState({
-            scramble: createRandomSeed(),
+            scramble: randomBytes(MAX_SEED_LENGTH, 27),
         });
 
         this.unscramble();
@@ -171,9 +172,10 @@ class GenerateSeed extends React.PureComponent {
                     </Interpolate>
                     <div className={css.seed}>
                         <div>
-                            {seed.map((byte, index) => {
+                            {seed.map((trit, index) => {
                                 const offset = scramble[index];
-                                const letter = byteToChar(byte + offset);
+                                const letter =
+                                    offset > 0 ? '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(offset % 27) : tritToChar(trit);
                                 return (
                                     <button
                                         onClick={this.updateLetter}

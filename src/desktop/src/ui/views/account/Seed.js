@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToChar } from 'libs/crypto';
+import { tritToChar } from 'libs/helpers';
 
 import { getSelectedAccountName } from 'selectors/accounts';
 
@@ -73,16 +73,16 @@ class Seed extends PureComponent {
                     <p className={css.seed}>
                         <span>
                             {seed && action === 'view'
-                                ? seed.map((byte, index) => {
+                                ? seed.map((trit, index) => {
                                       if (index % 3 !== 0) {
                                           return null;
                                       }
-                                      const letter = byteToChar(byte);
+                                      const letter = tritToChar(trit);
                                       return (
                                           <React.Fragment key={`${index}${letter}`}>
                                               {letter}
-                                              {byteToChar(seed[index + 1])}
-                                              {byteToChar(seed[index + 2])}{' '}
+                                              {tritToChar(seed[index + 1])}
+                                              {tritToChar(seed[index + 2])}{' '}
                                           </React.Fragment>
                                       );
                                   })

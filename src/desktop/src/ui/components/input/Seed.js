@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
-import { byteToChar, MAX_ACC_LENGTH } from 'libs/crypto';
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+import { tritToChar, charToTrit } from 'libs/helpers';
 
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
@@ -224,11 +225,11 @@ class SeedInput extends React.PureComponent {
             return true;
         }
 
-        const byte = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(key.toUpperCase());
+        const trit = charToTrit(key.toUpperCase());
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
-            if (byte > -1 || key === 'Backspace') {
+            if (trit || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
 
                 const seed = this.props.seed.slice(0);
@@ -245,7 +246,7 @@ class SeedInput extends React.PureComponent {
                         }
                     }
                 } else {
-                    seed.splice(Math.min(...cursor), Math.abs(cursor[0] - cursor[1]), byte);
+                    seed.splice(Math.min(...cursor), Math.abs(cursor[0] - cursor[1]), trit);
                 }
 
                 if (seed.length > MAX_SEED_LENGTH) {
@@ -287,7 +288,7 @@ class SeedInput extends React.PureComponent {
                             suppressContentEditableWarning
                         >
                             {seed.map((byte, index) => {
-                                const letter = byteToChar(byte);
+                                const letter = tritToChar(byte);
                                 return (
                                     <span
                                         className={css.letter}

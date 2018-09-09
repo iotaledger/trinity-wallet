@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import QRCode from 'qr.js/lib/QRCode';
 
-import { byteToChar } from 'libs/crypto';
+import { tritToChar } from 'libs/helpers';
 
 import paperWallet from 'themes/paper-wallet.svg';
 import paperWalletFilled from 'themes/paper-wallet-filled.svg';
@@ -34,7 +34,7 @@ export default class SeedPrint extends PureComponent {
         const qr = new QRCode(-1, 1);
         if (seed) {
             seed.forEach((byte) => {
-                qr.addData(byteToChar(byte));
+                qr.addData(tritToChar(byte));
             });
 
             qr.make();
@@ -48,7 +48,7 @@ export default class SeedPrint extends PureComponent {
                     filled && (
                         <svg viewBox="0 0 595 841" xmlns="http://www.w3.org/2000/svg">
                             {seed.map((byte, index) => {
-                                const letter = byteToChar(byte);
+                                const letter = tritToChar(byte);
                                 const space = index % 9 > 5 ? 38 : index % 9 > 2 ? 19 : 0;
                                 const x = 190 + (index % 9) * 26 + space;
                                 const y = 348 + Math.floor(index / 9) * 32.8;
