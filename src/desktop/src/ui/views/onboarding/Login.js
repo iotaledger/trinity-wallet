@@ -86,10 +86,18 @@ class Login extends React.Component {
         }
     }
 
+    /**
+     * Update 2fa code value and trigger authentication once necessary length is reached
+     * @param {string} value - Code value
+     */
     setCode = (value) => {
         this.setState({ code: value }, () => value.length === 6 && this.handleSubmit());
     };
 
+    /**
+     * Update current input password value
+     * @param {string} password - Password value
+     */
     setPassword = (password) => {
         this.setState({
             password: password,
