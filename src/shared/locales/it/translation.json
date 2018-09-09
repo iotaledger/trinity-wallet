@@ -44,7 +44,7 @@
         "paperWallet": "Stampa copia cartacea",
         "addToPasswordManager": "Aggiungi al gestore di password",
         "shareSeed": "Condividi il seme",
-        "share": "Share",
+        "share": "Condividi",
         "proceed": "Procedi",
         "qr": "QR",
         "enterSeed": "Inserisci il tuo seme.",
@@ -594,7 +594,7 @@
         "exportSuccessExplanation": "Il file con il tuo seme crittografato è stato esportato con successo.",
         "importSuccess": "Seme importato",
         "importSuccessExplanation": "Il seme è stato importato con successo.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Salva nella cartella Scaricamenti",
         "importSeedVault": "Importa un SeedVault",
         "dropSeedVaultHere": "Trascina qui il SeedVault",
         "enterPasswordExplanation": "Immetti la tua password per accedere il SeedVault",
@@ -602,7 +602,7 @@
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "In primo luogo abbiamo bisogno di mettere in sicurezza il tuo SeedVault. Si prega di scegliere una password per crittografare il file. Avrai bisogno di questa password per reimportare il tuo seme dal SeedVault di backup. Sentiti libero di usare la stessa password che usi per Trinity."
     },
     "chart": {
         "mcap": "MCAP",
