@@ -86,6 +86,10 @@ class Login extends React.Component {
         }
     }
 
+    setCode = (value) => {
+        this.setState({ code: value }, () => value.length === 6 && this.handleSubmit());
+    };
+
     setPassword = (password) => {
         this.setState({
             password: password,
@@ -163,6 +167,7 @@ class Login extends React.Component {
 
                 this.setState({
                     verifyTwoFA: true,
+                    code: '',
                 });
 
                 return;
@@ -221,18 +226,13 @@ class Login extends React.Component {
                 <Modal variant="confirm" isOpen={verifyTwoFA} onClose={() => this.setState({ verifyTwoFA: false })}>
                     <p>{t('twoFA:enterCode')}</p>
                     <form onSubmit={(e) => this.handleSubmit(e)}>
-                        <Text
-                            value={code}
-                            focus={verifyTwoFA}
-                            label={t('twoFA:code')}
-                            onChange={(value) => this.setState({ code: value })}
-                        />
+                        <Text value={code} focus={verifyTwoFA} label={t('twoFA:code')} onChange={this.setCode} />
                         <footer>
                             <Button
                                 onClick={() => {
                                     this.setState({ verifyTwoFA: false });
                                 }}
-                                variant="secondary"
+                                variant="dark"
                             >
                                 {t('back')}
                             </Button>
