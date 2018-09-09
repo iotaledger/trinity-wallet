@@ -41,7 +41,8 @@ process.on('message', async (data) => {
     }
 
     if (payload.job === 'gen') {
-        const address = await genFunc(payload.seed, payload.index, payload.security);
+        const seedString = payload.seed.map((byte) => byteToChar(byte)).join('');
+        const address = await genFunc(seedString, payload.index, payload.security);
         process.send(address);
     }
 });
@@ -53,6 +54,15 @@ const Entangled = {
     genFn: async (seed, index, security) => {
         return await exec(JSON.stringify({ job: 'gen', seed, index, security }));
     },
+};
+
+/**
+ * Convert single character byte to string
+ * @param {number} byte - Input byte
+ * @returns {string} Output character
+ */
+const byteToChar = (byte) => {
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27);
 };
 
 module.exports = Entangled;

@@ -111,7 +111,7 @@ const Electron = {
 
     /**
      * Generate address
-     * @param {string} seed - Input seed
+     * @param {string | array} seed - Input seed
      * @param {number} index - Address index
      * @param {number} security - Address generation security level
      * @param {total} total - Amount of addresses to generate
@@ -323,13 +323,10 @@ const Electron = {
 
     /**
      * Get onboarding seed value
-     * @param {boolean} plainText - If should return plain text seed
-     * @returns {array|string} Onboarding seed value
+     * @returns {array} Onboarding seed value
      */
-    getOnboardingSeed: (plainText) => {
-        return plainText
-            ? onboardingSeed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join('')
-            : onboardingSeed;
+    getOnboardingSeed: () => {
+        return onboardingSeed;
     },
 
     /**
@@ -343,7 +340,7 @@ const Electron = {
     /**
      * Calculate seed checksum
      * @param {array} bytes - Target seed byte array
-     * @returns {string} Seed checksum
+     * @returns {string | array} Seed checksum
      */
     getChecksum: (bytes) => {
         let trits = [];

@@ -76,7 +76,7 @@ class Receive extends React.PureComponent {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seed = await getSeed(password, accountName, true);
+        const seed = await getSeed(password, accountName);
 
         this.props.generateNewAddress(seed, accountName, account, Electron.genFn);
     };

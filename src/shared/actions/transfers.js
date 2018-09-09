@@ -397,7 +397,7 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {string} seed
+ * @param  {string | array} seed
  * @param  {string} receiveAddress
  * @param  {number} value
  * @param  {string} message

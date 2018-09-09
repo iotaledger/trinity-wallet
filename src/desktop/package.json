@@ -139,7 +139,7 @@
     "electron-updater": "^3.0.3",
     "entangled-node": "rihardsgravis/entangled-node",
     "i18next": "^11.5.0",
-    "iota.lib.js": "^0.4.7",
+    "iota.lib.js": "github:rihardsgravis/iota.js#feature/accept-seed-array-param",
     "kdbxweb": "^1.2.4",
     "keytar": "^4.2.1",
     "machine-uuid": "^1.2.0",

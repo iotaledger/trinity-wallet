@@ -188,10 +188,9 @@ export const updatePassword = async (passwordCurrent, passwordNew) => {
  * Get seed from keychain
  * @param {string} Password - Plain text password for decryption
  * @param {string} SeedName - Seed name to retreive from keychain
- * @param {boolean} PlainText - Should the seed be returned in plain ACII text
  * @returns {array} Derypted seed
  */
-export const getSeed = async (password, seedName, plainText) => {
+export const getSeed = async (password, seedName) => {
     const seedNameHash = await hashSeedName(seedName);
 
     const vault = await Electron.readKeychain(seedNameHash);
@@ -200,7 +199,7 @@ export const getSeed = async (password, seedName, plainText) => {
     }
     try {
         const decryptedVault = await decrypt(vault, password);
-        return plainText ? seedToHex(decryptedVault) : decryptedVault;
+        return decryptedVault;
     } catch (err) {
         throw err;
     }
@@ -379,17 +378,6 @@ const hashSeedName = async (seedName) => {
     const prefixName = `${ACC_PREFIX}-${seedName}`;
     const hash = await sha256(prefixName);
     return hash;
-};
-
-/**
- * Convert byte seed array to string
- * @param {array} seed - Target seed array
- * @returns {string} Plain text seed string
- */
-const seedToHex = (bytes) => {
-    return Array.from(bytes)
-        .map((byte) => byteToChar(byte % 27))
-        .join('');
 };
 
 /**
