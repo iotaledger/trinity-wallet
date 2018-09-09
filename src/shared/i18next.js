@@ -61,7 +61,8 @@ export default i18next.init(
     },
     (err) => {
         if (err) {
-            console.error(err); // eslint-disable no-console
+            // eslint-disable-next-line no-console
+            console.error(err);
         }
     },
 );

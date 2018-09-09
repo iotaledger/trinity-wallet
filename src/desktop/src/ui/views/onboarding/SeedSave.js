@@ -43,7 +43,9 @@ class SeedSave extends PureComponent {
                     <h1>{t('saveYourSeed:saveYourSeed')}</h1>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <p>
-                            You must save your seed with <strong>at least one</strong> of the options listed below.
+                            <span>You must save your seed with </span>
+                            <strong>at least one</strong>
+                            <span> of the options listed below.</span>
                         </p>
                     </Trans>
                     <nav className={css.choice}>
