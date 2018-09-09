@@ -41,6 +41,7 @@ let language = {
     receive: 'Receive',
     history: 'History',
     logout: 'Logout',
+    help: 'Help',
     logoutConfirm: 'Are you sure you want to log out?',
     yes: 'Yes',
     no: 'No',
@@ -337,7 +338,7 @@ const initMenu = (app, getWindow) => {
             label: 'Help',
             submenu: [
                 {
-                    label: `${app.getName()} Help`,
+                    label: `${app.getName()} ${language.help}`,
                     click: function() {
                         shell.openExternal('https://docs.iota.works/trinity/faqs');
                     },

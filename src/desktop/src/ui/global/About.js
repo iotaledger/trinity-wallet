@@ -1,5 +1,7 @@
 /* global Electron */
 import React from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -14,6 +16,11 @@ import css from './about.scss';
  * About window component
  */
 class About extends React.PureComponent {
+    static propTypes = {
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+    };
+
     state = {
         visible: false,
     };
@@ -39,6 +46,7 @@ class About extends React.PureComponent {
 
     render() {
         const { visible } = this.state;
+        const { t } = this.props;
 
         return (
             <Modal variant="global" isOpen={visible} onClose={() => this.setState({ visible: false })}>
@@ -239,12 +247,9 @@ class About extends React.PureComponent {
                             </ul>
                         </Scrollbar>
                     </article>
-                    <p>
-                        <strong>BETA version warning:</strong> Do not send large amounts with this wallet.
-                    </p>
                     <footer>
                         <Button onClick={() => this.setState({ visible: false })} variant="dark">
-                            Close
+                            {t('close')}
                         </Button>
                     </footer>
                 </section>
@@ -253,4 +258,4 @@ class About extends React.PureComponent {
     }
 }
 
-export default About;
+export default translate()(About);

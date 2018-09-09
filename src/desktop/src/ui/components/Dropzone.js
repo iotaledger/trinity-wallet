@@ -134,7 +134,8 @@ class Dropzone extends React.Component {
                 <h5 onClick={this.open}>
                     <Icon icon="seedVault" size={48} />{' '}
                     <span>
-                        {t('seedVault:')} Drop SeedVault file here<br /> or click to browse
+                        {t('seedVault:dropSeedVaultHere')} <br/>
+                        {t('seedVault:orClickToBrowse')}
                     </span>
                 </h5>
                 <input {...inputAttributes} />

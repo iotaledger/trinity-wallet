@@ -165,9 +165,7 @@ class GenerateSeed extends React.PureComponent {
                             ) : null
                         }
                     >
-                        <p>
-                            Press <strong /> individual letters to randomise them.
-                        </p>
+                        <p>{t('newSeedSetup:individualLetterCount', { letterCount: clicksLeft })}</p>
                     </Interpolate>
                     <div className={css.seed}>
                         <div>

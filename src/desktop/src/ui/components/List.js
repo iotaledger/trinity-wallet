@@ -211,7 +211,7 @@ class List extends React.PureComponent {
                 <nav className={css.nav}>
                     <ul>
                         <a key="active" onClick={() => this.switchFilter(filter)}>
-                            {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
+                            {filter === 'All' ? t('all') : t(filter.toLowerCase())} <small>({historyTx.length})</small>
                             <Icon icon="chevronDown" size={8} />
                         </a>
                         {loaded ? (
