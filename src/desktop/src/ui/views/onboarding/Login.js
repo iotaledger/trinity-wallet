@@ -189,6 +189,7 @@ class Login extends React.Component {
 
             this.setState({
                 password: '',
+                code: '',
                 verifyTwoFA: false,
             });
 
