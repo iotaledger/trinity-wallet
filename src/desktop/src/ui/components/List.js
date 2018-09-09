@@ -351,7 +351,7 @@ class List extends React.PureComponent {
                                 </p>
                                 {mode === 'Advanced' && this.listAddresses(activeTransfer)}
                                 <div className={css.message}>
-                                    <strong>{t('send:message')}</strong>
+                                    <strong>{t('send:message')}:</strong>
                                     <Scrollbar>
                                         <Clipboard
                                             text={activeTransfer.message}
