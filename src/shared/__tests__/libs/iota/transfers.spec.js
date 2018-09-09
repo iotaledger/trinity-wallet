@@ -85,19 +85,19 @@ describe('libs: iota/transfers', () => {
                             [
                                 {
                                     value: -10,
-                                    currentIndex: 0,
+                                    currentIndex: 1,
                                     lastIndex: 4,
                                     address: 'A'.repeat(81),
                                 },
                                 {
                                     value: -1,
-                                    currentIndex: 1,
+                                    currentIndex: 2,
                                     lastIndex: 4,
                                     address: 'B'.repeat(81),
                                 },
                                 {
                                     value: -40,
-                                    currentIndex: 2,
+                                    currentIndex: 3,
                                     lastIndex: 4,
                                     address: 'C'.repeat(81),
                                 },
@@ -105,7 +105,7 @@ describe('libs: iota/transfers', () => {
                             [
                                 {
                                     value: 12,
-                                    currentIndex: 3,
+                                    currentIndex: 0,
                                     lastIndex: 4,
                                     address: 'Z'.repeat(81),
                                 },
@@ -129,19 +129,19 @@ describe('libs: iota/transfers', () => {
                             [
                                 {
                                     value: -10,
-                                    currentIndex: 0,
+                                    currentIndex: 1,
                                     lastIndex: 4,
                                     address: 'Y'.repeat(81),
                                 },
                                 {
                                     value: -1,
-                                    currentIndex: 1,
+                                    currentIndex: 2,
                                     lastIndex: 4,
                                     address: 'Z'.repeat(81),
                                 },
                                 {
                                     value: -40,
-                                    currentIndex: 2,
+                                    currentIndex: 3,
                                     lastIndex: 4,
                                     address: 'U'.repeat(81),
                                 },
@@ -149,7 +149,7 @@ describe('libs: iota/transfers', () => {
                             [
                                 {
                                     value: 12,
-                                    currentIndex: 3,
+                                    currentIndex: 0,
                                     lastIndex: 4,
                                     address: 'D'.repeat(81),
                                 },

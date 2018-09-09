@@ -46,10 +46,11 @@ export const convertFromTrytes = (trytes) => {
     const trytesWithoutNines = trytes.replace(/9+$/, '');
     const message = iota.utils.fromTrytes(trytesWithoutNines);
 
-    if (trytesWithoutNines && message) {
+    /* eslint-disable no-control-regex */
+    if (trytesWithoutNines && message && /^[\x00-\xFF]*$/.test(message)) {
         return message;
     }
-
+    /* eslint-enable no-control-regex */
     return EMPTY_TRANSACTION_MESSAGE;
 };
 
