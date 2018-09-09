@@ -28,7 +28,7 @@ export default class Logo extends React.PureComponent {
         const options = {
             loop: loop,
             autoplay: true,
-            animationData: loading,
+            animationData: loading.default,
         };
 
         return (
