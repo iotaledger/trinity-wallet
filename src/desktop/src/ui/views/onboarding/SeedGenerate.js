@@ -152,30 +152,18 @@ class GenerateSeed extends React.PureComponent {
         const { seed, scramble, existingSeed, clicks } = this.state;
 
         const clicksLeft = 10 - clicks.length;
-        const letterCount = !existingSeed ? clicksLeft : 0;
 
         return (
             <form>
                 <section className={css.wide}>
                     <h1>{t('newSeedSetup:generatedSeed')}</h1>
-                    {/*
-                    <Interpolate
-                        i18nKey="newSeedSetup:individualLetterCount"
-                        letterCount={
-                            !existingSeed && clicksLeft > 0 ? (
-                                <strong className={css.highlight}>{!existingSeed ? clicksLeft : 0}</strong>
-                            ) : null
-                        }
-                    >
-                        <p>{t('newSeedSetup:individualLetterCount', { letterCount: clicksLeft })}</p>
-                    </Interpolate>
-                    */}
-                    {clicksLeft > 0 && (
-                        <Trans i18nKey="newSeedSetup:individualLetterCount" count={letterCount}>
-                            Press <strong className={css.highlight}>{{ count: letterCount }}</strong> more letter to
-                            randomise it.
-                        </Trans>
-                    )}
+                    {!existingSeed &&
+                        clicksLeft > 0 && (
+                            <Trans i18nKey="newSeedSetup:individualLetterCount" count={clicksLeft}>
+                                Press <strong className={css.highlight}>{{ count: clicksLeft }}</strong> more letter to
+                                randomise it.
+                            </Trans>
+                        )}
                     <div className={css.seed}>
                         <div>
                             {seed.map((byte, index) => {
@@ -209,9 +197,13 @@ class GenerateSeed extends React.PureComponent {
                         className="square"
                         variant="primary"
                     >
-                        {!existingSeed && clicksLeft > 0
-                            ? `Randomise ${clicksLeft} characters to continue`
-                            : t('continue')}
+                        {!existingSeed && clicksLeft > 0 ? (
+                            <Trans i18nKey="newSeedSetup:randomiseCharsToContinue" count={clicksLeft}>
+                                Randomise {{ count: clicksLeft }} character to continue.
+                            </Trans>
+                        ) : (
+                            t('continue')
+                        )}
                     </Button>
                 </footer>
             </form>

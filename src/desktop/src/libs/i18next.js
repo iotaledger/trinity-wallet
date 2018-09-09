@@ -8,7 +8,7 @@ export default i18next.init(
     {
         fallbackLng: 'en',
         defaultNS: 'global',
-        debug: true,
+        debug: false,
         parseMissingKeyHandler: (value) => value,
         resources: {
             en: require('locales/en/translation.json'),
