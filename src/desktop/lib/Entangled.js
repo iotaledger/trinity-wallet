@@ -25,7 +25,7 @@ const exec = (payload) => {
             child.kill();
         }, 30000);
 
-        child.send(JSON.stringify(payload));
+        child.send(payload);
     });
 };
 
@@ -48,10 +48,10 @@ process.on('message', async (data) => {
 
 const Entangled = {
     powFn: async (trytes, mwm) => {
-        return await exec({ job: 'pow', trytes, mwm });
+        return await exec(JSON.stringify({ job: 'pow', trytes, mwm }));
     },
     genFn: async (seed, index, security) => {
-        return await exec({ job: 'gen', seed, index, security });
+        return await exec(JSON.stringify({ job: 'gen', seed, index, security }));
     },
 };
 

@@ -77,7 +77,7 @@ class Seed extends PureComponent {
                                       if (index % 3 !== 0) {
                                           return null;
                                       }
-                                      const letter = byteToChar(byte % 27);
+                                      const letter = byteToChar(byte);
                                       return (
                                           <React.Fragment key={`${index}${letter}`}>
                                               {letter}
