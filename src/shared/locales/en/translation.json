@@ -282,7 +282,10 @@
         "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "letter": "letter",
+        "letter_plural": "letters",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {

@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Interpolate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { createRandomSeed, byteToChar } from 'libs/crypto';
 import { capitalize } from 'libs/helpers';
 
@@ -152,11 +152,13 @@ class GenerateSeed extends React.PureComponent {
         const { seed, scramble, existingSeed, clicks } = this.state;
 
         const clicksLeft = 10 - clicks.length;
+        const letterCount = !existingSeed ? clicksLeft : 0;
 
         return (
             <form>
                 <section className={css.wide}>
                     <h1>{t('newSeedSetup:generatedSeed')}</h1>
+                    {/*
                     <Interpolate
                         i18nKey="newSeedSetup:individualLetterCount"
                         letterCount={
@@ -167,6 +169,13 @@ class GenerateSeed extends React.PureComponent {
                     >
                         <p>{t('newSeedSetup:individualLetterCount', { letterCount: clicksLeft })}</p>
                     </Interpolate>
+                    */}
+                    {clicksLeft > 0 && (
+                        <Trans i18nKey="newSeedSetup:individualLetterCount" count={letterCount}>
+                            Press <strong className={css.highlight}>{{ count: letterCount }}</strong> more letter to
+                            randomise it.
+                        </Trans>
+                    )}
                     <div className={css.seed}>
                         <div>
                             {seed.map((byte, index) => {
