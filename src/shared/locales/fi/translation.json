@@ -34,6 +34,7 @@
         "save": "Tallenna",
         "close": "Sulje",
         "export": "Vie",
+        "help": "Help",
         "import": "Tuo",
         "continue": "Jatka",
         "enable": "Ota käyttöön",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Luo Uusi Seed-Luku",
         "generateSuccess": "Seed-luvun luonti onnistu",
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi.",
-        "individualLetterCount": "Paina vielä {{letterCount}} merkkiä saadaksesi ne satunnaisiksi.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Mikä on seed-luku?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Teema",
         "mockup": "Malli"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuutta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Tuo Seedvault-tiedosto",
-        "dropSeedVaultHere": "Pudota SeedVault-tiedosto tähän",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Kirjoita salasanasi avataksesi SeedVault-tiedostosi",
         "noSeedFound": "SeedVault-tiedosto ei sisällä kelvolista seed-lukua",
         "noSeedFoundExplanation": "SeedVault-tiedosto on joko tyhjä tai sisältää seed-luvun virheellisessä muodossa.",
