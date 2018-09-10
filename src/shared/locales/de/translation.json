@@ -265,7 +265,7 @@
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
         "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weitere Buchstaben für eine zufällige Auswahl.",
         "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen zum fortfahren.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Was ist ein Seed?"
     },
