@@ -34,6 +34,7 @@
         "save": "儲存",
         "close": "關閉",
         "export": "匯出",
+        "help": "Help",
         "import": "匯入",
         "continue": "繼續",
         "enable": "啟用",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "按此產生新種子碼",
         "generateSuccess": "種子碼產生成功",
         "individualLetters": "請按各字母以隨機產生。",
-        "individualLetterCount": "請再按 {{letterCount}} 個獨立的字母來隨機產生。",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "什麼是種子碼？"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "佈景主題",
         "mockup": "樣式"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "貨幣"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "您的種子碼已成功匯入。",
         "saveToDownloadFolder": "儲存至下載資料夾",
         "importSeedVault": "匯入 SeedVault",
-        "dropSeedVaultHere": "將 SeedVault 放至這裡",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "輸入您的密碼來開啟 SeedVault",
         "noSeedFound": "SeedVault 裡沒儲存有效的種子碼",
         "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
