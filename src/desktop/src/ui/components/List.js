@@ -211,7 +211,7 @@ class List extends React.PureComponent {
                 <nav className={css.nav}>
                     <ul>
                         <a key="active" onClick={() => this.switchFilter(filter)}>
-                            {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
+                            {t(filter.toLowerCase())} <small>({historyTx.length})</small>
                             <Icon icon="chevronDown" size={8} />
                         </a>
                         {loaded ? (
@@ -351,7 +351,7 @@ class List extends React.PureComponent {
                                 </p>
                                 {mode === 'Advanced' && this.listAddresses(activeTransfer)}
                                 <div className={css.message}>
-                                    <strong>{t('send:message')}</strong>
+                                    <strong>{t('send:message')}:</strong>
                                     <Scrollbar>
                                         <Clipboard
                                             text={activeTransfer.message}
