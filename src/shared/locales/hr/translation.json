@@ -263,8 +263,8 @@
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "individualLetterCount_plural": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Što je seed?"
@@ -618,7 +618,7 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u. Možete koristiti istu lozinku koju koristite za pristup Trinity novčaniku."
     },
     "chart": {
         "mcap": "MCAP",
