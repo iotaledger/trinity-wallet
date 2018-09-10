@@ -263,8 +263,8 @@
         "pressForNewSeed": "Generuj nowy klucz seed",
         "generateSuccess": "Klucz seed wygenerowany",
         "individualLetters": "Naciśnij na dane pola, aby wylosować je ponownie.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount": "Naciśnij jeszcze <1><0>{{count}}</0></1> literę, w celu jej wylosowania.",
+        "individualLetterCount_plural": "Naciśnij jeszcze <1><0>{{count}}</0></1> liter, w celu ich wylosowania.",
         "randomiseCharsToContinue": "Wylosuj <1>{{count}}</1> znak, aby kontynuować.",
         "randomiseCharsToContinue_plural": "Wylosuj <1>{{count}}</1> znaków, aby kontynuować.",
         "whatIsASeed": "Czym jest seed?"
