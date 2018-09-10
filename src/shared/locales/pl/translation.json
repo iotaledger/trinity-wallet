@@ -34,6 +34,7 @@
         "save": "Zapisz",
         "close": "Zamknij",
         "export": "Eksportuj",
+        "help": "Help",
         "import": "Importuj",
         "continue": "Kontynuuj",
         "enable": "Włącz",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Generuj nowy klucz seed",
         "generateSuccess": "Klucz seed wygenerowany",
         "individualLetters": "Naciśnij na dane pola, aby wylosować je ponownie.",
-        "individualLetterCount": "Naciśnij {{letterCount}} więcej pojedynczych liter, aby je wylosować.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Czym jest seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Motyw",
         "mockup": "Podgląd"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Waluta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
-        "dropSeedVaultHere": "Upuść plik SeedVault tutaj",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Wprowadź swoje hasło, aby otworzyć plik SeedVault",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
