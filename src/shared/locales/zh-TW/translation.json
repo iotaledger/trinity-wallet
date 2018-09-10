@@ -34,7 +34,7 @@
         "save": "儲存",
         "close": "關閉",
         "export": "匯出",
-        "help": "Help",
+        "help": "幫助",
         "import": "匯入",
         "continue": "繼續",
         "enable": "啟用",
@@ -263,10 +263,10 @@
         "pressForNewSeed": "按此產生新種子碼",
         "generateSuccess": "種子碼產生成功",
         "individualLetters": "請按各字母以隨機產生。",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "請再點選 <1><0>{{count}}</0></1> 個字母來亂數生成。",
+        "individualLetterCount_plural": "請再點選 <1><0>{{count}}</0></1> 個字母來亂數生成。",
+        "randomiseCharsToContinue": "需再亂數生成 <1>{{count}}</1> 個字符才能繼續。",
+        "randomiseCharsToContinue_plural": "需再亂數生成 <1>{{count}}</1> 個字符才能繼續。",
         "whatIsASeed": "什麼是種子碼？"
     },
     "onboardingComplete": {
@@ -493,16 +493,16 @@
         "mockup": "樣式"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "經典",
+        "contemporary": "現代",
+        "dark": "黑暗",
+        "default": "預設",
+        "electric": "電流",
+        "ionic": "離子",
+        "light": "白亮",
+        "lucky": "幸運",
+        "mint": "嶄新",
+        "steelblue": "鐵藍"
     },
     "currencySelection": {
         "currency": "貨幣"
@@ -612,7 +612,7 @@
         "importSuccessExplanation": "您的種子碼已成功匯入。",
         "saveToDownloadFolder": "儲存至下載資料夾",
         "importSeedVault": "匯入 SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "拖曳 SeedVault 至此 <1></1> 或者點擊瀏覽",
         "enterPasswordExplanation": "輸入您的密碼來開啟 SeedVault",
         "noSeedFound": "SeedVault 裡沒儲存有效的種子碼",
         "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
