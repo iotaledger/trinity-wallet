@@ -201,7 +201,7 @@ class Chart extends PureComponent {
                 ) : (
                     <View style={styles.chartContainer}>
                         <VictoryChart
-                            domainPadding={isAndroid ? 3 : height / 50}
+                            domainPadding={isAndroid ? height / 70 : height / 50}
                             height={chartHeight}
                             width={chartWidth}
                         >
