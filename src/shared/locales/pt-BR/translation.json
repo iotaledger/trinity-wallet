@@ -34,6 +34,7 @@
         "save": "Gravar",
         "close": "Fechar",
         "export": "Exportar",
+        "help": "Help",
         "import": "Importar",
         "continue": "Continuar",
         "enable": "Ativar",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Pressione Para Obter Nova Seed",
         "generateSuccess": "Seed gerada com sucesso",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório.",
-        "individualLetterCount": "Digite mais {{letterCount}} letras individuais para tornar mais aleatório.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "O que é uma Seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Modelo"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Moeda"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Sua seed foi importada com sucesso.",
         "saveToDownloadFolder": "Salvar na pasta de download",
         "importSeedVault": "Importar SeedVault",
-        "dropSeedVaultHere": "Arraste a SeedVault aqui",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Digite sua senha para abrir o SeedVault",
         "noSeedFound": "SeedVault não contém uma Seed válida",
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
