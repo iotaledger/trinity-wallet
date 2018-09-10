@@ -493,9 +493,9 @@
         "mockup": "モックアップ"
     },
     "themes": {
-        "classic": "Classic",
+        "classic": "クラシック",
         "contemporary": "Contemporary",
-        "dark": "Dark",
+        "dark": "ダーク",
         "default": "Default",
         "electric": "Electric",
         "ionic": "Ionic",
