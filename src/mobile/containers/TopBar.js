@@ -11,6 +11,7 @@ import { setSeedIndex } from 'iota-wallet-shared-modules/actions/wallet';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
 import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
 import {
+    StatusBar,
     View,
     Text,
     StyleSheet,
@@ -141,7 +142,7 @@ class TopBar extends Component {
         /** @ignore */
         clearLog: PropTypes.func.isRequired,
         /** Top bar height */
-        topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
+        topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
         /** Determines if on screen keyboard is active */
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
@@ -312,7 +313,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
+            <Animated.View style={[styles.titleWrapper, { height: topBarHeight } ]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
@@ -330,6 +331,8 @@ class TopBar extends Component {
                                     flexDirection: 'row',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
+                                    marginTop: isAndroid ? StatusBar.currentHeight: 0,
+                                    paddingBottom: isAndroid ? height / 80 : 0
                                 }}
                             >
                                 {hasNotifications && !isKeyboardActive && mode === 'Advanced' ? (
@@ -358,14 +361,15 @@ class TopBar extends Component {
                                     <Text
                                         numberOfLines={1}
                                         style={
+                                            [ isAndroid ? null : { marginTop: height / 55 },
                                             shouldDisable
                                                 ? StyleSheet.flatten([
                                                       styles.mainTitle,
                                                       styles.disabled,
-                                                      { color: bar.color, marginTop: height / 55 },
+                                                      { color: bar.color },
                                                   ])
-                                                : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
-                                        }
+                                                : [styles.mainTitle, { color: bar.color }, isAndroid ? null : { marginTop: height / 55 }]
+                                        ]}
                                     >
                                         {selectedTitle}
                                     </Text>

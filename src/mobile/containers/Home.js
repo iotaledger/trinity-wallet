@@ -114,7 +114,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
-        this.topBarHeight = isAndroid ? height / 8.8 : new Animated.Value(height / 8.8);
+        this.topBarHeight = isAndroid ? null : new Animated.Value(height / 8.8);
 
         this.state = {
             isKeyboardActive: false,

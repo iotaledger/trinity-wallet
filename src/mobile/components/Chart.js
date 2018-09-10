@@ -11,7 +11,7 @@ import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const chartWidth = width;
-const chartHeight = height * 0.36;
+const chartHeight = isAndroid ? height * 0.4 : height * 0.36;
 
 const styles = StyleSheet.create({
     button: {
@@ -201,7 +201,7 @@ class Chart extends PureComponent {
                 ) : (
                     <View style={styles.chartContainer}>
                         <VictoryChart
-                            domainPadding={isAndroid ? height / 70 : height / 50}
+                            domainPadding={height / 50}
                             height={chartHeight}
                             width={chartWidth}
                         >
