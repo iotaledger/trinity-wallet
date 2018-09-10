@@ -27,6 +27,7 @@ import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
 import PasswordFields from '../components/PasswordFields';
+import { isAndroid } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
@@ -220,7 +221,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('choosePassword')}</Header>
                         </View>
-                        <KeyboardAvoidingView behavior="padding" style={styles.midContainer}>
+                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.midContainer}>
                             <InfoBox
                                 body={body}
                                 text={
