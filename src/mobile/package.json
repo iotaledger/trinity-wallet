@@ -94,7 +94,7 @@
     "react-native-secure-clipboard": "^0.1.1",
     "react-native-securerandom": "^0.1.1",
     "react-native-share": "^1.0.27",
-    "react-native-splash-screen": "^3.0.6",
+    "react-native-splash-screen": "^3.1.1",
     "react-native-svg": "~6.1.4",
     "react-native-tcp": "^3.3.0",
     "react-native-timer": "^1.3.1",
@@ -123,17 +123,17 @@
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "5.0.2",
-    "babel-preset-stage-0": "^6.24.1",
-    "cross-env": "^5.1.3",
+    "babel-jest": "23.4.2",
+    "babel-preset-react-native": "^5.0.2",
+    "babel-preset-stage-0": "^7.0.0-beta",
+    "cross-env": "^5.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "jest": "20.0.4",
+    "jest": "23.5.0",
     "jest-serializer-enzyme": "^1.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
-    "react-test-renderer": "16.0.0-alpha.12",
+    "react-test-renderer": "^16.5.0",
     "rn-nodeify": "^8.2.0"
   },
   "jest": {
@@ -146,6 +146,9 @@
       "/node_modules/",
       "/shared/"
     ],
+    "transform": {
+      "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
+    },
     "transformIgnorePatterns": [
       "node_modules/?!(react-native|iota-wallet-shared-modules)/"
     ]

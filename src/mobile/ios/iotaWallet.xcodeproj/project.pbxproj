@@ -2847,21 +2847,9 @@
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
-					"(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../../../React/**",
-					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/**",
-					"$(inherited)",
-					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
-					"${PODS_DEV_ROOT}/React/**",
-					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
-					"${PODS_DEV_ROOT}/UIDevice-PasscodeStatus/**",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
+					"<Multiple",
+					"values>",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -3218,19 +3206,9 @@
 					"\"../node_modules/nodejs-mobile-react-native/ios\"",
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
-					"(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../../../React/**",
-					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
-					"$(SRCROOT)/../node_modules/react-native-config/ios/**",
-					"$(inherited)",
-					"${PODS_DEV_ROOT}/React/**",
-					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
-					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
-					"${PODS_DEV_ROOT}/UIDevice-PasscodeStatus/**",
+					"<Multiple",
+					"values>",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-crypto/ios/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;

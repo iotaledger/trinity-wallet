@@ -8,13 +8,13 @@
  */
 
 #import "AppDelegate.h"
-#import "SplashScreen.h"
+#import "RNSplashScreen.h"
 #import <BugsnagReactNative/BugsnagReactNative.h>
 
 
 
 #import <React/RCTBundleURLProvider.h>
-#import "RCCManager.h"
+#import "../../node_modules/react-native-navigation/ios/RCCManager.h"
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
 
@@ -46,7 +46,7 @@
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
   [BugsnagReactNative start];
   [self excludeManifestFromBackup];
-  [SplashScreen show];
+  [RNSplashScreen show];
   return YES;
 }
 
