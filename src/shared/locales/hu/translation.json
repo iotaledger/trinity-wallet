@@ -34,6 +34,7 @@
         "save": "Elment",
         "close": "Bezár",
         "export": "Exportálás",
+        "help": "Help",
         "import": "Importálás",
         "continue": "Tovább",
         "enable": "Bekapcsol",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Új mester jelszó",
         "generateSuccess": "Mester jelszó sikeresen előállítva",
         "individualLetters": "Nyomja meg az egyes karaktereket, hogy véletlenszerű másik karakterre cserélje őket.",
-        "individualLetterCount": "Nyomjon meg további {{letterCount}} karaktert, hogy véletlenszerűen másikra cserélje őket.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Mi az a mester jelszó (seed)?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Kinézet",
         "mockup": "Minta"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Pénznem"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
-        "dropSeedVaultHere": "SeedVault fájlt tegye ide",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Adja meg a jelszót a SeedVault fájl megnyitásához",
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
