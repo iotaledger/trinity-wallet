@@ -34,7 +34,7 @@
         "save": "저장",
         "close": "닫기",
         "export": "내보내기",
-        "help": "Help",
+        "help": "도움말",
         "import": "가져오기",
         "continue": "계속",
         "enable": "활성화",
@@ -263,10 +263,10 @@
         "pressForNewSeed": "새 시드",
         "generateSuccess": "시드 생성에 성공했습니다.",
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "<1><0>{{count}}</0></1>글자를 더 눌러서 바꿔 주세요.",
+        "individualLetterCount_plural": "<1><0>{{count}}</0></1>글자를 더 눌러서 바꿔 주세요.",
+        "randomiseCharsToContinue": "<1>{{count}}</1>글자를 더 바꿔 주세요.",
+        "randomiseCharsToContinue_plural": "<1>{{count}}</1>글자를 더 바꿔 주세요.",
         "whatIsASeed": "시드가 뭐죠?"
     },
     "onboardingComplete": {
@@ -493,16 +493,16 @@
         "mockup": "예시"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "클래식",
+        "contemporary": "현대",
+        "dark": "블랙",
+        "default": "기본",
+        "electric": "전기",
+        "ionic": "아이오닉",
+        "light": "화이트",
+        "lucky": "행운",
+        "mint": "민트",
+        "steelblue": "스틸블루"
     },
     "currencySelection": {
         "currency": "통화"
@@ -612,7 +612,7 @@
         "importSuccessExplanation": "시드를 성공적으로 가져왔습니다.",
         "saveToDownloadFolder": "다운로드 폴더에 저장",
         "importSeedVault": "SeedValut 가져오기",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "SeedVault 끌어다 놓기 <1></1> 또는 여기를 눌러 찾아보기",
         "enterPasswordExplanation": "SeedVault를 열기 위해 비밀번호를 입력하세요",
         "noSeedFound": "SeedVault 내 유효한 시드 없음",
         "noSeedFoundExplanation": "SeedVault가 비어있거나 시드가 유효하지 않은 형식으로 저장되어 있습니다.",
