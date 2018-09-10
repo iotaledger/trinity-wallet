@@ -493,7 +493,7 @@
         "mockup": "モックアップ"
     },
     "themes": {
-        "classic": "クラシック",
+        "classic": "α版の色",
         "contemporary": "現代色",
         "dark": "暗色",
         "default": "既定色",
@@ -501,7 +501,7 @@
         "ionic": "イオン色",
         "light": "明色",
         "lucky": "幸運色",
-        "mint": "ミント色",
+        "mint": "ハッカ色",
         "steelblue": "暗青灰色"
     },
     "currencySelection": {
