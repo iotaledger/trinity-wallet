@@ -263,7 +263,7 @@
         "pressForNewSeed": "Drücke für neuen Seed",
         "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weitere Buchstaben für eine zufällige Auswahl.",
+        "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
         "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
         "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen zum fortfahren.",
         "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen zum fortfahren.",
