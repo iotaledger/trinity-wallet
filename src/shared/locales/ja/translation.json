@@ -265,8 +265,8 @@
         "individualLetters": "文字をタップして更にランダムにしてください。",
         "individualLetterCount": "シードをランダム化するために、<1><0>{{count}}</0></1>文字以上をタップしてください。",
         "individualLetterCount_plural": "シードをランダム化するために、<1><0>{{count}}</0></1>文字以上をタップしてください。",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "続けて<1>{{count}}</1>文字をランダム化してください。",
+        "randomiseCharsToContinue_plural": "続けて<1>{{count}}</1>文字をランダム化してください。",
         "whatIsASeed": "シードとは何か？"
     },
     "onboardingComplete": {
