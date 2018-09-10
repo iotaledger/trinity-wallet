@@ -34,6 +34,7 @@
         "save": "Uložit",
         "close": "Zavřít",
         "export": "Exportovat",
+        "help": "Help",
         "import": "Importovat",
         "continue": "Pokračovat",
         "enable": "Zapnout",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Stiskni pro nový Seed",
         "generateSuccess": "Seed úspěšně vygenerovaný",
         "individualLetters": "Vyberte náhodná písmena.",
-        "individualLetterCount": "Stiskni {{letterCount}} jednotlivých znaků pro zvýšení náhodnosti.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Co je to Seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Motiv",
         "mockup": "Příklad"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Měna"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importovat SeedVault",
-        "dropSeedVaultHere": "Sem přeneste SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Zadejte Vaše heslo k otevření SeedVault",
         "noSeedFound": "SeedVault neobsahuje platný Seed",
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
