@@ -34,6 +34,7 @@
         "save": "Speichern",
         "close": "Schließen",
         "export": "Export",
+        "help": "Help",
         "import": "Import",
         "continue": "Fortfahren",
         "enable": "Aktivieren",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Drücke für neuen Seed",
         "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "individualLetterCount": "Wähle {{letterCount}} weitere Zeichen um sie zufällig auszutauschen.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Design",
         "mockup": "Vorschau"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Währung"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Dein Seed wurde erfolgreich importiert.",
         "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
-        "dropSeedVaultHere": "SeedVault hierher ziehen",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
