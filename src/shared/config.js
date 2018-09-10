@@ -41,3 +41,6 @@ export const NODE_REQUEST_TIMEOUT = 6000;
 export const DEFAULT_RETRIES = 4;
 
 export const IRI_API_VERSION = '1';
+
+export const QUORUM_THRESHOLD = 67;
+export const MIN_QUORUM_NODES = 7;
