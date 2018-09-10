@@ -434,8 +434,8 @@
         "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>",
-        "scrollToBottom": "下までスクロール"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>３回チェック</1><2>を行ってください。</2>",
+        "scrollToBottom": "下までスクロールしてください"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
