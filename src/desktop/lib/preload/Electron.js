@@ -11,36 +11,7 @@ const argon2 = require('argon2');
 const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
-
-const trytesTrits = [
-    [0, 0, 0],
-    [1, 0, 0],
-    [-1, 1, 0],
-    [0, 1, 0],
-    [1, 1, 0],
-    [-1, -1, 1],
-    [0, -1, 1],
-    [1, -1, 1],
-    [-1, 0, 1],
-    [0, 0, 1],
-    [1, 0, 1],
-    [-1, 1, 1],
-    [0, 1, 1],
-    [1, 1, 1],
-    [-1, -1, -1],
-    [0, -1, -1],
-    [1, -1, -1],
-    [-1, 0, -1],
-    [0, 0, -1],
-    [1, 0, -1],
-    [-1, 1, -1],
-    [0, 1, -1],
-    [1, 1, -1],
-    [-1, -1, 0],
-    [0, -1, 0],
-    [1, -1, 0],
-    [-1, 0, 0],
-];
+const { byteToTrit } = require('../../src/libs/helpers');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -339,17 +310,14 @@ const Electron = {
 
     /**
      * Calculate seed checksum
-     * @param {array} trits - Target trit array
+     * @param {array} bytes - Target seed byte array
      * @returns {string | array} Seed checksum
      */
-    getChecksum: (trits) => {
+    getChecksum: (bytes) => {
         let rawTrits = [];
 
-        for (let i = 0; i < trits.length; i++) {
-            const trit = trits[i];
-            // <0.3.3 support
-            // Seed characters where stored as bytes not trits
-            rawTrits = rawTrits.concat(typeof trit === 'number' ? trytesTrits[trit % 27] : trit);
+        for (let i = 0; i < bytes.length; i++) {
+            rawTrits = rawTrits.concat(byteToTrit(bytes[i]));
         }
 
         const kerl = new Kerl();
@@ -505,14 +473,14 @@ const Electron = {
             yes: t('yes'),
             no: t('no'),
             updates: {
-               errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
-               noUpdatesAvailable: t('updates:noUpdatesAvailable'),
-               noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
-               newVersionAvailable: t('updates:newVersionAvailable'),
-               newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
-               installUpdate: t('updates:installUpdate'),
-               installUpdateExplanation: t('updates:installUpdateExplanation'),
-           },
+                errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+                noUpdatesAvailable: t('updates:noUpdatesAvailable'),
+                noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
+                newVersionAvailable: t('updates:newVersionAvailable'),
+                newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
+                installUpdate: t('updates:installUpdate'),
+                installUpdateExplanation: t('updates:installUpdateExplanation'),
+            },
         });
 
         locales = {

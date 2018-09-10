@@ -1,6 +1,6 @@
 /* global Electron */
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { trytesTrits } from 'libs/helpers';
+import { byteToTrit } from 'libs/helpers';
 
 // Prefix for seed account titles stored in the vault
 const ACC_PREFIX = 'account';
@@ -40,7 +40,7 @@ export const randomBytes = (size, max) => {
  * @returns {array} Random byte array seed
  */
 export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return randomBytes(length, 27).map((byte) => trytesTrits[byte % 27]);
+    return randomBytes(length, 27);
 };
 
 /**
@@ -204,9 +204,7 @@ export const getSeed = async (password, seedName, rawTrits) => {
         if (rawTrits) {
             let trits = [];
             for (let i = 0; i < decryptedVault.length; i++) {
-                trits = trits.concat(
-                    typeof decryptedVault[i] === 'number' ? trytesTrits[decryptedVault[i] % 27] : decryptedVault[i],
-                );
+                trits = trits.concat(byteToTrit(decryptedVault[i]));
             }
             return trits;
         }
@@ -331,15 +329,7 @@ export const uniqueSeed = async (password, seed) => {
             const account = accounts[i];
 
             const vaultSeed = await decrypt(account.password, password);
-            if (
-                vaultSeed.length === seed.length &&
-                seed.every((v, x) => {
-                    // <0.3.3 support
-                    // Seed characters where stored as bytes not trits
-                    const trit = typeof vaultSeed[x] === 'number' ? trytesTrits[vaultSeed[x] % 27] : vaultSeed[x];
-                    return trit[0] === v[0] && trit[1] === v[1] && trit[2] === v[2];
-                })
-            ) {
+            if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
                 return false;
             }
         }

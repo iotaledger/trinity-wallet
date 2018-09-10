@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate, Interpolate } from 'react-i18next';
 import { createRandomSeed, randomBytes } from 'libs/crypto';
-import { capitalize, tritToChar } from 'libs/helpers';
+import { capitalize, byteToChar } from 'libs/helpers';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -172,10 +172,10 @@ class GenerateSeed extends React.PureComponent {
                     </Interpolate>
                     <div className={css.seed}>
                         <div>
-                            {seed.map((trit, index) => {
+                            {seed.map((byte, index) => {
                                 const offset = scramble[index];
                                 const letter =
-                                    offset > 0 ? '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(offset % 27) : tritToChar(trit);
+                                    offset > 0 ? byteToChar(offset) : byteToChar(byte);
                                 return (
                                     <button
                                         onClick={this.updateLetter}

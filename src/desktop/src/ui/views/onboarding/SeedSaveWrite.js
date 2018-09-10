@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
 
-import { tritToChar } from 'libs/helpers';
+import { byteToChar } from 'libs/helpers';
 
 import Button from 'ui/components/Button';
 import Tooltip from 'ui/components/Tooltip';
@@ -42,11 +42,11 @@ class SeedSave extends PureComponent {
                     <div className={classNames(css.seed, css.narrow)}>
                         <div>
                             {seed &&
-                                seed.map((trit, index) => {
+                                seed.map((byte, index) => {
                                     if (index % 3 !== 0) {
                                         return null;
                                     }
-                                    const letter = `${tritToChar(trit)}${tritToChar(seed[index + 1])}${tritToChar(
+                                    const letter = `${byteToChar(byte)}${byteToChar(seed[index + 1])}${byteToChar(
                                         seed[index + 2],
                                     )}`;
 

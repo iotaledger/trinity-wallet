@@ -1,6 +1,6 @@
 const argon2 = require('argon2');
 const kdbxweb = require('kdbxweb');
-const { tritToChar, charToTrit } = require('../src/libs/helpers');
+const { byteToChar, charToByte } = require('../src/libs/helpers');
 
 /**
  * Bind kdbxweb and argon2
@@ -33,7 +33,7 @@ const exportVault = async (seeds, password) => {
     for (let i = 0; i < seeds.length; i++) {
         const entry = db.createEntry(db.getDefaultGroup());
         entry.fields.Title = seeds[i].title || `IOTA Seed #${i + 1}`;
-        entry.fields.Seed = kdbxweb.ProtectedValue.fromString(seeds[i].seed.map((trit) => tritToChar(trit)).join(''));
+        entry.fields.Seed = kdbxweb.ProtectedValue.fromString(seeds[i].seed.map((byte) => byteToChar(byte)).join(''));
     }
 
     const chunk = await db.save();
@@ -60,8 +60,8 @@ const importVault = async (buffer, password) => {
                 title: entries[i].fields.Title || `Seed #${i + 1}`,
                 seed: entries[i].fields.Seed.getText()
                     .split('')
-                    .map((char) => charToTrit(char.toUpperCase()))
-                    .filter((trit) => trit.length),
+                    .map((char) => charToByte(char.toUpperCase()))
+                    .filter((byte) => byte > -1),
             });
         }
     }

@@ -54,22 +54,8 @@ const trytesTrits = [
  * Convert trit to an ASCII character
  * @param {trit} trit - raw Trit input
  */
-const tritToChar = (trit) => {
-    // <0.3.3 support
-    // Seed characters where stored as bytes not trits
-    if (typeof trit === 'number') {
-        return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(trit % 27);
-    }
-
-    if (trit.length < 3) {
-        return false;
-    }
-
-    for (let i = 0; i < trytesTrits.length; i++) {
-        if (trit[0] === trytesTrits[i][0] && trit[1] === trytesTrits[i][1] && trit[2] === trytesTrits[i][2]) {
-            return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(i);
-        }
-    }
+const byteToChar = (trit) => {
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(trit % 27);
 };
 
 /**
@@ -77,14 +63,18 @@ const tritToChar = (trit) => {
  * @param {string} char - Input character
  * @returns {array} Output trit array
  */
-const charToTrit = (char) => {
-    return trytesTrits['9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char)];
+const charToByte = (char) => {
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char);
+};
+
+const byteToTrit = (byte) => {
+    return trytesTrits[byte % 27];
 };
 
 module.exports = {
     capitalize,
     shorten,
-    trytesTrits,
-    tritToChar,
-    charToTrit,
+    byteToChar,
+    byteToTrit,
+    charToByte,
 };

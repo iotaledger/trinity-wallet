@@ -8,7 +8,7 @@ import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { MAX_ACC_LENGTH } from 'libs/crypto';
-import { tritToChar, charToTrit } from 'libs/helpers';
+import { byteToChar, charToByte } from 'libs/helpers';
 
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
@@ -225,11 +225,11 @@ class SeedInput extends React.PureComponent {
             return true;
         }
 
-        const trit = charToTrit(key.toUpperCase());
+        const byte = charToByte(key.toUpperCase());
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
-            if (trit || key === 'Backspace') {
+            if (byte || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
 
                 const seed = this.props.seed.slice(0);
@@ -246,7 +246,7 @@ class SeedInput extends React.PureComponent {
                         }
                     }
                 } else {
-                    seed.splice(Math.min(...cursor), Math.abs(cursor[0] - cursor[1]), trit);
+                    seed.splice(Math.min(...cursor), Math.abs(cursor[0] - cursor[1]), byte);
                 }
 
                 if (seed.length > MAX_SEED_LENGTH) {
@@ -288,7 +288,7 @@ class SeedInput extends React.PureComponent {
                             suppressContentEditableWarning
                         >
                             {seed.map((byte, index) => {
-                                const letter = tritToChar(byte);
+                                const letter = byteToChar(byte);
                                 return (
                                     <span
                                         className={css.letter}
