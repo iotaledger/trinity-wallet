@@ -34,6 +34,7 @@
         "save": "Spara",
         "close": "Stäng",
         "export": "Exportera",
+        "help": "Help",
         "import": "Importera",
         "continue": "Fortsätt",
         "enable": "Aktivera",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Tryck för ny seed",
         "generateSuccess": "Seed genererad framgångsrikt",
         "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt.",
-        "individualLetterCount": "Tryck på {{letterCount}} mer enskilda bokstäver för att slumpa dem.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Vad är en seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Teman",
         "mockup": "Exempel"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Din seed importerades framgångsrikt.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importera SeedVault",
-        "dropSeedVaultHere": "Släpp SeedVault här",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Ange ditt lösenord för att öppna SeedVault",
         "noSeedFound": "SeedVault innehåller inte en giltig seed",
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
