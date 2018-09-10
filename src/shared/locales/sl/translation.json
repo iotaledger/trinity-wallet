@@ -34,6 +34,7 @@
         "save": "Shrani",
         "close": "Close",
         "export": "Export",
+        "help": "Help",
         "import": "Import",
         "continue": "Nadaljuj",
         "enable": "Enable",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Enter your password to open the SeedVault",
         "noSeedFound": "SeedVault does not contain a valid seed",
         "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
