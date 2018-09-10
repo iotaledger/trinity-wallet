@@ -493,15 +493,15 @@
         "mockup": "Podgląd"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
+        "classic": "Klasyczny",
+        "contemporary": "Nowoczesny",
+        "dark": "Ciemny",
+        "default": "Domyślny",
         "electric": "Electric",
         "ionic": "Ionic",
-        "light": "Light",
+        "light": "Jasny",
         "lucky": "Lucky",
-        "mint": "Mint",
+        "mint": "Miętowy",
         "steelblue": "Steel Blue"
     },
     "currencySelection": {
