@@ -5717,10 +5717,6 @@ react-native-haptic-feedback@^1.1.7:
     Base64 "~0.2.0"
     inherits "~2.0.1"
 
-react-native-iphone-x-helper@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.1.0.tgz#3a881720900bd8d1c67de2c465ea9aa9296180a7"
-
 "react-native-is-device-rooted@https://github.com/rajivshah3/react-native-isDeviceRooted#latest":
   version "1.0.3"
   resolved "https://github.com/rajivshah3/react-native-isDeviceRooted#40e2e0ae8fd671b17b4c4cd2b53ee274152e56ba"
@@ -5728,13 +5724,6 @@ react-native-iphone-x-helper@^1.0.1:
 react-native-keep-awake@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-2.0.6.tgz#d8eaffe0a6377cc197469d9f06c7f317225403db"
-
-react-native-keyboard-aware-scroll-view@^0.4.1:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.4.4.tgz#116d08975a84482e4ee64dd0b526a8f04138b0a7"
-  dependencies:
-    prop-types "^15.6.0"
-    react-native-iphone-x-helper "^1.0.1"
 
 react-native-keychain@2.0.0-rc:
   version "2.0.0-rc"
