@@ -23,8 +23,6 @@ class AccountName extends React.PureComponent {
         /** @ignore */
         accountInfo: PropTypes.object,
         /** @ignore */
-        seedCount: PropTypes.number.isRequired,
-        /** @ignore */
         setOnboardingName: PropTypes.func.isRequired,
         /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
@@ -39,7 +37,9 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.onboarding.name.length ? this.props.onboarding.name : (this.props.seedCount === 0) ? this.props.t('mainWallet') : ''
+        name: this.props.onboarding.name.length
+            ? this.props.onboarding.name
+            : Object.keys(this.props.accountInfo).length === 0 ? this.props.t('mainWallet') : '',
     };
 
     /**
@@ -151,7 +151,6 @@ class AccountName extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     firstAccount: !state.wallet.ready,
-    seedCount: state.accounts.accountNames.length,
     accountInfo: state.accounts.accountInfo,
     onboarding: state.ui.onboarding,
 });

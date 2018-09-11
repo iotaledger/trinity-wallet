@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
 class UseExistingSeed extends Component {
     static propTypes = {
         /** @ignore */
-        seedCount: PropTypes.number.isRequired,
-        /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
@@ -173,19 +171,19 @@ class UseExistingSeed extends Component {
      */
     getDefaultAccountName() {
         const { t } = this.props;
-        if (this.props.seedCount === 0) {
+        if (this.props.accountNames.length === 0) {
             return t('global:mainWallet');
-        } else if (this.props.seedCount === 1) {
+        } else if (this.props.accountNames.length === 1) {
             return t('global:secondWallet');
-        } else if (this.props.seedCount === 2) {
+        } else if (this.props.accountNames.length === 2) {
             return t('global:thirdWallet');
-        } else if (this.props.seedCount === 3) {
+        } else if (this.props.accountNames.length === 3) {
             return t('global:fourthWallet');
-        } else if (this.props.seedCount === 4) {
+        } else if (this.props.accountNames.length === 4) {
             return t('global:fifthWallet');
-        } else if (this.props.seedCount === 5) {
+        } else if (this.props.accountNames.length === 5) {
             return t('global:sixthWallet');
-        } else if (this.props.seedCount === 6) {
+        } else if (this.props.accountNames.length === 6) {
             return t('global:otherWallet');
         }
         return '';
@@ -436,7 +434,6 @@ class UseExistingSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.accounts.seedCount,
     accountNames: state.accounts.accountNames,
     password: state.wallet.password,
     theme: state.settings.theme,

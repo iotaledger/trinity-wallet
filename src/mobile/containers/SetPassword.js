@@ -5,7 +5,6 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvo
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import {
-    increaseSeedCount,
     addAccountName,
     setOnboardingComplete,
     setBasicAccountInfo,
@@ -85,8 +84,6 @@ class SetPassword extends Component {
         /** @ignore */
         clearSeed: PropTypes.func.isRequired,
         /** @ignore */
-        increaseSeedCount: PropTypes.func.isRequired,
-        /** @ignore */
         addAccountName: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -156,7 +153,6 @@ class SetPassword extends Component {
                 this.props.setPassword(pwdHash);
                 this.props.addAccountName(accountName);
                 this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
-                this.props.increaseSeedCount();
                 this.props.clearWalletData();
                 this.props.clearSeed();
                 this.props.setOnboardingComplete(true);
@@ -295,7 +291,6 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     clearWalletData,
     clearSeed,
-    increaseSeedCount,
     addAccountName,
     generateAlert,
     setPassword,

@@ -33,7 +33,6 @@ const getProps = (overrides) =>
             },
             seed: 'SEED',
             onboardingComplete: false,
-            seedCount: 0,
             theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
             password: {},
             shouldPreventAction: false,
@@ -69,10 +68,6 @@ describe('Testing SetAccountName component', () => {
 
         it('should require a onboardingComplete bool as a prop', () => {
             expect(SetAccountName.propTypes.onboardingComplete).toEqual(PropTypes.bool.isRequired);
-        });
-
-        it('should require a seedCount number as a prop', () => {
-            expect(SetAccountName.propTypes.seedCount).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a theme object as a prop', () => {

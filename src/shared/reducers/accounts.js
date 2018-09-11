@@ -119,10 +119,6 @@ const updateAccountName = (state, payload) => {
 const account = (
     state = {
         /**
-         * Keeps track of the number of total seeds (accounts) added in wallet
-         */
-        seedCount: 0,
-        /**
          * List of unique account names added in wallet
          */
         accountNames: [],
@@ -191,7 +187,6 @@ const account = (
                     some(tailTransactions, (tx) => tx.account === action.payload),
                 ),
                 accountNames: filter(state.accountNames, (name) => name !== action.payload),
-                seedCount: state.seedCount - 1,
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
@@ -228,11 +223,6 @@ const account = (
             return {
                 ...state,
                 onboardingComplete: action.payload,
-            };
-        case ActionTypes.INCREASE_SEED_COUNT:
-            return {
-                ...state,
-                seedCount: state.seedCount + 1,
             };
         case ActionTypes.ADD_ACCOUNT_NAME:
             return {
@@ -276,7 +266,6 @@ const account = (
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
-                seedCount: state.seedCount + 1,
                 accountNames: union(state.accountNames, [action.payload.accountName]),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
             };

@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
-import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'actions/accounts';
+import { addAccountName, setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
 import { setSeed, setTwoFA, hash, clearVault } from 'libs/crypto';
@@ -23,9 +23,7 @@ class AccountPassword extends React.PureComponent {
         /** @ignore */
         addAccountName: PropTypes.func.isRequired,
         /** @ignore */
-        increaseSeedCount: PropTypes.func.isRequired,
-        /** @ignore */
-        seedCount: PropTypes.number.isRequired,
+        accountCount: PropTypes.number.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
@@ -56,9 +54,8 @@ class AccountPassword extends React.PureComponent {
         const {
             setPassword,
             addAccountName,
-            increaseSeedCount,
             setOnboardingComplete,
-            seedCount,
+            accountCount,
             history,
             generateAlert,
             onboarding,
@@ -96,13 +93,11 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        if (seedCount === 0) {
+        if (accountCount === 0) {
             await clearVault(null, true);
         }
 
         const passwordHash = await hash(password);
-
-        increaseSeedCount();
 
         addAccountName(onboarding.name);
         setPassword(passwordHash);
@@ -172,15 +167,14 @@ class AccountPassword extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     onboarding: state.ui.onboarding,
-    seedCount: state.accounts.accountNames.length,
+    accountCount: Object.keys(state.accounts.accountInfo).length,
 });
 
 const mapDispatchToProps = {
     setPassword,
     addAccountName,
     setOnboardingComplete,
-    generateAlert,
-    increaseSeedCount,
+    generateAlert
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));

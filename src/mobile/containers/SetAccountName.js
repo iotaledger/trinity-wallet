@@ -73,7 +73,7 @@ export class SetAccountName extends Component {
         /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
         /** @ignore */
-        seedCount: PropTypes.number.isRequired,
+        accountCount: PropTypes.number.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -193,20 +193,20 @@ export class SetAccountName extends Component {
      * @returns {*}
      */
     getDefaultAccountName() {
-        const { t, seedCount } = this.props;
-        if (seedCount === 0) {
+        const { t, accountCount } = this.props;
+        if (accountCount === 0) {
             return t('global:mainWallet');
-        } else if (seedCount === 1) {
+        } else if (accountCount === 1) {
             return t('global:secondWallet');
-        } else if (seedCount === 2) {
+        } else if (accountCount === 2) {
             return t('global:thirdWallet');
-        } else if (seedCount === 3) {
+        } else if (accountCount === 3) {
             return t('global:fourthWallet');
-        } else if (seedCount === 4) {
+        } else if (accountCount === 4) {
             return t('global:fifthWallet');
-        } else if (seedCount === 5) {
+        } else if (accountCount === 5) {
             return t('global:sixthWallet');
-        } else if (seedCount === 6) {
+        } else if (accountCount === 6) {
             return t('global:otherWallet');
         }
         return '';
@@ -310,7 +310,7 @@ export class SetAccountName extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    seedCount: state.accounts.seedCount,
+    accountCount: Object.keys(state.accounts.accountInfo).length,
     onboardingComplete: state.accounts.onboardingComplete,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),

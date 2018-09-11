@@ -28,7 +28,6 @@ export const ActionTypes = {
     CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNTS/CHANGE_ACCOUNT_NAME',
     REMOVE_ACCOUNT: 'IOTA/ACCOUNTS/REMOVE_ACCOUNT',
     SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNTS/SET_ONBOARDING_COMPLETE',
-    INCREASE_SEED_COUNT: 'IOTA/ACCOUNTS/INCREASE_SEED_COUNT',
     ADD_ACCOUNT_NAME: 'IOTA/ACCOUNTS/ADD_ACCOUNT_NAME',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_TRANSITION',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
@@ -169,17 +168,6 @@ export const setOnboardingComplete = (payload) => ({
 export const addAccountName = (accountName) => ({
     type: ActionTypes.ADD_ACCOUNT_NAME,
     accountName,
-});
-
-/**
- * Dispatch to increase number of seeds added to wallet
- *
- * @method increaseSeedCount
- *
- * @returns {{type: {string} }}
- */
-export const increaseSeedCount = () => ({
-    type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
 /**
