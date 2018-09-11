@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         color: '#B21C17',
         textDecorationLine: 'line-through',
         marginRight: width / 100,
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize2,
     },
     bottomContainer: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     addressText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize2,
         textDecorationStyle: 'solid',
     },
@@ -138,6 +138,9 @@ export class ViewAddresses extends Component {
     renderAddress(address) {
         const { theme } = this.props;
 
+        const { spent } = address;
+        const isSpent = spent.local || spent.remote;
+
         return (
             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 25 }}>
                 <TouchableOpacity
@@ -149,8 +152,8 @@ export class ViewAddresses extends Component {
                             numberOfLines={2}
                             style={[
                                 styles.addressText,
-                                { textDecorationLine: address.spent ? 'line-through' : 'none' },
-                                { color: address.spent ? '#B21C17' : theme.body.color },
+                                { textDecorationLine: isSpent ? 'line-through' : 'none' },
+                                { color: isSpent ? '#B21C17' : theme.body.color },
                             ]}
                         >
                             {address.address}

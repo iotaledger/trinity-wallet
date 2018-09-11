@@ -1,6 +1,10 @@
 import get from 'lodash/get';
+import has from 'lodash/has';
+import isBoolean from 'lodash/isBoolean';
+import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
 import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
@@ -12,6 +16,37 @@ import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
+
+/**
+ * Updates address data for an account
+ *
+ * @param {object} existingAddressData
+ * @param {object} newAddressData
+ *
+ * @returns {object}
+ */
+export const updateAddressData = (existingAddressData, newAddressData) => {
+    if (isEmpty(existingAddressData)) {
+        return newAddressData;
+    }
+
+    return {
+        ...existingAddressData,
+        ...mapValues(newAddressData, (data, address) => {
+            const isSeenAddress = has(existingAddressData, address);
+            if (isSeenAddress && isBoolean(get(existingAddressData[address], 'spent.local'))) {
+                const { spent: { local } } = existingAddressData[address];
+
+                return {
+                    ...data,
+                    spent: { ...data.spent, local: local || get(data, 'spent.local') },
+                };
+            }
+
+            return data;
+        }),
+    };
+};
 
 /**
  * Updates account information for a single account
@@ -28,11 +63,11 @@ const updateAccountInfo = (state, payload) => ({
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
             balance: payload.balance,
-            addresses: {
-                ...get(state.accountInfo, `${payload.accountName}.addresses`),
-                ...payload.addresses,
+            addresses: updateAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
+            transfers: {
+                ...get(state.accountInfo, `${payload.accountName}.transfers`),
+                ...payload.transfers,
             },
-            transfers: payload.transfers,
             hashes: payload.hashes,
         },
     },
@@ -212,7 +247,10 @@ const account = (
                     ...state.accountInfo,
                     [action.payload.accountName]: {
                         balance: action.payload.balance,
-                        addresses: action.payload.addresses,
+                        addresses: updateAddressData(
+                            get(state.accountInfo, `${action.payload.accountName}.addresses`),
+                            action.payload.addresses,
+                        ),
                         transfers: action.payload.transfers,
                         hashes: action.payload.hashes,
                     },

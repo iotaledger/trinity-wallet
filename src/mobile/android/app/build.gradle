@@ -88,8 +88,8 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 17
-        versionName "0.4.1"
+        versionCode 20
+        versionName "0.5.0"
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
@@ -97,6 +97,13 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        aaptOptions {
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    packagingOptions {
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
     }
     splits {
         abi {
@@ -137,6 +144,8 @@ android {
 }
 dependencies {
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
+    implementation project(':react-native-document-picker')
+    implementation project(':nodejs-mobile-react-native')
     implementation project(':react-native-fast-crypto')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-detect-navbar-android')
@@ -160,7 +169,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation ('com.facebook.react:react-native:0.51.0') { force = true }
     implementation project(':react-native-svg')
-    implementation project(':react-native-fs')
     implementation project(':react-native-keychain')
     implementation 'com.android.support:multidex:1.0.1'
     implementation project(':lottie-react-native')
@@ -177,6 +185,7 @@ dependencies {
     implementation project(':react-native-flag-secure-android')
     implementation project(':react-native-haptic-feedback')
     implementation project(':realm')
+    implementation project(':rn-fetch-blob')
 }
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use

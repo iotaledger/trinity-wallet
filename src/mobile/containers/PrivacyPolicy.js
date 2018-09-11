@@ -116,7 +116,7 @@ class PrivacyPolicy extends Component {
                 </View>
                 <ScrollView
                     onScroll={(e) => {
-                        let paddingToBottom = 20;
+                        let paddingToBottom = height / 35;
                         paddingToBottom += e.nativeEvent.layoutMeasurement.height;
 
                         if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
@@ -133,15 +133,17 @@ class PrivacyPolicy extends Component {
                     </Markdown>
                 </ScrollView>
                 {this.state.hasReadPrivacyPolicy && (
-                    <Button
-                        onPress={() => this.onNextPress()}
-                        style={{
-                            wrapper: { backgroundColor: primary.color },
-                            children: { color: primary.body },
-                        }}
-                    >
-                        {t('agree')}
-                    </Button>
+                    <View style={{ position: 'absolute', bottom: 0 }}>
+                        <Button
+                            onPress={() => this.onNextPress()}
+                            style={{
+                                wrapper: { backgroundColor: primary.color },
+                                children: { color: primary.body },
+                            }}
+                        >
+                            {t('agree')}
+                        </Button>
+                    </View>
                 )}
             </View>
         );

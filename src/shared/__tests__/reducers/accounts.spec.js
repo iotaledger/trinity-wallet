@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import reducer from '../../reducers/accounts';
+import reducer, { updateAddressData } from '../../reducers/accounts';
 import * as actions from '../../actions/accounts';
 
 describe('Reducer: accounts', () => {
@@ -546,7 +546,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {} },
-                        transfers: [],
+                        transfers: {},
                         balance: 0,
                     },
                 },
@@ -554,8 +554,8 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
+                addresses: { foo: {}, baz: {} },
+                transfers: {},
                 balance: 100,
                 hashes: [],
             });
@@ -565,7 +565,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {}, baz: {} },
-                        transfers: [{}],
+                        transfers: {},
                         balance: 100,
                         hashes: [],
                     },
@@ -575,12 +575,12 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set transfers and balance in payload to accountName in accountInfo', () => {
+        it('should assign transfers and set balance in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {} },
-                        transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 20 }, baz: { value: 0 } },
                         balance: 0,
                     },
                 },
@@ -588,8 +588,8 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoFirstSeedFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [[{}, {}], [{}, {}]],
+                addresses: { foo: {}, baz: {} },
+                transfers: { foo: { value: 0 } },
                 balance: 100,
                 hashes: [],
             });
@@ -599,7 +599,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {}, baz: {} },
-                        transfers: [[{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
                         hashes: [],
                     },
@@ -626,6 +626,7 @@ describe('Reducer: accounts', () => {
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
+                addresses: {},
             });
 
             const newState = reducer(initialState, action);
@@ -665,7 +666,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {} },
-                        transfers: [],
+                        transfers: {},
                         balance: 0,
                     },
                 },
@@ -675,8 +676,8 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
+                addresses: { foo: {}, baz: {} },
+                transfers: {},
                 balance: 100,
                 hashes: [],
             });
@@ -686,7 +687,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {}, baz: {} },
-                        transfers: [{}],
+                        transfers: {},
                         balance: 100,
                         hashes: [],
                     },
@@ -697,13 +698,13 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set transfers and balance in payload to accountName in accountInfo', () => {
+        it('should assign transfers and set balance in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
                         hashes: [],
                         addresses: { foo: {} },
-                        transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 20 }, baz: { value: 0 } },
                         balance: 0,
                     },
                 },
@@ -713,8 +714,8 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [[{}, {}], [{}, {}]],
+                addresses: { foo: {}, baz: {} },
+                transfers: { foo: { value: 0 } },
                 balance: 100,
                 hashes: [],
             });
@@ -725,7 +726,7 @@ describe('Reducer: accounts', () => {
                     foo: {
                         hashes: [],
                         addresses: { foo: {}, baz: {} },
-                        transfers: [[{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
                     },
                 },
@@ -752,6 +753,7 @@ describe('Reducer: accounts', () => {
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
+                addresses: {},
             });
 
             const newState = reducer(initialState, action);
@@ -986,7 +988,7 @@ describe('Reducer: accounts', () => {
                         dummy: {
                             balance: 0,
                             addresses: { foo: {} },
-                            transfers: [],
+                            transfers: {},
                         },
                     },
                 };
@@ -996,8 +998,8 @@ describe('Reducer: accounts', () => {
                     payload: {
                         balance: 0,
                         accountName: 'dummy',
-                        addresses: { baz: {} },
-                        transfers: [],
+                        addresses: { foo: {}, baz: {} },
+                        transfers: {},
                         hashes: [],
                     },
                 };
@@ -1008,7 +1010,7 @@ describe('Reducer: accounts', () => {
                         dummy: {
                             balance: 0,
                             addresses: { foo: {}, baz: {} },
-                            transfers: [],
+                            transfers: {},
                             hashes: [],
                         },
                     },
@@ -1017,12 +1019,12 @@ describe('Reducer: accounts', () => {
                 expect(newState.accountInfo).to.eql(expectedState.accountInfo);
             });
 
-            it('should set transfers in payload to accountName in accountInfo', () => {
+            it('should assign transfers in payload to accountName in accountInfo', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
                             balance: 0,
-                            transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                            transfers: { foo: { value: 20 } },
                         },
                     },
                 };
@@ -1032,7 +1034,7 @@ describe('Reducer: accounts', () => {
                     type: actionType,
                     payload: {
                         accountName,
-                        transfers: [[{}, {}], [{}, {}]],
+                        transfers: { baz: { value: 0 } },
                         hashes: [],
                     },
                 };
@@ -1042,7 +1044,7 @@ describe('Reducer: accounts', () => {
                     accountInfo: {
                         foo: {
                             balance: 0,
-                            transfers: [[{}, {}], [{}, {}]],
+                            transfers: { baz: { value: 0 }, foo: { value: 20 } },
                             hashes: [],
                         },
                     },
@@ -1108,6 +1110,49 @@ describe('Reducer: accounts', () => {
                 };
 
                 expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+            });
+        });
+    });
+
+    describe('#updateAddressData', () => {
+        describe('when address in new address data is part of existing address data', () => {
+            describe('when address local spend status is true', () => {
+                it('should not reassign local spend status', () => {
+                    const result = updateAddressData(
+                        { foo: { spent: { local: true, remote: true } } },
+                        { foo: { spent: { local: undefined, remote: null } } },
+                    );
+
+                    expect(result).to.eql({ foo: { spent: { local: true, remote: null } } });
+                });
+            });
+
+            describe('when address local spend status is false', () => {
+                it('should reassign local spend status', () => {
+                    const result = updateAddressData(
+                        { foo: { spent: { local: false, remote: true } } },
+                        { foo: { spent: { local: true, remote: null } } },
+                    );
+
+                    expect(result).to.eql({ foo: { spent: { local: true, remote: null } } });
+                });
+            });
+        });
+
+        describe('when address in new address data is not part of existing address data', () => {
+            it('should not reassign any prop', () => {
+                const result = updateAddressData(
+                    { foo: { spent: { local: true, remote: true } } },
+                    {
+                        baz: { spent: { local: undefined, remote: null } },
+                        foo: { spent: { local: true, remote: true } },
+                    },
+                );
+
+                expect(result).to.eql({
+                    baz: { spent: { local: undefined, remote: null } },
+                    foo: { spent: { local: true, remote: true } },
+                });
             });
         });
     });

@@ -25,10 +25,11 @@ const clearKeychain = () => {
     }
 };
 
-const renderInitialScreen = (store) => {
+const launch = (store) => {
     // Disable auto node switching.
     SwitchingConfig.autoSwitch = false;
 
+    // Disable accessibility fonts
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
@@ -37,23 +38,28 @@ const renderInitialScreen = (store) => {
 
     const state = store.getState();
 
-    // Clear keychain if very first load
+    // Clear keychain if onboarding is not complete
     if (!state.accounts.onboardingComplete) {
         clearKeychain();
         store.dispatch(setCompletedForcedPasswordUpdate());
     }
 
+    // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
     // FIXME: Temporarily needed for password migration
     const updatedState = store.getState();
     const navigateToForceChangePassword =
-        updatedState.settings.versions.version === '0.4.1' && !updatedState.settings.completedForcedPasswordUpdate;
+        updatedState.settings.versions.version === '0.5.0' && !updatedState.settings.completedForcedPasswordUpdate;
 
+    // Select initial screen
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
+    renderInitialScreen(initialScreen);
+};
 
+const renderInitialScreen = (initialScreen) => {
     Navigation.startSingleScreenApp({
         screen: {
             screen: initialScreen,
@@ -154,7 +160,7 @@ export default (store) => {
         registerScreens(store, Provider);
         translate.setI18n(i18);
 
-        renderInitialScreen(store);
+        launch(store);
     };
 
     hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));

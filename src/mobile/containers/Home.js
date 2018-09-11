@@ -114,7 +114,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
-        this.topBarHeight = isAndroid ? height / 8.8 : new Animated.Value(height / 8.8);
+        this.topBarHeight = isAndroid ? null : new Animated.Value(height / 8.8);
 
         this.state = {
             isKeyboardActive: false,
@@ -316,10 +316,13 @@ class Home extends Component {
      * Displays snapshot transition guide modal
      */
     displayUpdates() {
-        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot } = this.props;
+        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot, isModalActive } = this.props;
 
         if (!hasDisplayedSnapshotTransitionGuide) {
             if (shouldTransitionForSnapshot) {
+                if (isModalActive) {
+                    this.props.toggleModalActivity();
+                }
                 this.setState({ showModal: true });
             } else {
                 this.completeTransitionTask();
@@ -351,7 +354,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.hover} isModalActive={isModalActive} />
+                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.alt} isModalActive={isModalActive} />
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
                             {(!minimised && (

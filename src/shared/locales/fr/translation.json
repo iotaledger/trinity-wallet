@@ -23,7 +23,7 @@
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
-        "checksum": "Code de Vérification",
+        "checksum": "Code de vérification",
         "back": "Retour",
         "goBack": "Retour",
         "goBackStep": "Revenez une étape en arrière",
@@ -44,6 +44,7 @@
         "paperWallet": "Imprimer une copie papier",
         "addToPasswordManager": "Ajouter à un gestionnaire de mot de passe",
         "shareSeed": "Partager la seed",
+        "share": "Share",
         "proceed": "Continuer",
         "qr": "QR",
         "enterSeed": "Veuillez entrer votre seed.",
@@ -60,6 +61,7 @@
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Majuscules activées",
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
@@ -356,7 +358,7 @@
         "advanced": "Avancé",
         "standard": "Standard",
         "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
-        "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
+        "modesExplanation": "N'activez le mode Avancé que si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -584,19 +586,23 @@
     },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
-        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée derrière un mot de passe et n'est pas accessibles sans ce mot de passe.",
+        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'un mot de passe et n'est pas accessible sans ce mot de passe.",
         "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
         "exportSuccess": "SeedVault exporté",
         "exportSuccessExplanation": "Le fichier crypté de votre seed a été exporté avec succès.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importer un SeedVault",
         "dropSeedVaultHere": "Déposer le SeedVault ici",
         "enterPasswordExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
-        "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé."
+        "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -653,11 +659,11 @@
     "updates": {
         "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
-        "noUpdatesAvailableExplanation": "Vous avez la dernière version installé de Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "Vous avez la dernière version de Trinity !",
         "newVersionAvailable": "Une nouvelle version est disponible",
-        "newVersionAvailableExplanation": "La nouvelle version <strong>Trinity</strong> <strong>{{version}}</strong> est disponible. Veuillez lire les détails de cette version attentivement et vérifier la source du téléchargement avant la mise à jour :",
+        "newVersionAvailableExplanation": "Une nouvelle version de Trinity est disponible. Vous voulez mettre à jour maintenant ?",
         "installUpdate": "Installer la mise à jour et redémarrer",
-        "installUpdateExplanation": "Téléchargement complet, Trinity va maintenant redémarrer pour installer la mise à jour."
+        "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour."
     },
     "notificationLog": {
         "errorLog": "Journal des erreurs"
@@ -665,7 +671,7 @@
     "terms": {
         "termsAndConditions": "Termes et conditions",
         "accept": "J'accepte",
-        "readAllToContinue": "Merci de lire complètement le texte"
+        "readAllToContinue": "Merci de lire le texte en entier"
     },
     "privacyPolicy": {
         "privacyPolicy": "Politique de confidentialité",
@@ -673,20 +679,20 @@
     },
     "tray": {
         "trayApplication": "Réduire dans la barre de tache",
-        "trayExplanation": "Donne un aperçu de vos soldes des comptes et l’historique des transactions récentes.",
+        "trayExplanation": "Donne un aperçu des soldes de vos comptes et de l’historique des transactions récentes.",
         "notLoggedIn": "Vous n'êtes pas connecté",
         "setupIncomplete": "Paramétrage du portefeuille incomplet",
         "completeSetup": "Configuration terminée"
     },
     "notifications": {
         "notifications": "Notifications",
-        "notificationExplanation": "Recevoir les notifications complètes du système à propos des nouvelles transactions.",
-        "typeConfirmations": "Me notifier à propos des confirmations",
+        "notificationExplanation": "Recevoir les notifications complètes du système pour les nouvelles transactions.",
+        "typeConfirmations": "Me notifier les confirmations",
         "typeMessages": "Me notifier à propos des transactions nulles",
-        "multipleTx": "Vous avez reçu plusieurs transactions sur {{account}}",
+        "multipleTx": "Réception de plusieurs transactions sur {{account}}",
         "valueTx": "Vous avez reçu {{value}} sur {{account}}",
         "messageTx": "Vous avez reçu un message à {{account}}",
-        "confirmedIn": "Transaction de {{value}} sur {{account}} confirmé",
-        "confirmedOut": "Transaction de {{value}} depuis {{account}} confirmé"
+        "confirmedIn": "Réception de {{value}} sur {{account}} confirmée",
+        "confirmedOut": "Envoi de {{value}} depuis {{account}} confirmé"
     }
 }

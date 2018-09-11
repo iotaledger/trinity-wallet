@@ -7,7 +7,7 @@ export default {
         bg: 'rgb(251, 251, 251)',
         border: 'rgb(210, 210, 210)',
         alt: 'rgb(0, 0, 0)',
-        hover: 'rgba(0, 0, 0, 0.5)',
+        hover: 'rgba(0, 0, 0, 1)',
         color: 'rgb(30, 30, 30)',
     },
     negative: { color: 'rgb(219, 112, 59)', hover: 'rgb(155, 0, 13)', body: 'rgb(255, 255, 255)' },

@@ -12,18 +12,16 @@ import {
     Keyboard,
     KeyboardAvoidingView,
 } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../utils/keychain';
-import { generatePasswordHash, getRandomBytes, getOldPasswordHash, hexStringToByte } from '../utils/crypto';
+import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
@@ -87,7 +85,9 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** @ignore */
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
@@ -125,12 +125,11 @@ class ForceChangePassword extends Component {
         const { newPassword, currentPassword } = this.state;
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
-        oldPwdHash = hexStringToByte(oldPwdHash);
-        const isValid = this.isValid();
-        const salt = await getRandomBytes(32);
+        oldPwdHash = hexToUint8(oldPwdHash);
+        const salt = await getSalt();
         const newPwdHash = await generatePasswordHash(newPassword, salt);
 
-        if (isValid) {
+        if (this.isNewPasswordValid()) {
             const throwError = (err) => {
                 if (err.message === 'Incorrect password') {
                     this.props.generateAlert(
@@ -145,7 +144,6 @@ class ForceChangePassword extends Component {
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         setPassword(newPwdHash);
-                        this.fallbackToInitialState();
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
                         timer.setTimeout(
@@ -165,7 +163,7 @@ class ForceChangePassword extends Component {
         return this.renderInvalidSubmissionAlerts();
     }
 
-    isValid() {
+    isNewPasswordValid() {
         const { newPassword, newPasswordReentry } = this.state;
         const score = zxcvbn(newPassword);
         return (
@@ -178,30 +176,17 @@ class ForceChangePassword extends Component {
 
     navigateToLogin() {
         const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
-        });
-    }
-
-    fallbackToInitialState() {
-        this.setState({
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            animated: false,
         });
     }
 
@@ -257,118 +242,100 @@ class ForceChangePassword extends Component {
         return null;
     }
 
-    renderContent() {
+    render() {
+        const { t, theme: { body } } = this.props;
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
-        const { t, theme } = this.props;
-        const textColor = { color: theme.body.color };
+        const textColor = { color: body.color };
         const score = zxcvbn(newPassword);
         const isValid = score.score === 4;
 
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1, width }}>
-                <View behavior="padding" style={styles.container}>
-                    <View style={{ flex: 1.5 }} />
-                    <KeyboardAvoidingView behavior="padding" style={styles.topContainer}>
-                        <InfoBox
-                            body={theme.body}
-                            text={
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>
-                                        With update 0.4.1, it is necessary to change your password before using Trinity.
-                                        If your current password fulfils the password strength requirements then you may
-                                        use your current password again.
-                                    </Text>
-                                </View>
-                            }
-                        />
-                        <View style={{ flex: 0.2 }} />
-                        {this.renderTextField(
-                            (c) => {
-                                this.currentPassword = c;
-                            },
-                            currentPassword,
-                            t('currentPassword'),
-                            (password) => this.setState({ currentPassword: password }),
-                            'next',
-                            () => {
-                                if (currentPassword) {
-                                    this.newPassword.focus();
-                                }
-                            },
-                        )}
-                        {this.renderTextField(
-                            (c) => {
-                                this.newPassword = c;
-                            },
-                            newPassword,
-                            t('newPassword'),
-                            (password) => this.setState({ newPassword: password }),
-                            'next',
-                            () => {
-                                if (newPassword) {
-                                    this.newPasswordReentry.focus();
-                                }
-                            },
-                            'password',
-                            isValid,
-                            score.score,
-                        )}
-                        {this.renderTextField(
-                            (c) => {
-                                this.newPasswordReentry = c;
-                            },
-                            newPasswordReentry,
-                            t('confirmPassword'),
-                            (password) => this.setState({ newPasswordReentry: password }),
-                            'done',
-                            () => this.onSavePress(),
-                            'passwordReentry',
-                            isValid && newPassword === newPasswordReentry,
-                        )}
-                        <View style={{ flex: 0.2 }} />
-                    </KeyboardAvoidingView>
-                    <View style={styles.bottomContainer}>
-                        {currentPassword !== '' &&
-                            newPassword !== '' &&
-                            newPasswordReentry !== '' && (
-                                <TouchableOpacity
-                                    onPress={() => this.onSavePress()}
-                                    hitSlop={{
-                                        top: height / 55,
-                                        bottom: height / 55,
-                                        left: width / 55,
-                                        right: width / 55,
-                                    }}
-                                >
-                                    <View style={styles.itemRight}>
-                                        <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                        <Icon name="tick" size={width / 28} color={theme.body.color} />
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                    </View>
-                    <View style={{ flex: 0.5 }} />
-                </View>
-            </TouchableWithoutFeedback>
-        );
-    }
-    render() {
-        const { theme: { body } } = this.props;
-
-        return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                {isAndroid ? (
-                    <View style={styles.container}>{this.renderContent()}</View>
-                ) : (
-                    <KeyboardAwareScrollView
-                        resetScrollToCoords={{ x: 0, y: 0 }}
-                        contentContainerStyle={styles.container}
-                        scrollEnabled={false}
-                        enableOnAndroid={false}
-                    >
-                        {this.renderContent()}
-                    </KeyboardAwareScrollView>
-                )}
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1, width }}>
+                    <View style={styles.container}>
+                        <View style={{ flex: 1.5 }} />
+                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.topContainer}>
+                            <InfoBox
+                                body={body}
+                                text={
+                                    <View>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            With update 0.5.0, it is necessary to change your password before using
+                                            Trinity. If your current password fulfils the password strength requirements
+                                            then you may use your current password again.
+                                        </Text>
+                                    </View>
+                                }
+                            />
+                            <View style={{ flex: 0.2 }} />
+                            {this.renderTextField(
+                                (c) => {
+                                    this.currentPassword = c;
+                                },
+                                currentPassword,
+                                t('currentPassword'),
+                                (password) => this.setState({ currentPassword: password }),
+                                'next',
+                                () => {
+                                    if (currentPassword) {
+                                        this.newPassword.focus();
+                                    }
+                                },
+                            )}
+                            {this.renderTextField(
+                                (c) => {
+                                    this.newPassword = c;
+                                },
+                                newPassword,
+                                t('newPassword'),
+                                (password) => this.setState({ newPassword: password }),
+                                'next',
+                                () => {
+                                    if (newPassword) {
+                                        this.newPasswordReentry.focus();
+                                    }
+                                },
+                                'password',
+                                isValid,
+                                score.score,
+                            )}
+                            {this.renderTextField(
+                                (c) => {
+                                    this.newPasswordReentry = c;
+                                },
+                                newPasswordReentry,
+                                t('confirmPassword'),
+                                (password) => this.setState({ newPasswordReentry: password }),
+                                'done',
+                                () => this.onSavePress(),
+                                'passwordReentry',
+                                isValid && newPassword === newPasswordReentry,
+                            )}
+                            <View style={{ flex: 0.2 }} />
+                        </KeyboardAvoidingView>
+                        <View style={styles.bottomContainer}>
+                            {currentPassword !== '' &&
+                                newPassword !== '' &&
+                                newPasswordReentry !== '' && (
+                                    <TouchableOpacity
+                                        onPress={() => this.onSavePress()}
+                                        hitSlop={{
+                                            top: height / 55,
+                                            bottom: height / 55,
+                                            left: width / 55,
+                                            right: width / 55,
+                                        }}
+                                    >
+                                        <View style={styles.itemRight}>
+                                            <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                            <Icon name="tick" size={width / 28} color={body.color} />
+                                        </View>
+                                    </TouchableOpacity>
+                                )}
+                        </View>
+                        <View style={{ flex: 0.5 }} />
+                    </View>
+                </TouchableWithoutFeedback>
                 <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
@@ -376,7 +343,6 @@ class ForceChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.wallet.password,
     theme: state.settings.theme,
 });
 

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     },
     bundleHash: {
         backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Regular',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize2,
         marginTop: 2,
     },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     text: {
         backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Regular',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize2,
     },
     addressRowContainer: {

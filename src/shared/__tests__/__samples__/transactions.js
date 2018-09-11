@@ -427,7 +427,6 @@ export const normalizedBundles = {
         attachmentTimestamp: 1524504682708,
         transferValue: 1,
         bundle: 'HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ',
-        hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
         incoming: true,
         inputs: [
             {
@@ -435,6 +434,8 @@ export const normalizedBundles = {
                 checksum: 'EVBYFYWLZ',
                 hash: 'HGT9QOBW9KKRQY9G9AWXAKDUIICKRUWVQ9MOWLX9YLXJMTNWX9L9RUMDHIHNJD9MYXIECZTFATOEA9999',
                 value: -5,
+                currentIndex: 1,
+                lastIndex: 3,
             },
         ],
         outputs: [
@@ -443,18 +444,24 @@ export const normalizedBundles = {
                 checksum: 'WWEYWGWBZ',
                 hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
                 value: 1,
+                currentIndex: 0,
+                lastIndex: 3,
             },
             {
                 address: 'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
                 checksum: 'EVBYFYWLZ',
                 hash: 'HW9YVRZRJAUMWI9BMIYCRFPXMNBG9ACAKZFWCTRNTJHKZHPXK9RDGKQGJHMNMUYWSIQBIEWKLOOEA9999',
                 value: 0,
+                currentIndex: 2,
+                lastIndex: 3,
             },
             {
                 address: 'RJHWUBVBVDOAXQNKKJSFYPJQTXNVTNI9CZACOKC9VVGDOYJ9SVNJHSBOUXZJMI9RW99LHRDRBNDCQXTBD',
                 checksum: 'ALHAZEQBX',
                 hash: 'WXR9JFMD99UUPR9KBMZBHFOQIXWJBQP9LYFFCXAFHRCPRAFJNGNJUN9BSXVCHUNOCQCWSEMACLJVA9999',
                 value: 4,
+                currentIndex: 3,
+                lastIndex: 3,
             },
         ],
         message: 'Empty',
@@ -475,7 +482,6 @@ export const normalizedBundles = {
         attachmentTimestamp: 1524573605144,
         transferValue: 1,
         bundle: 'BHA9U99WJWBADGCDLLZSNRXNS9C9HCEDODDVACLZIGGTUDODOJQGJRGXNRBJCWKTLRXSAJLAGLYZQZXIA',
-        hash: 'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
         incoming: true,
         inputs: [
             {
@@ -483,6 +489,8 @@ export const normalizedBundles = {
                 checksum: 'ZFVETXHX9',
                 hash: 'JBVWPNBQTIMIJNFSDTDCOHPJFBJYZTFFELUVMKBXTY9JVNWRMIBSMADMZ9LXPSRBUSGNEKPVSHWRA9999',
                 value: -1,
+                currentIndex: 1,
+                lastIndex: 2,
             },
         ],
         outputs: [
@@ -491,12 +499,16 @@ export const normalizedBundles = {
                 checksum: 'DAGGCMMFD',
                 hash: 'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
                 value: 1,
+                currentIndex: 0,
+                lastIndex: 2,
             },
             {
                 address: 'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
                 checksum: 'ZFVETXHX9',
                 hash: 'IGAHDFQKGHBXUEFIQFOTJDJYAJRYADPREWGOWTYCUWDJCUYLUD9PVAJYSZZKRLJSFRQNYDJBGYESZ9999',
                 value: 0,
+                currentIndex: 2,
+                lastIndex: 2,
             },
         ],
         message: 'Empty',

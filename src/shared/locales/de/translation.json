@@ -44,6 +44,7 @@
         "paperWallet": "Seed ausdrucken",
         "addToPasswordManager": "Zum Passwort-Manager hinzufügen",
         "shareSeed": "Seed teilen",
+        "share": "Teilen",
         "proceed": "Fortfahren",
         "qr": "QR",
         "enterSeed": "Bitte gib deinen Seed ein.",
@@ -60,6 +61,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
+        "emptyPasswordExplanation": "Du musst ein Passwort vergeben. Bitte versuche es erneut.",
         "capsLockIsOn": "Feststelltaste ist aktiviert",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
@@ -451,7 +453,7 @@
         "viewAddresses": "Adressen anzeigen",
         "editAccountName": "Kontoname ändern",
         "deleteAccount": "Konto löschen",
-        "addNewAccount": "Neues Konto hinzufügen",
+        "addNewAccount": "Konto hinzufügen",
         "tools": "Tools"
     },
     "addCustomNode": {
@@ -590,13 +592,17 @@
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
         "exportSuccess": "SeedVault exportiert",
         "exportSuccessExplanation": "Deine verschlüsselte Datei wurde erfolgreich exportiert.",
+        "importSuccess": "Seed importiert",
+        "importSuccessExplanation": "Dein Seed wurde erfolgreich importiert.",
+        "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
         "dropSeedVaultHere": "SeedVault hierher ziehen",
         "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
-        "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist."
+        "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
+        "seedVaultPasswordExplanation": "Zunächst müssen wir deinen SeedVault absichern. Bitte vergib ein Passwort, mit dem deine SeedVault-Datei verschlüsselt wird. Du wirst dieses Passwort bei einer Wiederherstellung deines Kontos benötigen. Wenn du möchtest, kannst du das gleiche Passwort verwenden, welches du auch für Trinity verwendest."
     },
     "chart": {
         "mcap": "MCAP",

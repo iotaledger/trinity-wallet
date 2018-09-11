@@ -123,7 +123,7 @@ export class AdvancedSettings extends PureComponent {
         const { theme, t, node, autoPromotion, remotePoW } = this.props;
         const rows = [
             { name: t('selectNode'), icon: 'node', function: this.onNodeSelection, currentSetting: node },
-            { name: t('addCustomNode'), icon: 'plus', function: this.onAddCustomNode },
+            { name: t('addCustomNode'), icon: 'plusAlt', function: this.onAddCustomNode },
             {
                 name: t('pow'),
                 icon: 'pow',

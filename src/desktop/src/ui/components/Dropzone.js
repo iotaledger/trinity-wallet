@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
@@ -134,7 +134,9 @@ class Dropzone extends React.Component {
                 <h5 onClick={this.open}>
                     <Icon icon="seedVault" size={48} />{' '}
                     <span>
-                        {t('seedVault:')} Drop SeedVault file here<br /> or click to browse
+                        <Trans i18nKey="seedVault:dropSeedVaultHere">
+                            Drop SeedVault here <br /> or click to browse
+                        </Trans>
                     </span>
                 </h5>
                 <input {...inputAttributes} />

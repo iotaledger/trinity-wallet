@@ -9,7 +9,6 @@ import head from 'lodash/head';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
-import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import pick from 'lodash/pick';
 import includes from 'lodash/includes';
@@ -45,51 +44,57 @@ import {
     isPromotable,
 } from './extendedApi';
 import i18next from '../../i18next.js';
-import { convertFromTrytes, EMPTY_HASH_TRYTES } from './utils';
+import { convertFromTrytes, EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_MESSAGE } from './utils';
 import Errors from './../errors';
 
 /**
  * Gets total transfer value from a bundle
  *
  * @method getTransferValue
- * @param {array} bundle
+ * @param {array} inputs
+ * @param {array} outputs
  * @param {array} addresses
  *
  * @returns {number}
  */
-export const getTransferValue = (bundle, addresses) => {
-    let value = 0;
-    let j = 0;
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                value = bundle[0].value;
-                return value;
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                value += bundle[i].value;
-                j++;
-            }
-        }
-    }
-    if (j === 0) {
-        return extractTailTransferFromBundle(bundle).value;
-    }
-    return value;
+export const getTransferValue = (inputs, outputs, addresses) => {
+    const remainderValue = get(
+        find(outputs, (output) => output.currentIndex === output.lastIndex && output.lastIndex !== 0),
+        'value',
+    );
+
+    const ownInputs = filter(inputs, (input) => includes(addresses, input.address));
+    const inputsValue = reduce(inputs, (acc, input) => acc + Math.abs(input.value), 0);
+
+    return size(ownInputs)
+        ? inputsValue - remainderValue
+        : reduce(
+              filter(outputs, (output) => includes(addresses, output.address)),
+              (acc, output) => acc + output.value,
+              0,
+          );
 };
 
-export const getRelevantTransfer = (bundle, addresses) => {
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                return bundle[0];
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return bundle[i];
-            }
+/**
+ * Finds transaction message from a bundle.
+ *
+ * @method computeTransactionMessage
+ * @param {array} bundle
+ *
+ * @returns {string}
+ */
+export const computeTransactionMessage = (bundle) => {
+    let message = EMPTY_TRANSACTION_MESSAGE;
+
+    each(bundle, (tx) => {
+        message = convertFromTrytes(tx.signatureMessageFragment);
+
+        if (message !== EMPTY_TRANSACTION_MESSAGE) {
+            return false;
         }
-    }
-    return extractTailTransferFromBundle(bundle);
+    });
+
+    return message;
 };
 
 /**
@@ -177,25 +182,6 @@ export const prepareTransferArray = (
     }
 
     return [transfer];
-};
-
-/**
- *   Accepts a transfer bundle and returns the tail object
- *
- *   @method extractTailTransferFromBundle
- *   @param {array} bundle - Array of transfer objects
- *   @returns {object} transfer object
- **/
-export const extractTailTransferFromBundle = (bundle) => {
-    const extractTail = (res, tx) => {
-        if (tx.currentIndex === 0) {
-            res = tx;
-        }
-
-        return res;
-    };
-
-    return reduce(bundle, extractTail, {});
 };
 
 /**
@@ -302,8 +288,6 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
         },
     );
 
-    const removeUnnecessaryProps = (object) => omit(object, ['currentIndex', 'lastIndex']);
-
     // Note: Ideally we should categorise all outputs
     // But some bundles esp carriota field donation bundles are huge
     // and on devices with restricted storage storing them can cause the problem.
@@ -317,17 +301,14 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
     // TODO: But to make this process more secure, always sync addresses during poll
     return size(categorisedBundle.outputs) <= outputsThreshold
         ? {
-              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
-              outputs: map(categorisedBundle.outputs, removeUnnecessaryProps),
+              inputs: categorisedBundle.inputs,
+              outputs: categorisedBundle.outputs,
           }
         : {
-              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
-              outputs: map(
-                  filter(
-                      categorisedBundle.outputs,
-                      (output) => includes(addresses, output.address) || isRemainder(output),
-                  ),
-                  removeUnnecessaryProps,
+              inputs: categorisedBundle.inputs,
+              outputs: filter(
+                  categorisedBundle.outputs,
+                  (output) => includes(addresses, output.address) || isRemainder(output),
               ),
           };
 };
@@ -342,7 +323,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
  **/
 export const isSentTransfer = (bundle, addresses) => {
     const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses);
-    const value = getTransferValue(bundle, addresses);
+    const value = getTransferValue(categorisedBundle.inputs, categorisedBundle.outputs, addresses);
 
     if (value === 0) {
         return (
@@ -679,16 +660,18 @@ export const constructNormalisedBundles = (tailTransactions, transactionObjects,
  *   @returns {object} - Normalised bundle
  **/
 export const normaliseBundle = (bundle, addresses, tailTransactions, persistence) => {
-    const transfer = getRelevantTransfer(bundle, addresses);
-    const bundleHash = transfer.bundle;
+    const transaction = get(bundle, '[0]');
+    const bundleHash = transaction.bundle;
+    const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses);
 
     return {
-        ...pick(transfer, ['hash', 'bundle', 'timestamp', 'attachmentTimestamp']),
-        ...categoriseBundleByInputsOutputs(bundle, addresses),
+        ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp']),
+        inputs,
+        outputs,
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
-        transferValue: getTransferValue(bundle, addresses),
-        message: convertFromTrytes(transfer.signatureMessageFragment),
+        transferValue: getTransferValue(inputs, outputs, addresses),
+        message: computeTransactionMessage(bundle),
         tailTransactions: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => ({
             hash: tx.hash,
             attachmentTimestamp: tx.attachmentTimestamp,

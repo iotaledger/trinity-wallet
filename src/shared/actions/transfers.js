@@ -4,6 +4,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import join from 'lodash/join';
+import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
@@ -57,11 +58,7 @@ import {
     getAddressesUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
-import {
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
-    getSpentAddressesFromTransactions,
-} from '../libs/iota/inputs';
+import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
     generateTransferErrorAlert,
@@ -467,18 +464,23 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             .then((filteredTransfers) => {
                 const { addresses, transfers } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
-                const spentAddressesFromTransactions = getSpentAddressesFromTransactions(transfers);
 
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
                 // Prepare inputs.
                 return getUnspentInputs()(
+                    // Latest address data
                     addresses,
-                    spentAddressesFromTransactions,
+                    // Normalised transactions list
+                    map(transfers, (tx) => tx),
+                    // Pending value transactions
                     filteredTransfers,
+                    // Start index for address (for input selection)
                     startIndex,
+                    // Transfer value
                     value,
+                    // Inputs
                     null,
                 );
             })
@@ -521,12 +523,18 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder()(accountState.addresses, seed, genFn, [
-                    // Make sure inputs are blacklisted
-                    ...map(transferInputs, (input) => input.address),
-                    // Make sure receive address is blacklisted
-                    iota.utils.noChecksum(receiveAddress),
-                ]);
+                return getAddressesUptoRemainder()(
+                    accountState.addresses,
+                    map(accountState.transfers, (tx) => tx),
+                    seed,
+                    genFn,
+                    [
+                        // Make sure inputs are blacklisted
+                        ...map(transferInputs, (input) => input.address),
+                        // Make sure receive address is blacklisted
+                        iota.utils.noChecksum(receiveAddress),
+                    ],
+                );
             })
             .then(({ remainderAddress, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
@@ -707,7 +715,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
-                    const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
+                    const { newState } = syncAccountOnValueTransactionFailure(
+                        // Sort in ascending order
+                        orderBy(cached.transactionObjects, ['currentIndex']),
+                        accountState,
+                    );
 
                     // Temporarily mark this transaction as failed.
                     // As the inputs were signed and already exposed to the network

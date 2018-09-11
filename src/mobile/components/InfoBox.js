@@ -52,6 +52,7 @@ class InfoBox extends PureComponent {
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
         /** Infobox width */
         width: PropTypes.number,
+        containerStyle: PropTypes.object,
     };
 
     static defaultProps = {
@@ -59,7 +60,7 @@ class InfoBox extends PureComponent {
     };
 
     render() {
-        const { body, text, width } = this.props;
+        const { body, text, width, containerStyle } = this.props;
         const isBgLight = tinycolor(body.bg).isLight();
         const fieldContainerStyling = isBgLight ? null : { backgroundColor: 'rgba(255, 255, 255, 0.05)' };
         const innerContainerStyling = isBgLight
@@ -77,7 +78,7 @@ class InfoBox extends PureComponent {
         const iconStyling = isBgLight ? { backgroundColor: body.bg } : null;
 
         return (
-            <View style={[styles.fieldContainer, fieldContainerStyling]}>
+            <View style={[styles.fieldContainer, fieldContainerStyling, containerStyle]}>
                 <View style={[styles.banner, bannerStyling, { width }]} />
                 <View style={[styles.innerContainer, innerContainerStyling, { width }]}>{text}</View>
                 <View style={[styles.iconContainer, iconContainerStyling]} />

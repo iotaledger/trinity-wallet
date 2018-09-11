@@ -11,7 +11,7 @@ import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const chartWidth = width;
-const chartHeight = height * 0.36;
+const chartHeight = isAndroid ? height * 0.4 : height * 0.36;
 
 const styles = StyleSheet.create({
     button: {
@@ -200,7 +200,11 @@ class Chart extends PureComponent {
                     </View>
                 ) : (
                     <View style={styles.chartContainer}>
-                        <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
+                        <VictoryChart
+                            domainPadding={height / 50}
+                            height={chartHeight}
+                            width={chartWidth}
+                        >
                             <Defs>
                                 <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
                                     <Stop stopColor={theme.chart.color} stopOpacity="1" offset="100%" />
@@ -215,8 +219,7 @@ class Chart extends PureComponent {
                                         strokeWidth: 1.2,
                                     },
                                 }}
-                                interpolation="basis"
-                                scale={{ x: 'time', y: 'linear' }}
+                                interpolation="natural"
                                 animate={{
                                     duration: 450,
                                 }}
