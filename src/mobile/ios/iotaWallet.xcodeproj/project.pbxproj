@@ -291,19 +291,12 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNViewShot;
 		};
-		6041E08421487533009AA508 /* PBXContainerItemProxy */ = {
+		6041E0A9214875A9009AA508 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
+			containerPortal = 301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EBF21BDC1FC498900052F4D5;
-			remoteInfo = jsinspector;
-		};
-		6041E08621487533009AA508 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
-			remoteInfo = "jsinspector-tvOS";
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
 		};
 		6056CF5320827D2F0006A2F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1083,6 +1076,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6041E0A6214875A8009AA508 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6041E0AA214875A9009AA508 /* libRealmReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6056CF5020827D2F0006A2F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,8 +1271,6 @@
 				9D772B812DB6C05ECF25775FCAB7E002 /* libcxxreact.a */,
 				CBC55660207BA79E00BA0A7F /* libjschelpers.a */,
 				4638EBE17A0D3826A792DF9563570526 /* libjschelpers.a */,
-				6041E08521487533009AA508 /* libjsinspector.a */,
-				6041E08721487533009AA508 /* libjsinspector-tvOS.a */,
 				CBC55662207BA79E00BA0A7F /* libthird-party.a */,
 				A449CDAA92C2C98ABDF0AE5690864303 /* libthird-party.a */,
 				9DBC3C8E34A01D88134F4A69AA32625F /* libdouble-conversion.a */,
@@ -1740,6 +1739,10 @@
 					ProjectRef = 6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */;
 				},
 				{
+					ProductGroup = 6041E0A6214875A8009AA508 /* Products */;
+					ProjectRef = 301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */;
+				},
+				{
 					ProductGroup = 6056CF5020827D2F0006A2F3 /* Products */;
 					ProjectRef = 6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */;
 				},
@@ -1968,18 +1971,11 @@
 			remoteRef = 601BFD6020C39A580097D329 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6041E08521487533009AA508 /* libjsinspector.a */ = {
+		6041E0AA214875A9009AA508 /* libRealmReact.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjsinspector.a;
-			remoteRef = 6041E08421487533009AA508 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6041E08721487533009AA508 /* libjsinspector-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsinspector-tvOS.a";
-			remoteRef = 6041E08621487533009AA508 /* PBXContainerItemProxy */;
+			path = libRealmReact.a;
+			remoteRef = 6041E0A9214875A9009AA508 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6056CF5420827D2F0006A2F3 /* libRNCamera.a */ = {
