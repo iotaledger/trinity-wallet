@@ -1,17 +1,16 @@
-import concat from 'lodash/concat';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import transform from 'lodash/transform';
-import some from 'lodash/some';
 import size from 'lodash/size';
 import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
-import { wereAddressesSpentFromAsync, isNodeSynced } from './extendedApi';
-import { QUORUM_THRESHOLD, MIN_QUORUM_NODES } from '../../config';
+import IOTA from 'iota.lib.js';
+import { isNodeSynced } from './extendedApi';
+import { QUORUM_THRESHOLD, QUORUM_SIZE } from '../../config';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
 
@@ -44,7 +43,8 @@ const determineQuorumResult = (validResults, faultyResultCount = 0) => {
  *
  *   @method fallbackToSafeResult
  *   @param {string} method
- *   @returns {any}
+ *
+ *   @returns {boolean}
  **/
 const fallbackToSafeResult = (method) => {
     const allowedMethodsMap = {
@@ -61,25 +61,19 @@ const fallbackToSafeResult = (method) => {
  *   @param {array} nodes
  *   @param {array} [syncedNodes = []]
  *   @param {array} [blacklistedNodes = []]
- *   @param {boolean} [checkHealthOfExistingSyncedNodes = false]
+ *
  *   @returns {Promise}
  **/
-const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = [], checkHealthOfExistingSyncedNodes = false) => {
+const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = []) => {
+    const sizeOfSyncedNodes = size(syncedNodes);
     const whitelistedNodes = filter(nodes, (node) => !includes(blacklistedNodes, node) && !includes(syncedNodes, node));
-    const hasNoWhitelistedNode = size(whitelistedNodes) === 0;
 
-    if (hasNoWhitelistedNode) {
-        return Promise.reject(new Error(Errors.NOT_ENOUGH_QUORUM_NODES));
+    if (isEmpty(whitelistedNodes)) {
+        return Promise.reject(new Error(Errors.NOT_ENOUGH_HEALTHY_QUORUM_NODES));
     }
 
-    // If checking for existing synced nodes, validate the number of existing synced nodes.
-    if (checkHealthOfExistingSyncedNodes && size(syncedNodes) < MIN_QUORUM_NODES) {
-        return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
-    }
-
-    const selectedNodes = checkHealthOfExistingSyncedNodes
-        ? syncedNodes
-        : sampleSize(whitelistedNodes, MIN_QUORUM_NODES - size(syncedNodes));
+    const selectedNodes =
+        sizeOfSyncedNodes === QUORUM_SIZE ? syncedNodes : sampleSize(whitelistedNodes, QUORUM_SIZE - sizeOfSyncedNodes);
 
     return Promise.all(map(selectedNodes, (provider) => isNodeSynced(provider).catch(() => undefined))).then(
         (results) => {
@@ -89,16 +83,17 @@ const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = [], checkHe
                 { activeNodes: [], inactiveNodes: [] },
             );
 
-            if (size(activeNodes) === size(selectedNodes) && some(results, (isSynced) => isSynced)) {
-                return union(syncedNodes, activeNodes);
+            if (size(activeNodes) === size(selectedNodes)) {
+                return [...syncedNodes, ...activeNodes];
             }
 
-            const allSyncedNodes = checkHealthOfExistingSyncedNodes
-                ? filter(syncedNodes, (node) => !includes(inactiveNodes, node))
-                : concat([], syncedNodes, activeNodes);
-            const allBlacklistedNodes = concat([], blacklistedNodes, inactiveNodes);
-
-            return findSyncedNodes(nodes, allSyncedNodes, allBlacklistedNodes);
+            return findSyncedNodes(
+                nodes,
+                // Add active nodes to synced nodes
+                [...syncedNodes, ...activeNodes],
+                // Add inactive nodes to blacklisted nodes
+                [...blacklistedNodes, ...inactiveNodes],
+            );
         },
     );
 };
@@ -109,20 +104,29 @@ const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = [], checkHe
  *   @method getQuorumForWereAddressesSpentFrom
  *   @param {array} payload - Addresses
  *   @param {array} syncedNodes
+ *
  *   @returns {Promise}
  **/
 const getQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
     if (isEmpty(syncedNodes)) {
-        Promise.reject(new Error(Errors.NO_SYNCED_NODES_FOR_QUORUM));
+        return Promise.reject(new Error(Errors.NO_SYNCED_NODES_FOR_QUORUM));
     }
 
     const requestPayloadSize = size(payload);
 
     return Promise.all(
-        map(syncedNodes, (provider) => wereAddressesSpentFromAsync(provider)(payload).catch(() => undefined)),
+        map(
+            syncedNodes,
+            (provider) =>
+                new Promise((resolve, reject) => {
+                    new IOTA({ provider }).api.wereAddressesSpentFrom(
+                        payload,
+                        (err, spendStatuses) => (err ? reject(err) : resolve(spendStatuses)),
+                    );
+                }),
+        ),
     ).then((results) => {
-        const isNotUndefined = (value) => !isUndefined(value);
-        const validResults = filter(results, isNotUndefined);
+        const validResults = filter(results, (result) => !isUndefined(result));
         const invalidResultsCount = size(results) - size(validResults);
 
         let idx = 0;
@@ -150,22 +154,39 @@ const getQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
  *
  *   @method Quorum
  *   @param {array} quorumNodes
+ *
  *   @returns {object}
  **/
 export default function Quorum(quorumNodes) {
-    const nodes = uniq(quorumNodes);
+    let nodes = uniq(quorumNodes);
 
     // TODO validate min size of nodes
     let syncedNodes = [];
+    let lastSyncedAt = new Date();
+
+    const findSyncedNodesIfNecessary = () => {
+        const timeElapsed = (new Date() - lastSyncedAt) / 1000;
+
+        if (isEmpty(syncedNodes) || timeElapsed >= 120) {
+            return findSyncedNodes(nodes, syncedNodes).then((newSyncedNodes) => {
+                syncedNodes = newSyncedNodes;
+                lastSyncedAt = new Date();
+
+                return newSyncedNodes;
+            });
+        }
+
+        return Promise.resolve(syncedNodes);
+    };
 
     return {
+        setNodes: (newNodes) => {
+            nodes = union(nodes, uniq(newNodes));
+        },
         wereAddressesSpentFrom: (addresses) =>
-            findSyncedNodes(nodes, syncedNodes, [], !isEmpty(syncedNodes)).then((newSyncedNodes) => {
-                // FIXME: Decouple setting syncedNodes within this API
-                syncedNodes = newSyncedNodes;
-
-                return getQuorumForWereAddressesSpentFrom(addresses, syncedNodes);
-            }),
+            findSyncedNodesIfNecessary(nodes, syncedNodes, lastSyncedAt).then((newSyncedNodes) =>
+                getQuorumForWereAddressesSpentFrom(addresses, newSyncedNodes),
+            ),
     };
 }
 

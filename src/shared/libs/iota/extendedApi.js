@@ -4,7 +4,7 @@ import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import IOTA from 'iota.lib.js';
-import { iota } from './index';
+import { iota, quorum } from './index';
 import nativeBindings from './nativeBindings';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
@@ -262,19 +262,22 @@ const getBundleAsync = (provider) => (tailTransactionHash) =>
  *
  * @method wereAddressesSpentFromAsync
  * @param {string} [provider]
+ * @param {boolean} [withQuorum]
  *
  * @returns {function(array): Promise<array>}
  */
-const wereAddressesSpentFromAsync = (provider) => (addresses) =>
-    new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(wereSpent);
-            }
-        });
-    });
+const wereAddressesSpentFromAsync = (provider, withQuorum) => (addresses) =>
+    withQuorum
+        ? quorum.wereAddressesSpentFrom(addresses)
+        : new Promise((resolve, reject) => {
+              getIotaInstance(provider).api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
+                  if (err) {
+                      reject(err);
+                  } else {
+                      resolve(wereSpent);
+                  }
+              });
+          });
 
 /**
  * Promisified version of iota.api.sendTransfer

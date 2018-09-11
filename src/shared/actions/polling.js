@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList, setRandomlySelectedNode, setAutoPromotion } from './settings';
-import { getRandomNode, changeIotaNode } from '../libs/iota';
+import { quorum, getRandomNode, changeIotaNode } from '../libs/iota';
 import { fetchRemoteNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
@@ -339,6 +339,9 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                         .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
 
                     const unionNodes = union(nodes, remoteNodes.map((node) => node.node));
+
+                    // Set quorum nodes
+                    quorum.setNodes(unionNodes);
 
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
