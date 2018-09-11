@@ -12,13 +12,21 @@
 
 RCT_EXPORT_MODULE();
 
+// Checksum
+
+RCT_EXPORT_METHOD(getChecksum:(NSString *)trytes length:(int)length resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+  char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
+  char * checksum = iota_checksum(trytesChars, strlen(trytesChars), length);
+  memset(trytesChars, 0, strlen(trytesChars));
+  resolve([NSString stringWithFormat:@"%s", checksum]);
+}
+
 // Hashing
 RCT_EXPORT_METHOD(getDigest:(NSString *)trytes resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   char * digest = iota_digest([trytes cStringUsingEncoding:NSUTF8StringEncoding]);
-  NSString * digestString = [NSString stringWithFormat:@"%s", digest];
-  
-  resolve(digestString);
+  resolve([NSString stringWithFormat:@"%s", digest]);
 }
 
 // PoW
@@ -27,8 +35,7 @@ RCT_EXPORT_METHOD(doPoW:(NSString *)trytes minWeightMagnitude:(int)minWeightMagn
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
     char * nonce = iota_pow(trytesChars, minWeightMagnitude);
-    NSString * nonceString = [NSString stringWithFormat:@"%s", nonce];
-    resolve(nonceString);
+    resolve([NSString stringWithFormat:@"%s", nonce]);
   });
 }
 
