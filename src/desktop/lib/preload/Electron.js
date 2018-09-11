@@ -4,9 +4,9 @@ const currentWindow = require('electron').remote.getCurrentWindow();
 const keytar = require('keytar');
 const fs = require('fs');
 const electronSettings = require('electron-settings');
-const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
-const Curl = require('iota.lib.js/lib/crypto/curl/curl');
-const Converter = require('iota.lib.js/lib/crypto/converter/converter');
+const Kerl = require('../../../shared/node_modules/iota.lib.js/lib/crypto/kerl/kerl');
+const Curl = require('../../../shared/node_modules/iota.lib.js/lib/crypto/curl/curl');
+const Converter = require('../../../shared/node_modules/iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
 const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
@@ -469,6 +469,7 @@ const Electron = {
             receive: capitalize(t('home:receive')),
             history: capitalize(t('home:history')),
             logout: t('settings:logout'),
+            help: t('help'),
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
             yes: t('yes'),
             no: t('no'),

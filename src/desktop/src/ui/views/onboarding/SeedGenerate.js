@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Interpolate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { createRandomSeed, randomBytes } from 'libs/crypto';
 import { capitalize, byteToChar } from 'libs/helpers';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
@@ -158,24 +158,21 @@ class GenerateSeed extends React.PureComponent {
             <form>
                 <section className={css.wide}>
                     <h1>{t('newSeedSetup:generatedSeed')}</h1>
-                    <Interpolate
-                        i18nKey="newSeedSetup:individualLetterCount"
-                        letterCount={
-                            !existingSeed && clicksLeft > 0 ? (
-                                <strong className={css.highlight}>{!existingSeed ? clicksLeft : 0}</strong>
-                            ) : null
-                        }
-                    >
-                        <p>
-                            Press <strong /> individual letters to randomise them.
-                        </p>
-                    </Interpolate>
+                    <p>
+                        {!existingSeed && clicksLeft > 0 ? (
+                            <Trans i18nKey="newSeedSetup:individualLetterCount" count={clicksLeft}>
+                                Press <strong className={css.highlight}>{{ count: clicksLeft }}</strong> more letter to
+                                randomise it.
+                            </Trans>
+                        ) : (
+                            <span>&nbsp;</span>
+                        )}
+                    </p>
                     <div className={css.seed}>
                         <div>
                             {seed.map((byte, index) => {
                                 const offset = scramble[index];
-                                const letter =
-                                    offset > 0 ? byteToChar(offset) : byteToChar(byte);
+                                const letter = offset > 0 ? byteToChar(offset) : byteToChar(byte);
                                 return (
                                     <button
                                         onClick={this.updateLetter}
@@ -204,9 +201,13 @@ class GenerateSeed extends React.PureComponent {
                         className="square"
                         variant="primary"
                     >
-                        {!existingSeed && clicksLeft > 0
-                            ? `Randomise ${clicksLeft} characters to continue`
-                            : t('continue')}
+                        {!existingSeed && clicksLeft > 0 ? (
+                            <Trans i18nKey="newSeedSetup:randomiseCharsToContinue" count={clicksLeft}>
+                                Randomise {{ count: clicksLeft }} character to continue.
+                            </Trans>
+                        ) : (
+                            t('continue')
+                        )}
                     </Button>
                 </footer>
             </form>
