@@ -179,7 +179,7 @@ class App extends React.Component {
      * @param {string} accountName - target account name
      */
     accountSwitch(accountName) {
-        const accountIndex = this.props.accounts.accountNames.indexOf(accountName);
+        const accountIndex = Object.keys(this.props.accounts.accountInfo).indexOf(accountName);
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');

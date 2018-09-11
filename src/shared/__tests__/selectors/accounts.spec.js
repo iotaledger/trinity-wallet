@@ -148,15 +148,15 @@ describe('selectors: accounts', () => {
     });
 
     describe('#getAccountNamesFromState', () => {
-        describe('when "accountNames" prop is not defined as a nested prop under "accounts" prop in argument', () => {
+        describe('when "accountInfo" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty array', () => {
-                expect(getAccountNamesFromState({ accounts: { notAccountNames: [] } })).to.eql([]);
+                expect(getAccountNamesFromState({ accounts: { notAccountInfo: [] } })).to.eql([]);
             });
         });
 
-        describe('when "accountNames" prop is defined as a nested prop under "accounts" prop in argument', () => {
+        describe('when "accountInfo" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "accountNames" prop', () => {
-                expect(getAccountNamesFromState({ accounts: { accountNames: [{}, {}] } })).to.eql([{}, {}]);
+                expect(getAccountNamesFromState({ accounts: { accountInfo: { a: {}, b: [] } } })).to.eql(['a', 'b']);
             });
         });
     });
@@ -197,7 +197,6 @@ describe('selectors: accounts', () => {
                             balance: 20,
                         },
                     },
-                    accountNames: ['foo', 'baz'],
                 },
                 wallet: {
                     seedIndex: 0,
@@ -230,7 +229,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -260,7 +258,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -290,7 +287,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -320,7 +316,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -347,7 +342,6 @@ describe('selectors: accounts', () => {
                                     addresses: {},
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -374,7 +368,6 @@ describe('selectors: accounts', () => {
                                     balance: 10,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -391,7 +384,10 @@ describe('selectors: accounts', () => {
         beforeEach(() => {
             state = {
                 accounts: {
-                    accountNames: ['foo', 'baz'],
+                    accountInfo: {
+                        foo: {},
+                        baz: {},
+                    },
                 },
                 wallet: {
                     seedIndex: 0,
@@ -442,7 +438,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 1,
@@ -457,11 +452,12 @@ describe('selectors: accounts', () => {
                 expect(
                     getSetupInfoForSelectedAccount({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             setupInfo: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -498,7 +494,6 @@ describe('selectors: accounts', () => {
                             failedBundleHashes: {
                                 foo: { AAA: [{}] },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 1,
@@ -513,13 +508,14 @@ describe('selectors: accounts', () => {
                 expect(
                     getFailedBundleHashesForSelectedAccount({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             failedBundleHashes: {
                                 foo: {
                                     AAA: [{}, {}],
                                 },
                             },
-                            accountNames: ['foo'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -540,7 +536,6 @@ describe('selectors: accounts', () => {
                             tasks: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 1,
@@ -555,11 +550,12 @@ describe('selectors: accounts', () => {
                 expect(
                     getTasksForSelectedAccount({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             tasks: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -582,7 +578,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { usedExistingSeed: false },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -603,7 +598,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { usedExistingSeed: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -624,7 +618,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { usedExistingSeed: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -641,11 +634,12 @@ describe('selectors: accounts', () => {
                 expect(
                     hasDisplayedSnapshotTransitionGuide({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             tasks: {
                                 foo: { unknownProp: false },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -660,13 +654,14 @@ describe('selectors: accounts', () => {
                 expect(
                     hasDisplayedSnapshotTransitionGuide({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                               foo: {}
+                            },
                             tasks: {
                                 // Set hasDisplayedTransitionGuide to string instead of boolean
                                 // to check for false positives
                                 foo: { hasDisplayedTransitionGuide: 'raw' },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,

@@ -10,6 +10,7 @@ import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/li
 import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
+import { getAccountNamesFromState } from 'iota-wallet-shared-modules/selectors/accounts';
 import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
 import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
@@ -434,7 +435,7 @@ class UseExistingSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),

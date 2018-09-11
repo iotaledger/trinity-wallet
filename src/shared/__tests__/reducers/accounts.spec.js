@@ -6,7 +6,6 @@ describe('Reducer: accounts', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
-                accountNames: [],
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
@@ -171,24 +170,6 @@ describe('Reducer: accounts', () => {
             expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
-        it('should update account name in "accountNames" state prop', () => {
-            const initialState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            const action = actions.changeAccountName({
-                oldAccountName: 'foo',
-                newAccountName: 'bar',
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['bar', 'baz'],
-            };
-
-            expect(newState.accountNames).to.eql(expectedState.accountNames);
-        });
-
         it('should update account prop for each tail transaction with new account name in "unconfirmedBundleTails" state prop', () => {
             const initialState = {
                 unconfirmedBundleTails: {
@@ -277,21 +258,6 @@ describe('Reducer: accounts', () => {
             expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
-        it('should remove payload from accountNames array', () => {
-            const initialState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            const action = actions.removeAccount('foo');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['baz'],
-            };
-
-            expect(newState.accountNames).to.eql(expectedState.accountNames);
-        });
-
         it('should omit all keys from "unconfirmedBundleTails" that have any "account" prop equal to "payload" prop in action', () => {
             const initialState = {
                 unconfirmedBundleTails: {
@@ -344,24 +310,6 @@ describe('Reducer: accounts', () => {
                 onboardingComplete: true,
             };
 
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('ADD_SEED_NAME', () => {
-        it('should concat accountName to list of accountNames in state', () => {
-            const initialState = {
-                accountNames: ['foo'],
-            };
-
-            const action = actions.addAccountName('baz');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            expect(newState).to.not.eql(['baz', 'foo']);
             expect(newState).to.eql(expectedState);
         });
     });
@@ -637,7 +585,6 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                     },
                 },
-                accountNames: [],
             };
 
             const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
@@ -658,7 +605,6 @@ describe('Reducer: accounts', () => {
                         hashes: [],
                     },
                 },
-                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -674,7 +620,6 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                     },
                 },
-                accountNames: [],
             };
 
             const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
@@ -695,7 +640,6 @@ describe('Reducer: accounts', () => {
                         balance: 100,
                     },
                 },
-                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -736,26 +680,6 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should concat accountName to accountNames', () => {
-            const initialState = {
-                accountNames: ['foo'],
-            };
-
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
-                accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            expect(newState.accountNames).to.not.eql(['baz', 'foo']);
-            expect(newState.accountNames).to.not.eql(expectedState.accountNames);
-        });
     });
 
     describe('IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO', () => {

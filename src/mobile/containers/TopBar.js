@@ -9,7 +9,7 @@ import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setSeedIndex } from 'iota-wallet-shared-modules/actions/wallet';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
-import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
+import { getAccountNamesFromState, getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
 import {
     View,
     Text,
@@ -555,7 +555,7 @@ class TopBar extends Component {
 
 const mapStateToProps = (state) => ({
     balance: getBalanceForSelectedAccount(state),
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     accountInfo: state.accounts.accountInfo,
     currentSetting: state.wallet.currentSetting,
     seedIndex: state.wallet.seedIndex,

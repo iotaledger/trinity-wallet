@@ -83,20 +83,11 @@ const updateAccountInfo = (state, payload) => ({
  * @returns {{accountInfo: {}}}
  */
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
+    const { accountInfo, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
     const keyMap = { [oldAccountName]: newAccountName };
-    const accountIndex = findIndex(accountNames, (name) => name === oldAccountName);
-
-    const updateName = (name, idx) => {
-        if (idx === accountIndex) {
-            return newAccountName;
-        }
-
-        return name;
-    };
 
     const updateAccountInUnconfirmedBundleTails = (acc, tailTransactions, bundle) => {
         if (some(tailTransactions, (tx) => tx.account === oldAccountName)) {
@@ -111,17 +102,12 @@ const updateAccountName = (state, payload) => {
         failedBundleHashes: renameKeys(failedBundleHashes, keyMap),
         tasks: renameKeys(tasks, keyMap),
         setupInfo: renameKeys(setupInfo, keyMap),
-        accountNames: map(accountNames, updateName),
         unconfirmedBundleTails: transform(unconfirmedBundleTails, updateAccountInUnconfirmedBundleTails, {}),
     };
 };
 
 const account = (
     state = {
-        /**
-         * List of unique account names added in wallet
-         */
-        accountNames: [],
         /**
          * Determines if the wallet is being setup for the first time
          */
@@ -135,7 +121,7 @@ const account = (
          */
         failedBundleHashes: {},
         /**
-         * Keeps track of each account information (addresses, transfers, balance)
+         * Keeps track of each account information (name, addresses, transfers, balance)
          */
         accountInfo: {},
         /**
@@ -185,8 +171,7 @@ const account = (
                 setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
                     some(tailTransactions, (tx) => tx.account === action.payload),
-                ),
-                accountNames: filter(state.accountNames, (name) => name !== action.payload),
+                )
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
@@ -223,11 +208,6 @@ const account = (
             return {
                 ...state,
                 onboardingComplete: action.payload,
-            };
-        case ActionTypes.ADD_ACCOUNT_NAME:
-            return {
-                ...state,
-                accountNames: [...state.accountNames, action.accountName],
             };
         case ActionTypes.MANUAL_SYNC_SUCCESS:
             return {
@@ -266,7 +246,6 @@ const account = (
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
-                accountNames: union(state.accountNames, [action.payload.accountName]),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
             };
         case ActionTypes.SET_BASIC_ACCOUNT_INFO:

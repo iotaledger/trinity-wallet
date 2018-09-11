@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
+import { getAccountNamesFromState } from 'selectors/accounts';
+
 import { MAX_ACC_LENGTH } from 'libs/crypto';
 
 import { setOnboardingName } from 'actions/ui';
@@ -21,7 +23,7 @@ class AccountName extends React.PureComponent {
         /** @ignore */
         firstAccount: PropTypes.bool.isRequired,
         /** @ignore */
-        accountInfo: PropTypes.object,
+        accountNames: PropTypes.array.isRequired,,
         /** @ignore */
         setOnboardingName: PropTypes.func.isRequired,
         /** @ignore */
@@ -39,7 +41,7 @@ class AccountName extends React.PureComponent {
     state = {
         name: this.props.onboarding.name.length
             ? this.props.onboarding.name
-            : Object.keys(this.props.accountInfo).length === 0 ? this.props.t('mainWallet') : '',
+            : Object.keys(this.props.accountNames).length === 0 ? this.props.t('mainWallet') : '',
     };
 
     /**
@@ -57,13 +59,11 @@ class AccountName extends React.PureComponent {
             firstAccount,
             setOnboardingName,
             setAdditionalAccountInfo,
-            accountInfo,
+            accountNames,
             history,
             generateAlert,
             t,
         } = this.props;
-
-        const accountNames = Object.keys(accountInfo);
 
         const name = this.state.name.replace(/^\s+|\s+$/g, '');
 
@@ -151,7 +151,7 @@ class AccountName extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     firstAccount: !state.wallet.ready,
-    accountInfo: state.accounts.accountInfo,
+    accountNames: getAccountNamesFromState(state),
     onboarding: state.ui.onboarding,
 });
 

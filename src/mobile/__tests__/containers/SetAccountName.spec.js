@@ -31,6 +31,7 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
+            accountCount: 0,
             seed: 'SEED',
             onboardingComplete: false,
             theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
