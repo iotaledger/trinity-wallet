@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import {
     increaseSeedCount,
@@ -22,13 +21,13 @@ import {
 import { generatePasswordHash, getSalt } from '../utils/crypto';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
 import PasswordFields from '../components/PasswordFields';
+import { isAndroid } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
@@ -209,11 +208,12 @@ class SetPassword extends Component {
         });
     }
 
-    renderContent() {
+    render() {
         const { t, theme: { body } } = this.props;
         const { password, reentry } = this.state;
+
         return (
-            <View>
+            <View style={styles.container}>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
                     <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
@@ -221,7 +221,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('choosePassword')}</Header>
                         </View>
-                        <View style={styles.midContainer}>
+                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.midContainer}>
                             <InfoBox
                                 body={body}
                                 text={
@@ -247,7 +247,7 @@ class SetPassword extends Component {
                                 setReentry={(reentry) => this.setState({ reentry })}
                             />
                             <View style={{ flex: 0.3 }} />
-                        </View>
+                        </KeyboardAvoidingView>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
@@ -258,26 +258,6 @@ class SetPassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
-        );
-    }
-
-    render() {
-        const { theme: { body } } = this.props;
-        return (
-            <View style={styles.container}>
-                {isAndroid ? (
-                    <KeyboardAvoidingView style={styles.container}>{this.renderContent()}</KeyboardAvoidingView>
-                ) : (
-                    <KeyboardAwareScrollView
-                        resetScrollToCoords={{ x: 0, y: 0 }}
-                        contentContainerStyle={styles.container}
-                        scrollEnabled={false}
-                        enableOnAndroid={false}
-                    >
-                        {this.renderContent()}
-                    </KeyboardAwareScrollView>
-                )}
                 <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
