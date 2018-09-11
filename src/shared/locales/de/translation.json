@@ -34,6 +34,7 @@
         "save": "Speichern",
         "close": "Schließen",
         "export": "Export",
+        "help": "Hilfe",
         "import": "Import",
         "continue": "Fortfahren",
         "enable": "Aktivieren",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Drücke für neuen Seed",
         "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "individualLetterCount": "Wähle {{letterCount}} weitere Zeichen um sie zufällig auszutauschen.",
+        "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
+        "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
+        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen zum fortfahren.",
+        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen zum fortfahren.",
         "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Design",
         "mockup": "Vorschau"
     },
+    "themes": {
+        "classic": "Klassisch",
+        "contemporary": "Zeitgenössisch",
+        "dark": "Dunkel",
+        "default": "Standard",
+        "electric": "Elektrisch",
+        "ionic": "Ionic",
+        "light": "Hell",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Stahlblau"
+    },
     "currencySelection": {
         "currency": "Währung"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Dein Seed wurde erfolgreich importiert.",
         "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
-        "dropSeedVaultHere": "SeedVault hierher ziehen",
+        "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder klicke auf Durchsuchen",
         "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
