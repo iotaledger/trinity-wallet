@@ -15,7 +15,7 @@ RCT_EXPORT_MODULE();
 // Hashing
 RCT_EXPORT_METHOD(getDigest:(NSString *)trytes resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  char * digest = getDigest([trytes cStringUsingEncoding:NSUTF8StringEncoding]);
+  char * digest = iota_digest([trytes cStringUsingEncoding:NSUTF8StringEncoding]);
   NSString * digestString = [NSString stringWithFormat:@"%s", digest];
   
   resolve(digestString);
@@ -26,7 +26,7 @@ RCT_EXPORT_METHOD(doPoW:(NSString *)trytes minWeightMagnitude:(int)minWeightMagn
 {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
-    char * nonce = doPOW(trytesChars, minWeightMagnitude);
+    char * nonce = iota_pow(trytesChars, minWeightMagnitude);
     NSString * nonceString = [NSString stringWithFormat:@"%s", nonce];
     resolve(nonceString);
   });
@@ -37,7 +37,7 @@ RCT_EXPORT_METHOD(doPoW:(NSString *)trytes minWeightMagnitude:(int)minWeightMagn
 RCT_EXPORT_METHOD(generateAddress:(NSString *)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   char * seedChars = [seed cStringUsingEncoding:NSUTF8StringEncoding];
-  char * address = generateAddress(seedChars, index, security);
+  char * address = iota_sign_address_gen(seedChars, index, security);
   memset(seedChars, 0, strlen(seedChars));
   resolve([NSString stringWithFormat:@"%s", address]);
 }
@@ -52,7 +52,7 @@ RCT_EXPORT_METHOD(generateAddresses:(NSString *)seed index:(int)index security:(
     int addressIndex = index;
     
     do {
-      char * address = generateAddress(seedChars, addressIndex, security);
+      char * address = iota_sign_address_gen(seedChars, addressIndex, security);
       NSString * addressObj = [NSString stringWithFormat:@"%s", address];
       [addresses addObject:addressObj];
       i++;
@@ -69,7 +69,7 @@ RCT_EXPORT_METHOD(generateSignature:(NSString *)seed index:(int)index security:(
   char * seedChars = [seed cStringUsingEncoding:NSUTF8StringEncoding];
   char * bundleHashChars = [bundleHash cStringUsingEncoding:NSUTF8StringEncoding];
   
-  char * signature = generateSignature(seedChars, index, security, bundleHashChars);
+  char * signature = iota_sign_signature_gen(seedChars, index, security, bundleHashChars);
   memset(seedChars, 0, strlen(seedChars));
   resolve(@[[NSString stringWithFormat:@"%s", signature]]);
 }
