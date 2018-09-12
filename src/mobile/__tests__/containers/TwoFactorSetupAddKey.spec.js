@@ -4,8 +4,8 @@ import React from 'react';
 import { Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { TwoFactorSetupAddKey } from '../../containers/TwoFactorSetupAddKey';
-import * as keychainUtils from '../../utils/keychain';
+import { TwoFactorSetupAddKey } from '../../src/ui/views/wallet/TwoFactorSetupAddKey';
+import * as keychainUtils from '../../src/libs/keychain';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

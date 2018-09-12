@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { RootDetectionModal as RootDetectionModalComponent } from '../../components/RootDetectionModal';
+import { RootDetectionModal as RootDetectionModalComponent } from '../../src/ui/components/RootDetectionModal';
 
 const getProps = (overrides) =>
     assign(

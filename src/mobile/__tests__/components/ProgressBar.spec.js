@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { TextInput } from 'react-native';
-import ProgressBar from '../../components/ProgressBar';
+import ProgressBar from '../../src/ui/components/ProgressBar';
 
 const getProps = (overrides) =>
     assign(

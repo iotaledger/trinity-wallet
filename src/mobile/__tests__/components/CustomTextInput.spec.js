@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import CustomTextInput from '../../components/CustomTextInput';
+import CustomTextInput from '../../src/ui/components/CustomTextInput';
 
 const getProps = (overrides) =>
     assign(

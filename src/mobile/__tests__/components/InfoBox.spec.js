@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import InfoBox from '../../components/InfoBox';
+import InfoBox from '../../src/ui/components/InfoBox';
 
 const getProps = (overrides) =>
     assign(

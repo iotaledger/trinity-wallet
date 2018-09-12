@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Clipboard } from 'react-native';
 import { shallow } from 'enzyme';
-import { ViewAddresses } from '../../containers/ViewAddresses';
+import { ViewAddresses } from '../../src/ui/views/wallet/ViewAddresses';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

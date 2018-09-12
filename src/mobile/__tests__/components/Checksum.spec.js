@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { Checksum } from '../../components/Checksum';
+import { Checksum } from '../../src/ui/components/Checksum';
 
 const getProps = (overrides) =>
     assign(

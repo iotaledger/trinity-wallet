@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import TransactionRow from '../../components/TransactionRow';
+import TransactionRow from '../../src/ui/components/TransactionRow';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

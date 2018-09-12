@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { ManualSync } from '../../containers/ManualSync';
+import { ManualSync } from '../../src/ui/views/wallet/ManualSync';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

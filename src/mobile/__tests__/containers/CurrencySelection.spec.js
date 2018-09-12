@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { CurrencySelection } from '../../containers/CurrencySelection';
+import { CurrencySelection } from '../../src/ui/views/wallet/CurrencySelection';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

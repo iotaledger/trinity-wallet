@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { QRScanner as QrScannerComponent } from '../../components/QrScanner';
+import { QRScanner as QrScannerComponent } from '../../src/ui/components/QrScanner';
 
 jest.mock('react-native-camera', () => ({}));
 jest.mock('bugsnag-react-native', () => ({

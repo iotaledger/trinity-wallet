@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { LogoutConfirmationModal } from '../../components/LogoutConfirmationModal';
+import { LogoutConfirmationModal } from '../../src/ui/components/LogoutConfirmationModal';
 
 const getProps = (overrides) =>
     assign(

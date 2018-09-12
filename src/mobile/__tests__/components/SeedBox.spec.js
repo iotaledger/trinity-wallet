@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import SeedBox from '../../components/SeedBox';
+import SeedBox from '../../src/ui/components/SeedBox';
 
 const getProps = (overrides) =>
     assign(

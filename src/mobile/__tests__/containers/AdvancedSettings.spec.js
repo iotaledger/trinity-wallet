@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { AdvancedSettings } from '../../containers/AdvancedSettings';
+import { AdvancedSettings } from '../../src/ui/views/wallet/AdvancedSettings';
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),

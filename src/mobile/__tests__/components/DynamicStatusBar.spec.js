@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
+import DynamicStatusBar from '../../src/ui/components/DynamicStatusBar';
 
 const getProps = (overrides) =>
     assign(

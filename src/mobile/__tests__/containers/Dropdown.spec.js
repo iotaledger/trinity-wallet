@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { Dropdown } from '../../containers/Dropdown';
+import { Dropdown } from '../../src/ui/components/Dropdown';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,

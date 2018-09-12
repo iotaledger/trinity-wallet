@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import each from 'lodash/each';
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Poll } from '../../containers/Poll';
+import { Poll } from '../../src/ui/components/Poll';
 
 jest.mock('react-native-keychain', () => ({
     setGenericPassword: () => Promise.resolve({}),

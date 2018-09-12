@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { EnterPasswordOnLogin } from '../../components/EnterPasswordOnLogin';
+import { EnterPasswordOnLogin } from '../../src/ui/components/EnterPasswordOnLogin';
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),

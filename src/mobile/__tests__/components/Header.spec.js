@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import Header from '../../components/Header';
+import Header from '../../src/ui/components/Header';
 
 const getProps = (overrides) =>
     assign(

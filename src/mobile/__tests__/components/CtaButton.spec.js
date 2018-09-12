@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import CtaButton from '../../components/CtaButton';
+import CtaButton from '../../src/ui/components/CtaButton';
 
 const getProps = (overrides) =>
     assign(

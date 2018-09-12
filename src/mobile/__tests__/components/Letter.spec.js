@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { Letter } from '../../components/Letter';
+import { Letter } from '../../src/ui/components/Letter';
 
 const getProps = (overrides) =>
     assign(

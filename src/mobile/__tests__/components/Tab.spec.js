@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import Tab from '../../components/Tab';
+import Tab from '../../src/ui/components/Tab';
 
 const getProps = (overrides) =>
     assign(
