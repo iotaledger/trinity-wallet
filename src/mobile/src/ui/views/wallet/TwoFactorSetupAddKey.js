@@ -6,16 +6,16 @@ import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import WithBackPressGoToHome from '../../components/BackPressGoToHome';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import { storeTwoFactorAuthKeyInKeychain } from '../../../libs/keychain';
-import Fonts from '../../theme/fonts';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import GENERAL from '../../theme/general';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
+import Fonts from 'ui/theme/fonts';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

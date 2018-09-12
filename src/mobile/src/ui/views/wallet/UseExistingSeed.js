@@ -12,16 +12,16 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
 import timer from 'react-native-timer';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../../../libs/keychain';
-import SeedVaultImport from '../../components/SeedVaultImportComponent';
-import PasswordValidation from '../../components/PasswordValidationModal';
-import CustomTextInput from '../../components/CustomTextInput';
-import QRScannerComponent from '../../components/QrScanner';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import { isAndroid } from '../../../libs/device';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
+import PasswordValidation from 'ui/components/PasswordValidationModal';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import QRScannerComponent from 'ui/components/QrScanner';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

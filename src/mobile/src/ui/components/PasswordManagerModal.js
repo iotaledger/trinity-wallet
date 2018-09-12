@@ -7,12 +7,12 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
-import ModalButtons from './ModalButtons';
-import GENERAL from '../theme/general';
-import { width, height } from '../../libs/dimensions';
-import { isAndroid } from '../../libs/device';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import InfoBox from './InfoBox';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
+import ModalButtons from './ModalButtons';
 
 const styles = StyleSheet.create({
     infoText: {

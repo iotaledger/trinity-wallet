@@ -12,14 +12,14 @@ import {
     BackHandler,
 } from 'react-native';
 import Modal from 'react-native-modal';
-import { width, height } from '../../libs/dimensions';
-import OnboardingButtons from './OnboardingButtons';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { isAndroid } from 'libs/device';
 import CustomTextInput from './CustomTextInput';
-import { Icon } from '../theme/icons.js';
-import GENERAL from '../theme/general';
 import InfoBox from './InfoBox';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
-import { isAndroid } from '../../libs/device';
+import OnboardingButtons from './OnboardingButtons';
 
 const styles = StyleSheet.create({
     topContainer: {

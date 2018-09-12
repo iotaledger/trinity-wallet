@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { updateTheme } from 'iota-wallet-shared-modules/actions/settings';
 import THEMES from 'iota-wallet-shared-modules/themes/themes';
-import Dropdown from '../../components/Dropdown'; // eslint-disable-line import/no-named-as-default
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import { Icon } from '../../theme/icons.js';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

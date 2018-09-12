@@ -11,16 +11,16 @@ import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/acc
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import Fonts from '../../theme/fonts';
-import { deleteSeedFromKeychain, getPasswordHash } from '../../../libs/keychain';
-import ModalButtons from '../../components/ModalButtons';
-import { width, height } from '../../../libs/dimensions';
-import CustomTextInput from '../../components/CustomTextInput';
-import GENERAL from '../../theme/general';
-import { Icon } from '../../theme/icons.js';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import Fonts from 'ui/theme/fonts';
+import { deleteSeedFromKeychain, getPasswordHash } from 'libs/keychain';
+import ModalButtons from 'ui/components/ModalButtons';
+import { width, height } from 'libs/dimensions';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {

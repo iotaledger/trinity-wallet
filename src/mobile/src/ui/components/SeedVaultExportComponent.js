@@ -10,14 +10,14 @@ import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/acc
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
-import CustomTextInput from './CustomTextInput';
-import GENERAL from '../theme/general';
-import PasswordFields from './PasswordFields';
+import GENERAL from 'ui/theme/general';
+import { getPasswordHash, getSeedFromKeychain } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import InfoBox from './InfoBox';
 import Button from './Button';
-import { getPasswordHash, getSeedFromKeychain } from '../../libs/keychain';
-import { width, height } from '../../libs/dimensions';
-import { isAndroid, getAndroidFileSystemPermissions } from '../../libs/device';
+import CustomTextInput from './CustomTextInput';
+import PasswordFields from './PasswordFields';
 
 const steps = [
     'isValidatingWalletPassword',

@@ -8,15 +8,15 @@ import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/a
 import { clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import { persistor } from '../../../libs/store';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import { clearKeychain, getPasswordHash } from '../../../libs/keychain';
-import CustomTextInput from '../../components/CustomTextInput';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { Icon } from '../../theme/icons.js';
-import { width, height } from '../../../libs/dimensions';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { persistor } from 'libs/store';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { clearKeychain, getPasswordHash } from 'libs/keychain';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { Icon } from 'ui/theme/icons';
+import { width, height } from 'libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

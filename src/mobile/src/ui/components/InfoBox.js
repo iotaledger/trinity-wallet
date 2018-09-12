@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import { width, height } from '../../libs/dimensions';
-import GENERAL from '../theme/general';
-import { Icon } from '../theme/icons.js';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     fieldContainer: {

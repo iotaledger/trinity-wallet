@@ -11,8 +11,8 @@ import {
     setQrDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { width, height } from '../../libs/dimensions';
-import GENERAL from '../theme/general';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
 import AmountTextInput from './AmountTextInput';
 
 const styles = StyleSheet.create({

@@ -18,16 +18,16 @@ import { getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wal
 import KeepAwake from 'react-native-keep-awake';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import ModalButtons from '../../components/ModalButtons';
-import GENERAL from '../../theme/general';
-import { getSeedFromKeychain } from '../../../libs/keychain';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import CtaButton from '../../components/CtaButton';
-import InfoBox from '../../components/InfoBox';
-import ProgressBar from '../../components/ProgressBar';
-import { getMultiAddressGenFn, getPowFn } from '../../../libs/nativeModules';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import ModalButtons from 'ui/components/ModalButtons';
+import GENERAL from 'ui/theme/general';
+import { getSeedFromKeychain } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
+import ProgressBar from 'ui/components/ProgressBar';
+import { getMultiAddressGenFn, getPowFn } from 'libs/nativeModules';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

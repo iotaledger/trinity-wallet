@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { translate } from 'react-i18next';
-import { width, height } from '../../../libs/dimensions';
-import CtaButton from '../../components/CtaButton';
-import NodeSelection from './NodeSelection';
-import AddCustomNode from './AddCustomNode';
-import { Icon } from '../../theme/icons';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { width, height } from 'libs/dimensions';
+import CtaButton from 'ui/components/CtaButton';
+import NodeSelection from 'ui/views/wallet/NodeSelection';
+import AddCustomNode from 'ui/views/wallet/AddCustomNode';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -4,10 +4,10 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
-import GENERAL from '../theme/general';
-import { width, height } from '../../libs/dimensions';
-import { locale } from '../../libs/device';
-import { Icon } from '../theme/icons';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { locale } from 'libs/device';
+import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {

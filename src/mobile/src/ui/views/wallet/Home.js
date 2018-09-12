@@ -17,21 +17,21 @@ import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getPasswordHash } from '../../../libs/keychain';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import UserInactivity from '../../components/UserInactivity';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import TopBar from '../../components/TopBar';
-import WithUserActivity from '../../components/UserActivity';
-import WithBackPress from '../../components/BackPress';
-import SnapshotTransitionModalContent from '../../components/SnapshotTransitionModalContent';
-import PollComponent from '../../components/Poll';
-import Tabs from '../../components/Tabs';
-import Tab from '../../components/Tab';
-import TabContent from '../../components/TabContent';
-import EnterPassword from '../../components/EnterPassword';
-import { width, height } from '../../../libs/dimensions';
-import { isAndroid, isIPhoneX } from '../../../libs/device';
+import { getPasswordHash } from 'libs/keychain';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import UserInactivity from 'ui/components/UserInactivity';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import TopBar from 'ui/components/TopBar';
+import WithUserActivity from 'ui/components/UserActivity';
+import WithBackPress from 'ui/components/BackPress';
+import SnapshotTransitionModalContent from 'ui/components/SnapshotTransitionModalContent';
+import PollComponent from 'ui/components/Poll';
+import Tabs from 'ui/components/Tabs';
+import Tab from 'ui/components/Tab';
+import TabContent from 'ui/components/TabContent';
+import EnterPassword from 'ui/components/EnterPassword';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     midContainer: {

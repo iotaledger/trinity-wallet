@@ -17,18 +17,18 @@ import {
     storeSeedInKeychain,
     getAllSeedsFromKeychain,
     storeSaltInKeychain,
-} from '../../../libs/keychain';
-import { generatePasswordHash, getSalt } from '../../../libs/crypto';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { width, height } from '../../../libs/dimensions';
-import InfoBox from '../../components/InfoBox';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import Header from '../../components/Header';
-import PasswordFields from '../../components/PasswordFields';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+} from 'libs/keychain';
+import { generatePasswordHash, getSalt } from 'libs/crypto';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { isAndroid } from 'libs/device';
+import { width, height } from 'libs/dimensions';
+import InfoBox from 'ui/components/InfoBox';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import Header from 'ui/components/Header';
+import PasswordFields from 'ui/components/PasswordFields';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 

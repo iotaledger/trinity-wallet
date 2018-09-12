@@ -11,13 +11,13 @@ import {
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
-import Button from '../../components/Button';
-import GENERAL from '../../theme/general';
-import { width, height } from '../../../libs/dimensions';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import i18next from '../../../libs/i18next';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import Button from 'ui/components/Button';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import i18next from 'i18next';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ModalButtons from './ModalButtons';
-import GENERAL from '../theme/general';
-import { width, height } from '../../libs/dimensions';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     modalContainer: {

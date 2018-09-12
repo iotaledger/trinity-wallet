@@ -15,7 +15,7 @@ import {
     decodeBase64,
     generatePasswordHash,
     stringToUInt8,
-} from './crypto';
+} from 'libs/crypto';
 
 const keychain = {
     get: (alias) => {

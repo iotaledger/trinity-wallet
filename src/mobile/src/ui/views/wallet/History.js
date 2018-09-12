@@ -21,14 +21,14 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import WithManualRefresh from '../../components/ManualRefresh';
-import TransactionRow from '../../components/TransactionRow';
-import HistoryModalContent from '../../components/HistoryModalContent';
-import { width, height } from '../../../libs/dimensions';
-import { isAndroid } from '../../../libs/device';
-import { getPowFn } from '../../../libs/nativeModules';
-import CtaButton from '../../components/CtaButton';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithManualRefresh from 'ui/components/ManualRefresh';
+import TransactionRow from 'ui/components/TransactionRow';
+import HistoryModalContent from 'ui/components/HistoryModalContent';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { getPowFn } from 'libs/nativeModules';
+import CtaButton from 'ui/components/CtaButton';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

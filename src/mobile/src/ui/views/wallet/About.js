@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import { Icon } from '../../theme/icons.js';
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { Icon } from 'ui/theme/icons';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

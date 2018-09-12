@@ -31,16 +31,16 @@ import {
 } from 'iota-wallet-shared-modules/actions/keychain';
 import { isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getSeedFromKeychain } from '../../../libs/keychain';
-import GENERAL from '../../theme/general';
-import MultiTextInput from '../../components/MultiTextInput';
-import CustomQrCodeComponent from '../../components/CustomQRCode';
-import { Icon } from '../../theme/icons.js';
-import ScramblingText from '../../components/ScramblingText';
-import { width, height } from '../../../libs/dimensions';
-import { isAndroid, getAndroidFileSystemPermissions } from '../../../libs/device';
-import { getAddressGenFn } from '../../../libs/nativeModules';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { getSeedFromKeychain } from 'libs/keychain';
+import GENERAL from 'ui/theme/general';
+import MultiTextInput from 'ui/components/MultiTextInput';
+import CustomQrCodeComponent from 'ui/components/CustomQRCode';
+import { Icon } from 'ui/theme/icons';
+import ScramblingText from 'ui/components/ScramblingText';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { getAddressGenFn } from 'libs/nativeModules';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

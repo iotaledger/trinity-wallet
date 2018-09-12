@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
-import { isAndroid, isIOS } from './device';
+import { isAndroid, isIOS } from 'libs/device';
 
 /**
  * Gets single address generation function

@@ -8,17 +8,17 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import FlagSecure from 'react-native-flag-secure-android';
-import Fonts from '../../theme/fonts';
-import Seedbox from '../../components/SeedBox';
-import CustomTextInput from '../../components/CustomTextInput';
-import { getSeedFromKeychain, getPasswordHash } from '../../../libs/keychain';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import CtaButton from '../../components/CtaButton';
-import InfoBox from '../../components/InfoBox';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import Fonts from 'ui/theme/fonts';
+import Seedbox from 'ui/components/SeedBox';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { getSeedFromKeychain, getPasswordHash } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -11,13 +11,13 @@ import {
     dePrivacyPolicyAndroid,
     dePrivacyPolicyIOS,
 } from 'iota-wallet-shared-modules/markdown';
-import i18next from '../../../libs/i18next';
-import Button from '../../components/Button';
-import GENERAL from '../../theme/general';
-import { width, height } from '../../../libs/dimensions';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import i18next from 'i18next';
+import Button from 'ui/components/Button';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

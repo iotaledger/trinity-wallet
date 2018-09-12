@@ -7,10 +7,10 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { translate } from 'react-i18next';
-import { width } from '../../libs/dimensions';
-import GENERAL from '../theme/general';
-import { Icon } from '../theme/icons.js';
-import { isAndroid } from '../../libs/device';
+import { width } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     infoText: {

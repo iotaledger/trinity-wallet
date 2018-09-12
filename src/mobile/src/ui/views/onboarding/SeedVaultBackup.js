@@ -3,15 +3,15 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { width, height } from '../../../libs/dimensions';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import { Icon } from '../../theme/icons.js';
-import Header from '../../components/Header';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import SeedVaultExportComponent from '../../components/SeedVaultExportComponent';
-import { isAndroid } from '../../../libs/device';
+import { width, height } from 'libs/dimensions';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     container: {

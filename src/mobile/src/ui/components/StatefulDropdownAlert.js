@@ -6,9 +6,9 @@ import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
-import { width, height } from '../../libs/dimensions';
-import { isIPhoneX } from '../../libs/device';
-import GENERAL from '../theme/general';
+import { width, height } from 'libs/dimensions';
+import { isIPhoneX } from 'libs/device';
+import GENERAL from 'ui/theme/general';
 
 const errorIcon = require('iota-wallet-shared-modules/images/error.png');
 const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');

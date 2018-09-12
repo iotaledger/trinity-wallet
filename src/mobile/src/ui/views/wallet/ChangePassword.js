@@ -6,15 +6,15 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Key
 import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { changePassword, getPasswordHash } from '../../../libs/keychain';
-import { generatePasswordHash, getSalt } from '../../../libs/crypto';
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import CustomTextInput from '../../components/CustomTextInput';
-import { Icon } from '../../theme/icons.js';
-import InfoBox from '../../components/InfoBox';
-import PasswordFields from '../../components/PasswordFields';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { changePassword, getPasswordHash } from 'libs/keychain';
+import { generatePasswordHash, getSalt } from 'libs/crypto';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { Icon } from 'ui/theme/icons';
+import InfoBox from 'ui/components/InfoBox';
+import PasswordFields from 'ui/components/PasswordFields';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

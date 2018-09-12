@@ -4,13 +4,13 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
-import WithBackPressCloseApp from '../../components/BackPressCloseApp';
-import GENERAL from '../../theme/general';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import Button from '../../components/Button';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import Button from 'ui/components/Button';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

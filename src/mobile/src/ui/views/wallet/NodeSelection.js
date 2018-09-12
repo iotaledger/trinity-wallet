@@ -5,11 +5,11 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Act
 import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { translate } from 'react-i18next';
-import DropdownComponent from '../../components/Dropdown';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import DropdownComponent from 'ui/components/Dropdown';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -9,17 +9,17 @@ import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
 import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import InfoBox from '../../components/InfoBox';
-import { Icon } from '../../theme/icons.js';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import Header from '../../components/Header';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import RootDetectionModalComponent from '../../components/RootDetectionModal';
-import { doAttestationFromSafetyNet } from '../../../libs/safetynet';
-import { isAndroid } from '../../../libs/device';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import InfoBox from 'ui/components/InfoBox';
+import { Icon } from 'ui/theme/icons';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import RootDetectionModalComponent from 'ui/components/RootDetectionModal';
+import { doAttestationFromSafetyNet } from 'libs/safetynet';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     container: {

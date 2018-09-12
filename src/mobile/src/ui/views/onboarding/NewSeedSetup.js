@@ -12,17 +12,17 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'iota-wallet-shared-modules/libs/crypto';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
-import WithUserActivity from '../../components/UserActivity';
-import CtaButton from '../../components/CtaButton';
-import { width, height } from '../../../libs/dimensions';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import GENERAL from '../../theme/general';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import InfoBox from '../../components/InfoBox';
-import { Icon } from '../../theme/icons.js';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithUserActivity from 'ui/components/UserActivity';
+import CtaButton from 'ui/components/CtaButton';
+import { width, height } from 'libs/dimensions';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import GENERAL from 'ui/theme/general';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import InfoBox from 'ui/components/InfoBox';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -6,7 +6,7 @@ import { AppState } from 'react-native';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
-import { isIOS } from '../../libs/device';
+import { isIOS } from 'libs/device';
 
 export default () => (C) => {
     class WithUserActivity extends Component {

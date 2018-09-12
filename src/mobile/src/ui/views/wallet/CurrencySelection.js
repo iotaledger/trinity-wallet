@@ -8,11 +8,11 @@ import { setQrDenomination, setSendDenomination } from 'iota-wallet-shared-modul
 import { IOTA_DENOMINATIONS } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
-import { width, height } from '../../../libs/dimensions';
-import DropdownComponent from '../../components/Dropdown';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { width, height } from 'libs/dimensions';
+import DropdownComponent from 'ui/components/Dropdown';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

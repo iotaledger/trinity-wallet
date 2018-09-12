@@ -25,16 +25,16 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
-import GENERAL from '../../theme/general';
-import { getSeedFromKeychain, storeSeedInKeychain } from '../../../libs/keychain';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { getAddressGenFn, getMultiAddressGenFn } from '../../../libs/nativeModules';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import Button from '../../components/Button';
+import GENERAL from 'ui/theme/general';
+import { getSeedFromKeychain, storeSeedInKeychain } from 'libs/keychain';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Button from 'ui/components/Button';
 
-import { width, height } from '../../../libs/dimensions';
+import { width, height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

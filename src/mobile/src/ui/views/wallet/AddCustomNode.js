@@ -15,12 +15,12 @@ import { isValidUrl, isValidHttpsUrl } from 'iota-wallet-shared-modules/libs/uti
 import { setCustomNodeCheckStatus } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
-import { width, height } from '../../../libs/dimensions';
-import CustomTextInput from '../../components/CustomTextInput';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { isIOS } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { width, height } from 'libs/dimensions';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { isIOS } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

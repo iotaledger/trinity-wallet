@@ -14,15 +14,15 @@ import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/setti
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import i18next from '../../../libs/i18next';
-import WithBackPressCloseApp from '../../components/BackPressCloseApp';
-import { width, height } from '../../../libs/dimensions';
-import { isAndroid } from '../../../libs/device';
-import DropdownComponent from '../../components/Dropdown';
-import Button from '../../components/Button';
-import { Icon } from '../../theme/icons.js';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import i18next from 'i18next';
+import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import DropdownComponent from 'ui/components/Dropdown';
+import Button from 'ui/components/Button';
+import { Icon } from 'ui/theme/icons';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

@@ -20,16 +20,16 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
-import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../../../libs/keychain';
-import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from '../../../libs/crypto';
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import CustomTextInput from '../../components/CustomTextInput';
-import { Icon } from '../../theme/icons.js';
-import InfoBox from '../../components/InfoBox';
-import { isAndroid } from '../../../libs/device';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'libs/keychain';
+import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'libs/crypto';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { Icon } from 'ui/theme/icons';
+import InfoBox from 'ui/components/InfoBox';
+import { isAndroid } from 'libs/device';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

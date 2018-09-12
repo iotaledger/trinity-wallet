@@ -8,20 +8,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
-import WithUserActivity from '../../components/UserActivity';
-import CustomTextInput from '../../components/CustomTextInput';
-import InfoBox from '../../components/InfoBox';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import QRScannerComponent from '../../components/QrScanner';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import SeedVaultImport from '../../components/SeedVaultImportComponent';
-import PasswordValidation from '../../components/PasswordValidationModal';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import { isAndroid } from '../../../libs/device';
-import GENERAL from '../../theme/general';
-import Header from '../../components/Header';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithUserActivity from 'ui/components/UserActivity';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import InfoBox from 'ui/components/InfoBox';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import QRScannerComponent from 'ui/components/QrScanner';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
+import PasswordValidation from 'ui/components/PasswordValidationModal';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 

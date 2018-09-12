@@ -13,18 +13,18 @@ import { setSeedShareTutorialVisitationStatus } from 'iota-wallet-shared-modules
 import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
-import PrintModal from '../../components/PrintModal';
-import PasswordManagerModalContent from '../../components/PasswordManagerModal';
-import Button from '../../components/Button';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import GENERAL from '../../theme/general';
-import { width, height } from '../../../libs/dimensions';
-import Header from '../../components/Header';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import { isAndroid } from '../../../libs/device';
-import { Icon } from '../../theme/icons.js';
+import PrintModal from 'ui/components/PrintModal';
+import PasswordManagerModalContent from 'ui/components/PasswordManagerModal';
+import Button from 'ui/components/Button';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { isAndroid } from 'libs/device';
+import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -358,7 +358,7 @@ class SaveYourSeed extends Component {
                fill: #231f20;
                font-family: Monospace;
              }
-             @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
+             @font-face { font-family: "Monospace"; src: "iota-wallet-iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
           </style>
           <body>
             ${this.getHTMLContent()}

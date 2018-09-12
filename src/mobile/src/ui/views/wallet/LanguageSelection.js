@@ -6,11 +6,11 @@ import { translate } from 'react-i18next';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
 import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import i18next from '../../../libs/i18next';
-import DropdownComponent from '../../components/Dropdown';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import i18next from 'libs/i18next';
+import DropdownComponent from 'ui/components/Dropdown';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const { width } = Dimensions.get('window');
 const { height } = global;

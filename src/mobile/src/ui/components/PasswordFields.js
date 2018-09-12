@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
+import { height, width } from 'libs/dimensions';
 import CustomTextInput from './CustomTextInput';
-import { height, width } from '../../libs/dimensions';
 
 const MIN_PASSWORD_LENGTH = 11;
 

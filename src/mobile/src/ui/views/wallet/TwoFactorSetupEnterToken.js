@@ -6,16 +6,16 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { translate } from 'react-i18next';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import CustomTextInput from '../../components/CustomTextInput';
-import Fonts from '../../theme/fonts';
-import { getTwoFactorAuthKeyFromKeychain } from '../../../libs/keychain';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import Fonts from 'ui/theme/fonts';
+import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

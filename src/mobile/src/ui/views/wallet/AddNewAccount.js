@@ -5,8 +5,8 @@ import { BackHandler, View, StyleSheet } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import timer from 'react-native-timer';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import { renderSettingsRows } from '../../components/SettingsContent';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {

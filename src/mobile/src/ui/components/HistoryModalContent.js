@@ -13,12 +13,12 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
-import GENERAL from '../theme/general';
-import { width, height } from '../../libs/dimensions';
-import { isAndroid, locale } from '../../libs/device';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { isAndroid, locale } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import CtaButton from './CtaButton';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     container: {

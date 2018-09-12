@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { translate } from 'react-i18next';
-import { getSeedFromKeychain } from '../../libs/keychain';
+import { getSeedFromKeychain } from 'libs/keychain';
 
 const mapDispatchToProps = {
     generateAlert,

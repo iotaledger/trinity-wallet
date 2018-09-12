@@ -7,16 +7,16 @@ import { resetWallet, set2FAStatus } from 'iota-wallet-shared-modules/actions/se
 import { setFirstUse } from 'iota-wallet-shared-modules/actions/accounts';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { getTwoFactorAuthKeyFromKeychain } from '../../../libs/keychain';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import Fonts from '../../theme/fonts';
-import CustomTextInput from '../../components/CustomTextInput';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import Fonts from 'ui/theme/fonts';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

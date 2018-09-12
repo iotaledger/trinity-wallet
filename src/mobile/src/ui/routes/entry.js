@@ -13,11 +13,11 @@ import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { isIOS } from '../../libs/device';
-import keychain from '../../libs/keychain';
-import registerScreens from './navigation';
-import i18 from '../../libs/i18next';
-import { getDigestFn } from '../../libs/nativeModules';
+import { isIOS } from 'libs/device';
+import keychain from 'libs/keychain';
+import i18 from 'libs/i18next';
+import { getDigestFn } from 'libs/nativeModules';
+import registerScreens from 'ui/routes/navigation';
 
 const clearKeychain = () => {
     if (isIOS) {

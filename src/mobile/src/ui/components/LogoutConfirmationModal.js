@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { translate } from 'react-i18next';
-import ModalButtons from './ModalButtons';
-import GENERAL from '../theme/general';
+import GENERAL from 'ui/theme/general';
+import { width, height } from 'libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { width, height } from '../../libs/dimensions';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
+import ModalButtons from './ModalButtons';
 
 const styles = StyleSheet.create({
     modalContainer: {

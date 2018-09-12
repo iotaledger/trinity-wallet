@@ -25,11 +25,11 @@ import tinycolor from 'tinycolor2';
 import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
 import { roundDown } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import GENERAL from 'ui/theme/general';
 import Modal from 'react-native-modal';
 import NotificationLogComponent from './NotificationLog';
-import { Icon } from '../theme/icons.js';
-import { isAndroid } from '../../libs/device';
-import GENERAL from '../theme/general';
 
 const { height, width } = Dimensions.get('window');
 

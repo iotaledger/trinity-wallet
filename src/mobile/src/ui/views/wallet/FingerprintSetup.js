@@ -7,17 +7,17 @@ import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
-import WithBackPressGoToHome from '../../components/BackPressGoToHome';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import FingerPrintModal from '../../components/FingerprintModal';
-import Fonts from '../../theme/fonts';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import { Icon } from '../../theme/icons.js';
-import Button from '../../components/Button';
-import { isAndroid, isIPhoneX } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import FingerPrintModal from 'ui/components/FingerprintModal';
+import Fonts from 'ui/theme/fonts';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import Button from 'ui/components/Button';
+import { isAndroid, isIPhoneX } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

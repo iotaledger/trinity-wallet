@@ -7,18 +7,18 @@ import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import RNPrint from 'react-native-print';
 import { paperWallet } from 'iota-wallet-shared-modules/images/PaperWallets.js';
-import SeedPicker from '../../components/SeedPicker';
-import WithUserActivity from '../../components/UserActivity';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import { width, height } from '../../../libs/dimensions';
-import GENERAL from '../../theme/general';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import { Icon } from '../../theme/icons.js';
-import { isAndroid } from '../../../libs/device';
-import Header from '../../components/Header';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import ChecksumComponent from '../../components/Checksum';
-import ChecksumModalComponent from '../../components/ChecksumModal';
+import SeedPicker from 'ui/components/SeedPicker';
+import WithUserActivity from 'ui/components/UserActivity';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import ChecksumComponent from 'ui/components/Checksum';
+import ChecksumModalComponent from 'ui/components/ChecksumModal';
 
 const styles = StyleSheet.create({
     container: {

@@ -9,17 +9,17 @@ import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-mod
 import { connect } from 'react-redux';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import CustomTextInput from '../../components/CustomTextInput';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import { width, height } from '../../../libs/dimensions';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../../../libs/keychain';
-import InfoBox from '../../components/InfoBox';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import Header from '../../components/Header';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { width, height } from 'libs/dimensions';
+import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import InfoBox from 'ui/components/InfoBox';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import Header from 'ui/components/Header';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = true;
 

@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import { setMode } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import Fonts from '../../theme/fonts';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import InfoBox from '../../components/InfoBox';
-import Toggle from '../../components/Toggle';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import Fonts from 'ui/theme/fonts';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import InfoBox from 'ui/components/InfoBox';
+import Toggle from 'ui/components/Toggle';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

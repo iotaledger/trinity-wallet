@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import TextWithLetterSpacing from './TextWithLetterSpacing';
+import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { width, height } from '../../libs/dimensions';
-import GENERAL from '../theme/general';
-import { Icon } from '../theme/icons.js';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
+import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const styles = StyleSheet.create({
     modalContainer: {

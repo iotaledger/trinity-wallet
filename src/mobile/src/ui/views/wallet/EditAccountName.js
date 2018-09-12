@@ -8,12 +8,12 @@ import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/acc
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeAccountName } from 'iota-wallet-shared-modules/actions/accounts';
-import { updateAccountNameInKeychain } from '../../../libs/keychain';
-import CustomTextInput from '../../components/CustomTextInput';
-import { width, height } from '../../../libs/dimensions';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { updateAccountNameInKeychain } from 'libs/keychain';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

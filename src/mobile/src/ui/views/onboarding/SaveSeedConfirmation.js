@@ -9,17 +9,16 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import OnboardingButtons from '../../components/OnboardingButtons';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import InfoBox from '../../components/InfoBox';
-import Header from '../../components/Header';
-import GENERAL from '../../theme/general';
-import { Icon } from '../../theme/icons.js';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-
-import { width, height } from '../../../libs/dimensions';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import InfoBox from 'ui/components/InfoBox';
+import Header from 'ui/components/Header';
+import GENERAL from 'ui/theme/general';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { width, height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {

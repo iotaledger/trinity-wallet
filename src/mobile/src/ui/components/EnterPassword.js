@@ -5,13 +5,13 @@ import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-nati
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
+import { width, height } from 'libs/dimensions';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 import FingerPrintModal from './FingerprintModal';
-import { width, height } from '../../libs/dimensions';
-import { Icon } from '../theme/icons.js';
-import { isAndroid } from '../../libs/device';
-import Button from './Button';
-import { leaveNavigationBreadcrumb } from '../../libs/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {

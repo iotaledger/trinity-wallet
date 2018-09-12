@@ -8,14 +8,14 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'iota-wallet-shared-modules/actions/accounts';
-import { getSeedFromKeychain } from '../../../libs/keychain';
-import { width, height } from '../../../libs/dimensions';
-import { getMultiAddressGenFn } from '../../../libs/nativeModules';
-import { Icon } from '../../theme/icons';
-import CtaButton from '../../components/CtaButton';
-import InfoBox from '../../components/InfoBox';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import { getSeedFromKeychain } from 'libs/keychain';
+import { width, height } from 'libs/dimensions';
+import { getMultiAddressGenFn } from 'libs/nativeModules';
+import { Icon } from 'ui/theme/icons';
+import CtaButton from 'ui/components/CtaButton';
+import InfoBox from 'ui/components/InfoBox';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

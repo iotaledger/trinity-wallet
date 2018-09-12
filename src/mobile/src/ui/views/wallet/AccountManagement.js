@@ -5,8 +5,8 @@ import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import { renderSettingsRows } from '../../components/SettingsContent';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {

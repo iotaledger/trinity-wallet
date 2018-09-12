@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import SeedVaultExportComponent from '../../components/SeedVaultExportComponent';
-import { Icon } from '../../theme/icons.js';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import { isAndroid } from '../../../libs/device';
+import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
+import { Icon } from 'ui/theme/icons';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { isAndroid } from 'libs/device';
 
 const { width } = Dimensions.get('window');
 const { height } = global;

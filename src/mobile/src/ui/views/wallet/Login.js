@@ -11,14 +11,14 @@ import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
 import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import WithBackPressCloseApp from '../../components/BackPressCloseApp';
-import DynamicStatusBar from '../../components/DynamicStatusBar';
-import NodeOptionsOnLogin from './NodeOptionsOnLogin';
-import EnterPasswordOnLoginComponent from '../../components/EnterPasswordOnLogin';
-import Enter2FAComponent from '../../components/Enter2FA';
-import StatefulDropdownAlert from '../../components/StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from '../../../libs/keychain';
-import { isAndroid } from '../../../libs/device';
+import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
+import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
+import Enter2FAComponent from 'ui/components/Enter2FA';
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from 'libs/keychain';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     container: {

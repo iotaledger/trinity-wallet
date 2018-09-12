@@ -1,6 +1,6 @@
 import { NativeModules, Dimensions } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
-import { isAndroid, isIPhoneX } from './device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 
 export const DetectNavbar = {
     hasSoftKeys() {

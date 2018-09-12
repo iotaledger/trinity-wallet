@@ -23,14 +23,14 @@ import {
     getAddressesForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import WithManualRefresh from '../../components/ManualRefresh';
-import SimpleTransactionRow from '../../components/SimpleTransactionRow';
-import Chart from '../../components/Chart';
-import { width, height } from '../../../libs/dimensions';
-import { isAndroid } from '../../../libs/device';
-import TextWithLetterSpacing from '../../components/TextWithLetterSpacing';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import WithManualRefresh from 'ui/components/ManualRefresh';
+import SimpleTransactionRow from 'ui/components/SimpleTransactionRow';
+import Chart from 'ui/components/Chart';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import TextWithLetterSpacing from 'ui/components/TextWithLetterSpacing';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

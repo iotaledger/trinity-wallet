@@ -46,24 +46,24 @@ import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-mo
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import QRScannerComponent from '../../components/QrScanner';
-import Toggle from '../../components/Toggle';
-import FingerPrintModal from '../../components/FingerprintModal';
-import ProgressBar from '../../components/ProgressBar';
-import ProgressSteps from '../../../libs/progressSteps';
-import { getSeedFromKeychain } from '../../../libs/keychain';
-import TransferConfirmationModal from '../../components/TransferConfirmationModal';
-import UsedAddressModal from '../../components/UsedAddressModal';
-import UnitInfoModal from '../../components/UnitInfoModal';
-import CustomTextInput from '../../components/CustomTextInput';
-import AmountTextInput from '../../components/AmountTextInput';
-import CtaButton from '../../components/CtaButton';
-import { Icon } from '../../theme/icons.js';
-import { height, width } from '../../../libs/dimensions';
-import { isAndroid } from '../../../libs/device';
-import { getAddressGenFn, getPowFn } from '../../../libs/nativeModules';
-import GENERAL from '../../theme/general';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import QRScannerComponent from 'ui/components/QrScanner';
+import Toggle from 'ui/components/Toggle';
+import FingerPrintModal from 'ui/components/FingerprintModal';
+import ProgressBar from 'ui/components/ProgressBar';
+import ProgressSteps from 'libs/progressSteps';
+import { getSeedFromKeychain } from 'libs/keychain';
+import TransferConfirmationModal from 'ui/components/TransferConfirmationModal';
+import UsedAddressModal from 'ui/components/UsedAddressModal';
+import UnitInfoModal from 'ui/components/UnitInfoModal';
+import CustomTextInput from 'ui/components/CustomTextInput';
+import AmountTextInput from 'ui/components/AmountTextInput';
+import CtaButton from 'ui/components/CtaButton';
+import { Icon } from 'ui/theme/icons';
+import { height, width } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { getAddressGenFn, getPowFn } from 'libs/nativeModules';
+import GENERAL from 'ui/theme/general';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

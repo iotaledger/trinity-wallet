@@ -4,9 +4,9 @@ import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
-import SettingsContent from '../../components/SettingsContent';
-import { height } from '../../../libs/dimensions';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
+import SettingsContent from 'ui/components/SettingsContent';
+import { height } from 'libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {

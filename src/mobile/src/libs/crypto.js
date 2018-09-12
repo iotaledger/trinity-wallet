@@ -3,13 +3,13 @@ import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
-import { getHashFn } from './nativeModules';
+import { getHashFn } from 'libs/nativeModules';
 
 const DEFAULT_ARGON2_PARAMS = { t_cost: 1, m_cost: 4096, parallelism: 4, hashLength: 32 };
 const SALT_LENGTH = 32;
 const NONCE_LENGTH = 24;
 
-const cryptoImport = require('src/mobile/src/libs/crypto'); // eslint-disable-line no-unused-vars
+const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
 export const getOldPasswordHash = (password) => {
     return cryptoImport

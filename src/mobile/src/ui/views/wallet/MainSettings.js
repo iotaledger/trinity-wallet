@@ -8,11 +8,11 @@ import i18next from 'i18next';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { getLabelFromLocale } from 'iota-wallet-shared-modules/libs/i18n';
 import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
-import LogoutConfirmationModalComponent from '../../components/LogoutConfirmationModal';
-import { width, height } from '../../../libs/dimensions';
-import { isAndroid } from '../../../libs/device';
-import { leaveNavigationBreadcrumb } from '../../../libs/bugsnag';
-import { renderSettingsRows } from '../../components/SettingsContent';
+import LogoutConfirmationModalComponent from 'ui/components/LogoutConfirmationModal';
+import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { renderSettingsRows } from 'ui/components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {
