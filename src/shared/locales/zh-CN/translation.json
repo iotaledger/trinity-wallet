@@ -493,14 +493,14 @@
         "mockup": "Mockup"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
+        "classic": "经典",
+        "contemporary": "现代",
+        "dark": "暗色",
+        "default": "默认",
+        "electric": "电子",
+        "ionic": "离子",
+        "light": "亮色",
+        "lucky": "幸运",
         "mint": "薄荷绿",
         "steelblue": "金属蓝"
     },
@@ -701,7 +701,7 @@
         "completeSetup": "Complete setup"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "通知",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
