@@ -62,7 +62,7 @@
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "您必须输入一个密码。请重试。",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "同步中",
         "syncInProgressExplanation": "请稍候, 直到同步完成。",
@@ -76,7 +76,7 @@
         "attachToTangleUnavailableExplanation": "在所选节点上远程工作证明不可用。请更改节点，或者在高级设置中设置为本地进行工作证明。",
         "attachToTangleUnavailableExplanationShort": "在所选节点上远程工作证明不可用。",
         "wallet": "钱包",
-        "all": "All",
+        "all": "全部",
         "sent": "发送",
         "received": "收到",
         "sending": "发送",
@@ -87,7 +87,7 @@
         "addresses": "地址",
         "reattach": "重新连接",
         "promote": "提升",
-        "retry": "Retry",
+        "retry": "重试",
         "pressBackAgain": "再次按返回关闭应用程序",
         "reattached": "重新添加交易成功。",
         "reattachedExplanation": "重新添加交易的哈希为{{hash}}",
@@ -359,9 +359,9 @@
         "youCanAdd": "您可以在设置菜单中添加更多种子。"
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "高级",
         "standard": "标准",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "高级模式将显示更详细的技术信息。",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
     },
     "settings": {
