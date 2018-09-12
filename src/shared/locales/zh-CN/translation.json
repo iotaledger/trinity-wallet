@@ -103,7 +103,7 @@
         "transactionAlreadyConfirmed": "交易已经被确认",
         "transactionAlreadyConfirmedExplanation": "您要提升的交易已经被确认。",
         "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "您不能发送到在交易中用作输入的地址。",
         "pleaseWait": "请稍等",
         "pleaseWaitEllipses": "请等待...",
         "pleaseWaitExplanation": "Trinity正在执行另一个功能。请稍候再试一次。",
