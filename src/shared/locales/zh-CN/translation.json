@@ -559,7 +559,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
+        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码</1><2> 和 </2><3> 其他帐户信息</3><4> 将会丢失。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "触摸指纹阅读器以启用指纹验证。",
@@ -602,7 +602,7 @@
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault是一个用于安全的存储种子的加密文件。种子被加密保护在一个密码之后，且无法在没有该密码的情况下访问种子。",
         "seedVaultWarning": "请确保在多个位置备份文件 (例如硬盘、云、USB)。如果你失去了这个文件, 并没有在别处储存你的种子, 你就会失去你的IOTA。",
         "exportFail": "SeedVault 导出失败",
         "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
@@ -678,8 +678,8 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "新版本可用",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdate": "安装更新并重启",
+        "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。"
     },
     "notificationLog": {
         "errorLog": "错误日志"
@@ -687,15 +687,15 @@
     "terms": {
         "termsAndConditions": "条款和条件",
         "accept": "我接受",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "请阅读全文"
     },
     "privacyPolicy": {
         "privacyPolicy": "隐私政策",
         "agree": "我同意"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "托盘应用",
+        "trayExplanation": "概览您的帐户余额和最近的交易历史。",
         "notLoggedIn": "您尚未登录",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
