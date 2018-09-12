@@ -119,6 +119,9 @@ class WalletResetRequirePassword extends Component {
     async isAuthenticated() {
         const { password } = this.props;
         const pwdHash = await getPasswordHash(this.state.password);
+        console.log(password);
+        console.log(pwdHash);
+        console.log(isEqual(password, pwdHash));
         return isEqual(password, pwdHash);
     }
 
@@ -147,11 +150,9 @@ class WalletResetRequirePassword extends Component {
      * Resets wallet's state
      * @method resetWallet
      */
-    resetWallet() {
-        const isAuthenticated = this.isAuthenticated();
+    async resetWallet() {
         const { t } = this.props;
-
-        if (isAuthenticated) {
+        if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
             persistor
                 .purge()
