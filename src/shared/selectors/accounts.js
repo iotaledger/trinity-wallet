@@ -183,6 +183,15 @@ export const selectAccountInfo = createSelector(
 );
 
 /**
+ *   Selects account name for currently selected account.
+ *
+ *   @method getSelectedAccountType
+ *   @param {object} state
+ *   @returns {string}
+ **/
+export const getSelectedAccountType = createSelector(selectAccountInfo, (account) => account.type || 'keychain');
+
+/**
  *   Selects latest address from account info state partial.
  *
  *   @method selectLatestAddressFromAccountFactory

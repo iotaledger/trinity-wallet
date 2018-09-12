@@ -8,10 +8,7 @@ import mapValues from 'lodash/mapValues';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
-import filter from 'lodash/filter';
-import findIndex from 'lodash/findIndex';
 import transform from 'lodash/transform';
-import union from 'lodash/union';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
@@ -62,6 +59,7 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
+            type: payload.accountType || get(state.accountInfo, `${payload.accountName}.type`) || 'keychain',
             balance: payload.balance,
             addresses: updateAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
             transfers: {
@@ -108,10 +106,6 @@ const updateAccountName = (state, payload) => {
 
 const account = (
     state = {
-        /**
-         * Determines if the wallet is being setup for the first time
-         */
-        firstUse: true,
         /**
          * Determines if onboarding process is completed
          */
@@ -171,7 +165,7 @@ const account = (
                 setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
                     some(tailTransactions, (tx) => tx.account === action.payload),
-                )
+                ),
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
@@ -198,11 +192,6 @@ const account = (
                         addresses: action.addresses,
                     },
                 },
-            };
-        case ActionTypes.SET_FIRST_USE:
-            return {
-                ...state,
-                firstUse: action.payload,
             };
         case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
@@ -235,14 +224,7 @@ const account = (
                     action.payload.unconfirmedBundleTails,
                 ),
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
-                firstUse: false,
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-            };
-        case ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),

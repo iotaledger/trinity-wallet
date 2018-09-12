@@ -78,7 +78,6 @@ const initialState = {
      * Desktop onboarding meta data
      */
     onboarding: {
-        name: '',
         seed: null,
         isGenerated: false,
     },
@@ -275,19 +274,19 @@ export default (state = initialState, action) => {
                 selectedQrTab: 'message',
                 isReceiveCardFlipped: false,
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
                 isFetchingLatestAccountInfoOnLogin: true,
                 hasErrorFetchingAccountInfoOnLogin: false,
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingLatestAccountInfoOnLogin: false,
                 hasErrorFetchingAccountInfoOnLogin: true,
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingLatestAccountInfoOnLogin: false,
@@ -344,11 +343,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 onboarding: Object.assign({}, state.onboarding, action.payload),
-            };
-        case UiActionTypes.SET_ONBOARDING_NAME:
-            return {
-                ...state,
-                onboarding: Object.assign({}, state.onboarding, { name: action.payload }),
             };
         case UiActionTypes.SET_DO_NOT_MINIMISE:
             return {

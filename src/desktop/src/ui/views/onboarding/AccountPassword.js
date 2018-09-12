@@ -6,10 +6,11 @@ import { translate } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
-import { addAccountName, setOnboardingComplete } from 'actions/accounts';
+import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
-import { setSeed, setTwoFA, hash, clearVault } from 'libs/crypto';
+import Vault from 'libs/vault';
+import { hash, initKeychain, setTwoFA } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
@@ -21,15 +22,9 @@ import PasswordInput from 'ui/components/input/Password';
 class AccountPassword extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        addAccountName: PropTypes.func.isRequired,
-        /** @ignore */
-        accountCount: PropTypes.number.isRequired,
-        /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
-        onboarding: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -51,16 +46,7 @@ class AccountPassword extends React.PureComponent {
      * @returns {undefined}
      */
     createAccount = async (e) => {
-        const {
-            setPassword,
-            addAccountName,
-            setOnboardingComplete,
-            accountCount,
-            history,
-            generateAlert,
-            onboarding,
-            t,
-        } = this.props;
+        const { wallet, setPassword, setOnboardingComplete, history, generateAlert, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -93,17 +79,16 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        if (accountCount === 0) {
-            await clearVault(null, true);
-        }
+        await initKeychain();
 
         const passwordHash = await hash(password);
 
-        addAccountName(onboarding.name);
+        setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
-        await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed());
-        await setTwoFA(passwordHash, null);
+        const vault = await new Vault[wallet.additionalAccountType](passwordHash);
+        await vault.accountAdd(wallet.additionalAccountName, Electron.getOnboardingSeed());
+        
         Electron.setOnboardingSeed(null);
 
         setOnboardingComplete(true);
@@ -166,15 +151,13 @@ class AccountPassword extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboarding: state.ui.onboarding,
-    accountCount: Object.keys(state.accounts.accountInfo).length,
+    wallet: state.wallet,
 });
 
 const mapDispatchToProps = {
     setPassword,
-    addAccountName,
     setOnboardingComplete,
-    generateAlert
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));

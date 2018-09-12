@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountName, getAccountNamesFromState } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType, getAccountNamesFromState } from 'selectors/accounts';
 
-import { renameSeed, MAX_ACC_LENGTH } from 'libs/crypto';
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+import Vault from 'libs/vault';
 
 import { changeAccountName } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
@@ -19,6 +20,8 @@ class AccountName extends PureComponent {
     static propTypes = {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -39,8 +42,8 @@ class AccountName extends PureComponent {
      * Check for unique account name and change account name in wallet state and in Seed vault
      * @returns {undefined}
      **/
-    setAccountName() {
-        const { accountName, accountNames, password, changeAccountName, generateAlert, t } = this.props;
+    async setAccountName() {
+        const { accountName, accountType, accountNames, password, changeAccountName, generateAlert, t } = this.props;
 
         const newAccountName = this.state.newAccountName.replace(/^\s+|\s+$/g, '');
 
@@ -70,7 +73,8 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        renameSeed(password, accountName, newAccountName);
+        const vault = await new Vault[accountType](password, accountName);
+        await vault.accountRename(newAccountName);
     }
 
     render() {
@@ -102,6 +106,7 @@ class AccountName extends PureComponent {
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     accountName: getSelectedAccountName(state),
+    accountType: getSelectedAccountType(state),
     password: state.wallet.password,
 });
 

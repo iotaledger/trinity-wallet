@@ -7,8 +7,8 @@ import { translate } from 'react-i18next';
 import { getAccountNamesFromState } from 'selectors/accounts';
 
 import { MAX_ACC_LENGTH } from 'libs/crypto';
+import Vault from 'libs/vault';
 
-import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 import { setAdditionalAccountInfo } from 'actions/wallet';
 
@@ -21,15 +21,11 @@ import Input from 'ui/components/input/Text';
 class AccountName extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        firstAccount: PropTypes.bool.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** @ignore */
-        accountNames: PropTypes.array.isRequired,,
-        /** @ignore */
-        setOnboardingName: PropTypes.func.isRequired,
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** @ignore */
-        onboarding: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
@@ -39,8 +35,8 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.onboarding.name.length
-            ? this.props.onboarding.name
+        name: this.props.wallet.additionalAccountName.length
+            ? this.props.wallet.additionalAccountName
             : Object.keys(this.props.accountNames).length === 0 ? this.props.t('mainWallet') : '',
     };
 
@@ -52,12 +48,11 @@ class AccountName extends React.PureComponent {
      * @param {Event} event - Form submit event
      * @returns {undefined}
      */
-    setName = (event) => {
+    setName = async (event) => {
         event.preventDefault();
 
         const {
-            firstAccount,
-            setOnboardingName,
+            wallet,
             setAdditionalAccountInfo,
             accountNames,
             history,
@@ -86,19 +81,21 @@ class AccountName extends React.PureComponent {
             return;
         }
 
-        setOnboardingName(this.state.name);
-
-        if (!firstAccount) {
-            setAdditionalAccountInfo({
-                addingAdditionalAccount: true,
-                additionalAccountName: this.state.name,
-            });
-        }
+        setAdditionalAccountInfo({
+            addingAdditionalAccount: true,
+            additionalAccountName: this.state.name,
+            additionalAccountType: 'keychain'
+        });
 
         if (Electron.getOnboardingGenerated()) {
             history.push('/onboarding/seed-save');
         } else {
-            if (!firstAccount) {
+            if (accountNames.length > 0) {
+                const vault = await new Vault.keychain(wallet.password);
+                await vault.accountAdd(this.state.name, Electron.getOnboardingSeed());
+
+                Electron.setOnboardingSeed(null);
+
                 history.push('/onboarding/login');
             } else {
                 history.push('/onboarding/account-password');
@@ -150,14 +147,12 @@ class AccountName extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    firstAccount: !state.wallet.ready,
     accountNames: getAccountNamesFromState(state),
-    onboarding: state.ui.onboarding,
+    wallet: state.wallet,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setOnboardingName,
     setAdditionalAccountInfo,
 };
 

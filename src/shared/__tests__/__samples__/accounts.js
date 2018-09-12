@@ -122,7 +122,6 @@ export default {
             balance: 110,
         },
     },
-    firstUse: false,
     onboardingComplete: true,
     pendingTxHashesForSpentAddresses: {
         TEST: [],
