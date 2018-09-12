@@ -34,6 +34,7 @@
         "save": "Spara",
         "close": "Stäng",
         "export": "Exportera",
+        "help": "Hjälp",
         "import": "Importera",
         "continue": "Fortsätt",
         "enable": "Aktivera",
@@ -44,7 +45,7 @@
         "paperWallet": "Skriv ut papperskopia",
         "addToPasswordManager": "Lägg till i lösenordshanteraren",
         "shareSeed": "Dela seed",
-        "share": "Share",
+        "share": "Dela",
         "proceed": "Fortsätt",
         "qr": "QR",
         "enterSeed": "Ange din seed.",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Tryck för ny seed",
         "generateSuccess": "Seed genererad framgångsrikt",
         "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt.",
-        "individualLetterCount": "Tryck på {{letterCount}} mer enskilda bokstäver för att slumpa dem.",
+        "individualLetterCount": "Tryck på <1><0>{{count}}</0></1> fler bokstäver för att randomisera den.",
+        "individualLetterCount_plural": "Tryck på <1><0>{{count}}</0></1> fler bokstäver för att randomisera dem.",
+        "randomiseCharsToContinue": "Randomisera <1>{{count}}</1> tecken för att fortsätta.",
+        "randomiseCharsToContinue_plural": "Randomisera <1>{{count}}</1> tecken för att fortsätta.",
         "whatIsASeed": "Vad är en seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Teman",
         "mockup": "Exempel"
     },
+    "themes": {
+        "classic": "Klassisk",
+        "contemporary": "Modern",
+        "dark": "Mörk",
+        "default": "Standard",
+        "electric": "Elektrisk",
+        "ionic": "Jonisk",
+        "light": "Ljus",
+        "lucky": "Tursam",
+        "mint": "Mint",
+        "steelblue": "Blått stål"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -594,9 +610,9 @@
         "exportSuccessExplanation": "Din krypterade seed-fil exporterades framgångsrikt.",
         "importSuccess": "Seed importerad",
         "importSuccessExplanation": "Din seed importerades framgångsrikt.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Spara till Hämtade Filer",
         "importSeedVault": "Importera SeedVault",
-        "dropSeedVaultHere": "Släpp SeedVault här",
+        "dropSeedVaultHere": "Släpp SeedVault här <1></1> eller klicka för att bläddra",
         "enterPasswordExplanation": "Ange ditt lösenord för att öppna SeedVault",
         "noSeedFound": "SeedVault innehåller inte en giltig seed",
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
