@@ -44,6 +44,23 @@ class TwoFA extends React.Component {
         };
     }
 
+    /**
+     * Update 2fa code value and trigger authentication once necessary length is reached
+     * @param {string} value - Code value
+     */
+    setCode = (value) => {
+        const { is2FAEnabled } = this.props;
+        this.setState({ code: value }, () => {
+            if (value.length !== 6) {
+                return;
+            } else if (is2FAEnabled) {
+                this.disableTwoFA();
+            } else {
+                this.verifyCode();
+            }
+        });
+    };
+
     verifyCode(e) {
         const { key, code } = this.state;
         const { generateAlert, t } = this.props;
@@ -60,6 +77,9 @@ class TwoFA extends React.Component {
             });
         } else {
             generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
+            this.setState({
+                code: '',
+            });
         }
     }
 
@@ -100,6 +120,7 @@ class TwoFA extends React.Component {
                 generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                 this.setState({
                     passwordConfirm: false,
+                    code: '',
                 });
                 return;
             }
@@ -136,7 +157,7 @@ class TwoFA extends React.Component {
                 }}
             >
                 <h3>{t('twoFA:enterCode')}</h3>
-                <Text value={code} label={t('twoFA:code')} onChange={(value) => this.setState({ code: value })} />
+                <Text value={code} label={t('twoFA:code')} onChange={this.setCode} />
                 <fieldset>
                     <Button type="submit" variant="primary">
                         {t('disable')}
@@ -186,7 +207,7 @@ class TwoFA extends React.Component {
                 </small>
                 <hr />
                 <h3>2. {t('twoFA:enterCode')}</h3>
-                <Text value={code} onChange={(value) => this.setState({ code: value })} />
+                <Text value={code} onChange={this.setCode} />
                 <fieldset>
                     <Button type="submit" disabled={code.length < 6} variant="primary">
                         {t('apply')}
