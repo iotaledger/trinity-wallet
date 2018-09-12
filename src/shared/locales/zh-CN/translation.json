@@ -7,7 +7,7 @@
         "refresh": "刷新",
         "balanceError": "余额不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
-        "totalBalance": "Total balance",
+        "totalBalance": "总余额",
         "transferError": "交易错误",
         "transferErrorMessage": "发送交易信息出错，请重试。",
         "transferSent": "交易已发出",
@@ -34,7 +34,7 @@
         "save": "保存",
         "close": "关闭",
         "export": "导出",
-        "help": "Help",
+        "help": "帮助",
         "import": "导入",
         "continue": "继续",
         "enable": "启用",
@@ -324,7 +324,7 @@
         "ifYouHaveNotSaved": "如果你没有保存你的种子, 请返回保存。",
         "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。",
         "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarningExplanation": "警告：出于安全考虑，已禁用复制粘贴功能。"
     },
     "send": {
         "invalidAddress": "地址无效",
@@ -458,7 +458,7 @@
         "editAccountName": "编辑帐户",
         "deleteAccount": "删除帐户",
         "addNewAccount": "添加新帐户",
-        "tools": "Tools"
+        "tools": "工具"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
