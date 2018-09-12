@@ -184,17 +184,17 @@
         "passwordTooWeakReason": "您的密码过于简单。请使用单词组合，避免使用常用短语，名字或者日期。",
         "reasonRow": "Straight rows of keys are easy to guess.",
         "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
+        "reasonNames": "常见的名字和姓氏很容易被猜解。",
+        "reasonRepeats": "像'aaa'这样的重复组合很容易被猜解。",
+        "reasonRepeats2": "像‘abcabcabc'这样的重复组合被猜解的难度仅比'abc'这种模式稍低一点。",
+        "reasonSequence": "像'abc'或者 '54321'这种顺序模式很容易被猜解。",
+        "reasonYears": "最近的年份很容易被猜解。",
+        "reasonDates": "日期通常很容易被猜解。",
         "reasonTop10": "这是最常见的10个密码.",
         "reasonTop100": "这是最常见的100个密码.",
         "reasonCommon": "这是非常常见的密码.",
         "reasonSimilar": "这类似于常见的密码.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonWord": "单个单词很容易被猜解。"
     },
     "setPassword": {
         "choosePassword": "选择新的密码",
@@ -247,7 +247,7 @@
         "enterPassword": "请输入您的密码.",
         "login": "登录",
         "setNode": "设置节点",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "为什么生物识别认证被禁用？",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -307,7 +307,7 @@
         "paperWallet": "纸钱包",
         "writeYourSeedDown": "写下您的种子",
         "seedClearedExplanation": "为了安全，已从剪贴板中清除掉了该种子。",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "让我们写下你的种子",
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
         "whatIsChecksum": "每个种子都有相应的3字符校验和",
@@ -417,7 +417,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
-        "reset": "Reset"
+        "reset": "重置"
     },
     "walletSetup": {
         "creatingSeed": "创建种子",
@@ -707,7 +707,7 @@
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
+        "messageTx": "您收到了一条发送到 {{account}} 的消息",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     }
