@@ -708,7 +708,7 @@
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "您收到了一条发送到 {{account}} 的消息",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedIn": "帐户 {{account}} 的 {{value}} 转入交易已确认",
+        "confirmedOut": "帐户 {{account}} 的 {{value}} 转出交易已确认"
     }
 }
