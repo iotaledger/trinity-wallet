@@ -24,7 +24,7 @@
         "thisNodeOutOfSync": "此节点不同步，请更改节点或重试。",
         "seed": "种子",
         "checksum": "校验和",
-        "back": "退回",
+        "back": "返回",
         "goBack": "返回",
         "goBackStep": "返回上一步",
         "done": "完成",
@@ -265,8 +265,8 @@
         "individualLetters": "通过点击各个字母来随机生成。",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
         "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "随机选择 <1>{{count}}</1> 个字符以继续。",
+        "randomiseCharsToContinue_plural": "随机选择 <1>{{count}}</1> 个字符以继续。",
         "whatIsASeed": "什么是种子？"
     },
     "onboardingComplete": {
@@ -610,7 +610,7 @@
         "exportSuccessExplanation": "已成功导出加密的种子文件。",
         "importSuccess": "种子已导入",
         "importSuccessExplanation": "您的种子已成功导入。",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "保存到下载文件夹",
         "importSeedVault": "导入 SeedVault",
         "dropSeedVaultHere": "拖动 SeedVault 到此处<1></1>或者点击浏览",
         "enterPasswordExplanation": "输入密码以打开 SeedVault",
@@ -698,13 +698,13 @@
         "trayExplanation": "概览您的帐户余额和最近的交易历史。",
         "notLoggedIn": "您尚未登录",
         "setupIncomplete": "钱包设置不完整",
-        "completeSetup": "Complete setup"
+        "completeSetup": "完成设置"
     },
     "notifications": {
         "notifications": "通知",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "通知我交易确认信息",
-        "typeMessages": "通知我零值交易",
+        "notificationExplanation": "接收有关新交易的系统范围的通知。",
+        "typeConfirmations": "有交易确认时通知我",
+        "typeMessages": "有零价值交易时通知我",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "您收到了一条发送到 {{account}} 的消息",
