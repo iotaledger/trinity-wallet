@@ -119,9 +119,6 @@ class WalletResetRequirePassword extends Component {
     async isAuthenticated() {
         const { password } = this.props;
         const pwdHash = await getPasswordHash(this.state.password);
-        console.log(password);
-        console.log(pwdHash);
-        console.log(isEqual(password, pwdHash));
         return isEqual(password, pwdHash);
     }
 
@@ -131,7 +128,6 @@ class WalletResetRequirePassword extends Component {
      */
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
-
         this.props.navigator.resetTo({
             screen: 'languageSetup',
             navigatorStyle: {
