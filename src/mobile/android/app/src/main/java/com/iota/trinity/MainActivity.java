@@ -9,8 +9,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.support.v4.content.ContextCompat;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
+import com.reactnativenavigation.NavigationActivity;
 
-public class MainActivity extends SplashActivity {
+public class MainActivity extends NavigationActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

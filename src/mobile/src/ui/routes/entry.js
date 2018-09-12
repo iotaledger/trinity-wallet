@@ -4,9 +4,7 @@ import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
-import iotaNativeBindings, {
-    overrideAsyncTransactionObject,
-} from 'shared-modules/libs/iota/nativeBindings';
+import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
@@ -25,7 +23,7 @@ const clearKeychain = () => {
     }
 };
 
-const launch = (store) => {
+export const launch = (store) => {
     // Disable auto node switching.
     SwitchingConfig.autoSwitch = false;
 
@@ -60,22 +58,20 @@ const launch = (store) => {
 };
 
 const renderInitialScreen = (initialScreen) => {
-    Navigation.startSingleScreenApp({
-        screen: {
-            screen: initialScreen,
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                drawUnderStatusBar: true,
-                statusBarColor: '#181818',
-                screenBackgroundColor: '#181818',
+    Navigation.events().registerAppLaunchedListener(() => {
+        Navigation.setRoot({
+            root: {
+                component: {
+                    name: initialScreen,
+                },
+                options: {
+                    layout: {
+                        backgroundColor: '181818',
+                        orientation: ['portrait'],
+                    },
+                },
             },
-        },
-        appStyle: {
-            orientation: 'portrait',
-            keepStyleAcrossPush: true,
-        },
+        });
     });
 };
 

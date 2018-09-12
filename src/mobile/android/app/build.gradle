@@ -100,6 +100,11 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative51"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'

@@ -61,7 +61,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
   protected List<ReactPackage> getPackages() {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
-    return Arrays.asList(
+    return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
@@ -104,5 +104,16 @@ public class MainApplication extends NavigationApplication implements ShareAppli
   @Override
   public String getFileProviderAuthority() {
     return "com.iota.trinity.provider";
+  }
+
+  @Override
+  protected ReactGateway createReactGateway() {
+        ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
+            @Override
+            protected String getJSMainModuleName() {
+                return "index";
+            }
+        };
+        return new ReactGateway(this, isDebug(), host);
   }
 }
