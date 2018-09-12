@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 

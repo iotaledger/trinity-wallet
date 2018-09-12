@@ -8,14 +8,14 @@ import {
     shouldTransitionForSnapshot,
     hasDisplayedSnapshotTransitionGuide,
     getSelectedAccountName,
-} from 'iota-wallet-shared-modules/selectors/accounts';
+} from 'shared-modules/selectors/accounts';
 import { connect } from 'react-redux';
-import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { markTaskAsDone } from 'iota-wallet-shared-modules/actions/accounts';
-import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
-import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
+import { markTaskAsDone } from 'shared-modules/actions/accounts';
+import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { parseAddress } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
 import { getPasswordHash } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';

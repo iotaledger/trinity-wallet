@@ -4,9 +4,9 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { updateTheme } from 'iota-wallet-shared-modules/actions/settings';
-import THEMES from 'iota-wallet-shared-modules/themes/themes';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { updateTheme } from 'shared-modules/actions/settings';
+import THEMES from 'shared-modules/themes/themes';
 import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';

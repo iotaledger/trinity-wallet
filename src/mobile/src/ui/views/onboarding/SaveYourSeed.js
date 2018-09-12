@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RNPrint from 'react-native-print';
 import RNSecureClipboard from 'react-native-secure-clipboard';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { paperWalletFilled } from 'iota-wallet-shared-modules/images/PaperWallets.js';
-import { setSeedShareTutorialVisitationStatus } from 'iota-wallet-shared-modules/actions/settings';
+import { getChecksum } from 'shared-modules/libs/iota/utils';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
+import { setSeedShareTutorialVisitationStatus } from 'shared-modules/actions/settings';
 import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
@@ -358,7 +358,7 @@ class SaveYourSeed extends Component {
                fill: #231f20;
                font-family: Monospace;
              }
-             @font-face { font-family: "Monospace"; src: "iota-wallet-iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
+             @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
           </style>
           <body>
             ${this.getHTMLContent()}

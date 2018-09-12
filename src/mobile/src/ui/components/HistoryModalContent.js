@@ -12,7 +12,7 @@ import {
     TouchableWithoutFeedback,
     ActivityIndicator,
 } from 'react-native';
-import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
+import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, locale } from 'libs/device';

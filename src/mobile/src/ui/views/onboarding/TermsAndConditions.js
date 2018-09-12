@@ -7,10 +7,10 @@ import {
     enTermsAndConditionsIOS,
     deTermsAndConditionsAndroid,
     deTermsAndConditionsIOS,
-} from 'iota-wallet-shared-modules/markdown';
+} from 'shared-modules/markdown';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
+import { acceptTerms } from 'shared-modules/actions/settings';
 import Button from 'ui/components/Button';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';

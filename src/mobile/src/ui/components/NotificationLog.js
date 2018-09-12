@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
-import { formatTimeAs } from 'iota-wallet-shared-modules/libs/date';
+import { formatTimeAs } from 'shared-modules/libs/date';
 import { translate } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';

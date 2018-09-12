@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { Icon } from 'ui/theme/icons';
 import GENERAL from 'ui/theme/general';

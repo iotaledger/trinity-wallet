@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { VALID_SEED_REGEX, getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';

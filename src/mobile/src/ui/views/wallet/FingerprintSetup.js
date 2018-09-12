@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
-import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/settings';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setFingerprintStatus } from 'shared-modules/actions/settings';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';

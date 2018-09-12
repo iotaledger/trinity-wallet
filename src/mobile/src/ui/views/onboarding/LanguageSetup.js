@@ -9,11 +9,11 @@ import {
     getLabelFromLocale,
     getLocaleFromLabel,
     detectLocale,
-} from 'iota-wallet-shared-modules/libs/i18n';
-import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
-import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
+} from 'shared-modules/libs/i18n';
+import { setLanguage, setLocale } from 'shared-modules/actions/settings';
+import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import i18next from 'i18next';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { width, height } from 'libs/dimensions';

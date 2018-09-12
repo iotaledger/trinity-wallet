@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { round } from 'iota-wallet-shared-modules/libs/utils';
+import { round } from 'shared-modules/libs/utils';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { getNextDenomination, getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import { isValidAmount } from 'shared-modules/libs/iota/utils';
+import { getNextDenomination, getCurrencySymbol } from 'shared-modules/libs/currency';
 import CustomTextInput from './CustomTextInput';
 
 class MultiTextInput extends Component {

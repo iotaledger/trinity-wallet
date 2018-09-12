@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
+import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { width, height } from 'libs/dimensions';
 import { locale } from 'libs/device';
 import GENERAL from 'ui/theme/general';

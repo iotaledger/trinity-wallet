@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { translate } from 'react-i18next';
-import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
+import withChartData from 'shared-modules/containers/components/Chart';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import GENERAL from 'ui/theme/general';

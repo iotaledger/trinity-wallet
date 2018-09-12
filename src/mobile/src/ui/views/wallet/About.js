@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';

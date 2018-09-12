@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import RNPrint from 'react-native-print';
-import { paperWallet } from 'iota-wallet-shared-modules/images/PaperWallets.js';
+import { paperWallet } from 'shared-modules/images/PaperWallets.js';
 import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import OnboardingButtons from 'ui/components/OnboardingButtons';

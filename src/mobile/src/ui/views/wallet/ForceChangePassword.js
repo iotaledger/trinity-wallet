@@ -13,11 +13,11 @@ import {
     KeyboardAvoidingView,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
-import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
+import { zxcvbn } from 'shared-modules/libs/exports';
+import { setPassword, setSetting } from 'shared-modules/actions/wallet';
+import { passwordReasons } from 'shared-modules/libs/password';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'libs/keychain';

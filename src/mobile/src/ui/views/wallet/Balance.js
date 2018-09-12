@@ -14,15 +14,15 @@ import {
     RefreshControl,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
-import { computeStatusText, formatRelevantRecentTransactions } from 'iota-wallet-shared-modules/libs/iota/transfers';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { round, roundDown } from 'shared-modules/libs/utils';
+import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import {
     getTransfersForSelectedAccount,
     getBalanceForSelectedAccount,
     getAddressesForSelectedAccount,
-} from 'iota-wallet-shared-modules/selectors/accounts';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+} from 'shared-modules/selectors/accounts';
+import { getCurrencySymbol } from 'shared-modules/libs/currency';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import SimpleTransactionRow from 'ui/components/SimpleTransactionRow';
 import Chart from 'ui/components/Chart';

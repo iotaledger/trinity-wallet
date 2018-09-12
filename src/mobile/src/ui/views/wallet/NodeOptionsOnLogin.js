@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import { translate } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import CtaButton from 'ui/components/CtaButton';

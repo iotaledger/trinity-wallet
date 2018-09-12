@@ -6,10 +6,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { setSeedIndex } from 'iota-wallet-shared-modules/actions/wallet';
-import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
-import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
+import { toggleTopBarDisplay } from 'shared-modules/actions/home';
+import { setSeedIndex } from 'shared-modules/actions/wallet';
+import { clearLog } from 'shared-modules/actions/alerts';
+import { getBalanceForSelectedAccount, selectAccountInfo } from 'shared-modules/selectors/accounts';
 import {
     StatusBar,
     View,
@@ -22,9 +22,9 @@ import {
     Animated,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
-import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
-import { roundDown } from 'iota-wallet-shared-modules/libs/utils';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setPollFor } from 'shared-modules/actions/polling';
+import { roundDown } from 'shared-modules/libs/utils';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import GENERAL from 'ui/theme/general';

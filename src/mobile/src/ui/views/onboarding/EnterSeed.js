@@ -1,9 +1,9 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
-import { setOnboardingSeed } from 'iota-wallet-shared-modules/actions/ui';
-import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setOnboardingSeed } from 'shared-modules/actions/ui';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';

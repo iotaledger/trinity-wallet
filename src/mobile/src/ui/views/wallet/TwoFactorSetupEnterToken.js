@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { set2FAStatus } from 'iota-wallet-shared-modules/actions/settings';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { set2FAStatus } from 'shared-modules/actions/settings';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { translate } from 'react-i18next';

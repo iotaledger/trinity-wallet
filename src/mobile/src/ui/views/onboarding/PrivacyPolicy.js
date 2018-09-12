@@ -4,13 +4,13 @@ import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
+import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
     enPrivacyPolicyAndroid,
     enPrivacyPolicyIOS,
     dePrivacyPolicyAndroid,
     dePrivacyPolicyIOS,
-} from 'iota-wallet-shared-modules/markdown';
+} from 'shared-modules/markdown';
 import i18next from 'i18next';
 import Button from 'ui/components/Button';
 import GENERAL from 'ui/theme/general';

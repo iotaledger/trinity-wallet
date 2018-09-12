@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
-import { removeBundleFromUnconfirmedBundleTails } from 'iota-wallet-shared-modules/actions/accounts';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { removeBundleFromUnconfirmedBundleTails } from 'shared-modules/actions/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -16,7 +16,7 @@ import {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-} from 'iota-wallet-shared-modules/actions/polling';
+} from 'shared-modules/actions/polling';
 
 export class Poll extends Component {
     static propTypes = {

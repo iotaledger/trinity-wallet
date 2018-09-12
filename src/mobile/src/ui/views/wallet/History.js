@@ -8,19 +8,19 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { computeStatusText, formatRelevantTransactions } from 'iota-wallet-shared-modules/libs/iota/transfers';
-import { promoteTransaction, retryFailedTransaction } from 'iota-wallet-shared-modules/actions/transfers';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
+import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
     getSelectedAccountName,
     getAddressesForSelectedAccount,
     getFailedBundleHashesForSelectedAccount,
-} from 'iota-wallet-shared-modules/selectors/accounts';
+} from 'shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
-import { round } from 'iota-wallet-shared-modules/libs/utils';
-import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { round } from 'shared-modules/libs/utils';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import TransactionRow from 'ui/components/TransactionRow';
 import HistoryModalContent from 'ui/components/HistoryModalContent';

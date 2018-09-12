@@ -15,21 +15,21 @@ import {
 import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
-import { generateNewAddress } from 'iota-wallet-shared-modules/actions/wallet';
-import { flipReceiveCard } from 'iota-wallet-shared-modules/actions/ui';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { generateNewAddress } from 'shared-modules/actions/wallet';
+import { flipReceiveCard } from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     selectAccountInfo,
     getSelectedAccountName,
     selectLatestAddressFromAccountFactory,
-} from 'iota-wallet-shared-modules/selectors/accounts';
-import { getCurrencySymbol, getIOTAUnitMultiplier } from 'iota-wallet-shared-modules/libs/currency';
+} from 'shared-modules/selectors/accounts';
+import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
     getFromKeychainError,
-} from 'iota-wallet-shared-modules/actions/keychain';
-import { isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
+} from 'shared-modules/actions/keychain';
+import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
 import { getSeedFromKeychain } from 'libs/keychain';
 import GENERAL from 'ui/theme/general';

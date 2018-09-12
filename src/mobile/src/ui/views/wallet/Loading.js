@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
-import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
-import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
-import whiteWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-white.json';
-import whiteWelcomeAnimationPartTwo from 'iota-wallet-shared-modules/animations/welcome-part-two-white.json';
-import blackWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-black.json';
-import blackWelcomeAnimationPartTwo from 'iota-wallet-shared-modules/animations/welcome-part-two-black.json';
+import whiteLoadingAnimation from 'shared-modules/animations/loading-white.json';
+import blackLoadingAnimation from 'shared-modules/animations/loading-black.json';
+import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-white.json';
+import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
+import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
+import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -16,15 +16,15 @@ import {
     getAccountInfo,
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
-} from 'iota-wallet-shared-modules/actions/accounts';
-import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
+} from 'shared-modules/actions/accounts';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
+import { getCurrencyData } from 'shared-modules/actions/settings';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { changeHomeScreenRoute } from 'shared-modules/actions/home';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
 import GENERAL from 'ui/theme/general';
 import { getSeedFromKeychain, storeSeedInKeychain } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
 import SettingsContent from 'ui/components/SettingsContent';
 import { height } from 'libs/dimensions';

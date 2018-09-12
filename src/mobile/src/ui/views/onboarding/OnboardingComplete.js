@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
+import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import GENERAL from 'ui/theme/general';

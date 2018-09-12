@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DocumentPicker } from 'react-native-document-picker';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { translate } from 'react-i18next';

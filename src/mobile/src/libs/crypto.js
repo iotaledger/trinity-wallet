@@ -1,4 +1,4 @@
-import { parse } from 'iota-wallet-shared-modules/libs/utils';
+import { parse } from 'shared-modules/libs/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';

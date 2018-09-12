@@ -8,9 +8,9 @@ import {
     addAccountName,
     setOnboardingComplete,
     setBasicAccountInfo,
-} from 'iota-wallet-shared-modules/actions/accounts';
-import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+} from 'shared-modules/actions/accounts';
+import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     hasDuplicateSeed,
     hasDuplicateAccountName,

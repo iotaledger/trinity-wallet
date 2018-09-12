@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { round } from 'iota-wallet-shared-modules/libs/utils';
+import { round } from 'shared-modules/libs/utils';
 import {
     setSetting,
     transitionForSnapshot,
@@ -12,12 +12,12 @@ import {
     completeSnapshotTransition,
     setBalanceCheckFlag,
     cancelSnapshotTransition,
-} from 'iota-wallet-shared-modules/actions/wallet';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
+} from 'shared-modules/actions/wallet';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { getSelectedAccountName, getAddressesForSelectedAccount } from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
-import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import ModalButtons from 'ui/components/ModalButtons';
 import GENERAL from 'ui/theme/general';
 import { getSeedFromKeychain } from 'libs/keychain';

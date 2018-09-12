@@ -14,19 +14,19 @@ import {
     VALID_ADDRESS_WITH_CHECKSUM_REGEX,
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
-} from 'iota-wallet-shared-modules/libs/iota/utils';
-import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/wallet';
+} from 'shared-modules/libs/iota/utils';
+import { setDeepLinkInactive } from 'shared-modules/actions/wallet';
 import {
     getCurrencySymbol,
     getNextDenomination,
     getIOTAUnitMultiplier,
-} from 'iota-wallet-shared-modules/libs/currency';
+} from 'shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
     getFromKeychainError,
-} from 'iota-wallet-shared-modules/actions/keychain';
-import { makeTransaction } from 'iota-wallet-shared-modules/actions/transfers';
+} from 'shared-modules/actions/keychain';
+import { makeTransaction } from 'shared-modules/actions/transfers';
 import {
     setSendAddressField,
     setSendAmountField,
@@ -34,15 +34,15 @@ import {
     setSendDenomination,
     setDoNotMinimise,
     toggleModalActivity,
-} from 'iota-wallet-shared-modules/actions/ui';
-import { round, parse } from 'iota-wallet-shared-modules/libs/utils';
+} from 'shared-modules/actions/ui';
+import { round, parse } from 'shared-modules/libs/utils';
 import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
     getSelectedAccountName,
-} from 'iota-wallet-shared-modules/selectors/accounts';
-import { startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
-import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
+} from 'shared-modules/selectors/accounts';
+import { startTrackingProgress } from 'shared-modules/actions/progress';
+import { generateAlert, generateTransferErrorAlert } from 'shared-modules/actions/alerts';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';

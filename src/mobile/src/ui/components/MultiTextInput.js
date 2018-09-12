@@ -9,8 +9,8 @@ import {
     setQrTag,
     setSelectedQrTab,
     setQrDenomination,
-} from 'iota-wallet-shared-modules/actions/ui';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+} from 'shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import AmountTextInput from './AmountTextInput';

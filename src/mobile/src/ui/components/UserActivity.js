@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
 import { connect } from 'react-redux';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { generateAlert } from 'shared-modules/actions/alerts';
+import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
 import { isIOS } from 'libs/device';
 
 export default () => (C) => {
