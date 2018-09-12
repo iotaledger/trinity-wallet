@@ -6,6 +6,23 @@
     left: 0px;
     -webkit-app-region: drag;
     z-index: 99999;
+
+    &:before,
+    &:after {
+        display: block;
+        content: '';
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        -webkit-app-region: no-drag;
+        z-index: 2;
+    }
+    &:after {
+        left: auto;
+        right: 0px;
+    }
 }
 
 .windows {

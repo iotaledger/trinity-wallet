@@ -34,6 +34,7 @@
         "save": "Salvesta",
         "close": "Sulge",
         "export": "Ekspordi",
+        "help": "Help",
         "import": "Impordi",
         "continue": "Jätka",
         "enable": "Luba",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Vajutage uue seemne saamiseks",
         "generateSuccess": "Seeme edukalt loodud",
         "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti.",
-        "individualLetterCount": "Vajutage {{letterCount}} rohkem individuaalseid tähti nende juhuslikuks saamiseks.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Mis on seeme?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Teema",
         "mockup": "Eelvaade"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuuta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importige seemnehoidla",
-        "dropSeedVaultHere": "Lohistage seemenhoidla siia",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Seemnehoidla avamiseks sisestage oma parool",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",

@@ -34,6 +34,7 @@
         "save": "Lưu",
         "close": "Đóng",
         "export": "Export",
+        "help": "Help",
         "import": "Import",
         "continue": "Tiếp tục",
         "enable": "Kích hoạt",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Bấm vào đây để tạo chuỗi mật mã mới",
         "generateSuccess": "Chuỗi mật mã đã được tạo thành công",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng.",
-        "individualLetterCount": "Hãy bấm vào {{letterCount}} chữ cái để thay đổi chúng một cách ngẫu nhiên.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Từ khoá là gì?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Giao Diện",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Tiền Tệ"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Enter your password to open the SeedVault",
         "noSeedFound": "SeedVault does not contain a valid seed",
         "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",

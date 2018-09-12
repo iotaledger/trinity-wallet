@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: GENERAL.borderRadius,
         borderBottomRightRadius: GENERAL.borderRadius,
         position: 'absolute',
-        right: width / 15,
+        right: width / 100,
         bottom: -width / 19,
     },
     checksumText: {

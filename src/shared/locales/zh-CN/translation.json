@@ -34,6 +34,7 @@
         "save": "保存",
         "close": "关闭",
         "export": "导出",
+        "help": "Help",
         "import": "导入",
         "continue": "继续",
         "enable": "启用",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "点击获得新的种子",
         "generateSuccess": "种子成功生成",
         "individualLetters": "通过点击各个字母来随机生成。",
-        "individualLetterCount": "按 {{letterCount}} 个单独的字母随机选择它们。",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "什么是种子？"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "主题",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "货币"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "导入 SeedVault",
-        "dropSeedVaultHere": "把 SeedVault 放在这里",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "输入密码以打开 SeedVault",
         "noSeedFound": "SeedVault 不包含有效种子",
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",

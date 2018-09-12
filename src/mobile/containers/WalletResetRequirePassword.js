@@ -128,7 +128,6 @@ class WalletResetRequirePassword extends Component {
      */
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
-
         this.props.navigator.resetTo({
             screen: 'languageSetup',
             navigatorStyle: {
@@ -147,11 +146,9 @@ class WalletResetRequirePassword extends Component {
      * Resets wallet's state
      * @method resetWallet
      */
-    resetWallet() {
-        const isAuthenticated = this.isAuthenticated();
+    async resetWallet() {
         const { t } = this.props;
-
-        if (isAuthenticated) {
+        if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
             persistor
                 .purge()
