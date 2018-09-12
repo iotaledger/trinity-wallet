@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         flex: 3,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingBottom: height / 16,
     },
     bottomContainer: {
         flex: 1,
