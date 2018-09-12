@@ -63,7 +63,7 @@
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
         "emptyPasswordExplanation": "您必须输入一个密码。请重试。",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "大写锁定已开启",
         "syncInProgress": "同步中",
         "syncInProgressExplanation": "请稍候, 直到同步完成。",
         "somethingWentWrong": "出现错误",
@@ -323,8 +323,8 @@
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
         "ifYouHaveNotSaved": "如果你没有保存你的种子, 请返回保存。",
         "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "警告：出于安全考虑，已禁用复制粘贴功能。"
+        "clipboardWarning": "不要复制粘贴您的种子",
+        "clipboardWarningExplanation": "警告：出于安全考虑，已禁用复制粘贴。"
     },
     "send": {
         "invalidAddress": "地址无效",
@@ -337,7 +337,7 @@
         "recipientAddress": "接收人地址",
         "amount": "金额",
         "max": "最大",
-        "message": "信息",
+        "message": "消息",
         "invalidMessage": "无效消息",
         "invalidMessageExplanation": "您的消息中包含无效字符.",
         "invalidMessageTooLong": "消息太长",
@@ -612,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "导入 SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "拖动 SeedVault 到此处<1></1>或者点击浏览",
         "enterPasswordExplanation": "输入密码以打开 SeedVault",
         "noSeedFound": "SeedVault 不包含有效种子",
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
