@@ -148,7 +148,7 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "获取帐户信息时出错。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -362,7 +362,7 @@
         "advanced": "高级",
         "standard": "标准",
         "advancedModeExplanation": "高级模式将显示更详细的技术信息。",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。"
     },
     "settings": {
         "transferSending": "正在发送交易",
@@ -501,8 +501,8 @@
         "ionic": "Ionic",
         "light": "Light",
         "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "mint": "薄荷绿",
+        "steelblue": "金属蓝"
     },
     "currencySelection": {
         "currency": "货币"
@@ -682,7 +682,7 @@
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "错误日志"
     },
     "terms": {
         "termsAndConditions": "条款和条件",
