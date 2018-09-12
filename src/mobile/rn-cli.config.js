@@ -1,5 +1,5 @@
 const path = require('path');
-const blacklist = require('metro/src/blacklist');
+const blacklist = require('metro-bundler/src/blacklist');
 
 module.exports = {
     getProjectRoots: () => [__dirname, path.join(__dirname, '../shared')],
