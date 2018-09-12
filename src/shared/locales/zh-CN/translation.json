@@ -618,7 +618,7 @@
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "首先我们需要保护SeedVault的安全。请选择一个密码以加密该文件。当从SeedVault备份恢复您的种子时需要使用该密码。可使用与Trinity相同的密码。"
     },
     "chart": {
         "mcap": "市值",
