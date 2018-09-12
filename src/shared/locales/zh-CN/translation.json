@@ -142,7 +142,7 @@
         "headToAdvancedSettingsForTransition": "请去高级设置中设置，并执行快照转换。",
         "usingTrinityWalletWithKeePass": "与Keepass2Android 一同使用 Trinity钱包。",
         "signedTrytesBroadcastErrorExplanation": "在广播您的交易时遇到网络错误。",
-        "broadcastError": "Could not broadcast transfer",
+        "broadcastError": "无法重新广播交易",
         "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
         "problemSendingYourTransaction": "There was a problem sending your transaction.",
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
@@ -285,9 +285,9 @@
         "printerCheckbox": "我不会在公共打印机上打印"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "您的地址",
+        "qrOptions": "二维码选项",
+        "shareQr": "分享二维码",
         "copyAddress": "复制地址",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
@@ -449,7 +449,7 @@
         "send": "发送",
         "receive": "接收",
         "empty": "清空",
-        "retrying": "Retrying",
+        "retrying": "正在重试",
         "yesterday": "昨天"
     },
     "accountManagement": {
@@ -468,7 +468,7 @@
         "add": "新增",
         "nodeFieldEmpty": "文本字段为空",
         "nodeFieldEmptyExplanation": "请输入自定义节点。",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "请输入有效的URL"
     },
     "addNewAccount": {
         "useExistingSeed": "使用现有种子",
@@ -608,8 +608,8 @@
         "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
         "exportSuccess": "SeedVault 导出成功",
         "exportSuccessExplanation": "已成功导出加密的种子文件。",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "种子已导入",
+        "importSuccessExplanation": "您的种子已成功导入。",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "导入 SeedVault",
         "dropSeedVaultHere": "拖动 SeedVault 到此处<1></1>或者点击浏览",
@@ -696,7 +696,7 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "您尚未登录",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
