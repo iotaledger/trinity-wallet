@@ -34,6 +34,7 @@
         "save": "Opslaan",
         "close": "Sluit",
         "export": "Exporteer",
+        "help": "Help",
         "import": "Importeren",
         "continue": "Doorgaan",
         "enable": "Inschakelen",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Klik voor Nieuwe Seed",
         "generateSuccess": "Seed succesvol gegenereerd",
         "individualLetters": "Druk op de letters om deze te veranderen in een willekeurige letter.",
-        "individualLetterCount": "Druk op {{letterCount}} meer individuele letters om ze te veranderen.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Wat is een seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Thema",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Seedkluis importeren",
-        "dropSeedVaultHere": "Zet Seedkluis hier neer",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Voer uw wachtwoord in om de Seedkluis te openen",
         "noSeedFound": "Seedkluis bevat geen geldige seed",
         "noSeedFoundExplanation": "De Seedkluis is leeg, of heeft een seed in een ongeldig formaat.",

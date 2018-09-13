@@ -34,6 +34,7 @@
         "save": "Enregistrer",
         "close": "Fermer",
         "export": "Exporter",
+        "help": "Help",
         "import": "Importer",
         "continue": "Continuer",
         "enable": "Activer",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Appuyez pour générer une nouvelle seed",
         "generateSuccess": "La seed a été générée avec succès",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées.",
-        "individualLetterCount": "Appuyez sur {{letterCount}} lettres individuelles de plus pour les mélanger aléatoirement.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Qu'est-ce qu'une seed ?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Thème",
         "mockup": "Maquette"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Devise"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importer un SeedVault",
-        "dropSeedVaultHere": "Déposer le SeedVault ici",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",

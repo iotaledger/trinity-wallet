@@ -5,17 +5,9 @@
 	<key>com.apple.developer.default-data-protection</key>
 	<string>NSFileProtectionComplete</string>
 	<key>com.apple.developer.icloud-container-identifiers</key>
-	<array>
-		<string>iCloud.$(CFBundleIdentifier)</string>
-	</array>
-	<key>com.apple.developer.icloud-services</key>
-	<array>
-		<string>CloudDocuments</string>
-	</array>
-	<key>com.apple.developer.ubiquity-container-identifiers</key>
-	<array>
-		<string>iCloud.$(CFBundleIdentifier)</string>
-	</array>
+	<array/>
+	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
+	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)org.reactjs.native.example.iotaWallet</string>
