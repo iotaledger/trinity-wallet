@@ -508,7 +508,7 @@
         "currency": "货币"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "确定要注销吗？"
+        "logoutConfirmation": "您确定要登出吗？"
     },
     "qrScanner": {
         "scan": "扫描您的二维码"
