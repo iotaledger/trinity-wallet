@@ -114,7 +114,7 @@
         "checkForUpdates": "检查更新",
         "account": "账户",
         "enterYourPassword": "请输入密码",
-        "changeNode": "更改节点",
+        "changeNode": "更换节点",
         "addCustomNode": "添加定制节点",
         "nodeMustUseHTTPS": "无效节点 (非 HTTPS)",
         "nodeMustUseHTTPSExplanation": "仅允许使用HTTPS的自定义节点。",
@@ -231,7 +231,7 @@
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
-        "balance": "结余",
+        "balance": "余额",
         "send": "发送",
         "receive": "接收",
         "history": "历史",
@@ -317,7 +317,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "请确认你的种子",
-        "trinityWillNeverAskToReenter": "三体钱包不会要求你重新输入种子，除非你重置了你的钱包或者应用程序。",
+        "trinityWillNeverAskToReenter": "Trinity 不会要求您重新输入种子，除非您重置了你的钱包或者应用程序。",
         "enterYourSeed": "输入您的种子",
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
@@ -406,7 +406,7 @@
         "fetchedConversionRatesExplanation": "成功获取到{{currency}} 的最新价格。",
         "undo": "撤销",
         "redo": "重做",
-        "aboutTrinity": "关于三体钱包",
+        "aboutTrinity": "关于 Trinity",
         "lockScreenTimeout": "锁定屏幕超时(分钟)",
         "autoNodeSwitching": "当选定的节点不可访问时自动切换节点。",
         "nodeChangeSuccess": "成功更改节点",
@@ -533,7 +533,7 @@
         "enterPassword": "请输入您的密码以确认将帐号删除。"
     },
     "manualSync": {
-        "outOfSync": "您的事务历史记录是否看起来可能不同步？",
+        "outOfSync": "您的交易历史记录是否看起来可能不同步？",
         "pressToSync": "点击下面按钮以同步您的帐户。",
         "thisMayTake": "这可能需要一段时间。你可能注意到你的设备变慢了。",
         "doNotClose": "请注意, 最小化应用程序将取消同步。",
@@ -622,7 +622,7 @@
     },
     "chart": {
         "mcap": "市值",
-        "change": "变化 (24h)",
+        "change": "变化率 (24h)",
         "volume": "交易量(24h)",
         "error": "获取图标数据时出错"
     },
@@ -656,7 +656,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "无法完成快照转换",
-        "cannotCompleteTransitionExplanation": "您的余额必须大于0才能完成事务。",
+        "cannotCompleteTransitionExplanation": "您的余额必须大于0才能完成交易。",
         "transitionComplete": "快照转换完成。",
         "transitionCompleteExplanation": "快照转换已成功完成。",
         "detectedBalance": "检测到的余额：{{amount}}{{unit}}",
