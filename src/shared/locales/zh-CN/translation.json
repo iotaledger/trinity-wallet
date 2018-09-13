@@ -146,8 +146,8 @@
         "addressesAlreadySpentFrom": "地址中的一个或多个已被使用过。",
         "problemSendingYourTransaction": "发送您的交易时出现问题。",
         "problemPerformingProofOfWork": "执行工作量证明时出现问题。",
-        "tryingAgainWithLocalPoW": "使用本地工作量证明再次尝试。",
-        "tryingAgainWithDifferentNode": "更换到不同的节点再次尝试。",
+        "tryingAgainWithLocalPoW": "正在切换到本地工作量证明再次尝试。",
+        "tryingAgainWithDifferentNode": "正在更换到不同的节点再次尝试。",
         "errorFetchingAccountInformation": "获取帐户信息时出错。"
     },
     "addAdditionalSeed": {
@@ -660,7 +660,7 @@
         "transitionComplete": "快照转换完成。",
         "transitionCompleteExplanation": "快照转换已成功完成。",
         "detectedBalance": "检测到的余额：{{amount}}{{unit}}",
-        "isThisCorrect": "对吗？",
+        "isThisCorrect": "该结果是否正确？",
         "snapshotExplanation": "经常会执行快照来修剪缠结的大小。",
         "hasSnapshotTakenPlace": "是否已经发生快照？请点击下面的按钮来进行转换。",
         "transition": "转换",
