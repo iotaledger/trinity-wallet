@@ -206,8 +206,8 @@
         "retypePassword": "请重新输入密码"
     },
     "copyToClipboard": {
-        "seedCleared": "种子已清除",
-        "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
+        "seedCleared": "剪贴板已清空",
+        "seedClearedExplanation": "为了安全，种子已从剪贴板中清除。",
         "seedCopied": "将种子复制到剪贴板",
         "seedCopiedExplanation": "只要按下\"完成\"或60秒后种子将被清除",
         "copyToClipboard": "复制种子",
@@ -247,7 +247,7 @@
         "enterPassword": "请输入您的密码.",
         "login": "登录",
         "setNode": "设置节点",
-        "whyBiometricDisabled": "为什么生物识别认证被禁用？",
+        "whyBiometricDisabled": "为什么生物识别认证被停用？",
         "whyBiometricDisabledExplanation": "出于安全考虑，生物识别认证在应用第一次加载时停用。在使用 Trinity 时，在一定的时间内没有动作的话会将您登出。再次登录时可以生物识别认证。"
     },
     "loading": {
