@@ -481,7 +481,7 @@
         "snapshotTransition": "快照转换",
         "pow": "工作证明",
         "autoPromotion": "自动提升促进",
-        "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易确认存在苦难，请启用此设置。",
+        "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易很难得到确认，请启用此设置。",
         "autoPromotionPoW": "只有支持远程工作证明的节点才可以进行交易的自动提升促进。"
     },
     "advancedThemeCustomisation": {
@@ -590,13 +590,13 @@
         "emptyCodeExplanation": "请输入验证码并重试。",
         "keyCopied": "密钥已复制到剪贴板",
         "keyCopiedExplanation": "您的2FA 密钥已复制到剪贴板。",
-        "addKey": "将此密钥添加到您的2FA 应用程序中",
+        "addKey": "将此密钥添加到您的 2FA 应用程序中",
         "key": "密钥",
         "twoFAEnabled": "2FA 现在已启用",
         "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
         "twoFADisabled": "2FA 现在已禁用",
         "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
-        "enterCode": "输入您的2FA 应用程序中的验证码",
+        "enterCode": "输入您的 2FA 应用中显示的验证码",
         "code": "验证码",
         "twoFaToken": "2FA两步认证令牌"
     },
