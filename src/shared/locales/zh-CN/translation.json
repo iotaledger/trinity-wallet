@@ -186,7 +186,7 @@
         "reasonPattern": "Short patterns of keys are easy to guess.",
         "reasonNames": "常见的名字和姓氏很容易被猜解。",
         "reasonRepeats": "像'aaa'这样的重复组合很容易被猜解。",
-        "reasonRepeats2": "像‘abcabcabc'这样的重复组合被猜解的难度仅比'abc'这种模式稍低一点。",
+        "reasonRepeats2": "像‘abcabcabc'这样的重复组合被猜解的难度仅比'abc'稍高一点。",
         "reasonSequence": "像'abc'或者 '54321'这种顺序模式很容易被猜解。",
         "reasonYears": "最近的年份很容易被猜解。",
         "reasonDates": "日期通常很容易被猜解。",
@@ -248,7 +248,7 @@
         "login": "登录",
         "setNode": "设置节点",
         "whyBiometricDisabled": "为什么生物识别认证被禁用？",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "出于安全考虑，生物识别认证在应用第一次加载时停用。在使用 Trinity 时，在一定的时间内没有动作的话会将您登出。再次登录时可以生物识别认证。"
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -263,8 +263,8 @@
         "pressForNewSeed": "点击获得新的种子",
         "generateSuccess": "种子成功生成",
         "individualLetters": "通过点击各个字母来随机生成。",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount": "请再次点选 <1><0>{{count}}</0></1> 个字符来随机生成。",
+        "individualLetterCount_plural": "请再次点选 <1><0>{{count}}</0></1> 个字符来随机生成。",
         "randomiseCharsToContinue": "随机选择 <1>{{count}}</1> 个字符以继续。",
         "randomiseCharsToContinue_plural": "随机选择 <1>{{count}}</1> 个字符以继续。",
         "whatIsASeed": "什么是种子？"
@@ -675,7 +675,7 @@
     "updates": {
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
         "noUpdatesAvailable": "没有可用的更新",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "安装更新并重启",
