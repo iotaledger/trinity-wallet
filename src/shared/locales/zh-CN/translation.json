@@ -445,7 +445,7 @@
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
         "messageCopied": "消息已复制",
-        "messageCopiedExplanation": "消息已经被复制到剪贴板中了。",
+        "messageCopiedExplanation": "消息已复制到剪贴板中。",
         "send": "发送",
         "receive": "接收",
         "empty": "清空",
