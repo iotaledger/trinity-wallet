@@ -348,14 +348,14 @@
         "maximumSelected": "已选择最大金额",
         "iotaUnits": "IOTA单位解释",
         "sendMax": "全部发送",
-        "totalTime": "总时间",
+        "totalTime": "总计用时",
         "addressPasteDetected": "检测到地址粘贴",
         "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。",
         "invalid": "无效"
     },
     "setSeedName": {
         "letsAddName": "让我们加上一个名字",
-        "canUseMultipleSeeds": "你可以用这个钱包使用多个种子。每个种子都需要一个帐户名。",
+        "canUseMultipleSeeds": "你可以在钱包内使用多个种子。每个种子都需要一个帐户名。",
         "youCanAdd": "您可以在设置菜单中添加更多种子。"
     },
     "modeSelection": {
@@ -428,10 +428,10 @@
         "yesINeedASeed": "是的，我需要一个新的种子",
         "explanation": "<0> <0> 您可以使用它从 </0> <3>任何设备上的</3><1> 任何钱包 </1> <2> 访问您的资金. </2></0>",
         "loseSeed": "但是如果你失去了你的种子, 你就会失去你的IOTA。",
-        "keepSafe": "请您保管好你的种子."
+        "keepSafe": "请妥善保管您的种子。"
     },
     "welcome": {
-        "thankYou": "谢谢您下载Trinity钱包"
+        "thankYou": "感谢您下载 Trinity 钱包"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> 记下种子和校验和 </0><1> 三重检查 </1><2> 他们是正确的. </2>",
@@ -580,7 +580,7 @@
         "instructionsLogin": "触摸指纹读取器登录"
     },
     "transferConfirmation": {
-        "youAreAbout": "您将发送{{contents}} 到地址",
+        "youAreAbout": "您将发送 {{contents}} 到地址",
         "aMessage": "一条信息"
     },
     "twoFA": {
