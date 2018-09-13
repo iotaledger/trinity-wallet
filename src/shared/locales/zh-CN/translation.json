@@ -633,7 +633,7 @@
         "continueDepsiteRisk": "尽管有此风险，您是否仍要继续？"
     },
     "pow": {
-        "feeless": "有必要完成一点工作量证明来在IOTA中发送免收手续费的事务",
+        "feeless": "必须完成少量的工作量证明以在IOTA中发送免手续费的交易",
         "localOrRemote": "工作证明可以在设备上本地完成, 或者卸载到节点上。",
         "local": "本地",
         "remote": "远程",
