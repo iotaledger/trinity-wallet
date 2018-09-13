@@ -262,7 +262,7 @@
         "seedNotGeneratedExplanation": "请生成一个新的种子。",
         "pressForNewSeed": "点击获得新的种子",
         "generateSuccess": "种子成功生成",
-        "individualLetters": "通过点击各个字母来随机生成。",
+        "individualLetters": "请点击自己选定的字母来随机生成。",
         "individualLetterCount": "请再次点选 <1><0>{{count}}</0></1> 个字符来随机生成。",
         "individualLetterCount_plural": "请再次点选 <1><0>{{count}}</0></1> 个字符来随机生成。",
         "randomiseCharsToContinue": "随机选择 <1>{{count}}</1> 个字符以继续。",
@@ -278,8 +278,8 @@
         "neverShare": "永远不要与任何人分享您的种子。",
         "iotaLogo": "IOTA标志",
         "print": "打印",
-        "paperConvenience": "打印一份纸板的种子副本是一种方便的存储方式。",
-        "publicInsecure": "但是在公共Wifi 或者公共打印机上打印是不安全的。",
+        "paperConvenience": "为您的种子打印一份纸质副本是一种方便的存储方式。",
+        "publicInsecure": "但是在公共 Wifi 或者公共打印机上打印是不安全的。",
         "tapCheckboxes": "请点击下面的复选框确认。",
         "wifiCheckbox": "我不会通过公共WIFI来连接打印。",
         "printerCheckbox": "我不会在公共打印机上打印"
@@ -295,7 +295,7 @@
         "noAddresses": "无地址",
         "spent": "支出",
         "missingPermission": "需要文件系统权限",
-        "missingPermissionExplanation": "为了共享 QR 码, 需要访问文件系统。",
+        "missingPermissionExplanation": "分享二维码需要具备文件系统访问权限。",
         "tag": "标签"
     },
     "saveYourSeed": {
