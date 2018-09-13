@@ -135,7 +135,7 @@
         "androidInsecureClipboardWarning": "安卓系统不能提供安全的剪贴板。",
         "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴你的种子。",
         "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
-        "mustBeStoredAppropriately": "必须适当地存储种子。",
+        "mustBeStoredAppropriately": "必须恰当地存储种子。",
         "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内无法响应。",
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
