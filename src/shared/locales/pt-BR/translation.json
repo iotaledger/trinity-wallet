@@ -263,10 +263,10 @@
         "pressForNewSeed": "Pressione Para Obter Nova Seed",
         "generateSuccess": "Seed gerada com sucesso",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Selecione mais <1><0>{{count}}</0></1> letras para tornar-se aleatório.",
+        "individualLetterCount_plural": "Selecione mais <1><0>{{count}}</0></1> letras para torná-las aleatórias.",
+        "randomiseCharsToContinue": "Torne <1>{{count}}</1> caractere aleatório para continuar.",
+        "randomiseCharsToContinue_plural": "Torne <1>{{count}}</1> caracteres aleatórios para continuar.",
         "whatIsASeed": "O que é uma Seed?"
     },
     "onboardingComplete": {
@@ -493,16 +493,16 @@
         "mockup": "Modelo"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "Clássico",
+        "contemporary": "Contemporâneo",
+        "dark": "Escuro",
+        "default": "Padrão",
+        "electric": "Elétrico",
+        "ionic": "Iônico",
+        "light": "Claro",
+        "lucky": "Sorte",
+        "mint": "Hortelã",
+        "steelblue": "Azul aço"
     },
     "currencySelection": {
         "currency": "Moeda"
