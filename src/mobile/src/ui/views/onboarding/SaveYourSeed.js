@@ -358,7 +358,7 @@ class SaveYourSeed extends Component {
                fill: #231f20;
                font-family: Monospace;
              }
-             @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
+             @font-face { font-family: "Monospace"; src: "shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
           </style>
           <body>
             ${this.getHTMLContent()}
