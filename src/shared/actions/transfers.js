@@ -320,7 +320,7 @@ export const forceTransactionPromotion = (
     tailTransactionHashes,
     shouldGenerateAlert,
     powFn = null,
-    maxReplays = 3,
+    maxReplays = 1,
     maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
     let replayCount = 0;

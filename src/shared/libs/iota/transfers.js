@@ -122,7 +122,7 @@ export const findPromotableTail = (provider) => (tails, idx) => {
 
     return isPromotable(provider)(get(thisTail, 'hash'))
         .then((state) => {
-            if (state && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
+            if (state || isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
