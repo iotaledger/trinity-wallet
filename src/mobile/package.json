@@ -23,7 +23,6 @@
     "test": "NODE_ENV=test ./node_modules/.bin/jest --forceExit",
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && yarn nodejs-deps",
-    "lint": "./node_modules/.bin/eslint --ext .js .",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json"
   },
@@ -148,7 +147,7 @@
       "/shared/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/?!(react-native|iota-wallet-shared-modules)/"
+      "node_modules/?!(react-native|shared-modules)/"
     ]
   },
   "react-native": {
