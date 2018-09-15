@@ -263,8 +263,8 @@
         "pressForNewSeed": "Stiskni pro nový Seed",
         "generateSuccess": "Seed úspěšně vygenerovaný",
         "individualLetters": "Vyberte náhodné znaky.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount": "Stiskněte <1><0>{{count}}</0></1> písmeno pro náhodný výběr.",
+        "individualLetterCount_plural": "Stiskněte <1><0>{{count}}</0></1> písmen pro náhodný výběr.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Co je to Seed?"
@@ -618,7 +618,7 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Zadejte heslo k zašifrování souboru. Toto heslo budete potřebovat k obnovení Vašeho Seedu ze zálohy souboru SeedVault. Můžete použít stejné heslo, které používáte pro přihlášení do Trinity."
     },
     "chart": {
         "mcap": "MCAP",
