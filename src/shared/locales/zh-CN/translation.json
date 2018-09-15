@@ -96,7 +96,7 @@
         "promoted": "成功提升交易",
         "promotedExplanation": "促进确认的交易哈希为{{hash}}",
         "autopromotionError": "无法自动提升促进交易",
-        "autopromotionErrorExplanation": "在所选节点上远程工作证明不可用。请更换节点并重新启用自动提升促进交易。",
+        "autopromotionErrorExplanation": "您所选择的节点不支持远程工作量证明。请更换节点并重新启用自动提升促进交易。",
         "promotionError": "无法提升促进交易",
         "promotionErrorExplanation": "在提升促进交易时出错，请重试。",
         "noLongerValid": "您想要提升的捆绑包已经失效",
@@ -227,7 +227,7 @@
         "seedTooShort": "种子太短",
         "seedTooLong": "种子太长",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation": "种子的长度应为 {{maxLength}} 个字符，包含大写字母 A-Z 或者数字 9。您不能使用长度超过 {{maxLength}} 个字符的种子。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
