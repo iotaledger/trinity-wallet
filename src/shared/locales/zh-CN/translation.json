@@ -139,7 +139,7 @@
         "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内无法响应。",
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
-        "headToAdvancedSettingsForTransition": "请去高级设置中设置，并执行快照转换。",
+        "headToAdvancedSettingsForTransition": "请前往高级设置并执行快照转换。",
         "usingTrinityWalletWithKeePass": "与Keepass2Android 一同使用 Trinity钱包。",
         "signedTrytesBroadcastErrorExplanation": "在广播您的交易时遇到网络错误。",
         "broadcastError": "无法重新广播交易",
