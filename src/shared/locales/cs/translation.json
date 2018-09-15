@@ -608,7 +608,7 @@
         "exportFailExplanation": "Během exportování Vašeho SeedVault nastal problém. Zkontrolujte zda máte oprávnění na zápis souboru a dostatek volného místa.",
         "exportSuccess": "SeedVault export dokončen",
         "exportSuccessExplanation": "Váš kryptovaný Seed soubor byl úspěšně exportován.",
-        "importSuccess": "Seed imported",
+        "importSuccess": "Seed importován",
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importovat SeedVault",
