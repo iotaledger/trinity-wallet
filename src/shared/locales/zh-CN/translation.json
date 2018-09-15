@@ -479,7 +479,7 @@
         "addCustomNode": "添加自定义节点",
         "manualSync": "手动同步",
         "snapshotTransition": "快照转换",
-        "pow": "工作证明",
+        "pow": "工作量证明",
         "autoPromotion": "自动提升促进",
         "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易很难得到确认，请启用此设置。",
         "autoPromotionPoW": "只有支持远程工作证明的节点才可以进行交易的自动提升促进。"
@@ -522,12 +522,12 @@
         "one": "一"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "为什么我不能够使用全部余额？",
+        "cantSpendFullBalanceQuestion": "为什么我不能支出全部余额？",
         "spentAddressExplanation": "你有资金在一个或者多个已用的地址上。在IOTA中地址重用是危险的，因此钱包不允许你多次从同一个地址中发送交易。",
-        "discordInformation": "请到 Discord中的#help 频道找出你能做什么。"
+        "discordInformation": "请前往Discord的#help频道寻求帮助。"
     },
     "deleteAccount": {
-        "areYouSure": "<0> </0> <1> 是否确认要删除 </1> <2> </2> <3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>您确定要删除</1><2></2><3>{{accountName}}吗？</3>",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
