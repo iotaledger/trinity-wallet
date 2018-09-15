@@ -624,17 +624,17 @@
         "mcap": "市值",
         "change": "变化率 (24h)",
         "volume": "交易量(24h)",
-        "error": "获取图标数据时出错"
+        "error": "获取图表数据时出错"
     },
     "rootDetection": {
         "warning": "警告",
         "appearsRooted": "您的设备似乎已经root过了。",
         "securityRisk": "这可能会对你的钱包安全造成很大的风险。",
-        "continueDepsiteRisk": "尽管有此风险，您是否仍要继续？"
+        "continueDepsiteRisk": "您希望继续忽略此风险吗？"
     },
     "pow": {
         "feeless": "必须完成少量的工作量证明以在IOTA中发送免手续费的交易",
-        "localOrRemote": "工作证明可以在设备上本地完成, 或者卸载到节点上。",
+        "localOrRemote": "工作量证明可以在本地设备上完成，或者由节点远程执行。",
         "local": "本地",
         "remote": "远程",
         "powUpdated": "工作量证明设置",
@@ -650,9 +650,9 @@
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
         "preparingTransfers": "准备转移",
-        "gettingTransactionsToApprove": "获取交易批准",
+        "gettingTransactionsToApprove": "使交易得到批准",
         "proofOfWork": "完成工作量证明",
-        "broadcasting": "广播"
+        "broadcasting": "广播中"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "无法完成快照转换",
