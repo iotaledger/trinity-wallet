@@ -589,7 +589,7 @@
         "emptyCode": "验证码为空",
         "emptyCodeExplanation": "请输入验证码并重试。",
         "keyCopied": "密钥已复制到剪贴板",
-        "keyCopiedExplanation": "您的2FA 密钥已复制到剪贴板。",
+        "keyCopiedExplanation": "您的 2FA 密钥已复制到剪贴板。",
         "addKey": "将此密钥添加到您的 2FA 应用程序中",
         "key": "密钥",
         "twoFAEnabled": "2FA 现在已启用",
@@ -677,7 +677,7 @@
         "noUpdatesAvailable": "没有可用的更新",
         "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "检测到可用的新版本 <strong>Trinity</strong> <strong>{{version}}</strong> 。在更新之前请仔细阅读发行说明并验证下载源：",
         "installUpdate": "安装更新并重启",
         "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。"
     },
