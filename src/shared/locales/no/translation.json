@@ -34,6 +34,7 @@
         "save": "Lagre",
         "close": "Lukk",
         "export": "Eksporter",
+        "help": "Help",
         "import": "Importer",
         "continue": "Fortsett",
         "enable": "Aktiver",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Trykk for ny hovednøkkel",
         "generateSuccess": "Hovednøkkel er generert",
         "individualLetters": "Trykk individuelle tegn for å randomisere dem.",
-        "individualLetterCount": "Trykk på {{letterCount}} flere tegn for å randomisere dem.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Hva er en hovednøkkel?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Blanding"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importer SeedVault",
-        "dropSeedVaultHere": "Slipp SeedVault her",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Skriv inn ditt passord for å åpne SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",

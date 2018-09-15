@@ -34,6 +34,7 @@
         "save": "ذخیره",
         "close": "بستن",
         "export": "استخراج",
+        "help": "Help",
         "import": "وارد کردن",
         "continue": "ادامه",
         "enable": "فعالسازی",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "برای ساخت سید جدید فشار بدهید",
         "generateSuccess": "سید با موفقیت تولید شد",
         "individualLetters": "نامه های فردی را به صورت تصادفی انتخاب کنید.",
-        "individualLetterCount": "نامه های فردی بیشتری {{letterCount}} برای تصدیق آنها را فشار دهید.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "سید چیست؟"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "پوسته",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "واحد پول"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "وارد کردن سید Vault",
-        "dropSeedVaultHere": "سید Vault خود را در اینجا رها گنید",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "گذرواژه خود را برای باز کردن سید Vault وارد کنید",
         "noSeedFound": "سید Vault حاوی سید معتبر نیست",
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
