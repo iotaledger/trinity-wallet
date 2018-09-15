@@ -262,7 +262,7 @@
         "seedNotGeneratedExplanation": "Prosím vygenerujte nový Seed.",
         "pressForNewSeed": "Stiskni pro nový Seed",
         "generateSuccess": "Seed úspěšně vygenerovaný",
-        "individualLetters": "Vyberte náhodná písmena.",
+        "individualLetters": "Vyberte náhodné znaky.",
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
         "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
