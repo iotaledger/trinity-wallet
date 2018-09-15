@@ -553,8 +553,8 @@
     "saveSeedConfirmation": {
         "didSaveSeed": "您把你的种子备份了吗？",
         "alreadyHave": "我已经保存了我的种子",
-        "reenterSeed": "在下一步，您讲被要求重新输入您的种子。",
-        "reenterSeedWarning": "如果你没有备份你的种子，当你的设备失败的话, 你就会失去你的IOTA。",
+        "reenterSeed": "下一步将要求您重新输入您的种子。",
+        "reenterSeedWarning": "如果您没有备份种子，当设备损坏无法使用时，您就会失去您的IOTA。",
         "pleaseConfirm": "请确认您已安全地储存了您的种子。"
     },
     "walletResetConfirmation": {
