@@ -536,7 +536,7 @@
         "outOfSync": "您的交易历史记录是否看起来可能不同步？",
         "pressToSync": "点击下面按钮以同步您的帐户。",
         "thisMayTake": "这可能需要一段时间。你可能注意到你的设备变慢了。",
-        "doNotClose": "请注意, 最小化应用程序将取消同步。",
+        "doNotClose": "请注意，最小化应用程序将取消同步。",
         "syncAccount": "同步账户",
         "syncingYourAccount": "正在同步您的账号"
     },
@@ -551,7 +551,7 @@
         "hideSeed": "隐藏种子"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "您把你的种子备份了吗？",
+        "didSaveSeed": "您备份过种子了吗？",
         "alreadyHave": "我已经保存了我的种子",
         "reenterSeed": "下一步将要求您重新输入您的种子。",
         "reenterSeedWarning": "如果您没有备份种子，当设备损坏无法使用时，您就会失去您的IOTA。",
@@ -563,7 +563,7 @@
     },
     "fingerprintSetup": {
         "instructionsEnable": "触摸指纹阅读器以启用指纹验证。",
-        "instructionsDisable": "触摸指纹读取器以禁用指纹认证",
+        "instructionsDisable": "触摸指纹阅读器以禁用指纹验证。",
         "fingerprintAuthEnabled": "已启用生物识别身份验证",
         "fingerprintAuthEnabledExplanation": "您已成功启用生物识别身份验证。",
         "fingerprintAuthDisabled": "已禁用生物识别身份验证",
@@ -593,7 +593,7 @@
         "addKey": "将此密钥添加到您的 2FA 应用程序中",
         "key": "密钥",
         "twoFAEnabled": "2FA 现在已启用",
-        "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
+        "twoFAEnabledExplanation": "您已成功启用了双重身份验证（2FA）。",
         "twoFADisabled": "2FA 现在已禁用",
         "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
         "enterCode": "输入您的 2FA 应用中显示的验证码",
