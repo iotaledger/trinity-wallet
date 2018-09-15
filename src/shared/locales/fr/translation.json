@@ -265,8 +265,8 @@
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées.",
         "individualLetterCount": "Appuyez sur <1><0>{{count}}</0></1> lettre de plus pour plus d'entropie.",
         "individualLetterCount_plural": "Appuyez sur <1><0>{{count}}</0></1> lettres de plus pour plus d'entropie.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "Randomisez <1>{{count}}</1> caractère pour continuer.",
+        "randomiseCharsToContinue_plural": "Randomisez <1>{{count}}</1> caractères pour continuer.",
         "whatIsASeed": "Qu'est-ce qu'une seed ?"
     },
     "onboardingComplete": {
