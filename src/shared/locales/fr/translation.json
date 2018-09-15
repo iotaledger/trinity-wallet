@@ -610,15 +610,15 @@
         "exportSuccessExplanation": "Le fichier crypté de votre seed a été exporté avec succès.",
         "importSuccess": "Seed importée",
         "importSuccessExplanation": "Votre seed a été importé avec succès.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Enregistrer dans téléchargement",
         "importSeedVault": "Importer un SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "Déposez ici le SeedVault <1></1> ou cliquez sur Parcourir",
         "enterPasswordExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Tout d’abord, nous avons besoin de sécuriser votre SeedVault. Veuillez choisir un mot de passe pour chiffrer le fichier. Vous aurez besoin de ce mot de passe pour restaurer votre Seed à partir de la sauvegarde SeedVault. N’hésitez pas à utiliser le même mot de passe que vous utilisez pour Trinity."
     },
     "chart": {
         "mcap": "MCAP",
