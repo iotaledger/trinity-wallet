@@ -190,10 +190,10 @@
         "reasonSequence": "像'abc'或者 '54321'这种顺序模式很容易被猜解。",
         "reasonYears": "最近的年份很容易被猜解。",
         "reasonDates": "日期通常很容易被猜解。",
-        "reasonTop10": "这是最常见的10个密码.",
-        "reasonTop100": "这是最常见的100个密码.",
-        "reasonCommon": "这是非常常见的密码.",
-        "reasonSimilar": "这类似于常见的密码.",
+        "reasonTop10": "这是10大最常用的密码之一。",
+        "reasonTop100": "这是前100个最常用的密码之一。",
+        "reasonCommon": "这是一个非常常见的密码。",
+        "reasonSimilar": "这个非常接近常用的密码。",
         "reasonWord": "单个单词很容易被猜解。"
     },
     "setPassword": {
@@ -244,7 +244,7 @@
     "login": {
         "emptyPassword": "密码为空",
         "emptyPasswordExplanation": "您必须输入密码才能登录。请重试。",
-        "enterPassword": "请输入您的密码.",
+        "enterPassword": "请输入您的密码。",
         "login": "登录",
         "setNode": "设置节点",
         "whyBiometricDisabled": "为什么生物识别认证被停用？",
