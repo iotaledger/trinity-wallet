@@ -263,9 +263,9 @@
         "pressForNewSeed": "Vajutage uue seemne saamiseks",
         "generateSuccess": "Seeme edukalt loodud",
         "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "individualLetterCount": "Vajuta <1><0>{{count}}</0></1> tähemärki veel, et neid randomiseerida.",
+        "individualLetterCount_plural": "Vajuta <1><0>{{count}}</0></1> tähemärki veel, et neid randomiseerida.",
+        "randomiseCharsToContinue": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
         "randomiseCharsToContinue_plural": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
         "whatIsASeed": "Mis on seeme?"
     },
