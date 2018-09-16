@@ -219,7 +219,7 @@
         "copy": "复制",
         "noPasswordManagers": "未安装支持的密码管理器",
         "noPasswordManagersExplanation": "在您的设备上找不到支持的密码管理器。请安装 Keepass2Android。",
-        "followTutorialToSecurelyShareSeed": "如果您希望将您的种子存储在密码管理器中, 请务必遵循以下链接中的教程"
+        "followTutorialToSecurelyShareSeed": "如果您希望将您的种子存储在密码管理器中，请务必遵循以下链接中的教程"
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
@@ -321,7 +321,7 @@
         "enterYourSeed": "输入您的种子",
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
-        "ifYouHaveNotSaved": "如果您尚未保存您的种子, 请返回保存。",
+        "ifYouHaveNotSaved": "如果您尚未保存您的种子，请返回保存。",
         "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。",
         "clipboardWarning": "不要复制粘贴您的种子",
         "clipboardWarningExplanation": "警告：出于安全考虑，已禁用复制粘贴。"
@@ -427,7 +427,7 @@
         "noIHaveOne": "不，我有一个种子",
         "yesINeedASeed": "是，我需要一个新种子",
         "explanation": "<0> <0> 您可以使用它从 </0> <3>任何设备上的</3><1> 任何钱包 </1> <2> 访问您的资金. </2></0>",
-        "loseSeed": "但是如果你失去了你的种子, 你就会失去你的IOTA。",
+        "loseSeed": "但是如果你遗失了你的种子，你就会失去你的IOTA。",
         "keepSafe": "请妥善保管您的种子。"
     },
     "welcome": {
@@ -480,9 +480,9 @@
         "manualSync": "手动同步",
         "snapshotTransition": "快照转换",
         "pow": "工作量证明",
-        "autoPromotion": "自动提升促进",
-        "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易很难得到确认，请启用此设置。",
-        "autoPromotionPoW": "只有支持远程工作量证明的节点才可以进行交易的自动提升促进。"
+        "autoPromotion": "自动促进",
+        "autoPromotionExplanation": "自动促进可以帮助确认您在Tangle上的交易。 如果您的交易很难得到确认，请启用此设置。",
+        "autoPromotionPoW": "只有支持远程工作量证明的节点才可以进行交易的自动促进。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -641,8 +641,8 @@
         "powUpdatedExplanation": "您的工作量证明配置已更新"
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "自动提升促进设置。",
-        "autoPromotionUpdatedExplanation": "您的自动提升促进配置已经更新。"
+        "autoPromotionUpdated": "自动促进设置。",
+        "autoPromotionUpdatedExplanation": "您的自动促进配置已经更新。"
     },
     "progressSteps": {
         "checkingNodeHealth": "检查节点运行状况。",
