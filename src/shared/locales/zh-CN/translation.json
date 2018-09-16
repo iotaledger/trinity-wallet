@@ -18,7 +18,7 @@
         "keyReuseError": "您不能发送到已使用过的地址。",
         "invalidResponse": "节点错误",
         "invalidResponseExplanation": "节点返回了一个错误，请尝试更换节点。",
-        "invalidResponseFetchingAccount": "节点在获取您的账户信息时返回错误，请尝试更换节点。",
+        "invalidResponseFetchingAccount": "该节点在获取账户信息时返回有错误，请尝试更改节点。",
         "nodeOutOfSync": "节点不同步",
         "nodeOutOfSyncExplanation": "当前选定的节点不同步。请更改节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更改节点或重试。",
@@ -136,7 +136,7 @@
         "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴你的种子。",
         "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
         "mustBeStoredAppropriately": "必须恰当地存储种子。",
-        "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内无法响应。",
+        "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内失去响应。",
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
         "headToAdvancedSettingsForTransition": "请前往高级设置并执行快照转换。",
@@ -313,7 +313,7 @@
         "whatIsChecksum": "每个种子都有相应的3字符校验和",
         "iHavesavedMySeed": "我已经保存了我的种子",
         "checksumExplanation": "当你把种子添加到你的钱包的时候，你应该确保钱包生成的校验码与你已经记下来的校验码是匹配的。",
-        "mustSaveYourSeed": "<0> <0>您必须使用下列</0> <1>其中一种</1> <2>选项来备份您的种子。</2> </0>"
+        "mustSaveYourSeed": "<0><0>您必须使用下列选项中的 </0><1>其中一种</1><2> 来备份您的种子。</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "请确认您的种子",
