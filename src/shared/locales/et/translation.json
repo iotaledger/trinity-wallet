@@ -266,7 +266,7 @@
         "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
         "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue_plural": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
         "whatIsASeed": "Mis on seeme?"
     },
     "onboardingComplete": {
@@ -493,16 +493,16 @@
         "mockup": "Eelvaade"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "Klassikaline",
+        "contemporary": "Kaasaegne",
+        "dark": "Tume",
+        "default": "Vaikimisi",
+        "electric": "Elektriline",
+        "ionic": "Joonia",
+        "light": "Hele",
+        "lucky": "Õnnelik",
+        "mint": "Piparmünt",
+        "steelblue": "Terassinine"
     },
     "currencySelection": {
         "currency": "Valuuta"
@@ -608,11 +608,11 @@
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
         "exportSuccess": "Seemnehoidla eksporditud",
         "exportSuccessExplanation": "Krüptitud seemne faili eksporditimine õnnestus.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccess": "Seeme imporditud",
+        "importSuccessExplanation": "Teie seeme imporditi edukalt.",
+        "saveToDownloadFolder": "Salvesta allalaadimiste kausta",
         "importSeedVault": "Importige seemnehoidla",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "Sisestage seemnehoidla siia <1></1> või vajutage sirvimiseks",
         "enterPasswordExplanation": "Seemnehoidla avamiseks sisestage oma parool",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
