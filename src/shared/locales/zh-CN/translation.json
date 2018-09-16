@@ -523,7 +523,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "为什么我不能支出全部余额？",
-        "spentAddressExplanation": "你有资金在一个或者多个已用的地址上。在IOTA中地址重用是危险的，因此钱包不允许你多次从同一个地址中发送交易。",
+        "spentAddressExplanation": "你有资金在一个或者多个已用的地址上。在IOTA中地址重用是危险的，因此钱包不允许你从同一个地址中发送一次以上交易。",
         "discordInformation": "请前往Discord的#help频道寻求帮助。"
     },
     "deleteAccount": {
@@ -575,12 +575,12 @@
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
         "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
         "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
-        "buttonInstructionsDisableIPhoneX": "按下下面的按钮以禁用Face ID。",
-        "buttonInstructionsEnableIPhoneX": "按下下面的按钮以启用Face ID。",
+        "buttonInstructionsDisableIPhoneX": "按下下面的按钮以禁用人脸识别认证。",
+        "buttonInstructionsEnableIPhoneX": "按下下面的按钮以启用人脸识别认证。",
         "instructionsLogin": "触摸指纹读取器登录"
     },
     "transferConfirmation": {
-        "youAreAbout": "您将发送 {{contents}} 到地址",
+        "youAreAbout": "您将发送 {{内容}} 到地址",
         "aMessage": "一条信息"
     },
     "twoFA": {
