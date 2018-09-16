@@ -147,23 +147,23 @@
         "problemSendingYourTransaction": "发送您的交易时出现问题。",
         "problemPerformingProofOfWork": "执行工作量证明时出现问题。",
         "tryingAgainWithLocalPoW": "通过本地工作量证明重试中。",
-        "tryingAgainWithDifferentNode": "正在更换到不同的节点再次尝试。",
+        "tryingAgainWithDifferentNode": "更换到其它节点重试中。",
         "errorFetchingAccountInformation": "获取帐户信息时出错。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
         "seedInvalidCharsExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
-        "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
+        "seedTooShortExplanation": "种子长度必须为{{maxLength}}个字符。当前的种子长度为{{currentLength}}个字符。请重试。",
         "nameInUse": "帐户已使用",
         "nameInUseExplanation": "请为您的种子使用唯一的帐户名称。",
-        "accountNameTooLong": "帐户名太长",
+        "accountNameTooLong": "帐户名过长",
         "accountNameTooLongExplanation": "帐户名的最大长度为 {{maxLength}} 个字符。",
         "accountName": "账户名",
         "noNickname": "未输入账户名",
         "noNicknameExplanation": "请输入您的种子的帐户名。",
         "seedInUse": "种子已使用",
-        "seedInUseExplanation": "这个种子已经关联到您的钱包。请使用另一个"
+        "seedInUseExplanation": "这个种子已经关联到您的钱包。请使用其它的种子。"
     },
     "changePassword": {
         "passwordUpdated": "密码已更新",
