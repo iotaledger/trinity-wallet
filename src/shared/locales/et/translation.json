@@ -601,7 +601,7 @@
         "twoFaToken": "2FA kood"
     },
     "seedVault": {
-        "exportSeedVault": "Eksportige seemnehoidla",
+        "exportSeedVault": "Ekspordi seemnehoidla",
         "seedVaultExplanation": "Seemnehoidla on krüptitud fail seemne turvalisena hoidmiseks. Seeme on krüptitud parooli taha ning sellele pole võimalik ilma paroolita ligi pääseda.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
