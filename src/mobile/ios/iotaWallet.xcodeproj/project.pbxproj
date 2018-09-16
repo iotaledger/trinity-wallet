@@ -291,13 +291,6 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNViewShot;
 		};
-		6041E0A9214875A9009AA508 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F60690131CA2766F0003FB26;
-			remoteInfo = RealmReact;
-		};
 		6056CF5320827D2F0006A2F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */;
@@ -311,6 +304,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
+		};
+		60968906214DE5C10059EE3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60968901214DE5C00059EE3E /* RealmReact.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
 		};
 		60BDD27A208D12790085549F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -688,7 +688,6 @@
 		2C5A946EA9126EDE841BD16907761375 /* iotaWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iotaWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF64F79A3674FBC3EAFD7BD016CA0C3 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2D84DC61092C2CB09498AB83CAA9B91F /* RNSecureRandom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSecureRandom.xcodeproj; path = "../node_modules/react-native-securerandom/ios/RNSecureRandom.xcodeproj"; sourceTree = "<group>"; };
-		301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		36D4352CBA24C83AC9A32D4C0C8118E8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		395BD568B613770643095434D5F46E0A /* iotaWallet-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iotaWallet-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -714,6 +713,7 @@
 		6079AD4D2110E752005B21CB /* Argon2IOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Argon2IOS.m; sourceTree = "<group>"; };
 		6079C42320D95F17006B252E /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = iotaWallet/Empty.swift; sourceTree = "<group>"; };
 		6079C42520D95F85006B252E /* iotaWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iotaWallet-Bridging-Header.h"; path = "iotaWallet/iotaWallet-Bridging-Header.h"; sourceTree = "<group>"; };
+		60968901214DE5C00059EE3E /* RealmReact.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../../shared/node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		60BDD276208D12790085549F /* RNSecureClipboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSecureClipboard.xcodeproj; path = "../node_modules/react-native-secure-clipboard/ios/RNSecureClipboard.xcodeproj"; sourceTree = "<group>"; };
 		60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1076,14 +1076,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6041E0A6214875A8009AA508 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6041E0AA214875A9009AA508 /* libRealmReact.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6056CF5020827D2F0006A2F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1096,6 +1088,14 @@
 			isa = PBXGroup;
 			children = (
 				6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60968902214DE5C00059EE3E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60968907214DE5C10059EE3E /* libRealmReact.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1129,6 +1129,7 @@
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				60968901214DE5C00059EE3E /* RealmReact.xcodeproj */,
 				60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */,
 				CB305EFE21185EEC00657575 /* RNFetchBlob.xcodeproj */,
 				601BFD5C20C39A560097D329 /* RNViewShot.xcodeproj */,
@@ -1167,7 +1168,6 @@
 				78457F3624D0D3C241289BCB545E290E /* ReactNativeFingerprintScanner.xcodeproj */,
 				E5626B12C0A7C28841B2397915C53A9D /* ReactNativeNavigation.xcodeproj */,
 				A01220F4B33D4A79B53254ED /* RNFastCrypto.xcodeproj */,
-				301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */,
 				68D1880393EB486F98F90D04 /* RNNodeJsMobile.xcodeproj */,
 			);
 			name = Libraries;
@@ -1739,8 +1739,8 @@
 					ProjectRef = 6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */;
 				},
 				{
-					ProductGroup = 6041E0A6214875A8009AA508 /* Products */;
-					ProjectRef = 301B7315251B4EC2AC7646A9 /* RealmReact.xcodeproj */;
+					ProductGroup = 60968902214DE5C00059EE3E /* Products */;
+					ProjectRef = 60968901214DE5C00059EE3E /* RealmReact.xcodeproj */;
 				},
 				{
 					ProductGroup = 6056CF5020827D2F0006A2F3 /* Products */;
@@ -1971,13 +1971,6 @@
 			remoteRef = 601BFD6020C39A580097D329 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6041E0AA214875A9009AA508 /* libRealmReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRealmReact.a;
-			remoteRef = 6041E0A9214875A9009AA508 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		6056CF5420827D2F0006A2F3 /* libRNCamera.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1990,6 +1983,13 @@
 			fileType = archive.ar;
 			path = libReactNativePermissions.a;
 			remoteRef = 6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60968907214DE5C10059EE3E /* libRealmReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRealmReact.a;
+			remoteRef = 60968906214DE5C10059EE3E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60BDD27B208D12790085549F /* libRNSecureClipboard.a */ = {
