@@ -248,7 +248,7 @@
         "login": "登录",
         "setNode": "设置节点",
         "whyBiometricDisabled": "为什么生物识别认证被停用？",
-        "whyBiometricDisabledExplanation": "出于安全考虑，生物识别认证在应用第一次加载时停用。在使用 Trinity 时，在一定的时间内没有动作的话会将您登出。再次登录时可以生物识别认证。"
+        "whyBiometricDisabledExplanation": "出于安全考虑，生物识别认证在应用第一次加载时停用。在使用 Trinity 时，在一定的时间内没有动作的话会将您登出。再次登录时可以使用生物识别认证。"
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -272,7 +272,7 @@
     "onboardingComplete": {
         "allDone": "全部完成！",
         "openYourWallet": "打开你的钱包",
-        "walletReady": "钱包现在已设置好并可以使用。如果您需要在将来进行任何更改，请在设置菜单中查找。"
+        "walletReady": "钱包已设置好并可以使用。如果将来您需要进行任何更改，请前往设置菜单。"
     },
     "paperWallet": {
         "neverShare": "永远不要与任何人分享您的种子。",
@@ -312,7 +312,7 @@
         "printBlankWallet": "打印空白钱包",
         "whatIsChecksum": "每个种子都有相应的3字符校验和",
         "iHavesavedMySeed": "我已经保存了我的种子",
-        "checksumExplanation": "当你把种子添加到你的钱包的时候，你应该确保钱包生成的校验码与你已经记下来的校验码是匹配的。",
+        "checksumExplanation": "每当您向钱包添加种子时，您应确保钱包生成的校验和与您写下来的校验和相匹配。",
         "mustSaveYourSeed": "<0><0>您必须使用下列选项中的 </0><1>其中一种</1><2> 来备份您的种子。</2></0>"
     },
     "seedReentry": {
