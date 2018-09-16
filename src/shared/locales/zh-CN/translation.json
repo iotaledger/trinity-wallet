@@ -23,7 +23,7 @@
         "nodeOutOfSyncExplanation": "当前选定的节点不同步。请更换节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
         "seed": "种子",
-        "checksum": "校验种子余额",
+        "checksum": "校验和",
         "back": "返回",
         "goBack": "返回",
         "goBackStep": "返回上一步",
@@ -592,13 +592,13 @@
         "keyCopiedExplanation": "您的 2FA 密钥已复制到剪贴板。",
         "addKey": "将此密钥添加到您的 2FA 应用程序中",
         "key": "密钥",
-        "twoFAEnabled": "2FA 现在已启用",
+        "twoFAEnabled": "双重认证现在已启用",
         "twoFAEnabledExplanation": "您已成功启用了双重身份验证（2FA）。",
-        "twoFADisabled": "2FA 现在已禁用",
+        "twoFADisabled": "双重认证 现在已禁用",
         "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
         "enterCode": "输入您的 2FA 应用中显示的验证码",
         "code": "验证码",
-        "twoFaToken": "2FA 令牌"
+        "twoFaToken": "双重认证代币"
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
