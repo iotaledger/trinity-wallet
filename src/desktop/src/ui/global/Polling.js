@@ -50,6 +50,7 @@ class Polling extends React.PureComponent {
 
     state = {
         accountIndex: 0,
+        autoPromoteSkips: 0,
     };
 
     componentDidMount() {
@@ -130,11 +131,19 @@ class Polling extends React.PureComponent {
         const index = allPollingServices.indexOf(pollFor);
         const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
-        if (autoPromotion && !isEmpty(unconfirmedBundleTails)) {
-            const bundles = keys(unconfirmedBundleTails);
-            const top = bundles[0];
+        const { autoPromoteSkips } = this.state;
 
-            return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+        if (autoPromotion && !isEmpty(unconfirmedBundleTails)) {
+            if (autoPromoteSkips) {
+                this.setState({ autoPromoteSkips: autoPromoteSkips - 1 });
+            } else {
+                this.setState({ autoPromoteSkips: 2 });
+
+                const bundles = keys(unconfirmedBundleTails);
+                const top = bundles[0];
+
+                return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+            }
         }
 
         // In case there are no unconfirmed bundle tails or auto-promotion is off, move to the next service item

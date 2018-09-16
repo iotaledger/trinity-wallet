@@ -161,9 +161,9 @@ export const getSeedIndexFromState = createSelector(getWalletFromState, (state) 
  *   @returns {string}
  **/
 export const getSelectedAccountName = createSelector(
-   getAccountNamesFromState,
-   getSeedIndexFromState,
-   (accountNames, seedIndex) => get(accountNames, seedIndex),
+    getAccountNamesFromState,
+    getSeedIndexFromState,
+    (accountNames, seedIndex) => get(accountNames, seedIndex),
 );
 
 /**
@@ -244,7 +244,7 @@ export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (a
  *   @returns {number}
  **/
 export const getAvailableBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
-    const unspentAddresses = filter(account.addresses, { spent: false });
+    const unspentAddresses = filter(account.addresses, { spent: { local: false } });
     return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
 });
 
