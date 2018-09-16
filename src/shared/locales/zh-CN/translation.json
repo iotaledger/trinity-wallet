@@ -146,7 +146,7 @@
         "addressesAlreadySpentFrom": "地址中的一个或多个已被使用过。",
         "problemSendingYourTransaction": "发送您的交易时出现问题。",
         "problemPerformingProofOfWork": "执行工作量证明时出现问题。",
-        "tryingAgainWithLocalPoW": "正在切换到本地工作量证明再次尝试。",
+        "tryingAgainWithLocalPoW": "通过本地工作量证明重试中。",
         "tryingAgainWithDifferentNode": "正在更换到不同的节点再次尝试。",
         "errorFetchingAccountInformation": "获取帐户信息时出错。"
     },
