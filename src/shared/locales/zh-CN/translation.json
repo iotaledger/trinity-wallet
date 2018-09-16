@@ -23,7 +23,7 @@
         "nodeOutOfSyncExplanation": "当前选定的节点不同步。请更换节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
         "seed": "种子",
-        "checksum": "校验和",
+        "checksum": "校验种子余额",
         "back": "返回",
         "goBack": "返回",
         "goBackStep": "返回上一步",
