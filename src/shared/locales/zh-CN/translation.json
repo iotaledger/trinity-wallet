@@ -169,12 +169,12 @@
         "passwordUpdated": "密码已更新",
         "passwordUpdatedExplanation": "您的密码已更改成功",
         "incorrectPassword": "密码错误",
-        "incorrectPasswordExplanation": "您当前的密码不正确。请重试。",
+        "incorrectPasswordExplanation": "您输入的当前密码不正确。请重试。",
         "passwordsDoNotMatch": "密码不相符",
         "passwordsDoNotMatchExplanation": "密码不匹配。请重试。",
         "passwordTooShort": "密码太短",
         "passwordTooShortExplanation": "密码长度必须至少为11个字符。请重新尝试。",
-        "oldPassword": "无法使用旧密码",
+        "oldPassword": "无法设置旧密码",
         "oldPasswordExplanation": "无法将旧密码设置为新密码。请尝试输入新密码。",
         "ensureStrongPassword": "请您确保使用至少 11 个字符的强密码。",
         "currentPassword": "当前密码",
@@ -629,7 +629,7 @@
     "rootDetection": {
         "warning": "警告",
         "appearsRooted": "您的设备似乎已经获取过根权限了。",
-        "securityRisk": "这可能会对你的钱包安全造成很大的风险。",
+        "securityRisk": "这可能会给钱包安全带来很大的风险。",
         "continueDepsiteRisk": "您希望忽略此风险，继续使用钱包吗？"
     },
     "pow": {
