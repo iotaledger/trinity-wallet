@@ -14,7 +14,7 @@
         "transferSentMessage": "您的交易已发送到Tangle。",
         "messageSent": "消息已发送",
         "messageSentMessage": "您的消息已经发送给Tangle。",
-        "keyReuse": "发送到已支出过的地址",
+        "keyReuse": "发送到已支付过的地址",
         "keyReuseError": "您不能发送到已支付过的地址。",
         "invalidResponse": "节点错误",
         "invalidResponseExplanation": "节点错误，请尝试更换节点。",
