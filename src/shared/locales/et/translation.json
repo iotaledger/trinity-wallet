@@ -34,7 +34,7 @@
         "save": "Salvesta",
         "close": "Sulge",
         "export": "Ekspordi",
-        "help": "Help",
+        "help": "Abi",
         "import": "Impordi",
         "continue": "Jätka",
         "enable": "Luba",
@@ -45,7 +45,7 @@
         "paperWallet": "Prindi paberkandjal",
         "addToPasswordManager": "Lisa paroolihaldurisse",
         "shareSeed": "Jaga seemet",
-        "share": "Share",
+        "share": "Jaga",
         "proceed": "Jätka",
         "qr": "QR",
         "enterSeed": "Palun sisestage oma seeme.",
@@ -62,7 +62,7 @@
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
         "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "Te peate sisestama parooli. Palun proovige uuesti.",
         "capsLockIsOn": "Caps Lock on sisse lülitatud",
         "syncInProgress": "Sünkroonimine on pooleli",
         "syncInProgressExplanation": "Palun oodake, kuni sünkroonimine on lõpule viidud.",
@@ -618,7 +618,7 @@
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Kõigepealt peame kaitsma teie seemnehoidlat. Palun valige parool faili krüptimiseks. Teil on seda parooli vaja, et taastada teie seeme seemnehoidlast. Võite vabalt kasutada sama parooli, mida te Trinitys kasutate."
     },
     "chart": {
         "mcap": "TURUKAPITAL",
