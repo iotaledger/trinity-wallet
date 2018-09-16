@@ -132,7 +132,7 @@
         "noNetworkConnectionExplanation": "您的网络连接看起来处于离线状态。",
         "spentAddressExplanation": "警告：资金用于已用地址。",
         "discordInformation": "从同一地址多次发送是危险的。请到Discord的 #help 频道寻找帮助。",
-        "androidInsecureClipboardWarning": "安卓系统提供的剪贴板功能不安全。",
+        "androidInsecureClipboardWarning": "安卓系统不能提供安全的剪贴板。",
         "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴你的种子。",
         "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
         "mustBeStoredAppropriately": "必须恰当地存储种子。",
@@ -293,7 +293,7 @@
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
         "generateNewAddress": "新地址",
         "noAddresses": "无地址",
-        "spent": "支出",
+        "spent": "使用过",
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "分享二维码需要具备文件系统访问权限。",
         "tag": "标签"
