@@ -575,13 +575,13 @@
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
         "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
         "buttonInstructionsEnable": "按下方按钮启用指纹认证。",
-        "buttonInstructionsDisableIPhoneX": "按下下面的按钮以禁用人脸识别认证。",
-        "buttonInstructionsEnableIPhoneX": "按下下面的按钮以启用人脸识别认证。",
+        "buttonInstructionsDisableIPhoneX": "按下方按钮禁用Face ID。",
+        "buttonInstructionsEnableIPhoneX": "按下方按钮启用Face ID。",
         "instructionsLogin": "触摸指纹读取器登录"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送 {{内容}} 到地址",
-        "aMessage": "一条信息"
+        "aMessage": "一条消息"
     },
     "twoFA": {
         "wrongCode": "验证码错误",
@@ -598,7 +598,7 @@
         "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
         "enterCode": "输入您的双重验证应用中显示的验证码",
         "code": "验证码",
-        "twoFaToken": "双重认证通证"
+        "twoFaToken": "2FA通证"
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
@@ -606,7 +606,7 @@
         "seedVaultWarning": "请确保您在多个位置备份了该文件（例如硬盘、云端、USB）。如果您遗失了该文件并且没有在其他地方储存您的种子，那么您将失去您的IOTA。",
         "exportFail": "SeedVault 导出失败",
         "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
-        "exportSuccess": "SeedVault 导出成功",
+        "exportSuccess": "SeedVault 已导出",
         "exportSuccessExplanation": "已成功导出加密的种子文件。",
         "importSuccess": "种子已导入",
         "importSuccessExplanation": "您的种子已成功导入。",
