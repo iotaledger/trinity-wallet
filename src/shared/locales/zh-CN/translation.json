@@ -574,7 +574,7 @@
         "fingerprintUnavailable": "生物识别认证不可用",
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
         "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
-        "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
+        "buttonInstructionsEnable": "按下方按钮启用指纹认证。",
         "buttonInstructionsDisableIPhoneX": "按下下面的按钮以禁用人脸识别认证。",
         "buttonInstructionsEnableIPhoneX": "按下下面的按钮以启用人脸识别认证。",
         "instructionsLogin": "触摸指纹读取器登录"
@@ -665,12 +665,12 @@
         "hasSnapshotTakenPlace": "是否已经发生快照？请点击下面的按钮来进行转换。",
         "transition": "转换",
         "transitioning": "正在转换快照。",
-        "generatingAndDetecting": "生成地址并正在检测余额。",
+        "generatingAndDetecting": "正在生成地址和检测余额。",
         "attaching": "将地址添加到Tanlge。"
     },
     "deepLink": {
         "autofill": "自动填充成功",
-        "autofillExplanation": "从连接中自动填充了交易数据。"
+        "autofillExplanation": "从链接中自动填充了交易数据。"
     },
     "updates": {
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
