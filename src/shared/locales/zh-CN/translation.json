@@ -152,7 +152,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
-        "seedInvalidCharsExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符，请再试一遍。",
+        "seedInvalidCharsExplanation": "种子只能由大写字母A-Z和数字9组成。您的种子包含无效字符，请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}}个字符。当前的种子长度为{{currentLength}}个字符。请重试。",
         "nameInUse": "帐户名已被使用",
