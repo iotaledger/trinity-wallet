@@ -328,7 +328,7 @@
     },
     "send": {
         "invalidAddress": "无效地址",
-        "invalidAddressExplanation1": "地址应该是 {{最大长度}} 个字符并且应该有一个校验和。",
+        "invalidAddressExplanation1": "地址应该是 {{maxLength}} 个字符并且应该有一个校验和。",
         "invalidAddressExplanation2": "地址包含无效字符。",
         "invalidAddressExplanation3": "地址包含无效校验和。",
         "invalidAddressExplanationGeneric": "有效地址应为 90 个字符并且仅包含 A-Z 或 9。",
@@ -401,7 +401,7 @@
         "securitySettings": "安全设置",
         "fingerprint": "生物识别认证",
         "couldNotFetchRates": "无法获取兑换价格",
-        "couldNotFetchRatesExplanation": "获取 {{货币}} 的兑换价格时发生错误。",
+        "couldNotFetchRatesExplanation": "获取 {{currency}} 的兑换价格时发生错误。",
         "fetchedConversionRates": "获取兑换价格",
         "fetchedConversionRatesExplanation": "成功获取 {{currency}} 的最新兑换价格。",
         "undo": "撤销",
