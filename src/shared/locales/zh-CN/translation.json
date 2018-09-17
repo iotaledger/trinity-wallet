@@ -271,15 +271,15 @@
     },
     "onboardingComplete": {
         "allDone": "全部完成！",
-        "openYourWallet": "打开你的钱包",
-        "walletReady": "钱包已设置好并可以使用。如果将来您需要进行任何更改，请前往设置菜单。"
+        "openYourWallet": "打开您的钱包",
+        "walletReady": "钱包已设置好并可以使用了。如果将来您需要进行任何更改，请前往设置菜单。"
     },
     "paperWallet": {
         "neverShare": "永远不要与任何人分享您的种子。",
         "iotaLogo": "IOTA标志",
         "print": "打印",
         "paperConvenience": "为您的种子打印一份纸质副本是一种方便的存储方式。",
-        "publicInsecure": "但是在公共Wifi 或者公共打印机上打印是不安全的。",
+        "publicInsecure": "但是在公共Wifi或者公共打印机上打印是不安全的。",
         "tapCheckboxes": "请点击下面的复选框确认。",
         "wifiCheckbox": "我不会在公共WIFI下打印",
         "printerCheckbox": "我不会在公共打印机上打印"
