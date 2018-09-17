@@ -707,7 +707,7 @@
         "typeMessages": "有零价值交易时通知我",
         "multipleTx": "{{account}} 收到多笔交易",
         "valueTx": "{{account}} 收到 {{value}}",
-        "messageTx": "您收到了一条发送到 {{account}} 的消息",
+        "messageTx": "帐户 {{account}} 收到一条消息",
         "confirmedIn": "帐户 {{account}} 的 {{value}} 转入交易已确认",
         "confirmedOut": "帐户 {{account}} 的 {{value}} 转出交易已确认"
     }
