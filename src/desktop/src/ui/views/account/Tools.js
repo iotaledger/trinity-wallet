@@ -51,13 +51,23 @@ class Addresses extends PureComponent {
         t: PropTypes.func.isRequired,
     };
 
-    componentWillReceiveProps(newProps) {
-        const { wallet, ui } = newProps;
+    componentDidUpdate(prevProps) {
+        const { wallet, ui } = this.props;
 
-        if (ui.isTransitioning || ui.isAttachingToTangle || wallet.balanceCheckFlag) {
+        if (
+            prevProps.isTransitioning === ui.isTransitioning &&
+            prevProps.isAttachingToTangle === ui.isAttachingToTangle &&
+            prevProps.balanceCheckFlag === wallet.balanceCheckFlag &&
+            prevProps.ui.isSyncing === ui.isSyncing
+        ) {
+            return;
+        }
+
+        if (ui.isSyncing || ui.isTransitioning || ui.isAttachingToTangle || wallet.balanceCheckFlag) {
             Electron.updateMenu('enabled', false);
         } else {
             Electron.updateMenu('enabled', true);
+            Electron.garbageCollect();
         }
     }
 
