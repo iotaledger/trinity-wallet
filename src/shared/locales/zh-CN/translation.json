@@ -155,8 +155,8 @@
         "seedInvalidCharsExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}}个字符。当前的种子长度为{{currentLength}}个字符。请重试。",
-        "nameInUse": "帐户已使用",
-        "nameInUseExplanation": "请为您的种子使用唯一的帐户名称。",
+        "nameInUse": "帐户名已被使用",
+        "nameInUseExplanation": "请为您的种子使用唯一的帐户名。",
         "accountNameTooLong": "帐户名过长",
         "accountNameTooLongExplanation": "帐户名的最大长度为 {{maxLength}} 个字符。",
         "accountName": "账户名",
@@ -197,8 +197,8 @@
         "reasonWord": "单个单词很容易被猜解。"
     },
     "setPassword": {
-        "choosePassword": "选择新的密码",
-        "passwordTooShort": "密码太短",
+        "choosePassword": "选择一个新密码",
+        "passwordTooShort": "密码过短",
         "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}}个字符 。当前为{{currentLength}}个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
@@ -223,7 +223,7 @@
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
-        "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
+        "invalidCharactersExplanation": "种子只能由大写字母A-Z和数字9组成。您的种子包含无效字符。请重试。",
         "seedTooShort": "种子过短",
         "seedTooLong": "种子过长",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}}个字符 。您的种子当前长度为{{currentLength}}个字符。请重试。",
