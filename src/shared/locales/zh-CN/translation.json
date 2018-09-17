@@ -260,7 +260,7 @@
         "generatedSeed": "生成的种子",
         "seedNotGenerated": "尚未生成种子",
         "seedNotGeneratedExplanation": "请生成一个新的种子。",
-        "pressForNewSeed": "点击获得新的种子",
+        "pressForNewSeed": "点击生成新的种子",
         "generateSuccess": "种子成功生成",
         "individualLetters": "请点击自己选定的字母来随机生成。",
         "individualLetterCount": "请再次点选 <1><0>{{count}}</0></1> 个字符来随机生成。",
