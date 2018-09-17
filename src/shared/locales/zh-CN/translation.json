@@ -697,7 +697,7 @@
         "trayApplication": "托盘应用",
         "trayExplanation": "概览您的帐户余额和最近的交易历史。",
         "notLoggedIn": "您尚未登录",
-        "setupIncomplete": "钱包设置不完整",
+        "setupIncomplete": "钱包设置未完成",
         "completeSetup": "完成设置"
     },
     "notifications": {
@@ -705,8 +705,8 @@
         "notificationExplanation": "接收有关新交易的系统范围的通知。",
         "typeConfirmations": "有交易确认时通知我",
         "typeMessages": "有零价值交易时通知我",
-        "multipleTx": "{{account}} 收到多笔交易",
-        "valueTx": "{{account}} 收到 {{value}}",
+        "multipleTx": "帐户 {{account}} 收到多笔交易",
+        "valueTx": "帐户 {{account}} 收到 {{value}}",
         "messageTx": "帐户 {{account}} 收到一条消息",
         "confirmedIn": "帐户 {{account}} 的 {{value}} 转入交易已确认",
         "confirmedOut": "帐户 {{account}} 的 {{value}} 转出交易已确认"
