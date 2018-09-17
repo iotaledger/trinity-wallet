@@ -62,6 +62,8 @@
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "unrecognizedAccount": "Unrecognized account",
+        "unrecognizedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "È necessario immettere una password. Si prega di riprovare.",
         "capsLockIsOn": "Blocco maiuscole è attivo",
         "syncInProgress": "Sincronizzazione in corso",

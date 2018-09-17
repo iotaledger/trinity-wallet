@@ -62,6 +62,8 @@
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
+        "unrecognizedAccount": "Unrecognized account",
+        "unrecognizedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "Należy wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "capsLockIsOn": "Caps Lock jest włączony",
         "syncInProgress": "Synchronizacja w toku",

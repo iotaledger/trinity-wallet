@@ -62,6 +62,8 @@
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
+        "unrecognizedAccount": "Unrecognized account",
+        "unrecognizedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "您必須輸入密碼，請再試一次。",
         "capsLockIsOn": "大寫鎖定已啟用",
         "syncInProgress": "同步處理中",
