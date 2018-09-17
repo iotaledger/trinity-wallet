@@ -649,8 +649,8 @@
         "validatingReceiveAddress": "验证接收地址",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
-        "preparingTransfers": "准备转移",
-        "gettingTransactionsToApprove": "使交易得到批准",
+        "preparingTransfers": "准备转帐中",
+        "gettingTransactionsToApprove": "获取交易批准",
         "proofOfWork": "完成工作量证明",
         "broadcasting": "广播中"
     },
