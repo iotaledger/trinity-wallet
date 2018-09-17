@@ -98,7 +98,7 @@ class SeedInput extends React.PureComponent {
                 showScanner: false,
             }));
 
-            const seed = input.split('').map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()));
+            const seed = input.split('').map((char) => charToByte(char));
             Electron.garbageCollect();
 
             this.props.onChange(seed);

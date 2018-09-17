@@ -64,7 +64,7 @@ const byteToChar = (trit) => {
  * @returns {array} Output trit array
  */
 const charToByte = (char) => {
-    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char);
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase());
 };
 
 const byteToTrit = (byte) => {
