@@ -8,7 +8,6 @@ describe('Reducer: wallet', () => {
                 ready: false,
                 password: {},
                 seed: Array(82).join(' '),
-                accountName: 'MAIN WALLET',
                 seedIndex: 0,
                 currentSetting: 'mainSettings',
                 additionalAccountName: '',
@@ -371,7 +370,7 @@ describe('Reducer: wallet', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-               additionalAccountType: '',
+                additionalAccountType: '',
             };
 
             expect(newState.additionalAccountType).to.equal(expectedState.additionalAccountType);

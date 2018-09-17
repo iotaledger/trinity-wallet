@@ -21,7 +21,7 @@ const getProps = (overrides) =>
             navigator: {
                 push: noop,
             },
-            setAccountName: noop,
+            accountNames: [],
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
             t: (arg) => {
@@ -45,10 +45,6 @@ describe('Testing SetAccountName component', () => {
     describe('propTypes', () => {
         it('should require a navigator object as a prop', () => {
             expect(SetAccountName.propTypes.navigator).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a setAccountName function as a prop', () => {
-            expect(SetAccountName.propTypes.setAccountName).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {
@@ -87,9 +83,9 @@ describe('Testing SetAccountName component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
             describe('onDonePress', () => {
-                it('should call setAccountName prop method with trimmed accountName state prop', () => {
+                it('should call setAdditionalAccountInfo prop method with trimmed accountName state prop', () => {
                     const props = getProps({
-                        setAccountName: jest.fn(),
+                        setAdditionalAccountInfo: jest.fn(),
                     });
 
                     const wrapper = shallow(<SetAccountName {...props} />);
@@ -97,15 +93,18 @@ describe('Testing SetAccountName component', () => {
                     const inst = wrapper.instance();
                     inst.onDonePress();
 
-                    expect(props.setAccountName).toHaveBeenCalledWith('foo');
+                    expect(props.setAdditionalAccountInfo).toHaveBeenCalledWith({
+                        addingAdditionalAccount: true,
+                        additionalAccountName: 'foo',
+                        additionalAccountType: 'keychain',
+                        usedExistingSeed: false,
+                    });
                 });
 
                 it('should call update accountName prop in state with text when onChangeText prop method on CustomTextInput is triggered', () => {
                     const props = getProps();
 
                     const wrapper = shallow(<SetAccountName {...props} />);
-
-                    expect(wrapper.state('accountName')).toEqual('MAIN ACCOUNT');
 
                     wrapper
                         .find('CustomTextInput')

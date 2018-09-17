@@ -24,14 +24,10 @@ import {
     selectLatestAddressFromAccountFactory,
 } from 'shared-modules/selectors/accounts';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
-import {
-    getFromKeychainRequest,
-    getFromKeychainSuccess,
-    getFromKeychainError,
-} from 'shared-modules/actions/keychain';
+import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getSeedFromKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 import GENERAL from 'ui/theme/general';
 import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
@@ -39,7 +35,6 @@ import { Icon } from 'ui/theme/icons';
 import ScramblingText from 'ui/components/ScramblingText';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
-import { getAddressGenFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -415,13 +410,14 @@ class Receive extends Component {
         this.startLetterScramble();
         this.triggerRefreshAnimations();
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
-        const seed = await getSeedFromKeychain(password, selectedAccountName);
-        if (seed === null) {
+
+        try {
+            const vault = new Vault[selectedAccountData.type || 'keychain'](password, selectedAccountName);
+            this.props.getFromKeychainSuccess('receive', 'addressGeneration');
+            this.props.generateNewAddress(vault, selectedAccountName, selectedAccountData);
+        } catch (err) {
             return error();
         }
-        this.props.getFromKeychainSuccess('receive', 'addressGeneration');
-        const genFn = getAddressGenFn();
-        this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData, genFn);
     }
 
     clearInteractions() {

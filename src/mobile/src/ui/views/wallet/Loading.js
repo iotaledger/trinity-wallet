@@ -12,24 +12,18 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
-import {
-    getAccountInfo,
-    getFullAccountInfoFirstSeed,
-    getFullAccountInfoAdditionalSeed,
-} from 'shared-modules/actions/accounts';
+import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
-import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import GENERAL from 'ui/theme/general';
-import { getSeedFromKeychain, storeSeedInKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import Button from 'ui/components/Button';
@@ -82,19 +76,17 @@ const styles = StyleSheet.create({
 class Loading extends Component {
     static propTypes = {
         /** @ignore */
-        firstUse: PropTypes.bool.isRequired,
-        /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
-        getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
-        /** @ignore */
-        getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
+        getFullAccountInfo: PropTypes.func.isRequired,
         /** Name for currently selected account */
-        selectedAccountName: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string,
+        /** Name for currently selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -108,9 +100,9 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
+        additionalAccountType: PropTypes.string.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
@@ -121,8 +113,6 @@ class Loading extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
-        /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         deepLinkActive: PropTypes.bool.isRequired,
         /** @ignore */
@@ -141,26 +131,28 @@ class Loading extends Component {
 
     componentDidMount() {
         const {
-            firstUse,
             addingAdditionalAccount,
             additionalAccountName,
+            additionalAccountType,
             selectedAccountName,
-            seed,
+            selectedAccountType,
             password,
             navigator,
-            t,
             deepLinkActive,
         } = this.props;
+
         leaveNavigationBreadcrumb('Loading');
         this.animation.play();
-        if (!firstUse && !addingAdditionalAccount) {
+
+        if (!addingAdditionalAccount) {
             this.setAnimationOneTimout();
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
         this.getWalletData();
-        if ((firstUse || addingAdditionalAccount) && !isAndroid) {
+        if (addingAdditionalAccount && !isAndroid) {
             this.animateElipses(['.', '..', ''], 0);
         }
+
         KeepAwake.activate();
         if (deepLinkActive) {
             this.props.changeHomeScreenRoute('send');
@@ -169,45 +161,19 @@ class Loading extends Component {
         }
         this.props.setSetting('mainSettings');
 
-        let genFn = null;
-
-        if (firstUse || addingAdditionalAccount) {
-            genFn = getMultiAddressGenFn();
+        if (addingAdditionalAccount) {
+            const vault = new Vault[additionalAccountType](password, additionalAccountName);
+            this.props.getFullAccountInfo(vault, additionalAccountName, navigator);
         } else {
-            genFn = getAddressGenFn();
+            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            this.props.getAccountInfo(vault, selectedAccountName, navigator);
         }
-
-        if (!firstUse && addingAdditionalAccount) {
-            return this.props.getFullAccountInfoAdditionalSeed(
-                seed,
-                additionalAccountName,
-                password,
-                storeSeedInKeychain,
-                navigator,
-                genFn,
-            );
-        }
-
-        getSeedFromKeychain(password, selectedAccountName).then((currentSeed) => {
-            if (currentSeed === null) {
-                return this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongRestart'),
-                );
-            }
-            if (firstUse) {
-                this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator, genFn);
-            } else {
-                this.props.getAccountInfo(currentSeed, selectedAccountName, navigator, genFn);
-            }
-        });
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, firstUse, addingAdditionalAccount } = this.props;
+        const { ready, addingAdditionalAccount } = this.props;
         const isReady = !ready && newProps.ready;
-        if ((isReady && this.state.animationPartOneDone) || (isReady && (firstUse || addingAdditionalAccount))) {
+        if ((isReady && this.state.animationPartOneDone) || (isReady && addingAdditionalAccount)) {
             this.launchHomeScreen();
         }
     }
@@ -302,7 +268,7 @@ class Loading extends Component {
     };
 
     render() {
-        const { firstUse, t, addingAdditionalAccount, theme: { body, primary } } = this.props;
+        const { t, addingAdditionalAccount, theme: { body, primary } } = this.props;
         const { displayNodeChangeOption } = this.state;
         const textColor = { color: body.color };
         const isBgLight = tinycolor(body.bg).isLight();
@@ -310,7 +276,7 @@ class Loading extends Component {
         const welcomeAnimationPartOnePath = isBgLight ? blackWelcomeAnimationPartOne : whiteWelcomeAnimationPartOne;
         const welcomeAnimationPartTwoPath = isBgLight ? blackWelcomeAnimationPartTwo : whiteWelcomeAnimationPartTwo;
 
-        if (firstUse || addingAdditionalAccount) {
+        if (addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
                     <DynamicStatusBar backgroundColor={body.bg} />
@@ -392,11 +358,11 @@ class Loading extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    firstUse: state.accounts.firstUse,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     additionalAccountName: state.wallet.additionalAccountName,
-    seed: state.wallet.seed,
+    additionalAccountType: state.wallet.additionalAccountType,
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,
@@ -408,13 +374,11 @@ const mapDispatchToProps = {
     changeHomeScreenRoute,
     setSetting,
     getAccountInfo,
-    getFullAccountInfoFirstSeed,
-    getFullAccountInfoAdditionalSeed,
+    getFullAccountInfo,
     getMarketData,
     getPrice,
     getChartData,
     getCurrencyData,
-    generateAlert,
     setLoginRoute,
 };
 

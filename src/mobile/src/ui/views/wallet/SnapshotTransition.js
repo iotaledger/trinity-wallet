@@ -14,19 +14,23 @@ import {
     cancelSnapshotTransition,
 } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'shared-modules/selectors/accounts';
+import {
+    getSelectedAccountName,
+    getSelectedAccountType,
+    getAddressesForSelectedAccount,
+} from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import ModalButtons from 'ui/components/ModalButtons';
 import GENERAL from 'ui/theme/general';
-import { getSeedFromKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import ProgressBar from 'ui/components/ProgressBar';
-import { getMultiAddressGenFn, getPowFn } from 'libs/nativeModules';
+import { getPowFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -124,6 +128,8 @@ class SnapshotTransition extends Component {
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Currently selected account type */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -176,22 +182,10 @@ class SnapshotTransition extends Component {
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
-        const { transitionAddresses, selectedAccountName, password } = this.props;
+        const { transitionAddresses, selectedAccountName, selectedAccountType, password } = this.props;
         setTimeout(() => {
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        throw new Error('Error');
-                    } else {
-                        this.props.completeSnapshotTransition(
-                            seed,
-                            selectedAccountName,
-                            transitionAddresses,
-                            getPowFn(),
-                        );
-                    }
-                })
-                .catch((err) => console.error(err));
+            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            this.props.completeSnapshotTransition(vault, selectedAccountName, transitionAddresses, getPowFn());
         }, 300);
     }
 
@@ -200,18 +194,12 @@ class SnapshotTransition extends Component {
      * @method onBalanceIncompletePress
      */
     onBalanceIncompletePress() {
-        const genFn = getMultiAddressGenFn();
-        const { transitionAddresses, password, selectedAccountName } = this.props;
+        const { transitionAddresses, password, selectedAccountName, selectedAccountType } = this.props;
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
         setTimeout(() => {
-            getSeedFromKeychain(password, selectedAccountName).then((seed) => {
-                if (seed === null) {
-                    throw new Error('Error');
-                } else {
-                    this.props.generateAddressesAndGetBalance(seed, currentIndex, genFn);
-                }
-            });
+            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            this.props.generateAddressesAndGetBalance(vault, currentIndex);
         }, 300);
     }
 
@@ -221,18 +209,10 @@ class SnapshotTransition extends Component {
      * @method onSnapshotTransitionPress
      */
     onSnapshotTransitionPress() {
-        const { addresses, shouldPreventAction, password, selectedAccountName, t } = this.props;
+        const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountType, t } = this.props;
         if (!shouldPreventAction) {
-            const genFn = getMultiAddressGenFn();
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        throw new Error('Error');
-                    } else {
-                        this.props.transitionForSnapshot(seed, addresses, genFn);
-                    }
-                })
-                .catch((err) => console.error(err));
+            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            this.props.transitionForSnapshot(vault, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -404,6 +384,7 @@ const mapStateToProps = (state) => ({
     transitionAddresses: state.wallet.transitionAddresses,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     shouldPreventAction: shouldPreventAction(state),
     addresses: getAddressesForSelectedAccount(state),
     isAttachingToTangle: state.ui.isAttachingToTangle,

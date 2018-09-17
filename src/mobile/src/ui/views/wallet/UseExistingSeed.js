@@ -1,10 +1,9 @@
 import trim from 'lodash/trim';
-import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
@@ -13,7 +12,7 @@ import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -195,12 +194,16 @@ class UseExistingSeed extends Component {
      * Navigates to loading screen
      * @method fetchAccountInfo
      */
-    fetchAccountInfo(seed, accountName) {
-        const { theme: { body } } = this.props;
+    async fetchAccountInfo(seed, accountName) {
+        const { password, theme: { body } } = this.props;
+
+        const vault = new Vault.keychain(password);
+        await vault.accountAdd(accountName, seed);
 
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
+            additionalAccountType: 'keychain',
             seed,
             usedExistingSeed: true,
         });
@@ -260,28 +263,19 @@ class UseExistingSeed extends Component {
             if (shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
-            getAllSeedsFromKeychain(password)
-                .then((seedInfo) => {
-                    if (isNull(seedInfo)) {
-                        return this.fetchAccountInfo(seed, accountName);
-                    }
-                    if (hasDuplicateAccountName(seedInfo, accountName)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:nameInUse'),
-                            t('addAdditionalSeed:nameInUseExplanation'),
-                        );
-                    } else if (hasDuplicateSeed(seedInfo, seed)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:seedInUse'),
-                            t('addAdditionalSeed:seedInUseExplanation'),
-                        );
-                    }
-                    Clipboard.setString(' ');
-                    return this.fetchAccountInfo(seed, accountName);
-                })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+
+            const vault = new Vault.keychain(password);
+            const isUniqeSeed = vault.uniqueSeed(password, seed);
+
+            if (!isUniqeSeed) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:seedInUse'),
+                    t('addAdditionalSeed:seedInUseExplanation'),
+                );
+            }
+
+            return this.fetchAccountInfo(seed, accountName);
         }
     }
 

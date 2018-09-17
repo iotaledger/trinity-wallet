@@ -5,7 +5,7 @@ import {
     getSelectedNodeFromState,
 } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
-import { clearWalletData, setSeedIndex } from './wallet';
+import { setSeedIndex } from './wallet';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
@@ -383,17 +383,13 @@ export const getFullAccountInfo = (vault, accountName, navigator = null) => {
         )(getAccountData)(vault, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
-                
-                // If adding additional seed
-                if (existingAccountNames.length > 0) {
-                    dispatch(setSeedIndex(existingAccountNames.length));
-                    dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
-                }
-                
+
+                dispatch(setSeedIndex(existingAccountNames.length));
+                dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
+
                 result.accountType = getState().wallet.additionalAccountType;
 
                 dispatch(fullAccountInfoSeedFetchSuccess(result));
-
             })
             .catch((err) => {
                 const dispatchErrors = () => {

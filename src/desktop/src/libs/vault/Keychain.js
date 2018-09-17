@@ -29,16 +29,12 @@ class Keychain {
      * @returns {promise} - Resolves to a success boolean
      */
     accountAdd = async (accountId, seed) => {
-        try {
-            this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
+        this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
 
-            const vault = await encrypt(seed, this.key);
-            await Electron.setKeychain(this.accountId, vault);
+        const vault = await encrypt(seed, this.key);
+        await Electron.setKeychain(this.accountId, vault);
 
-            return true;
-        } catch (err) {
-            throw err;
-        }
+        return true;
     };
 
     /**
@@ -72,18 +68,14 @@ class Keychain {
             throw new Error('Incorrect seed name');
         }
 
-        try {
-            await decrypt(vault, this.key);
+        await decrypt(vault, this.key);
 
-            await Electron.removeKeychain(this.accountId);
-            await Electron.setKeychain(newID, vault);
+        await Electron.removeKeychain(this.accountId);
+        await Electron.setKeychain(newID, vault);
 
-            this.accountId = newID;
+        this.accountId = newID;
 
-            return true;
-        } catch (err) {
-            throw err;
-        }
+        return true;
     };
 
     /**
@@ -99,30 +91,26 @@ class Keychain {
             throw new Error('Local storage not available');
         }
 
-        try {
-            const accounts = Object.keys(vault);
+        const accounts = Object.keys(vault);
 
-            if (!accounts.length) {
-                return true;
-            }
-
-            for (let i = 0; i < accounts.length; i++) {
-                const account = vault[i];
-
-                if (account.account === `${ACC_MAIN}-salt`) {
-                    continue;
-                }
-
-                const decryptedVault = await decrypt(account.password, key);
-                const encryptedVault = await encrypt(decryptedVault, keyNew);
-
-                await Electron.setKeychain(account.account, encryptedVault);
-            }
-
+        if (!accounts.length) {
             return true;
-        } catch (err) {
-            throw err;
         }
+
+        for (let i = 0; i < accounts.length; i++) {
+            const account = vault[i];
+
+            if (account.account === `${ACC_MAIN}-salt`) {
+                continue;
+            }
+
+            const decryptedVault = await decrypt(account.password, key);
+            const encryptedVault = await encrypt(decryptedVault, keyNew);
+
+            await Electron.setKeychain(account.account, encryptedVault);
+        }
+
+        return true;
     };
 
     /**
@@ -185,19 +173,15 @@ class Keychain {
             throw new Error('Incorrect seed name');
         }
 
-        try {
-            const decryptedVault = await decrypt(vault, this.key);
-            if (rawTrits) {
-                let trits = [];
-                for (let i = 0; i < decryptedVault.length; i++) {
-                    trits = trits.concat(byteToTrit(decryptedVault[i]));
-                }
-                return trits;
+        const decryptedVault = await decrypt(vault, this.key);
+        if (rawTrits) {
+            let trits = [];
+            for (let i = 0; i < decryptedVault.length; i++) {
+                trits = trits.concat(byteToTrit(decryptedVault[i]));
             }
-            return decryptedVault;
-        } catch (err) {
-            throw err;
+            return trits;
         }
+        return decryptedVault;
     };
 
     /**

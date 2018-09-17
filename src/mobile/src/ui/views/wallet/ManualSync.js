@@ -6,11 +6,10 @@ import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'shared-modules/actions/accounts';
-import { getSeedFromKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 import { width, height } from 'libs/dimensions';
-import { getMultiAddressGenFn } from 'libs/nativeModules';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
@@ -86,6 +85,8 @@ export class ManualSync extends Component {
         password: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Account name for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -97,23 +98,11 @@ export class ManualSync extends Component {
     }
 
     sync() {
-        const { password, selectedAccountName, t, shouldPreventAction } = this.props;
+        const { password, selectedAccountName, selectedAccountType, t, shouldPreventAction } = this.props;
 
         if (!shouldPreventAction) {
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongTryAgain'),
-                        );
-                    }
-
-                    const genFn = getMultiAddressGenFn();
-                    this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
+            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            this.props.manuallySyncAccount(vault, selectedAccountName);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -202,6 +191,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     shouldPreventAction: shouldPreventAction(state),
 });
 

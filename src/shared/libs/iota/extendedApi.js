@@ -1,5 +1,4 @@
 import head from 'lodash/head';
-import isNull from 'lodash/isNull';
 import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';

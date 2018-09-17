@@ -9,7 +9,11 @@ import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
 import { clearLog } from 'shared-modules/actions/alerts';
-import { getBalanceForSelectedAccount, getBalanceForSelectedAccount, selectAccountInfo } from 'shared-modules/selectors/accounts';
+import {
+    getBalanceForSelectedAccount,
+    getAccountNamesFromState,
+    selectAccountInfo,
+} from 'shared-modules/selectors/accounts';
 import {
     StatusBar,
     View,

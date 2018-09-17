@@ -21,10 +21,6 @@ const initialState = {
      */
     usedExistingSeed: false,
     /**
-     * Account name set by user during initial account setup
-     */
-    accountName: 'MAIN WALLET',
-    /**
      * Active account index from the list of added account names
      */
     seedIndex: 0,
@@ -131,13 +127,12 @@ export default (state = initialState, action) => {
                 seed: Array(82).join(' '),
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
-                additionalAccountType: ''
+                additionalAccountType: '',
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
                 ready: true,
-                addingAdditionalAccount: false,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
