@@ -23,7 +23,6 @@ import {
 import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
-    selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
     getNodesFromState,
     getSelectedNodeFromState,
@@ -570,8 +569,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
             .then((options) => {
-                const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
-                const transfer = prepareTransferArray(address, value, message, firstAddress);
+                const transfer = prepareTransferArray(address, value, message, accountState.addresses);
 
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());

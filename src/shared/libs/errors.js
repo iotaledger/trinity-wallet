@@ -22,4 +22,5 @@ export default {
     ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
     SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
     NO_NODE_TO_RETRY: 'No node to retry.',
+    EMPTY_ADDRESS_DATA: 'Empty address data.',
 };
