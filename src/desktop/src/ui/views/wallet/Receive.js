@@ -10,6 +10,7 @@ import { selectLatestAddressFromAccountFactory, selectAccountInfo, getSelectedAc
 import { generateAlert } from 'actions/alerts';
 import { generateNewAddress } from 'actions/wallet';
 
+import { byteToChar } from 'libs/helpers';
 import { getSeed, randomBytes } from 'libs/crypto';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
@@ -128,10 +129,7 @@ class Receive extends React.PureComponent {
                     >
                         <p>
                             {receiveAddress.split('').map((char, index) => {
-                                const scrambleChar =
-                                    scramble[index] > 0
-                                        ? '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(scramble[index] % 27)
-                                        : null;
+                                const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
                                 return <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>;
                             })}
                         </p>

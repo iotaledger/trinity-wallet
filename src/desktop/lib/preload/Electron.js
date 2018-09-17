@@ -11,7 +11,7 @@ const argon2 = require('argon2');
 const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
-const { byteToTrit } = require('../../src/libs/helpers');
+const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -59,7 +59,7 @@ const Electron = {
                 typeof content === 'string'
                     ? content
                     : Array.from(content)
-                          .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
+                          .map((byte) => byteToChar(byte))
                           .join('');
             clipboard.writeText(clip);
             if (typeof content !== 'string') {
