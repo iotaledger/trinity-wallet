@@ -4,6 +4,7 @@ import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Navigation } from 'react-native-navigation';
 import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
     enPrivacyPolicyAndroid,
@@ -49,8 +50,6 @@ const styles = StyleSheet.create({
 /** Welcome screen component */
 class PrivacyPolicy extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -88,19 +87,35 @@ class PrivacyPolicy extends Component {
     }
 
     onNextPress() {
-        const { theme } = this.props;
+        const { theme: { body } } = this.props;
         this.props.acceptPrivacy();
-        this.props.navigator.push({
-            screen: 'walletSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'walletSetup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

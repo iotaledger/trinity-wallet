@@ -61,13 +61,28 @@ const renderInitialScreen = (initialScreen) => {
     Navigation.events().registerAppLaunchedListener(() => {
         Navigation.setRoot({
             root: {
-                component: {
-                    name: initialScreen,
-                },
-                options: {
-                    layout: {
-                        backgroundColor: '181818',
-                        orientation: ['portrait'],
+                stack: {
+                    id: 'appStack',
+                    children: [
+                        {
+                            component: {
+                                name: initialScreen,
+                            },
+                        },
+                    ],
+                    options: {
+                        layout: {
+                            backgroundColor: '#181818',
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                        },
                     },
                 },
             },

@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
@@ -69,14 +70,14 @@ const styles = StyleSheet.create({
 /** Seed Reentry component */
 class SeedReentry extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         seed: PropTypes.string.isRequired,
         /** @ignore */
@@ -114,17 +115,33 @@ class SeedReentry extends Component {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            this.props.navigator.push({
-                screen: 'setAccountName',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+            Navigation.push('appStack', {
+                component: {
+                    name: 'setAccountName',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            statusBarColor: body.bg,
+                        },
+                    },
                 },
-                animated: false,
             });
             this.setState({ seed: '' });
         } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
@@ -143,17 +160,7 @@ class SeedReentry extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**

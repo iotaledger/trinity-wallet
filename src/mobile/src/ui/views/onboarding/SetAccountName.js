@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setAccountName, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
@@ -20,8 +21,6 @@ import { Icon } from 'ui/theme/icons';
 import GENERAL from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-
-console.ignoredYellowBox = true;
 
 const styles = StyleSheet.create({
     container: {
@@ -58,8 +57,8 @@ const styles = StyleSheet.create({
 /** Set Account Name component */
 export class SetAccountName extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         setAccountName: PropTypes.func.isRequired,
         /** @ignore */
@@ -173,17 +172,7 @@ export class SetAccountName extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -219,33 +208,33 @@ export class SetAccountName extends Component {
      */
     navigateTo(screen) {
         const { theme: { body } } = this.props;
-
-        if (screen === 'loading') {
-            return this.props.navigator.push({
-                screen,
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: screen,
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
                 },
-                animated: false,
-                overrideBackPress: true,
-            });
-        }
-        return this.props.navigator.push({
-            screen,
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
             },
-            animated: false,
         });
     }
 

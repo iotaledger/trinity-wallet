@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { setFingerprintStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
@@ -76,6 +77,8 @@ const styles = StyleSheet.create({
 /** Fingerprint enable component */
 class FingerprintEnable extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -86,8 +89,6 @@ class FingerprintEnable extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -204,9 +205,7 @@ class FingerprintEnable extends Component {
     }
 
     navigateToHome() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     hideModal() {

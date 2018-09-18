@@ -3,10 +3,11 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
 import { setFirstUse } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import Fonts from 'ui/theme/fonts';
@@ -61,8 +62,6 @@ class Disable2FA extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -112,17 +111,30 @@ class Disable2FA extends Component {
      */
     goBack() {
         const { theme: { bar, body } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: bar.alt,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'home',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: bar.alt,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

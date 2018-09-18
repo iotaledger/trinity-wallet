@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
 import i18next from 'i18next';
+import { Navigation } from 'react-native-navigation';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
 import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
@@ -31,8 +32,6 @@ const styles = StyleSheet.create({
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** Currently selected application mode (Expert or Standard) */
         mode: PropTypes.string.isRequired,
         /** @ignore */
@@ -81,17 +80,30 @@ export class MainSettings extends Component {
         this.props.toggleModalActivity();
         this.props.clearWalletData();
         this.props.setPassword({});
-        this.props.navigator.resetTo({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

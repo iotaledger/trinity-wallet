@@ -4,6 +4,7 @@ import authenticator from 'authenticator';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
+import { Navigation } from 'react-native-navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
 /** Two factor authentication setup component */
 export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -115,9 +116,7 @@ export class TwoFactorSetupAddKey extends Component {
      * @method goBack
      */
     goBack() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -130,20 +129,32 @@ export class TwoFactorSetupAddKey extends Component {
 
         return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
-                this.props.navigator.push({
-                    screen: 'twoFactorSetupEnterToken',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: body.bg,
-                        tabBarHidden: true,
-                        drawUnderTabBar: true,
-                    },
-                    animated: false,
-                    appStyle: {
-                        orientation: 'portrait',
+                Navigation.push('appStack', {
+                    component: {
+                        name: 'twoFactorSetupEnterToken',
+                        options: {
+                            animations: {
+                                push: {
+                                    enable: false,
+                                },
+                                pop: {
+                                    enable: false,
+                                },
+                            },
+                            layout: {
+                                backgroundColor: body.bg,
+                                orientation: ['portrait'],
+                            },
+                            topBar: {
+                                visible: false,
+                                drawBehind: true,
+                                elevation: 0,
+                            },
+                            statusBar: {
+                                drawBehind: true,
+                                statusBarColor: body.bg,
+                            },
+                        },
                     },
                 });
             })

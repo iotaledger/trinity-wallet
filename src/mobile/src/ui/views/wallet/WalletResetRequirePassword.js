@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { setFirstUse, setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, setPassword } from 'shared-modules/actions/wallet';
@@ -47,6 +48,8 @@ const styles = StyleSheet.create({
  */
 class WalletResetRequirePassword extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -65,8 +68,6 @@ class WalletResetRequirePassword extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
     };
@@ -99,17 +100,7 @@ class WalletResetRequirePassword extends Component {
      * @method goBack
      */
     goBack() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -128,17 +119,30 @@ class WalletResetRequirePassword extends Component {
      */
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'languageSetup',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

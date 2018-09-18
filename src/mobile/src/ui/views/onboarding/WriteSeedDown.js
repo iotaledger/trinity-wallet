@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -69,8 +70,8 @@ const styles = StyleSheet.create({
 /** Write Seed Down component */
 class WriteSeedDown extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -88,7 +89,7 @@ class WriteSeedDown extends Component {
             isModalActive: false,
         };
         this.openModal = this.openModal.bind(this);
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
@@ -105,20 +106,6 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     * Hides navigation bar
-     *
-     * @method onNavigatorEvent
-     * @param {object} event
-     */
-    onNavigatorEvent(event) {
-        if (event.id === 'willAppear') {
-            this.props.navigator.toggleNavBar({
-                to: 'hidden',
-            });
-        }
-    }
-
-    /**
      * Wrapper method for printing a blank paper wallet
      * @method onPrintPress
      */
@@ -131,7 +118,7 @@ class WriteSeedDown extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        this.props.navigator.pop({ animated: false });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -166,13 +153,28 @@ class WriteSeedDown extends Component {
             </body>
             </html>`;
         try {
-            this.props.navigator.toggleNavBar({
-                to: 'shown',
+            Navigation.mergeOptions('appStack', {
+                topBar: {
+                    visible: true,
+                },
             });
             await RNPrint.print({ html: blankWalletHTML });
         } catch (err) {
-            console.error(err);
+            console.error(err); // eslint-disable-line no-console
         }
+    }
+
+    /**
+     * Hides navigation bar
+     *
+     * @method componentDidAppear
+     */
+    componentDidAppear() {
+        Navigation.mergeOptions('appStack', {
+            topBar: {
+                visible: false,
+            },
+        });
     }
 
     openModal() {

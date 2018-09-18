@@ -35,43 +35,78 @@ function getGenerator(screen) {
 }
 
 export default function registerScreens(store, Provider) {
-    Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
-    Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
-    Navigation.registerComponent('newSeedSetup', () => getGenerator(NewSeedSetup), store, Provider);
-    Navigation.registerComponent('walletSetup', () => getGenerator(WalletSetup), store, Provider);
-    Navigation.registerComponent('enterSeed', () => getGenerator(EnterSeed), store, Provider);
-    Navigation.registerComponent('saveYourSeed', () => getGenerator(SaveYourSeed), store, Provider);
-    Navigation.registerComponent('setPassword', () => getGenerator(SetPassword), store, Provider);
-    Navigation.registerComponent('login', () => getGenerator(Login), store, Provider);
-    Navigation.registerComponent('writeSeedDown', () => getGenerator(WriteSeedDown), store, Provider);
-    Navigation.registerComponent('languageSetup', () => getGenerator(LanguageSetup), store, Provider);
-    Navigation.registerComponent('walletResetConfirm', () => getGenerator(WalletResetConfirmation), store, Provider);
-    Navigation.registerComponent(
+    Navigation.registerComponentWithRedux('home', () => getGenerator(Home), Provider, store);
+    Navigation.registerComponentWithRedux('loading', () => getGenerator(Loading), Provider, store);
+    Navigation.registerComponentWithRedux('newSeedSetup', () => getGenerator(NewSeedSetup), Provider, store);
+    Navigation.registerComponentWithRedux('walletSetup', () => getGenerator(WalletSetup), Provider, store);
+    Navigation.registerComponentWithRedux('enterSeed', () => getGenerator(EnterSeed), Provider, store);
+    Navigation.registerComponentWithRedux('saveYourSeed', () => getGenerator(SaveYourSeed), Provider, store);
+    Navigation.registerComponentWithRedux('setPassword', () => getGenerator(SetPassword), Provider, store);
+    Navigation.registerComponentWithRedux('login', () => getGenerator(Login), Provider, store);
+    Navigation.registerComponentWithRedux('writeSeedDown', () => getGenerator(WriteSeedDown), Provider, store);
+    Navigation.registerComponentWithRedux('languageSetup', () => getGenerator(LanguageSetup), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'walletResetConfirm',
+        () => getGenerator(WalletResetConfirmation),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
         'walletResetRequirePassword',
         () => getGenerator(WalletResetRequirePassword),
-        store,
         Provider,
+        store,
     );
-    Navigation.registerComponent('onboardingComplete', () => getGenerator(OnboardingComplete), store, Provider);
-    Navigation.registerComponent('setAccountName', () => getGenerator(SetAccountNameComponent), store, Provider);
-    Navigation.registerComponent('seedReentry', () => getGenerator(SeedReentry), store, Provider);
-    Navigation.registerComponent('saveSeedConfirmation', () => getGenerator(SaveSeedConfirmation), store, Provider);
-    Navigation.registerComponent(
+    Navigation.registerComponentWithRedux(
+        'onboardingComplete',
+        () => getGenerator(OnboardingComplete),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
+        'setAccountName',
+        () => getGenerator(SetAccountNameComponent),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux('seedReentry', () => getGenerator(SeedReentry), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'saveSeedConfirmation',
+        () => getGenerator(SaveSeedConfirmation),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
         'twoFactorSetupAddKey',
         () => getGenerator(TwoFactorSetupAddKeyComponent),
-        store,
         Provider,
+        store,
     );
-    Navigation.registerComponent(
+    Navigation.registerComponentWithRedux(
         'twoFactorSetupEnterToken',
         () => getGenerator(TwoFactorSetupEnterToken),
-        store,
         Provider,
+        store,
     );
-    Navigation.registerComponent('disable2FA', () => getGenerator(Disable2FA), store, Provider);
-    Navigation.registerComponent('fingerprintSetup', () => getGenerator(FingerprintSetup), store, Provider);
-    Navigation.registerComponent('termsAndConditions', () => getGenerator(TermsAndConditions), store, Provider);
-    Navigation.registerComponent('privacyPolicy', () => getGenerator(PrivacyPolicy), store, Provider);
-    Navigation.registerComponent('forceChangePassword', () => getGenerator(ForceChangePassword), store, Provider);
-    Navigation.registerComponent('seedVaultBackup', () => getGenerator(SeedVaultBackupComponent), store, Provider);
+    Navigation.registerComponentWithRedux('disable2FA', () => getGenerator(Disable2FA), Provider, store);
+    Navigation.registerComponentWithRedux('fingerprintSetup', () => getGenerator(FingerprintSetup), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'termsAndConditions',
+        () => getGenerator(TermsAndConditions),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux('privacyPolicy', () => getGenerator(PrivacyPolicy), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'forceChangePassword',
+        () => getGenerator(ForceChangePassword),
+        Provider,
+        store,
+    );
+    Navigation.registerComponentWithRedux(
+        'seedVaultBackup',
+        () => getGenerator(SeedVaultBackupComponent),
+        Provider,
+        store,
+    );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-markdown-renderer';
 import {
@@ -49,8 +50,6 @@ const styles = StyleSheet.create({
 /** Welcome screen component */
 class TermsAndConditions extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -92,19 +91,35 @@ class TermsAndConditions extends Component {
      * @method onNextPress
      */
     onNextPress() {
-        const { theme } = this.props;
+        const { theme: { bar } } = this.props;
         this.props.acceptTerms();
-        this.props.navigator.push({
-            screen: 'privacyPolicy',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: 'white',
-                drawUnderStatusBar: true,
-                statusBarColor: theme.bar.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'privacyPolicy',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: 'white',
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: bar.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

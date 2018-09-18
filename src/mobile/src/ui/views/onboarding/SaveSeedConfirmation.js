@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
 /** Seed Seed Confirmation component */
 class SaveSeedConfirmation extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -129,34 +130,40 @@ class SaveSeedConfirmation extends Component {
     }
 
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-                screenBackgroundColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     onNextPress() {
         const { theme: { body } } = this.props;
         const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
         if (hasSavedSeed && hasAgreedToNotCopyPaste) {
-            this.props.navigator.push({
-                screen: 'seedReentry',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+            Navigation.push('appStack', {
+                component: {
+                    name: 'seedReentry',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            statusBarColor: body.bg,
+                        },
+                    },
                 },
-                animated: false,
             });
         }
     }

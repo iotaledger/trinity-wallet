@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import Modal from 'react-native-modal';
@@ -82,8 +83,6 @@ const styles = StyleSheet.create({
 /** Wallet setup screen component */
 class WalletSetup extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -109,19 +108,34 @@ class WalletSetup extends Component {
      * @method redirectToEnterSeedScreen
      */
     redirectToEnterSeedScreen() {
-        const { theme } = this.props;
-
-        this.props.navigator.push({
-            screen: 'enterSeed',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        const { theme: { body } } = this.props;
+        Navigation.push('appStack', {
+            component: {
+                name: 'enterSeed',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -130,18 +144,34 @@ class WalletSetup extends Component {
      * @method redirectToNewSeedSetupScreen
      */
     redirectToNewSeedSetupScreen() {
-        const { theme } = this.props;
-        this.props.navigator.push({
-            screen: 'newSeedSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        const { theme: { body } } = this.props;
+        Navigation.push('appStack', {
+            component: {
+                name: 'newSeedSetup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

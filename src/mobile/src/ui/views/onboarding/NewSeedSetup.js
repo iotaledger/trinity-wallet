@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearSeed } from 'shared-modules/actions/wallet';
 import { setOnboardingSeed } from 'shared-modules/actions/ui';
@@ -116,8 +117,8 @@ const styles = StyleSheet.create({
 /** New Seed Setup component */
 class NewSeedSetup extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
         /** @ignore */
@@ -192,18 +193,47 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         if (this.state.randomised) {
-            this.props.navigator.push({
-                screen: 'saveYourSeed',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                    navBarButtonColor: isAndroid ? body.bg : 'black',
+            const buttonColor = isAndroid ? body.bg : 'black';
+            Navigation.push('appStack', {
+                component: {
+                    name: 'saveYourSeed',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            statusBarColor: body.bg,
+                        },
+                        rightButtons: [
+                            {
+                                color: buttonColor,
+                            },
+                        ],
+                        leftButtons: [
+                            {
+                                color: buttonColor,
+                            },
+                        ],
+                        backButton: {
+                            color: buttonColor,
+                        },
+                    },
                 },
-                animated: false,
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
@@ -211,23 +241,9 @@ class NewSeedSetup extends Component {
     }
 
     onBackPress() {
-        const { theme: { body } } = this.props;
         this.props.clearSeed();
         if (!this.props.onboardingComplete) {
-            this.props.navigator.pop({
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTranslucent: true,
-                    navBarTransparent: true,
-                    navBarBackgroundColor: 'transparent',
-                    topBarElevationShadowEnabled: false,
-                    navBarNoBorder: true,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
-                animated: false,
-            });
+            Navigation.pop(this.props.componentId);
         } else {
             this.goBack();
         }
@@ -235,17 +251,30 @@ class NewSeedSetup extends Component {
 
     goBack() {
         const { theme: { body, bar } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: bar.alt,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'home',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: bar.alt,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RNPrint from 'react-native-print';
 import RNSecureClipboard from 'react-native-secure-clipboard';
+import { Navigation } from 'react-native-navigation';
 import { getChecksum } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
@@ -92,8 +93,8 @@ const styles = StyleSheet.create({
 /** Save Your Seed component */
 class SaveYourSeed extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
         /** @ignore */
@@ -115,7 +116,7 @@ class SaveYourSeed extends Component {
         this.state = {
             isModalActive: false,
         };
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
@@ -139,34 +140,38 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Hide navigation bar when returning from print
-     * @method onNavigatorEvent
-     */
-    onNavigatorEvent(event) {
-        if (event.id === 'willAppear') {
-            this.props.navigator.toggleNavBar({
-                to: 'hidden',
-            });
-        }
-    }
-
-    /**
      * Navigates to save seed confirmation screen
      * @method onDonePress
      */
     onDonePress() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'saveSeedConfirmation',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'saveSeedConfirmation',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
         this.clearClipboard();
     }
@@ -176,18 +181,7 @@ class SaveYourSeed extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -196,18 +190,47 @@ class SaveYourSeed extends Component {
      */
     onWriteSeedDownPress() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'writeSeedDown',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-                navBarButtonColor: isAndroid ? body.bg : 'black',
+        const buttonColor = isAndroid ? body.bg : 'black';
+        Navigation.push('appStack', {
+            component: {
+                name: 'writeSeedDown',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                    rightButtons: [
+                        {
+                            color: buttonColor,
+                        },
+                    ],
+                    leftButtons: [
+                        {
+                            color: buttonColor,
+                        },
+                    ],
+                    backButton: {
+                        color: buttonColor,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -221,18 +244,33 @@ class SaveYourSeed extends Component {
 
     onExportSeedVaultPress() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'seedVaultBackup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-                navBarButtonColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'seedVaultBackup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -299,6 +337,18 @@ class SaveYourSeed extends Component {
             checksumString +
             '</svg>'
         );
+    }
+
+    /**
+     * Hide navigation bar when returning from print
+     * @method componentDidAppear
+     */
+    componentDidAppear() {
+        Navigation.mergeOptions('appStack', {
+            topBar: {
+                visible: false,
+            },
+        });
     }
 
     /**
@@ -370,8 +420,10 @@ class SaveYourSeed extends Component {
             timer.setTimeout(
                 'delayPrint',
                 () => {
-                    this.props.navigator.toggleNavBar({
-                        to: 'shown',
+                    Navigation.mergeOptions('appStack', {
+                        topBar: {
+                            visible: true,
+                        },
                     });
                     RNPrint.print({ html: paperWalletHTML });
                 },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { setOnboardingSeed } from 'shared-modules/actions/ui';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -65,14 +66,14 @@ const styles = StyleSheet.create({
 /** Enter seed component */
 class EnterSeed extends React.Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Determines if the application is minimised */
@@ -105,7 +106,7 @@ class EnterSeed extends React.Component {
      * Validate seed
      */
     onDonePress() {
-        const { t, theme } = this.props;
+        const { t, theme: { body } } = this.props;
         const { seed } = this.state;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
@@ -120,17 +121,33 @@ class EnterSeed extends React.Component {
                 FlagSecure.deactivate();
             }
             this.props.setOnboardingSeed(seed, true);
-            this.props.navigator.push({
-                screen: 'setAccountName',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    drawUnderStatusBar: true,
-                    topBarElevationShadowEnabled: false,
-                    statusBarColor: theme.body.bg,
-                    screenBackgroundColor: theme.body.bg,
+            Navigation.push('appStack', {
+                component: {
+                    name: 'setAccountName',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            statusBarColor: body.bg,
+                        },
+                    },
                 },
-                animated: false,
             });
         }
     }
@@ -140,9 +157,7 @@ class EnterSeed extends React.Component {
      * @method onBackPress
      */
     onBackPress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**

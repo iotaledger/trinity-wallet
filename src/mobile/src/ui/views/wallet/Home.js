@@ -59,8 +59,6 @@ class Home extends Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
@@ -333,7 +331,6 @@ class Home extends Component {
     render() {
         const {
             t,
-            navigator,
             inactive,
             minimised,
             isFingerprintEnabled,
@@ -362,7 +359,6 @@ class Home extends Component {
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                     <View style={{ flex: 4.72 }}>
                                         <TabContent
-                                            navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
                                             isKeyboardActive={isKeyboardActive}

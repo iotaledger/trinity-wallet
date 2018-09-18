@@ -8,6 +8,7 @@ import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part
 import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
 import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
 import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
+import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -85,8 +86,6 @@ class Loading extends Component {
         firstUse: PropTypes.bool.isRequired,
         /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
@@ -229,17 +228,30 @@ class Loading extends Component {
     onChangeNodePress() {
         const { theme: { body } } = this.props;
         this.props.setLoginRoute('nodeSelection');
-        this.props.navigator.resetTo({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -263,17 +275,30 @@ class Loading extends Component {
     launchHomeScreen() {
         const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
-        this.props.navigator.resetTo({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: bar.alt,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'home',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: bar.alt,
+                    },
+                },
             },
-            animated: false,
         });
         this.clearTimeouts();
         this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
