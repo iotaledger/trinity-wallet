@@ -401,7 +401,7 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {object} vault - Vault class object
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} receiveAddress
  * @param  {number} value
  * @param  {string} message
@@ -410,7 +410,10 @@ export const forceTransactionPromotion = (
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (vault, receiveAddress, value, message, accountName, powFn) => (dispatch, getState) => {
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, powFn) => (
+    dispatch,
+    getState,
+) => {
     dispatch(sendTransferRequest());
 
     const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
@@ -447,7 +450,7 @@ export const makeTransaction = (vault, receiveAddress, value, message, accountNa
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount()(accountState, vault);
+                    return syncAccount()(accountState, seedStore);
                 }
 
                 throw new Error(Errors.KEY_REUSE);
@@ -526,7 +529,7 @@ export const makeTransaction = (vault, receiveAddress, value, message, accountNa
                 return getAddressesUptoRemainder()(
                     accountState.addresses,
                     map(accountState.transfers, (tx) => tx),
-                    vault,
+                    seedStore,
                     [
                         // Make sure inputs are blacklisted
                         ...map(transferInputs, (input) => input.address),
@@ -570,7 +573,7 @@ export const makeTransaction = (vault, receiveAddress, value, message, accountNa
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return vault.prepareTransfers(transfer, options);
+                return seedStore.prepareTransfers(transfer, options);
             })
             .then((trytes) => {
                 if (!isZeroValue) {
@@ -688,7 +691,7 @@ export const makeTransaction = (vault, receiveAddress, value, message, accountNa
             })
             .then(() => {
                 return syncAccountAfterSpending()(
-                    vault,
+                    seedStore,
                     accountName,
                     cached.transactionObjects,
                     accountState,

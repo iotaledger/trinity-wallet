@@ -132,13 +132,13 @@ describe('libs: iota/addresses', () => {
 
     describe('#getAddressesUptoRemainder', () => {
         let addressData;
-        let vault;
+        let seedStore;
 
         let sandbox;
 
         before(() => {
             addressData = accounts.accountInfo.TEST.addresses;
-            vault = {
+            seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
             };
         });
@@ -156,7 +156,7 @@ describe('libs: iota/addresses', () => {
         describe('when current latest address is not blacklisted', () => {
             it('should return current latest address', () => {
                 return addressesUtils
-                    .getAddressesUptoRemainder()(addressData, [], vault, () => Promise.resolve([]), [
+                    .getAddressesUptoRemainder()(addressData, [], seedStore, () => Promise.resolve([]), [
                         'Z'.repeat(81),
                         'I'.repeat(81),
                     ])
@@ -171,7 +171,7 @@ describe('libs: iota/addresses', () => {
         describe('when current latest address is blacklisted', () => {
             describe('when newly generated address is not blacklisted', () => {
                 it('should generate new addresses and return latest unused address as the remainder address', () => {
-                    const addressGenFn = sinon.stub(vault, 'generateAddress');
+                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
 
                     // Return an empty response from findTransactions
                     // So that the very first address that is generated
@@ -183,7 +183,7 @@ describe('libs: iota/addresses', () => {
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
 
                     return addressesUtils
-                        .getAddressesUptoRemainder()(addressData, [], vault, [
+                        .getAddressesUptoRemainder()(addressData, [], seedStore, [
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                         ])
                         .then(({ remainderAddress }) => {
@@ -200,7 +200,7 @@ describe('libs: iota/addresses', () => {
                 });
 
                 it('should generate new addresses and merge it in address data', () => {
-                    const addressGenFn = sinon.stub(vault, 'generateAddress');
+                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
 
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
 
@@ -209,7 +209,7 @@ describe('libs: iota/addresses', () => {
                     const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
 
                     return addressesUtils
-                        .getAddressesUptoRemainder()(addressData, [], vault, [
+                        .getAddressesUptoRemainder()(addressData, [], seedStore, [
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                         ])
                         .then(({ addressDataUptoRemainder }) => {
@@ -237,7 +237,7 @@ describe('libs: iota/addresses', () => {
 
             describe('when newly generated address is blacklisted', () => {
                 it('should recursively generate new addresses till latest unused is not part of the blacklisted addresses list', () => {
-                    const addressGenFn = sinon.stub(vault, 'generateAddress');
+                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
 
                     const findTransactions = sinon.stub(iota.api, 'findTransactions');
                     const getBalances = sinon.stub(iota.api, 'getBalances');
@@ -267,7 +267,7 @@ describe('libs: iota/addresses', () => {
                     wereAddressesSpentFrom.onCall(3).yields(null, [false]);
 
                     return addressesUtils
-                        .getAddressesUptoRemainder()(addressData, [], vault, [
+                        .getAddressesUptoRemainder()(addressData, [], seedStore, [
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                             'U'.repeat(81),
                             'R'.repeat(81),
@@ -397,13 +397,13 @@ describe('libs: iota/addresses', () => {
     describe('#attachAndFormatAddress', () => {
         let address;
         let addressIndex;
-        let vault;
+        let seedStore;
 
         let sandbox;
 
         before(() => {
             address = 'U'.repeat(81);
-            vault = {
+            seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
             };
             addressIndex = 11;
@@ -425,7 +425,7 @@ describe('libs: iota/addresses', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, vault, null)
+                    .attachAndFormatAddress()(address, addressIndex, 10, seedStore, null)
                     .catch((error) => {
                         expect(error.message).to.equal('Address already attached.');
 
@@ -439,7 +439,7 @@ describe('libs: iota/addresses', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, vault, null)
+                    .attachAndFormatAddress()(address, addressIndex, 10, seedStore, null)
                     .then((result) => {
                         expect(result.addressData).to.eql({
                             ['U'.repeat(81)]: {
@@ -460,7 +460,7 @@ describe('libs: iota/addresses', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, vault, null)
+                    .attachAndFormatAddress()(address, addressIndex, 10, seedStore, null)
                     .then((result) => {
                         expect(result.transfer).to.eql([{}, {}]);
                         findTransactions.restore();
@@ -697,13 +697,13 @@ describe('libs: iota/addresses', () => {
 
     describe('#syncAddresses', () => {
         let addressData;
-        let vault;
+        let seedStore;
 
         let sandbox;
 
         before(() => {
             addressData = accounts.accountInfo.TEST.addresses;
-            vault = {
+            seedStore = {
                 generateAddress: (index) => Promise.resolve(accounts.accountInfo.TEST.addresses[index]),
             };
         });
@@ -725,7 +725,7 @@ describe('libs: iota/addresses', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
                     return addressesUtils
-                        .syncAddresses()(vault, addressData, [], () => Promise.resolve('A'.repeat(81)))
+                        .syncAddresses()(seedStore, addressData, [], () => Promise.resolve('A'.repeat(81)))
                         .then((newAddressData) => {
                             expect(newAddressData).to.eql(addressData);
 
@@ -745,7 +745,7 @@ describe('libs: iota/addresses', () => {
                     // address is spent. This yields true so new addresses will be generated
                     wereAddressesSpentFrom.onCall(0).yields(null, [true]);
 
-                    const addressGenFn = sinon.stub(vault, 'generateAddress');
+                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
 
                     const addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)];
 
@@ -781,7 +781,7 @@ describe('libs: iota/addresses', () => {
                     );
 
                     return addressesUtils
-                        .syncAddresses()(vault, addressData, [])
+                        .syncAddresses()(seedStore, addressData, [])
                         .then((newAddressData) => {
                             expect(newAddressData).to.not.eql(addressData);
 
@@ -939,12 +939,12 @@ describe('libs: iota/addresses', () => {
         let wereAddressesSpentFrom;
 
         let addressGenFn;
-        let vault;
+        let seedStore;
 
         let sandbox;
 
         before(() => {
-            vault = {
+            seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
             };
             firstBatchOfAddresses = [
@@ -971,7 +971,7 @@ describe('libs: iota/addresses', () => {
             sandbox = sinon.sandbox.create();
 
             sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-            addressGenFn = sandbox.stub(vault, 'generateAddress');
+            addressGenFn = sandbox.stub(seedStore, 'generateAddress');
 
             // First batch
             addressGenFn.onCall(0).resolves(firstBatchOfAddresses);
@@ -1031,7 +1031,7 @@ describe('libs: iota/addresses', () => {
 
         it('should return addresses till one unused', () => {
             return addressesUtils
-                .getFullAddressHistory()(vault)
+                .getFullAddressHistory()(seedStore)
                 .then((history) => {
                     expect(history.addresses).to.eql([...firstBatchOfAddresses, `${'A'.repeat(80)}9`]);
                 });
@@ -1039,7 +1039,7 @@ describe('libs: iota/addresses', () => {
 
         it('should return transaction hashes associated with addresses', () => {
             return addressesUtils
-                .getFullAddressHistory()(vault)
+                .getFullAddressHistory()(seedStore)
                 .then((history) => {
                     expect(history.hashes).to.eql(['9'.repeat(81)]);
                 });
@@ -1047,7 +1047,7 @@ describe('libs: iota/addresses', () => {
 
         it('should return balances associated with addresses', () => {
             return addressesUtils
-                .getFullAddressHistory()(vault)
+                .getFullAddressHistory()(seedStore)
                 .then((history) => {
                     expect(history.balances).to.eql([...firstBatchOfBalances.map((balance) => parseInt(balance)), 0]);
                 });
@@ -1055,7 +1055,7 @@ describe('libs: iota/addresses', () => {
 
         it('should return (local & remote) spent statuses for addresses', () => {
             return addressesUtils
-                .getFullAddressHistory()(vault)
+                .getFullAddressHistory()(seedStore)
                 .then((history) => {
                     expect(history.wereSpent).to.eql([
                         ...map(firstBatchOfSpentStatuses, (status, idx) => ({

@@ -8,7 +8,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'shared-modules/actions/accounts';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
@@ -101,8 +101,8 @@ export class ManualSync extends Component {
         const { password, selectedAccountName, selectedAccountType, t, shouldPreventAction } = this.props;
 
         if (!shouldPreventAction) {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.manuallySyncAccount(vault, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.manuallySyncAccount(seedStore, selectedAccountName);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }

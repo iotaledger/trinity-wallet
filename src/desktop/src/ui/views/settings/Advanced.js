@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import Vault from 'libs/vault';
+import { clearVault } from 'libs/crypto';
 
 import {
     changePowSettings,
@@ -63,10 +63,7 @@ class Advanced extends PureComponent {
         const { t, generateAlert } = this.props;
 
         try {
-            const vaults = Object.keys(Vault);
-            for (let i = 0; i < vaults.length; i++) {
-                await Vault[vaults[i]].clearVault();
-            }
+            clearVault();
             localStorage.clear();
             Electron.clearStorage();
             location.reload();

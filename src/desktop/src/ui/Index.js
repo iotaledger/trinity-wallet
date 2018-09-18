@@ -10,6 +10,8 @@ import { translate } from 'react-i18next';
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
+import { getAccountNamesFromState } from 'selectors/accounts';
+
 import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
@@ -39,7 +41,7 @@ import css from './index.scss';
 class App extends React.Component {
     static propTypes = {
         /** @ignore */
-        accounts: PropTypes.object.isRequired,
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         isBusy: PropTypes.bool.isRequired,
         /** @ignore */
@@ -178,7 +180,7 @@ class App extends React.Component {
      * @param {string} accountName - target account name
      */
     accountSwitch(accountName) {
-        const accountIndex = Object.keys(this.props.accounts.accountInfo).indexOf(accountName);
+        const accountIndex = this.props.accountNames.indexOf(accountName);
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');
@@ -270,7 +272,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.accounts,
+    accountNames: getAccountNamesFromState(state),
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,

@@ -12,7 +12,7 @@ import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import GENERAL from 'ui/theme/general';
 import { hash } from 'libs/keychain';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import InfoBox from './InfoBox';
@@ -265,8 +265,8 @@ class SeedVaultExportComponent extends Component {
         } else {
             const enteredPasswordHash = await hash(password);
             if (isEqual(enteredPasswordHash, storedPasswordHash)) {
-                const vault = new Vault[selectedAccountType](enteredPasswordHash, selectedAccountName);
-                const seed = await vault.getSeed();
+                const seedStore = new SeedStore[selectedAccountType](enteredPasswordHash, selectedAccountName);
+                const seed = await seedStore.getSeed();
 
                 this.props.setSeed(seed);
                 this.props.setAuthenticated(true);

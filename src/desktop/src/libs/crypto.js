@@ -152,6 +152,21 @@ export const authorize = async (key) => {
 };
 
 /**
+ * Clear the vault
+ * @returns {boolean} True if vault cleared
+ */
+export const clearVault = async () => {
+    const vault = await Electron.listKeychain();
+    const accounts = Object.keys(vault);
+
+    for (let i = 0; i < accounts.length; i++) {
+        await Electron.removeKeychain(vault[i].account);
+    }
+
+    return true;
+};
+
+/**
  * Hash text using SHA-256
  * @param {string} Password - Plain text to hash
  * @returns {string} SHA-256 hash

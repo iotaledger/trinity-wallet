@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -88,9 +88,9 @@ class SeedVerify extends React.PureComponent {
             history.push('/onboarding/account-name');
         } else {
             if (wallet.ready) {
-                const vault = await new Vault.keychain(wallet.password);
-                await vault.accountAdd(wallet.additionalAccountName, Electron.getOnboardingSeed());
-                
+                const seedStore = await new SeedStore.keychain(wallet.password);
+                await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
+
                 Electron.setOnboardingSeed(null);
 
                 history.push('/onboarding/login');

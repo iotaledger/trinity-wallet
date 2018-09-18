@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getSelectedAccountName, getSelectedAccountType, getAccountNamesFromState } from 'selectors/accounts';
 
 import { MAX_ACC_LENGTH } from 'libs/crypto';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 import { changeAccountName } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
@@ -39,7 +39,7 @@ class AccountName extends PureComponent {
     };
 
     /**
-     * Check for unique account name and change account name in wallet state and in Seed vault
+     * Check for unique account name and change account name in wallet state and in Seedstore object
      * @returns {undefined}
      **/
     async setAccountName() {
@@ -73,8 +73,8 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        const vault = await new Vault[accountType](password, accountName);
-        await vault.accountRename(newAccountName);
+        const seedStore = await new SeedStore[accountType](password, accountName);
+        await seedStore.renameAccount(newAccountName);
     }
 
     render() {

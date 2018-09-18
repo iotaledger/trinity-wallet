@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { capitalize } from 'libs/helpers';
 
 import { getAccountInfo } from 'actions/accounts';
@@ -57,9 +57,9 @@ class Dashboard extends React.PureComponent {
     updateAccount = async () => {
         const { password, accountName, accountType } = this.props;
 
-        const vault = await new Vault[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountType](password, accountName);
 
-        this.props.getAccountInfo(vault, accountName, null, Electron.notify);
+        this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
     };
 
     render() {

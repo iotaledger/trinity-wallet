@@ -28,7 +28,7 @@ class Keychain {
      * @param {array} seed - Byte array seed
      * @returns {promise} - Resolves to a success boolean
      */
-    accountAdd = async (accountId, seed) => {
+    addAccount = async (accountId, seed) => {
         this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
 
         const vault = await encrypt(seed, this.key);
@@ -40,7 +40,7 @@ class Keychain {
     /**
      * Remove account
      */
-    accountRemove = async () => {
+    removeAccount = async () => {
         if (!this.accountId) {
             throw new Error('Account not selected');
         }
@@ -59,7 +59,7 @@ class Keychain {
      * @param {string} accountName - New account name
      * @returns {boolean} Seed renamed success state
      */
-    accountRename = async (accountName) => {
+    renameAccount = async (accountName) => {
         const newID = await sha256(`${ACC_PREFIX}-${accountName}`);
 
         const vault = await Electron.readKeychain(this.accountId);
@@ -182,21 +182,6 @@ class Keychain {
             return trits;
         }
         return decryptedVault;
-    };
-
-    /**
-     * Clear the vault
-     * @returns {boolean} True if vault cleared
-     */
-    static clearVault = async () => {
-        const vault = await Electron.listKeychain();
-        const accounts = Object.keys(vault);
-
-        for (let i = 0; i < accounts.length; i++) {
-            await Electron.removeKeychain(vault[i].account);
-        }
-
-        return true;
     };
 
     /**

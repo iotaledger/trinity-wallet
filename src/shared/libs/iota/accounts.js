@@ -95,7 +95,7 @@ const organiseAccountState = (provider) => (accountName, partialAccountData) => 
  *   @param {string} provider
  *   @returns {function(object, string, function): Promise<object>}
  **/
-export const getAccountData = (provider) => (vault, accountName) => {
+export const getAccountData = (provider) => (seedStore, accountName) => {
     const bundleHashes = new Set();
 
     const cached = {
@@ -117,7 +117,7 @@ export const getAccountData = (provider) => (vault, accountName) => {
                 throw new Error(Errors.NODE_NOT_SYNCED);
             }
 
-            return getFullAddressHistory(provider)(vault);
+            return getFullAddressHistory(provider)(seedStore);
         })
         .then((history) => {
             data = { ...data, ...history };
@@ -177,12 +177,12 @@ export const getAccountData = (provider) => (vault, accountName) => {
  *
  *   @returns {function(object, object, function): Promise<object>}
  **/
-export const syncAccount = (provider) => (existingAccountState, vault, notificationFn) => {
+export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
     const thisStateCopy = cloneDeep(existingAccountState);
-    const rescanAddresses = typeof vault === 'object';
+    const rescanAddresses = typeof seedStore === 'object';
 
     return (rescanAddresses
-        ? syncAddresses(provider)(vault, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx))
+        ? syncAddresses(provider)(seedStore, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx))
         : Promise.resolve(thisStateCopy.addresses)
     )
         .then((latestAddressData) => {
@@ -293,13 +293,7 @@ export const syncAccount = (provider) => (existingAccountState, vault, notificat
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider) => (
-    vault,
-    name,
-    newTransfer,
-    accountState,
-    isValueTransfer,
-) => {
+export const syncAccountAfterSpending = (provider) => (seedStore, name, newTransfer, accountState, isValueTransfer) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
     const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
@@ -332,7 +326,7 @@ export const syncAccountAfterSpending = (provider) => (
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
-    return syncAddresses(provider)(vault, addressData, map(transfers, (tx) => tx)).then((newAddressData) => {
+    return syncAddresses(provider)(seedStore, addressData, map(transfers, (tx) => tx)).then((newAddressData) => {
         const newState = {
             ...accountState,
             transfers,

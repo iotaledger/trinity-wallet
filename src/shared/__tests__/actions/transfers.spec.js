@@ -246,11 +246,11 @@ describe('actions: transfers', () => {
 
     describe('#makeTransaction', () => {
         let powFn;
-        let vault;
+        let seedStore;
 
         before(() => {
             powFn = () => Promise.resolve('9'.repeat(27));
-            vault = {
+            seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
                 prepareTransfers: () => Promise.resolve(trytes.zeroValue),
             };
@@ -306,7 +306,7 @@ describe('actions: transfers', () => {
                 return store
                     .dispatch(
                         actions.makeTransaction(
-                            vault,
+                            seedStore,
                             'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                             0,
                             'TEST MESSAGE',
@@ -338,7 +338,7 @@ describe('actions: transfers', () => {
                 return store
                     .dispatch(
                         actions.makeTransaction(
-                            vault,
+                            seedStore,
                             'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                             0,
                             'TEST MESSAGE',
@@ -410,7 +410,7 @@ describe('actions: transfers', () => {
                     return store
                         .dispatch(
                             actions.makeTransaction(
-                                vault,
+                                seedStore,
                                 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                 2,
                                 'TEST MESSAGE',
@@ -448,7 +448,7 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    vault,
+                                    seedStore,
                                     'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                     2,
                                     'TEST MESSAGE',
@@ -493,7 +493,7 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    vault,
+                                    seedStore,
                                     'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                     200,
                                     'TEST MESSAGE',
@@ -541,7 +541,7 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    vault,
+                                    seedStore,
                                     'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                     100,
                                     'TEST MESSAGE',
@@ -594,7 +594,7 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    vault,
+                                    seedStore,
                                     'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLWWSWWTDSVX',
                                     2,
                                     'TEST MESSAGE',

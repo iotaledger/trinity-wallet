@@ -24,7 +24,7 @@ import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import ModalButtons from 'ui/components/ModalButtons';
 import GENERAL from 'ui/theme/general';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
@@ -184,8 +184,8 @@ class SnapshotTransition extends Component {
     onBalanceCompletePress() {
         const { transitionAddresses, selectedAccountName, selectedAccountType, password } = this.props;
         setTimeout(() => {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.completeSnapshotTransition(vault, selectedAccountName, transitionAddresses, getPowFn());
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses, getPowFn());
         }, 300);
     }
 
@@ -198,8 +198,8 @@ class SnapshotTransition extends Component {
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
         setTimeout(() => {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.generateAddressesAndGetBalance(vault, currentIndex);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
         }, 300);
     }
 
@@ -211,8 +211,8 @@ class SnapshotTransition extends Component {
     onSnapshotTransitionPress() {
         const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountType, t } = this.props;
         if (!shouldPreventAction) {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.transitionForSnapshot(vault, addresses);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }

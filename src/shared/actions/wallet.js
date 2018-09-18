@@ -315,17 +315,17 @@ export const setDeepLinkInactive = () => {
  *
  * @method generateNewAddress
  *
- * @param {object} vault - Vault class object
+ * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {object} existingAccountData
  * @param {function} genFn
  *
  * @returns {function(*): Promise<any>}
  */
-export const generateNewAddress = (vault, accountName, existingAccountData) => {
+export const generateNewAddress = (seedStore, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses()(vault, existingAccountData.addresses)
+        return syncAddresses()(seedStore, existingAccountData.addresses)
             .then((latestAddressData) => {
                 dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess());
@@ -343,13 +343,13 @@ export const generateNewAddress = (vault, accountName, existingAccountData) => {
  *
  * @method transitionForSnapshot
  *
- * @param {object} vault - Vault class object
+ * @param {object} seedStore - SeedStore class object
  * @param {array} addresses
  * @param {function} genFn
  *
  * @returns {function} - dispatch
  */
-export const transitionForSnapshot = (vault, addresses) => {
+export const transitionForSnapshot = (seedStore, addresses) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -357,7 +357,7 @@ export const transitionForSnapshot = (vault, addresses) => {
             dispatch(updateTransitionAddresses(addresses));
         } else {
             setTimeout(() => {
-                dispatch(generateAddressesAndGetBalance(vault, 0));
+                dispatch(generateAddressesAndGetBalance(seedStore, 0));
             });
         }
     };
@@ -368,14 +368,14 @@ export const transitionForSnapshot = (vault, addresses) => {
  *
  * @method completeSnapshotTransition
  *
- * @param {object} vault - Vault class object
+ * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
  * @param {function} powFn
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (vault, accountName, addresses, powFn) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, powFn) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -417,7 +417,7 @@ export const completeSnapshotTransition = (vault, accountName, addresses, powFn)
                                 address,
                                 index,
                                 relevantBalances[index],
-                                vault,
+                                seedStore,
                                 map(existingAccountState.transfers, (tx) => tx),
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
@@ -471,7 +471,7 @@ export const completeSnapshotTransition = (vault, accountName, addresses, powFn)
  *
  * @returns {function}
  */
-export const generateAddressesAndGetBalance = (vault, index) => {
+export const generateAddressesAndGetBalance = (seedStore, index) => {
     return (dispatch) => {
         const options = {
             index,
@@ -479,7 +479,7 @@ export const generateAddressesAndGetBalance = (vault, index) => {
             total: 20,
         };
 
-        vault
+        seedStore
             .generateAddress(options)
             .then((addresses) => {
                 dispatch(updateTransitionAddresses(addresses));

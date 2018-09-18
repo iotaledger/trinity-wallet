@@ -21,7 +21,7 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import GENERAL from 'ui/theme/general';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { isAndroid } from 'libs/device';
@@ -162,11 +162,11 @@ class Loading extends Component {
         this.props.setSetting('mainSettings');
 
         if (addingAdditionalAccount) {
-            const vault = new Vault[additionalAccountType](password, additionalAccountName);
-            this.props.getFullAccountInfo(vault, additionalAccountName, navigator);
+            const seedStore = new SeedStore[additionalAccountType](password, additionalAccountName);
+            this.props.getFullAccountInfo(seedStore, additionalAccountName, navigator);
         } else {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.getAccountInfo(vault, selectedAccountName, navigator);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.getAccountInfo(seedStore, selectedAccountName, navigator);
         }
     }
 

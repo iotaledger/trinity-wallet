@@ -285,7 +285,7 @@ const wereAddressesSpentFromAsync = (provider) => (addresses) =>
  * @returns {function(object, array, function, *, number, number): Promise<array>}
  */
 const sendTransferAsync = (provider, powFn) => (
-    vault,
+    seedStore,
     transfers,
     options = null,
     depth = DEFAULT_DEPTH,
@@ -296,7 +296,7 @@ const sendTransferAsync = (provider, powFn) => (
         transactionObjects: [],
     };
 
-    return vault
+    return seedStore
         .prepareTransfers(transfers, options)
         .then((trytes) => {
             cached.trytes = trytes;
