@@ -183,7 +183,7 @@ class SeedInput extends React.PureComponent {
                 if (updateImportName && accounts[0].title.length < MAX_ACC_LENGTH) {
                     setAdditionalAccountInfo({
                         addingAdditionalAccount: true,
-                        additionalAccountName: this.state.name,
+                        additionalAccountName: accounts[0].title,
                         additionalAccountType: 'keychain',
                     });
                 }
@@ -215,7 +215,7 @@ class SeedInput extends React.PureComponent {
         if (this.props.updateImportName && account.title.length < MAX_ACC_LENGTH) {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
-                additionalAccountName: this.state.name,
+                additionalAccountName: account.title,
                 additionalAccountType: 'keychain',
             });
         }

@@ -35,7 +35,7 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.wallet.additionalAccountName.length ? this.props.wallet.additionalAccountName : '',
+        name: this.props.wallet.additionalAccountName && this.props.wallet.additionalAccountName.length ? this.props.wallet.additionalAccountName : '',
     };
 
     /**
