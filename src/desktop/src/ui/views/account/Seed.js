@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToChar } from 'libs/crypto';
+import { byteToChar } from 'libs/helpers';
 
 import { getSelectedAccountName } from 'selectors/accounts';
 
@@ -77,7 +77,7 @@ class Seed extends PureComponent {
                                       if (index % 3 !== 0) {
                                           return null;
                                       }
-                                      const letter = byteToChar(byte % 27);
+                                      const letter = byteToChar(byte);
                                       return (
                                           <React.Fragment key={`${index}${letter}`}>
                                               {letter}
