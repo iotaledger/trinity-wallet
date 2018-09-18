@@ -19,7 +19,9 @@ export const DataForTimeframeSchema = {
 
 export const DataPointSchema = {
   name: 'DataPoint',
+  primaryKey: 'id',
   properties: {
+    id: 'string',
     x: 'int',
     y: 'float',
     time: 'int',

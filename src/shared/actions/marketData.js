@@ -147,6 +147,7 @@ export function getChartData(Realm) {
                 Realm.open({
                   path: 'Charts.realm',
                   schema: [ChartDataSchema, DataForTimeframeSchema, DataPointSchema],
+                  deleteRealmIfMigrationNeeded: true,
                 }).then((realm) => {
                   try {
                       let actualCurrency = '';
@@ -169,38 +170,26 @@ export function getChartData(Realm) {
                             for (let i = 0; i < formattedData.length; i++) {
                               const dataPoint = formattedData[i];
                               const pt = realm.create('DataPoint', {
+                                id: currentCurrency + currentTimeFrame + dataPoint.x,
                                 x: dataPoint.x,
                                 y: dataPoint.y,
                                 time: dataPoint.time
-                              });
+                              }, true);
                               dataPointArray.push(pt);
                             }
 
-                            let dataForTimeFrame = null;
-
-                            try {
-                              dataForTimeFrame = realm.create('DataForTimeframe', {
-                                timeframe: currentTimeFrame,
-                                data: dataPointArray,
-                              });
-                            } catch (e) {
-                              dataForTimeFrame = realm.create('DataForTimeframe', {
+                              console.log('DataForTimeframe update');
+                              const dataForTimeFrame = realm.create('DataForTimeframe', {
                                 timeframe: currentTimeFrame,
                                 data: dataPointArray,
                               }, true);
-                            }
 
-                            let chartData = null;
-
-                            try {
-                              chartData = realm.create('ChartData', {
-                                currency: currentCurrency
-                              });
-                            } catch (e) {
-                              chartData = realm.create('ChartData', {
+                              console.log('ChartData update');
+                              const chartData = realm.create('ChartData', {
                                 currency: currentCurrency
                               }, true);
-                            }
+
+                              console.log(chartData.data);
 
                             chartData.data.push(dataForTimeFrame);
 
