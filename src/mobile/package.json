@@ -23,7 +23,9 @@
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && yarn nodejs-deps",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
-    "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json"
+    "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -57,7 +59,7 @@
     "querystring-es3": "^0.2.1",
     "react": "16.0.0",
     "react-i18next": "^7.3.0",
-    "react-native": "0.51.0",
+    "react-native": "0.56.0",
     "react-native-camera": "^1.1.4",
     "react-native-crypto": "^2.0.2",
     "react-native-detect-navbar-android": "^0.2.0",
@@ -118,7 +120,8 @@
     "url": "^0.10.3",
     "util": "^0.10.3",
     "victory-native": "^0.16.2",
-    "vm-browserify": "0.0.4"
+    "vm-browserify": "0.0.4",
+    "snyk": "^1.95.3"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
@@ -205,5 +208,6 @@
     "tty": "tty-browserify",
     "vm": "vm-browserify",
     "tls": false
-  }
+  },
+  "snyk": true
 }
