@@ -138,7 +138,7 @@
         "mustBeStoredAppropriately": "必须恰当地存储种子。",
         "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内失去响应。",
         "isYourBalanceCorrect": "您的余额是正确的吗？",
-        "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
+        "ifYourBalanceIsNotCorrect": "如果余额不正确，很可能是因为您使用了快照前的种子。",
         "headToAdvancedSettingsForTransition": "请前往高级设置并执行快照转换。",
         "usingTrinityWalletWithKeePass": "结合Keepass2Android使用Trinity钱包",
         "signedTrytesBroadcastErrorExplanation": "广播您的交易时出现网络错误。",
@@ -146,7 +146,7 @@
         "addressesAlreadySpentFrom": "地址中的一个或多个已被使用过。",
         "problemSendingYourTransaction": "发送您的交易时出现问题。",
         "problemPerformingProofOfWork": "执行工作量证明时出现问题。",
-        "tryingAgainWithLocalPoW": "通过本地工作量证明重试中。",
+        "tryingAgainWithLocalPoW": "重新发起本地工作量证明。",
         "tryingAgainWithDifferentNode": "更换到其它节点重试中。",
         "errorFetchingAccountInformation": "获取帐户信息时出错。"
     },
@@ -158,12 +158,12 @@
         "nameInUse": "帐户名已被使用",
         "nameInUseExplanation": "请为您的种子使用唯一的帐户名。",
         "accountNameTooLong": "帐户名过长",
-        "accountNameTooLongExplanation": "帐户名的最大长度为 {{maxLength}} 个字符。",
+        "accountNameTooLongExplanation": "帐户名的最大长度为{{maxLength}}个字符。",
         "accountName": "账户名",
         "noNickname": "未输入账户名",
         "noNicknameExplanation": "请输入您的种子的帐户名。",
         "seedInUse": "种子已使用",
-        "seedInUseExplanation": "这个种子已经关联到您的钱包。请使用其它的种子。"
+        "seedInUseExplanation": "这个种子已经关联到您的钱包，请使用其它的种子。"
     },
     "changePassword": {
         "passwordUpdated": "密码已更新",
