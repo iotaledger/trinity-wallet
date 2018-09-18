@@ -204,8 +204,8 @@ class Login extends React.Component {
             } catch (err) {
                 generateAlert(
                     'error',
-                    t('unrecognizedAccount'),
-                    t('unrecognizedAccountExplanation', { accountName: err.accountName }),
+                    t('unrecognisedAccount'),
+                    t('unrecognisedAccountExplanation', { accountName: err.accountName }),
                 );
             }
         }
