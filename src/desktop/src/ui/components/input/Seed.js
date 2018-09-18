@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
-import { byteToChar, MAX_ACC_LENGTH } from 'libs/crypto';
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+import { byteToChar, charToByte } from 'libs/helpers';
 
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
@@ -97,7 +98,7 @@ class SeedInput extends React.PureComponent {
                 showScanner: false,
             }));
 
-            const seed = input.split('').map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()));
+            const seed = input.split('').map((char) => charToByte(char));
             Electron.garbageCollect();
 
             this.props.onChange(seed);
@@ -224,11 +225,11 @@ class SeedInput extends React.PureComponent {
             return true;
         }
 
-        const byte = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(key.toUpperCase());
+        const byte = charToByte(key.toUpperCase());
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
-            if (byte > -1 || key === 'Backspace') {
+            if (byte || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
 
                 const seed = this.props.seed.slice(0);

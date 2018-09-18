@@ -68,7 +68,9 @@ class SeedVerify extends React.PureComponent {
         if (
             isGenerated &&
             (seed.length !== Electron.getOnboardingSeed().length ||
-                !Electron.getOnboardingSeed().every((v, i) => v % 27 === seed[i] % 27))
+                !Electron.getOnboardingSeed().every(
+                    (v, i) => v[0] === seed[i][0] && v[1] === seed[i][1] && v[2] === seed[i][2],
+                ))
         ) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;

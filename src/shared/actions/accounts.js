@@ -441,7 +441,7 @@ export const markBundleBroadcastStatusComplete = (payload) => ({
  * Gets full account information for an additional seed added to the wallet.
  *
  * @method getFullAccountInfoAdditionalSeed
- * @param {string} seed
+ * @param {string | array} seed
  * @param {string} accountName
  * @param {string} password
  * @param {function} storeInKeychainPromise
@@ -501,7 +501,7 @@ export const getFullAccountInfoAdditionalSeed = (
  * Gets full account information for the first seed added to the wallet.
  *
  * @method getFullAccountInfoFirstSeed
- * @param  {string} seed
+ * @param  {string | array} seed
  * @param  {string} accountName
  * @param  {object} [navigator=null]
  * @param  {function} genFn
@@ -544,7 +544,7 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
  * Performs a manual sync for an account. Syncs full account information with the ledger.
  *
  * @method manuallySyncAccount
- * @param {string} seed
+ * @param {string | array} seed
  * @param {string} accountName
  * @param {function} genFn
  *
@@ -581,7 +581,7 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
  * Gets latest account information: including transfers, balance and spend status information.
  *
  * @method getAccountInfo
- * @param  {string} seed
+ * @param  {string | array} seed
  * @param  {string} accountName
  * @param  {object} [navigator=null]
  * @param  {function} genFn
