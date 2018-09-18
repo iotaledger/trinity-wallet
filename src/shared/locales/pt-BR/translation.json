@@ -222,7 +222,7 @@
         "followTutorialToSecurelyShareSeed": "Se você deseja armazenar sua semente em um Gerenciador de senhas, você deve seguir um tutorial do seguinte link"
     },
     "enterSeed": {
-        "invalidCharacters": "A Seed contém caracteres inválidos",
+        "invalidCharacters": "A seed contém caracteres inválidos",
         "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
         "seedTooLong": "A seed é muito longa",
@@ -321,9 +321,9 @@
         "enterYourSeed": "Digite sua seed",
         "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A seed informada está incorreta. Por favor, tente novamente.",
-        "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para a tela anterior e grave-a.",
+        "ifYouHaveNotSaved": "Se não fez backup da sua seed, por favor volte para a tela anterior e faça.",
         "enterSeedBelow": "Digite sua seed recém-criada abaixo para confirmar que fez o backup corretamente",
-        "clipboardWarning": "Não copie e cole sua Seed",
+        "clipboardWarning": "Não copie e cole sua seed",
         "clipboardWarningExplanation": "Aviso: A função copiar e colar está desativada para sua segurança."
     },
     "send": {
@@ -356,7 +356,7 @@
     "setSeedName": {
         "letsAddName": "Vamos adicionar um nome",
         "canUseMultipleSeeds": "Com sua carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
-        "youCanAdd": "Você poderá adicionar novas Seeds no menu de Configurações."
+        "youCanAdd": "Você poderá adicionar novas seeds no menu de Configurações."
     },
     "modeSelection": {
         "advanced": "Avançado",
