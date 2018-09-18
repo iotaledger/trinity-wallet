@@ -544,7 +544,7 @@ const isNodeSynced = (provider) => {
  *
  * @method generateAddressAsync
  *
- * @param {string} seed
+ * @param {string | array} seed
  * @param {number} index
  * @param {number} security
  * @param {function} addressGenFn

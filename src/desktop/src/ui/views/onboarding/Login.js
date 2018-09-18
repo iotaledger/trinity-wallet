@@ -117,8 +117,8 @@ class Login extends React.Component {
         let seed = '';
         try {
             seed = wallet.addingAdditionalAccount
-                ? Electron.getOnboardingSeed(true)
-                : await getSeed(wallet.password, accountName, true);
+                ? Electron.getOnboardingSeed()
+                : await getSeed(wallet.password, accountName);
         } catch (e) {
             e.accountName = accountName;
             throw e;
