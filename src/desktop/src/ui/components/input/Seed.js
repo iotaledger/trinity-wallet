@@ -123,7 +123,11 @@ class SeedInput extends React.PureComponent {
         });
     };
 
-    onTextDrop = async (seed) => {
+    /**
+     * Set valid length drag&drop seed to state
+     * @param {array} seed - Target seed byte array
+     */
+    onTextDrop = (seed) => {
         if (seed.length === MAX_SEED_LENGTH) {
             this.props.onChange(seed);
         }

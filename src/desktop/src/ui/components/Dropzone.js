@@ -15,12 +15,12 @@ import css from './dropzone.scss';
  */
 class Dropzone extends React.Component {
     static propTypes = {
-        /** Succesfull file drop callback
+        /** Succesful file drop callback
          * @param {buffer} FileBuffer - Droped file content buffer
          * @returns {undefined}
          */
         onDrop: PropTypes.func.isRequired,
-        /** Succesfull text drop
+        /** Succesful text drop
          * @param {array} seed - Seed byte array
          * @returns {undefined}
          */
