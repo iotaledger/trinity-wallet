@@ -8,8 +8,8 @@
     "author": "IOTA Foundation <contact@iota.org>",
     "license": "Apache-2.0",
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/iotaledger/trinity-wallet.git"
+        "type": "git",
+        "url": "git+https://github.com/iotaledger/trinity-wallet.git"
     },
     "main": "index.js",
     "scripts": {
@@ -43,11 +43,13 @@
         "eslint-plugin-react": "^7.7.0",
         "eslint-plugin-react-native": "^3.2.1",
         "husky": "^0.14.3",
-        "shared-modules": "./src/shared/",
         "lint-staged": "^4.2.3",
         "node-cmd": "^3.0.0",
         "os": "^0.1.1",
-        "prettier": "^1.11.0"
+        "prettier": "^1.11.0",
+        "shared-modules": "./src/shared/"
     },
-    "dependencies": {}
+    "dependencies": {
+        "snyk": "^1.95.3"
+    }
 }

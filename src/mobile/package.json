@@ -45,7 +45,6 @@
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
-    "shared-modules": "../shared/",
     "lodash": "^4.17.10",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
@@ -108,6 +107,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rn-fetch-blob": "^0.10.13",
+    "shared-modules": "../shared/",
+    "snyk": "../../node_modules/snyk",
     "stream": "0.0.2",
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
@@ -120,8 +121,7 @@
     "url": "^0.10.3",
     "util": "^0.10.3",
     "victory-native": "^0.16.2",
-    "vm-browserify": "0.0.4",
-    "snyk": "^1.95.3"
+    "vm-browserify": "0.0.4"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
