@@ -79,7 +79,11 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        await initKeychain();
+        try {
+            await initKeychain();
+        } catch (e) {
+            return generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+        }
 
         const passwordHash = await hash(password);
 
