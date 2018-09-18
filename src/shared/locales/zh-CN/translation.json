@@ -99,7 +99,7 @@
         "autopromotionErrorExplanation": "您选择的节点不支持远程工作量证明。请更换节点并重新启用自动促进功能。",
         "promotionError": "无法加速交易",
         "promotionErrorExplanation": "在促进交易时出现错误，请重试。",
-        "noLongerValid": "您想要加速的捆绑交易包已经失效",
+        "noLongerValid": "您想要加速的交易包已经失效",
         "transactionAlreadyConfirmed": "交易已经被确认",
         "transactionAlreadyConfirmedExplanation": "您要加速的交易已经确认。",
         "cannotSendToOwn": "正在发送到一个输入地址",
@@ -438,10 +438,10 @@
         "scrollToBottom": "滚动到底部"
     },
     "history": {
-        "bundleHashCopied": "捆绑包哈希值已复制",
+        "bundleHashCopied": "交易包哈希值已复制",
         "noTransactionsFound": "没有找到任何交易",
         "hideZeroBalance": "隐藏零余额",
-        "bundleHashCopiedExplanation": "捆绑包哈希值已复制到剪贴板。",
+        "bundleHashCopiedExplanation": "交易包哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
         "messageCopied": "消息已复制",
