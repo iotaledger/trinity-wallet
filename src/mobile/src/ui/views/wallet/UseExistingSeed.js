@@ -116,7 +116,7 @@ class UseExistingSeed extends Component {
 
         this.state = {
             seed: '',
-            accountName: this.getDefaultAccountName(),
+            accountName: '',
         };
     }
 
@@ -163,30 +163,6 @@ class UseExistingSeed extends Component {
                 500,
             );
         }
-    }
-
-    /**
-     * Gets a default account name
-     * @method getDefaultAccountName
-     */
-    getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.accountNames.length === 0) {
-            return t('global:mainWallet');
-        } else if (this.props.accountNames.length === 1) {
-            return t('global:secondWallet');
-        } else if (this.props.accountNames.length === 2) {
-            return t('global:thirdWallet');
-        } else if (this.props.accountNames.length === 3) {
-            return t('global:fourthWallet');
-        } else if (this.props.accountNames.length === 4) {
-            return t('global:fifthWallet');
-        } else if (this.props.accountNames.length === 5) {
-            return t('global:sixthWallet');
-        } else if (this.props.accountNames.length === 6) {
-            return t('global:otherWallet');
-        }
-        return '';
     }
 
     /**

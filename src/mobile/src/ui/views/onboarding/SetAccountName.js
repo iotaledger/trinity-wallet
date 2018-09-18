@@ -85,7 +85,7 @@ export class SetAccountName extends Component {
         super(props);
 
         this.state = {
-            accountName: this.getDefaultAccountName(),
+            accountName: '',
         };
     }
 
@@ -175,17 +175,6 @@ export class SetAccountName extends Component {
             },
             animated: false,
         });
-    }
-
-    /**
-     * Gets a default account name
-     *
-     * @method getDefaultAccountName
-     * @returns {*}
-     */
-    getDefaultAccountName() {
-        const { t, accountNames } = this.props;
-        return accountNames.length === 0 ? t('global:mainWallet') : '';
     }
 
     /**
