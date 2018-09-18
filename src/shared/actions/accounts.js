@@ -412,8 +412,8 @@ export const getFullAccountInfo = (seedStore, accountName, navigator = null) => 
                     // If adding additional seed
                     if (navigator) {
                         navigator.pop({ animated: false });
-                        dispatchErrors();
                     }
+                    dispatchErrors();
                     seedStore.removeAccount(accountName);
                 }
             });
