@@ -223,10 +223,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
-        "invalidCharactersExplanation": "种子只能由大写字母A-Z和数字9组成。您的种子包含无效字符。请重试。",
+        "invalidCharactersExplanation": "种子只能由大写字母A-Z和数字9组成。您的种子包含无效字符，请重试。",
         "seedTooShort": "种子过短",
         "seedTooLong": "种子过长",
-        "seedTooShortExplanation": "种子长度必须为{{maxLength}}个字符 。您的种子当前长度为{{currentLength}}个字符。请重试。",
+        "seedTooShortExplanation": "种子长度必须为{{maxLength}}个字符 。您的种子当前长度为{{currentLength}}个字符，请重试。",
         "seedExplanation": "种子的长度应为 {{maxLength}} 个字符，包含大写字母 A-Z 或者数字 9。您不能使用长度超过 {{maxLength}} 个字符的种子。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
