@@ -59,7 +59,7 @@ class Advanced extends PureComponent {
      * @param {string} Password - Plain text wallet password
      * @returns {undefined}
      */
-    resetWallet = async () => {
+    resetWallet = () => {
         const { t, generateAlert } = this.props;
 
         try {
