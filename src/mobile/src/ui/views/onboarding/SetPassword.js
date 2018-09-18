@@ -4,21 +4,11 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import {
-    increaseSeedCount,
-    addAccountName,
-    setOnboardingComplete,
-    setBasicAccountInfo,
-} from 'shared-modules/actions/accounts';
+import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import {
-    hasDuplicateSeed,
-    hasDuplicateAccountName,
-    storeSeedInKeychain,
-    getAllSeedsFromKeychain,
-    storeSaltInKeychain,
-} from 'libs/keychain';
+import Vault from 'libs/vault';
+import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
@@ -85,10 +75,6 @@ class SetPassword extends Component {
         /** @ignore */
         clearSeed: PropTypes.func.isRequired,
         /** @ignore */
-        increaseSeedCount: PropTypes.func.isRequired,
-        /** @ignore */
-        addAccountName: PropTypes.func.isRequired,
-        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
@@ -98,10 +84,6 @@ class SetPassword extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** @ignore */
-        setBasicAccountInfo: PropTypes.func.isRequired,
-        /** @ignore */
-        usedExistingSeed: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -117,58 +99,36 @@ class SetPassword extends Component {
     }
 
     /**
-     * Validates correct password hash and checks for duplicate seed/account name
+     * Stores seed in keychain and clears seed from state
      * @method onAcceptPassword
      * @returns {Promise<void>}
      */
     async onAcceptPassword() {
         const { t, seed, accountName } = this.props;
+
         const salt = await getSalt();
         const pwdHash = await generatePasswordHash(this.state.password, salt);
-        getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
-            if (hasDuplicateAccountName(seedInfo, accountName)) {
-                return this.props.generateAlert(
-                    'error',
-                    t('addAdditionalSeed:nameInUse'),
-                    t('addAdditionalSeed:nameInUseExplanation'),
-                );
-            } else if (hasDuplicateSeed(seedInfo, seed)) {
-                return this.props.generateAlert(
-                    'error',
-                    t('addAdditionalSeed:seedInUse'),
-                    t('addAdditionalSeed:seedInUseExplanation'),
-                );
-            }
-            return this.onAcceptInKeychain(pwdHash, salt, seed, accountName);
-        });
-    }
 
-    /**
-     * Stores seed in keychain and clears seed from state
-     * @method onAcceptInKeychain
-     * @returns {Promise<void>}
-     */
-    onAcceptInKeychain(pwdHash, salt, seed, accountName) {
-        const { t, usedExistingSeed } = this.props;
-        storeSeedInKeychain(pwdHash, seed, accountName)
-            .then(async () => {
-                await storeSaltInKeychain(salt);
-                this.props.setPassword(pwdHash);
-                this.props.addAccountName(accountName);
-                this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
-                this.props.increaseSeedCount();
-                this.props.clearWalletData();
-                this.props.clearSeed();
-                this.props.setOnboardingComplete(true);
-                this.navigateToOnboardingComplete();
-            })
-            .catch(() =>
-                this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongRestart'),
-                ),
+        await storeSaltInKeychain(salt);
+        this.props.setPassword(pwdHash);
+
+        const vault = new Vault.keychain(pwdHash);
+
+        const isUniqueueSeed = vault.uniqueSeed(seed);
+        if (!isUniqueueSeed) {
+            return this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:seedInUse'),
+                t('addAdditionalSeed:seedInUseExplanation'),
             );
+        }
+
+        await vault.accountAdd(accountName, seed);
+
+        this.props.clearWalletData();
+        this.props.clearSeed();
+        this.props.setOnboardingComplete(true);
+        this.navigateToOnboardingComplete();
     }
 
     /**
@@ -277,8 +237,7 @@ class SetPassword extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    accountName: state.wallet.accountName,
-    usedExistingSeed: state.wallet.usedExistingSeed,
+    accountName: state.wallet.additionalAccountName,
     theme: state.settings.theme,
 });
 
@@ -286,11 +245,8 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     clearWalletData,
     clearSeed,
-    increaseSeedCount,
-    addAccountName,
-    generateAlert,
     setPassword,
-    setBasicAccountInfo,
+    generateAlert,
 };
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(

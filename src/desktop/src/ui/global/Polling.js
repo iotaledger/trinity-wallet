@@ -6,6 +6,7 @@ import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
+import { getAccountNamesFromState } from 'selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -168,7 +169,7 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
     autoPromotion: state.settings.autoPromotion,
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
 });

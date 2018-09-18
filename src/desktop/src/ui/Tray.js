@@ -114,11 +114,10 @@ class App extends React.Component {
     switchAccount = (nextIndex) => {
         const { accounts } = this.props;
 
+        const accountCount = Object.keys(accounts.accountInfo).length;
+
         this.setState({
-            accountIndex:
-                nextIndex >= accounts.accountNames.length
-                    ? -1
-                    : nextIndex < -1 ? accounts.accountNames.length - 1 : nextIndex,
+            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
         });
     };
 

@@ -3,9 +3,9 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared-modules/actions/accounts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { translate } from 'react-i18next';
-import { getSeedFromKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 
 const mapDispatchToProps = {
     generateAlert,
@@ -20,6 +20,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isSyncing: state.ui.isSyncing,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     password: state.wallet.password,
     seedIndex: state.wallet.seedIndex,
 });
@@ -71,19 +72,10 @@ export default () => (C) => {
          *  Updates account with latest data
          */
         updateAccountData() {
-            const { t, selectedAccountName, password } = this.props;
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongTryAgain'),
-                        );
-                    }
-                    this.props.getAccountInfo(seed, selectedAccountName);
-                })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+            const { selectedAccountName, selectedAccountType, password } = this.props;
+
+            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            this.props.getAccountInfo(vault, selectedAccountName);
         }
 
         /**
@@ -117,6 +109,8 @@ export default () => (C) => {
         t: PropTypes.func.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Account name for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */

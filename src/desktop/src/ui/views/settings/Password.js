@@ -4,11 +4,14 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'libs/exports';
 
+import { getSelectedAccountType } from 'selectors/accounts';
+
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import { passwordReasons } from 'libs/password';
-import { updatePassword, hash } from 'libs/crypto';
+import Vault from 'libs/vault';
+import { hash } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -18,6 +21,8 @@ import Button from 'ui/components/Button';
  */
 class PasswordSettings extends PureComponent {
     static propTypes = {
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
@@ -40,7 +45,7 @@ class PasswordSettings extends PureComponent {
         event.preventDefault();
 
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
-        const { setPassword, generateAlert, t } = this.props;
+        const { accountType, setPassword, generateAlert, t } = this.props;
 
         if (passwordNew !== passwordConfirm) {
             generateAlert(
@@ -65,7 +70,7 @@ class PasswordSettings extends PureComponent {
             const passwordNewHash = await hash(passwordNew);
             const passwordCurrentHash = await hash(passwordCurrent);
 
-            await updatePassword(passwordCurrentHash, passwordNewHash);
+            await Vault[accountType].updatePassword(passwordCurrentHash, passwordNewHash);
 
             setPassword(passwordNewHash);
 
@@ -125,9 +130,13 @@ class PasswordSettings extends PureComponent {
     }
 }
 
+const mapStateToProps = (state) => ({
+    accountType: getSelectedAccountType(state),
+});
+
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(PasswordSettings));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(PasswordSettings));

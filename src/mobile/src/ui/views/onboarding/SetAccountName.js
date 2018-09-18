@@ -6,16 +6,17 @@ import { translate } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { setAccountName, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
+import { setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import { width, height } from 'libs/dimensions';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import Vault from 'libs/vault';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
 import GENERAL from 'ui/theme/general';
@@ -60,7 +61,7 @@ export class SetAccountName extends Component {
         /** Component ID */
         componentId: PropTypes.object.isRequired,
         /** @ignore */
-        setAccountName: PropTypes.func.isRequired,
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -71,8 +72,6 @@ export class SetAccountName extends Component {
         seed: PropTypes.string.isRequired,
         /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
-        /** @ignore */
-        seedCount: PropTypes.number.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -107,63 +106,55 @@ export class SetAccountName extends Component {
      * Navigates to loading screen and fetches seed information from the Tangle
      * @method onDonePress
      */
-    onDonePress() {
-        const { t, onboardingComplete, seed, password, shouldPreventAction } = this.props;
-        const trimmedAccountName = trim(this.state.accountName);
+    async onDonePress() {
+        const { t, onboardingComplete, accountNames, seed, password, shouldPreventAction } = this.props;
+        const accountName = trim(this.state.accountName);
 
-        const fetch = (accountName) => {
-            this.props.setAdditionalAccountInfo({
-                addingAdditionalAccount: true,
-                additionalAccountName: accountName,
-                usedExistingSeed: false,
-            });
+        if (shouldPreventAction) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
 
-            this.navigateTo('loading');
-        };
-
-        if (!isEmpty(this.state.accountName)) {
-            if (!onboardingComplete) {
-                this.props.setAccountName(trimmedAccountName);
-
-                this.navigateTo('setPassword');
-            } else {
-                if (shouldPreventAction) {
-                    return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
-                }
-                getAllSeedsFromKeychain(password)
-                    .then((seedInfo) => {
-                        if (isEmpty(seedInfo)) {
-                            return fetch(trimmedAccountName);
-                        }
-                        if (hasDuplicateAccountName(seedInfo, trimmedAccountName)) {
-                            return this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:nameInUse'),
-                                t('addAdditionalSeed:nameInUseExplanation'),
-                            );
-                        } else if (hasDuplicateSeed(seedInfo, seed)) {
-                            return this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:seedInUse'),
-                                t('addAdditionalSeed:seedInUseExplanation'),
-                            );
-                        }
-                        return fetch(trimmedAccountName);
-                    })
-                    .catch(() => {
-                        this.props.generateAlert(
-                            'error',
-                            t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongExplanation'),
-                        );
-                    });
-            }
-        } else {
-            this.props.generateAlert(
+        if (isEmpty(accountName)) {
+            return this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
+        }
+
+        if (accountNames.map((item) => item.toLowerCase()).indexOf(accountName.toLowerCase()) > -1) {
+            return this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
+            );
+        }
+
+        if (onboardingComplete) {
+            const vault = new Vault.keychain(password);
+            const isSeedUnique = await vault.uniqueSeed(seed);
+            if (!isSeedUnique) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:seedInUse'),
+                    t('addAdditionalSeed:seedInUseExplanation'),
+                );
+            }
+        }
+
+        this.props.setAdditionalAccountInfo({
+            addingAdditionalAccount: true,
+            additionalAccountName: accountName,
+            additionalAccountType: 'keychain',
+            usedExistingSeed: false,
+        });
+
+        if (!onboardingComplete) {
+            this.navigateTo('setPassword');
+        } else {
+            const vault = new Vault.keychain(password);
+            vault.accountAdd(accountName, seed);
+            this.navigateTo('loading');
         }
     }
 
@@ -182,23 +173,8 @@ export class SetAccountName extends Component {
      * @returns {*}
      */
     getDefaultAccountName() {
-        const { t, seedCount } = this.props;
-        if (seedCount === 0) {
-            return t('global:mainWallet');
-        } else if (seedCount === 1) {
-            return t('global:secondWallet');
-        } else if (seedCount === 2) {
-            return t('global:thirdWallet');
-        } else if (seedCount === 3) {
-            return t('global:fourthWallet');
-        } else if (seedCount === 4) {
-            return t('global:fifthWallet');
-        } else if (seedCount === 5) {
-            return t('global:sixthWallet');
-        } else if (seedCount === 6) {
-            return t('global:otherWallet');
-        }
-        return '';
+        const { t, accountNames } = this.props;
+        return accountNames.length === 0 ? t('global:mainWallet') : '';
     }
 
     /**
@@ -299,7 +275,7 @@ export class SetAccountName extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    seedCount: state.accounts.seedCount,
+    accountNames: getAccountNamesFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
@@ -307,7 +283,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setAccountName,
     generateAlert,
     setAdditionalAccountInfo,
 };

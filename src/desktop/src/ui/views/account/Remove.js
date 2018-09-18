@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
 import { generateAlert } from 'actions/alerts';
 
-import { removeSeed } from 'libs/crypto';
+import Vault from 'libs/vault';
 import { deleteAccount } from 'actions/accounts';
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -21,6 +21,8 @@ class Remove extends PureComponent {
     static propTypes = {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
         /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
         /** @ignore */
@@ -41,14 +43,15 @@ class Remove extends PureComponent {
      * @returns {undefined}
      */
     removeAccount = async (password) => {
-        const { accountName, history, t, generateAlert, deleteAccount } = this.props;
+        const { accountName, accountType, history, t, generateAlert, deleteAccount } = this.props;
 
         this.setState({
             removeConfirm: false,
         });
 
         try {
-            await removeSeed(password, accountName);
+            const vault = await new Vault[accountType](password, accountName);
+            vault.accountRemove();
 
             deleteAccount(accountName);
 
@@ -113,6 +116,7 @@ class Remove extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
+    accountType: getSelectedAccountType(state),
 });
 
 const mapDispatchToProps = {

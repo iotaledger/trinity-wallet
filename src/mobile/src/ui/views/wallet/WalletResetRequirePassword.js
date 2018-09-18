@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
-import { setFirstUse, setOnboardingComplete } from 'shared-modules/actions/accounts';
+import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import { persistor } from 'libs/store';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import { clearKeychain, getPasswordHash } from 'libs/keychain';
+import { clearKeychain, getHash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { Icon } from 'ui/theme/icons';
@@ -54,8 +54,6 @@ class WalletResetRequirePassword extends Component {
         password: PropTypes.object.isRequired,
         /** @ignore */
         resetWallet: PropTypes.func.isRequired,
-        /** @ignore */
-        setFirstUse: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
         /** @ignore */
@@ -109,7 +107,7 @@ class WalletResetRequirePassword extends Component {
      */
     async isAuthenticated() {
         const { password } = this.props;
-        const pwdHash = await getPasswordHash(this.state.password);
+        const pwdHash = await getHash(this.state.password);
         return isEqual(password, pwdHash);
     }
 
@@ -159,7 +157,6 @@ class WalletResetRequirePassword extends Component {
                 .then(() => clearKeychain())
                 .then(() => {
                     this.props.setOnboardingComplete(false);
-                    this.props.setFirstUse(true);
                     this.props.clearWalletData();
                     this.props.setPassword('');
                     this.props.resetWallet();
@@ -232,7 +229,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     resetWallet,
-    setFirstUse,
     setOnboardingComplete,
     clearWalletData,
     setPassword,

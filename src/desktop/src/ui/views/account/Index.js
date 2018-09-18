@@ -4,6 +4,8 @@ import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import { getAccountNamesFromState } from 'selectors/accounts';
+
 import Icon from 'ui/components/Icon';
 
 import Name from 'ui/views/account/Name';
@@ -51,8 +53,7 @@ class Account extends React.PureComponent {
                             </NavLink>
                             <hr />
                             <NavLink to="/account/tools">
-                                <Icon icon="settingsAlt" size={20} />{' '}
-                                <strong>{t('accountManagement:tools')}</strong>
+                                <Icon icon="settingsAlt" size={20} /> <strong>{t('accountManagement:tools')}</strong>
                             </NavLink>
                             {accountNames.length > 1 ? (
                                 <React.Fragment>
@@ -87,7 +88,7 @@ class Account extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
 });
 
 export default connect(mapStateToProps)(translate()(Account));

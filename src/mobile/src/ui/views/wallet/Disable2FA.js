@@ -6,7 +6,6 @@ import authenticator from 'authenticator';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
-import { setFirstUse } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -189,7 +188,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     resetWallet,
-    setFirstUse,
     generateAlert,
     set2FAStatus,
 };

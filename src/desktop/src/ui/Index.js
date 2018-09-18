@@ -10,11 +10,10 @@ import { translate } from 'react-i18next';
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
-import { setOnboardingName } from 'actions/ui';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -68,7 +67,7 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
-        setOnboardingName: PropTypes.func.isRequired,
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -179,7 +178,7 @@ class App extends React.Component {
      * @param {string} accountName - target account name
      */
     accountSwitch(accountName) {
-        const accountIndex = this.props.accounts.accountNames.indexOf(accountName);
+        const accountIndex = Object.keys(this.props.accounts.accountInfo).indexOf(accountName);
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');
@@ -211,7 +210,10 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
-                this.props.setOnboardingName('');
+                this.props.setAdditionalAccountInfo({
+                    additionalAccountName: '',
+                    addingAdditionalAccount: false,
+                });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
                 break;
@@ -285,7 +287,7 @@ const mapDispatchToProps = {
     generateAlert,
     fetchNodeList,
     updateTheme,
-    setOnboardingName,
+    setAdditionalAccountInfo,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

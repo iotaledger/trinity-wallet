@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
@@ -16,7 +16,7 @@ const routeToComponent = {
     settings: Settings,
 };
 
-class TabContent extends Component {
+class TabContent extends PureComponent {
     render() {
         const { currentRoute, isKeyboardActive } = this.props;
         const Content = routeToComponent[currentRoute];

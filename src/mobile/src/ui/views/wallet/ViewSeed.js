@@ -6,12 +6,13 @@ import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
 import Seedbox from 'ui/components/SeedBox';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import { getSeedFromKeychain, getPasswordHash } from 'libs/keychain';
+import Vault from 'libs/vault';
+import { hash } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import GENERAL from 'ui/theme/general';
@@ -115,6 +116,8 @@ class ViewSeed extends Component {
         password: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Type for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -166,23 +169,18 @@ class ViewSeed extends Component {
      * @returns {Promise<void>}
      */
     async viewSeed() {
-        const { password, selectedAccountName, t } = this.props;
-        const pwdHash = await getPasswordHash(this.state.password);
+        const { password, selectedAccountName, selectedAccountType, t } = this.props;
+        const pwdHash = await hash(this.state.password);
 
         if (isEqual(password, pwdHash)) {
-            getSeedFromKeychain(pwdHash, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        throw new Error('Error');
-                    } else {
-                        if (isAndroid) {
-                            FlagSecure.activate();
-                        }
-                        this.setState({ seed });
-                        this.setState({ showSeed: true });
-                    }
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
+            const vault = new Vault[selectedAccountType](pwdHash, selectedAccountName);
+            const seed = await vault.getSeed();
+
+            if (isAndroid) {
+                FlagSecure.activate();
+            }
+            this.setState({ seed });
+            this.setState({ showSeed: true });
         } else {
             this.props.generateAlert(
                 'error',
@@ -358,6 +356,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     theme: state.settings.theme,
 });
 

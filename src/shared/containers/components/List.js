@@ -72,7 +72,7 @@ export default function withListData(ListComponent) {
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
-            const accountName = accounts.accountNames[typeof index === 'number' ? index : seedIndex];
+            const accountName = Object.keys(accounts.accountInfo)[typeof index === 'number' ? index : seedIndex];
 
             if (!accountName && index !== -1) {
                 return null;

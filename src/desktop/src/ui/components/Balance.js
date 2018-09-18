@@ -62,7 +62,9 @@ class Balance extends React.PureComponent {
         const { balanceIsShort } = this.state;
 
         const accountName =
-            summary && index === -1 ? t('totalBalance') : accounts.accountNames[summary ? index : seedIndex];
+            summary && index === -1
+                ? t('totalBalance')
+                : Object.keys(accounts.accountInfo)[summary ? index : seedIndex];
 
         const accountBalance =
             summary && index === -1
