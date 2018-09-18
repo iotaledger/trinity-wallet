@@ -83,7 +83,7 @@ class AccountPassword extends React.PureComponent {
 
         const passwordHash = await hash(password);
 
-        setTwoFA(passwordHash, null);
+        await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
         const seedStore = await new SeedStore[wallet.additionalAccountType](passwordHash);

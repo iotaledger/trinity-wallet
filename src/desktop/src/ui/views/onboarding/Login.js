@@ -108,7 +108,7 @@ class Login extends React.Component {
         const { wallet, currency, currentAccountName, currentAccountType } = this.props;
 
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
-        const accountType = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountType;
+        const accountType = wallet.addingAdditionalAccount ? wallet.additionalAccountType : currentAccountType;
 
         const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 

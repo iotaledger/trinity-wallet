@@ -125,6 +125,7 @@ export const setTwoFA = async (password, key) => {
  * Set and store random salt to keychain
  */
 export const initKeychain = async () => {
+    await clearVault();
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const saltHex = salt.toString();
     await Electron.setKeychain(`${ACC_MAIN}-salt`, saltHex);
