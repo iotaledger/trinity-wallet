@@ -315,7 +315,7 @@ export const setDeepLinkInactive = () => {
  *
  * @method generateNewAddress
  *
- * @param {string} seed
+ * @param {string | array} seed
  * @param {string} accountName
  * @param {object} existingAccountData
  * @param {function} genFn
@@ -341,7 +341,7 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
  *
  * @method transitionForSnapshot
  *
- * @param {string} seed
+ * @param {string | array} seed
  * @param {array} addresses
  * @param {function} genFn
  *
@@ -366,7 +366,7 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
  *
  * @method completeSnapshotTransition
  *
- * @param {string} seed
+ * @param {string | array} seed
  * @param {string} accountName
  * @param {array} addresses
  * @param {function} powFn
@@ -464,7 +464,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
  *
  * @method generateAddressesAndGetBalance
  *
- * @param {string} seed
+ * @param {string | array} seed
  * @param {number} index
  * @param {function} genFn
  *
