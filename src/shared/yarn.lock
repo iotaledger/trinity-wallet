@@ -855,9 +855,9 @@ invariant@^2.0.0, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-iota.lib.js@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.0.tgz#66e59baf82a4556b739f81d947313d0a3ab2f659"
+iota.lib.js@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.1.tgz#87d424e030308f0029ca6396c92e15d460e7c1b7"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -1364,10 +1364,6 @@ text-encoding@^0.6.4:
 timekeeper@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/timekeeper/-/timekeeper-2.0.0.tgz#eaf7a0dcfdc95d4658b9cc3d21107206cc4e2eed"
-
-tinycolor2@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
 
 to-fast-properties@^1.0.3:
   version "1.0.3"
