@@ -104,7 +104,7 @@ class TwoFactorSetupEnterToken extends Component {
      */
     navigateToHome() {
         const { theme: { body, bar } } = this.props;
-        Navigation.push('appStack', {
+        Navigation.setStackRoot('appStack', {
             component: {
                 name: 'home',
                 options: {
