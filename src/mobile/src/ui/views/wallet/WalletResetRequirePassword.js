@@ -12,7 +12,7 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } fro
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import { persistor } from 'libs/store';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import { clearKeychain, getHash } from 'libs/keychain';
+import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { Icon } from 'ui/theme/icons';
@@ -107,7 +107,7 @@ class WalletResetRequirePassword extends Component {
      */
     async isAuthenticated() {
         const { password } = this.props;
-        const pwdHash = await getHash(this.state.password);
+        const pwdHash = await hash(this.state.password);
         return isEqual(password, pwdHash);
     }
 
