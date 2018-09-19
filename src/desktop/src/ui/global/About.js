@@ -66,6 +66,7 @@ class About extends React.PureComponent {
                                 <li>- Update: Seed in memory use update</li>
                                 <li>- Update: Adjusted auto promotion timing</li>
                                 <li>- Fix: Reattach only if transaction falls below max depth</li>
+                                <li>- Fix: On Windows resizing wallet window using top corners does not work</li>
                                 <li>- Fix: Filled and empty paper wallet templates are mixed</li>
                             </ul>
                             <h5>0.3.3</h5>
