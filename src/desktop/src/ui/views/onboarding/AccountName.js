@@ -7,7 +7,7 @@ import { translate } from 'react-i18next';
 import { getAccountNamesFromState } from 'selectors/accounts';
 
 import { MAX_ACC_LENGTH } from 'libs/crypto';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 import { generateAlert } from 'actions/alerts';
 import { setAdditionalAccountInfo } from 'actions/wallet';
@@ -35,9 +35,10 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.wallet.additionalAccountName.length
-            ? this.props.wallet.additionalAccountName
-            : Object.keys(this.props.accountNames).length === 0 ? this.props.t('mainWallet') : '',
+        name:
+            this.props.wallet.additionalAccountName && this.props.wallet.additionalAccountName.length
+                ? this.props.wallet.additionalAccountName
+                : '',
     };
 
     /**
@@ -84,8 +85,8 @@ class AccountName extends React.PureComponent {
             history.push('/onboarding/seed-save');
         } else {
             if (accountNames.length > 0) {
-                const vault = await new Vault.keychain(wallet.password);
-                await vault.accountAdd(this.state.name, Electron.getOnboardingSeed());
+                const seedStore = await new SeedStore.keychain(wallet.password);
+                await seedStore.addAccount(this.state.name, Electron.getOnboardingSeed());
 
                 Electron.setOnboardingSeed(null);
 

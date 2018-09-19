@@ -16,7 +16,7 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import { width, height } from 'libs/dimensions';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
 import GENERAL from 'ui/theme/general';
@@ -84,7 +84,7 @@ export class SetAccountName extends Component {
         super(props);
 
         this.state = {
-            accountName: this.getDefaultAccountName(),
+            accountName: '',
         };
     }
 
@@ -131,8 +131,8 @@ export class SetAccountName extends Component {
         }
 
         if (onboardingComplete) {
-            const vault = new Vault.keychain(password);
-            const isSeedUnique = await vault.uniqueSeed(seed);
+            const seedStore = new SeedStore.keychain(password);
+            const isSeedUnique = await seedStore.isUniqueSeed(seed);
             if (!isSeedUnique) {
                 return this.props.generateAlert(
                     'error',
@@ -152,8 +152,8 @@ export class SetAccountName extends Component {
         if (!onboardingComplete) {
             this.navigateTo('setPassword');
         } else {
-            const vault = new Vault.keychain(password);
-            vault.accountAdd(accountName, seed);
+            const seedStore = new SeedStore.keychain(password);
+            seedStore.addAccount(accountName, seed);
             this.navigateTo('loading');
         }
     }
@@ -164,17 +164,6 @@ export class SetAccountName extends Component {
      */
     onBackPress() {
         Navigation.pop(this.props.componentId);
-    }
-
-    /**
-     * Gets a default account name
-     *
-     * @method getDefaultAccountName
-     * @returns {*}
-     */
-    getDefaultAccountName() {
-        const { t, accountNames } = this.props;
-        return accountNames.length === 0 ? t('global:mainWallet') : '';
     }
 
     /**

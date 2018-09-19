@@ -11,7 +11,7 @@ import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
 import Seedbox from 'ui/components/SeedBox';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { hash } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -173,8 +173,8 @@ class ViewSeed extends Component {
         const pwdHash = await hash(this.state.password);
 
         if (isEqual(password, pwdHash)) {
-            const vault = new Vault[selectedAccountType](pwdHash, selectedAccountName);
-            const seed = await vault.getSeed();
+            const seedStore = new SeedStore[selectedAccountType](pwdHash, selectedAccountName);
+            const seed = await seedStore.getSeed();
 
             if (isAndroid) {
                 FlagSecure.activate();

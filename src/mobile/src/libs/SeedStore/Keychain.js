@@ -23,7 +23,7 @@ class Keychain {
      * @param {string} seed - Account seed
      * @returns {promise} - Resolves to a success boolean
      */
-    accountAdd = async (accountId, seed) => {
+    addAccount = async (accountId, seed) => {
         this.accountId = accountId;
 
         const existingInfo = await keychain.get(ALIAS_SEEDS);
@@ -62,7 +62,7 @@ class Keychain {
     /**
      * Remove account
      */
-    accountRemove = async () => {
+    removeAccount = async () => {
         const seedInfo = await this.getSeeds();
         if (seedInfo) {
             const newSeedInfo = omit(seedInfo, this.accountId);
@@ -149,7 +149,7 @@ class Keychain {
      * @param {string} - Target seed
      * @returns {boolean} If seed is unique
      */
-    uniqueSeed = async (seed) => {
+    isUniqueSeed = async (seed) => {
         const seeds = this.getSeeds();
         return values(seeds).indexOf(seed) > -1;
     };

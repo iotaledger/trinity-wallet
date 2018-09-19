@@ -22,13 +22,7 @@ const getProps = (overrides) =>
             accountNames: [],
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
-            t: (arg) => {
-                const translations = {
-                    'global:mainWallet': 'MAIN ACCOUNT',
-                };
-
-                return translations[arg] ? translations[arg] : 'foo';
-            },
+            t: noop,
             accountCount: 0,
             seed: 'SEED',
             onboardingComplete: false,

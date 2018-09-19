@@ -44,7 +44,7 @@ import Toggle from 'ui/components/Toggle';
 import FingerPrintModal from 'ui/components/FingerprintModal';
 import ProgressBar from 'ui/components/ProgressBar';
 import ProgressSteps from 'libs/progressSteps';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import TransferConfirmationModal from 'ui/components/TransferConfirmationModal';
 import UsedAddressModal from 'ui/components/UsedAddressModal';
 import UnitInfoModal from 'ui/components/UnitInfoModal';
@@ -640,12 +640,12 @@ export class Send extends Component {
         this.props.getFromKeychainRequest('send', 'makeTransaction');
 
         try {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
             this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
             const powFn = getPowFn();
 
-            return this.props.makeTransaction(vault, address, value, message, selectedAccountName, powFn);
+            return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
         } catch (error) {
             this.props.getFromKeychainError('send', 'makeTransaction');
             this.props.generateTransferErrorAlert(error);

@@ -31,7 +31,7 @@ class ModalPassword extends PureComponent {
         onClose: PropTypes.func,
         /** On correct password entered event
          * @param {string} Password - Entered password plain text
-         * @param {object} Vault - Vault content
+         * @param {object} SeedStore - SeedStore content
          */
         onSuccess: PropTypes.func,
         /** On password entered event callback

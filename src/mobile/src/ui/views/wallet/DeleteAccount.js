@@ -14,7 +14,7 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import Fonts from 'ui/theme/fonts';
 import { hash } from 'libs/keychain';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import ModalButtons from 'ui/components/ModalButtons';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -224,9 +224,9 @@ class DeleteAccount extends Component {
     async delete() {
         const { password, selectedAccountName, selectedAccountType } = this.props;
 
-        const vault = new Vault[selectedAccountType](password, selectedAccountName);
+        const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
 
-        await vault.accountRemove();
+        await seedStore.removeAccount();
 
         this.props.deleteAccount(selectedAccountName);
     }

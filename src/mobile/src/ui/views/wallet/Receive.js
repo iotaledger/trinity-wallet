@@ -27,7 +27,7 @@ import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/cu
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import GENERAL from 'ui/theme/general';
 import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
@@ -412,9 +412,9 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
 
         try {
-            const vault = new Vault[selectedAccountData.type || 'keychain'](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountData.type || 'keychain'](password, selectedAccountName);
             this.props.getFromKeychainSuccess('receive', 'addressGeneration');
-            this.props.generateNewAddress(vault, selectedAccountName, selectedAccountData);
+            this.props.generateNewAddress(seedStore, selectedAccountName, selectedAccountData);
         } catch (err) {
             return error();
         }

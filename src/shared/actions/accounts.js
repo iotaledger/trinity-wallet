@@ -362,12 +362,12 @@ export const markBundleBroadcastStatusComplete = (payload) => ({
  * Gets full account information for the first seed added to the wallet.
  *
  * @method getFullAccountInfo
- * @param  {object} vault - Vault class object
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} accountName
  *
  * @returns {function} dispatch
  */
-export const getFullAccountInfo = (vault, accountName) => {
+export const getFullAccountInfo = (seedStore, accountName) => {
     return (dispatch, getState) => {
         dispatch(fullAccountInfoFetchRequest());
 
@@ -378,7 +378,7 @@ export const getFullAccountInfo = (vault, accountName) => {
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(vault, accountName)
+        )(getAccountData)(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -402,7 +402,7 @@ export const getFullAccountInfo = (vault, accountName) => {
                     setTimeout(dispatchErrors, 500);
                 } else {
                     dispatchErrors();
-                    vault.removeAccount(accountName);
+                    seedStore.removeAccount(accountName);
                 }
             });
     };
@@ -412,13 +412,13 @@ export const getFullAccountInfo = (vault, accountName) => {
  * Performs a manual sync for an account. Syncs full account information with the ledger.
  *
  * @method manuallySyncAccount
- * @param {vault} vault - Vault class object
+ * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {function} genFn
  *
  * @returns {function} dispatch
  */
-export const manuallySyncAccount = (vault, accountName) => {
+export const manuallySyncAccount = (seedStore, accountName) => {
     return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
@@ -427,7 +427,7 @@ export const manuallySyncAccount = (vault, accountName) => {
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(vault, accountName)
+        )(getAccountData)(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
@@ -449,13 +449,13 @@ export const manuallySyncAccount = (vault, accountName) => {
  * Gets latest account information: including transfers, balance and spend status information.
  *
  * @method getAccountInfo
- * @param  {object} vault - Vault class object
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} accountName
  * @param  {function} notificationFn - New transaction callback function
  *
  * @returns {function} dispatch
  */
-export const getAccountInfo = (vault, accountName, notificationFn) => {
+export const getAccountInfo = (seedStore, accountName, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
@@ -464,7 +464,7 @@ export const getAccountInfo = (vault, accountName, notificationFn) => {
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(syncAccount)(existingAccountState, vault, notificationFn)
+        )(syncAccount)(existingAccountState, seedStore, notificationFn)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(accountInfoFetchSuccess(result));

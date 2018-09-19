@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { byteToChar } from 'libs/helpers';
+import SeedStore from 'libs/SeedStore';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
@@ -24,6 +25,8 @@ class Seed extends PureComponent {
     static propTypes = {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -42,6 +45,20 @@ class Seed extends PureComponent {
         }
     }
 
+    /**
+     * Retrieve seed and set to state
+     */
+    setSeed = async (password) => {
+        const { accountName, accountType } = this.props;
+
+        const seedStore = await new SeedStore[accountType](password, accountName);
+        const seed = await seedStore.getSeed();
+
+        this.setState({
+            seed,
+        });
+    };
+
     render() {
         const { accountName, t } = this.props;
         const { seed, action } = this.state;
@@ -51,7 +68,7 @@ class Seed extends PureComponent {
                 <ModalPassword
                     isOpen
                     inline
-                    onSuccess={(password, seed) => this.setState({ seed })}
+                    onSuccess={this.setSeed}
                     onClose={() => this.setState({ action: null })}
                     seedName={accountName}
                     content={{
@@ -128,6 +145,7 @@ class Seed extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
+    accountType: getSelectedAccountType(state),
 });
 
 export default connect(mapStateToProps)(translate()(Seed));

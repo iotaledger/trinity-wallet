@@ -5,7 +5,7 @@ import { formatValue, formatUnit } from 'libs/iota/utils';
 import { getCurrencySymbol } from 'libs/currency';
 import { round } from 'libs/utils';
 
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -99,11 +99,11 @@ class Send extends React.PureComponent {
             isTransferModalVisible: false,
         });
 
-        const vault = await new Vault[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountType](password, accountName);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        sendTransfer(vault, fields.address, parseInt(fields.amount) || 0, fields.message, powFn);
+        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, fields.message, powFn);
     };
 
     render() {

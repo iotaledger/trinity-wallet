@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
@@ -112,9 +112,9 @@ class SetPassword extends Component {
         await storeSaltInKeychain(salt);
         this.props.setPassword(pwdHash);
 
-        const vault = new Vault.keychain(pwdHash);
+        const seedStore = new SeedStore.keychain(pwdHash);
 
-        const isUniqueueSeed = vault.uniqueSeed(seed);
+        const isUniqueueSeed = seedStore.isUniqueSeed(seed);
         if (!isUniqueueSeed) {
             return this.props.generateAlert(
                 'error',
@@ -123,7 +123,7 @@ class SetPassword extends Component {
             );
         }
 
-        await vault.accountAdd(accountName, seed);
+        await seedStore.addAccount(accountName, seed);
 
         this.props.clearWalletData();
         this.props.clearSeed();

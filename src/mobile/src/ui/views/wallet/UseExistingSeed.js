@@ -13,7 +13,7 @@ import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -115,7 +115,7 @@ class UseExistingSeed extends Component {
 
         this.state = {
             seed: '',
-            accountName: this.getDefaultAccountName(),
+            accountName: '',
         };
     }
 
@@ -165,30 +165,6 @@ class UseExistingSeed extends Component {
     }
 
     /**
-     * Gets a default account name
-     * @method getDefaultAccountName
-     */
-    getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.accountNames.length === 0) {
-            return t('global:mainWallet');
-        } else if (this.props.accountNames.length === 1) {
-            return t('global:secondWallet');
-        } else if (this.props.accountNames.length === 2) {
-            return t('global:thirdWallet');
-        } else if (this.props.accountNames.length === 3) {
-            return t('global:fourthWallet');
-        } else if (this.props.accountNames.length === 4) {
-            return t('global:fifthWallet');
-        } else if (this.props.accountNames.length === 5) {
-            return t('global:sixthWallet');
-        } else if (this.props.accountNames.length === 6) {
-            return t('global:otherWallet');
-        }
-        return '';
-    }
-
-    /**
      * Adds additional account information to store
      * Navigates to loading screen
      * @method fetchAccountInfo
@@ -196,8 +172,8 @@ class UseExistingSeed extends Component {
     async fetchAccountInfo(seed, accountName) {
         const { password, theme: { body } } = this.props;
 
-        const vault = new Vault.keychain(password);
-        await vault.accountAdd(accountName, seed);
+        const seedStore = new SeedStore.keychain(password);
+        await seedStore.addAccount(accountName, seed);
 
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
@@ -244,7 +220,7 @@ class UseExistingSeed extends Component {
      * @param {string} seed
      * @param {string} accountName
      */
-    addExistingSeed(seed, accountName) {
+    async addExistingSeed(seed, accountName) {
         const { t, accountNames, password, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
@@ -267,7 +243,7 @@ class UseExistingSeed extends Component {
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        } else if (accountNames.includes(accountName)) {
+        } else if (accountNames.map((name) => name.toLowerCase()).indexOf(accountName.toLowerCase()) > -1) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -278,8 +254,8 @@ class UseExistingSeed extends Component {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
 
-            const vault = new Vault.keychain(password);
-            const isUniqeSeed = vault.uniqueSeed(password, seed);
+            const seedStore = new SeedStore.keychain(password);
+            const isUniqeSeed = await seedStore.isUniqueSeed(password, seed);
 
             if (!isUniqeSeed) {
                 return this.props.generateAlert(

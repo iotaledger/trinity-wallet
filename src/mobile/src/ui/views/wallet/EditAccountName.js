@@ -12,7 +12,7 @@ import {
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeAccountName } from 'shared-modules/actions/accounts';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -123,9 +123,9 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
 
-            vault
+            seedStore
                 .accountRename(accountName)
                 .then(() => {
                     this.props.changeAccountName({

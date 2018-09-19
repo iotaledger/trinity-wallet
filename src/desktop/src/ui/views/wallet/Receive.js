@@ -14,7 +14,7 @@ import {
 import { generateAlert } from 'actions/alerts';
 import { generateNewAddress } from 'actions/wallet';
 
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
 import { byteToChar } from 'libs/helpers';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
@@ -93,9 +93,9 @@ class Receive extends React.PureComponent {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const vault = await new Vault[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountType](password, accountName);
 
-        this.props.generateNewAddress(vault, accountName, account);
+        this.props.generateNewAddress(seedStore, accountName, account);
     };
 
     unscramble() {

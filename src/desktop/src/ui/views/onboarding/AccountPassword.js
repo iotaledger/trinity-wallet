@@ -9,7 +9,7 @@ import { generateAlert } from 'actions/alerts';
 import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { hash, initKeychain, setTwoFA } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
@@ -79,15 +79,19 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        await initKeychain();
+        try {
+            await initKeychain();
+        } catch (e) {
+            return generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+        }
 
         const passwordHash = await hash(password);
 
-        setTwoFA(passwordHash, null);
+        await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
-        const vault = await new Vault[wallet.additionalAccountType](passwordHash);
-        await vault.accountAdd(wallet.additionalAccountName, Electron.getOnboardingSeed());
+        const seedStore = await new SeedStore[wallet.additionalAccountType](passwordHash);
+        await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
 
         Electron.setOnboardingSeed(null);
 

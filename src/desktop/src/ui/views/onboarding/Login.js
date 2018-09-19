@@ -15,7 +15,7 @@ import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accoun
 
 import { capitalize } from 'libs/helpers';
 import { hash, authorize } from 'libs/crypto';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
@@ -108,9 +108,9 @@ class Login extends React.Component {
         const { wallet, currency, currentAccountName, currentAccountType } = this.props;
 
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
-        const accountType = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountType;
+        const accountType = wallet.addingAdditionalAccount ? wallet.additionalAccountType : currentAccountType;
 
-        const vault = await new Vault[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 
         this.props.getPrice();
         this.props.getChartData();
@@ -118,9 +118,9 @@ class Login extends React.Component {
         this.props.getCurrencyData(currency);
 
         if (wallet.addingAdditionalAccount) {
-            this.props.getFullAccountInfo(vault, accountName);
+            this.props.getFullAccountInfo(seedStore, accountName);
         } else {
-            this.props.getAccountInfo(vault, accountName, null, Electron.notify);
+            this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
         }
     };
 

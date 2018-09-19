@@ -10,7 +10,7 @@ import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import { passwordReasons } from 'libs/password';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { hash } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
@@ -70,7 +70,7 @@ class PasswordSettings extends PureComponent {
             const passwordNewHash = await hash(passwordNew);
             const passwordCurrentHash = await hash(passwordCurrent);
 
-            await Vault[accountType].updatePassword(passwordCurrentHash, passwordNewHash);
+            await SeedStore[accountType].updatePassword(passwordCurrentHash, passwordNewHash);
 
             setPassword(passwordNewHash);
 

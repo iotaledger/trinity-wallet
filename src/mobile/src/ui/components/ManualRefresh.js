@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared-modules/actions/accounts';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { translate } from 'react-i18next';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 const mapDispatchToProps = {
     generateAlert,
@@ -74,8 +74,8 @@ export default () => (C) => {
         updateAccountData() {
             const { selectedAccountName, selectedAccountType, password } = this.props;
 
-            const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.getAccountInfo(vault, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.getAccountInfo(seedStore, selectedAccountName);
         }
 
         /**

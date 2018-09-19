@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
 import { generateAlert } from 'actions/alerts';
 
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 import { deleteAccount } from 'actions/accounts';
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -50,8 +50,8 @@ class Remove extends PureComponent {
         });
 
         try {
-            const vault = await new Vault[accountType](password, accountName);
-            vault.accountRemove();
+            const seedStore = await new SeedStore[accountType](password, accountName);
+            seedStore.removeAccount();
 
             deleteAccount(accountName);
 
@@ -70,9 +70,9 @@ class Remove extends PureComponent {
 
     render() {
         const { t, accountName } = this.props;
-        const { removeConfirm, vault } = this.state;
+        const { removeConfirm } = this.state;
 
-        if (removeConfirm && !vault) {
+        if (removeConfirm) {
             return (
                 <ModalPassword
                     isOpen

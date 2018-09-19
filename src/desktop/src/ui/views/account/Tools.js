@@ -17,7 +17,7 @@ import {
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
-import Vault from 'libs/vault';
+import SeedStore from 'libs/SeedStore';
 
 import Scrollbar from 'ui/components/Scrollbar';
 import Button from 'ui/components/Button';
@@ -78,9 +78,9 @@ class Addresses extends PureComponent {
     syncAccount = async () => {
         const { wallet, accountName, accountType } = this.props;
 
-        const vault = await new Vault[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 
-        this.props.manuallySyncAccount(vault, accountName);
+        this.props.manuallySyncAccount(seedStore, accountName);
     };
 
     /**
@@ -90,9 +90,9 @@ class Addresses extends PureComponent {
     startSnapshotTransition = async () => {
         const { wallet, addresses, accountName, accountType } = this.props;
 
-        const vault = await new Vault[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 
-        this.props.transitionForSnapshot(vault, addresses);
+        this.props.transitionForSnapshot(seedStore, addresses);
     };
 
     /**
@@ -103,11 +103,11 @@ class Addresses extends PureComponent {
         this.props.setBalanceCheckFlag(false);
         const { wallet, accountName, accountType, settings } = this.props;
 
-        const vault = await new Vault[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        this.props.completeSnapshotTransition(vault, accountName, wallet.transitionAddresses, powFn);
+        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses, powFn);
     };
 
     /**
@@ -118,11 +118,11 @@ class Addresses extends PureComponent {
         this.props.setBalanceCheckFlag(false);
         const { wallet, accountName, accountType } = this.props;
 
-        const vault = await new Vault[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 
         const currentIndex = wallet.transitionAddresses.length;
 
-        this.props.generateAddressesAndGetBalance(vault, currentIndex);
+        this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
     };
 
     render() {
