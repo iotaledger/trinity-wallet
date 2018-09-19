@@ -129,7 +129,8 @@ class Keychain {
         const secretBox = await keychain.get(ALIAS_SEEDS);
         const box = await decodeBase64(secretBox.item);
         const nonce = await decodeBase64(secretBox.nonce);
-        return await openSecretBox(box, nonce, this.key)[this.accountId];
+        const data = await openSecretBox(box, nonce, this.key);
+        return data[this.accountId];
     };
 
     /**
