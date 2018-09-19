@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 class SaveYourSeed extends Component {
     static propTypes = {
         /** Component ID */
-        componentId: PropTypes.object.isRequired,
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
         /** @ignore */

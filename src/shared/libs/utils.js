@@ -183,36 +183,6 @@ export const updatePersistedState = (incomingState, restoredState) => {
 };
 
 /**
- * Takes in the navigator object and pushes screen (mobile)
- *
- * @method pushScreen
- * @param {object} navigator
- * @param {string} screen
- * @param {object} props
- */
-export const pushScreen = (
-    navigator,
-    screen,
-    props = {
-        navigatorStyle: {
-            navBarHidden: true,
-            navBarTransparent: true,
-            screenBackgroundColor: '#1a373e',
-        },
-        animated: false,
-        overrideBackPress: true,
-    },
-) => {
-    // FIXME: Unneeded method. Remove when routing is sorted.
-    if (navigator) {
-        navigator.push({
-            ...props,
-            screen,
-        });
-    }
-};
-
-/**
  * Used for setting correct CryptoCompare URL when fetching chart data
  *
  * @method getUrlTimeFormat

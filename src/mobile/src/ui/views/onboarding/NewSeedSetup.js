@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
 class NewSeedSetup extends Component {
     static propTypes = {
         /** Component ID */
-        componentId: PropTypes.object.isRequired,
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
         /** @ignore */

@@ -33,11 +33,15 @@ const initialState = {
     /**
      * Determines if wallet is fetching account information from tangle after a successful login
      */
-    isFetchingLatestAccountInfoOnLogin: false,
+    isFetchingAccountInfo: false,
     /**
      * Determines if wallet has an error fetching account information from tangle after a successful login
      */
-    hasErrorFetchingAccountInfoOnLogin: false,
+    hasErrorFetchingFullAccountInfo: false,
+    /**
+     * Determines if wallet has an error fetching account information from tangle
+     */
+    hasErrorFetchingAccountInfo: false,
     /**
      * Determines if wallet is making a transaction
      */
@@ -246,11 +250,12 @@ export default (state = initialState, action) => {
                 isGeneratingReceiveAddress: false,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: false,
+                hasErrorFetchingAccountInfo: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
                 isAttachingToTangle: false,
-                isFetchingLatestAccountInfoOnLogin: false,
-                hasErrorFetchingAccountInfoOnLogin: false,
+                isFetchingAccountInfo: false,
+                hasErrorFetchingFullAccountInfo: false,
                 isSendingTransfer: false,
                 isSyncing: false,
                 inactive: false,
@@ -277,30 +282,36 @@ export default (state = initialState, action) => {
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
-                isFetchingLatestAccountInfoOnLogin: true,
-                hasErrorFetchingAccountInfoOnLogin: false,
+                isFetchingAccountInfo: true,
+                hasErrorFetchingFullAccountInfo: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
-                isFetchingLatestAccountInfoOnLogin: false,
-                hasErrorFetchingAccountInfoOnLogin: true,
+                isFetchingAccountInfo: false,
+                hasErrorFetchingFullAccountInfo: true,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
-                isFetchingLatestAccountInfoOnLogin: false,
+                isFetchingAccountInfo: false,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
-                isFetchingLatestAccountInfoOnLogin: true,
+                isFetchingAccountInfo: true,
+                hasErrorFetchingAccountInfo: false,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingAccountInfo: false,
+            };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
-                isFetchingLatestAccountInfoOnLogin: false,
+                isFetchingAccountInfo: false,
+                hasErrorFetchingAccountInfo: true,
             };
         case AccountsActionTypes.MANUAL_SYNC_REQUEST:
             return {

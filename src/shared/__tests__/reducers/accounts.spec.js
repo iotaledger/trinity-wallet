@@ -428,7 +428,7 @@ describe('Reducer: accounts', () => {
                 unconfirmedBundleTails: { foo: {} },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.fullAccountInfoFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -449,7 +449,7 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
                 accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
@@ -486,7 +486,7 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
                 accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
@@ -524,7 +524,7 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
                 accountType: 'bar',
                 hashes: ['baz', 'bar'],
@@ -563,7 +563,7 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
                 accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
@@ -600,7 +600,7 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
                 accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
@@ -637,7 +637,7 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
                 accountType: 'bar',
                 hashes: ['baz', 'bar'],

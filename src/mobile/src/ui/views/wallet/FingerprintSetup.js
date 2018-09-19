@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 class FingerprintEnable extends Component {
     static propTypes = {
         /** Component ID */
-        componentId: PropTypes.object.isRequired,
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */

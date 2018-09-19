@@ -34,7 +34,7 @@ const getProps = (overrides) =>
         {
             theme: { body: { bg: '#ffffff' } },
             generateAlert: noop,
-            navigator: {},
+            componentID: 'foo',
             t: () => '',
             password: {},
         },
@@ -47,8 +47,8 @@ describe('Testing TwoFactorSetupAddKey component', () => {
             expect(TwoFactorSetupAddKey.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a navigator object as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.navigator).toEqual(PropTypes.object.isRequired);
+        it('should require a componentID object as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.componentId).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {

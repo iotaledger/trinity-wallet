@@ -76,12 +76,18 @@ const styles = StyleSheet.create({
 /** Loading screen component */
 class Loading extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
+        hasErrorFetchingAccountInfo: PropTypes.bool.isRequired,
+        /** @ignore */
         getFullAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        hasErrorFetchingFullAccountInfo: PropTypes.bool.isRequired,
         /** Name for currently selected account */
         selectedAccountName: PropTypes.string,
         /** Name for currently selected account */
@@ -136,7 +142,6 @@ class Loading extends Component {
             selectedAccountName,
             selectedAccountType,
             password,
-            navigator,
             deepLinkActive,
         } = this.props;
 
@@ -162,18 +167,34 @@ class Loading extends Component {
 
         if (addingAdditionalAccount) {
             const vault = new Vault[additionalAccountType](password, additionalAccountName);
-            this.props.getFullAccountInfo(vault, additionalAccountName, navigator);
+            this.props.getFullAccountInfo(vault, additionalAccountName);
         } else {
             const vault = new Vault[selectedAccountType](password, selectedAccountName);
-            this.props.getAccountInfo(vault, selectedAccountName, navigator);
+            this.props.getAccountInfo(vault, selectedAccountName);
         }
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, addingAdditionalAccount } = this.props;
+        const {
+            ready,
+            addingAdditionalAccount,
+            hasErrorFetchingAccountInfo,
+            hasErrorFetchingFullAccountInfo,
+            componentId,
+        } = this.props;
         const isReady = !ready && newProps.ready;
         if ((isReady && this.state.animationPartOneDone) || (isReady && addingAdditionalAccount)) {
             this.launchHomeScreen();
+        }
+        if (!hasErrorFetchingAccountInfo && newProps.hasErrorFetchingAccountInfo) {
+            this.redirectToLogin();
+        }
+        if (!hasErrorFetchingFullAccountInfo && newProps.hasErrorFetchingFullAccountInfo) {
+            if (!addingAdditionalAccount) {
+                this.redirectToLogin();
+            } else {
+                Navigation.pop(componentId);
+            }
         }
     }
 
@@ -192,33 +213,8 @@ class Loading extends Component {
     }
 
     onChangeNodePress() {
-        const { theme: { body } } = this.props;
         this.props.setLoginRoute('nodeSelection');
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'login',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        statusBarColor: body.bg,
-                    },
-                },
-            },
-        });
+        this.redirectToLogin();
     }
 
     getWalletData() {
@@ -291,6 +287,40 @@ class Loading extends Component {
             this.animateElipses(chars, next);
         }, time);
     };
+
+    /**
+     * Redirect to login page
+     *
+     * @method redirectToLogin
+     */
+    redirectToLogin() {
+        const { theme: { body } } = this.props;
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        statusBarColor: body.bg,
+                    },
+                },
+            },
+        });
+    }
 
     render() {
         const { t, addingAdditionalAccount, theme: { body, primary } } = this.props;
@@ -385,6 +415,8 @@ class Loading extends Component {
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountType: getSelectedAccountType(state),
+    hasErrorFetchingAccountInfo: state.ui.hasErrorFetchingAccountInfo,
+    hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     additionalAccountName: state.wallet.additionalAccountName,
     additionalAccountType: state.wallet.additionalAccountType,

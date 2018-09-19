@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
         /** Component ID */
-        componentId: PropTypes.object.isRequired,
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */

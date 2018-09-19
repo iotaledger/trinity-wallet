@@ -583,7 +583,7 @@ const mapStateToProps = (state) => ({
     bar: state.settings.theme.bar,
     primary: state.settings.theme.primary,
     notificationLog: state.alerts.notificationLog,
-    isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
+    isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,
 });
 

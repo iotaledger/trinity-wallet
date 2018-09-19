@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 class WalletResetRequirePassword extends Component {
     static propTypes = {
         /** Component ID */
-        componentId: PropTypes.object.isRequired,
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */

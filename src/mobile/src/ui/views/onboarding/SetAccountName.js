@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 export class SetAccountName extends Component {
     static propTypes = {
         /** Component ID */
-        componentId: PropTypes.object.isRequired,
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
