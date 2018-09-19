@@ -20,7 +20,11 @@ import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/ma
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import {
+    getSelectedAccountName,
+    getSelectedAccountType,
+    getAccountNamesFromState,
+} from 'shared-modules/selectors/accounts';
 import GENERAL from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -122,6 +126,8 @@ class Loading extends Component {
         deepLinkActive: PropTypes.bool.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
+        /** All stored account names */
+        accountNames: PropTypes.array.isRequired,
     };
 
     constructor() {
@@ -181,6 +187,7 @@ class Loading extends Component {
             hasErrorFetchingAccountInfo,
             hasErrorFetchingFullAccountInfo,
             componentId,
+            accountNames,
         } = this.props;
         const isReady = !ready && newProps.ready;
         if ((isReady && this.state.animationPartOneDone) || (isReady && addingAdditionalAccount)) {
@@ -190,7 +197,7 @@ class Loading extends Component {
             this.redirectToLogin();
         }
         if (!hasErrorFetchingFullAccountInfo && newProps.hasErrorFetchingFullAccountInfo) {
-            if (!addingAdditionalAccount) {
+            if (accountNames.length <= 1) {
                 this.redirectToLogin();
             } else {
                 Navigation.pop(componentId);
@@ -415,6 +422,7 @@ class Loading extends Component {
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountType: getSelectedAccountType(state),
+    accountNames: getAccountNamesFromState(state),
     hasErrorFetchingAccountInfo: state.ui.hasErrorFetchingAccountInfo,
     hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,

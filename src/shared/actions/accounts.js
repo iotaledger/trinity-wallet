@@ -471,7 +471,7 @@ export const getAccountInfo = (seedStore, accountName, notificationFn) => {
             })
             .catch((err) => {
                 dispatch(accountInfoFetchError());
-                dispatch(generateAccountInfoErrorAlert(err));
+                setTimeout(() => dispatch(generateAccountInfoErrorAlert(err)), 500);
             });
     };
 };
