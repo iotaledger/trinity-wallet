@@ -133,7 +133,6 @@
     "bugsnag-js": "^4.7.3",
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.6",
-    "curl.lib.js": "^1.0.22",
     "date-fns": "^1.29.0",
     "electron-settings": "^3.2.0",
     "electron-updater": "^3.1.2",
