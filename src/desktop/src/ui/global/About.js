@@ -59,6 +59,16 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.4</h5>
+                            <ul>
+                                <li>- New: Drag&amp;drop text seed support</li>
+                                <li>- Update: Trigger 2fa verification once necessary code string length is reached</li>
+                                <li>- Update: Seed in memory use update</li>
+                                <li>- Update: Adjusted auto promotion timing</li>
+                                <li>- Fix: Reattach only if transaction falls below max depth</li>
+                                <li>- Fix: On Windows resizing wallet window using top corners does not work</li>
+                                <li>- Fix: Filled and empty paper wallet templates are mixed</li>
+                            </ul>
                             <h5>0.3.3</h5>
                             <ul>
                                 <li>- New: Support for Persian, Kannada, and Serbian (Latin)</li>
