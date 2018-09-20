@@ -500,9 +500,9 @@
         "electric": "Eléctrico",
         "ionic": "Iónico",
         "light": "Claro",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "lucky": "Suertudo",
+        "mint": "Menta",
+        "steelblue": "Acero azul"
     },
     "currencySelection": {
         "currency": "Divisa"
@@ -610,9 +610,9 @@
         "exportSuccessExplanation": "Su archivo con la semilla encriptada fue exportado con éxito.",
         "importSuccess": "Semilla importada",
         "importSuccessExplanation": "Su semilla fue importada con éxito.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Guardar para descargar la carpeta",
         "importSeedVault": "Importar SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "Suelte su SeedVault aquí <1></1> o haga click para buscar",
         "enterPasswordExplanation": "Introduzca su contraseña para abrir SeedVault",
         "noSeedFound": "SeedVault no contiene un semilla válida",
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
