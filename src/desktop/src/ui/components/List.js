@@ -171,9 +171,9 @@ class List extends React.PureComponent {
             }
 
             if (
-                transfer.message.toLowerCase().indexOf(search) < 0 &&
-                transfer.bundle !== search &&
-                transfer.hash !== search &&
+                search.length &&
+                transfer.message.toLowerCase().indexOf(search.toLowerCase()) < 0 &&
+                transfer.bundle.toLowerCase().indexOf(search.toLowerCase()) !== 0 &&
                 (!/^\+?\d+$/.test(search) || transfer.transferValue < parseInt(search))
             ) {
                 return false;
@@ -203,7 +203,7 @@ class List extends React.PureComponent {
 
         const failedBundles = Object.keys(failedHashes);
 
-        const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
+        const activeTransfer = currentItem ? historyTx.filter((tx) => tx.bundle === currentItem)[0] : null;
         const isActiveFailed = activeTransfer && failedBundles.indexOf(activeTransfer.bundle) > -1;
 
         return (
@@ -273,7 +273,7 @@ class List extends React.PureComponent {
                                 return (
                                     <a
                                         key={key}
-                                        onClick={() => setItem(transfer.hash)}
+                                        onClick={() => setItem(transfer.bundle)}
                                         className={classNames(
                                             isConfirmed ? css.confirmed : css.pending,
                                             isReceived ? css.received : css.sent,
