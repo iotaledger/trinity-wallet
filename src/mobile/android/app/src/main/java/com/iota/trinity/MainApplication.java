@@ -108,4 +108,14 @@ public class MainApplication extends NavigationApplication implements ShareAppli
     public String getFileProviderAuthority() {
         return "com.iota.trinity.provider";
     }
+
+    @Override
+    protected ReactNativeHost createReactNativeHost() {
+        return new NavigationReactNativeHost(this) {
+            @Override
+            protected String getJSMainModuleName() {
+                return "index";
+            }
+        };
+    }
 }

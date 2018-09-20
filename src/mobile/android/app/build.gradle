@@ -83,6 +83,9 @@ def enableSeparateBuildPerCPUArchitecture = false
  * Run Proguard to shrink the Java bytecode in release builds.
  */
 def enableProguardInReleaseBuilds = true
+
+project.ext.react = [entryFile: 'index.js']
+
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
