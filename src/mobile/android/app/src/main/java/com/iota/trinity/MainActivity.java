@@ -25,13 +25,6 @@ public class MainActivity extends NavigationActivity {
     public View createSplashLayout() {
         LinearLayout view = new LinearLayout(this);
         ImageView imageView = new ImageView(this);
-
-        view.setBackgroundColor(Color.parseColor("#181818"));
-        view.setGravity(Gravity.CENTER);
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
-        layoutParams.gravity = Gravity.CENTER;
-        imageView.setLayoutParams(layoutParams);
         imageView.setImageDrawable(ContextCompat.getDrawable(this.getApplicationContext(), R.drawable.background_splash));
 
         view.addView(imageView);

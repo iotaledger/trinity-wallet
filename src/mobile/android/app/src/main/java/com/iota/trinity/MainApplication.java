@@ -110,12 +110,13 @@ public class MainApplication extends NavigationApplication implements ShareAppli
     }
 
     @Override
-    protected ReactNativeHost createReactNativeHost() {
-        return new NavigationReactNativeHost(this) {
+    protected ReactGateway createReactGateway() {
+        ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
             @Override
             protected String getJSMainModuleName() {
                 return "index";
             }
         };
+        return new ReactGateway(this, isDebug(), host);
     }
 }
