@@ -1,6 +1,5 @@
 package com.iota.trinity;
 
-import com.reactnativenavigation.controllers.SplashActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.graphics.Color;
@@ -15,6 +14,7 @@ public class MainActivity extends NavigationActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(this.createSplashLayout());
         long size = 50L * 1024L * 1024L; // 50 MB
         com.facebook.react.modules.storage.ReactDatabaseSupplier.getInstance(getApplicationContext()).setMaximumSize(size);
         // FORCE LTR
@@ -22,7 +22,6 @@ public class MainActivity extends NavigationActivity {
         sharedI18nUtilInstance.allowRTL(getApplicationContext(), false);
     }
 
-    @Override
     public View createSplashLayout() {
         LinearLayout view = new LinearLayout(this);
         ImageView imageView = new ImageView(this);
