@@ -264,9 +264,9 @@
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio.",
         "individualLetterCount": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount_plural": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "randomiseCharsToContinue": "Aleatorizar <1>{{count}}</1> más para continuar.",
+        "randomiseCharsToContinue_plural": "Aleatorizar <1>{{count}}</1> carácteres más para continuar.",
         "whatIsASeed": "Que es una semilla?"
     },
     "onboardingComplete": {
@@ -493,13 +493,13 @@
         "mockup": "Maqueta"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
+        "classic": "Clásico",
+        "contemporary": "Contemporáneo",
+        "dark": "Oscuro",
+        "default": "Predeterminado",
+        "electric": "Eléctrico",
+        "ionic": "Iónico",
+        "light": "Claro",
         "lucky": "Lucky",
         "mint": "Mint",
         "steelblue": "Steel Blue"
