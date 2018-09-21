@@ -89,7 +89,9 @@ export class SeedVaultImportComponent extends Component {
         const { t } = this.props;
         DocumentPicker.show(
             {
-                filetype: [isAndroid ? 'application/octet-stream' : 'public.data'],
+                filetype: isAndroid
+                    ? ['application/octet-stream']
+                    : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
             },
             (error, res) => {
                 if (error) {
