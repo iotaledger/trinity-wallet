@@ -31,7 +31,7 @@
         "prev": "Előző",
         "next": "Következő",
         "apply": "Alkalmaz",
-        "save": "Elment",
+        "save": "Mentés",
         "close": "Bezár",
         "export": "Exportálás",
         "help": "Súgó",
@@ -670,7 +670,7 @@
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
-        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése deepLink alapján."
+        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
