@@ -36,7 +36,7 @@ class SeedInput extends React.PureComponent {
         /** Camera modal close label */
         closeLabel: PropTypes.string.isRequired,
         /** Seed change event function
-         * @param {string} value - Current seed value
+         * @param {array} value - Current seed value
          */
         onChange: PropTypes.func.isRequired,
         /** @ignore */
@@ -121,6 +121,17 @@ class SeedInput extends React.PureComponent {
         this.setState({
             importBuffer: buffer,
         });
+    };
+
+    /**
+     * Set valid length drag&drop seed to state
+     * @param {array} seed - Target seed byte array
+     */
+    onTextDrop = (seed) => {
+        if (seed.length === MAX_SEED_LENGTH) {
+            this.props.onChange(seed);
+        }
+        Electron.garbageCollect();
     };
 
     getCursor = (element) => {
@@ -237,7 +248,7 @@ class SeedInput extends React.PureComponent {
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
-            if (byte || key === 'Backspace') {
+            if (byte > -1 || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
 
                 const seed = this.props.seed.slice(0);
@@ -311,7 +322,7 @@ class SeedInput extends React.PureComponent {
                     </div>
                     <small>{label}</small>
                 </fieldset>
-                <Dropzone onDrop={this.onDrop} />
+                <Dropzone onDrop={this.onDrop} onTextDrop={this.onTextDrop} />
 
                 {seed.length ? <span className={css.info}>{checkSum}</span> : null}
                 {showScanner && (

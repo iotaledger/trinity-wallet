@@ -13,9 +13,14 @@ import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
 
+<<<<<<< HEAD
 import { capitalize } from 'libs/helpers';
 import { hash, authorize } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
+=======
+import { capitalize, bytesToTrits } from 'libs/helpers';
+import { vaultAuth, getSeed, setSeed, hash } from 'libs/crypto';
+>>>>>>> develop
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
