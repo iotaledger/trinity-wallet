@@ -1,9 +1,11 @@
 import get from 'lodash/get';
+import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
+import sharedStore from 'shared-modules/store';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
@@ -14,6 +16,7 @@ import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import i18 from 'libs/i18next';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
+import { persistStoreAsync, migrate } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
 
 const launch = (store) => {
@@ -50,36 +53,39 @@ const launch = (store) => {
     renderInitialScreen(initialScreen);
 };
 
+const onAppStart = () => {
+    registerScreens(sharedStore, Provider);
+    return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
+};
+
 const renderInitialScreen = (initialScreen) => {
-    Navigation.events().registerAppLaunchedListener(() => {
-        Navigation.setRoot({
-            root: {
-                stack: {
-                    id: 'appStack',
-                    children: [
-                        {
-                            component: {
-                                name: initialScreen,
-                            },
+    Navigation.setRoot({
+        root: {
+            stack: {
+                id: 'appStack',
+                children: [
+                    {
+                        component: {
+                            name: initialScreen,
                         },
-                    ],
-                    options: {
-                        layout: {
-                            backgroundColor: '#181818',
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                        },
+                    },
+                ],
+                options: {
+                    layout: {
+                        backgroundColor: '#181818',
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
                     },
                 },
             },
-        });
+        },
     });
 };
 
@@ -148,24 +154,25 @@ const hasConnection = (
     );
 };
 
-// Initialization function
-// Passed as a callback to persistStore to adjust the rendering time
-export default (store) => {
-    overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
+onAppStart()
+    .then(() => persistStoreAsync())
+    .then(({ store, restoredState }) => migrate(store, restoredState))
+    .then((store) => {
+        overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
-    const initialize = (isConnected) => {
-        store.dispatch({
-            type: ActionTypes.CONNECTION_CHANGED,
-            payload: { isConnected },
-        });
-        fetchNodeList(store);
-        startListeningToConnectivityChanges(store);
+        const initialize = (isConnected) => {
+            store.dispatch({
+                type: ActionTypes.CONNECTION_CHANGED,
+                payload: { isConnected },
+            });
+            fetchNodeList(store);
+            startListeningToConnectivityChanges(store);
 
-        registerScreens(store, Provider);
-        translate.setI18n(i18);
+            translate.setI18n(i18);
 
-        launch(store);
-    };
+            launch(store);
+        };
 
-    hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
-};
+        hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
+    })
+    .catch(noop);
