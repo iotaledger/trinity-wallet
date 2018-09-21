@@ -554,7 +554,7 @@
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
         "alreadyHave": "Készítettem biztonsági másolatot a mester jelszavamról",
         "reenterSeed": "A következő lépésben a rendszer kérni fogja, hogy adja meg újra a mester jelszavát.",
-        "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik vagy elveszik, az összes IOTA-ját elveszíti.",
+        "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik, az összes IOTA-ját elveszíti.",
         "pleaseConfirm": "Kérjük, erősítse meg, hogy biztonságosan eltárolta a mester jelszavát."
     },
     "walletResetConfirmation": {
@@ -605,7 +605,7 @@
         "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és a jelszó nélkül a mester jelszó semmilyen módon nem visszafejthető.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
-        "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük győzödjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
+        "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
         "exportSuccess": "SeedVault exportálva",
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
         "importSuccess": "Mester jelszó tárolva",
@@ -617,7 +617,7 @@
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
-        "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fáljt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
+        "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
         "seedVaultPasswordExplanation": "A SeedVault fájl biztonságos tárolásához kérjük adjon megy egy jelszót. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a SeedVault biztonsági mentésből vissza szeretné állítani. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépésnél is használ."
     },
     "chart": {
@@ -647,7 +647,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
         "validatingReceiveAddress": "Címzett címének ellenőrzése",
-        "syncingAccount": "Szálma szinkronizálása",
+        "syncingAccount": "Számla szinkronizálása",
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
@@ -656,7 +656,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Pillanatkép utáni egyenlegátvezetés sikertelen",
-        "cannotCompleteTransitionExplanation": "A pillantkép utáni egyenlegátvezetéshez a számláján 0-nál nagyobb egyenlegnek kell lennie.",
+        "cannotCompleteTransitionExplanation": "A pillanatkép utáni egyenlegátvezetéshez a számláján 0-nál nagyobb egyenlegnek kell lennie.",
         "transitionComplete": "Pillanatkép utáni egyenlegátvezetés sikeres",
         "transitionCompleteExplanation": "A pillanatkép utáni egyenlegátvezetés sikeresen befejeződött.",
         "detectedBalance": "Átvezetés után megtalált egyenleg: {{amount}} {{unit}}",
