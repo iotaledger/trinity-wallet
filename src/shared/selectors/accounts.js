@@ -221,7 +221,7 @@ export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (a
  *   @returns {number}
  **/
 export const getAvailableBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
-    const unspentAddresses = filter(account.addresses, { spent: false });
+    const unspentAddresses = filter(account.addresses, { spent: { local: false } });
     return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
 });
 

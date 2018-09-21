@@ -10,6 +10,7 @@ import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
 import {
@@ -180,7 +181,7 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
  **/
 export const syncAccount = (provider) => (existingAccountState, seed, genFn, notificationFn) => {
     const thisStateCopy = cloneDeep(existingAccountState);
-    const rescanAddresses = isString(seed);
+    const rescanAddresses = isString(seed) || isArray(seed);
 
     return (rescanAddresses
         ? syncAddresses(provider)(seed, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx), genFn)
