@@ -12,11 +12,9 @@ export const isIOS = Platform.OS === 'ios';
 export const isIPhoneX = device.includes('iPhone X');
 
 export const isIPhone11 = () => {
-    if (!isAndroid) {
-        // Check if device is iPhone XS, iPhone XS Max, or iPhone XR
-        if (deviceId.substring(0, 8) === 'iPhone11') {
-            return true;
-        }
+    // Check if device is iPhone XS, iPhone XS Max, or iPhone XR
+    if (deviceId.substring(0, 8) === 'iPhone11') {
+        return true;
     }
     return false;
 };
