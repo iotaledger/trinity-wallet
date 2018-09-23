@@ -23,7 +23,7 @@ import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhone11 } from 'libs/device';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -114,6 +114,7 @@ class SaveYourSeed extends Component {
         super(props);
         this.state = {
             isModalActive: false,
+            isIPhone11: isIPhone11(),
         };
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
@@ -462,7 +463,7 @@ class SaveYourSeed extends Component {
 
     render() {
         const { t, theme: { body, secondary } } = this.props;
-        const { isModalActive } = this.state;
+        const { isModalActive, isIPhone11 } = this.state;
         const textColor = { color: body.color };
         const lineColor = { borderLeftColor: body.color };
 
@@ -485,22 +486,24 @@ class SaveYourSeed extends Component {
                     <View style={{ flex: 0.5 }} />
                     <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
                     <View style={[styles.line, lineColor]} />
-                    <Button
-                        onPress={() => this.onExportSeedVaultPress()}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: secondary.color,
-                            },
-                            children: {
-                                color: secondary.body,
-                            },
-                        }}
-                    >
-                        {t('seedVault:exportSeedVault')}
-                    </Button>
+                    {!isIPhone11 && (
+                        <Button
+                            onPress={() => this.onExportSeedVaultPress()}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: secondary.color,
+                                },
+                                children: {
+                                    color: secondary.body,
+                                },
+                            }}
+                        >
+                            {t('seedVault:exportSeedVault')}
+                        </Button>
+                    )}
                     <View style={[styles.line, lineColor]} />
                     <Button
                         onPress={() => this.onWriteSeedDownPress()}
