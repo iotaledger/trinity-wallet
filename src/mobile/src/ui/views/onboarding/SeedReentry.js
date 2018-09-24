@@ -88,7 +88,6 @@ class SeedReentry extends Component {
         this.state = {
             seed: '',
             isModalVisible: false,
-            isIPhone11: isIPhone11(),
         };
     }
 
@@ -220,7 +219,7 @@ class SeedReentry extends Component {
     };
 
     render() {
-        const { modalContent, seed, isModalVisible, isIPhone11 } = this.state;
+        const { modalContent, seed, isModalVisible } = this.state;
         const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 

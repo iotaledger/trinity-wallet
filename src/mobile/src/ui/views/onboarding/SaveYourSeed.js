@@ -114,7 +114,6 @@ class SaveYourSeed extends Component {
         super(props);
         this.state = {
             isModalActive: false,
-            isIPhone11: isIPhone11(),
         };
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
@@ -463,7 +462,7 @@ class SaveYourSeed extends Component {
 
     render() {
         const { t, theme: { body, secondary } } = this.props;
-        const { isModalActive, isIPhone11 } = this.state;
+        const { isModalActive } = this.state;
         const textColor = { color: body.color };
         const lineColor = { borderLeftColor: body.color };
 

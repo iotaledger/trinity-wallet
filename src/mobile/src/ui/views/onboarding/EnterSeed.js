@@ -85,7 +85,6 @@ class EnterSeed extends React.Component {
         this.state = {
             seed: '',
             isModalVisible: false,
-            isIPhone11: isIPhone11(),
         };
     }
 
@@ -215,7 +214,7 @@ class EnterSeed extends React.Component {
     };
 
     render() {
-        const { seed, modalContent, isModalVisible, isIPhone11 } = this.state;
+        const { seed, modalContent, isModalVisible } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (

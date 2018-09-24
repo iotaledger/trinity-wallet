@@ -119,7 +119,6 @@ class UseExistingSeed extends Component {
         this.state = {
             seed: '',
             accountName: this.getDefaultAccountName(),
-            isIPhone11: isIPhone11(),
         };
     }
 
@@ -325,7 +324,7 @@ class UseExistingSeed extends Component {
 
     render() {
         const { t, theme, isModalActive } = this.props;
-        const { modalContent, seed, accountName, isIPhone11 } = this.state;
+        const { modalContent, seed, accountName } = this.state;
 
         const textColor = { color: theme.body.color };
 
