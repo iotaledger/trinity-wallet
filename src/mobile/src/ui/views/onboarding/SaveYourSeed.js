@@ -487,26 +487,24 @@ class SaveYourSeed extends Component {
                     <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
                     <View style={[styles.line, lineColor]} />
                     {!isIPhone11 && (
-                        <View>
-                            <Button
-                                onPress={() => this.onExportSeedVaultPress()}
-                                style={{
-                                    wrapper: {
-                                        width: width / 1.36,
-                                        height: height / 13,
-                                        borderRadius: height / 90,
-                                        backgroundColor: secondary.color,
-                                    },
-                                    children: {
-                                        color: secondary.body,
-                                    },
-                                }}
-                            >
-                                {t('seedVault:exportSeedVault')}
-                            </Button>
-                            <View style={[styles.line, lineColor]} />
-                        </View>
+                        <Button
+                            onPress={() => this.onExportSeedVaultPress()}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: secondary.color,
+                                },
+                                children: {
+                                    color: secondary.body,
+                                },
+                            }}
+                        >
+                            {t('seedVault:exportSeedVault')}
+                        </Button>
                     )}
+                    {!isIPhone11 && <View style={[styles.line, lineColor]} />}
                     <Button
                         onPress={() => this.onWriteSeedDownPress()}
                         style={{
