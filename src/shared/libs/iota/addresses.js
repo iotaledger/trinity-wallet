@@ -9,6 +9,8 @@ import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
+import omit from 'lodash/omit';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
@@ -387,14 +389,13 @@ export const filterSpentAddressesSync = (addresses, addressData) =>
 /**
  *   Communicates with ledger and checks if the addresses are spent from.
  *
- *   @method filterSpentAddresses
+ *   @method pickUnspentAddressData
  *   @param {string} provider
  *
- *   @returns {function(array, object, array): Promise<array>}
+ *   @returns {function(object, array): Promise<object>}
  **/
-export const filterSpentAddresses = (provider) => (inputs, addressData, normalisedTransactions) => {
-    const addresses = filterSpentAddressesSync(map(inputs, (input) => input.address), addressData);
-    const filteredInputs = filter(inputs, (input) => includes(addresses, input.address));
+export const pickUnspentAddressData = (provider) => (addressData, normalisedTransactions) => {
+    const addresses = filterSpentAddressesSync(keys(addressData), addressData);
 
     // If all inputs are spent, avoid making the network call
     if (isEmpty(addresses)) {
@@ -403,8 +404,16 @@ export const filterSpentAddresses = (provider) => (inputs, addressData, normalis
 
     const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactions);
 
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) =>
-        filter(filteredInputs, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]),
+    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
+        const filteredAddresses = filter(addresses,
+            (input, idx) => !wereSpent[idx] && !spendStatuses[idx]
+        );
+
+        return pickBy(
+          addressData,
+            (data, address) => includes(filteredAddresses, address)
+        );
+        },
     );
 };
 
@@ -594,23 +603,16 @@ export const syncAddresses = (provider) => (seed, existingAddressData, normalise
  *   Filters inputs with addresses that have pending incoming transfers or
  *   are change addresses.
  *
- *   @method filterAddressesWithIncomingTransfers
- *   @param {array} inputs
+ *   @method omitAddressesDataWithIncomingTransfers
+ *   @param {object} addressData
  *   @param {array} pendingValueTransfers
- *   @returns {array}
+ *
+ *   @returns {object}
  **/
-export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfers) => {
-    if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
-        return inputs;
+export const omitAddressesDataWithIncomingTransfers = (addressData, pendingValueTransfers) => {
+    if (isEmpty(pendingValueTransfers) || isEmpty(addressData)) {
+        return addressData;
     }
-
-    const inputsByAddress = transform(
-        inputs,
-        (acc, input) => {
-            acc[input.address] = input;
-        },
-        {},
-    );
 
     const addressesWithIncomingTransfers = new Set();
 
@@ -621,15 +623,12 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
     const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
 
     each(outputsToCheck, (output) => {
-        if (output.address in inputsByAddress && output.value > 0) {
+        if (output.address in addressData && output.value > 0) {
             addressesWithIncomingTransfers.add(output.address);
         }
     });
 
-    return map(
-        omitBy(inputsByAddress, (input, address) => addressesWithIncomingTransfers.has(address)),
-        (input) => input,
-    );
+    return omitBy(addressData, (_, address) => addressesWithIncomingTransfers.has(address));
 };
 
 /**
@@ -725,3 +724,11 @@ export const findSpendStatusesFromNormalisedTransactions = (addresses, normalise
 
     return map(addresses, (address) => includes(inputAddresses, address));
 };
+
+export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) => map(addressData, (data, address) => ({
+    address,
+    security,
+    balance: data.balance,
+    keyIndex: data.index
+}));
+
