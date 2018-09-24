@@ -103,7 +103,7 @@ class UseExistingSeed extends Component {
 
         this.state = {
             seed: '',
-            accountName: '',
+            accountName: this.getDefaultAccountName(),
         };
     }
 

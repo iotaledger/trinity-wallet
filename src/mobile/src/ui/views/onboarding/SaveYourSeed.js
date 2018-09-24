@@ -21,7 +21,7 @@ import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -413,7 +413,7 @@ class SaveYourSeed extends Component {
                     <View style={{ flex: 0.5 }} />
                     <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
                     <View style={[styles.line, lineColor]} />
-                    {!isIPhone11 && (
+                    {!isIPhoneX && (
                         <Button
                             onPress={() => this.onExportSeedVaultPress()}
                             style={{
@@ -431,7 +431,7 @@ class SaveYourSeed extends Component {
                             {t('seedVault:exportSeedVault')}
                         </Button>
                     )}
-                    {!isIPhone11 && <View style={[styles.line, lineColor]} />}
+                    {!isIPhoneX && <View style={[styles.line, lineColor]} />}
                     <Button
                         onPress={() => this.onWriteSeedDownPress()}
                         style={{
