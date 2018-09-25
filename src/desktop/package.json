@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -128,6 +128,7 @@
     }
   },
   "dependencies": {
+    "@ledgerhq/hw-transport-u2f": "^4.21.0",
     "argon2": "rihardsgravis/node-argon2#prebuild-release",
     "authenticator": "^1.1.5",
     "bugsnag-js": "^4.7.3",

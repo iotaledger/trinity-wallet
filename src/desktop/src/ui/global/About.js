@@ -59,6 +59,10 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.5</h5>
+                            <ul>
+                                <li>- Hotfix: Incorrect byte to trit conversion on Manual sync</li>
+                            </ul>
                             <h5>0.3.4</h5>
                             <ul>
                                 <li>- New: Drag&amp;drop text seed support</li>
