@@ -67,7 +67,7 @@ class AddNewAccount extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },

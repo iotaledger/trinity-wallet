@@ -64,7 +64,7 @@ class SecuritySettings extends Component {
                         },
                         statusBar: {
                             drawBehind: true,
-                            statusBarColor: body.bg,
+                            backgroundColor: body.bg,
                         },
                     },
                 },
@@ -93,7 +93,7 @@ class SecuritySettings extends Component {
                         },
                         statusBar: {
                             drawBehind: true,
-                            statusBarColor: body.bg,
+                            backgroundColor: body.bg,
                         },
                     },
                 },
@@ -130,7 +130,7 @@ class SecuritySettings extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },

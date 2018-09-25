@@ -144,7 +144,7 @@ class EnterSeed extends React.Component {
                         },
                         statusBar: {
                             drawBehind: true,
-                            statusBarColor: body.bg,
+                            backgroundColor: body.bg,
                         },
                     },
                 },

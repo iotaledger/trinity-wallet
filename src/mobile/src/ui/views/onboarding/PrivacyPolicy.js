@@ -112,7 +112,7 @@ class PrivacyPolicy extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },

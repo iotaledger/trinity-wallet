@@ -116,7 +116,7 @@ class TermsAndConditions extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: bar.bg,
+                        backgroundColor: bar.bg,
                     },
                 },
             },

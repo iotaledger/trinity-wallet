@@ -217,7 +217,7 @@ class NewSeedSetup extends Component {
                         },
                         statusBar: {
                             drawBehind: true,
-                            statusBarColor: body.bg,
+                            backgroundColor: body.bg,
                         },
                         rightButtons: [
                             {
@@ -271,7 +271,7 @@ class NewSeedSetup extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: bar.alt,
+                        backgroundColor: bar.alt,
                     },
                 },
             },

@@ -100,7 +100,7 @@ export class MainSettings extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },

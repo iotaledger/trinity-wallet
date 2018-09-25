@@ -124,7 +124,7 @@ class TwoFactorSetupEnterToken extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: bar.alt,
+                        backgroundColor: bar.alt,
                     },
                 },
             },

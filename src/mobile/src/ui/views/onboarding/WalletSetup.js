@@ -132,7 +132,7 @@ class WalletSetup extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },
@@ -168,7 +168,7 @@ class WalletSetup extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },

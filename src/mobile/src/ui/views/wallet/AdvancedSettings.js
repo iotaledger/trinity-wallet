@@ -121,7 +121,7 @@ export class AdvancedSettings extends PureComponent {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: body.bg,
+                        backgroundColor: body.bg,
                     },
                 },
             },

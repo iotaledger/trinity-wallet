@@ -50,7 +50,7 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
-    renderInitialScreen(initialScreen);
+    renderInitialScreen(initialScreen, state);
 };
 
 const onAppStart = () => {
@@ -58,7 +58,7 @@ const onAppStart = () => {
     return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
 };
 
-const renderInitialScreen = (initialScreen) => {
+const renderInitialScreen = (initialScreen, state) => {
     Navigation.setRoot({
         root: {
             stack: {
@@ -67,23 +67,24 @@ const renderInitialScreen = (initialScreen) => {
                     {
                         component: {
                             name: initialScreen,
+                            options: {
+                                layout: {
+                                    backgroundColor: state.settings.theme.body.bg,
+                                    orientation: ['portrait'],
+                                },
+                                topBar: {
+                                    visible: false,
+                                    drawBehind: true,
+                                    elevation: 0,
+                                },
+                                statusBar: {
+                                    drawBehind: true,
+                                    backgroundColor: state.settings.theme.body.bg
+                                },
+                            },
                         },
                     },
                 ],
-                options: {
-                    layout: {
-                        backgroundColor: '#181818',
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                    },
-                },
             },
         },
     });

@@ -104,7 +104,7 @@ class LanguageSetup extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
+                        backgroundColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
                     },
                 },
             },

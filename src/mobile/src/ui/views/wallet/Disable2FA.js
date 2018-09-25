@@ -130,7 +130,7 @@ class Disable2FA extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        statusBarColor: bar.alt,
+                        backgroundColor: bar.alt,
                     },
                 },
             },

@@ -65,7 +65,7 @@ export default () => (C) => {
                         },
                         statusBar: {
                             drawBehind: true,
-                            statusBarColor: bar.alt,
+                            backgroundColor: bar.alt,
                         },
                     },
                 },
