@@ -62,6 +62,10 @@ describe('Testing TwoFactorSetupAddKey component', () => {
         it('should require a password object as a prop', () => {
             expect(TwoFactorSetupAddKey.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
+
+        it('should require a componentId string as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.componentId).toEqual(PropTypes.string.isRequired);
+        });
     });
 
     describe('when renders', () => {

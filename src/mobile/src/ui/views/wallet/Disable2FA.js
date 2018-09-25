@@ -8,6 +8,7 @@ import { Navigation } from 'react-native-navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
+import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -51,6 +52,8 @@ const styles = StyleSheet.create({
 /** Disable Two Factor Authentication component */
 class Disable2FA extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -65,11 +68,9 @@ class Disable2FA extends Component {
 
     constructor() {
         super();
-
         this.state = {
             token: '',
         };
-
         this.goBack = this.goBack.bind(this);
         this.disable2FA = this.disable2FA.bind(this);
     }
@@ -87,7 +88,6 @@ class Disable2FA extends Component {
                 const verified = authenticator.verifyToken(key, this.state.token);
                 if (verified) {
                     this.props.set2FAStatus(false);
-
                     this.goBack();
                     this.timeout = setTimeout(() => {
                         this.props.generateAlert(
@@ -109,32 +109,7 @@ class Disable2FA extends Component {
      * @method goBack
      */
     goBack() {
-        const { theme: { bar, body } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'home',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: bar.alt,
-                    },
-                },
-            },
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     render() {
@@ -192,6 +167,4 @@ const mapDispatchToProps = {
     set2FAStatus,
 };
 
-export default translate(['resetWalletRequirePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
-);
+export default WithBackPressGoToHome()(translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Disable2FA)));
