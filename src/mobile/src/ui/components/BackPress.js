@@ -24,7 +24,6 @@ export default () => (C) => {
     class WithBackPress extends Component {
         constructor(props) {
             super(props);
-
             if (isAndroid) {
                 Navigation.events().bindComponent(this);
             }

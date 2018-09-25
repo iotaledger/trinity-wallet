@@ -84,7 +84,7 @@ export const authorize = async (pwdHash) => {
         return true;
     } catch (error) {
         // In case no seeds in keychain or password hash is incorrect
-        return null;
+        throw error;
     }
 };
 
@@ -93,7 +93,7 @@ export const getTwoFactorAuthKeyFromKeychain = async (pwdHash) => {
         return await getSecretBoxFromKeychainAndOpenIt(ALIAS_AUTH, pwdHash);
     } catch (error) {
         // In case no 2FA key in keychain or password hash is incorrect
-        return null;
+        throw error;
     }
 };
 
