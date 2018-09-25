@@ -11,6 +11,7 @@ import { width } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
+import { getSeedFromVault } from 'libs/seedvault';
 
 const styles = StyleSheet.create({
     infoText: {
@@ -73,12 +74,19 @@ export class SeedVaultImportComponent extends Component {
      * @method validatePassword
      */
     validatePassword(password) {
-        const { t } = this.props;
+        const { t, generateAlert, onSeedImport } = this.props;
+        const { seedVault } = this.state;
         if (password === '') {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+            return generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         }
-        const seedVaultString = this.state.seedVault.toString();
-        return nodejs.channel.send('import:' + seedVaultString + ':' + password);
+        return getSeedFromVault(seedVault, password)
+            .then((seed) => {
+                generateAlert('success', t('seedVault:importSuccess'), t('seedVault:importSuccessExplanation'));
+                return onSeedImport(seed.toString());
+            })
+            .catch(() => {
+                generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
+            });
     }
 
     /**

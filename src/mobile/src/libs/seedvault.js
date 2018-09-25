@@ -1,6 +1,5 @@
 import kdbxweb from 'kdbxweb';
 import { getHashFn } from 'libs/nativeModules';
-import base64js from 'base64-js';
 
 /**
  * Bind kdbxweb and argon2
@@ -8,14 +7,14 @@ import base64js from 'base64-js';
 // eslint-disable-next-line no-unused-vars
 kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, parallelism, type, version) => {
     const argon2Hash = getHashFn();
-    return argon2Hash(base64js.fromByteArray(password), base64js.fromByteArray(salt), {
+    return argon2Hash(password.toString('utf8'), salt.toString('utf8'), {
         t_cost: iterations,
         m_cost: memory,
         parallelism,
         hashLength: length,
     })
         .then((hash) => {
-            const hashBuffer = base64js.toByteArray(hash);
+            const hashBuffer = Buffer.from(hash, 'utf8');
             Promise.resolve(hashBuffer);
         })
         .catch((err) => {
@@ -62,6 +61,7 @@ export const getSeedFromVault = async (buffer, password) => {
  * @param {array} message - Message passed to channel
  * @returns {string} Password
  */
+// eslint-disable-next-line no-unused-vars
 const getPassword = (arr) => {
     let password = '';
     if (arr.length > 2) {
