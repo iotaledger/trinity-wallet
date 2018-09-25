@@ -39,66 +39,34 @@ class SecuritySettings extends Component {
      */
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;
-
-        if (!is2FAEnabled) {
-            Navigation.push('appStack', {
-                component: {
-                    name: 'twoFactorSetupAddKey',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
+        Navigation.push('appStack', {
+            component: {
+                name: is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
                         },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
+                        pop: {
+                            enable: false,
                         },
                     },
-                },
-            });
-        } else {
-            Navigation.push('appStack', {
-                component: {
-                    name: 'disable2FA',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
-                        },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
                     },
                 },
-            });
-        }
+            },
+        });
     }
 
     /**

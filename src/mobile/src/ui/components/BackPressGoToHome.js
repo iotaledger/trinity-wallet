@@ -45,12 +45,12 @@ export default () => (C) => {
         handleBackPress = () => {
             const { theme: { bar, body } } = this.props;
 
-            Navigation.push('appStack', {
+            Navigation.setStackRoot('appStack', {
                 component: {
-                    name: screen,
+                    name: 'home',
                     options: {
                         animations: {
-                            push: {
+                            setStackRoot: {
                                 enable: false,
                             },
                         },

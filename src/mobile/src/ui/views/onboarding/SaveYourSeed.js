@@ -1,7 +1,7 @@
 import each from 'lodash/each';
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, BackHandler, Clipboard, NativeModules } from 'react-native';
+import { StyleSheet, View, Text, Clipboard, NativeModules } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RNPrint from 'react-native-print';
@@ -96,8 +96,6 @@ class SaveYourSeed extends Component {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
-        onboardingComplete: PropTypes.bool.isRequired,
-        /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -116,23 +114,13 @@ class SaveYourSeed extends Component {
         this.state = {
             isModalActive: false,
         };
-        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SaveYourSeed');
-        if (this.props.onboardingComplete) {
-            BackHandler.addEventListener('saveYourSeedBackPress', () => {
-                this.onBackPress();
-                return true;
-            });
-        }
     }
 
     componentWillUnmount() {
-        if (this.props.onboardingComplete) {
-            BackHandler.removeEventListener('saveYourSeedBackPress');
-        }
         timer.clearTimeout('delayPrint');
         timer.clearTimeout('clipboardClear');
         timer.clearTimeout('delayAlert');

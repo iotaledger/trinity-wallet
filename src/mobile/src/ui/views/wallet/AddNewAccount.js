@@ -47,12 +47,15 @@ class AddNewAccount extends Component {
      */
     addNewSeed() {
         const { theme: { body } } = this.props;
-        Navigation.setStackRoot('appStack', {
+        Navigation.push('appStack', {
             component: {
                 name: 'newSeedSetup',
                 options: {
                     animations: {
-                        setStackRoot: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
                             enable: false,
                         },
                     },

@@ -112,14 +112,12 @@ export class ViewAddresses extends Component {
      */
     prepAddresses() {
         const { addresses } = this.props.selectedAccount;
-
         const preparedAddresses = map(addresses, (data, address) => ({
             ...data,
             balance: round(formatValue(data.balance), 1),
             unit: formatUnit(data.balance),
             address: `${address}${data.checksum}`,
         }));
-
         return orderBy(preparedAddresses, 'index', ['desc']);
     }
 
@@ -130,14 +128,12 @@ export class ViewAddresses extends Component {
      */
     copy(address) {
         const { t } = this.props;
-
         Clipboard.setString(address);
         return this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     renderAddress(address) {
         const { theme } = this.props;
-
         const { spent } = address;
         const isSpent = spent.local || spent.remote;
 

@@ -76,6 +76,9 @@ const renderInitialScreen = (initialScreen, state) => {
                                     visible: false,
                                     drawBehind: true,
                                     elevation: 0,
+                                    background: {
+                                      color: state.settings.theme.body.bg,
+                                    }
                                 },
                                 statusBar: {
                                     drawBehind: true,

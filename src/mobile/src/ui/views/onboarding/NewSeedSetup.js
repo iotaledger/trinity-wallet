@@ -152,7 +152,8 @@ class NewSeedSetup extends Component {
         leaveNavigationBreadcrumb('NewSeedSetup');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('newSeedSetupBackPress', () => {
-                this.goBack();
+                this.setState({ randomised: false });
+                this.onBackPress();
                 return true;
             });
         }
@@ -242,40 +243,7 @@ class NewSeedSetup extends Component {
 
     onBackPress() {
         this.props.clearSeed();
-        if (!this.props.onboardingComplete) {
-            Navigation.pop(this.props.componentId);
-        } else {
-            this.goBack();
-        }
-    }
-
-    goBack() {
-        const { theme: { body, bar } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'home',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: bar.alt,
-                    },
-                },
-            },
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     openModal() {
