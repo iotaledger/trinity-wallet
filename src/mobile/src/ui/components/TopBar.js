@@ -336,7 +336,7 @@ class TopBar extends Component {
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     marginTop: isAndroid ? StatusBar.currentHeight : 0,
-                                    paddingBottom: isAndroid ? height / 80 : 0,
+                                    paddingBottom: isAndroid ? height / 60 : 0,
                                 }}
                             >
                                 {hasNotifications && !isKeyboardActive && mode === 'Advanced' ? (
