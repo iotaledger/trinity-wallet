@@ -42,6 +42,7 @@ export class SeedVaultImportComponent extends Component {
     componentWillMount() {
         const { t, onRef } = this.props;
         onRef(this);
+        /*
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
@@ -62,11 +63,12 @@ export class SeedVaultImportComponent extends Component {
             },
             this,
         );
+        */
     }
 
     componentWillUnmount() {
         this.props.onRef(undefined);
-        nodejs.channel.removeAllListeners();
+        //  nodejs.channel.removeAllListeners();
     }
 
     /**

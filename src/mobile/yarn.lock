@@ -3204,9 +3204,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-iota.lib.js@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.0.tgz#66e59baf82a4556b739f81d947313d0a3ab2f659"
+iota.lib.js@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.1.tgz#87d424e030308f0029ca6396c92e15d460e7c1b7"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -3907,6 +3907,14 @@ jws@^3.1.4:
   dependencies:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
+
+"kdbxweb@https://github.com/rajivshah3/kdbxweb":
+  version "1.2.4"
+  resolved "https://github.com/rajivshah3/kdbxweb#314beedd73e6588ffc3fa506b2f4cd78dbed2fc6"
+  dependencies:
+    pako "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
+    text-encoding "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
+    xmldom "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
 
 kind-of@^1.1.0:
   version "1.1.0"
@@ -4964,6 +4972,10 @@ pac-resolver@^3.0.0:
     ip "^1.1.5"
     netmask "^1.0.6"
     thunkify "^2.1.2"
+
+"pako@github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc":
+  version "1.0.3"
+  resolved "https://codeload.github.com/keeweb/pako/tar.gz/653c0b00d8941c89d09ed4546d2179001ec44efc"
 
 pako@~0.2.0:
   version "0.2.9"
@@ -6336,7 +6348,7 @@ shared-modules@../shared/:
   dependencies:
     bignumber.js "^7.2.1"
     i18next "^10.2.2"
-    iota.lib.js "^0.5.0"
+    iota.lib.js "^0.5.1"
     lodash "^4.17.10"
     moment "^2.22.2"
     proxy-polyfill "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7"
@@ -6891,6 +6903,10 @@ test-exclude@^4.2.1:
 text-encoding@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/text-encoding/-/text-encoding-0.6.4.tgz#e399a982257a276dae428bb92845cb71bdc26d19"
+
+"text-encoding@github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb":
+  version "0.6.0"
+  resolved "https://codeload.github.com/keeweb/text-encoding/tar.gz/4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
 
 then-fs@^2.0.0:
   version "2.0.0"
@@ -7458,6 +7474,10 @@ xmldoc@^0.4.0:
 xmldom@0.1.x:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
+
+"xmldom@github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6":
+  version "0.1.21"
+  resolved "https://codeload.github.com/keeweb/xmldom/tar.gz/ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
 
 xmlhttprequest@^1.8.0:
   version "1.8.0"
