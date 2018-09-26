@@ -122,9 +122,10 @@
       ]
     },
     "publish": {
-      "provider": "github",
+      "provider": "generic",
+      "url": "https://iotaledger-files.s3.amazonaws.com",
       "publishAutoUpdate": true,
-      "vPrefixedTagName": false
+      "channel": "latest"
     }
   },
   "dependencies": {
