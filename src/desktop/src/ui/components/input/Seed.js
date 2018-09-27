@@ -240,7 +240,7 @@ class SeedInput extends React.PureComponent {
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
-            if (byte || key === 'Backspace') {
+            if (byte > -1 || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
 
                 const seed = this.props.seed.slice(0);
