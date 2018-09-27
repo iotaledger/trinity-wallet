@@ -161,8 +161,6 @@ dependencies {
         force = true
     }
     implementation project(':react-native-print')
-    implementation project(':react-native-udp')
-    implementation project(':react-native-tcp')
     implementation project(':react-native-svg')
     implementation project(':react-native-navigation')
     implementation fileTree(include: ['*.jar'], dir: 'libs')

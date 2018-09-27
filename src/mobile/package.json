@@ -21,30 +21,23 @@
     "ios:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
     "test": "NODE_ENV=test ./node_modules/.bin/jest --forceExit",
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
-    "postinstall": "rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && yarn nodejs-deps",
+    "postinstall": "./node_modules/.bin/rn-nodeify --install crypto,http,os,path,stream --hack && rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && yarn nodejs-deps",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "assert": "^1.4.1",
-    "asyncstorage-down": "^3.1.1",
     "authenticator": "^1.1.3",
     "axios": "^0.18.0",
     "buffer": "^3.6.0",
     "bugsnag-react-native": "^2.9.3",
-    "domain-browser": "^1.1.7",
-    "events": "^1.1.1",
-    "global": "^4.3.2",
     "hoist-non-react-statics": "^2.3.1",
     "i18next": "^10.1.0",
-    "inherits": "^2.0.3",
     "lodash": "^4.17.10",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
     "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native",
-    "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",
@@ -105,13 +98,11 @@
     "string_decoder": "^0.10.31",
     "text-encoding": "^0.6.4",
     "tinycolor2": "^1.4.1",
-    "tty-browserify": "0.0.0",
     "tweetnacl": "^1.0.0",
     "tweetnacl-util": "^0.15.0",
     "url": "^0.10.3",
     "util": "^0.10.3",
-    "victory-native": "^0.16.2",
-    "vm-browserify": "0.0.4"
+    "victory-native": "^0.16.2"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
@@ -152,10 +143,7 @@
     "_stream_writable": "readable-stream/writable",
     "_stream_duplex": "readable-stream/duplex",
     "_stream_passthrough": "readable-stream/passthrough",
-    "stream": "stream-browserify",
-    "tty": "tty-browserify",
-    "vm": "vm-browserify",
-    "tls": false
+    "stream": "stream-browserify"
   },
   "rnpm": {
     "android": {
