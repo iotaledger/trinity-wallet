@@ -716,7 +716,7 @@
         "sweepSucceededExplanation": "A zárolt összeget sikeresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
         "sweepError": "Sikertelen zárolt összeg feloldás",
         "sweepErrorExplanation": "Hiba történt a zárolt összeg feloldása közben. Kérjük, próbálja újra.",
-        "warningTitle": "Figyelem: zárolt összeget találtunk a számláján",
+        "warningTitle": "Warning: Locked funds detected",
         "explanation": "A Trinity 0.3.4 asztali verziójában egy hiba folytán ideiglenesen zárolásra kerülhetett az egyenlegének egy része. Ez a hiba viszonylag kevés felhasználót érint: azokat, akik a 0.3.4 verzióval indítottak tranzakciókat.",
         "explanationAccounts": "Zárolt összegeket találtunk a következő számláin: {{accounts}}. A Trinity most megpróbálja automatikusan feloldani a zárolást az összegek egy Ön számlájához tartozó másik címre való átutalásával.",
         "proceed": "Tovább a zárolás feloldásához",
