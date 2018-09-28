@@ -716,7 +716,7 @@
         "sweepSucceededExplanation": "資金のロック解除と新しいアドレスへの移動手続きが完了しました。新しいアドレスへの移動トランザクションを確定させるために、促進を行なってください。",
         "sweepError": "資金のロック解除エラー",
         "sweepErrorExplanation": "資金のロック解除に失敗しました。もう一度やり直してください。",
-        "warningTitle": " 警告：ロックされた資金が検出されました",
+        "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity デスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
         "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
         "proceed": "資金回復に進む",
