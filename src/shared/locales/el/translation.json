@@ -34,7 +34,7 @@
         "save": "Αποθήκευση",
         "close": "Κλείσιμο",
         "export": "Εξαγωγή",
-        "help": "Help",
+        "help": "Βοήθεια",
         "import": "Εισαγωγή",
         "continue": "Συνέχεια",
         "enable": "Ενεργοποίηση",
@@ -458,7 +458,7 @@
         "editAccountName": "Επεξεργαστείτε το όνομα του λογαριασμού",
         "deleteAccount": "Διαγραφή λογαριασμού",
         "addNewAccount": "Προσθήκη νέου λογαριασμού",
-        "tools": "Tools"
+        "tools": "Εργαλεία"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
