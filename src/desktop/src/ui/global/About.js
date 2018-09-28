@@ -61,7 +61,10 @@ class About extends React.PureComponent {
                         <Scrollbar>
                             <h5>0.3.6</h5>
                             <ul>
-                                <li>- Update: Added 0.3.4 release locked funds check and sweep functionality</li>
+                                <li>
+                                    - Fix: Automatically fixes addresses affected in version 0.3.4 (relevant to a
+                                    handful of users)
+                                </li>
                             </ul>
                             <h5>0.3.5</h5>
                             <ul>
