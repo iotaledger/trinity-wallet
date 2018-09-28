@@ -720,7 +720,7 @@
         "explanation": "Trinity デスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
         "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
         "proceed": "資金回復に進む",
-        "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}、アドレスインデックス：{{index}）に資金{{amount}} を移動させようとしています。",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "移動を承認"
     }
 }
