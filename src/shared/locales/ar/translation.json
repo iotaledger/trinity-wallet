@@ -7,7 +7,7 @@
         "refresh": "Refresh",
         "balanceError": "لا يوجد رصيد كاف",
         "balanceErrorMessage": "ليس لديك ما يكفي من يوتا لإتمام عملية النقل هذه.",
-        "totalBalance": "Total balance",
+        "totalBalance": "الرصيد الاجمالي",
         "transferError": "حدث خطأ في النقل",
         "transferErrorMessage": "حدث خطأ ما أثناء إرسال التحويل. حاول مرة اخرى.",
         "transferSent": "تم إرسال التحويل",
