@@ -148,7 +148,6 @@ dependencies {
     implementation project(':nodejs-mobile-react-native')
     implementation project(':react-native-fast-crypto')
     implementation project(':react-native-modal-translucent')
-    implementation project(':react-native-detect-navbar-android')
     implementation project(':react-native-fingerprint-scanner')
     implementation project(':react-native-keep-awake')
     implementation project(':react-native-device-info')
