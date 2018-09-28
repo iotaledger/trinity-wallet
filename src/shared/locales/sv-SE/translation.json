@@ -717,10 +717,10 @@
         "sweepError": "Fel vid upplåsning av tillgångar",
         "sweepErrorExplanation": "Något gick fel vid upplåsningen av dina tillgångar. Försöker igen.",
         "warningTitle": " Varning: Låsta tillgångar upptäckta",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "explanation": "Trinity Desktop version 0.3.4 innehöll en bugg som tillfälligt låste tillgångar. Detta påverkade ett fåtal användare som utförde transaktioner med 0.3.4.",
+        "explanationAccounts": "Låsta tillgångar har upptäckts på dina konton: {{accounts}}. Trinity kommer nu automatiskt att återställa dina tillgångar, genom att flytta dem till en ny adress.",
+        "proceed": "Fortsätt till återställning",
+        "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
+        "sweepConfirmationTitle": "Svepningsbekräftelse"
     }
 }
