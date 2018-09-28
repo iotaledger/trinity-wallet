@@ -712,7 +712,7 @@
         "confirmedOut": "{{account}}からの出金{{value}}が確定しました"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceeded": "資金のロック解除に成功",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
