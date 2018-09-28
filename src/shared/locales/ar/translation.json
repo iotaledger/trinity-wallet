@@ -105,7 +105,7 @@
         "cannotSendToOwn": "Sending to an input address",
         "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "يرجى الانتظار",
-        "pleaseWaitEllipses": "Please wait...",
+        "pleaseWaitEllipses": "يرجى الانتظار...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
