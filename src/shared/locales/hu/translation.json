@@ -720,7 +720,7 @@
         "explanation": "A Trinity 0.3.4 asztali verziójában egy hiba folytán ideiglenesen zárolásra kerülhetett az egyenlegének egy része. Ez a hiba viszonylag kevés felhasználót érint: azokat, akik a 0.3.4 verzióval indítottak tranzakciókat.",
         "explanationAccounts": "Zárolt összegeket találtunk a következő számláin: {{accounts}}. A Trinity most megpróbálja automatikusan feloldani a zárolást az összegek egy Ön számlájához tartozó másik címre való átutalásával.",
         "proceed": "Tovább a zárolás feloldásához",
-        "sweepConfirmation": "{{amount}} összeget készül az Ön számlájához tartozó {{address}} címre átutalni. Számlanév: {{accountName}}, címének indexe: {{index}}",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     }
 }
