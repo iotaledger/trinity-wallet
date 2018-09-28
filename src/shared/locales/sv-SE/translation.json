@@ -720,7 +720,7 @@
         "explanation": "Trinity Desktop version 0.3.4 innehöll en bugg som tillfälligt låste tillgångar. Detta påverkade ett fåtal användare som utförde transaktioner med 0.3.4.",
         "explanationAccounts": "Låsta tillgångar har upptäckts på dina konton: {{accounts}}. Trinity kommer nu automatiskt att återställa dina tillgångar, genom att flytta dem till en ny adress.",
         "proceed": "Fortsätt till återställning",
-        "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Svepningsbekräftelse"
     }
 }
