@@ -59,6 +59,13 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.3.6</h5>
+                            <ul>
+                                <li>
+                                    - Fix: Automatically fixes addresses affected in version 0.3.4 (relevant to a
+                                    handful of users)
+                                </li>
+                            </ul>
                             <h5>0.3.5</h5>
                             <ul>
                                 <li>- Hotfix: Incorrect byte to trit conversion on Manual sync</li>
