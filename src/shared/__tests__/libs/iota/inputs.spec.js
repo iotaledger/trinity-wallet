@@ -1,7 +1,13 @@
+import assign from 'lodash/assign';
 import merge from 'lodash/merge';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { prepareInputs, getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../../../libs/iota/inputs';
+import {
+    prepareInputs,
+    getStartingSearchIndexToPrepareInputs,
+    getUnspentInputs,
+    isValidInput,
+} from '../../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
 describe('libs: iota/inputs', () => {
@@ -496,6 +502,67 @@ describe('libs: iota/inputs', () => {
                     expect(inputs.addressesWithIncomingTransfers).to.eql(['C'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
+                });
+            });
+        });
+    });
+
+    describe('#isValidInput', () => {
+        let validInput;
+
+        before(() => {
+            validInput = {
+                address: 'U'.repeat(81),
+                balance: 10,
+                keyIndex: 3,
+                security: 2,
+            };
+        });
+
+        describe('when input is not an object', () => {
+            it('should return false', () => {
+                [[], 0.1, 1, undefined, null, ''].forEach((item) => {
+                    expect(isValidInput(item)).to.eql(false);
+                });
+            });
+        });
+
+        describe('when input is an object', () => {
+            describe('when "address" is invalid is not valid trytes', () => {
+                it('should return false', () => {
+                    const invalidAddress = `a${'U'.repeat(80)}`;
+
+                    expect(isValidInput(assign({}, validInput, { address: invalidAddress }))).to.eql(false);
+                });
+            });
+
+            describe('when "balance" is not a number', () => {
+                it('should return false', () => {
+                    expect(isValidInput(assign({}, validInput, { balance: undefined }))).to.eql(false);
+                });
+            });
+
+            describe('when "security" is not a number', () => {
+                it('should return false', () => {
+                    expect(isValidInput(assign({}, validInput, { security: '' }))).to.eql(false);
+                });
+            });
+
+            describe('when "keyIndex" is not a number', () => {
+                it('should return false', () => {
+                    expect(isValidInput(assign({}, validInput, { keyIndex: [] }))).to.eql(false);
+                });
+            });
+
+            describe('when "keyIndex" is a number and is less than 0', () => {
+                it('should return false', () => {
+                    expect(isValidInput(assign({}, validInput, { keyIndex: -1 }))).to.eql(false);
+                });
+            });
+
+            describe('when "keyIndex" is a number and is greater than or equals 0, "balance" is number, "security" is number and address is valid trytes', () => {
+                it('should return true', () => {
+                    expect(isValidInput(validInput)).to.eql(true);
                 });
             });
         });
