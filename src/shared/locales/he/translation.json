@@ -34,7 +34,7 @@
         "save": "שמור",
         "close": "סגור",
         "export": "Export",
-        "help": "Help",
+        "help": "עזרה",
         "import": "Import",
         "continue": "המשך",
         "enable": "Enable",
@@ -105,7 +105,7 @@
         "cannotSendToOwn": "Sending to an input address",
         "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "בבקשה המתן",
-        "pleaseWaitEllipses": "Please wait...",
+        "pleaseWaitEllipses": "בבקשה המתן...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
@@ -458,7 +458,7 @@
         "editAccountName": "ערוך שם חשבון",
         "deleteAccount": "מחק חשבון",
         "addNewAccount": "הוסף חשבון חדש",
-        "tools": "Tools"
+        "tools": "כלים"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Custom node could not be added",
