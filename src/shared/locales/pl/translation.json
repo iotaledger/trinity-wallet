@@ -712,10 +712,10 @@
         "confirmedOut": "Transakcja wychodząca {{value}} z konta {{account}} została potwierdzona"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepSucceeded": "Środki odblokowane pomyślnie",
+        "sweepSucceededExplanation": "Twoje środki zostały pomyślnie odblokowane i przeniesione na nowy adres. Promuj transakcje, aby pomóc w procesie ich potwierdzania.",
+        "sweepError": "Błąd odblokowania środków",
+        "sweepErrorExplanation": "Coś poszło nie tak podczas odblokowywania Twoich środków. Trwa ponawianie próby.",
         "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
