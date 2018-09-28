@@ -55,9 +55,7 @@ export class QRScanner extends Component {
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
         /** @ignore */
-        body: PropTypes.object.isRequired,
-        /** @ignore */
-        primary: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         /** Mount lifecycle method calback function  */
         onMount: PropTypes.func,
         /** Unmount lifecycle method calback function  */
@@ -86,7 +84,7 @@ export class QRScanner extends Component {
     }
 
     render() {
-        const { t, body, primary } = this.props;
+        const { t, theme: { body, primary } } = this.props;
 
         return (
             <View style={styles.modalContent}>

@@ -56,7 +56,7 @@ const getProps = (overrides) =>
                 primaryColor: '#ffffff',
                 primaryBody: '#000000',
             },
-            currentlyPromotingBundleHash: 'foo',
+            bundleIsBeingPromoted: false,
             hasFailedAutopromotion: false,
             isFailedTransaction: noop,
             retryFailedTransaction: noop,
@@ -112,8 +112,8 @@ describe('Testing HistoryModalContent component', () => {
             expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
 
-        it('should require a currentlyPromotingBundleHash string as a prop', () => {
-            expect(HistoryModalContent.propTypes.currentlyPromotingBundleHash).toEqual(PropTypes.string.isRequired);
+        it('should require a bundleIsBeingPromoted boolean as a prop', () => {
+            expect(HistoryModalContent.propTypes.bundleIsBeingPromoted).toEqual(PropTypes.bool.isRequired);
         });
     });
 

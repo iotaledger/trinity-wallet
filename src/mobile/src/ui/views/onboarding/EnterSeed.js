@@ -2,21 +2,18 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { setOnboardingSeed } from 'shared-modules/actions/ui';
+import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import QRScannerComponent from 'ui/components/QrScanner';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'ui/components/PasswordValidationModal';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
@@ -78,6 +75,8 @@ class EnterSeed extends React.Component {
         theme: PropTypes.object.isRequired,
         /** Determines if the application is minimised */
         minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -85,7 +84,6 @@ class EnterSeed extends React.Component {
 
         this.state = {
             seed: '',
-            isModalVisible: false,
         };
     }
 
@@ -191,45 +189,28 @@ class EnterSeed extends React.Component {
         this.hideModal();
     }
 
-    showModal = (modalContent) => this.setState({ modalContent, isModalVisible: true });
+    hideModal = () => this.props.toggleModalActivity();
 
-    hideModal = () => this.setState({ isModalVisible: false });
-
-    handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            Keyboard.dismiss();
-        }
-    };
-
-    renderModalContent = (modalContent) => {
-        const { theme, theme: { body, primary } } = this.props;
-        let content = '';
+    showModal = (modalContent) => {
+        const { theme } = this.props;
         switch (modalContent) {
-            case 'qr':
-                content = (
-                    <QRScannerComponent
-                        primary={primary}
-                        body={body}
-                        onQRRead={(data) => this.onQRRead(data)}
-                        hideModal={() => this.hideModal()}
-                    />
-                );
-                break;
+            case 'qrScanner':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    onQRRead: (data) => this.onQRRead(data),
+                    hideModal: () => this.props.toggleModalActivity(),
+                });
             case 'passwordValidation':
-                content = (
-                    <PasswordValidation
-                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
-                        hideModal={() => this.hideModal()}
-                        theme={theme}
-                    />
-                );
-                break;
+                return this.props.toggleModalActivity(modalContent, {
+                    validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
+                    hideModal: () => this.props.toggleModalActivity(),
+                    theme,
+                });
         }
-        return content;
     };
 
     render() {
-        const { seed, modalContent, isModalVisible } = this.state;
+        const { seed } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (
@@ -304,26 +285,7 @@ class EnterSeed extends React.Component {
                                     rightButtonTestID="enterSeed-next"
                                 />
                             </View>
-                            {!isModalVisible && (
-                                <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
-                            )}
-                            <Modal
-                                animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                                animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                                animationInTiming={isAndroid ? 1000 : 300}
-                                animationOutTiming={200}
-                                backdropTransitionInTiming={isAndroid ? 500 : 300}
-                                backdropTransitionOutTiming={200}
-                                backdropColor={theme.body.bg}
-                                backdropOpacity={0.9}
-                                style={{ height, width, justifyContent: 'center', alignItems: 'center', margin: 0 }}
-                                isVisible={this.state.isModalVisible}
-                                onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                                hideModalContentWhileAnimating
-                                useNativeDriver={isAndroid ? true : false}
-                            >
-                                {this.renderModalContent(modalContent)}
-                            </Modal>
+                            <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
                         </View>
                     )}
                 </View>
@@ -340,6 +302,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setOnboardingSeed,
     generateAlert,
+    toggleModalActivity,
 };
 
 export default WithUserActivity()(

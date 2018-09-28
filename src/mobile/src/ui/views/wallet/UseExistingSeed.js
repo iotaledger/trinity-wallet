@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -15,12 +14,9 @@ import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui
 import timer from 'react-native-timer';
 import SeedStore from 'libs/SeedStore';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'ui/components/PasswordValidationModal';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import QRScannerComponent from 'ui/components/QrScanner';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -74,13 +70,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** Use Existing Seed component */
@@ -102,8 +91,6 @@ class UseExistingSeed extends Component {
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
@@ -132,7 +119,7 @@ class UseExistingSeed extends Component {
      * @method onQRPress
      */
     onQRPress() {
-        this.showModal('qr');
+        this.showModal('qrScanner');
     }
 
     /**
@@ -270,45 +257,30 @@ class UseExistingSeed extends Component {
     }
 
     showModal = (modalContent) => {
-        this.setState({ modalContent });
-        this.props.toggleModalActivity();
+        const { theme } = this.props;
+        switch (modalContent) {
+            case 'qrScanner':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    onQRRead: (data) => this.onQRRead(data),
+                    hideModal: () => this.hideModal(),
+                    onMount: () => this.props.setDoNotMinimise(true),
+                    onUnmount: () => this.props.setDoNotMinimise(false),
+                });
+            case 'passwordValidation':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
+                    hideModal: () => this.hideModal(),
+                });
+        }
     };
 
     hideModal = () => this.props.toggleModalActivity();
 
-    renderModalContent = (modalContent) => {
-        const { theme, theme: { body, primary } } = this.props;
-        let content = '';
-        switch (modalContent) {
-            case 'qr':
-                content = (
-                    <QRScannerComponent
-                        primary={primary}
-                        body={body}
-                        onQRRead={(data) => this.onQRRead(data)}
-                        hideModal={() => this.hideModal()}
-                        onMount={() => this.props.setDoNotMinimise(true)}
-                        onUnmount={() => this.props.setDoNotMinimise(false)}
-                    />
-                );
-                break;
-            case 'passwordValidation':
-                content = (
-                    <PasswordValidation
-                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
-                        hideModal={() => this.hideModal()}
-                        theme={theme}
-                    />
-                );
-                break;
-        }
-        return content;
-    };
-
     render() {
-        const { t, theme, isModalActive } = this.props;
-        const { modalContent, seed, accountName } = this.state;
-
+        const { t, theme } = this.props;
+        const { seed, accountName } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -395,23 +367,6 @@ class UseExistingSeed extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                        animationInTiming={isAndroid ? 1000 : 300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={theme.body.bg}
-                        backdropOpacity={0.9}
-                        style={styles.modal}
-                        isVisible={isModalActive}
-                        onBackButtonPress={() => this.props.toggleModalActivity()}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid}
-                    >
-                        {this.renderModalContent(modalContent)}
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );

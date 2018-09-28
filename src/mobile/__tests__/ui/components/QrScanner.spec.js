@@ -18,8 +18,7 @@ const getProps = (overrides) =>
             t: () => '',
             onQRRead: noop,
             hideModal: noop,
-            body: { bg: '#ffffff' },
-            primary: {},
+            theme: { body: {}, primary: {} },
         },
         overrides,
     );
@@ -38,12 +37,8 @@ describe('Testing QrScanner component', () => {
             expect(QrScannerComponent.propTypes.hideModal).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a body object as a prop', () => {
-            expect(QrScannerComponent.propTypes.body).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a primary object as a prop', () => {
-            expect(QrScannerComponent.propTypes.primary).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(QrScannerComponent.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
     });
 

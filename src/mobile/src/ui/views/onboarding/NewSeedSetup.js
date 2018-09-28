@@ -1,17 +1,16 @@
 import split from 'lodash/split';
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearSeed } from 'shared-modules/actions/wallet';
-import { setOnboardingSeed } from 'shared-modules/actions/ui';
+import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'shared-modules/libs/crypto';
-import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import CtaButton from 'ui/components/CtaButton';
@@ -20,7 +19,6 @@ import OnboardingButtons from 'ui/components/OnboardingButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import GENERAL from 'ui/theme/general';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -82,36 +80,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    infoTextLight: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    infoTextBold: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    okButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    okText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** New Seed Setup component */
@@ -135,16 +103,15 @@ class NewSeedSetup extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
-
         console.disableYellowBox = true; // eslint-disable-line no-console
-
         this.state = {
             randomised: false,
-            isModalActive: false,
         };
     }
 
@@ -247,53 +214,12 @@ class NewSeedSetup extends Component {
     }
 
     openModal() {
-        this.setState({ isModalActive: true });
+        const { theme } = this.props;
+        this.props.toggleModalActivity('seedInfoModal', {
+            theme,
+            hideModal: () => this.props.toggleModalActivity(),
+        });
     }
-
-    hideModal() {
-        this.setState({ isModalActive: false });
-    }
-
-    renderModalContent = () => {
-        const { t, theme: { body, primary } } = this.props;
-        const textColor = { color: body.color };
-
-        return (
-            <View style={{ backgroundColor: body.bg }}>
-                <InfoBox
-                    body={body}
-                    width={width / 1.15}
-                    text={
-                        <View>
-                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                {t('walletSetup:seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                            </Text>
-                            <Trans i18nKey="walletSetup:explanation">
-                                <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
-                                    <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
-                                    <Text style={styles.infoTextBold}> any wallet</Text>
-                                    <Text style={styles.infoTextLight}>, on</Text>
-                                    <Text style={styles.infoTextBold}> any device</Text>
-                                    <Text style={styles.infoTextLight}>
-                                        . But if you lose your seed, you also lose your IOTA.
-                                    </Text>
-                                </Text>
-                            </Trans>
-                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
-                                <TouchableOpacity onPress={() => this.hideModal()}>
-                                    <View style={[styles.okButton, { borderColor: primary.color }]}>
-                                        <Text style={[styles.okText, { color: primary.color }]}>
-                                            {t('global:okay')}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    }
-                />
-            </View>
-        );
-    };
 
     renderChequerboard(character, index) {
         const { theme: { input, primary } } = this.props;
@@ -318,7 +244,6 @@ class NewSeedSetup extends Component {
 
     render() {
         const { t, theme: { primary, secondary, body }, seed, minimised } = this.props;
-        const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
         const opacity = this.state.randomised ? 1 : 0.4;
         const textColor = { color: body.color };
@@ -378,20 +303,7 @@ class NewSeedSetup extends Component {
                                 rightButtonStyle={{ wrapper: { opacity } }}
                             />
                         </View>
-                        <Modal
-                            backdropTransitionInTiming={isAndroid ? 500 : 300}
-                            backdropTransitionOutTiming={200}
-                            backdropColor={body.bg}
-                            backdropOpacity={0.9}
-                            style={styles.modal}
-                            isVisible={isModalActive}
-                            onBackButtonPress={() => this.hideModal()}
-                            hideModalContentWhileAnimating
-                            useNativeDriver={isAndroid}
-                        >
-                            {this.renderModalContent()}
-                        </Modal>
-                        {!isModalActive && <StatefulDropdownAlert backgroundColor={body.bg} />}
+                        <StatefulDropdownAlert backgroundColor={body.bg} />
                     </View>
                 )}
             </View>
@@ -410,6 +322,7 @@ const mapDispatchToProps = {
     setOnboardingSeed,
     clearSeed,
     generateAlert,
+    toggleModalActivity,
 };
 
 export default WithUserActivity()(

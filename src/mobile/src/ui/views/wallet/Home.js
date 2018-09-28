@@ -2,7 +2,6 @@ import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Modal from 'react-native-modal';
 import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
 import {
     shouldTransitionForSnapshot,
@@ -23,14 +22,14 @@ import UserInactivity from 'ui/components/UserInactivity';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
+import WithModalComponent from 'ui/components/ModalComponent';
 import WithBackPress from 'ui/components/BackPress';
-import SnapshotTransitionModalContent from 'ui/components/SnapshotTransitionModalContent';
 import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import EnterPassword from 'ui/components/EnterPassword';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import { isAndroid, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -45,13 +44,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
     },
 });
 
@@ -116,7 +108,6 @@ class Home extends Component {
 
         this.state = {
             isKeyboardActive: false,
-            showModal: false,
         };
     }
 
@@ -174,7 +165,7 @@ class Home extends Component {
     async onLoginPress(password) {
         const { t, storedPasswordHash } = this.props;
         if (!password) {
-           return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         }
         const passwordHash = await hash(password);
         if (!isEqual(passwordHash, storedPasswordHash)) {
@@ -302,9 +293,6 @@ class Home extends Component {
      * Mark the task of displaying snapshot transition modal as done
      */
     completeTransitionTask() {
-        // Just mark this task as done
-        // Since most likely the account needs
-        // no transition
         this.props.markTaskAsDone({
             accountName: this.props.selectedAccountName,
             task: 'hasDisplayedTransitionGuide',
@@ -315,14 +303,14 @@ class Home extends Component {
      * Displays snapshot transition guide modal
      */
     displayUpdates() {
-        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot, isModalActive } = this.props;
-
+        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot } = this.props;
         if (!hasDisplayedSnapshotTransitionGuide) {
             if (shouldTransitionForSnapshot) {
-                if (isModalActive) {
-                    this.props.toggleModalActivity();
-                }
-                this.setState({ showModal: true });
+                this.props.toggleModalActivity('snapshotTransitionInfo', {
+                    theme: this.props.theme,
+                    t: this.props.t,
+                    completeTransitionTask: () => this.completeTransitionTask(),
+                });
             } else {
                 this.completeTransitionTask();
             }
@@ -422,29 +410,6 @@ class Home extends Component {
                     <PollComponent />
                     {!isModalActive && <StatefulDropdownAlert backgroundColor={bar.bg} />}
                 </View>
-                <Modal
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
-                    backdropOpacity={0.9}
-                    style={styles.modal}
-                    isVisible={this.state.showModal}
-                    onBackButtonPress={() => {
-                        this.completeTransitionTask();
-                        this.setState({ showModal: false });
-                    }}
-                    useNativeDriver={isAndroid}
-                    hideModalContentWhileAnimating
-                >
-                    <SnapshotTransitionModalContent
-                        theme={this.props.theme}
-                        t={this.props.t}
-                        onPress={() => {
-                            this.completeTransitionTask();
-                            this.setState({ showModal: false });
-                        }}
-                    />
-                </Modal>
             </UserInactivity>
         );
     }
@@ -481,5 +446,7 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    WithModalComponent()(
+        WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    ),
 );

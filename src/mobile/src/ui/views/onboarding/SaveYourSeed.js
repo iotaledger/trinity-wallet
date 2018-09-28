@@ -1,21 +1,17 @@
 import each from 'lodash/each';
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, Clipboard, NativeModules } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RNPrint from 'react-native-print';
-import RNSecureClipboard from 'react-native-secure-clipboard';
 import { Navigation } from 'react-native-navigation';
 import { getChecksum } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
 import { setSeedShareTutorialVisitationStatus } from 'shared-modules/actions/settings';
-import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
-import PrintModal from 'ui/components/PrintModal';
-import PasswordManagerModalContent from 'ui/components/PasswordManagerModal';
 import Button from 'ui/components/Button';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
@@ -81,13 +77,6 @@ const styles = StyleSheet.create({
         height: height / 40,
         marginVertical: height / 150,
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** Save Your Seed component */
@@ -102,19 +91,8 @@ class SaveYourSeed extends Component {
         /** @ignore */
         seed: PropTypes.string.isRequired,
         /** @ignore */
-        setSeedShareTutorialVisitationStatus: PropTypes.func.isRequired,
-        /** @ignore */
-        hasVisitedSeedShareTutorial: PropTypes.bool.isRequired,
-        /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
+        toggleModalActivity: PropTypes.func.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            isModalActive: false,
-        };
-    }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SaveYourSeed');
@@ -124,7 +102,6 @@ class SaveYourSeed extends Component {
         timer.clearTimeout('delayPrint');
         timer.clearTimeout('clipboardClear');
         timer.clearTimeout('delayAlert');
-        this.clearClipboard();
     }
 
     /**
@@ -161,7 +138,6 @@ class SaveYourSeed extends Component {
                 },
             },
         });
-        this.clearClipboard();
     }
 
     /**
@@ -227,7 +203,7 @@ class SaveYourSeed extends Component {
      * @method onPrintPaperWalletPress
      */
     onPrintPaperWalletPress() {
-        this.openModal('printModal');
+        this.showModal('print');
     }
 
     onExportSeedVaultPress() {
@@ -340,28 +316,6 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * iOS: Alerts the user that the clipboard was cleared
-     * @method clearClipboard
-     */
-    clearClipboard() {
-        const { t } = this.props;
-        if (this.state.copyPressed) {
-            Clipboard.setString(' ');
-            timer.setTimeout(
-                'clipboardClear',
-                () =>
-                    this.props.generateAlert(
-                        'info',
-                        t('copyToClipboard:seedCleared'),
-                        t('copyToClipboard:seedClearedExplanation'),
-                    ),
-                500,
-            );
-            this.setState({ copyPressed: false });
-        }
-    }
-
-    /**
      *  Triggers paper wallet print
      *  @method print
      */
@@ -422,87 +376,20 @@ class SaveYourSeed extends Component {
         }
     }
 
-    /**
-     * iOS: Copies seed to the clipboard and clears after 60 seconds
-     * Android: Passes seed to Keepass share intent
-     * @method copy
-     */
-    copy() {
-        const { t, seed } = this.props;
-        if (isAndroid) {
-            timer.setTimeout(
-                'delayShare',
-                () => {
-                    this.hideModal();
-                    NativeModules.ShareSecure.share('keepass', {
-                        title: t('shareSeed'),
-                        message: seed,
-                    }).catch(() =>
-                        this.props.generateAlert('error', t('noPasswordManagers'), t('noPasswordManagersExplanation')),
-                    );
-                },
-                500,
-            );
-        } else {
-            this.hideModal();
-            // Delay copy to allow for modal close animation
-            timer.setTimeout(
-                'delayCopy',
-                () => {
-                    RNSecureClipboard.setString(seed);
-                    this.props.generateAlert(
-                        'success',
-                        t('copyToClipboard:seedCopied'),
-                        t('copyToClipboard:seedCopiedExplanation'),
-                    );
-                    this.setState({ copyPressed: true });
-                },
-                500,
-            );
-            timer.setTimeout(
-                'clipboardClear',
-                () => {
-                    this.clearClipboard();
-                    this.setState({ copyPressed: false });
-                },
-                60500,
-            );
+    showModal = (modalContent) => {
+        const { theme } = this.props;
+        switch (modalContent) {
+            case 'print':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    print: () => this.print(),
+                    hideModal: () => this.props.toggleModalActivity(),
+                });
         }
-    }
-
-    openModal(modalContent) {
-        this.setState({ modalContent, isModalActive: true });
-    }
-
-    hideModal() {
-        this.setState({ isModalActive: false });
-    }
-
-    renderModalContent = () => {
-        const { theme, hasVisitedSeedShareTutorial } = this.props;
-        let content = '';
-        switch (this.state.modalContent) {
-            case 'printModal':
-                content = <PrintModal theme={theme} print={() => this.print()} hideModal={() => this.hideModal()} />;
-                break;
-            case 'passwordManagerModal':
-                content = (
-                    <PasswordManagerModalContent
-                        theme={theme}
-                        hideModal={() => this.hideModal()}
-                        hasVisitedSeedShareTutorial={hasVisitedSeedShareTutorial}
-                        setSeedShareTutorialVisitationStatus={this.props.setSeedShareTutorialVisitationStatus}
-                        copy={() => this.copy()}
-                    />
-                );
-                break;
-        }
-        return content;
     };
 
     render() {
         const { t, theme: { body, secondary } } = this.props;
-        const { isModalActive } = this.state;
         const textColor = { color: body.color };
         const lineColor = { borderLeftColor: body.color };
 
@@ -593,19 +480,6 @@ class SaveYourSeed extends Component {
                     />
                 </View>
                 <StatefulDropdownAlert backgroundColor={body.bg} />
-                <Modal
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
-                    backdropOpacity={0.9}
-                    style={styles.modal}
-                    isVisible={isModalActive}
-                    onBackButtonPress={() => this.hideModal()}
-                    hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
             </View>
         );
     }
@@ -615,7 +489,6 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     onboardingComplete: state.accounts.onboardingComplete,
     seed: state.wallet.seed,
-    hasVisitedSeedShareTutorial: state.settings.hasVisitedSeedShareTutorial,
 });
 
 const mapDispatchToProps = {

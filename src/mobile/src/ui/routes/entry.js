@@ -27,8 +27,8 @@ const launch = (store) => {
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
-    // Ignore android warning against timers
-    console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
+    // Ignore specific warnings
+    console.ignoredYellowBox = ['Setting a timer', 'Breadcrumb']; // eslint-disable-line no-console
 
     const state = store.getState();
 
@@ -77,12 +77,12 @@ const renderInitialScreen = (initialScreen, state) => {
                                     drawBehind: true,
                                     elevation: 0,
                                     background: {
-                                      color: state.settings.theme.body.bg,
-                                    }
+                                        color: state.settings.theme.body.bg,
+                                    },
                                 },
                                 statusBar: {
                                     drawBehind: true,
-                                    backgroundColor: state.settings.theme.body.bg
+                                    backgroundColor: state.settings.theme.body.bg,
                                 },
                             },
                         },

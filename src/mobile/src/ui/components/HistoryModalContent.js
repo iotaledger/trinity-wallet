@@ -170,8 +170,8 @@ export default class HistoryModalContent extends PureComponent {
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
-        /** Bundle hash for the transaction that is currently being promoted */
-        currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /** Determines whether bundle is currently being promoted */
+        bundleIsBeingPromoted: PropTypes.string.isRequired,
         /* eslint-disable react/no-unused-prop-types */
         /** Checks if the bundle hash belongs to a failed transaction
          * @param {string} bundleHash
@@ -300,11 +300,10 @@ export default class HistoryModalContent extends PureComponent {
             disableWhen,
             retryFailedTransaction,
             isRetryingFailedTransaction,
-            currentlyPromotingBundleHash,
+            bundleIsBeingPromoted,
             isFailedTransaction,
         } = this.props;
         const { scrollable } = this.state;
-        const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !confirmationBool;
         const isFailed = isFailedTransaction(bundle);
         const retryButtonIsDisplayed = !confirmationBool || isFailed;
 

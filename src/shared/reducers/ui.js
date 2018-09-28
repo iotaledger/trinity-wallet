@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import { ActionTypes as SettingsActionTypes } from '../actions/settings';
 import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
@@ -93,6 +94,17 @@ const initialState = {
      * Keeps track if modal is active on any screen
      */
     isModalActive: false,
+    /**
+     * Modal props
+     */
+    modalProps: {},
+    /**
+     * Modal content
+     */
+    modalContent: 'snapshotTransitionInfo',
+    /**
+     * Determines if wallet is checking state/health of the newly added custom node
+     */
     /**
      * Determines if wallet is checking state/health of the newly added custom node
      */
@@ -272,6 +284,7 @@ export default (state = initialState, action) => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
+                modalProps: {},
                 qrMessage: '',
                 qrAmount: '',
                 qrTag: '',
@@ -364,6 +377,13 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isModalActive: !state.isModalActive,
+                modalProps: action.modalProps ? action.modalProps : state.modalProps,
+                modalContent: action.modalContent ? action.modalContent : state.modalContent,
+            };
+        case UiActionTypes.UPDATE_MODAL_PROPS:
+            return {
+                ...state,
+                modalProps: merge({}, state.modalProps, action.payload),
             };
         case SettingsActionTypes.SET_NODE_REQUEST:
             return {

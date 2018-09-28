@@ -6,50 +6,24 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import Modal from 'react-native-modal';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { deleteAccount } from 'shared-modules/actions/accounts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import Fonts from 'ui/theme/fonts';
 import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
-import ModalButtons from 'ui/components/ModalButtons';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import GENERAL from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        flex: 1,
-        alignItems: 'center',
-        width,
-        height,
-        justifyContent: 'center',
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-between',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 18,
-        width: width / 1.15,
     },
     topContainer: {
         flex: 11,
@@ -97,13 +71,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    modalInfoText: {
-        fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize3,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        paddingHorizontal: width / 15,
-    },
     warningText: {
         fontFamily: Fonts.secondary,
         fontSize: GENERAL.fontSize3,
@@ -137,8 +104,6 @@ class DeleteAccount extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -175,17 +140,14 @@ class DeleteAccount extends Component {
      */
     async onContinuePress() {
         const { password, t } = this.props;
-
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-
         const pwdHash = await hash(this.state.password);
 
         if (isEqual(password, pwdHash)) {
             return this.showModal();
         }
-
         return this.props.generateAlert(
             'error',
             t('global:unrecognisedPassword'),
@@ -223,59 +185,32 @@ class DeleteAccount extends Component {
      */
     async delete() {
         const { password, selectedAccountName, selectedAccountType } = this.props;
-
         const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
-
         await seedStore.removeAccount();
-
         this.props.deleteAccount(selectedAccountName);
     }
 
     showModal = () => {
-        this.props.toggleModalActivity();
+        const { t, theme, selectedAccountName } = this.props;
+        this.props.toggleModalActivity('deleteAccount', {
+            t,
+            theme,
+            selectedAccountName,
+            onNoPress: () => this.onNoPress(),
+            onYesPress: () => this.onYesPress(),
+        });
     };
 
     hideModal = () => {
         this.props.toggleModalActivity();
     };
 
-    renderModalContent = (borderColor, textColor) => {
-        const { t, theme, selectedAccountName } = this.props;
-        const backgroundColor = { backgroundColor: theme.body.bg };
-
-        return (
-            <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, borderColor, backgroundColor]}>
-                    <Text style={[styles.modalInfoText, { paddingBottom: height / 30 }, textColor]}>
-                        {/*FIXME: localization*/}
-                        {/*{t('areYouSure')}*/}
-                        Are you sure you want to delete
-                    </Text>
-                    <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
-                        {selectedAccountName} ?
-                    </Text>
-                    <ModalButtons
-                        onLeftButtonPress={() => this.onNoPress()}
-                        onRightButtonPress={() => this.onYesPress()}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
-                        buttonWidth={{ width: width / 3.2 }}
-                        containerWidth={{ width: width / 1.4 }}
-                    />
-                </View>
-                <StatefulDropdownAlert backgroundColor={theme.bar.bg} />
-            </View>
-        );
-    };
-
     render() {
-        const { t, theme, selectedAccountName, isModalActive } = this.props;
+        const { t, theme, selectedAccountName } = this.props;
 
         const primaryColor = theme.primary.color;
         const textColor = { color: theme.body.color };
         const bodyColor = theme.body.color;
-        const backgroundColor = theme.body.bg;
-        const borderColor = { borderColor: theme.body.color };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -338,23 +273,6 @@ class DeleteAccount extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                        animationInTiming={isAndroid ? 1000 : 300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={backgroundColor}
-                        backdropOpacity={0.6}
-                        style={styles.modal}
-                        isVisible={isModalActive}
-                        onBackButtonPress={() => this.props.toggleModalActivity()}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
-                    >
-                        {this.renderModalContent(borderColor, textColor)}
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );

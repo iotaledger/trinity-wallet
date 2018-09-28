@@ -37,22 +37,16 @@ import {
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'shared-modules/actions/alerts';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import QRScannerComponent from 'ui/components/QrScanner';
 import Toggle from 'ui/components/Toggle';
-import FingerPrintModal from 'ui/components/FingerprintModal';
 import ProgressBar from 'ui/components/ProgressBar';
 import ProgressSteps from 'libs/progressSteps';
 import SeedStore from 'libs/SeedStore';
-import TransferConfirmationModal from 'ui/components/TransferConfirmationModal';
-import UsedAddressModal from 'ui/components/UsedAddressModal';
-import UnitInfoModal from 'ui/components/UnitInfoModal';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import AmountTextInput from 'ui/components/AmountTextInput';
 import CtaButton from 'ui/components/CtaButton';
 import { Icon } from 'ui/theme/icons';
-import { height, width } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { getPowFn } from 'libs/nativeModules';
 import GENERAL from 'ui/theme/general';
@@ -189,8 +183,6 @@ export class Send extends Component {
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -251,23 +243,18 @@ export class Send extends Component {
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning, usdPrice, conversionRate } = this.props;
-
         if (isSyncing !== newProps.isSyncing) {
             return false;
         }
-
         if (isTransitioning !== newProps.isTransitioning) {
             return false;
         }
-
         if (usdPrice !== newProps.usdPrice) {
             return false;
         }
-
         if (conversionRate !== newProps.conversionRate) {
             return false;
         }
-
         return true;
     }
 
@@ -344,7 +331,6 @@ export class Send extends Component {
     onSendPress() {
         const { t, amount, address, message, denomination, isKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
-
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
         const addressIsValid = isValidAddress(address);
@@ -352,15 +338,12 @@ export class Send extends Component {
         const enoughBalance = this.enoughBalance();
         // const isSpendingFundsAtSpentAddresses = this.isSpendingFundsAtSpentAddresses();
         const messageIsValid = isValidMessage(message);
-
         if (!addressIsValid) {
             return this.getInvalidAddressError(address);
         }
-
         if (!amountIsValid) {
             return this.props.generateAlert('error', t('invalidAmount'), t('invalidAmountExplanation'));
         }
-
         if (!enoughBalance) {
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
@@ -372,7 +355,7 @@ export class Send extends Component {
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-        this.showModal('transferConfirmation');
+        this.openModal('transferConfirmation');
         if (parseFloat(amount) * multiplier > 0) {
             timer.setTimeout(
                 'addressPasteAlertDelay',
@@ -427,25 +410,6 @@ export class Send extends Component {
         }
 
         return this.props.generateAlert(...props, t('invalidAddressExplanation3'));
-    }
-
-    getModalProps() {
-        const { isModalActive, body } = this.props;
-        const props = {
-            animationIn: isAndroid ? 'bounceInUp' : 'zoomIn',
-            animationOut: isAndroid ? 'bounceOut' : 'zoomOut',
-            animationInTiming: isAndroid ? 1000 : 300,
-            animationOutTiming: 200,
-            backdropTransitionInTiming: isAndroid ? 500 : 300,
-            backdropTransitionOutTiming: 200,
-            backdropColor: body.bg,
-            style: { justifyContent: 'center', alignItems: 'center', margin: 0, height, width },
-            isVisible: isModalActive,
-            onBackButtonPress: () => this.props.toggleModalActivity(),
-            hideModalContentWhileAnimating: true,
-            useNativeDriver: isAndroid ? true : false,
-        };
-        return props;
     }
 
     /**
@@ -541,21 +505,84 @@ export class Send extends Component {
         Keyboard.dismiss();
     }
 
-    showModal(modalContent) {
-        this.setState({ modalContent });
-        this.openModal();
-    }
-
-    openModal = () => {
+    openModal = (modalContent) => {
         const { isKeyboardActive } = this.props;
         if (isKeyboardActive) {
             this.blurTextFields();
             timer.setTimeout('modalShow', () => this.props.toggleModalActivity(), 500);
         } else {
-            this.props.toggleModalActivity();
+            this.showModal(modalContent);
         }
     };
 
+    /**
+     * Shows specific modal
+     *
+     * @method showModal
+     * @param  {String} modalContent
+     */
+    showModal(modalContent) {
+        const { bar, theme, body, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
+        switch (modalContent) {
+            case 'qrScanner':
+                return this.props.toggleModalActivity(modalContent, {
+                    onQRRead: (data) => this.onQRRead(data),
+                    hideModal: () => this.hideModal(),
+                    theme,
+                    onMount: () => this.props.setDoNotMinimise(true),
+                    onUnmount: () => this.props.setDoNotMinimise(false),
+                });
+            case 'transferConfirmation':
+                return this.props.toggleModalActivity(modalContent, {
+                    value: parseFloat(amount) * this.getUnitMultiplier(),
+                    amount,
+                    conversionText: this.getConversionTextIOTA(),
+                    address: address,
+                    sendTransfer: () => this.sendWithDelay(),
+                    hideModal: (callback) => this.hideModal(callback),
+                    body,
+                    bar,
+                    borderColor: { borderColor: body.color },
+                    textColor: { color: body.color },
+                    setSendingTransferFlag: () => this.setSendingTransferFlag(),
+                    selectedAccountName: selectedAccountName,
+                    activateFingerprintScanner: () => this.activateFingerprintScanner(),
+                    isFingerprintEnabled: isFingerprintEnabled,
+                });
+            case 'unitInfo':
+                return this.props.toggleModalActivity(modalContent, {
+                    hideModal: () => this.hideModal(),
+                    textColor: { color: bar.color },
+                    lineColor: { borderLeftColor: bar.color },
+                    borderColor: { borderColor: bar.color },
+                    bar,
+                });
+            case 'usedAddress':
+                return this.props.toggleModalActivity(modalContent, {
+                    hideModal: (callback) => this.hideModal(callback),
+                    body,
+                    bar,
+                    borderColor: { borderColor: body.color },
+                    textColor: { color: body.color },
+                });
+            case 'fingerprint':
+                return this.props.toggleModalActivity(modalContent, {
+                    hideModal: this.hideModal,
+                    borderColor: { borderColor: body.color },
+                    textColor: { color: body.color },
+                    backgroundColor: { backgroundColor: body.bg },
+                    instance: 'send',
+                });
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Hides modal
+     *
+     * @method hideModal
+     */
     hideModal = () => {
         this.props.toggleModalActivity();
     };
@@ -664,7 +691,7 @@ export class Send extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
-            this.setState({ modalContent: 'fingerPrintModal' });
+            this.showModal('fingerprint');
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
@@ -705,86 +732,6 @@ export class Send extends Component {
         }
 
         return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : null;
-    }
-
-    renderModal() {
-        const { bar, body, primary, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
-        const { modalContent } = this.state;
-        const modalProps = this.getModalProps();
-        switch (modalContent) {
-            case 'qrScanner':
-                return (
-                    <Modal {...modalProps}>
-                        <QRScannerComponent
-                            onQRRead={(data) => this.onQRRead(data)}
-                            hideModal={() => this.hideModal()}
-                            primary={primary}
-                            body={body}
-                            onMount={() => this.props.setDoNotMinimise(true)}
-                            onUnmount={() => this.props.setDoNotMinimise(false)}
-                        />
-                    </Modal>
-                );
-            case 'transferConfirmation':
-                return (
-                    <Modal {...modalProps}>
-                        <TransferConfirmationModal
-                            value={parseFloat(amount) * this.getUnitMultiplier()}
-                            amount={amount}
-                            conversionText={this.getConversionTextIOTA()}
-                            address={address}
-                            sendTransfer={() => this.sendWithDelay()}
-                            hideModal={(callback) => this.hideModal(callback)}
-                            body={body}
-                            bar={bar}
-                            borderColor={{ borderColor: body.color }}
-                            textColor={{ color: body.color }}
-                            setSendingTransferFlag={() => this.setSendingTransferFlag()}
-                            selectedAccountName={selectedAccountName}
-                            activateFingerprintScanner={() => this.activateFingerprintScanner()}
-                            isFingerprintEnabled={isFingerprintEnabled}
-                        />
-                    </Modal>
-                );
-            case 'unitInfo':
-                return (
-                    <Modal {...modalProps}>
-                        <UnitInfoModal
-                            hideModal={() => this.hideModal()}
-                            textColor={{ color: bar.color }}
-                            lineColor={{ borderLeftColor: bar.color }}
-                            borderColor={{ borderColor: bar.color }}
-                            bar={bar}
-                        />
-                    </Modal>
-                );
-            case 'usedAddress':
-                return (
-                    <Modal {...modalProps}>
-                        <UsedAddressModal
-                            hideModal={(callback) => this.hideModal(callback)}
-                            body={body}
-                            bar={bar}
-                            borderColor={{ borderColor: body.color }}
-                            textColor={{ color: body.color }}
-                        />
-                    </Modal>
-                );
-            case 'fingerPrintModal':
-                return (
-                    <Modal {...modalProps}>
-                        <FingerPrintModal
-                            hideModal={this.hideModal}
-                            borderColor={{ borderColor: body.color }}
-                            textColor={{ color: body.color }}
-                            backgroundColor={{ backgroundColor: body.bg }}
-                            instance="send"
-                        />
-                    </Modal>
-                );
-            default:
-                break;
-        }
     }
 
     render() {
@@ -969,7 +916,6 @@ export class Send extends Component {
                         </View>
                         <View style={{ flex: 0.3 }} />
                     </View>
-                    {this.renderModal()}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -1004,7 +950,6 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

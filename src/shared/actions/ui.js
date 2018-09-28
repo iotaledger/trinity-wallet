@@ -9,6 +9,7 @@ export const ActionTypes = {
     SET_ONBOARDING_SEED: 'IOTA/UI/SET_ONBOARDING_SEED',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
+    UPDATE_MODAL_PROPS: 'IOTA/UI/UPDATE_MODAL_PROPS',
     SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE',
     SET_QR_MESSAGE: 'IOTA/UI/SET_QR_MESSAGE',
     SET_QR_AMOUNT: 'IOTA/UI/SET_QR_AMOUNT',
@@ -220,11 +221,27 @@ export const setDoNotMinimise = (payload) => {
  *
  * @method toggleModalActivity
  *
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, modalContent: {string}, modalProps: {object} }}
  */
-export const toggleModalActivity = () => {
+export const toggleModalActivity = (modalContent, modalProps) => {
     return {
         type: ActionTypes.TOGGLE_MODAL_ACTIVITY,
+        modalContent,
+        modalProps,
+    };
+};
+
+/**
+ * Dispatch to update modal props
+ *
+ * @method updateModalProps
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const updateModalProps = (payload) => {
+    return {
+        type: ActionTypes.TOGGLE_MODAL_ACTIVITY,
+        payload,
     };
 };
 

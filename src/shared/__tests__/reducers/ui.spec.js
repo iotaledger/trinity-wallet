@@ -40,6 +40,8 @@ describe('Reducer: ui', () => {
                 qrTag: '',
                 selectedQrTab: 'message',
                 isReceiveCardFlipped: false,
+                modalContent: 'snapshotTransitionInfo',
+                modalProps: {},
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -945,15 +947,21 @@ describe('Reducer: ui', () => {
         it('should set "isModalActive" state prop to true', () => {
             const initialState = {
                 isModalActive: false,
+                modalContent: 'snapshotTransitionInfo',
+                modalProps: {},
             };
 
             const action = {
                 type: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
+                modalContent: 'unitInfo',
+                modalProps: {},
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 isModalActive: true,
+                modalContent: 'unitInfo',
+                modalProps: {},
             };
 
             expect(newState).to.eql(expectedState);
@@ -964,6 +972,8 @@ describe('Reducer: ui', () => {
         it('should set "isModalActive" state prop to false', () => {
             const initialState = {
                 isModalActive: true,
+                modalContent: 'snapshotTransitionInfo',
+                modalProps: {},
             };
 
             const action = {
@@ -973,6 +983,8 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isModalActive: false,
+                modalContent: 'snapshotTransitionInfo',
+                modalProps: {},
             };
 
             expect(newState).to.eql(expectedState);

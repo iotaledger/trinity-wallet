@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { setFingerprintStatus } from 'shared-modules/actions/settings';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
-import Modal from 'react-native-modal';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import FingerPrintModal from 'ui/components/FingerprintModal';
 import Fonts from 'ui/theme/fonts';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { width, height } from 'libs/dimensions';
@@ -56,13 +55,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
     button: {
         width: width / 1.65,
         height: height / 3.3,
@@ -89,11 +81,12 @@ class FingerprintEnable extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
-        this.state = { isModalVisible: false };
         this.navigateToHome = this.navigateToHome.bind(this);
         this.handleAuthenticationAttempted = this.handleAuthenticationAttempted.bind(this);
         this.navigateToHome = this.navigateToHome.bind(this);
@@ -132,7 +125,13 @@ class FingerprintEnable extends Component {
     }
 
     openModal() {
-        this.setState({ isModalVisible: true });
+        const { theme, isFingerprintEnabled } = this.props;
+        this.props.toggleModalActivity('fingerprint', {
+            hideModal: this.hideModal,
+            theme,
+            isFingerprintEnabled,
+            instance: 'setup',
+        });
     }
 
     activateFingerprintScanner() {
@@ -209,11 +208,10 @@ class FingerprintEnable extends Component {
     }
 
     hideModal() {
-        this.setState({ isModalVisible: false });
+        this.props.toggleModalActivity();
     }
 
     render() {
-        const { isModalVisible } = this.state;
         const { t, isFingerprintEnabled, theme } = this.props;
         const backgroundColor = { backgroundColor: theme.body.bg };
         const textColor = { color: theme.body.color };
@@ -250,30 +248,6 @@ class FingerprintEnable extends Component {
                     </Button>
                 </View>
                 <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
-                <Modal
-                    animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                    animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                    animationInTiming={isAndroid ? 1000 : 300}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropOpacity={0.9}
-                    backdropColor={theme.body.bg}
-                    style={styles.modal}
-                    isVisible={isModalVisible}
-                    onBackButtonPress={this.hideModal}
-                    hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
-                >
-                    <FingerPrintModal
-                        hideModal={this.hideModal}
-                        borderColor={{ borderColor: theme.body.color }}
-                        textColor={textColor}
-                        backgroundColor={backgroundColor}
-                        instance="setup"
-                        isFingerprintEnabled={isFingerprintEnabled}
-                    />
-                </Modal>
             </View>
         );
     }
@@ -287,6 +261,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setFingerprintStatus,
     generateAlert,
+    toggleModalActivity,
 };
 
 export default WithBackPressGoToHome()(
