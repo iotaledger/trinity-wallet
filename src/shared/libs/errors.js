@@ -22,4 +22,11 @@ export default {
     ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
     SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
     NO_NODE_TO_RETRY: 'No node to retry.',
+    INVALID_INPUT: 'Invalid input.',
+    INVALID_TRANSFER: 'Invalid transfer.',
+    CANNOT_SWEEP_TO_SAME_ADDRESS: 'Cannot sweep to same address.',
+    BALANCE_MISMATCH: 'Balance mismatch.',
+    PROMOTIONS_LIMIT_REACHED: 'Promotions limit reached.',
+    EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
+    DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
 };
