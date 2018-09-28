@@ -1543,14 +1543,6 @@ buffer@^4.9.1:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
-buffer@^5.0.8:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.1.0.tgz#c913e43678c7cb7c8bd16afbcddb6c5505e8f9fe"
-  integrity sha512-YkIRgwsZwJWTnyQrsBTWefizHh+8GYj3kbL1BTiAQ/9pwpino0G7B2gp5tx/FUBqUlvtxV85KNR3mwfAtv15Yw==
-  dependencies:
-    base64-js "^1.0.2"
-    ieee754 "^1.1.4"
-
 bugsnag-react-native@^2.9.3:
   version "2.9.4"
   resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.9.4.tgz#a8dfcc44f727909d306e40dd980997a3e69fe2e5"
@@ -6086,13 +6078,6 @@ react-native-extra-dimensions-android@^0.21.0:
   resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-0.21.0.tgz#2992384a90df738cf678a452cadbf251052ce7bc"
   integrity sha512-rOzODn4vvocqsXnMJG/4bxYxfYbN4ONVla0iaDXMv8665cZO8U354VFkGOsAEP5cRaq6xxYt10bYhthaPt99Rg==
 
-"react-native-fast-crypto@https://github.com/rajivshah3/react-native-fast-crypto#13db40e":
-  version "1.5.5"
-  resolved "https://github.com/rajivshah3/react-native-fast-crypto#13db40e57e764b6d8002f44dfe2fcfb53116c7f2"
-  dependencies:
-    buffer "^5.0.8"
-    rfc4648 "^1.0.0"
-
 react-native-fingerprint-scanner@^2.3.1:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/react-native-fingerprint-scanner/-/react-native-fingerprint-scanner-2.3.2.tgz#f89dd5dcecf5858c005fa583c064ef4d20ea7731"
@@ -6746,11 +6731,6 @@ ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
-
-rfc4648@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/rfc4648/-/rfc4648-1.1.0.tgz#5e05a16b3c3fc76552f95853a10bd95b6bc0752f"
-  integrity sha512-ExPH8PFXP8Qq//GU6lk23BlHhWdIf1EYP427wJjvF+8ybn3lWTkCRB+JCPRs7vrSw2+IcoyeSqMSWqd1Z/4rIQ==
 
 right-align@^0.1.1:
   version "0.1.3"
