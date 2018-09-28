@@ -721,6 +721,6 @@
         "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
         "proceed": "資金回復に進む",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "移動を承認"
     }
 }
