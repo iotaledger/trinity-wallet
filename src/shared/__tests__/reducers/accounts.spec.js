@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import reducer, { updateAddressData } from '../../reducers/accounts';
+import reducer, { mergeAddressData } from '../../reducers/accounts';
 import * as actions from '../../actions/accounts';
 
 describe('Reducer: accounts', () => {
@@ -973,6 +973,200 @@ describe('Reducer: accounts', () => {
         });
     });
 
+    describe('IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO', () => {
+        it('should remove all existing bundle hashes for account in "unconfirmedBundleTails"', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    AAA: [{ account: 'foo' }],
+                    BBB: [{ account: 'baz' }],
+                    CCC: [{ account: 'foo' }, { account: 'baz' }],
+                    DDD: [{ account: 'bar' }],
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName: 'foo',
+                    unconfirmedBundleTails: {
+                        BBB: [{ account: 'baz' }],
+                        CCC: [{ account: 'foo' }, { account: 'foo' }],
+                    },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    BBB: [{ account: 'baz' }],
+                    CCC: [{ account: 'foo' }, { account: 'foo' }],
+                    DDD: [{ account: 'bar' }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+        });
+
+        it('should override addresses', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: { AAA: {} },
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    addresses: { BBB: {} },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: { BBB: {} },
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].addresses).to.eql(
+                expectedState.accountInfo[accountName].addresses,
+            );
+        });
+
+        it('should preserve local spend statuses', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: {
+                            AAA: { spent: { local: true, remote: true } },
+                            BBB: { spent: { local: true, remote: true } },
+                        },
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    addresses: { BBB: { spent: { local: false, remote: false } } },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: { BBB: { spent: { local: true, remote: false } } },
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].addresses).to.eql(
+                expectedState.accountInfo[accountName].addresses,
+            );
+        });
+
+        it('should override transfers', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        transfers: {},
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    transfers: { ['9'.repeat(81)]: {} },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        transfers: { ['9'.repeat(81)]: {} },
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].transfers).to.eql(
+                expectedState.accountInfo[accountName].transfers,
+            );
+        });
+
+        it('should override balance', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        balance: 100,
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    balance: 99,
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        balance: 99,
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].balance).to.eql(expectedState.accountInfo[accountName].balance);
+        });
+
+        it('should override hashes', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        hashes: ['U'.repeat(81), 'Z'.repeat(81)],
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    hashes: [{}, {}, {}],
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        hashes: [{}, {}, {}],
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].hashes).to.eql(expectedState.accountInfo[accountName].hashes);
+        });
+    });
+
     [
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
@@ -1114,11 +1308,11 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('#updateAddressData', () => {
+    describe('#mergeAddressData', () => {
         describe('when address in new address data is part of existing address data', () => {
             describe('when address local spend status is true', () => {
                 it('should not reassign local spend status', () => {
-                    const result = updateAddressData(
+                    const result = mergeAddressData(
                         { foo: { spent: { local: true, remote: true } } },
                         { foo: { spent: { local: undefined, remote: null } } },
                     );
@@ -1129,7 +1323,7 @@ describe('Reducer: accounts', () => {
 
             describe('when address local spend status is false', () => {
                 it('should reassign local spend status', () => {
-                    const result = updateAddressData(
+                    const result = mergeAddressData(
                         { foo: { spent: { local: false, remote: true } } },
                         { foo: { spent: { local: true, remote: null } } },
                     );
@@ -1141,7 +1335,7 @@ describe('Reducer: accounts', () => {
 
         describe('when address in new address data is not part of existing address data', () => {
             it('should not reassign any prop', () => {
-                const result = updateAddressData(
+                const result = mergeAddressData(
                     { foo: { spent: { local: true, remote: true } } },
                     {
                         baz: { spent: { local: undefined, remote: null } },

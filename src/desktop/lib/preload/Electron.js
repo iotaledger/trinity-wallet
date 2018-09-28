@@ -340,6 +340,22 @@ const Electron = {
     },
 
     /**
+     * Show a native dialog box
+     * @param {string} message - Dialog box content
+     * @param {string} buttonTitle - dialog box button title
+     * @param {string} title - Dialog box title, is not shown on all platforms
+     * @returns {number} Returns 0 after dialog button press
+     */
+    dialog: async (message, buttonTitle, title) => {
+        return await dialog.showMessageBox(currentWindow, {
+            type: 'info',
+            title,
+            message,
+            buttons: [buttonTitle],
+        });
+    },
+
+    /**
      * Export SeedVault file
      * @param {array} - Seed object array
      * @param {string} - Plain text password to use for SeedVault

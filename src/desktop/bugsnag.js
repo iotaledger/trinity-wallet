@@ -26,7 +26,7 @@ upload({
     sourceMap: resolve(__dirname, 'dist/bundle.js.map'),
     minifiedUrl: 'iota://dist/bundle.js',
     minifiedFile: resolve(__dirname, 'dist/bundle.js'),
-    overwrite: false,
+    overwrite: true,
 })
     .then(
         upload({
@@ -36,7 +36,7 @@ upload({
             sourceMap: resolve(__dirname, 'dist/css/main.css.map'),
             minifiedUrl: 'iota://dist/css/main.css',
             minifiedFile: resolve(__dirname, 'dist/css/main.css'),
-            overwrite: false,
+            overwrite: true,
         }),
     )
     .then(() => console.log('Sourcemaps successfully uploaded to Bugsnag'))
