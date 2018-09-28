@@ -721,6 +721,6 @@
         "explanationAccounts": "Zablokowane środki zostały wykryte na Twoich kontach: {{accounts}}. Trinity odzyska teraz Twoje środki, automatycznie przenosząc je na nowy adres.",
         "proceed": "Przejdź do odzyskiwania",
         "sweepConfirmation": "Masz zamiar przenieść {{amount}} na adres {{address}}. Konto: {{accountName}}, indeks adresu: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
     }
 }
