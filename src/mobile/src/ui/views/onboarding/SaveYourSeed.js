@@ -10,6 +10,7 @@ import { getChecksum } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
 import { setSeedShareTutorialVisitationStatus } from 'shared-modules/actions/settings';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
 import Button from 'ui/components/Button';
@@ -494,6 +495,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setSeedShareTutorialVisitationStatus,
     generateAlert,
+    toggleModalActivity,
 };
 
 export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

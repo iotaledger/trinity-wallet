@@ -286,7 +286,6 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountType: getSelectedAccountType(state),
     shouldPreventAction: shouldPreventAction(state),
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

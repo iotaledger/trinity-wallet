@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export class NotificationLog extends PureComponent {
+export class NotificationLogModal extends PureComponent {
     static propTypes = {
         /** Content background color */
         backgroundColor: PropTypes.string.isRequired,
@@ -125,4 +125,4 @@ export class NotificationLog extends PureComponent {
     }
 }
 
-export default translate(['global, notificationLog'])(NotificationLog);
+export default translate(['global, notificationLog'])(NotificationLogModal);

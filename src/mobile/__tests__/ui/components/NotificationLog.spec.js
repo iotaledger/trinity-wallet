@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import { NotificationLog } from 'ui/components/NotificationLog';
+import NotificationLog from 'ui/components/NotificationLogModal';
 
 const getProps = (overrides) =>
     assign(

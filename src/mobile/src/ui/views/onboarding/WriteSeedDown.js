@@ -5,9 +5,9 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
-import Modal from 'react-native-modal';
 import RNPrint from 'react-native-print';
 import { paperWallet } from 'shared-modules/images/PaperWallets.js';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
@@ -19,7 +19,6 @@ import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ChecksumComponent from 'ui/components/Checksum';
-import ChecksumModalComponent from 'ui/components/ChecksumModal';
 
 const styles = StyleSheet.create({
     container: {
@@ -80,13 +79,14 @@ class WriteSeedDown extends Component {
         seed: PropTypes.string.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
             isCopyComplete: false,
-            isModalActive: false,
         };
         this.openModal = this.openModal.bind(this);
         Navigation.events().bindComponent(this);
@@ -178,21 +178,20 @@ class WriteSeedDown extends Component {
     }
 
     openModal() {
-        this.setState({ isModalActive: true });
+        const { theme } = this.props;
+        this.props.toggleModalActivity('checksum', {
+            theme,
+            closeModal: () => this.props.toggleModalActivity(),
+        });
     }
 
     closeModal() {
-        this.setState({ isModalActive: false });
+        this.props.toggleModalActivity();
     }
-
-    renderModalContent = () => {
-        const { theme: { body, primary } } = this.props;
-        return <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.closeModal()} />;
-    };
 
     render() {
         const { t, theme, seed, minimised } = this.props;
-        const { isModalActive, isCopyComplete } = this.state;
+        const { isCopyComplete } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -240,19 +239,6 @@ class WriteSeedDown extends Component {
                                 rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
                             />
                         </View>
-                        <Modal
-                            backdropTransitionInTiming={isAndroid ? 500 : 300}
-                            backdropTransitionOutTiming={200}
-                            backdropColor={theme.body.bg}
-                            backdropOpacity={0.9}
-                            style={{ alignItems: 'center', margin: 0 }}
-                            isVisible={isModalActive}
-                            onBackButtonPress={() => this.closeModal()}
-                            closeModalContentWhileAnimating
-                            useNativeDriver={!!isAndroid}
-                        >
-                            {this.renderModalContent()}
-                        </Modal>
                     </View>
                 )}
             </View>
@@ -266,4 +252,10 @@ const mapStateToProps = (state) => ({
     minimised: state.ui.minimised,
 });
 
-export default WithUserActivity()(translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown)));
+const mapDispatchToProps = {
+    toggleModalActivity,
+};
+
+export default WithUserActivity()(
+    translate(['writeSeedDown', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WriteSeedDown)),
+);

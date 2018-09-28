@@ -6,10 +6,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
-import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
 import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
@@ -18,7 +18,6 @@ import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import RootDetectionModalComponent from 'ui/components/RootDetectionModal';
 import { doAttestationFromSafetyNet } from 'libs/safetynet';
 import { isAndroid } from 'libs/device';
 
@@ -71,13 +70,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** Wallet setup screen component */
@@ -89,13 +81,12 @@ class WalletSetup extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
-        this.state = {
-            isModalVisible: false,
-        };
     }
 
     componentDidMount() {
@@ -191,12 +182,12 @@ class WalletSetup extends Component {
                 })
                 .then((isRooted) => {
                     if (isBoolean(isRooted) && isRooted) {
-                        this.setState({ isModalVisible: true });
+                        this.showModal();
                     }
                 })
                 .catch((error) => {
                     if (error.message === 'device rooted.') {
-                        this.setState({ isModalVisible: true });
+                        this.showModal();
                     }
                     if (error.message === 'play services not available.') {
                         this.props.generateAlert(
@@ -210,11 +201,24 @@ class WalletSetup extends Component {
             RNIsDeviceRooted.isDeviceRooted()
                 .then((isRooted) => {
                     if (isRooted) {
-                        this.setState({ isModalVisible: true });
+                        this.showModal();
                     }
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         }
+    }
+
+    showModal() {
+        const { theme: { negative, body } } = this.props;
+        this.props.toggleModalActivity('rootDetection', {
+            style: { flex: 1 },
+            hideModal: () => this.hideModal(),
+            closeApp: () => this.closeApp(),
+            backgroundColor: body.bg,
+            warningColor: { color: negative.color },
+            textColor: { color: body.color },
+            borderColor: { borderColor: body.color },
+        });
     }
 
     /**
@@ -222,7 +226,7 @@ class WalletSetup extends Component {
      * @method hideModal
      */
     hideModal() {
-        this.setState({ isModalVisible: false });
+        this.props.toggleModalActivity();
     }
 
     /**
@@ -234,25 +238,9 @@ class WalletSetup extends Component {
         RNExitApp.exitApp();
     }
 
-    renderModalContent() {
-        const { theme: { body, negative } } = this.props;
-        return (
-            <RootDetectionModalComponent
-                style={{ flex: 1 }}
-                hideModal={() => this.hideModal()}
-                closeApp={() => this.closeApp()}
-                backgroundColor={body.bg}
-                warningColor={{ color: negative.color }}
-                textColor={{ color: body.color }}
-                borderColor={{ borderColor: body.color }}
-            />
-        );
-    }
-
     render() {
         const { t, theme: { body } } = this.props;
         const textColor = { color: body.color };
-        const { isModalVisible } = this.state;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -300,22 +288,6 @@ class WalletSetup extends Component {
                         rightButtonTestID="walletSetup-yes"
                     />
                 </View>
-                <Modal
-                    animationIn="zoomIn"
-                    animationOut="zoomOut"
-                    animationInTiming={300}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
-                    backdropOpacity={0.9}
-                    style={styles.modal}
-                    isVisible={isModalVisible}
-                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                    useNativeDriver={!!isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
             </View>
         );
     }
@@ -327,6 +299,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
+    toggleModalActivity,
 };
 
 export default translate(['walletSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WalletSetup));

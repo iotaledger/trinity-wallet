@@ -1,12 +1,23 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { translate } from 'react-i18next';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import InfoBox from './InfoBox';
 
 const styles = StyleSheet.create({
+    infoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'left',
+    },
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+    },
     okButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
@@ -20,33 +31,24 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
-    modalText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    modalTextBold: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
 });
 
-export class ChecksumModal extends PureComponent {
+export default class BiometricInfoModal extends PureComponent {
     static propTypes = {
         /** @ignore */
-        t: PropTypes.func.isRequired,
-        /** Close active modal */
-        closeModal: PropTypes.func.isRequired,
-        /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+        /** Hides modal */
+        hideModal: PropTypes.func.isRooted,
     };
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('BiometricInfoModal');
+    }
+
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const { theme: { body, primary }, t } = this.props;
 
         return (
             <View style={{ backgroundColor: body.bg }}>
@@ -55,14 +57,14 @@ export class ChecksumModal extends PureComponent {
                     width={width / 1.15}
                     text={
                         <View>
-                            <Text style={[styles.modalTextBold, { color: body.color }, { paddingTop: height / 40 }]}>
-                                {t('saveYourSeed:whatIsChecksum')}
+                            <Text style={[styles.infoTextBold, { color: body.color }, { paddingTop: height / 40 }]}>
+                                {t('login:whyBiometricDisabled')}
                             </Text>
-                            <Text style={[styles.modalText, { color: body.color }, { paddingTop: height / 60 }]}>
-                                {t('saveYourSeed:checksumExplanation')}
+                            <Text style={[styles.infoText, { color: body.color }, { paddingTop: height / 60 }]}>
+                                {t('login:whyBiometricDisabledExplanation')}
                             </Text>
                             <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
-                                <TouchableOpacity onPress={() => this.props.closeModal()}>
+                                <TouchableOpacity onPress={() => this.props.hideModal()}>
                                     <View style={[styles.okButton, { borderColor: primary.color }]}>
                                         <Text style={[styles.okText, { color: primary.color }]}>
                                             {t('global:okay')}
@@ -77,5 +79,3 @@ export class ChecksumModal extends PureComponent {
         );
     }
 }
-
-export default translate(['logoutConfirmationModal', 'global'])(ChecksumModal);

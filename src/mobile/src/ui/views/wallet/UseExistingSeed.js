@@ -378,7 +378,6 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

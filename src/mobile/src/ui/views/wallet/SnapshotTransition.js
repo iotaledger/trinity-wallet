@@ -389,7 +389,6 @@ const mapStateToProps = (state) => ({
     addresses: getAddressesForSelectedAccount(state),
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
-    isModalActive: state.ui.isModalActive,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
 });

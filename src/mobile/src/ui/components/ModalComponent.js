@@ -5,6 +5,7 @@ import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 
+import RootDetection from 'ui/components/RootDetectionModal';
 import TransferConfirmation from 'ui/components/TransferConfirmationModal';
 import UsedAddress from 'ui/components/UsedAddressModal';
 import UnitInfo from 'ui/components/UnitInfoModal';
@@ -17,6 +18,8 @@ import SeedInfo from 'ui/components/SeedInfoModal';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import QrScanner from 'ui/components/QrScanner';
 import Print from 'ui/components/PrintModal';
+import BiometricInfo from 'ui/components/BiometricInfoModal';
+import NotificationLog from 'ui/components/NotificationLogModal';
 
 import { isAndroid } from 'libs/device';
 import { height, width } from 'libs/dimensions';
@@ -44,6 +47,9 @@ const MODAL_CONTENT = {
     qrScanner: QrScanner,
     seedInfo: SeedInfo,
     print: Print,
+    rootDetection: RootDetection,
+    biometricInfo: BiometricInfo,
+    notificationLog: NotificationLog,
 };
 
 /** HOC to render modal component. Trigger opening/closing and content change by dispatching toggleModalActivity action.

@@ -56,13 +56,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         paddingTop: height / 60,
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** Seed Reentry component */

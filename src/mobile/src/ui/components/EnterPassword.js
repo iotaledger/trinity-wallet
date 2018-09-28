@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import Modal from 'react-native-modal';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { connect } from 'react-redux';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -11,7 +11,6 @@ import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
-import FingerPrintModal from './FingerprintModal';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -29,13 +28,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
     },
 });
 
@@ -56,13 +48,14 @@ class EnterPassword extends Component {
         setUserActive: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.state = {
             password: '',
-            isModalVisible: false,
         };
         this.activateFingerprintScanner = this.activateFingerprintScanner.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -100,7 +93,7 @@ class EnterPassword extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
-            this.setState({ isModalVisible: true });
+            this.showModal();
         }
         FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
@@ -117,11 +110,19 @@ class EnterPassword extends Component {
     }
 
     hideModal() {
-        this.setState({ isModalVisible: false });
+        this.props.toggleModalActivity();
+    }
+
+    showModal() {
+        const { theme } = this.props;
+        this.props.toggleModalActivity('fingerprint', {
+            hideModal: () => this.props.toggleModalActivity(),
+            theme,
+            instance: 'login',
+        });
     }
 
     render() {
-        const { isModalVisible } = this.state;
         const { t, theme, isFingerprintEnabled } = this.props;
 
         return (
@@ -158,29 +159,6 @@ class EnterPassword extends Component {
                             {t('login')}
                         </Button>
                     </View>
-                    <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                        animationInTiming={isAndroid ? 1000 : 300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropOpacity={0.9}
-                        backdropColor={theme.body.bg}
-                        style={styles.modal}
-                        isVisible={isModalVisible}
-                        onBackButtonPress={this.hideModal}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
-                    >
-                        <FingerPrintModal
-                            hideModal={this.hideModal}
-                            borderColor={{ borderColor: theme.body.color }}
-                            textColor={{ color: theme.body.color }}
-                            backgroundColor={{ backgroundColor: theme.body.bg }}
-                            instance="login"
-                        />
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -192,4 +170,8 @@ const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
-export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPassword));
+const mapDispatchToProps = {
+    toggleModalActivity,
+};
+
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));
