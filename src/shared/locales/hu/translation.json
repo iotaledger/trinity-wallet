@@ -712,11 +712,11 @@
         "confirmedOut": "{{value}} értékű tranzakció kiküldve a(z) {{account}} számlájáról"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
+        "sweepSucceeded": "Egyenleg sikeresen felszabadítva",
+        "sweepSucceededExplanation": "A zárolt egyenlegét sikereresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
+        "sweepError": "Sikertelen zárolt egyenleg feloldás",
+        "sweepErrorExplanation": "Hiba történt az egyenlege felszabadítása közben. Kérjük, próbálja újra.",
+        "warningTitle": "Figyelem: zárolt összeget találtunk a számláján",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
