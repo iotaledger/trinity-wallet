@@ -28,7 +28,7 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
     for (let i = 0; i < accounts.length; i++) {
         const accountInfo = state.accounts.accountInfo[accounts[i].accountName];
 
-        const addressCount = Math.max(accountInfo.addresses ? Object.keys(accountInfo.addresses).length : 30, 30);
+        const addressCount = Math.max(accountInfo.addresses ? Object.keys(accountInfo.addresses).length + 20 : 30, 30);
 
         const seedTrits = bytesToTrits(accounts[i].seedTrits.filter((trit) => trit > -1).slice(0, 81));
         const addresses = await genFn(seedTrits, 0, 2, addressCount);
