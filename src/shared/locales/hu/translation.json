@@ -713,13 +713,13 @@
     },
     "bytetrit": {
         "sweepSucceeded": "Egyenleg sikeresen felszabadítva",
-        "sweepSucceededExplanation": "A zárolt egyenlegét sikereresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
-        "sweepError": "Sikertelen zárolt egyenleg feloldás",
-        "sweepErrorExplanation": "Hiba történt az egyenlege felszabadítása közben. Kérjük, próbálja újra.",
+        "sweepSucceededExplanation": "A zárolt összeget sikeresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
+        "sweepError": "Sikertelen zárolt összeg feloldás",
+        "sweepErrorExplanation": "Hiba történt a zárolt összeg feloldása közben. Kérjük, próbálja újra.",
         "warningTitle": "Figyelem: zárolt összeget találtunk a számláján",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
+        "explanation": "A Trinity 0.3.4 asztali verziójában egy hiba folytán ideiglenesen zárolásra kerülhetett az egyenlegének egy része. Ez a hiba viszonylag kevés felhasználót érint: azokat, akik a 0.3.4 verzióval indítottak tranzakciókat.",
+        "explanationAccounts": "Zárolt összegeket találtunk a következő számláin: {{accounts}}. A Trinity most megpróbálja automatikusan feloldani a zárolást az összegek egy Ön számlájához tartozó másik címre való átutalásával.",
+        "proceed": "Tovább a zárolás feloldásához",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
         "sweepConfirmationTitle": "Sweep confirmation"
     }
