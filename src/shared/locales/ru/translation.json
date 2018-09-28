@@ -34,7 +34,7 @@
         "save": "Сохранить",
         "close": "Закрыть",
         "export": "Export",
-        "help": "Help",
+        "help": "Помощь",
         "import": "Import",
         "continue": "Продолжить",
         "enable": "Включить",
@@ -458,7 +458,7 @@
         "editAccountName": "Изменить название счёта",
         "deleteAccount": "﻿Удалить счёт",
         "addNewAccount": "Добавить новый счёт",
-        "tools": "Tools"
+        "tools": "Инструменты"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
