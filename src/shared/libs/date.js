@@ -21,6 +21,12 @@ export const formatTimeAs = {
         m.locale(locale);
         return m.format('LTS L');
     },
+    dayMonthYearHoursMinutes: (locale, timezone, time) => {
+        const m = moment.tz(time, timezone);
+        locale = chooseMomentLocale(locale);
+        m.locale(locale);
+        return m.format('L LT');
+    },
 };
 
 export const formatDayAs = {
@@ -99,3 +105,5 @@ const chooseMomentLocale = (locale) => {
     }
     return 'en-gb';
 };
+
+export const detectedTimezone = moment.tz.guess();
