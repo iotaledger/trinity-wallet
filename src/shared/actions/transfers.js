@@ -38,6 +38,7 @@ import {
     filterInvalidPendingTransactions,
     getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
+    isAboveMaxDepth,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -320,13 +321,15 @@ export const forceTransactionPromotion = (
     tailTransactionHashes,
     shouldGenerateAlert,
     powFn = null,
-    maxReplays = 3,
+    maxReplays = 1,
     maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
     let replayCount = 0;
     let promotionAttempt = 0;
 
-    const promote = (hash) => {
+    const promote = (tailTransaction) => {
+        const { hash, attachmentTimestamp } = tailTransaction;
+
         promotionAttempt += 1;
 
         return promoteTransactionAsync(null, powFn)(hash).catch((error) => {
@@ -338,10 +341,12 @@ export const forceTransactionPromotion = (
                 promotionAttempt < maxPromotionAttempts
             ) {
                 // Retry promotion on same reference (hash)
-                return promote(hash);
+                return promote(tailTransaction);
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
+                // Temporarily disable reattachments if transaction is still above max depth
+                !isAboveMaxDepth(attachmentTimestamp) &&
                 // If number of reattachments haven't exceeded max reattachments
                 replayCount < maxReplays
             ) {
@@ -383,12 +388,12 @@ export const forceTransactionPromotion = (
             dispatch(updateAccountAfterReattachment(newState));
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promote(tailTransaction.hash);
+            return promote(tailTransaction);
         });
     };
 
     if (has(consistentTail, 'hash')) {
-        return promote(consistentTail.hash);
+        return promote(consistentTail);
     }
 
     return reattachAndPromote();
@@ -397,7 +402,7 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {string} seed
+ * @param  {string | array} seed
  * @param  {string} receiveAddress
  * @param  {number} value
  * @param  {string} message

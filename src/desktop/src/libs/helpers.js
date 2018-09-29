@@ -3,7 +3,7 @@
  * @param {string} input - The target string
  * @param {string} Capitalized string
  */
-export const capitalize = (input) => {
+const capitalize = (input) => {
     return typeof input === 'string' && input.length > 0 ? input[0].toUpperCase() + input.substr(1).toLowerCase() : '';
 };
 
@@ -13,6 +13,108 @@ export const capitalize = (input) => {
  * @param {number} length - The target length
  * @param {string} Trimmed string
  */
-export const shorten = (input, length) => {
+const shorten = (input, length) => {
     return typeof input === 'string' && input.length > length ? input.substr(0, length - 1) + '…' : input;
+};
+
+/**
+ * Tryte trit mapping
+ */
+const trytesTrits = [
+    [0, 0, 0],
+    [1, 0, 0],
+    [-1, 1, 0],
+    [0, 1, 0],
+    [1, 1, 0],
+    [-1, -1, 1],
+    [0, -1, 1],
+    [1, -1, 1],
+    [-1, 0, 1],
+    [0, 0, 1],
+    [1, 0, 1],
+    [-1, 1, 1],
+    [0, 1, 1],
+    [1, 1, 1],
+    [-1, -1, -1],
+    [0, -1, -1],
+    [1, -1, -1],
+    [-1, 0, -1],
+    [0, 0, -1],
+    [1, 0, -1],
+    [-1, 1, -1],
+    [0, 1, -1],
+    [1, 1, -1],
+    [-1, -1, 0],
+    [0, -1, 0],
+    [1, -1, 0],
+    [-1, 0, 0],
+];
+
+const tritStrings = trytesTrits.map((trit) => trit.toString());
+
+/**
+ * Convert trit to an ASCII character
+ * @param {trit} trit - raw Trit input
+ */
+const byteToChar = (trit) => {
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(trit % 27);
+};
+
+/**
+ * Convert single character string to trit array
+ * @param {string} char - Input character
+ * @returns {array} Output trit array
+ */
+const charToByte = (char) => {
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase());
+};
+
+/**
+ * Convert single byte to trit array
+ * @param {number} byte - Input byte
+ * @returns {array} Output trit array
+ */
+const byteToTrit = (byte) => {
+    return trytesTrits[byte % 27];
+};
+
+/**
+ * Convert byte array to trit array
+ * @param {array} bytes - Input byte array
+ * @returns {array} Output trit array
+ */
+const bytesToTrits = (bytes) => {
+    let trits = [];
+    for (let i = 0; i < bytes.length; i++) {
+        trits = trits.concat(byteToTrit(bytes[i]));
+    }
+    return trits;
+};
+
+/**
+ * Convert trit array to string
+ * @param {array} trits - Input trit array
+ * @returns {string} Output string
+ */
+const tritsToChars = (trits) => {
+    let seed = '';
+    for (let i = 0; i < trits.length; i += 3) {
+        const trit = trits.slice(i, i + 3).toString();
+        for (let x = 0; x < tritStrings.length; x++) {
+            if (tritStrings[x] === trit) {
+                seed += '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(x);
+            }
+        }
+    }
+    return seed;
+};
+
+module.exports = {
+    capitalize,
+    shorten,
+    byteToChar,
+    byteToTrit,
+    bytesToTrits,
+    tritsToChars,
+    charToByte,
 };

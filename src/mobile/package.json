@@ -22,9 +22,10 @@
     "test": "NODE_ENV=test ./node_modules/.bin/jest --forceExit",
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && yarn nodejs-deps",
-    "lint": "./node_modules/.bin/eslint --ext .js .",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
-    "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json"
+    "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -44,11 +45,10 @@
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
-    "iota-wallet-shared-modules": "../shared/",
     "lodash": "^4.17.10",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
-    "nodejs-mobile-react-native": "^0.2.1",
+    "nodejs-mobile-react-native": "https://github.com/rajivshah3/nodejs-mobile-react-native",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
@@ -100,13 +100,15 @@
     "react-native-triangle": "0.0.8",
     "react-native-udp": "^1.2.9",
     "react-native-vector-icons": "^4.5.0",
-    "react-native-view-shot": "^2.3.0",
+    "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rn-fetch-blob": "^0.10.13",
+    "shared-modules": "../shared/",
+    "snyk": "^1.96.0",
     "stream": "0.0.2",
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
@@ -123,7 +125,8 @@
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
-    "babel-preset-react-native": "^5.0.2",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-preset-react-native": "5.0.2",
     "babel-preset-stage-0": "^7.0.0-beta",
     "cross-env": "^5.2.0",
     "enzyme": "^3.2.0",
@@ -149,7 +152,7 @@
       "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
     },
     "transformIgnorePatterns": [
-      "node_modules/?!(react-native|iota-wallet-shared-modules)/"
+      "node_modules/?!(react-native|shared-modules)/"
     ]
   },
   "react-native": {
@@ -208,5 +211,6 @@
     "tty": "tty-browserify",
     "vm": "vm-browserify",
     "tls": false
-  }
+  },
+  "snyk": true
 }

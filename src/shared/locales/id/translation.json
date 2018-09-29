@@ -34,6 +34,7 @@
         "save": "Simpan",
         "close": "Tutup",
         "export": "Ekspor",
+        "help": "Help",
         "import": "Impor",
         "continue": "Lanjutkan",
         "enable": "Aktif",
@@ -44,6 +45,7 @@
         "paperWallet": "Cetak ke printer",
         "addToPasswordManager": "Tambahkan ke manajer kata sandi",
         "shareSeed": "Membagi Seed",
+        "share": "Share",
         "proceed": "Lanjut",
         "qr": "QR",
         "enterSeed": "Silakan masukkan Seed Anda.",
@@ -261,7 +263,10 @@
         "pressForNewSeed": "Tekan untuk Seed baru",
         "generateSuccess": "Seed berhasil dibuat",
         "individualLetters": "Tekan masing-masing huruf untuk mengacaknya.",
-        "individualLetterCount": "Tekan {{letterCount}} untuk mengacak karakter.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Apakah itu Seed?"
     },
     "onboardingComplete": {
@@ -487,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Contoh"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Mata Uang"
     },
@@ -593,8 +610,9 @@
         "exportSuccessExplanation": "File terenkripsi sudah diekspor.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Impor SeedVault",
-        "dropSeedVaultHere": "Tuang SeedVault disini",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Masukan kata sandi untuk membuka SeedVault",
         "noSeedFound": "SeedVault tidak mengandung Seed",
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
@@ -692,5 +710,17 @@
         "messageTx": "Anda telah menerima pesan di {{account}}",
         "confirmedIn": "Dana masuk {{value}} ke {{account}} sudah dikonfirmasi",
         "confirmedOut": "Dana keluar {{value}} dari {{account}} telah dikonfirmasi"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

@@ -34,6 +34,7 @@
         "save": "Tallenna",
         "close": "Sulje",
         "export": "Vie",
+        "help": "Apua",
         "import": "Tuo",
         "continue": "Jatka",
         "enable": "Ota käyttöön",
@@ -44,6 +45,7 @@
         "paperWallet": "Tulosta seed-luku paperille",
         "addToPasswordManager": "Lisää salasanan hallintasovellukseen",
         "shareSeed": "Jaa seed-luku",
+        "share": "Jaa",
         "proceed": "Jatka",
         "qr": "QR",
         "enterSeed": "Anna seed-lukusi.",
@@ -60,8 +62,8 @@
         "password": "Salasana",
         "unrecognisedPassword": "Tunnistamaton salasana",
         "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
-        "capsLockIsOn": "Caps Lock is on",
+        "emptyPasswordExplanation": "Sinun on pakko kirjoittaa salasana. Ole hyvä ja yritä uudestaan.",
+        "capsLockIsOn": "Caps Lock on päällä",
         "syncInProgress": "Synkronointi käynnissä",
         "syncInProgressExplanation": "Odota, kunnes synkronointi on valmis.",
         "somethingWentWrong": "Jokin meni pieleen",
@@ -74,7 +76,7 @@
         "attachToTangleUnavailableExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta tai muuta laskenta-asetuksia.",
         "attachToTangleUnavailableExplanationShort": "Laskentatyöteko (PoW) palvelimella ei ole mahdollista.",
         "wallet": "Lompakko",
-        "all": "All",
+        "all": "Kaikki",
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
         "sending": "Lähettää",
@@ -261,7 +263,10 @@
         "pressForNewSeed": "Luo Uusi Seed-Luku",
         "generateSuccess": "Seed-luvun luonti onnistu",
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi.",
-        "individualLetterCount": "Paina vielä {{letterCount}} merkkiä saadaksesi ne satunnaisiksi.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Mikä on seed-luku?"
     },
     "onboardingComplete": {
@@ -297,7 +302,7 @@
         "saveYourSeed": "Tallenna seed-luku",
         "seedCleared": "Seed-luku tyhjennetty",
         "mostSecure": "Turvallisin",
-        "recommended": "Recommended",
+        "recommended": "Suositellut",
         "leastSecure": "Vähiten Turvallinen",
         "paperWallet": "Paperilompakko",
         "writeYourSeedDown": "Kirjoita seed-luku paperille",
@@ -319,7 +324,7 @@
         "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se.",
         "enterSeedBelow": "Anna seed-lukusi uudelleen, jotta voimme varmistaa että tallensit sen asianmukaisesti",
         "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarningExplanation": "VAROITUS: Kopioi & Liitä on poistettu sinun turvallisuuden takia."
     },
     "send": {
         "invalidAddress": "Virheellinen osoite",
@@ -487,6 +492,18 @@
         "theme": "Teema",
         "mockup": "Malli"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Tumma",
+        "default": "Default",
+        "electric": "Sähköinen",
+        "ionic": "Ionic",
+        "light": "Vaalea",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuutta"
     },
@@ -593,8 +610,9 @@
         "exportSuccessExplanation": "Salattu seed-tiedostosi on tallennettu onnistuneesti.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Tuo Seedvault-tiedosto",
-        "dropSeedVaultHere": "Pudota SeedVault-tiedosto tähän",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Kirjoita salasanasi avataksesi SeedVault-tiedostosi",
         "noSeedFound": "SeedVault-tiedosto ei sisällä kelvolista seed-lukua",
         "noSeedFoundExplanation": "SeedVault-tiedosto on joko tyhjä tai sisältää seed-luvun virheellisessä muodossa.",
@@ -664,12 +682,12 @@
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Virhe loki"
     },
     "terms": {
         "termsAndConditions": "Yleiset Sopimusehdot",
         "accept": "Hyväksyn",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Ole hyvä ja lue koko teksti"
     },
     "privacyPolicy": {
         "privacyPolicy": "Tietosuojakäytäntö",
@@ -692,5 +710,17 @@
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

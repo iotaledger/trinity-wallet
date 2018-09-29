@@ -1,6 +1,7 @@
 const { fork } = require('child_process');
 const path = require('path');
 const { powFunc, genFunc } = require('entangled-node');
+const { tritsToChars } = require('../src/libs/helpers');
 
 let timeout = null;
 
@@ -25,7 +26,7 @@ const exec = (payload) => {
             child.kill();
         }, 30000);
 
-        child.send(JSON.stringify(payload));
+        child.send(payload);
     });
 };
 
@@ -41,17 +42,18 @@ process.on('message', async (data) => {
     }
 
     if (payload.job === 'gen') {
-        const address = await genFunc(payload.seed, payload.index, payload.security);
+        const seedString = tritsToChars(payload.seed);
+        const address = await genFunc(seedString, payload.index, payload.security);
         process.send(address);
     }
 });
 
 const Entangled = {
     powFn: async (trytes, mwm) => {
-        return await exec({ job: 'pow', trytes, mwm });
+        return await exec(JSON.stringify({ job: 'pow', trytes, mwm }));
     },
     genFn: async (seed, index, security) => {
-        return await exec({ job: 'gen', seed, index, security });
+        return await exec(JSON.stringify({ job: 'gen', seed, index, security }));
     },
 };
 

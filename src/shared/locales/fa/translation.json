@@ -34,6 +34,7 @@
         "save": "ذخیره",
         "close": "بستن",
         "export": "استخراج",
+        "help": "Help",
         "import": "وارد کردن",
         "continue": "ادامه",
         "enable": "فعالسازی",
@@ -44,6 +45,7 @@
         "paperWallet": "چاپ نسخه کپی شده کاغذی",
         "addToPasswordManager": "اضافه کردن به مدیریت گذرواژه",
         "shareSeed": "اشتراک گذاری سید",
+        "share": "Share",
         "proceed": "ادامه",
         "qr": "QR",
         "enterSeed": "لطفا سید خود را وارد کنید.",
@@ -261,7 +263,10 @@
         "pressForNewSeed": "برای ساخت سید جدید فشار بدهید",
         "generateSuccess": "سید با موفقیت تولید شد",
         "individualLetters": "نامه های فردی را به صورت تصادفی انتخاب کنید.",
-        "individualLetterCount": "نامه های فردی بیشتری {{letterCount}} برای تصدیق آنها را فشار دهید.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "سید چیست؟"
     },
     "onboardingComplete": {
@@ -487,6 +492,18 @@
         "theme": "پوسته",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "واحد پول"
     },
@@ -593,8 +610,9 @@
         "exportSuccessExplanation": "فایل سید رمزگذاری شده شما با موفقیت استخراج شد.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "وارد کردن سید Vault",
-        "dropSeedVaultHere": "سید Vault خود را در اینجا رها گنید",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "گذرواژه خود را برای باز کردن سید Vault وارد کنید",
         "noSeedFound": "سید Vault حاوی سید معتبر نیست",
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
@@ -692,5 +710,17 @@
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

@@ -10,7 +10,8 @@ import { selectLatestAddressFromAccountFactory, selectAccountInfo, getSelectedAc
 import { generateAlert } from 'actions/alerts';
 import { generateNewAddress } from 'actions/wallet';
 
-import { byteToChar, getSeed, createRandomSeed } from 'libs/crypto';
+import { byteToChar } from 'libs/helpers';
+import { getSeed, randomBytes } from 'libs/crypto';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -58,7 +59,7 @@ class Receive extends React.PureComponent {
             this.frame = 0;
 
             this.setState({
-                scramble: createRandomSeed(ADDRESS_LENGTH),
+                scramble: randomBytes(ADDRESS_LENGTH),
             });
 
             this.unscramble();

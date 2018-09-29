@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import QRCode from 'qr.js/lib/QRCode';
 
-import { byteToChar } from 'libs/crypto';
+import { byteToChar } from 'libs/helpers';
 
 import paperWallet from 'themes/paper-wallet.svg';
 import paperWalletFilled from 'themes/paper-wallet-filled.svg';
@@ -76,7 +76,7 @@ export default class SeedPrint extends PureComponent {
                                 checksum.split('').map((letter, index) => {
                                     return (
                                         <path
-                                            transform={`translate(${276 + index * 14}, 724) scale(0.75)`}
+                                            transform={`translate(${372 + index * 12}, 725) scale(0.75)`}
                                             d={SourceSansPro[letter]}
                                             key={`${index}${letter}`}
                                         />
@@ -84,7 +84,7 @@ export default class SeedPrint extends PureComponent {
                                 })}
                         </svg>
                     )}
-                <img width="auto" height="100vh" src={filled ? wallets.paperWallet : wallets.paperWalletFilled} />
+                <img width="auto" height="100vh" src={filled ? wallets.paperWalletFilled : wallets.paperWallet} />
             </div>
         );
     }

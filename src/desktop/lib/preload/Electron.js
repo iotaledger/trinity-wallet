@@ -11,36 +11,7 @@ const argon2 = require('argon2');
 const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
-
-const trytesTrits = [
-    [0, 0, 0],
-    [1, 0, 0],
-    [-1, 1, 0],
-    [0, 1, 0],
-    [1, 1, 0],
-    [-1, -1, 1],
-    [0, -1, 1],
-    [1, -1, 1],
-    [-1, 0, 1],
-    [0, 0, 1],
-    [1, 0, 1],
-    [-1, 1, 1],
-    [0, 1, 1],
-    [1, 1, 1],
-    [-1, -1, -1],
-    [0, -1, -1],
-    [1, -1, -1],
-    [-1, 0, -1],
-    [0, 0, -1],
-    [1, 0, -1],
-    [-1, 1, -1],
-    [0, 1, -1],
-    [1, 1, -1],
-    [-1, -1, 0],
-    [0, -1, 0],
-    [1, -1, 0],
-    [-1, 0, 0],
-];
+const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -88,7 +59,7 @@ const Electron = {
                 typeof content === 'string'
                     ? content
                     : Array.from(content)
-                          .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
+                          .map((byte) => byteToChar(byte))
                           .join('');
             clipboard.writeText(clip);
             if (typeof content !== 'string') {
@@ -111,7 +82,7 @@ const Electron = {
 
     /**
      * Generate address
-     * @param {string} seed - Input seed
+     * @param {string | array} seed - Input seed
      * @param {number} index - Address index
      * @param {number} security - Address generation security level
      * @param {total} total - Amount of addresses to generate
@@ -323,13 +294,10 @@ const Electron = {
 
     /**
      * Get onboarding seed value
-     * @param {boolean} plainText - If should return plain text seed
-     * @returns {array|string} Onboarding seed value
+     * @returns {array} Onboarding seed value
      */
-    getOnboardingSeed: (plainText) => {
-        return plainText
-            ? onboardingSeed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join('')
-            : onboardingSeed;
+    getOnboardingSeed: () => {
+        return onboardingSeed;
     },
 
     /**
@@ -343,19 +311,19 @@ const Electron = {
     /**
      * Calculate seed checksum
      * @param {array} bytes - Target seed byte array
-     * @returns {string} Seed checksum
+     * @returns {string | array} Seed checksum
      */
     getChecksum: (bytes) => {
-        let trits = [];
+        let rawTrits = [];
 
         for (let i = 0; i < bytes.length; i++) {
-            trits = trits.concat(trytesTrits[bytes[i] % 27]);
+            rawTrits = rawTrits.concat(byteToTrit(bytes[i]));
         }
 
         const kerl = new Kerl();
         const checksumTrits = [];
         kerl.initialize();
-        kerl.absorb(trits, 0, trits.length);
+        kerl.absorb(rawTrits, 0, rawTrits.length);
         kerl.squeeze(checksumTrits, 0, Curl.HASH_LENGTH);
 
         const checksum = Converter.trytes(checksumTrits.slice(-9));
@@ -369,6 +337,22 @@ const Electron = {
      */
     garbageCollect: () => {
         global.gc();
+    },
+
+    /**
+     * Show a native dialog box
+     * @param {string} message - Dialog box content
+     * @param {string} buttonTitle - dialog box button title
+     * @param {string} title - Dialog box title, is not shown on all platforms
+     * @returns {number} Returns 0 after dialog button press
+     */
+    dialog: async (message, buttonTitle, title) => {
+        return await dialog.showMessageBox(currentWindow, {
+            type: 'info',
+            title,
+            message,
+            buttons: [buttonTitle],
+        });
     },
 
     /**
@@ -501,18 +485,19 @@ const Electron = {
             receive: capitalize(t('home:receive')),
             history: capitalize(t('home:history')),
             logout: t('settings:logout'),
+            help: t('help'),
             logoutConfirm: t('logoutConfirmationModal:logoutConfirmation'),
             yes: t('yes'),
             no: t('no'),
             updates: {
-               errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
-               noUpdatesAvailable: t('updates:noUpdatesAvailable'),
-               noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
-               newVersionAvailable: t('updates:newVersionAvailable'),
-               newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
-               installUpdate: t('updates:installUpdate'),
-               installUpdateExplanation: t('updates:installUpdateExplanation'),
-           },
+                errorRetrievingUpdateData: t('updates:errorRetrievingUpdateData'),
+                noUpdatesAvailable: t('updates:noUpdatesAvailable'),
+                noUpdatesAvailableExplanation: t('updates:noUpdatesAvailableExplanation'),
+                newVersionAvailable: t('updates:newVersionAvailable'),
+                newVersionAvailableExplanation: t('updates:newVersionAvailableExplanation'),
+                installUpdate: t('updates:installUpdate'),
+                installUpdateExplanation: t('updates:installUpdateExplanation'),
+            },
         });
 
         locales = {

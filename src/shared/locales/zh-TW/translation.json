@@ -34,6 +34,7 @@
         "save": "儲存",
         "close": "關閉",
         "export": "匯出",
+        "help": "幫助",
         "import": "匯入",
         "continue": "繼續",
         "enable": "啟用",
@@ -44,6 +45,7 @@
         "paperWallet": "列印紙本",
         "addToPasswordManager": "新增至密碼管理工具",
         "shareSeed": "分享種子碼",
+        "share": "分享",
         "proceed": "開始執行",
         "qr": "QR",
         "enterSeed": "請輸入您的種子碼",
@@ -60,7 +62,7 @@
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "您必須輸入密碼，請再試一次。",
         "capsLockIsOn": "大寫鎖定已啟用",
         "syncInProgress": "同步處理中",
         "syncInProgressExplanation": "請等候至同步完成",
@@ -261,7 +263,10 @@
         "pressForNewSeed": "按此產生新種子碼",
         "generateSuccess": "種子碼產生成功",
         "individualLetters": "請按各字母以隨機產生。",
-        "individualLetterCount": "請再按 {{letterCount}} 個獨立的字母來隨機產生。",
+        "individualLetterCount": "請再點選 <1><0>{{count}}</0></1> 個字母來亂數生成。",
+        "individualLetterCount_plural": "請再點選 <1><0>{{count}}</0></1> 個字母來亂數生成。",
+        "randomiseCharsToContinue": "需再亂數生成 <1>{{count}}</1> 個字符才能繼續。",
+        "randomiseCharsToContinue_plural": "需再亂數生成 <1>{{count}}</1> 個字符才能繼續。",
         "whatIsASeed": "什麼是種子碼？"
     },
     "onboardingComplete": {
@@ -487,6 +492,18 @@
         "theme": "佈景主題",
         "mockup": "樣式"
     },
+    "themes": {
+        "classic": "經典",
+        "contemporary": "現代",
+        "dark": "黑暗",
+        "default": "預設",
+        "electric": "電流",
+        "ionic": "離子",
+        "light": "白亮",
+        "lucky": "幸運",
+        "mint": "嶄新",
+        "steelblue": "鐵藍"
+    },
     "currencySelection": {
         "currency": "貨幣"
     },
@@ -591,16 +608,17 @@
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
         "exportSuccess": "SeedVault 已匯出",
         "exportSuccessExplanation": "您的種子碼加密檔案已成功匯出。",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "種子碼已匯入",
+        "importSuccessExplanation": "您的種子碼已成功匯入。",
+        "saveToDownloadFolder": "儲存至下載資料夾",
         "importSeedVault": "匯入 SeedVault",
-        "dropSeedVaultHere": "將 SeedVault 放至這裡",
+        "dropSeedVaultHere": "拖曳 SeedVault 至此 <1></1> 或者點擊瀏覽",
         "enterPasswordExplanation": "輸入您的密碼來開啟 SeedVault",
         "noSeedFound": "SeedVault 裡沒儲存有效的種子碼",
         "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
         "seedFileError": "開啟 SeedVault 失敗",
         "seedFileErrorExplanation": "開啟 SeedVault 時遇到問題，如果您選擇的檔案是正確的，那麼它可能已損壞。",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "首先我們必須確保 SeedVault 的安全，請輸入密碼來加密檔案。您將會需要此密碼才能從 SeedVault 備份取回種子碼，您也可以用和 Trinity 一樣的密碼。"
     },
     "chart": {
         "mcap": "總市值",
@@ -677,20 +695,32 @@
     },
     "tray": {
         "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "提供帳戶餘額與最近交易歷史紀錄概覽。",
         "notLoggedIn": "您尚未登入",
         "setupIncomplete": "錢包設定未完成",
         "completeSetup": "設定完成"
     },
     "notifications": {
         "notifications": "通知",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notificationExplanation": "收到關於新交易的系統通知",
+        "typeConfirmations": "通知我交易確認",
+        "typeMessages": "通知我零元交易",
+        "multipleTx": "{{account}} 收到多筆交易",
+        "valueTx": "{{account}} 收到 {{value}}",
+        "messageTx": "{{account}} 收到一筆訊息",
+        "confirmedIn": "{{account}} 收到的 {{value}} 已確認",
+        "confirmedOut": "{{account}} 轉出的 {{value}} 已確認"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

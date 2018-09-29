@@ -34,6 +34,7 @@
         "save": "Guardar",
         "close": "CERRAR",
         "export": "Exportar",
+        "help": "Help",
         "import": "Importar",
         "continue": "Continuar",
         "enable": "Habilitar",
@@ -44,6 +45,7 @@
         "paperWallet": "Imprimir copia en papel",
         "addToPasswordManager": "Agregar a administrador de contraseñas",
         "shareSeed": "Comparta la semilla",
+        "share": "Share",
         "proceed": "Avance",
         "qr": "QR",
         "enterSeed": "Por favor, introduzca su semilla.",
@@ -261,7 +263,10 @@
         "pressForNewSeed": "PULSAR PARA NUEVA SEMILLA",
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Haz clic en las letras individuales para aleatorizarlas.",
-        "individualLetterCount": "Pulse {{letterCount}} letras individuales más para aleatorizarlas.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Que es una semilla?"
     },
     "onboardingComplete": {
@@ -487,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Maqueta"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Divisa"
     },
@@ -593,8 +610,9 @@
         "exportSuccessExplanation": "Su archivo con la semilla encriptada fue exportado con éxito.",
         "importSuccess": "Semilla importada",
         "importSuccessExplanation": "Su semilla fue importada con éxito.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importar SeedVault",
-        "dropSeedVaultHere": "Dejar SeedVault aquí",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Introduzca su contraseña para abrir SeedVault",
         "noSeedFound": "SeedVault no contiene un semilla válida",
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
@@ -692,5 +710,17 @@
         "messageTx": "Recibiste un mensaje a {{account}}",
         "confirmedIn": "Se confirmó el ingreso de {{value}} a {{account}}",
         "confirmedOut": "Se confirmó la salida de {{value}} a {{account}}"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

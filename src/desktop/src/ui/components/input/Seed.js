@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
-import { byteToChar, MAX_ACC_LENGTH } from 'libs/crypto';
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+import { byteToChar, charToByte } from 'libs/helpers';
 
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
@@ -35,7 +36,7 @@ class SeedInput extends React.PureComponent {
         /** Camera modal close label */
         closeLabel: PropTypes.string.isRequired,
         /** Seed change event function
-         * @param {string} value - Current seed value
+         * @param {array} value - Current seed value
          */
         onChange: PropTypes.func.isRequired,
         /** Should the onboarding name be updated to imported SeedVault account name */
@@ -97,7 +98,7 @@ class SeedInput extends React.PureComponent {
                 showScanner: false,
             }));
 
-            const seed = input.split('').map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()));
+            const seed = input.split('').map((char) => charToByte(char));
             Electron.garbageCollect();
 
             this.props.onChange(seed);
@@ -120,6 +121,17 @@ class SeedInput extends React.PureComponent {
         this.setState({
             importBuffer: buffer,
         });
+    };
+
+    /**
+     * Set valid length drag&drop seed to state
+     * @param {array} seed - Target seed byte array
+     */
+    onTextDrop = (seed) => {
+        if (seed.length === MAX_SEED_LENGTH) {
+            this.props.onChange(seed);
+        }
+        Electron.garbageCollect();
     };
 
     getCursor = (element) => {
@@ -224,7 +236,7 @@ class SeedInput extends React.PureComponent {
             return true;
         }
 
-        const byte = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(key.toUpperCase());
+        const byte = charToByte(key.toUpperCase());
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
@@ -302,7 +314,7 @@ class SeedInput extends React.PureComponent {
                     </div>
                     <small>{label}</small>
                 </fieldset>
-                <Dropzone onDrop={this.onDrop} />
+                <Dropzone onDrop={this.onDrop} onTextDrop={this.onTextDrop} />
 
                 {seed.length ? <span className={css.info}>{checkSum}</span> : null}
                 {showScanner && (
