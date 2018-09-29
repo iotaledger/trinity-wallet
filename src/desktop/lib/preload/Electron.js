@@ -44,6 +44,9 @@ let locales = {
 let onboardingSeed = null;
 let onboardingGenerated = false;
 
+// Use a different keychain entry for development versions
+const KEYTAR_SERVICE = currentWindow.isPackaged ? 'Trinity wallet' : 'Trinity wallet (dev)';
+
 /**
  * Global Electron helper for native support
  */
@@ -185,7 +188,7 @@ const Electron = {
      * @returns {promise} Promise resolves in an Array of entries
      */
     listKeychain: () => {
-        return keytar.findCredentials('Trinity wallet');
+        return keytar.findCredentials(KEYTAR_SERVICE);
     },
 
     /**
@@ -194,7 +197,7 @@ const Electron = {
      * @returns {promise} Promise resolves in account object
      */
     readKeychain: (accountName) => {
-        return keytar.getPassword('Trinity wallet', accountName);
+        return keytar.getPassword(KEYTAR_SERVICE, accountName);
     },
 
     /**
@@ -204,7 +207,7 @@ const Electron = {
      * @returns {promise} Promise resolves in success boolean
      */
     setKeychain: (accountName, content) => {
-        return keytar.setPassword('Trinity wallet', accountName, content);
+        return keytar.setPassword(KEYTAR_SERVICE, accountName, content);
     },
 
     /**
@@ -213,7 +216,7 @@ const Electron = {
      * @returns {promise} Promise resolves in a success boolean
      */
     removeKeychain: (accountName) => {
-        return keytar.deletePassword('Trinity wallet', accountName);
+        return keytar.deletePassword(KEYTAR_SERVICE, accountName);
     },
 
     /**
