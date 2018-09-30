@@ -76,7 +76,7 @@
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted#latest",
     "react-native-keep-awake": "^2.0.6",
-    "react-native-keychain": "^3.0.0",
+    "react-native-keychain": "2.0.0-rc",
     "react-native-level-fs": "^3.0.0",
     "react-native-markdown-renderer": "^3.2.1",
     "react-native-modal": "^6.5.0",
