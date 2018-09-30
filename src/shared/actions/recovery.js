@@ -38,7 +38,7 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
         const balances = await getBalancesAsync()(typeof addresses === 'string' ? [addresses] : addresses);
         const balanceTotal = balances.balances.reduce((total, balance) => parseInt(total) + parseInt(balance));
 
-        if (balanceTotal === 0) {
+        if (balanceTotal > 0) {
             const inputs = balances.balances
                 .map((balance, keyIndex) => ({
                     address: addresses[keyIndex],

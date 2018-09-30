@@ -1,7 +1,7 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
 import { byteToTrit } from 'libs/helpers';
-import IOTA from '../../../../shared/node_modules/iota.lib.js';
+import { getIotaInstance } from 'libs/iota/extendedApi';
 
 // Prefix for seed account titles stored in Keychain
 const ACC_PREFIX = 'account';
@@ -145,7 +145,7 @@ class Keychain {
         }
 
         return new Promise((resolve, reject) => {
-            const instance = new IOTA({ provider: 'http://localhost:14265' });
+            const instance = getIotaInstance();
 
             instance.api.prepareTransfers(...args, (err, trytes) => {
                 for (let i = 0; i < seed.length * 3; i++) {

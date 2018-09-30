@@ -2,8 +2,8 @@ import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import omit from 'lodash/omit';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
+import { getIotaInstance } from 'shared-modules/libs/iota/extendedApi';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
-import IOTA from '../../../../shared/node_modules/iota.lib.js';
 
 class Keychain {
     /**
@@ -103,7 +103,7 @@ class Keychain {
         }
 
         return new Promise((resolve, reject) => {
-            const instance = new IOTA({ provider: 'http://localhost:14265' });
+            const instance = getIotaInstance();
 
             instance.api.prepareTransfers(...args, (err, trytes) => {
                 for (let i = 0; i < seed.length * 3; i++) {
