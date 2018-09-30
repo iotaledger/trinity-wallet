@@ -16,7 +16,6 @@ import {
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
-import { byteTritCheck } from './recovery';
 import { pushScreen } from '../libs/utils';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';

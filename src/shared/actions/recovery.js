@@ -70,7 +70,7 @@ export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState
     const sweeps = accounts.map(async (account) => {
 
         const seedStore = await new SeedStore(password, account.accountName);
-        //await dispatch(cleanUpAccountState(seedStore, account.accountName));
+        await dispatch(cleanUpAccountState(seedStore, account.accountName));
 
         let result = await dispatch(recover(account.accountName, seedStore, account.inputs, powFn, dialogFn));
 
