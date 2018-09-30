@@ -175,10 +175,12 @@ class Home extends Component {
      */
     async onLoginPress(password) {
         const { t, storedPasswordHash } = this.props;
-        const passwordHash = await hash(password);
+
         if (!password) {
-            this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (!isEqual(passwordHash, storedPasswordHash)) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
+        }
+        const passwordHash = await hash(password);
+        if (!isEqual(passwordHash, storedPasswordHash)) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -416,8 +418,7 @@ class Home extends Component {
                                 textColor={textColor}
                                 setUserActive={() => this.props.setUserActivity({ inactive: false })}
                                 generateAlert={(error, title, explanation) =>
-                                    this.props.generateAlert(error, title, explanation)
-                                }
+                                    this.props.generateAlert(error, title, explanation)}
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>

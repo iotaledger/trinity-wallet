@@ -38,16 +38,12 @@ export const keychain = {
     },
     clear: (alias) => {
         return new Promise((resolve, reject) => {
-            Keychain.resetInternetCredentials(alias)
-                .then(() => resolve())
-                .catch((err) => reject(err));
+            Keychain.resetInternetCredentials(alias).then(() => resolve()).catch((err) => reject(err));
         });
     },
     set: (alias, nonce, item) => {
         return new Promise((resolve, reject) => {
-            Keychain.setInternetCredentials(alias, nonce, item)
-                .then(() => resolve())
-                .catch((err) => reject(err));
+            Keychain.setInternetCredentials(alias, nonce, item).then(() => resolve()).catch((err) => reject(err));
         });
     },
 };
@@ -79,22 +75,12 @@ export const createAndStoreBoxInKeychain = async (key, message, alias) => {
 };
 
 export const authorize = async (pwdHash) => {
-    try {
-        await getSecretBoxFromKeychainAndOpenIt(ALIAS_SEEDS, pwdHash);
-        return true;
-    } catch (error) {
-        // In case no seeds in keychain or password hash is incorrect
-        return null;
-    }
+    await getSecretBoxFromKeychainAndOpenIt(ALIAS_SEEDS, pwdHash);
+    return true;
 };
 
 export const getTwoFactorAuthKeyFromKeychain = async (pwdHash) => {
-    try {
-        return await getSecretBoxFromKeychainAndOpenIt(ALIAS_AUTH, pwdHash);
-    } catch (error) {
-        // In case no 2FA key in keychain or password hash is incorrect
-        return null;
-    }
+    return await getSecretBoxFromKeychainAndOpenIt(ALIAS_AUTH, pwdHash);
 };
 
 export const storeTwoFactorAuthKeyInKeychain = async (pwdHash, authKey) => {

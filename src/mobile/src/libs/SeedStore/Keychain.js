@@ -3,7 +3,6 @@ import values from 'lodash/values';
 import omit from 'lodash/omit';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
-import { openSecretBox, decodeBase64 } from 'libs/crypto';
 import IOTA from '../../../../shared/node_modules/iota.lib.js';
 
 class Keychain {
@@ -126,10 +125,8 @@ class Keychain {
      * @returns {array} Derypted seed
      */
     getSeed = async () => {
-        const secretBox = await keychain.get(ALIAS_SEEDS);
-        const box = await decodeBase64(secretBox.item);
-        const nonce = await decodeBase64(secretBox.nonce);
-        return await openSecretBox(box, nonce, this.key)[this.accountId];
+        const seeds = await this.getSeeds();
+        return seeds[this.accountId];
     };
 
     /**
@@ -150,8 +147,8 @@ class Keychain {
      * @returns {boolean} If seed is unique
      */
     isUniqueSeed = async (seed) => {
-        const seeds = this.getSeeds();
-        return values(seeds).indexOf(seed) > -1;
+        const seeds = await this.getSeeds();
+        return values(seeds).indexOf(seed) === -1;
     };
 }
 

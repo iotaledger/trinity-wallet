@@ -122,7 +122,7 @@ class Keychain {
      * @returns {promise}
      */
     generateAddress = async (options) => {
-        const seed = await this.getSeed();
+        const seed = await this.getSeed(true);
         const addresses = await Electron.genFn(seed, options.index, options.security, options.total);
 
         for (let i = 0; i < seed.length * 3; i++) {

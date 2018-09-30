@@ -241,9 +241,9 @@ class UseExistingSeed extends Component {
             }
 
             const seedStore = new SeedStore.keychain(password);
-            const isUniqeSeed = await seedStore.isUniqueSeed(password, seed);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
 
-            if (!isUniqeSeed) {
+            if (!isUniqueSeed) {
                 return this.props.generateAlert(
                     'error',
                     t('addAdditionalSeed:seedInUse'),
