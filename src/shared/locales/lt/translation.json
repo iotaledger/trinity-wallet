@@ -34,6 +34,7 @@
         "save": "Išsaugoti",
         "close": "Uždaryti",
         "export": "Iškelti",
+        "help": "Pagalba",
         "import": "Įkelti",
         "continue": "Tęsti",
         "enable": "Įjungti",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "individualLetterCount": "Spustelėkite ant simbolio ir pakeiskite jį kitu. Dar liko pakeisti simbolių: {{letterCount}}.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Maketas"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valiuta"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Įkelti SeedVault",
-        "dropSeedVaultHere": "Įkelti SeedVault čia",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Įveskite slaptažodį norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
@@ -694,5 +710,17 @@
         "messageTx": "Jūs gavote žinutę į {{account}}",
         "confirmedIn": "Pavedimas {{value}} į {{account}} yra patvirtintas",
         "confirmedOut": "Pavedimas {{value}} iš {{account}} yra patvirtintas"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

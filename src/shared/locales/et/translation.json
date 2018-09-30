@@ -34,6 +34,7 @@
         "save": "Salvesta",
         "close": "Sulge",
         "export": "Ekspordi",
+        "help": "Abi",
         "import": "Impordi",
         "continue": "Jätka",
         "enable": "Luba",
@@ -44,7 +45,7 @@
         "paperWallet": "Prindi paberkandjal",
         "addToPasswordManager": "Lisa paroolihaldurisse",
         "shareSeed": "Jaga seemet",
-        "share": "Share",
+        "share": "Jaga",
         "proceed": "Jätka",
         "qr": "QR",
         "enterSeed": "Palun sisestage oma seeme.",
@@ -61,7 +62,7 @@
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
         "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "Te peate sisestama parooli. Palun proovige uuesti.",
         "capsLockIsOn": "Caps Lock on sisse lülitatud",
         "syncInProgress": "Sünkroonimine on pooleli",
         "syncInProgressExplanation": "Palun oodake, kuni sünkroonimine on lõpule viidud.",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Vajutage uue seemne saamiseks",
         "generateSuccess": "Seeme edukalt loodud",
         "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti.",
-        "individualLetterCount": "Vajutage {{letterCount}} rohkem individuaalseid tähti nende juhuslikuks saamiseks.",
+        "individualLetterCount": "Vajuta <1><0>{{count}}</0></1> tähemärki veel, et neid randomiseerida.",
+        "individualLetterCount_plural": "Vajuta <1><0>{{count}}</0></1> tähemärki veel, et neid randomiseerida.",
+        "randomiseCharsToContinue": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
+        "randomiseCharsToContinue_plural": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
         "whatIsASeed": "Mis on seeme?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Teema",
         "mockup": "Eelvaade"
     },
+    "themes": {
+        "classic": "Klassikaline",
+        "contemporary": "Kaasaegne",
+        "dark": "Tume",
+        "default": "Vaikimisi",
+        "electric": "Elektriline",
+        "ionic": "Joonia",
+        "light": "Hele",
+        "lucky": "Õnnelik",
+        "mint": "Piparmünt",
+        "steelblue": "Terassinine"
+    },
     "currencySelection": {
         "currency": "Valuuta"
     },
@@ -585,24 +601,24 @@
         "twoFaToken": "2FA kood"
     },
     "seedVault": {
-        "exportSeedVault": "Eksportige seemnehoidla",
+        "exportSeedVault": "Ekspordi seemnehoidla",
         "seedVaultExplanation": "Seemnehoidla on krüptitud fail seemne turvalisena hoidmiseks. Seeme on krüptitud parooli taha ning sellele pole võimalik ilma paroolita ligi pääseda.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
         "exportSuccess": "Seemnehoidla eksporditud",
         "exportSuccessExplanation": "Krüptitud seemne faili eksporditimine õnnestus.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccess": "Seeme imporditud",
+        "importSuccessExplanation": "Teie seeme imporditi edukalt.",
+        "saveToDownloadFolder": "Salvesta allalaadimiste kausta",
         "importSeedVault": "Importige seemnehoidla",
-        "dropSeedVaultHere": "Lohistage seemenhoidla siia",
+        "dropSeedVaultHere": "Sisestage seemnehoidla siia <1></1> või vajutage sirvimiseks",
         "enterPasswordExplanation": "Seemnehoidla avamiseks sisestage oma parool",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Kõigepealt peame kaitsma teie seemnehoidlat. Palun valige parool faili krüptimiseks. Teil on seda parooli vaja, et taastada teie seeme seemnehoidlast. Võite vabalt kasutada sama parooli, mida te Trinitys kasutate."
     },
     "chart": {
         "mcap": "TURUKAPITAL",
@@ -694,5 +710,17 @@
         "messageTx": "Teile saabus sõnum {{account}}",
         "confirmedIn": "Sissetulev {{value}} kasutajale {{account}} on kinnitatud",
         "confirmedOut": "Väljaminev {{value}} kasutajalt {{account}} on kinnitanud"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

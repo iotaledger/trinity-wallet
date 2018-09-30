@@ -34,6 +34,7 @@
         "save": "ಕಾದಿರಿಸಿ",
         "close": "ಮುಚ್ಚಿ",
         "export": "ರಫ್ತುಮಾಡಿ",
+        "help": "Help",
         "import": "ಆಮದು ಮಾಡಿ",
         "continue": "ಮುಂದುವರೆಸಿ",
         "enable": "ಸಕ್ರಿಯಗೊಳಿಸಿ",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತಕ್ಕಾಗಿ ಒತ್ತಿರಿ",
         "generateSuccess": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಯಶಸ್ವಿಯಾಗಿ ಉತ್ಪತ್ತಿಯಾಯಿತು",
         "individualLetters": "ಅವುಗಳನ್ನು ಯಾದೃಚ್ಛಿಕಗೊಳಿಸಲು ವೈಯಕ್ತಿಕ ಅಕ್ಷರಗಳನ್ನು ಒತ್ತಿರಿ.",
-        "individualLetterCount": "ಅವುಗಳನ್ನು ಯಾದೃಚ್ಛಿಕಗೊಳಿಸಲು {{letterCount}} ಹೆಚ್ಚು ಪ್ರತ್ಯೇಕ ಅಕ್ಷರಗಳನ್ನು ಒತ್ತಿರಿ.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಎಂದರೇನು?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "ಥೀಮ್",
         "mockup": "ಅನುಕರಿಸು"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "ಚಲಾವಣೆಯ ನಾಣ್ಯ"
     },
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ",
-        "dropSeedVaultHere": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ಇಲ್ಲಿ ಬಿಡಿ",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ",
         "noSeedFound": "ಸೀಡ್ವಾಲ್ಟ್ ಮಾನ್ಯ ಬೀಜವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ",
         "noSeedFoundExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಖಾಲಿಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ವರೂಪದಲ್ಲಿ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
@@ -694,5 +710,17 @@
         "messageTx": "{{account}} ಗೆ ನೀವು ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ",
         "confirmedIn": "{{account}} ಗೆ ಒಳಬರುವ {{value}} ದೃಢಪಡಿಸಿದೆ",
         "confirmedOut": "{{account}} ಗೆ ಹೊರಹೋಗುವ {{value}} ದೃಢಪಡಿಸಿದೆ"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

@@ -34,6 +34,7 @@
         "save": "Salva",
         "close": "Chiudi",
         "export": "Esporta",
+        "help": "Aiuto",
         "import": "Importa",
         "continue": "Continua",
         "enable": "Abilita",
@@ -44,7 +45,7 @@
         "paperWallet": "Stampa copia cartacea",
         "addToPasswordManager": "Aggiungi al gestore di password",
         "shareSeed": "Condividi il seme",
-        "share": "Share",
+        "share": "Condividi",
         "proceed": "Procedi",
         "qr": "QR",
         "enterSeed": "Inserisci il tuo seme.",
@@ -61,7 +62,7 @@
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "È necessario immettere una password. Si prega di riprovare.",
         "capsLockIsOn": "Blocco maiuscole è attivo",
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Premi per nuovo seme",
         "generateSuccess": "Seme generato correttamente",
         "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali.",
-        "individualLetterCount": "Premere altre {{letterCount}} singole lettere per renderle più casuali.",
+        "individualLetterCount": "Premi <1><0>{{count}}</0></1> altra lettera per aumentare la casualità.",
+        "individualLetterCount_plural": "Premi altre <1><0>{{count}}</0></1> lettere per aumentare la casualità.",
+        "randomiseCharsToContinue": "Modifica a caso <1>{{count}}</1> carattere per continuare.",
+        "randomiseCharsToContinue_plural": "Modifica a caso <1>{{count}}</1> caratteri per continuare.",
         "whatIsASeed": "Cos'è un seme?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Esempio"
     },
+    "themes": {
+        "classic": "Classico",
+        "contemporary": "Contemporaneo",
+        "dark": "Scuro",
+        "default": "Predefinito",
+        "electric": "Elettrico",
+        "ionic": "Ionico",
+        "light": "Chiaro",
+        "lucky": "Fortunato",
+        "mint": "Menta",
+        "steelblue": "Blu acciaio"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -592,17 +608,17 @@
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
         "exportSuccess": "SeedVault esportato",
         "exportSuccessExplanation": "Il file con il tuo seme crittografato è stato esportato con successo.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccess": "Seme importato",
+        "importSuccessExplanation": "Il seme è stato importato con successo.",
+        "saveToDownloadFolder": "Salva nella cartella Scaricamenti",
         "importSeedVault": "Importa un SeedVault",
-        "dropSeedVaultHere": "Trascina qui il SeedVault",
+        "dropSeedVaultHere": "Trascinare il SeedVault qui <1></1> o fare clic per sfogliare",
         "enterPasswordExplanation": "Immetti la tua password per accedere il SeedVault",
         "noSeedFound": "Il SeedVault non contiene un seme valido",
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "In primo luogo abbiamo bisogno di mettere in sicurezza il tuo SeedVault. Si prega di scegliere una password per crittografare il file. Avrai bisogno di questa password per reimportare il tuo seme dal SeedVault di backup. Sentiti libero di usare la stessa password che usi per Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -661,7 +677,7 @@
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
         "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity Desktop.",
         "newVersionAvailable": "Una nuova versione è disponibile",
-        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Leggi attentamente le note di rilascio e verifica l'origine del download prima di eseguire l'aggiornamento:",
+        "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",
         "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento."
     },
@@ -694,5 +710,17 @@
         "messageTx": "Hai ricevuto un messaggio sul conto {{account}}",
         "confirmedIn": "Ricezione confermata di {{value}} sul conto {{account}}",
         "confirmedOut": "Invio confermato di {{value}} dal conto {{account}}"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

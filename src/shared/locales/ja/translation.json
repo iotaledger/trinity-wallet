@@ -34,6 +34,7 @@
         "save": "保存",
         "close": "閉じる",
         "export": "書き出す",
+        "help": "ヘルプ",
         "import": "読み込む",
         "continue": "続ける",
         "enable": "有効",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "新しいシードの元を生成",
         "generateSuccess": "シードは正常に生成されました。",
         "individualLetters": "文字をタップして更にランダムにしてください。",
-        "individualLetterCount": "シードをさらにランダムにするために、{{letterCount}}個以上の文字を押してください。",
+        "individualLetterCount": "シードをランダム化するために、<1><0>{{count}}</0></1>文字以上をタップしてください。",
+        "individualLetterCount_plural": "シードをランダム化するために、<1><0>{{count}}</0></1>文字以上をタップしてください。",
+        "randomiseCharsToContinue": "続けて<1>{{count}}</1>文字をランダム化してください。",
+        "randomiseCharsToContinue_plural": "続けて<1>{{count}}</1>文字をランダム化してください。",
         "whatIsASeed": "シードとは何か？"
     },
     "onboardingComplete": {
@@ -430,8 +434,8 @@
         "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>",
-        "scrollToBottom": "下までスクロール"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>３回チェック</1><2>を行ってください。</2>",
+        "scrollToBottom": "下までスクロールしてください"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
@@ -487,6 +491,18 @@
     "themeCustomisation": {
         "theme": "テーマ",
         "mockup": "モックアップ"
+    },
+    "themes": {
+        "classic": "α版の色",
+        "contemporary": "現代色",
+        "dark": "暗色",
+        "default": "既定色",
+        "electric": "電気色",
+        "ionic": "イオン色",
+        "light": "明色",
+        "lucky": "幸運色",
+        "mint": "ハッカ色",
+        "steelblue": "暗青灰色"
     },
     "currencySelection": {
         "currency": "通貨"
@@ -596,7 +612,7 @@
         "importSuccessExplanation": "シードは正常に読み込まれました。",
         "saveToDownloadFolder": "ダウンロードフォルダに保存",
         "importSeedVault": "シード金庫を読み込む",
-        "dropSeedVaultHere": "シード金庫をここにドロップしてください",
+        "dropSeedVaultHere": "シード金庫ファイルがある場合、ここにドラッグ&ドロップするか、<1></1>ここをクリックしてください。",
         "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
@@ -694,5 +710,17 @@
         "messageTx": "{{account}}にメッセージを受け取りました",
         "confirmedIn": "{{account}}への入金{{value}}が確定しました",
         "confirmedOut": "{{account}}からの出金{{value}}が確定しました"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

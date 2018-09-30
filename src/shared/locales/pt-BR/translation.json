@@ -31,9 +31,10 @@
         "prev": "ANT",
         "next": "Próximo",
         "apply": "Aplicar",
-        "save": "Gravar",
+        "save": "Salvar",
         "close": "Fechar",
         "export": "Exportar",
+        "help": "Ajuda",
         "import": "Importar",
         "continue": "Continuar",
         "enable": "Ativar",
@@ -44,7 +45,7 @@
         "paperWallet": "Imprimir Cópia",
         "addToPasswordManager": "Adicionar ao Gerenciador de Senhas",
         "shareSeed": "Compartilhar a Seed",
-        "share": "Share",
+        "share": "Compartilhar",
         "proceed": "Continuar",
         "qr": "QR",
         "enterSeed": "Por favor, digite a sua Seed.",
@@ -61,7 +62,7 @@
         "password": "Senha",
         "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "Você deve digitar uma senha. Por favor, tente novamente.",
         "capsLockIsOn": "O Caps Lock está ativado",
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Por favor, aguarde até que a sincronização seja concluída.",
@@ -123,7 +124,7 @@
         "nodeAutoChangedExplanation": "Substituição para o novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
         "fingerprintOnSend": "Toque o leitor digital para autorizar a transferência",
         "masterKey": "Sua Seed IOTA é a chave principal para seu saldo.",
-        "seedThief": "Se alguém obtiver sua Seed, o mesmo pode roubar suas IOTAs.",
+        "seedThief": "Se alguém obtiver sua seed, o mesmo pode roubar suas IOTAs.",
         "googlePlayServicesNotAvailable": "Serviços do Google Play não disponíveis",
         "couldNotVerifyDeviceIntegrity": "Não foi possível verificar a integridade do dispositivo porque os Serviços do Google Play não estão disponíveis.",
         "clear": "Limpar",
@@ -132,12 +133,12 @@
         "spentAddressExplanation": "AVISO: Saldos em endereços já gasto",
         "discordInformation": "Enviar mais de uma vez no mesmo endereço é perigoso. Por favor, acesse o canal de #help no Discord para descobrir o que fazer.",
         "androidInsecureClipboardWarning": "O Android não oferece uma Área de Transferência segura.",
-        "androidCopyPasteWarning": "Nunca copiar/colar sua Seed em um dispositivo Android.",
-        "willNotCopyPasteSeed": "Eu não vou copiar/colar minha Seed",
+        "androidCopyPasteWarning": "Nunca copiar/colar sua seed em um dispositivo Android.",
+        "willNotCopyPasteSeed": "Eu não vou copiar/colar minha seed",
         "mustBeStoredAppropriately": "Ela deve ser armazenada adequadamente.",
         "deviceMayBecomeUnresponsive": "Seu dispositivo pode ficar sem responder por um tempo.",
         "isYourBalanceCorrect": "Seu saldo está correto?",
-        "ifYourBalanceIsNotCorrect": "Se seu saldo estiver incorreto, sua Seed foi criada antes do último Snapshot.",
+        "ifYourBalanceIsNotCorrect": "Se seu saldo estiver incorreto, é provável que você esteja usando uma seed criada antes do último snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação.",
@@ -209,24 +210,24 @@
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "A Seed foi copiada para a área de transferência",
         "seedCopiedExplanation": "A seed será removida quando você pressionar \"CONCLUIR\" ou após 60 segundos.",
-        "copyToClipboard": "Copiar Seed",
+        "copyToClipboard": "Copiar seed",
         "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro",
         "storeEncrypted": "Armazenar sua Seed encriptografada em um gerenciador de senhas.",
         "doNotOpen": "Não abra outros aplicativos durante este processo.",
         "tapConfirm": "Por favor, toque a caixa de seleção abaixo para confirmar.",
-        "passwordManagerCheckbox": "Eu vou armazenar minha Seed em um Gerenciador de senhas",
+        "passwordManagerCheckbox": "Eu vou armazenar minha seed em um gerenciador de senhas",
         "copy": "COPIAR",
         "noPasswordManagers": "Nenhum gerenciador de senhas suportado está instalado",
         "noPasswordManagersExplanation": "Nenhum gerenciador de senhas suportados foram encontrados em seu dispositivo. Por favor, instale o Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Se você deseja armazenar sua semente em um Gerenciador de senhas, você deve seguir um tutorial do seguinte link"
     },
     "enterSeed": {
-        "invalidCharacters": "A Seed contém caracteres inválidos",
+        "invalidCharacters": "A seed contém caracteres inválidos",
         "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
-        "seedTooLong": "A Seed é muito longa",
+        "seedTooLong": "A seed é muito longa",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
-        "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, e conter apenas letras maiúsculas (A-Z), e/ou o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
+        "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, e conter apenas letras maiúsculas (A-Z), e/ou o número 9. Você não pode usar seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
     },
     "home": {
@@ -250,20 +251,23 @@
         "whyBiometricDisabledExplanation": "Para sua segurança, a Autenticação Biométrica está desabilitada ao abrir o aplicativo pela primeira vez. Ao usar a Trinity você terá que fazer o login novamente, e então poderá usar a autenticação biométrica."
     },
     "loading": {
-        "loadingFirstTime": "Carregando a Seed pela primeira vez.",
+        "loadingFirstTime": "Carregando a seed pela primeira vez.",
         "thisMayTake": "Isso pode demorar algum tempo.",
         "doNotMinimise": "Não feche ou minimize o aplicativo.",
         "takingAWhile": "Isto parece estar levando um tempo"
     },
     "newSeedSetup": {
         "generatedSeed": "Seed gerada",
-        "seedNotGenerated": "A Seed não foi gerada",
+        "seedNotGenerated": "A seed não foi gerada",
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "Pressione Para Obter Nova Seed",
         "generateSuccess": "Seed gerada com sucesso",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório.",
-        "individualLetterCount": "Digite mais {{letterCount}} letras individuais para tornar mais aleatório.",
-        "whatIsASeed": "O que é uma Seed?"
+        "individualLetterCount": "Selecione mais <1><0>{{count}}</0></1> letras para tornar-se aleatório.",
+        "individualLetterCount_plural": "Selecione mais <1><0>{{count}}</0></1> letras para torná-las aleatórias.",
+        "randomiseCharsToContinue": "Torne <1>{{count}}</1> caractere aleatório para continuar.",
+        "randomiseCharsToContinue_plural": "Torne <1>{{count}}</1> caracteres aleatórios para continuar.",
+        "whatIsASeed": "O que é uma seed?"
     },
     "onboardingComplete": {
         "allDone": "Pronto!",
@@ -295,31 +299,31 @@
         "tag": "Etiqueta"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Faça o backup de sua Seed",
+        "saveYourSeed": "Faça o backup de sua seed",
         "seedCleared": "Seed removida",
         "mostSecure": "Mais Seguro",
         "recommended": "Recomendado",
         "leastSecure": "Menos Seguro",
         "paperWallet": "Carteira em Papel",
-        "writeYourSeedDown": "Anotar Seed",
-        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
-        "letsWriteDownYourSeed": "Vamos gravar sua seed",
+        "writeYourSeedDown": "Anotar seed",
+        "seedClearedExplanation": "Para sua segurança, a seed foi removida da área de transferência.",
+        "letsWriteDownYourSeed": "Vamos salvar sua seed",
         "youCanHighlightCharacters": "Você pode marcar 9 caracteres por vez",
         "printBlankWallet": "Imprimir uma carteira em branco",
         "whatIsChecksum": "Toda Seed possui um Código de Verificação de 3 caracteres",
         "iHavesavedMySeed": "Eu salvei a minha Seed",
-        "checksumExplanation": "Sempre que você adicionar uma seed para a sua carteira, você deve verificar que as somas de verificação geradas pela carteira são iguais as quais você tem anotado.",
-        "mustSaveYourSeed": "<0><0>Você deve salvar sua Seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
+        "checksumExplanation": "Sempre que você adicionar uma seed na sua carteira, você deve verificar que as somas de verificação geradas pela carteira são iguais às que você tem anotado.",
+        "mustSaveYourSeed": "<0><0>Você deve salvar sua seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor, confirme a sua seed",
-        "trinityWillNeverAskToReenter": "A Trinity nunca vai pedir que você redigite sua seed a menos que você redefinir a sua carteira ou o aplicativo.",
+        "trinityWillNeverAskToReenter": "A Trinity nunca vai pedir que você redigite sua seed a menos que você redefina a sua carteira ou o aplicativo.",
         "enterYourSeed": "Digite sua seed",
         "incorrectSeed": "Seed incorreta",
-        "incorrectSeedExplanation": "A Seed informada está incorreta. Por favor, tente novamente.",
-        "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para a tela anterior e grave-a.",
+        "incorrectSeedExplanation": "A seed informada está incorreta. Por favor, tente novamente.",
+        "ifYouHaveNotSaved": "Se não fez backup da sua seed, por favor volte para a tela anterior e faça.",
         "enterSeedBelow": "Digite sua seed recém-criada abaixo para confirmar que fez o backup corretamente",
-        "clipboardWarning": "Não copie e cole sua Seed",
+        "clipboardWarning": "Não copie e cole sua seed",
         "clipboardWarningExplanation": "Aviso: A função copiar e colar está desativada para sua segurança."
     },
     "send": {
@@ -352,7 +356,7 @@
     "setSeedName": {
         "letsAddName": "Vamos adicionar um nome",
         "canUseMultipleSeeds": "Com sua carteira você poderá utilizar diversas Seeds, cada Seed requer um nome de conta exclusivo.",
-        "youCanAdd": "Você poderá adicionar novas Seeds no menu de Configurações."
+        "youCanAdd": "Você poderá adicionar novas seeds no menu de Configurações."
     },
     "modeSelection": {
         "advanced": "Avançado",
@@ -370,7 +374,7 @@
         "cannotChangeNodeWhileSending": "Não é possível alterar o servidor durante o envio.",
         "language": "Idioma",
         "accountManagement": "Gerenciar Contas",
-        "addNewSeed": "Adicionar nova Seed",
+        "addNewSeed": "Adicionar nova seed",
         "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
         "advanced": "Configurações Avançadas",
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Modelo"
     },
+    "themes": {
+        "classic": "Clássico",
+        "contemporary": "Contemporâneo",
+        "dark": "Escuro",
+        "default": "Padrão",
+        "electric": "Elétrico",
+        "ionic": "Iônico",
+        "light": "Claro",
+        "lucky": "Sorte",
+        "mint": "Hortelã",
+        "steelblue": "Azul aço"
+    },
     "currencySelection": {
         "currency": "Moeda"
     },
@@ -592,17 +608,17 @@
         "exportFailExplanation": "Houve um problema ao exportar o SeedVault. Por favor, certifique-se de que você tem as permissões apropriadas e espaço livre suficiente.",
         "exportSuccess": "SeedVault exportada",
         "exportSuccessExplanation": "Seu arquivo criptografado da Seed foi exportado com êxito.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccess": "Seed importada",
+        "importSuccessExplanation": "Sua seed foi importada com sucesso.",
+        "saveToDownloadFolder": "Salvar na pasta de download",
         "importSeedVault": "Importar SeedVault",
-        "dropSeedVaultHere": "Arraste a SeedVault aqui",
+        "dropSeedVaultHere": "Arraste sua SeedVault até aqui <1></1> ou clique para procurar",
         "enterPasswordExplanation": "Digite sua senha para abrir o SeedVault",
         "noSeedFound": "SeedVault não contém uma Seed válida",
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Primeiro temos que proteger seu SeedVault. Por favor, escolha uma senha para criptografar o arquivo. Você precisará desta senha para recuperar a seed do backup do SeedVault. Sinta-se livre para usar a mesma senha que você usa na Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -694,5 +710,17 @@
         "messageTx": "Você recebeu uma mensagem para {{account}}",
         "confirmedIn": "O recebimento de {{value}} para a {{account}} foi confirmado",
         "confirmedOut": "O envio de {{value}} da {{account}} foi confirmado"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

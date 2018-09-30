@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
 import isArray from 'lodash/isArray';
@@ -6,6 +7,7 @@ import omit from 'lodash/omit';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import nock from 'nock';
 import {
     prepareTransferArray,
     categoriseTransactionsByPersistence,
@@ -27,11 +29,15 @@ import {
     sortTransactionTrytesArray,
     getTransferValue,
     computeTransactionMessage,
+    isValidTransfer,
+    isFundedBundle,
+    categoriseInclusionStatesByBundleHash,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import * as mockTransactions from '../../__samples__/transactions';
 import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/transfers', () => {
     before(() => {
@@ -1387,6 +1393,197 @@ describe('libs: iota/transfers', () => {
 
             expect(result).to.eql(trytes.value);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(3);
+        });
+    });
+
+    describe('#isValidTransfer', () => {
+        let validTransfer;
+
+        before(() => {
+            validTransfer = {
+                address: 'U'.repeat(81),
+                value: 10,
+            };
+        });
+
+        describe('when transfer is not an object', () => {
+            it('should return false', () => {
+                [[], 0.1, 1, undefined, null, ''].forEach((item) => {
+                    expect(isValidTransfer(item)).to.eql(false);
+                });
+            });
+        });
+
+        describe('when input is an object', () => {
+            describe('when "address" is invalid is not valid trytes', () => {
+                it('should return false', () => {
+                    const invalidAddress = `a${'U'.repeat(80)}`;
+
+                    expect(isValidTransfer(assign({}, validTransfer, { address: invalidAddress }))).to.eql(false);
+                });
+            });
+
+            describe('when "value" is not a number', () => {
+                it('should return false', () => {
+                    expect(isValidTransfer(assign({}, validTransfer, { value: undefined }))).to.eql(false);
+                });
+            });
+
+            describe('when "value" is number and address is valid trytes', () => {
+                it('should return true', () => {
+                    expect(isValidTransfer(validTransfer)).to.eql(true);
+                });
+            });
+        });
+    });
+
+    describe('#isFundedBundle', () => {
+        describe('when provided bundle is empty', () => {
+            it('should throw with an error "Empty bundle provided"', () => {
+                return isFundedBundle()([]).catch((err) => {
+                    expect(err.message).to.equal('Empty bundle provided.');
+                });
+            });
+        });
+
+        describe('when provided bundle is not empty', () => {
+            let bundle;
+
+            before(() => {
+                bundle = [
+                    { address: 'A'.repeat(81), value: -10 },
+                    { address: 'B'.repeat(81), value: 5 },
+                    { address: 'C'.repeat(81), value: 5 },
+                ];
+            });
+
+            describe('when total balance of bundle inputs is greater than latest balance on input addresses', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const resultMap = {
+                                getBalances: { balances: ['3'] },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return false', () => {
+                    return isFundedBundle()(bundle).then((isFunded) => {
+                        expect(isFunded).to.equal(false);
+                    });
+                });
+            });
+
+            describe('when total balance of bundle inputs is equal to latest balance on input addresses', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const resultMap = {
+                                getBalances: { balances: ['10'] },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return isFundedBundle()(bundle).then((isFunded) => {
+                        expect(isFunded).to.equal(true);
+                    });
+                });
+            });
+
+            describe('when total balance of bundle inputs is less than latest balance on input addresses', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const resultMap = {
+                                getBalances: { balances: ['20'] },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return isFundedBundle()(bundle).then((isFunded) => {
+                        expect(isFunded).to.equal(true);
+                    });
+                });
+            });
+        });
+    });
+
+    describe('#categoriseInclusionStatesByBundleHash', () => {
+        describe('when transactions provided (passed as first param) is empty', () => {
+            it('should return an empty object', () => {
+                const result = categoriseInclusionStatesByBundleHash([], [false, false]);
+                expect(result).to.eql({});
+            });
+        });
+
+        describe('when transactions provided (passed as first param) is not empty', () => {
+            it('should categorise inclusion states (passed as second param) by bundle hashes', () => {
+                const tailTransactions = [
+                    { bundle: 'A'.repeat(81) },
+                    { bundle: 'A'.repeat(81) },
+                    { bundle: 'B'.repeat(81) },
+                    { bundle: 'C'.repeat(81) },
+                    { bundle: 'A'.repeat(81) },
+                    { bundle: 'B'.repeat(81) },
+                ];
+
+                const inclusionStates = [
+                    false, // AAA
+                    false, // AAA
+                    false, // BBB
+                    false, // CCC
+                    true, // AAA
+                    false, // BBB
+                ];
+
+                const result = categoriseInclusionStatesByBundleHash(tailTransactions, inclusionStates);
+                expect(result).to.eql({
+                    ['A'.repeat(81)]: true,
+                    ['B'.repeat(81)]: false,
+                    ['C'.repeat(81)]: false,
+                });
+            });
         });
     });
 });

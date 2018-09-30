@@ -34,6 +34,7 @@
         "save": "Spremi",
         "close": "Zatvori",
         "export": "Izvoz",
+        "help": "Pomoć",
         "import": "Uvoz",
         "continue": "Nastavi",
         "enable": "Omogući",
@@ -44,7 +45,7 @@
         "paperWallet": "Ispiši na papir",
         "addToPasswordManager": "Dodaj upravitelju lozinki",
         "shareSeed": "Podijeli seed",
-        "share": "Share",
+        "share": "Podijeli",
         "proceed": "Nastavi",
         "qr": "QR",
         "enterSeed": "Molimo unesite svoj seed.",
@@ -61,7 +62,7 @@
         "password": "Šifra",
         "unrecognisedPassword": "Nepoznata Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "Morate unijeti lozinku. Molimo pokušajte ponovno.",
         "capsLockIsOn": "Caps Lock je uključen",
         "syncInProgress": "Sinkronizacija u tijeku",
         "syncInProgressExplanation": "Molimo pričekajte da sinkronizacija završi.",
@@ -262,7 +263,10 @@
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
-        "individualLetterCount": "Pritisnite još {{letterCount}} individualnih slova da bi ih učinili nasumičnim.",
+        "individualLetterCount": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "individualLetterCount_plural": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
+        "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
         "whatIsASeed": "Što je seed?"
     },
     "onboardingComplete": {
@@ -488,6 +492,18 @@
         "theme": "Tema",
         "mockup": "Približni izgled teme"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -592,17 +608,17 @@
         "exportFailExplanation": "Došlo je do greške prilikom izvoza SeedVault-a. Molimo provjerite da li imate sva potrebna ovlaštenja i dovoljno slobodnog prostora na disku.",
         "exportSuccess": "SeedVault izvezen",
         "exportSuccessExplanation": "Vaša kodirana seed datoteka je uspješno izvezena.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccess": "Seed uvezen",
+        "importSuccessExplanation": "Vaš seed je uspješno uvezen.",
+        "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
-        "dropSeedVaultHere": "Prenesite SeedVault ovdje",
+        "dropSeedVaultHere": "Ovdje ispustite SeedVault <1></1> ili kliknite da bi ga potražili na računalu",
         "enterPasswordExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u. Možete koristiti istu lozinku koju koristite za pristup Trinity novčaniku."
     },
     "chart": {
         "mcap": "MCAP",
@@ -694,5 +710,17 @@
         "messageTx": "Primili ste poruku na {{account}}",
         "confirmedIn": "Dolazna transakcija od {{value}} na {{account}} je potvrđena",
         "confirmedOut": "Odlazna transakcija od {{value}} s {{account}} je potvrđena"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": " Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }
