@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import omit from 'lodash/omit';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
-import { getIotaInstance } from 'shared-modules/libs/iota/extendedApi';
+import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
 
 class Keychain {
@@ -95,34 +95,12 @@ class Keychain {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed();
-
-        let args = [seed, transfers];
-
-        if (options) {
-            args = [...args, options];
-        }
-
-        return new Promise((resolve, reject) => {
-            const instance = getIotaInstance();
-
-            instance.api.prepareTransfers(...args, (err, trytes) => {
-                for (let i = 0; i < seed.length * 3; i++) {
-                    seed[i % seed.length] = 0;
-                }
-
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(trytes);
-                }
-            });
-        });
+        return prepareTransfersAsync()(seed, transfers, options);
     };
 
     /**
      * Get seed from keychain
-     * @param {boolean} rawTrits - Should return raw trits
-     * @returns {array} Derypted seed
+     * @returns {string} Decrypted seed
      */
     getSeed = async () => {
         const seeds = await this.getSeeds();

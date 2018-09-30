@@ -1,7 +1,7 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
 import { byteToTrit } from 'libs/helpers';
-import { getIotaInstance } from 'libs/iota/extendedApi';
+import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
 // Prefix for seed account titles stored in Keychain
 const ACC_PREFIX = 'account';
@@ -137,34 +137,13 @@ class Keychain {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed(true);
-
-        let args = [seed, transfers];
-
-        if (options) {
-            args = [...args, options];
-        }
-
-        return new Promise((resolve, reject) => {
-            const instance = getIotaInstance();
-
-            instance.api.prepareTransfers(...args, (err, trytes) => {
-                for (let i = 0; i < seed.length * 3; i++) {
-                    seed[i % seed.length] = 0;
-                }
-
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(trytes);
-                }
-            });
-        });
+        return prepareTransfersAsync()(seed, transfers, options);
     };
 
     /**
      * Get seed from keychain
      * @param {boolean} rawTrits - Should return raw trits
-     * @returns {array} Derypted seed
+     * @returns {array} Decrypted seed
      */
     getSeed = async (rawTrits) => {
         const vault = await Electron.readKeychain(this.accountId);
