@@ -45,7 +45,7 @@ let onboardingSeed = null;
 let onboardingGenerated = false;
 
 // Use a different keychain entry for development versions
-const KEYTAR_SERVICE = currentWindow.isPackaged ? 'Trinity wallet' : 'Trinity wallet (dev)';
+const KEYTAR_SERVICE = process.env.NODE_ENV === 'development' ? 'Trinity wallet (dev)' : 'Trinity wallet';
 
 /**
  * Global Electron helper for native support
