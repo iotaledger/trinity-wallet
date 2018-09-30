@@ -4588,12 +4588,11 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-machine-uuid-sync@^1.0.9:
+"machine-uuid-sync@https://github.com/rajivshah3/machine-uuid-sync":
   version "1.0.9"
-  resolved "https://registry.yarnpkg.com/machine-uuid-sync/-/machine-uuid-sync-1.0.9.tgz#f78f2727a84577993e4078f027083ae7cf49096e"
-  integrity sha1-948nJ6hFd5k+QHjwJwg6589JCW4=
+  resolved "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8eab86764db0c69aadbeef9a14b2ae9ae5c"
   dependencies:
-    node-uuid "1.4.1"
+    uuid "^3.1.0"
 
 make-dir@^1.0.0:
   version "1.3.0"
@@ -5031,11 +5030,6 @@ node-releases@^1.0.0-alpha.11:
   integrity sha512-CaViu+2FqTNYOYNihXa5uPS/zry92I3vPU4nCB6JB3OeZ2UGtOpF5gRwuN4+m3hbEcL47bOXyun1jX2iC+3uEQ==
   dependencies:
     semver "^5.3.0"
-
-node-uuid@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.1.tgz#39aef510e5889a3dca9c895b506c73aae1bac048"
-  integrity sha1-Oa71EOWImj3KnIlbUGxzquG6wEg=
 
 noop-logger@^0.1.1:
   version "0.1.1"
@@ -7747,7 +7741,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^3.3.2:
+uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
