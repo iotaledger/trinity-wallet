@@ -325,7 +325,7 @@ export const setDeepLinkInactive = () => {
 export const generateNewAddress = (seedStore, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses()(seedStore, existingAccountData.addresses)
+        return syncAddresses()(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
             .then((latestAddressData) => {
                 dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess());

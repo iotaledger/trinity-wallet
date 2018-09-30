@@ -564,7 +564,7 @@ export const syncAddresses = (provider) => (seedStore, existingAddressData, norm
     };
 
     // First check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsed(provider)(latestAddress, latestAddressData).then((isUsed) => {
+    return isAddressUsed(provider)(latestAddress, latestAddressData, normalisedTransactions).then((isUsed) => {
         if (!isUsed) {
             return addressData;
         }

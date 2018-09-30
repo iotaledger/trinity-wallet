@@ -56,11 +56,7 @@ const Electron = {
     clipboard: (content) => {
         if (content) {
             const clip =
-                typeof content === 'string'
-                    ? content
-                    : Array.from(content)
-                          .map((byte) => byteToChar(byte))
-                          .join('');
+                typeof content === 'string' ? content : Array.from(content).map((byte) => byteToChar(byte)).join('');
             clipboard.writeText(clip);
             if (typeof content !== 'string') {
                 global.gc();
@@ -340,6 +336,22 @@ const Electron = {
     },
 
     /**
+     * Show a native dialog box
+     * @param {string} message - Dialog box content
+     * @param {string} buttonTitle - dialog box button title
+     * @param {string} title - Dialog box title, is not shown on all platforms
+     * @returns {number} Returns 0 after dialog button press
+     */
+    dialog: async (message, buttonTitle, title) => {
+        return await dialog.showMessageBox(currentWindow, {
+            type: 'info',
+            title,
+            message,
+            buttons: [buttonTitle],
+        });
+    },
+
+    /**
      * Export SeedVault file
      * @param {array} - Seed object array
      * @param {string} - Plain text password to use for SeedVault
@@ -352,11 +364,7 @@ const Electron = {
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `seedvault-${now
-                    .toISOString()
-                    .slice(0, 16)
-                    .replace(/[-:]/g, '')
-                    .replace('T', '-')}.kdbx`,
+                defaultPath: `seedvault-${now.toISOString().slice(0, 16).replace(/[-:]/g, '').replace('T', '-')}.kdbx`,
                 buttonLabel: 'Export',
                 filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });

@@ -19,7 +19,7 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import QRScannerComponent from 'ui/components/QrScanner';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhone11 } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -331,16 +331,18 @@ class UseExistingSeed extends Component {
                             seed={seed}
                         />
                         <View style={{ flex: 0.45 }} />
-                        <SeedVaultImport
-                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                            onSeedImport={(seed) => {
-                                this.setState({ seed });
-                                this.hideModal();
-                            }}
-                            onRef={(ref) => {
-                                this.SeedVaultImport = ref;
-                            }}
-                        />
+                        {!isIPhone11 && (
+                            <SeedVaultImport
+                                openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                onSeedImport={(seed) => {
+                                    this.setState({ seed });
+                                    this.hideModal();
+                                }}
+                                onRef={(ref) => {
+                                    this.SeedVaultImport = ref;
+                                }}
+                            />
+                        )}
                         <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {

@@ -16,6 +16,7 @@ import {
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
+import { byteTritCheck } from './recovery';
 import { pushScreen } from '../libs/utils';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
@@ -45,6 +46,8 @@ export const ActionTypes = {
     MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
     MARK_BUNDLE_BROADCAST_STATUS_PENDING: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
     MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
+    SYNC_ACCOUNT_BEFORE_SWEEPING: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_SWEEPING',
+    OVERRIDE_ACCOUNT_INFO: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
 };
 
 /**
@@ -360,6 +363,32 @@ export const markBundleBroadcastStatusComplete = (payload) => ({
 });
 
 /**
+ * Dispatch to update account state before recovering/sweeping
+ *
+ * @method syncAccountBeforeSweeping
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const syncAccountBeforeSweeping = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING,
+    payload,
+});
+
+/**
+ * Dispatch to override account state
+ *
+ * @method overrideAccountInfo
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const overrideAccountInfo = (payload) => ({
+    type: ActionTypes.OVERRIDE_ACCOUNT_INFO,
+    payload,
+});
+
+/**
  * Gets full account information for the first seed added to the wallet.
  *
  * @method getFullAccountInfo
@@ -505,4 +534,29 @@ export const getAccountInfo = (seedStore, accountName, navigator = null, notific
 export const deleteAccount = (accountName) => (dispatch) => {
     dispatch(removeAccount(accountName));
     dispatch(generateAccountDeletedAlert());
+};
+
+/**
+ * Gets latest account information for provided account and override existing account state
+ *
+ * @method cleanUpAccountState
+ * @param {object} seedStore
+ * @param {string} accountName
+ * @param {function} genFn
+ *
+ * @returns {function(*, *): Promise<object>}
+ */
+export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getState) => {
+    const selectedNode = getSelectedNodeFromState(getState());
+
+    return withRetriesOnDifferentNodes(
+        [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
+        () => dispatch(generateAccountSyncRetryAlert()),
+    )(getAccountData)(seedStore, accountName).then(({ node, result }) => {
+        dispatch(changeNode(node));
+        dispatch(overrideAccountInfo(result));
+
+        // Resolve new account state
+        return result;
+    });
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DocumentPicker } from 'react-native-document-picker';
@@ -82,6 +82,22 @@ export class SeedVaultImportComponent extends Component {
     }
 
     /**
+     * Grant storage read permissions for android
+     *
+     * @method grantPermissions
+     * @returns {Promise}
+     */
+    grantPermissions() {
+        return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then((granted) => {
+            if (granted === true || granted === PermissionsAndroid.RESULTS.GRANTED) {
+                return Promise.resolve(granted);
+            }
+
+            throw new Error('Read permissions not granted.');
+        });
+    }
+
+    /**
      * Opens document picker, reads chosen file and opens password validation modal
      * @method importSeedVault
      */
@@ -89,7 +105,9 @@ export class SeedVaultImportComponent extends Component {
         const { t } = this.props;
         DocumentPicker.show(
             {
-                filetype: [isAndroid ? 'application/octet-stream' : 'public.data'],
+                filetype: isAndroid
+                    ? ['application/octet-stream']
+                    : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
             },
             (error, res) => {
                 if (error) {
@@ -103,8 +121,9 @@ export class SeedVaultImportComponent extends Component {
                 if (path.startsWith('file://')) {
                     path = path.slice(7);
                 }
-                RNFetchBlob.fs
-                    .readFile(path, 'ascii')
+
+                (isAndroid ? this.grantPermissions() : Promise.resolve())
+                    .then(() => RNFetchBlob.fs.readFile(path, 'ascii'))
                     .then((data) => {
                         this.setState({ seedVault: data });
                         this.props.openPasswordValidationModal();
