@@ -12,7 +12,7 @@ Repository for the IOTA Trinity Mobile Wallet. The application is built on [Reac
 - [NodeJS](https://nodejs.org/en/)
 - [yarn](https://yarnpkg.com/lang/en/)
 - [React Native Dependencies](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies-2)
-    - If you are targeting iOS, please note that Xcode 10 is currently not supported by React Native v0.51. Xcode 9 or later is recommended.
+    - If you are targeting iOS and are using Xcode 10+, please ensure that you have enabled the legacy build system.
 
 ## Development setup
 

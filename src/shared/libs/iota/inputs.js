@@ -1,3 +1,4 @@
+import isObject from 'lodash/isObject';
 import differenceBy from 'lodash/differenceBy';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -5,7 +6,6 @@ import each from 'lodash/each';
 import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import filter from 'lodash/filter';
-import isEmpty from 'lodash/isEmpty';
 import minBy from 'lodash/minBy';
 import uniqBy from 'lodash/uniqBy';
 import map from 'lodash/map';
@@ -15,8 +15,9 @@ import size from 'lodash/size';
 import {
     pickUnspentAddressData,
     omitAddressesDataWithIncomingTransfers,
-    transformAddressDataToInputs
+    transformAddressDataToInputs,
 } from './addresses';
+import { VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
 import { DEFAULT_SECURITY } from '../../config';
 
 /**
@@ -33,7 +34,9 @@ import { DEFAULT_SECURITY } from '../../config';
  **/
 export const prepareInputs = (addressData, threshold, limit = 2, security = DEFAULT_SECURITY) => {
     let availableBalance = 0;
-    const _throw = (error) => { throw new Error(error); };
+    const _throw = (error) => {
+        throw new Error(error);
+    };
 
     // Return prematurely in case threshold is zero
     // This check prevents adding input on the first iteration
@@ -48,7 +51,7 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
     while (availableBalance < threshold) {
         const sortedInputs = sortInputsByOptimalValue(
             differenceBy(inputs, selectedInputsByOptimalValue, 'address'),
-            threshold - availableBalance
+            threshold - availableBalance,
         );
 
         const input = head(sortedInputs);
@@ -60,9 +63,7 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
 
     if (isNumber(limit) && size(selectedInputsByOptimalValue) > limit) {
         const inputsWithUniqueBalances = uniqBy(inputs, 'balance');
-        const { exactMatches, exceeded } = subsetSumWithLimit()(
-            map(inputs, (input) => input.balance), threshold
-        );
+        const { exactMatches, exceeded } = subsetSumWithLimit()(map(inputs, (input) => input.balance), threshold);
 
         if (size(exactMatches)) {
             const match = head(exactMatches);
@@ -76,7 +77,7 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
             // Verify total balance === threshold, otherwise throw
             return {
                 inputs: inputsWithExactMatch,
-                balance
+                balance,
             };
         }
 
@@ -95,12 +96,13 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
     }
 
     return {
-      inputs: selectedInputsByOptimalValue,
-      balance: availableBalance
+        inputs: selectedInputsByOptimalValue,
+        balance: availableBalance,
     };
 };
 
-const sortInputsByOptimalValue = (inputs, diff) => inputs.slice().sort((a, b) => Math.abs(diff - a.balance) - Math.abs(diff - b.balance));
+const sortInputsByOptimalValue = (inputs, diff) =>
+    inputs.slice().sort((a, b) => Math.abs(diff - a.balance) - Math.abs(diff - b.balance));
 
 const subsetSumWithLimit = (limit = 2) => {
     let hasFoundAnExactMatch = false;
@@ -151,18 +153,14 @@ const subsetSumWithLimit = (limit = 2) => {
                 // Remaining
                 balances.slice(index + 1),
                 threshold,
-                [...partial, balance]
+                [...partial, balance],
             );
         });
 
-        if (
-            hasFoundAnExactMatch ||
-            hasFoundNoMatches ||
-            callTimes === MAX_CALL_TIMES
-        ) {
+        if (hasFoundAnExactMatch || hasFoundNoMatches || callTimes === MAX_CALL_TIMES) {
             return {
                 exactMatches,
-                exceeded
+                exceeded,
             };
         }
     };
@@ -192,25 +190,23 @@ export const getUnspentInputs = (provider) => (
     }
 
     // Filter all spent addresses
-    return pickUnspentAddressData(provider)(
-        addressData,
-        normalisedTransactions
-    )
-        .then((unspentAddressData) => {
-            if (reduce(unspentAddressData, (acc, data) => acc + data.balance, 0) < threshold) {
-                throw new Error('Funds at spent addresses.');
-            }
+    return pickUnspentAddressData(provider)(addressData, normalisedTransactions).then((unspentAddressData) => {
+        if (reduce(unspentAddressData, (acc, data) => acc + data.balance, 0) < threshold) {
+            throw new Error('Funds at spent addresses.');
+        }
 
-            if (
-                reduce(
-                    omitAddressesDataWithIncomingTransfers(unspentAddressData, pendingValueTransfers),
-                (acc, data) => acc + data.balance, 0) < threshold
-            ) {
-                throw new Error('Incoming transactions.');
-            }
+        if (
+            reduce(
+                omitAddressesDataWithIncomingTransfers(unspentAddressData, pendingValueTransfers),
+                (acc, data) => acc + data.balance,
+                0,
+            ) < threshold
+        ) {
+            throw new Error('Incoming transactions.');
+        }
 
-            return prepareInputs(addressData, threshold);
-        });
+        return prepareInputs(addressData, threshold);
+    });
 };
 
 /**
@@ -230,4 +226,23 @@ export const getStartingSearchIndexToPrepareInputs = (addressData) => {
         .find((address) => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
+};
+
+/**
+ *   Checks if an input object is valid
+ *
+ *   @method isValidInput
+ *   @param {object} input
+ *
+ *   @returns {boolean}
+ **/
+export const isValidInput = (input) => {
+    return (
+        isObject(input) &&
+        VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(input.address) &&
+        isNumber(input.balance) &&
+        isNumber(input.security) &&
+        isNumber(input.keyIndex) &&
+        input.keyIndex >= 0
+    );
 };

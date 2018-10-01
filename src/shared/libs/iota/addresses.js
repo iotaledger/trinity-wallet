@@ -10,7 +10,6 @@ import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
-import omit from 'lodash/omit';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
@@ -405,16 +404,10 @@ export const pickUnspentAddressData = (provider) => (addressData, normalisedTran
     const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactions);
 
     return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
-        const filteredAddresses = filter(addresses,
-            (input, idx) => !wereSpent[idx] && !spendStatuses[idx]
-        );
+        const filteredAddresses = filter(addresses, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]);
 
-        return pickBy(
-          addressData,
-            (data, address) => includes(filteredAddresses, address)
-        );
-        },
-    );
+        return pickBy(addressData, (data, address) => includes(filteredAddresses, address));
+    });
 };
 
 /**
@@ -589,7 +582,7 @@ export const syncAddresses = (provider) => (seed, existingAddressData, normalise
     };
 
     // First check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsed(provider)(latestAddress, latestAddressData).then((isUsed) => {
+    return isAddressUsed(provider)(latestAddress, latestAddressData, normalisedTransactions).then((isUsed) => {
         if (!isUsed) {
             return addressData;
         }
@@ -725,10 +718,10 @@ export const findSpendStatusesFromNormalisedTransactions = (addresses, normalise
     return map(addresses, (address) => includes(inputAddresses, address));
 };
 
-export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) => map(addressData, (data, address) => ({
-    address,
-    security,
-    balance: data.balance,
-    keyIndex: data.index
-}));
-
+export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) =>
+    map(addressData, (data, address) => ({
+        address,
+        security,
+        balance: data.balance,
+        keyIndex: data.index,
+    }));
