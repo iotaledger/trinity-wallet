@@ -1,6 +1,6 @@
 /* global Electron */
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToTrit } from 'libs/helpers';
+import { bytesToTrits } from 'libs/helpers';
 
 // Prefix for seed account titles stored in the vault
 const ACC_PREFIX = 'account';
@@ -201,14 +201,7 @@ export const getSeed = async (password, seedName, rawTrits) => {
     }
     try {
         const decryptedVault = await decrypt(vault, password);
-        if (rawTrits) {
-            let trits = [];
-            for (let i = 0; i < decryptedVault.length; i++) {
-                trits = trits.concat(byteToTrit(decryptedVault[i]));
-            }
-            return trits;
-        }
-        return decryptedVault;
+        return rawTrits ? bytesToTrits(decryptedVault) : decryptedVault;
     } catch (err) {
         throw err;
     }

@@ -18,33 +18,63 @@ import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
 /**
- * Updates address data for an account
+ * Stop overriding local spend status for a known address
  *
+ * @method preserveAddressLocalSpendStatus
+ * @param existingAddressData
+ * @param newAddressData
+ *
+ * @returns {object}
+ */
+const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
+    mapValues(newAddressData, (data, address) => {
+        const isSeenAddress = has(existingAddressData, address);
+        if (isSeenAddress && isBoolean(get(existingAddressData[address], 'spent.local'))) {
+            const { spent: { local } } = existingAddressData[address];
+
+            return {
+                ...data,
+                spent: { ...data.spent, local: local || get(data, 'spent.local') },
+            };
+        }
+
+        return data;
+    });
+
+/**
+ * Merge latest address data into existing address data for an account
+ *
+ * @method setAddressData
  * @param {object} existingAddressData
  * @param {object} newAddressData
  *
  * @returns {object}
  */
-export const updateAddressData = (existingAddressData, newAddressData) => {
+export const setAddressData = (existingAddressData, newAddressData) => {
+    if (isEmpty(existingAddressData)) {
+        return newAddressData;
+    }
+
+    return preserveAddressLocalSpendStatus(existingAddressData, newAddressData);
+};
+
+/**
+ * Merge latest address data into existing address data for an account
+ *
+ * @method mergeAddressData
+ * @param {object} existingAddressData
+ * @param {object} newAddressData
+ *
+ * @returns {object}
+ */
+export const mergeAddressData = (existingAddressData, newAddressData) => {
     if (isEmpty(existingAddressData)) {
         return newAddressData;
     }
 
     return {
         ...existingAddressData,
-        ...mapValues(newAddressData, (data, address) => {
-            const isSeenAddress = has(existingAddressData, address);
-            if (isSeenAddress && isBoolean(get(existingAddressData[address], 'spent.local'))) {
-                const { spent: { local } } = existingAddressData[address];
-
-                return {
-                    ...data,
-                    spent: { ...data.spent, local: local || get(data, 'spent.local') },
-                };
-            }
-
-            return data;
-        }),
+        ...preserveAddressLocalSpendStatus(existingAddressData, newAddressData),
     };
 };
 
@@ -63,7 +93,7 @@ const updateAccountInfo = (state, payload) => ({
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
             balance: payload.balance,
-            addresses: updateAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
+            addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
             transfers: {
                 ...get(state.accountInfo, `${payload.accountName}.transfers`),
                 ...payload.transfers,
@@ -201,6 +231,7 @@ const account = (
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
@@ -247,7 +278,7 @@ const account = (
                     ...state.accountInfo,
                     [action.payload.accountName]: {
                         balance: action.payload.balance,
-                        addresses: updateAddressData(
+                        addresses: mergeAddressData(
                             get(state.accountInfo, `${action.payload.accountName}.addresses`),
                             action.payload.addresses,
                         ),
@@ -262,6 +293,32 @@ const account = (
                         some(tailTransactions, (tx) => tx.account === action.payload.accountName),
                     ),
                     // Merge latest tail transactions for valid pending value transfers
+                    action.payload.unconfirmedBundleTails,
+                ),
+            };
+        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
+            return {
+                ...state,
+                // Override account state for provided account name
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        balance: action.payload.balance,
+                        addresses: setAddressData(
+                            get(state.accountInfo, `${action.payload.accountName}.addresses`),
+                            action.payload.addresses,
+                        ),
+                        transfers: action.payload.transfers,
+                        hashes: action.payload.hashes,
+                    },
+                },
+                unconfirmedBundleTails: merge(
+                    {},
+                    // Remove all existing bundle tails from provided account
+                    omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
+                        some(tailTransactions, (tx) => tx.account === action.payload.accountName),
+                    ),
+                    // Merge latest bundle tails
                     action.payload.unconfirmedBundleTails,
                 ),
             };
