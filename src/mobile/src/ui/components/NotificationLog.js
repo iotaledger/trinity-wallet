@@ -5,7 +5,7 @@ import { formatTimeAs } from 'shared-modules/libs/date';
 import { translate } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
-import { locale } from 'libs/device';
+import { locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -106,7 +106,7 @@ export class NotificationLog extends PureComponent {
                     renderRow={(dataSource) => (
                         <View>
                             <Text style={[styles.itemText, textColor]}>
-                                {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, dataSource.time)} -{' '}
+                                {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, timezone, dataSource.time)} -{' '}
                                 {dataSource.error}
                             </Text>
                         </View>
