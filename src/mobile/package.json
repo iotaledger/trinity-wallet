@@ -156,8 +156,8 @@
   "detox": {
     "configurations": {
       "ios.sim.debug": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/example.app",
-        "build": "xcodebuild -workspace ios/iotaWallet.xcworkspace -scheme iotaWallet -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/iotaWallet.app",
+        "build": "xcodebuild -workspace ios/iotaWallet.xcworkspace -scheme iotaWallet -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build | xcpretty",
         "type": "ios.simulator",
         "name": "iPhone 6s"
       }

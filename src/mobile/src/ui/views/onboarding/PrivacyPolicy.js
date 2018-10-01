@@ -140,6 +140,7 @@ class PrivacyPolicy extends Component {
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },
                             }}
+                            testID="privacyPolicy-next"
                         >
                             {t('agree')}
                         </Button>

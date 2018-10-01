@@ -123,6 +123,8 @@ export class Dropdown extends Component {
         theme: PropTypes.object.isRequired,
         /** Determines how many rows should be visible */
         visibleRows: PropTypes.number,
+        /** ID for automated tests **/
+        testID: PropTypes.string,
     };
 
     static defaultProps = {
@@ -135,6 +137,7 @@ export class Dropdown extends Component {
         title: '',
         dropdownWidth: { width: width / 1.15 },
         visibleRows: 8,
+        testID: '',
     };
 
     constructor(props) {
@@ -212,7 +215,17 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { options, title, dropdownWidth, background, disableWhen, theme, shadow, visibleRows } = this.props;
+        const {
+            options,
+            title,
+            dropdownWidth,
+            background,
+            disableWhen,
+            theme,
+            shadow,
+            visibleRows,
+            testID,
+        } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const heightValue = height / 22.4 * visibleRows + height / 70;
@@ -222,7 +235,7 @@ export class Dropdown extends Component {
         const lastItem = options.length - 1;
 
         return (
-            <View style={[styles.container, dropdownWidth]}>
+            <View style={[styles.container, dropdownWidth]} testID={testID}>
                 <Text style={[styles.dropdownTitle, { color: theme.primary.color }, isAndroid ? null : dropdownWidth]}>
                     {title}
                 </Text>

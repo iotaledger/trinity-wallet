@@ -144,6 +144,7 @@ class TermsAndConditions extends Component {
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },
                             }}
+                            testID="termsAndConditions-next"
                         >
                             {t('accept')}
                         </Button>

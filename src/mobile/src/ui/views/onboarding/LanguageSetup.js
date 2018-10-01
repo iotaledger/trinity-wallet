@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
-import {
-    I18N_LOCALE_LABELS,
-    getLabelFromLocale,
-    getLocaleFromLabel,
-    detectLocale,
-} from 'shared-modules/libs/i18n';
+import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel, detectLocale } from 'shared-modules/libs/i18n';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
@@ -151,6 +146,7 @@ class LanguageSetup extends Component {
                                 defaultOption={defaultLanguageLabel}
                                 options={I18N_LOCALE_LABELS}
                                 saveSelection={(language) => this.clickDropdownItem(language)}
+                                testID="languageSetup-dropdown"
                             />
                         </View>
                         <View style={styles.bottomContainer}>
