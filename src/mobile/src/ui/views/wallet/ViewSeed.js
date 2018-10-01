@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
 import Seedbox from 'ui/components/SeedBox';
@@ -117,7 +117,7 @@ class ViewSeed extends Component {
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Type for selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -169,11 +169,11 @@ class ViewSeed extends Component {
      * @returns {Promise<void>}
      */
     async viewSeed() {
-        const { password, selectedAccountName, selectedAccountType, t } = this.props;
+        const { password, selectedAccountName, selectedAccountMeta, t } = this.props;
         const pwdHash = await hash(this.state.password);
 
         if (isEqual(password, pwdHash)) {
-            const seedStore = new SeedStore[selectedAccountType](pwdHash, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
             const seed = await seedStore.getSeed();
 
             if (isAndroid) {
@@ -356,7 +356,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     theme: state.settings.theme,
 });
 

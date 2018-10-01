@@ -8,7 +8,7 @@ import {
     selectLatestAddressFromAccountFactory,
     selectAccountInfo,
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
 } from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
@@ -37,7 +37,7 @@ class Receive extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        accountType: PropTypes.string.isRequired,
+        accountMeta: PropTypes.string.isRequired,
         /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
@@ -81,7 +81,7 @@ class Receive extends React.PureComponent {
         const {
             password,
             accountName,
-            accountType,
+            accountMeta,
             account,
             isSyncing,
             isTransitioning,
@@ -93,7 +93,7 @@ class Receive extends React.PureComponent {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seedStore = await new SeedStore[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName);
 
         this.props.generateNewAddress(seedStore, accountName, account);
     };
@@ -190,7 +190,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
-    accountType: getSelectedAccountType(state),
+    accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
 });
 

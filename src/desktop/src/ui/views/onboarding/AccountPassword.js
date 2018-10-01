@@ -90,7 +90,7 @@ class AccountPassword extends React.PureComponent {
         await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
-        const seedStore = await new SeedStore[wallet.additionalAccountType](passwordHash);
+        const seedStore = await new SeedStore[wallet.additionalAccountMeta.type](passwordHash);
         await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
 
         Electron.setOnboardingSeed(null);

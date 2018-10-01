@@ -179,7 +179,7 @@ class UseExistingSeed extends Component {
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
-            additionalAccountType: 'keychain',
+            additionalAccountMeta: { type: 'keychain' },
             seed,
             usedExistingSeed: true,
         });

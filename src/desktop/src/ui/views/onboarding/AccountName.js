@@ -35,7 +35,10 @@ class AccountName extends React.PureComponent {
     };
 
     state = {
-        name: this.props.wallet.additionalAccountName && this.props.wallet.additionalAccountName.length ? this.props.wallet.additionalAccountName : '',
+        name:
+            this.props.wallet.additionalAccountName && this.props.wallet.additionalAccountName.length
+                ? this.props.wallet.additionalAccountName
+                : '',
     };
 
     /**
@@ -75,7 +78,7 @@ class AccountName extends React.PureComponent {
         setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: this.state.name,
-            additionalAccountType: 'keychain',
+            additionalAccountMeta: { type: 'keychain' },
         });
 
         if (Electron.getOnboardingGenerated()) {

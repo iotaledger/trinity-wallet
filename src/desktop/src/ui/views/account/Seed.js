@@ -8,7 +8,7 @@ import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { byteToChar } from 'libs/helpers';
 import SeedStore from 'libs/SeedStore';
 
-import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
@@ -26,7 +26,7 @@ class Seed extends PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        accountType: PropTypes.string.isRequired,
+        accountMeta: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -49,9 +49,9 @@ class Seed extends PureComponent {
      * Retrieve seed and set to state
      */
     setSeed = async (password) => {
-        const { accountName, accountType } = this.props;
+        const { accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName);
         const seed = await seedStore.getSeed();
 
         this.setState({
@@ -145,7 +145,7 @@ class Seed extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
-    accountType: getSelectedAccountType(state),
+    accountMeta: getSelectedAccountMeta(state),
 });
 
 export default connect(mapStateToProps)(translate()(Seed));

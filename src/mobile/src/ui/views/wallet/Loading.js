@@ -19,7 +19,7 @@ import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/ma
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import GENERAL from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -86,7 +86,7 @@ class Loading extends Component {
         /** Name for currently selected account */
         selectedAccountName: PropTypes.string,
         /** Name for currently selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        selectedAccountMeta: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -100,7 +100,7 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
-        additionalAccountType: PropTypes.string.isRequired,
+        additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -133,9 +133,9 @@ class Loading extends Component {
         const {
             addingAdditionalAccount,
             additionalAccountName,
-            additionalAccountType,
+            additionalAccountMeta,
             selectedAccountName,
-            selectedAccountType,
+            selectedAccountMeta,
             password,
             navigator,
             deepLinkActive,
@@ -162,10 +162,10 @@ class Loading extends Component {
         this.props.setSetting('mainSettings');
 
         if (addingAdditionalAccount) {
-            const seedStore = new SeedStore[additionalAccountType](password, additionalAccountName);
+            const seedStore = new SeedStore[additionalAccountMeta.type](password, additionalAccountName);
             this.props.getFullAccountInfo(seedStore, additionalAccountName, navigator);
         } else {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName, navigator);
         }
     }
@@ -359,10 +359,10 @@ class Loading extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     additionalAccountName: state.wallet.additionalAccountName,
-    additionalAccountType: state.wallet.additionalAccountType,
+    additionalAccountMeta: state.wallet.additionalAccountMeta,
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,

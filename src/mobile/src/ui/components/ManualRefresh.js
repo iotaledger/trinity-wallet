@@ -3,7 +3,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared-modules/actions/accounts';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import { translate } from 'react-i18next';
 import SeedStore from 'libs/SeedStore';
 
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isSyncing: state.ui.isSyncing,
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
     seedIndex: state.wallet.seedIndex,
 });
@@ -72,9 +72,9 @@ export default () => (C) => {
          *  Updates account with latest data
          */
         updateAccountData() {
-            const { selectedAccountName, selectedAccountType, password } = this.props;
+            const { selectedAccountName, selectedAccountMeta, password } = this.props;
 
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
 
@@ -109,8 +109,8 @@ export default () => (C) => {
         t: PropTypes.func.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Account name for selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        /** Account meta data for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */

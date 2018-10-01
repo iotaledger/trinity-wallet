@@ -35,7 +35,7 @@ class Send extends React.PureComponent {
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
-        accountType: PropTypes.string.isRequired,
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -93,13 +93,13 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, accountName, accountType, sendTransfer, settings } = this.props;
+        const { fields, password, accountName, accountMeta, sendTransfer, settings } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
         });
 
-        const seedStore = await new SeedStore[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 

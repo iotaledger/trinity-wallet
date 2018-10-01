@@ -16,7 +16,7 @@ import {
 import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
@@ -128,8 +128,8 @@ class SnapshotTransition extends Component {
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Currently selected account type */
-        selectedAccountType: PropTypes.string.isRequired,
+        /** Currently selected account meta */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -182,9 +182,9 @@ class SnapshotTransition extends Component {
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
-        const { transitionAddresses, selectedAccountName, selectedAccountType, password } = this.props;
+        const { transitionAddresses, selectedAccountName, selectedAccountMeta, password } = this.props;
         setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses, getPowFn());
         }, 300);
     }
@@ -194,11 +194,11 @@ class SnapshotTransition extends Component {
      * @method onBalanceIncompletePress
      */
     onBalanceIncompletePress() {
-        const { transitionAddresses, password, selectedAccountName, selectedAccountType } = this.props;
+        const { transitionAddresses, password, selectedAccountName, selectedAccountMeta } = this.props;
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
         setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
         }, 300);
     }
@@ -209,9 +209,9 @@ class SnapshotTransition extends Component {
      * @method onSnapshotTransitionPress
      */
     onSnapshotTransitionPress() {
-        const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountType, t } = this.props;
+        const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountMeta, t } = this.props;
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
@@ -384,7 +384,7 @@ const mapStateToProps = (state) => ({
     transitionAddresses: state.wallet.transitionAddresses,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),
     addresses: getAddressesForSelectedAccount(state),
     isAttachingToTangle: state.ui.isAttachingToTangle,

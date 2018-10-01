@@ -752,5 +752,9 @@
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
-     }
+    },
+    "ledger": {
+        "ready": "Ledger wallet connected and ready",
+        "notReady": "If you wish to use a Ledger wallet, connect now"
+    }
 }

@@ -451,7 +451,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoSeedFetchSuccess({
                 accountName: 'foo',
-                accountType: 'bar',
+                accountMeta: { type: 'bar' },
                 addresses: { foo: {}, baz: {} },
                 transfers: {},
                 balance: 100,
@@ -462,7 +462,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         balance: 100,
@@ -478,7 +478,7 @@ describe('Reducer: accounts', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         addresses: { foo: {} },
                         transfers: { foo: { value: 20 }, baz: { value: 0 } },
                         balance: 0,
@@ -488,7 +488,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoSeedFetchSuccess({
                 accountName: 'foo',
-                accountType: 'bar',
+                accountMeta: { type: 'bar' },
                 addresses: { foo: {}, baz: {} },
                 transfers: { foo: { value: 0 } },
                 balance: 100,
@@ -499,7 +499,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         addresses: { foo: {}, baz: {} },
                         transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
@@ -515,7 +515,7 @@ describe('Reducer: accounts', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -526,7 +526,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoSeedFetchSuccess({
                 accountName: 'foo',
-                accountType: 'bar',
+                accountMeta: { type: 'bar' },
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
@@ -537,7 +537,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -555,7 +555,7 @@ describe('Reducer: accounts', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         addresses: { foo: {} },
                         transfers: {},
                         balance: 0,
@@ -565,7 +565,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoSeedFetchSuccess({
                 accountName: 'foo',
-                accountType: 'bar',
+                accountMeta: { type: 'bar' },
                 addresses: { foo: {}, baz: {} },
                 transfers: {},
                 balance: 100,
@@ -576,7 +576,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         balance: 100,
@@ -602,7 +602,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoSeedFetchSuccess({
                 accountName: 'foo',
-                accountType: 'bar',
+                accountMeta: { type: 'bar' },
                 addresses: { foo: {}, baz: {} },
                 transfers: { foo: { value: 0 } },
                 balance: 100,
@@ -613,7 +613,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         hashes: [],
                         addresses: { foo: {}, baz: {} },
                         transfers: { foo: { value: 0 }, baz: { value: 0 } },
@@ -639,7 +639,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoSeedFetchSuccess({
                 accountName: 'foo',
-                accountType: 'bar',
+                accountMeta: { type: 'bar' },
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
@@ -650,7 +650,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
-                        type: 'bar',
+                        meta: { type: 'bar' },
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -1026,7 +1026,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         dummy: {
-                            type: 'bar',
+                            meta: { type: 'bar' },
                             balance: 0,
                             addresses: { foo: {} },
                             transfers: {},
@@ -1049,7 +1049,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         dummy: {
-                            type: 'bar',
+                            meta: { type: 'bar' },
                             balance: 0,
                             addresses: { foo: {}, baz: {} },
                             transfers: {},
@@ -1065,7 +1065,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
-                            type: 'bar',
+                            meta: { type: 'bar' },
                             balance: 0,
                             transfers: { foo: { value: 20 } },
                         },
@@ -1086,7 +1086,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         foo: {
-                            type: 'bar',
+                            meta: { type: 'bar' },
                             balance: 0,
                             transfers: { baz: { value: 0 }, foo: { value: 20 } },
                             hashes: [],
@@ -1103,7 +1103,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
-                            type: 'bar',
+                            meta: { type: 'bar' },
                             balance: 0,
                             transfers: [],
                             hashes: ['baz'],
@@ -1125,7 +1125,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         foo: {
-                            type: 'bar',
+                            meta: { type: 'bar' },
                             balance: 0,
                             transfers: [],
                             hashes: ['bar'],

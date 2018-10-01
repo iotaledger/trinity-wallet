@@ -61,7 +61,7 @@ class Onboarding extends React.PureComponent {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
-                additionalAccountType: '',
+                additionalAccountMeta: {},
             });
 
             Electron.setOnboardingSeed(null);

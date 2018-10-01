@@ -6,7 +6,7 @@ import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -69,7 +69,7 @@ class SeedVaultExportComponent extends Component {
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Type for selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** Returns to page before starting the Seed Vault Export process */
         goBack: PropTypes.func.isRequired,
         /** Current step of the Seed Vault Export process */
@@ -258,14 +258,14 @@ class SeedVaultExportComponent extends Component {
      * @method validateWalletPassword
      */
     async validateWalletPassword() {
-        const { t, storedPasswordHash, selectedAccountName, selectedAccountType } = this.props;
+        const { t, storedPasswordHash, selectedAccountName, selectedAccountMeta } = this.props;
         const { password } = this.state;
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
             const enteredPasswordHash = await hash(password);
             if (isEqual(enteredPasswordHash, storedPasswordHash)) {
-                const seedStore = new SeedStore[selectedAccountType](enteredPasswordHash, selectedAccountName);
+                const seedStore = new SeedStore[selectedAccountMeta.type](enteredPasswordHash, selectedAccountName);
                 const seed = await seedStore.getSeed();
 
                 this.props.setSeed(seed);
@@ -398,7 +398,7 @@ class SeedVaultExportComponent extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     theme: state.settings.theme,
     minimised: state.ui.minimised,
     storedPasswordHash: state.wallet.password,

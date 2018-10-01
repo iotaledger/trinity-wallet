@@ -11,7 +11,7 @@ describe('Reducer: wallet', () => {
                 seedIndex: 0,
                 currentSetting: 'mainSettings',
                 additionalAccountName: '',
-                additionalAccountType: '',
+                additionalAccountMeta: {},
                 transitionBalance: 0,
                 transitionAddresses: [],
                 addingAdditionalAccount: false,
@@ -359,9 +359,9 @@ describe('Reducer: wallet', () => {
             expect(newState.additionalAccountName).to.equal(expectedState.additionalAccountName);
         });
 
-        it('should set "additionalAccountType" in state to an empty string', () => {
+        it('should set "additionalAccountMeta" in state to an empty object', () => {
             const initialState = {
-                additionalAccountType: 'foo',
+                additionalAccountMeta: { type: 'foo' },
             };
 
             const action = {
@@ -370,10 +370,10 @@ describe('Reducer: wallet', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                additionalAccountType: '',
+                additionalAccountMeta: {},
             };
 
-            expect(newState.additionalAccountType).to.equal(expectedState.additionalAccountType);
+            expect(newState.additionalAccountMeta).to.eql(expectedState.additionalAccountMeta);
         });
     });
 

@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'libs/exports';
 
-import { getSelectedAccountType } from 'selectors/accounts';
+import { getSelectedAccountMeta } from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
@@ -22,7 +22,7 @@ import Button from 'ui/components/Button';
 class PasswordSettings extends PureComponent {
     static propTypes = {
         /** @ignore */
-        accountType: PropTypes.string.isRequired,
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
@@ -45,7 +45,7 @@ class PasswordSettings extends PureComponent {
         event.preventDefault();
 
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
-        const { accountType, setPassword, generateAlert, t } = this.props;
+        const { accountMeta, setPassword, generateAlert, t } = this.props;
 
         if (passwordNew !== passwordConfirm) {
             generateAlert(
@@ -70,7 +70,7 @@ class PasswordSettings extends PureComponent {
             const passwordNewHash = await hash(passwordNew);
             const passwordCurrentHash = await hash(passwordCurrent);
 
-            await SeedStore[accountType].updatePassword(passwordCurrentHash, passwordNewHash);
+            await SeedStore[accountMeta.type].updatePassword(passwordCurrentHash, passwordNewHash);
 
             setPassword(passwordNewHash);
 
@@ -131,7 +131,7 @@ class PasswordSettings extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accountType: getSelectedAccountType(state),
+    accountMeta: getSelectedAccountMeta(state),
 });
 
 const mapDispatchToProps = {

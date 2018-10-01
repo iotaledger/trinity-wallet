@@ -35,7 +35,7 @@ const initialState = {
     /**
      * Account type set by user during additional account setup
      */
-    additionalAccountType: '',
+    additionalAccountMeta: {},
     /**
      * Total balance detected during snapshot transition
      */
@@ -127,7 +127,7 @@ export default (state = initialState, action) => {
                 seed: Array(82).join(' '),
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
-                additionalAccountType: '',
+                additionalAccountMeta: {},
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
