@@ -1801,9 +1801,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-iota.lib.js@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.0.tgz#66e59baf82a4556b739f81d947313d0a3ab2f659"
+iota.lib.js@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.1.tgz#87d424e030308f0029ca6396c92e15d460e7c1b7"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -3721,7 +3721,7 @@ shared-modules@./src/shared/:
   dependencies:
     bignumber.js "^7.2.1"
     i18next "^10.2.2"
-    iota.lib.js "^0.5.0"
+    iota.lib.js "^0.5.1"
     lodash "^4.17.10"
     moment "^2.22.2"
     proxy-polyfill "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7"
