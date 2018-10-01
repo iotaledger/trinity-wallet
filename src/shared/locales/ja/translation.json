@@ -712,15 +712,15 @@
         "confirmedOut": "{{account}}からの出金{{value}}が確定しました"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "資金のロック解除に成功",
+        "sweepSucceededExplanation": "資金のロック解除と新しいアドレスへの移動手続きが完了しました。新しいアドレスへの移動トランザクションを確定させるために、促進を行なってください。",
+        "sweepError": "資金のロック解除エラー",
+        "sweepErrorExplanation": "資金のロック解除に失敗しました。もう一度やり直してください。",
+        "warningTitle": "警告：ロックされた資金が検出されました",
+        "explanation": "Trinity デスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
+        "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
+        "proceed": "資金回復に進む",
+        "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
+        "sweepConfirmationTitle": "移動を承認"
     }
 }
