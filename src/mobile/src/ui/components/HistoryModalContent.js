@@ -171,7 +171,7 @@ export default class HistoryModalContent extends PureComponent {
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
         /** Determines whether bundle is currently being promoted */
-        bundleIsBeingPromoted: PropTypes.string.isRequired,
+        bundleIsBeingPromoted: PropTypes.bool.isRequired,
         /* eslint-disable react/no-unused-prop-types */
         /** Checks if the bundle hash belongs to a failed transaction
          * @param {string} bundleHash
