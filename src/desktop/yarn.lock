@@ -4588,10 +4588,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-machine-uuid@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/machine-uuid/-/machine-uuid-1.2.0.tgz#810ce7f8b5f59535102c947cf9ef1b4241779c18"
-  integrity sha512-IbwZTrrEFO6LSIBHy1U3KHRr8rWCpnUC15R1VmAWUXokumrkNGBfJdN2juR9ll8zU9T566dOK9SCwgfnOhiXDQ==
+"machine-uuid-sync@https://github.com/rajivshah3/machine-uuid-sync":
+  version "1.0.9"
+  resolved "https://github.com/rajivshah3/machine-uuid-sync#a5ffa8eab86764db0c69aadbeef9a14b2ae9ae5c"
   dependencies:
     uuid "^3.1.0"
 
