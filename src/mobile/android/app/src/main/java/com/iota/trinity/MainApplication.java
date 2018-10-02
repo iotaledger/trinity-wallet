@@ -32,7 +32,6 @@ import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
-import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import com.RNFetchBlob.RNFetchBlobPackage;
 
@@ -66,7 +65,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new SvgPackage(),
             new MainReactPackage(),
             new ReactNativeDocumentPicker(),
-            new RNNodeJsMobilePackage(),
             new RNFastCryptoPackage(),
             new TranslucentModalReactPackage(),
             new FlagSecurePackage(),
