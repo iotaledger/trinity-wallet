@@ -49,9 +49,9 @@ export const createSeedVault = async (seed, password) => {
  * @returns {array} Decrypted seed byte array
  */
 export const getSeedFromVault = async (seedVault, password) => {
-    const buffer = new Uint8Array(seedVault.split(',').map((num) => parseInt(num)));
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
-    const db = await kdbxweb.Kdbx.load(buffer.buffer, credentials);
+    const seedVaultBuffer = new Uint8Array(seedVault);
+    const db = await kdbxweb.Kdbx.load(seedVaultBuffer.buffer, credentials);
     const seed = db.getDefaultGroup().entries[0].fields.Seed.getText();
     return seed;
 };
