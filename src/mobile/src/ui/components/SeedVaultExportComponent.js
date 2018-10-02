@@ -14,6 +14,7 @@ import GENERAL from 'ui/theme/general';
 import { getPasswordHash, getSeedFromKeychain } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { createSeedVault } from 'libs/seedvault';
 import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
@@ -99,6 +100,7 @@ class SeedVaultExportComponent extends Component {
         const { isAuthenticated, onRef } = this.props;
         onRef(this);
         this.animatedValue = new Animated.Value(isAuthenticated ? width * 1.5 : width * 2.5);
+        /*
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
@@ -107,11 +109,14 @@ class SeedVaultExportComponent extends Component {
             },
             this,
         );
+        */
     }
 
     componentWillUnmount() {
         this.props.onRef(undefined);
+        /*
         nodejs.channel.removeAllListeners();
+        */
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
@@ -212,7 +217,10 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        //  return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        return createSeedVault(this.props.seed, this.state.password).then((vault) => {
+            this.onGenerateVault(vault.toString());
+        });
     }
 
     /**

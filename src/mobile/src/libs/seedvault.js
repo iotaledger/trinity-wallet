@@ -1,5 +1,6 @@
 import kdbxweb from 'kdbxweb';
 import { getHashFn } from 'libs/nativeModules';
+import base64js from 'base64-js';
 
 /**
  * Bind kdbxweb and argon2
@@ -28,7 +29,7 @@ kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, paral
  *
  * @param {string} Seed - Seed to be encrypted
  * @param {string} Password - Password for encryption
- * @returns {arrayBuffer} Encrypted .kdbx binary data
+ * @returns {string} Encrypted .kdbx binary data
  */
 export const createSeedVault = async (seed, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
@@ -36,20 +37,22 @@ export const createSeedVault = async (seed, password) => {
     const entry = db.createEntry(db.getDefaultGroup());
     entry.fields.Seed = kdbxweb.ProtectedValue.fromString(seed);
     const chunk = await db.save();
-    return chunk;
+    const chunkArray = new Uint8Array(chunk);
+    return chunkArray;
 };
 
 /**
  * Get seed from vault
  * @method getSeedFromVault
  *
- * @param {arrayBuffer} Db - Encrypted binary KDBX database
+ * @param {string} seedVault - Encrypted binary KDBX database in base64 format
  * @param {string} Password - Password for decryption
  * @returns {array} Decrypted seed byte array
  */
-export const getSeedFromVault = async (buffer, password) => {
+export const getSeedFromVault = async (seedVault, password) => {
+    const buffer = new Uint8Array(seedVault.split(',').map((num) => parseInt(num)));
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
-    const db = await kdbxweb.Kdbx.load(buffer, credentials);
+    const db = await kdbxweb.Kdbx.load(buffer.buffer, credentials);
     const seed = db.getDefaultGroup().entries[0].fields.Seed.getText();
     return seed;
 };

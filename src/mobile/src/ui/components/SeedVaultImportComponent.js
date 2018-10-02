@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DocumentPicker } from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import nodejs from 'nodejs-mobile-react-native';
+//import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { translate } from 'react-i18next';
 import { width } from 'libs/dimensions';
@@ -86,8 +86,9 @@ export class SeedVaultImportComponent extends Component {
                 generateAlert('success', t('seedVault:importSuccess'), t('seedVault:importSuccessExplanation'));
                 return onSeedImport(seed.toString());
             })
-            .catch(() => {
+            .catch((err) => {
                 generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
+                console.log(err);
             });
     }
 
