@@ -622,7 +622,7 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
  *   @method attachAndFormatAddress
  *   @param {string} [provider]
  *
- *   @returns {function(string, number, number, string, array, function): Promise<object>}
+ *   @returns {function(string, number, number, string, array, object, function): Promise<object>}
  **/
 export const attachAndFormatAddress = (provider) => (
     address,
@@ -630,9 +630,10 @@ export const attachAndFormatAddress = (provider) => (
     balance,
     seedStore,
     normalisedTransactions,
+    addressData,
     powFn,
 ) => {
-    const transfers = prepareTransferArray(address);
+    const transfers = prepareTransferArray(address, 0, '', addressData);
 
     let transfer = [];
 

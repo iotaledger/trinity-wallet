@@ -79,7 +79,7 @@ class AccountManagement extends Component {
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
 
-        if (isIPhone11()) {
+        if (isIPhone11) {
             rows.splice(6, 1);
         }
         return renderSettingsRows(rows, theme);

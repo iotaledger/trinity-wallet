@@ -712,15 +712,15 @@
         "confirmedOut": "Se confirmó la salida de {{value}} a {{account}}"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Fondos desbloqueados con éxito",
+        "sweepSucceededExplanation": "Sus fondos han sido desbloqueados con éxito y se trasladaron a una nueva dirección. Promueva las transacciones para confirmar.",
+        "sweepError": "Error durante el desbloqueo de los fondos",
+        "sweepErrorExplanation": "Algo salió mal al intentar el desbloqueo de sus fondos. Intente otra vez.",
+        "warningTitle": "Advertencia: Fondos bloqueados detectados",
+        "explanation": "Trinity Desktop versión 0.3.4 contenía un error que puede bloquear temporalmente los fondos. Esto afecta a un pequeño número de usuarios que realizan transacciones con 0.3.4.",
+        "explanationAccounts": "Fondos bloqueados se han detectado en las cuentas: {{accounts}}. Trinity recuperará ahora sus fondos, moviéndolos a una nueva dirección.",
+        "proceed": "Proceder a la recuperación",
+        "sweepConfirmation": "Estás a punto de barrer {{amount}} para la dirección {{address}}. Cuenta: {{accountName}}, dirección índice: {{index}}",
+        "sweepConfirmationTitle": "Confirmación de barrido"
     }
 }

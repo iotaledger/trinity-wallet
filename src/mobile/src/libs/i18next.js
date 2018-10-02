@@ -23,6 +23,7 @@ export default i18next.use(reactI18nextModule).init(
             he: require('../../../shared/locales/he/translation.json'),
             hi: require('../../../shared/locales/hi/translation.json'),
             hr: require('../../../shared/locales/hr/translation.json'),
+            hu: require('../../../shared/locales/hu/translation.json'),
             id: require('../../../shared/locales/id/translation.json'),
             it: require('../../../shared/locales/it/translation.json'),
             ja: require('../../../shared/locales/ja/translation.json'),
