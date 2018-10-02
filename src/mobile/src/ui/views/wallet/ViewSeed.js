@@ -253,7 +253,7 @@ class ViewSeed extends Component {
                                     <CustomTextInput
                                         label={t('global:password')}
                                         onChangeText={(password) => this.setState({ password })}
-                                        containerStyle={{ width: width / 1.15 }}
+                                        containerStyle={{ width: GENERAL.contentWidth }}
                                         autoCapitalize="none"
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically

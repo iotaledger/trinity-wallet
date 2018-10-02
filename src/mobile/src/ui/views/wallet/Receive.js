@@ -24,11 +24,7 @@ import {
     selectLatestAddressFromAccountFactory,
 } from 'shared-modules/selectors/accounts';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
-import {
-    getFromKeychainRequest,
-    getFromKeychainSuccess,
-    getFromKeychainError,
-} from 'shared-modules/actions/keychain';
+import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
 import { getSeedFromKeychain } from 'libs/keychain';
@@ -49,14 +45,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     flipCard: {
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
         borderWidth: 1,
         backfaceVisibility: 'hidden',
     },
     flipCardBack: {
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
         position: 'absolute',

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
     },
     topContainer: {
         flex: 11,
@@ -299,7 +299,7 @@ class DeleteAccount extends Component {
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
-                                    containerStyle={{ width: width / 1.15 }}
+                                    containerStyle={{ width: GENERAL.contentWidth }}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically

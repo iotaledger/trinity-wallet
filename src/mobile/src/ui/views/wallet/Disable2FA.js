@@ -11,7 +11,7 @@ import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -144,7 +144,7 @@ class Disable2FA extends Component {
                             <CustomTextInput
                                 label="Token"
                                 onChangeText={(token) => this.setState({ token })}
-                                containerStyle={{ width: width / 1.15 }}
+                                containerStyle={{ width: GENERAL.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -155,7 +155,7 @@ class Disable2FA extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
                                 leftButtonText={t('global:cancel')}

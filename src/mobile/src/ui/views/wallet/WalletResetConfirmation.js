@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { width, height } from 'libs/dimensions';
 import Fonts from 'ui/theme/fonts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
@@ -160,7 +160,7 @@ class WalletResetConfirmation extends Component {
                     />
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.requirePassword}
                         leftButtonText={t('global:no')}

@@ -344,7 +344,7 @@ class UseExistingSeed extends Component {
                                     this.setState({ seed: text.toUpperCase() });
                                 }
                             }}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
@@ -379,7 +379,7 @@ class UseExistingSeed extends Component {
                             }}
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}

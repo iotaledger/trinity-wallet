@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 
 const styles = StyleSheet.create({
@@ -42,7 +42,7 @@ class CtaButton extends PureComponent {
 
     static defaultProps = {
         fontSize: GENERAL.fontSize3,
-        ctaWidth: width / 1.15,
+        ctaWidth: GENERAL.contentWidth,
         ctaHeight: height / 14,
         testID: '',
     };
