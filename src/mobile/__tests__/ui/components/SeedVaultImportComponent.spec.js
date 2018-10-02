@@ -6,13 +6,6 @@ import { shallow } from 'enzyme';
 import { SeedVaultImportComponent } from 'ui/components/SeedVaultImportComponent';
 
 jest.mock('rn-fetch-blob', () => ({ DocumentDir: () => {} }));
-jest.mock('nodejs-mobile-react-native', () => ({
-    start: () => {},
-    channel: {
-        addListener: () => {},
-        removeListener: () => {},
-    },
-}));
 
 const getProps = (overrides) =>
     assign(
