@@ -1,9 +1,8 @@
 import kdbxweb from 'kdbxweb';
 import { getHashFn } from 'libs/nativeModules';
-import base64js from 'base64-js';
 
 /**
- * Bind kdbxweb and argon2
+ * Use native Argon2 hashing
  */
 // eslint-disable-next-line no-unused-vars
 kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, parallelism, type, version) => {
@@ -56,43 +55,3 @@ export const getSeedFromVault = async (seedVault, password) => {
     const seed = db.getDefaultGroup().entries[0].fields.Seed.getText();
     return seed;
 };
-
-/**
- * Gets password from message passed to channel
- * @method getPassword
- *
- * @param {array} message - Message passed to channel
- * @returns {string} Password
- */
-// eslint-disable-next-line no-unused-vars
-const getPassword = (arr) => {
-    let password = '';
-    if (arr.length > 2) {
-        for (let i = 1; i < arr.length - 1; i++) {
-            password += arr[i];
-        }
-        return password;
-    }
-    return arr[1];
-};
-
-/*
-rnBridge.channel.on('message', async (msg) => {
-    const message = msg.slice(7);
-    const password = getPassword(message.split(':'));
-    if (msg.slice(0, 7).match('export:')) {
-        const seed = message.split(':')[0];
-        const vault = await createSeedVault(seed, password);
-        const vaultUint8 = new Uint8Array(vault);
-        return rnBridge.channel.send(vaultUint8);
-    } else if (msg.slice(0, 7).match('import:')) {
-        const bufferString = message.split(':')[0];
-        const buffer = new Uint8Array(bufferString.split(',').map((num) => parseInt(num)));
-        try {
-            return rnBridge.channel.send(await getSeedFromVault(buffer.buffer, password));
-        } catch (err) {
-            return rnBridge.channel.send('error');
-        }
-    }
-});
-*/
