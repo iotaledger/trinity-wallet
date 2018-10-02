@@ -1,12 +1,18 @@
 import assign from 'lodash/assign';
+import each from 'lodash/each';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import head from 'lodash/head';
 import merge from 'lodash/merge';
+import random from 'lodash/random';
+import reduce from 'lodash/reduce';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import {
     prepareInputs,
     getStartingSearchIndexToPrepareInputs,
     getUnspentInputs,
-    isValidInput,
+    isValidInput
 } from '../../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
@@ -20,154 +26,131 @@ describe('libs: iota/inputs', () => {
     });
 
     describe('#prepareInputs', () => {
-        it('should return an object with props inputs and availableBalance', () => {
-            const result = prepareInputs({}, 0, 0);
-            expect(result).to.have.keys(['inputs', 'availableBalance']);
-            expect(Object.keys(result).length).to.equal(2);
-        });
+        let addressData;
 
-        it('should only choose addresses as inputs with balance greater than zero', () => {
-            const addressesData = {
-                foo: { index: 0, balance: 1 },
-                baz: { index: 1, balance: 0 },
-                bar: { index: 2, balance: 2 },
+        before(() => {
+            addressData = {
+                AAA: { index: 0, balance: 1, spent: { local: false, remote: false } },
+                BBB: { index: 1, balance: 2, spent: { local: false, remote: false } },
+                CCC: { index: 2, balance: 0, spent: { local: false, remote: false } },
+                DDD: { index: 3, balance: 99, spent: { local: false, remote: false } },
+                EEE: { index: 4, balance: 0, spent: { local: false, remote: false } },
+                FFF: { index: 5, balance: 50, spent: { local: false, remote: false } },
+                GGG: { index: 6, balance: 30, spent: { local: false, remote: false } },
+                HHH: { index: 7, balance: 6, spent: { local: false, remote: false } },
+                III: { index: 8, balance: 7, spent: { local: false, remote: false } },
+                JJJ: { index: 9, balance: 1, spent: { local: false, remote: false } },
             };
-
-            const result = prepareInputs(addressesData, 0, 1); // Threshold -> 1
-            expect(result.inputs).to.eql([{ keyIndex: 0, balance: 1, address: 'foo', security: 2 }]);
         });
 
-        it('should have address, balance, keyIndex and security props inside each input element', () => {
-            const addressesData = {
-                foo: { index: 0, balance: 1 },
-                baz: { index: 1, balance: 0 },
-                bar: { index: 2, balance: 2 },
-            };
-
-            const result = prepareInputs(addressesData, 0, 2); // Threshold -> 2
-            const inputs = result.inputs;
-            inputs.forEach((input) => expect(input).to.have.keys('address', 'balance', 'keyIndex', 'security'));
-        });
-
-        it('should have availableBalance always equal to sum of balances prop inside inputs', () => {
-            const addressesData = {
-                foo: { index: 0, balance: 1 },
-                baz: { index: 1, balance: 0 },
-                bar: { index: 2, balance: 2 },
-            };
-
-            const result = prepareInputs(addressesData, 0, 3); // Threshold -> 3
-            expect(result.availableBalance).to.equal(3);
-        });
-
-        it('should have availableBalance always greater than or equal to threshold if total balances on addresses in greater than or equal to threshold', () => {
-            const payloads = [
-                {
-                    data: {
-                        foo: { index: 0, balance: 1 },
-                        baz: { index: 1, balance: 0 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 3,
-                },
-                {
-                    data: {
-                        foo: { index: 0, balance: 10 },
-                        baz: { index: 1, balance: 20 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 10,
-                },
-                {
-                    data: {
-                        foo: { index: 0, balance: 100 },
-                        baz: { index: 1, balance: 20 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 100,
-                },
-            ];
-
-            payloads.forEach((payload) => {
-                const result = prepareInputs(payload.data, 0, payload.threshold);
-                expect(result.availableBalance >= payload.threshold).to.equal(true);
+        describe('when has insufficient balance on inputs', () => {
+            it('should throw with an error "Insufficient balance."', () => {
+                try {
+                    prepareInputs(addressData, 10000);
+                } catch (e) {
+                    expect(e.message).to.eql('Insufficient balance.');
+                }
             });
         });
 
-        it('should have availableBalance always less than threshold if total balances on addresses in less than threshold', () => {
-            const payloads = [
-                {
-                    data: {
-                        foo: { index: 0, balance: 1 },
-                        baz: { index: 1, balance: 0 },
-                        bar: { index: 2, balance: 0 },
-                    },
-                    threshold: 3,
-                },
-                {
-                    data: {
-                        foo: { index: 0, balance: 10 },
-                        baz: { index: 1, balance: 20 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 100,
-                },
-                {
-                    data: {
-                        foo: { index: 0, balance: 100 },
-                        baz: { index: 1, balance: 20 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 500,
-                },
-            ];
-
-            payloads.forEach((payload) => {
-                const result = prepareInputs(payload.data, 0, payload.threshold);
-                expect(result.availableBalance < payload.threshold).to.equal(true);
+        describe('when provided threshold is zero', () => {
+            it('should throw with an error "Inputs threshold cannot be zero."', () => {
+                try {
+                    prepareInputs(addressData, 0);
+                } catch (e) {
+                    expect(e.message).to.eql('Inputs threshold cannot be zero.');
+                }
             });
         });
 
-        it('should not include addresses with indexes smaller than start passed as second argument', () => {
-            const payloads = [
-                {
-                    data: {
-                        foo: { index: 0, balance: 1 },
-                        baz: { index: 1, balance: 0 },
-                        bar: { index: 2, balance: 0 },
-                    },
-                    threshold: 3,
-                },
-                {
-                    data: {
-                        foo: { index: 0, balance: 10 },
-                        baz: { index: 1, balance: 20 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 100,
-                },
-                {
-                    data: {
-                        foo: { index: 0, balance: 100 },
-                        baz: { index: 1, balance: 20 },
-                        bar: { index: 2, balance: 8 },
-                    },
-                    threshold: 500,
-                },
-            ];
+        describe('when provided limit is zero', () => {
+            it('should throw with an error "Inputs limit cannot be zero."', () => {
+                try {
+                    prepareInputs(addressData, 10, 0);
+                } catch (e) {
+                    expect(e.message).to.eql('Inputs limit cannot be zero.');
+                }
+            });
+        });
 
-            payloads.forEach((payload) => {
-                const result = prepareInputs(payload.data, 1, payload.threshold);
-                result.inputs.forEach((input) => {
-                    expect(input.keyIndex).to.not.equal(0);
+        describe('when limit is provided', () => {
+            it('should not select inputs with size greater than the limit', () => {
+                const limit = random(1, 4);
+                const threshold = random(
+                    1,
+                    reduce(addressData, (balance, data) => balance + data.balance, 0)
+                );
+
+                try {
+                    const result = prepareInputs(addressData, threshold, limit);
+
+                    expect(result.inputs.length <= limit).to.equal(true);
+                } catch (e) {
+                    // If inputs cannot be selected within a specified limit, test the error message
+                    expect(e.message).to.equal('Cannot find inputs with provided limit.');
+                }
+
+            });
+
+            describe('when provided threshold has an exact match for balance of any address', () => {
+                it('should return a single input with exact balance', () => {
+                    each(addressData, (data) => {
+                        if (data.balance > 0) {
+                            const result = prepareInputs(addressData, data.balance);
+
+                            // Input length should be one
+                            expect(result.inputs.length).to.equal(1);
+
+                            const input = head(result.inputs);
+
+                            // Balance should be exactly equal to threshold
+                            expect(input.balance).to.equal(data.balance);
+                            expect(input.security).to.equal(2);
+
+                            const inputsWithDuplicateBalance = filter(addressData, (d) => d.balance === data.balance);
+
+                            // If there are multiple addresses with same balance, it should choose any address
+                            expect(map(inputsWithDuplicateBalance, (value) => value.index)).to.include(input.keyIndex);
+
+                            expect(result.balance).to.eql(data.balance);
+                        }
+                    });
                 });
             });
 
-            payloads.forEach((payload) => {
-                const result = prepareInputs(payload.data, 2, payload.threshold);
-                result.inputs.forEach((input) => {
-                    expect(input.keyIndex === 0 || input.keyIndex === 1).to.not.equal(true);
+            // TODO: Test when provided threshold does not have an exact match for balance of any address
+        });
+
+        describe('when limit is not provided (limit === null)', () => {
+            let inputsMap;
+
+            before(() => {
+                inputsMap = {
+                    28: [{ address: 'GGG', keyIndex: 6, security: 2, balance: 30 }],
+                    110: [
+                        { address: 'DDD', keyIndex: 3, security: 2, balance: 99 },
+                        { address: 'III', keyIndex: 8, security: 2, balance: 7 },
+                        { address: 'BBB', keyIndex: 1, security: 2, balance: 2 },
+                        { address: 'AAA', keyIndex: 0, security: 2, balance: 1 },
+                        { address: 'JJJ', keyIndex: 9, security: 2, balance: 1 },
+                    ],
+                    3: [
+                        { address: 'BBB', keyIndex: 1, security: 2, balance: 2 },
+                        { address: 'AAA', keyIndex: 0, security: 2, balance: 1 },
+                    ],
+                    48: [{ address: 'FFF', keyIndex: 5, security: 2, balance: 50 }],
+                    5: [{ address: 'HHH', keyIndex: 7, security: 2, balance: 6 }],
+                };
+            });
+
+            it('should choose inputs by optimal value', () => {
+                each(inputsMap, (inputs, threshold) => {
+                    const result = prepareInputs(addressData, threshold, null);
+
+                    expect(result.inputs).to.eql(inputs);
+                    expect(result.balance).to.eql(reduce(inputs, (total, input) => total + input.balance, 0));
                 });
+
             });
         });
     });

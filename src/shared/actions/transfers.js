@@ -35,7 +35,6 @@ import {
     isStillAValidTransaction,
     findPromotableTail,
     prepareTransferArray,
-    filterInvalidPendingTransactions,
     getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
     isAboveMaxDepth,
@@ -59,7 +58,7 @@ import {
     getAddressesUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import { getInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
     generateTransferErrorAlert,
@@ -462,60 +461,16 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Only update the local store with updated account information after this transaction is successfully completed.
                 accountState = newState;
 
-                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
-
-                return filterInvalidPendingTransactions()(valueTransfers, accountState.addresses);
-            })
-            .then((filteredTransfers) => {
-                const { addresses, transfers } = accountState;
-                const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
-
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                // Prepare inputs.
-                return getUnspentInputs()(
-                    // Latest address data
-                    addresses,
-                    // Normalised transactions list
-                    map(transfers, (tx) => tx),
-                    // Pending value transactions
-                    filteredTransfers,
-                    // Start index for address (for input selection)
-                    startIndex,
-                    // Transfer value
-                    value,
-                    // Inputs
-                    null,
+                return getInputs()(
+                    accountState.addresses,
+                    map(accountState.transfers, (tx) => tx),
+                    value
                 );
             })
             .then((inputs) => {
-                // Input selection prepares inputs sequentially starting from the first address with balance
-                // If total balance is less than transfer value, do not allow transaction.
-                if (get(inputs, 'totalBalance') < value) {
-                    throw new Error(Errors.NOT_ENOUGH_BALANCE);
-
-                    // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
-                    // Contains only spendable balance
-                    // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-                } else if (get(inputs, 'availableBalance') < value) {
-                    const addresses = accountState.addresses;
-                    const transfers = accountState.transfers;
-                    const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
-
-                    if (size(pendingOutgoingTransfers)) {
-                        throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    } else {
-                        if (size(get(inputs, 'spentAddresses'))) {
-                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
-                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
-                            throw new Error(Errors.INCOMING_TRANSFERS);
-                        }
-
-                        throw new Error(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
-                    }
-                }
-
                 // Do not allow receiving address to be one of the user's own input addresses.
                 const isSendingToAnyInputAddress = some(
                     get(inputs, 'inputs'),

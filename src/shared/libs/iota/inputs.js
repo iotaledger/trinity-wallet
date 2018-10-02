@@ -19,6 +19,8 @@ import {
 } from './addresses';
 import { VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
 import { DEFAULT_SECURITY } from '../../config';
+import Errors from '../errors';
+import { filterInvalidPendingTransactions } from './transfers';
 
 /**
  *   Prepares inputs for sending transfer from locally stored address related information
@@ -33,20 +35,34 @@ import { DEFAULT_SECURITY } from '../../config';
  *   @returns {object} inputs, balance
  **/
 export const prepareInputs = (addressData, threshold, limit = 2, security = DEFAULT_SECURITY) => {
-    let availableBalance = 0;
     const _throw = (error) => {
         throw new Error(error);
     };
+
+    if (reduce(addressData, (acc, data) => acc + data.balance, 0) < threshold) {
+        _throw(Errors.INSUFFICIENT_BALANCE);
+    }
 
     // Return prematurely in case threshold is zero
     // This check prevents adding input on the first iteration
     // if address data has addresses with balance.
     if (!threshold) {
-        _throw('Threshold cannot be zero!');
+        _throw(Errors.INPUTS_THRESHOLD_CANNOT_BE_ZERO);
     }
 
-    const inputs = transformAddressDataToInputs(addressData, security);
+    if (limit === 0) {
+        _throw(Errors.INPUTS_LIMIT_CANNOT_BE_ZERO);
+    }
+
+    const inputs = filter(
+        transformAddressDataToInputs(addressData, security),
+        // Also filter addresses with zero balance
+        (input) => input.balance > 0
+    );
+
+    // First try to select inputs by optimal value i.e., select less inputs as possible
     const selectedInputsByOptimalValue = [];
+    let availableBalance = 0;
 
     while (availableBalance < threshold) {
         const sortedInputs = sortInputsByOptimalValue(
@@ -61,20 +77,35 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
         availableBalance += input.balance;
     }
 
+    // If there is a limit applied on the number of selected inputs and
+    // and if the selected inputs (by optimal value) exceed the limit
+
+    // Then try to find inputs where inputs <= limit & sum(inputs) >= threshold
+    // If sum exceeds threshold, try to select inputs with minimum size
     if (isNumber(limit) && size(selectedInputsByOptimalValue) > limit) {
         const inputsWithUniqueBalances = uniqBy(inputs, 'balance');
-        const { exactMatches, exceeded } = subsetSumWithLimit()(map(inputs, (input) => input.balance), threshold);
 
+        const { exactMatches, exceeded } = subsetSumWithLimit(limit)(
+            map(
+                // Find subset sum with unique balances
+                inputsWithUniqueBalances,
+                (input) => input.balance
+        ),
+            threshold
+        );
+
+        // If there exists some inputs that satisfy sum(inputs) === threshold
+        // Then choose those inputs as it won't require any remainder
         if (size(exactMatches)) {
             const match = head(exactMatches);
             const inputsWithExactMatch = filter(inputsWithUniqueBalances, (input) => includes(match, input.balance));
             const balance = reduce(inputsWithExactMatch, (acc, input) => acc + input.balance, 0);
 
+            // Verify total balance === threshold
             if (balance !== threshold) {
-                _throw('Something went wrong man!');
+                _throw(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
             }
 
-            // Verify total balance === threshold, otherwise throw
             return {
                 inputs: inputsWithExactMatch,
                 balance,
@@ -82,17 +113,24 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
         }
 
         const findSetWithMinSize = () => {
-            // Also check pair size
-            const minSizeInputs = minBy(exceeded, size);
-            const finalInputs = filter(inputsWithUniqueBalances, (input) => includes(minSizeInputs, input.balance));
+            const inputsWithMinSize = minBy(exceeded, size);
+            const finalInputs = filter(inputsWithUniqueBalances, (input) => includes(inputsWithMinSize, input.balance));
             const balance = reduce(finalInputs, (acc, input) => acc + input.balance, 0);
 
-            if (balance <= threshold) {
-                _throw('Something went wrong man!');
+            if (
+                balance <= threshold ||
+                size(inputsWithMinSize) > limit
+            ) {
+                _throw(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
             }
+
+            return {
+                inputs: finalInputs,
+                balance,
+            };
         };
 
-        return size(exceeded) ? findSetWithMinSize() : _throw('Oopsie cannot select inputs!');
+        return size(exceeded) ? findSetWithMinSize() : _throw(Errors.CANNOT_FIND_INPUTS_WITH_PROVIDED_LIMIT);
     }
 
     return {
@@ -101,16 +139,34 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
     };
 };
 
+/**
+ * Sorts inputs by optimal value
+ *
+ * @method sortInputsByOptimalValue
+ * @param {array} inputs
+ * @param {number} diff
+ *
+ * @returns {array}
+ */
 const sortInputsByOptimalValue = (inputs, diff) =>
     inputs.slice().sort((a, b) => Math.abs(diff - a.balance) - Math.abs(diff - b.balance));
 
-const subsetSumWithLimit = (limit = 2) => {
+/**
+ * Given a list of balances and a threshold
+ * attempts to find a subset (within provided limit) with an exact match.
+ *
+ * @method subsetSumWithLimit
+ * @param {number} [limit]
+ * @param {number} [MAX_CALL_TIMES]
+ *
+ * @returns {function(array, number, [array]): {object}}
+ */
+export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
     let hasFoundAnExactMatch = false;
     let hasFoundNoMatches = false;
 
     const exactMatches = [];
     const exceeded = [];
-    const MAX_CALL_TIMES = 100000;
 
     let callTimes = 0;
     let sizeOfBalances = 0;
@@ -118,29 +174,33 @@ const subsetSumWithLimit = (limit = 2) => {
     const calculate = (balances, threshold, partial = []) => {
         callTimes += 1;
 
+        // Keep track of the initial size of balances
         if (callTimes === 1) {
-            sizeOfBalances = balances.length;
+            sizeOfBalances = size(balances);
         }
 
-        // sum partial
+        const sizeOfPartial = size(partial);
+
+        // Sum partial
         const sum = reduce(partial, (acc, value) => acc + value, 0);
 
-        // check if the partial sum is equals to threshold
-        if (sum === threshold && partial.length <= limit) {
+        // Check if the partial sum equals threshold
+        if (sum === threshold && sizeOfPartial <= limit) {
             exactMatches.push(partial);
             hasFoundAnExactMatch = true;
         }
 
-        if (sum > threshold && partial.length <= limit) {
+        if (sum > threshold && sizeOfPartial <= limit) {
             exceeded.push(partial);
         }
 
         // If some has reached the threshold why bother continuing
         if (sum >= threshold) {
-            return;
+            return ;
         }
 
         each(balances, (balance, index) => {
+            // When finds an exact match, break the iteration
             if (hasFoundAnExactMatch) {
                 return false;
             }
@@ -150,14 +210,18 @@ const subsetSumWithLimit = (limit = 2) => {
             }
 
             calculate(
-                // Remaining
+                // Remaining balances
                 balances.slice(index + 1),
                 threshold,
                 [...partial, balance],
             );
         });
 
-        if (hasFoundAnExactMatch || hasFoundNoMatches || callTimes === MAX_CALL_TIMES) {
+        if (
+            hasFoundAnExactMatch ||
+            hasFoundNoMatches ||
+            callTimes === MAX_CALL_TIMES
+        ) {
             return {
                 exactMatches,
                 exceeded,
@@ -173,39 +237,55 @@ const subsetSumWithLimit = (limit = 2) => {
  *   Returns an object with all inputs with addresses that are unspent, total computed balance and
  *   balance associated with all addresses.
  *
- *   @method getUnspentInputs
+ *   @method getInputs
  *   @param {string} [provider]
  *
  *   @returns {function(object, array, array, number, number, *): Promise<object>}
  **/
-export const getUnspentInputs = (provider) => (
+export const getInputs = (provider) => (
     addressData,
     normalisedTransactions,
-    pendingValueTransfers,
     threshold,
 ) => {
     // First check if there is sufficient balance
     if (reduce(addressData, (acc, data) => acc + data.balance, 0) < threshold) {
-        return Promise.reject('Insufficient balance.');
+        return Promise.reject(Errors.INSUFFICIENT_BALANCE);
     }
 
-    // Filter all spent addresses
-    return pickUnspentAddressData(provider)(addressData, normalisedTransactions).then((unspentAddressData) => {
-        if (reduce(unspentAddressData, (acc, data) => acc + data.balance, 0) < threshold) {
-            throw new Error('Funds at spent addresses.');
-        }
+    // Find pending value transactions
+    return filterInvalidPendingTransactions(provider)(
+        filter(normalisedTransactions, (tx) => tx.transferValue !== 0),
+        addressData
+    )
+        .then((pendingValueTransactions) => {
+            // Remove addresses from addressData with pending incoming transactions
+            const addressDataWithoutPendingIncomingTransactions = omitAddressesDataWithIncomingTransfers(
+                addressData,
+                pendingValueTransactions
+            );
 
-        if (
-            reduce(
-                omitAddressesDataWithIncomingTransfers(unspentAddressData, pendingValueTransfers),
-                (acc, data) => acc + data.balance,
-                0,
-            ) < threshold
-        ) {
-            throw new Error('Incoming transactions.');
-        }
+            if (
+                reduce(
+                    addressDataWithoutPendingIncomingTransactions,
+                    (acc, data) => acc + data.balance,
+                    0,
+                ) < threshold
+            ) {
+                throw new Error(Errors.INCOMING_TRANSFERS);
+            }
 
-        return prepareInputs(addressData, threshold);
+            // Filter all spent addresses
+            return pickUnspentAddressData(provider)(
+                addressDataWithoutPendingIncomingTransactions,
+                normalisedTransactions
+            );
+        })
+        .then((unspentAddressData) => {
+            if (reduce(unspentAddressData, (acc, data) => acc + data.balance, 0) < threshold) {
+                throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+            }
+
+            return prepareInputs(unspentAddressData, threshold);
     });
 };
 

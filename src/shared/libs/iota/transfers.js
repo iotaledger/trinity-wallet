@@ -831,7 +831,7 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  *   @method filterInvalidPendingTransactions
  *   @param {string} [provider]
  *
- *   @returns {function(array, object): Promise<object>}
+ *   @returns {function(array, object): Promise<array>}
  **/
 export const filterInvalidPendingTransactions = (provider) => (transactions, addressData) => {
     const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
