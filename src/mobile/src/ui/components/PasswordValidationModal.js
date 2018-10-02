@@ -55,7 +55,7 @@ export class PasswordValidationModal extends PureComponent {
                         <View style={{ backgroundColor: theme.body.bg }}>
                             <InfoBox
                                 body={theme.body}
-                                width={width / 1.15}
+                                width={GENERAL.contentWidth}
                                 text={
                                     <View>
                                         <Text

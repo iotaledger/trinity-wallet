@@ -16,7 +16,7 @@ import QRCode from 'qr.js/lib/QRCode';
 import PrintModal from 'ui/components/PrintModal';
 import PasswordManagerModalContent from 'ui/components/PasswordManagerModal';
 import Button from 'ui/components/Button';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import GENERAL from 'ui/theme/general';
@@ -547,7 +547,7 @@ class SaveYourSeed extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
                         leftButtonText={t('global:goBack')}

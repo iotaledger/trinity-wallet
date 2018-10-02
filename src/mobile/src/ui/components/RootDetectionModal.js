@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 30,
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         paddingHorizontal: width / 50,
     },
     warningText: {
@@ -60,7 +60,7 @@ export class RootDetectionModal extends PureComponent {
     render() {
         const { t, backgroundColor, textColor, borderColor, warningColor } = this.props;
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: GENERAL.contentWidth, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.warningText, warningColor]}>{t('warning')}</Text>
                     <View style={{ marginBottom: height / 35 }}>

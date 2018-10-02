@@ -16,16 +16,8 @@ import {
     ADDRESS_LENGTH,
 } from 'shared-modules/libs/iota/utils';
 import { setDeepLinkInactive } from 'shared-modules/actions/wallet';
-import {
-    getCurrencySymbol,
-    getNextDenomination,
-    getIOTAUnitMultiplier,
-} from 'shared-modules/libs/currency';
-import {
-    getFromKeychainRequest,
-    getFromKeychainSuccess,
-    getFromKeychainError,
-} from 'shared-modules/actions/keychain';
+import { getCurrencySymbol, getNextDenomination, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
+import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { makeTransaction } from 'shared-modules/actions/transfers';
 import {
     setSendAddressField,
@@ -83,7 +75,7 @@ const styles = StyleSheet.create({
     maxContainer: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         paddingRight: 1,
     },
     maxButtonText: {
@@ -828,7 +820,7 @@ export class Send extends Component {
                                     this.props.setSendAddressField(text);
                                 }
                             }}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -859,7 +851,7 @@ export class Send extends Component {
                             editable={!isSending}
                             setAmount={(text) => this.props.setSendAmountField(text)}
                             setDenomination={(text) => this.props.setSendDenomination(text)}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             onRef={(c) => {
                                 this.amountField = c;
                             }}
@@ -908,7 +900,7 @@ export class Send extends Component {
                             keyboardType="default"
                             label={t('message')}
                             onChangeText={(text) => this.props.setSendMessageField(text)}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="send"

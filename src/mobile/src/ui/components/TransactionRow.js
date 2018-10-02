@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 1,
         paddingVertical: height / 55,
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         justifyContent: 'center',
         marginBottom: height / 60,
         height: height / 10,

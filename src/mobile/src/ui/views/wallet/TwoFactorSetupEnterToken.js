@@ -10,7 +10,7 @@ import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -174,7 +174,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <CustomTextInput
                             label={t('code')}
                             onChangeText={(code) => this.setState({ code })}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -185,7 +185,7 @@ class TwoFactorSetupEnterToken extends Component {
                         />
                     </View>
                     <View style={styles.bottomWrapper}>
-                        <OnboardingButtons
+                        <DualFooterButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
                             leftButtonText={t('global:back')}

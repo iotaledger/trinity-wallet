@@ -13,7 +13,7 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import QRScannerComponent from 'ui/components/QrScanner';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import { width, height } from 'libs/dimensions';
@@ -237,7 +237,7 @@ class EnterSeed extends React.Component {
                                             this.setState({ seed: text.toUpperCase() });
                                         }
                                     }}
-                                    containerStyle={{ width: width / 1.15 }}
+                                    containerStyle={{ width: GENERAL.contentWidth }}
                                     theme={theme}
                                     autoCapitalize="characters"
                                     autoCorrect={false}
@@ -282,7 +282,7 @@ class EnterSeed extends React.Component {
                                 <View style={{ flex: 0.7 }} />
                             </View>
                             <View style={styles.bottomContainer}>
-                                <OnboardingButtons
+                                <DualFooterButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
                                     leftButtonText={t('global:goBack')}

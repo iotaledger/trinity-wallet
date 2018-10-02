@@ -12,7 +12,7 @@ import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
 import InfoBox from 'ui/components/InfoBox';
@@ -269,7 +269,7 @@ export class SetAccountName extends Component {
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={(text) => this.setState({ accountName: text })}
-                                containerStyle={{ width: width / 1.15 }}
+                                containerStyle={{ width: GENERAL.contentWidth }}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -291,7 +291,7 @@ export class SetAccountName extends Component {
                             <View style={{ flex: 0.5 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
                                 leftButtonText={t('global:goBack')}

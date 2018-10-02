@@ -16,7 +16,7 @@ import QRScannerComponent from 'ui/components/QrScanner';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import GENERAL from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
@@ -244,7 +244,7 @@ class SeedReentry extends Component {
                                                 this.setState({ seed: text.toUpperCase() });
                                             }
                                         }}
-                                        containerStyle={{ width: width / 1.15 }}
+                                        containerStyle={{ width: GENERAL.contentWidth }}
                                         maxLength={MAX_SEED_LENGTH}
                                         autoCapitalize="characters"
                                         autoCorrect={false}
@@ -285,7 +285,7 @@ class SeedReentry extends Component {
                                     <View style={{ flex: 0.5 }} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <OnboardingButtons
+                                    <DualFooterButtons
                                         onLeftButtonPress={() => this.onBackPress()}
                                         onRightButtonPress={() => this.onDonePress()}
                                         leftButtonText={t(':goBack')}

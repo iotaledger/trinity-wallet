@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         height,
     },
     content: {
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,
