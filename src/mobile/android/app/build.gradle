@@ -145,7 +145,6 @@ android {
 dependencies {
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
-    implementation project(':nodejs-mobile-react-native')
     implementation project(':react-native-fast-crypto')
     implementation project(':react-native-modal-translucent')
     implementation project(':react-native-detect-navbar-android')
