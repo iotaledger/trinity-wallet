@@ -20,7 +20,7 @@ import OnboardingButtons from 'ui/components/OnboardingButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -257,18 +257,16 @@ class SeedReentry extends Component {
                                         onQRPress={() => this.onQRPress()}
                                         seed={seed}
                                     />
-                                    {!isIPhone11 && (
-                                        <SeedVaultImport
-                                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                            onSeedImport={(seed) => {
-                                                this.setState({ seed });
-                                                this.hideModal();
-                                            }}
-                                            onRef={(ref) => {
-                                                this.SeedVaultImport = ref;
-                                            }}
-                                        />
-                                    )}
+                                    <SeedVaultImport
+                                        openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                        onSeedImport={(seed) => {
+                                            this.setState({ seed });
+                                            this.hideModal();
+                                        }}
+                                        onRef={(ref) => {
+                                            this.SeedVaultImport = ref;
+                                        }}
+                                    />
                                     <InfoBox
                                         body={theme.body}
                                         text={

@@ -18,7 +18,7 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -252,18 +252,16 @@ class EnterSeed extends React.Component {
                                     seed={seed}
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                {!isIPhone11 && (
-                                    <SeedVaultImport
-                                        openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                        onSeedImport={(seed) => {
-                                            this.setState({ seed });
-                                            this.hideModal();
-                                        }}
-                                        onRef={(ref) => {
-                                            this.SeedVaultImport = ref;
-                                        }}
-                                    />
-                                )}
+                                <SeedVaultImport
+                                    openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                    onSeedImport={(seed) => {
+                                        this.setState({ seed });
+                                        this.hideModal();
+                                    }}
+                                    onRef={(ref) => {
+                                        this.SeedVaultImport = ref;
+                                    }}
+                                />
                                 <View style={{ flex: 0.4 }} />
                                 <InfoBox
                                     body={theme.body}
