@@ -6,7 +6,7 @@ import { isIPhoneX } from 'libs/device';
 export default function withSafeAreaView(WrappedComponent) {
     function EnhancedComponent(props) {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: isIPhoneX ? 'black' : 'transparent' }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent', marginBottom: isIPhoneX ? 34 : 0 }}>
                 <WrappedComponent {...props} />
             </SafeAreaView>
         );

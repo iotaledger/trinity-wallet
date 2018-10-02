@@ -10,7 +10,7 @@ import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -115,16 +115,15 @@ class OnboardingComplete extends Component {
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Button
-                        onPress={() => this.onNextPress()}
+                    <SingleFooterButton
+                        onButtonPress={() => this.onNextPress()}
                         testID="languageSetup-next"
-                        style={{
+                        buttonStyle={{
                             wrapper: { backgroundColor: primary.color },
                             children: { color: primary.body },
                         }}
-                    >
-                        {t('openYourWallet')}
-                    </Button>
+                        buttonText={t('openYourWallet')}
+                    />
                 </View>
             </View>
         );

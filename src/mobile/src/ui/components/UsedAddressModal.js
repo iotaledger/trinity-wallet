@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingTop: height / 20,
         paddingBottom: height / 25,
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         paddingHorizontal: width / 20,
     },
     textContainer: {
@@ -68,7 +68,7 @@ class UsedAddressModal extends PureComponent {
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
-                <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: body.bg }}>
+                <View style={{ width: GENERAL.contentWidth, alignItems: 'center', backgroundColor: body.bg }}>
                     <View style={[styles.modalContent, borderColor]}>
                         <View style={styles.textContainer}>
                             <Text style={[styles.regularText, textColor]}>{t('cantSpendFullBalanceQuestion')}</Text>

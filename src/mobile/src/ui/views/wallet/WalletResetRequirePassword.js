@@ -9,7 +9,7 @@ import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { persistor } from 'libs/store';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { clearKeychain, hash } from 'libs/keychain';
@@ -17,6 +17,7 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
+import GENERAL from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -196,7 +197,7 @@ class WalletResetRequirePassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
-                                containerStyle={{ width: width / 1.15 }}
+                                containerStyle={{ width: GENERAL.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -207,7 +208,7 @@ class WalletResetRequirePassword extends Component {
                             <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
                                 leftButtonText={t('global:cancel')}

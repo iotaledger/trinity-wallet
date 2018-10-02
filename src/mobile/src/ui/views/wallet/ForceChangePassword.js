@@ -218,7 +218,7 @@ class ForceChangePassword extends Component {
             onRef: ref,
             label,
             onChangeText,
-            containerStyle: { width: width / 1.15 },
+            containerStyle: { width: GENERAL.contentWidth },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,

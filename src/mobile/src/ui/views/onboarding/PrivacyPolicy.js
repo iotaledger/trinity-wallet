@@ -13,7 +13,7 @@ import {
     dePrivacyPolicyIOS,
 } from 'shared-modules/markdown';
 import i18next from 'i18next';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -149,15 +149,14 @@ class PrivacyPolicy extends Component {
                 </ScrollView>
                 {this.state.hasReadPrivacyPolicy && (
                     <View style={{ position: 'absolute', bottom: 0 }}>
-                        <Button
-                            onPress={() => this.onNextPress()}
-                            style={{
+                        <SingleFooterButton
+                            onButtonPress={() => this.onNextPress()}
+                            buttonStyle={{
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },
                             }}
-                        >
-                            {t('agree')}
-                        </Button>
+                            buttonText={t('agree')}
+                        />
                     </View>
                 )}
             </View>

@@ -160,7 +160,7 @@ class ChangePassword extends Component {
                             returnKeyType="next"
                             theme={theme}
                             widget="empty"
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

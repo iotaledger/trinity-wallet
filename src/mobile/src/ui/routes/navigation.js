@@ -30,7 +30,6 @@ function getGenerator(screen) {
     if (isIPhoneX) {
         return withSafeAreaView(screen);
     }
-
     return screen;
 }
 

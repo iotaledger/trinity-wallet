@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height / 40,
         alignItems: 'center',
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
     },
     text: {
         backgroundColor: 'transparent',

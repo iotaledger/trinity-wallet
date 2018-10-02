@@ -1,6 +1,8 @@
 import { width } from 'libs/dimensions';
+import { isIPhoneX } from 'libs/device';
 
 export default {
+    contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
     borderRadius: width / 60,
     borderRadiusSmall: width / 90,
     borderRadiusLarge: width / 40,

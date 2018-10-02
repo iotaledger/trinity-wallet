@@ -16,7 +16,7 @@ import WithModalComponent from 'ui/components/ModalComponent';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import DropdownComponent from 'ui/components/Dropdown';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Icon } from 'ui/theme/icons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -133,7 +133,7 @@ class LanguageSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const { t, theme: { body } } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -165,16 +165,11 @@ class LanguageSetup extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <Button
-                                onPress={() => this.onNextPress()}
+                            <SingleFooterButton
+                                onButtonPress={() => this.onNextPress()}
                                 testID="languageSetup-next"
-                                style={{
-                                    wrapper: { backgroundColor: primary.color },
-                                    children: { color: primary.body },
-                                }}
-                            >
-                                {t('letsGetStarted')}
-                            </Button>
+                                buttonText={t('letsGetStarted')}
+                            />
                         </View>
                     </View>
                 </View>

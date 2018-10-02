@@ -10,7 +10,7 @@ import { paperWallet } from 'shared-modules/images/PaperWallets.js';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     textContainer: {
-        width: width / 1.155,
+        width: GENERAL.contentWidth5,
         alignItems: 'center',
     },
     infoText: {
@@ -231,7 +231,7 @@ class WriteSeedDown extends Component {
                             <View style={{ flex: 0.25 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onPrintPress()}
                                 onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
                                 leftButtonText={t('saveYourSeed:printBlankWallet')}

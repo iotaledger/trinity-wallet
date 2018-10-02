@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
-import General from 'ui/theme/general';
+import GENERAL from 'ui/theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     children: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: General.fontSize3,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
     },
     wrapper: {

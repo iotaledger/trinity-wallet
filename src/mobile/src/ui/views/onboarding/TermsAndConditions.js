@@ -12,7 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -153,15 +153,14 @@ class TermsAndConditions extends Component {
                 </ScrollView>
                 {this.state.hasReadTerms && (
                     <View style={{ position: 'absolute', bottom: 0 }}>
-                        <Button
-                            onPress={() => this.onNextPress()}
-                            style={{
+                        <SingleFooterButton
+                            onButtonPress={() => this.onNextPress()}
+                            buttonStyle={{
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },
                             }}
-                        >
-                            {t('accept')}
-                        </Button>
+                            buttonText={t('accept')}
+                        />
                     </View>
                 )}
             </View>

@@ -69,7 +69,7 @@ export class FingerprintModal extends PureComponent {
 
         return (
             <TouchableOpacity
-                style={[{ width: width / 1.15, alignItems: 'center' }, { backgroundColor: body.bg }]}
+                style={[{ width: GENERAL.contentWidth, alignItems: 'center' }, { backgroundColor: body.bg }]}
                 onPress={this.props.hideModal}
             >
                 <View style={[styles.modalContent, { borderColor: body.color }]}>

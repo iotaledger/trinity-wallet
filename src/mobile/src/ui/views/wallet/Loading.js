@@ -31,7 +31,7 @@ import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 
 import { width, height } from 'libs/dimensions';
 
@@ -401,15 +401,14 @@ class Loading extends Component {
                     {displayNodeChangeOption && (
                         <View style={styles.nodeChangeContainer}>
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
-                            <Button
-                                onPress={this.onChangeNodePress}
-                                style={{
+                            <SingleFooterButton
+                                onButtonPress={this.onChangeNodePress}
+                                buttonStyle={{
                                     wrapper: { backgroundColor: primary.color },
                                     children: { color: primary.body },
                                 }}
-                            >
-                                {t('global:changeNode')}
-                            </Button>
+                                buttonText={t('global:changeNode')}
+                            />
                         </View>
                     )}
                 </View>

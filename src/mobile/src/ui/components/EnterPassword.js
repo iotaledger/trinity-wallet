@@ -9,6 +9,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import GENERAL from 'ui/theme/general';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 
@@ -135,7 +136,7 @@ class EnterPassword extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={(text) => this.setState({ password: text })}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

@@ -15,7 +15,7 @@ import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import CtaButton from 'ui/components/CtaButton';
 import { width, height } from 'libs/dimensions';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import GENERAL from 'ui/theme/general';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -293,7 +293,7 @@ class NewSeedSetup extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onNextPress()}
                                 leftButtonText={t('global:goBack')}
