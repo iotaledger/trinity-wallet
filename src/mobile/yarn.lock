@@ -4513,9 +4513,10 @@ jws@^3.1.4:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
-"kdbxweb@https://github.com/rajivshah3/kdbxweb":
+kdbxweb@^1.2.4:
   version "1.2.4"
-  resolved "https://github.com/rajivshah3/kdbxweb#314beedd73e6588ffc3fa506b2f4cd78dbed2fc6"
+  resolved "https://registry.yarnpkg.com/kdbxweb/-/kdbxweb-1.2.4.tgz#b9add7a1af60e56298732015fd425bcd95c4859b"
+  integrity sha512-n5ls0UtwcN+N2lalDP/ULDX9AhV37cNAnxKGjpnqOZL3OmTMnbVW01wGwWxZpdxRBOxUIQZ4w7dNlQFbngrtbA==
   dependencies:
     pako "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
     text-encoding "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
