@@ -63,7 +63,7 @@ export class SeedVaultImportComponent extends Component {
             })
             .catch((err) => {
                 generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
-                console.log(err); // eslint-disable-line no-console
+                throw err;
             });
     }
 

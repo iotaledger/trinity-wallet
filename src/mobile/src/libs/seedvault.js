@@ -52,6 +52,8 @@ export const getSeedFromVault = async (seedVault, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
     const seedVaultBuffer = new Uint8Array(seedVault);
     const db = await kdbxweb.Kdbx.load(seedVaultBuffer.buffer, credentials);
+    console.log('db received');
     const seed = db.getDefaultGroup().entries[0].fields.Seed.getText();
+    console.log('seed received');
     return seed;
 };

@@ -45,7 +45,7 @@
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
-    "kdbxweb": "^1.2.4",
+    "kdbxweb": "rajivshah3/kdbxweb#react-native",
     "lodash": "^4.17.10",
     "lottie-ios": "^2.1.5",
     "lottie-react-native": "2.2.7",
