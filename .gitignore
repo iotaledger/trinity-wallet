@@ -63,9 +63,9 @@ buck-out/
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
+src/mobile/*/fastlane/report.xml
+src/mobile/*/fastlane/Preview.html
+src/mobile/*/fastlane/screenshots
 screenshots
 
 node_modules_*

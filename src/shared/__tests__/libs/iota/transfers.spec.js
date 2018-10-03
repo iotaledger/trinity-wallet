@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
 import isArray from 'lodash/isArray';
@@ -6,6 +7,7 @@ import omit from 'lodash/omit';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import nock from 'nock';
 import {
     prepareTransferArray,
     categoriseTransactionsByPersistence,
@@ -27,11 +29,15 @@ import {
     sortTransactionTrytesArray,
     getTransferValue,
     computeTransactionMessage,
+    isValidTransfer,
+    isFundedBundle,
+    categoriseInclusionStatesByBundleHash,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import * as mockTransactions from '../../__samples__/transactions';
 import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/transfers', () => {
     before(() => {
@@ -189,62 +195,62 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#prepareTransferArray', () => {
-        it('should return an array', () => {
-            const args = ['foo', 1, 'message', 'U'.repeat(81)];
-            expect(Array.isArray(prepareTransferArray(...args))).to.equal(true);
+        let addressData;
+
+        before(() => {
+            addressData = {
+                ['X'.repeat(81)]: { index: 0, balance: 0, spent: { local: false, remote: false } },
+                ['Y'.repeat(81)]: { index: 1, balance: 0, spent: { local: false, remote: false } },
+            };
         });
 
-        it('should only have address, value, message and tag props in any element of the array', () => {
-            const args = ['foo', 0, 'message', 'U'.repeat(81)];
-            const result = prepareTransferArray(...args);
+        describe('when value is zero', () => {});
 
-            // Zero value transfers return two transfer objects
-            ['address', 'value', 'message', 'tag'].forEach((item) => {
-                expect(item in result[0]).to.equal(true);
-                expect(item in result[1]).to.equal(true);
-            });
-
-            expect(Object.keys(result[0]).length).to.equal(4);
-            expect(Object.keys(result[1]).length).to.equal(4);
-        });
-
-        it('should not have any other props other than address, value, message and tag props in any element of the array', () => {
-            const args = ['foo', 0, 'message', 'U'.repeat(81)];
-            const result = prepareTransferArray(...args);
-
-            ['foo', 'baz'].forEach((item) => {
-                expect(item in result[0]).to.equal(false);
-                expect(item in result[1]).to.equal(false); // Zero value transfers return two transfer objects
+        describe('when value is not zero', () => {
+            it('should return a single transfer object', () => {
+                expect(prepareTransferArray('X'.repeat(81), 1, '', addressData, 'tag')).to.eql([
+                    {
+                        address: 'X'.repeat(81),
+                        tag: 'tag',
+                        message: '',
+                        value: 1,
+                    },
+                ]);
             });
         });
 
-        it('should return two transfer objects if value passed as second argument is 0 and address does not equal first own address', () => {
-            const args = ['A'.repeat(81), 0, 'message', 'U'.repeat(81)];
-            const result = prepareTransferArray(...args);
+        describe('when value is zero', () => {
+            describe('when address is part of address data', () => {
+                it('should return a single transfer object', () => {
+                    expect(prepareTransferArray('X'.repeat(81), 0, '', addressData, 'tag')).to.eql([
+                        {
+                            address: 'X'.repeat(81),
+                            tag: 'tag',
+                            message: '',
+                            value: 0,
+                        },
+                    ]);
+                });
+            });
 
-            expect(result.length).to.equal(2);
-        });
-
-        it('should return a single transfer object if value passed as second argument is not 0', () => {
-            const args = ['foo', 1, 'message', 'U'.repeat(81)];
-            const result = prepareTransferArray(...args);
-
-            expect(result.length).to.equal(1);
-        });
-
-        it('should return a single transfer object if value passed as second argument is 0 but first own address equals receive address', () => {
-            const args = ['U'.repeat(81), 1, 'message', 'U'.repeat(81)];
-            const result = prepareTransferArray(...args);
-
-            expect(result.length).to.equal(1);
-        });
-
-        it('should assign "firstOwnAddress" passed as fourth argument to second transfer object if value passed as second argument is 0 and address does not equal first own address', () => {
-            const firstOwnAddress = 'U'.repeat(81);
-            const args = ['foo', 0, 'message', firstOwnAddress];
-            const result = prepareTransferArray(...args);
-
-            expect(result[1].address).to.equal(firstOwnAddress);
+            describe('when address is not part of address data', () => {
+                it('should return two transfer objects', () => {
+                    expect(prepareTransferArray('A'.repeat(81), 0, '', addressData, 'tag')).to.eql([
+                        {
+                            address: 'A'.repeat(81),
+                            tag: 'tag',
+                            message: '',
+                            value: 0,
+                        },
+                        {
+                            address: 'X'.repeat(81),
+                            tag: 'tag',
+                            message: '',
+                            value: 0,
+                        },
+                    ]);
+                });
+            });
         });
     });
 
@@ -1387,6 +1393,197 @@ describe('libs: iota/transfers', () => {
 
             expect(result).to.eql(trytes.value);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(3);
+        });
+    });
+
+    describe('#isValidTransfer', () => {
+        let validTransfer;
+
+        before(() => {
+            validTransfer = {
+                address: 'U'.repeat(81),
+                value: 10,
+            };
+        });
+
+        describe('when transfer is not an object', () => {
+            it('should return false', () => {
+                [[], 0.1, 1, undefined, null, ''].forEach((item) => {
+                    expect(isValidTransfer(item)).to.eql(false);
+                });
+            });
+        });
+
+        describe('when input is an object', () => {
+            describe('when "address" is invalid is not valid trytes', () => {
+                it('should return false', () => {
+                    const invalidAddress = `a${'U'.repeat(80)}`;
+
+                    expect(isValidTransfer(assign({}, validTransfer, { address: invalidAddress }))).to.eql(false);
+                });
+            });
+
+            describe('when "value" is not a number', () => {
+                it('should return false', () => {
+                    expect(isValidTransfer(assign({}, validTransfer, { value: undefined }))).to.eql(false);
+                });
+            });
+
+            describe('when "value" is number and address is valid trytes', () => {
+                it('should return true', () => {
+                    expect(isValidTransfer(validTransfer)).to.eql(true);
+                });
+            });
+        });
+    });
+
+    describe('#isFundedBundle', () => {
+        describe('when provided bundle is empty', () => {
+            it('should throw with an error "Empty bundle provided"', () => {
+                return isFundedBundle()([]).catch((err) => {
+                    expect(err.message).to.equal('Empty bundle provided.');
+                });
+            });
+        });
+
+        describe('when provided bundle is not empty', () => {
+            let bundle;
+
+            before(() => {
+                bundle = [
+                    { address: 'A'.repeat(81), value: -10 },
+                    { address: 'B'.repeat(81), value: 5 },
+                    { address: 'C'.repeat(81), value: 5 },
+                ];
+            });
+
+            describe('when total balance of bundle inputs is greater than latest balance on input addresses', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const resultMap = {
+                                getBalances: { balances: ['3'] },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return false', () => {
+                    return isFundedBundle()(bundle).then((isFunded) => {
+                        expect(isFunded).to.equal(false);
+                    });
+                });
+            });
+
+            describe('when total balance of bundle inputs is equal to latest balance on input addresses', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const resultMap = {
+                                getBalances: { balances: ['10'] },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return isFundedBundle()(bundle).then((isFunded) => {
+                        expect(isFunded).to.equal(true);
+                    });
+                });
+            });
+
+            describe('when total balance of bundle inputs is less than latest balance on input addresses', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const resultMap = {
+                                getBalances: { balances: ['20'] },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return isFundedBundle()(bundle).then((isFunded) => {
+                        expect(isFunded).to.equal(true);
+                    });
+                });
+            });
+        });
+    });
+
+    describe('#categoriseInclusionStatesByBundleHash', () => {
+        describe('when transactions provided (passed as first param) is empty', () => {
+            it('should return an empty object', () => {
+                const result = categoriseInclusionStatesByBundleHash([], [false, false]);
+                expect(result).to.eql({});
+            });
+        });
+
+        describe('when transactions provided (passed as first param) is not empty', () => {
+            it('should categorise inclusion states (passed as second param) by bundle hashes', () => {
+                const tailTransactions = [
+                    { bundle: 'A'.repeat(81) },
+                    { bundle: 'A'.repeat(81) },
+                    { bundle: 'B'.repeat(81) },
+                    { bundle: 'C'.repeat(81) },
+                    { bundle: 'A'.repeat(81) },
+                    { bundle: 'B'.repeat(81) },
+                ];
+
+                const inclusionStates = [
+                    false, // AAA
+                    false, // AAA
+                    false, // BBB
+                    false, // CCC
+                    true, // AAA
+                    false, // BBB
+                ];
+
+                const result = categoriseInclusionStatesByBundleHash(tailTransactions, inclusionStates);
+                expect(result).to.eql({
+                    ['A'.repeat(81)]: true,
+                    ['B'.repeat(81)]: false,
+                    ['C'.repeat(81)]: false,
+                });
+            });
         });
     });
 });

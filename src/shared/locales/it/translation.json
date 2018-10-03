@@ -677,7 +677,7 @@
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
         "noUpdatesAvailableExplanation": "Hai l'ultima versione di Trinity Desktop.",
         "newVersionAvailable": "Una nuova versione è disponibile",
-        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Leggi attentamente le note di rilascio e verifica l'origine del download prima di eseguire l'aggiornamento:",
+        "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",
         "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento."
     },
@@ -710,5 +710,17 @@
         "messageTx": "Hai ricevuto un messaggio sul conto {{account}}",
         "confirmedIn": "Ricezione confermata di {{value}} sul conto {{account}}",
         "confirmedOut": "Invio confermato di {{value}} dal conto {{account}}"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": "Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

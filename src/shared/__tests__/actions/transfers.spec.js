@@ -389,6 +389,7 @@ describe('actions: transfers', () => {
                 it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+                    const store = mockStore({ accounts });
 
                     const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
                         Promise.resolve({
@@ -407,9 +408,9 @@ describe('actions: transfers', () => {
                         .stub(accountsUtils, 'syncAccountAfterSpending')
                         .returns(() => Promise.resolve({}));
 
-                    const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
-
-                    const store = mockStore({ accounts });
+                    const syncAccount = sinon
+                        .stub(accountsUtils, 'syncAccount')
+                        .returns(() => Promise.resolve(accounts.accountInfo.TEST));
 
                     return store
                         .dispatch(
@@ -447,7 +448,9 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
-                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
+                        sinon
+                            .stub(accountsUtils, 'syncAccount')
+                            .returns(() => Promise.resolve(accounts.accountInfo.TEST));
 
                         const store = mockStore({ accounts });
 

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
-import { format } from 'date-fns';
+import { formatTimeAs, detectedTimezone } from 'libs/date';
 
 import withChartData from 'containers/components/Chart';
 
@@ -54,7 +54,7 @@ class Chart extends PureComponent {
             const date = new Date(props.payload[0].payload.time * 1000);
             return (
                 <p className={css.label}>
-                    {format(date, 'DD.MM.YY HH:mm')}
+                    {formatTimeAs.dayMonthYearHoursMinutes(navigator.language, detectedTimezone, date)}
                     <br />
                     <strong>
                         {props.symbol} {props.payload[0].value}

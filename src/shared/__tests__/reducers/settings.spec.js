@@ -8,6 +8,7 @@ describe('Reducer: settings', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
+                completedByteTritSweep: false,
                 locale: 'en',
                 node: defaultNode,
                 nodes,
