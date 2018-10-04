@@ -265,8 +265,8 @@
         "individualLetters": "Vyberte náhodné znaky.",
         "individualLetterCount": "Stiskněte <1><0>{{count}}</0></1> písmeno pro náhodný výběr.",
         "individualLetterCount_plural": "Stiskněte <1><0>{{count}}</0></1> písmen pro náhodný výběr.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "Pro pokračování vyberte <1> {{count}} </ 1> náhodný znak.",
+        "randomiseCharsToContinue_plural": "Pro pokračování vyberte <1> {{count}} </ 1> náhodné znaky.",
         "whatIsASeed": "Co je to Seed?"
     },
     "onboardingComplete": {
@@ -718,9 +718,9 @@
         "sweepErrorExplanation": "Došlo k chybě při odblokování vašich finančních prostředků. Zkuste to znovu.",
         "warningTitle": "Varování: Byly zjištěny blokované prostředky",
         "explanation": "Peněženka Trinity Desktop 0.3.4 obsahovala chybu, která by mohla dočasně zablokovat finanční prostředky na účtu. Tento problém ovlivňuje malý počet uživatelů, kteří uskutečnili transakce s verzí 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "explanationAccounts": "Na vašich účtech byly zjištěny blokované prostředky: {{accounts}}. Trinity nyní automaticky obnoví vaše prostředky a přenese je na novou adresu.",
+        "proceed": "Přejít na obnovení",
+        "sweepConfirmation": "Chystáte se přenést {{amount}} na {{address}}. Účet: {{accountName}}, index adresy: {{index}}",
+        "sweepConfirmationTitle": "Potvrzení převodu"
     }
 }
