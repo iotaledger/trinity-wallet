@@ -712,11 +712,11 @@
         "confirmedOut": "Eine ausgehende Transaktion über {{value}} in {{account}} wurde bestätigt"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceeded": "Guthaben erfolgreich entsperrt",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
+        "sweepError": "Fehler beim Entsperren des Guthabens",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
+        "warningTitle": "Warnung: Gesperrtes Guthaben erkannt",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
