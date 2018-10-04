@@ -713,12 +713,12 @@
     },
     "bytetrit": {
         "sweepSucceeded": "Guthaben erfolgreich entsperrt",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceededExplanation": "Dein Guthaben wurde erfolgreich entsperrt und auf eine neue Adresse verschoben. Promote die Transaktion um sie bei der Bestätigung zu unterstützen.",
         "sweepError": "Fehler beim Entsperren des Guthabens",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepErrorExplanation": "Etwas ist beim Entsperren deines Guthabens schief gelaufen. Versuche es erneut.",
         "warningTitle": "Warnung: Gesperrtes Guthaben erkannt",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "explanationAccounts": "Gesperrtes Guthaben wurde auf deinen Konten gefunden: {{accounts}}. Trinity wird jetzt automatisch dein Guthaben wiederherstellen, indem es dieses auf eine neue Adresse verschiebt.",
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
