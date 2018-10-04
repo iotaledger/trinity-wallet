@@ -712,10 +712,10 @@
         "confirmedOut": "Byla potvrzena odchozí {{value}} pro {{account}}"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "Vaše finanční prostředky byly úspěšně odblokovány",
+        "sweepSucceededExplanation": "Vaše finanční prostředky byly úspěšně odblokovány a přeneseny na novou adresu. Podporujte transakce, které vám pomohou v procesu potvrzování.",
         "sweepError": "Chyba při odblokování prostředků",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepErrorExplanation": "Došlo k chybě při odblokování vašich finančních prostředků. Zkuste to znovu.",
         "warningTitle": "Varování: Byly zjištěny blokované prostředky",
         "explanation": "Peněženka Trinity Desktop 0.3.4 obsahovala chybu, která by mohla dočasně zablokovat finanční prostředky na účtu. Tento problém ovlivňuje malý počet uživatelů, kteří uskutečnili transakce s verzí 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
