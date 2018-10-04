@@ -10,7 +10,7 @@ import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
@@ -187,7 +187,7 @@ export class TwoFactorSetupAddKey extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
                         leftButtonText={t('global:goBack')}

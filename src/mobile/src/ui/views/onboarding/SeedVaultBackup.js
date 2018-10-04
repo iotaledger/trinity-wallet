@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -125,7 +125,7 @@ class SeedVaultBackup extends Component {
                             />
                         </KeyboardAvoidingView>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
                                 onRightButtonPress={() => this.onRightButtonPress()}
                                 leftButtonText={t('global:back')}

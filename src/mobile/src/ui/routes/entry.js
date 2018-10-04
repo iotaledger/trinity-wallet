@@ -4,9 +4,7 @@ import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
-import iotaNativeBindings, {
-    overrideAsyncTransactionObject,
-} from 'shared-modules/libs/iota/nativeBindings';
+import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
@@ -56,10 +54,10 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
-    renderInitialScreen(initialScreen);
+    renderInitialScreen(initialScreen, updatedState);
 };
 
-const renderInitialScreen = (initialScreen) => {
+const renderInitialScreen = (initialScreen, state) => {
     Navigation.startSingleScreenApp({
         screen: {
             screen: initialScreen,
@@ -68,8 +66,8 @@ const renderInitialScreen = (initialScreen) => {
                 navBarTransparent: true,
                 topBarElevationShadowEnabled: false,
                 drawUnderStatusBar: true,
-                statusBarColor: '#181818',
-                screenBackgroundColor: '#181818',
+                statusBarColor: state.settings.theme.body.bg,
+                screenBackgroundColor: state.settings.theme.body.bg,
             },
         },
         appStyle: {

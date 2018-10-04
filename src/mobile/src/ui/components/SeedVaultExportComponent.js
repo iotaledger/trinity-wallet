@@ -8,12 +8,12 @@ import { translate } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
 import Share from 'react-native-share';
-import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import GENERAL from 'ui/theme/general';
 import { getPasswordHash, getSeedFromKeychain } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { createSeedVault } from 'libs/seedvault';
 import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
@@ -99,19 +99,10 @@ class SeedVaultExportComponent extends Component {
         const { isAuthenticated, onRef } = this.props;
         onRef(this);
         this.animatedValue = new Animated.Value(isAuthenticated ? width * 1.5 : width * 2.5);
-        nodejs.start('main.js');
-        nodejs.channel.addListener(
-            'message',
-            (vault) => {
-                this.onGenerateVault(vault);
-            },
-            this,
-        );
     }
 
     componentWillUnmount() {
         this.props.onRef(undefined);
-        nodejs.channel.removeAllListeners();
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
@@ -127,7 +118,7 @@ class SeedVaultExportComponent extends Component {
         if (isAndroid) {
             await getAndroidFileSystemPermissions();
         }
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         const now = new Date();
         const path =
             (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
@@ -151,11 +142,7 @@ class SeedVaultExportComponent extends Component {
                     this.share(path);
                 })
                 .catch(() =>
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain'),
-                    ),
+                    generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain')),
                 );
         });
     }
@@ -186,23 +173,19 @@ class SeedVaultExportComponent extends Component {
      * @method onExportSuccess
      */
     onExportSuccess() {
-        const { t } = this.props;
+        const { t, generateAlert, goBack } = this.props;
         if (isAndroid) {
-            this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
-            return this.props.goBack();
+            generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+            return goBack();
         }
         RNFetchBlob.fs
             .unlink(this.state.path)
             .then(() => {
-                this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
-                this.props.goBack();
+                generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+                goBack();
             })
             .catch(() =>
-                this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongTryAgain'),
-                ),
+                generateAlert('error', t('global:somethingWentWrong'), t('global:somethingWentWrongTryAgain')),
             );
     }
 
@@ -212,7 +195,9 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        return createSeedVault(this.props.seed, this.state.password).then((vault) => {
+            this.onGenerateVault(vault.toString());
+        });
     }
 
     /**
@@ -306,7 +291,7 @@ class SeedVaultExportComponent extends Component {
                     <CustomTextInput
                         label={t('password')}
                         onChangeText={(password) => this.setState({ password })}
-                        containerStyle={{ width: width / 1.15 }}
+                        containerStyle={{ width: GENERAL.contentWidth }}
                         autoCapitalize="none"
                         autoCorrect={false}
                         enablesReturnKeyAutomatically

@@ -2,6 +2,26 @@
 # yarn lockfile v1
 
 
+"@trust/keyto@^0.3.1":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@trust/keyto/-/keyto-0.3.4.tgz#4b0a6de6d64af242944b238ce918b443a734a245"
+  integrity sha512-OAqKvuSEPIu2zCnIHzBthvGnV8nKmpv7cBlRMngLzJZzZI9CanyuSfnEI1xC4sH4TwqA0XJR7Mb0oX4bwymXIw==
+  dependencies:
+    asn1.js "^4.9.1"
+    base64url "^3.0.0"
+    elliptic "^6.4.0"
+
+"@trust/webcrypto@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@trust/webcrypto/-/webcrypto-0.8.4.tgz#ac104382680d5ed70c785fee58626bcf2435722c"
+  integrity sha512-FgMCY2rmo3uw6S/k2uut6N7Am5N6PG5p/2MntA6RI6jtda07090kuy1NPC7wTRxuqFUb3hlg3HnBJm/MdvofBw==
+  dependencies:
+    "@trust/keyto" "^0.3.1"
+    base64url "^2.0.0"
+    elliptic "^6.4.0"
+    node-rsa "^0.4.0"
+    text-encoding "^0.6.1"
+
 "@types/markdown-it@^0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@types/markdown-it/-/markdown-it-0.0.4.tgz#c5f67365916044b342dae8d702724788ba0b5b74"
@@ -333,7 +353,7 @@ asap@~2.0.3:
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
 
-asn1.js@^4.0.0:
+asn1.js@^4.0.0, asn1.js@^4.9.1:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.10.1.tgz#b9c2bf5805f1e64aadeed6df3a2bfafb5a73f5a0"
   integrity sha512-p32cOF5q0Zqs9uBiONKYLm6BClCoBCM5O9JfeUSlnQLBTxYdTK+pW+nXflm8UkKd2UYlEbYz5qEi0JuZR9ckSw==
@@ -342,7 +362,7 @@ asn1.js@^4.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
-asn1@~0.2.3:
+asn1@0.2.3, asn1@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
   integrity sha1-2sh4dxPJlmhJ/IGAd36+nB3fO4Y=
@@ -441,6 +461,20 @@ axios@^0.18.0:
   dependencies:
     follow-redirects "^1.3.0"
     is-buffer "^1.1.5"
+
+b64-lite@^1.1.1, b64-lite@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/b64-lite/-/b64-lite-1.3.1.tgz#708430847ceb458148c4461ae633d6e15f53b360"
+  integrity sha512-A3n/YWszeQeUeKKy+XRfsDW/s/+1cvD110HYA4uXtkNswNLd1MxrNblYt2lgKisUS3UfPPTaXhvFegD+l4YuOA==
+  dependencies:
+    base-64 "^0.1.0"
+
+b64u-lite@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/b64u-lite/-/b64u-lite-1.0.1.tgz#b19e543bb8715e65cc083d42234c4fe9e4fa18bd"
+  integrity sha512-4E6rqyrCnrAdzayWUS8XwFC/vRTBbmR7fgqb/IuHXRM2z63VH/tNxtzDWZhgCXCORTiwy2mIhCtmHyc9TMBj7Q==
+  dependencies:
+    b64-lite "^1.1.1"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -1345,6 +1379,16 @@ base64-url@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/base64-url/-/base64-url-1.2.1.tgz#199fd661702a0e7b7dcae6e0698bb089c52f6d78"
   integrity sha1-GZ/WYXAqDnt9yubgaYuwicUvbXg=
+
+base64url@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/base64url/-/base64url-2.0.0.tgz#eac16e03ea1438eff9423d69baa36262ed1f70bb"
+  integrity sha1-6sFuA+oUOO/5Qj1puqNiYu0fcLs=
+
+base64url@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/base64url/-/base64url-3.0.0.tgz#f2ba30b15f80413d88e3e6116c4f3f7f61e28a2a"
+  integrity sha512-LIVmqIrIWuiqTvn4RzcrwCOuHo2DD6tKmKBPXXlr4p4n4l6BZBkwFTIa3zu1XkX5MbZgro4a6BvPi+n2Mns5Gg==
 
 base@^0.11.1:
   version "0.11.2"
@@ -2567,6 +2611,19 @@ elliptic@^6.0.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.0.tgz#cac9af8762c85836187003c8dfe193e5e2eae5df"
   integrity sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=
+  dependencies:
+    bn.js "^4.4.0"
+    brorand "^1.0.1"
+    hash.js "^1.0.0"
+    hmac-drbg "^1.0.0"
+    inherits "^2.0.1"
+    minimalistic-assert "^1.0.0"
+    minimalistic-crypto-utils "^1.0.0"
+
+elliptic@^6.4.0:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.1.tgz#c2d0b7776911b86722c632c3c06c60f2f819939a"
+  integrity sha512-BsXLz5sqX8OHcsh7CqBMztyXARmGQ3LWPtGjJi6DiJHq5C/qvi9P3OqgswKSDftbu8+IoI/QDTAm2fFnQ9SZSQ==
   dependencies:
     bn.js "^4.4.0"
     brorand "^1.0.1"
@@ -4027,6 +4084,21 @@ isomorphic-fetch@^2.1.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
+isomorphic-webcrypto@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-webcrypto/-/isomorphic-webcrypto-1.6.0.tgz#beb493ca78ed6933a3df13910b1835a85af68217"
+  integrity sha512-v4kMbCCUmrHYRIf8FtTDWTnoxCbUNN8V6ITNtcbfGY07IBHVfJoWwm8Z831bDAdNE+TxhzUifWPvnAGnK6GfaA==
+  dependencies:
+    "@trust/webcrypto" "^0.8.4"
+    b64-lite "^1.3.1"
+    b64u-lite "^1.0.1"
+    mitt "^1.1.3"
+    msrcrypto "^1.5.1"
+    str2buf "^1.3.0"
+    webcrypto-shim "^0.1.4"
+  optionalDependencies:
+    react-native-securerandom "^0.1.1"
+
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -4512,6 +4584,18 @@ jws@^3.1.4:
   dependencies:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
+
+kdbxweb@rajivshah3/kdbxweb#react-native:
+  version "1.2.4"
+  resolved "https://codeload.github.com/rajivshah3/kdbxweb/tar.gz/9935741a510d3a60789aaec4f54f083f0609b58e"
+  dependencies:
+    isomorphic-webcrypto "^1.6.0"
+    pako "github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc"
+    react-native-crypto "^2.1.2"
+    react-native-randombytes "^3.5.1"
+    rn-nodeify tradle/rn-nodeify
+    text-encoding "github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
+    xmldom "github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
 
 kind-of@^1.1.0:
   version "1.1.0"
@@ -5137,6 +5221,11 @@ minizlib@^1.0.3, minizlib@^1.1.0:
   dependencies:
     minipass "^2.2.1"
 
+mitt@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-1.1.3.tgz#528c506238a05dce11cd914a741ea2cc332da9b8"
+  integrity sha512-mUDCnVNsAi+eD6qA0HkRkwYczbLHJ49z17BGe2PYRhZL4wpZUFZGJHU7/5tmvohoma+Hdn0Vh/oJTiPEmgSruA==
+
 mixin-deep@^1.2.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
@@ -5202,6 +5291,11 @@ ms@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
+
+msrcrypto@^1.5.1:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/msrcrypto/-/msrcrypto-1.5.3.tgz#55cafb3c52ae5c51193628cd4398c1f7940fa8e6"
+  integrity sha512-dEgu9OAAsknOoV3WEMZVyax46JeLqa81D/bHryo02qT3j16b+3a/f2AdKBAIlPDMtc7/ZWtpNNhdxq+csjQBAg==
 
 multiparty@3.3.2:
   version "3.3.2"
@@ -5340,6 +5434,13 @@ node-pre-gyp@^0.10.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
+
+node-rsa@^0.4.0:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/node-rsa/-/node-rsa-0.4.2.tgz#d6391729ec16a830ed5a38042b3157d2d5d72530"
+  integrity sha1-1jkXKewWqDDtWjgEKzFX0tXXJTA=
+  dependencies:
+    asn1 "0.2.3"
 
 nodejs-mobile-gyp@^0.2.0:
   version "0.2.0"
@@ -5744,6 +5845,10 @@ pac-resolver@^3.0.0:
     ip "^1.1.5"
     netmask "^1.0.6"
     thunkify "^2.1.2"
+
+"pako@github:keeweb/pako#653c0b00d8941c89d09ed4546d2179001ec44efc":
+  version "1.0.3"
+  resolved "https://codeload.github.com/keeweb/pako/tar.gz/653c0b00d8941c89d09ed4546d2179001ec44efc"
 
 pako@~0.2.0:
   version "0.2.9"
@@ -6280,7 +6385,7 @@ react-native-camera@^1.1.4:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
-react-native-crypto@^2.0.2:
+react-native-crypto@^2.0.2, react-native-crypto@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/react-native-crypto/-/react-native-crypto-2.1.2.tgz#cfe68cad51cd1f73a4202b7ac164f96c1144cb2a"
   integrity sha1-z+aMrVHNH3OkICt6wWT5bBFEyyo=
@@ -6479,6 +6584,14 @@ react-native-randombytes@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.2.0.tgz#81ad85c854992ad5b36427095aa179acaff84ed0"
   integrity sha1-ga2FyFSZKtWzZCcJWqF5rK/4TtA=
+  dependencies:
+    buffer "^4.9.1"
+    sjcl "^1.0.3"
+
+react-native-randombytes@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.5.1.tgz#7e4518204460079c8b3b533c701746c86b809c89"
+  integrity sha512-yTvK2at9nwlqaYcf2hi1rxnt/WW7Ck872NnsqzD6IdWutF2Z3uL3a2kGd8SVCSG5JO2B+VCTS6VjHispdUGKAg==
   dependencies:
     buffer "^4.9.1"
     sjcl "^1.0.3"
@@ -7072,6 +7185,20 @@ rn-nodeify@^8.2.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/rn-nodeify/-/rn-nodeify-8.3.0.tgz#16b54f78c25e766acee6c13966d68d6a28697431"
   integrity sha1-FrVPeMJedmrO5sE5ZtaNaihpdDE=
+  dependencies:
+    "@yarnpkg/lockfile" "^1.0.0"
+    deep-equal "^1.0.0"
+    findit "^2.0.0"
+    fs-extra "^0.22.1"
+    minimist "^1.1.2"
+    object.pick "^1.1.1"
+    run-parallel "^1.1.2"
+    semver "^5.0.1"
+    xtend "^4.0.0"
+
+rn-nodeify@tradle/rn-nodeify:
+  version "10.0.0"
+  resolved "https://codeload.github.com/tradle/rn-nodeify/tar.gz/f871fadfed6edef6e208bb3293e66f27466122da"
   dependencies:
     "@yarnpkg/lockfile" "^1.0.0"
     deep-equal "^1.0.0"
@@ -7761,6 +7888,11 @@ statuses@~1.2.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.2.1.tgz#dded45cc18256d51ed40aec142489d5c61026d28"
   integrity sha1-3e1FzBglbVHtQK7BQkidXGECbSg=
 
+str2buf@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/str2buf/-/str2buf-1.3.0.tgz#a4172afff4310e67235178e738a2dbb573abead0"
+  integrity sha512-xIBmHIUHYZDP4HyoXGHYNVmxlXLXDrtFHYT0eV6IOdEj3VO9ccaF1Ejl9Oq8iFjITllpT8FhaXb4KsNmw+3EuA==
+
 stream-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-1.0.0.tgz#bf9b4abfb42b274d751479e44e0ff2656b6f1193"
@@ -7950,10 +8082,14 @@ test-exclude@^4.2.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
-text-encoding@^0.6.4:
+text-encoding@^0.6.1, text-encoding@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/text-encoding/-/text-encoding-0.6.4.tgz#e399a982257a276dae428bb92845cb71bdc26d19"
   integrity sha1-45mpgiV6J22uQou5KEXLcb3CbRk=
+
+"text-encoding@github:keeweb/text-encoding#4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb":
+  version "0.6.0"
+  resolved "https://codeload.github.com/keeweb/text-encoding/tar.gz/4dfb7cb0954c222852092f8b06ae4f6b4f60bfbb"
 
 then-fs@^2.0.0:
   version "2.0.0"
@@ -8420,6 +8556,11 @@ watch@~0.18.0:
     exec-sh "^0.2.0"
     minimist "^1.2.0"
 
+webcrypto-shim@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/webcrypto-shim/-/webcrypto-shim-0.1.4.tgz#b40ef59d042822269dd83c1462da1df4369834fb"
+  integrity sha512-I2lnL+K2oPNE9ryVHwo42oDnt8XQ9E1KKMGCmcT7OXaAKPmUeCi/G0nUgLR6M6Ztj05ZCxLMGf5bXNaSo+wURg==
+
 webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
@@ -8627,6 +8768,10 @@ xmldom@0.1.x:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
   integrity sha1-1QH5ezvbQDr4757MIFcxh6rawOk=
+
+"xmldom@github:keeweb/xmldom#ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6":
+  version "0.1.21"
+  resolved "https://codeload.github.com/keeweb/xmldom/tar.gz/ec8f61f723e2f403adaf7a1bbf55ced4ff1ea0c6"
 
 xmlhttprequest@^1.8.0:
   version "1.8.0"

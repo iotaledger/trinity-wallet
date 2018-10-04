@@ -13,12 +13,12 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import QRScannerComponent from 'ui/components/QrScanner';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -237,7 +237,7 @@ class EnterSeed extends React.Component {
                                             this.setState({ seed: text.toUpperCase() });
                                         }
                                     }}
-                                    containerStyle={{ width: width / 1.15 }}
+                                    containerStyle={{ width: GENERAL.contentWidth }}
                                     theme={theme}
                                     autoCapitalize="characters"
                                     autoCorrect={false}
@@ -252,18 +252,16 @@ class EnterSeed extends React.Component {
                                     seed={seed}
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                {!isIPhone11 && (
-                                    <SeedVaultImport
-                                        openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                        onSeedImport={(seed) => {
-                                            this.setState({ seed });
-                                            this.hideModal();
-                                        }}
-                                        onRef={(ref) => {
-                                            this.SeedVaultImport = ref;
-                                        }}
-                                    />
-                                )}
+                                <SeedVaultImport
+                                    openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                    onSeedImport={(seed) => {
+                                        this.setState({ seed });
+                                        this.hideModal();
+                                    }}
+                                    onRef={(ref) => {
+                                        this.SeedVaultImport = ref;
+                                    }}
+                                />
                                 <View style={{ flex: 0.4 }} />
                                 <InfoBox
                                     body={theme.body}
@@ -282,7 +280,7 @@ class EnterSeed extends React.Component {
                                 <View style={{ flex: 0.7 }} />
                             </View>
                             <View style={styles.bottomContainer}>
-                                <OnboardingButtons
+                                <DualFooterButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
                                     leftButtonText={t('global:goBack')}

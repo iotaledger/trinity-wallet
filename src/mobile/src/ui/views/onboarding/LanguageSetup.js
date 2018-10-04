@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
-import {
-    I18N_LOCALE_LABELS,
-    getLabelFromLocale,
-    getLocaleFromLabel,
-    detectLocale,
-} from 'shared-modules/libs/i18n';
+import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel, detectLocale } from 'shared-modules/libs/i18n';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
@@ -19,7 +14,7 @@ import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import DropdownComponent from 'ui/components/Dropdown';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Icon } from 'ui/theme/icons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -122,7 +117,7 @@ class LanguageSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
+        const { t, theme: { body } } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -154,16 +149,11 @@ class LanguageSetup extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <Button
-                                onPress={() => this.onNextPress()}
+                            <SingleFooterButton
+                                onButtonPress={() => this.onNextPress()}
                                 testID="languageSetup-next"
-                                style={{
-                                    wrapper: { backgroundColor: primary.color },
-                                    children: { color: primary.body },
-                                }}
-                            >
-                                {t('letsGetStarted')}
-                            </Button>
+                                buttonText={t('letsGetStarted')}
+                            />
                         </View>
                     </View>
                 </View>

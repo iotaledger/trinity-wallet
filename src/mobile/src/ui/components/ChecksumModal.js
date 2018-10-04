@@ -54,7 +54,7 @@ export class ChecksumModal extends PureComponent {
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={width / 1.15}
+                    width={GENERAL.contentWidth}
                     text={
                         <View>
                             <Text style={[styles.modalTextBold, { color: body.color }, { paddingTop: height / 40 }]}>

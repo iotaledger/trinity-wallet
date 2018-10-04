@@ -15,7 +15,7 @@ import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -240,15 +240,14 @@ class FingerprintEnable extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <Button
-                        onPress={() => this.navigateToHome()}
-                        style={{
+                    <SingleFooterButton
+                        onButtonPress={() => this.navigateToHome()}
+                        buttonStyle={{
                             wrapper: { backgroundColor: theme.primary.color },
                             children: { color: theme.primary.body },
                         }}
-                    >
-                        {t('global:done')}
-                    </Button>
+                        buttonText={t('global:done')}
+                    />
                 </View>
                 <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
                 <Modal

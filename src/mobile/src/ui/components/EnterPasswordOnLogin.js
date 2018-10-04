@@ -19,7 +19,7 @@ import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
 import CustomTextInput from './CustomTextInput';
 import InfoBox from './InfoBox';
-import OnboardingButtons from './OnboardingButtons';
+import DualFooterButtons from './DualFooterButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -135,7 +135,7 @@ export class EnterPasswordOnLogin extends Component {
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={width / 1.15}
+                    width={GENERAL.contentWidth}
                     text={
                         <View>
                             <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
@@ -174,7 +174,7 @@ export class EnterPasswordOnLogin extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: GENERAL.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -189,7 +189,7 @@ export class EnterPasswordOnLogin extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <OnboardingButtons
+                        <DualFooterButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
                             leftButtonText={t('setNode')}

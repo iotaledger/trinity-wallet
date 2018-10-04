@@ -10,7 +10,7 @@ import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unch
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import InfoBox from 'ui/components/InfoBox';
 import Header from 'ui/components/Header';
@@ -258,7 +258,7 @@ class SaveSeedConfirmation extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
                         leftButtonText={t('global:goBack')}

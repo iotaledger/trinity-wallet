@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DocumentPicker } from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { translate } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
+import { getSeedFromVault } from 'libs/seedvault';
 
 const styles = StyleSheet.create({
     infoText: {
@@ -39,33 +39,11 @@ export class SeedVaultImportComponent extends Component {
     };
 
     componentWillMount() {
-        const { t, onRef } = this.props;
-        onRef(this);
-        nodejs.start('main.js');
-        nodejs.channel.addListener(
-            'message',
-            async (msg) => {
-                if (msg === 'error') {
-                    return this.props.generateAlert(
-                        'error',
-                        t('global:unrecognisedPassword'),
-                        t('global:unrecognisedPasswordExplanation'),
-                    );
-                }
-                this.props.onSeedImport(msg);
-                return this.props.generateAlert(
-                    'success',
-                    t('seedVault:importSuccess'),
-                    t('seedVault:importSuccessExplanation'),
-                );
-            },
-            this,
-        );
+        this.props.onRef(this);
     }
 
     componentWillUnmount() {
         this.props.onRef(undefined);
-        nodejs.channel.removeAllListeners();
     }
 
     /**
@@ -73,12 +51,20 @@ export class SeedVaultImportComponent extends Component {
      * @method validatePassword
      */
     validatePassword(password) {
-        const { t } = this.props;
+        const { t, generateAlert, onSeedImport } = this.props;
+        const { seedVault } = this.state;
         if (password === '') {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+            return generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         }
-        const seedVaultString = this.state.seedVault.toString();
-        return nodejs.channel.send('import:' + seedVaultString + ':' + password);
+        return getSeedFromVault(seedVault, password)
+            .then((seed) => {
+                generateAlert('success', t('seedVault:importSuccess'), t('seedVault:importSuccessExplanation'));
+                return onSeedImport(seed.toString());
+            })
+            .catch((err) => {
+                generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
+                throw err;
+            });
     }
 
     /**

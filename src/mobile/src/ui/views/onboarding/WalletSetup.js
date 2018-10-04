@@ -9,7 +9,7 @@ import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
 import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -261,7 +261,7 @@ class WalletSetup extends Component {
                     />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.redirectToEnterSeedScreen()}
                         onRightButtonPress={() => this.redirectToNewSeedSetupScreen()}
                         leftButtonText={t('noIHaveOne')}

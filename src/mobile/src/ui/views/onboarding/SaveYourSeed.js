@@ -16,14 +16,14 @@ import QRCode from 'qr.js/lib/QRCode';
 import PrintModal from 'ui/components/PrintModal';
 import PasswordManagerModalContent from 'ui/components/PasswordManagerModal';
 import Button from 'ui/components/Button';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -485,25 +485,23 @@ class SaveYourSeed extends Component {
                     <View style={{ flex: 0.5 }} />
                     <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
                     <View style={[styles.line, lineColor]} />
-                    {!isIPhone11 && (
-                        <Button
-                            onPress={() => this.onExportSeedVaultPress()}
-                            style={{
-                                wrapper: {
-                                    width: width / 1.36,
-                                    height: height / 13,
-                                    borderRadius: height / 90,
-                                    backgroundColor: secondary.color,
-                                },
-                                children: {
-                                    color: secondary.body,
-                                },
-                            }}
-                        >
-                            {t('seedVault:exportSeedVault')}
-                        </Button>
-                    )}
-                    {!isIPhone11 && <View style={[styles.line, lineColor]} />}
+                    <Button
+                        onPress={() => this.onExportSeedVaultPress()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: secondary.color,
+                            },
+                            children: {
+                                color: secondary.body,
+                            },
+                        }}
+                    >
+                        {t('seedVault:exportSeedVault')}
+                    </Button>
+                    <View style={[styles.line, lineColor]} />
                     <Button
                         onPress={() => this.onWriteSeedDownPress()}
                         style={{
@@ -547,7 +545,7 @@ class SaveYourSeed extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
                         leftButtonText={t('global:goBack')}

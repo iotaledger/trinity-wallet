@@ -133,7 +133,7 @@ export class Dropdown extends Component {
         background: false,
         saveSelection: () => {},
         title: '',
-        dropdownWidth: { width: width / 1.15 },
+        dropdownWidth: { width: GENERAL.contentWidth },
         visibleRows: 8,
     };
 

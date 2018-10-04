@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     chartContainer: {
         flex: 4.7,
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     emptyChartContainer: {
         flex: 4.7,
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        width: width / 1.15,
+        width: GENERAL.contentWidth,
     },
     buttonText: {
         fontFamily: 'SourceSansPro-Bold',
