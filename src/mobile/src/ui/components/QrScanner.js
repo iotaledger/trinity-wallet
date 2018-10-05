@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
 import GENERAL from 'ui/theme/general';
 import { isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import DynamicStatusBar from './DynamicStatusBar';
 
 const styles = StyleSheet.create({
@@ -84,8 +85,7 @@ export class QRScanner extends Component {
     }
 
     render() {
-        const { t, theme: { body, primary } } = this.props;
-
+        const { t, theme: { body } } = this.props;
         return (
             <View style={styles.modalContent}>
                 <View style={{ alignItems: 'center', backgroundColor: body.bg }}>
@@ -94,16 +94,11 @@ export class QRScanner extends Component {
                     <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
                     <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
-                        <TouchableOpacity
-                            style={[
-                                styles.closeButton,
-                                { backgroundColor: primary.color },
-                                { borderColor: 'transparent' },
-                            ]}
-                            onPress={() => this.props.hideModal()}
-                        >
-                            <Text style={[styles.closeButtonText, { color: primary.body }]}>{t('global:close')}</Text>
-                        </TouchableOpacity>
+                        <SingleFooterButton
+                            onButtonPress={() => this.props.hideModal()}
+                            testID="qrScanner-next"
+                            buttonText={t('global:close')}
+                        />
                     </View>
                 </View>
             </View>

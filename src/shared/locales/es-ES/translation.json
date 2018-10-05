@@ -705,8 +705,8 @@
         "notificationExplanation": "Recibir notificaciones a nivel de todo el sistema sobre nuevas transacciones.",
         "typeConfirmations": "Notificarme acerca de las confirmaciones",
         "typeMessages": "Notificarme acerca de las transacciones de valor nulo",
-        "multipleTx": "Recibiendo múltiples transacciones a {{account}}",
-        "valueTx": "Recibiendo {{value}} a {{account}}",
+        "multipleTx": "Recibiendo múltiples transacciones de {{account}}",
+        "valueTx": "Recibiendo {{value}} de {{account}}",
         "messageTx": "Recibiste un mensaje a {{account}}",
         "confirmedIn": "Se confirmó el ingreso de {{value}} a {{account}}",
         "confirmedOut": "Se confirmó la salida de {{value}} a {{account}}"

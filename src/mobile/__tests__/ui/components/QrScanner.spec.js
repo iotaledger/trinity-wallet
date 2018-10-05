@@ -57,7 +57,7 @@ describe('Testing QrScanner component', () => {
             expect(wrapper.find('QRCodeScanner').length).toEqual(1);
         });
 
-        it('should call prop method hideModal when onPress prop of TouchableOpacity is triggered', () => {
+        it('should call prop method hideModal when onPress prop of SingleFooterButton is triggered', () => {
             const props = getProps({
                 hideModal: jest.fn(),
             });
@@ -67,9 +67,9 @@ describe('Testing QrScanner component', () => {
             expect(props.hideModal).toHaveBeenCalledTimes(0);
 
             wrapper
-                .find('TouchableOpacity')
+                .find('SingleFooterButton')
                 .props()
-                .onPress();
+                .onButtonPress();
 
             expect(props.hideModal).toHaveBeenCalledTimes(1);
         });

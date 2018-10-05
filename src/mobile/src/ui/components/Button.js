@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
+import { isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width,
-        height: height / 11,
+        height: isIPhoneX ? height / 10 : height / 11,
     },
 });
 
