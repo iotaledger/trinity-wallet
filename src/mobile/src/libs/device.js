@@ -6,6 +6,7 @@ const device = DeviceInfo.getModel();
 const deviceId = DeviceInfo.getDeviceId();
 
 export const locale = DeviceInfo.getDeviceLocale();
+export const timezone = DeviceInfo.getTimezone();
 
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';

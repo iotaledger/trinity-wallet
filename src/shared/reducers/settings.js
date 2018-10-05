@@ -135,6 +135,10 @@ const initialState = {
      */
     isTrayEnabled: true,
     /**
+     * Determines the status of byte-trit check
+     */
+    completedByteTritSweep: false,
+    /**
      * Determines if native OS notifications are enabled
      */
     notifications: {
@@ -269,6 +273,16 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 completedForcedPasswordUpdate: true,
+            };
+        case ActionTypes.SET_BYTETRIT_STATUS:
+            return {
+                ...state,
+                completedByteTritSweep: action.payload,
+            };
+        case ActionTypes.SET_BYTETRIT_INFO:
+            return {
+                ...state,
+                byteTritInfo: action.payload,
             };
         case ActionTypes.SET_TRAY:
             return {

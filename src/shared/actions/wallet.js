@@ -325,7 +325,7 @@ export const setDeepLinkInactive = () => {
 export const generateNewAddress = (seedStore, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses()(seedStore, existingAccountData.addresses)
+        return syncAddresses()(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
             .then((latestAddressData) => {
                 dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess());
@@ -419,6 +419,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 relevantBalances[index],
                                 seedStore,
                                 map(existingAccountState.transfers, (tx) => tx),
+                                existingAccountState.addresses,
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
                             )

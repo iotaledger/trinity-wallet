@@ -431,7 +431,7 @@ export const getAccountInfo = (accountName, notificationFn) => {
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount()(existingAccountState, null, null, notificationFn)
+        return syncAccount()(existingAccountState, undefined, undefined, notificationFn)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());

@@ -15,7 +15,7 @@ import {
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isAndroid, locale } from 'libs/device';
+import { isAndroid, locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import CtaButton from './CtaButton';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -320,7 +320,7 @@ export default class HistoryModalContent extends PureComponent {
                                         </Text>
                                         <View style={styles.confirmationWrapper}>
                                             <Text style={[styles.timestamp, style.defaultTextColor]}>
-                                                {formatModalTime(locale, convertUnixTimeToJSDate(time))}
+                                                {formatModalTime(locale, timezone, convertUnixTimeToJSDate(time))}
                                             </Text>
                                         </View>
                                     </View>

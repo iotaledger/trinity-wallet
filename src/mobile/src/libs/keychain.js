@@ -79,22 +79,12 @@ export const createAndStoreBoxInKeychain = async (key, message, alias) => {
 };
 
 export const authorize = async (pwdHash) => {
-    try {
-        await getSecretBoxFromKeychainAndOpenIt(ALIAS_SEEDS, pwdHash);
-        return true;
-    } catch (error) {
-        // In case no seeds in keychain or password hash is incorrect
-        throw error;
-    }
+    await getSecretBoxFromKeychainAndOpenIt(ALIAS_SEEDS, pwdHash);
+    return true;
 };
 
 export const getTwoFactorAuthKeyFromKeychain = async (pwdHash) => {
-    try {
-        return await getSecretBoxFromKeychainAndOpenIt(ALIAS_AUTH, pwdHash);
-    } catch (error) {
-        // In case no 2FA key in keychain or password hash is incorrect
-        throw error;
-    }
+    return await getSecretBoxFromKeychainAndOpenIt(ALIAS_AUTH, pwdHash);
 };
 
 export const storeTwoFactorAuthKeyInKeychain = async (pwdHash, authKey) => {

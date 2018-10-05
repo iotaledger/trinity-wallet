@@ -17,6 +17,7 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
+import { isIPhoneX } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -317,16 +318,18 @@ class UseExistingSeed extends Component {
                             seed={seed}
                         />
                         <View style={{ flex: 0.45 }} />
-                        <SeedVaultImport
-                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                            onSeedImport={(seed) => {
-                                this.setState({ seed });
-                                this.hideModal();
-                            }}
-                            onRef={(ref) => {
-                                this.SeedVaultImport = ref;
-                            }}
-                        />
+                        {!isIPhoneX && (
+                            <SeedVaultImport
+                                openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                onSeedImport={(seed) => {
+                                    this.setState({ seed });
+                                    this.hideModal();
+                                }}
+                                onRef={(ref) => {
+                                    this.SeedVaultImport = ref;
+                                }}
+                            />
+                        )}
                         <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {

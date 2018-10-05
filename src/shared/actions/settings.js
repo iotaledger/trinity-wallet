@@ -38,6 +38,8 @@ export const ActionTypes = {
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
     TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
     SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
+    SET_BYTETRIT_STATUS: 'IOTA/SETTINGS/SET_BYTETRIT_STATUS',
+    SET_BYTETRIT_INFO: 'IOTA/SETTINGS/SET_BYTETRIT_INFO',
     SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
 };
@@ -640,6 +642,18 @@ export const setFingerprintStatus = (payload) => ({
 // FIXME: Temporarily needed for password migration
 export const setCompletedForcedPasswordUpdate = () => ({
     type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+});
+
+// FIXME: Temporarily needed for byte-trit check
+export const setCompletedByteTritSweep = (payload) => ({
+    type: ActionTypes.SET_BYTETRIT_STATUS,
+    payload,
+});
+
+// FIXME: Temporarily needed for byte-trit check
+export const setByteTritSweepInfo = (payload) => ({
+    type: ActionTypes.SET_BYTETRIT_INFO,
+    payload,
 });
 
 /**

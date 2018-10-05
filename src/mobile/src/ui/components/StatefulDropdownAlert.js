@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 
 const errorIcon = require('shared-modules/images/error.png');
@@ -99,7 +99,9 @@ class StatefulDropdownAlert extends Component {
 
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
-            StatusBar.setBackgroundColor(backgroundColor, false);
+            if (isAndroid) {
+                StatusBar.setBackgroundColor(backgroundColor, false);
+            }
         }
 
         this.disposeIfConnectionIsRestored(newProps);
