@@ -163,7 +163,7 @@ class EnterSeed extends React.Component {
      * @method onQRPress
      */
     onQRPress() {
-        this.showModal('qr');
+        this.showModal('qrScanner');
     }
 
     /**

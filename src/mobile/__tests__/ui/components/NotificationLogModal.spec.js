@@ -14,7 +14,7 @@ const getProps = (overrides) =>
             textColor: { color: '#ffffff' },
             barColor: '#ffffff',
             hideModal: noop,
-            notificationLog: [],
+            NotificationLogModal: [],
             clearLog: noop,
             t: () => '',
         },
