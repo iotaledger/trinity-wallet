@@ -9,8 +9,8 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import GENERAL from 'ui/theme/general';
-import Button from './Button';
+import { Styling } from 'ui/theme/general';
+import SingleFooterButton from './SingleFooterButton';
 import CustomTextInput from './CustomTextInput';
 
 const styles = StyleSheet.create({
@@ -136,7 +136,7 @@ class EnterPassword extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={(text) => this.setState({ password: text })}
-                            containerStyle={{ width: GENERAL.contentWidth }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -150,15 +150,7 @@ class EnterPassword extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <Button
-                            onPress={this.handleLogin}
-                            style={{
-                                wrapper: { backgroundColor: theme.primary.color },
-                                children: { color: theme.primary.body },
-                            }}
-                        >
-                            {t('login')}
-                        </Button>
+                        <SingleFooterButton onButtonPress={this.handleLogin} buttonText={t('login')} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

@@ -12,10 +12,9 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 8,
@@ -178,7 +177,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <CustomTextInput
                             label={t('code')}
                             onChangeText={(code) => this.setState({ code })}
-                            containerStyle={{ width: GENERAL.contentWidth }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -196,7 +195,6 @@ class TwoFactorSetupEnterToken extends Component {
                             rightButtonText={t('global:done')}
                         />
                     </View>
-                    <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );

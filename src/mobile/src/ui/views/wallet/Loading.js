@@ -25,10 +25,9 @@ import {
     getSelectedAccountType,
     getAccountNamesFromState,
 } from 'shared-modules/selectors/accounts';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
         paddingBottom: height / 30,
@@ -369,7 +368,6 @@ class Loading extends Component {
                             </View>
                         </View>
                     </View>
-                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
             );
         }
@@ -412,7 +410,6 @@ class Loading extends Component {
                         </View>
                     )}
                 </View>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }

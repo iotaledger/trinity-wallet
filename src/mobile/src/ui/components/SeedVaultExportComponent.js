@@ -10,7 +10,7 @@ import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/s
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     infoBoxText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -313,7 +313,7 @@ class SeedVaultExportComponent extends Component {
                     <CustomTextInput
                         label={t('password')}
                         onChangeText={(password) => this.setState({ password })}
-                        containerStyle={{ width: GENERAL.contentWidth }}
+                        containerStyle={{ width: Styling.contentWidth }}
                         autoCapitalize="none"
                         autoCorrect={false}
                         enablesReturnKeyAutomatically

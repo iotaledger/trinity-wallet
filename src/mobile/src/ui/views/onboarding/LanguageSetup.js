@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import i18next from 'i18next';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
-import WithModalComponent from 'ui/components/ModalComponent';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import DropdownComponent from 'ui/components/Dropdown';
@@ -190,7 +189,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressCloseApp()(
-    WithModalComponent()(
-        translate(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup)),
-    ),
+    translate(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup)),
 );

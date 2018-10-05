@@ -1,6 +1,7 @@
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
@@ -8,7 +9,7 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, isIPhoneX } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Styling, getBackgroundColor } from 'ui/theme/general';
 
 const errorIcon = require('shared-modules/images/error.png');
 const successIcon = require('shared-modules/images/successIcon.png');
@@ -17,7 +18,7 @@ const infoIcon = require('shared-modules/images/infoIcon.png');
 
 const styles = StyleSheet.create({
     dropdownTitle: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
         paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
@@ -55,8 +56,6 @@ class StatefulDropdownAlert extends Component {
         disposeOffAlert: PropTypes.func.isRequired,
         /** @ignore */
         closeInterval: PropTypes.number,
-        /** Background color for dropdown alert */
-        backgroundColor: PropTypes.string.isRequired,
         /**
          * Returns this component instance to the parent component
          *
@@ -78,6 +77,20 @@ class StatefulDropdownAlert extends Component {
     constructor() {
         super();
         this.refFunc = this.refFunc.bind(this);
+        this.state = {
+            currentScreen: '',
+        };
+    }
+
+    componentWillMount() {
+        Navigation.events().registerComponentDidAppearListener((componentId) => {
+            this.setState({ currentScreen: componentId.componentName });
+        });
+        Navigation.events().registerComponentDidDisappearListener(() => {
+            if (this.dropdown) {
+                this.dropdown.close();
+            }
+        });
     }
 
     componentDidMount() {
@@ -85,7 +98,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, isModalActive, backgroundColor } = this.props;
+        const { alerts, isModalActive } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
         const alertIsNotEmpty = newProps.alerts.message !== '';
@@ -100,7 +113,7 @@ class StatefulDropdownAlert extends Component {
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
             if (isAndroid) {
-                StatusBar.setBackgroundColor(backgroundColor, false);
+                StatusBar.setBackgroundColor(this.getBackgroundColour(), false);
             }
         }
 
@@ -119,11 +132,10 @@ class StatefulDropdownAlert extends Component {
     }
 
     getStatusBarStyle() {
-        const { backgroundColor } = this.props;
         if (isIPhoneX) {
             return 'light-content';
         }
-        return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+        return tinycolor(this.getBackgroundColour()).isDark() ? 'light-content' : 'dark-content';
     }
 
     /**
@@ -152,7 +164,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { backgroundColor, onRef, isModalActive, theme: { positive, negative } } = this.props;
+        const { onRef, isModalActive, theme: { positive, negative }, theme } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -169,7 +181,7 @@ class StatefulDropdownAlert extends Component {
                 messageStyle={styles.dropdownMessage}
                 imageStyle={styles.dropdownImage}
                 inactiveStatusBarStyle={statusBarStyle}
-                inactiveStatusBarBackgroundColor={backgroundColor}
+                inactiveStatusBarBackgroundColor={getBackgroundColor(this.state.currentScreen, theme)}
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}

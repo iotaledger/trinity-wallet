@@ -12,7 +12,7 @@ import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
@@ -42,25 +42,25 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     textContainer: {
-        width: GENERAL.contentWidth5,
+        width: Styling.contentWidth5,
         alignItems: 'center',
     },
     infoText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

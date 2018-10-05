@@ -2,14 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import InfoBox from './InfoBox';
 
 const styles = StyleSheet.create({
     okButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
@@ -17,19 +17,19 @@ const styles = StyleSheet.create({
     },
     okText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     modalText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     modalTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -52,7 +52,7 @@ export class ChecksumModal extends PureComponent {
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={GENERAL.contentWidth}
+                    width={Styling.contentWidth}
                     text={
                         <View>
                             <Text style={[styles.modalTextBold, { color: body.color }, { paddingTop: height / 40 }]}>

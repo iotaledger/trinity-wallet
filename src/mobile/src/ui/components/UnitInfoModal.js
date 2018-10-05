@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
         height,
     },
     modalContent: {
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         paddingBottom: height / 30,
         paddingTop: height / 50,
-        width: GENERAL.contentWidth,
+        width: Styling.contentWidth,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -34,19 +34,19 @@ const styles = StyleSheet.create({
     denominationText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingVertical: width / 40,
     },
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingVertical: width / 18,
     },
     numberText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingVertical: width / 40,
     },
     line: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         paddingTop: width / 80,
     },
 });

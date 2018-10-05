@@ -10,12 +10,11 @@ import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checke
 import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import InfoBox from 'ui/components/InfoBox';
 import Header from 'ui/components/Header';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         color: 'white',
         backgroundColor: 'transparent',
         marginLeft: width / 40,
@@ -273,7 +272,6 @@ class SaveSeedConfirmation extends Component {
                         rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }

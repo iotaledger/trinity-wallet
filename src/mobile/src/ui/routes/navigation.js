@@ -1,5 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import withSafeAreaView from 'ui/components/SafeAreaView';
+import withDropdownAlert from 'ui/components/WithDropdownAlert';
+import withModal from 'ui/components/ModalComponent';
 import Home from 'ui/views/wallet/Home';
 import Loading from 'ui/views/wallet/Loading';
 import NewSeedSetup from 'ui/views/onboarding/NewSeedSetup';
@@ -28,9 +30,9 @@ import { isIPhoneX } from 'libs/device';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
-        return withSafeAreaView(screen);
+        screen = withSafeAreaView(screen);
     }
-    return screen;
+    return withModal(withDropdownAlert(screen));
 }
 
 export default function registerScreens(store, Provider) {

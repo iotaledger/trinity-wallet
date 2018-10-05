@@ -11,13 +11,12 @@ import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid, isIPhoneX } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -48,13 +47,13 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -233,7 +232,7 @@ class EnterSeed extends React.Component {
                                             this.setState({ seed: text.toUpperCase() });
                                         }
                                     }}
-                                    containerStyle={{ width: GENERAL.contentWidth }}
+                                    containerStyle={{ width: Styling.contentWidth }}
                                     theme={theme}
                                     autoCapitalize="characters"
                                     autoCorrect={false}
@@ -287,7 +286,6 @@ class EnterSeed extends React.Component {
                                     rightButtonTestID="enterSeed-next"
                                 />
                             </View>
-                            <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
                         </View>
                     )}
                 </View>

@@ -11,7 +11,7 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -37,29 +37,29 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     subHeaderText: {
-        fontSize: GENERAL.fontSize5,
+        fontSize: Styling.fontSize5,
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Light',
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     confirmationText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

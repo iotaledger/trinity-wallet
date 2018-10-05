@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import CustomTextInput from './CustomTextInput';
 import DualFooterButtons from './DualFooterButtons';
 
@@ -81,7 +81,7 @@ export class Enter2FA extends Component {
                         <CustomTextInput
                             label={t('twoFaToken')}
                             onChangeText={this.handleChange2FAToken}
-                            containerStyle={{ width: GENERAL.contentWidth }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             keyboardType="numeric"
                             autoCorrect={false}

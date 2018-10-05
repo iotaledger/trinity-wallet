@@ -13,12 +13,11 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import CtaButton from './CtaButton';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,10 +33,10 @@ const styles = StyleSheet.create({
         height,
     },
     content: {
-        width: GENERAL.contentWidth,
+        width: Styling.contentWidth,
         padding: width / 25,
         justifyContent: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
     },
     statusWrapper: {
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     confirmationWrapper: {
         flexDirection: 'row',
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     bundleHash: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceCodePro-Medium',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         marginTop: 2,
     },
     bundleSeparator: {
@@ -73,24 +72,24 @@ const styles = StyleSheet.create({
     confirmation: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         paddingRight: width / 25,
     },
     timestamp: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     heading: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         paddingTop: height / 50,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceCodePro-Medium',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
     },
     addressRowContainer: {
         flexDirection: 'row',
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     addressRowValue: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'right',
     },
     buttonContainer: {
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         /** Container element press event callback function */
-        onPress: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** Promotes bundle
@@ -266,7 +265,7 @@ export default class HistoryModalContent extends PureComponent {
             secondaryCtaColor: style.primaryBody,
             ctaWidth: width / 2.75,
             ctaHeight: height / 15,
-            fontSize: GENERAL.fontSize3,
+            fontSize: Styling.fontSize3,
             text: t('retry'),
             onPress: () => {
                 if (!disableWhen) {
@@ -286,7 +285,7 @@ export default class HistoryModalContent extends PureComponent {
 
     render() {
         const {
-            onPress,
+            hideModal,
             fullValue,
             unit,
             status,
@@ -308,7 +307,7 @@ export default class HistoryModalContent extends PureComponent {
         const retryButtonIsDisplayed = !confirmationBool || isFailed;
 
         return (
-            <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
+            <TouchableWithoutFeedback style={styles.container} onPress={hideModal}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
                         <ScrollView scrollEnabled={false}>
@@ -391,7 +390,6 @@ export default class HistoryModalContent extends PureComponent {
                             </TouchableWithoutFeedback>
                         </ScrollView>
                     </View>
-                    <StatefulDropdownAlert backgroundColor={style.barBg} />
                 </View>
             </TouchableWithoutFeedback>
         );

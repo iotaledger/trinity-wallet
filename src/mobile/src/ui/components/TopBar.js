@@ -32,7 +32,7 @@ import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
 
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     mainTitle: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         paddingBottom: height / 170,
         maxWidth: width / 1.35,
     },

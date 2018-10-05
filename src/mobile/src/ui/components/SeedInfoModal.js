@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate, Trans } from 'react-i18next';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     okButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     okText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
 });

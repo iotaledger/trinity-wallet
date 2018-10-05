@@ -19,10 +19,8 @@ import timer from 'react-native-timer';
 import { hash } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import UserInactivity from 'ui/components/UserInactivity';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
-import WithModalComponent from 'ui/components/ModalComponent';
 import WithBackPress from 'ui/components/BackPress';
 import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
@@ -408,7 +406,6 @@ class Home extends Component {
                         </View>
                     )}
                     <PollComponent />
-                    {!isModalActive && <StatefulDropdownAlert backgroundColor={bar.bg} />}
                 </View>
             </UserInactivity>
         );
@@ -446,7 +443,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    WithModalComponent()(
-        WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
-    ),
+    WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
 );

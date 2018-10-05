@@ -12,8 +12,7 @@ import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -43,25 +42,25 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 15,
     },
     infoText: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     qrContainer: {
         backgroundColor: 'white',
-        borderRadius: GENERAL.borderRadiusLarge,
+        borderRadius: Styling.borderRadiusLarge,
         padding: width / 30,
         marginBottom: height / 25,
     },
@@ -205,7 +204,6 @@ export class TwoFactorSetupAddKey extends Component {
                         rightButtonText={t('global:next')}
                     />
                 </View>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }

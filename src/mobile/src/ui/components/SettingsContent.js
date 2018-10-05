@@ -30,7 +30,7 @@ import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import About from 'ui/views/wallet/About';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
     },
     settingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },

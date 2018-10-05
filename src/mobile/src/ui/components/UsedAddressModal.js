@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingTop: height / 20,
         paddingBottom: height / 25,
-        width: GENERAL.contentWidth,
+        width: Styling.contentWidth,
         paddingHorizontal: width / 20,
     },
     textContainer: {
@@ -33,12 +33,12 @@ const styles = StyleSheet.create({
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     boldText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'justify',
     },
 });
@@ -68,7 +68,7 @@ class UsedAddressModal extends PureComponent {
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
-                <View style={{ width: GENERAL.contentWidth, alignItems: 'center', backgroundColor: body.bg }}>
+                <View style={{ width: Styling.contentWidth, alignItems: 'center', backgroundColor: body.bg }}>
                     <View style={[styles.modalContent, borderColor]}>
                         <View style={styles.textContainer}>
                             <Text style={[styles.regularText, textColor]}>{t('cantSpendFullBalanceQuestion')}</Text>

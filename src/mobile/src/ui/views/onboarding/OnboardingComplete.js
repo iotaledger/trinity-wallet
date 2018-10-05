@@ -6,7 +6,7 @@ import { Navigation } from 'react-native-navigation';
 import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
         lineHeight: height / 30,

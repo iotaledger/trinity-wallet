@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     qrInfoText: {
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
     },
     closeButton: {
         flexDirection: 'row',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.5,
         height: height / 14,
         justifyContent: 'center',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     closeButtonText: {
         color: 'white',
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     modalContent: {

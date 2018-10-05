@@ -16,8 +16,7 @@ import WithUserActivity from 'ui/components/UserActivity';
 import CtaButton from 'ui/components/CtaButton';
 import { width, height } from 'libs/dimensions';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'left',
     },
@@ -215,7 +214,7 @@ class NewSeedSetup extends Component {
 
     openModal() {
         const { theme } = this.props;
-        this.props.toggleModalActivity('seedInfoModal', {
+        this.props.toggleModalActivity('seedInfo', {
             theme,
             hideModal: () => this.props.toggleModalActivity(),
         });
@@ -303,7 +302,6 @@ class NewSeedSetup extends Component {
                                 rightButtonStyle={{ wrapper: { opacity } }}
                             />
                         </View>
-                        <StatefulDropdownAlert backgroundColor={body.bg} />
                     </View>
                 )}
             </View>

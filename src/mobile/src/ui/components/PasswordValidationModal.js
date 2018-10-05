@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import InfoBox from './InfoBox';
 import CustomTextInput from './CustomTextInput';
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     modalText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -55,7 +55,7 @@ export class PasswordValidationModal extends PureComponent {
                         <View style={{ backgroundColor: theme.body.bg }}>
                             <InfoBox
                                 body={theme.body}
-                                width={GENERAL.contentWidth}
+                                width={Styling.contentWidth}
                                 text={
                                     <View>
                                         <Text

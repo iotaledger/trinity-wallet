@@ -12,8 +12,7 @@ import WithUserActivity from 'ui/components/UserActivity';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
@@ -47,13 +46,13 @@ const styles = StyleSheet.create({
     },
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingTop: height / 60,
     },
 });
@@ -231,7 +230,7 @@ class SeedReentry extends Component {
                                                 this.setState({ seed: text.toUpperCase() });
                                             }
                                         }}
-                                        containerStyle={{ width: GENERAL.contentWidth }}
+                                        containerStyle={{ width: Styling.contentWidth }}
                                         maxLength={MAX_SEED_LENGTH}
                                         autoCapitalize="characters"
                                         autoCorrect={false}
@@ -281,7 +280,6 @@ class SeedReentry extends Component {
                                 </View>
                             </View>
                         </TouchableWithoutFeedback>
-                        <StatefulDropdownAlert backgroundColor={theme.body.bg} />
                     </View>
                 )}
             </View>

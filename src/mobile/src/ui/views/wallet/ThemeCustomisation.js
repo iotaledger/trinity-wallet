@@ -9,7 +9,7 @@ import { updateTheme } from 'shared-modules/actions/settings';
 import THEMES from 'shared-modules/themes/themes';
 import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 44,
         paddingHorizontal: height / 26,
         paddingBottom: height / 26,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 1.5,
         borderStyle: 'dotted',
         alignItems: 'center',
@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     frameBarTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         color: '#ffffff',
         zIndex: 1,
     },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     button: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 3.4,
         height: height / 15,
         alignItems: 'center',
@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     ctaButton: {
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 3.4,
         height: height / 15,
         alignItems: 'center',
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     ctaText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -209,7 +209,7 @@ class ThemeCustomisation extends Component {
                                 <Text
                                     style={{
                                         fontFamily: 'SourceSansPro-Regular',
-                                        fontSize: GENERAL.fontSize2,
+                                        fontSize: Styling.fontSize2,
                                         color: body.color,
                                     }}
                                 >

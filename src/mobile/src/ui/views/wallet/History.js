@@ -194,7 +194,7 @@ class History extends Component {
                                 this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
                             promote: (bundle) =>
                                 this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
-                            onPress: () => this.props.toggleModalActivity(),
+                            hideModal: () => this.props.toggleModalActivity(),
                             generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
                             addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],

@@ -14,7 +14,7 @@ import {
 } from 'shared-modules/markdown';
 import i18next from 'i18next';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { isAndroid } from 'libs/device';
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
     },

@@ -240,7 +240,7 @@ export const toggleModalActivity = (modalContent, modalProps) => {
  */
 export const updateModalProps = (payload) => {
     return {
-        type: ActionTypes.TOGGLE_MODAL_ACTIVITY,
+        type: ActionTypes.UPDATE_MODAL_PROPS,
         payload,
     };
 };

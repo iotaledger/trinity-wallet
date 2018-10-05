@@ -49,7 +49,7 @@ import { Icon } from 'ui/theme/icons';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { getPowFn } from 'libs/nativeModules';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -70,18 +70,18 @@ const styles = StyleSheet.create({
     maxContainer: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        width: GENERAL.contentWidth,
+        width: Styling.contentWidth,
         paddingRight: 1,
     },
     maxButtonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         backgroundColor: 'transparent',
         marginRight: width / 50,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     progressSummaryText: {
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
     },
 });
 
@@ -769,7 +769,7 @@ export class Send extends Component {
                                     this.props.setSendAddressField(text);
                                 }
                             }}
-                            containerStyle={{ width: GENERAL.contentWidth }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -800,7 +800,7 @@ export class Send extends Component {
                             editable={!isSending}
                             setAmount={(text) => this.props.setSendAmountField(text)}
                             setDenomination={(text) => this.props.setSendDenomination(text)}
-                            containerStyle={{ width: GENERAL.contentWidth }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             onRef={(c) => {
                                 this.amountField = c;
                             }}
@@ -849,7 +849,7 @@ export class Send extends Component {
                             keyboardType="default"
                             label={t('message')}
                             onChangeText={(text) => this.props.setSendMessageField(text)}
-                            containerStyle={{ width: GENERAL.contentWidth }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="send"

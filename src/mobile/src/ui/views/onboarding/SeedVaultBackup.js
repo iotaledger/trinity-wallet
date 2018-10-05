@@ -10,7 +10,6 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { isAndroid } from 'libs/device';
 
@@ -127,7 +126,6 @@ class SeedVaultBackup extends Component {
                             />
                         </View>
                     </View>
-                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );

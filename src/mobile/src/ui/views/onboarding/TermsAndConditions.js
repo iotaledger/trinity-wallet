@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import i18next from 'i18next';
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
     },

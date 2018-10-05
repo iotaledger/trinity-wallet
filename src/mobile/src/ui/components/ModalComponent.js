@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
-
+import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import RootDetection from 'ui/components/RootDetectionModal';
 import TransferConfirmation from 'ui/components/TransferConfirmationModal';
 import UsedAddress from 'ui/components/UsedAddressModal';
@@ -16,11 +17,11 @@ import DeleteAccount from 'ui/components/DeleteAccountModal';
 import HistoryContent from 'ui/components/HistoryModalContent';
 import SeedInfo from 'ui/components/SeedInfoModal';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
+import Checksum from 'ui/components/ChecksumModal';
 import QrScanner from 'ui/components/QrScanner';
 import Print from 'ui/components/PrintModal';
 import BiometricInfo from 'ui/components/BiometricInfoModal';
 import NotificationLog from 'ui/components/NotificationLogModal';
-
 import { isAndroid } from 'libs/device';
 import { height, width } from 'libs/dimensions';
 
@@ -50,19 +51,34 @@ const MODAL_CONTENT = {
     rootDetection: RootDetection,
     biometricInfo: BiometricInfo,
     notificationLog: NotificationLog,
+    checksum: Checksum,
 };
 
 /** HOC to render modal component. Trigger opening/closing and content change by dispatching toggleModalActivity action.
  *  Wrap root views with this component (e.g. LanguageSetup, Login, Home).
  */
-export default () => (C) => {
-    class ModalComponent extends PureComponent {
+export default function withSafeAreaView(WrappedComponent) {
+    class EnhancedComponent extends PureComponent {
+        static propTypes = {
+            /** Child component */
+            modalContent: PropTypes.string,
+            /** @ignore */
+            modalProps: PropTypes.object,
+            /** @ignore */
+            isModalActive: PropTypes.bool.isRequired,
+            /** @ignore */
+            theme: PropTypes.object.isRequired,
+            /** @ignore */
+            toggleModalActivity: PropTypes.func.isRequired,
+        };
+
         render() {
             const { modalProps, isModalActive, modalContent, theme: { body } } = this.props;
             const ModalContent = MODAL_CONTENT[modalContent];
+
             return (
                 <View style={{ flex: 1 }}>
-                    <C {...this.props} />
+                    <WrappedComponent {...this.props} />
                     <Modal
                         animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                         animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
@@ -79,6 +95,7 @@ export default () => (C) => {
                         hideModalContentWhileAnimating
                     >
                         <ModalContent {...modalProps} />
+                        {isModalActive && <StatefulDropdownAlert textColor="white" />}
                     </Modal>
                 </View>
             );
@@ -96,18 +113,5 @@ export default () => (C) => {
         toggleModalActivity,
     };
 
-    ModalComponent.propTypes = {
-        /** Child component */
-        modalContent: PropTypes.string,
-        /** @ignore */
-        modalProps: PropTypes.object,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
-        /** @ignore */
-        theme: PropTypes.object.isRequired,
-        /** @ignore */
-        toggleModalActivity: PropTypes.func.isRequired,
-    };
-
-    return connect(mapStateToProps, mapDispatchToProps)(ModalComponent);
-};
+    return hoistNonReactStatics(connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent), WrappedComponent);
+}

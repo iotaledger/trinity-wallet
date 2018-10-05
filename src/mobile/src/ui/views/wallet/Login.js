@@ -17,7 +17,6 @@ import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import Enter2FAComponent from 'ui/components/Enter2FA';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { authorize, getTwoFactorAuthKeyFromKeychain, hash } from 'libs/keychain';
 import { isAndroid } from 'libs/device';
 
@@ -193,7 +192,7 @@ class Login extends Component {
                     },
                     statusBar: {
                         drawBehind: true,
-                        backgroundColor: body.bg
+                        backgroundColor: body.bg,
                     },
                 },
             },
@@ -224,7 +223,6 @@ class Login extends Component {
                     />
                 )}
                 {loginRoute !== 'complete2FA' && loginRoute !== 'login' && <NodeOptionsOnLogin />}
-                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }

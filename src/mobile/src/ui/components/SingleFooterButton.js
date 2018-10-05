@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { width } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
 import Button from './Button';
 
@@ -48,7 +48,7 @@ class SingleFooterButton extends PureComponent {
                         {
                             wrapper: {
                                 backgroundColor: primary.color,
-                                width: isIPhoneX ? GENERAL.contentWidth : width,
+                                width: isIPhoneX ? Styling.contentWidth : width,
                                 borderColor: primary.border,
                                 borderWidth: 1,
                                 borderRadius: isIPhoneX ? width / 20 : 0,

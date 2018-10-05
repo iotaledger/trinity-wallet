@@ -14,10 +14,9 @@ import { persistor } from 'libs/store';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -197,7 +196,7 @@ class WalletResetRequirePassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
-                                containerStyle={{ width: GENERAL.contentWidth }}
+                                containerStyle={{ width: Styling.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -217,7 +216,6 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
             </View>
         );
     }

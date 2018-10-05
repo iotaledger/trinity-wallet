@@ -11,9 +11,8 @@ import { translate } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import Fonts from 'ui/theme/fonts';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { isAndroid, isIPhoneX } from 'libs/device';
@@ -45,13 +44,13 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize5,
+        fontSize: Styling.fontSize5,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: width / 12,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 1,
     },
 });
@@ -246,7 +245,6 @@ class FingerprintEnable extends Component {
                         buttonText={t('global:done')}
                     />
                 </View>
-                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
             </View>
         );
     }

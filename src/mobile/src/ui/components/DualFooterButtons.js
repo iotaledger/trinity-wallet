@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { width } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
 import Button from './Button';
 
@@ -66,7 +66,7 @@ class DualFooterButtons extends PureComponent {
                         {
                             wrapper: {
                                 backgroundColor: theme.dark.color,
-                                width: isIPhoneX ? GENERAL.contentWidth / 2 : width / 2,
+                                width: isIPhoneX ? Styling.contentWidth / 2 : width / 2,
                                 borderColor: theme.primary.border,
                                 borderWidth: 1,
                                 borderBottomLeftRadius: borderRadius,
@@ -88,7 +88,7 @@ class DualFooterButtons extends PureComponent {
                         {},
                         {
                             wrapper: {
-                                width: isIPhoneX ? GENERAL.contentWidth / 2 : width / 2,
+                                width: isIPhoneX ? Styling.contentWidth / 2 : width / 2,
                                 backgroundColor: theme.primary.color,
                                 borderBottomRightRadius: borderRadius,
                                 borderTopRightRadius: borderRadius,

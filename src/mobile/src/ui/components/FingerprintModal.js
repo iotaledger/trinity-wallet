@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Fonts from 'ui/theme/fonts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -11,14 +11,14 @@ import { width, height } from 'libs/dimensions';
 const styles = StyleSheet.create({
     modalContent: {
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
         paddingHorizontal: width / 10,
     },
     modalText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -69,7 +69,7 @@ export class FingerprintModal extends PureComponent {
 
         return (
             <TouchableOpacity
-                style={[{ width: GENERAL.contentWidth, alignItems: 'center' }, { backgroundColor: body.bg }]}
+                style={[{ width: Styling.contentWidth, alignItems: 'center' }, { backgroundColor: body.bg }]}
                 onPress={this.props.hideModal}
             >
                 <View style={[styles.modalContent, { borderColor: body.color }]}>
