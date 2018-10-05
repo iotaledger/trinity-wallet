@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { width } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
-import { isIPhone11 } from 'libs/device';
+import { isIPhoneX } from 'libs/device';
 import Button from './Button';
 
 const styles = StyleSheet.create({
@@ -56,7 +56,7 @@ class DualFooterButtons extends PureComponent {
             rightButtonStyle,
             theme,
         } = this.props;
-        const borderRadius = isIPhone11 ? width / 20 : 0;
+        const borderRadius = isIPhoneX ? width / 20 : 0;
         return (
             <View style={styles.container}>
                 <Button
@@ -66,7 +66,7 @@ class DualFooterButtons extends PureComponent {
                         {
                             wrapper: {
                                 backgroundColor: theme.dark.color,
-                                width: isIPhone11 ? GENERAL.contentWidth / 2 : width / 2,
+                                width: isIPhoneX ? GENERAL.contentWidth / 2 : width / 2,
                                 borderColor: theme.primary.border,
                                 borderWidth: 1,
                                 borderBottomLeftRadius: borderRadius,
@@ -88,7 +88,7 @@ class DualFooterButtons extends PureComponent {
                         {},
                         {
                             wrapper: {
-                                width: isIPhone11 ? GENERAL.contentWidth / 2 : width / 2,
+                                width: isIPhoneX ? GENERAL.contentWidth / 2 : width / 2,
                                 backgroundColor: theme.primary.color,
                                 borderBottomRightRadius: borderRadius,
                                 borderTopRightRadius: borderRadius,

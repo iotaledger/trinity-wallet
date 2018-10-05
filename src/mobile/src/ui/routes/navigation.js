@@ -24,10 +24,10 @@ import TermsAndConditions from 'ui/views/onboarding/TermsAndConditions';
 import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
-import { isIPhone11 } from 'libs/device';
+import { isIPhoneX } from 'libs/device';
 
 function getGenerator(screen) {
-    if (isIPhone11) {
+    if (isIPhoneX) {
         return withSafeAreaView(screen);
     }
 

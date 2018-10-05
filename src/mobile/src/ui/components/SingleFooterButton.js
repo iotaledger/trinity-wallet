@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { width } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
-import { isIPhone11 } from 'libs/device';
+import { isIPhoneX } from 'libs/device';
 import Button from './Button';
 
 const styles = StyleSheet.create({
@@ -48,10 +48,10 @@ class SingleFooterButton extends PureComponent {
                         {
                             wrapper: {
                                 backgroundColor: primary.color,
-                                width: isIPhone11 ? GENERAL.contentWidth : width,
+                                width: isIPhoneX ? GENERAL.contentWidth : width,
                                 borderColor: primary.border,
                                 borderWidth: 1,
-                                borderRadius: isIPhone11 ? width / 20 : 0,
+                                borderRadius: isIPhoneX ? width / 20 : 0,
                             },
                             children: {
                                 color: primary.body,

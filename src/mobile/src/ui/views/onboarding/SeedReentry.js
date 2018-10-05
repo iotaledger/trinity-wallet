@@ -20,7 +20,7 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -257,7 +257,7 @@ class SeedReentry extends Component {
                                         onQRPress={() => this.onQRPress()}
                                         seed={seed}
                                     />
-                                    {!isIPhone11 && (
+                                    {!isIPhoneX && (
                                         <SeedVaultImport
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {

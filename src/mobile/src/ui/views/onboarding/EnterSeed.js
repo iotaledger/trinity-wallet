@@ -18,7 +18,7 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import GENERAL from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -252,7 +252,7 @@ class EnterSeed extends React.Component {
                                     seed={seed}
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                {!isIPhone11 && (
+                                {!isIPhoneX && (
                                     <SeedVaultImport
                                         openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                         onSeedImport={(seed) => {
