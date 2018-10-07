@@ -15,7 +15,6 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            onPress: noop,
             t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
@@ -72,10 +71,6 @@ jest.mock('bugsnag-react-native', () => ({
 
 describe('Testing HistoryModalContent component', () => {
     describe('propTypes', () => {
-        it('should require an onPress function as a prop', () => {
-            expect(HistoryModalContent.propTypes.onPress).toEqual(PropTypes.func.isRequired);
-        });
-
         it('should require a t function as a prop', () => {
             expect(HistoryModalContent.propTypes.t).toEqual(PropTypes.func.isRequired);
         });

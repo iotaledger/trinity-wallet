@@ -3,6 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { QRScanner as QrScannerComponent } from 'ui/components/QrScanner';
 
 jest.mock('react-native-camera', () => ({}));
@@ -67,7 +68,7 @@ describe('Testing QrScanner component', () => {
             expect(props.hideModal).toHaveBeenCalledTimes(0);
 
             wrapper
-                .find('SingleFooterButton')
+                .find(SingleFooterButton)
                 .props()
                 .onButtonPress();
 
