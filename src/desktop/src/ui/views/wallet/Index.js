@@ -132,11 +132,4 @@ const mapDispatchToProps = {
     byteTritSweep,
 };
 
-export default withRouter(
-    translate()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Wallet),
-    ),
-);
+export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));

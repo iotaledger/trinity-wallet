@@ -40,12 +40,16 @@ lane :screenshots do
   frame_screenshots
 end
 
-lane :refresh_dsyms do
-  clean_build_artifacts
-  build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
-  download_dsyms(build_number: build_number)
-  upload_symbols_to_bugsnag
-  clean_build_artifacts
+lane :upload_dsyms do |options|
+  if options[:path]
+    upload_symbols_to_bugsnag(dsym_path: options[:path])
+  else
+    clean_build_artifacts
+    build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
+    download_dsyms(build_number: build_number)
+    upload_symbols_to_bugsnag
+    clean_build_artifacts
+  end
 end
 
 lane :release do

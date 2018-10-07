@@ -422,6 +422,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                                 relevantBalances[index],
                                 seed,
                                 map(existingAccountState.transfers, (tx) => tx),
+                                existingAccountState.addresses,
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
                             )

@@ -712,15 +712,15 @@
         "confirmedOut": "Utgående {{value}} från {{account}} har bekräftats"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Tillgångar framgångsrikt upplåsta",
+        "sweepSucceededExplanation": "Dina tillgångar har blivit framgångsrikt upplåsta och flyttade till en ny adress. Befordra transaktionerna för att hjälpa dem bli bekräftade.",
+        "sweepError": "Fel vid upplåsning av tillgångar",
+        "sweepErrorExplanation": "Något gick fel vid upplåsningen av dina tillgångar. Försöker igen.",
+        "warningTitle": "Varning: Låsta tillgångar upptäckta",
+        "explanation": "Trinity Desktop version 0.3.4 innehöll en bugg som tillfälligt låste tillgångar. Detta påverkade ett fåtal användare som utförde transaktioner med 0.3.4.",
+        "explanationAccounts": "Låsta tillgångar har upptäckts på dina konton: {{accounts}}. Trinity kommer nu automatiskt att återställa dina tillgångar, genom att flytta dem till en ny adress.",
+        "proceed": "Fortsätt till återställning",
+        "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
+        "sweepConfirmationTitle": "Svepningsbekräftelse"
     }
 }

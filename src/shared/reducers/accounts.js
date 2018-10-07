@@ -30,9 +30,7 @@ const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
     mapValues(newAddressData, (data, address) => {
         const isSeenAddress = has(existingAddressData, address);
         if (isSeenAddress && isBoolean(get(existingAddressData[address], 'spent.local'))) {
-            const {
-                spent: { local },
-            } = existingAddressData[address];
+            const { spent: { local } } = existingAddressData[address];
 
             return {
                 ...data,
