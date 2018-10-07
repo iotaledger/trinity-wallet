@@ -25,7 +25,9 @@ yarn && yarn deps:shared
 ```
 
 4. Follow the instructions for the target platform
+
 [Trinity Mobile](https://github.com/iotaledger/trinity-wallet/blob/develop/src/mobile/README.md)
+
 [Trinity Desktop](https://github.com/iotaledger/trinity-wallet/blob/develop/src/desktop/README.md)
 
 
