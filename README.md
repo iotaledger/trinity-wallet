@@ -24,11 +24,7 @@ cd trinity-wallet
 yarn && yarn deps:shared
 ```
 
-4. Follow the instructions for the target platform
-
-[Trinity Mobile](https://github.com/iotaledger/trinity-wallet/blob/develop/src/mobile/README.md)
-
-[Trinity Desktop](https://github.com/iotaledger/trinity-wallet/blob/develop/src/desktop/README.md)
+4. Follow the instructions to install dependencies for [Trinity Mobile](https://github.com/iotaledger/trinity-wallet/blob/develop/src/mobile/README.md) or [Trinity Desktop](https://github.com/iotaledger/trinity-wallet/blob/develop/src/desktop/README.md)
 
 
 ## Branches
