@@ -714,13 +714,13 @@
     "bytetrit": {
         "sweepSucceeded": "Fonds déverrouillés avec succés",
         "sweepSucceededExplanation": "Vos fonds ont été débloqués avec succès et ont été déplacés vers une nouvelle adresse. Promouvoir les transactions aide à les confirmer.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepError": "Erreur pendant le déverrouillage des fonds",
+        "sweepErrorExplanation": "Quelque chose n’a pas marché en déverrouillant vos fonds. Essayez de nouveau.",
+        "warningTitle": "Avertissement : Des fonds verrouillées ont été détecté",
+        "explanation": "Trinity Desktop version 0.3.4 contenait un bug qui pouvait bloquer temporairement les fonds. Cela concerne un petit nombre d’utilisateurs qui ont effectué des transactions avec la version 0.3.4.",
+        "explanationAccounts": "Des fonds verrouillés ont été détectés sur vos comptes : {{accounts}}. Trinity va récupérer maintenant automatiquement vos fonds, en les déplaçant vers une nouvelle adresse.",
+        "proceed": "Procéder à la récupération",
+        "sweepConfirmation": "Vous êtes sur le point de balayer {{amount}} à l’adresse {{address}}. Compte : {{accountName}}, indice de l’adresse : {{index}}",
+        "sweepConfirmationTitle": "Confirmation de balayage"
     }
 }
