@@ -4,7 +4,7 @@ This is the shared repository for the IOTA Trinity Mobile and Desktop wallets. T
 
 ## Prerequisites
 
-- Node.js (8+) 
+- Node.js (8+)
 - Yarn
 
 ## Instructions
@@ -19,16 +19,21 @@ git clone https://github.com/iotaledger/trinity-wallet.git
 cd trinity-wallet
 ```
 
-3. Run the setup to install dependencies
+3. Install the shared dependencies
 ```
-yarn full-setup
+yarn && yarn deps:shared
 ```
+
+4. Follow the instructions for the target platform
+[Trinity Mobile](https://github.com/iotaledger/trinity-wallet/blob/develop/src/mobile/README.md)
+[Trinity Desktop](https://github.com/iotaledger/trinity-wallet/blob/develop/src/desktop/README.md)
+
 
 ## Branches
 
 To create a new feature or bugfix (or chore) please create a new branch and use a prefix (e.g `feature/my-awesome-new-feature` or `bugfix/something-not-working`). The prefixes we use are `bug`, `feat`, `chore` and `hotfix`. Please don't use anything else.
 
-If you are adding any text in your work, please follow the instructions in [localisation.md](https://github.com/iotaledger/trinity-wallet/blob/develop/docs/dev/localisation.md). 
+If you are adding any text in your work, please follow the instructions in [localisation.md](https://github.com/iotaledger/trinity-wallet/blob/develop/docs/dev/localisation.md).
 
 When creating a new branch try to always branch off from `develop`. Avoid branching off from other branches unless it's absolutely necessary.
 
