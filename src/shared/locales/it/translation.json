@@ -712,15 +712,15 @@
         "confirmedOut": "Invio confermato di {{value}} dal conto {{account}}"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Fondi sbloccati con successo",
+        "sweepSucceededExplanation": "I fondi sono stati correttamente sbloccati e trasferiti a un nuovo indirizzo. Promuovi le transazioni per aiutarne la conferma.",
+        "sweepError": "Errore nello sbloccare i fondi",
+        "sweepErrorExplanation": "Qualcosa è andato storto durante lo sblocco dei fondi. Provo di nuovo.",
+        "warningTitle": "Avviso: Rilevati dei fondi bloccati",
+        "explanation": "Trinity Desktop versione 0.3.4 conteneva un bug che può bloccare temporaneamente i fondi. Questo problema riguarda un numero limitato di utenti che ha eseguito transazioni con 0.3.4.",
+        "explanationAccounts": "Fondi bloccati sono stati rilevati sul tuo account: {{accounts}}. Trinity ora recupererà automaticamente i fondi, spostandoli in un nuovo indirizzo.",
+        "proceed": "Procedere al recupero",
+        "sweepConfirmation": "Stai per trasferire {{amount}} verso l'indirizzo {{address}}. Conto: {{accountName}}, indice dell'indirizzo: {{index}}",
+        "sweepConfirmationTitle": "Conferma di trasferimento"
     }
 }
