@@ -31,7 +31,7 @@
         "prev": "Előző",
         "next": "Következő",
         "apply": "Alkalmaz",
-        "save": "Elment",
+        "save": "Mentés",
         "close": "Bezár",
         "export": "Exportálás",
         "help": "Súgó",
@@ -46,7 +46,7 @@
         "addToPasswordManager": "Hozzáadás a jelszókezelőhöz",
         "shareSeed": "Mester jelszó megosztása",
         "share": "Megoszt",
-        "proceed": "Folytatás",
+        "proceed": "Tovább",
         "qr": "QR kód",
         "enterSeed": "Kérjük, adja meg a személyes mester jelszavát.",
         "mainWallet": "Elsődleges számla",
@@ -146,7 +146,7 @@
         "addressesAlreadySpentFrom": "Legalább egy címről indított már korábban tranzakciót.",
         "problemSendingYourTransaction": "Hiba történt a tranzakció küldése során.",
         "problemPerformingProofOfWork": "Hiba történt a kiszabott munka elvégzése során.",
-        "tryingAgainWithLocalPoW": "Újraprobálkozás a kiszabott munka helyi elvégzésével.",
+        "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben."
     },
@@ -176,7 +176,7 @@
         "passwordTooShortExplanation": "A jelszónak minimum 11 karakterből kell állnia. Kérjük, próbálja újra.",
         "oldPassword": "Korábban már használt jelszó",
         "oldPasswordExplanation": "Korábban már használt jelszót nem adhat meg új jelszóként. Kérjük, próbáljon egy új jelszót megadni.",
-        "ensureStrongPassword": "Győzödjön meg róla, hogy legalább 11 karakterből álló, kellően erős jelszót használ.",
+        "ensureStrongPassword": "Győződjön meg róla, hogy legalább 11 karakterből álló, kellően erős jelszót használ.",
         "currentPassword": "Jelenlegi jelszó",
         "newPassword": "Új jelszó",
         "confirmPassword": "Új jelszó megerősítése",
@@ -286,7 +286,7 @@
     },
     "receive": {
         "yourAddress": "Ön címe",
-        "qrOptions": "QR-beállítások",
+        "qrOptions": "QR kód beállítások",
         "shareQr": "QR kód megosztása",
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
@@ -312,12 +312,12 @@
         "printBlankWallet": "Mester jelszó nyomtatvány minta nyomtatása",
         "whatIsChecksum": "Minden mester jelszóhoz tartozik egy 3 karakterből álló ellenőrző összeg",
         "iHavesavedMySeed": "Elmentettem a mester jelszót",
-        "checksumExplanation": "Amikor egy új mester jelszót ad hozzá a tárcához, mindig győződjön meg arról, hogy a tárca által generált ellenőrző összeg megyezik a korábban feljegyzett ellenőrző összeggel.",
+        "checksumExplanation": "Amikor egy új mester jelszót ad hozzá a tárcához, mindig győződjön meg arról, hogy a tárca által generált ellenőrző összeg megegyezik a korábban feljegyzett ellenőrző összeggel.",
         "mustSaveYourSeed": "<0><0>A mester jelszaváról biztonsági másolatot kell készítenie</0><1>legalább egyféleképp</1><2>az alább felsorolt lehetőségek közül.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Kérjük erősítse meg a mester jelszavát",
-        "trinityWillNeverAskToReenter": "A Trinity soha nem fogja újra kérni a mester jelszavát, kivéve ha a tárcát gyári állapotra állítja vissza.",
+        "trinityWillNeverAskToReenter": "A Trinity soha nem fogja újra kérni a mester jelszavát, kizárólag akkor, ha a tárcát gyári állapotra állította vissza.",
         "enterYourSeed": "Adja meg a mester jelszót",
         "incorrectSeed": "Helytelen mester jelszó",
         "incorrectSeedExplanation": "A megadott mester jelszó helytelen. Kérjük, próbálja újra.",
@@ -340,12 +340,12 @@
         "message": "Üzenet",
         "invalidMessage": "Érvénytelen üzenet",
         "invalidMessageExplanation": "Az üzenet érvénytelen karaktereket tartalmaz.",
-        "invalidMessageTooLong": "Túl hosszó üzenet",
+        "invalidMessageTooLong": "Túl hosszú üzenet",
         "invalidMessageTooLongExplanation": "Az üzenet hossza túllépi a maximálisan megengedett 1093 karaktert.",
         "send": "Küldés",
         "invalidAmount": "Érvénytelen összeg",
-        "invalidAmountExplanation": "Kérjük, adjon meg egz érvényes összeget. Az IOTA mértékegységek megértéséhez nézze át az alábbi összefoglalót.",
-        "maximumSelected": "Maximum összeg kiválasztva",
+        "invalidAmountExplanation": "Kérjük, adjon meg egy érvényes összeget. Az IOTA mértékegységek megértéséhez nézze át az alábbi összefoglalót.",
+        "maximumSelected": "Maximális összeg kiválasztva",
         "iotaUnits": "IOTA mértékegységek összefoglalása",
         "sendMax": "Maximális összeg küldése",
         "totalTime": "Küldés időtartama",
@@ -554,7 +554,7 @@
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
         "alreadyHave": "Készítettem biztonsági másolatot a mester jelszavamról",
         "reenterSeed": "A következő lépésben a rendszer kérni fogja, hogy adja meg újra a mester jelszavát.",
-        "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik vagy elveszik, az összes IOTA-ját elveszíti.",
+        "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik, az összes IOTA-ját elveszíti.",
         "pleaseConfirm": "Kérjük, erősítse meg, hogy biztonságosan eltárolta a mester jelszavát."
     },
     "walletResetConfirmation": {
@@ -605,7 +605,7 @@
         "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és a jelszó nélkül a mester jelszó semmilyen módon nem visszafejthető.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
-        "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük győzödjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
+        "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
         "exportSuccess": "SeedVault exportálva",
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
         "importSuccess": "Mester jelszó tárolva",
@@ -617,7 +617,7 @@
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
-        "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fáljt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
+        "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
         "seedVaultPasswordExplanation": "A SeedVault fájl biztonságos tárolásához kérjük adjon megy egy jelszót. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a SeedVault biztonsági mentésből vissza szeretné állítani. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépésnél is használ."
     },
     "chart": {
@@ -647,7 +647,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
         "validatingReceiveAddress": "Címzett címének ellenőrzése",
-        "syncingAccount": "Szálma szinkronizálása",
+        "syncingAccount": "Számla szinkronizálása",
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
@@ -656,7 +656,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Pillanatkép utáni egyenlegátvezetés sikertelen",
-        "cannotCompleteTransitionExplanation": "A pillantkép utáni egyenlegátvezetéshez a számláján 0-nál nagyobb egyenlegnek kell lennie.",
+        "cannotCompleteTransitionExplanation": "A pillanatkép utáni egyenlegátvezetéshez a számláján 0-nál nagyobb egyenlegnek kell lennie.",
         "transitionComplete": "Pillanatkép utáni egyenlegátvezetés sikeres",
         "transitionCompleteExplanation": "A pillanatkép utáni egyenlegátvezetés sikeresen befejeződött.",
         "detectedBalance": "Átvezetés után megtalált egyenleg: {{amount}} {{unit}}",
@@ -670,7 +670,7 @@
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
-        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése deepLink alapján."
+        "autofillExplanation": "Tranzakciós adatok automatikus kitöltése link alapján."
     },
     "updates": {
         "errorRetrievingUpdateData": "Frissítés adatletöltési hiba",
@@ -710,5 +710,17 @@
         "messageTx": "Kapott egy üzenetet a(z) {{account}} számlára",
         "confirmedIn": "{{value}} értékű bejövő tranzakció jóváírva a(z) {{account}} számláján",
         "confirmedOut": "{{value}} értékű tranzakció kiküldve a(z) {{account}} számlájáról"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Egyenleg sikeresen felszabadítva",
+        "sweepSucceededExplanation": "A zárolt összeget sikeresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
+        "sweepError": "Sikertelen zárolt összeg feloldás",
+        "sweepErrorExplanation": "Hiba történt a zárolt összeg feloldása közben. Kérjük, próbálja újra.",
+        "warningTitle": "Figyelem: zárolt összeget találtunk a számláján",
+        "explanation": "A Trinity 0.3.4 asztali verziójában egy hiba folytán ideiglenesen zárolásra kerülhetett az egyenlegének egy része. Ez a hiba viszonylag kevés felhasználót érint: azokat, akik a 0.3.4 verzióval indítottak tranzakciókat.",
+        "explanationAccounts": "Zárolt összegeket találtunk a következő számláin: {{accounts}}. A Trinity most megpróbálja automatikusan feloldani a zárolást az összegek egy Ön számlájához tartozó másik címre való átutalásával.",
+        "proceed": "Tovább a zárolás feloldásához",
+        "sweepConfirmation": "{{amount}} összeget készül az Ön számlájához tartozó {{address}} címre átutalni. Számlanév: {{accountName}}, címének indexe: {{index}}",
+        "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     }
 }

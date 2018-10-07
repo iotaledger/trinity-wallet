@@ -34,7 +34,7 @@
         "save": "Guardar",
         "close": "CERRAR",
         "export": "Exportar",
-        "help": "Help",
+        "help": "Ayuda",
         "import": "Importar",
         "continue": "Continuar",
         "enable": "Habilitar",
@@ -45,7 +45,7 @@
         "paperWallet": "Imprimir copia en papel",
         "addToPasswordManager": "Agregar a administrador de contraseñas",
         "shareSeed": "Comparta la semilla",
-        "share": "Share",
+        "share": "Compartir",
         "proceed": "Avance",
         "qr": "QR",
         "enterSeed": "Por favor, introduzca su semilla.",
@@ -263,10 +263,10 @@
         "pressForNewSeed": "PULSAR PARA NUEVA SEMILLA",
         "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Haz clic en las letras individuales para aleatorizarlas.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Oprima <1><0>{{count}}</0></1> letra más para aleatorizar.",
+        "individualLetterCount_plural": "Oprima <1><0>{{count}}</0></1> letras más para aleatorizar.",
+        "randomiseCharsToContinue": "Aleatorizar <1>{{count}}</1> caracter más para continuar.",
+        "randomiseCharsToContinue_plural": "Aleatorizar <1>{{count}}</1> caracteres más para continuar.",
         "whatIsASeed": "Que es una semilla?"
     },
     "onboardingComplete": {
@@ -493,16 +493,16 @@
         "mockup": "Maqueta"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "Clásico",
+        "contemporary": "Contemporáneo",
+        "dark": "Oscuro",
+        "default": "Predeterminado",
+        "electric": "Eléctrico",
+        "ionic": "Iónico",
+        "light": "Claro",
+        "lucky": "Suertudo",
+        "mint": "Menta",
+        "steelblue": "Acero azul"
     },
     "currencySelection": {
         "currency": "Divisa"
@@ -610,9 +610,9 @@
         "exportSuccessExplanation": "Su archivo con la semilla encriptada fue exportado con éxito.",
         "importSuccess": "Semilla importada",
         "importSuccessExplanation": "Su semilla fue importada con éxito.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Guardar para descargar la carpeta",
         "importSeedVault": "Importar SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "Suelte su SeedVault aquí <1></1> o haga click para buscar",
         "enterPasswordExplanation": "Introduzca su contraseña para abrir SeedVault",
         "noSeedFound": "SeedVault no contiene un semilla válida",
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
@@ -710,5 +710,17 @@
         "messageTx": "Recibiste un mensaje a {{account}}",
         "confirmedIn": "Se confirmó el ingreso de {{value}} a {{account}}",
         "confirmedOut": "Se confirmó la salida de {{value}} a {{account}}"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Fondos desbloqueados con éxito",
+        "sweepSucceededExplanation": "Sus fondos han sido desbloqueados con éxito y se trasladó a una nueva dirección. Promover las transacciones para confirmar.",
+        "sweepError": "Error al desbloquear los fondos",
+        "sweepErrorExplanation": "Algo salió mal mientras se desbloqueaban sus fondos. Intente otra vez.",
+        "warningTitle": "Advertencia: Fondos bloqueados detectados",
+        "explanation": "Trinity Desktop versión 0.3.4 contenía un error que puede bloquear temporalmente los fondos. Esto afecta a un pequeño número de usuarios que realizan transacciones con 0.3.4.",
+        "explanationAccounts": "Fondos bloqueados se han detectado en las cuentas: {{accounts}}. Trinity recuperará ahora sus fondos, moviéndolos a una nueva dirección.",
+        "proceed": "Proceder a la recuperación",
+        "sweepConfirmation": "Estás a punto de barrer {{amount}} para la dirección {{address}}. Cuenta: {{accountName}}, direccion índice: {{index}}",
+        "sweepConfirmationTitle": "Confirmación de barrido"
     }
 }
