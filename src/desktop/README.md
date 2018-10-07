@@ -24,7 +24,7 @@ Then, navigate to this directory:
 cd src/desktop
 ```
 
-### 3. Prepare Trinity desktop appplication
+### 2. Prepare Trinity desktop appplication
 
 When the npm install is done you can prepare the wallet application for compilation by running:
 
@@ -32,8 +32,10 @@ When the npm install is done you can prepare the wallet application for compilat
 npm run build
 ```
 
+Then, you can either compile a production version (3a) or development version (3b) of Trinity:
 
-### 4. Compile Trinity desktop appplication
+
+### 3a. Compile Trinity desktop appplication
 
 After the application is prepared you can compile the wallet application by running:
 
@@ -47,7 +49,7 @@ This will start the building process for the Trinity Desktop application and cou
 
 After the building is finished, the application executable and installation files will be located in the directory `src/desktop/out/`.
 
-### 4. Run Trinity desktop app in development mode
+### 3b. Run Trinity desktop app in development mode
 
 To start the application in development mode, run
 
