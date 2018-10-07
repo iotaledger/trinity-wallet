@@ -712,8 +712,8 @@
         "confirmedOut": "Envoi de {{value}} depuis {{account}} confirmé"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "Fonds déverrouillés avec succés",
+        "sweepSucceededExplanation": "Vos fonds ont été débloqués avec succès et ont été déplacés vers une nouvelle adresse. Promouvoir les transactions aide à les confirmer.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "Warning: Locked funds detected",
