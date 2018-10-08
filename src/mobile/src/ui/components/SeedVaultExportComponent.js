@@ -298,7 +298,7 @@ class SeedVaultExportComponent extends Component {
         const textColor = { color: theme.body.color };
 
         return (
-            <Animated.View style={[styles.container, { transform: [{ withNamespacesX: this.animatedValue }] }]}>
+            <Animated.View style={[styles.container, { transform: [{ translateX: this.animatedValue }] }]}>
                 <View style={styles.viewContainer}>
                     <Text style={[styles.infoText, textColor, { marginBottom: height / 15 }]}>
                         {t('login:enterPassword')}
