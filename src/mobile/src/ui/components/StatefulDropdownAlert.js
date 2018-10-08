@@ -98,7 +98,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, isModalActive } = this.props;
+        const { alerts, isModalActive, theme } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
         const alertIsNotEmpty = newProps.alerts.message !== '';
@@ -113,7 +113,7 @@ class StatefulDropdownAlert extends Component {
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
             if (isAndroid) {
-                StatusBar.setBackgroundColor(this.getBackgroundColour(), false);
+                StatusBar.setBackgroundColor(getBackgroundColor(this.state.currentScreen, theme), false);
             }
         }
 
@@ -135,7 +135,9 @@ class StatefulDropdownAlert extends Component {
         if (isIPhoneX) {
             return 'light-content';
         }
-        return tinycolor(this.getBackgroundColour()).isDark() ? 'light-content' : 'dark-content';
+        return tinycolor(getBackgroundColor(this.state.currentScreen, this.props.theme)).isDark()
+            ? 'light-content'
+            : 'dark-content';
     }
 
     /**
