@@ -197,7 +197,10 @@ class History extends Component {
                             hideModal: () => this.props.toggleModalActivity(),
                             generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
-                            addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
+                            relevantAddresses: [
+                                ...map(inputs, withUnitAndChecksum),
+                                ...map(outputs, withUnitAndChecksum),
+                            ],
                         }),
                     );
                 },

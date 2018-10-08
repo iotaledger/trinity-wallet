@@ -153,7 +153,7 @@ export default class HistoryModalContent extends PureComponent {
         /** Determines whether the modal buttons should disable onPress event */
         disableWhen: PropTypes.bool.isRequired,
         /** Transaction addresses */
-        addresses: PropTypes.arrayOf(
+        relevantAddresses: PropTypes.arrayOf(
             PropTypes.shape({
                 address: PropTypes.string.isRequired,
                 value: PropTypes.number.isRequired,
@@ -243,11 +243,10 @@ export default class HistoryModalContent extends PureComponent {
     }
 
     renderAddresses() {
-        const { addresses } = this.props;
-
+        const { relevantAddresses } = this.props;
         return (
             <FlatList
-                data={addresses}
+                data={relevantAddresses}
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => this.renderAddressRow(item)}
                 ItemSeparatorComponent={() => <View />}
