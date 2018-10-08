@@ -128,7 +128,7 @@ class EnterPassword extends Component {
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View>
+                <View style={{ flex: 1 }}>
                     <View style={styles.topContainer}>
                         <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>

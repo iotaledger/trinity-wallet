@@ -12,6 +12,8 @@ export default function withSafeAreaView(WrappedComponent) {
         static propTypes = {
             /** @ignore */
             theme: PropTypes.object.isRequired,
+            /** @ignore */
+            inactive: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -28,12 +30,22 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         render() {
-            const { theme } = this.props;
+            const { theme, inactive } = this.props;
             const { currentScreen } = this.state;
             return (
-                <SafeAreaView style={{ flex: 1, backgroundColor: getBackgroundColor(currentScreen, theme) }}>
+                <SafeAreaView
+                    style={{
+                        flex: 1,
+                        backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme),
+                    }}
+                >
                     <WrappedComponent {...this.props} />
-                    <View style={{ height: 34, backgroundColor: getBackgroundColor(currentScreen, theme, true) }} />
+                    <View
+                        style={{
+                            height: 34,
+                            backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, true),
+                        }}
+                    />
                 </SafeAreaView>
             );
         }
@@ -41,6 +53,7 @@ export default function withSafeAreaView(WrappedComponent) {
 
     const mapStateToProps = (state) => ({
         theme: state.settings.theme,
+        inactive: state.ui.inactive,
     });
 
     return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);
