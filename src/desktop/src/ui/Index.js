@@ -215,6 +215,7 @@ class App extends React.Component {
                 this.props.setAdditionalAccountInfo({
                     additionalAccountName: '',
                     addingAdditionalAccount: false,
+                    additionalAccountType: ''
                 });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
