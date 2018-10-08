@@ -828,12 +828,12 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
 /**
  *   Filters all invalid transactions from all pending transactions.
  *
- *   @method filterInvalidPendingTransactions
+ *   @method filterNonFundedPendingTransactions
  *   @param {string} [provider]
  *
  *   @returns {function(array, object): Promise<array>}
  **/
-export const filterInvalidPendingTransactions = (provider) => (transactions, addressData) => {
+export const filterNonFundedPendingTransactions = (provider) => (transactions, addressData) => {
     const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransactions)) {

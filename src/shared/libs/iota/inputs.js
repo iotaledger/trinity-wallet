@@ -1,6 +1,5 @@
 import isObject from 'lodash/isObject';
 import differenceBy from 'lodash/differenceBy';
-import get from 'lodash/get';
 import head from 'lodash/head';
 import each from 'lodash/each';
 import isNumber from 'lodash/isNumber';
@@ -9,18 +8,18 @@ import filter from 'lodash/filter';
 import minBy from 'lodash/minBy';
 import uniqBy from 'lodash/uniqBy';
 import map from 'lodash/map';
-import keys from 'lodash/keys';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import {
     pickUnspentAddressData,
-    omitAddressesDataWithIncomingTransfers,
+    omitAddressDataWithIncomingTransactions,
     transformAddressDataToInputs,
+    filterAddressDataWithPendingOutgoingTransactions
 } from './addresses';
 import { VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
 import { DEFAULT_SECURITY } from '../../config';
 import Errors from '../errors';
-import { filterInvalidPendingTransactions } from './transfers';
+import { filterNonFundedPendingTransactions } from './transfers';
 
 /**
  *   Prepares inputs for sending transfer from locally stored address related information
@@ -244,29 +243,29 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
  **/
 export const getInputs = (provider) => (
     addressData,
-    normalisedTransactions,
+    normalisedTransactionsList,
     threshold,
 ) => {
-    // First check if there is sufficient balance
+    // Check if there is sufficient balance
     if (reduce(addressData, (acc, data) => acc + data.balance, 0) < threshold) {
         return Promise.reject(Errors.INSUFFICIENT_BALANCE);
     }
 
-    // Find pending value transactions
-    return filterInvalidPendingTransactions(provider)(
-        filter(normalisedTransactions, (tx) => tx.transferValue !== 0),
+    // Filter transactions with non-funded inputs
+    return filterNonFundedPendingTransactions(provider)(
+        filter(normalisedTransactionsList, (tx) => tx.transferValue !== 0),
         addressData
     )
         .then((pendingValueTransactions) => {
-            // Remove addresses from addressData with pending incoming transactions
-            const addressDataWithoutPendingIncomingTransactions = omitAddressesDataWithIncomingTransfers(
+            // Remove addresses from addressData with (still funded) pending incoming transactions
+            let addressDataForInputs = omitAddressDataWithIncomingTransactions(
                 addressData,
                 pendingValueTransactions
             );
 
             if (
                 reduce(
-                    addressDataWithoutPendingIncomingTransactions,
+                    addressDataForInputs,
                     (acc, data) => acc + data.balance,
                     0,
                 ) < threshold
@@ -274,10 +273,24 @@ export const getInputs = (provider) => (
                 throw new Error(Errors.INCOMING_TRANSFERS);
             }
 
+            // Filter addresses with pending outgoing transactions
+            addressDataForInputs = filterAddressDataWithPendingOutgoingTransactions(
+                addressDataForInputs,
+                normalisedTransactionsList
+            );
+
+            if (
+                reduce(
+                    addressDataForInputs,
+                    (acc, data) => acc + data, 0) < threshold
+            ) {
+                throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
+            }
+
             // Filter all spent addresses
             return pickUnspentAddressData(provider)(
-                addressDataWithoutPendingIncomingTransactions,
-                normalisedTransactions
+                addressDataForInputs,
+                normalisedTransactionsList
             );
         })
         .then((unspentAddressData) => {
@@ -287,25 +300,6 @@ export const getInputs = (provider) => (
 
             return prepareInputs(unspentAddressData, threshold);
     });
-};
-
-/**
- *   Finds the first address with balance from locally stored addresses related info.
- *   Returns index associated with the address
- *   Returns 0 if no address with balance is found.
- *
- *   @method getStartingSearchIndexToPrepareInputs
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *
- *   @returns {number} index
- **/
-export const getStartingSearchIndexToPrepareInputs = (addressData) => {
-    const byIndex = (a, b) => get(addressData, `${a}.index`) - get(addressData, `${b}.index`);
-    const address = keys(addressData)
-        .sort(byIndex)
-        .find((address) => addressData[address].balance > 0);
-
-    return address ? addressData[address].index : 0;
 };
 
 /**

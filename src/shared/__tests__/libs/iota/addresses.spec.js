@@ -1239,4 +1239,64 @@ describe('libs: iota/addresses', () => {
             expect(result).to.eql([true, false, false]);
         });
     });
+
+    describe('#filterAddressDataWithPendingOutgoingTransactions', () => {
+        it('should filter address data with pending outgoing transactions', () => {
+            const addressData = {
+              ['A'.repeat(81)]: {
+                  index: 0,
+                  balance: 10,
+              },
+              ['B'.repeat(81)]: {
+                  index: 1,
+                  balance: 15
+              },
+                ['C'.repeat(81)]: {
+                  index: 2,
+                  balance: 20
+                }, ['D'.repeat(81)]: {
+                  index: 3,
+                    balance: 0
+                }
+            };
+
+            const normalisedTransactionsList = [
+                {
+                    inputs: [{ address: 'A'.repeat(81), value: -1 }],
+                    outputs: [{ address: 'Z'.repeat(81), value: 1 }],
+                    persistence: false
+                },
+                {
+                    inputs: [],
+                    outputs: [{ address: 'D'.repeat(81), value: 0 }],
+                    persistence: true
+                },
+                {
+                    inputs: [{ address: 'C'.repeat(81), value: -5 }],
+                    outputs: [{ address: 'Y'.repeat(81), value: 5 }],
+                    persistence: true
+                },
+            ];
+
+            const result = addressesUtils.filterAddressDataWithPendingOutgoingTransactions(
+                addressData,
+                normalisedTransactionsList,
+            );
+
+            const expectedResult = {
+                ['B'.repeat(81)]: {
+                    index: 1,
+                    balance: 15
+                }, ['C'.repeat(81)]: {
+                    index: 2,
+                    balance: 20
+                }, ['D'.repeat(81)]: {
+                    index: 3,
+                    balance: 0
+                }
+            };
+
+            expect(result).to.eql(expectedResult);
+        });
+    });
 });

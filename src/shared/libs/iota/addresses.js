@@ -393,7 +393,7 @@ export const filterSpentAddressesSync = (addresses, addressData) =>
  *
  *   @returns {function(object, array): Promise<object>}
  **/
-export const pickUnspentAddressData = (provider) => (addressData, normalisedTransactions) => {
+export const pickUnspentAddressData = (provider) => (addressData, normalisedTransactionsList) => {
     const addresses = filterSpentAddressesSync(keys(addressData), addressData);
 
     // If all inputs are spent, avoid making the network call
@@ -401,7 +401,7 @@ export const pickUnspentAddressData = (provider) => (addressData, normalisedTran
         return Promise.resolve([]);
     }
 
-    const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactions);
+    const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactionsList);
 
     return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
         const filteredAddresses = filter(addresses, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]);
@@ -596,13 +596,13 @@ export const syncAddresses = (provider) => (seed, existingAddressData, normalise
  *   Filters inputs with addresses that have pending incoming transfers or
  *   are change addresses.
  *
- *   @method omitAddressesDataWithIncomingTransfers
+ *   @method omitAddressDataWithIncomingTransactions
  *   @param {object} addressData
  *   @param {array} pendingValueTransfers
  *
  *   @returns {object}
  **/
-export const omitAddressesDataWithIncomingTransfers = (addressData, pendingValueTransfers) => {
+export const omitAddressDataWithIncomingTransactions = (addressData, pendingValueTransfers) => {
     if (isEmpty(pendingValueTransfers) || isEmpty(addressData)) {
         return addressData;
     }
@@ -718,6 +718,15 @@ export const findSpendStatusesFromNormalisedTransactions = (addresses, normalise
     return map(addresses, (address) => includes(inputAddresses, address));
 };
 
+/**
+ * Transforms address data object to inputs list
+ *
+ * @method transformAddressDataToInputs
+ * @param {object} addressData
+ * @param {number} security
+ *
+ * @returns {array}
+ */
 export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) =>
     map(addressData, (data, address) => ({
         address,
@@ -725,3 +734,23 @@ export const transformAddressDataToInputs = (addressData, security = DEFAULT_SEC
         balance: data.balance,
         keyIndex: data.index,
     }));
+
+/**
+ * Filters address data with pending outgoing transactions
+ *
+ * @method filterAddressDataWithPendingOutgoingTransactions
+ * @param {object} addressData
+ * @param {array} normalisedTransactionsList
+ *
+ * @returns {object}
+ */
+export const filterAddressDataWithPendingOutgoingTransactions = (addressData, normalisedTransactionsList) => {
+   const pendingTransactions = filter(normalisedTransactionsList, (tx) => tx.persistence === false);
+    // Get all input addresses from transactions
+    const inputAddressesFromTransactions = map(
+        flatMap(pendingTransactions, (tx) => tx.inputs),
+        (input) => input.address
+    );
+
+    return omitBy(addressData, (_, address) => includes(inputAddressesFromTransactions, address));
+};
