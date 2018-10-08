@@ -938,40 +938,6 @@ export const getOwnTransactionHashes = (normalisedTransaction, addressData) => {
 };
 
 /**
- * Takes addresses and transactions and returns outgoing transfers for those addresses.
- *
- * @param {array} addresses
- * @param {object} transactions
- * @returns {array}
- */
-export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
-    const selectedTransactions = new Set();
-    each(transactions, (tx) => {
-        each(tx.inputs, (input) => {
-            if (addresses.indexOf(input.address) > -1) {
-                selectedTransactions.add(tx);
-            }
-        });
-    });
-
-    return Array.from(selectedTransactions);
-};
-
-/**
- * Takes addresses and transactions and returns pending outgoing transfers for those addresses.
- *
- * @param {array} addresses
- * @param {object} transfers
- * @returns {array}
- */
-export const getPendingOutgoingTransfersForAddresses = (addresses, transfers) => {
-    const addressesWithBalance = pickBy(addresses, (address) => address.balance > 0);
-    const relevantTransfers = filter(transfers, (tx) => !tx.persistence);
-
-    return getOutgoingTransfersForAddresses(keys(addressesWithBalance), relevantTransfers);
-};
-
-/**
  *   Picks newly found tail transactions from transaction objects
  *
  *   @method pickNewTailTransactions

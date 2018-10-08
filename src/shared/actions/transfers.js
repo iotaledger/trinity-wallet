@@ -35,7 +35,6 @@ import {
     isStillAValidTransaction,
     findPromotableTail,
     prepareTransferArray,
-    getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
     isAboveMaxDepth,
 } from '../libs/iota/transfers';
