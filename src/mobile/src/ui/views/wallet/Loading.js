@@ -79,8 +79,6 @@ const styles = StyleSheet.create({
 /** Loading screen component */
 class Loading extends Component {
     static propTypes = {
-        /** Component ID */
-        componentId: PropTypes.string.isRequired,
         /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
         /** @ignore */
@@ -185,7 +183,6 @@ class Loading extends Component {
             addingAdditionalAccount,
             hasErrorFetchingAccountInfo,
             hasErrorFetchingFullAccountInfo,
-            componentId,
             accountNames,
         } = this.props;
         const isReady = !ready && newProps.ready;
@@ -199,7 +196,7 @@ class Loading extends Component {
             if (accountNames.length <= 1) {
                 this.redirectToLogin();
             } else {
-                Navigation.pop(componentId);
+                this.redirectToHome();
             }
         }
     }
@@ -241,33 +238,8 @@ class Loading extends Component {
      * @method launchHomeScreen
      */
     launchHomeScreen() {
-        const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'home',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: bar.alt,
-                    },
-                },
-            },
-        });
+        this.redirectToHome();
         this.clearTimeouts();
         this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
     }
@@ -322,6 +294,40 @@ class Loading extends Component {
                     statusBar: {
                         drawBehind: true,
                         backgroundColor: body.bg,
+                    },
+                },
+            },
+        });
+    }
+
+    /**
+     * Redirect to home page
+     *
+     * @method redirectToHome
+     */
+    redirectToHome() {
+        const { theme: { body, bar } } = this.props;
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'home',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: bar.alt,
                     },
                 },
             },

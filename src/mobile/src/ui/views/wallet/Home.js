@@ -295,6 +295,9 @@ class Home extends Component {
             accountName: this.props.selectedAccountName,
             task: 'hasDisplayedTransitionGuide',
         });
+        if (this.props.isModalActive) {
+            this.props.toggleModalActivity();
+        }
     }
 
     /**

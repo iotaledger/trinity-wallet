@@ -31,7 +31,7 @@ import { setPollFor } from 'shared-modules/actions/polling';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
@@ -492,7 +492,7 @@ class TopBar extends Component {
                     }}
                     onContentSizeChange={(x, y) => this.setScrollable(y)}
                     contentContainerView={{ height: height }}
-                    style={{ maxHeight: height - height / 8.8 }}
+                    style={{ maxHeight: isIPhoneX ? height - height / 8.8 - 34 : height - height / 8.8 }}
                 >
                     {restContent}
                 </ScrollView>

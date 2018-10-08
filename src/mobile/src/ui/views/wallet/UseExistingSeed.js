@@ -171,15 +171,12 @@ class UseExistingSeed extends Component {
             usedExistingSeed: true,
         });
 
-        Navigation.push('appStack', {
+        Navigation.setStackRoot('appStack', {
             component: {
                 name: 'loading',
                 options: {
                     animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
+                        setStackRoot: {
                             enable: false,
                         },
                     },
