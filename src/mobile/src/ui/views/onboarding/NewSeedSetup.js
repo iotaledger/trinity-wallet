@@ -160,7 +160,6 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         if (this.state.randomised) {
-            const buttonColor = isAndroid ? body.bg : 'black';
             Navigation.push('appStack', {
                 component: {
                     name: 'saveYourSeed',
@@ -181,23 +180,13 @@ class NewSeedSetup extends Component {
                             visible: false,
                             drawBehind: true,
                             elevation: 0,
+                            title: {
+                                color: body.color,
+                            },
                         },
                         statusBar: {
                             drawBehind: true,
                             backgroundColor: body.bg,
-                        },
-                        rightButtons: [
-                            {
-                                color: buttonColor,
-                            },
-                        ],
-                        leftButtons: [
-                            {
-                                color: buttonColor,
-                            },
-                        ],
-                        backButton: {
-                            color: buttonColor,
                         },
                     },
                 },

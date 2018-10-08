@@ -96,6 +96,7 @@ class SaveYourSeed extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SaveYourSeed');
+        Navigation.events().bindComponent(this);
     }
 
     componentWillUnmount() {
@@ -154,7 +155,6 @@ class SaveYourSeed extends Component {
      */
     onWriteSeedDownPress() {
         const { theme: { body } } = this.props;
-        const buttonColor = isAndroid ? body.bg : 'black';
         Navigation.push('appStack', {
             component: {
                 name: 'writeSeedDown',
@@ -179,19 +179,6 @@ class SaveYourSeed extends Component {
                     statusBar: {
                         drawBehind: true,
                         backgroundColor: body.bg,
-                    },
-                    rightButtons: [
-                        {
-                            color: buttonColor,
-                        },
-                    ],
-                    leftButtons: [
-                        {
-                            color: buttonColor,
-                        },
-                    ],
-                    backButton: {
-                        color: buttonColor,
                     },
                 },
             },
@@ -311,6 +298,7 @@ class SaveYourSeed extends Component {
         Navigation.mergeOptions('appStack', {
             topBar: {
                 visible: false,
+                color: 'white',
             },
         });
     }
@@ -320,7 +308,7 @@ class SaveYourSeed extends Component {
      *  @method print
      */
     async print() {
-        this.hideModal();
+        this.props.toggleModalActivity();
         const paperWalletHTML = `
         <!DOCTYPE html>
         <html>

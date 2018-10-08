@@ -142,7 +142,7 @@ export class RootDetectionModal extends PureComponent {
                                 <ModalButtons
                                     onLeftButtonPress={() => this.props.hideModal()}
                                     onRightButtonPress={() => this.onPrintPress()}
-                                    leftText={t('global:back'.toUpperCase())}
+                                    leftText={t('global:back').toUpperCase()}
                                     rightText={t('print')}
                                     opacity={opacity}
                                     containerWidth={{ width: width / 1.25 }}
