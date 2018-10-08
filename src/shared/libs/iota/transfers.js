@@ -26,7 +26,6 @@ import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
-import pickBy from 'lodash/pickBy';
 import {
     DEFAULT_TAG,
     DEFAULT_BALANCES_THRESHOLD,
@@ -826,7 +825,7 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
 };
 
 /**
- *   Filters all invalid transactions from all pending transactions.
+ *   Filters invalid (non-funded) transactions from all pending transactions.
  *
  *   @method filterNonFundedPendingTransactions
  *   @param {string} [provider]
