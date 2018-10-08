@@ -416,6 +416,7 @@ describe('libs: iota/addresses', () => {
     describe('#attachAndFormatAddress', () => {
         let address;
         let addressIndex;
+        let addressData;
         let seed;
 
         let sandbox;
@@ -424,6 +425,7 @@ describe('libs: iota/addresses', () => {
             address = 'U'.repeat(81);
             seed = 'SEED';
             addressIndex = 11;
+            addressData = { ['A'.repeat(81)]: { index: 0, balance: 0, spent: { local: false, remote: false } } };
         });
 
         beforeEach(() => {
@@ -442,7 +444,7 @@ describe('libs: iota/addresses', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, seed, null)
+                    .attachAndFormatAddress()(address, addressIndex, 10, seed, [], addressData, null)
                     .catch((error) => {
                         expect(error.message).to.equal('Address already attached.');
 
@@ -456,7 +458,7 @@ describe('libs: iota/addresses', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, seed, null)
+                    .attachAndFormatAddress()(address, addressIndex, 10, seed, [], addressData, null)
                     .then((result) => {
                         expect(result.addressData).to.eql({
                             ['U'.repeat(81)]: {
@@ -477,7 +479,7 @@ describe('libs: iota/addresses', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, seed, null)
+                    .attachAndFormatAddress()(address, addressIndex, 10, seed, [], addressData, null)
                     .then((result) => {
                         expect(result.transfer).to.eql([{}, {}]);
                         findTransactions.restore();

@@ -25,9 +25,9 @@ fastlane build_release
 fastlane screenshots
 ```
 
-### refresh_dsyms
+### upload_dsyms
 ```
-fastlane refresh_dsyms
+fastlane upload_dsyms
 ```
 
 ### release

@@ -5,6 +5,7 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
+import findKey from 'lodash/findKey';
 import findIndex from 'lodash/findIndex';
 import head from 'lodash/head';
 import has from 'lodash/has';
@@ -165,19 +166,19 @@ export const isAboveMaxDepth = (attachmentTimestamp) => {
  *   @param {string} address
  *   @param {number} [value]
  *   @param {string} [message]
- *   @param {string} [firstOwnAddress]
+ *   @param {object} addressData
  *   @param {string} [tag='TRINITY']
+ *
  *   @returns {array} Transfer object
  **/
-export const prepareTransferArray = (
-    address,
-    value = 0,
-    message = '',
-    firstOwnAddress = EMPTY_HASH_TRYTES,
-    tag = DEFAULT_TAG,
-) => {
+export const prepareTransferArray = (address, value, message, addressData, tag = DEFAULT_TAG) => {
+    const firstAddress = findKey(addressData, { index: 0 });
+
+    if (!firstAddress) {
+        throw new Error(Errors.EMPTY_ADDRESS_DATA);
+    }
+
     const trytesConvertedMessage = iota.utils.toTrytes(message);
-    const isZeroValue = value === 0;
     const transfer = {
         address,
         value,
@@ -185,10 +186,12 @@ export const prepareTransferArray = (
         tag,
     };
 
-    const isSendingToFirstOwnAddress = firstOwnAddress === address;
+    const isZeroValueTransaction = value === 0;
 
-    if (isZeroValue && !isSendingToFirstOwnAddress) {
-        return [transfer, assign({}, transfer, { address: firstOwnAddress })];
+    if (isZeroValueTransaction) {
+        return iota.utils.noChecksum(address) in addressData
+            ? [transfer]
+            : [transfer, assign({}, transfer, { address: firstAddress })];
     }
 
     return [transfer];
