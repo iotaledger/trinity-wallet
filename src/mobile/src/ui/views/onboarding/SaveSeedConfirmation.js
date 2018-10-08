@@ -235,9 +235,9 @@ class SaveSeedConfirmation extends Component {
                     <Header textColor={body.color}>{t('didSaveSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.15 }} />
+                    <View style={{ flex: 0.3 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
-                    <View style={{ flex: 0.15 }} />
+                    <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
                         {this.state.showCheckbox ? (
                             <View>

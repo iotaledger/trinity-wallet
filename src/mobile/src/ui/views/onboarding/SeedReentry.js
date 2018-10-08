@@ -159,7 +159,7 @@ class SeedReentry extends Component {
      * @method onQRPress
      */
     onQRPress() {
-        this.showModal('qr');
+        this.showModal('qrScanner');
     }
 
     /**
