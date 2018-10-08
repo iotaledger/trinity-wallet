@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedAccountName } from 'selectors/accounts';
 
@@ -112,4 +112,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountName));

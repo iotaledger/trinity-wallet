@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 
@@ -280,4 +280,4 @@ const mapDispatchToProps = {
     setOnboardingName,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Login));

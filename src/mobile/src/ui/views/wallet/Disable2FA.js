@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
@@ -182,6 +182,6 @@ const mapDispatchToProps = {
     set2FAStatus,
 };
 
-export default translate(['resetWalletRequirePassword', 'global'])(
+export default withNamespaces(['resetWalletRequirePassword', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
 );

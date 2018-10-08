@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import { uniqueSeed } from 'libs/crypto';
@@ -152,4 +152,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(SeedVerify));

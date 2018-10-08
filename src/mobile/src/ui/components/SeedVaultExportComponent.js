@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
 import Share from 'react-native-share';
@@ -298,7 +298,7 @@ class SeedVaultExportComponent extends Component {
         const textColor = { color: theme.body.color };
 
         return (
-            <Animated.View style={[styles.container, { transform: [{ translateX: this.animatedValue }] }]}>
+            <Animated.View style={[styles.container, { transform: [{ withNamespacesX: this.animatedValue }] }]}>
                 <View style={styles.viewContainer}>
                     <Text style={[styles.infoText, textColor, { marginBottom: height / 15 }]}>
                         {t('login:enterPassword')}
@@ -400,6 +400,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['seedVault', 'global'])(
+export default withNamespaces(['seedVault', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(SeedVaultExportComponent),
 );

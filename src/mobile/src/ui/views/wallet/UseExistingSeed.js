@@ -2,7 +2,7 @@ import trim from 'lodash/trim';
 import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import Modal from 'react-native-modal';
@@ -454,6 +454,6 @@ const mapDispatchToProps = {
     setDoNotMinimise,
 };
 
-export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
+export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
 );

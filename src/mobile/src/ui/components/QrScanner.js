@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import GENERAL from 'ui/theme/general';
 import { isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
@@ -113,4 +113,4 @@ export class QRScanner extends Component {
     }
 }
 
-export default translate(['qrScanner', 'global'])(QRScanner);
+export default withNamespaces(['qrScanner', 'global'])(QRScanner);

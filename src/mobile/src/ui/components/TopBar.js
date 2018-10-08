@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
 import { clearLog } from 'shared-modules/actions/alerts';
@@ -590,4 +590,4 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
+export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

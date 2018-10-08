@@ -15,7 +15,7 @@ import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import { nodes, nodesWithPoWEnabled } from '../config';
 import Errors from '../libs/errors';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',

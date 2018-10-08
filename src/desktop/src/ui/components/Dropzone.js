@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
@@ -172,4 +172,4 @@ class Dropzone extends React.Component {
     }
 }
 
-export default connect()(translate()(Dropzone));
+export default connect()(withI18n()(Dropzone));

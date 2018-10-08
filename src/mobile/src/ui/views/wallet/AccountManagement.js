@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 import { isIPhone11 } from 'libs/device';
@@ -100,6 +100,6 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['accountManagement', 'global'])(
+export default withNamespaces(['accountManagement', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(AccountManagement),
 );

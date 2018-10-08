@@ -9,7 +9,7 @@ import {
     deTermsAndConditionsIOS,
 } from 'shared-modules/markdown';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
 import Button from 'ui/components/Button';
 import GENERAL from 'ui/theme/general';
@@ -162,4 +162,4 @@ const mapDispatchToProps = {
     acceptTerms,
 };
 
-export default translate('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));
+export default withNamespaces('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));

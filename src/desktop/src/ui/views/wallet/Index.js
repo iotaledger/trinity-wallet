@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -132,4 +132,4 @@ const mapDispatchToProps = {
     byteTritSweep,
 };
 
-export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));
+export default withRouter(withI18n()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));

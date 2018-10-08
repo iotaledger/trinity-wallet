@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { getSelectedAccountName, getFailedBundleHashesForSelectedAccount } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
@@ -135,5 +135,5 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(translate()(ListData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(ListData));
 }

@@ -4,7 +4,7 @@ import QrReader from 'react-qr-reader';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { MAX_ACC_LENGTH } from 'libs/crypto';
@@ -378,4 +378,4 @@ const mapDispatchToProps = {
     setOnboardingName,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(SeedInput));
+export default connect(null, mapDispatchToProps)(withI18n()(SeedInput));

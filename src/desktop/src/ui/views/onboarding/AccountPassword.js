@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
@@ -183,4 +183,4 @@ const mapDispatchToProps = {
     increaseSeedCount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountPassword));

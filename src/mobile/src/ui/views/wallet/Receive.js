@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -738,4 +738,4 @@ const mapDispatchToProps = {
     flipReceiveCard,
 };
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

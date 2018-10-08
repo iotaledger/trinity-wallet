@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared-modules/actions/accounts';
 import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { getSeedFromKeychain } from 'libs/keychain';
 
 const mapDispatchToProps = {
@@ -139,5 +139,5 @@ export default () => (C) => {
         seedIndex: PropTypes.number.isRequired,
     };
 
-    return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
+    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
 };
