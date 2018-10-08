@@ -265,7 +265,7 @@ export default class HistoryModalContent extends PureComponent {
             ctaWidth: width / 2.75,
             ctaHeight: height / 15,
             fontSize: Styling.fontSize3,
-            text: t('retry'),
+            text: disableWhen ? t('history:promotingAnotherBundle') : t('retry'),
             onPress: () => {
                 if (!disableWhen) {
                     promote(bundle);
@@ -306,7 +306,7 @@ export default class HistoryModalContent extends PureComponent {
         const retryButtonIsDisplayed = !confirmationBool || isFailed;
 
         return (
-            <TouchableWithoutFeedback style={styles.container} onPress={hideModal}>
+            <TouchableWithoutFeedback style={styles.container} onPress={() => hideModal()}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
                         <ScrollView scrollEnabled={false}>

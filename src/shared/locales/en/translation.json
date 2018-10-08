@@ -462,7 +462,8 @@
         "receive": "Receive",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "View seed",

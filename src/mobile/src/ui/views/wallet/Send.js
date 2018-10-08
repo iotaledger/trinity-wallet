@@ -355,7 +355,7 @@ export class Send extends Component {
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-        this.openModal('transferConfirmation');
+        this.openTransferConfirmationModal();
         if (parseFloat(amount) * multiplier > 0) {
             timer.setTimeout(
                 'addressPasteAlertDelay',
@@ -505,15 +505,15 @@ export class Send extends Component {
         Keyboard.dismiss();
     }
 
-    openModal = (modalContent) => {
+    openTransferConfirmationModal() {
         const { isKeyboardActive } = this.props;
         if (isKeyboardActive) {
             this.blurTextFields();
-            timer.setTimeout('modalShow', () => this.props.toggleModalActivity(), 500);
+            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 500);
         } else {
-            this.showModal(modalContent);
+            this.showModal('transferConfirmation');
         }
-    };
+    }
 
     /**
      * Shows specific modal

@@ -117,7 +117,7 @@ export class NotificationLogModal extends PureComponent {
                 />
                 <TouchableOpacity onPress={() => this.clearNotificationLog()}>
                     <View style={[styles.clearButton, borderColor]}>
-                        <Text style={[styles.clearText, textColor]}>{t('clear'.toUpperCase())}</Text>
+                        <Text style={[styles.clearText, textColor]}>{t('clear').toUpperCase()}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
