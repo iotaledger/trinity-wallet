@@ -462,11 +462,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs()(
-                    accountState.addresses,
-                    map(accountState.transfers, (tx) => tx),
-                    value
-                );
+                return getInputs()(accountState.addresses, map(accountState.transfers, (tx) => tx), value);
             })
             .then((inputs) => {
                 // Do not allow receiving address to be one of the user's own input addresses.
@@ -710,7 +706,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                     );
-                } else if (message === Errors.NOT_ENOUGH_BALANCE) {
+                } else if (message === Errors.INSUFFICIENT_BALANCE) {
                     return dispatch(
                         generateAlert(
                             'error',
