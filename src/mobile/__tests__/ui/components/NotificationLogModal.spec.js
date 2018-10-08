@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import NotificationLog from 'ui/components/NotificationLogModal';
+import { NotificationLogModal as NotificationLog } from 'ui/components/NotificationLogModal';
 
 const getProps = (overrides) =>
     assign(
@@ -14,7 +14,7 @@ const getProps = (overrides) =>
             textColor: { color: '#ffffff' },
             barColor: '#ffffff',
             hideModal: noop,
-            NotificationLogModal: [],
+            notificationLog: [],
             clearLog: noop,
             t: () => '',
         },
