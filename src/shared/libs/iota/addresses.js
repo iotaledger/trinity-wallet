@@ -389,7 +389,7 @@ export const filterSpentAddressesSync = (addresses, addressData) =>
  *   Communicates with ledger and checks if the addresses are spent from.
  *
  *   @method pickUnspentAddressData
- *   @param {string} provider
+ *   @param {string} [provider]
  *
  *   @returns {function(object, array): Promise<object>}
  **/
@@ -398,13 +398,13 @@ export const pickUnspentAddressData = (provider) => (addressData, normalisedTran
 
     // If all inputs are spent, avoid making the network call
     if (isEmpty(addresses)) {
-        return Promise.resolve([]);
+        return Promise.resolve({});
     }
 
     const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactionsList);
 
     return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
-        const filteredAddresses = filter(addresses, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]);
+        const filteredAddresses = filter(addresses, (input, idx) => wereSpent[idx] === false && spendStatuses[idx] === false);
 
         return pickBy(addressData, (data, address) => includes(filteredAddresses, address));
     });
@@ -598,12 +598,12 @@ export const syncAddresses = (provider) => (seed, existingAddressData, normalise
  *
  *   @method omitAddressDataWithIncomingTransactions
  *   @param {object} addressData
- *   @param {array} pendingValueTransfers
+ *   @param {array} pendingValueTransactions
  *
  *   @returns {object}
  **/
-export const omitAddressDataWithIncomingTransactions = (addressData, pendingValueTransfers) => {
-    if (isEmpty(pendingValueTransfers) || isEmpty(addressData)) {
+export const omitAddressDataWithIncomingTransactions = (addressData, pendingValueTransactions) => {
+    if (isEmpty(pendingValueTransactions) || isEmpty(addressData)) {
         return addressData;
     }
 
@@ -613,7 +613,7 @@ export const omitAddressDataWithIncomingTransactions = (addressData, pendingValu
     // Checks outputs of sent transfers to check if there is an incoming transfer (change address)
 
     // Note: Inputs for outgoing transfers should not be checked since filterSpentAddresses already removes spent inputs
-    const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
+    const outputsToCheck = flatMap(pendingValueTransactions, (transfer) => transfer.outputs);
 
     each(outputsToCheck, (output) => {
         if (output.address in addressData && output.value > 0) {

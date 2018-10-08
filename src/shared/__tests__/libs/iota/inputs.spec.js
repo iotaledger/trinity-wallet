@@ -10,8 +10,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import {
     prepareInputs,
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
+    getInputs,
     isValidInput
 } from '../../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
@@ -155,31 +154,7 @@ describe('libs: iota/inputs', () => {
         });
     });
 
-    describe('#getStartingSearchIndexToPrepareInputs', () => {
-        it('should return first index with balance prop greater than zero', () => {
-            const args = {
-                foo: { index: 52, balance: 100 },
-                baz: { index: 50, balance: 0 },
-                bar: { index: 49, balance: 10 },
-                qux: { index: 51, balance: 5 },
-            };
-
-            expect(getStartingSearchIndexToPrepareInputs(args)).to.equal(49);
-        });
-
-        it('should return 0 if no object is found with balance greater than zero', () => {
-            const args = {
-                foo: { index: 52, balance: 0 },
-                baz: { index: 50, balance: 0 },
-                bar: { index: 49, balance: 0 },
-                qux: { index: 51, balance: 0 },
-            };
-
-            expect(getStartingSearchIndexToPrepareInputs(args)).to.equal(0);
-        });
-    });
-
-    describe('#getUnspentInputs', () => {
+    describe('#getInputs', () => {
         let sandbox;
 
         beforeEach(() => {
@@ -233,7 +208,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
 
-                return getUnspentInputs()(
+                return getInputs()(
                     merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
                     [],
                     [],
@@ -273,7 +248,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
 
-                return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
+                return getInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address: 'C'.repeat(81),
@@ -298,7 +273,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
 
-                return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
+                return getInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.spentAddresses).to.eql(['B'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
@@ -313,7 +288,7 @@ describe('libs: iota/inputs', () => {
                         .stub(iota.api, 'wereAddressesSpentFrom')
                         .yields(null, [false, false, false]);
 
-                    return getUnspentInputs()(
+                    return getInputs()(
                         merge({}, addressData, {
                             ['B'.repeat(81)]: {
                                 spent: { local: false },
@@ -349,7 +324,7 @@ describe('libs: iota/inputs', () => {
                         .stub(iota.api, 'wereAddressesSpentFrom')
                         .yields(null, [false, false, false]);
 
-                    return getUnspentInputs()(
+                    return getInputs()(
                         merge({}, addressData, {
                             ['B'.repeat(81)]: {
                                 spent: { local: false },
@@ -375,7 +350,7 @@ describe('libs: iota/inputs', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true, true, true]);
 
-                        return getUnspentInputs()(
+                        return getInputs()(
                             merge({}, addressData, {
                                 ['B'.repeat(81)]: {
                                     spent: { local: false },
@@ -398,7 +373,7 @@ describe('libs: iota/inputs', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true, true, true]);
 
-                        return getUnspentInputs()(
+                        return getInputs()(
                             merge({}, addressData, {
                                 ['B'.repeat(81)]: {
                                     spent: { local: false },
@@ -432,7 +407,7 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs()(
+                return getInputs()(
                     merge({}, addressData, {
                         ['B'.repeat(81)]: {
                             spent: { local: false },
@@ -474,7 +449,7 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs()(
+                return getInputs()(
                     merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
                     [],
                     pendingTransfers,
