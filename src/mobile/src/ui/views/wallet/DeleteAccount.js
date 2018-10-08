@@ -18,6 +18,7 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import InfoBox from 'ui/components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 2.5,
         justifyContent: 'space-around',
-        paddingHorizontal: width / 15,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -69,11 +69,20 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.secondary,
         fontSize: Styling.fontSize3,
         textAlign: 'center',
-        backgroundColor: 'transparent',
+    },
+    infoBoxText: {
+        fontFamily: Fonts.secondary,
+        fontSize: Styling.fontSize3,
+        textAlign: 'left',
+    },
+    infoBoxTitleText: {
+        fontFamily: Fonts.secondary,
+        fontSize: Styling.fontSize4,
+        textAlign: 'left',
     },
     warningText: {
         fontFamily: Fonts.secondary,
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -219,22 +228,29 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                {/*FIXME: Investigate why Trans component doesn't work here*/}
-                                {/*<Trans i18nKey="deleteAccount:areYouSure" accountName={selectedAccountName}>*/}
-                                <View style={{ flex: 0.3 }} />
-                                <Text style={[styles.infoText, textColor]}>Are you sure you want to delete</Text>
-                                <View style={{ flex: 0.25 }} />
-                                <Text style={[styles.infoText, textColor]}>{selectedAccountName}?</Text>
-                                {/*</Trans>*/}
-                                {/*eslint-enable react/jsx-boolean-value*/}
-                                <View style={{ flex: 0.4 }} />
-                                <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
-                                <View style={{ flex: 0.25 }} />
-                                <Text style={[styles.warningText, { color: primaryColor }]}>{t('thisAction')}</Text>
+                                <InfoBox
+                                    body={theme.body}
+                                    text={
+                                        <View>
+                                            <Text style={[styles.infoBoxTitleText, textColor]}>
+                                                {t('global:account')}: {selectedAccountName}
+                                            </Text>
+                                            <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 30 }]}>
+                                                {t('areYouSure')}
+                                            </Text>
+                                            <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 40 }]}>
+                                                {t('yourSeedWillBeRemoved')}
+                                            </Text>
+                                        </View>
+                                    }
+                                />
                             </View>
                         )}
                         {this.state.pressedContinue && (
                             <View style={styles.textContainer}>
+                                <Text style={[styles.warningText, { color: primaryColor }]}>
+                                    {t('thisAction').toUpperCase()}
+                                </Text>
                                 <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <CustomTextInput
                                     label={t('global:password')}

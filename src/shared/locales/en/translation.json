@@ -541,9 +541,9 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
