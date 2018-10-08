@@ -4,17 +4,12 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
-import {
-    I18N_LOCALE_LABELS,
-    getLabelFromLocale,
-    getLocaleFromLabel,
-    detectLocale,
-} from 'shared-modules/libs/i18n';
+import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel, detectLocale } from 'shared-modules/libs/i18n';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';

@@ -4,18 +4,15 @@ import { withNamespaces } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
-import iotaNativeBindings, {
-    overrideAsyncTransactionObject,
-} from 'shared-modules/libs/iota/nativeBindings';
+import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
-import i18next from 'i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { isIOS } from 'libs/device';
 import keychain from 'libs/keychain';
-import i18 from 'shared-modules/libs/i18next';
+import i18next from 'shared-modules/libs/i18next';
 import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from 'ui/routes/navigation';
 
@@ -158,7 +155,7 @@ export default (store) => {
         startListeningToConnectivityChanges(store);
 
         registerScreens(store, Provider);
-        withNamespaces.setI18n(i18);
+        withNamespaces.setI18n(i18next);
 
         launch(store);
     };

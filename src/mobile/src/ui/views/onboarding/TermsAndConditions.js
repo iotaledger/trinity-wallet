@@ -15,7 +15,7 @@ import Button from 'ui/components/Button';
 import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
