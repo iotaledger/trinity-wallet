@@ -180,6 +180,13 @@ class TopBar extends Component {
         return `${former + latter} ${formatUnit(balance)}`;
     }
 
+    constructor() {
+        super();
+        this.state = {
+            scrollable: false,
+        };
+    }
+
     componentDidMount() {
         if (this.props.isTopBarActive) {
             this.props.toggleTopBarDisplay(); // Close dropdown in case its opened
