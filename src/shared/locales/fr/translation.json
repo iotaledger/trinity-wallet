@@ -713,10 +713,10 @@
     },
     "bytetrit": {
         "sweepSucceeded": "Fonds déverrouillés avec succès",
-        "sweepSucceededExplanation": "Vos fonds ont été débloqués avec succès et ont été déplacés vers une nouvelle adresse. Promouvoir les transactions aide à les confirmer.",
+        "sweepSucceededExplanation": "Vos fonds ont été débloqués avec succès et ont été déplacés vers une nouvelle adresse. Promouvez les transactions pour faciliter leur confirmation.",
         "sweepError": "Erreur pendant le déverrouillage des fonds",
-        "sweepErrorExplanation": "Quelque chose n’a pas marché en déverrouillant vos fonds. Essayez de nouveau.",
-        "warningTitle": "Avertissement : Des fonds verrouillées ont été détecté",
+        "sweepErrorExplanation": "Une erreur s'est produite durant le déverrouillage des fonds. Essayez à nouveau.",
+        "warningTitle": "Avertissement : Des fonds verrouillées ont été détectés",
         "explanation": "Trinity Desktop version 0.3.4 contenait un bug qui pouvait bloquer temporairement les fonds. Cela concerne un petit nombre d’utilisateurs qui ont effectué des transactions avec la version 0.3.4.",
         "explanationAccounts": "Des fonds verrouillés ont été détectés sur vos comptes : {{accounts}}. Trinity va récupérer maintenant automatiquement vos fonds, en les déplaçant vers une nouvelle adresse.",
         "proceed": "Procéder à la récupération",
