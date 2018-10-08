@@ -3,17 +3,17 @@ import each from 'lodash/each';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import head from 'lodash/head';
-import merge from 'lodash/merge';
 import random from 'lodash/random';
 import reduce from 'lodash/reduce';
 import { expect } from 'chai';
-import sinon from 'sinon';
+import nock from 'nock';
 import {
     prepareInputs,
     getInputs,
     isValidInput
 } from '../../../libs/iota/inputs';
-import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { SwitchingConfig } from '../../../libs/iota/index';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/inputs', () => {
     before(() => {
@@ -155,311 +155,188 @@ describe('libs: iota/inputs', () => {
     });
 
     describe('#getInputs', () => {
-        let sandbox;
+        let addressData;
+        let normalisedTransactions;
+
+        before(() => {
+            addressData = {
+                ['A'.repeat(81)]: { index: 0, balance: 3, spent: { local: true, remote: true } },
+                ['B'.repeat(81)]: { index: 1, balance: 2, spent: { local: true, remote: false } },
+                ['C'.repeat(81)]: { index: 2, balance: 1, spent: { local: false, remote: false } },
+                ['D'.repeat(81)]: { index: 3, balance: 5, spent: { local: false, remote: false } },
+                ['E'.repeat(81)]: { index: 4, balance: 7, spent: { local: false, remote: false } },
+                ['F'.repeat(81)]: { index: 5, balance: 0, spent: { local: false, remote: false } }
+            };
+
+            normalisedTransactions = [{
+                // Pending outgoing transaction
+                inputs: [{ address: 'B'.repeat(81), value: -2 }],
+                outputs: [{ address: 'Z'.repeat(81), value: 1 }, { address: 'F'.repeat(81), value: 1 }],
+                persistence: false,
+                incoming: false
+            }, {
+                // Pending incoming transaction
+                inputs: [{ address: 'Y'.repeat(81), value: -100 }],
+                outputs: [{ address: 'C'.repeat(81), value: 100 }],
+                persistence: false,
+                incoming: true
+            }, {
+                inputs: [{ address: 'X'.repeat(81), value: -50 }],
+                outputs: [{ address: 'D'.repeat(81), value: 50 }],
+                persistence: true,
+                incoming: true
+            }];
+        });
 
         beforeEach(() => {
-            sandbox = sinon.sandbox.create();
+            nock('http://localhost:14265', {
+                reqheaders: {
+                    'Content-Type': 'application/json',
+                    'X-IOTA-API-Version': IRI_API_VERSION,
+                },
+            })
+                .filteringRequestBody(() => '*')
+                .persist()
+                .post('/', '*')
+                .reply(200, (_, body) => {
+                    if (body.command === 'getBalances') {
+                        const resultMap = {
+                            ['A'.repeat(81)]: '3',
+                            ['B'.repeat(81)]: '2',
+                            ['C'.repeat(81)]: '1',
+                            ['D'.repeat(81)]: '5',
+                            ['E'.repeat(81)]: '7',
+                            ['F'.repeat(81)]: '0',
+                            ['X'.repeat(81)]: '0',
+                            ['Y'.repeat(81)]: '100',
+                            ['Z'.repeat(81)]: '0'
+                        };
+                        const addresses = body.addresses;
 
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+                        return { balances: map(addresses, (address) => resultMap[address]) };
+                    } else if (body.command === 'wereAddressesSpentFrom') {
+                        const resultMap = {
+                            ['A'.repeat(81)]: true,
+                            ['B'.repeat(81)]: false,
+                            ['C'.repeat(81)]: false,
+                            ['D'.repeat(81)]: false,
+                            ['E'.repeat(81)]: false,
+                            ['F'.repeat(81)]: false,
+                            ['X'.repeat(81)]: true,
+                            ['Y'.repeat(81)]: true,
+                            ['Z'.repeat(81)]: false
+                        };
+                        const addresses = body.addresses;
+
+                        return { states: map(addresses, (address) => resultMap[address]) };
+                    }
+
+                    return {};
+                });
         });
 
         afterEach(() => {
-            sandbox.restore();
+            nock.cleanAll();
         });
 
-        const addressData = {
-            ['A'.repeat(81)]: {
-                balance: 0,
-                spent: {
-                    local: true,
-                    remote: true,
-                },
-                index: 0,
-            },
-            ['B'.repeat(81)]: {
-                balance: 1,
-                spent: {
-                    local: true,
-                    remote: true,
-                },
-                index: 1,
-            },
-            ['C'.repeat(81)]: {
-                balance: 4,
-                spent: {
-                    local: false,
-                    remote: false,
-                },
-                index: 2,
-            },
-            ['D'.repeat(81)]: {
-                balance: 10,
-                spent: {
-                    local: false,
-                    remote: false,
-                },
-                index: 3,
-            },
-        };
+        // Total balance on address data => 18
+        // Addresses with pending incoming transactions => [CCC...CCC, FFF...FFF]
+        // Addresses with pending outgoing transactions => [BBB...BBB]
+        // Spent addresses => [AAA...AAA, BBB...BBB]
 
-        describe('when all addresses are unspent', () => {
-            it('should choose input addresses with enough balance', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
-
-                return getInputs()(
-                    merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
-                    [],
-                    [],
-                    1,
-                    13,
-                    null,
-                ).then((inputs) => {
-                    expect(inputs.inputs).to.eql([
-                        {
-                            address: 'B'.repeat(81),
-                            balance: 1,
-                            keyIndex: 1,
-                            security: 2,
-                        },
-                        {
-                            address: 'C'.repeat(81),
-                            balance: 4,
-                            keyIndex: 2,
-                            security: 2,
-                        },
-                        {
-                            address: 'D'.repeat(81),
-                            balance: 10,
-                            keyIndex: 3,
-                            security: 2,
-                        },
-                    ]);
-
-                    wereAddressesSpentFrom.restore();
-                });
+        // Available balance => Total balance - Balance(CCC...CCC, FFF...FFF) - Balance(BBB...BBB) - Balance(AAA...AAA) => 12
+        // Whenever inputs are resolved, assert inputs balance <= 12
+        describe('when has insufficient balance Sum(balances) < threshold', () => {
+            it('should throw with an error with message "Insufficient balance."', () => {
+                return getInputs()({
+                    ['A'.repeat(81)]: { index: 0, balance: 1 },
+                    ['B'.repeat(81)]: { index: 1, balance: 2 },
+                    ['C'.repeat(81)]: { index: 2, balance: 5 },
+                }, [], 50)
+                    .catch((error) => expect(error.message).to.equal('Insufficient balance.')
+                    );
             });
         });
 
-        describe('when address is marked spent locally', () => {
-            it('should omit address from the final inputs', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+        describe('when has pending incoming transactions on some addresses', () => {
+            describe('when has enough balance after filtering addresses in address data with pending incoming transactions', () => {
+                it('should not include addresses with incoming transactions in selected inputs', () => {
+                    const threshold = 10;
 
-                return getInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
-                    expect(inputs.inputs).to.eql([
-                        {
-                            address: 'C'.repeat(81),
-                            balance: 4,
-                            keyIndex: 2,
-                            security: 2,
-                        },
-                        {
-                            address: 'D'.repeat(81),
-                            balance: 10,
-                            keyIndex: 3,
-                            security: 2,
-                        },
-                    ]);
+                    return getInputs()(addressData, normalisedTransactions, threshold)
+                        .then((result) => {
+                            const { inputs } = result;
+                            const inputAddresses = map(inputs, (input) => input.address);
 
-                    wereAddressesSpentFrom.restore();
-                });
-            });
-
-            it('should keep the spent address in "spentAddresses"', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
-
-                return getInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
-                    expect(inputs.spentAddresses).to.eql(['B'.repeat(81)]);
-
-                    wereAddressesSpentFrom.restore();
-                });
-            });
-        });
-
-        describe('when address is marked unspent locally', () => {
-            describe('when address is used as an input in local transactions history', () => {
-                it('should omit address from the final inputs', () => {
-                    const wereAddressesSpentFrom = sinon
-                        .stub(iota.api, 'wereAddressesSpentFrom')
-                        .yields(null, [false, false, false]);
-
-                    return getInputs()(
-                        merge({}, addressData, {
-                            ['B'.repeat(81)]: {
-                                spent: { local: false },
-                            },
-                        }),
-                        [{ inputs: [{ address: 'B'.repeat(81) }] }],
-                        [],
-                        1,
-                        13,
-                        null,
-                    ).then((inputs) => {
-                        expect(inputs.inputs).to.eql([
-                            {
-                                address: 'C'.repeat(81),
-                                balance: 4,
-                                keyIndex: 2,
-                                security: 2,
-                            },
-                            {
-                                address: 'D'.repeat(81),
-                                balance: 10,
-                                keyIndex: 3,
-                                security: 2,
-                            },
-                        ]);
-
-                        wereAddressesSpentFrom.restore();
-                    });
-                });
-
-                it('should keep the spent address in "spentAddresses"', () => {
-                    const wereAddressesSpentFrom = sinon
-                        .stub(iota.api, 'wereAddressesSpentFrom')
-                        .yields(null, [false, false, false]);
-
-                    return getInputs()(
-                        merge({}, addressData, {
-                            ['B'.repeat(81)]: {
-                                spent: { local: false },
-                            },
-                        }),
-                        [{ inputs: [{ address: 'B'.repeat(81) }] }],
-                        [],
-                        1,
-                        13,
-                        null,
-                    ).then((inputs) => {
-                        expect(inputs.spentAddresses).to.eql(['B'.repeat(81)]);
-
-                        wereAddressesSpentFrom.restore();
-                    });
-                });
-            });
-
-            describe('when address is not used as an input in local transactions history', () => {
-                describe('when wereAddressesSpentFrom resolves address as spent', () => {
-                    it('should omit address from the final inputs', () => {
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [true, true, true]);
-
-                        return getInputs()(
-                            merge({}, addressData, {
-                                ['B'.repeat(81)]: {
-                                    spent: { local: false },
-                                },
-                            }),
-                            [],
-                            [],
-                            1,
-                            13,
-                            null,
-                        ).then((inputs) => {
-                            expect(inputs.inputs).to.eql([]);
-
-                            wereAddressesSpentFrom.restore();
+                            expect(inputAddresses).to.not.includes('C'.repeat(81));
+                            expect(inputAddresses).to.not.includes('F'.repeat(81));
                         });
-                    });
+                });
+            });
 
-                    it('should keep the spent address in "spentAddresses"', () => {
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [true, true, true]);
+            describe('when does not have enough balance after filtering addresses in address data with pending incoming transactions', () => {
+                it('should throw with an error with message "Incoming transfers to all selected inputs"', () => {
+                    const threshold = 18;
+                    // Total balance on address data => 15
+                    // Threshold = 15
+                    // Addresses with pending incoming transactions => [CCC...CCC, FFF...FFF]
 
-                        return getInputs()(
-                            merge({}, addressData, {
-                                ['B'.repeat(81)]: {
-                                    spent: { local: false },
-                                },
-                            }),
-                            [],
-                            [],
-                            1,
-                            13,
-                            null,
-                        ).then((inputs) => {
-                            expect(inputs.spentAddresses).to.eql(['B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)]);
-
-                            wereAddressesSpentFrom.restore();
-                        });
-                    });
+                    // Total Balance - Balance(CCC...CCC, FFF...FFF) => 14
+                    return getInputs()(addressData, normalisedTransactions, threshold)
+                        .catch((error) => expect(error.message).to.equal('Incoming transfers to all selected inputs'));
                 });
             });
         });
 
-        describe('when any of the address has pending transfers', () => {
-            it('should omit address from the final inputs', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+        describe('when has pending outgoing transactions on some addresses', () => {
+            describe('when has enough balance to spend after filtering addresses in address data with pending outgoing transactions', () => {
+                it('should not include addresses with outgoing transactions in selected inputs', () => {
+                    const threshold = 10;
 
-                const pendingTransfers = [
-                    {
-                        inputs: [{ address: 'E'.repeat(81), value: -5 }],
-                        outputs: [{ address: 'C'.repeat(81), value: 5 }],
-                    },
-                ];
+                    return getInputs()(addressData, normalisedTransactions, threshold)
+                        .then((result) => {
+                            const { inputs } = result;
+                            const inputAddresses = map(inputs, (input) => input.address);
 
-                return getInputs()(
-                    merge({}, addressData, {
-                        ['B'.repeat(81)]: {
-                            spent: { local: false },
-                        },
-                    }),
-                    [],
-                    pendingTransfers,
-                    1,
-                    13,
-                    null,
-                ).then((inputs) => {
-                    expect(inputs.inputs).to.eql([
-                        {
-                            address: 'B'.repeat(81),
-                            balance: 1,
-                            keyIndex: 1,
-                            security: 2,
-                        },
-                        {
-                            address: 'D'.repeat(81),
-                            balance: 10,
-                            keyIndex: 3,
-                            security: 2,
-                        },
-                    ]);
-
-                    wereAddressesSpentFrom.restore();
+                            expect(inputAddresses).to.not.includes('B'.repeat(81));
+                        });
                 });
             });
 
-            it('should keep the address in "addressesWithIncomingTransfers"', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
-                const pendingTransfers = [
-                    {
-                        inputs: [{ address: 'E'.repeat(81), value: -5 }],
-                        outputs: [{ address: 'C'.repeat(81), value: 5 }],
-                    },
-                ];
+            describe('when does not have enough balance after filtering addresses in address data with pending outgoing transactions', () => {
+                it('should throw with an error with message "Input addresses already used in a pending transfer."', () => {
+                    const threshold = 16;
 
-                return getInputs()(
-                    merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
-                    [],
-                    pendingTransfers,
-                    1,
-                    13,
-                    null,
-                ).then((inputs) => {
-                    expect(inputs.addressesWithIncomingTransfers).to.eql(['C'.repeat(81)]);
+                    return getInputs()(addressData, normalisedTransactions, threshold)
+                        .catch((error) => expect(error.message).to.equal('Input addresses already used in a pending transfer.'));
+                });
+            });
+        });
 
-                    wereAddressesSpentFrom.restore();
+        describe('when has spent addresses', () => {
+            describe('when has enough balance to spend after filtering spent addresses in address data', () => {
+                it('should not include spent addresses in selected inputs', () => {
+                    const threshold = 10;
+
+                    return getInputs()(addressData, normalisedTransactions, threshold)
+                        .then((result) => {
+                            const { inputs, balance } = result;
+                            const inputAddresses = map(inputs, (input) => input.address);
+
+                            expect(inputAddresses).to.not.includes('B'.repeat(81));
+                            expect(inputAddresses).to.not.includes('A'.repeat(81));
+
+                            expect(balance <= 12).to.equal(true);
+                        });
+                });
+            });
+
+            describe('when does not have enough balance to spend after filtering spent addresses in address data', () => {
+                it('should throw with an error with message "WARNING FUNDS AT SPENT ADDRESSES."', () => {
+                    const threshold = 13;
+
+                    return getInputs()(addressData, normalisedTransactions, threshold)
+                        .catch((error) => expect(error.message).to.equal('WARNING FUNDS AT SPENT ADDRESSES.'));
                 });
             });
         });

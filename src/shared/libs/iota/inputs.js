@@ -248,7 +248,7 @@ export const getInputs = (provider) => (
 ) => {
     // Check if there is sufficient balance
     if (reduce(addressData, (acc, data) => acc + data.balance, 0) < threshold) {
-        return Promise.reject(Errors.INSUFFICIENT_BALANCE);
+        return Promise.reject(new Error(Errors.INSUFFICIENT_BALANCE));
     }
 
     // Filter transactions with non-funded inputs
@@ -282,7 +282,8 @@ export const getInputs = (provider) => (
             if (
                 reduce(
                     addressDataForInputs,
-                    (acc, data) => acc + data, 0) < threshold
+                    (acc, data) => acc + data.balance,
+                    0) < threshold
             ) {
                 throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
             }
