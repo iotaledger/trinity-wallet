@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     conversionTextContainer: {
-        right: width / 7.5,
+        right: width / 6.5,
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'flex-start',
