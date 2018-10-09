@@ -136,7 +136,6 @@
     "electron-updater": "^3.1.2",
     "entangled-node": "rihardsgravis/entangled-node",
     "fsevents": "1.2.4",
-    "i18next": "^11.9.0",
     "iota.lib.js": "^0.5.1",
     "kdbxweb": "^1.2.4",
     "keytar": "^4.3.0",
