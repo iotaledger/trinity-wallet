@@ -79,9 +79,10 @@ export class EnterPasswordOnLogin extends Component {
     };
 
     openModal() {
-        const { theme } = this.props;
+        const { theme, t } = this.props;
         this.props.toggleModalActivity('biometricInfo', {
             theme,
+            t,
             hideModal: () => this.props.toggleModalActivity(),
         });
     }

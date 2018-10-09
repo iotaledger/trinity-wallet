@@ -40,7 +40,7 @@ export default class BiometricInfoModal extends PureComponent {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** Hides modal */
-        hideModal: PropTypes.func.isRooted,
+        hideModal: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
