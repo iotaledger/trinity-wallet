@@ -759,6 +759,8 @@
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Every seed stored securely on your Ledger is identified by a unique index number. We have pre-selected an available number, or you can choose your own."
-    }
+        "accountIndexExplanation": "Every seed stored securely on your Ledger is identified by a unique index number. We have pre-selected an available number, or you can choose your own.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that Ledger is connected and the IOTA application is open"
+   }
 }

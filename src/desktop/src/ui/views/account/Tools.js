@@ -78,7 +78,7 @@ class Addresses extends PureComponent {
     syncAccount = async () => {
         const { wallet, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         this.props.manuallySyncAccount(seedStore, accountName);
     };
@@ -90,7 +90,7 @@ class Addresses extends PureComponent {
     startSnapshotTransition = async () => {
         const { wallet, addresses, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         this.props.transitionForSnapshot(seedStore, addresses);
     };
@@ -103,7 +103,7 @@ class Addresses extends PureComponent {
         this.props.setBalanceCheckFlag(false);
         const { wallet, accountName, accountMeta, settings } = this.props;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
@@ -118,7 +118,7 @@ class Addresses extends PureComponent {
         this.props.setBalanceCheckFlag(false);
         const { wallet, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         const currentIndex = wallet.transitionAddresses.length;
 

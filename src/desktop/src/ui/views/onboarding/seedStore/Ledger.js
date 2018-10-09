@@ -10,93 +10,126 @@ import { generateAlert } from 'actions/alerts';
 import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Button from 'ui/components/Button';
-import Input from 'ui/components/input/Text';
+import Number from 'ui/components/input/Number';
 
 /**
  * Onboarding, set Ledger accoutn index
  */
 class Ledger extends React.PureComponent {
-    static propTypes = {
-        /** @ignore */
-        wallet: PropTypes.object.isRequired,
-        /** @ignore */
-        accounts: PropTypes.object.isRequired,
-        /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** @ignore */
-        history: PropTypes.object.isRequired,
-        /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        t: PropTypes.func.isRequired,
-    };
+	static propTypes = {
+		/** @ignore */
+		wallet: PropTypes.object.isRequired,
+		/** @ignore */
+		accounts: PropTypes.object.isRequired,
+		/** @ignore */
+		setAdditionalAccountInfo: PropTypes.func.isRequired,
+		/** @ignore */
+		history: PropTypes.object.isRequired,
+		/** @ignore */
+		generateAlert: PropTypes.func.isRequired,
+		/** @ignore */
+		t: PropTypes.func.isRequired
+	};
 
-    state = {
-        index: this.props.wallet.additionalAccountMeta.index
-            ? this.props.wallet.additionalAccountName
-            : this.getIndex(),
-    };
+	state = {
+		index: this.props.wallet.additionalAccountMeta.index
+			? this.props.wallet.additionalAccountName
+			: this.getDefaultIndex(),
+		loading: false
+	};
 
-    getIndex() {
-        const ledgerAccounts = this.props.accounts.filter((account) => account.meta && account.meta.type === 'ledger');
-        const indexes = ledgerAccounts.map((account) => account.meta.index);
+	getIndexes() {
+		const { accounts } = this.props;
 
-        if (!indexes.length) {
-            return 0;
-        }
+		const indexes = Object.keys(accounts).map(
+			(account) =>
+				accounts[account].meta && accounts[account].meta.type === 'ledger' ? accounts[account].index : -1
+		);
+		return indexes;
+	}
 
-        for (let i = 0; i <= indexes.length; i++) {
-            if (indexes.indexOf(i) < 0) {
-                return i;
-            }
-        }
-    }
+	getDefaultIndex() {
+		const indexes = this.getIndexes();
 
-    /**
+		for (let i = 0; i <= indexes.length; i++) {
+			if (indexes.indexOf(i) < 0) {
+				return i;
+			}
+		}
+	}
+
+	/**
      * Check for unused ledger index and set it to state
      * @param {Event} event - Form submit event
      * @returns {undefined}
      */
-    setIndex = async (event) => {
-        event.preventDefault();
-    };
+	setIndex = async (event) => {
+		const { index } = this.state;
+		const { generateAlert, history, t } = this.props;
 
-    render() {
-        const { t } = this.props;
-        const { index } = this.state;
-        return (
-            <form onSubmit={this.setIndex}>
-                <section>
-                    <h1>{t('ledger:chooseAccountIndex')}</h1>
-                    <p>{t('ledger:accountIndexExplanation')}</p>
-                    <Input
-                        value={index}
-                        focus
-                        label={t('ledger:accountIndex')}
-                        onChange={(value) => this.setState({ index: value })}
-                    />
-                </section>
-                <footer>
-                    <Button to="/onboarding/seed-intro" className="square" variant="dark">
-                        {t('goBackStep')}
-                    </Button>
-                    <Button type="submit" className="square" variant="primary">
-                        {t('continue')}
-                    </Button>
-                </footer>
-            </form>
-        );
-    }
+		event.preventDefault();
+
+		this.setState({
+			loading: true
+		});
+
+		try {
+			const vault = await new SeedStore.ledger(null, null, { index });
+			await vault.getSeed();
+
+			this.props.setAdditionalAccountInfo({
+				additionalAccountMeta: { type: 'ledger', index }
+         });
+         
+         history.push('/onboarding/account-name');
+
+		} catch (err) {
+         console.log(err);
+			generateAlert('error', t('ledger:connectionError'), t('ledger:connectionErrorExplanation'));
+		}
+
+		this.setState({
+			loading: false
+		});
+	};
+
+	render() {
+		const { t } = this.props;
+		const { index, loading } = this.state;
+
+		return (
+			<form onSubmit={this.setIndex}>
+				<section>
+					<h1>{t('ledger:chooseAccountIndex')}</h1>
+					<p>{t('ledger:accountIndexExplanation')}</p>
+					<Number
+						value={index}
+						focus
+						label={t('ledger:accountIndex')}
+						onChange={(value) => this.setState({ index: value })}
+					/>
+				</section>
+				<footer>
+					<Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">
+						{t('goBackStep')}
+					</Button>
+					<Button loading={loading} type="submit" className="square" variant="primary">
+						{t('continue')}
+					</Button>
+				</footer>
+			</form>
+		);
+	}
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
-    accounts: state.accounts.accountInfo,
+	wallet: state.wallet,
+	accounts: state.accounts.accountInfo
 });
 
 const mapDispatchToProps = {
-    generateAlert,
-    setAdditionalAccountInfo,
+	generateAlert,
+	setAdditionalAccountInfo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Ledger));

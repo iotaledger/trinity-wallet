@@ -99,7 +99,7 @@ class Send extends React.PureComponent {
             isTransferModalVisible: false,
         });
 
-        const seedStore = await new SeedStore[accountMeta.type](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 

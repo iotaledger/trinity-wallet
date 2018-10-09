@@ -14,11 +14,11 @@ import css from './index.scss';
 class SeedIntro extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     state = {
-        ledger: false,
+        ledger: false
     };
 
     componentDidMount() {
@@ -34,8 +34,16 @@ class SeedIntro extends React.PureComponent {
 
     ledgerCallback(event) {
         this.setState({
-            ledger: event === 'add',
+            ledger: event === 'add'
         });
+    }
+
+    stepForward(route) {
+        this.props.setAdditionalAccountInfo({
+            additionalAccountMeta: { type: 'keychain' }
+        });
+
+        history.push(`/onboarding/${route}`);
     }
 
     render() {
@@ -59,14 +67,14 @@ class SeedIntro extends React.PureComponent {
                             </p>
                         </Trans>
                     </Info>
-                    <a>{ledger ? t('ledger:ready') : t('ledger:notReeady')}</a>
+                    <a>{ledger ? t('ledger:ready') : t('ledger:notReady')}</a>
                 </section>
                 <footer className={!ledger ? css.choiceDefault : css.choiceLedger}>
                     <div>
-                        <Button to="/onboarding/seed-verify" className="square" variant="dark">
+                        <Button onClick={() => this.stepForward('seed-verify')} className="square" variant="dark">
                             {t('walletSetup:noIHaveOne')}
                         </Button>
-                        <Button to="/onboarding/seed-generate" className="square" variant="primary">
+                        <Button onClick={() => this.stepForward('seed-generate')} className="square" variant="primary">
                             {t('walletSetup:yesINeedASeed')}
                         </Button>
                     </div>

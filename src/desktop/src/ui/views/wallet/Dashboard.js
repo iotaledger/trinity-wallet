@@ -57,7 +57,7 @@ class Dashboard extends React.PureComponent {
     updateAccount = async () => {
         const { password, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountMeta](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
     };

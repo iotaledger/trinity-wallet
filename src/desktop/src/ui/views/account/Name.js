@@ -73,7 +73,7 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        const seedStore = await new SeedStore[accountMeta.type](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
         await seedStore.renameAccount(newAccountName);
     }
 

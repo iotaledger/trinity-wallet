@@ -93,7 +93,7 @@ class Receive extends React.PureComponent {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seedStore = await new SeedStore[accountMeta.type](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         this.props.generateNewAddress(seedStore, accountName, account);
     };

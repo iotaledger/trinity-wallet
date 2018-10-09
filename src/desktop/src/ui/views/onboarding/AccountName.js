@@ -78,7 +78,6 @@ class AccountName extends React.PureComponent {
         setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: this.state.name,
-            additionalAccountMeta: { type: 'keychain' },
         });
 
         if (Electron.getOnboardingGenerated()) {
