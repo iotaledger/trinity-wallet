@@ -135,7 +135,7 @@ export default class HistoryModalContent extends PureComponent {
         /** Transaction confirmation state */
         status: PropTypes.string.isRequired,
         /** Transaction boolean confirmation state */
-        confirmationBool: PropTypes.bool.isRequired,
+        persistence: PropTypes.bool.isRequired,
         /** Currently selected mode */
         mode: PropTypes.oneOf(['Advanced', 'Standard']).isRequired,
         /** Transaction value */
@@ -288,7 +288,7 @@ export default class HistoryModalContent extends PureComponent {
             fullValue,
             unit,
             status,
-            confirmationBool,
+            persistence,
             time,
             bundle,
             message,
@@ -303,7 +303,7 @@ export default class HistoryModalContent extends PureComponent {
         } = this.props;
         const { scrollable } = this.state;
         const isFailed = isFailedTransaction(bundle);
-        const retryButtonIsDisplayed = !confirmationBool || isFailed;
+        const retryButtonIsDisplayed = !persistence || isFailed;
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={() => hideModal()}>
@@ -357,7 +357,7 @@ export default class HistoryModalContent extends PureComponent {
                                     <TouchableOpacity onPress={() => this.copy(message, 'message')}>
                                         <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     </TouchableOpacity>
-                                    {(!confirmationBool &&
+                                    {(!persistence &&
                                         !isFailed && (
                                             <View style={[styles.buttonContainer]}>
                                                 {(!bundleIsBeingPromoted &&

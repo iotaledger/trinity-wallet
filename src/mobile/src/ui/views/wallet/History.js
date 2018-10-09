@@ -108,10 +108,57 @@ class History extends Component {
         isRetryingFailedTransaction: PropTypes.bool.isRequired,
         /** @ignore */
         updateModalProps: PropTypes.func.isRequired,
+        /** @ignore */
+        modalProps: PropTypes.object,
+        /** @ignore */
+        isModalActive: PropTypes.bool,
+        /** @ignore */
+        modalContent: PropTypes.string,
     };
 
     componentDidMount() {
         leaveNavigationBreadcrumb('History');
+    }
+
+    componentWillReceiveProps(newProps) {
+        const {
+            isRetryingFailedTransaction,
+            isAutoPromoting,
+            isPromotingTransaction,
+            modalProps,
+            isModalActive,
+            modalContent,
+            theme: { primary, secondary },
+        } = this.props;
+        // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
+        if (isModalActive && modalContent === 'historyContent') {
+            const newBundleProps = newProps.transfers[modalProps.bundle];
+            if (
+                isRetryingFailedTransaction !== newProps.isRetryingFailedTransaction ||
+                isAutoPromoting !== newProps.isAutoPromoting ||
+                isPromotingTransaction !== newProps.isPromotingTransaction
+            ) {
+                this.props.updateModalProps({
+                    disableWhen:
+                        newProps.isAutoPromoting ||
+                        newProps.isPromotingTransaction ||
+                        newProps.isRetryingFailedTransaction,
+                    bundleIsBeingPromoted:
+                        newProps.currentlyPromotingBundleHash === modalProps.bundle && !newBundleProps.persistence,
+                });
+            }
+            if (modalProps.bundle in newProps.transfers && newBundleProps.persistence !== modalProps.persistence) {
+                this.props.updateModalProps({
+                    persistence: newBundleProps.persistence,
+                    status: computeStatusText(
+                        newBundleProps.outputs,
+                        newBundleProps.persistence,
+                        newBundleProps.incoming,
+                    ),
+                    style: { titleColor: modalProps.incoming ? primary.color : secondary.color },
+                });
+            }
+        }
     }
 
     shouldComponentUpdate(newProps) {
@@ -164,8 +211,6 @@ class History extends Component {
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
-                status: computeStatusText(outputs, persistence, incoming),
-                confirmationBool: persistence,
                 persistence,
                 value,
                 fullValue: formatValue(transferValue),
@@ -177,6 +222,7 @@ class History extends Component {
                 addresses,
                 icon: incoming ? 'plus' : 'minus',
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
+                status: computeStatusText(outputs, persistence, incoming),
                 outputs,
                 updateModalProps: (content) => this.props.updateModalProps(content),
                 onPress: (props) => {
@@ -304,6 +350,9 @@ const mapStateToProps = (state) => ({
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
     failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
+    modalProps: state.ui.modalProps,
+    isModalActive: state.ui.isModalActive,
+    modalContent: state.ui.modalContent,
 });
 
 const mapDispatchToProps = {
