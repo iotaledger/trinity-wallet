@@ -188,7 +188,7 @@ class SeedReentry extends Component {
     showModal = (modalContent) => {
         const { theme } = this.props;
         switch (modalContent) {
-            case 'qr':
+            case 'qrScanner':
                 return this.props.toggleModalActivity(modalContent, {
                     theme,
                     print: () => this.print(),
