@@ -12,7 +12,7 @@ class Keychain {
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
-        this.key = key.slice(0);
+        this.key = key;
         this.accountId = accountId;
     }
 
