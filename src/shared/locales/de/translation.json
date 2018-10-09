@@ -265,8 +265,8 @@
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
         "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
         "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
-        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen zum fortfahren.",
-        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen zum fortfahren.",
+        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen um fortzufahren.",
+        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen um fortzufahren.",
         "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
@@ -498,10 +498,10 @@
         "dark": "Dunkel",
         "default": "Standard",
         "electric": "Elektrisch",
-        "ionic": "Ionic",
+        "ionic": "Ionisch",
         "light": "Hell",
-        "lucky": "Lucky",
-        "mint": "Mint",
+        "lucky": "Glücklich",
+        "mint": "Minze",
         "steelblue": "Stahlblau"
     },
     "currencySelection": {
