@@ -15,7 +15,7 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid, isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhone11 } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -247,7 +247,7 @@ class EnterSeed extends React.Component {
                                     seed={seed}
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                {!isIPhoneX && (
+                                {!isIPhone11 && (
                                     <SeedVaultImport
                                         openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                         onSeedImport={(seed) => {
