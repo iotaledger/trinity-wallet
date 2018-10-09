@@ -17,7 +17,6 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
 import { hash } from 'libs/keychain';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import UserInactivity from 'ui/components/UserInactivity';
 import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
@@ -319,15 +318,7 @@ class Home extends Component {
     }
 
     render() {
-        const {
-            t,
-            inactive,
-            minimised,
-            isFingerprintEnabled,
-            isModalActive,
-            theme: { bar, body, negative, positive },
-            theme,
-        } = this.props;
+        const { t, inactive, minimised, isFingerprintEnabled, theme: { body, negative, positive }, theme } = this.props;
         const { isKeyboardActive } = this.state;
         const textColor = { color: body.color };
 
@@ -341,7 +332,6 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.alt} isModalActive={isModalActive} />
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
                             {(!minimised && (

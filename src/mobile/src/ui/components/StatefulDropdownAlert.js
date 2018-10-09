@@ -166,7 +166,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, isModalActive, theme: { positive, negative }, theme } = this.props;
+        const { onRef, theme: { positive, negative }, theme } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -188,7 +188,7 @@ class StatefulDropdownAlert extends Component {
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
                 tapToCloseEnabled={this.props.hasConnection}
-                translucent={!isModalActive}
+                translucent={isAndroid}
             />
         );
     }

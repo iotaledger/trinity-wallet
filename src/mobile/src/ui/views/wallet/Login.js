@@ -13,7 +13,6 @@ import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wal
 import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import Enter2FAComponent from 'ui/components/Enter2FA';
@@ -204,7 +203,6 @@ class Login extends Component {
         const body = theme.body;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 {loginRoute === 'login' && (
                     <EnterPasswordOnLoginComponent
                         theme={theme}

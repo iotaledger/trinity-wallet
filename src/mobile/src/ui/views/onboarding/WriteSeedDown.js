@@ -13,7 +13,6 @@ import WithUserActivity from 'ui/components/UserActivity';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
@@ -198,7 +197,6 @@ class WriteSeedDown extends Component {
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                 {!minimised && (
                     <View>
-                        <DynamicStatusBar backgroundColor={theme.body.bg} />
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
                             <View style={{ flex: 0.7 }} />

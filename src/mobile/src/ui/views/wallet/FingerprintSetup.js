@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -219,7 +218,6 @@ class FingerprintEnable extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topWrapper}>
                     <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>

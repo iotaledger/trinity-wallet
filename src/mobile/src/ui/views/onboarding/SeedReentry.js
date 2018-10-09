@@ -10,7 +10,6 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { Styling } from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
@@ -213,7 +212,6 @@ class SeedReentry extends Component {
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                 {!minimised && (
                     <View>
-                        <DynamicStatusBar backgroundColor={theme.body.bg} />
                         <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                             <View>
                                 <View style={styles.topContainer}>

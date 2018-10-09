@@ -27,7 +27,6 @@ import {
 } from 'shared-modules/selectors/accounts';
 import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
@@ -346,7 +345,6 @@ class Loading extends Component {
         if (addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <DynamicStatusBar backgroundColor={body.bg} />
                     <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
                         <View>
@@ -380,7 +378,6 @@ class Loading extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.animationContainer}>
                     <View>
                         {(!this.state.animationPartOneDone && (

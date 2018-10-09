@@ -15,7 +15,6 @@ import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
 import Button from 'ui/components/Button';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
@@ -383,7 +382,6 @@ class SaveYourSeed extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 0.7 }} />

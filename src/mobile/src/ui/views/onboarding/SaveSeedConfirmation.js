@@ -11,7 +11,6 @@ import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unch
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import InfoBox from 'ui/components/InfoBox';
 import Header from 'ui/components/Header';
 import { Styling } from 'ui/theme/general';
@@ -228,7 +227,6 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 0.7 }} />

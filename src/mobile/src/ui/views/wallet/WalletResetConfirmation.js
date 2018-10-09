@@ -8,7 +8,6 @@ import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { width, height } from 'libs/dimensions';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
 import { Styling } from 'ui/theme/general';
@@ -142,7 +141,6 @@ class WalletResetConfirmation extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topWrapper}>
                     <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
