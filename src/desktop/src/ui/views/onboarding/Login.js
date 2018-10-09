@@ -33,7 +33,7 @@ class Login extends React.Component {
         /** @ignore */
         currentAccountName: PropTypes.string,
         /** @ignore */
-        currentAccountMeta: PropTypes.string,
+        currentAccountMeta: PropTypes.object,
         /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */

@@ -26,7 +26,7 @@ class Seed extends PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        accountMeta: PropTypes.string.isRequired,
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };

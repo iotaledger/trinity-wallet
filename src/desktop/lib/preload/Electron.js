@@ -12,6 +12,7 @@ const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
 const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
+const ledger = require('../seedStore/Ledger');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -536,6 +537,8 @@ const Electron = {
     },
 
     _eventListeners: {},
+
+    ledger,
 };
 
 module.exports = Electron;

@@ -62,15 +62,29 @@ $footer: 70px;
         }
     }
 
-    footer {
+    footer,
+    footer > div {
         position: absolute;
         bottom: 0px;
         height: $footer;
         width: 100%;
         display: flex;
         align-items: stretch;
+        overflow: hidden;
         * {
             flex: 1;
+        }
+    }
+
+    footer {
+        > div {
+            bottom: -$footer;
+            transition: bottom 0.8s ease-out;
+        }
+        &.choiceDefault > div:nth-child(1),
+        &.choiceLedger > div:nth-child(2) {
+            bottom: 0px;
+            z-index: 2;
         }
     }
 

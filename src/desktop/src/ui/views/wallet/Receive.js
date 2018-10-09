@@ -37,7 +37,7 @@ class Receive extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        accountMeta: PropTypes.string.isRequired,
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */

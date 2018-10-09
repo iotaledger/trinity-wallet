@@ -20,6 +20,8 @@ import SeedName from 'ui/views/onboarding/AccountName';
 import SecurityEnter from 'ui/views/onboarding/AccountPassword';
 import Done from 'ui/views/onboarding/Done';
 
+import Ledger from 'ui/views/onboarding/seedStore/Ledger';
+
 import css from './index.scss';
 
 /**
@@ -124,6 +126,7 @@ class Onboarding extends React.PureComponent {
                         <div>
                             <Switch location={location}>
                                 <Route path="/onboarding/seed-intro" component={SeedIntro} />
+                                <Route path="/onboarding/seed-ledger" component={Ledger} />
                                 <Route path="/onboarding/seed-generate" component={GenerateSeed} />
                                 <Route path="/onboarding/seed-save" component={SaveYourSeedOptions} />
                                 <Route path="/onboarding/seed-verify" component={SeedEnter} />

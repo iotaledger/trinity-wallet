@@ -86,7 +86,7 @@ class Loading extends Component {
         /** Name for currently selected account */
         selectedAccountName: PropTypes.string,
         /** Name for currently selected account */
-        selectedAccountMeta: PropTypes.string.isRequired,
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
