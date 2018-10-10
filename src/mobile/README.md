@@ -13,27 +13,31 @@ Repository for the IOTA Trinity Mobile Wallet. The application is built on [Reac
 - [yarn](https://yarnpkg.com/lang/en/)
 - [React Native Dependencies](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies-2)
     - If you are targeting iOS and are using Xcode 10+, please ensure that you have enabled the legacy build system.
+- [CocoaPods](https://cocoapods.org/#install) (iOS only)
 
 ## Development setup
 
-Clone the repository from the command line:
-
+After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#instructions), install the mobile dependencies:
 ```
-git clone https://github.com/iotaledger/trinity-wallet.git
+yarn deps:mobile
 ```
 
-Install dependencies:
-
+Then, navigate to this directory:
 ```
-cd trinity-wallet/ && yarn full-setup
+cd src/mobile
 ```
 
 ### iOS
 
+Install additional dependencies with CocoaPods:
+```
+cd ios && pod install && cd ..
+```
+
 Run the application:
 
 ```
-cd src/mobile && yarn ios:dev
+yarn ios:dev
 ```
 
 Run the logger:
@@ -47,7 +51,7 @@ yarn log:ios
 Run the application:
 
 ```
-cd src/mobile && yarn android:dev
+yarn android:dev
 ```
 
 Run the logger:
