@@ -26,6 +26,7 @@ export default i18next.init(
             he: require('locales/he/translation.json'),
             hi: require('locales/hi/translation.json'),
             hr: require('locales/hr/translation.json'),
+            hu: require('locales/hu/translation.json'),
             id: require('locales/id/translation.json'),
             it: require('locales/it/translation.json'),
             ja: require('locales/ja/translation.json'),

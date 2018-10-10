@@ -50,9 +50,9 @@ class Wallet extends React.PureComponent {
     };
 
     componentDidMount() {
-        //if (!this.props.completedByteTritSweep) {
-        this.byteTritCheck();
-        //}
+        if (!this.props.completedByteTritSweep) {
+            this.byteTritCheck();
+        }
     }
 
     byteTritCheck = () => {
@@ -72,9 +72,9 @@ class Wallet extends React.PureComponent {
             }
         });
 
-        Promise.all(accounts).then((accounts) => {
-            accounts = accounts.filter((account) => account && account.accountName);
-            this.props.byteTritCheck(accounts, Electron.genFn);
+        Promise.all(accounts).then((accountData) => {
+            accountData = accountData.filter((account) => account && account.accountName);
+            this.props.byteTritCheck(accountData, Electron.genFn);
         });
     };
 
