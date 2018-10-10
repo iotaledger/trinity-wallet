@@ -14,6 +14,8 @@ export default function withStatusBar(WrappedComponent) {
             inactive: PropTypes.bool.isRequired,
             /** @ignore */
             theme: PropTypes.object.isRequired,
+            /** @ignore */
+            isModalActive: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -30,13 +32,12 @@ export default function withStatusBar(WrappedComponent) {
         }
 
         render() {
-            const { theme, inactive } = this.props;
+            const { theme, inactive, isModalActive } = this.props;
+            const bg = getBackgroundColor(this.state.currentScreen, theme, false, inactive);
             return (
                 <View style={{ flex: 1 }}>
                     <WrappedComponent {...this.props} />
-                    <DynamicStatusBar
-                        backgroundColor={getBackgroundColor(this.state.currentScreen, theme, false, inactive)}
-                    />
+                    <DynamicStatusBar backgroundColor={bg} isModalActive={isModalActive} />
                 </View>
             );
         }
@@ -45,6 +46,7 @@ export default function withStatusBar(WrappedComponent) {
     const mapStateToProps = (state) => ({
         inactive: state.ui.inactive,
         theme: state.settings.theme,
+        isModalActive: state.ui.isModalActive,
     });
 
     return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);

@@ -1,17 +1,29 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import timer from 'react-native-timer';
+import { Navigation } from 'react-native-navigation';
 import { isAndroid, isIPhoneX } from 'libs/device';
+import { rgbToHex } from 'shared-modules/libs/utils';
 
-class DynamicStatusBar extends PureComponent {
+class DynamicStatusBar extends Component {
     static propTypes = {
         /** Status bar background color */
-        backgroundColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string,
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool,
     };
+
+    componentWillMount() {
+        Navigation.events().registerComponentDidAppearListener(() => {
+            this.resetStatusBarColor();
+        });
+    }
+
+    componentDidMount() {
+        this.resetStatusBarColor();
+    }
 
     componentWillReceiveProps(newProps) {
         const { isModalActive } = this.props;
@@ -20,9 +32,15 @@ class DynamicStatusBar extends PureComponent {
         }
         if (!isModalActive && newProps.isModalActive) {
             timer.setTimeout('timeout', () => this.resetStatusBarColor(), 50);
+            if (isAndroid) {
+                this.resetStatusBarColor();
+            }
         }
         if (isModalActive && !newProps.isModalActive) {
             timer.setTimeout('timeout', () => this.resetStatusBarColor(), 450);
+            if (isAndroid) {
+                this.resetStatusBarColor();
+            }
         }
     }
 
@@ -36,7 +54,9 @@ class DynamicStatusBar extends PureComponent {
 
     resetStatusBarColor() {
         const { backgroundColor } = this.props;
-        StatusBar.setBackgroundColor(backgroundColor);
+        if (backgroundColor) {
+            StatusBar.setBackgroundColor(rgbToHex(backgroundColor));
+        }
     }
 
     render() {

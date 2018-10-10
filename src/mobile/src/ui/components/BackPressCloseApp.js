@@ -21,7 +21,9 @@ export default () => (C) => {
          * @method componentDidDisappear
          */
         componentDidDisappear() {
-            this.backHandler.remove();
+            if (this.backHandler) {
+                this.backHandler.remove();
+            }
         }
 
         /**
