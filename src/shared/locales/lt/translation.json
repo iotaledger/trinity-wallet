@@ -49,13 +49,6 @@
         "proceed": "Tęsti",
         "qr": "QR",
         "enterSeed": "Įveskite savo užraktą.",
-        "mainWallet": "PAGRINDINĖ PASKYRA",
-        "secondWallet": "ANTROJI PASKYRA",
-        "thirdWallet": "TREČIOJI PASKYRA",
-        "fourthWallet": "KETVIRTOJI PASKYRA",
-        "fifthWallet": "PENKTOJI PASKYRA",
-        "sixthWallet": "ŠEŠTOJI PASKYRA",
-        "otherWallet": "KITA PASKYRA",
         "yes": "Taip",
         "no": "Ne",
         "okay": "Gerai",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Įvyko klaida atliekant apskaičiavimus.",
         "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
-        "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis."
+        "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
