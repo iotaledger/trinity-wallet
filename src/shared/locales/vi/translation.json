@@ -49,13 +49,6 @@
         "proceed": "Tiến hành",
         "qr": "QR",
         "enterSeed": "Vui lòng nhập từ khoá.",
-        "mainWallet": "TÀI KHOẢN CHÍNH",
-        "secondWallet": "TÀI KHOẢN THỨ HAI",
-        "thirdWallet": "TÀI KHOẢN THỨ BA",
-        "fourthWallet": "TÀI KHOẢN THỨ TƯ",
-        "fifthWallet": "TÀI KHOẢN THỨ NĂM",
-        "sixthWallet": "TÀI KHOẢN THỨ SÁU",
-        "otherWallet": "TÀI KHOẢN KHÁC",
         "yes": "Có",
         "no": "Không",
         "okay": "Đồng ý",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
