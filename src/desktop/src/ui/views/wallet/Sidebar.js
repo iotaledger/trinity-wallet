@@ -98,7 +98,7 @@ class Sidebar extends React.PureComponent {
                         </a>
                         <ul>
                             <Scrollbar>
-                                {accounts.accountNames.map((account, index) => {
+                                {Object.keys(accounts.accountInfo).map((account, index) => {
                                     return (
                                         <a
                                             aria-current={index === seedIndex}

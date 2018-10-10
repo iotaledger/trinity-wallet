@@ -9,7 +9,11 @@ import { withNamespaces } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
 import { clearLog } from 'shared-modules/actions/alerts';
-import { getBalanceForSelectedAccount, selectAccountInfo } from 'shared-modules/selectors/accounts';
+import {
+    getBalanceForSelectedAccount,
+    getAccountNamesFromState,
+    selectAccountInfo,
+} from 'shared-modules/selectors/accounts';
 import {
     StatusBar,
     View,
@@ -563,7 +567,7 @@ class TopBar extends Component {
 
 const mapStateToProps = (state) => ({
     balance: getBalanceForSelectedAccount(state),
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     accountInfo: state.accounts.accountInfo,
     currentSetting: state.wallet.currentSetting,
     seedIndex: state.wallet.seedIndex,

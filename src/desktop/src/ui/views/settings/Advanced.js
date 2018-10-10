@@ -59,11 +59,11 @@ class Advanced extends PureComponent {
      * @param {string} Password - Plain text wallet password
      * @returns {undefined}
      */
-    resetWallet = async (password) => {
+    resetWallet = () => {
         const { t, generateAlert } = this.props;
 
         try {
-            await clearVault(password);
+            clearVault();
             localStorage.clear();
             Electron.clearStorage();
             location.reload();

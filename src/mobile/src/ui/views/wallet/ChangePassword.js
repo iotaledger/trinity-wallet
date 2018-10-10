@@ -6,7 +6,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Key
 import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { changePassword, getPasswordHash } from 'libs/keychain';
+import { changePassword, hash } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
@@ -123,7 +123,7 @@ class ChangePassword extends Component {
      */
     async isPasswordChangeValid() {
         const { t, currentPwdHash, generateAlert } = this.props;
-        const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
+        const currentPasswordHash = await hash(this.state.currentPassword);
         if (!isEqual(currentPwdHash, currentPasswordHash)) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (this.state.newPassword === this.state.currentPassword) {

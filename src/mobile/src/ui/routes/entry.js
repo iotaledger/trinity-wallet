@@ -10,17 +10,10 @@ import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/setting
 import { ActionTypes } from 'shared-modules/actions/wallet';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
-import { isIOS } from 'libs/device';
-import keychain from 'libs/keychain';
 import i18next from 'shared-modules/libs/i18next';
+import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from 'ui/routes/navigation';
-
-const clearKeychain = () => {
-    if (isIOS) {
-        keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
-    }
-};
 
 const launch = (store) => {
     // Disable auto node switching.

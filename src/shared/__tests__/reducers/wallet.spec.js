@@ -8,10 +8,10 @@ describe('Reducer: wallet', () => {
                 ready: false,
                 password: {},
                 seed: Array(82).join(' '),
-                accountName: 'MAIN WALLET',
                 seedIndex: 0,
                 currentSetting: 'mainSettings',
                 additionalAccountName: '',
+                additionalAccountType: '',
                 transitionBalance: 0,
                 transitionAddresses: [],
                 addingAdditionalAccount: false,
@@ -288,14 +288,14 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST', () => {
+    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST', () => {
         it('should set "ready" in state to false', () => {
             const initialState = {
                 ready: true,
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST',
             };
 
             const newState = reducer(initialState, action);
@@ -307,14 +307,14 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS', () => {
+    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should set "ready" in state to true', () => {
             const initialState = {
                 ready: false,
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
             };
 
             const newState = reducer(initialState, action);
@@ -331,7 +331,7 @@ describe('Reducer: wallet', () => {
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
             };
 
             const newState = reducer(initialState, action);
@@ -348,7 +348,7 @@ describe('Reducer: wallet', () => {
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
             };
 
             const newState = reducer(initialState, action);
@@ -358,43 +358,22 @@ describe('Reducer: wallet', () => {
 
             expect(newState.additionalAccountName).to.equal(expectedState.additionalAccountName);
         });
-    });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST', () => {
-        it('should set "ready" in state to false', () => {
+        it('should set "additionalAccountType" in state to an empty string', () => {
             const initialState = {
-                ready: true
+                additionalAccountType: 'foo',
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                ready: false
+                additionalAccountType: '',
             };
 
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS', () => {
-        it('should set "ready" in state to true', () => {
-            const initialState = {
-                ready: false,
-            };
-
-            const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                ready: true,
-            };
-
-            expect(newState).to.eql(expectedState);
+            expect(newState.additionalAccountType).to.equal(expectedState.additionalAccountType);
         });
     });
 

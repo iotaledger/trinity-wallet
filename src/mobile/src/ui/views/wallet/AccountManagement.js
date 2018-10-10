@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 class AccountManagement extends Component {
     static propTypes = {
         /** @ignore */
-        seedCount: PropTypes.number.isRequired,
+        accountCount: PropTypes.number.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -42,9 +42,9 @@ class AccountManagement extends Component {
      * @method deleteAccount
      */
     deleteAccount() {
-        const { seedCount, t } = this.props;
+        const { accountCount, t } = this.props;
 
-        if (seedCount === 1) {
+        if (accountCount === 1) {
             return this.props.generateAlert(
                 'error',
                 t('global:cannotPerformAction'),
@@ -91,7 +91,7 @@ class AccountManagement extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.accounts.seedCount,
+    accountCount: Object.keys(state.accounts.accountInfo).length,
     theme: state.settings.theme,
 });
 

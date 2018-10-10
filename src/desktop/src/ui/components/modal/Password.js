@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import { hash, authorize } from 'libs/crypto';
+
 import { generateAlert } from 'actions/alerts';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
-
-import { getSeed, vaultAuth, hash } from 'libs/crypto';
 
 /**
  * Password confirmation dialog component
@@ -19,8 +19,6 @@ class ModalPassword extends PureComponent {
     static propTypes = {
         /** Password window content */
         content: PropTypes.object.isRequired,
-        /** Seed name that should be returned */
-        seedName: PropTypes.string,
         /** Password window type */
         category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
         /** Dialog visibility state */
@@ -33,7 +31,7 @@ class ModalPassword extends PureComponent {
         onClose: PropTypes.func,
         /** On correct password entered event
          * @param {string} Password - Entered password plain text
-         * @param {object} Vault - Vault content
+         * @param {object} SeedStore - SeedStore content
          */
         onSuccess: PropTypes.func,
         /** On password entered event callback
@@ -67,7 +65,7 @@ class ModalPassword extends PureComponent {
 
     onSubmit = async (e) => {
         const { password } = this.state;
-        const { onSubmit, seedName, onSuccess, generateAlert, t } = this.props;
+        const { onSubmit, onSuccess, generateAlert, t } = this.props;
 
         e.preventDefault();
 
@@ -75,11 +73,10 @@ class ModalPassword extends PureComponent {
             return onSubmit(password);
         }
 
-        let seed = null;
         const passwordHash = await hash(password);
 
         try {
-            seed = seedName ? await getSeed(passwordHash, seedName) : await vaultAuth(passwordHash);
+            await authorize(passwordHash);
         } catch (err) {
             generateAlert(
                 'error',
@@ -89,7 +86,7 @@ class ModalPassword extends PureComponent {
             return;
         }
 
-        onSuccess(passwordHash, seed);
+        onSuccess(passwordHash);
     };
 
     render() {

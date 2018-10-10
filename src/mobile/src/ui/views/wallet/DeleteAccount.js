@@ -7,13 +7,14 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import Modal from 'react-native-modal';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { deleteAccount } from 'shared-modules/actions/accounts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import Fonts from 'ui/theme/fonts';
-import { deleteSeedFromKeychain, getPasswordHash } from 'libs/keychain';
+import { hash } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import ModalButtons from 'ui/components/ModalButtons';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -124,6 +125,8 @@ class DeleteAccount extends Component {
         t: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Currently selected account type */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -177,7 +180,7 @@ class DeleteAccount extends Component {
             return this.setState({ pressedContinue: true });
         }
 
-        const pwdHash = await getPasswordHash(this.state.password);
+        const pwdHash = await hash(this.state.password);
 
         if (isEqual(password, pwdHash)) {
             return this.showModal();
@@ -218,12 +221,14 @@ class DeleteAccount extends Component {
      *
      * @method delete
      */
-    delete() {
-        const { password, selectedAccountName } = this.props;
+    async delete() {
+        const { password, selectedAccountName, selectedAccountType } = this.props;
 
-        deleteSeedFromKeychain(password, selectedAccountName)
-            .then(() => this.props.deleteAccount(selectedAccountName))
-            .catch((err) => console.error(err));
+        const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+
+        await seedStore.removeAccount();
+
+        this.props.deleteAccount(selectedAccountName);
     }
 
     showModal = () => {
@@ -361,6 +366,7 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isAutoPromoting: state.polling.isAutoPromoting,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     shouldPreventAction: shouldPreventAction(state),
     isModalActive: state.ui.isModalActive,
 });
