@@ -142,8 +142,8 @@
         "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでやり直してください。",
         "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
         "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychain": "キーチェーンに関するエラー",
+        "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
