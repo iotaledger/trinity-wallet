@@ -49,13 +49,6 @@
         "proceed": "Tovább",
         "qr": "QR kód",
         "enterSeed": "Kérjük, adja meg a személyes mester jelszavát.",
-        "mainWallet": "Elsődleges számla",
-        "secondWallet": "Második számla",
-        "thirdWallet": "Harmadik számla",
-        "fourthWallet": "Negyedik számla",
-        "fifthWallet": "Ötödik számla",
-        "sixthWallet": "Hatodik számla",
-        "otherWallet": "Egyéb számla",
         "yes": "Igen",
         "no": "Nem",
         "okay": "Rendben",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Hiba történt a kiszabott munka elvégzése során.",
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
-        "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben."
+        "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
