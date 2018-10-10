@@ -690,10 +690,10 @@
     },
     "tray": {
         "trayApplication": "Užduočių juostos programėlė",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "Suteikia informacijos apie jūsų paskyrų balansus ir atlikus paskutinius pavedimus.",
         "notLoggedIn": "Jūs neprisijungęs",
         "setupIncomplete": "Piniginės nustatymai nebaigti",
-        "completeSetup": "Complete setup"
+        "completeSetup": "Baigti sąranką"
     },
     "notifications": {
         "notifications": "Pranešimai",
@@ -707,15 +707,15 @@
         "confirmedOut": "Pavedimas {{value}} iš {{account}} yra patvirtintas"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepSucceeded": "Lėšos atrakintos sėkmingai",
+        "sweepSucceededExplanation": "Jūsų lėšos sėkmingai atrakintos ir perkeltos į naują adresą. Iškelkite pavedimus, norėdami greičiau juos patvirtinti.",
+        "sweepError": "Klaida atrakinant lėšas",
+        "sweepErrorExplanation": "Įvyko klaida atrakinant jūsų lėšas. Bandoma dar kart.",
+        "warningTitle": "Įspėjimas: aptiktos užrakintos lėšos",
+        "explanation": "Trinity Dekstop 0.3.4 versija turėjo programavimo klaidą, kuri laikinai užrakina lėšas. Ši klaida palietė mažą vartotojų ratą, kurie atliko pavedimus su 0.3.4 versija.",
+        "explanationAccounts": "Užrakintos lėšos aptiktos šiose paskyrose: {{accounts}}. Trinity automatiškai sugrąžins jūsų lėšas, perkeliant jas į naują adresą.",
+        "proceed": "Pradėti grąžinimo procesą",
+        "sweepConfirmation": "Jūs ketinate perkelti {{amount}} į adresą {{address}}. Paskyra: {{accountName}}, adreso indeksas: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     }
 }
