@@ -115,19 +115,6 @@ class Ledger {
         const seed = await Electron.ledger.selectSeed(this.index);
         return seed;
     };
-
-    awaitConnection = async () => {
-        return new Promise((resolve) => {
-            const callback = (connected) => {
-                if (connected) {
-                    resolve();
-                    Electron.ledger.removeListener(callback);
-                }
-            };
-
-            Electron.ledger.addListener(callback);
-        });
-    };
 }
 
 export default Ledger;
