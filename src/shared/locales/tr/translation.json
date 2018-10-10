@@ -49,13 +49,6 @@
         "proceed": "Devam",
         "qr": "QR",
         "enterSeed": "Lütfen tohumunuzu giriniz.",
-        "mainWallet": "Ana Hesap",
-        "secondWallet": "İKİNCİ HESAP",
-        "thirdWallet": "ÜÇÜNCÜ HESAP",
-        "fourthWallet": "DÖRDÜNCÜ HESAP",
-        "fifthWallet": "BEŞİNCİ HESAP",
-        "sixthWallet": "ALTINCI HESAP",
-        "otherWallet": "DİĞER HESAP",
         "yes": "Evet",
         "no": "Hayır",
         "okay": "Tamam",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Farklı bir node ile tekrar deneyin.",
-        "errorFetchingAccountInformation": "Hesap bilgisi alınırken hata oluştu."
+        "errorFetchingAccountInformation": "Hesap bilgisi alınırken hata oluştu.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
