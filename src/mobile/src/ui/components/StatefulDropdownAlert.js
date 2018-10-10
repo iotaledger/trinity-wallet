@@ -1,6 +1,5 @@
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'shared-modules/actions/alerts';
@@ -15,38 +14,6 @@ const errorIcon = require('shared-modules/images/error.png');
 const successIcon = require('shared-modules/images/successIcon.png');
 const warnIcon = require('shared-modules/images/warnIcon.png');
 const infoIcon = require('shared-modules/images/infoIcon.png');
-
-const styles = StyleSheet.create({
-    dropdownTitle: {
-        fontSize: Styling.fontSize3,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: Styling.fontSize2,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 15,
-        height: width / 15,
-        alignSelf: 'center',
-    },
-});
 
 class StatefulDropdownAlert extends Component {
     static propTypes = {
@@ -98,7 +65,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, isModalActive, theme } = this.props;
+        const { alerts, isModalActive } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
         const alertIsNotEmpty = newProps.alerts.message !== '';
@@ -112,9 +79,6 @@ class StatefulDropdownAlert extends Component {
 
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
-            if (isAndroid) {
-                StatusBar.setBackgroundColor(getBackgroundColor(this.state.currentScreen, theme), false);
-            }
         }
 
         this.disposeIfConnectionIsRestored(newProps);
@@ -178,10 +142,35 @@ class StatefulDropdownAlert extends Component {
                 successImageSrc={successIcon}
                 warnImageSrc={warnIcon}
                 infoImageSrc={infoIcon}
-                titleStyle={styles.dropdownTitle}
-                defaultTextContainer={styles.dropdownTextContainer}
-                messageStyle={styles.dropdownMessage}
-                imageStyle={styles.dropdownImage}
+                titleStyle={{
+                    fontSize: Styling.fontSize3,
+                    textAlign: 'left',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    backgroundColor: 'transparent',
+                    fontFamily: 'SourceSansPro-Regular',
+                }}
+                defaultTextContainer={{
+                    flex: 1,
+                    paddingLeft: width / 20,
+                    paddingRight: width / 15,
+                    paddingVertical: height / 30,
+                }}
+                messageStyle={{
+                    fontSize: Styling.fontSize2,
+                    textAlign: 'left',
+                    fontWeight: 'normal',
+                    color: 'white',
+                    backgroundColor: 'transparent',
+                    fontFamily: 'SourceSansPro-Regular',
+                    paddingTop: height / 60,
+                }}
+                imageStyle={{
+                    marginLeft: width / 25,
+                    width: width / 15,
+                    height: width / 15,
+                    alignSelf: 'center',
+                }}
                 inactiveStatusBarStyle={statusBarStyle}
                 inactiveStatusBarBackgroundColor={getBackgroundColor(this.state.currentScreen, theme)}
                 onCancel={this.props.disposeOffAlert}

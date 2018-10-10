@@ -55,7 +55,7 @@ class DynamicStatusBar extends Component {
     resetStatusBarColor() {
         const { backgroundColor } = this.props;
         if (backgroundColor) {
-            StatusBar.setBackgroundColor(rgbToHex(backgroundColor));
+            StatusBar.setBackgroundColor(rgbToHex(backgroundColor), false);
         }
     }
 
