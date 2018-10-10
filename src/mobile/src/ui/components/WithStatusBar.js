@@ -33,11 +33,13 @@ export default function withStatusBar(WrappedComponent) {
 
         render() {
             const { theme, inactive, isModalActive } = this.props;
-            const bg = getBackgroundColor(this.state.currentScreen, theme, false, inactive);
             return (
                 <View style={{ flex: 1 }}>
                     <WrappedComponent {...this.props} />
-                    <DynamicStatusBar backgroundColor={bg} isModalActive={isModalActive} />
+                    <DynamicStatusBar
+                        backgroundColor={getBackgroundColor(this.state.currentScreen, theme, false, inactive)}
+                        isModalActive={isModalActive}
+                    />
                 </View>
             );
         }

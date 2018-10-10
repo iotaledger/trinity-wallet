@@ -9,6 +9,7 @@ import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { Styling, getBackgroundColor } from 'ui/theme/general';
+import { rgbToHex } from 'shared-modules/libs/utils';
 
 const errorIcon = require('shared-modules/images/error.png');
 const successIcon = require('shared-modules/images/successIcon.png');
@@ -52,8 +53,6 @@ class StatefulDropdownAlert extends Component {
     componentWillMount() {
         Navigation.events().registerComponentDidAppearListener((componentId) => {
             this.setState({ currentScreen: componentId.componentName });
-        });
-        Navigation.events().registerComponentDidDisappearListener(() => {
             if (this.dropdown) {
                 this.dropdown.close();
             }
@@ -95,6 +94,13 @@ class StatefulDropdownAlert extends Component {
         this.props.disposeOffAlert();
     }
 
+    getStatusBarColor() {
+        const statusBarColor = getBackgroundColor(this.state.currentScreen, this.props.theme);
+        if (statusBarColor) {
+            return rgbToHex(statusBarColor);
+        }
+    }
+
     getStatusBarStyle() {
         if (isIPhoneX) {
             return 'light-content';
@@ -130,7 +136,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative }, theme } = this.props;
+        const { onRef, theme: { positive, negative } } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -172,7 +178,7 @@ class StatefulDropdownAlert extends Component {
                     alignSelf: 'center',
                 }}
                 inactiveStatusBarStyle={statusBarStyle}
-                inactiveStatusBarBackgroundColor={getBackgroundColor(this.state.currentScreen, theme)}
+                inactiveStatusBarBackgroundColor={this.getStatusBarColor()}
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
