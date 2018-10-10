@@ -62,8 +62,6 @@
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
-        "unrecognisedAccount": "Unrecognized account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "パスワードを入力する必要があります。もう一度やり直してください。",
         "capsLockIsOn": "Caps Lock キーが有効になっています",
         "syncInProgress": "同期中",

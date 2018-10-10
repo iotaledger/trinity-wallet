@@ -62,8 +62,6 @@
         "password": "Passord",
         "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
-        "unrecognisedAccount": "Unrecognized account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock er på",
         "syncInProgress": "Synkronisering pågår",

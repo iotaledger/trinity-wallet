@@ -62,8 +62,6 @@
         "password": "Κωδικός πρόσβασης",
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
         "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
-        "unrecognisedAccount": "Unrecognized account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Συγχρονισμός σε εξέλιξη",

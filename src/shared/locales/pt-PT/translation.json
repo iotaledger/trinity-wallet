@@ -62,8 +62,6 @@
         "password": "Palavra-passe",
         "unrecognisedPassword": "Palavra-passe não reconhecida",
         "unrecognisedPasswordExplanation": "A palavra-passe não foi reconhecida. Por favor, tente novamente.",
-        "unrecognisedAccount": "Unrecognized account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronizando",

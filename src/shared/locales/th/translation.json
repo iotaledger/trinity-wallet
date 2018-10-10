@@ -62,8 +62,6 @@
         "password": "รหัสผ่าน",
         "unrecognisedPassword": "รหัสผ่านผิด",
         "unrecognisedPasswordExplanation": "รหัสผ่านผิด กรุณาลองอีกครั้ง",
-        "unrecognisedAccount": "Unrecognized account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "กำลังอยู่ในระหว่างการซิงค์",

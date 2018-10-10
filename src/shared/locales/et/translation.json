@@ -62,8 +62,6 @@
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
         "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
-        "unrecognisedAccount": "Unrecognized account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "Te peate sisestama parooli. Palun proovige uuesti.",
         "capsLockIsOn": "Caps Lock on sisse lülitatud",
         "syncInProgress": "Sünkroonimine on pooleli",
