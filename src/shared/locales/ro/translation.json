@@ -62,6 +62,8 @@
         "password": "Parolă",
         "unrecognisedPassword": "Parola nerecunoscută",
         "unrecognisedPasswordExplanation": "Parola nu a fost recunoscută. Încercaţi din nou.",
+        "unrecognisedAccount": "Unrecognized account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronizare aflată în curs",

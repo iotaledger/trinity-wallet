@@ -62,6 +62,8 @@
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
+        "unrecognisedAccount": "Unrecognized account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "Debe ingresar una contraseña. Por favor reintente.",
         "capsLockIsOn": "Bloq Mayús está activado",
         "syncInProgress": "Sincronización en progreso",

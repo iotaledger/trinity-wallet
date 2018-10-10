@@ -62,6 +62,8 @@
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
+        "unrecognisedAccount": "Unrecognized account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
         "capsLockIsOn": "A nagybetűzár be van kapcsolva",
         "syncInProgress": "Szinkronizálás folyamatban",

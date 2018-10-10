@@ -114,9 +114,15 @@ class Login extends React.Component {
 
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
 
-        const seed = wallet.addingAdditionalAccount
-            ? bytesToTrits(Electron.getOnboardingSeed())
-            : await getSeed(wallet.password, accountName, true);
+        let seed = '';
+        try {
+            seed = wallet.addingAdditionalAccount
+                ? bytesToTrits(Electron.getOnboardingSeed())
+                : await getSeed(wallet.password, accountName, true);
+        } catch (e) {
+            e.accountName = accountName;
+            throw e;
+        }
 
         this.props.getPrice();
         this.props.getChartData();
@@ -193,7 +199,15 @@ class Login extends React.Component {
                 verifyTwoFA: false,
             });
 
-            this.setupAccount();
+            try {
+                await this.setupAccount();
+            } catch (err) {
+                generateAlert(
+                    'error',
+                    t('unrecognisedAccount'),
+                    t('unrecognisedAccountExplanation', { accountName: err.accountName }),
+                );
+            }
         }
     };
 

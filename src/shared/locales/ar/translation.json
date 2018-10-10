@@ -62,6 +62,8 @@
         "password": "كلمة المرور",
         "unrecognisedPassword": "كلمة المرور غير المعترف بها",
         "unrecognisedPasswordExplanation": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
+        "unrecognisedAccount": "Unrecognized account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "المزامنة قيد التقدم",

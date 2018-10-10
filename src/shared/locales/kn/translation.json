@@ -62,6 +62,8 @@
         "password": "ಗುಪ್ತಪದ",
         "unrecognisedPassword": "ಗುರುತಿಗೆ ಸಿಕ್ಕದ ಗುಪ್ತಪದ",
         "unrecognisedPasswordExplanation": "ಗುಪ್ತಪದ ಗುರುತಿಸಲಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
+        "unrecognisedAccount": "Unrecognized account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "ಕ್ಯಾಪ್ಸ್ ಲಾಕ್ ಆನ್ ಆಗಿದೆ",
         "syncInProgress": "ಒಡವಾಗುನಂಟು ಪ್ರಗತಿಯಲ್ಲಿದೆ",

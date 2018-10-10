@@ -62,6 +62,8 @@
         "password": "Password",
         "unrecognisedPassword": "סיסמה שגויה",
         "unrecognisedPasswordExplanation": "הסיסמה שגויה. בבקשה נסה שוב.",
+        "unrecognisedAccount": "Unrecognized account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognized. Consider reset your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "מבצע סנכרון",
