@@ -49,13 +49,6 @@
         "proceed": "Jätka",
         "qr": "QR",
         "enterSeed": "Palun sisestage oma seeme.",
-        "mainWallet": "PEAMINE KONTO",
-        "secondWallet": "TEINE KONTO",
-        "thirdWallet": "KOLMAS KONTO",
-        "fourthWallet": "NELJAS KONTO",
-        "fifthWallet": "VIIES KONTO",
-        "sixthWallet": "KUUES KONTO",
-        "otherWallet": "MUU KONTO",
         "yes": "Jah",
         "no": "Ei",
         "okay": "Okei",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Töötõendi tegemisel tekkis probleem.",
         "tryingAgainWithLocalPoW": "Kohaliku töötõendiga uuesti proovimine.",
         "tryingAgainWithDifferentNode": "Uue sõlmega uuesti proovimine.",
-        "errorFetchingAccountInformation": "Konto teabe hankimisel tekkis viga."
+        "errorFetchingAccountInformation": "Konto teabe hankimisel tekkis viga.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
