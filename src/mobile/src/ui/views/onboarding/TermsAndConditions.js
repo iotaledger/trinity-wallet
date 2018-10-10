@@ -15,7 +15,6 @@ import { acceptTerms } from 'shared-modules/actions/settings';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import i18next from 'i18next';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -129,7 +128,6 @@ class TermsAndConditions extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                     <Text style={[styles.titleText, textColor]}>{t('termsAndConditions')}</Text>
                 </View>

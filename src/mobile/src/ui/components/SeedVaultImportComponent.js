@@ -38,6 +38,13 @@ export class SeedVaultImportComponent extends Component {
         onRef: PropTypes.func.isRequired,
     };
 
+    constructor() {
+        super();
+        this.state = {
+            seedVault: [],
+        };
+    }
+
     componentWillMount() {
         const { t, onRef } = this.props;
         onRef(this);
@@ -141,7 +148,6 @@ export class SeedVaultImportComponent extends Component {
 
     render() {
         const { t, theme } = this.props;
-
         return (
             <TouchableOpacity onPress={() => this.importSeedVault()} style={{ flex: 0.7, justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'row' }}>

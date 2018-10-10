@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -65,7 +65,7 @@
     "react-native-detect-navbar-android": "^0.2.0",
     "react-native-device-info": "^0.13.0",
     "react-native-document-picker": "^2.1.0",
-    "react-native-dropdownalert": "git+https://github.com/cvarley100/react-native-dropdownalert#master",
+    "react-native-dropdownalert": "^3.7.0",
     "react-native-exit-app": "^1.0.0",
     "react-native-extra-dimensions-android": "^0.21.0",
     "react-native-fast-crypto": "https://github.com/rajivshah3/react-native-fast-crypto#13db40e",

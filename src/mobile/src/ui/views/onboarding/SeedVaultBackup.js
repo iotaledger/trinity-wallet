@@ -5,7 +5,6 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
@@ -94,7 +93,6 @@ class SeedVaultBackup extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
                     <View>
-                        <DynamicStatusBar backgroundColor={body.bg} />
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
                             <View style={{ flex: 0.7 }} />

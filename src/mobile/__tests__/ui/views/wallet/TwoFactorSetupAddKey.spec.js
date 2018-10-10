@@ -72,13 +72,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should return a DynamicStatusBar component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
-            expect(wrapper.find('DynamicStatusBar').length).toEqual(1);
-        });
-
         it('should return six View components', () => {
             const props = getProps();
 

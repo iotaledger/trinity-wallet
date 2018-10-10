@@ -15,10 +15,10 @@ export const Styling = {
     fontSize6: width / 8,
 };
 
-export function getBackgroundColor(screen, theme, footerColour = false) {
+export function getBackgroundColor(screen, theme, footerColour = false, inactive = false) {
     const { bar, body } = theme;
     const screenMap = {
-        home: bar.alt,
+        home: inactive ? body.bh : bar.alt,
         loading: body.bg,
         newSeedSetup: body.bg,
         walletSetup: body.bg,

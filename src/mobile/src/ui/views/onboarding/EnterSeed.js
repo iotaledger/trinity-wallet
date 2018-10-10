@@ -1,6 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
@@ -15,7 +15,7 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid, isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhone11 } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -217,7 +217,6 @@ class EnterSeed extends React.Component {
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                     {!minimised && (
                         <View>
-                            <StatusBar barStyle="light-content" backgroundColor={theme.body.bg} />
                             <View style={styles.topContainer}>
                                 <Icon name="iota" size={width / 8} color={theme.body.color} />
                                 <View style={{ flex: 0.7 }} />
@@ -247,7 +246,7 @@ class EnterSeed extends React.Component {
                                     seed={seed}
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                {!isIPhoneX && (
+                                {!isIPhone11 && (
                                     <SeedVaultImport
                                         openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                         onSeedImport={(seed) => {

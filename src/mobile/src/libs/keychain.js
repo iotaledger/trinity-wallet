@@ -54,9 +54,12 @@ export const keychain = {
 
 export const getSecretBoxFromKeychainAndOpenIt = async (alias, keyUInt8) => {
     const secretBox = await keychain.get(alias);
-    const box = await decodeBase64(secretBox.item);
-    const nonce = await decodeBase64(secretBox.nonce);
-    return await openSecretBox(box, nonce, keyUInt8);
+    if (secretBox) {
+        const box = await decodeBase64(secretBox.item);
+        const nonce = await decodeBase64(secretBox.nonce);
+        return await openSecretBox(box, nonce, keyUInt8);
+    }
+    return null;
 };
 
 export const hash = async (password) => {

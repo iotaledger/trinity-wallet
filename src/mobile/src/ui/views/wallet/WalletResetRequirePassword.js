@@ -10,7 +10,6 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } fro
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { persistConfig } from 'libs/store';
 import { purgeStoredState } from 'shared-modules/store';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { Icon } from 'ui/theme/icons';
@@ -176,7 +175,6 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>

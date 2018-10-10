@@ -17,7 +17,6 @@ import { isAndroid } from 'libs/device';
 import DropdownComponent from 'ui/components/Dropdown';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Icon } from 'ui/theme/icons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -146,7 +145,6 @@ class LanguageSetup extends Component {
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <View style={styles.container}>
                         <Image style={styles.helloBackground} source={helloBackImagePath} />
-                        <DynamicStatusBar backgroundColor={body.bg} />
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
                         </View>

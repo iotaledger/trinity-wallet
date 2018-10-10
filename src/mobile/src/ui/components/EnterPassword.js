@@ -98,7 +98,9 @@ class EnterPassword extends Component {
         }
         FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
-                this.hideModal();
+                if (isAndroid) {
+                    this.hideModal();
+                }
                 this.props.setUserActive();
             })
             .catch(() => {

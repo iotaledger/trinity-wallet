@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
-import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import hoistNonReactStatics from 'hoist-non-react-statics';
+import { connect } from 'react-redux';
 import { getBackgroundColor } from 'ui/theme/general';
 
-export default function withSafeAreaView(WrappedComponent) {
+export default function withStatusBar(WrappedComponent) {
     class EnhancedComponent extends Component {
         static propTypes = {
             /** @ignore */
+            inactive: PropTypes.bool.isRequired,
+            /** @ignore */
             theme: PropTypes.object.isRequired,
             /** @ignore */
-            inactive: PropTypes.bool.isRequired,
+            isModalActive: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -30,32 +32,21 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         render() {
-            const { theme, inactive } = this.props;
-            const { currentScreen } = this.state;
+            const { theme, inactive, isModalActive } = this.props;
+            const bg = getBackgroundColor(this.state.currentScreen, theme, false, inactive);
             return (
-                <SafeAreaView
-                    style={{
-                        flex: 1,
-                        backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
-                    }}
-                >
+                <View style={{ flex: 1 }}>
                     <WrappedComponent {...this.props} />
-                    <View
-                        style={{
-                            height: 34,
-                            backgroundColor: inactive
-                                ? theme.body.bg
-                                : getBackgroundColor(currentScreen, theme, true, inactive),
-                        }}
-                    />
-                </SafeAreaView>
+                    <DynamicStatusBar backgroundColor={bg} isModalActive={isModalActive} />
+                </View>
             );
         }
     }
 
     const mapStateToProps = (state) => ({
-        theme: state.settings.theme,
         inactive: state.ui.inactive,
+        theme: state.settings.theme,
+        isModalActive: state.ui.isModalActive,
     });
 
     return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);

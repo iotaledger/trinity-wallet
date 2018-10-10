@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import withSafeAreaView from 'ui/components/SafeAreaView';
 import withDropdownAlert from 'ui/components/WithDropdownAlert';
 import withModal from 'ui/components/ModalComponent';
+import withStatusBar from 'ui/components/WithStatusBar';
 import Home from 'ui/views/wallet/Home';
 import Loading from 'ui/views/wallet/Loading';
 import NewSeedSetup from 'ui/views/onboarding/NewSeedSetup';
@@ -28,85 +29,65 @@ import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
 import { isIPhoneX } from 'libs/device';
 
-function getGenerator(screen) {
+function applyHOCs(screen) {
     if (isIPhoneX) {
         screen = withSafeAreaView(screen);
     }
-    return withModal(withDropdownAlert(screen));
+    return withStatusBar(withModal(withDropdownAlert(screen)));
 }
 
 export default function registerScreens(store, Provider) {
-    Navigation.registerComponentWithRedux('home', () => getGenerator(Home), Provider, store);
-    Navigation.registerComponentWithRedux('loading', () => getGenerator(Loading), Provider, store);
-    Navigation.registerComponentWithRedux('newSeedSetup', () => getGenerator(NewSeedSetup), Provider, store);
-    Navigation.registerComponentWithRedux('walletSetup', () => getGenerator(WalletSetup), Provider, store);
-    Navigation.registerComponentWithRedux('enterSeed', () => getGenerator(EnterSeed), Provider, store);
-    Navigation.registerComponentWithRedux('saveYourSeed', () => getGenerator(SaveYourSeed), Provider, store);
-    Navigation.registerComponentWithRedux('setPassword', () => getGenerator(SetPassword), Provider, store);
-    Navigation.registerComponentWithRedux('login', () => getGenerator(Login), Provider, store);
-    Navigation.registerComponentWithRedux('writeSeedDown', () => getGenerator(WriteSeedDown), Provider, store);
-    Navigation.registerComponentWithRedux('languageSetup', () => getGenerator(LanguageSetup), Provider, store);
+    Navigation.registerComponentWithRedux('home', () => applyHOCs(Home), Provider, store);
+    Navigation.registerComponentWithRedux('loading', () => applyHOCs(Loading), Provider, store);
+    Navigation.registerComponentWithRedux('newSeedSetup', () => applyHOCs(NewSeedSetup), Provider, store);
+    Navigation.registerComponentWithRedux('walletSetup', () => applyHOCs(WalletSetup), Provider, store);
+    Navigation.registerComponentWithRedux('enterSeed', () => applyHOCs(EnterSeed), Provider, store);
+    Navigation.registerComponentWithRedux('saveYourSeed', () => applyHOCs(SaveYourSeed), Provider, store);
+    Navigation.registerComponentWithRedux('setPassword', () => applyHOCs(SetPassword), Provider, store);
+    Navigation.registerComponentWithRedux('login', () => applyHOCs(Login), Provider, store);
+    Navigation.registerComponentWithRedux('writeSeedDown', () => applyHOCs(WriteSeedDown), Provider, store);
+    Navigation.registerComponentWithRedux('languageSetup', () => applyHOCs(LanguageSetup), Provider, store);
     Navigation.registerComponentWithRedux(
         'walletResetConfirm',
-        () => getGenerator(WalletResetConfirmation),
+        () => applyHOCs(WalletResetConfirmation),
         Provider,
         store,
     );
     Navigation.registerComponentWithRedux(
         'walletResetRequirePassword',
-        () => getGenerator(WalletResetRequirePassword),
+        () => applyHOCs(WalletResetRequirePassword),
         Provider,
         store,
     );
-    Navigation.registerComponentWithRedux(
-        'onboardingComplete',
-        () => getGenerator(OnboardingComplete),
-        Provider,
-        store,
-    );
-    Navigation.registerComponentWithRedux(
-        'setAccountName',
-        () => getGenerator(SetAccountNameComponent),
-        Provider,
-        store,
-    );
-    Navigation.registerComponentWithRedux('seedReentry', () => getGenerator(SeedReentry), Provider, store);
+    Navigation.registerComponentWithRedux('onboardingComplete', () => applyHOCs(OnboardingComplete), Provider, store);
+    Navigation.registerComponentWithRedux('setAccountName', () => applyHOCs(SetAccountNameComponent), Provider, store);
+    Navigation.registerComponentWithRedux('seedReentry', () => applyHOCs(SeedReentry), Provider, store);
     Navigation.registerComponentWithRedux(
         'saveSeedConfirmation',
-        () => getGenerator(SaveSeedConfirmation),
+        () => applyHOCs(SaveSeedConfirmation),
         Provider,
         store,
     );
     Navigation.registerComponentWithRedux(
         'twoFactorSetupAddKey',
-        () => getGenerator(TwoFactorSetupAddKeyComponent),
+        () => applyHOCs(TwoFactorSetupAddKeyComponent),
         Provider,
         store,
     );
     Navigation.registerComponentWithRedux(
         'twoFactorSetupEnterToken',
-        () => getGenerator(TwoFactorSetupEnterToken),
+        () => applyHOCs(TwoFactorSetupEnterToken),
         Provider,
         store,
     );
-    Navigation.registerComponentWithRedux('disable2FA', () => getGenerator(Disable2FA), Provider, store);
-    Navigation.registerComponentWithRedux('fingerprintSetup', () => getGenerator(FingerprintSetup), Provider, store);
-    Navigation.registerComponentWithRedux(
-        'termsAndConditions',
-        () => getGenerator(TermsAndConditions),
-        Provider,
-        store,
-    );
-    Navigation.registerComponentWithRedux('privacyPolicy', () => getGenerator(PrivacyPolicy), Provider, store);
-    Navigation.registerComponentWithRedux(
-        'forceChangePassword',
-        () => getGenerator(ForceChangePassword),
-        Provider,
-        store,
-    );
+    Navigation.registerComponentWithRedux('disable2FA', () => applyHOCs(Disable2FA), Provider, store);
+    Navigation.registerComponentWithRedux('fingerprintSetup', () => applyHOCs(FingerprintSetup), Provider, store);
+    Navigation.registerComponentWithRedux('termsAndConditions', () => applyHOCs(TermsAndConditions), Provider, store);
+    Navigation.registerComponentWithRedux('privacyPolicy', () => applyHOCs(PrivacyPolicy), Provider, store);
+    Navigation.registerComponentWithRedux('forceChangePassword', () => applyHOCs(ForceChangePassword), Provider, store);
     Navigation.registerComponentWithRedux(
         'seedVaultBackup',
-        () => getGenerator(SeedVaultBackupComponent),
+        () => applyHOCs(SeedVaultBackupComponent),
         Provider,
         store,
     );

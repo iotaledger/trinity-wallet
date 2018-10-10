@@ -8,7 +8,6 @@ import { Navigation } from 'react-native-navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -173,7 +172,6 @@ export class TwoFactorSetupAddKey extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topWrapper}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>

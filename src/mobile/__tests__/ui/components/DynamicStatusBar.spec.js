@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 
+jest.mock('shared-modules/libs/utils', () => ({
+    rgbToHex: jest.fn(() => '#000000'),
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -17,7 +21,7 @@ const getProps = (overrides) =>
 describe('Testing DynamicStatusBar component', () => {
     describe('propTypes', () => {
         it('should require a backgroundColor string as a prop', () => {
-            expect(DynamicStatusBar.propTypes.backgroundColor).toEqual(PropTypes.string.isRequired);
+            expect(DynamicStatusBar.propTypes.backgroundColor).toEqual(PropTypes.string);
         });
     });
 
@@ -27,14 +31,6 @@ describe('Testing DynamicStatusBar component', () => {
 
             const wrapper = shallow(<DynamicStatusBar {...props} />);
             expect(wrapper.name()).toEqual('StatusBar');
-        });
-
-        it('should pass "barStyle" prop to StatusBar component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<DynamicStatusBar {...props} />);
-
-            expect('barStyle' in wrapper.props()).toEqual(true);
         });
 
         it('should pass "backgroundColor" prop to StatusBar component', () => {

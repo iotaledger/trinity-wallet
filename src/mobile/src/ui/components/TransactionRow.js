@@ -120,25 +120,11 @@ export default class TransactionRow extends PureComponent {
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
         /** Icon symbol */
         icon: PropTypes.string.isRequired,
-        /** Determines transaction confirmation status */
-        confirmationBool: PropTypes.bool.isRequired,
-        /** @ignore */
-        updateModalProps: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
         message: 'Empty',
     };
-
-    componentWillReceiveProps(newProps) {
-        const { bundleIsBeingPromoted, confirmationBool } = this.props;
-        if (
-            confirmationBool !== newProps.confirmationBool ||
-            bundleIsBeingPromoted !== newProps.bundleIsBeingPromoted
-        ) {
-            this.props.updateModalProps(newProps);
-        }
-    }
 
     render() {
         const { icon, status, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;

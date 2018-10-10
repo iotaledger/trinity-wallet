@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { translate } from 'react-i18next';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
@@ -167,7 +166,6 @@ class TwoFactorSetupEnterToken extends Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar backgroundColor={theme.body.bg} />
                     <View style={styles.topWrapper}>
                         <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>

@@ -9,7 +9,6 @@ import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -104,7 +103,6 @@ class OnboardingComplete extends Component {
         const { t, theme: { body, primary } } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>

@@ -284,3 +284,28 @@ export const isValidHttpsUrl = (url) => {
     }
     return false;
 };
+
+/**
+ * Gets random nodes.
+ *
+ * @method rgbToHex
+ * @param {string} Rgb as string
+ *
+ * @returns {String}
+ */
+export const rgbToHex = (c) => {
+    const convert = (x) =>
+        '#' +
+        x
+            .map((x) => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            })
+            .join('');
+    c = c
+        .split('(')[1]
+        .split(')')[0]
+        .split(', ')
+        .map(Number);
+    return convert(c);
+};

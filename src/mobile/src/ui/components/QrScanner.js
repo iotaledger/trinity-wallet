@@ -93,13 +93,11 @@ export class QRScanner extends Component {
                     <View style={{ height: height / 12 }} />
                     <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
                     <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
-                    <View style={{ paddingBottom: height / 15 }}>
-                        <SingleFooterButton
-                            onButtonPress={() => this.props.hideModal()}
-                            testID="qrScanner-next"
-                            buttonText={t('global:close')}
-                        />
-                    </View>
+                    <SingleFooterButton
+                        onButtonPress={() => this.props.hideModal()}
+                        testID="qrScanner-next"
+                        buttonText={t('global:close')}
+                    />
                 </View>
             </View>
         );

@@ -13,7 +13,6 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
@@ -244,7 +243,6 @@ class WalletSetup extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 0.7 }} />

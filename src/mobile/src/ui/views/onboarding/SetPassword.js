@@ -113,8 +113,8 @@ class SetPassword extends Component {
 
         const seedStore = new SeedStore.keychain(pwdHash);
 
-        const isUniqueueSeed = seedStore.isUniqueSeed(seed);
-        if (!isUniqueueSeed) {
+        const isUniqueSeed = seedStore.isUniqueSeed(seed);
+        if (!isUniqueSeed) {
             return this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:seedInUse'),
