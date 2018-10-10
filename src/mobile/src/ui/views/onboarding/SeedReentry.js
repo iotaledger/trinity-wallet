@@ -181,7 +181,7 @@ class SeedReentry extends Component {
                 t('useExistingSeed:validSeedExplanation'),
             );
         }
-        this.hideModal();
+        this.props.toggleModalActivity();
     }
 
     showModal = (modalContent) => {
