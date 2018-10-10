@@ -12,6 +12,8 @@ import { setAdditionalAccountInfo } from 'actions/wallet';
 import Button from 'ui/components/Button';
 import Number from 'ui/components/input/Number';
 
+import css from './index.scss';
+
 /**
  * Onboarding, set Ledger accoutn index
  */
@@ -33,7 +35,7 @@ class Ledger extends React.PureComponent {
 
     state = {
         index: this.props.wallet.additionalAccountMeta.index
-            ? this.props.wallet.additionalAccountName
+            ? this.props.wallet.additionalAccountMeta.index
             : this.getDefaultIndex(),
         loading: false
     };
@@ -43,7 +45,7 @@ class Ledger extends React.PureComponent {
 
         const indexes = Object.keys(accounts).map(
             (account) =>
-                accounts[account].meta && accounts[account].meta.type === 'ledger' ? accounts[account].index : -1
+                accounts[account].meta && accounts[account].meta.type === 'ledger' ? accounts[account].meta.index : -1
         );
         return indexes;
     }
@@ -58,6 +60,11 @@ class Ledger extends React.PureComponent {
         }
     }
 
+    getIndexAccountName(index) {
+        const indexes = this.getIndexes();
+        return Object.keys(this.props.accounts)[indexes.indexOf(index)];
+    }
+
     /**
      * Check for unused ledger index and set it to state
      * @param {Event} event - Form submit event
@@ -68,6 +75,16 @@ class Ledger extends React.PureComponent {
         const { generateAlert, history, t } = this.props;
 
         event.preventDefault();
+
+        const indexInUse = this.getIndexAccountName(index);
+
+        if (indexInUse) {
+            return generateAlert(
+                'error',
+                t('ledger:indexInUse', { account: indexInUse }),
+                t('ledger:indexInUseExplanation', { account: indexInUse })
+            );
+        }
 
         this.setState({
             loading: true
@@ -83,12 +100,7 @@ class Ledger extends React.PureComponent {
 
             history.push('/onboarding/account-name');
         } catch (err) {
-            console.log(err);
-            if (err.message === 'IOTA app not open') {
-                generateAlert('error', t('ledger:iotaAppError'), t('ledger:iotaAppErrorExplanation'));
-            } else {
-                generateAlert('error', t('ledger:connectionError'), t('ledger:connectionErrorExplanation'));
-            }
+            generateAlert('error', t('ledger:connectionError'), t('ledger:connectionErrorExplanation'));
         }
 
         this.setState({
@@ -100,9 +112,11 @@ class Ledger extends React.PureComponent {
         const { t } = this.props;
         const { index, loading } = this.state;
 
+        const usedIndex = this.getIndexAccountName(index);
+
         return (
-            <form onSubmit={this.setIndex}>
-                <section>
+            <form className={css.ledger} onSubmit={this.setIndex}>
+                <section className={usedIndex ? css.usedIndex : null}>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>
                     <Number
@@ -111,6 +125,7 @@ class Ledger extends React.PureComponent {
                         label={t('ledger:accountIndex')}
                         onChange={(value) => this.setState({ index: value })}
                     />
+                    <strong>{usedIndex ? t('ledger:indexInUse', { account: usedIndex }) : ' '}</strong>
                 </section>
                 <footer>
                     <Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">

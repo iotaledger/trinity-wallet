@@ -54,14 +54,22 @@ class Ledger {
                 try {
                     this.transport = await Transport.create();
                     this.iota = new Iota(this.transport);
+
+                    const timeout = setTimeout(() => {
+                        Wallet.send('ledger', { awaitApplication: true });
+                    }, 1000);
+
                     await this.iota.setActiveSeed(`44'/4218'/${index}'`);
+
                     Wallet.send('ledger', { awaitApplication: false });
+                    clearTimeout(timeout);
+
                     resolve(true);
                 } catch (error) {
                     this.transport.close();
                     this.iota = null;
+
                     if (error.statusCode === 0x6e00) {
-                        Wallet.send('ledger', { awaitApplication: true });
                         setTimeout(() => callback(), 4000);
                     } else {
                         Wallet.send('ledger', { awaitApplication: false });

@@ -37,6 +37,15 @@
                 opacity: 0.5;
             }
         }
+
+        input[type=number] {
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+
         .editable {
             display: block;
             font-family: 'SourceCodePro';
@@ -490,5 +499,28 @@
                 }
             }
         }
+    }
+}
+
+.number {
+    fieldset > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        input {
+            width: 68px;
+            font-size: 28px;
+            text-align: center;
+            padding: 8px 0;
+        }
+    }
+    span {
+        display: block;
+        width: 32px;
+        cursor: pointer;
+        color: var(--body);
+        text-align: center;
     }
 }

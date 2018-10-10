@@ -1,0 +1,15 @@
+.ledger {
+    .usedIndex {
+        input {
+            color: var(--negative);
+        }
+    }
+
+    strong {
+        display: block;
+        height: 21px;
+        line-height: 21px;
+        margin-top: -10px;
+        color: var(--negative);
+    }
+}

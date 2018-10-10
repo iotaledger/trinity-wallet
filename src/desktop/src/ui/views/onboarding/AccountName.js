@@ -31,14 +31,14 @@ class AccountName extends React.PureComponent {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        t: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     state = {
         name:
             this.props.wallet.additionalAccountName && this.props.wallet.additionalAccountName.length
                 ? this.props.wallet.additionalAccountName
-                : '',
+                : ''
     };
 
     /**
@@ -65,7 +65,7 @@ class AccountName extends React.PureComponent {
             generateAlert(
                 'error',
                 t('addAdditionalSeed:accountNameTooLong'),
-                t('addAdditionalSeed:accountNameTooLongExplanation', { maxLength: MAX_ACC_LENGTH }),
+                t('addAdditionalSeed:accountNameTooLongExplanation', { maxLength: MAX_ACC_LENGTH })
             );
             return;
         }
@@ -77,7 +77,7 @@ class AccountName extends React.PureComponent {
 
         setAdditionalAccountInfo({
             addingAdditionalAccount: true,
-            additionalAccountName: this.state.name,
+            additionalAccountName: this.state.name
         });
 
         if (Electron.getOnboardingGenerated()) {
@@ -101,9 +101,11 @@ class AccountName extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history } = this.props;
+        const { history, wallet } = this.props;
 
-        if (Electron.getOnboardingGenerated()) {
+        if (wallet.additionalAccountMeta.type === 'ledger') {
+            history.push('/onboarding/seed-ledger');
+        } else if (Electron.getOnboardingGenerated()) {
             history.push('/onboarding/seed-generate');
         } else {
             Electron.setOnboardingSeed(null);
@@ -141,12 +143,12 @@ class AccountName extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
-    wallet: state.wallet,
+    wallet: state.wallet
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setAdditionalAccountInfo,
+    setAdditionalAccountInfo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));

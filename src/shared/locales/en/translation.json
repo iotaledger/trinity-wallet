@@ -758,6 +758,8 @@
     "ledger": {
         "ready": "Ledger wallet connected and ready",
         "notReady": "If you wish to use a Ledger wallet, connect now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Index is used for an account already added to the wallet. Choose another index.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "chooseAccountIndex": "Choose your Ledger account index",

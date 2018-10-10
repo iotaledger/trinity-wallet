@@ -1,6 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import css from './input.scss';
+
+import Icon from 'ui/components/Icon';
 
 /**
  * Single number input component
@@ -11,8 +14,6 @@ export default class Number extends React.PureComponent {
         value: PropTypes.number.isRequired,
         /** Should input focus when changed to true */
         focus: PropTypes.bool,
-        /** Input label */
-        label: PropTypes.string,
         /** Value change event function
          * @param {number} value - Current input value
          */
@@ -32,21 +33,28 @@ export default class Number extends React.PureComponent {
     }
 
     render() {
-        const { value, label, onChange } = this.props;
+        const { value, onChange } = this.props;
 
         return (
-            <div className={css.input}>
+            <div className={classNames(css.input, css.number)}>
                 <fieldset>
-                    <input
-                        ref={(input) => {
-                            this.input = input;
-                        }}
-                        type="number"
-                        value={value}
-                        min="1"
-                        onChange={(e) => onChange(parseInt(e.target.value))}
-                    />
-                    <small>{label}</small>
+                    <div>
+                        <span onClick={() => onChange(Math.max(0, value - 1))}>
+                            <Icon icon="chevronLeft" size={16} />
+                        </span>
+                        <input
+                            ref={(input) => {
+                                this.input = input;
+                            }}
+                            type="number"
+                            value={value}
+                            min="0"
+                            onChange={(e) => onChange(parseInt(e.target.value))}
+                        />
+                        <span onClick={() => onChange(value + 1)}>
+                            <Icon icon="chevronRight" size={16} />
+                        </span>
+                    </div>
                 </fieldset>
             </div>
         );
