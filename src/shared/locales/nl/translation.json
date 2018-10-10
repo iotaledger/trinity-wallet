@@ -49,13 +49,6 @@
         "proceed": "Doorgaan",
         "qr": "QR",
         "enterSeed": "Voer uw seed in.",
-        "mainWallet": "HOOFDACCOUNT",
-        "secondWallet": "TWEEDE ACCOUNT",
-        "thirdWallet": "DERDE ACCOUNT",
-        "fourthWallet": "VIERDE ACCOUNT",
-        "fifthWallet": "VIJFDE ACCOUNT",
-        "sixthWallet": "ZESDE ACCOUNT",
-        "otherWallet": "ANDER ACCOUNT",
         "yes": "Ja",
         "no": "Nee",
         "okay": "Oké",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Er was een probleem tijdens het uitvoeren van proof of work.",
         "tryingAgainWithLocalPoW": "Probeer het nogmaals met lokale proof of work.",
         "tryingAgainWithDifferentNode": "Probeer het nogmaals met een andere node.",
-        "errorFetchingAccountInformation": "Fout tijdens het ophalen van accountinformatie."
+        "errorFetchingAccountInformation": "Fout tijdens het ophalen van accountinformatie.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
