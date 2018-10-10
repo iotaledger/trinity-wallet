@@ -8,7 +8,7 @@ import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part
 import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
 import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
 import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
@@ -382,4 +382,4 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default translate(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));
+export default withNamespaces(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));

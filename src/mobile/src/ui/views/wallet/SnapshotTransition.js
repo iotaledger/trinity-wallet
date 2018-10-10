@@ -1,7 +1,7 @@
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { round } from 'shared-modules/libs/utils';
@@ -404,6 +404,6 @@ const mapDispatchToProps = {
     cancelSnapshotTransition,
 };
 
-export default translate(['snapshotTransition', 'global', 'loading'])(
+export default withNamespaces(['snapshotTransition', 'global', 'loading'])(
     connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition),
 );

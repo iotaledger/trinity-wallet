@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import Modal from 'react-native-modal';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
@@ -378,4 +378,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));
+export default withNamespaces(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));

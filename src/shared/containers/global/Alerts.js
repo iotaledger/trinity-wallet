@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
 
 import { disposeOffAlert } from '../../actions/alerts';
 
@@ -14,7 +13,6 @@ export default function withAlertsData(AlertsComponent) {
         static propTypes = {
             disposeOffAlert: PropTypes.func.isRequired,
             alerts: PropTypes.object.isRequired,
-            t: PropTypes.func.isRequired,
         };
 
         render() {
@@ -32,5 +30,5 @@ export default function withAlertsData(AlertsComponent) {
         disposeOffAlert,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(AlertsData));
+    return connect(mapStateToProps, mapDispatchToProps)(AlertsData);
 }

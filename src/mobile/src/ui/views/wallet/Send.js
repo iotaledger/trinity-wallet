@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -1024,4 +1024,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
+export default withNamespaces(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

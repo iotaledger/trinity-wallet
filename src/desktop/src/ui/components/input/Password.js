@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { passwordReasons } from 'libs/password';
@@ -136,4 +136,4 @@ class PasswordInput extends React.PureComponent {
     }
 }
 
-export default translate()(PasswordInput);
+export default withI18n()(PasswordInput);

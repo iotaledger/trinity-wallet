@@ -1,6 +1,6 @@
 import each from 'lodash/each';
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, BackHandler, Clipboard, NativeModules } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -585,4 +585,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));
+export default withNamespaces(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

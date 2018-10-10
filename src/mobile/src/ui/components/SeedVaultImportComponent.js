@@ -6,7 +6,7 @@ import { DocumentPicker } from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -161,6 +161,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['seedVault', 'global'])(
+export default withNamespaces(['seedVault', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(SeedVaultImportComponent),
 );

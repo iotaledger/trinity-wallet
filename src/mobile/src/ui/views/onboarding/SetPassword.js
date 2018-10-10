@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
@@ -238,6 +238,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
+export default withNamespaces(['setPassword', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(SetPassword),
 );

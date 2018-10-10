@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BackHandler, View, StyleSheet } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import timer from 'react-native-timer';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -94,4 +94,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['addNewAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddNewAccount));
+export default withNamespaces(['addNewAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddNewAccount));

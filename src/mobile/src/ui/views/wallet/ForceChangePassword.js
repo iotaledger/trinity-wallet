@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -353,6 +353,6 @@ const mapDispatchToProps = {
     setCompletedForcedPasswordUpdate,
 };
 
-export default translate(['changePassword', 'global'])(
+export default withNamespaces(['changePassword', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(ForceChangePassword),
 );

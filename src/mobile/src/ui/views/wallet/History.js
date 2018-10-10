@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
@@ -371,5 +371,5 @@ const mapDispatchToProps = {
 };
 
 export default WithManualRefresh()(
-    translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History)),
+    withNamespaces(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History)),
 );
