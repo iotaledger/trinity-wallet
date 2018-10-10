@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 
 import { setAdditionalAccountInfo } from 'actions/wallet';
 
@@ -98,4 +98,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo
 };
 
-export default connect(null, mapDispatchToProps)(translate()(SeedIntro));
+export default connect(null, mapDispatchToProps)(withI18n()(SeedIntro));

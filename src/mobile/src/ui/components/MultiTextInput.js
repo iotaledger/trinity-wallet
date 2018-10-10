@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -240,4 +240,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));

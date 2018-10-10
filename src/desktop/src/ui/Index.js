@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
@@ -295,4 +295,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

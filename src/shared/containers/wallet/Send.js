@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
 import { setDeepLinkInactive } from '../../actions/wallet';
@@ -260,5 +260,5 @@ export default function withSendData(SendComponent) {
         resetProgress,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(SendData));
 }

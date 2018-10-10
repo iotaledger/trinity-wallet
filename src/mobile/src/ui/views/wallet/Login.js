@@ -1,4 +1,4 @@
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
@@ -243,5 +243,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressCloseApp()(
-    translate(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+    withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
 );

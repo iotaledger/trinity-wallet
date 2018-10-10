@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
@@ -160,4 +160,4 @@ const mapStateToProps = (state) => ({
     accountMeta: getSelectedAccountMeta(state)
 });
 
-export default connect(mapStateToProps)(translate()(Seed));
+export default connect(mapStateToProps)(withI18n()(Seed));

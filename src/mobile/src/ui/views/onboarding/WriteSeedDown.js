@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -264,4 +264,4 @@ const mapStateToProps = (state) => ({
     minimised: state.ui.minimised,
 });
 
-export default WithUserActivity()(translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown)));
+export default WithUserActivity()(withNamespaces(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown)));

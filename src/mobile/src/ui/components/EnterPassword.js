@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
@@ -192,4 +192,4 @@ const mapStateToProps = (state) => ({
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
-export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPassword));
+export default withNamespaces(['login', 'global'])(connect(mapStateToProps)(EnterPassword));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { round } from 'shared-modules/libs/utils';
@@ -209,4 +209,4 @@ class TransferConfirmationModal extends Component {
     }
 }
 
-export default translate(['transferConfirmation', 'global'])(TransferConfirmationModal);
+export default withNamespaces(['transferConfirmation', 'global'])(TransferConfirmationModal);

@@ -1,6 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
@@ -485,5 +485,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    WithBackPress()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
 );

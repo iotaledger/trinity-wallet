@@ -65,7 +65,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateTransactionSuccessAlert,
 } from './alerts';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
 
