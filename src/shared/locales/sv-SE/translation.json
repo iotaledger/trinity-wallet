@@ -49,13 +49,6 @@
         "proceed": "Fortsätt",
         "qr": "QR",
         "enterSeed": "Ange din seed.",
-        "mainWallet": "HUVUDKONTO",
-        "secondWallet": "KONTO TVÅ",
-        "thirdWallet": "KONTO TRE",
-        "fourthWallet": "KONTO FYRA",
-        "fifthWallet": "KONTO FEM",
-        "sixthWallet": "KONTO SEX",
-        "otherWallet": "ANNAT KONTO",
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okej",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Ett problem uppstod vid genomförandet av PoW.",
         "tryingAgainWithLocalPoW": "Försöker igen med lokal Proof-of-Work.",
         "tryingAgainWithDifferentNode": "Försöker igen med en annan nod.",
-        "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation."
+        "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
