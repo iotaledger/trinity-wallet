@@ -17,8 +17,7 @@ class Ledger extends React.PureComponent {
     };
 
     state = {
-        connection: false,
-        application: false
+        view: null
     };
 
     componentDidMount() {
@@ -31,31 +30,30 @@ class Ledger extends React.PureComponent {
     }
 
     onMessage(message) {
-        if (typeof message.awaitConnection === 'boolean') {
-            this.setState({
-                connection: message.awaitConnection,
-                application: false
-            });
+        let view = null;
+
+        if (message.awaitConnection) {
+            view = 'connection';
+        } else if (message.awaitApplication) {
+            view = 'application';
+        } else if (message.awaitTransaction) {
+            view = 'transaction';
         }
-        if (typeof message.awaitApplication === 'boolean') {
-            this.setState({
-                connection: false,
-                application: message.awaitApplication
-            });
-        }
+
+        this.setState({
+            view
+        });
     }
 
     render() {
         const { t } = this.props;
-
-        const on = this.state.connection || this.state.application;
-        const message = this.state.connection ? 'connection' : 'application';
+        const { view } = this.state;
 
         return (
-            <div className={classNames(css.modal, on ? css.on : null)}>
+            <div className={classNames(css.modal, view ? css.on : null)}>
                 <div>
-                    <h2>{t(`ledger:${message}Title`)}</h2>
-                    <p>{t(`ledger:${message}Explanation`)}</p>
+                    <h2>{t(`ledger:${view}Title`)}</h2>
+                    <p>{t(`ledger:${view}Explanation`)}</p>
                 </div>
             </div>
         );

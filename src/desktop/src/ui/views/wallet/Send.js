@@ -107,7 +107,7 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { fields, isSending, availableBalance, settings, progress, t } = this.props;
+        const { accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
@@ -118,6 +118,8 @@ class Send extends React.PureComponent {
                       round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
                   ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
+
+        const isMessageAvailable = SeedStore[accountMeta.type].isMessageAvailable;
 
         return (
             <form className={css.send} onSubmit={(e) => this.validateInputs(e)}>
@@ -152,8 +154,9 @@ class Send extends React.PureComponent {
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
                     <TextInput
-                        value={fields.message}
+                        value={isMessageAvailable ? fields.message : ''}
                         label={t('send:message')}
+                        disabled={!isMessageAvailable}
                         onChange={(value) => this.props.setSendMessageField(value)}
                     />
                     <footer>

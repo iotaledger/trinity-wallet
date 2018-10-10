@@ -524,6 +524,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
+                // Check if input count does not exceed maximum supported by the SeedStore type
+                if(seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs){
+                   throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                }
+
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder()(

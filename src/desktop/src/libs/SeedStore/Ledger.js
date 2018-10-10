@@ -25,6 +25,22 @@ class Ledger {
     }
 
     /**
+     * If attaching a message to transactions is available
+     * @returns {boolean}
+     */
+    static get isMessageAvailable() {
+        return false;
+    }
+
+    /**
+     * Return max supported input count
+     * @returns {number}
+     */
+    get maxInputs() {
+        return 2;
+    }
+
+    /**
      * Placeholder for Trinity compatibillity
      * @returns {promise} - Resolves to a success boolean
      */
@@ -86,8 +102,13 @@ class Ledger {
      * Prepare transfers
      */
     prepareTransfers = async (transfers, options = null) => {
-        console.log(transfers);
-        //return prepareTransfersAsync()(seed, transfers, options);
+        const seed = await Electron.ledger.selectSeed(this.index);
+
+        Electron.send('ledger', { awaitTransaction: true });
+        const trytes = await seed.signTransaction(transfers, options.inputs);
+        Electron.send('ledger', { awaitTransaction: false });
+
+        return trytes;
     };
 
     getSeed = async () => {

@@ -576,7 +576,7 @@
         "enterPassword": "Enter password to view your seed.",
         "viewSeed": "View Seed",
         "hideSeed": "Hide Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} accounts",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
         "accountIndex": "Your account on-device index"
     },
     "saveSeedConfirmation": {
@@ -766,6 +766,8 @@
         "connectionErrorExplanation": "Check that Ledger is connected and unlocked",
         "connectionTitle": "Connect Ledger",
         "connectionExplanation": "Ledger is required for wallet functionallity. Please connect it and open the IOTA application.",
+        "transactionTitle": "Approve transaction on Ledger",
+        "transactionExplanation": "Check for correct amount and addresses on Ledger and accept the transaction.",
         "applicationTitle": "Open Ledger IOTA app",
         "applicationExplanation": "Open IOTA app is required to be active for wallet functionallity."
     }

@@ -29,4 +29,5 @@ export default {
     PROMOTIONS_LIMIT_REACHED: 'Promotions limit reached.',
     EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
     DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
+    MAX_INPUTS_EXCEEDED: (count, max) => `Can't process transactions with ${count} inputs. The limit is ${max}.`
 };

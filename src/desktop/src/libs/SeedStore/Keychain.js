@@ -31,6 +31,22 @@ class Keychain {
     }
 
     /**
+     * If attaching a message to transactions is available
+     * @returns {boolean}
+     */
+    static get isMessageAvailable() {
+        return true;
+    }
+
+    /**
+     * Return max supported input count
+     * @returns {boolean} - 0 for no limit
+     */
+    get maxInputs() {
+        return 0;
+    }
+
+    /**
      * Create new account
      * @param {string} accountId - Account identifier
      * @param {array} seed - Byte array seed
