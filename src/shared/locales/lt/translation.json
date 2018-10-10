@@ -260,8 +260,8 @@
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
         "individualLetterCount": "Spauskite ant <1><0>{{count}}</0></1> simbolio, norėdami jį pakeisti.",
         "individualLetterCount_plural": "Spauskite ant <1><0>{{count}}</0></1> simbolių, norėdami juos pakeisti.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "Likęs pakeisti simbolių skaičius: <1>{{count}}</1>",
+        "randomiseCharsToContinue_plural": "Likęs pakeisti simbolių skaičius: <1>{{count}}</1>",
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
@@ -605,7 +605,7 @@
         "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas iškeltas sėkmingai.",
         "importSuccess": "Užraktas įkeltas",
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterPasswordExplanation": "Įveskite slaptažodį norėdami atidaryti SeedVault",
