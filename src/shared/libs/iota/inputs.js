@@ -1,3 +1,5 @@
+import isNumber from 'lodash/isNumber';
+import isObject from 'lodash/isObject';
 import differenceBy from 'lodash/differenceBy';
 import get from 'lodash/get';
 import each from 'lodash/each';
@@ -6,6 +8,7 @@ import map from 'lodash/map';
 import keys from 'lodash/keys';
 import size from 'lodash/size';
 import { filterSpentAddresses, filterAddressesWithIncomingTransfers } from './addresses';
+import { VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
 import { DEFAULT_SECURITY } from '../../config';
 
 /**
@@ -153,4 +156,23 @@ export const getStartingSearchIndexToPrepareInputs = (addressData) => {
         .find((address) => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
+};
+
+/**
+ *   Checks if an input object is valid
+ *
+ *   @method isValidInput
+ *   @param {object} input
+ *
+ *   @returns {boolean}
+ **/
+export const isValidInput = (input) => {
+    return (
+        isObject(input) &&
+        VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(input.address) &&
+        isNumber(input.balance) &&
+        isNumber(input.security) &&
+        isNumber(input.keyIndex) &&
+        input.keyIndex >= 0
+    );
 };

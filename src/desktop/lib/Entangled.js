@@ -1,7 +1,7 @@
 const { fork } = require('child_process');
 const path = require('path');
 const { powFunc, genFunc } = require('entangled-node');
-const { byteToChar } = require('../src/libs/helpers');
+const { tritsToChars } = require('../src/libs/helpers');
 
 let timeout = null;
 
@@ -42,7 +42,7 @@ process.on('message', async (data) => {
     }
 
     if (payload.job === 'gen') {
-        const seedString = payload.seed.map((byte) => byteToChar(byte)).join('');
+        const seedString = tritsToChars(payload.seed);
         const address = await genFunc(seedString, payload.index, payload.security);
         process.send(address);
     }

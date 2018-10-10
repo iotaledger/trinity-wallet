@@ -14,7 +14,7 @@ import { setOnboardingName } from 'actions/ui';
 
 import { getSelectedAccountName } from 'selectors/accounts';
 
-import { capitalize } from 'libs/helpers';
+import { capitalize, bytesToTrits } from 'libs/helpers';
 import { vaultAuth, getSeed, setSeed, hash } from 'libs/crypto';
 
 import PasswordInput from 'ui/components/input/Password';
@@ -117,8 +117,8 @@ class Login extends React.Component {
         let seed = '';
         try {
             seed = wallet.addingAdditionalAccount
-                ? Electron.getOnboardingSeed()
-                : await getSeed(wallet.password, accountName);
+                ? bytesToTrits(Electron.getOnboardingSeed())
+                : await getSeed(wallet.password, accountName, true);
         } catch (e) {
             e.accountName = accountName;
             throw e;

@@ -504,7 +504,7 @@
         "light": "Jasny",
         "lucky": "Lucky",
         "mint": "Miętowy",
-        "steelblue": "Steel Blue"
+        "steelblue": "Stalowy błękit"
     },
     "currencySelection": {
         "currency": "Waluta"
@@ -712,5 +712,17 @@
         "messageTx": "Otrzymano wiadomość na konto {{account}}",
         "confirmedIn": "Transakcja przychodząca {{value}} na konto {{account}} została potwierdzona",
         "confirmedOut": "Transakcja wychodząca {{value}} z konta {{account}} została potwierdzona"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Środki odblokowane pomyślnie",
+        "sweepSucceededExplanation": "Twoje środki zostały pomyślnie odblokowane i przeniesione na nowy adres. Promuj transakcje, aby pomóc w procesie ich potwierdzania.",
+        "sweepError": "Błąd odblokowania środków",
+        "sweepErrorExplanation": "Coś poszło nie tak podczas odblokowywania Twoich środków. Trwa ponawianie próby.",
+        "warningTitle": "Uwaga: Wykryto zablokowane środki",
+        "explanation": "Portfel Trinity Desktop w wersji 0.3.4 zawierał błąd, który mógł tymczasowo zablokować środki na koncie. Problem ten dotyczy niewielkiej liczby użytkowników, którzy wykonali transakcje na wersji 0.3.4 portfela.",
+        "explanationAccounts": "Zablokowane środki zostały wykryte na Twoich kontach: {{accounts}}. Trinity odzyska teraz Twoje środki, automatycznie przenosząc je na nowy adres.",
+        "proceed": "Przejdź do odzyskiwania",
+        "sweepConfirmation": "Masz zamiar przenieść {{amount}} na adres {{address}}. Konto: {{accountName}}, indeks adresu: {{index}}",
+        "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
     }
 }
