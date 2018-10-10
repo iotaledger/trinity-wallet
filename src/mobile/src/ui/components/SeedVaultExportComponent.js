@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import timer from 'react-native-timer';
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -193,14 +194,22 @@ class SeedVaultExportComponent extends Component {
     onExportSuccess() {
         const { t } = this.props;
         if (isAndroid) {
-            this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
-            return this.props.goBack();
+            this.props.goBack();
+            return timer.setTimeout(
+                'timeout',
+                () => this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation')),
+                300,
+            );
         }
         RNFetchBlob.fs
             .unlink(this.state.path)
             .then(() => {
-                this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
                 this.props.goBack();
+                timer.setTimeout(
+                    'timeout',
+                    () => this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation')),
+                    300,
+                );
             })
             .catch(() =>
                 this.props.generateAlert(
