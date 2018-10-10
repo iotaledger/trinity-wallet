@@ -142,8 +142,8 @@
         "tryingAgainWithLocalPoW": "Ponawianie próby przy użyciu lokalnego trybu PoW.",
         "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
         "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychain": "Błąd magazynu kluczy",
+        "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
