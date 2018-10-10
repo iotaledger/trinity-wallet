@@ -716,6 +716,6 @@
         "explanationAccounts": "Užrakintos lėšos aptiktos šiose paskyrose: {{accounts}}. Trinity automatiškai sugrąžins jūsų lėšas, perkeliant jas į naują adresą.",
         "proceed": "Pradėti grąžinimo procesą",
         "sweepConfirmation": "Jūs ketinate perkelti {{amount}} į adresą {{address}}. Paskyra: {{accountName}}, adreso indeksas: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
     }
 }
