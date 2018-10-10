@@ -258,8 +258,8 @@
         "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount": "Spauskite ant <1><0>{{count}}</0></1> simbolio, norėdami jį pakeisti.",
+        "individualLetterCount_plural": "Spauskite ant <1><0>{{count}}</0></1> simbolių, norėdami juos pakeisti.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Kas yra užraktas?"
