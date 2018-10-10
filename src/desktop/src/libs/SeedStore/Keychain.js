@@ -23,6 +23,14 @@ class Keychain {
     }
 
     /**
+     * If seed is available in plain form
+     * @returns {boolean}
+     */
+    static get isSeedAvailable() {
+        return true;
+    }
+
+    /**
      * Create new account
      * @param {string} accountId - Account identifier
      * @param {array} seed - Byte array seed

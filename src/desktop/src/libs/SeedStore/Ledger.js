@@ -17,6 +17,14 @@ class Ledger {
     }
 
     /**
+     * If seed is available in plain form
+     * @returns {boolean}
+     */
+    static get isSeedAvailable() {
+        return false;
+    }
+
+    /**
      * Placeholder for Trinity compatibillity
      * @returns {promise} - Resolves to a success boolean
      */
@@ -57,11 +65,10 @@ class Ledger {
      * @returns {promise}
      */
     generateAddress = async (options) => {
-        const seed = await this.getSeed(true);
+        const seed = await this.getSeed();
 
         if (!options.total || options.total === 1) {
-            const address =  await seed.getAddress(options.index);
-            console.log(address);
+            const address = await seed.getAddress(options.index);
             return address;
         }
 
@@ -72,14 +79,33 @@ class Ledger {
             addresses.push(address);
         }
 
-        console.log(addresses);
-
         return addresses;
     };
 
+    /**
+     * Prepare transfers
+     */
+    prepareTransfers = async (transfers, options = null) => {
+        console.log(transfers);
+        //return prepareTransfersAsync()(seed, transfers, options);
+    };
+
     getSeed = async () => {
-        const transport = Electron.ledger.selectSeed(this.index);
-        return transport;
+        const seed = await Electron.ledger.selectSeed(this.index);
+        return seed;
+    };
+
+    awaitConnection = async () => {
+        return new Promise((resolve) => {
+            const callback = (connected) => {
+                if (connected) {
+                    resolve();
+                    Electron.ledger.removeListener(callback);
+                }
+            };
+
+            Electron.ledger.addListener(callback);
+        });
     };
 }
 

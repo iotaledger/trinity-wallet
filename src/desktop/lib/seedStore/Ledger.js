@@ -1,59 +1,117 @@
 const Transport = require('@ledgerhq/hw-transport-node-hid').default;
 const Iota = require('hw-app-iota').default;
+const Wallet = require('electron').remote.getCurrentWindow().webContents;
 
-const ledger = {
-    listeners: [],
-    ledgergInstance: Transport,
-    iotaInstance: null,
-    subscription: null,
+class Ledger {
+    constructor() {
+        this.connected = false;
+        this.listeners = [];
+
+        this.subscription = Transport.listen({
+            next: (e) => {
+                this.onMessage(e.type);
+            }
+        });
+    }
 
     /**
     * Create Ledger Transport and select seed by index
     * @param {number} index 
     * @returns {object} Ledger IOTA transport
     */
-    selectSeed: async function(index) {
-        if (!this.iotaInstance) {
-            const transport = await Transport.create();
-            this.iotaInstance = new Iota(transport);
+    async selectSeed(index) {
+        if (!this.connected) {
+            Wallet.send('ledger', { awaitConnection: true });
+            await this.awaitConnection();
+            Wallet.send('ledger', { awaitConnection: false });
         }
 
-        await this.iotaInstance.setActiveSeed(`44'/4218'/${index}'`);
+        if (this.iota) {
+            this.transport.close();
+            this.iota = null;
+        }
 
-        return this.iotaInstance;
-    },
+        await this.awaitApplication(index);
+
+        return this.iota;
+    }
+
+    async awaitConnection() {
+        return new Promise((resolve) => {
+            const callback = (connected) => {
+                if (connected) {
+                    resolve();
+                    this.removeListener(callback);
+                }
+            };
+            this.addListener(callback);
+        });
+    }
+
+    async awaitApplication(index) {
+        return new Promise((resolve, reject) => {
+            const callback = async () => {
+                try {
+                    this.transport = await Transport.create();
+                    this.iota = new Iota(this.transport);
+                    await this.iota.setActiveSeed(`44'/4218'/${index}'`);
+                    Wallet.send('ledger', { awaitApplication: false });
+                    resolve(true);
+                } catch (error) {
+                    this.transport.close();
+                    this.iota = null;
+                    if (error.statusCode === 0x6e00) {
+                        Wallet.send('ledger', { awaitApplication: true });
+                        setTimeout(() => callback(), 4000);
+                    } else {
+                        Wallet.send('ledger', { awaitApplication: false });
+                        reject(error);
+                    }
+                }
+            };
+
+            callback();
+        });
+    }
 
     /**
-     * Add a event listener
+     * Proxy connection status to event listeners
+     * @param {string} status - 
+     */
+    onMessage(status) {
+        this.connected = status === 'add';
+        this.listeners.forEach((listener) => listener(this.connected));
+
+        if (!this.connected && this.iota) {
+            this.transport.close();
+            this.iota = null;
+        }
+    }
+
+    /**
+     * Add an connection event listener
      * @param {function} callback - Event callback
      */
-    addListener: async function(callback) {
-        if (this.listeners.length === 0) {
-            this.subscription = this.ledgergInstance.listen({
-                next: async (e) => {
-                    this.listeners.forEach((listener) => listener(e.type));
-                }
-            });
-        }
-
+    addListener(callback) {
         this.listeners.push(callback);
-    },
+        if (this.connected) {
+            callback(this.connected);
+        }
+    }
 
     /**
-     * Remove a event listener
+     * Remove an connection event listener
      * @param {function} callback - Target event callback to remove
      */
-    removeListener: function(callback) {
+    removeListener(callback) {
         this.listeners.forEach((listener, index) => {
             if (callback === listener) {
                 this.listeners.splice(index, 1);
             }
         });
-
-        if (this.listeners.length === 0) {
-            this.subscription.unsubscribe();
-        }
     }
-};
+}
+
+const ledger = new Ledger();
 
 module.exports = ledger;

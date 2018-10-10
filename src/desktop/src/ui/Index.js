@@ -30,6 +30,7 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -73,13 +74,13 @@ class App extends React.Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
+        setDeepLink: PropTypes.func.isRequired
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            fatalError: false,
+            fatalError: false
         };
     }
 
@@ -152,7 +153,7 @@ class App extends React.Component {
             this.props.setDeepLink(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
-                parsedData.message || '',
+                parsedData.message || ''
             );
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
@@ -170,7 +171,7 @@ class App extends React.Component {
             await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
-                fatalError: true,
+                fatalError: true
             });
         }
     }
@@ -214,7 +215,7 @@ class App extends React.Component {
                 this.props.setPassword({});
                 this.props.setAdditionalAccountInfo({
                     additionalAccountName: '',
-                    addingAdditionalAccount: false,
+                    addingAdditionalAccount: false
                 });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
@@ -253,6 +254,7 @@ class App extends React.Component {
                 <ErrorLog />
                 <Idle />
                 <Theme history={history} />
+                <Ledger />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -277,7 +279,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     themeName: state.settings.themeName,
     isBusy:
-        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress
 });
 
 const mapDispatchToProps = {
@@ -289,7 +291,7 @@ const mapDispatchToProps = {
     generateAlert,
     fetchNodeList,
     updateTheme,
-    setAdditionalAccountInfo,
+    setAdditionalAccountInfo
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

@@ -1,7 +1,10 @@
 /* global Electron */
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
+
+import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
@@ -13,6 +16,8 @@ import css from './index.scss';
  */
 class SeedIntro extends React.PureComponent {
     static propTypes = {
+        /** @ignore */
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired
     };
@@ -32,9 +37,9 @@ class SeedIntro extends React.PureComponent {
         Electron.ledger.removeListener(this.ledgerListener);
     }
 
-    ledgerCallback(event) {
+    ledgerCallback(isConnected) {
         this.setState({
-            ledger: event === 'add'
+            ledger: isConnected
         });
     }
 
@@ -43,7 +48,7 @@ class SeedIntro extends React.PureComponent {
             additionalAccountMeta: { type: 'keychain' }
         });
 
-        history.push(`/onboarding/${route}`);
+        this.props.history.push(`/onboarding/${route}`);
     }
 
     render() {
@@ -89,4 +94,8 @@ class SeedIntro extends React.PureComponent {
     }
 }
 
-export default translate()(SeedIntro);
+const mapDispatchToProps = {
+    setAdditionalAccountInfo
+};
+
+export default connect(null, mapDispatchToProps)(translate()(SeedIntro));

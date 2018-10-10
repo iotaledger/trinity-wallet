@@ -236,6 +236,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: mergeAddressData(
                             get(state.accountInfo, `${action.payload.accountName}.addresses`),
@@ -262,6 +263,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: setAddressData(
                             get(state.accountInfo, `${action.payload.accountName}.addresses`),
