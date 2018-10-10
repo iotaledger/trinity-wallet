@@ -64,6 +64,15 @@ export const getPasswordHash = async (password) => {
     return await generatePasswordHash(password, salt);
 };
 
+export const doesSaltExistInKeychain = async () => {
+    return keychain.get('salt').then((salt) => {
+        if (!salt) {
+            return false;
+        }
+        return true;
+    });
+};
+
 export const getSaltFromKeychain = async () => {
     const salt = await keychain.get('salt');
     return await decodeBase64(salt.item);

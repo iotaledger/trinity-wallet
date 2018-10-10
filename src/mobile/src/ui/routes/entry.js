@@ -4,20 +4,21 @@ import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
-import iotaNativeBindings, {
-    overrideAsyncTransactionObject,
-} from 'shared-modules/libs/iota/nativeBindings';
+import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
-import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import { setCompletedForcedPasswordUpdate, setAppVersions, resetWallet } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
+import { purgeStoredState } from 'shared-modules/store';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
 import i18next from 'i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { isIOS } from 'libs/device';
-import keychain from 'libs/keychain';
+import keychain, { doesSaltExistInKeychain } from 'libs/keychain';
 import i18 from 'libs/i18next';
 import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from 'ui/routes/navigation';
+import { persistConfig } from 'libs/store';
 
 const clearKeychain = () => {
     if (isIOS) {
@@ -42,6 +43,12 @@ const launch = (store) => {
     if (!state.accounts.onboardingComplete) {
         clearKeychain();
         store.dispatch(setCompletedForcedPasswordUpdate());
+    }
+
+    // Reset wallet if keychain is empty
+    // Fixes issues related to iCloud backup
+    if (state.accounts.onboardingComplete) {
+        resetIfKeychainIsEmpty(state);
     }
 
     // Set default language
@@ -76,6 +83,26 @@ const renderInitialScreen = (initialScreen) => {
             orientation: 'portrait',
             keepStyleAcrossPush: true,
         },
+    });
+};
+
+const resetIfKeychainIsEmpty = (state) => {
+    doesSaltExistInKeychain().then((exists) => {
+        if (!exists) {
+            purgeStoredState({ storage: persistConfig.storage })
+                .then(() => {
+                    state.dispatch(resetWallet());
+                    // Set the new app version
+                    state.dispatch(
+                        setAppVersions({
+                            version: getVersion(),
+                            buildNumber: getBuildNumber(),
+                        }),
+                    );
+                    return initApp(state);
+                })
+                .catch((err) => console.error(err)); // eslint-disable-line no-console
+        }
     });
 };
 
@@ -146,7 +173,7 @@ const hasConnection = (
 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
-export default (store) => {
+const initApp = (store) => {
     overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
     const initialize = (isConnected) => {
@@ -165,3 +192,5 @@ export default (store) => {
 
     hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
 };
+
+export default initApp;
