@@ -49,13 +49,6 @@
         "proceed": "Pokračovat",
         "qr": "QR",
         "enterSeed": "Prosím zadejte Váš Seed.",
-        "mainWallet": "HLAVNÍ ÚČET",
-        "secondWallet": "DRUHÝ ÚČET",
-        "thirdWallet": "TŘETÍ ÚČET",
-        "fourthWallet": "ČTVRTÝ ÚČET",
-        "fifthWallet": "PÁTÝ ÚČET",
-        "sixthWallet": "ŠESTÝ ÚČET",
-        "otherWallet": "DALŠÍ ÚČET",
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Při provádění proof of work došlo k chybě.",
         "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
         "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
-        "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě."
+        "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
