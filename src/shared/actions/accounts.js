@@ -5,7 +5,7 @@ import {
     getSelectedNodeFromState,
 } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
-import { clearWalletData, setSeedIndex } from './wallet';
+import { setSeedIndex } from './wallet';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
@@ -16,7 +16,6 @@ import {
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
-import { byteTritCheck } from './recovery';
 import { pushScreen } from '../libs/utils';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
@@ -24,23 +23,17 @@ import { DEFAULT_RETRIES } from '../config';
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
     UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
-    SET_FIRST_USE: 'IOTA/ACCOUNTS/SET_FIRST_USE',
     UPDATE_ADDRESSES: 'IOTA/ACCOUNTS/UPDATE_ADDRESSES',
     CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNTS/CHANGE_ACCOUNT_NAME',
     REMOVE_ACCOUNT: 'IOTA/ACCOUNTS/REMOVE_ACCOUNT',
     SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNTS/SET_ONBOARDING_COMPLETE',
-    INCREASE_SEED_COUNT: 'IOTA/ACCOUNTS/INCREASE_SEED_COUNT',
-    ADD_ACCOUNT_NAME: 'IOTA/ACCOUNTS/ADD_ACCOUNT_NAME',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_TRANSITION',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
-    FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST',
-    FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
-    FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR',
-    FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST',
-    FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS',
-    FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR',
+    FULL_ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST',
+    FULL_ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
+    FULL_ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_ERROR',
     MANUAL_SYNC_REQUEST: 'IOTA/ACCOUNTS/MANUAL_SYNC_REQUEST',
     MANUAL_SYNC_SUCCESS: 'IOTA/ACCOUNTS/MANUAL_SYNC_SUCCESS',
     MANUAL_SYNC_ERROR: 'IOTA/ACCOUNTS/MANUAL_SYNC_ERROR',
@@ -92,19 +85,6 @@ export const updateAccountInfoAfterSpending = (payload) => ({
  */
 export const updateAccountAfterReattachment = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
-    payload,
-});
-
-/**
- * Dispatch to mark wallet's "first use" flag as true
- *
- * @method setFirstUse
- *
- * @param {boolean} payload
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const setFirstUse = (payload) => ({
-    type: ActionTypes.SET_FIRST_USE,
     payload,
 });
 
@@ -162,30 +142,6 @@ export const setOnboardingComplete = (payload) => ({
 });
 
 /**
- * Dispatch to add a new account name in state
- *
- * @method addAccountName
- * @param {string} accountName
- *
- * @returns {{type: {string}, accountName: {string} }}
- */
-export const addAccountName = (accountName) => ({
-    type: ActionTypes.ADD_ACCOUNT_NAME,
-    accountName,
-});
-
-/**
- * Dispatch to increase number of seeds added to wallet
- *
- * @method increaseSeedCount
- *
- * @returns {{type: {string} }}
- */
-export const increaseSeedCount = () => ({
-    type: ActionTypes.INCREASE_SEED_COUNT,
-});
-
-/**
  * Dispatch to update account state after snapshot transition
  *
  * @method updateAccountAfterTransition
@@ -240,71 +196,36 @@ export const removeBundleFromUnconfirmedBundleTails = (payload) => ({
 /**
  * Dispatch when information for an additional account is about to be fetched
  *
- * @method fullAccountInfoAdditionalSeedFetchRequest
+ * @method fullAccountInfoSeedFetchRequest
  *
  * @returns {{type: {string} }}
  */
-export const fullAccountInfoAdditionalSeedFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST,
+export const fullAccountInfoSeedFetchRequest = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST,
 });
 
 /**
  * Dispatch when account information for an additional account is successfully fetched
  *
- * @method fullAccountInfoAdditionalSeedFetchSuccess
+ * @method fullAccountInfoSeedFetchSuccess
  * @param {object} payload
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const fullAccountInfoAdditionalSeedFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS,
+export const fullAccountInfoSeedFetchSuccess = (payload) => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
 
 /**
  * Dispatch when an error occurs during the process of fetching information for an additional account
  *
- * @method fullAccountInfoAdditionalSeedFetchError
+ * @method fullAccountInfoSeedFetchError
  *
  * @returns {{type: {string} }}
  */
-export const fullAccountInfoAdditionalSeedFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR,
-});
-
-/**
- * Dispatch when information for first account is about to be fetched
- *
- * @method fullAccountInfoFirstSeedFetchRequest
- *
- * @returns {{type: {string} }}
- */
-export const fullAccountInfoFirstSeedFetchRequest = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST,
-});
-
-/**
- *  Dispatch when information for first account is successfully fetched
- *
- * @method fullAccountInfoFirstSeedFetchSuccess
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const fullAccountInfoFirstSeedFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS,
-    payload,
-});
-
-/**
- * Dispatch when an error occurs during the process of fetching information for first account
- *
- * @method fullAccountInfoFirstSeedFetchError
- *
- * @returns {{type: {string} }}
- */
-export const fullAccountInfoFirstSeedFetchError = () => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR,
+export const fullAccountInfoSeedFetchError = () => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
 });
 
 /**
@@ -467,95 +388,38 @@ export const overrideAccountInfo = (payload) => ({
 });
 
 /**
- * Gets full account information for an additional seed added to the wallet.
- *
- * @method getFullAccountInfoAdditionalSeed
- * @param {string | array} seed
- * @param {string} accountName
- * @param {string} password
- * @param {function} storeInKeychainPromise
- * @param {object} [navigator=null]
- * @param {function} genFn
- *
- * @returns {function} dispatch
- */
-export const getFullAccountInfoAdditionalSeed = (
-    seed,
-    accountName,
-    password,
-    storeInKeychainPromise,
-    navigator = null,
-    genFn,
-) => (dispatch, getState) => {
-    const onError = (err) => {
-        if (navigator) {
-            navigator.pop({ animated: false });
-        }
-
-        if (err.message === Errors.NODE_NOT_SYNCED) {
-            dispatch(generateNodeOutOfSyncErrorAlert());
-        } else {
-            dispatch(generateAccountInfoErrorAlert(err));
-        }
-
-        dispatch(fullAccountInfoAdditionalSeedFetchError());
-    };
-
-    dispatch(fullAccountInfoAdditionalSeedFetchRequest());
-
-    const existingAccountNames = getAccountNamesFromState(getState());
-    const usedExistingSeed = getState().wallet.usedExistingSeed;
-
-    const selectedNode = getSelectedNodeFromState(getState());
-
-    withRetriesOnDifferentNodes(
-        [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-        () => dispatch(generateAccountSyncRetryAlert()),
-    )(getAccountData)(seed, accountName, genFn)
-        .then(({ node, result }) => {
-            dispatch(changeNode(node));
-            dispatch(clearWalletData()); // Clean up partial state for reducer.
-            storeInKeychainPromise(password, seed, accountName)
-                .then(() => {
-                    dispatch(setSeedIndex(existingAccountNames.length));
-                    dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
-                    dispatch(fullAccountInfoAdditionalSeedFetchSuccess(result));
-                    dispatch(byteTritCheck([{ seed, accountName }], genFn));
-                })
-                .catch((err) => onError(err));
-        })
-        .catch((err) => onError(err));
-};
-
-/**
  * Gets full account information for the first seed added to the wallet.
  *
- * @method getFullAccountInfoFirstSeed
- * @param  {string | array} seed
+ * @method getFullAccountInfo
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} accountName
  * @param  {object} [navigator=null]
- * @param  {function} genFn
  *
  * @returns {function} dispatch
  */
-export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null, genFn) => {
+export const getFullAccountInfo = (seedStore, accountName, navigator = null) => {
     return (dispatch, getState) => {
-        dispatch(fullAccountInfoFirstSeedFetchRequest());
+        dispatch(fullAccountInfoSeedFetchRequest());
 
         const selectedNode = getSelectedNodeFromState(getState());
+        const existingAccountNames = getAccountNamesFromState(getState());
+        const usedExistingSeed = getState().wallet.usedExistingSeed;
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seed, accountName, genFn)
+        )(getAccountData)(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
-                dispatch(fullAccountInfoFirstSeedFetchSuccess(result));
+
+                dispatch(setSeedIndex(existingAccountNames.length));
+                dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
+
+                result.accountType = getState().wallet.additionalAccountType;
+
+                dispatch(fullAccountInfoSeedFetchSuccess(result));
             })
             .catch((err) => {
-                pushScreen(navigator, 'login');
-                dispatch(fullAccountInfoFirstSeedFetchError());
-
                 const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
@@ -563,9 +427,23 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
                 };
-                // Add a slight delay to allow Login component and
-                // StatefulDropdownAlert component (mobile) to instantiate properly.
-                navigator ? setTimeout(dispatchErrors, 500) : dispatchErrors();
+
+                dispatch(fullAccountInfoSeedFetchError());
+
+                if (existingAccountNames.length === 0) {
+                    // If adding first seed
+                    pushScreen(navigator, 'login');
+                    // Add a slight delay to allow Login component and
+                    // StatefulDropdownAlert component (mobile) to instantiate properly.
+                    navigator ? setTimeout(dispatchErrors, 500) : dispatchErrors();
+                } else {
+                    // If adding additional seed
+                    if (navigator) {
+                        navigator.pop({ animated: false });
+                    }
+                    dispatchErrors();
+                    seedStore.removeAccount(accountName);
+                }
             });
     };
 };
@@ -574,13 +452,13 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
  * Performs a manual sync for an account. Syncs full account information with the ledger.
  *
  * @method manuallySyncAccount
- * @param {string | array} seed
+ * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {function} genFn
  *
  * @returns {function} dispatch
  */
-export const manuallySyncAccount = (seed, accountName, genFn) => {
+export const manuallySyncAccount = (seedStore, accountName) => {
     return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
@@ -589,7 +467,7 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seed, accountName, genFn)
+        )(getAccountData)(seedStore, accountName)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
@@ -611,15 +489,14 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
  * Gets latest account information: including transfers, balance and spend status information.
  *
  * @method getAccountInfo
- * @param  {string | array} seed
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} accountName
  * @param  {object} [navigator=null]
- * @param  {function} genFn
  * @param  {function} notificationFn - New transaction callback function
  *
  * @returns {function} dispatch
  */
-export const getAccountInfo = (seed, accountName, navigator = null, genFn, notificationFn) => {
+export const getAccountInfo = (seedStore, accountName, navigator = null, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
@@ -629,7 +506,7 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn, notif
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(syncAccount)(existingAccountState, seed, genFn, notificationFn)
+        )(syncAccount)(existingAccountState, seedStore, notificationFn)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(accountInfoFetchSuccess(result));
@@ -662,19 +539,19 @@ export const deleteAccount = (accountName) => (dispatch) => {
  * Gets latest account information for provided account and override existing account state
  *
  * @method cleanUpAccountState
- * @param {string | array} seed
+ * @param {object} seedStore
  * @param {string} accountName
  * @param {function} genFn
  *
  * @returns {function(*, *): Promise<object>}
  */
-export const cleanUpAccountState = (seed, accountName, genFn) => (dispatch, getState) => {
+export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getState) => {
     const selectedNode = getSelectedNodeFromState(getState());
 
     return withRetriesOnDifferentNodes(
         [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
         () => dispatch(generateAccountSyncRetryAlert()),
-    )(getAccountData)(seed, accountName, genFn).then(({ node, result }) => {
+    )(getAccountData)(seedStore, accountName).then(({ node, result }) => {
         dispatch(changeNode(node));
         dispatch(overrideAccountInfo(result));
 

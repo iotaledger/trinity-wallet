@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 
 import { manuallySyncAccount } from 'actions/accounts';
 
-import { getAddressesForSelectedAccount, getSelectedAccountName } from 'selectors/accounts';
+import { getAddressesForSelectedAccount, getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
 
 import {
     transitionForSnapshot,
@@ -17,7 +17,7 @@ import {
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
-import { getSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import Scrollbar from 'ui/components/Scrollbar';
 import Button from 'ui/components/Button';
@@ -36,7 +36,7 @@ class Addresses extends PureComponent {
         /** @ignore */
         ui: PropTypes.object.isRequired,
         /** @ignore */
-        selectedAccountName: PropTypes.string.isRequired,
+        accountName: PropTypes.string.isRequired,
         /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
@@ -76,10 +76,11 @@ class Addresses extends PureComponent {
      * @returns {Promise}
      */
     syncAccount = async () => {
-        const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
+        const { wallet, accountName, accountType } = this.props;
 
-        this.props.manuallySyncAccount(seed, selectedAccountName, Electron.genFn);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+
+        this.props.manuallySyncAccount(seedStore, accountName);
     };
 
     /**
@@ -87,10 +88,11 @@ class Addresses extends PureComponent {
      * @returns {Promise}
      */
     startSnapshotTransition = async () => {
-        const { wallet, addresses, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
+        const { wallet, addresses, accountName, accountType } = this.props;
 
-        this.props.transitionForSnapshot(seed, addresses, Electron.genFn);
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+
+        this.props.transitionForSnapshot(seedStore, addresses);
     };
 
     /**
@@ -99,12 +101,13 @@ class Addresses extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, selectedAccountName, settings } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
+        const { wallet, accountName, accountType, settings } = this.props;
+
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        this.props.completeSnapshotTransition(seed, selectedAccountName, wallet.transitionAddresses, powFn);
+        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses, powFn);
     };
 
     /**
@@ -113,11 +116,13 @@ class Addresses extends PureComponent {
      */
     transitionBalanceWrong = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.password, selectedAccountName, true);
+        const { wallet, accountName, accountType } = this.props;
+
+        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+
         const currentIndex = wallet.transitionAddresses.length;
 
-        this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);
+        this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
     };
 
     render() {
@@ -210,7 +215,8 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     wallet: state.wallet,
     settings: state.settings,
-    selectedAccountName: getSelectedAccountName(state),
+    accountName: getSelectedAccountName(state),
+    accountType: getSelectedAccountType(state),
     addresses: getAddressesForSelectedAccount(state),
 });
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { uniqueSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -18,9 +18,7 @@ import SeedInput from 'ui/components/input/Seed';
 class SeedVerify extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        firstAccount: PropTypes.bool.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -62,7 +60,7 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, firstAccount, password, generateAlert, t } = this.props;
+        const { wallet, history, generateAlert, t } = this.props;
         const { seed, isGenerated } = this.state;
 
         if (
@@ -74,14 +72,6 @@ class SeedVerify extends React.PureComponent {
         ) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
-        }
-
-        if (password.length) {
-            const isUniqueSeed = await uniqueSeed(password, seed);
-            if (!isUniqueSeed) {
-                generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
-                return;
-            }
         }
 
         if (seed.length < MAX_SEED_LENGTH) {
@@ -97,7 +87,12 @@ class SeedVerify extends React.PureComponent {
             Electron.setOnboardingSeed(seed, false);
             history.push('/onboarding/account-name');
         } else {
-            if (!firstAccount) {
+            if (wallet.ready) {
+                const seedStore = await new SeedStore.keychain(wallet.password);
+                await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
+
+                Electron.setOnboardingSeed(null);
+
                 history.push('/onboarding/login');
             } else {
                 history.push('/onboarding/account-password');
@@ -144,8 +139,7 @@ class SeedVerify extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    firstAccount: !state.wallet.ready,
-    password: state.wallet.password,
+    wallet: state.wallet,
 });
 
 const mapDispatchToProps = {

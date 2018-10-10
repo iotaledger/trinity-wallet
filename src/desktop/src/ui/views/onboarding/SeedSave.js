@@ -104,7 +104,7 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboardingName: state.ui.onboarding.name,
+    onboardingName: state.wallet.additionalAccountName,
 });
 
 export default connect(mapStateToProps)(translate()(SeedSave));

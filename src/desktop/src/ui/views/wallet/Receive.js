@@ -1,17 +1,22 @@
-/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { selectLatestAddressFromAccountFactory, selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
+import {
+    selectLatestAddressFromAccountFactory,
+    selectAccountInfo,
+    getSelectedAccountName,
+    getSelectedAccountType,
+} from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
 import { generateNewAddress } from 'actions/wallet';
 
+import SeedStore from 'libs/SeedStore';
+import { randomBytes } from 'libs/crypto';
 import { byteToChar } from 'libs/helpers';
-import { getSeed, randomBytes } from 'libs/crypto';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -31,6 +36,8 @@ class Receive extends React.PureComponent {
         account: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
         /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
@@ -71,15 +78,24 @@ class Receive extends React.PureComponent {
     }
 
     onGeneratePress = async () => {
-        const { password, accountName, account, isSyncing, isTransitioning, generateAlert, t } = this.props;
+        const {
+            password,
+            accountName,
+            accountType,
+            account,
+            isSyncing,
+            isTransitioning,
+            generateAlert,
+            t,
+        } = this.props;
 
         if (isSyncing || isTransitioning) {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seed = await getSeed(password, accountName, true);
+        const seedStore = await new SeedStore[accountType](password, accountName);
 
-        this.props.generateNewAddress(seed, accountName, account, Electron.genFn);
+        this.props.generateNewAddress(seedStore, accountName, account);
     };
 
     unscramble() {
@@ -174,6 +190,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
+    accountType: getSelectedAccountType(state),
     password: state.wallet.password,
 });
 

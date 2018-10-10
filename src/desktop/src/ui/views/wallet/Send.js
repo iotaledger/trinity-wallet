@@ -5,7 +5,7 @@ import { formatValue, formatUnit } from 'libs/iota/utils';
 import { getCurrencySymbol } from 'libs/currency';
 import { round } from 'libs/utils';
 
-import { getSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -34,6 +34,8 @@ class Send extends React.PureComponent {
         isSending: PropTypes.bool.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        accountType: PropTypes.string.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -91,16 +93,17 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, accountName, sendTransfer, settings } = this.props;
+        const { fields, password, accountName, accountType, sendTransfer, settings } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
         });
 
-        const seed = await getSeed(password, accountName, true);
+        const seedStore = await new SeedStore[accountType](password, accountName);
+
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn, Electron.genFn);
+        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, fields.message, powFn);
     };
 
     render() {
@@ -112,8 +115,8 @@ class Send extends React.PureComponent {
                 ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
                       settings.currency,
                   )}${(
-                    round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
-                ).toFixed(2)})`
+                      round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                  ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
 
         return (
