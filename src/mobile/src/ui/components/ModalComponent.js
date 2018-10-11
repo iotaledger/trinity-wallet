@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import RootDetection from 'ui/components/RootDetectionModal';
@@ -113,5 +112,5 @@ export default function withSafeAreaView(WrappedComponent) {
         toggleModalActivity,
     };
 
-    return hoistNonReactStatics(connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent), WrappedComponent);
+    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
 }

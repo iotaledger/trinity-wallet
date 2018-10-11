@@ -197,7 +197,7 @@ class SeedReentry extends Component {
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {
                     validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
-                    hideModal: () => this.hideModal(),
+                    hideModal: () => this.props.toggleModalActivity(),
                     theme,
                 });
         }
@@ -246,7 +246,7 @@ class SeedReentry extends Component {
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {
                                                 this.setState({ seed });
-                                                this.hideModal();
+                                                this.props.toggleModalActivity();
                                             }}
                                             onRef={(ref) => {
                                                 this.SeedVaultImport = ref;

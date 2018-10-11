@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 
 export default function withDropdownAlert(WrappedComponent) {
     class EnhancedComponent extends PureComponent {
@@ -29,5 +28,5 @@ export default function withDropdownAlert(WrappedComponent) {
         isModalActive: state.ui.isModalActive,
     });
 
-    return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);
+    return connect(mapStateToProps)(EnhancedComponent);
 }

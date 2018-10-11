@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 import { connect } from 'react-redux';
 import { getBackgroundColor } from 'ui/theme/general';
 
@@ -51,5 +50,5 @@ export default function withStatusBar(WrappedComponent) {
         isModalActive: state.ui.isModalActive,
     });
 
-    return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);
+    return connect(mapStateToProps)(EnhancedComponent);
 }
