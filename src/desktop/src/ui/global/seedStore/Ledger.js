@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';

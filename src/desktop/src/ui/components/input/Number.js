@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import css from './input.scss';
 
 import Icon from 'ui/components/Icon';
+
+import css from './input.scss';
 
 /**
  * Single number input component

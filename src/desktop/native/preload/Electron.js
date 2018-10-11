@@ -12,7 +12,7 @@ const machineUuid = require('machine-uuid-sync');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
 const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
-const ledger = require('../seedStore/Ledger');
+const ledger = require('../hardware/Ledger');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();

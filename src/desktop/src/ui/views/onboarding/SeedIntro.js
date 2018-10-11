@@ -19,6 +19,8 @@ class SeedIntro extends React.PureComponent {
         /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
+        history: PropTypes.object,
+        /** @ignore */
         t: PropTypes.func.isRequired
     };
 
