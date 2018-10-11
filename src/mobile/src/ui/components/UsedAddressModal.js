@@ -5,7 +5,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -55,8 +54,6 @@ class UsedAddressModal extends PureComponent {
         borderColor: PropTypes.object.isRequired,
         /** Theme body */
         body: PropTypes.object.isRequired,
-        /** Theme bar */
-        bar: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -64,7 +61,7 @@ class UsedAddressModal extends PureComponent {
     }
 
     render() {
-        const { t, body, bar, textColor, borderColor } = this.props;
+        const { t, body, textColor, borderColor } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
@@ -81,7 +78,6 @@ class UsedAddressModal extends PureComponent {
                         </View>
                     </View>
                 </View>
-                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </TouchableOpacity>
         );
     }

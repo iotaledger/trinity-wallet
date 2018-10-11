@@ -56,7 +56,7 @@ export class MainSettings extends Component {
      * @method openLogoutModal
      */
     openLogoutModal() {
-        const { theme: { body, bar } } = this.props;
+        const { theme: { body } } = this.props;
         this.props.toggleModalActivity('logoutConfirmation', {
             style: { flex: 1 },
             hideModal: () => this.props.toggleModalActivity(),
@@ -64,7 +64,6 @@ export class MainSettings extends Component {
             backgroundColor: { backgroundColor: body.bg },
             textColor: { color: body.color },
             borderColor: { borderColor: body.color },
-            barBg: bar.bg,
         });
     }
 

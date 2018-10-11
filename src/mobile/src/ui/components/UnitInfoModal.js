@@ -6,7 +6,6 @@ import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const styles = StyleSheet.create({
@@ -152,7 +151,6 @@ class UnitInfoModal extends PureComponent {
                         </View>
                     </View>
                 </View>
-                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </TouchableOpacity>
         );
     }

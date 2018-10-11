@@ -7,7 +7,6 @@ import { width, height } from 'libs/dimensions';
 import InfoBox from './InfoBox';
 import CustomTextInput from './CustomTextInput';
 import ModalButtons from './ModalButtons';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     container: {
@@ -97,7 +96,6 @@ export class PasswordValidationModal extends PureComponent {
                             />
                         </View>
                     </View>
-                    <StatefulDropdownAlert backgroundColor={theme.body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );

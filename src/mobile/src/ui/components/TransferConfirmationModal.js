@@ -8,7 +8,6 @@ import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ModalButtons from './ModalButtons';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -83,8 +82,6 @@ class TransferConfirmationModal extends Component {
         amount: PropTypes.string.isRequired,
         /** Theme setting */
         body: PropTypes.object.isRequired,
-        /** Theme setting */
-        bar: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -125,7 +122,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, body, bar, textColor, borderColor, value, conversionText, amount, selectedAccountName } = this.props;
+        const { t, body, textColor, borderColor, value, conversionText, amount, selectedAccountName } = this.props;
         // TODO: fix this using trans component
 
         /*
@@ -203,7 +200,6 @@ class TransferConfirmationModal extends Component {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </View>
         );
     }

@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 import ModalButtons from './ModalButtons';
 
 const styles = StyleSheet.create({
@@ -51,7 +50,7 @@ export class DeleteAccountModal extends PureComponent {
     }
 
     render() {
-        const { t, theme: { body, bar }, selectedAccountName } = this.props;
+        const { t, theme: { body }, selectedAccountName } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -74,7 +73,6 @@ export class DeleteAccountModal extends PureComponent {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </View>
         );
     }

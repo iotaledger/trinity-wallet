@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 import ModalButtons from './ModalButtons';
 
 const styles = StyleSheet.create({
@@ -46,8 +45,6 @@ export class LogoutConfirmationModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
-        /** Bar background color */
-        barBg: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -55,7 +52,7 @@ export class LogoutConfirmationModal extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, barBg, textColor, borderColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
             <View style={styles.modalContainer}>
@@ -70,7 +67,6 @@ export class LogoutConfirmationModal extends PureComponent {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={barBg} />
             </View>
         );
     }

@@ -541,7 +541,6 @@ export class Send extends Component {
                     sendTransfer: () => this.sendWithDelay(),
                     hideModal: (callback) => this.hideModal(callback),
                     body,
-                    bar,
                     borderColor: { borderColor: body.color },
                     textColor: { color: body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
