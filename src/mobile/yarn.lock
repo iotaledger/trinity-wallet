@@ -6058,6 +6058,14 @@ process@~0.5.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types@15.5.10:
+  version "15.5.10"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
+  integrity sha1-J5ffwxJhguOpXj37suiT3ddFYVQ=
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
@@ -6343,9 +6351,11 @@ react-native-document-picker@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
   integrity sha512-BFCBXwz8xuLvHLVFVeQM+RhaY8yZ38PEWt9WSbq5VIoZ/VssP6uu51XxOfdwaMALOrAHIojK0SiYnd155upZAg==
 
-"react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert#latest":
-  version "2.5.0"
-  resolved "https://github.com/cvarley100/react-native-dropdownalert#3695021d674adce24898174320f27798dd9e1d96"
+"react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8":
+  version "3.7.0"
+  resolved "https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8"
+  dependencies:
+    prop-types "15.5.10"
 
 react-native-exit-app@^1.0.0:
   version "1.0.0"
