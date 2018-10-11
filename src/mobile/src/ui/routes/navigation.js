@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import withSafeAreaView from 'ui/components/SafeAreaView';
 import withDropdownAlert from 'ui/components/WithDropdownAlert';
 import withModal from 'ui/components/ModalComponent';
+import withRouteMonitor from 'ui/components/RouteMonitor';
 import withStatusBar from 'ui/components/WithStatusBar';
 import Home from 'ui/views/wallet/Home';
 import Loading from 'ui/views/wallet/Loading';
@@ -33,7 +34,7 @@ function applyHOCs(screen) {
     if (isIPhoneX) {
         screen = withSafeAreaView(screen);
     }
-    return withStatusBar(withModal(withDropdownAlert(screen)));
+    return withDropdownAlert(withStatusBar(withModal(withRouteMonitor(screen))));
 }
 
 export default function registerScreens(store, Provider) {

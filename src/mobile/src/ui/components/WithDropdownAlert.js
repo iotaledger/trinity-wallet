@@ -17,7 +17,7 @@ export default function withDropdownAlert(WrappedComponent) {
             return (
                 <View style={{ flex: 1 }}>
                     <WrappedComponent {...this.props} />
-                    {!this.props.isModalActive && <StatefulDropdownAlert textColor="white" />}
+                    {!this.props.isModalActive && <StatefulDropdownAlert />}
                 </View>
             );
         }

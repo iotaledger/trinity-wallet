@@ -5469,9 +5469,9 @@ react-native-document-picker@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
 
-react-native-dropdownalert@^3.7.0:
+"react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert#master":
   version "3.7.0"
-  resolved "https://registry.yarnpkg.com/react-native-dropdownalert/-/react-native-dropdownalert-3.7.0.tgz#f5cc31a3c50a0783bfa78523fbfc155bacfb8154"
+  resolved "https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8"
   dependencies:
     prop-types "15.5.10"
 

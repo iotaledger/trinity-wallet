@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import timer from 'react-native-timer';
 import { DocumentPicker } from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
@@ -60,10 +61,15 @@ export class SeedVaultImportComponent extends Component {
                     );
                 }
                 this.props.onSeedImport(msg);
-                return this.props.generateAlert(
-                    'success',
-                    t('seedVault:importSuccess'),
-                    t('seedVault:importSuccessExplanation'),
+                return timer.setTimeout(
+                    'timeout',
+                    () =>
+                        this.props.generateAlert(
+                            'success',
+                            t('seedVault:importSuccess'),
+                            t('seedVault:importSuccessExplanation'),
+                        ),
+                    300,
                 );
             },
             this,

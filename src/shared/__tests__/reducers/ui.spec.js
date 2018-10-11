@@ -42,6 +42,7 @@ describe('Reducer: ui', () => {
                 isReceiveCardFlipped: false,
                 modalContent: 'snapshotTransitionInfo',
                 modalProps: {},
+                currentRoute: 'login',
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

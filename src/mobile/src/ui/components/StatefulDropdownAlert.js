@@ -1,6 +1,5 @@
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
-import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
@@ -31,11 +30,11 @@ class StatefulDropdownAlert extends Component {
          */
         onRef: PropTypes.func,
         /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
-        /** @ignore */
         hasConnection: PropTypes.bool.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
+        currentRoute: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -45,18 +44,6 @@ class StatefulDropdownAlert extends Component {
     constructor() {
         super();
         this.refFunc = this.refFunc.bind(this);
-        this.state = {
-            currentScreen: '',
-        };
-    }
-
-    componentWillMount() {
-        Navigation.events().registerComponentDidAppearListener((componentId) => {
-            this.setState({ currentScreen: componentId.componentName });
-            if (this.dropdown) {
-                this.dropdown.close();
-            }
-        });
     }
 
     componentDidMount() {
@@ -64,22 +51,19 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, isModalActive } = this.props;
+        const { alerts, currentRoute } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
         const alertIsNotEmpty = newProps.alerts.message !== '';
         const shouldGenerateAlert = hasAnAlert && alertIsNew && alertIsNotEmpty;
-
         if (shouldGenerateAlert) {
             if (this.dropdown) {
                 this.dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
             }
         }
-
-        if (isModalActive !== newProps.isModalActive) {
-            this.dropdown.close();
+        if (isAndroid && currentRoute !== newProps.currentRoute && this.dropdown) {
+            this.dropdown.closeDirectly(false);
         }
-
         this.disposeIfConnectionIsRestored(newProps);
     }
 
@@ -94,8 +78,9 @@ class StatefulDropdownAlert extends Component {
         this.props.disposeOffAlert();
     }
 
-    getStatusBarColor() {
-        const statusBarColor = getBackgroundColor(this.state.currentScreen, this.props.theme);
+    getStatusBarColor(currentRoute) {
+        const statusBarColor = getBackgroundColor(currentRoute, this.props.theme);
+
         if (statusBarColor) {
             return rgbToHex(statusBarColor);
         }
@@ -105,7 +90,7 @@ class StatefulDropdownAlert extends Component {
         if (isIPhoneX) {
             return 'light-content';
         }
-        return tinycolor(getBackgroundColor(this.state.currentScreen, this.props.theme)).isDark()
+        return tinycolor(getBackgroundColor(this.props.currentRoute, this.props.theme)).isDark()
             ? 'light-content'
             : 'dark-content';
     }
@@ -136,7 +121,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative } } = this.props;
+        const { onRef, theme: { positive, negative }, currentRoute } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -178,7 +163,7 @@ class StatefulDropdownAlert extends Component {
                     alignSelf: 'center',
                 }}
                 inactiveStatusBarStyle={statusBarStyle}
-                inactiveStatusBarBackgroundColor={this.getStatusBarColor()}
+                inactiveStatusBarBackgroundColor={currentRoute}
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
@@ -191,9 +176,9 @@ class StatefulDropdownAlert extends Component {
 
 const mapStateToProps = (state) => ({
     alerts: state.alerts,
-    isModalActive: state.ui.isModalActive,
     hasConnection: state.wallet.hasConnection,
     theme: state.settings.theme,
+    currentRoute: state.ui.currentRoute,
 });
 
 const mapDispatchToProps = { disposeOffAlert };
