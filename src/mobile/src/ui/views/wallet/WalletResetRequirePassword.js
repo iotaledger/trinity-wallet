@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
-import { setOnboardingComplete } from 'shared-modules/actions/accounts';
-import { clearWalletData, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import { persistor } from 'libs/store';
+import { persistConfig } from 'libs/store';
+import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { Icon } from 'ui/theme/icons';
@@ -53,12 +52,6 @@ class WalletResetRequirePassword extends Component {
         password: PropTypes.object.isRequired,
         /** @ignore */
         resetWallet: PropTypes.func.isRequired,
-        /** @ignore */
-        setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
-        clearWalletData: PropTypes.func.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -151,13 +144,11 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
         if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
-            persistor
-                .purge()
+            purgeStoredState(persistConfig)
                 .then(() => clearKeychain())
                 .then(() => {
-                    this.props.setOnboardingComplete(false);
-                    this.props.clearWalletData();
-                    this.props.setPassword('');
+                    // resetWallet action creator resets the whole state object to default values
+                    // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
                     this.props.resetWallet();
                     // FIXME: Temporarily needed for password migration
                     this.props.setCompletedForcedPasswordUpdate();
@@ -226,9 +217,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     resetWallet,
-    setOnboardingComplete,
-    clearWalletData,
-    setPassword,
     generateAlert,
     setCompletedForcedPasswordUpdate,
 };
