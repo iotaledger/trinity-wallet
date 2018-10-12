@@ -61,8 +61,7 @@ class SeedIntro extends React.PureComponent {
         return (
             <form>
                 <section>
-                    <h1>{t('walletSetup:creatingSeed')}</h1>
-                    <p>{t('walletSetup:doYouNeedASeed')}</p>
+                    <h1>{t('walletSetup:doYouNeedASeed')}</h1>
                     <Info>
                         <p>{t('walletSetup:seedExplanation')}</p>
                         <Trans i18nKey="walletSetup:explanation">

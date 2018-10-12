@@ -443,7 +443,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
         "okay": "Okay. Let's set up your wallet!",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
@@ -766,11 +765,11 @@
         "accountIndexExplanation": "Every seed stored securely on your Ledger is identified by a unique index number. We have pre-selected an available number, or you can choose your own.",
         "connectionError": "Cannot connect to Ledger",
         "connectionErrorExplanation": "Check that Ledger is connected and unlocked",
-        "connectionTitle": "Connect Ledger",
-        "connectionExplanation": "Ledger is required for wallet functionallity. Please connect it and open the IOTA application.",
-        "transactionTitle": "Approve transaction on Ledger",
-        "transactionExplanation": "Check for correct amount and addresses on Ledger and accept the transaction.",
+        "connectionTitle": "Connect Your Ledger",
+        "connectionExplanation": "A connected Ledger device is required for wallet functionallity",
+        "transactionTitle": "Confirm transaction on Ledger",
+        "transactionExplanation": "Use your Ledger to approve your outgoing transaction.",
         "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Open IOTA app is required to be active for wallet functionallity."
+        "applicationExplanation": "The Ledger IOTA application is required to be open for wallet functionallity."
     }
 }

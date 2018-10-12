@@ -18,20 +18,32 @@
         left: 0px;
         background: var(--body-bg);
         opacity: 0;
-        transition: opacity 0.1s ease-in;
+        transition: opacity 0.15s ease-in;
     }
     > div {
         position: relative;
         z-index: 2;
         background: var(--box-bg);
         border-radius: 6px;
-        padding: 34px;
+        padding: 60px 34px 34px;
         width: 90vw;
-        max-width: 480px;
+        max-width: 420px;
         text-align: center;
         opacity: 0;
         transform: translate(0, 30px);
         transition: opacity 0.1s ease-in, transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition-delay: 0.15s;
+
+        > span {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            margin-left: -19px;
+            color: var(--box-body);
+            background: var(--box-bg);
+            border-radius: 38px;
+            height: 38px;
+        }
     }
 
     h2 {
@@ -47,5 +59,11 @@
             opacity: 1;
             transform: translate(0, 0);
         }
+    }
+    svg {
+        path {
+            fill: var(--body);
+        }
+        margin-bottom: 32px;
     }
 }
