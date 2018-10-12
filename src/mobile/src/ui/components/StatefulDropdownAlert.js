@@ -80,7 +80,6 @@ class StatefulDropdownAlert extends Component {
 
     getStatusBarColor(currentRoute) {
         const statusBarColor = getBackgroundColor(currentRoute, this.props.theme);
-
         if (statusBarColor) {
             return rgbToHex(statusBarColor);
         }
