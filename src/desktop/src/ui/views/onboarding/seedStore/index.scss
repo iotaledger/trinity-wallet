@@ -1,7 +1,7 @@
 .ledger {
     .usedIndex {
         input {
-            color: var(--negative);
+            border-color: var(--negative);
         }
     }
 
@@ -10,6 +10,7 @@
         height: 21px;
         line-height: 21px;
         margin-top: -10px;
+        font-size: 14px;
         color: var(--negative);
     }
 }

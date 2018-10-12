@@ -516,11 +516,23 @@
             padding: 8px 0;
         }
     }
-    span {
+    div > span {
         display: block;
-        width: 32px;
+        width: 26px;
+        height: 26px;
+        line-height: 24px;
+        border-radius: 4px;
         cursor: pointer;
         color: var(--body);
         text-align: center;
+        background: var(--box-bg);
+        border: 1px solid var(--box-alt);
+        margin: 0 18px;
+        &:hover {
+            background: 1px solid var(--box-alt);
+        }
+        span {
+            cursor: pointer;
+        }
     }
 }

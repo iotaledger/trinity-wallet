@@ -41,7 +41,7 @@ export default class Number extends React.PureComponent {
                 <fieldset>
                     <div>
                         <span onClick={() => onChange(Math.max(0, value - 1))}>
-                            <Icon icon="chevronLeft" size={16} />
+                            <Icon icon="chevronLeft" size={12} />
                         </span>
                         <input
                             ref={(input) => {
@@ -50,10 +50,10 @@ export default class Number extends React.PureComponent {
                             type="number"
                             value={value}
                             min="0"
-                            onChange={(e) => onChange(parseInt(e.target.value))}
+                            onChange={(e) => onChange(parseInt(e.target.value) || 0)}
                         />
                         <span onClick={() => onChange(value + 1)}>
-                            <Icon icon="chevronRight" size={16} />
+                            <Icon icon="chevronRight" size={12} />
                         </span>
                     </div>
                 </fieldset>

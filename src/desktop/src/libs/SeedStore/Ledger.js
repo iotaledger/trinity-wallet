@@ -8,12 +8,9 @@ class Ledger {
      * @param {object} accountMeta -  Account meta data
      */
     constructor(key, accountId, accountMeta) {
-        return (async () => {
-            if (accountMeta) {
-                this.index = accountMeta.index;
-            }
-            return this;
-        })();
+        if (accountMeta && typeof accountMeta.index === 'number') {
+            this.index = accountMeta.index;
+        }
     }
 
     /**

@@ -36,6 +36,10 @@ class Ledger {
         return this.iota;
     }
 
+    /**
+     * Wait for succesfull Ledger connection callback
+     * @returns {promise}
+     */
     async awaitConnection() {
         return new Promise((resolve) => {
             const callback = (connected) => {
@@ -48,6 +52,11 @@ class Ledger {
         });
     }
 
+    /**
+     * Wait for IOTA application and selected seed by index
+     * @param {number} index - Target seed index
+     * @returns {promise} Resolves with IOTA Transport object
+     */
     async awaitApplication(index) {
         return new Promise((resolve, reject) => {
             const callback = async () => {
