@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
@@ -82,4 +82,4 @@ export class RootDetectionModal extends PureComponent {
     }
 }
 
-export default translate(['rootDetection', 'global'])(RootDetectionModal);
+export default withNamespaces(['rootDetection', 'global'])(RootDetectionModal);

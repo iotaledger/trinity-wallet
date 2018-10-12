@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 
 import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
@@ -52,4 +52,4 @@ class SeedIntro extends React.PureComponent {
     }
 }
 
-export default translate()(SeedIntro);
+export default withI18n()(SeedIntro);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
@@ -169,4 +169,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));
+export default withNamespaces(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterPassword));

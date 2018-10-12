@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel } from 'shared-modules/libs/i18n';
-import i18next from 'libs/i18next';
+import i18next from 'shared-modules/libs/i18next';
 import DropdownComponent from 'ui/components/Dropdown';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
@@ -168,4 +168,6 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSelection));
+export default withNamespaces(['languageSetup', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(LanguageSelection),
+);

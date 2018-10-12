@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { getAccountNamesFromState } from 'selectors/accounts';
 
@@ -150,4 +150,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountName));

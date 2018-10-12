@@ -1,5 +1,5 @@
 import isString from 'lodash/isString';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {

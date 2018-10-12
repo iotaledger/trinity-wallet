@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -301,4 +301,4 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
 });
 
-export default WithManualRefresh()(translate(['global'])(connect(mapStateToProps)(Balance)));
+export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps)(Balance)));

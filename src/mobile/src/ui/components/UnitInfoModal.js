@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -156,4 +156,4 @@ class UnitInfoModal extends PureComponent {
     }
 }
 
-export default translate(['unitInfoModal', 'global'])(UnitInfoModal);
+export default withNamespaces(['unitInfoModal', 'global'])(UnitInfoModal);

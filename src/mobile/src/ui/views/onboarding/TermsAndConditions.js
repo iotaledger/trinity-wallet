@@ -10,12 +10,12 @@ import {
     deTermsAndConditionsIOS,
 } from 'shared-modules/markdown';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -174,4 +174,4 @@ const mapDispatchToProps = {
     acceptTerms,
 };
 
-export default translate('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));
+export default withNamespaces('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));

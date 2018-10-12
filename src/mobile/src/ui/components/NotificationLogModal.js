@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'shared-modules/libs/date';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { locale, timezone } from 'libs/device';
@@ -125,4 +125,4 @@ export class NotificationLogModal extends PureComponent {
     }
 }
 
-export default translate(['global, notificationLog'])(NotificationLogModal);
+export default withNamespaces(['global, notificationLog'])(NotificationLogModal);

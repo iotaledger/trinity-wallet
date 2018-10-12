@@ -1,6 +1,6 @@
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AlertsActionTypes } from '../actions/alerts';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 
 /* eslint-disable no-unused-vars */
 const networkMiddleware = (store) => (next) => (action) => {

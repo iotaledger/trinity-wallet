@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { zxcvbn } from 'shared-modules/libs/exports';
@@ -137,4 +137,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(PasswordFields));
+export default withNamespaces(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(PasswordFields));

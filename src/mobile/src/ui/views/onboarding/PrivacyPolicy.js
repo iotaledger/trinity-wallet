@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
 import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
@@ -12,7 +12,7 @@ import {
     dePrivacyPolicyAndroid,
     dePrivacyPolicyIOS,
 } from 'shared-modules/markdown';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
@@ -170,4 +170,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));
+export default withNamespaces('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));

@@ -49,13 +49,6 @@
         "proceed": "Continuați",
         "qr": "QR",
         "enterSeed": "Vă rugăm introduceţi secretul.",
-        "mainWallet": "CONTUL PRINCIPAL",
-        "secondWallet": "AL DOILEA CONT",
-        "thirdWallet": "AL TREILEA CONT",
-        "fourthWallet": "AL PATRULEA CONT",
-        "fifthWallet": "AL CINCILEA CONT",
-        "sixthWallet": "AL ŞASELEA CONT",
-        "otherWallet": "ALT CONT",
         "yes": "Da",
         "no": "Nu",
         "okay": "Ok",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

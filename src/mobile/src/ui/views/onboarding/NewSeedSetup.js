@@ -1,6 +1,6 @@
 import split from 'lodash/split';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -311,5 +311,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup)),
+    withNamespaces(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup)),
 );

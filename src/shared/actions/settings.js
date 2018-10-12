@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
 import Errors from '../libs/errors';

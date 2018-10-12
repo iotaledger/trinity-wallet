@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
@@ -10,10 +10,9 @@ import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modul
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
-import i18 from 'libs/i18next';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
 import { persistStoreAsync, migrate } from 'libs/store';
@@ -172,7 +171,8 @@ onAppStart()
             fetchNodeList(store);
             startListeningToConnectivityChanges(store);
 
-            translate.setI18n(i18);
+            registerScreens(store, Provider);
+            withNamespaces.setI18n(i18next);
 
             launch(store);
         };

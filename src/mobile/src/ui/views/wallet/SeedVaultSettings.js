@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { Icon } from 'ui/theme/icons';
@@ -161,4 +161,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['seedVault', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedVaultSettings));
+export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedVaultSettings));

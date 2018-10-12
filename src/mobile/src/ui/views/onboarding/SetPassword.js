@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -113,7 +113,7 @@ class SetPassword extends Component {
 
         const seedStore = new SeedStore.keychain(pwdHash);
 
-        const isUniqueSeed = seedStore.isUniqueSeed(seed);
+        const isUniqueSeed = await seedStore.isUniqueSeed(seed);
         if (!isUniqueSeed) {
             return this.props.generateAlert(
                 'error',
@@ -247,6 +247,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
+export default withNamespaces(['setPassword', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(SetPassword),
 );

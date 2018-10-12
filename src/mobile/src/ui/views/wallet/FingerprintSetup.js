@@ -7,7 +7,7 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
@@ -260,5 +260,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressGoToHome()(
-    translate(['fingerprintSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable)),
+    withNamespaces(['fingerprintSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable)),
 );

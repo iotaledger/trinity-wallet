@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import { shorten, capitalize } from 'libs/helpers';
@@ -160,4 +160,4 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Sidebar));

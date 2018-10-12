@@ -10,7 +10,7 @@ import { byteToChar, bytesToTrits } from '../libs/iota/converter';
 import { getLatestAddress } from '../libs/iota/addresses';
 import { DEFAULT_SECURITY } from '../config';
 import { setByteTritSweepInfo, setCompletedByteTritSweep } from './settings';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { generateAlert } from './alerts';
 import Errors from '../libs/errors';

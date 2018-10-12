@@ -6,7 +6,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
@@ -208,4 +208,6 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
 });
 
-export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));
+export default withNamespaces(['twoFA', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken),
+);

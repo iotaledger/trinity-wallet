@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -255,5 +255,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    translate(['writeSeedDown', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WriteSeedDown)),
+    withNamespaces(['writeSeedDown', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WriteSeedDown)),
 );

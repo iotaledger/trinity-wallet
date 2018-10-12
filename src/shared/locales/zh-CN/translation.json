@@ -49,13 +49,6 @@
         "proceed": "继续操作",
         "qr": "二维码",
         "enterSeed": "请输入您的种子。",
-        "mainWallet": "主账户",
-        "secondWallet": "第二个帐户",
-        "thirdWallet": "第三个帐户",
-        "fourthWallet": "第四个帐户",
-        "fifthWallet": "第五个帐户",
-        "sixthWallet": "第六个帐户",
-        "otherWallet": "其它账户",
         "yes": "是",
         "no": "否",
         "okay": "好的",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "执行工作量证明时出现问题。",
         "tryingAgainWithLocalPoW": "重新发起本地工作量证明。",
         "tryingAgainWithDifferentNode": "更换到其它节点重试中。",
-        "errorFetchingAccountInformation": "获取帐户信息时出错。"
+        "errorFetchingAccountInformation": "获取帐户信息时出错。",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",

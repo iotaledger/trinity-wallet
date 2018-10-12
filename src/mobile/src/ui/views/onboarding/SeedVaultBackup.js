@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -135,4 +135,4 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
 });
 
-export default translate(['seedVault', 'global'])(connect(mapStateToProps, null)(SeedVaultBackup));
+export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, null)(SeedVaultBackup));

@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
@@ -305,5 +305,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed)),
+    withNamespaces(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed)),
 );

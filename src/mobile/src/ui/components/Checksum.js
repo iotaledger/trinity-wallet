@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -87,4 +87,4 @@ export class Checksum extends Component {
     }
 }
 
-export default translate(['enterSeed', 'global'])(Checksum);
+export default withNamespaces(['enterSeed', 'global'])(Checksum);

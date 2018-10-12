@@ -49,13 +49,6 @@
         "proceed": "Procedi",
         "qr": "QR",
         "enterSeed": "Inserisci il tuo seme.",
-        "mainWallet": "CONTO PRINCIPALE",
-        "secondWallet": "SECONDO CONTO",
-        "thirdWallet": "TERZO CONTO",
-        "fourthWallet": "QUARTO CONTO",
-        "fifthWallet": "QUINTO CONTO",
-        "sixthWallet": "SESTO CONTO",
-        "otherWallet": "ALTRO CONTO",
         "yes": "Sì",
         "no": "No",
         "okay": "Va bene",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "C'è stato un problema nell'esecuzione della prova di lavoro.",
         "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
-        "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto."
+        "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",

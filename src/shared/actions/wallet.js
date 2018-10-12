@@ -6,7 +6,7 @@ import { updateAddresses, updateAccountAfterTransition } from '../actions/accoun
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../libs/iota/addresses';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
