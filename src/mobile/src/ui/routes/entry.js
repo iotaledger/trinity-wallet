@@ -6,17 +6,14 @@ import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
-import { setCompletedForcedPasswordUpdate, setAppVersions, resetWallet } from 'shared-modules/actions/settings';
+import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
-import { purgeStoredState } from 'shared-modules/store';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
-import { doesSaltExistInKeychain, clearKeychain } from 'libs/keychain';
+import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from 'ui/routes/navigation';
-import { persistConfig } from 'libs/store';
 
 const launch = (store) => {
     // Disable auto node switching.
@@ -35,12 +32,6 @@ const launch = (store) => {
     if (!state.accounts.onboardingComplete) {
         clearKeychain();
         store.dispatch(setCompletedForcedPasswordUpdate());
-    }
-
-    // Reset wallet if keychain is empty
-    // Fixes issues related to iCloud backup
-    if (state.accounts.onboardingComplete) {
-        resetIfKeychainIsEmpty(state);
     }
 
     // Set default language
@@ -75,26 +66,6 @@ const renderInitialScreen = (initialScreen) => {
             orientation: 'portrait',
             keepStyleAcrossPush: true,
         },
-    });
-};
-
-const resetIfKeychainIsEmpty = (state) => {
-    doesSaltExistInKeychain().then((exists) => {
-        if (!exists) {
-            purgeStoredState({ storage: persistConfig.storage })
-                .then(() => {
-                    state.dispatch(resetWallet());
-                    // Set the new app version
-                    state.dispatch(
-                        setAppVersions({
-                            version: getVersion(),
-                            buildNumber: getBuildNumber(),
-                        }),
-                    );
-                    return initApp(state);
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
-        }
     });
 };
 
@@ -165,7 +136,7 @@ const hasConnection = (
 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
-const initApp = (store) => {
+export default (store) => {
     overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
     const initialize = (isConnected) => {
@@ -184,5 +155,3 @@ const initApp = (store) => {
 
     hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
 };
-
-export default initApp;
