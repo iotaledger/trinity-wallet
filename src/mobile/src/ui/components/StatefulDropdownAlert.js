@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
-import { isAndroid, isIPhoneX } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import { Styling, getBackgroundColor } from 'ui/theme/general';
 import { rgbToHex } from 'shared-modules/libs/utils';
 
@@ -78,6 +78,14 @@ class StatefulDropdownAlert extends Component {
         this.props.dismissAlert();
     }
 
+    /**
+     * Returns status bar colour dependent on current route
+     *
+     * @method getStatusBarColor
+     * @param {string} currentRoute
+     *
+     * @returns {string}
+     */
     getStatusBarColor(currentRoute) {
         const statusBarColor = getBackgroundColor(currentRoute, this.props.theme);
         if (statusBarColor) {
@@ -85,10 +93,14 @@ class StatefulDropdownAlert extends Component {
         }
     }
 
+    /**
+     * Returns status bar style (light or dark) dependent on theme
+     *
+     * @method getStatusBarStyle
+     *
+     * @returns {string}
+     */
     getStatusBarStyle() {
-        if (isIPhoneX) {
-            return 'light-content';
-        }
         return tinycolor(getBackgroundColor(this.props.currentRoute, this.props.theme)).isDark()
             ? 'light-content'
             : 'dark-content';
@@ -96,6 +108,9 @@ class StatefulDropdownAlert extends Component {
 
     /**
      * Generates an alert if wallet has no internet connection
+     *
+     * @method generateAlertWhenNoConnection
+     *
      */
     generateAlertWhenNoConnection() {
         const { alerts: { category, title, message }, hasConnection } = this.props;
@@ -107,6 +122,9 @@ class StatefulDropdownAlert extends Component {
 
     /**
      * Automatically hides active alert when wallet restores internet connection
+     *
+     * @method disposeIfConnectionIsRestored
+     *
      */
     disposeIfConnectionIsRestored(newProps) {
         if (!this.props.hasConnection && newProps.hasConnection && this.dropdown) {

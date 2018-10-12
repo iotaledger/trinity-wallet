@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { Navigation } from 'react-native-navigation';
-import { isAndroid, isIPhoneX } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import { rgbToHex } from 'shared-modules/libs/utils';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -32,10 +32,7 @@ class DynamicStatusBar extends Component {
         if (!isAndroid) {
             return;
         }
-        if (!isModalActive && newProps.isModalActive) {
-            this.resetStatusBarColor(currentRoute);
-        }
-        if (isModalActive && !newProps.isModalActive) {
+        if (isModalActive !== newProps.isModalActive) {
             timer.setTimeout('timeout', () => this.resetStatusBarColor(currentRoute), 200);
         }
         if (currentRoute !== newProps.currentRoute) {
@@ -43,6 +40,14 @@ class DynamicStatusBar extends Component {
         }
     }
 
+    /**
+     * Returns status bar colour dependent on current route
+     *
+     * @method getStatusBarColor
+     * @param {string} currentRoute
+     *
+     * @returns {string} Hex colour string
+     */
     getStatusBarColor(currentRoute) {
         const { theme, inactive } = this.props;
         const backgroundColor = getBackgroundColor(currentRoute, theme, false, inactive);
@@ -51,13 +56,24 @@ class DynamicStatusBar extends Component {
         }
     }
 
+    /**
+     * Returns status bar style (light or dark) dependent on theme
+     *
+     * @method getStatusBarStyle
+     *
+     * @returns {string}
+     */
     getStatusBarStyle() {
-        if (isIPhoneX) {
-            return 'light-content';
-        }
         return tinycolor(this.getStatusBarColor(this.props.currentRoute)).isDark() ? 'light-content' : 'dark-content';
     }
 
+    /**
+     * Resets status bar colour depending on current route
+     *
+     * @method resetStatusBarColor
+     * @param {string} currentRoute
+     *
+     */
     resetStatusBarColor(currentRoute) {
         const statusBarColor = this.getStatusBarColor(currentRoute);
         if (statusBarColor) {
