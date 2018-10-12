@@ -49,13 +49,6 @@
         "proceed": "Lanjut",
         "qr": "QR",
         "enterSeed": "Silakan masukkan Seed Anda.",
-        "mainWallet": "AKUN UTAMA",
-        "secondWallet": "AKUN KEDUA",
-        "thirdWallet": "AKUN KETIGA",
-        "fourthWallet": "AKUN KEEMPAT",
-        "fifthWallet": "AKUN KELIMA",
-        "sixthWallet": "AKUN KEENAM",
-        "otherWallet": "AKUN LAINNYA",
         "yes": "Iya",
         "no": "Tidak",
         "okay": "Ok",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Ada masalah ketika melakukan Proof of Work.",
         "tryingAgainWithLocalPoW": "Mencoba lagi dengan lokal Proof of Work.",
         "tryingAgainWithDifferentNode": "Coba lagi dengan node yang berbeda.",
-        "errorFetchingAccountInformation": "Error ketika mengambil informasi akun."
+        "errorFetchingAccountInformation": "Error ketika mengambil informasi akun.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",

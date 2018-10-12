@@ -49,13 +49,6 @@
         "proceed": "Nastavi",
         "qr": "QR",
         "enterSeed": "Molimo unesite svoj seed.",
-        "mainWallet": "GLAVNI RAČUN",
-        "secondWallet": "DRUGI RAČUN",
-        "thirdWallet": "TREĆI RAČUN",
-        "fourthWallet": "ČETVRTI RAČUN",
-        "fifthWallet": "PETI RAČUN",
-        "sixthWallet": "ŠESTI RAČUN",
-        "otherWallet": "IDUĆI RAČUN",
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Došlo je do greške prilikom izvođenja PoW-a.",
         "tryingAgainWithLocalPoW": "Pokušajte ponovno s lokalnim PoW-om.",
         "tryingAgainWithDifferentNode": "Pokušajte ponovno s drugim node-om.",
-        "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu."
+        "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",

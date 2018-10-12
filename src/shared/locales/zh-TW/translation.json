@@ -49,13 +49,6 @@
         "proceed": "開始執行",
         "qr": "QR",
         "enterSeed": "請輸入您的種子碼",
-        "mainWallet": "主帳戶",
-        "secondWallet": "次要帳戶",
-        "thirdWallet": "第三帳戶",
-        "fourthWallet": "第四帳戶",
-        "fifthWallet": "第五帳戶",
-        "sixthWallet": "第六帳戶",
-        "otherWallet": "其他帳戶",
         "yes": "是",
         "no": "否",
         "okay": "確定",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "進行工作量證明時發生錯誤。",
         "tryingAgainWithLocalPoW": "請改為本地端工作量證明再試一次。",
         "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
-        "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。"
+        "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
