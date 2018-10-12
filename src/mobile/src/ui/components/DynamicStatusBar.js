@@ -33,7 +33,8 @@ class DynamicStatusBar extends Component {
             return;
         }
         if (isModalActive !== newProps.isModalActive) {
-            timer.setTimeout('timeout', () => this.resetStatusBarColor(currentRoute), 200);
+            this.resetStatusBarColor(currentRoute);
+            timer.setTimeout('timeout', () => this.resetStatusBarColor(currentRoute), 400);
         }
         if (currentRoute !== newProps.currentRoute) {
             timer.setTimeout('timeout', () => this.resetStatusBarColor(newProps.currentRoute), 400);
