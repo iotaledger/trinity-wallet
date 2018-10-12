@@ -32,11 +32,11 @@ const generate = (category, title, message, closeInterval = 5500) => ({
 /**
  * Dispatch to hide an alert
  *
- * @method dispose
+ * @method dismiss
  *
  * @returns {{type: {string} }}
  */
-const dispose = () => ({ type: ActionTypes.HIDE });
+const dismiss = () => ({ type: ActionTypes.HIDE });
 
 /**
  * Generates an alert. If an error string is passed then it also updates notification log in state
@@ -254,11 +254,11 @@ export const generateTransactionSuccessAlert = (isZeroValue = false) => (dispatc
 /**
  * Hides an active alert
  *
- * @method disposeOffAlert
+ * @method dismissAlert
  *
  * @returns {function} dispatch
  */
-export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
+export const dismissAlert = () => (dispatch) => dispatch(dismiss());
 
 /**
  * Formats error object, assigns error receive time and update notification logs with the newly received error

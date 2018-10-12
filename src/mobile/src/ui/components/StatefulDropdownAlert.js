@@ -61,7 +61,7 @@ class StatefulDropdownAlert extends Component {
                 this.dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
             }
         }
-        if (isAndroid && currentRoute !== newProps.currentRoute && this.dropdown) {
+        if (currentRoute !== newProps.currentRoute && this.dropdown) {
             this.dropdown.closeDirectly(false);
         }
         this.disposeIfConnectionIsRestored(newProps);
@@ -120,7 +120,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative }, currentRoute } = this.props;
+        const { onRef, theme: { positive, negative }, currentRoute, dismissAlert } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -163,8 +163,8 @@ class StatefulDropdownAlert extends Component {
                 }}
                 inactiveStatusBarStyle={statusBarStyle}
                 inactiveStatusBarBackgroundColor={this.getStatusBarColor(currentRoute)}
-                onCancel={this.props.dismissAlert}
-                onClose={this.props.dismissAlert}
+                onCancel={dismissAlert}
+                onClose={dismissAlert}
                 closeInterval={closeAfter}
                 tapToCloseEnabled={this.props.hasConnection}
                 translucent={isAndroid}

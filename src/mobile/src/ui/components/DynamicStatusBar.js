@@ -5,6 +5,7 @@ import tinycolor from 'tinycolor2';
 import { Navigation } from 'react-native-navigation';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { rgbToHex } from 'shared-modules/libs/utils';
+import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import { getBackgroundColor } from 'ui/theme/general';
 
@@ -32,17 +33,13 @@ class DynamicStatusBar extends Component {
             return;
         }
         if (!isModalActive && newProps.isModalActive) {
-            if (isAndroid) {
-                this.resetStatusBarColor(currentRoute);
-            }
+            this.resetStatusBarColor(currentRoute);
         }
         if (isModalActive && !newProps.isModalActive) {
-            if (isAndroid) {
-                this.resetStatusBarColor(currentRoute);
-            }
+            timer.setTimeout('timeout', () => this.resetStatusBarColor(currentRoute), 200);
         }
-        if (isAndroid && currentRoute !== newProps.currentRoute) {
-            this.resetStatusBarColor(newProps.currentRoute);
+        if (currentRoute !== newProps.currentRoute) {
+            timer.setTimeout('timeout', () => this.resetStatusBarColor(newProps.currentRoute), 400);
         }
     }
 
