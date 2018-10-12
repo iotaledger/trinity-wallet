@@ -27,7 +27,7 @@
         "react": "^16.2.0",
         "react-i18next": "^7.3.4",
         "react-redux": "^5.0.6",
-        "realm": "^2.15.3",
+        "realm": "^2.18.0",
         "redux": "^3.7.2",
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
