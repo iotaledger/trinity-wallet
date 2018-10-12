@@ -33,7 +33,6 @@ import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import Button from 'ui/components/Button';
-import Realm from 'realm';
 
 import { width, height } from 'libs/dimensions';
 
@@ -247,7 +246,7 @@ class Loading extends Component {
     getWalletData() {
         const { currency } = this.props;
         this.props.getPrice();
-        this.props.getChartData(Realm);
+        this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
     }

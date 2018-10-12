@@ -3,16 +3,16 @@
  * Schema to define the structure of a Transaction
  * Transactions are indexed and looked up by hash
  */
-const TransactionSchema = {
+export const TransactionSchema = {
     name: 'Transaction',
     primaryKey: 'hash', // Index and look up transactions by their hash
     properties: {
         hash: 'string',
-        address: { type: 'linkingObjects', objectType: 'Address', property: 'transactions' }, // Link transactions to addresses
+        // address: { type: 'linkingObjects', objectType: 'Address', property: 'transactions' }, // Link transactions to addresses
         value: 'int',
         tag: 'string',
         message: 'string',
-        bundle: { type: 'linkingObjects', objectType: 'Bundle', property: 'transactions' }, // Link transactions to bundles
+        // bundle: { type: 'linkingObjects', objectType: 'Bundle', property: 'transactions' }, // Link transactions to bundles
     },
 };
 
@@ -20,7 +20,7 @@ const TransactionSchema = {
  * Schema to define the structure of a Bundle
  * Bundles are indexed and looked up by hash
  */
-const BundleSchema = {
+export const BundleSchema = {
     name: 'Bundle',
     primaryKey: 'hash', // Index and look up bundles by their hash
     properties: {
@@ -40,5 +40,35 @@ const AddressSchema = {
         address: 'string',
         index: 'int',
         transactions: 'Transaction[]', // Create a "to-many" relationship (https://realm.io/docs/javascript/latest#to-many-relationships)
+    },
+};
+
+/*eslint-disable no-unused-vars*/
+export const ChartDataSchema = {
+    name: 'ChartData',
+    primaryKey: 'currency',
+    properties: {
+        currency: 'string',
+        data: 'DataForTimeframe[]',
+    },
+};
+
+export const DataForTimeframeSchema = {
+    name: 'DataForTimeframe',
+    primaryKey: 'timeframe',
+    properties: {
+        timeframe: 'string',
+        data: 'DataPoint[]',
+    },
+};
+
+export const DataPointSchema = {
+    name: 'DataPoint',
+    primaryKey: 'id',
+    properties: {
+        id: 'string',
+        x: 'int',
+        y: 'float',
+        time: 'int',
     },
 };
