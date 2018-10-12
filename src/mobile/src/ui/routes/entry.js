@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { Navigation } from 'react-native-navigation';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
@@ -10,21 +10,13 @@ import { setCompletedForcedPasswordUpdate, setAppVersions, resetWallet } from 's
 import { ActionTypes } from 'shared-modules/actions/wallet';
 import { purgeStoredState } from 'shared-modules/store';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
-import { isIOS } from 'libs/device';
-import keychain, { doesSaltExistInKeychain } from 'libs/keychain';
-import i18 from 'libs/i18next';
+import { doesSaltExistInKeychain, clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from 'ui/routes/navigation';
 import { persistConfig } from 'libs/store';
-
-const clearKeychain = () => {
-    if (isIOS) {
-        keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
-    }
-};
 
 const launch = (store) => {
     // Disable auto node switching.
@@ -185,7 +177,7 @@ const initApp = (store) => {
         startListeningToConnectivityChanges(store);
 
         registerScreens(store, Provider);
-        translate.setI18n(i18);
+        withNamespaces.setI18n(i18next);
 
         launch(store);
     };

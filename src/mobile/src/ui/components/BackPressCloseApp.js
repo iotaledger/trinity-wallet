@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ToastAndroid, BackHandler } from 'react-native';
 import RNExitApp from 'react-native-exit-app';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { isAndroid } from 'libs/device';
 
@@ -51,5 +51,5 @@ export default () => (C) => {
         navigator: PropTypes.object.isRequired,
     };
 
-    return translate(['global'])(WithBackPressCloseApp);
+    return withNamespaces(['global'])(WithBackPressCloseApp);
 };

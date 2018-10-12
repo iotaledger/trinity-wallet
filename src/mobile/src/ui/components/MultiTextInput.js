@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-    setQrMessage,
-    setQrAmount,
-    setQrTag,
-    setSelectedQrTab,
-    setQrDenomination,
-} from 'shared-modules/actions/ui';
+import { setQrMessage, setQrAmount, setQrTag, setSelectedQrTab, setQrDenomination } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
@@ -240,4 +234,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));

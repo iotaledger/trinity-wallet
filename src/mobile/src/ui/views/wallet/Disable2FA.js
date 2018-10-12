@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
-import { setFirstUse } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
@@ -177,11 +176,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     resetWallet,
-    setFirstUse,
     generateAlert,
     set2FAStatus,
 };
 
-export default translate(['resetWalletRequirePassword', 'global'])(
+export default withNamespaces(['resetWalletRequirePassword', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
 );

@@ -9,8 +9,6 @@ import find from 'lodash/find';
 import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
-import isArray from 'lodash/isArray';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
 import {
@@ -95,9 +93,9 @@ const organiseAccountState = (provider) => (accountName, partialAccountData) => 
  *   @method getAccountData
  *
  *   @param {string} provider
- *   @returns {function(string, string, function): Promise<object>}
+ *   @returns {function(object, string, function): Promise<object>}
  **/
-export const getAccountData = (provider) => (seed, accountName, genFn) => {
+export const getAccountData = (provider) => (seedStore, accountName) => {
     const bundleHashes = new Set();
 
     const cached = {
@@ -119,7 +117,7 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
                 throw new Error(Errors.NODE_NOT_SYNCED);
             }
 
-            return getFullAddressHistory(provider)(seed, genFn);
+            return getFullAddressHistory(provider)(seedStore);
         })
         .then((history) => {
             data = { ...data, ...history };
@@ -177,14 +175,14 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
  *   @method syncAccount
  *   @param {string} [provider]
  *
- *   @returns {function(object, string, function): Promise<object>}
+ *   @returns {function(object, object, function): Promise<object>}
  **/
-export const syncAccount = (provider) => (existingAccountState, seed, genFn, notificationFn) => {
+export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
     const thisStateCopy = cloneDeep(existingAccountState);
-    const rescanAddresses = isString(seed) || isArray(seed);
+    const rescanAddresses = typeof seedStore === 'object';
 
     return (rescanAddresses
-        ? syncAddresses(provider)(seed, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx), genFn)
+        ? syncAddresses(provider)(seedStore, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx))
         : Promise.resolve(thisStateCopy.addresses)
     )
         .then((latestAddressData) => {
@@ -295,14 +293,7 @@ export const syncAccount = (provider) => (existingAccountState, seed, genFn, not
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider) => (
-    seed,
-    name,
-    newTransfer,
-    accountState,
-    isValueTransfer,
-    genFn,
-) => {
+export const syncAccountAfterSpending = (provider) => (seedStore, name, newTransfer, accountState, isValueTransfer) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
     const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
@@ -335,7 +326,7 @@ export const syncAccountAfterSpending = (provider) => (
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
-    return syncAddresses(provider)(seed, addressData, map(transfers, (tx) => tx), genFn).then((newAddressData) => {
+    return syncAddresses(provider)(seedStore, addressData, map(transfers, (tx) => tx)).then((newAddressData) => {
         const newState = {
             ...accountState,
             transfers,

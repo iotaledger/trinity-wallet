@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import GENERAL from 'ui/theme/general';
@@ -87,4 +87,4 @@ class UsedAddressModal extends PureComponent {
     }
 }
 
-export default translate(['usedAddressModal', 'global'])(UsedAddressModal);
+export default withNamespaces(['usedAddressModal', 'global'])(UsedAddressModal);

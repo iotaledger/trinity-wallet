@@ -1,4 +1,4 @@
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
@@ -187,4 +187,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { disposeOffAlert };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));
+export default withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));

@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -16,16 +16,8 @@ import {
     ADDRESS_LENGTH,
 } from 'shared-modules/libs/iota/utils';
 import { setDeepLinkInactive } from 'shared-modules/actions/wallet';
-import {
-    getCurrencySymbol,
-    getNextDenomination,
-    getIOTAUnitMultiplier,
-} from 'shared-modules/libs/currency';
-import {
-    getFromKeychainRequest,
-    getFromKeychainSuccess,
-    getFromKeychainError,
-} from 'shared-modules/actions/keychain';
+import { getCurrencySymbol, getNextDenomination, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
+import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { makeTransaction } from 'shared-modules/actions/transfers';
 import {
     setSendAddressField,
@@ -40,6 +32,7 @@ import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
     getSelectedAccountName,
+    getSelectedAccountType,
 } from 'shared-modules/selectors/accounts';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'shared-modules/actions/alerts';
@@ -51,7 +44,7 @@ import Toggle from 'ui/components/Toggle';
 import FingerPrintModal from 'ui/components/FingerprintModal';
 import ProgressBar from 'ui/components/ProgressBar';
 import ProgressSteps from 'libs/progressSteps';
-import { getSeedFromKeychain } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import TransferConfirmationModal from 'ui/components/TransferConfirmationModal';
 import UsedAddressModal from 'ui/components/UsedAddressModal';
 import UnitInfoModal from 'ui/components/UnitInfoModal';
@@ -61,7 +54,7 @@ import CtaButton from 'ui/components/CtaButton';
 import { Icon } from 'ui/theme/icons';
 import { height, width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
-import { getAddressGenFn, getPowFn } from 'libs/nativeModules';
+import { getPowFn } from 'libs/nativeModules';
 import GENERAL from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -124,6 +117,8 @@ export class Send extends Component {
         seedIndex: PropTypes.number.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Name for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
         /** @ignore */
@@ -608,7 +603,17 @@ export class Send extends Component {
      * @method sendTransfer
      */
     sendTransfer() {
-        const { t, password, selectedAccountName, isSyncing, isTransitioning, message, amount, address } = this.props;
+        const {
+            t,
+            password,
+            selectedAccountName,
+            selectedAccountType,
+            isSyncing,
+            isTransitioning,
+            message,
+            amount,
+            address,
+        } = this.props;
 
         if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
@@ -633,29 +638,18 @@ export class Send extends Component {
         this.startTrackingTransactionProgress(value === 0);
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
-        getSeedFromKeychain(password, selectedAccountName)
-            .then((seed) => {
-                this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-                if (seed === null) {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain'),
-                    );
+        try {
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-                    throw new Error('Error');
-                }
+            const powFn = getPowFn();
 
-                const powFn = getPowFn();
-                const genFn = getAddressGenFn();
-
-                return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
-            })
-            .catch((error) => {
-                this.props.getFromKeychainError('send', 'makeTransaction');
-                this.props.generateTransferErrorAlert(error);
-            });
+            return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
+        } catch (error) {
+            this.props.getFromKeychainError('send', 'makeTransaction');
+            this.props.generateTransferErrorAlert(error);
+        }
     }
 
     sendWithDelay() {
@@ -987,6 +981,7 @@ const mapStateToProps = (state) => ({
     balance: getBalanceForSelectedAccount(state),
     availableBalance: getAvailableBalanceForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     isSyncing: state.ui.isSyncing,
     isSendingTransfer: state.ui.isSendingTransfer,
     seedIndex: state.wallet.seedIndex,
@@ -1029,4 +1024,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
+export default withNamespaces(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

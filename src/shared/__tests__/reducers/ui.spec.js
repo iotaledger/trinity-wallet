@@ -23,7 +23,6 @@ describe('Reducer: ui', () => {
                 loginPasswordFieldText: '',
                 sendDenomination: 'i',
                 onboarding: {
-                    name: '',
                     seed: null,
                     isGenerated: false,
                 },
@@ -640,14 +639,14 @@ describe('Reducer: ui', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST', () => {
+    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST', () => {
         it('should set "hasErrorFetchingAccountInfoOnLogin" state prop to false', () => {
             const initialState = {
                 hasErrorFetchingAccountInfoOnLogin: true,
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST',
             };
 
             const newState = reducer(initialState, action);
@@ -660,14 +659,14 @@ describe('Reducer: ui', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR', () => {
+    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_ERROR', () => {
         it('should set "hasErrorFetchingAccountInfoOnLogin" state prop to true', () => {
             const initialState = {
                 hasErrorFetchingAccountInfoOnLogin: false,
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_ERROR',
             };
 
             const newState = reducer(initialState, action);
@@ -910,34 +909,6 @@ describe('Reducer: ui', () => {
                     name: '',
                     seed: null,
                     isGenerated: true,
-                },
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/UI/SET_ONBOARDING_NAME', () => {
-        it('should assign payload to name prop of "onboarding" state prop', () => {
-            const initialState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: false,
-                },
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_NAME',
-                payload: 'foo',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                onboarding: {
-                    name: 'foo',
-                    seed: null,
-                    isGenerated: false,
                 },
             };
 

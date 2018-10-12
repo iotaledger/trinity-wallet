@@ -5,7 +5,7 @@ import { set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
@@ -208,4 +208,6 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
 });
 
-export default translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));
+export default withNamespaces(['twoFA', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken),
+);
