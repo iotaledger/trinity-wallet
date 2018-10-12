@@ -1,9 +1,7 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
 import map from 'lodash/map';
-// import Realm from 'realm';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
-import { ChartDataSchema, DataForTimeframeSchema, DataPointSchema } from '../libs/schemas/wallet';
 
 export const ActionTypes = {
     SET_TIMEFRAME: 'IOTA/MARKET_DATA/SET_TIMEFRAME',
@@ -114,7 +112,7 @@ export function getPrice() {
  *
  * @returns {function} dispatch
  */
-export function getChartData(Realm) {
+export function getChartData() {
     return (dispatch) => {
         const arrayCurrenciesTimeFrames = [];
         //If you want a new currency just add it in this array, the function will handle the rest.
@@ -144,67 +142,28 @@ export function getChartData(Realm) {
 
         Promise.all(map(urls, grabContent))
             .then((results) => {
-                Realm.open({
-                  path: 'Charts.realm',
-                  schema: [ChartDataSchema, DataForTimeframeSchema, DataPointSchema],
-                  deleteRealmIfMigrationNeeded: true,
-                }).then((realm) => {
-                  try {
-                      let actualCurrency = '';
-                      let currentTimeFrame = '';
-                      let currentCurrency = '';
+                const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
+                let actualCurrency = '';
+                let currentTimeFrame = '';
+                let currentCurrency = '';
 
-                      realm.write(() => {
-                        each(results, (resultItem, index) => {
-                            currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
-                            currentCurrency = arrayCurrenciesTimeFrames[index].currency;
+                each(results, (resultItem, index) => {
+                    currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
+                    currentCurrency = arrayCurrenciesTimeFrames[index].currency;
 
-                            const formattedData = formatChartData(resultItem, currentTimeFrame);
+                    const formattedData = formatChartData(resultItem, currentTimeFrame);
 
-                            if (actualCurrency !== currentCurrency) {
-                                actualCurrency = currentCurrency;
-                            }
+                    if (actualCurrency !== currentCurrency) {
+                        actualCurrency = currentCurrency;
+                    }
 
-                            const dataPointArray = [];
+                    chartData[currentCurrency][currentTimeFrame] = formattedData;
+                });
 
-                            for (let i = 0; i < formattedData.length; i++) {
-                              const dataPoint = formattedData[i];
-                              const pt = realm.create('DataPoint', {
-                                id: currentCurrency + currentTimeFrame + dataPoint.x,
-                                x: dataPoint.x,
-                                y: dataPoint.y,
-                                time: dataPoint.time
-                              }, true);
-                              dataPointArray.push(pt);
-                            }
-
-                              console.log('DataForTimeframe update');
-                              const dataForTimeFrame = realm.create('DataForTimeframe', {
-                                timeframe: currentTimeFrame,
-                                data: dataPointArray,
-                              }, true);
-
-                              console.log('ChartData update');
-                              const chartData = realm.create('ChartData', {
-                                currency: currentCurrency
-                              }, true);
-
-                              console.log(chartData.data);
-
-                            chartData.data.push(dataForTimeFrame);
-
-                        });
-                      });
-                  } catch (e) {
-                    console.log(e);
-                  }
-                })
-
-              //  dispatch(setChartData(chartData));
-            .catch((err) => console.log(err));
-
-    });
-};
+                dispatch(setChartData(chartData));
+            })
+            .catch((err) => console.log(err)); // eslint-disable-line no-console
+    };
 }
 
 /**
