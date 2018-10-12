@@ -117,10 +117,7 @@ class App extends React.Component {
         const accountCount = Object.keys(accounts.accountInfo).length;
 
         this.setState({
-            accountIndex:
-                nextIndex >= accountCount
-                    ? -1
-                    : nextIndex < -1 ? accountCount - 1 : nextIndex,
+            accountIndex: nextIndex >= accountCount ? -1 : nextIndex < -1 ? accountCount - 1 : nextIndex,
         });
     };
 

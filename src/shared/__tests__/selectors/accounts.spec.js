@@ -655,7 +655,7 @@ describe('selectors: accounts', () => {
                     hasDisplayedSnapshotTransitionGuide({
                         accounts: {
                             accountInfo: {
-                               foo: {}
+                                foo: {},
                             },
                             tasks: {
                                 // Set hasDisplayedTransitionGuide to string instead of boolean

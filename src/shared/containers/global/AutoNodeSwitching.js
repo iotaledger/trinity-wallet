@@ -32,7 +32,7 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
             SwitchingConfig.autoSwitch = autoNodeSwitching;
         }
 
-        componentWillReceiveProps(newProps){
+        componentWillReceiveProps(newProps) {
             const { autoNodeSwitching } = this.props;
             if (newProps.autoNodeSwitching !== autoNodeSwitching) {
                 SwitchingConfig.autoSwitch = newProps.autoNodeSwitching;
@@ -42,8 +42,12 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
         showAlertOnAutoNodeSwitch = (newNode) => {
             const { generateAlert, setFullNode, t } = this.props;
             setFullNode(newNode);
-            generateAlert('success', t('global:nodeAutoChanged'), t('global:nodeAutoChangedExplanation', { nodeAddress: newNode }));
-        }
+            generateAlert(
+                'success',
+                t('global:nodeAutoChanged'),
+                t('global:nodeAutoChangedExplanation', { nodeAddress: newNode }),
+            );
+        };
 
         render() {
             return <AutoNodeSwitchedComponent {...this.props} />;

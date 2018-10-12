@@ -3,13 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback } from 'rea
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-    setQrMessage,
-    setQrAmount,
-    setQrTag,
-    setSelectedQrTab,
-    setQrDenomination,
-} from 'shared-modules/actions/ui';
+import { setQrMessage, setQrAmount, setQrTag, setSelectedQrTab, setQrDenomination } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
