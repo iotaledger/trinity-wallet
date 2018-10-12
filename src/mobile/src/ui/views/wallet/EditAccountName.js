@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { withNamespaces } from 'react-i18next';
+import {
+    getAccountNamesFromState,
+    getSelectedAccountName,
+    getSelectedAccountType,
+} from 'shared-modules/selectors/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeAccountName } from 'shared-modules/actions/accounts';
-import { updateAccountNameInKeychain } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -67,6 +71,8 @@ export class EditAccountName extends Component {
     static propTypes = {
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Account type for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -108,7 +114,7 @@ export class EditAccountName extends Component {
      * @method save
      */
     save(accountName) {
-        const { accountNames, password, selectedAccountName, t } = this.props;
+        const { accountNames, password, selectedAccountName, selectedAccountType, t } = this.props;
 
         if (accountNames.includes(accountName)) {
             this.props.generateAlert(
@@ -117,8 +123,10 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            // Update keychain
-            updateAccountNameInKeychain(password, selectedAccountName, accountName)
+            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+
+            seedStore
+                .accountRename(accountName)
                 .then(() => {
                     this.props.changeAccountName({
                         oldAccountName: selectedAccountName,
@@ -190,7 +198,8 @@ export class EditAccountName extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
-    accountNames: state.accounts.accountNames,
+    selectedAccountType: getSelectedAccountType(state),
+    accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
     theme: state.settings.theme,
 });
@@ -201,6 +210,6 @@ const mapDispatchToProps = {
     changeAccountName,
 };
 
-export default translate(['addAdditionalSeed', 'global', 'settings'])(
+export default withNamespaces(['addAdditionalSeed', 'global', 'settings'])(
     connect(mapStateToProps, mapDispatchToProps)(EditAccountName),
 );

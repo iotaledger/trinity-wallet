@@ -1,6 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
@@ -17,7 +17,7 @@ import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui'
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getPasswordHash } from 'libs/keychain';
+import { hash } from 'libs/keychain';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import UserInactivity from 'ui/components/UserInactivity';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
@@ -175,10 +175,12 @@ class Home extends Component {
      */
     async onLoginPress(password) {
         const { t, storedPasswordHash } = this.props;
-        const passwordHash = await getPasswordHash(password);
+
         if (!password) {
-            this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (!isEqual(passwordHash, storedPasswordHash)) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
+        }
+        const passwordHash = await hash(password);
+        if (!isEqual(passwordHash, storedPasswordHash)) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -416,8 +418,7 @@ class Home extends Component {
                                 textColor={textColor}
                                 setUserActive={() => this.props.setUserActivity({ inactive: false })}
                                 generateAlert={(error, title, explanation) =>
-                                    this.props.generateAlert(error, title, explanation)
-                                }
+                                    this.props.generateAlert(error, title, explanation)}
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>
@@ -484,5 +485,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    WithBackPress()(translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    WithBackPress()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
 );

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
+
+import { getAccountNamesFromState } from 'selectors/accounts';
 
 import Icon from 'ui/components/Icon';
 
@@ -87,7 +89,7 @@ class Account extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
 });
 
-export default connect(mapStateToProps)(translate()(Account));
+export default connect(mapStateToProps)(withI18n()(Account));

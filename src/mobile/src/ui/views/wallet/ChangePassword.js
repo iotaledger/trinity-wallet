@@ -1,12 +1,12 @@
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { changePassword, getPasswordHash } from 'libs/keychain';
+import { changePassword, hash } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
@@ -123,7 +123,7 @@ class ChangePassword extends Component {
      */
     async isPasswordChangeValid() {
         const { t, currentPwdHash, generateAlert } = this.props;
-        const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
+        const currentPasswordHash = await hash(this.state.currentPassword);
         if (!isEqual(currentPwdHash, currentPasswordHash)) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (this.state.newPassword === this.state.currentPassword) {
@@ -224,4 +224,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['changePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ChangePassword));
+export default withNamespaces(['changePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ChangePassword));

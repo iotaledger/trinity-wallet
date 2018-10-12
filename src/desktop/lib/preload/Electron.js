@@ -59,11 +59,7 @@ const Electron = {
     clipboard: (content) => {
         if (content) {
             const clip =
-                typeof content === 'string'
-                    ? content
-                    : Array.from(content)
-                          .map((byte) => byteToChar(byte))
-                          .join('');
+                typeof content === 'string' ? content : Array.from(content).map((byte) => byteToChar(byte)).join('');
             clipboard.writeText(clip);
             if (typeof content !== 'string') {
                 global.gc();
@@ -369,11 +365,7 @@ const Electron = {
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `seedvault-${now
-                    .toISOString()
-                    .slice(0, 16)
-                    .replace(/[-:]/g, '')
-                    .replace('T', '-')}.kdbx`,
+                defaultPath: `seedvault-${now.toISOString().slice(0, 16).replace(/[-:]/g, '').replace('T', '-')}.kdbx`,
                 buttonLabel: 'Export',
                 filters: [{ name: 'SeedVault File', extensions: ['kdbx'] }],
             });
@@ -382,7 +374,7 @@ const Electron = {
                 throw Error('Export cancelled');
             }
 
-            fs.writeFileSync(path, new Buffer(content));
+            fs.writeFileSync(path, Buffer.alloc(content));
 
             return false;
         } catch (error) {

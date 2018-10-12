@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -105,4 +105,4 @@ export class Enter2FA extends Component {
     }
 }
 
-export default translate(['twoFA', 'global'])(Enter2FA);
+export default withNamespaces(['twoFA', 'global'])(Enter2FA);

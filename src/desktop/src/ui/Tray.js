@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { capitalize } from 'libs/helpers';
 
@@ -114,11 +114,13 @@ class App extends React.Component {
     switchAccount = (nextIndex) => {
         const { accounts } = this.props;
 
+        const accountCount = Object.keys(accounts.accountInfo).length;
+
         this.setState({
             accountIndex:
-                nextIndex >= accounts.accountNames.length
+                nextIndex >= accountCount
                     ? -1
-                    : nextIndex < -1 ? accounts.accountNames.length - 1 : nextIndex,
+                    : nextIndex < -1 ? accountCount - 1 : nextIndex,
         });
     };
 
@@ -141,4 +143,4 @@ const mapStateToProps = (state) => ({
     accounts: state.accounts,
 });
 
-export default withRouter(connect(mapStateToProps)(translate()(App)));
+export default withRouter(connect(mapStateToProps)(withI18n()(App)));

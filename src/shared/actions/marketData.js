@@ -191,7 +191,7 @@ export function setChartData(chartData) {
 export function getMarketData() {
     return (dispatch) =>
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
-            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error)) // eslint-disable-line no-console
             .then((json) => dispatch(setMarketData(json)));
 }
 

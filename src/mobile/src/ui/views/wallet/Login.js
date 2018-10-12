@@ -1,4 +1,4 @@
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
@@ -17,7 +17,7 @@ import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import Enter2FAComponent from 'ui/components/Enter2FA';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from 'libs/keychain';
+import { authorize, getTwoFactorAuthKeyFromKeychain, hash } from 'libs/keychain';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -101,24 +101,25 @@ class Login extends Component {
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            const pwdHash = await getPasswordHash(password);
-            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
-                if (seedInfo !== null) {
-                    this.props.setPassword(pwdHash);
-                    this.props.setLoginPasswordField('');
-                    if (!is2FAEnabled) {
-                        this.navigateToLoading();
-                    } else {
-                        this.props.setLoginRoute('complete2FA');
-                    }
+            const pwdHash = await hash(password);
+
+            try {
+                await authorize(pwdHash);
+
+                this.props.setPassword(pwdHash);
+                this.props.setLoginPasswordField('');
+                if (!is2FAEnabled) {
+                    this.navigateToLoading();
                 } else {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:unrecognisedPassword'),
-                        t('global:unrecognisedPasswordExplanation'),
-                    );
+                    this.props.setLoginRoute('complete2FA');
                 }
-            });
+            } catch (error) {
+                this.props.generateAlert(
+                    'error',
+                    t('global:unrecognisedPassword'),
+                    t('global:unrecognisedPasswordExplanation'),
+                );
+            }
         }
     }
 
@@ -242,5 +243,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressCloseApp()(
-    translate(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
+    withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round, roundDown } from 'libs/utils';
@@ -62,7 +62,7 @@ class Balance extends React.PureComponent {
         const { balanceIsShort } = this.state;
 
         const accountName =
-            summary && index === -1 ? t('totalBalance') : accounts.accountNames[summary ? index : seedIndex];
+            summary && index === -1 ? t('totalBalance') : Object.keys(accounts.accountInfo)[summary ? index : seedIndex];
 
         const accountBalance =
             summary && index === -1
@@ -110,4 +110,4 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
 });
 
-export default connect(mapStateToProps)(translate()(Balance));
+export default connect(mapStateToProps)(withI18n()(Balance));

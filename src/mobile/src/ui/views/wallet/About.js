@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -109,4 +109,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings));
+export default withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings));

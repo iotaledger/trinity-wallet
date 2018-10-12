@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -168,6 +168,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['advancedSettings', 'settings', 'global'])(
+export default withNamespaces(['advancedSettings', 'settings', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings),
 );

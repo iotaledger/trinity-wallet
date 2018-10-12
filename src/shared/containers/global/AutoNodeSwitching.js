@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { SwitchingConfig } from '../../libs/iota';
 import { generateAlert } from '../../actions/alerts';
@@ -62,5 +62,5 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
         setFullNode,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(AutoNodeSwitching));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(AutoNodeSwitching));
 }

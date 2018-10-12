@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -20,7 +20,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
-import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'libs/keychain';
+import { changePassword, authorize } from 'libs/keychain';
 import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
 import GENERAL from 'ui/theme/general';
@@ -140,7 +140,7 @@ class ForceChangePassword extends Component {
                 }
                 this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
             };
-            return getSecretBoxFromKeychainAndOpenIt('seeds', oldPwdHash)
+            return authorize(oldPwdHash)
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         setPassword(newPwdHash);
@@ -353,6 +353,6 @@ const mapDispatchToProps = {
     setCompletedForcedPasswordUpdate,
 };
 
-export default translate(['changePassword', 'global'])(
+export default withNamespaces(['changePassword', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(ForceChangePassword),
 );

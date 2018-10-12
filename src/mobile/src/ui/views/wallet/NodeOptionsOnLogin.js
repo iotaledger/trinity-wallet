@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { setLoginRoute } from 'shared-modules/actions/ui';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import CtaButton from 'ui/components/CtaButton';
 import NodeSelection from 'ui/views/wallet/NodeSelection';
@@ -128,4 +128,4 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeOptionsOnLogin));
+export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(NodeOptionsOnLogin));

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getMarketData, getChartData, getPrice, setTimeframe } from 'actions/marketData';
-import { addAccountName, setOnboardingComplete, accountInfoFetchSuccess } from 'actions/accounts';
+import { setOnboardingComplete, accountInfoFetchSuccess } from 'actions/accounts';
 import { updateTheme } from 'actions/settings';
 import themes from 'themes/themes';
 
@@ -35,8 +35,6 @@ class Theme extends PureComponent {
         updateTheme: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
-        addAccountName: PropTypes.func.isRequired,
         /** @ignore */
         accountInfoFetchSuccess: PropTypes.func.isRequired,
         /** @ignore */
@@ -109,7 +107,6 @@ class Theme extends PureComponent {
             }
 
             if (routes[routeIndex + 1] === '/onboarding/login') {
-                this.props.addAccountName('Main');
                 this.props.setOnboardingComplete(true);
                 this.props.setTimeframe('1h');
             }
@@ -224,7 +221,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     updateTheme,
     setOnboardingComplete,
-    addAccountName,
     accountInfoFetchSuccess,
     getChartData,
     getPrice,

@@ -5,11 +5,15 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
 import { clearLog } from 'shared-modules/actions/alerts';
-import { getBalanceForSelectedAccount, selectAccountInfo } from 'shared-modules/selectors/accounts';
+import {
+    getBalanceForSelectedAccount,
+    getAccountNamesFromState,
+    selectAccountInfo,
+} from 'shared-modules/selectors/accounts';
 import {
     StatusBar,
     View,
@@ -563,7 +567,7 @@ class TopBar extends Component {
 
 const mapStateToProps = (state) => ({
     balance: getBalanceForSelectedAccount(state),
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     accountInfo: state.accounts.accountInfo,
     currentSetting: state.wallet.currentSetting,
     seedIndex: state.wallet.seedIndex,
@@ -590,4 +594,4 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
+export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
