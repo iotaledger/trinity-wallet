@@ -1,7 +1,7 @@
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { disposeOffAlert } from 'shared-modules/actions/alerts';
+import { dismissAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
@@ -20,7 +20,7 @@ class StatefulDropdownAlert extends Component {
         /** @ignore */
         alerts: PropTypes.object.isRequired,
         /** @ignore */
-        disposeOffAlert: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         closeInterval: PropTypes.number,
         /**
@@ -75,7 +75,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillUnmount() {
-        this.props.disposeOffAlert();
+        this.props.dismissAlert();
     }
 
     getStatusBarColor(currentRoute) {
@@ -162,9 +162,9 @@ class StatefulDropdownAlert extends Component {
                     alignSelf: 'center',
                 }}
                 inactiveStatusBarStyle={statusBarStyle}
-                inactiveStatusBarBackgroundColor={currentRoute}
-                onCancel={this.props.disposeOffAlert}
-                onClose={this.props.disposeOffAlert}
+                inactiveStatusBarBackgroundColor={this.getStatusBarColor(currentRoute)}
+                onCancel={this.props.dismissAlert}
+                onClose={this.props.dismissAlert}
                 closeInterval={closeAfter}
                 tapToCloseEnabled={this.props.hasConnection}
                 translucent={isAndroid}
@@ -180,6 +180,6 @@ const mapStateToProps = (state) => ({
     currentRoute: state.ui.currentRoute,
 });
 
-const mapDispatchToProps = { disposeOffAlert };
+const mapDispatchToProps = { dismissAlert };
 
 export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));
