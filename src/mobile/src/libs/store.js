@@ -22,66 +22,67 @@ const shouldMigrate = (restoredState) => {
     return restoredVersion !== currentVersion || restoredBuildNumber !== currentBuildNumber;
 };
 
+/**
+ * Resets the wallet if the keychain is empty
+ * Fixes issues related to iCloud backup
+ * @param {object} state
+ */
 const resetIfKeychainIsEmpty = (state) => {
     doesSaltExistInKeychain().then((exists) => {
         if (!exists) {
-            purgeStoredState({ storage: persistConfig.storage })
-                .then(() => {
-                    state.dispatch(resetWallet());
-                    // Set the new app version
-                    state.dispatch(
-                        setAppVersions({
-                            version: getVersion(),
-                            buildNumber: getBuildNumber(),
-                        }),
-                    );
-                    return initializeApp(state);
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
+            purgeStoredState({ storage: persistConfig.storage }).then(() => {
+                state.dispatch(resetWallet());
+                // Set the new app version
+                state.dispatch(
+                    setAppVersions({
+                        version: getVersion(),
+                        buildNumber: getBuildNumber(),
+                    }),
+                );
+                return initializeApp(state);
+            });
         }
     });
 };
 
 const migrate = (state, restoredState) => {
-    // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
-    // since this would be installed as a fresh application.
-    const hasAnUpdate = shouldMigrate(restoredState);
+    return state.getState().accounts.onboardingComplete
+        ? resetIfKeychainIsEmpty(state)
+        : Promise.resolve()
+              .then(() => {
+                  // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
+                  // since this would be installed as a fresh application.
+                  const hasAnUpdate = shouldMigrate(restoredState);
 
-    // Reset wallet if keychain is empty
-    // Fixes issues related to iCloud backup
-    if (state.accounts.onboardingComplete) {
-        resetIfKeychainIsEmpty(state);
-    }
+                  if (!hasAnUpdate) {
+                      state.dispatch(
+                          setAppVersions({
+                              version: getVersion(),
+                              buildNumber: getBuildNumber(),
+                          }),
+                      );
 
-    if (!hasAnUpdate) {
-        state.dispatch(
-            setAppVersions({
-                version: getVersion(),
-                buildNumber: getBuildNumber(),
-            }),
-        );
+                      return initializeApp(state);
+                  }
 
-        return initializeApp(state);
-    }
+                  return purgeStoredState({ storage: persistConfig.storage }).then(() => {
+                      state.dispatch(resetWallet());
+                      // Set the new app version
+                      state.dispatch(
+                          setAppVersions({
+                              version: getVersion(),
+                              buildNumber: getBuildNumber(),
+                          }),
+                      );
 
-    return purgeStoredState({ storage: persistConfig.storage })
-        .then(() => {
-            state.dispatch(resetWallet());
-            // Set the new app version
-            state.dispatch(
-                setAppVersions({
-                    version: getVersion(),
-                    buildNumber: getBuildNumber(),
-                }),
-            );
+                      const persistor = createPersistor(state, persistConfig);
+                      const updatedState = updatePersistedState(state.getState(), restoredState);
+                      persistor.rehydrate(updatedState);
 
-            const persistor = createPersistor(state, persistConfig);
-            const updatedState = updatePersistedState(state.getState(), restoredState);
-            persistor.rehydrate(updatedState);
-
-            return initializeApp(state);
-        })
-        .catch((err) => console.error(err)); // eslint-disable-line no-console
+                      return initializeApp(state);
+                  });
+              })
+              .catch((err) => console.error(err)); // eslint-disable-line no-console
 };
 
 export const persistor = persistStore(store, persistConfig, (err, restoredState) => migrate(store, restoredState));
