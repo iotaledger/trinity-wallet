@@ -1,18 +1,18 @@
 import trim from 'lodash/trim';
-import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
 class UseExistingSeed extends Component {
     static propTypes = {
         /** @ignore */
-        seedCount: PropTypes.number.isRequired,
-        /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
@@ -118,7 +116,7 @@ class UseExistingSeed extends Component {
 
         this.state = {
             seed: '',
-            accountName: this.getDefaultAccountName(),
+            accountName: '',
         };
     }
 
@@ -168,40 +166,20 @@ class UseExistingSeed extends Component {
     }
 
     /**
-     * Gets a default account name
-     * @method getDefaultAccountName
-     */
-    getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.seedCount === 0) {
-            return t('global:mainWallet');
-        } else if (this.props.seedCount === 1) {
-            return t('global:secondWallet');
-        } else if (this.props.seedCount === 2) {
-            return t('global:thirdWallet');
-        } else if (this.props.seedCount === 3) {
-            return t('global:fourthWallet');
-        } else if (this.props.seedCount === 4) {
-            return t('global:fifthWallet');
-        } else if (this.props.seedCount === 5) {
-            return t('global:sixthWallet');
-        } else if (this.props.seedCount === 6) {
-            return t('global:otherWallet');
-        }
-        return '';
-    }
-
-    /**
      * Adds additional account information to store
      * Navigates to loading screen
      * @method fetchAccountInfo
      */
-    fetchAccountInfo(seed, accountName) {
-        const { theme: { body } } = this.props;
+    async fetchAccountInfo(seed, accountName) {
+        const { password, theme: { body } } = this.props;
+
+        const seedStore = new SeedStore.keychain(password);
+        await seedStore.addAccount(accountName, seed);
 
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
+            additionalAccountType: 'keychain',
             seed,
             usedExistingSeed: true,
         });
@@ -228,7 +206,7 @@ class UseExistingSeed extends Component {
      * @param {string} seed
      * @param {string} accountName
      */
-    addExistingSeed(seed, accountName) {
+    async addExistingSeed(seed, accountName) {
         const { t, accountNames, password, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
@@ -251,7 +229,7 @@ class UseExistingSeed extends Component {
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        } else if (accountNames.includes(accountName)) {
+        } else if (accountNames.map((name) => name.toLowerCase()).indexOf(accountName.toLowerCase()) > -1) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -261,28 +239,19 @@ class UseExistingSeed extends Component {
             if (shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
-            getAllSeedsFromKeychain(password)
-                .then((seedInfo) => {
-                    if (isNull(seedInfo)) {
-                        return this.fetchAccountInfo(seed, accountName);
-                    }
-                    if (hasDuplicateAccountName(seedInfo, accountName)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:nameInUse'),
-                            t('addAdditionalSeed:nameInUseExplanation'),
-                        );
-                    } else if (hasDuplicateSeed(seedInfo, seed)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:seedInUse'),
-                            t('addAdditionalSeed:seedInUseExplanation'),
-                        );
-                    }
-                    Clipboard.setString(' ');
-                    return this.fetchAccountInfo(seed, accountName);
-                })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+
+            const seedStore = new SeedStore.keychain(password);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+
+            if (!isUniqueSeed) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:seedInUse'),
+                    t('addAdditionalSeed:seedInUseExplanation'),
+                );
+            }
+
+            return this.fetchAccountInfo(seed, accountName);
         }
     }
 
@@ -438,8 +407,7 @@ class UseExistingSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.accounts.seedCount,
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
@@ -454,6 +422,6 @@ const mapDispatchToProps = {
     setDoNotMinimise,
 };
 
-export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
+export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
 );

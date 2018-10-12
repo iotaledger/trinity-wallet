@@ -7,7 +7,6 @@ export const ActionTypes = {
     SET_SEND_DENOMINATION: 'IOTA/UI/SET_SEND_DENOMINATION',
     SET_USER_ACTIVITY: 'IOTA/UI/SET_USER_ACTIVITY',
     SET_ONBOARDING_SEED: 'IOTA/UI/SET_ONBOARDING_SEED',
-    SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
     SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE',
@@ -185,7 +184,7 @@ export const setUserActivity = (payload) => ({
 });
 
 /**
- * Dispatch to temporarily set generated seed in state during desktop onboarding
+ * Dispatch to temporarily set generated seed in state during mobile onboarding
  *
  * @method setOnboardingSeed
  *
@@ -198,21 +197,6 @@ export const setOnboardingSeed = (seed, isGenerated) => {
     return {
         type: ActionTypes.SET_ONBOARDING_SEED,
         payload: { seed, isGenerated },
-    };
-};
-
-/**
- * Dispatch to set account name in state during desktop onboarding
- *
- * @method setOnboardingName
- * @param {string} name
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setOnboardingName = (name) => {
-    return {
-        type: ActionTypes.SET_ONBOARDING_NAME,
-        payload: name,
     };
 };
 

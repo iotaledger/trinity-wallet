@@ -5,7 +5,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
@@ -209,5 +209,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default WithBackPressGoToHome()(
-    translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
+    withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
 );

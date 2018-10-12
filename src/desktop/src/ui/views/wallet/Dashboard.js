@@ -2,16 +2,16 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 import { capitalize } from 'libs/helpers';
 
 import { getAccountInfo } from 'actions/accounts';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
@@ -33,6 +33,8 @@ class Dashboard extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
+        accountType: PropTypes.string.isRequired,
+        /** @ignore */
         password: PropTypes.object,
         /** @ignore */
         isDeepLinkActive: PropTypes.bool,
@@ -53,11 +55,11 @@ class Dashboard extends React.PureComponent {
     }
 
     updateAccount = async () => {
-        const { password, accountName } = this.props;
+        const { password, accountName, accountType } = this.props;
 
-        const seed = await getSeed(password, accountName, true);
+        const seedStore = await new SeedStore[accountType](password, accountName);
 
-        this.props.getAccountInfo(seed, accountName, null, Electron.genFn, Electron.notify);
+        this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
     };
 
     render() {
@@ -123,6 +125,7 @@ class Dashboard extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
+    accountType: getSelectedAccountType(state),
     password: state.wallet.password,
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
@@ -131,4 +134,4 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withI18n()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

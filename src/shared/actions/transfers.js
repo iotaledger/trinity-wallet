@@ -14,7 +14,6 @@ import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
     promoteTransactionAsync,
-    prepareTransfersAsync,
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
@@ -64,7 +63,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateTransactionSuccessAlert,
 } from './alerts';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
 
@@ -399,17 +398,16 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {string | array} seed
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} receiveAddress
  * @param  {number} value
  * @param  {string} message
  * @param  {string} accountName
  * @param  {function} powFn
- * @param  {function} genFn
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, powFn) => (
     dispatch,
     getState,
 ) => {
@@ -449,7 +447,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount()(accountState, seed, genFn);
+                    return syncAccount()(accountState, seedStore);
                 }
 
                 throw new Error(Errors.KEY_REUSE);
@@ -480,8 +478,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return getAddressesUptoRemainder()(
                     accountState.addresses,
                     map(accountState.transfers, (tx) => tx),
-                    seed,
-                    genFn,
+                    seedStore,
                     [
                         // Make sure inputs are blacklisted
                         ...map(transferInputs, (input) => input.address),
@@ -524,7 +521,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return prepareTransfersAsync()(seed, transfer, options);
+                return seedStore.prepareTransfers(transfer, options);
             })
             .then((trytes) => {
                 if (!isZeroValue) {
@@ -642,12 +639,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .then(() => {
                 return syncAccountAfterSpending()(
-                    seed,
+                    seedStore,
                     accountName,
                     cached.transactionObjects,
                     accountState,
                     !isZeroValue,
-                    genFn,
                 );
             })
             .then(({ newState }) => {

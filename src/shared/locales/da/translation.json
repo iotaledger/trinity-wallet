@@ -49,13 +49,6 @@
         "proceed": "Fortsæt",
         "qr": "QR",
         "enterSeed": "Indtast venligst din hovednøgle.",
-        "mainWallet": "HOVEDKONTO",
-        "secondWallet": "2. KONTO",
-        "thirdWallet": "3. KONTO",
-        "fourthWallet": "4. KONTO",
-        "fifthWallet": "5. KONTO",
-        "sixthWallet": "6. KONTO",
-        "otherWallet": "ANDEN KONTO",
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okay",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",

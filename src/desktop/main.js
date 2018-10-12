@@ -272,7 +272,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${__dirname}/dist/tray@2x.png`);
+    tray = new Tray(`${__dirname}/dist/trayTemplate@2x.png`);
 
     tray.on('click', () => {
         toggleTray();

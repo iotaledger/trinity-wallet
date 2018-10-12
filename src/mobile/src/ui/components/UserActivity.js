@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
@@ -64,5 +64,5 @@ export default () => (C) => {
         isModalActive: state.ui.isModalActive,
     });
 
-    return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithUserActivity));
+    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithUserActivity));
 };

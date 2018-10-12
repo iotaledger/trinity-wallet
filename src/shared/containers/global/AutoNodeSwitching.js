@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { SwitchingConfig } from '../../libs/iota';
 import { generateAlert } from '../../actions/alerts';
@@ -32,7 +32,7 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
             SwitchingConfig.autoSwitch = autoNodeSwitching;
         }
 
-        componentWillReceiveProps(newProps){
+        componentWillReceiveProps(newProps) {
             const { autoNodeSwitching } = this.props;
             if (newProps.autoNodeSwitching !== autoNodeSwitching) {
                 SwitchingConfig.autoSwitch = newProps.autoNodeSwitching;
@@ -42,8 +42,12 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
         showAlertOnAutoNodeSwitch = (newNode) => {
             const { generateAlert, setFullNode, t } = this.props;
             setFullNode(newNode);
-            generateAlert('success', t('global:nodeAutoChanged'), t('global:nodeAutoChangedExplanation', { nodeAddress: newNode }));
-        }
+            generateAlert(
+                'success',
+                t('global:nodeAutoChanged'),
+                t('global:nodeAutoChangedExplanation', { nodeAddress: newNode }),
+            );
+        };
 
         render() {
             return <AutoNodeSwitchedComponent {...this.props} />;
@@ -62,5 +66,5 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
         setFullNode,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(AutoNodeSwitching));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(AutoNodeSwitching));
 }

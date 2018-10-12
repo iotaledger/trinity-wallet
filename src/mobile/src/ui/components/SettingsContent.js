@@ -4,7 +4,7 @@ import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import i18next from 'libs/i18next.js';
+import i18next from 'shared-modules/libs/i18next.js';
 import MainSettingsComponent from 'ui/views/wallet/MainSettings';
 import AdvancedSettingsComponent from 'ui/views/wallet/AdvancedSettings';
 import AccountManagement from 'ui/views/wallet/AccountManagement';

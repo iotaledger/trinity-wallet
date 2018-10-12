@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
 import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
@@ -198,4 +198,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MainSettings));
+export default withNamespaces(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MainSettings));

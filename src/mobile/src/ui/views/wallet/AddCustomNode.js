@@ -14,7 +14,7 @@ import { setFullNode } from 'shared-modules/actions/settings';
 import { isValidUrl, isValidHttpsUrl } from 'shared-modules/libs/utils';
 import { setCustomNodeCheckStatus } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { Icon } from 'ui/theme/icons';
@@ -289,4 +289,4 @@ const mapDispatchToProps = {
     setCustomNodeCheckStatus,
 };
 
-export default translate(['addCustomNode', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode));
+export default withNamespaces(['addCustomNode', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode));
