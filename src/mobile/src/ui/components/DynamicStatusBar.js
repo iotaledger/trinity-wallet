@@ -23,21 +23,18 @@ class DynamicStatusBar extends Component {
 
     componentWillMount() {
         Navigation.events().registerComponentDidAppearListener(() => {
-            this.resetStatusBarColor(this.props.currentRoute);
+            this.resetStatusBar(this.props.currentRoute);
         });
     }
 
     componentWillReceiveProps(newProps) {
         const { isModalActive, currentRoute } = this.props;
-        if (!isAndroid) {
-            return;
-        }
         if (isModalActive !== newProps.isModalActive) {
-            this.resetStatusBarColor(currentRoute);
-            timer.setTimeout('timeout', () => this.resetStatusBarColor(currentRoute), 400);
+            this.resetStatusBar(currentRoute);
+            timer.setTimeout('timeout', () => this.resetStatusBar(currentRoute), 400);
         }
         if (currentRoute !== newProps.currentRoute) {
-            timer.setTimeout('timeout', () => this.resetStatusBarColor(newProps.currentRoute), 400);
+            timer.setTimeout('timeout', () => this.resetStatusBar(newProps.currentRoute), 400);
         }
     }
 
@@ -64,30 +61,34 @@ class DynamicStatusBar extends Component {
      *
      * @returns {string}
      */
-    getStatusBarStyle() {
-        return tinycolor(this.getStatusBarColor(this.props.currentRoute)).isDark() ? 'light-content' : 'dark-content';
+    getStatusBarStyle(statusBarColor) {
+        return tinycolor(statusBarColor).isDark() ? 'light-content' : 'dark-content';
     }
 
     /**
      * Resets status bar colour depending on current route
      *
-     * @method resetStatusBarColor
+     * @method resetStatusBar
      * @param {string} currentRoute
      *
      */
-    resetStatusBarColor(currentRoute) {
+    resetStatusBar(currentRoute) {
         const statusBarColor = this.getStatusBarColor(currentRoute);
         if (statusBarColor) {
-            StatusBar.setBackgroundColor(statusBarColor, false);
+            if (isAndroid) {
+                StatusBar.setBackgroundColor(statusBarColor, false);
+            }
+            StatusBar.setBarStyle(this.getStatusBarStyle(statusBarColor), false);
         }
     }
 
     render() {
-        const statusBarStyle = this.getStatusBarStyle();
+        const { currentRoute } = this.props;
+        const statusBarStyle = this.getStatusBarStyle(this.getStatusBarColor(currentRoute));
         return (
             <StatusBar
                 barStyle={statusBarStyle}
-                backgroundColor={this.getStatusBarColor(this.props.currentRoute)}
+                backgroundColor={this.getStatusBarColor(currentRoute)}
                 translucent
                 animated={false}
             />

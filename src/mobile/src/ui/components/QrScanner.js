@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
@@ -93,11 +93,13 @@ export class QRScanner extends Component {
                     <View style={{ height: height / 12 }} />
                     <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
                     <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
-                    <SingleFooterButton
-                        onButtonPress={() => this.props.hideModal()}
-                        testID="qrScanner-next"
-                        buttonText={t('global:close')}
-                    />
+                    <View style={{ paddingBottom: isIPhoneX ? 34 : 0 }}>
+                        <SingleFooterButton
+                            onButtonPress={() => this.props.hideModal()}
+                            testID="qrScanner-next"
+                            buttonText={t('global:close')}
+                        />
+                    </View>
                 </View>
             </View>
         );
