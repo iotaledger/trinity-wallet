@@ -384,7 +384,7 @@ const Electron = {
                 throw Error('Export cancelled');
             }
 
-            fs.writeFileSync(path, Buffer.alloc(content));
+            fs.writeFileSync(path, Buffer.from(content));
 
             return false;
         } catch (error) {
