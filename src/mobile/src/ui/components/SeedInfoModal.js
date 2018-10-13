@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { translate, Trans } from 'react-i18next';
+import { withNamespaces, Trans } from 'react-i18next';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
@@ -85,4 +85,4 @@ export class SeedInfoModal extends PureComponent {
     }
 }
 
-export default translate(['newSeedSetup', 'global'])(SeedInfoModal);
+export default withNamespaces(['newSeedSetup', 'global'])(SeedInfoModal);
