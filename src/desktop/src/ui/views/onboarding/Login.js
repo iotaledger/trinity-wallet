@@ -120,7 +120,7 @@ class Login extends React.Component {
         if (wallet.addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
         } else {
-            this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
+            this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
     };
 

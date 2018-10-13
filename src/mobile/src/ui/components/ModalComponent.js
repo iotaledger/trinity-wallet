@@ -60,7 +60,7 @@ export default function withSafeAreaView(WrappedComponent) {
     class EnhancedComponent extends PureComponent {
         static propTypes = {
             /** Child component */
-            modalContent: PropTypes.string,
+            modalContent: PropTypes.string.isRequired,
             /** @ignore */
             modalProps: PropTypes.object,
             /** @ignore */

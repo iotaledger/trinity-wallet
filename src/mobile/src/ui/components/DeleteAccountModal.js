@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         paddingVertical: height / 18,
         width: width / 1.15,
     },
-    questionText: {
+    modalInfoText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,

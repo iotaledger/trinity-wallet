@@ -31,10 +31,11 @@ import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
 import { isIPhoneX } from 'libs/device';
 
 function applyHOCs(screen) {
+    const withHOCs = withDropdownAlert(withStatusBar(withModal(withRouteMonitor(screen))));
     if (isIPhoneX) {
-        screen = withSafeAreaView(screen);
+        return withSafeAreaView(withHOCs(screen));
     }
-    return withDropdownAlert(withStatusBar(withModal(withRouteMonitor(screen))));
+    return withHOCs(screen);
 }
 
 export default function registerScreens(store, Provider) {
