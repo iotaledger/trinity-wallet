@@ -524,7 +524,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 }
 
                 // Check if input count does not exceed maximum supported by the SeedStore type
-                if(seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs){
+                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs){
                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
                 }
 
@@ -542,7 +542,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     ],
                 );
             })
-            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
@@ -552,6 +552,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 return {
                     inputs: transferInputs,
                     address: remainderAddress,
+                    keyIndex: remainderIndex
                 };
             });
     };

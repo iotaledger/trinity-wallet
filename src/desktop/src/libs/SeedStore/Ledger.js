@@ -101,8 +101,10 @@ class Ledger {
     prepareTransfers = async (transfers, options = null) => {
         const seed = await Electron.ledger.selectSeed(this.index);
 
+        const remainder = { address: options.address, keyIndex: options.keyIndex };
+
         Electron.send('ledger', { awaitTransaction: true });
-        const trytes = await seed.signTransaction(transfers, options.inputs);
+        const trytes = await seed.signTransaction(transfers, options.inputs, remainder);
         Electron.send('ledger', { awaitTransaction: false });
 
         return trytes;
