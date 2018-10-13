@@ -5,11 +5,11 @@
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
         "refresh": "Aktualisieren",
-        "balanceError": "Nicht genügend Guthaben",
-        "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
+        "balanceError": "Nicht genug Guthaben",
+        "balanceErrorMessage": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "totalBalance": "Gesamtsaldo",
         "transferError": "Übertragungsfehler",
-        "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
+        "transferErrorMessage": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
         "transferSentMessage": "Deine Transaktion wurde an den Tangle gesendet.",
         "messageSent": "Nachricht gesendet",
@@ -715,7 +715,7 @@
         "explanation": "Trinity Desktop Version 0.3.4 enthielt einen Fehler, der Guthaben vorübergehend sperrte. Dies wirkt sich auf eine kleine Anzahl von Benutzern aus, welche Transaktionen mit 0.3.4 durchgeführt haben.",
         "explanationAccounts": "Gesperrtes Guthaben wurde auf deinen Konten gefunden: {{accounts}}. Trinity wird jetzt automatisch dein Guthaben wiederherstellen, indem es dieses auf eine neue Adresse verschiebt.",
         "proceed": "Weiter zur Wiederherstellung",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Transaktion bereinigen"
+        "sweepConfirmation": "Du verschiebst {{amount}} zu Adresse {{address}}, Konto: {{accountName}}, Adressindex: {{index}}",
+        "sweepConfirmationTitle": "Transaktion korrigieren"
     }
 }
