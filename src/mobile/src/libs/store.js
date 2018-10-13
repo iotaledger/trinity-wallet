@@ -3,7 +3,6 @@ import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { AsyncStorage } from 'react-native';
 import { doesSaltExistInKeychain } from 'libs/keychain';
 import store, { persistStore, purgeStoredState, createPersistor } from '../../../shared/store';
-import initializeApp from '../ui/routes/entry';
 import { setAppVersions, resetWallet } from '../../../shared/actions/settings';
 import { updatePersistedState } from '../../../shared/libs/utils';
 
@@ -25,64 +24,72 @@ const shouldMigrate = (restoredState) => {
 /**
  * Resets the wallet if the keychain is empty
  * Fixes issues related to iCloud backup
- * @param {object} state
+ * @param {object} store
+ *
+ * @returns {Promise<object>}
+ *
  */
-const resetIfKeychainIsEmpty = (state) => {
-    doesSaltExistInKeychain().then((exists) => {
+export const resetIfKeychainIsEmpty = (store) => {
+    return doesSaltExistInKeychain().then((exists) => {
         if (!exists) {
-            purgeStoredState({ storage: persistConfig.storage }).then(() => {
-                state.dispatch(resetWallet());
+            return purgeStoredState({ storage: persistConfig.storage }).then(() => {
+                store.dispatch(resetWallet());
                 // Set the new app version
-                state.dispatch(
+                store.dispatch(
                     setAppVersions({
                         version: getVersion(),
                         buildNumber: getBuildNumber(),
                     }),
                 );
-                return initializeApp(state);
+
+                return store;
             });
         }
+
+        return store;
     });
 };
 
-const migrate = (state, restoredState) => {
-    return state.getState().accounts.onboardingComplete
-        ? resetIfKeychainIsEmpty(state)
-        : Promise.resolve()
-              .then(() => {
-                  // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
-                  // since this would be installed as a fresh application.
-                  const hasAnUpdate = shouldMigrate(restoredState);
+export const migrate = (store, restoredState) => {
+    // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
+    // since this would be installed as a fresh application.
+    const hasAnUpdate = shouldMigrate(restoredState);
 
-                  if (!hasAnUpdate) {
-                      state.dispatch(
-                          setAppVersions({
-                              version: getVersion(),
-                              buildNumber: getBuildNumber(),
-                          }),
-                      );
+    if (!hasAnUpdate) {
+        store.dispatch(
+            setAppVersions({
+                version: getVersion(),
+                buildNumber: getBuildNumber(),
+            }),
+        );
 
-                      return initializeApp(state);
-                  }
+        return Promise.resolve(store);
+    }
 
-                  return purgeStoredState({ storage: persistConfig.storage }).then(() => {
-                      state.dispatch(resetWallet());
-                      // Set the new app version
-                      state.dispatch(
-                          setAppVersions({
-                              version: getVersion(),
-                              buildNumber: getBuildNumber(),
-                          }),
-                      );
+    return purgeStoredState({ storage: persistConfig.storage }).then(() => {
+        store.dispatch(resetWallet());
+        // Set the new app version
+        store.dispatch(
+            setAppVersions({
+                version: getVersion(),
+                buildNumber: getBuildNumber(),
+            }),
+        );
 
-                      const persistor = createPersistor(state, persistConfig);
-                      const updatedState = updatePersistedState(state.getState(), restoredState);
-                      persistor.rehydrate(updatedState);
+        const persistor = createPersistor(store, persistConfig);
+        const updatedState = updatePersistedState(store.getState(), restoredState);
+        persistor.rehydrate(updatedState);
 
-                      return initializeApp(state);
-                  });
-              })
-              .catch((err) => console.error(err)); // eslint-disable-line no-console
+        return store;
+    });
 };
 
-export const persistor = persistStore(store, persistConfig, (err, restoredState) => migrate(store, restoredState));
+export const persistStoreAsync = () =>
+    new Promise((resolve) =>
+        persistStore(store, persistConfig, (err, restoredState) =>
+            resolve({
+                store,
+                restoredState,
+            }),
+        ),
+    );

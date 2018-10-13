@@ -15,7 +15,7 @@ import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
-import { persistStoreAsync, migrate } from 'libs/store';
+import { persistStoreAsync, migrate, resetIfKeychainIsEmpty } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
 
 const launch = (store) => {
@@ -160,6 +160,7 @@ const hasConnection = (
 onAppStart()
     .then(() => persistStoreAsync())
     .then(({ store, restoredState }) => migrate(store, restoredState))
+    .then((store) => resetIfKeychainIsEmpty(store))
     .then((store) => {
         overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
