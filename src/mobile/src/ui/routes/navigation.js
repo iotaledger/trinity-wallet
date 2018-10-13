@@ -31,7 +31,7 @@ import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
 import { isIPhoneX } from 'libs/device';
 
 function applyHOCs(screen) {
-    const withHOCs = withDropdownAlert(withStatusBar(withModal(withRouteMonitor(screen))));
+    const withHOCs = (c) => withDropdownAlert(withStatusBar(withModal(withRouteMonitor(c))));
     if (isIPhoneX) {
         return withSafeAreaView(withHOCs(screen));
     }
