@@ -72,3 +72,13 @@ export const DataPointSchema = {
         time: 'int',
     },
 };
+
+export const NodeSchema = {
+    name: 'Node',
+    primaryKey: 'url',
+    properties: {
+        url: 'string', // Node URL
+        custom: 'bool', // Whether the node was added by the user
+        remotePow: { type: 'bool', default: false }, // Whether the node supports remote PoW
+    },
+};
