@@ -49,13 +49,6 @@
         "proceed": "계속",
         "qr": "QR",
         "enterSeed": "시드를 입력하세요.",
-        "mainWallet": "주 계정",
-        "secondWallet": "두 번째 계정",
-        "thirdWallet": "세 번째 계정",
-        "fourthWallet": "네 번째 계정",
-        "fifthWallet": "다섯 번째 계정",
-        "sixthWallet": "여섯 번째 계정",
-        "otherWallet": "기타 계정",
         "yes": "네",
         "no": "아니오",
         "okay": "확인",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "작업증명 수행 중 문제가 발생하였습니다.",
         "tryingAgainWithLocalPoW": "기기에서 다시 작업증명을 시도합니다.",
         "tryingAgainWithDifferentNode": "다른 노드로 다시 시도합니다.",
-        "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다."
+        "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",

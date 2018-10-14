@@ -208,4 +208,6 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
 });
 
-export default withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken));
+export default withNamespaces(['twoFA', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupEnterToken),
+);

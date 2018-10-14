@@ -68,7 +68,6 @@ export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState
     const password = getState().wallet.password;
 
     const sweeps = accounts.map(async (account) => {
-
         const seedStore = await new SeedStore(password, account.accountName);
         await dispatch(cleanUpAccountState(seedStore, account.accountName));
 

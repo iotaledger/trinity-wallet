@@ -49,13 +49,6 @@
         "proceed": "ادامه",
         "qr": "QR",
         "enterSeed": "لطفا سید خود را وارد کنید.",
-        "mainWallet": "حساب اصلی",
-        "secondWallet": "حساب دوم",
-        "thirdWallet": "حساب سوم",
-        "fourthWallet": "حساب چهارم",
-        "fifthWallet": "حساب پنجم",
-        "sixthWallet": "حساب ششم",
-        "otherWallet": "حساب دیگر",
         "yes": "بله",
         "no": "نه",
         "okay": "باشه",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",

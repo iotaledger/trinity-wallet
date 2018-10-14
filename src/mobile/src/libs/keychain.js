@@ -38,12 +38,16 @@ export const keychain = {
     },
     clear: (alias) => {
         return new Promise((resolve, reject) => {
-            Keychain.resetInternetCredentials(alias).then(() => resolve()).catch((err) => reject(err));
+            Keychain.resetInternetCredentials(alias)
+                .then(() => resolve())
+                .catch((err) => reject(err));
         });
     },
     set: (alias, nonce, item) => {
         return new Promise((resolve, reject) => {
-            Keychain.setInternetCredentials(alias, nonce, item).then(() => resolve()).catch((err) => reject(err));
+            Keychain.setInternetCredentials(alias, nonce, item)
+                .then(() => resolve())
+                .catch((err) => reject(err));
         });
     },
 };
@@ -59,6 +63,15 @@ export const hash = async (password) => {
     const saltItem = await keychain.get(ALIAS_SALT);
     const salt = await decodeBase64(saltItem.item);
     return await generatePasswordHash(password, salt);
+};
+
+export const doesSaltExistInKeychain = () => {
+    return keychain.get(ALIAS_SALT).then((salt) => {
+        if (!salt) {
+            return false;
+        }
+        return true;
+    });
 };
 
 export const storeSaltInKeychain = async (salt) => {

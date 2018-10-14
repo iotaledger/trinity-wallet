@@ -49,13 +49,6 @@
         "proceed": "Continuar",
         "qr": "QR",
         "enterSeed": "Por favor, introduzca su semilla.",
-        "mainWallet": "CUENTA PRINCIPAL",
-        "secondWallet": "SEGUNDA CUENTA",
-        "thirdWallet": "TERCERA CUENTA",
-        "fourthWallet": "CUARTA CUENTA",
-        "fifthWallet": "QUINTA CUENTA",
-        "sixthWallet": "SEXTA CUENTA",
-        "otherWallet": "OTRA CUENTA",
         "yes": "Sí",
         "no": "No",
         "okay": "De acuerdo",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Ocurrio un problema al realizar el PoW.",
         "tryingAgainWithLocalPoW": "Intente nuevamente con local PoW.",
         "tryingAgainWithDifferentNode": "Intente nuevamente con un nodo diferente.",
-        "errorFetchingAccountInformation": "Error al obtener la información de la cuenta."
+        "errorFetchingAccountInformation": "Error al obtener la información de la cuenta.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",

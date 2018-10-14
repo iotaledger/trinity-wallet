@@ -224,4 +224,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default withNamespaces(['changePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ChangePassword));
+export default withNamespaces(['changePassword', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+);

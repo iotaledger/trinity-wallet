@@ -168,4 +168,6 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default withNamespaces(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSelection));
+export default withNamespaces(['languageSetup', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(LanguageSelection),
+);
