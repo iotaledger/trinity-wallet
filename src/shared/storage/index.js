@@ -38,8 +38,7 @@ class Node {
      * @return {Realm.Results}
      */
     static getRemotePowNodes() {
-        const nodes = this.getNodes();
-        return nodes.filtered('remotePow == true');
+        return this.getNodes().filtered('remotePow == true');
     }
 
     /**
@@ -57,20 +56,18 @@ class Node {
     }
 
     /**
-     * Changes the custom node URL
+     * Deletes all custom nodes
      * @param  {string} url New node URL
      */
-    static editCustomNode(url) {
-        const nodes = this.getNodes();
-        const customNodes = nodes.filtered('custom == true');
+    static deleteAllCustomNodes() {
+        const customNodes = this.getNodes().filtered('custom == true');
         realm.write(() => {
             realm.delete(customNodes);
         });
-        this.addCustomNode(url);
     }
 
     /**
-     * Updates the 'remotePow' field of an existing node
+     * Updates the 'remotePow' property of an existing node
      * @param  {string} url                URL of the node to be updated
      * @param  {boolean} supportsRemotePow Whether the node supports remote PoW
      */
