@@ -1653,10 +1653,10 @@ buffer@^5.0.0, buffer@^5.0.8:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
 
-bugsnag-react-native@^2.9.3:
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.9.4.tgz#a8dfcc44f727909d306e40dd980997a3e69fe2e5"
-  integrity sha1-qN/MRPcnkJ0wbkDdmAmXo+af4uU=
+bugsnag-react-native@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.11.0.tgz#a65db95a1b4318e7e0089815ddc4f0779a678616"
+  integrity sha512-1YhPC5ZRCyXvmLuGBklBhNo0/H2Rxs/vU34yij0ElzJsyByYACwMpOEd/NUYdrhEoDSyjStbvAZ9hGSpT587kg==
   dependencies:
     iserror "^0.0.2"
     promise "^7"
