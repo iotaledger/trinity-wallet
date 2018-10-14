@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import withChartData from 'shared-modules/containers/components/Chart';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
@@ -264,4 +264,4 @@ class Chart extends PureComponent {
     }
 }
 
-export default translate('chart')(withChartData(Chart));
+export default withNamespaces('chart')(withChartData(Chart));

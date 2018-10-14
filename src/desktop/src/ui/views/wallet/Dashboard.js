@@ -2,7 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -59,7 +59,7 @@ class Dashboard extends React.PureComponent {
 
         const seedStore = await new SeedStore[accountType](password, accountName);
 
-        this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
+        this.props.getAccountInfo(seedStore, accountName, Electron.notify);
     };
 
     render() {
@@ -134,4 +134,4 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withI18n()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

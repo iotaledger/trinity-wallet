@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -50,9 +50,9 @@ class Wallet extends React.PureComponent {
     };
 
     componentDidMount() {
-        //if (!this.props.completedByteTritSweep) {
-        this.byteTritCheck();
-        //}
+        if (!this.props.completedByteTritSweep) {
+            this.byteTritCheck();
+        }
     }
 
     byteTritCheck = () => {
@@ -72,9 +72,9 @@ class Wallet extends React.PureComponent {
             }
         });
 
-        Promise.all(accounts).then((accounts) => {
-            accounts = accounts.filter((account) => account && account.accountName);
-            this.props.byteTritCheck(accounts, Electron.genFn);
+        Promise.all(accounts).then((accountData) => {
+            accountData = accountData.filter((account) => account && account.accountName);
+            this.props.byteTritCheck(accountData, Electron.genFn);
         });
     };
 
@@ -140,4 +140,4 @@ const mapDispatchToProps = {
     byteTritSweep,
 };
 
-export default withRouter(translate()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));
+export default withRouter(withI18n()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));

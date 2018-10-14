@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
 import tinycolor from 'tinycolor2';
@@ -194,4 +194,4 @@ export class PasswordManagerModal extends PureComponent {
     }
 }
 
-export default translate(['copyToClipboard', 'global'])(PasswordManagerModal);
+export default withNamespaces(['copyToClipboard', 'global'])(PasswordManagerModal);

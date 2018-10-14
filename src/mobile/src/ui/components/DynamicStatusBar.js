@@ -29,13 +29,19 @@ class DynamicStatusBar extends Component {
 
     componentWillReceiveProps(newProps) {
         const { isModalActive, currentRoute } = this.props;
+        // Reset StatusBar on modal open/close. Prevents residual status bar colour change when an alert is open during modal activity toggle
         if (isModalActive !== newProps.isModalActive) {
             this.resetStatusBar(currentRoute);
-            timer.setTimeout('timeout', () => this.resetStatusBar(currentRoute), 400);
+            timer.setTimeout('resetStatusBarOnModalActivity', () => this.resetStatusBar(currentRoute), 400);
         }
         if (currentRoute !== newProps.currentRoute) {
-            timer.setTimeout('timeout', () => this.resetStatusBar(newProps.currentRoute), 400);
+            timer.setTimeout('resetStatusBarOnRouteChange', () => this.resetStatusBar(newProps.currentRoute), 400);
         }
+    }
+
+    componentWillUnmount() {
+        timer.clearTimeout('resetStatusBarOnRouteChange');
+        timer.clearTimeout('resetStatusBarOnModalActivity');
     }
 
     /**

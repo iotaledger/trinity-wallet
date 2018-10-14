@@ -1,7 +1,7 @@
 import isBoolean from 'lodash/isBoolean';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -300,4 +300,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['walletSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WalletSetup));
+export default withNamespaces(['walletSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WalletSetup));

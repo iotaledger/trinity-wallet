@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
@@ -133,5 +133,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default WithBackPressCloseApp()(
-    translate(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete)),
+    withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete)),
 );

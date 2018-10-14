@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
@@ -10,7 +10,7 @@ import { setLanguage, setLocale } from 'shared-modules/actions/settings';
 import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
@@ -187,5 +187,5 @@ const mapDispatchToProps = {
 };
 
 export default WithBackPressCloseApp()(
-    translate(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup)),
+    withNamespaces(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup)),
 );

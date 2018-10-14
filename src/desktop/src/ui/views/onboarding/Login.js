@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 
@@ -120,7 +120,7 @@ class Login extends React.Component {
         if (wallet.addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
         } else {
-            this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
+            this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
     };
 
@@ -252,4 +252,4 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Login));

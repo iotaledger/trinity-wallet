@@ -49,13 +49,6 @@
         "proceed": "Fortfahren",
         "qr": "QR",
         "enterSeed": "Bitte gib deinen Seed ein.",
-        "mainWallet": "HAUPTKONTO",
-        "secondWallet": "ZWEITES KONTO",
-        "thirdWallet": "DRITTES KONTO",
-        "fourthWallet": "VIERTES KONTO",
-        "fifthWallet": "FÜNFTES KONTO",
-        "sixthWallet": "SECHSTES KONTO",
-        "otherWallet": "ANDERES KONTO",
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
         "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
-        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen."
+        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -265,8 +260,8 @@
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
         "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
         "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
-        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen zum fortfahren.",
-        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen zum fortfahren.",
+        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen um fortzufahren.",
+        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen um fortzufahren.",
         "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
@@ -413,7 +408,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuche es nochmal."
+        "nodeChangeErrorExplanation": "Beim Wechseln des Nodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -498,10 +493,10 @@
         "dark": "Dunkel",
         "default": "Standard",
         "electric": "Elektrisch",
-        "ionic": "Ionic",
+        "ionic": "Ionisch",
         "light": "Hell",
-        "lucky": "Lucky",
-        "mint": "Mint",
+        "lucky": "Glücklich",
+        "mint": "Minze",
         "steelblue": "Stahlblau"
     },
     "currencySelection": {
@@ -612,7 +607,7 @@
         "importSuccessExplanation": "Dein Seed wurde erfolgreich importiert.",
         "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
-        "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder klicke auf Durchsuchen",
+        "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder auf Durchsuchen klicken",
         "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",

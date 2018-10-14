@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { manuallySyncAccount } from 'actions/accounts';
 
@@ -228,4 +228,4 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Addresses));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Addresses));

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round, roundDown } from 'libs/utils';
@@ -112,4 +112,4 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
 });
 
-export default connect(mapStateToProps)(translate()(Balance));
+export default connect(mapStateToProps)(withI18n()(Balance));

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
@@ -124,4 +124,4 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Remove));

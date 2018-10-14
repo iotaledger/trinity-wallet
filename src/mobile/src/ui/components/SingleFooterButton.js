@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
 });
 
-/** Onboarding buttons component */
+/** SingleFooterButton component */
 class SingleFooterButton extends PureComponent {
     static propTypes = {
         /** @ignore */

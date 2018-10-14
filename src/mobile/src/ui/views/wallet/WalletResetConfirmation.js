@@ -1,4 +1,4 @@
-import { translate, Trans } from 'react-i18next';
+import { withNamespaces, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
@@ -182,5 +182,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default WithBackPressGoToHome()(
-    translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation)),
+    withNamespaces(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation)),
 );

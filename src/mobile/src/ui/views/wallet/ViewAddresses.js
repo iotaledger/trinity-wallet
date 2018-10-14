@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { selectAccountInfo } from 'shared-modules/selectors/accounts';
@@ -232,4 +232,4 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
 });
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

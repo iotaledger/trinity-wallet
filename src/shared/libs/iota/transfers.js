@@ -49,7 +49,7 @@ import {
     promoteTransactionAsync,
     replayBundleAsync,
 } from './extendedApi';
-import i18next from '../../i18next.js';
+import i18next from '../../libs/i18next.js';
 import {
     convertFromTrytes,
     EMPTY_HASH_TRYTES,

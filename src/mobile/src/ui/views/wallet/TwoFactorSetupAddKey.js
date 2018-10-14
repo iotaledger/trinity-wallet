@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 import { Navigation } from 'react-native-navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
@@ -216,5 +216,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default WithBackPressGoToHome()(
-    translate(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
+    withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
 );

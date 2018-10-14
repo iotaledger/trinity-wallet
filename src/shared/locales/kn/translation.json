@@ -49,13 +49,6 @@
         "proceed": "ಮುಂದುವರೆಯಿರಿ",
         "qr": "QR",
         "enterSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ.",
-        "mainWallet": "ಮುಖ್ಯ ಖಾತೆ",
-        "secondWallet": "ಎರಡನೇ ಖಾತೆ",
-        "thirdWallet": "ಮೂರನೇ ಖಾತೆ",
-        "fourthWallet": "ನಾಲ್ಕನೇ ಖಾತೆ",
-        "fifthWallet": "ಐದನೇ ಖಾತೆ",
-        "sixthWallet": "ಆರನೇ ಖಾತೆ",
-        "otherWallet": "ಇತರ ಖಾತೆ",
         "yes": "ಹೌದು",
         "no": "ಇಲ್ಲ",
         "okay": "ಸರಿ",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "ಕೆಲಸದ ಪುರಾವೆ ಮಾಡುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ.",
         "tryingAgainWithLocalPoW": "ಸ್ಥಳೀಯ ಕೆಲಸದ ಪುರಾವೆಯೊಂದಿಗೆ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.",
         "tryingAgainWithDifferentNode": "ಬೇರೆ ನೋಡ್ ನೊಂದಿಗೆ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
-        "errorFetchingAccountInformation": "ಖಾತೆ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳುವಲ್ಲಿ ದೋಷ."
+        "errorFetchingAccountInformation": "ಖಾತೆ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳುವಲ್ಲಿ ದೋಷ.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",

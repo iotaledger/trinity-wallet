@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { setFullNode } from 'shared-modules/actions/settings';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import DropdownComponent from 'ui/components/Dropdown';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -202,4 +202,4 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));
+export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));

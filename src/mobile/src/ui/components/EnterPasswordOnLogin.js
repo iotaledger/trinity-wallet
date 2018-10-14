@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
@@ -136,4 +136,4 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['login', 'global'])(connect(null, mapDispatchToProps)(EnterPasswordOnLogin));
+export default withNamespaces(['login', 'global'])(connect(null, mapDispatchToProps)(EnterPasswordOnLogin));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -142,4 +142,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SecuritySettings));
+export default withNamespaces(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SecuritySettings));

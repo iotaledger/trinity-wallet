@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
@@ -228,4 +228,4 @@ const mapDispatchToProps = {
     setNotifications,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));

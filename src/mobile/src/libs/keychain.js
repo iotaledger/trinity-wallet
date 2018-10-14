@@ -68,6 +68,15 @@ export const hash = async (password) => {
     return await generatePasswordHash(password, salt);
 };
 
+export const doesSaltExistInKeychain = () => {
+    return keychain.get(ALIAS_SALT).then((salt) => {
+        if (!salt) {
+            return false;
+        }
+        return true;
+    });
+};
+
 export const storeSaltInKeychain = async (salt) => {
     const nonce64 = await encodeBase64(await getNonce());
     const salt64 = await encodeBase64(salt);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import {
@@ -199,4 +199,4 @@ const mapDispatchToProps = {
     generateNewAddress,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Receive));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Receive));

@@ -35,7 +35,7 @@ const getProps = (overrides) =>
 
 describe('Testing SetAccountName component', () => {
     describe('propTypes', () => {
-        it('should require a componentID object as a prop', () => {
+        it('should require a componentId object as a prop', () => {
             expect(SetAccountName.propTypes.componentId).toEqual(PropTypes.string.isRequired);
         });
 

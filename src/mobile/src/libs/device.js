@@ -1,6 +1,6 @@
 import { Platform, PermissionsAndroid } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import i18next from 'i18next';
+import i18next from 'shared-modules/libs/i18next';
 
 const device = DeviceInfo.getModel();
 const deviceId = DeviceInfo.getDeviceId();
