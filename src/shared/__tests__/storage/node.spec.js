@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { realm, Node } from '../../storage';
-//import { NodeSchema } from '../../schema';
 
 describe('storage: Node', () => {
     beforeEach(() => {
