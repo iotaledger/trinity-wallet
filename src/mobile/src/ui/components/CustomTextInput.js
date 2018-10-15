@@ -404,7 +404,7 @@ class CustomTextInput extends Component {
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
-                        selectionColor={theme.primary.color}
+                        selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
                     />
                     {(widget === 'qr' && this.renderQR({ borderLeftColor: theme.input.alt })) ||
