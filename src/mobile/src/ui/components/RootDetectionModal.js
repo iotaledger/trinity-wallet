@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ModalButtons from './ModalButtons';
@@ -11,16 +11,16 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 30,
-        width: width / 1.15,
+        width: Styling.contentWidth,
         paddingHorizontal: width / 50,
     },
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize6,
+        fontSize: Styling.fontSize6,
         textAlign: 'center',
         color: 'red',
         paddingVertical: height / 25,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     infoText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingBottom: height / 35,
         textAlign: 'center',
         width: width / 1.3,
@@ -60,7 +60,7 @@ export class RootDetectionModal extends PureComponent {
     render() {
         const { t, backgroundColor, textColor, borderColor, warningColor } = this.props;
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: Styling.contentWidth, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.warningText, warningColor]}>{t('warning')}</Text>
                     <View style={{ marginBottom: height / 35 }}>

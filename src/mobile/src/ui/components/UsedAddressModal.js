@@ -2,10 +2,9 @@ import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -18,12 +17,12 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingTop: height / 20,
         paddingBottom: height / 25,
-        width: width / 1.15,
+        width: Styling.contentWidth,
         paddingHorizontal: width / 20,
     },
     textContainer: {
@@ -33,12 +32,12 @@ const styles = StyleSheet.create({
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     boldText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'justify',
     },
 });
@@ -55,8 +54,6 @@ class UsedAddressModal extends PureComponent {
         borderColor: PropTypes.object.isRequired,
         /** Theme body */
         body: PropTypes.object.isRequired,
-        /** Theme bar */
-        bar: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -64,11 +61,11 @@ class UsedAddressModal extends PureComponent {
     }
 
     render() {
-        const { t, body, bar, textColor, borderColor } = this.props;
+        const { t, body, textColor, borderColor } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
-                <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: body.bg }}>
+                <View style={{ width: Styling.contentWidth, alignItems: 'center', backgroundColor: body.bg }}>
                     <View style={[styles.modalContent, borderColor]}>
                         <View style={styles.textContainer}>
                             <Text style={[styles.regularText, textColor]}>{t('cantSpendFullBalanceQuestion')}</Text>
@@ -81,7 +78,6 @@ class UsedAddressModal extends PureComponent {
                         </View>
                     </View>
                 </View>
-                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </TouchableOpacity>
         );
     }

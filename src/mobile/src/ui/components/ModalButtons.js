@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
@@ -14,27 +14,27 @@ const styles = StyleSheet.create({
     },
     leftButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
     rightButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
     leftText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     rightText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
@@ -67,7 +67,7 @@ class ModalButtons extends PureComponent {
 
     static defaultProps = {
         buttonWidth: { width: width / 2.7 },
-        containerWidth: { width: width / 1.15 },
+        containerWidth: { width: Styling.contentWidth },
     };
 
     render() {

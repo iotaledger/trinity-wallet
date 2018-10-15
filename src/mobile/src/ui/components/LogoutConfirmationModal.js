@@ -2,10 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { withNamespaces } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 import ModalButtons from './ModalButtons';
 
 const styles = StyleSheet.create({
@@ -19,15 +18,15 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.15,
+        width: Styling.contentWidth,
     },
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingBottom: height / 16,
     },
 });
@@ -46,8 +45,6 @@ export class LogoutConfirmationModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
-        /** Bar background color */
-        barBg: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -55,7 +52,7 @@ export class LogoutConfirmationModal extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, barBg, textColor, borderColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
             <View style={styles.modalContainer}>
@@ -70,7 +67,6 @@ export class LogoutConfirmationModal extends PureComponent {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={barBg} />
             </View>
         );
     }

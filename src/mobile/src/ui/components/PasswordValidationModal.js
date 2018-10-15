@@ -2,12 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, Keyboard } from 'react-native';
 import { withNamespaces } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import InfoBox from './InfoBox';
 import CustomTextInput from './CustomTextInput';
 import ModalButtons from './ModalButtons';
-import StatefulDropdownAlert from './StatefulDropdownAlert';
 
 const styles = StyleSheet.create({
     container: {
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
     modalText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -55,7 +54,7 @@ export class PasswordValidationModal extends PureComponent {
                         <View style={{ backgroundColor: theme.body.bg }}>
                             <InfoBox
                                 body={theme.body}
-                                width={width / 1.15}
+                                width={Styling.contentWidth}
                                 text={
                                     <View>
                                         <Text
@@ -97,7 +96,6 @@ export class PasswordValidationModal extends PureComponent {
                             />
                         </View>
                     </View>
-                    <StatefulDropdownAlert backgroundColor={theme.body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );

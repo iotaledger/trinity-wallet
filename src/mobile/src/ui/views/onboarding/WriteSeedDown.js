@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
-import Modal from 'react-native-modal';
 import RNPrint from 'react-native-print';
 import { paperWallet } from 'shared-modules/images/PaperWallets.js';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import ChecksumComponent from 'ui/components/Checksum';
-import ChecksumModalComponent from 'ui/components/ChecksumModal';
 
 const styles = StyleSheet.create({
     container: {
@@ -42,25 +41,25 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     textContainer: {
-        width: width / 1.155,
+        width: Styling.contentWidth5,
         alignItems: 'center',
     },
     infoText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -69,8 +68,8 @@ const styles = StyleSheet.create({
 /** Write Seed Down component */
 class WriteSeedDown extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -79,16 +78,17 @@ class WriteSeedDown extends Component {
         seed: PropTypes.string.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
             isCopyComplete: false,
-            isModalActive: false,
         };
         this.openModal = this.openModal.bind(this);
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
@@ -105,20 +105,6 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     * Hides navigation bar
-     *
-     * @method onNavigatorEvent
-     * @param {object} event
-     */
-    onNavigatorEvent(event) {
-        if (event.id === 'willAppear') {
-            this.props.navigator.toggleNavBar({
-                to: 'hidden',
-            });
-        }
-    }
-
-    /**
      * Wrapper method for printing a blank paper wallet
      * @method onPrintPress
      */
@@ -131,7 +117,7 @@ class WriteSeedDown extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        this.props.navigator.pop({ animated: false });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -166,8 +152,10 @@ class WriteSeedDown extends Component {
             </body>
             </html>`;
         try {
-            this.props.navigator.toggleNavBar({
-                to: 'shown',
+            Navigation.mergeOptions('appStack', {
+                topBar: {
+                    visible: true,
+                },
             });
             await RNPrint.print({ html: blankWalletHTML });
         } catch (err) {
@@ -175,29 +163,40 @@ class WriteSeedDown extends Component {
         }
     }
 
+    /**
+     * Hides navigation bar
+     *
+     * @method componentDidAppear
+     */
+    componentDidAppear() {
+        Navigation.mergeOptions('appStack', {
+            topBar: {
+                visible: false,
+            },
+        });
+    }
+
     openModal() {
-        this.setState({ isModalActive: true });
+        const { theme } = this.props;
+        this.props.toggleModalActivity('checksum', {
+            theme,
+            closeModal: () => this.props.toggleModalActivity(),
+        });
     }
 
     closeModal() {
-        this.setState({ isModalActive: false });
+        this.props.toggleModalActivity();
     }
-
-    renderModalContent = () => {
-        const { theme: { body, primary } } = this.props;
-        return <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.closeModal()} />;
-    };
 
     render() {
         const { t, theme, seed, minimised } = this.props;
-        const { isModalActive, isCopyComplete } = this.state;
+        const { isCopyComplete } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                 {!minimised && (
                     <View>
-                        <DynamicStatusBar backgroundColor={theme.body.bg} />
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
                             <View style={{ flex: 0.7 }} />
@@ -230,7 +229,7 @@ class WriteSeedDown extends Component {
                             <View style={{ flex: 0.25 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onPrintPress()}
                                 onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
                                 leftButtonText={t('saveYourSeed:printBlankWallet')}
@@ -238,19 +237,6 @@ class WriteSeedDown extends Component {
                                 rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
                             />
                         </View>
-                        <Modal
-                            backdropTransitionInTiming={isAndroid ? 500 : 300}
-                            backdropTransitionOutTiming={200}
-                            backdropColor={theme.body.bg}
-                            backdropOpacity={0.9}
-                            style={{ alignItems: 'center', margin: 0 }}
-                            isVisible={isModalActive}
-                            onBackButtonPress={() => this.closeModal()}
-                            closeModalContentWhileAnimating
-                            useNativeDriver={!!isAndroid}
-                        >
-                            {this.renderModalContent()}
-                        </Modal>
                     </View>
                 )}
             </View>
@@ -264,4 +250,10 @@ const mapStateToProps = (state) => ({
     minimised: state.ui.minimised,
 });
 
-export default WithUserActivity()(withNamespaces(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown)));
+const mapDispatchToProps = {
+    toggleModalActivity,
+};
+
+export default WithUserActivity()(
+    withNamespaces(['writeSeedDown', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WriteSeedDown)),
+);

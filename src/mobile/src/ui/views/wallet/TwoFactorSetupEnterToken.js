@@ -4,17 +4,16 @@ import authenticator from 'authenticator';
 import { set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { withNamespaces } from 'react-i18next';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 8,
@@ -52,14 +51,14 @@ const styles = StyleSheet.create({
 /** Two factor authentication token verification component */
 class TwoFactorSetupEnterToken extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -94,17 +93,7 @@ class TwoFactorSetupEnterToken extends Component {
      * @method goBack
      */
     goBack() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -113,17 +102,30 @@ class TwoFactorSetupEnterToken extends Component {
      */
     navigateToHome() {
         const { theme: { body, bar } } = this.props;
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: bar.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'home',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: bar.alt,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -164,7 +166,6 @@ class TwoFactorSetupEnterToken extends Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar backgroundColor={theme.body.bg} />
                     <View style={styles.topWrapper}>
                         <Icon name="iota" size={width / 8} color={theme.body.color} />
                     </View>
@@ -174,7 +175,7 @@ class TwoFactorSetupEnterToken extends Component {
                         <CustomTextInput
                             label={t('code')}
                             onChangeText={(code) => this.setState({ code })}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -185,14 +186,13 @@ class TwoFactorSetupEnterToken extends Component {
                         />
                     </View>
                     <View style={styles.bottomWrapper}>
-                        <OnboardingButtons
+                        <DualFooterButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
                             leftButtonText={t('global:back')}
                             rightButtonText={t('global:done')}
                         />
                     </View>
-                    <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );

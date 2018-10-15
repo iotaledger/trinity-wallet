@@ -4,15 +4,14 @@ import authenticator from 'authenticator';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
+import { Navigation } from 'react-native-navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import GENERAL from 'ui/theme/general';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -42,25 +41,25 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 15,
     },
     infoText: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     qrContainer: {
         backgroundColor: 'white',
-        borderRadius: GENERAL.borderRadiusLarge,
+        borderRadius: Styling.borderRadiusLarge,
         padding: width / 30,
         marginBottom: height / 25,
     },
@@ -69,12 +68,12 @@ const styles = StyleSheet.create({
 /** Two factor authentication setup component */
 export class TwoFactorSetupAddKey extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -115,9 +114,7 @@ export class TwoFactorSetupAddKey extends Component {
      * @method goBack
      */
     goBack() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -130,20 +127,32 @@ export class TwoFactorSetupAddKey extends Component {
 
         return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
-                this.props.navigator.push({
-                    screen: 'twoFactorSetupEnterToken',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: body.bg,
-                        tabBarHidden: true,
-                        drawUnderTabBar: true,
-                    },
-                    animated: false,
-                    appStyle: {
-                        orientation: 'portrait',
+                Navigation.push('appStack', {
+                    component: {
+                        name: 'twoFactorSetupEnterToken',
+                        options: {
+                            animations: {
+                                push: {
+                                    enable: false,
+                                },
+                                pop: {
+                                    enable: false,
+                                },
+                            },
+                            layout: {
+                                backgroundColor: body.bg,
+                                orientation: ['portrait'],
+                            },
+                            topBar: {
+                                visible: false,
+                                drawBehind: true,
+                                elevation: 0,
+                            },
+                            statusBar: {
+                                drawBehind: true,
+                                backgroundColor: body.bg,
+                            },
+                        },
                     },
                 });
             })
@@ -163,7 +172,6 @@ export class TwoFactorSetupAddKey extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topWrapper}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
@@ -187,14 +195,13 @@ export class TwoFactorSetupAddKey extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
                         leftButtonText={t('global:goBack')}
                         rightButtonText={t('global:next')}
                     />
                 </View>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }

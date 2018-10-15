@@ -5,8 +5,9 @@ import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { Styling } from 'ui/theme/general';
 import CustomTextInput from './CustomTextInput';
-import OnboardingButtons from './OnboardingButtons';
+import DualFooterButtons from './DualFooterButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -80,7 +81,7 @@ export class Enter2FA extends Component {
                         <CustomTextInput
                             label={t('twoFaToken')}
                             onChangeText={this.handleChange2FAToken}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             keyboardType="numeric"
                             autoCorrect={false}
@@ -92,7 +93,7 @@ export class Enter2FA extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <OnboardingButtons
+                        <DualFooterButtons
                             onLeftButtonPress={this.handleBackPress}
                             onRightButtonPress={this.handleDonePress}
                             leftButtonText={t('global:goBack')}

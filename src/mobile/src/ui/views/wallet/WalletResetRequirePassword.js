@@ -3,19 +3,18 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
-import { setOnboardingComplete } from 'shared-modules/actions/accounts';
-import { clearWalletData, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import { persistor } from 'libs/store';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
+import { persistConfig } from 'libs/store';
+import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -47,24 +46,18 @@ const styles = StyleSheet.create({
  */
 class WalletResetRequirePassword extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
         resetWallet: PropTypes.func.isRequired,
-        /** @ignore */
-        setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
-        clearWalletData: PropTypes.func.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
     };
@@ -97,17 +90,7 @@ class WalletResetRequirePassword extends Component {
      * @method goBack
      */
     goBack() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -126,17 +109,30 @@ class WalletResetRequirePassword extends Component {
      */
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'languageSetup',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -148,13 +144,11 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
         if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
-            persistor
-                .purge()
+            purgeStoredState(persistConfig)
                 .then(() => clearKeychain())
                 .then(() => {
-                    this.props.setOnboardingComplete(false);
-                    this.props.clearWalletData();
-                    this.props.setPassword('');
+                    // resetWallet action creator resets the whole state object to default values
+                    // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
                     this.props.resetWallet();
                     // FIXME: Temporarily needed for password migration
                     this.props.setCompletedForcedPasswordUpdate();
@@ -181,7 +175,6 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
@@ -192,7 +185,7 @@ class WalletResetRequirePassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
-                                containerStyle={{ width: width / 1.15 }}
+                                containerStyle={{ width: Styling.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -203,7 +196,7 @@ class WalletResetRequirePassword extends Component {
                             <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
                                 leftButtonText={t('global:cancel')}
@@ -212,7 +205,6 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -225,9 +217,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     resetWallet,
-    setOnboardingComplete,
-    clearWalletData,
-    setPassword,
     generateAlert,
     setCompletedForcedPasswordUpdate,
 };

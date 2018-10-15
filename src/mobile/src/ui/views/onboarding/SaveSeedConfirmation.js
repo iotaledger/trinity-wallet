@@ -3,18 +3,17 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import Header from 'ui/components/Header';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         color: 'white',
         backgroundColor: 'transparent',
         marginLeft: width / 40,
@@ -87,8 +86,8 @@ const styles = StyleSheet.create({
 /** Seed Seed Confirmation component */
 class SaveSeedConfirmation extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -129,34 +128,40 @@ class SaveSeedConfirmation extends Component {
     }
 
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-                screenBackgroundColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     onNextPress() {
         const { theme: { body } } = this.props;
         const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
         if (hasSavedSeed && hasAgreedToNotCopyPaste) {
-            this.props.navigator.push({
-                screen: 'seedReentry',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+            Navigation.push('appStack', {
+                component: {
+                    name: 'seedReentry',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            backgroundColor: body.bg,
+                        },
+                    },
                 },
-                animated: false,
             });
         }
     }
@@ -222,16 +227,15 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 0.7 }} />
                     <Header textColor={body.color}>{t('didSaveSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.15 }} />
+                    <View style={{ flex: 0.3 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
-                    <View style={{ flex: 0.15 }} />
+                    <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
                         {this.state.showCheckbox ? (
                             <View>
@@ -258,7 +262,7 @@ class SaveSeedConfirmation extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
                         leftButtonText={t('global:goBack')}
@@ -266,7 +270,6 @@ class SaveSeedConfirmation extends Component {
                         rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }

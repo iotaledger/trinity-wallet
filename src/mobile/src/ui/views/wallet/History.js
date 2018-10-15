@@ -1,9 +1,8 @@
-import assign from 'lodash/assign';
+import merge from 'lodash/merge';
 import map from 'lodash/map';
 import has from 'lodash/has';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
-import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
@@ -19,11 +18,10 @@ import {
 } from 'shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared-modules/libs/utils';
-import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { toggleModalActivity, updateModalProps } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import TransactionRow from 'ui/components/TransactionRow';
-import HistoryModalContent from 'ui/components/HistoryModalContent';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { getPowFn } from 'libs/nativeModules';
@@ -59,13 +57,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: height / 5,
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** History screen component */
@@ -100,8 +91,6 @@ class History extends Component {
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
-        /** @ignore */
         isAutoPromoting: PropTypes.bool.isRequired,
         /** @ignore */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
@@ -117,40 +106,75 @@ class History extends Component {
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
         isRetryingFailedTransaction: PropTypes.bool.isRequired,
+        /** @ignore */
+        updateModalProps: PropTypes.func.isRequired,
+        /** @ignore */
+        modalProps: PropTypes.object,
+        /** @ignore */
+        isModalActive: PropTypes.bool,
+        /** @ignore */
+        modalContent: PropTypes.string,
     };
-
-    constructor() {
-        super();
-
-        this.state = {
-            modalProps: null,
-        };
-        this.resetModalProps = this.resetModalProps.bind(this);
-    }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('History');
     }
 
+    componentWillReceiveProps(newProps) {
+        const {
+            isRetryingFailedTransaction,
+            isAutoPromoting,
+            isPromotingTransaction,
+            modalProps,
+            isModalActive,
+            modalContent,
+            theme: { primary, secondary },
+        } = this.props;
+        // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
+        if (isModalActive && modalContent === 'historyContent') {
+            const newBundleProps = newProps.transfers[modalProps.bundle];
+            if (
+                isRetryingFailedTransaction !== newProps.isRetryingFailedTransaction ||
+                isAutoPromoting !== newProps.isAutoPromoting ||
+                isPromotingTransaction !== newProps.isPromotingTransaction
+            ) {
+                this.props.updateModalProps({
+                    disableWhen:
+                        newProps.isAutoPromoting ||
+                        newProps.isPromotingTransaction ||
+                        newProps.isRetryingFailedTransaction,
+                    bundleIsBeingPromoted:
+                        newProps.currentlyPromotingBundleHash === modalProps.bundle && !newBundleProps.persistence,
+                });
+            }
+            if (modalProps.bundle in newProps.transfers && newBundleProps.persistence !== modalProps.persistence) {
+                this.props.updateModalProps({
+                    persistence: newBundleProps.persistence,
+                    status: computeStatusText(
+                        newBundleProps.outputs,
+                        newBundleProps.persistence,
+                        newBundleProps.incoming,
+                    ),
+                    style: { titleColor: modalProps.incoming ? primary.color : secondary.color },
+                });
+            }
+        }
+    }
+
     shouldComponentUpdate(newProps) {
         const { isSyncing, isSendingTransfer, isGeneratingReceiveAddress, isTransitioning } = this.props;
-
         if (isSyncing !== newProps.isSyncing) {
             return false;
         }
-
         if (isSendingTransfer !== newProps.isSendingTransfer) {
             return false;
         }
-
         if (isGeneratingReceiveAddress !== newProps.isGeneratingReceiveAddress) {
             return false;
         }
-
         if (isTransitioning !== newProps.isTransitioning) {
             return false;
         }
-
         return true;
     }
 
@@ -168,6 +192,10 @@ class History extends Component {
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
+            isAutoPromoting,
+            isPromotingTransaction,
+            isRetryingFailedTransaction,
+            failedBundleHashes,
         } = this.props;
         const relevantTransfers = formatRelevantTransactions(transfers, addresses);
 
@@ -183,8 +211,6 @@ class History extends Component {
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
-                status: computeStatusText(outputs, persistence, incoming),
-                confirmationBool: persistence,
                 persistence,
                 value,
                 fullValue: formatValue(transferValue),
@@ -196,26 +222,33 @@ class History extends Component {
                 addresses,
                 icon: incoming ? 'plus' : 'minus',
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
+                status: computeStatusText(outputs, persistence, incoming),
                 outputs,
-                onPress: (modalProps) => {
+                updateModalProps: (content) => this.props.updateModalProps(content),
+                onPress: (props) => {
                     if (isRefreshing) {
                         return;
                     }
-
-                    this.setState({
-                        modalProps: assign({}, modalProps, {
+                    this.props.toggleModalActivity(
+                        'historyContent',
+                        merge({}, props, {
+                            disableWhen: isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction,
+                            isRetryingFailedTransaction,
+                            currentlyPromotingBundleHash,
+                            isFailedTransaction: (bundle) => has(failedBundleHashes, bundle),
                             retryFailedTransaction: (bundle) =>
                                 this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
                             promote: (bundle) =>
                                 this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
-                            onPress: this.props.toggleModalActivity,
-                            generateAlert: this.props.generateAlert,
+                            hideModal: () => this.props.toggleModalActivity(),
+                            generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
-                            addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
+                            relevantAddresses: [
+                                ...map(inputs, withUnitAndChecksum),
+                                ...map(outputs, withUnitAndChecksum),
+                            ],
                         }),
-                    });
-
-                    this.props.toggleModalActivity();
+                    );
                 },
                 style: {
                     titleColor: persistence ? (incoming ? primary.color : secondary.color) : '#fc6e6d',
@@ -237,14 +270,6 @@ class History extends Component {
         });
 
         return orderBy(formattedTransfers, 'time', ['desc']);
-    }
-
-    /**
-     * Reset modal props from internal state
-     */
-    resetModalProps() {
-        this.setState({ modalProps: null });
-        this.props.toggleModalActivity();
     }
 
     renderTransactions() {
@@ -298,47 +323,12 @@ class History extends Component {
 
     render() {
         const transactions = this.renderTransactions();
-        const {
-            theme,
-            isModalActive,
-            isAutoPromoting,
-            isPromotingTransaction,
-            currentlyPromotingBundleHash,
-            isRetryingFailedTransaction,
-            failedBundleHashes,
-        } = this.props;
-        const { modalProps } = this.state;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.2 }} />
                     <View style={styles.listView}>{transactions}</View>
-                    {modalProps && (
-                        <Modal
-                            animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                            animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                            animationInTiming={isAndroid ? 1000 : 300}
-                            animationOutTiming={200}
-                            backdropTransitionInTiming={isAndroid ? 500 : 300}
-                            backdropTransitionOutTiming={200}
-                            backdropColor={theme.body.bg}
-                            backdropOpacity={0.6}
-                            style={styles.modal}
-                            isVisible={isModalActive}
-                            onBackButtonPress={this.resetModalProps}
-                            hideModalContentWhileAnimating
-                            useNativeDriver={isAndroid}
-                        >
-                            <HistoryModalContent
-                                {...modalProps}
-                                disableWhen={isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction}
-                                isRetryingFailedTransaction={isRetryingFailedTransaction}
-                                currentlyPromotingBundleHash={currentlyPromotingBundleHash}
-                                isFailedTransaction={(bundle) => has(failedBundleHashes, bundle)}
-                            />
-                        </Modal>
-                    )}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -357,10 +347,12 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isAutoPromoting: state.polling.isAutoPromoting,
-    isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
     failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
+    modalProps: state.ui.modalProps,
+    isModalActive: state.ui.isModalActive,
+    modalContent: state.ui.modalContent,
 });
 
 const mapDispatchToProps = {
@@ -368,6 +360,7 @@ const mapDispatchToProps = {
     promoteTransaction,
     toggleModalActivity,
     retryFailedTransaction,
+    updateModalProps,
 };
 
 export default WithManualRefresh()(

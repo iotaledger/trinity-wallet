@@ -7,7 +7,7 @@ import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checke
 import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import InfoBox from './InfoBox';
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingLeft: width / 20,
         flex: 6,
     },
@@ -32,19 +32,19 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -142,7 +142,7 @@ export class RootDetectionModal extends PureComponent {
                                 <ModalButtons
                                     onLeftButtonPress={() => this.props.hideModal()}
                                     onRightButtonPress={() => this.onPrintPress()}
-                                    leftText={t('global:back')}
+                                    leftText={t('global:back').toUpperCase()}
                                     rightText={t('print')}
                                     opacity={opacity}
                                     containerWidth={{ width: width / 1.25 }}

@@ -69,6 +69,8 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
+project.ext.react = [entryFile: "index.js"]
+
 apply from: "../../node_modules/react-native/react.gradle"
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -83,6 +85,8 @@ def enableSeparateBuildPerCPUArchitecture = false
  * Run Proguard to shrink the Java bytecode in release builds.
  */
 def enableProguardInReleaseBuilds = true
+
+
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
@@ -100,6 +104,11 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative51"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'

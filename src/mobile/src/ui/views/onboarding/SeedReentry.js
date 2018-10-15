@@ -4,19 +4,16 @@ import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
+import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';
-import Modal from 'react-native-modal';
 import WithUserActivity from 'ui/components/UserActivity';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import QRScannerComponent from 'ui/components/QrScanner';
-import PasswordValidation from 'ui/components/PasswordValidationModal';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
@@ -48,46 +45,40 @@ const styles = StyleSheet.create({
     },
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingTop: height / 60,
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
     },
 });
 
 /** Seed Reentry component */
 class SeedReentry extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         seed: PropTypes.string.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.state = {
             seed: '',
-            isModalVisible: false,
         };
     }
 
@@ -114,17 +105,33 @@ class SeedReentry extends Component {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            this.props.navigator.push({
-                screen: 'setAccountName',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+            Navigation.push('appStack', {
+                component: {
+                    name: 'setAccountName',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            backgroundColor: body.bg,
+                        },
+                    },
                 },
-                animated: false,
             });
             this.setState({ seed: '' });
         } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
@@ -143,17 +150,7 @@ class SeedReentry extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -161,7 +158,7 @@ class SeedReentry extends Component {
      * @method onQRPress
      */
     onQRPress() {
-        this.showModal('qr');
+        this.showModal('qrScanner');
     }
 
     /**
@@ -184,42 +181,30 @@ class SeedReentry extends Component {
                 t('useExistingSeed:validSeedExplanation'),
             );
         }
-        this.hideModal();
+        this.props.toggleModalActivity();
     }
 
-    showModal = (modalContent) => this.setState({ modalContent, isModalVisible: true });
-
-    hideModal = () => this.setState({ isModalVisible: false });
-
-    renderModalContent = (modalContent) => {
-        const { theme, theme: { body, primary } } = this.props;
-        let content = '';
+    showModal = (modalContent) => {
+        const { theme } = this.props;
         switch (modalContent) {
-            case 'qr':
-                content = (
-                    <QRScannerComponent
-                        primary={primary}
-                        body={body}
-                        onQRRead={(data) => this.onQRRead(data)}
-                        hideModal={() => this.hideModal()}
-                    />
-                );
-                break;
+            case 'qrScanner':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    print: () => this.print(),
+                    hideModal: () => this.props.toggleModalActivity(),
+                    onQRRead: (data) => this.onQRRead(data),
+                });
             case 'passwordValidation':
-                content = (
-                    <PasswordValidation
-                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
-                        hideModal={() => this.hideModal()}
-                        theme={theme}
-                    />
-                );
-                break;
+                return this.props.toggleModalActivity(modalContent, {
+                    validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
+                    hideModal: () => this.props.toggleModalActivity(),
+                    theme,
+                });
         }
-        return content;
     };
 
     render() {
-        const { modalContent, seed, isModalVisible } = this.state;
+        const { seed } = this.state;
         const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
@@ -227,7 +212,6 @@ class SeedReentry extends Component {
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                 {!minimised && (
                     <View>
-                        <DynamicStatusBar backgroundColor={theme.body.bg} />
                         <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                             <View>
                                 <View style={styles.topContainer}>
@@ -244,7 +228,7 @@ class SeedReentry extends Component {
                                                 this.setState({ seed: text.toUpperCase() });
                                             }
                                         }}
-                                        containerStyle={{ width: width / 1.15 }}
+                                        containerStyle={{ width: Styling.contentWidth }}
                                         maxLength={MAX_SEED_LENGTH}
                                         autoCapitalize="characters"
                                         autoCorrect={false}
@@ -262,7 +246,7 @@ class SeedReentry extends Component {
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {
                                                 this.setState({ seed });
-                                                this.hideModal();
+                                                this.props.toggleModalActivity();
                                             }}
                                             onRef={(ref) => {
                                                 this.SeedVaultImport = ref;
@@ -285,7 +269,7 @@ class SeedReentry extends Component {
                                     <View style={{ flex: 0.5 }} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <OnboardingButtons
+                                    <DualFooterButtons
                                         onLeftButtonPress={() => this.onBackPress()}
                                         onRightButtonPress={() => this.onDonePress()}
                                         leftButtonText={t(':goBack')}
@@ -294,24 +278,6 @@ class SeedReentry extends Component {
                                 </View>
                             </View>
                         </TouchableWithoutFeedback>
-                        {!isModalVisible && <StatefulDropdownAlert backgroundColor={theme.body.bg} />}
-                        <Modal
-                            animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                            animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                            animationInTiming={isAndroid ? 1000 : 300}
-                            animationOutTiming={200}
-                            backdropTransitionInTiming={isAndroid ? 500 : 300}
-                            backdropTransitionOutTiming={200}
-                            backdropColor={theme.body.bg}
-                            backdropOpacity={0.9}
-                            style={styles.modal}
-                            isVisible={this.state.isModalVisible}
-                            onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                            hideModalContentWhileAnimating
-                            useNativeDriver={isAndroid ? true : false}
-                        >
-                            {this.renderModalContent(modalContent)}
-                        </Modal>
                     </View>
                 )}
             </View>
@@ -327,6 +293,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
+    toggleModalActivity,
 };
 
 export default WithUserActivity()(

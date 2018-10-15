@@ -3529,7 +3529,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@3.0.1:
+hoist-non-react-statics@3.0.1, hoist-non-react-statics@3.x.x:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
   integrity sha512-1kXwPsOi0OGQIZNVMPvgWJ9tSnGMiMfJdihqEzrPEXlHOBh9AAHXX/QYmAJTXztnz/K+PQ8ryCb4eGaN6HlGbQ==
@@ -6066,6 +6066,14 @@ prop-types@15.5.10:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
 
+prop-types@15.x.x:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
@@ -6306,6 +6314,11 @@ react-is@^16.3.2:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
   integrity sha512-ybEM7YOr4yBgFd6w8dJqwxegqZGJNBZl6U27HnGKuTZmDvVrD5quWOK/wAnMywiZzW+Qsk+l4X2c70+thp/A8Q==
 
+react-lifecycles-compat@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-2.0.0.tgz#71d9c4cde47114c4102454f76da055c2bc48c948"
+  integrity sha512-txfpPCQYiazVdcbMRhatqWKcAxJweUu2wDXvts5/7Wyp6+Y9cHojqXHsLPEckzutfHlxZhG8Oiundbmp8Fd6eQ==
+
 react-native-animatable@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.2.4.tgz#b5fb7657e8f6edadbc26697057a327fb920b3039"
@@ -6457,20 +6470,23 @@ react-native-modal-translucent@^1.1.3:
   resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-1.1.3.tgz#9b84fd36061cea4ee1a055a0d7c97e1777a776d6"
   integrity sha512-e2DpapaJiKHr+7XUHDa16QeIfER+1MKD7ZtbVVrqDOyVGdVu5ut+6N7XMuH5iLm5O02c90o7q1LQ4x6MlDOl+w==
 
-react-native-modal@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-6.0.0.tgz#72b829454cde207848e4323a96a440c152f7508e"
-  integrity sha512-brz3PPLs9LkTFudVqFYjIOYdYsau09Vn5dw7WGe93r9O4pQUxoXJgEcH8RLeWtB2y1iRNWUIQeqLW9qfaiDhBw==
+react-native-modal@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-6.5.0.tgz#46220b2289a41597d344c1db17454611b426a758"
+  integrity sha512-ewchdETAGd32xLGLK93NETEGkRcePtN7ZwjmLSQnNW1Zd0SRUYE8NqftjamPyfKvK0i2DZjX4YAghGZTqaRUbA==
   dependencies:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
-react-native-navigation@^1.1.431:
-  version "1.1.463"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.463.tgz#6f06e1057665e7618810c051d9b94b01e4f27e13"
-  integrity sha512-N50I0cYPX+VwE0hX7dINfQFBwFBwWtHm9Sqv6jxyHofGoeBYsK2n38E3VRWF7M6Y/19zRE67Ks9zeoTnCbmYHA==
+react-native-navigation@^2.0.2539:
+  version "2.0.2539"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2539.tgz#1a3ec8c76d26774cb851133397411b4888e9c69e"
+  integrity sha512-krRG4bYd+7m8DhwBhhhHGMglMdJhFMvzvgQciapSqhV6VROxU9IVdM9DiDhSyH85RhzE8zZdcH0LTDmIUX6dHQ==
   dependencies:
+    hoist-non-react-statics "3.x.x"
     lodash "4.x.x"
+    prop-types "15.x.x"
+    react-lifecycles-compat "2.0.0"
 
 react-native-optimized-flatlist@^1.0.4:
   version "1.0.4"
@@ -6537,11 +6553,6 @@ react-native-safe-module@^1.1.0:
   integrity sha1-ojgkyiTtwpAZE2lKdmRkdRE9Vw0=
   dependencies:
     dedent "^0.6.0"
-
-react-native-secure-clipboard@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-secure-clipboard/-/react-native-secure-clipboard-0.1.1.tgz#dad5c2ac480ad8f6ab7f9ff88d306a4882226553"
-  integrity sha1-2tXCrEgK2Parf5/4jTBqSIIiZVM=
 
 react-native-securerandom@^0.1.1:
   version "0.1.1"

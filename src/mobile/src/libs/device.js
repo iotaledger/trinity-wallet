@@ -10,8 +10,8 @@ export const timezone = DeviceInfo.getTimezone();
 
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
-export const isIPhoneX = device.includes('iPhone X');
-export const isIPhone11 = deviceId.substring(0, 8) === 'iPhone11';
+export const isIPhoneX = device.includes('iPhone X') || deviceId.includes('iPhone11');
+export const isIPhone11 = deviceId.includes('iPhone11');
 
 export const getAndroidFileSystemPermissions = async () => {
     const hasPermission = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);

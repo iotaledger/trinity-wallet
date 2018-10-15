@@ -3,21 +3,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
-import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
 import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import RootDetectionModalComponent from 'ui/components/RootDetectionModal';
 import { doAttestationFromSafetyNet } from 'libs/safetynet';
 import { isAndroid } from 'libs/device';
 
@@ -44,19 +43,19 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     greetingTextContainer: {
@@ -66,37 +65,27 @@ const styles = StyleSheet.create({
     },
     greetingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
     },
 });
 
 /** Wallet setup screen component */
 class WalletSetup extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
-        this.state = {
-            isModalVisible: false,
-        };
     }
 
     componentDidMount() {
@@ -109,19 +98,34 @@ class WalletSetup extends Component {
      * @method redirectToEnterSeedScreen
      */
     redirectToEnterSeedScreen() {
-        const { theme } = this.props;
-
-        this.props.navigator.push({
-            screen: 'enterSeed',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        const { theme: { body } } = this.props;
+        Navigation.push('appStack', {
+            component: {
+                name: 'enterSeed',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -130,18 +134,34 @@ class WalletSetup extends Component {
      * @method redirectToNewSeedSetupScreen
      */
     redirectToNewSeedSetupScreen() {
-        const { theme } = this.props;
-        this.props.navigator.push({
-            screen: 'newSeedSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        const { theme: { body } } = this.props;
+        Navigation.push('appStack', {
+            component: {
+                name: 'newSeedSetup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -161,12 +181,12 @@ class WalletSetup extends Component {
                 })
                 .then((isRooted) => {
                     if (isBoolean(isRooted) && isRooted) {
-                        this.setState({ isModalVisible: true });
+                        this.showModal();
                     }
                 })
                 .catch((error) => {
                     if (error.message === 'device rooted.') {
-                        this.setState({ isModalVisible: true });
+                        this.showModal();
                     }
                     if (error.message === 'play services not available.') {
                         this.props.generateAlert(
@@ -180,11 +200,24 @@ class WalletSetup extends Component {
             RNIsDeviceRooted.isDeviceRooted()
                 .then((isRooted) => {
                     if (isRooted) {
-                        this.setState({ isModalVisible: true });
+                        this.showModal();
                     }
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console
         }
+    }
+
+    showModal() {
+        const { theme: { negative, body } } = this.props;
+        this.props.toggleModalActivity('rootDetection', {
+            style: { flex: 1 },
+            hideModal: () => this.hideModal(),
+            closeApp: () => this.closeApp(),
+            backgroundColor: body.bg,
+            warningColor: { color: negative.color },
+            textColor: { color: body.color },
+            borderColor: { borderColor: body.color },
+        });
     }
 
     /**
@@ -192,7 +225,7 @@ class WalletSetup extends Component {
      * @method hideModal
      */
     hideModal() {
-        this.setState({ isModalVisible: false });
+        this.props.toggleModalActivity();
     }
 
     /**
@@ -204,29 +237,12 @@ class WalletSetup extends Component {
         RNExitApp.exitApp();
     }
 
-    renderModalContent() {
-        const { theme: { body, negative } } = this.props;
-        return (
-            <RootDetectionModalComponent
-                style={{ flex: 1 }}
-                hideModal={() => this.hideModal()}
-                closeApp={() => this.closeApp()}
-                backgroundColor={body.bg}
-                warningColor={{ color: negative.color }}
-                textColor={{ color: body.color }}
-                borderColor={{ borderColor: body.color }}
-            />
-        );
-    }
-
     render() {
         const { t, theme: { body } } = this.props;
         const textColor = { color: body.color };
-        const { isModalVisible } = this.state;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 0.7 }} />
@@ -261,7 +277,7 @@ class WalletSetup extends Component {
                     />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.redirectToEnterSeedScreen()}
                         onRightButtonPress={() => this.redirectToNewSeedSetupScreen()}
                         leftButtonText={t('noIHaveOne')}
@@ -270,22 +286,6 @@ class WalletSetup extends Component {
                         rightButtonTestID="walletSetup-yes"
                     />
                 </View>
-                <Modal
-                    animationIn="zoomIn"
-                    animationOut="zoomOut"
-                    animationInTiming={300}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
-                    backdropOpacity={0.9}
-                    style={styles.modal}
-                    isVisible={isModalVisible}
-                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                    useNativeDriver={!!isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
             </View>
         );
     }
@@ -297,6 +297,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
+    toggleModalActivity,
 };
 
 export default withNamespaces(['walletSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(WalletSetup));

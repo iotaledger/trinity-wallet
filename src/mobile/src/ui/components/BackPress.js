@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BackHandler, ToastAndroid } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import RNExitApp from 'react-native-exit-app';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
@@ -23,28 +24,37 @@ export default () => (C) => {
     class WithBackPress extends Component {
         constructor(props) {
             super(props);
-
             if (isAndroid) {
-                this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+                Navigation.events().bindComponent(this);
             }
         }
 
-        onNavigatorEvent(event) {
-            switch (event.id) {
-                case 'willAppear':
-                    this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-                    break;
-                case 'willDisappear':
-                    if (this.backHandler) {
-                        this.backHandler.remove();
-                    }
-                    break;
-                default:
-                    break;
+        /**
+         * Remove back handler
+         *
+         * @method componentDidDisappear
+         */
+        componentDidDisappear() {
+            if (this.backHandler) {
+                this.backHandler.remove();
             }
         }
 
-        pressBackTwiceToCloseApp() {
+        /**
+         * Add back handler
+         *
+         * @method componentDidAppear
+         */
+        componentDidAppear() {
+            this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        }
+
+        /**
+         * On back press, display alert. On second back press, close app.
+         *
+         * @method handleBackPressFromMainSettings
+         */
+        handleBackPressFromMainSettings() {
             const { t } = this.props;
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 RNExitApp.exitApp();
@@ -57,7 +67,7 @@ export default () => (C) => {
             const { currentSetting } = this.props;
             switch (currentSetting) {
                 case 'mainSettings':
-                    this.pressBackTwiceToCloseApp();
+                    this.handleBackPressFromMainSettings();
                     return true;
                 case 'modeSelection':
                 case 'themeCustomisation':
@@ -102,8 +112,6 @@ export default () => (C) => {
     }
 
     WithBackPress.propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** Current setting */
