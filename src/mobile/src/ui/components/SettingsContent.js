@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         marginLeft: width / 25,
     },
     separator: {
-        borderBottomWidth: 0.25,
+        borderBottomWidth: 0.5,
         width: width / 1.16,
         alignSelf: 'center',
     },
