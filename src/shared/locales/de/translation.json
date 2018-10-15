@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
-        "errorAccessingKeychainExplanation": "Der Schlüsselbund konnte nicht geöffnet werden."
+        "errorAccessingKeychainExplanation": "Der Schlüsselbund konnte nicht geöffnet werden.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
-        "seedCopied": "Seed in Zwischenablage kopiert",
-        "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst oder 60 Sekunden vergangen sind.",
-        "copyToClipboard": "Seed kopieren",
-        "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager",
-        "storeEncrypted": "Speichere deinen Seed verschlüsselt in einem Passwort-Manager.",
-        "doNotOpen": "Öffne keine anderen Apps während dieses Vorgangs.",
-        "tapConfirm": "Bitte aktiviere folgende Kontrollbox um zu Bestätigen.",
-        "passwordManagerCheckbox": "Ich werden meinen Seed in einem Passwort Manager speichern",
-        "copy": "KOPIEREN",
-        "noPasswordManagers": "Keine unterstützten Passwort-Manager installiert",
-        "noPasswordManagersExplanation": "Auf Deinem Gerät wurden keine unterstützten Passwort Manager gefunden. Bitte installiere Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Falls du deinen Seed in einem Passwortmanager aufbewahren möchtest, beachte die Anweisungen auf folgender Seite"
+        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht."
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -445,7 +434,8 @@
         "receive": "Empfangen",
         "empty": "Keine",
         "retrying": "Erneuter Versuch",
-        "yesterday": "Gestern"
+        "yesterday": "Gestern",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -522,9 +512,9 @@
         "discordInformation": "Bitte besuche den #help Kanal auf Discord um herauszufinden, was du tun kannst."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Bist du sicher, dass du</1> <2></2> <3>{{accountName}}?</3> löschen möchtest",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
-        "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
