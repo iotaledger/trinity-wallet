@@ -14,6 +14,7 @@ import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
 import registerScreens from 'ui/routes/navigation';
+import { mapStorageToState } from '../../../../shared/libs/storageToStateMappers';
 
 const launch = (store) => {
     // Disable auto node switching.
@@ -136,8 +137,14 @@ const hasConnection = (
 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
-export default (store) => {
+const initialize = (store) => {
     overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
+
+
+    store.dispatch({
+        type: ActionTypes.MAP_STORAGE_TO_STATE,
+        payload: mapStorageToState()
+    });
 
     const initialize = (isConnected) => {
         store.dispatch({
@@ -155,3 +162,5 @@ export default (store) => {
 
     hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
 };
+
+initialize(store);

@@ -1,4 +1,3 @@
-/*eslint-disable no-unused-vars*/
 /**
  * Schema to define the structure of a Transaction
  * Transactions are indexed and looked up by hash
@@ -7,25 +6,31 @@ export const TransactionSchema = {
     name: 'Transaction',
     primaryKey: 'hash', // Index and look up transactions by their hash
     properties: {
+        type: 'string',
         hash: 'string',
-        // address: { type: 'linkingObjects', objectType: 'Address', property: 'transactions' }, // Link transactions to addresses
+        signatureMessageFragment: 'string',
+        address: 'Address',
         value: 'int',
+        timestamp: 'int',
+        currentIndex: 'int',
+        lastIndex: 'int',
         tag: 'string',
+        trunkTransaction: 'string',
+        branchTransaction: 'string',
         message: 'string',
-        // bundle: { type: 'linkingObjects', objectType: 'Bundle', property: 'transactions' }, // Link transactions to bundles
+        bundle: 'string',
+        persistence: 'string',
+        failedToBroadcast: 'bool'
     },
 };
 
-/**
- * Schema to define the structure of a Bundle
- * Bundles are indexed and looked up by hash
- */
-export const BundleSchema = {
-    name: 'Bundle',
-    primaryKey: 'hash', // Index and look up bundles by their hash
+export const WalletSchema = {
+    name: 'Wallet',
     properties: {
-        hash: 'string',
-        transactions: 'Transaction[]', // Create a "to-many" relationship (https://realm.io/docs/javascript/latest#to-many-relationships)
+        onboardingComplete: {
+            type: 'bool',
+            default: false
+        }
     },
 };
 
@@ -33,17 +38,36 @@ export const BundleSchema = {
  * Schema to define the structure of an Address
  * Addresses are indexed and looked up by address
  */
-const AddressSchema = {
+export const AddressSchema = {
     name: 'Address',
     primaryKey: 'address',
     properties: {
         address: 'string',
         index: 'int',
-        transactions: 'Transaction[]', // Create a "to-many" relationship (https://realm.io/docs/javascript/latest#to-many-relationships)
+        balance: 'int',
+        checksum: 'string',
+        spent: 'AddressSpendStatus'
     },
 };
 
-/*eslint-disable no-unused-vars*/
+export const AddressSpendStatusSchema = {
+    name: 'AddressSpendStatus',
+    properties: {
+        local: 'bool',
+        remote: 'bool'
+    }
+};
+
+export const AccountSchema = {
+    name: 'Account',
+    primaryKey: 'name',
+    properties: {
+        name: 'string',
+        addresses: 'Address[]',
+        transactions: 'Transaction[]'
+    }
+};
+
 export const ChartDataSchema = {
     name: 'ChartData',
     primaryKey: 'currency',

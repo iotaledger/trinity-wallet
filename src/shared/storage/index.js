@@ -73,8 +73,7 @@ class Wallet {
     }
 }
 
-const realm = new Realm({
-    path: '~/Desktop/Trinity',
+const config = {
     schema: [
         Account,
         Address,
