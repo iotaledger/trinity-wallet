@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Farklı bir node ile tekrar deneyin.",
         "errorFetchingAccountInformation": "Hesap bilgisi alınırken hata oluştu.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Tohum temizlendi",
-        "seedClearedExplanation": "Tohum güvenliğiniz için pano'dan temizlendi.",
-        "seedCopied": "Cüzdan şifresi panoya kopyalandı",
-        "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde cüzdan şifresi temizlenecektir.",
-        "copyToClipboard": "Copy Seed",
-        "shareSeed": "Oluşumunuzu güvenli bir şifre yöneticisine paylaşın",
-        "storeEncrypted": "Oluşumunuzu şifrelenmiş bir şifre yöneticisinde saklayınız.",
-        "doNotOpen": "Bu süreçte başka bir uygulama açmayınız.",
-        "tapConfirm": "Doğrulamak için lütfen aşağıdaki kutuya tıklayın.",
-        "passwordManagerCheckbox": "Oluşumumu bir şifre yöneticisinde saklayacağım",
-        "copy": "KOPYALA",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "seedClearedExplanation": "Tohum güvenliğiniz için pano'dan temizlendi."
     },
     "enterSeed": {
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
@@ -445,7 +434,8 @@
         "receive": "Almak",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -522,9 +512,9 @@
         "discordInformation": "Neler yapabileceğinizi öğrenmek için lüfen Discord'daki #help kanalına gidin."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1> Silmek istediğinize emin misiniz </1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Oluşumunuz ve işlem geçmişiniz kaldırılacak.",
-        "thisAction": "Bu işlem geri alınamaz.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Hesabınızı silmek için lütfen şifrenizi girin."
     },
     "manualSync": {
