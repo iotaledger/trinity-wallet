@@ -16,8 +16,16 @@ const SCHEMA_VERSION = 0;
 class Account {
     static schema = AccountSchema;
 
+    static getObjectFromId(id) {
+        return realm.objectForPrimaryKey('Account', id);
+    }
+
+    static get() {
+        return realm.objects('Account');
+    }
+
     static getAccountData(name) {
-        const account = realm.objectForPrimaryKey('Account', name);
+        const account = Account.getObjectFromId(name);
 
         return assign({}, account, {
             addresses: values(account.addresses),
@@ -26,7 +34,7 @@ class Account {
     }
 
     static getAccountsData() {
-        const accounts = realm.objects('Account');
+        const accounts = Account.get();
 
         return map(accounts, (account) => assign({}, account, {
             addresses: values(account.addresses),
@@ -37,6 +45,25 @@ class Account {
 
     static create({ accountName, addresses, transactions, type }) {
         realm.write(() => realm.create('Account', { name: accountName, addresses, transactions, type }));
+    }
+
+    static delete(name) {
+        realm.write(() => realm.delete(Account.getObjectFromId(name)));
+    }
+
+    /**
+     * Migrate account data under a new name
+     *
+     * @method migrate
+     *
+     * @param {string} from - Account name
+     * @param {string} to - New account name
+     */
+    static migrate(from, to) {
+        const accountData = Account.getAccountData(from);
+        Account.create(assign({}, accountData, { accountName: to }));
+
+        Account.delete(from);
     }
 }
 
@@ -96,7 +123,7 @@ const realm = new Realm(config);
  */
 const purge = (storageConfig = config) => new Promise((resolve, reject) => {
    try {
-       realm.deleteAll();
+       realm.write(() => realm.deleteAll());
        Realm.deleteFile(storageConfig);
        resolve();
    } catch (error) {

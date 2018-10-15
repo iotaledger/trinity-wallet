@@ -112,10 +112,16 @@ export const updateAddresses = (accountName, addresses) => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const changeAccountName = (payload) => ({
-    type: ActionTypes.CHANGE_ACCOUNT_NAME,
-    payload,
-});
+export const changeAccountName = (payload) => {
+    const { oldAccountName, newAccountName } = payload;
+    Account.migrate(oldAccountName, newAccountName);
+
+    return {
+        type: ActionTypes.CHANGE_ACCOUNT_NAME,
+        payload,
+    };
+};
+
 
 /**
  * Dispatch to remove an account and its associated data from state
@@ -125,10 +131,14 @@ export const changeAccountName = (payload) => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const removeAccount = (payload) => ({
-    type: ActionTypes.REMOVE_ACCOUNT,
-    payload,
-});
+export const removeAccount = (payload) => {
+    Account.delete(payload);
+
+    return {
+        type: ActionTypes.REMOVE_ACCOUNT,
+        payload,
+    };
+};
 
 /**
  * Dispatch to set onboarding as completed
