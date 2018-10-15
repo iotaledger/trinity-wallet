@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed-luku tyhjennetty",
-        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "seedCopied": "Seed-luku kopioitu leikepöydälle",
-        "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
-        "copyToClipboard": "Kopioi Seed-luku",
-        "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintasovellukseen",
-        "storeEncrypted": "Kun käytät salasanan hallintasovellusta, tallenna seed-lukusi salatussa muodossa.",
-        "doNotOpen": "Älä avaa muita sovelluksia kesken tämän toiminnon.",
-        "tapConfirm": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
-        "passwordManagerCheckbox": "Tallennan seed-lukuni salasanan hallintasovellukseen",
-        "copy": "KOPIOI",
-        "noPasswordManagers": "Tuettuja salasanojen hallintasovelluksia ei ole asennettuna",
-        "noPasswordManagersExplanation": "Tuettuja salasanojen hallintasovelluksia ei ole löydetty laitteeltasi. Voit asentaa sovelluksen nimeltä Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jos haluat tallentaa seed-lukusi salasanan hallintasovellukseen, seuraa linkin ohjeita"
+        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä."
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -445,7 +434,8 @@
         "receive": "Vastaanota",
         "empty": "Tyhjä",
         "retrying": "Yritetään uudelleen",
-        "yesterday": "Eilen"
+        "yesterday": "Eilen",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -522,9 +512,9 @@
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Oletko varma että haluat poistaa tilin</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
-        "thisAction": "Tätä toimintoa ei voi kumota.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {

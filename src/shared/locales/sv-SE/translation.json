@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Försöker igen med en annan nod.",
         "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed rensad",
-        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhets skull.",
-        "seedCopied": "Seed kopierad till urklipp",
-        "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
-        "copyToClipboard": "Kopiera seed",
-        "shareSeed": "Dela din seed till en säker lösenordshanterare",
-        "storeEncrypted": "Lagra din seed krypterad i en lösenordshanterare.",
-        "doNotOpen": "Öppna inte andra program under denna process.",
-        "tapConfirm": "Vänligen tryck på kryssrutan nedan för att bekräfta.",
-        "passwordManagerCheckbox": "Jag kommer att lagra min seed i en lösenordshanterare",
-        "copy": "KOPIERA",
-        "noPasswordManagers": "Ingen installerad lösenordshanterade som stöds",
-        "noPasswordManagersExplanation": "Ingen installerad lösenordshanterade som stöds hittades på din enhet. Vänligen installera Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Om du vill lagra din seed i en lösenordshanterade måste du följa en guide från följande länk"
+        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhets skull."
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -445,7 +434,8 @@
         "receive": "Motta",
         "empty": "Tomt",
         "retrying": "Försöker igen",
-        "yesterday": "Igår"
+        "yesterday": "Igår",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -522,9 +512,9 @@
         "discordInformation": "Vänligen bege dig till kanalen #help på Discord för att ta reda på vad du kan göra."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Är du säker på att du vill ta bort</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
-        "thisAction": "Denna åtgärd kan inte ångras.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Ange ditt lösenord för att radera detta kontot."
     },
     "manualSync": {

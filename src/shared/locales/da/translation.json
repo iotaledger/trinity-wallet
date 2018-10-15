@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Udklipsholder ryddet",
-        "seedClearedExplanation": "Udklipsholderen er blevet ryddet for din sikkerhed.",
-        "seedCopied": "Hovednøglen er kopieret til din udklipsholder",
-        "seedCopiedExplanation": "Hovednøgle fjernes fra Udklipsholderen ved at trykke \"UDFØRT\" eller efter 60 sekunder.",
-        "copyToClipboard": "Kopiér hovednøgle",
-        "shareSeed": "Del din hovednøgle via en sikker adgangskodehåndtering",
-        "storeEncrypted": "Benyt en adgangskodehåndtering til lagring af din krypterede hovednøgle.",
-        "doNotOpen": "Undlad at åbne andre apps under denne proces.",
-        "tapConfirm": "Tryk på afkrydsningsfeltet nedenfor for at bekræfte.",
-        "passwordManagerCheckbox": "Jeg vil benytte en adgangskodehåndtering til lagring af min hovednøgle",
-        "copy": "KOPIÉR",
-        "noPasswordManagers": "Ingen understøttet adgangskodehåndtering installeret",
-        "noPasswordManagersExplanation": "Ingen understøttede adgangskodehåndterings-apps fundet på din enhed. Installér Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Ønsker du at lagre din hovednøgle i en adgangskodehåndterings-app, så følg vejledningen i følgende link"
+        "seedClearedExplanation": "Udklipsholderen er blevet ryddet for din sikkerhed."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
@@ -445,7 +434,8 @@
         "receive": "Modtag",
         "empty": "Tom",
         "retrying": "Forsøger igen",
-        "yesterday": "I går"
+        "yesterday": "I går",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -522,9 +512,9 @@
         "discordInformation": "Søg venligst hjælp via #help-kanalen på Discord for at finde ud af, hvad du kan gøre."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Sikker på, at du vil slette</1> <2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Din hovednøgle og transaktionshistorik vil blive fjernet.",
-        "thisAction": "Denne handling kan ikke fortrydes.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
     },
     "manualSync": {

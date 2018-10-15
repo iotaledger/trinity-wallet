@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Từ khoá đã xoá",
-        "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
-        "seedCopied": "Đã sao chép từ khoá từ bộ nhớ tạm",
-        "seedCopiedExplanation": "Từ khoá sẽ bị xoá sau khi bạn nhấn nút \"XONG\" hoặc sau khi 60 giây trôi qua.",
-        "copyToClipboard": "Chép Từ Khóa",
-        "shareSeed": "Chia sẻ chuỗi mật mã của bạn tới mọt chương trình quản lý mật khẩu an toàn",
-        "storeEncrypted": "Lưu trữ chuỗi mật mã của bạn sau khi được mã hóa trong một trình quản lý mật khẩu.",
-        "doNotOpen": "Không mở bất kỳ ứng dụng nào khác trong quá trình này.",
-        "tapConfirm": "Vui lòng bấm vào hộp đánh dấu ở dưới để xác nhận.",
-        "passwordManagerCheckbox": "Tôi sẽ lưu từ khoá trong chương trình quản lý mật khẩu",
-        "copy": "CHÉP",
-        "noPasswordManagers": "Không tìm thấy trình quản lý mật khẩu nào phù hợp",
-        "noPasswordManagersExplanation": "Không tìm thấy trình quản lý mật khẩu nào phù hợp trên thiết bị. Vui lòng cài đặt Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Nếu bạn muốn lưu trữ chuỗi mật mã của bạn trrong một trình quản lý mật khẩu, vui lòng làm theo các bước trong hướng dẫn sau đây"
+        "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật."
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
@@ -445,7 +434,8 @@
         "receive": "Nhận",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Xem từ khoá",
@@ -522,9 +512,9 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
-        "thisAction": "Thao tác này không thể đảo ngược.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
