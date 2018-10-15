@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
-import { removeBundleFromUnconfirmedBundleTails } from 'shared-modules/actions/accounts';
+import { getSelectedAccountName, getPromotableBundlesFromState } from 'shared-modules/selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -182,7 +181,7 @@ const mapStateToProps = (state) => ({
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.wallet.seedIndex,
     selectedAccountName: getSelectedAccountName(state),
-    unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
+    unconfirmedBundleTails: getPromotableBundlesFromState(state),
     isTransitioning: state.ui.isTransitioning,
 });
 
@@ -194,7 +193,6 @@ const mapDispatchToProps = {
     setPollFor,
     getAccountInfo,
     promoteTransfer,
-    removeBundleFromUnconfirmedBundleTails,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

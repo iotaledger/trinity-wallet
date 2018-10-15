@@ -5,6 +5,7 @@ import findKey from 'lodash/findKey';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
+import transform from 'lodash/transform';
 import { createSelector } from 'reselect';
 import { defaultNode as DEFAULT_IRI_NODE } from '../config';
 
@@ -347,3 +348,31 @@ export const getFailedBundleHashesForSelectedAccount = createSelector(
     getFailedBundleHashesFromAccounts,
     (accountName, failedBundleHashes) => get(failedBundleHashes, accountName) || {},
 );
+
+/**
+ *   Selects promotable (unconfirmed & value) bundles from accounts reducer state object.
+ *   Uses getAccountInfoFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getPromotableBundlesFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getPromotableBundlesFromState = createSelector(
+    getAccountInfoFromState,
+    (state) => {
+        return transform(state, (acc, accountState, accountName) => {
+            const promotableTransfers = pickBy(accountState.transfers, (normalisedTransaction) => {
+                return (
+                    normalisedTransaction.failedToBroadcast === false &&
+                    normalisedTransaction.persistence === false &&
+                    normalisedTransaction.transferValue !== 0
+                );
+            });
+
+            each(promotableTransfers, (normalisedTransaction, bundleHash) => {
+                acc[accountName] = {
+                    [bundleHash]: normalisedTransaction.tailTransactions
+                };
+            });
+        }, {});
+    });
