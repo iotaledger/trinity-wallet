@@ -144,7 +144,7 @@
         "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "メインアカウント"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
