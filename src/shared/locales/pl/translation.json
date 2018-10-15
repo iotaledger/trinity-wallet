@@ -144,7 +144,7 @@
         "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "KONTO GŁÓWNE"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -435,7 +435,7 @@
         "empty": "Brak",
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promowanie innego pakietu"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -512,9 +512,9 @@
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Na pewno chcesz usunąć swoje konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Tej czynności nie można cofnąć",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
     },
     "manualSync": {
