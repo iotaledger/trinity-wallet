@@ -4,6 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
+import store from 'shared-modules/store';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';

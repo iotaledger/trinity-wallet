@@ -82,10 +82,31 @@ const config = {
         Wallet
     ],
     schemaVersion: SCHEMA_VERSION,
+};
+
+const realm = new Realm(config);
+
+/**
+ * Deletes all objects in storage and deletes storage file for provided config
+ *
+ * @method purge
+ * @param {object} [storageConfig]
+ *
+ * @returns {Promise<any>}
+ */
+const purge = (storageConfig = config) => new Promise((resolve, reject) => {
+   try {
+       realm.deleteAll();
+       Realm.deleteFile(storageConfig);
+       resolve();
+   } catch (error) {
+       reject(error);
+   }
 });
 
 export {
     realm,
+    purge,
     Account,
     Transaction,
     Address,

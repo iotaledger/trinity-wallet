@@ -9,7 +9,7 @@ import { clearWalletData, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import OnboardingButtons from 'ui/components/OnboardingButtons';
-import { persistor } from 'libs/store';
+import { purge } from 'shared-modules/storage';
 import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -148,8 +148,8 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
         if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
-            persistor
-                .purge()
+
+            purge()
                 .then(() => clearKeychain())
                 .then(() => {
                     this.props.setOnboardingComplete(false);
