@@ -88,7 +88,7 @@
     "react-native-qrcode-scanner": "^1.0.1",
     "react-native-qrcode-svg": "^5.0.3",
     "react-native-randombytes": "^3.2.0",
-    "react-native-safe-area-view": "^0.2.0",
+    "react-native-safe-area-view": "^0.9.0",
     "react-native-securerandom": "^0.1.1",
     "react-native-share": "^1.0.27",
     "react-native-splash-screen": "^3.0.6",
