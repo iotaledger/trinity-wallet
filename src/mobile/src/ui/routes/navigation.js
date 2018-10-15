@@ -33,7 +33,7 @@ import { isIPhoneX } from 'libs/device';
 function applyHOCs(screen) {
     const withHOCs = (c) => withDropdownAlert(withStatusBar(withModal(withRouteMonitor(c))));
     if (isIPhoneX) {
-        return withSafeAreaView(withHOCs(screen));
+        return withHOCs(withSafeAreaView(screen));
     }
     return withHOCs(screen);
 }
