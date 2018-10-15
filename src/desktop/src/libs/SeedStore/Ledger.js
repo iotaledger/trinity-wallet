@@ -41,7 +41,7 @@ class Ledger {
      * Placeholder for Trinity compatibillity
      * @returns {promise} - Resolves to a success boolean
      */
-    addAccount = async () => {
+    addAccount = () => {
         return true;
     };
 
@@ -49,7 +49,7 @@ class Ledger {
      * Placeholder for Trinity compatibillity
      * @returns {promise} - Resolves to a success boolean
      */
-    removeAccount = async () => {
+    removeAccount = () => {
         return true;
     };
 
@@ -57,7 +57,7 @@ class Ledger {
      * Placeholder for Trinity compatibillity
      * @returns {promise} - Resolves to a success boolean
      */
-    renameAccount = async () => {
+    renameAccount = () => {
         return true;
     };
 
@@ -65,7 +65,7 @@ class Ledger {
      * Placeholder for Trinity compatibillity
      * @returns {promise} - Resolves to a success boolean
      */
-    static updatePassword = async () => {
+    static updatePassword = () => {
         return true;
     };
 
