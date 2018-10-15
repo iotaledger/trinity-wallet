@@ -148,25 +148,24 @@ class Loading extends Component {
         } = this.props;
 
         leaveNavigationBreadcrumb('Loading');
+        KeepAwake.activate();
         this.animation.play();
-
-        if (!addingAdditionalAccount) {
+        if (addingAdditionalAccount) {
+            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 150000);
+            if (!isAndroid) {
+                this.animateElipses(['.', '..', ''], 0);
+            }
+        } else {
             this.setAnimationOneTimout();
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
+        this.props.setSetting('mainSettings');
         this.getWalletData();
-        if (addingAdditionalAccount && !isAndroid) {
-            this.animateElipses(['.', '..', ''], 0);
-        }
-
-        KeepAwake.activate();
         if (deepLinkActive) {
             this.props.changeHomeScreenRoute('send');
         } else {
             this.props.changeHomeScreenRoute('balance');
         }
-        this.props.setSetting('mainSettings');
-
         if (addingAdditionalAccount) {
             const seedStore = new SeedStore[additionalAccountType](password, additionalAccountName);
             this.props.getFullAccountInfo(seedStore, additionalAccountName);
