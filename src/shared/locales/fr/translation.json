@@ -142,8 +142,8 @@
         "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
         "tryingAgainWithDifferentNode": "Réessayez avec un autre nœud.",
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychain": "Erreur de Porte-clés",
+        "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
