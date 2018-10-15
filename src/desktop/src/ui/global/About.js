@@ -59,6 +59,10 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.4.0-alpha</h5>
+                            <ul>
+                                <li>- New: Ledger hardware wallet support</li>
+                            </ul>
                             <h5>0.3.6</h5>
                             <ul>
                                 <li>
