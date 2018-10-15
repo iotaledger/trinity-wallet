@@ -544,9 +544,9 @@ export class Send extends Component {
                     borderColor: { borderColor: body.color },
                     textColor: { color: body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
-                    selectedAccountName: selectedAccountName,
+                    selectedAccountName,
                     activateFingerprintScanner: () => this.activateFingerprintScanner(),
-                    isFingerprintEnabled: isFingerprintEnabled,
+                    isFingerprintEnabled,
                 });
             case 'unitInfo':
                 return this.props.toggleModalActivity(modalContent, {
@@ -571,6 +571,8 @@ export class Send extends Component {
                     textColor: { color: body.color },
                     backgroundColor: { backgroundColor: body.bg },
                     instance: 'send',
+                    theme,
+                    isFingerprintEnabled,
                 });
             default:
                 break;
@@ -690,6 +692,7 @@ export class Send extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
+            this.props.toggleModalActivity();
             this.showModal('fingerprint');
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
