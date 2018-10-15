@@ -53,8 +53,7 @@ class Account extends React.PureComponent {
                             </NavLink>
                             <hr />
                             <NavLink to="/account/tools">
-                                <Icon icon="settingsAlt" size={20} />{' '}
-                                <strong>{t('accountManagement:tools')}</strong>
+                                <Icon icon="settingsAlt" size={20} /> <strong>{t('accountManagement:tools')}</strong>
                             </NavLink>
                             {accountNames.length > 1 ? (
                                 <React.Fragment>

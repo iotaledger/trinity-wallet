@@ -418,7 +418,8 @@ class Home extends Component {
                                 textColor={textColor}
                                 setUserActive={() => this.props.setUserActivity({ inactive: false })}
                                 generateAlert={(error, title, explanation) =>
-                                    this.props.generateAlert(error, title, explanation)}
+                                    this.props.generateAlert(error, title, explanation)
+                                }
                                 isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>

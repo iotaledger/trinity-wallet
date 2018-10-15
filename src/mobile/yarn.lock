@@ -1608,10 +1608,10 @@ buffer@^5.0.0, buffer@^5.0.8:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
 
-bugsnag-react-native@^2.9.3:
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.9.4.tgz#a8dfcc44f727909d306e40dd980997a3e69fe2e5"
-  integrity sha1-qN/MRPcnkJ0wbkDdmAmXo+af4uU=
+bugsnag-react-native@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.11.0.tgz#a65db95a1b4318e7e0089815ddc4f0779a678616"
+  integrity sha512-1YhPC5ZRCyXvmLuGBklBhNo0/H2Rxs/vU34yij0ElzJsyByYACwMpOEd/NUYdrhEoDSyjStbvAZ9hGSpT587kg==
   dependencies:
     iserror "^0.0.2"
     promise "^7"
@@ -6351,9 +6351,9 @@ react-native-document-picker@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-2.1.0.tgz#61bbe113435a9d7bf67ab77093a4092d76b52fe3"
   integrity sha512-BFCBXwz8xuLvHLVFVeQM+RhaY8yZ38PEWt9WSbq5VIoZ/VssP6uu51XxOfdwaMALOrAHIojK0SiYnd155upZAg==
 
-"react-native-dropdownalert@git+https://github.com/cvarley100/react-native-dropdownalert#master":
-  version "3.4.0"
-  resolved "git+https://github.com/cvarley100/react-native-dropdownalert#e4bc9d37a108a8abb10cdc216b70f5bc672c602c"
+"react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8":
+  version "3.7.0"
+  resolved "https://github.com/cvarley100/react-native-dropdownalert#fc6655c4542e3b35da67ccca5f708adb0a7ccff8"
   dependencies:
     prop-types "15.5.10"
 

@@ -49,13 +49,6 @@
         "proceed": "Continuar",
         "qr": "QR",
         "enterSeed": "Por favor, digite a sua Seed.",
-        "mainWallet": "CONTA PRINCIPAL",
-        "secondWallet": "SEGUNDA CONTA",
-        "thirdWallet": "TERCEIRA CONTA",
-        "fourthWallet": "QUARTA CONTA",
-        "fifthWallet": "QUINTA CONTA",
-        "sixthWallet": "SEXTA CONTA",
-        "otherWallet": "OUTRA CONTA",
         "yes": "Sim",
         "no": "Não",
         "okay": "Ok",
@@ -148,7 +141,9 @@
         "problemPerformingProofOfWork": "Houve um problema na realização de prova de trabalho.",
         "tryingAgainWithLocalPoW": "Tentando novamente com prova de trabalho local.",
         "tryingAgainWithDifferentNode": "Tentar novamente com um servidor diferente.",
-        "errorFetchingAccountInformation": "Erro ao buscar informações da conta."
+        "errorFetchingAccountInformation": "Erro ao buscar informações da conta.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
