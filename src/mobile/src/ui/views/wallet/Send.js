@@ -267,15 +267,15 @@ export class Send extends Component {
         timer.clearTimeout('delaySend');
     }
 
-    onDenominationPress() {
-        const { t, currency, denomination, theme: { body } } = this.props;
+    onDenominationPress(denomination) {
+        const { t, currency, theme: { body } } = this.props;
         const nextDenomination = getNextDenomination(currency, denomination);
-        this.props.setSendDenomination(nextDenomination);
         this.setState({
             maxPressed: false,
             maxColor: body.color,
             maxText: t('send:sendMax'),
         });
+        this.props.setSendDenomination(nextDenomination);
     }
 
     onMaxPress() {
@@ -801,7 +801,7 @@ export class Send extends Component {
                             multiplier={this.getUnitMultiplier()}
                             editable={!isSending}
                             setAmount={(text) => this.props.setSendAmountField(text)}
-                            setDenomination={(text) => this.props.setSendDenomination(text)}
+                            setDenomination={(text) => this.onDenominationPress(text)}
                             containerStyle={{ width: Styling.contentWidth }}
                             onRef={(c) => {
                                 this.amountField = c;
