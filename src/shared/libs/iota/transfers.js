@@ -133,8 +133,7 @@ export const findPromotableTail = (provider) => (tails, idx) => {
 
     return isPromotable(provider)(get(thisTail, 'hash'))
         .then((state) => {
-            // Temporarily allow transaction to promote even if consistency check fails
-            if (state || isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
+            if (state === true && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
