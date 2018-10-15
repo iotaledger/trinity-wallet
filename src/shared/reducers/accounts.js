@@ -141,10 +141,6 @@ const account = (
          */
         onboardingComplete: false,
         /**
-         * Keeps track of signed bundle hashes failed to broadcast
-         */
-        failedBundleHashes: {},
-        /**
          * Keeps track of each account information (name, addresses, transfers, balance)
          */
         accountInfo: {},
@@ -158,10 +154,6 @@ const account = (
          * For example: Keeps track if user was displayed with the transaction guide modal
          */
         tasks: {},
-        /**
-         * Keeps track of all unconfirmed transfers categorised by bundle hashes for all accounts
-         */
-        unconfirmedBundleTails: {},
     },
     action,
 ) => {

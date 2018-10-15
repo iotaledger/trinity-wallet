@@ -293,7 +293,7 @@ export const removeUnusedAddresses = (provider) => (index, latestUnusedAddress, 
  * @param {array} addressesSpendStatuses
  * @param {array} keyIndexes
  *
- * @returns {object}
+ * @returns {array}
  */
 export const formatAddressData = (addresses, balances, addressesSpendStatuses, keyIndexes = []) => {
     const sizeOfAddresses = size(addresses);
@@ -315,16 +315,17 @@ export const formatAddressData = (addresses, balances, addressesSpendStatuses, k
             const spendStatusOfThisAddress = addressesSpendStatuses[index];
             const { local, remote } = spendStatusOfThisAddress;
 
-            acc[address] = {
+            acc.push({
+                address,
                 index: sizeOfKeyIndexes ? keyIndexes[index] : index,
                 spent: { local, remote },
                 balance: balances[index],
                 checksum: iota.utils.addChecksum(address).slice(address.length),
-            };
+            });
 
             return acc;
         },
-        {},
+        [],
     );
 };
 

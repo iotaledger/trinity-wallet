@@ -6,6 +6,7 @@ import map from 'lodash/map';
 import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import find from 'lodash/find';
+import flatMap from 'lodash/flatMap';
 import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
@@ -26,10 +27,10 @@ import {
     markTransfersConfirmed,
     getBundleHashesForNewlyConfirmedTransactions,
     getTransactionsDiff,
-    constructNormalisedBundles,
+    constructBundlesFromTransactions,
     normaliseBundle,
     mergeNewTransfers,
-    getOwnTransactionHashes,
+    getOwnTransactionHashes, filterInvalidBundles,
 } from './transfers';
 import {
     getAddressDataAndFormatBalance,
@@ -42,43 +43,6 @@ import {
 } from './addresses';
 import Errors from '../errors';
 import { EMPTY_HASH_TRYTES } from './utils';
-
-/**
- *   Takes in account data fetched from ledger.
- *   Formats addresses as an object { index, spent, checksum, balance }.
- *   Accumulates total balance.
- *   Prepares transactions for auto promotion.
- *
- *   @method organiseAccountState
- *
- *   @returns {function(string, object): Promise<object>}
- **/
-const organiseAccountState = (provider) => (accountName, partialAccountData) => {
-    const organisedState = {
-        accountName,
-        transfers: partialAccountData.transfers,
-        balance: 0,
-        addresses: {},
-        unconfirmedBundleTails: {},
-        hashes: partialAccountData.hashes,
-    };
-
-    const { addresses, balances, wereSpent } = partialAccountData;
-
-    organisedState.addresses = formatAddressData(addresses, balances, wereSpent);
-
-    organisedState.balance = accumulateBalance(partialAccountData.balances);
-
-    const normalisedTransactionsList = map(organisedState.transfers, (tx) => tx);
-
-    return prepareForAutoPromotion(provider)(normalisedTransactionsList, organisedState.addresses, accountName).then(
-        (unconfirmedBundleTails) => {
-            organisedState.unconfirmedBundleTails = unconfirmedBundleTails;
-
-            return organisedState;
-        },
-    );
-};
 
 /**
  *   Gets information associated with a seed from the ledger.
@@ -151,14 +115,24 @@ export const getAccountData = (provider) => (seedStore, accountName) => {
             return getLatestInclusionAsync(provider)(map(cached.tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
-            data.transfers = constructNormalisedBundles(
-                cached.tailTransactions,
-                cached.transactionObjects,
-                states,
-                data.addresses,
-            );
-
-            return organiseAccountState(provider)(accountName, data);
+            return {
+                accountName,
+                transactions: flatMap(
+                    filterInvalidBundles(
+                        constructBundlesFromTransactions(
+                            cached.tailTransactions,
+                            cached.transactionObjects,
+                            states,
+                            )
+                    ),
+                    (bundle) => bundle
+                ),
+                addresses: formatAddressData(
+                    data.addresses,
+                    data.balances,
+                    data.wereSpent
+                )
+            };
         });
 };
 

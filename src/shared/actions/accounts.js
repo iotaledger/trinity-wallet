@@ -19,6 +19,8 @@ import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils'
 import { pushScreen } from '../libs/utils';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
+import { mapAccountToAccountInfo } from '../libs/storageToStateMappers';
+import { Account, Wallet } from '../storage';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -136,10 +138,14 @@ export const removeAccount = (payload) => ({
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setOnboardingComplete = (payload) => ({
-    type: ActionTypes.SET_ONBOARDING_COMPLETE,
-    payload,
-});
+export const setOnboardingComplete = (payload) => {
+    Wallet.setOnboardingComplete();
+
+    return {
+        type: ActionTypes.SET_ONBOARDING_COMPLETE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update account state after snapshot transition
@@ -212,10 +218,17 @@ export const fullAccountInfoSeedFetchRequest = () => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const fullAccountInfoSeedFetchSuccess = (payload) => ({
-    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
-    payload,
-});
+export const fullAccountInfoSeedFetchSuccess = (payload) => {
+    Account.create(payload);
+
+    return {
+        type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
+        payload: {
+            accountName: payload.accountName,
+            ...mapAccountToAccountInfo(payload),
+        },
+    };
+};
 
 /**
  * Dispatch when an error occurs during the process of fetching information for an additional account

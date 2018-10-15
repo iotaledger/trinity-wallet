@@ -623,44 +623,26 @@ export const getConfirmedTransactionHashes = (provider) => (transactionsHashes) 
 /**
  *   Construct bundles, validates, assign confirmation states and Normalises them.
  *
- *   @method constructNormalisedBundles
+ *   @method constructBundlesFromTransactions
  *   @param {array} tailTransactions
  *   @param {array} transactionObjects
  *   @param {array} inclusionStates
- *   @param {array} addresses
  *
  *   @returns {array}
  **/
-export const constructNormalisedBundles = (tailTransactions, transactionObjects, inclusionStates, addresses) => {
+export const constructBundlesFromTransactions = (tailTransactions, transactionObjects, inclusionStates) => {
     const { unconfirmed, confirmed } = categoriseTransactionsByPersistence(tailTransactions, inclusionStates);
-
-    const normalisedUnconfirmedTransfers = transformTransactionsByBundleHash(unconfirmed);
-    const normalisedConfirmedTransfers = transformTransactionsByBundleHash(confirmed);
-
-    // Make sure we keep a single bundle for confirmed transfers i.e. get rid of reattachments.
-    const updatedUnconfirmedTailTransactions = omitBy(
-        normalisedUnconfirmedTransfers,
-        (tx, bundle) => bundle in normalisedConfirmedTransfers,
-    );
 
     // Map persistence to tail transactions so that they can later be mapped to other transaction objects in the bundle
     const finalTailTransactions = [
-        ...map(normalisedConfirmedTransfers, (tx) => ({ ...tx, persistence: true })),
-        ...map(updatedUnconfirmedTailTransactions, (tx) => ({ ...tx, persistence: false })),
+        ...map(confirmed, (tx) => ({ ...tx, persistence: true })),
+        ...map(unconfirmed, (tx) => ({ ...tx, persistence: false })),
     ];
 
-    const transfers = {};
-
-    each(finalTailTransactions, (tx) => {
-        const bundle = constructBundle(tx, transactionObjects);
-
-        if (iota.utils.isBundle(bundle)) {
-            transfers[tx.bundle] = normaliseBundle(bundle, addresses, tailTransactions, tx.persistence);
-        }
-    });
-
-    return transfers;
+    return map(finalTailTransactions, (tailTransaction) => constructBundle(tailTransaction, transactionObjects));
 };
+
+export const filterInvalidBundles = (bundles) => filter(bundles, !iota.utils.isBundle);
 
 /**
  *   Normalises bundle.
