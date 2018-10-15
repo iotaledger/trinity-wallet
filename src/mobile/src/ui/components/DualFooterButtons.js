@@ -56,7 +56,7 @@ class DualFooterButtons extends PureComponent {
             rightButtonStyle,
             theme,
         } = this.props;
-        const borderRadius = isIPhoneX ? width / 20 : 0;
+        const borderRadius = isIPhoneX ? parseInt(width / 20) : 0;
         return (
             <View style={styles.container}>
                 <Button
