@@ -435,7 +435,7 @@
         "empty": "空",
         "retrying": "再試行中",
         "yesterday": "昨日",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "別のバンドルを促進中"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -512,9 +512,9 @@
         "discordInformation": "どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "アカウントを削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "シードと取引の履歴を削除します。",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "この操作は元に戻せません",
         "enterPassword": "アカウントを削除するにはパスワードを入力してください。"
     },
     "manualSync": {
