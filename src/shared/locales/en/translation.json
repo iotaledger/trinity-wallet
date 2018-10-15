@@ -576,7 +576,7 @@
         "viewSeed": "View Seed",
         "hideSeed": "Hide Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your account on-device index"
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
@@ -755,21 +755,21 @@
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "ledger": {
-        "ready": "Ledger wallet connected and ready",
-        "notReady": "If you wish to use a Ledger wallet, connect now",
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect it now",
         "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Index is used for an account already added to the wallet. Choose another index.",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Every seed stored securely on your Ledger is identified by a unique index number. We have pre-selected an available number, or you can choose your own.",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that Ledger is connected and unlocked",
-        "connectionTitle": "Connect Your Ledger",
-        "connectionExplanation": "A connected Ledger device is required for wallet functionallity",
-        "transactionTitle": "Confirm transaction on Ledger",
-        "transactionExplanation": "Use your Ledger to approve your outgoing transaction.",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Confirm the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve your outgoing transaction.",
         "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "The Ledger IOTA application is required to be open for wallet functionallity."
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity."
     }
 }
