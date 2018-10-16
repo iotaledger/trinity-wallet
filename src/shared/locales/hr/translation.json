@@ -699,9 +699,9 @@
     "bytetrit": {
         "sweepSucceeded": "Sredstva uspješno otključana",
         "sweepSucceededExplanation": "Vaša sredstva su uspješno otključana i premještena na novu adresu. Promovirajte transakcije kako bi pomogli s njihovom potvrdom.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
+        "sweepError": "Greška prilikom otključavanja sredstava",
+        "sweepErrorExplanation": "Došlo je do greške prilikom otključavanja vaših sredstava. Pokušajte ponovno.",
+        "warningTitle": "Upozorenje: Detektirana su zaključana sredstva na vašem računu",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
