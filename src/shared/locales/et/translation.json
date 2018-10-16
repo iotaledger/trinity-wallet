@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Uue sõlmega uuesti proovimine.",
         "errorFetchingAccountInformation": "Konto teabe hankimisel tekkis viga.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Lõikelaud puhastatud",
-        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud.",
-        "seedCopied": "Seeme kopeeritud lõikelauale",
-        "seedCopiedExplanation": "Seeme puhastatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
-        "copyToClipboard": "Kopeeri seeme",
-        "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
-        "storeEncrypted": "Varundage oma seeme krüptitud paroolihaldurisse.",
-        "doNotOpen": "Ärge avage ühtegi teist rakendust selle protsessi ajal.",
-        "tapConfirm": "Kinnitamiseks puudutage palun allpool olevat märkeruutu.",
-        "passwordManagerCheckbox": "Ma varundan oma seemne paroolihaldurisse",
-        "copy": "KOPEERI",
-        "noPasswordManagers": "Ühtegi toetatud paroolihaldurit pole installitud",
-        "noPasswordManagersExplanation": "Teie seadmes ei leitud ühtegi toetatud paroolihaldurit. Palun installige Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Kui soovite varundada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
+        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud."
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
@@ -445,7 +434,8 @@
         "receive": "Võta vastu",
         "empty": "Tühi",
         "retrying": "Uuesti proovimine",
-        "yesterday": "Eile"
+        "yesterday": "Eile",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -522,9 +512,9 @@
         "discordInformation": "Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha."
     },
     "deleteAccount": {
-        "areYouSure": "<0> </ 0> <1> Kas soovite kindlasti kustutada </ 1> <2> </ 2> <3> {{accountName}}? </ 3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
-        "thisAction": "Seda tegevust ei saa tagasi võtta.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
     "manualSync": {

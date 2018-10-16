@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { isAndroid } from 'libs/device';
 
@@ -40,8 +39,8 @@ const styles = StyleSheet.create({
 /** Seed Vault Backup component */
 class SeedVaultBackup extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -83,18 +82,7 @@ class SeedVaultBackup extends Component {
      * @method goBack
      */
     goBack() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     render() {
@@ -105,7 +93,6 @@ class SeedVaultBackup extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
                     <View>
-                        <DynamicStatusBar backgroundColor={body.bg} />
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
                             <View style={{ flex: 0.7 }} />
@@ -125,7 +112,7 @@ class SeedVaultBackup extends Component {
                             />
                         </KeyboardAvoidingView>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
                                 onRightButtonPress={() => this.onRightButtonPress()}
                                 leftButtonText={t('global:back')}
@@ -137,7 +124,6 @@ class SeedVaultBackup extends Component {
                             />
                         </View>
                     </View>
-                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
             </TouchableWithoutFeedback>
         );

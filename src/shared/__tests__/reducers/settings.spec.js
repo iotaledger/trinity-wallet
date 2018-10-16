@@ -61,7 +61,6 @@ describe('Reducer: settings', () => {
                 versions: {},
                 is2FAEnabled: false,
                 isFingerprintEnabled: false,
-                hasVisitedSeedShareTutorial: false,
                 acceptedTerms: false,
                 acceptedPrivacy: false,
                 autoPromotion: true,
@@ -366,23 +365,6 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 versions: { build: '3.4.4' },
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS', () => {
-        it('should set hasVisitedSeedShareTutorial to payload', () => {
-            const initialState = {
-                hasVisitedSeedShareTutorial: false,
-            };
-
-            const action = actions.setSeedShareTutorialVisitationStatus(true);
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                hasVisitedSeedShareTutorial: true,
             };
 
             expect(newState).to.eql(expectedState);

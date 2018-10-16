@@ -36,7 +36,6 @@ export const ActionTypes = {
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
-    SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
     TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
     SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
     SET_BYTETRIT_STATUS: 'IOTA/SETTINGS/SET_BYTETRIT_STATUS',
@@ -286,19 +285,6 @@ export const updateAutoNodeSwitching = (payload) => ({
  */
 export const setLockScreenTimeout = (payload) => ({
     type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
-    payload,
-});
-
-/**
- * Dispatch to mark Android seed share tutorial visit as completed
- *
- * @method setSeedShareTutorialVisitationStatus
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const setSeedShareTutorialVisitationStatus = (payload) => ({
-    type: ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS,
     payload,
 });
 

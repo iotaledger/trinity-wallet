@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Vágólap törölve",
-        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük.",
-        "seedCopied": "Mester jelszó a vágólapra másolva",
-        "seedCopiedExplanation": "A mester jelszót a \"Kész\"-re klikkelés után, de legkésőbb 60 másodperc múlva töröljük a vágólapról.",
-        "copyToClipboard": "Mester jelszó másolása",
-        "shareSeed": "Mester jelszó tárolása biztonságos jelszókezelőben",
-        "storeEncrypted": "Tárolja le a titkosított mester jelszavát egy jelszókezelőben.",
-        "doNotOpen": "Ne nyisson meg semmilyen másik alkalmazást a folyamat során.",
-        "tapConfirm": "Az elfogadáshoz kérjük jelölje be az alábbi négyzetet.",
-        "passwordManagerCheckbox": "Jelszókezelőben fogom tárolni a mester jelszavam",
-        "copy": "Másolás",
-        "noPasswordManagers": "Nincs telepítve támogatott jelszókezelő alkalmazás",
-        "noPasswordManagersExplanation": "Nincs telepítve támogatott jelszókezelő alkalmazás a készülékén. Kérjük telepítse a Keepass2Android alkalmazást.",
-        "followTutorialToSecurelyShareSeed": "Ha a mester jelszavát egy jelszókezelőben kívánja tárolni, kövesse az alábbi oldalon található útmutatót"
+        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük."
     },
     "enterSeed": {
         "invalidCharacters": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -445,7 +434,8 @@
         "receive": "Fogadás",
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
-        "yesterday": "Tegnap"
+        "yesterday": "Tegnap",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -522,9 +512,9 @@
         "discordInformation": "Kérjük keresse fel a #help csatornát az IOTA Discord-on, hogy további információt kapjon arról, mit tehet az emiatt nem hozzáférhető egyenlegének visszaszerzése érdekében."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Biztos, hogy törölni szeretné a</1><2></2><3>{{accountName}} számlát?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
-        "thisAction": "Ez a művelet nem vonható vissza.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "A számla törléséhez kérjük, adja meg jelszavát."
     },
     "manualSync": {

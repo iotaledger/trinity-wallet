@@ -2,14 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const styles = StyleSheet.create({
     seedBox: {
         borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
+        borderRadius: Styling.borderRadiusLarge,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -63,7 +63,7 @@ class SeedBox extends PureComponent {
 
     render() {
         const { textColor, bodyColor, seed, scale } = this.props;
-        const fontSize = { fontSize: GENERAL.fontSize3 * scale };
+        const fontSize = { fontSize: Styling.fontSize3 * scale };
         const textBoxPadding = { paddingVertical: height / 200 * scale };
 
         return (

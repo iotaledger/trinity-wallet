@@ -3,6 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { QRScanner as QrScannerComponent } from 'ui/components/QrScanner';
 
 jest.mock('react-native-camera', () => ({}));
@@ -18,8 +19,7 @@ const getProps = (overrides) =>
             t: () => '',
             onQRRead: noop,
             hideModal: noop,
-            body: { bg: '#ffffff' },
-            primary: {},
+            theme: { body: {}, primary: {} },
         },
         overrides,
     );
@@ -38,12 +38,8 @@ describe('Testing QrScanner component', () => {
             expect(QrScannerComponent.propTypes.hideModal).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a body object as a prop', () => {
-            expect(QrScannerComponent.propTypes.body).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a primary object as a prop', () => {
-            expect(QrScannerComponent.propTypes.primary).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(QrScannerComponent.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
     });
 
@@ -62,7 +58,7 @@ describe('Testing QrScanner component', () => {
             expect(wrapper.find('QRCodeScanner').length).toEqual(1);
         });
 
-        it('should call prop method hideModal when onPress prop of TouchableOpacity is triggered', () => {
+        it('should call prop method hideModal when onPress prop of SingleFooterButton is triggered', () => {
             const props = getProps({
                 hideModal: jest.fn(),
             });
@@ -72,9 +68,9 @@ describe('Testing QrScanner component', () => {
             expect(props.hideModal).toHaveBeenCalledTimes(0);
 
             wrapper
-                .find('TouchableOpacity')
+                .find(SingleFooterButton)
                 .props()
-                .onPress();
+                .onButtonPress();
 
             expect(props.hideModal).toHaveBeenCalledTimes(1);
         });

@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Pokušajte ponovno s drugim node-om.",
         "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed uklonjen iz međuspremnika",
-        "seedClearedExplanation": "Seed je uklonjen iz međuspremnika radi vaše zaštite.",
-        "seedCopied": "Seed kopiran u međuspremnik",
-        "seedCopiedExplanation": "Seed će biti uklonjen iz međuspremnika nakon što pritisnete \"GOTOVO\" ili nakon isteka 60 sekundi.",
-        "copyToClipboard": "Kopiraj seed",
-        "shareSeed": "Spremite svoj seed u sigurni upravljač lozinki",
-        "storeEncrypted": "Spremite svoj seed kodirano u upravljač lozinki.",
-        "doNotOpen": "Ne otvarajte niti jednu drugu aplikaciju tijekom ovog procesa.",
-        "tapConfirm": "Molimo kliknite na kvadratić ispod za potvrdu.",
-        "passwordManagerCheckbox": "Spremit ću svoj seed u upravljač lozinkama",
-        "copy": "KOPIRAJ",
-        "noPasswordManagers": "Nije pronađen niti jedan podržani upravljač lozinkama",
-        "noPasswordManagersExplanation": "Na vašem uređaju nije pronađen niti jedan podržani upravljač lozinkama. Molimo instalirajte Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Ako želite pohraniti svoj seed u upravljač lozinkama, morate slijediti upute sa sljedećeg linka"
+        "seedClearedExplanation": "Seed je uklonjen iz međuspremnika radi vaše zaštite."
     },
     "enterSeed": {
         "invalidCharacters": "Seed sadrži nedopuštene znakove",
@@ -445,7 +434,8 @@
         "receive": "Primi",
         "empty": "Prazno",
         "retrying": "Ponovni pokušaj u tijeku",
-        "yesterday": "Jučer"
+        "yesterday": "Jučer",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -522,9 +512,9 @@
         "discordInformation": "Više informacija o tome i pomoć potražite na #help kanalu službenog Discorda."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Jeste li sigurni da želite izbrisati</1> <2></2> <3>{{accountName}}.</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Vaš seed i povijest transakcija će biti uklonjeni.",
-        "thisAction": "Ova radnja se ne može poništiti.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Unesite lozinku da bi izbrisali račun."
     },
     "manualSync": {

@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     },
     innerContainer: {
         flexDirection: 'row',
-        borderBottomLeftRadius: GENERAL.borderRadiusSmall,
-        borderBottomRightRadius: GENERAL.borderRadiusSmall,
+        borderBottomLeftRadius: Styling.borderRadiusSmall,
+        borderBottomRightRadius: Styling.borderRadiusSmall,
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: height / 23,
@@ -56,7 +56,7 @@ class InfoBox extends PureComponent {
     };
 
     static defaultProps = {
-        width: width / 1.15,
+        width: Styling.contentWidth,
     };
 
     render() {

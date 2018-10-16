@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Schránka vyčistená",
-        "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky.",
-        "seedCopied": "Seed bol skopírovaný do schránky",
-        "seedCopiedExplanation": "Seed bude zo schránky vymazaný po tom, čo stlačíte \"HOTOVO\" alebo po uplynutí 60 sekúnd.",
-        "copyToClipboard": "Kopírovať Seed",
-        "shareSeed": "Uložte svoj Seed do zabezpečeného správcu hesiel",
-        "storeEncrypted": "Uchovávajte svoj Seed zašifrovaný v správcovi hesiel.",
-        "doNotOpen": "Počas tohto procesu neotvárajte žiadne iné aplikácie.",
-        "tapConfirm": "Pre potvrdenie, prosím, zaškrtnite políčko nižšie.",
-        "passwordManagerCheckbox": "Svoj Seed uložím do správcu hesiel",
-        "copy": "KOPÍROVAŤ",
-        "noPasswordManagers": "Nie sú nainštalovaní žiadni podporovaní správcovia hesiel",
-        "noPasswordManagersExplanation": "Na vašom zariadení neboli nájdení žiadni podporovaní správcovia hesiel. Prosím, nainštalujte si Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Ak si želáte uložiť váš Seed v správcovi hesiel, musíte sa riadiť pokynmi na nasledujúcom odkaze"
+        "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky."
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -445,7 +434,8 @@
         "receive": "Prijať",
         "empty": "Prázdne",
         "retrying": "Pokúša sa znova",
-        "yesterday": "Včera"
+        "yesterday": "Včera",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -522,9 +512,9 @@
         "discordInformation": "Pokiaľ chcete zistiť vaše možnosti, prejdite do #help v aplikácii Discord."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Naozaj chcete odstrániť</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
-        "thisAction": "Túto akciu už nebude možné vrátiť späť.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {

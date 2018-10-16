@@ -14,7 +14,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
-    isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
+    isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
