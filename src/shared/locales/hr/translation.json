@@ -52,8 +52,8 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
-        "password": "Šifra",
-        "unrecognisedPassword": "Nepoznata Lozinka",
+        "password": "Lozinka",
+        "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
         "emptyPasswordExplanation": "Morate unijeti lozinku. Molimo pokušajte ponovno.",
         "capsLockIsOn": "Caps Lock je uključen",
@@ -142,9 +142,9 @@
         "tryingAgainWithLocalPoW": "Pokušajte ponovno s lokalnim PoW-om.",
         "tryingAgainWithDifferentNode": "Pokušajte ponovno s drugim node-om.",
         "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Keychain greška",
+        "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u potrebnom za sigurnu pohranu.",
+        "mainWallet": "GLAVNI RAČUN"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -435,7 +435,7 @@
         "empty": "Prazno",
         "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promocija drugog paketa"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -512,9 +512,9 @@
         "discordInformation": "Više informacija o tome i pomoć potražite na #help kanalu službenog Discorda."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Jeste li sigurni da želite izbrisati svoj račun?",
         "yourSeedWillBeRemoved": "Vaš seed i povijest transakcija će biti uklonjeni.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Ova radnja se ne može poništiti",
         "enterPassword": "Unesite lozinku da bi izbrisali račun."
     },
     "manualSync": {
@@ -697,8 +697,8 @@
         "confirmedOut": "Odlazna transakcija od {{value}} s {{account}} je potvrđena"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "Sredstva uspješno otključana",
+        "sweepSucceededExplanation": "Vaša sredstva su uspješno otključana i premještena na novu adresu. Promovirajte transakcije kako bi pomogli s njihovom potvrdom.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "Warning: Locked funds detected",
