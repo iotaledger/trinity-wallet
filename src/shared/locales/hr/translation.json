@@ -703,9 +703,9 @@
         "sweepErrorExplanation": "Došlo je do greške prilikom otključavanja vaših sredstava. Pokušajte ponovno.",
         "warningTitle": "Upozorenje: Detektirana su zaključana sredstva na vašem računu",
         "explanation": "Trinity Desktop verzija 0.3.4 sadržala je bug koji privremeno može zaključati vaša sredstva. Ovo utječe na mali broj korisnika koji su izvršili transakcije koristeći verziju 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "explanationAccounts": "Zaključana sredstva uočena su na vašim računima: {{accounts}}. Trinity će automatski otključati vaša sredstva tako da ih premjesti na novu adresu.",
+        "proceed": "Nastavi s otključavanjem sredstava",
+        "sweepConfirmation": "Premjestit ćete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
+        "sweepConfirmationTitle": "Potvrda otključavanja"
     }
 }
