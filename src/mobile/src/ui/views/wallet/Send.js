@@ -16,7 +16,7 @@ import {
     ADDRESS_LENGTH,
 } from 'shared-modules/libs/iota/utils';
 import { setDeepLinkInactive } from 'shared-modules/actions/wallet';
-import { getCurrencySymbol, getNextDenomination, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
+import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { makeTransaction } from 'shared-modules/actions/transfers';
 import {
@@ -187,9 +187,7 @@ export class Send extends Component {
 
     constructor(props) {
         super(props);
-
         const { t, body } = this.props;
-
         this.state = {
             modalContent: '', // eslint-disable-line react/no-unused-state
             maxPressed: false,
@@ -202,15 +200,10 @@ export class Send extends Component {
     }
 
     componentWillMount() {
-        const { t, availableBalance, amount, primary } = this.props;
+        const { availableBalance, amount } = this.props;
         const amountAsNumber = parseFloat(amount);
-
         if (amountAsNumber === availableBalance / this.getUnitMultiplier() && amountAsNumber !== 0) {
-            this.setState({
-                maxPressed: true,
-                maxColor: primary.color,
-                maxText: t('send:maximumSelected'),
-            });
+            this.setMaxPressed();
         }
     }
 
@@ -226,18 +219,15 @@ export class Send extends Component {
 
     componentWillReceiveProps(newProps) {
         const { seedIndex, isSendingTransfer } = this.props;
-
         if (!isSendingTransfer && newProps.isSendingTransfer) {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
             this.setState({ sending: false });
-            // Reset toggle switch in case send max is active
-            this.resetToggleSwitch();
+            this.resetMaxPressed();
         }
-
         if (seedIndex !== newProps.seedIndex) {
-            this.resetToggleSwitch();
+            this.resetMaxPressed();
         }
     }
 
@@ -267,20 +257,9 @@ export class Send extends Component {
         timer.clearTimeout('delaySend');
     }
 
-    onDenominationPress(denomination) {
-        const { t, currency, theme: { body } } = this.props;
-        const nextDenomination = getNextDenomination(currency, denomination);
-        this.setState({
-            maxPressed: false,
-            maxColor: body.color,
-            maxText: t('send:sendMax'),
-        });
-        this.props.setSendDenomination(nextDenomination);
-    }
-
     onMaxPress() {
         const { sending, maxPressed } = this.state;
-        const { t, body, primary, availableBalance } = this.props;
+        const { availableBalance } = this.props;
         const max = (availableBalance / this.getUnitMultiplier()).toString();
 
         if (sending) {
@@ -291,34 +270,22 @@ export class Send extends Component {
         }
         if (maxPressed) {
             this.props.setSendAmountField('');
-            this.setState({
-                maxPressed: false,
-                maxColor: body.color,
-                maxText: t('send:sendMax'),
-            });
+            this.resetMaxPressed();
         } else {
             this.props.setSendAmountField(max);
-            this.setState({
-                maxPressed: true,
-                maxColor: primary.color,
-                maxText: t('send:maximumSelected'),
-            });
+            this.setMaxPressed();
         }
     }
 
     onAmountType(amount) {
-        const { t, body, availableBalance } = this.props;
+        const { availableBalance } = this.props;
         amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
 
         if (amount === (availableBalance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
         } else {
-            this.setState({
-                maxPressed: false,
-                maxColor: body.color,
-                maxText: t('send:sendMax'),
-            });
+            this.resetMaxPressed();
         }
     }
 
@@ -347,11 +314,9 @@ export class Send extends Component {
         if (!enoughBalance) {
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
-
         /*if (isSpendingFundsAtSpentAddresses) {
             return this.openModal('usedAddress');
         }*/
-
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
@@ -371,10 +336,8 @@ export class Send extends Component {
         const parsedData = parse(data);
         const dataSubstring = data.substring(5);
         this.hideModal();
-
         // Clear clipboard
         Clipboard.setString(' ');
-
         if (parsedData.address) {
             // For codes containing JSON (iotaledger and Trinity)
             this.props.setSendAddressField(parsedData.address);
@@ -475,6 +438,32 @@ export class Send extends Component {
     }
 
     /**
+     *   Turns on send max toggle
+     *   @method setMaxPressed
+     **/
+    setMaxPressed() {
+        const { primary, t } = this.props;
+        this.setState({
+            maxPressed: true,
+            maxColor: primary.color,
+            maxText: t('send:maximumSelected'),
+        });
+    }
+
+    /**
+     *   Turns off send max toggle
+     *   @method resetMaxPressed
+     **/
+    resetMaxPressed() {
+        const { body, t } = this.props;
+        this.setState({
+            maxPressed: false,
+            maxColor: body.color,
+            maxText: t('send:sendMax'),
+        });
+    }
+
+    /**
      * Generates an alert if address paste is detected
      *
      * @method detectAddressInClipboard
@@ -485,18 +474,6 @@ export class Send extends Component {
         const clipboardContent = await Clipboard.getString();
         if (clipboardContent.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             this.props.generateAlert('info', t('addressPasteDetected'), t('addressPasteExplanation'));
-        }
-    }
-
-    resetToggleSwitch() {
-        const { maxPressed } = this.state;
-        const { t } = this.props;
-
-        if (maxPressed) {
-            this.setState({
-                maxPressed: !maxPressed,
-                maxText: t('send:sendMax'),
-            });
         }
     }
 
@@ -801,7 +778,10 @@ export class Send extends Component {
                             multiplier={this.getUnitMultiplier()}
                             editable={!isSending}
                             setAmount={(text) => this.props.setSendAmountField(text)}
-                            setDenomination={(text) => this.onDenominationPress(text)}
+                            setDenomination={(text) => {
+                                this.props.setSendDenomination(text);
+                                this.resetMaxPressed();
+                            }}
                             containerStyle={{ width: Styling.contentWidth }}
                             onRef={(c) => {
                                 this.amountField = c;
