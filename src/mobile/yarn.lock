@@ -6540,10 +6540,10 @@ react-native-randombytes@^3.2.0:
     buffer "^4.9.1"
     sjcl "^1.0.3"
 
-react-native-safe-area-view@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.2.0.tgz#bda97f548e2ead4a90a06d95558647bc73434670"
-  integrity sha512-vUSoPhFG/itHhA32uQJUueonPBxsXwhdXESL15B5SF1PHm9WocFKhN3qD6Y+NHJPGR4URY3nXjUsMhSBzhDoKg==
+react-native-safe-area-view@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.9.0.tgz#10ece2ecac70e7005a5b0b3f06c8833060e6d21f"
+  integrity sha512-y792ScHMzvgwquxL869S9CER4dwiFu/TuCiXdy0xBtygmScMK4eWonnUT65LvOrsSSdr8o6XEK1mbI51h6ozvQ==
   dependencies:
     hoist-non-react-statics "^2.3.1"
 

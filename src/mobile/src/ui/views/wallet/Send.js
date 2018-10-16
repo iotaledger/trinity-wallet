@@ -267,15 +267,15 @@ export class Send extends Component {
         timer.clearTimeout('delaySend');
     }
 
-    onDenominationPress() {
-        const { t, currency, denomination, theme: { body } } = this.props;
+    onDenominationPress(denomination) {
+        const { t, currency, theme: { body } } = this.props;
         const nextDenomination = getNextDenomination(currency, denomination);
-        this.props.setSendDenomination(nextDenomination);
         this.setState({
             maxPressed: false,
             maxColor: body.color,
             maxText: t('send:sendMax'),
         });
+        this.props.setSendDenomination(nextDenomination);
     }
 
     onMaxPress() {
@@ -544,9 +544,9 @@ export class Send extends Component {
                     borderColor: { borderColor: body.color },
                     textColor: { color: body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
-                    selectedAccountName: selectedAccountName,
+                    selectedAccountName,
                     activateFingerprintScanner: () => this.activateFingerprintScanner(),
-                    isFingerprintEnabled: isFingerprintEnabled,
+                    isFingerprintEnabled,
                 });
             case 'unitInfo':
                 return this.props.toggleModalActivity(modalContent, {
@@ -571,6 +571,8 @@ export class Send extends Component {
                     textColor: { color: body.color },
                     backgroundColor: { backgroundColor: body.bg },
                     instance: 'send',
+                    theme,
+                    isFingerprintEnabled,
                 });
             default:
                 break;
@@ -690,6 +692,7 @@ export class Send extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
+            this.props.toggleModalActivity();
             this.showModal('fingerprint');
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
@@ -798,7 +801,7 @@ export class Send extends Component {
                             multiplier={this.getUnitMultiplier()}
                             editable={!isSending}
                             setAmount={(text) => this.props.setSendAmountField(text)}
-                            setDenomination={(text) => this.props.setSendDenomination(text)}
+                            setDenomination={(text) => this.onDenominationPress(text)}
                             containerStyle={{ width: Styling.contentWidth }}
                             onRef={(c) => {
                                 this.amountField = c;

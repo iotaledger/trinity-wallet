@@ -6,6 +6,7 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getBackgroundColor } from 'ui/theme/general';
+import { isIPhoneFailingSafeAreaView } from 'libs/device';
 
 export default function withSafeAreaView(WrappedComponent) {
     class EnhancedComponent extends Component {
@@ -38,16 +39,19 @@ export default function withSafeAreaView(WrappedComponent) {
                         flex: 1,
                         backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
                     }}
+                    forceInset={{ top: 'always' }}
                 >
                     <WrappedComponent {...this.props} />
-                    <View
-                        style={{
-                            height: 34,
-                            backgroundColor: inactive
-                                ? theme.body.bg
-                                : getBackgroundColor(currentScreen, theme, true, inactive),
-                        }}
-                    />
+                    {isIPhoneFailingSafeAreaView && (
+                        <View
+                            style={{
+                                height: 34,
+                                backgroundColor: inactive
+                                    ? theme.body.bg
+                                    : getBackgroundColor(currentScreen, theme, true, inactive),
+                            }}
+                        />
+                    )}
                 </SafeAreaView>
             );
         }
