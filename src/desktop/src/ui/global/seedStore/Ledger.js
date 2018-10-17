@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import Icon from 'ui/components/Icon';
+import Button from 'ui/components/Button';
 
 import css from './index.scss';
 
@@ -47,6 +48,15 @@ class Ledger extends React.PureComponent {
             view
         });
     }
+
+    onCancel = (e) => {
+        e.preventDefault();
+        Electron.send('ledger', { abort: true });
+
+        this.setState({
+            view: null
+        });
+    };
 
     getIcon(type) {
         switch (type) {
@@ -93,6 +103,11 @@ class Ledger extends React.PureComponent {
                         <h2>{t(`ledger:${view}Title`)}</h2>
                         {this.getIcon(view)}
                         <p>{t(`ledger:${view}Explanation`)}</p>
+                        {view !== 'transaction' && (
+                            <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
+                                {t('cancel')}
+                            </Button>
+                        )}
                     </div>
                 )}
             </div>

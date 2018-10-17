@@ -1,6 +1,7 @@
 const Transport = require('@ledgerhq/hw-transport-node-hid').default;
 const Iota = require('hw-app-iota').default;
 const Wallet = require('electron').remote.getCurrentWindow().webContents;
+const { ipcRenderer: ipc } = require('electron');
 
 class Ledger {
     constructor() {
@@ -26,6 +27,10 @@ class Ledger {
             Wallet.send('ledger', { awaitConnection: false });
         }
 
+        if (!this.connected) {
+            throw new Error('Ledger connection error');
+        }
+
         if (this.iota) {
             this.transport.close();
             this.iota = null;
@@ -41,14 +46,24 @@ class Ledger {
      * @returns {promise}
      */
     async awaitConnection() {
-        return new Promise((resolve) => {
-            const callback = (connected) => {
+        return new Promise((resolve, reject) => {
+            const callbackSuccess = (connected) => {
                 if (connected) {
                     resolve();
-                    this.removeListener(callback);
+                    this.removeListener(callbackSuccess);
+                    ipc.removeListener('ledger', callbackAbort);
                 }
             };
-            this.addListener(callback);
+            this.addListener(callbackSuccess);
+
+            const callbackAbort = (e, message) => {
+                if (message && message.abort) {
+                    this.removeListener(callbackSuccess);
+                    ipc.removeListener('ledger', callbackAbort);
+                    reject();
+                }
+            };
+            ipc.on('ledger', callbackAbort);
         });
     }
 
@@ -59,6 +74,8 @@ class Ledger {
      */
     async awaitApplication(index) {
         return new Promise((resolve, reject) => {
+            let timeout = null;
+
             const callback = async () => {
                 try {
                     this.transport = await Transport.create();
@@ -79,7 +96,7 @@ class Ledger {
                     this.iota = null;
 
                     if (error.statusCode === 0x6e00) {
-                        setTimeout(() => callback(), 4000);
+                        timeout = setTimeout(() => callback(), 4000);
                     } else {
                         Wallet.send('ledger', { awaitApplication: false });
                         reject(error);
@@ -88,6 +105,20 @@ class Ledger {
             };
 
             callback();
+
+            const callbackAbort = (e, message) => {
+                if (message && message.abort) {
+                    ipc.removeListener('ledger', callbackAbort);
+
+                    if (timeout) {
+                        clearTimeout(timeout);
+                    }
+
+                    reject(new Error('Ledger connection error'));
+                }
+            };
+
+            ipc.on('ledger', callbackAbort);
         });
     }
 

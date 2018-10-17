@@ -8,7 +8,6 @@
     left: 0px;
     width: 100vw;
     height: 100vh;
-    pointer-events: none;
     &:before {
         content: "";
         position: absolute;
@@ -33,6 +32,7 @@
         transform: translate(0, 30px);
         transition: opacity 0.1s ease-in, transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
         transition-delay: 0.15s;
+        pointer-events: all;
 
         > span {
             position: absolute;
@@ -51,6 +51,10 @@
         margin-bottom: 26px;
     }
 
+    p{
+       margin-bottom: 30px;
+    }
+
     &.on {
         &:before {
             opacity: 0.85;
@@ -60,6 +64,7 @@
             transform: translate(0, 0);
         }
     }
+
     svg {
         path {
             fill: var(--body);
