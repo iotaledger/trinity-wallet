@@ -6,6 +6,8 @@ target 'iotaWallet' do
     use_frameworks!
 pod 'CatCrypto', :git => 'https://github.com/rajivshah3/CatCrypto.git', :branch => 'raw-hash'
 
+    pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+
     target 'iotaWalletTests' do
         inherit! :search_paths
         # Pods for testing

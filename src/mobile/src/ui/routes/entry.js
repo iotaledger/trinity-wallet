@@ -15,8 +15,9 @@ import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
-import { resetIfKeychainIsEmpty } from 'libs/store';
+import { resetIfKeychainIsEmpty, migrate } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
+import { initialise as initialiseStorage } from '../../../../shared/storage';
 import { mapStorageToState } from '../../../../shared/libs/storageToStateMappers';
 
 const launch = (store) => {
@@ -158,15 +159,24 @@ const hasConnection = (
     );
 };
 
-const restoreState = () =>
-    Promise.resolve({
-        type: ActionTypes.MAP_STORAGE_TO_STATE,
-        payload: mapStorageToState(),
-    });
-
+// Initialise application.
 onAppStart()
-    .then(() => sharedStore.dispatch(restoreState()))
-    .then(() => resetIfKeychainIsEmpty(sharedStore))
+    //  Initialise persistent storage
+    .then(() => initialiseStorage())
+    // Restore persistent storage (Map to redux store)
+    .then(() =>
+        Promise.resolve(
+            sharedStore.dispatch({
+                type: ActionTypes.MAP_STORAGE_TO_STATE,
+                payload: mapStorageToState(),
+            }),
+        ),
+    )
+    // Migrate state if necessary.
+    .then(() => migrate(sharedStore))
+    // Reset persistent state if keychain has no entries
+    .then((store) => resetIfKeychainIsEmpty(store))
+    // Launch application
     .then((store) => {
         overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
@@ -176,12 +186,16 @@ onAppStart()
                 payload: { isConnected },
             });
 
+            // Fetch remote nodes list
             fetchNodeList(store);
+            // Listener callback for connection change event
             startListeningToConnectivityChanges(store);
 
+            // Register components
             registerScreens(store, Provider);
             withNamespaces.setI18n(i18next);
 
+            // Render initial screen
             launch(store);
         };
 
