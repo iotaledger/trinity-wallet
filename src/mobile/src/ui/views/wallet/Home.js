@@ -292,7 +292,7 @@ class Home extends Component {
     completeTransitionTask() {
         this.props.markTaskAsDone({
             accountName: this.props.selectedAccountName,
-            task: 'hasDisplayedTransitionGuide',
+            task: 'displayedSnapshotTransitionGuide',
         });
         if (this.props.isModalActive) {
             this.props.toggleModalActivity();

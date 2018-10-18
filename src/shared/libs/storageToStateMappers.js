@@ -55,9 +55,21 @@ const mapToAccount = () => {
 
     return {
         onboardingComplete: walletData.onboardingComplete,
-        accountInfo: transform(accountsData, (acc, data) => {
-            acc[data.name] = mapAccountToAccountInfo(data);
-        }, {}),
+        ...transform(accountsData, (acc, data) => {
+            const { 
+                name,
+                usedExistingSeed,
+                displayedSnapshotTransitionGuide
+            } = data;
+
+            acc.accountInfo[name] = mapAccountToAccountInfo(data);
+            acc.setupInfo[name] = { usedExistingSeed };
+            acc.tasks[name] = { displayedSnapshotTransitionGuide };
+        }, {
+            accountInfo: {},
+            setupInfo: {},
+            tasks: {}
+        }),
     };
 };
 

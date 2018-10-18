@@ -1,8 +1,8 @@
 import get from 'lodash/get';
+import find from 'lodash/find';
 import isBoolean from 'lodash/isBoolean';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
@@ -52,26 +52,6 @@ export const setAddressData = (existingAddressData, newAddressData) => {
 };
 
 /**
- * Merge latest address data into existing address data for an account
- *
- * @method mergeAddressData
- * @param {object} existingAddressData
- * @param {object} newAddressData
- *
- * @returns {object}
- */
-export const mergeAddressData = (existingAddressData, newAddressData) => {
-    if (isEmpty(existingAddressData)) {
-        return newAddressData;
-    }
-
-    return {
-        ...existingAddressData,
-        ...preserveAddressLocalSpendStatus(existingAddressData, newAddressData),
-    };
-};
-
-/**
  * Updates account information for a single account
  *
  * @method updateAccountInfo
@@ -86,8 +66,11 @@ const updateAccountInfo = (state, payload) => ({
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
             type: payload.accountType || get(state.accountInfo, `${payload.accountName}.type`) || 'keychain',
-            addresses: setAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
-            transactions: payload.transactions
+            addressData: setAddressData(
+                get(state.accountInfo, `${payload.accountName}.addressData`),
+                payload.addressData,
+            ),
+            transactions: payload.transactions,
         },
     },
 });
@@ -139,21 +122,6 @@ const account = (
     action,
 ) => {
     switch (action.type) {
-        case ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS:
-            return {
-                ...state,
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload),
-            };
-        case ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS:
-            return {
-                ...state,
-                unconfirmedBundleTails: omit(state.unconfirmedBundleTails, action.payload),
-            };
-        case ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS:
-            return {
-                ...state,
-                unconfirmedBundleTails: action.payload,
-            };
         case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
@@ -164,7 +132,7 @@ const account = (
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
                 tasks: omit(state.tasks, action.payload),
-                setupInfo: omit(state.setupInfo, action.payload)
+                setupInfo: omit(state.setupInfo, action.payload),
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
@@ -175,6 +143,9 @@ const account = (
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
+        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
+        case ActionTypes.MANUAL_SYNC_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
@@ -186,7 +157,10 @@ const account = (
                     ...state.accountInfo,
                     [action.accountName]: {
                         ...state.accountInfo[action.accountName],
-                        addressData: action.addressData,
+                        addressData: setAddressData(
+                            get(state.accountInfo, `${action.accountName}.addressData`),
+                            action.addressData,
+                        ),
                     },
                 },
             };
@@ -194,35 +168,6 @@ const account = (
             return {
                 ...state,
                 onboardingComplete: action.payload,
-            };
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
-            return {
-                ...state,
-                // Set new account info by assigning latest balance, addresses and transfers
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        addressData: action.payload.addresses,
-                        transactions: action.payload.transactions,
-                    },
-                },
-            };
-        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
-            return {
-                ...state,
-                // Override account state for provided account name
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        addressData: action.payload.addresses,
-                        transactions: action.payload.transactions,
-                    },
-                },
-            };
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
             };
         case ActionTypes.SET_BASIC_ACCOUNT_INFO:
             return {
@@ -236,7 +181,7 @@ const account = (
                 tasks: {
                     ...state.tasks,
                     [action.payload.accountName]: {
-                        hasDisplayedTransitionGuide: false, // Initialize with a default
+                        displayedSnapshotTransitionGuide: false, // Initialize with a default
                     },
                 },
             };
@@ -249,30 +194,6 @@ const account = (
                         ...get(state.tasks, `${action.payload.accountName}`),
                         [action.payload.task]: true,
                     },
-                },
-            };
-        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING:
-            return {
-                ...state,
-                failedBundleHashes: {
-                    ...state.failedBundleHashes,
-                    [action.payload.accountName]: {
-                        ...state.failedBundleHashes[action.payload.accountName],
-                        ...{
-                            [action.payload.bundleHash]: action.payload.transactionObjects,
-                        },
-                    },
-                },
-            };
-        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE:
-            return {
-                ...state,
-                failedBundleHashes: {
-                    ...state.failedBundleHashes,
-                    [action.payload.accountName]: omit(
-                        state.failedBundleHashes[action.payload.accountName],
-                        action.payload.bundleHash,
-                    ),
                 },
             };
         default:

@@ -219,7 +219,7 @@ class TopBar extends Component {
      */
     onChange(newSeedIdx) {
         const { isGeneratingReceiveAddress } = this.props;
-        const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
+        const hasAddresses = Object.keys(this.props.selectedAccount.addressData).length > 0;
 
         // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {

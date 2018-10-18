@@ -32,5 +32,8 @@ export default {
     EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
     DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
     NO_VALID_BUNDLES_CONSTRUCTED: 'No valid bundles constructed.',
-    BUNDLE_NO_LONGER_FUNDED: 'Bundle no longer funded.'
+    BUNDLE_NO_LONGER_FUNDED: 'Bundle no longer funded.',
+    INVALID_BUNDLES_PROVIDED: 'Invalid bundles provided.',
+    INVALID_TRANSACTIONS_PROVIDED: 'Invalid transactions provided.',
+    INCLUSION_STATES_SIZE_MISMATCH: 'Inclusion states size mismatch.',
 };

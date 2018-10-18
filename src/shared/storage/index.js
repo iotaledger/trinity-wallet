@@ -175,7 +175,6 @@ class Wallet {
 }
 
 const config = {
-    path: 'default.realm',
     schema: [
         Account,
         Address,

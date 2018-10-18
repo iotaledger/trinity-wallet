@@ -8,10 +8,8 @@ import filter from 'lodash/filter';
 import transform from 'lodash/transform';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
-import {
-    accumulateBalance,
-    getLatestAddress
-} from '../libs/iota/addresses';
+import { accumulateBalance, getLatestAddress } from '../libs/iota/addresses';
+import { categoriseInclusionStatesByBundleHash } from '../libs/iota/transfers';
 import { mapNormalisedTransactions } from '../libs/storageToStateMappers';
 
 /**
@@ -78,28 +76,14 @@ export const selectAccountInfo = createSelector(
 );
 
 /**
- *   Selects address at index 0 from account info state partial.
- *
- *   @method selectFirstAddressFromAccountFactory
- *   @param {object} accountName
- *   @returns {function}
- **/
-export const selectFirstAddressFromAccountFactory = (accountName) => {
-    return createSelector(getAccountInfoFromState, (state) => get(
-        find(state[accountName].addressData, (addressObject) => addressObject.index === 0),
-        'address'
-        )
-    );
-};
-
-/**
  *   Selects latest address from account info state partial.
  *
  *   @method selectLatestAddressFromAccountFactory
  *   @param {object} accountName
  *   @returns {string}
  **/
-export const selectLatestAddressFromAccountFactory = createSelector(selectAccountInfo, (state) => getLatestAddress(state.addressData, true));
+export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
+    createSelector(selectAccountInfo, (state) => getLatestAddress(state.addressData, withChecksum));
 
 /**
  *   Selects account name for currently selected account.
@@ -117,8 +101,8 @@ export const getSelectedAccountType = createSelector(selectAccountInfo, (account
  *   @param {object} state
  *   @returns {array}
  **/
-export const getTransactionsForSelectedAccount = createSelector(selectAccountInfo,
-    ({ transactions, addressData }) => mapNormalisedTransactions(transactions, addressData)
+export const getTransactionsForSelectedAccount = createSelector(selectAccountInfo, ({ transactions, addressData }) =>
+    mapNormalisedTransactions(transactions, addressData),
 );
 
 /**
@@ -128,9 +112,8 @@ export const getTransactionsForSelectedAccount = createSelector(selectAccountInf
  *   @param {object} state
  *   @returns {array}
  **/
-export const getAddressesForSelectedAccount = createSelector(
-    selectAccountInfo,
-    (account) => map(account.addressData, (addressObject) => addressObject.address),
+export const getAddressesForSelectedAccount = createSelector(selectAccountInfo, (account) =>
+    map(account.addressData, (addressObject) => addressObject.address),
 );
 
 /**
@@ -140,9 +123,8 @@ export const getAddressesForSelectedAccount = createSelector(
  *   @param {object} state
  *   @returns {number}
  **/
-export const getBalanceForSelectedAccount = createSelector(
-    selectAccountInfo,
-    (account) => accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance))
+export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) =>
+    accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance)),
 );
 
 /**
@@ -153,7 +135,7 @@ export const getBalanceForSelectedAccount = createSelector(
  *   @returns {number}
  **/
 export const getAvailableBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
-    const unspentAddresses = filter(account.addresses, { spent: { local: false } });
+    const unspentAddresses = filter(account.addressData, { spent: { local: false } });
     return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
 });
 
@@ -213,10 +195,7 @@ export const getSetupInfoForSelectedAccount = createSelector(
  * @returns {function}
  */
 export const selectedAccountTasksFactory = (accountName) => {
-    return createSelector(
-        getTasksFromAccounts,
-        (tasks) => tasks[accountName] || {},
-    );
+    return createSelector(getTasksFromAccounts, (tasks) => tasks[accountName] || {});
 };
 
 /**
@@ -227,10 +206,7 @@ export const selectedAccountTasksFactory = (accountName) => {
  * @returns {function}
  */
 export const selectedAccountSetupInfoFactory = (accountName) => {
-    return createSelector(
-        getSetupInfoFromAccounts,
-        (setupInfo) => setupInfo[accountName] || {},
-    );
+    return createSelector(getSetupInfoFromAccounts, (setupInfo) => setupInfo[accountName] || {});
 };
 
 /**
@@ -238,7 +214,7 @@ export const selectedAccountSetupInfoFactory = (accountName) => {
  *   Criteria for determining that is if a user used existing seed i.e. not generated from Trinity
  *   and the balance on the seed is zero.
  *
- *   @method  
+ *   @method
  *   @param {object} state
  *   @returns {string}
  **/
@@ -258,7 +234,7 @@ export const shouldTransitionForSnapshot = createSelector(
  *   @returns {string}
  **/
 export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSelectedAccount, (tasks) => {
-    const hasDisplayedTransitionGuide = get(tasks, 'hasDisplayedTransitionGuide');
+    const hasDisplayedTransitionGuide = get(tasks, 'displayedSnapshotTransitionGuide');
 
     return isUndefined(hasDisplayedTransitionGuide) ? true : hasDisplayedTransitionGuide;
 });
@@ -275,25 +251,37 @@ export const getPromotableBundlesFromState = createSelector(
     // Select information about all stored accounts
     getAccountInfoFromState,
     (state) => {
-        return transform(state, (acc, accountState, accountName) => {
-            const promotableTransfers = pickBy(accountState.transfers, (normalisedTransaction) => {
-                return (
-                    // Ignore failed transactions for auto promotion
-                    normalisedTransaction.broadcasted === false &&
-                    // Only pick unconfirmed transactions
-                    normalisedTransaction.persistence === false &&
-                    // Only pick value transactions
-                    normalisedTransaction.transferValue !== 0
+        return transform(
+            state,
+            (acc, accountState, accountName) => {
+                const promotableTailTransactions = filter(
+                    accountState.transactions,
+                    (transaction) =>
+                        transaction.currentIndex === 0 &&
+                        // Ignore zero value transactions for auto promotion
+                        transaction.value !== 0 &&
+                        // Ignore failed transactions for auto promotion because they weren't successully broadcasted
+                        transaction.broadcasted === true,
                 );
-            });
 
-            each(promotableTransfers, (normalisedTransaction, bundleHash) => {
-                acc[accountName] = {
-                    [bundleHash]: { accountName }
-                };
-            });
-        }, {});
-    });
+                // Pick unconfirmed bundle hashes
+                const promotableBundleHashes = pickBy(
+                    categoriseInclusionStatesByBundleHash(
+                        promotableTailTransactions,
+                        map(promotableTailTransactions, (transaction) => transaction.persistence),
+                    ),
+                    (state) => state === false,
+                );
+
+                // Set each bundle hash with account name for auto promotion
+                each(promotableBundleHashes, (_, bundleHash) => {
+                    acc[bundleHash] = { accountName };
+                });
+            },
+            {},
+        );
+    },
+);
 
 /**
  *   Selects all relevant account information from the state object.
@@ -305,14 +293,11 @@ export const getPromotableBundlesFromState = createSelector(
  *   @returns {function}
  **/
 export const selectedAccountStateFactory = (accountName) => {
-    return createSelector(
-        getAccountInfoFromState,
-        (accountInfo) => {
-            if (accountName in accountInfo) {
-                return accountInfo[accountName];
-            }
+    return createSelector(getAccountInfoFromState, (accountInfo) => {
+        if (accountName in accountInfo) {
+            return { ...accountInfo[accountName], accountName };
+        }
 
-            return {};
-        },
-    );
+        return {};
+    });
 };

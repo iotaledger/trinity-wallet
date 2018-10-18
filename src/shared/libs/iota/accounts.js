@@ -1,22 +1,10 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
-import each from 'lodash/each';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import find from 'lodash/find';
-import flatMap from 'lodash/flatMap';
-import unionBy from 'lodash/unionBy';
-import {
-    isNodeSynced,
-    findTransactionObjectsAsync,
-    getLatestInclusionAsync,
-    getTransactionsObjectsAsync,
-} from './extendedApi';
-import {
-    syncTransactions,
-    constructBundlesFromTransactions,
-    filterInvalidBundles,
-} from './transfers';
+import { isNodeSynced, findTransactionsAsync } from './extendedApi';
+import { syncTransactions, getTransactionsDiff } from './transfers';
 import {
     mapLatestAddressDataAndBalances,
     getFullAddressHistory,
@@ -26,7 +14,6 @@ import {
     findSpendStatusesFromTransactions,
 } from './addresses';
 import Errors from '../errors';
-import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
  *   Gets information associated with a seed from the ledger.
@@ -42,20 +29,14 @@ import { EMPTY_HASH_TRYTES } from './utils';
  *   @returns {function(object, string, [object]): Promise<{{accountName: {string}, transactions: {array}, addressData: {array} }}>}
  **/
 export const getAccountData = (provider) => (seedStore, accountName, existingAccountState = {}) => {
-    const bundleHashes = new Set();
-
-    const cached = {
-        tailTransactions: [],
-        transactionObjects: [],
-    };
-
     let data = {
         addresses: [],
-        transfers: [],
         balances: [],
         wereSpent: [],
-        hashes: [],
     };
+
+    const existingTransactions = get(existingAccountState, 'transactions') || [];
+    const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
 
     return isNodeSynced(provider)
         .then((isSynced) => {
@@ -68,60 +49,28 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
         .then((history) => {
             data = { ...data, ...history };
 
-            return getTransactionsObjectsAsync(provider)(history.hashes);
+            return syncTransactions(provider)(
+                getTransactionsDiff(history.hashes, existingTransactionsHashes),
+                existingTransactions,
+            );
         })
-        .then((transactionObjects) => {
-            each(transactionObjects, (tx) => {
-                if (tx.bundle !== EMPTY_HASH_TRYTES) {
-                    bundleHashes.add(tx.bundle);
-                }
-            });
-
-            return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
-        })
-        .then((transactionObjects) => {
-            cached.transactionObjects = transactionObjects;
-
-            const existingTransactions = get(existingAccountState, 'transactions') || [];
+        .then((transactions) => {
             // Get spent statuses of addresses from transaction objects
             const spendStatuses = findSpendStatusesFromTransactions(
                 data.addresses,
-                // Use new & old transactions for finding spend statuses
-                [...cached.transactionObjects, ...existingTransactions]
+                // Use both new & old transactions for finding spend statuses
+                transactions,
             );
 
             data.wereSpent = map(data.wereSpent, (status, idx) => ({
                 ...status,
-                local: spendStatuses[idx]
+                local: spendStatuses[idx],
             }));
 
-            each(transactionObjects, (tx) => {
-                if (tx.currentIndex === 0) {
-                    // Keep track of all tail transactions to check confirmations
-                    cached.tailTransactions = unionBy(cached.tailTransactions, [tx], 'hash');
-                }
-            });
-
-            return getLatestInclusionAsync(provider)(map(cached.tailTransactions, (tx) => tx.hash));
-        })
-        .then((states) => {
             return {
                 accountName,
-                transactions: flatMap(
-                    filterInvalidBundles(
-                        constructBundlesFromTransactions(
-                            cached.tailTransactions,
-                            cached.transactionObjects,
-                            states,
-                            )
-                    ),
-                    (bundle) => bundle
-                ),
-                addresses: formatAddressData(
-                    data.addresses,
-                    data.balances,
-                    data.wereSpent
-                )
+                transactions,
+                addressData: formatAddressData(data.addresses, data.balances, data.wereSpent),
             };
         });
 };
@@ -136,7 +85,9 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
  *
  *   @returns {function(object, object, function): Promise<object>}
  **/
+/* eslint-disable no-unused-vars */
 export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
+    /* eslint-enable no-unused-vars */
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
@@ -147,8 +98,16 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
 
-            return syncTransactions(provider)(thisStateCopy.addressData, thisStateCopy.transactions);
+            return findTransactionsAsync(provider)({
+                addresses: map(thisStateCopy.addressData, (addressObject) => addressObject.address),
+            });
         })
+        .then((newHashes) =>
+            syncTransactions(provider)(
+                getTransactionsDiff(map(thisStateCopy.transactions, (transaction) => transaction.hash), newHashes),
+                thisStateCopy.transactions,
+            ),
+        )
         .then((transactions) => {
             //Trigger notification callback with new incoming transactions and confirmed value transactions
             // if (notificationFn) {
@@ -168,10 +127,7 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
 
             thisStateCopy.transactions = transactions;
 
-            return mapLatestAddressDataAndBalances(provider)(
-                thisStateCopy.addressData,
-                thisStateCopy.transactions,
-            );
+            return mapLatestAddressDataAndBalances(provider)(thisStateCopy.addressData, thisStateCopy.transactions);
         })
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
@@ -193,24 +149,20 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider) => (
-    seedStore,
-    newTransactionObjects,
-    accountState
-) => {
+export const syncAccountAfterSpending = (provider) => (seedStore, newTransactionObjects, accountState) => {
     // Update transactions
     const updatedTransactions = [...accountState.transactions, ...newTransactionObjects];
     // Update address data
     const updatedAddressData = markAddressesAsSpentSync([newTransactionObjects], accountState.addressData);
 
-    return syncAddresses(provider)(
-        seedStore,
-        updatedAddressData,
-        updatedTransactions
-    )
-        // Map latest address data (spend statuses & balances) to addresses
-        .then((latestAddressData) => mapLatestAddressDataAndBalances(provider)(latestAddressData, updatedTransactions))
-        .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }));
+    return (
+        syncAddresses(provider)(seedStore, updatedAddressData, updatedTransactions)
+            // Map latest address data (spend statuses & balances) to addresses
+            .then((latestAddressData) =>
+                mapLatestAddressDataAndBalances(provider)(latestAddressData, updatedTransactions),
+            )
+            .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }))
+    );
 };
 
 /**
@@ -228,7 +180,7 @@ export const syncAccountAfterSpending = (provider) => (
  **/
 export const syncAccountAfterReattachment = (reattachment, accountState) => ({
     ...accountState,
-    transactions: [...accountState.transactions, ...reattachment]
+    transactions: [...accountState.transactions, ...reattachment],
 });
 
 /**
@@ -241,12 +193,13 @@ export const syncAccountAfterReattachment = (reattachment, accountState) => ({
  *   @returns {object}
  **/
 export const syncAccountOnValueTransactionFailure = (newTransactionObjects, accountState) => {
-    const addressData = markAddressesAsSpentSync([newTransactionObjects], accountState.addressData);
+    const failedTransactions = map(newTransactionObjects, (transaction) => ({ ...transaction, broadcasted: false }));
+    const addressData = markAddressesAsSpentSync([failedTransactions], accountState.addressData);
 
     return {
         ...accountState,
         addressData,
-        transactions: [...accountState.transactions, ...newTransactionObjects]
+        transactions: [...accountState.transactions, ...failedTransactions],
     };
 };
 
@@ -263,20 +216,20 @@ export const syncAccountOnSuccessfulRetryAttempt = (newTransactionObjects, accou
     const bundleHash = get(newTransactionObjects, '[0].bundle');
 
     const updatedTransactions = map(accountState.transactions, (transaction) => {
-       if (transaction.bundle === bundleHash) {
-           const currentIndex = transaction.currentIndex;
-               return assign({}, transaction, {
-                   ...find(newTransactionObjects, { currentIndex }),
-                   broadcasted: true
-           });
-       }
+        if (transaction.bundle === bundleHash) {
+            const currentIndex = transaction.currentIndex;
+            return assign({}, transaction, {
+                ...find(newTransactionObjects, { currentIndex }),
+                broadcasted: true,
+            });
+        }
 
-       return transaction;
+        return transaction;
     });
 
     return {
         ...accountState,
-        transactions: updatedTransactions
+        transactions: updatedTransactions,
     };
 };
 

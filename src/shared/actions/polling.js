@@ -11,11 +11,7 @@ import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { fetchRemoteNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
-import {
-    constructBundlesFromTransactions,
-    findPromotableTail,
-    isFundedBundle,
-} from '../libs/iota/transfers';
+import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
@@ -440,6 +436,7 @@ export const getAccountInfo = (accountName, notificationFn) => {
 
         return syncAccount()(existingAccountState, undefined, notificationFn)
             .then((newAccountData) => {
+                // Update storage (realm)
                 Account.update(accountName, newAccountData);
                 dispatch(accountInfoFetchSuccess(newAccountData));
             })
@@ -466,7 +463,8 @@ export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState)
 
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    const getTailTransactionsForThisBundleHash = (transactions) => filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
+    const getTailTransactionsForThisBundleHash = (transactions) =>
+        filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
     return syncAccount()(accountState)
         .then((newState) => {
@@ -478,16 +476,23 @@ export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState)
             // Update redux storage
             dispatch(syncAccountBeforeAutoPromotion(accountState));
 
-            const transactionForThisBundleHash = filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash);
+            const transactionsForThisBundleHash = filter(
+                accountState.transactions,
+                (transaction) => transaction.bundle === bundleHash,
+            );
 
-            if (some(transactionForThisBundleHash, (transaction) => transaction.persistence === true)) {
+            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
             const tailTransactions = getTailTransactionsForThisBundleHash(accountState.transactions);
-            const inclusionStates = map(transactionForThisBundleHash, (transaction) => transaction.persistence);
+            const inclusionStates = map(transactionsForThisBundleHash, (transaction) => transaction.persistence);
 
-            const bundles = constructBundlesFromTransactions(tailTransactions, accountState.transactions, inclusionStates);
+            const bundles = constructBundlesFromTransactions(
+                tailTransactions,
+                accountState.transactions,
+                inclusionStates,
+            );
 
             if (isEmpty(bundles)) {
                 throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);

@@ -76,7 +76,7 @@ const getProps = (overrides) =>
 describe('Testing Send component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
-            describe('#resetToggleSwitch', () => {
+            describe('#resetMaxPressed', () => {
                 describe('when state prop maxPressed is false', () => {
                     it('should not set maxPressed prop to true', () => {
                         const props = getProps();
@@ -86,7 +86,7 @@ describe('Testing Send component', () => {
 
                         expect(wrapper.state().maxPressed).toEqual(false);
 
-                        instance.resetToggleSwitch();
+                        instance.resetMaxPressed();
 
                         expect(wrapper.state().maxPressed).toEqual(false);
                     });
@@ -101,7 +101,7 @@ describe('Testing Send component', () => {
 
                         wrapper.setState({ maxPressed: true });
 
-                        instance.resetToggleSwitch();
+                        instance.resetMaxPressed();
 
                         expect(wrapper.state().maxPressed).toEqual(false);
                     });

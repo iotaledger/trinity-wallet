@@ -709,7 +709,7 @@ const mapStateToProps = (state) => ({
     selectedAccountData: selectAccountInfo(state),
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
-    receiveAddress: selectLatestAddressFromAccountFactory(state),
+    receiveAddress: selectLatestAddressFromAccountFactory()(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
     theme: state.settings.theme,

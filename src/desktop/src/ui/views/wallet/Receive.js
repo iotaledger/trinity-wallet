@@ -184,7 +184,7 @@ class Receive extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    receiveAddress: selectLatestAddressFromAccountFactory(state),
+    receiveAddress: selectLatestAddressFromAccountFactory()(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSyncing: state.ui.isSyncing,
     isTransitioning: state.ui.isTransitioning,
