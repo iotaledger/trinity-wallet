@@ -42,7 +42,7 @@
         "disable": "Disable",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "enterPassword": "Enter password",
+        "enterPassword": "Enter Trinity password",
         "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
@@ -111,7 +111,6 @@
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
-        "enterYourPassword": "Enter your password",
         "changeNode": "Change Node",
         "addCustomNode": "Add Custom Node",
         "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
@@ -245,7 +244,7 @@
     "login": {
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "enterPassword": "Please enter your Trinity password.",
         "login": "Log In",
         "setNode": "Set Node",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
@@ -385,7 +384,7 @@
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
+        "changePassword": "Change Trinity password",
         "advanced": "Advanced settings",
         "logout": "Log out",
         "reset": "Reset wallet",
@@ -426,7 +425,7 @@
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Enter your Trinity password to reset the wallet.",
         "reset": "Reset"
     },
     "walletSetup": {
@@ -545,7 +544,7 @@
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Enter your Trinity password to delete this account."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
@@ -561,7 +560,7 @@
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
+        "enterPassword": "Enter Trinity password to view your seed.",
         "viewSeed": "View Seed",
         "hideSeed": "Hide Seed"
     },
@@ -620,7 +619,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation" : "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password - SeedVault Key and cannot be accessed without that SeedVault Key.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
@@ -631,12 +630,12 @@
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Import SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "enterPasswordExplanation": "Enter your SeedVault Key to open the SeedVault",
         "noSeedFound": "SeedVault does not contain a valid seed",
         "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
         "seedFileError": "Failed to open SeedVault",
         "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a SeedVault Key to encrypt the file. You will need this SeedVault Key to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
