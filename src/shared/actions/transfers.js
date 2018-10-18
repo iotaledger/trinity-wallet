@@ -20,12 +20,11 @@ import {
     isNodeSynced,
 } from '../libs/iota/extendedApi';
 import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getFailedBundleHashesForSelectedAccount,
-    getNodesFromState,
-    getSelectedNodeFromState,
+    selectedAccountStateFactory
 } from '../selectors/accounts';
+import { getRemotePoWFromState,
+    getNodesFromState,
+    getSelectedNodeFromState } from '../selectors/global';
 import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
@@ -67,6 +66,7 @@ import {
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
+import { Account } from '../storage';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -812,16 +812,14 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  */
 export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-    const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
+    const failedTransactionsForThisBundleHash = filter(existingAccountState.transactions, (tx) => tx.bundle === bundleHash);
 
     dispatch(retryFailedTransactionRequest());
 
     // First check spent statuses against transaction addresses
     return (
-        categoriseAddressesBySpentStatus()(
-            map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
-        )
+        categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
@@ -830,19 +828,21 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
                 // If all addresses are still unspent, retry
                 return retry()(
-                    existingFailedTransactionsForThisAccount[bundleHash],
+                    failedTransactionsForThisBundleHash,
                     // If proof of work is set to remote, pass in null as the proof of work function
                     shouldOffloadPow ? null : powFn,
                 );
             })
             .then(({ transactionObjects }) => {
-                dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
-
-                const { newState } = syncAccountOnSuccessfulRetryAttempt(
-                    accountName,
+                // Update state
+                const newState = syncAccountOnSuccessfulRetryAttempt(
                     transactionObjects,
                     existingAccountState,
                 );
+
+                // Persist updated state
+                Account.update(accountName, newState);
+                dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
 
                 // Since this transaction was never sent to the tangle
                 // Generate the same alert we display when a transaction is successfully sent to the tangle

@@ -171,11 +171,8 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
         /** Determines whether bundle is currently being promoted */
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
-        /* eslint-disable react/no-unused-prop-types */
-        /** Checks if the bundle hash belongs to a failed transaction
-         * @param {string} bundleHash
-         */
-        isFailedTransaction: PropTypes.func.isRequired,
+        /** Checks if the bundle hash belongs to a failed transaction */
+        isFailedTransaction: PropTypes.bool.isRequired,
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
@@ -302,8 +299,7 @@ export default class HistoryModalContent extends PureComponent {
             isFailedTransaction,
         } = this.props;
         const { scrollable } = this.state;
-        const isFailed = isFailedTransaction(bundle);
-        const retryButtonIsDisplayed = !persistence || isFailed;
+        const retryButtonIsDisplayed = !persistence || isFailedTransaction;
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={() => hideModal()}>
@@ -358,7 +354,7 @@ export default class HistoryModalContent extends PureComponent {
                                         <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     </TouchableOpacity>
                                     {(!persistence &&
-                                        !isFailed && (
+                                        !isFailedTransaction && (
                                             <View style={[styles.buttonContainer]}>
                                                 {(!bundleIsBeingPromoted &&
                                                     this.renderButton({ ctaWidth: width / 1.3 })) || (
@@ -368,7 +364,7 @@ export default class HistoryModalContent extends PureComponent {
                                                 )}
                                             </View>
                                         )) ||
-                                        (isFailed && (
+                                        (isFailedTransaction && (
                                             <View style={[styles.buttonContainer]}>
                                                 {(!isRetryingFailedTransaction &&
                                                     this.renderButton({

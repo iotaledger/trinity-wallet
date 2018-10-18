@@ -147,7 +147,8 @@ export class Poll extends Component {
                     autoPromoteSkips: 2,
                 });
 
-                return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
+                const { accountName } = unconfirmedBundleTails[bundleHash];
+                return this.props.promoteTransfer(bundleHash, accountName);
             }
         }
 

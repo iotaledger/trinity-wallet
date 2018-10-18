@@ -18,7 +18,7 @@ import { round, roundDown } from 'shared-modules/libs/utils';
 import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import {
-    getTransfersForSelectedAccount,
+    getTransactionsForSelectedAccount,
     getBalanceForSelectedAccount,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
@@ -99,7 +99,7 @@ export class Balance extends Component {
         /** Balance for currently selected account */
         balance: PropTypes.number.isRequired,
         /** Transactions for currently selected account */
-        transfers: PropTypes.object.isRequired,
+        transactions: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** Close active top bar */
@@ -177,8 +177,8 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transfers, primary, secondary, body, addresses } = this.props;
-        const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
+        const { transactions, primary, secondary, body, addresses } = this.props;
+        const orderedTransfers = orderBy(transactions, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
         const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
 
@@ -292,7 +292,7 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     seedIndex: state.wallet.seedIndex,
     balance: getBalanceForSelectedAccount(state),
-    transfers: getTransfersForSelectedAccount(state),
+    transactions: getTransactionsForSelectedAccount(state),
     addresses: getAddressesForSelectedAccount(state),
     currency: state.settings.currency,
     conversionRate: state.settings.conversionRate,

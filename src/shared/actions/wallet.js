@@ -10,8 +10,10 @@ import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getRemotePoWFromState } from '../selectors/global';
 import { DEFAULT_SECURITY } from '../config';
+import { Account } from '../storage';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
@@ -419,17 +421,19 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 index,
                                 relevantBalances[index],
                                 seedStore,
-                                map(existingAccountState.transfers, (tx) => tx),
-                                existingAccountState.addresses,
+                                existingAccountState.transactions,
+                                existingAccountState.addressData,
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
                             )
-                                .then(({ addressData, transfer }) => {
-                                    const { newState } = syncAccountDuringSnapshotTransition(
-                                        transfer,
-                                        addressData,
+                                .then(({ latestAddressData, attachedTransaction }) => {
+                                    const newState = syncAccountDuringSnapshotTransition(
+                                        attachedTransaction,
+                                        latestAddressData,
                                         existingAccountState,
                                     );
+
+                                    Account.update(accountName, newState);
                                     dispatch(updateAccountAfterTransition(newState));
 
                                     return result;

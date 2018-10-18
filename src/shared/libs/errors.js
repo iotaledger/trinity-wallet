@@ -25,9 +25,12 @@ export default {
     EMPTY_ADDRESS_DATA: 'Empty address data.',
     INVALID_INPUT: 'Invalid input.',
     INVALID_TRANSFER: 'Invalid transfer.',
+    INVALID_ADDRESS_DATA: 'Invalid address data.',
     CANNOT_SWEEP_TO_SAME_ADDRESS: 'Cannot sweep to same address.',
     BALANCE_MISMATCH: 'Balance mismatch.',
     PROMOTIONS_LIMIT_REACHED: 'Promotions limit reached.',
     EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
     DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
+    NO_VALID_BUNDLES_CONSTRUCTED: 'No valid bundles constructed.',
+    BUNDLE_NO_LONGER_FUNDED: 'Bundle no longer funded.'
 };

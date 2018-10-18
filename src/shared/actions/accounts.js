@@ -1,9 +1,11 @@
+import assign from 'lodash/assign';
 import {
-    selectedAccountStateFactory,
+    selectedAccountTasksFactory,
+    selectedAccountSetupInfoFactory,
     getAccountNamesFromState,
-    getNodesFromState,
-    getSelectedNodeFromState,
+    selectedAccountStateFactory,
 } from '../selectors/accounts';
+import { getNodesFromState, getSelectedNodeFromState } from '../selectors/global';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { setSeedIndex } from './wallet';
 import {
@@ -18,7 +20,6 @@ import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
-import { mapAccountToAccountInfo } from '../libs/storageToStateMappers';
 import { Account, Wallet } from '../storage';
 
 export const ActionTypes = {
@@ -226,14 +227,10 @@ export const fullAccountInfoFetchRequest = () => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const fullAccountInfoFetchSuccess = (payload) => {
-    Account.create(payload);
-
-    return {
-        type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
-        payload,
-    };
-};
+export const fullAccountInfoFetchSuccess = (payload) => ({
+    type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS,
+    payload,
+});
 
 /**
  * Dispatch when an error occurs during the process of fetching information for an additional account
@@ -342,10 +339,15 @@ export const setBasicAccountInfo = (payload) => ({
  * @param {object} payload
  * @returns {{type: {string}, payload: {object} }}
  */
-export const markTaskAsDone = (payload) => ({
-    type: ActionTypes.MARK_TASK_AS_DONE,
-    payload,
-});
+export const markTaskAsDone = (payload) => {
+    const { accountName, ...rest } = payload;
+    Account.update(accountName, rest);
+
+    return {
+        type: ActionTypes.MARK_TASK_AS_DONE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to mark broadcast status of a failed transaction as pending
@@ -421,11 +423,12 @@ export const getFullAccountInfo = (seedStore, accountName) => {
         const selectedNode = getSelectedNodeFromState(getState());
         const existingAccountNames = getAccountNamesFromState(getState());
         const usedExistingSeed = getState().wallet.usedExistingSeed;
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seedStore, accountName)
+        )(getAccountData)(seedStore, accountName, existingAccountState)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
@@ -433,10 +436,18 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
                 result.accountType = getState().wallet.additionalAccountType;
+                // Create account in storage (realm)
+                Account.create(assign({}, result, {
+                    type: result.accountType,
+                    name: result.accountName,
+                    ...selectedAccountTasksFactory(accountName)(getState()),
+                    ...selectedAccountSetupInfoFactory(accountName)(getState()),
+                }));
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })
             .catch((err) => {
+                console.log('ERROR', err);
                 const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
@@ -461,7 +472,6 @@ export const getFullAccountInfo = (seedStore, accountName) => {
  * @method manuallySyncAccount
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
- * @param {function} genFn
  *
  * @returns {function} dispatch
  */
@@ -470,14 +480,17 @@ export const manuallySyncAccount = (seedStore, accountName) => {
         dispatch(manualSyncRequest());
 
         const selectedNode = getSelectedNodeFromState(getState());
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seedStore, accountName)
+        )(getAccountData)(seedStore, accountName, existingAccountState)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
+
+                Account.update(accountName, result);
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
@@ -505,14 +518,16 @@ export const manuallySyncAccount = (seedStore, accountName) => {
 export const getAccountInfo = (seedStore, accountName, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
-        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
         const selectedNode = getSelectedNodeFromState(getState());
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
         )(syncAccount)(existingAccountState, seedStore, notificationFn)
             .then(({ node, result }) => {
+                Account.update(accountName, result);
+
                 dispatch(changeNode(node));
                 dispatch(accountInfoFetchSuccess(result));
             })
@@ -542,17 +557,17 @@ export const deleteAccount = (accountName) => (dispatch) => {
  * @method cleanUpAccountState
  * @param {object} seedStore
  * @param {string} accountName
- * @param {function} genFn
  *
  * @returns {function(*, *): Promise<object>}
  */
 export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getState) => {
     const selectedNode = getSelectedNodeFromState(getState());
+    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
     return withRetriesOnDifferentNodes(
         [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
         () => dispatch(generateAccountSyncRetryAlert()),
-    )(getAccountData)(seedStore, accountName).then(({ node, result }) => {
+    )(getAccountData)(seedStore, accountName, existingAccountState).then(({ node, result }) => {
         dispatch(changeNode(node));
         dispatch(overrideAccountInfo(result));
 

@@ -1,53 +1,18 @@
 import each from 'lodash/each';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
-import keys from 'lodash/keys';
-import findKey from 'lodash/findKey';
+import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import transform from 'lodash/transform';
 import { createSelector } from 'reselect';
-import { defaultNode as DEFAULT_IRI_NODE } from '../config';
-
-/**
- *   Selects settings prop from state.
- *
- *   @method getSettingsFromState
- *   @param {object} state
- *   @returns {object}
- **/
-export const getSettingsFromState = (state) => state.settings || {};
-
-/**
- *   Selects remotePoW prop from settings reducer state object.
- *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
- *
- *   @method getRemotePoWFromState
- *   @param {object} state
- *   @returns {object}
- **/
-export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
-
-/**
- *   Selects IRI nodes prop from settings reducer state object.
- *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
- *
- *   @method getNodesFromState
- *   @param {object} state
- *   @returns {array}
- **/
-export const getNodesFromState = createSelector(getSettingsFromState, (state) => state.nodes || []);
-
-/**
- *   Selects selected IRI node prop from settings reducer state object.
- *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
- *
- *   @method getSelectedNodeFromState
- *   @param {object} state
- *   @returns {array}
- **/
-export const getSelectedNodeFromState = createSelector(getSettingsFromState, (state) => state.node || DEFAULT_IRI_NODE);
+import { getSeedIndexFromState } from './global';
+import {
+    accumulateBalance,
+    getLatestAddress
+} from '../libs/iota/addresses';
+import { mapNormalisedTransactions } from '../libs/storageToStateMappers';
 
 /**
  *   Selects accounts prop from state.
@@ -59,15 +24,6 @@ export const getSelectedNodeFromState = createSelector(getSettingsFromState, (st
 export const getAccountsFromState = (state) => state.accounts || {};
 
 /**
- *   Selects wallet prop from state.
- *
- *   @method getWalletFromState
- *   @param {object} state
- *   @returns {object}
- **/
-export const getWalletFromState = (state) => state.wallet || {};
-
-/**
  *   Selects accountInfo prop from accounts reducer state object.
  *   Uses getAccountFromState selector for slicing accounts state from the whole state object.
  *
@@ -76,61 +32,6 @@ export const getWalletFromState = (state) => state.wallet || {};
  *   @returns {object}
  **/
 export const getAccountInfoFromState = createSelector(getAccountsFromState, (state) => state.accountInfo || {});
-
-/**
- *   Selects unconfirmedBundleTails prop from accounts reducer state object.
- *   Uses getAccountFromState selector for slicing accounts state from the state object.
- *
- *   @method getUnconfirmedBundleTailsFromState
- *   @param {object} state
- *   @returns {object}
- **/
-export const getUnconfirmedBundleTailsFromState = createSelector(
-    getAccountsFromState,
-    (state) => state.unconfirmedBundleTails || {},
-);
-
-/**
- *   Selects all relevant account information from the state object.
- *   When returned function (createSelector) is called with the whole state object,
- *   it slices off state partials for the accountName.
- *
- *   @method selectedAccountStateFactory
- *   @param {string} accountName
- *   @returns {function}
- **/
-export const selectedAccountStateFactory = (accountName) => {
-    return createSelector(
-        getAccountInfoFromState,
-        getUnconfirmedBundleTailsFromState,
-        (accountInfo, unconfirmedBundleTails) => ({
-            ...(accountInfo[accountName] || {}),
-            accountName,
-            unconfirmedBundleTails,
-        }),
-    );
-};
-
-/**
- *   Selects address at index 0 from account info state partial.
- *
- *   @method selectFirstAddressFromAccountFactory
- *   @param {object} accountName
- *   @returns {function}
- **/
-export const selectFirstAddressFromAccountFactory = (accountName) => {
-    return createSelector(getAccountInfoFromState, (state) =>
-        reduce(
-            pickBy(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
-            (acc, addressMeta, address) => {
-                acc = `${address}${addressMeta.checksum}`;
-
-                return acc;
-            },
-            '',
-        ),
-    );
-};
 
 /**
  *   Selects accountNames prop from accounts reducer state object.
@@ -146,16 +47,6 @@ export const getAccountNamesFromState = createSelector(
 );
 
 /**
- *   Selects seedIndex prop from wallet reducer state object.
- *   Uses getWalletFromState selector for slicing wallet state from the whole state object.
- *
- *   @method getSeedIndexFromState
- *   @param {object} state
- *   @returns {number}
- **/
-export const getSeedIndexFromState = createSelector(getWalletFromState, (state) => state.seedIndex || 0);
-
-/**
  *   Selects account name for currently selected account.
  *
  *   @method getSelectedAccountName
@@ -165,7 +56,9 @@ export const getSeedIndexFromState = createSelector(getWalletFromState, (state) 
 export const getSelectedAccountName = createSelector(
     getAccountNamesFromState,
     getSeedIndexFromState,
-    (accountNames, seedIndex) => get(accountNames, seedIndex),
+    (accountNames, seedIndex) => {
+        return get(accountNames, seedIndex);
+    },
 );
 
 /**
@@ -185,6 +78,30 @@ export const selectAccountInfo = createSelector(
 );
 
 /**
+ *   Selects address at index 0 from account info state partial.
+ *
+ *   @method selectFirstAddressFromAccountFactory
+ *   @param {object} accountName
+ *   @returns {function}
+ **/
+export const selectFirstAddressFromAccountFactory = (accountName) => {
+    return createSelector(getAccountInfoFromState, (state) => get(
+        find(state[accountName].addressData, (addressObject) => addressObject.index === 0),
+        'address'
+        )
+    );
+};
+
+/**
+ *   Selects latest address from account info state partial.
+ *
+ *   @method selectLatestAddressFromAccountFactory
+ *   @param {object} accountName
+ *   @returns {string}
+ **/
+export const selectLatestAddressFromAccountFactory = createSelector(selectAccountInfo, (state) => getLatestAddress(state.addressData, true));
+
+/**
  *   Selects account name for currently selected account.
  *
  *   @method getSelectedAccountType
@@ -194,28 +111,15 @@ export const selectAccountInfo = createSelector(
 export const getSelectedAccountType = createSelector(selectAccountInfo, (account) => account.type || 'keychain');
 
 /**
- *   Selects latest address from account info state partial.
- *
- *   @method selectLatestAddressFromAccountFactory
- *   @param {object} accountName
- *   @returns {string}
- **/
-export const selectLatestAddressFromAccountFactory = createSelector(selectAccountInfo, (state) => {
-    const latestAddress = findKey(
-        state.addresses,
-        (addressMeta) => addressMeta.index === keys(state.addresses).length - 1,
-    );
-    return latestAddress.concat(state.addresses[latestAddress].checksum);
-});
-
-/**
  *   Selects transfers from accountInfo object.
  *
- *   @method getTransfersForSelectedAccount
+ *   @method getTransactionsForSelectedAccount
  *   @param {object} state
  *   @returns {array}
  **/
-export const getTransfersForSelectedAccount = createSelector(selectAccountInfo, (account) => account.transfers || {});
+export const getTransactionsForSelectedAccount = createSelector(selectAccountInfo,
+    ({ transactions, addressData }) => mapNormalisedTransactions(transactions, addressData)
+);
 
 /**
  *   Selects addresses from accountInfo object.
@@ -226,7 +130,7 @@ export const getTransfersForSelectedAccount = createSelector(selectAccountInfo, 
  **/
 export const getAddressesForSelectedAccount = createSelector(
     selectAccountInfo,
-    (account) => keys(account.addresses) || [],
+    (account) => map(account.addressData, (addressObject) => addressObject.address),
 );
 
 /**
@@ -236,7 +140,10 @@ export const getAddressesForSelectedAccount = createSelector(
  *   @param {object} state
  *   @returns {number}
  **/
-export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => account.balance || 0);
+export const getBalanceForSelectedAccount = createSelector(
+    selectAccountInfo,
+    (account) => accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance))
+);
 
 /**
  *   Selects available balance from accountInfo object i.e. balance at unused addresses.
@@ -293,22 +200,54 @@ export const getTasksForSelectedAccount = createSelector(
 export const getSetupInfoForSelectedAccount = createSelector(
     getSelectedAccountName,
     getSetupInfoFromAccounts,
-    (accountName, setupInfo) => get(setupInfo, accountName) || {},
+    (accountName, setupInfo) => {
+        return get(setupInfo, accountName) || {};
+    },
 );
+
+/**
+ * Factory function for selecting account related tasks from state
+ * @method selectedAccountTasksFactory
+ *
+ * @param {string} accountName
+ * @returns {function}
+ */
+export const selectedAccountTasksFactory = (accountName) => {
+    return createSelector(
+        getTasksFromAccounts,
+        (tasks) => tasks[accountName] || {},
+    );
+};
+
+/**
+ * Factory function for selecting account setup information from state
+ * @method selectedAccountSetupInfoFactory
+ *
+ * @param {string} accountName
+ * @returns {function}
+ */
+export const selectedAccountSetupInfoFactory = (accountName) => {
+    return createSelector(
+        getSetupInfoFromAccounts,
+        (setupInfo) => setupInfo[accountName] || {},
+    );
+};
 
 /**
  *   Determines if snapshot transition info modal should be displayed
  *   Criteria for determining that is if a user used existing seed i.e. not generated from Trinity
  *   and the balance on the seed is zero.
  *
- *   @method shouldTransitionForSnapshot
+ *   @method  
  *   @param {object} state
  *   @returns {string}
  **/
 export const shouldTransitionForSnapshot = createSelector(
     getSetupInfoForSelectedAccount,
     getBalanceForSelectedAccount,
-    (setupInfo, balance) => get(setupInfo, 'usedExistingSeed') && balance === 0,
+    (setupInfo, balance) => {
+        return get(setupInfo, 'usedExistingSeed') && balance === 0;
+    },
 );
 
 /**
@@ -325,32 +264,6 @@ export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSel
 });
 
 /**
- *   Selects failedBundleHashes prop from accounts reducer state object.
- *   Uses getAccountFromState selector for slicing accounts state from the state object.
- *
- *   @method getFailedBundleHashesFromAccounts
- *   @param {object} state
- *   @returns {object}
- **/
-export const getFailedBundleHashesFromAccounts = createSelector(
-    getAccountsFromState,
-    (state) => state.failedBundleHashes || {},
-);
-
-/**
- *   Selects failedBundleHashes for selected account
- *
- *   @method getFailedBundleHashesForSelectedAccount
- *   @param {object} state
- *   @returns {object}
- **/
-export const getFailedBundleHashesForSelectedAccount = createSelector(
-    getSelectedAccountName,
-    getFailedBundleHashesFromAccounts,
-    (accountName, failedBundleHashes) => get(failedBundleHashes, accountName) || {},
-);
-
-/**
  *   Selects promotable (unconfirmed & value) bundles from accounts reducer state object.
  *   Uses getAccountInfoFromState selector for slicing accounts state from the state object.
  *
@@ -359,21 +272,47 @@ export const getFailedBundleHashesForSelectedAccount = createSelector(
  *   @returns {object}
  **/
 export const getPromotableBundlesFromState = createSelector(
+    // Select information about all stored accounts
     getAccountInfoFromState,
     (state) => {
         return transform(state, (acc, accountState, accountName) => {
             const promotableTransfers = pickBy(accountState.transfers, (normalisedTransaction) => {
                 return (
-                    normalisedTransaction.failedToBroadcast === false &&
+                    // Ignore failed transactions for auto promotion
+                    normalisedTransaction.broadcasted === false &&
+                    // Only pick unconfirmed transactions
                     normalisedTransaction.persistence === false &&
+                    // Only pick value transactions
                     normalisedTransaction.transferValue !== 0
                 );
             });
 
             each(promotableTransfers, (normalisedTransaction, bundleHash) => {
                 acc[accountName] = {
-                    [bundleHash]: normalisedTransaction.tailTransactions
+                    [bundleHash]: { accountName }
                 };
             });
         }, {});
     });
+
+/**
+ *   Selects all relevant account information from the state object.
+ *   When returned function (createSelector) is called with the whole state object,
+ *   it slices off state partials for the accountName.
+ *
+ *   @method selectedAccountStateFactory
+ *   @param {string} accountName
+ *   @returns {function}
+ **/
+export const selectedAccountStateFactory = (accountName) => {
+    return createSelector(
+        getAccountInfoFromState,
+        (accountInfo) => {
+            if (accountName in accountInfo) {
+                return accountInfo[accountName];
+            }
+
+            return {};
+        },
+    );
+};

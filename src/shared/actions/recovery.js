@@ -1,7 +1,8 @@
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
-import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getRemotePoWFromState } from '../selectors/global';
 import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { cleanUpAccountState, updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
 import { sweep } from '../libs/iota/recovery';

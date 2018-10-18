@@ -6,7 +6,6 @@ export const TransactionSchema = {
     name: 'Transaction',
     primaryKey: 'hash', // Index and look up transactions by their hash
     properties: {
-        type: 'string',
         hash: 'string',
         signatureMessageFragment: 'string',
         address: 'Address',
@@ -20,7 +19,7 @@ export const TransactionSchema = {
         message: 'string',
         bundle: 'string',
         persistence: 'string',
-        failedToBroadcast: 'bool'
+        broadcasted: { type: 'bool', default: true }
     },
 };
 
@@ -62,9 +61,12 @@ export const AccountSchema = {
     name: 'Account',
     primaryKey: 'name',
     properties: {
+        type: { type: 'string', default: 'keychain' },
         name: 'string',
-        addresses: 'Address[]',
-        transactions: 'Transaction[]'
+        addressData: 'Address[]',
+        transactions: 'Transaction[]',
+        usedExistingSeed: { type: 'bool', default: false },
+        displayedSnapshotTransitionGuide: { type: 'bool', default: false },
     }
 };
 
