@@ -99,7 +99,7 @@ class Advanced extends PureComponent {
     confirmReset = () => {
         const { wallet } = this.props;
 
-        this.setState({ resetConfirm: !this.state.resetConfirm, resetCountdown: 6 });
+        this.setState({ resetConfirm: !this.state.resetConfirm, resetCountdown: 15 });
 
         if (!wallet || !wallet.isOpen) {
             this.interval = setInterval(() => {
