@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { disposeOffAlert } from '../../actions/alerts';
+import { dismissAlert } from '../../actions/alerts';
 
 /**
  * Alerts component container
@@ -11,8 +11,8 @@ import { disposeOffAlert } from '../../actions/alerts';
 export default function withAlertsData(AlertsComponent) {
     class AlertsData extends React.PureComponent {
         static propTypes = {
-            disposeOffAlert: PropTypes.func.isRequired,
-            alerts: PropTypes.object.isRequired,
+            dismissAlert: PropTypes.func.isRequired,
+            alerts: PropTypes.object.isRequired
         };
 
         render() {
@@ -23,11 +23,11 @@ export default function withAlertsData(AlertsComponent) {
     AlertsData.displayName = `withAlertsData(${AlertsComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        alerts: state.alerts,
+        alerts: state.alerts
     });
 
     const mapDispatchToProps = {
-        disposeOffAlert,
+        dismissAlert
     };
 
     return connect(mapStateToProps, mapDispatchToProps)(AlertsData);
