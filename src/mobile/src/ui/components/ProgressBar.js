@@ -46,40 +46,46 @@ class ProgressBar extends Component {
         progressText: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         /** Total number of progress steps */
         stepSize: PropTypes.number,
+        /** Slider color before successful swipe */
         preSwipeColor: PropTypes.string,
+        /** Slider color after successful swipe */
         postSwipeColor: PropTypes.string,
+        /** Text displayed when not in progress */
         staticText: PropTypes.string,
+        /** Called on successful swipe */
         onCompleteSwipe: PropTypes.func,
+        /** Interupts the progress bar when changed */
         interupt: PropTypes.bool,
     };
 
     static defaultProps = {
-        animationType: 'timing',
         width: Styling.contentWidth,
         height: height / 11,
-        indeterminate: false,
-        color: 'rgba(247, 208, 2, 0.75)',
-        textColor: 'rgba(247, 208, 2, 0.75)',
     };
 
     constructor(props) {
         super(props);
+        const isAlreadyInProgress = props.progress > -1;
+        const sliderEndPosition = props.width - props.height;
         this.state = {
-            progressPosition: new Animated.Value(0),
-            progress: -1,
-            counter: 0,
-            sliderPosition: new Animated.Value(0),
-            thresholdDistance: props.width - props.height,
-            sliderColor: props.preSwipeColor,
+            progressPosition: new Animated.Value(isAlreadyInProgress ? props.progress : 0),
+            progressStep: props.progress,
+            progressIncrement: isAlreadyInProgress ? props.progress : 0,
+            sliderPosition: new Animated.Value(isAlreadyInProgress ? sliderEndPosition : 0),
+            thresholdDistance: sliderEndPosition,
+            sliderColor: isAlreadyInProgress ? props.preSwipeColor : props.postSwipeColor,
             textOpacity: new Animated.Value(1),
             sliderOpacity: new Animated.Value(1),
-            progressText: '',
-            inProgress: false,
+            progressText: isAlreadyInProgress ? props.progressText : '',
+            inProgress: isAlreadyInProgress,
             sliderAnimation: sliderLoadingAnimation,
         };
     }
 
     componentWillMount() {
+        if (this.props.progress > -1) {
+            this.animateProgressBar();
+        }
         this._panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onStartShouldSetPanResponderCapture: () => true,
@@ -115,6 +121,12 @@ class ProgressBar extends Component {
         });
     }
 
+    componentDidMount() {
+        if (this.props.progress > -1 && this.sliderAnimation) {
+            this.sliderAnimation.play();
+        }
+    }
+
     componentWillReceiveProps(newProps) {
         if (this.props.progress !== newProps.progress) {
             // On first progress change
@@ -124,7 +136,7 @@ class ProgressBar extends Component {
                 this.sliderAnimation.play();
             }
             // On every progress change
-            this.setState({ progress: newProps.progress, counter: newProps.progress });
+            this.setState({ progressStep: newProps.progress, progressIncrement: newProps.progress });
             this.onProgressStepChange(newProps.progressText);
             // On last progress change
             if (this.props.stepSize > 0 && newProps.progress === 1 - this.props.stepSize) {
@@ -170,7 +182,7 @@ class ProgressBar extends Component {
             () => {
                 this.sliderAnimation.reset();
                 this.setState({
-                    progress: -1,
+                    progressStep: -1,
                     inProgress: false,
                     sliderAnimation: sliderLoadingAnimation,
                     shouldLoopSliderAnimation: true,
@@ -201,7 +213,7 @@ class ProgressBar extends Component {
     }
 
     onInterupt() {
-        this.setState({ progress: -1, inProgress: false });
+        this.setState({ progressStep: -1, inProgress: false });
         Animated.timing(this.state.progressPosition).stop();
         this.state.progressPosition.setValue(0);
         Animated.timing(this.state.sliderPosition).stop();
@@ -219,7 +231,7 @@ class ProgressBar extends Component {
 
     onProgressStepChange(progressText) {
         // On first step change
-        if (this.state.progress < 0) {
+        if (this.state.progressStep < 0) {
             this.setState({ progressText });
             return Animated.timing(this.state.textOpacity, {
                 toValue: 1,
@@ -227,7 +239,7 @@ class ProgressBar extends Component {
             }).start();
         }
         // On last step change
-        if (this.state.progress === 1) {
+        if (this.state.progressStep === 1) {
             return timer.setTimeout(
                 'delayProgressTextFadeOut',
                 () => {
@@ -240,7 +252,7 @@ class ProgressBar extends Component {
             );
         }
         // On any other step change
-        if (this.state.progress >= 0) {
+        if (this.state.progressStep >= 0) {
             return timer.setTimeout(
                 'delayProgressTextChange',
                 () => {
@@ -261,18 +273,18 @@ class ProgressBar extends Component {
     }
 
     animateProgressBar() {
-        const nextStep = this.state.progress + this.props.stepSize;
+        const nextStep = this.state.progressStep + this.props.stepSize;
         const increment = this.props.stepSize / 100;
-        const updatedCounter = this.state.counter + increment;
-        if (this.state.counter < nextStep - this.props.stepSize / 5) {
-            this.setState({ counter: updatedCounter });
+        const updatedIncrement = this.state.progressIncrement + increment;
+        if (this.state.progressIncrement < nextStep - this.props.stepSize / 5) {
+            this.setState({ progressIncrement: updatedIncrement });
         }
         Animated.timing(this.state.progressPosition, {
-            toValue: Math.max(this.state.progress, this.state.counter),
+            toValue: Math.max(this.state.progressStep, this.state.progressIncrement),
             useNativeDriver: true,
             easing: Easing.ease,
         }).start(() => {
-            if (this.state.counter <= 1 && this.state.inProgress) {
+            if (this.state.progressIncrement <= 1 && this.state.inProgress) {
                 this.animateProgressBar();
             }
         });
@@ -302,7 +314,7 @@ class ProgressBar extends Component {
 
     render() {
         const { height, width, textColor, staticText, unfilledColor, filledColor } = this.props;
-        const progressStyle = {
+        const progressBarStyle = {
             backgroundColor: filledColor,
             height,
             width,
@@ -317,7 +329,7 @@ class ProgressBar extends Component {
         };
         return (
             <View style={[styles.container, { height, width, backgroundColor: unfilledColor }]}>
-                <Animated.View style={progressStyle} />
+                <Animated.View style={progressBarStyle} />
                 {(this.state.inProgress && (
                     <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
                         {this.state.progressText}
@@ -345,7 +357,7 @@ class ProgressBar extends Component {
                     <View
                         style={[
                             styles.slider,
-                            { width: height, height, backgroundColor: 'transparent', borderRadius: height, padding: 5 },
+                            { width: height, height, backgroundColor: 'transparent', borderRadius: height },
                         ]}
                     >
                         <View
@@ -356,8 +368,6 @@ class ProgressBar extends Component {
                                     height: height - 8,
                                     backgroundColor: this.state.sliderColor,
                                     borderRadius: height,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
                                 },
                             ]}
                         >
