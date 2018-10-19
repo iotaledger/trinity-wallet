@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "सीड हटाया गया",
-        "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।",
-        "seedCopied": "क्लिपबोर्ड पर प्रतिलिपि बनाई गई",
-        "seedCopiedExplanation": "\"सम्पन्न\" को दबाने के 60 सेकंड बाद सीड स्वतः मिट जायेगा ।",
-        "copyToClipboard": "सीड कॉपी करे",
-        "shareSeed": "अपने सीड को एक सुरक्षित पासवर्ड मैनेजर में साझा करें",
-        "storeEncrypted": "एन्क्रिप्ट कर पासवर्ड मैनेजर में अपने सीड को स्टोर करे",
-        "doNotOpen": "इस प्रक्रिया के दौरान किसी भी अन्य एप्लीकेशन न खोले।",
-        "tapConfirm": "कृपया पुष्टि करने के लिए नीचे चेकबॉक्स टैप करें ।",
-        "passwordManagerCheckbox": "मैं अपने सीड को पासवर्ड मैनेजर में स्टोर करूंगा",
-        "copy": "प्रतिलिपि",
-        "noPasswordManagers": "कोई समर्थित पासवर्ड प्रबंधक स्थापित नहीं",
-        "noPasswordManagersExplanation": "आपके डिवाइस पर कोई समर्थित पासवर्ड प्रबंधक नहीं मिले । कृपया Keepass2Android स्थापित करें ।",
-        "followTutorialToSecurelyShareSeed": "आप एक पासवर्ड प्रबंधक में अपने सीड स्टोर करना चाहते हैं, तो आप निम्न लिंक से एक ट्यूटोरियल का पालन करना होगा"
+        "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।"
     },
     "enterSeed": {
         "invalidCharacters": "सीड में अवैध वर्ण हैं।",
@@ -445,7 +434,8 @@
         "receive": "प्राप्त करें",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "सीड देखें",
@@ -522,9 +512,9 @@
         "discordInformation": "यह पता लगाने के लिए कि आप क्या कर सकते हैं, कृपया डिस्कॉर्ड पर #help चैनल पर जाएं।"
     },
     "deleteAccount": {
-        "areYouSure": "<0> </ 0> <1> क्या आप वाकई <3> {{accountName}}? </ 3> हटाना चाहते हैं </ 1> <2> </ 2>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
-        "thisAction": "यह पूर्ववत् नहीं किया जा सकता है!",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।"
     },
     "manualSync": {

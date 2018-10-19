@@ -1,25 +1,22 @@
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
-import { setOnboardingSeed } from 'shared-modules/actions/ui';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import QRScannerComponent from 'ui/components/QrScanner';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'ui/components/PasswordValidationModal';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid, isIPhone11 } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -50,13 +47,13 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -65,18 +62,20 @@ const styles = StyleSheet.create({
 /** Enter seed component */
 class EnterSeed extends React.Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Determines if the application is minimised */
         minimised: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -84,7 +83,6 @@ class EnterSeed extends React.Component {
 
         this.state = {
             seed: '',
-            isModalVisible: false,
         };
     }
 
@@ -105,7 +103,7 @@ class EnterSeed extends React.Component {
      * Validate seed
      */
     onDonePress() {
-        const { t, theme } = this.props;
+        const { t, theme: { body } } = this.props;
         const { seed } = this.state;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
@@ -120,17 +118,33 @@ class EnterSeed extends React.Component {
                 FlagSecure.deactivate();
             }
             this.props.setOnboardingSeed(seed, true);
-            this.props.navigator.push({
-                screen: 'setAccountName',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    drawUnderStatusBar: true,
-                    topBarElevationShadowEnabled: false,
-                    statusBarColor: theme.body.bg,
-                    screenBackgroundColor: theme.body.bg,
+            Navigation.push('appStack', {
+                component: {
+                    name: 'setAccountName',
+                    options: {
+                        animations: {
+                            push: {
+                                enable: false,
+                            },
+                            pop: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            backgroundColor: body.bg,
+                        },
+                    },
                 },
-                animated: false,
             });
         }
     }
@@ -140,9 +154,7 @@ class EnterSeed extends React.Component {
      * @method onBackPress
      */
     onBackPress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -150,7 +162,7 @@ class EnterSeed extends React.Component {
      * @method onQRPress
      */
     onQRPress() {
-        this.showModal('qr');
+        this.showModal('qrScanner');
     }
 
     /**
@@ -176,45 +188,28 @@ class EnterSeed extends React.Component {
         this.hideModal();
     }
 
-    showModal = (modalContent) => this.setState({ modalContent, isModalVisible: true });
+    hideModal = () => this.props.toggleModalActivity();
 
-    hideModal = () => this.setState({ isModalVisible: false });
-
-    handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            Keyboard.dismiss();
-        }
-    };
-
-    renderModalContent = (modalContent) => {
-        const { theme, theme: { body, primary } } = this.props;
-        let content = '';
+    showModal = (modalContent) => {
+        const { theme } = this.props;
         switch (modalContent) {
-            case 'qr':
-                content = (
-                    <QRScannerComponent
-                        primary={primary}
-                        body={body}
-                        onQRRead={(data) => this.onQRRead(data)}
-                        hideModal={() => this.hideModal()}
-                    />
-                );
-                break;
+            case 'qrScanner':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    onQRRead: (data) => this.onQRRead(data),
+                    hideModal: () => this.props.toggleModalActivity(),
+                });
             case 'passwordValidation':
-                content = (
-                    <PasswordValidation
-                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
-                        hideModal={() => this.hideModal()}
-                        theme={theme}
-                    />
-                );
-                break;
+                return this.props.toggleModalActivity(modalContent, {
+                    validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
+                    hideModal: () => this.props.toggleModalActivity(),
+                    theme,
+                });
         }
-        return content;
     };
 
     render() {
-        const { seed, modalContent, isModalVisible } = this.state;
+        const { seed } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (
@@ -222,7 +217,6 @@ class EnterSeed extends React.Component {
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                     {!minimised && (
                         <View>
-                            <StatusBar barStyle="light-content" backgroundColor={theme.body.bg} />
                             <View style={styles.topContainer}>
                                 <Icon name="iota" size={width / 8} color={theme.body.color} />
                                 <View style={{ flex: 0.7 }} />
@@ -237,7 +231,7 @@ class EnterSeed extends React.Component {
                                             this.setState({ seed: text.toUpperCase() });
                                         }
                                     }}
-                                    containerStyle={{ width: width / 1.15 }}
+                                    containerStyle={{ width: Styling.contentWidth }}
                                     theme={theme}
                                     autoCapitalize="characters"
                                     autoCorrect={false}
@@ -282,7 +276,7 @@ class EnterSeed extends React.Component {
                                 <View style={{ flex: 0.7 }} />
                             </View>
                             <View style={styles.bottomContainer}>
-                                <OnboardingButtons
+                                <DualFooterButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
                                     leftButtonText={t('global:goBack')}
@@ -291,26 +285,6 @@ class EnterSeed extends React.Component {
                                     rightButtonTestID="enterSeed-next"
                                 />
                             </View>
-                            {!isModalVisible && (
-                                <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
-                            )}
-                            <Modal
-                                animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                                animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                                animationInTiming={isAndroid ? 1000 : 300}
-                                animationOutTiming={200}
-                                backdropTransitionInTiming={isAndroid ? 500 : 300}
-                                backdropTransitionOutTiming={200}
-                                backdropColor={theme.body.bg}
-                                backdropOpacity={0.9}
-                                style={{ height, width, justifyContent: 'center', alignItems: 'center', margin: 0 }}
-                                isVisible={this.state.isModalVisible}
-                                onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                                hideModalContentWhileAnimating
-                                useNativeDriver={isAndroid ? true : false}
-                            >
-                                {this.renderModalContent(modalContent)}
-                            </Modal>
                         </View>
                     )}
                 </View>
@@ -327,6 +301,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setOnboardingSeed,
     generateAlert,
+    toggleModalActivity,
 };
 
 export default WithUserActivity()(

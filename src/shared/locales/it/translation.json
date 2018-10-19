@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
         "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seme cancellato",
-        "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
-        "seedCopied": "Copiato il seme negli appunti",
-        "seedCopiedExplanation": "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
-        "copyToClipboard": "Copia seed",
-        "shareSeed": "Passa il seme ad un gestore di password sicuro",
-        "storeEncrypted": "Memorizza il tuo seme codificato con un gestore di password.",
-        "doNotOpen": "Non aprire altre applicazioni durante questo processo.",
-        "tapConfirm": "Seleziona la casella di controllo qui sotto per confermare.",
-        "passwordManagerCheckbox": "Memorizzerò il mio seme con un gestore di password",
-        "copy": "COPIA",
-        "noPasswordManagers": "Nessun gestore di password supportato",
-        "noPasswordManagersExplanation": "Non sono stati trovati sul tuo dispositivo gestori di passwrod supportati. Si prega di installare Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Se si desidera memorizzare il vostro seme in un gestore di password, è necessario seguire un tutorial dal seguente link"
+        "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza."
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -445,7 +434,8 @@
         "receive": "Ricevi",
         "empty": "Vuota",
         "retrying": "Sto riprovando",
-        "yesterday": "Ieri"
+        "yesterday": "Ieri",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -522,9 +512,9 @@
         "discordInformation": "Si prega di visitare il canale #help in Discord per scoprire cosa si può fare."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Sei sicuro di voler eliminare</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
-        "thisAction": "Questa azione non può essere annullata.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
     "manualSync": {

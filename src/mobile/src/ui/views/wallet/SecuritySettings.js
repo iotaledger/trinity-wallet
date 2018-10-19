@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -26,8 +27,6 @@ class SecuritySettings extends Component {
         is2FAEnabled: PropTypes.bool.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -40,34 +39,34 @@ class SecuritySettings extends Component {
      */
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;
-
-        if (!is2FAEnabled) {
-            this.props.navigator.push({
-                screen: 'twoFactorSetupAddKey',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
                 },
-                animated: false,
-            });
-        } else {
-            this.props.navigator.push({
-                screen: 'disable2FA',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
-                animated: false,
-            });
-        }
+            },
+        });
     }
 
     /**
@@ -76,17 +75,33 @@ class SecuritySettings extends Component {
      */
     onFingerprintSetupPress() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'fingerprintSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'fingerprintSetup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

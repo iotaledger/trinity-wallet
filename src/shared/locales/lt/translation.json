@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
         "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Užraktas išvalytas",
-        "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
-        "seedCopied": "Užraktas nukopijuotas į iškarpinę",
-        "seedCopiedExplanation": "Užraktas bus išvalytas, kai paspausite \"ATLIKTA\" arba praeis 60 sekundžių.",
-        "copyToClipboard": "Kopijuoti užraktą",
-        "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
-        "storeEncrypted": "Savo užraktą laikykite užšifruotą slaptažodžių tvarkyklėje.",
-        "doNotOpen": "Šio proceso metu neįjunkite jokių kitų programėlių.",
-        "tapConfirm": "Uždėkite varnelę norėdami patvirtinti.",
-        "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
-        "copy": "KOPIJUOTI",
-        "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
-        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jei ketinate savo užraktą laikyti slaptažodžių tvarkyklėje, peržiūrėkite naudojimo instrukciją iš pateiktos nuorodos"
+        "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo."
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
@@ -445,7 +434,8 @@
         "receive": "Gauti",
         "empty": "Tuščia",
         "retrying": "Kraunama",
-        "yesterday": "Vakar"
+        "yesterday": "Vakar",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -522,9 +512,9 @@
         "discordInformation": "Apsilankykite mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Ar tikrai norite ištrinti</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Jūsų užraktas ir pavedimų istorija bus pašalinta.",
-        "thisAction": "Duomenys bus pašalinti negrįžtamai.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Įveskite slaptažodį jei norite ištrinti šią paskyrą."
     },
     "manualSync": {

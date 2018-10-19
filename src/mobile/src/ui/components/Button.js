@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
-import General from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
+import { isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,14 +11,14 @@ const styles = StyleSheet.create({
     },
     children: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: General.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
     },
     wrapper: {
         justifyContent: 'center',
         alignItems: 'center',
         width,
-        height: height / 11,
+        height: isIPhoneX ? height / 10 : height / 11,
     },
 });
 

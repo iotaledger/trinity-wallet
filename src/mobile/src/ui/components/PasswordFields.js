@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import { zxcvbn } from 'shared-modules/libs/exports';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { passwordReasons } from 'shared-modules/libs/password';
-import { height, width } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
+import { Styling } from 'ui/theme/general';
 import CustomTextInput from './CustomTextInput';
 
 const MIN_PASSWORD_LENGTH = 11;
@@ -89,7 +90,7 @@ class PasswordFields extends Component {
                 <CustomTextInput
                     label={t('global:password')}
                     onChangeText={(password) => this.props.setPassword(password)}
-                    containerStyle={{ width: width / 1.15 }}
+                    containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"
                     widget="password"
                     isPasswordValid={isValid}
@@ -112,7 +113,7 @@ class PasswordFields extends Component {
                     }}
                     label={t('retypePassword')}
                     onChangeText={(reentry) => this.props.setReentry(reentry)}
-                    containerStyle={{ width: width / 1.15, marginTop: height / 60 }}
+                    containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
                     widget="passwordReentry"
                     isPasswordValid={isValid && password === reentry}
                     autoCapitalize="none"

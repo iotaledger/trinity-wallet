@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Styling } from 'ui/theme/general';
 import { withNamespaces } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import InfoBox from './InfoBox';
 
 const styles = StyleSheet.create({
     okButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
@@ -17,19 +17,19 @@ const styles = StyleSheet.create({
     },
     okText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     modalText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     modalTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -42,19 +42,17 @@ export class ChecksumModal extends PureComponent {
         /** Close active modal */
         closeModal: PropTypes.func.isRequired,
         /** @ignore */
-        body: PropTypes.object.isRequired,
-        /** @ignore */
-        primary: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     };
 
     render() {
-        const { t, body, primary } = this.props;
+        const { t, theme: { body, primary } } = this.props;
 
         return (
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={width / 1.15}
+                    width={Styling.contentWidth}
                     text={
                         <View>
                             <Text style={[styles.modalTextBold, { color: body.color }, { paddingTop: height / 40 }]}>

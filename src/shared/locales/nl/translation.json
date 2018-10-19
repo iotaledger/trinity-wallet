@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Probeer het nogmaals met een andere node.",
         "errorFetchingAccountInformation": "Fout tijdens het ophalen van accountinformatie.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Klembord gewist",
-        "seedClearedExplanation": "De seed is van het klembord gewist voor uw veiligheid.",
-        "seedCopied": "Seed gekopieerd naar klembord",
-        "seedCopiedExplanation": "De seed zal worden gewist zodra u op \"GEREED\" drukt of 60 seconden wacht.",
-        "copyToClipboard": "Kopieer Seed",
-        "shareSeed": "Stuur uw seed naar een veilige wachtwoordmanager",
-        "storeEncrypted": "Bewaar uw seed versleuteld in een wachtwoord manager.",
-        "doNotOpen": "Open geen andere apps tijdens dit proces.",
-        "tapConfirm": "Tik op het selectievakje om te bevestigen.",
-        "passwordManagerCheckbox": "Ik zal mijn seed opslaan in een wachtwoordmanager",
-        "copy": "KOPIEER",
-        "noPasswordManagers": "Geen ondersteunde wachtwoord managers geïnstalleerd",
-        "noPasswordManagersExplanation": "Er zijn geen ondersteunde wachtwoordmanagers gevonden op uw apparaat. Installeer alstublieft Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Als u uw seed wil opslaan in een wachtwoordmanager, moet u een tutorial volgen via de volgende link"
+        "seedClearedExplanation": "De seed is van het klembord gewist voor uw veiligheid."
     },
     "enterSeed": {
         "invalidCharacters": "Seed bevat ongeldige tekens",
@@ -445,7 +434,8 @@
         "receive": "Ontvang",
         "empty": "Leeg",
         "retrying": "Opnieuw proberen...",
-        "yesterday": "Gisteren"
+        "yesterday": "Gisteren",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
@@ -522,9 +512,9 @@
         "discordInformation": "Indien u hulp nodig heeft verzoeken wij u naar het #help kanaal te gaan op Discord."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Weet u zeker dat u</1><2>{{accountName}}?</2><3>wilt verwijderen?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Uw seed en transactiegeschiedenis zullen worden verwijderd.",
-        "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
     },
     "manualSync": {
