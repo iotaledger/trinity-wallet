@@ -435,7 +435,7 @@
         "empty": "Vazio",
         "retrying": "Tentando de novo",
         "yesterday": "Ontem",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promover outro pacote"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -706,6 +706,6 @@
         "explanationAccounts": "Foram detectados fundos bloqueados na suas contas: {{accounts}}. Agora a Trinity vai recuperar seus fundos automaticamente, movendo-os para um novo endereço.",
         "proceed": "Continuar com a recuperação",
         "sweepConfirmation": "Você está prestes a varrer {{amount}} para o endereço {{address}}. Conta: {{accountName}}, índice do endereco: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmationTitle": "Confirmação de varredura"
     }
 }
