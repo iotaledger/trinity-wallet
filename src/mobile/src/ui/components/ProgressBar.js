@@ -5,14 +5,14 @@ import LottieView from 'lottie-react-native';
 import sliderLoadingAnimation from 'shared-modules/animations/slider-loader.json';
 import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
 import timer from 'react-native-timer';
-import { height } from 'libs/dimensions';
+import { height as deviceHeight } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        borderRadius: height / 10,
+        borderRadius: deviceHeight / 10,
         overflow: 'hidden',
         justifyContent: 'center',
     },
@@ -37,9 +37,9 @@ class ProgressBar extends Component {
         /** Unfilled bar color */
         unfilledColor: PropTypes.string,
         /** Progress bar width */
-        width: PropTypes.number,
+        channelWidth: PropTypes.number,
         /** Progress bar height */
-        height: PropTypes.number,
+        channelHeight: PropTypes.number,
         /** Progress bar text color */
         textColor: PropTypes.string,
         /** Progress bar text */
@@ -59,26 +59,27 @@ class ProgressBar extends Component {
     };
 
     static defaultProps = {
-        width: Styling.contentWidth,
-        height: height / 11,
+        channelWidth: Styling.contentWidth,
+        channelHeight: deviceHeight / 13,
     };
 
     constructor(props) {
         super(props);
         const isAlreadyInProgress = props.progress > -1;
-        const sliderEndPosition = props.width - props.height;
+        const sliderEndPosition = props.channelWidth - props.channelHeight;
         this.state = {
             progressPosition: new Animated.Value(isAlreadyInProgress ? props.progress : 0),
             progressStep: props.progress,
             progressIncrement: isAlreadyInProgress ? props.progress : 0,
-            sliderPosition: new Animated.Value(isAlreadyInProgress ? sliderEndPosition : 0),
+            sliderPosition: new Animated.Value(isAlreadyInProgress ? sliderEndPosition : props.channelHeight * 0.1),
             thresholdDistance: sliderEndPosition,
-            sliderColor: isAlreadyInProgress ? props.preSwipeColor : props.postSwipeColor,
+            sliderColor: isAlreadyInProgress ? props.postSwipeColor : props.preSwipeColor,
             textOpacity: new Animated.Value(1),
             sliderOpacity: new Animated.Value(1),
             progressText: isAlreadyInProgress ? props.progressText : '',
             inProgress: isAlreadyInProgress,
             sliderAnimation: sliderLoadingAnimation,
+            sliderSize: new Animated.Value(props.channelHeight * 0.8),
         };
     }
 
@@ -95,6 +96,10 @@ class ProgressBar extends Component {
                 if (this.state.inProgress) {
                     return;
                 }
+                Animated.timing(this.state.sliderSize, {
+                    toValue: this.props.channelHeight,
+                    duration: 100,
+                }).start();
                 const moveValue = gestureState.dx;
                 const relativeSlidePosition = moveValue / this.state.thresholdDistance;
                 this.state.textOpacity.setValue(1 - relativeSlidePosition * 2);
@@ -108,12 +113,10 @@ class ProgressBar extends Component {
                     return;
                 }
                 const releaseValue = gestureState.dx;
-                if (gestureState.dx > 0) {
-                    if (releaseValue >= this.state.thresholdDistance) {
-                        this.onCompleteSwipe();
-                    } else if (releaseValue >= 0) {
-                        this.onIncompleteSwipe();
-                    }
+                if (releaseValue >= this.state.thresholdDistance) {
+                    this.onCompleteSwipe();
+                } else {
+                    this.onIncompleteSwipe();
                 }
             },
             onPanResponderTerminate: () => {},
@@ -198,7 +201,7 @@ class ProgressBar extends Component {
         const duration = 500;
         Animated.parallel([
             Animated.spring(this.state.sliderPosition, {
-                toValue: 0,
+                toValue: this.props.channelHeight * 0.1,
                 duration,
             }),
             Animated.timing(this.state.sliderOpacity, {
@@ -210,6 +213,10 @@ class ProgressBar extends Component {
                 duration,
             }),
         ]).start();
+        Animated.timing(this.state.sliderSize, {
+            toValue: this.props.channelHeight * 0.8,
+            duration: 100,
+        }).start();
     }
 
     onInterupt() {
@@ -222,7 +229,7 @@ class ProgressBar extends Component {
 
     onCompleteSwipe() {
         Animated.timing(this.state.sliderPosition, {
-            toValue: this.props.width - this.props.height,
+            toValue: this.props.channelWidth - this.props.channelHeight,
             duration: 50,
         }).start();
         this.setState({ sliderColor: this.props.postSwipeColor });
@@ -295,7 +302,7 @@ class ProgressBar extends Component {
         this.setState({ sliderColor: this.props.preSwipeColor });
         Animated.parallel([
             Animated.spring(this.state.sliderPosition, {
-                toValue: 0,
+                toValue: this.props.channelHeight * 0.1,
                 duration,
                 easing: Easing.elastic(),
             }),
@@ -310,41 +317,52 @@ class ProgressBar extends Component {
                 easing: Easing.ease,
             }),
         ]).start();
+        Animated.timing(this.state.sliderSize, {
+            toValue: this.props.channelHeight * 0.8,
+            duration: 100,
+        }).start();
     }
 
     render() {
-        const { height, width, textColor, staticText, unfilledColor, filledColor } = this.props;
+        const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor } = this.props;
         const progressBarStyle = {
             backgroundColor: filledColor,
-            height,
-            width,
+            height: channelHeight,
+            width: channelWidth,
             transform: [
                 {
                     translateX: this.state.progressPosition.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [-width, 0],
+                        outputRange: [-channelWidth, 0],
                     }),
                 },
             ],
         };
         return (
-            <View style={[styles.container, { height, width, backgroundColor: unfilledColor }]}>
-                <Animated.View style={progressBarStyle} />
-                {(this.state.inProgress && (
-                    <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
-                        {this.state.progressText}
-                    </Animated.Text>
-                )) || (
-                    <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
-                        {staticText}
-                    </Animated.Text>
-                )}
+            <View style={[styles.container, { height: channelHeight }]}>
+                <View
+                    style={[
+                        styles.container,
+                        { height: channelHeight, width: channelWidth, backgroundColor: unfilledColor },
+                    ]}
+                >
+                    <Animated.View style={progressBarStyle} />
+                    {(this.state.inProgress && (
+                        <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
+                            {this.state.progressText}
+                        </Animated.Text>
+                    )) || (
+                        <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
+                            {staticText}
+                        </Animated.Text>
+                    )}
+                </View>
                 <Animated.View
                     {...this._panResponder.panHandlers}
                     style={[
                         {
-                            width,
-                            height,
+                            width: channelWidth,
+                            height: deviceHeight / 13,
                             position: 'absolute',
                             justifyContent: 'center',
                             opacity: this.state.sliderOpacity,
@@ -354,41 +372,34 @@ class ProgressBar extends Component {
                         },
                     ]}
                 >
-                    <View
+                    <Animated.View
                         style={[
                             styles.slider,
-                            { width: height, height, backgroundColor: 'transparent', borderRadius: height },
+                            {
+                                width: this.state.sliderSize,
+                                height: this.state.sliderSize,
+                                backgroundColor: this.state.sliderColor,
+                                borderRadius: channelHeight,
+                            },
                         ]}
                     >
-                        <View
-                            style={[
-                                styles.slider,
-                                {
-                                    width: height - 8,
-                                    height: height - 8,
-                                    backgroundColor: this.state.sliderColor,
-                                    borderRadius: height,
-                                },
-                            ]}
-                        >
-                            <LottieView
-                                ref={(animation) => {
-                                    this.sliderAnimation = animation;
-                                }}
-                                source={this.state.sliderAnimation}
-                                style={{ width: height * 0.8, height: height * 0.8, position: 'absolute' }}
-                                loop={this.state.shouldLoopSliderAnimation}
+                        <LottieView
+                            ref={(animation) => {
+                                this.sliderAnimation = animation;
+                            }}
+                            source={this.state.sliderAnimation}
+                            style={{ width: channelHeight * 0.9, height: channelHeight * 0.9, position: 'absolute' }}
+                            loop={this.state.shouldLoopSliderAnimation}
+                        />
+                        {!this.state.inProgress && (
+                            <Icon
+                                name="chevronRight"
+                                size={channelHeight / 3}
+                                color={unfilledColor}
+                                style={{ backgroundColor: 'transparent' }}
                             />
-                            {!this.state.inProgress && (
-                                <Icon
-                                    name="arrowRight"
-                                    size={height / 2.5}
-                                    color={unfilledColor}
-                                    style={{ backgroundColor: 'transparent' }}
-                                />
-                            )}
-                        </View>
-                    </View>
+                        )}
+                    </Animated.View>
                 </Animated.View>
             </View>
         );
