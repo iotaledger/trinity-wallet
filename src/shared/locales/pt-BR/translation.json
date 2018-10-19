@@ -700,12 +700,12 @@
         "sweepSucceeded": "Fundos desbloqueados com sucesso",
         "sweepSucceededExplanation": "Seus fundos foram desbloqueados com sucesso e movidos para um novo endereço. Fomente as operações para ajudar a confirmá-las.",
         "sweepError": "Erro ao desbloquear fundos",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepErrorExplanation": "Alguma coisa deu errado ao desbloquear seus fundos. Tentando de novo.",
+        "warningTitle": "Aviso: Fundos bloqueados detectados",
+        "explanation": "A versão 0.3.4 da Trinity Desktop possuía um bug que poderia bloquear fundos temporariamente. Isso afeta um pequeno número de usuários que realizaram transações com a 0.3.4.",
+        "explanationAccounts": "Foram detectados fundos bloqueados na suas contas: {{accounts}}. Agora a Trinity vai recuperar seus fundos automaticamente, movendo-os para um novo endereço.",
+        "proceed": "Continuar com a recuperação",
+        "sweepConfirmation": "Você está prestes a varrer {{amount}} para o endereço {{address}}. Conta: {{accountName}}, índice do endereco: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     }
 }
