@@ -142,9 +142,9 @@
         "tryingAgainWithLocalPoW": "Tentando novamente com prova de trabalho local.",
         "tryingAgainWithDifferentNode": "Tentar novamente com um servidor diferente.",
         "errorFetchingAccountInformation": "Erro ao buscar informações da conta.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Erro de chaveiro",
+        "errorAccessingKeychainExplanation": "Não foi possível acessar o chaveiro necessário para armazenamento seguro.",
+        "mainWallet": "CONTA PRINCIPAL"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -512,9 +512,9 @@
         "discordInformation": "Por favor, acesse canal #help no Discord para encontrar o que pode fazer."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Tem certeza que deseja excluir sua conta?",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Esta operação não pode ser desfeita",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
     },
     "manualSync": {
@@ -697,9 +697,9 @@
         "confirmedOut": "O envio de {{value}} da {{account}} foi confirmado"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
+        "sweepSucceeded": "Fundos desbloqueados com sucesso",
+        "sweepSucceededExplanation": "Seus fundos foram desbloqueados com sucesso e movidos para um novo endereço. Fomente as operações para ajudar a confirmá-las.",
+        "sweepError": "Erro ao desbloquear fundos",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
