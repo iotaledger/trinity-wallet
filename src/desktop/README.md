@@ -6,44 +6,25 @@ Deployment: [![Build Status](https://badge.buildkite.com/2c9f4392dc33c7d5f164c5e
 
 This is the repository for the IOTA Trinity Desktop Wallet. The application is based on [React](https://reactjs.org) and built on [Electron](https://electronjs.org/).
 
-## Building the application
+## Required Dependencies
 
-To build the application locally from source, follow these steps:
+- [NodeJS](https://nodejs.org/en/)
+- NPM (automatically installed with NodeJS)
+- Electron (`npm install electron -g`)
 
-### 1. Install Node.JS and Electron
+### 1. Installing dependencies
 
-First you need to install Node.JS if you haven’t done that already.
-Then run the following command to install electron globally.
-
+After installing the [shared dependencies](https://github.com/iotaledger/trinity-wallet#instructions), install the desktop dependencies:
 ```
-npm install electron -g
-```
-
-### 2. Clone or download the Trinity repo from GitHub.
-
-Clone the repo by running this command:
-
-```
-git clone https://github.com/iotaledger/trinity-wallet.git
+npm run deps:desktop
 ```
 
-Or [download](https://github.com/iotaledger/trinity-wallet/archive/develop.zip) the repo and extract the archive.
-
-After cloning or downloading and extracting the application run:
-
+Then, navigate to this directory:
 ```
-cd trinity-wallet
+cd src/desktop
 ```
 
-### 3. Install dependencies
-
-Now we need to install dependencies, such as the electron installer or the React code packager. Do this by running:
-
-```
-npm run full-setup
-```
-
-### 3. Prepare Trinity desktop appplication
+### 2. Prepare Trinity desktop appplication
 
 When the npm install is done you can prepare the wallet application for compilation by running:
 
@@ -51,8 +32,10 @@ When the npm install is done you can prepare the wallet application for compilat
 npm run build
 ```
 
+Then, you can either compile a production version (3a) or development version (3b) of Trinity:
 
-### 4. Compile Trinity desktop appplication
+
+### 3a. Compile Trinity desktop appplication
 
 After the application is prepared you can compile the wallet application by running:
 
@@ -66,7 +49,7 @@ This will start the building process for the Trinity Desktop application and cou
 
 After the building is finished, the application executable and installation files will be located in the directory `src/desktop/out/`.
 
-### 4. Run Trinity desktop app in development mode
+### 3b. Run Trinity desktop app in development mode
 
 To start the application in development mode, run
 

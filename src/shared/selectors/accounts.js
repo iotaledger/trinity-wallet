@@ -138,7 +138,10 @@ export const selectFirstAddressFromAccountFactory = (accountName) => {
  *   @param {object} state
  *   @returns {array}
  **/
-export const getAccountNamesFromState = createSelector(getAccountsFromState, (state) => state.accountNames || []);
+export const getAccountNamesFromState = createSelector(
+    getAccountsFromState,
+    (state) => (state.accountInfo ? Object.keys(state.accountInfo) : []),
+);
 
 /**
  *   Selects seedIndex prop from wallet reducer state object.
@@ -151,6 +154,19 @@ export const getAccountNamesFromState = createSelector(getAccountsFromState, (st
 export const getSeedIndexFromState = createSelector(getWalletFromState, (state) => state.seedIndex || 0);
 
 /**
+ *   Selects account name for currently selected account.
+ *
+ *   @method getSelectedAccountName
+ *   @param {object} state
+ *   @returns {string}
+ **/
+export const getSelectedAccountName = createSelector(
+    getAccountNamesFromState,
+    getSeedIndexFromState,
+    (accountNames, seedIndex) => get(accountNames, seedIndex),
+);
+
+/**
  *   Selects account information (balance, addresses, transfers) from accounts reducer state object.
  *
  *   @method selectAccountInfo
@@ -159,14 +175,21 @@ export const getSeedIndexFromState = createSelector(getWalletFromState, (state) 
  **/
 export const selectAccountInfo = createSelector(
     getAccountInfoFromState,
-    getAccountNamesFromState,
-    getSeedIndexFromState,
-    (accountInfo, accountNames, seedIndex) => {
-        const accountName = get(accountNames, seedIndex);
-
-        return accountInfo[accountName] || {};
+    getSelectedAccountName,
+    (accountInfo, accountName) => {
+        const account = get(accountInfo, accountName);
+        return account || {};
     },
 );
+
+/**
+ *   Selects account name for currently selected account.
+ *
+ *   @method getSelectedAccountType
+ *   @param {object} state
+ *   @returns {string}
+ **/
+export const getSelectedAccountType = createSelector(selectAccountInfo, (account) => account.type || 'keychain');
 
 /**
  *   Selects latest address from account info state partial.
@@ -224,19 +247,6 @@ export const getAvailableBalanceForSelectedAccount = createSelector(selectAccoun
     const unspentAddresses = filter(account.addresses, { spent: { local: false } });
     return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
 });
-
-/**
- *   Selects account name for currently selected account.
- *
- *   @method getSelectedAccountName
- *   @param {object} state
- *   @returns {string}
- **/
-export const getSelectedAccountName = createSelector(
-    getAccountNamesFromState,
-    getSeedIndexFromState,
-    (accountNames, seedIndex) => get(accountNames, seedIndex),
-);
 
 /**
  *   Selects getSetupInfoFromAccounts prop from accounts reducer state object.

@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -109,4 +109,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings));
+export default withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(AdvancedSettings));

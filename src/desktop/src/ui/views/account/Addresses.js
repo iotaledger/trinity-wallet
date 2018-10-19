@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { selectAccountInfo } from 'selectors/accounts';
 
@@ -61,4 +61,4 @@ const mapStateToProps = (state) => ({
     account: selectAccountInfo(state),
 });
 
-export default connect(mapStateToProps)(translate()(Addresses));
+export default connect(mapStateToProps)(withI18n()(Addresses));

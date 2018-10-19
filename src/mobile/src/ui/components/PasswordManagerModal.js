@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
 import tinycolor from 'tinycolor2';
@@ -7,7 +7,7 @@ import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checke
 import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -17,19 +17,19 @@ import ModalButtons from './ModalButtons';
 const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     checkbox: {
         width: width / 20,
@@ -194,4 +194,4 @@ export class PasswordManagerModal extends PureComponent {
     }
 }
 
-export default translate(['copyToClipboard', 'global'])(PasswordManagerModal);
+export default withNamespaces(['copyToClipboard', 'global'])(PasswordManagerModal);

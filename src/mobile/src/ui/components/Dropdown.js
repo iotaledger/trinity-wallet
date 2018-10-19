@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
-import { isAndroid } from 'libs/device';
+import { isIPhoneX, isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     dropdownTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         backgroundColor: 'transparent',
         paddingLeft: width / 100,
     },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     dropdownItem: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
         textAlign: 'left',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
     selected: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         paddingBottom: height / 150,
         paddingLeft: width / 100,
@@ -133,7 +133,7 @@ export class Dropdown extends Component {
         background: false,
         saveSelection: () => {},
         title: '',
-        dropdownWidth: { width: width / 1.15 },
+        dropdownWidth: { width: isIPhoneX ? width / 1.3 : width / 1.5 },
         visibleRows: 8,
     };
 

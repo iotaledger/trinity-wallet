@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -12,6 +12,7 @@ import {
     Keyboard,
     KeyboardAvoidingView,
 } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'shared-modules/libs/exports';
 import { setPassword, setSetting } from 'shared-modules/actions/wallet';
@@ -20,15 +21,14 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
-import { changePassword, getSecretBoxFromKeychainAndOpenIt } from 'libs/keychain';
+import { changePassword, authorize } from 'libs/keychain';
 import { generatePasswordHash, getSalt, getOldPasswordHash, hexToUint8 } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -85,8 +85,6 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -140,7 +138,7 @@ class ForceChangePassword extends Component {
                 }
                 this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
             };
-            return getSecretBoxFromKeychainAndOpenIt('seeds', oldPwdHash)
+            return authorize(oldPwdHash)
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         setPassword(newPwdHash);
@@ -176,17 +174,30 @@ class ForceChangePassword extends Component {
 
     navigateToLogin() {
         const { theme: { body } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -206,7 +217,7 @@ class ForceChangePassword extends Component {
             onRef: ref,
             label,
             onChangeText,
-            containerStyle: { width: width / 1.15 },
+            containerStyle: { width: Styling.contentWidth },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
@@ -336,7 +347,6 @@ class ForceChangePassword extends Component {
                         <View style={{ flex: 0.5 }} />
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
@@ -353,6 +363,6 @@ const mapDispatchToProps = {
     setCompletedForcedPasswordUpdate,
 };
 
-export default translate(['changePassword', 'global'])(
+export default withNamespaces(['changePassword', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(ForceChangePassword),
 );
