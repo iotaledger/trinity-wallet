@@ -144,7 +144,7 @@
         "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "HLAVNÍ ÚČET"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -435,7 +435,7 @@
         "empty": "Prázdné",
         "retrying": "Opakování",
         "yesterday": "Včera",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Podpora dalšího balíčku"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -512,9 +512,9 @@
         "discordInformation": "Chcete-li zjistit co můžete udělat, přejděte do #help v aplikaci Diskord."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Opravdu si přejete smazat tento účet?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Tuto akci nelze vrátit zpět",
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
     },
     "manualSync": {
