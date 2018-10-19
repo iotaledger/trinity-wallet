@@ -142,8 +142,8 @@
         "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
         "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
         "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "errorAccessingKeychain": "Chyba klíčenky",
+        "errorAccessingKeychainExplanation": "Nelze získat přístup k úložišti klíčů.",
         "mainWallet": "HLAVNÍ ÚČET"
     },
     "addAdditionalSeed": {
