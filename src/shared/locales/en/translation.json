@@ -628,7 +628,7 @@
         "unrecognisedKey": "Unrecognised SeedVault Key",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a SeedVault Key. Please try again.",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
