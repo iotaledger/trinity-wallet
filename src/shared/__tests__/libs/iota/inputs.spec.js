@@ -7,11 +7,7 @@ import random from 'lodash/random';
 import reduce from 'lodash/reduce';
 import { expect } from 'chai';
 import nock from 'nock';
-import {
-    prepareInputs,
-    getInputs,
-    isValidInput
-} from '../../../libs/iota/inputs';
+import { prepareInputs, getInputs, isValidInput } from '../../../libs/iota/inputs';
 import { SwitchingConfig } from '../../../libs/iota/index';
 import { IRI_API_VERSION } from '../../../config';
 
@@ -75,10 +71,7 @@ describe('libs: iota/inputs', () => {
         describe('when limit is provided', () => {
             it('should not select inputs with size greater than the limit', () => {
                 const limit = random(1, 4);
-                const threshold = random(
-                    1,
-                    reduce(addressData, (balance, data) => balance + data.balance, 0)
-                );
+                const threshold = random(1, reduce(addressData, (balance, data) => balance + data.balance, 0));
 
                 try {
                     const result = prepareInputs(addressData, threshold, limit);
@@ -88,7 +81,6 @@ describe('libs: iota/inputs', () => {
                     // If inputs cannot be selected within a specified limit, test the error message
                     expect(e.message).to.equal('Cannot find inputs with provided limit.');
                 }
-
             });
 
             describe('when provided threshold has an exact match for balance of any address', () => {
@@ -149,7 +141,6 @@ describe('libs: iota/inputs', () => {
                     expect(result.inputs).to.eql(inputs);
                     expect(result.balance).to.eql(reduce(inputs, (total, input) => total + input.balance, 0));
                 });
-
             });
         });
     });
@@ -165,27 +156,31 @@ describe('libs: iota/inputs', () => {
                 ['C'.repeat(81)]: { index: 2, balance: 1, spent: { local: false, remote: false } },
                 ['D'.repeat(81)]: { index: 3, balance: 5, spent: { local: false, remote: false } },
                 ['E'.repeat(81)]: { index: 4, balance: 7, spent: { local: false, remote: false } },
-                ['F'.repeat(81)]: { index: 5, balance: 0, spent: { local: false, remote: false } }
+                ['F'.repeat(81)]: { index: 5, balance: 0, spent: { local: false, remote: false } },
             };
 
-            normalisedTransactions = [{
-                // Pending outgoing transaction
-                inputs: [{ address: 'B'.repeat(81), value: -2 }],
-                outputs: [{ address: 'Z'.repeat(81), value: 1 }, { address: 'F'.repeat(81), value: 1 }],
-                persistence: false,
-                incoming: false
-            }, {
-                // Pending incoming transaction
-                inputs: [{ address: 'Y'.repeat(81), value: -100 }],
-                outputs: [{ address: 'C'.repeat(81), value: 100 }],
-                persistence: false,
-                incoming: true
-            }, {
-                inputs: [{ address: 'X'.repeat(81), value: -50 }],
-                outputs: [{ address: 'D'.repeat(81), value: 50 }],
-                persistence: true,
-                incoming: true
-            }];
+            normalisedTransactions = [
+                {
+                    // Pending outgoing transaction
+                    inputs: [{ address: 'B'.repeat(81), value: -2 }],
+                    outputs: [{ address: 'Z'.repeat(81), value: 1 }, { address: 'F'.repeat(81), value: 1 }],
+                    persistence: false,
+                    incoming: false,
+                },
+                {
+                    // Pending incoming transaction
+                    inputs: [{ address: 'Y'.repeat(81), value: -100 }],
+                    outputs: [{ address: 'C'.repeat(81), value: 100 }],
+                    persistence: false,
+                    incoming: true,
+                },
+                {
+                    inputs: [{ address: 'X'.repeat(81), value: -50 }],
+                    outputs: [{ address: 'D'.repeat(81), value: 50 }],
+                    persistence: true,
+                    incoming: true,
+                },
+            ];
         });
 
         beforeEach(() => {
@@ -209,7 +204,7 @@ describe('libs: iota/inputs', () => {
                             ['F'.repeat(81)]: '0',
                             ['X'.repeat(81)]: '0',
                             ['Y'.repeat(81)]: '100',
-                            ['Z'.repeat(81)]: '0'
+                            ['Z'.repeat(81)]: '0',
                         };
                         const addresses = body.addresses;
 
@@ -224,7 +219,7 @@ describe('libs: iota/inputs', () => {
                             ['F'.repeat(81)]: false,
                             ['X'.repeat(81)]: true,
                             ['Y'.repeat(81)]: true,
-                            ['Z'.repeat(81)]: false
+                            ['Z'.repeat(81)]: false,
                         };
                         const addresses = body.addresses;
 
@@ -248,13 +243,30 @@ describe('libs: iota/inputs', () => {
         // Whenever inputs are resolved, assert inputs balance <= 12
         describe('when has insufficient balance Sum(balances) < threshold', () => {
             it('should throw with an error with message "Insufficient balance."', () => {
-                return getInputs()({
-                    ['A'.repeat(81)]: { index: 0, balance: 1 },
-                    ['B'.repeat(81)]: { index: 1, balance: 2 },
-                    ['C'.repeat(81)]: { index: 2, balance: 5 },
-                }, [], 50)
-                    .catch((error) => expect(error.message).to.equal('Insufficient balance.')
-                    );
+                return getInputs()(
+                    {
+                        ['A'.repeat(81)]: { index: 0, balance: 1 },
+                        ['B'.repeat(81)]: { index: 1, balance: 2 },
+                        ['C'.repeat(81)]: { index: 2, balance: 5 },
+                    },
+                    [],
+                    50,
+                ).catch((error) => expect(error.message).to.equal('Insufficient balance.'));
+            });
+        });
+
+        describe('when maxInputs is not null or number', () => {
+            it('should throw with an error with message "Invalid max inputs provided."', () => {
+                return getInputs()(
+                    {
+                        ['A'.repeat(81)]: { index: 0, balance: 1 },
+                        ['B'.repeat(81)]: { index: 1, balance: 2 },
+                        ['C'.repeat(81)]: { index: 2, balance: 5 },
+                    },
+                    [],
+                    1,
+                    undefined,
+                ).catch((error) => expect(error.message).to.equal('Invalid max inputs provided.'));
             });
         });
 
@@ -263,14 +275,13 @@ describe('libs: iota/inputs', () => {
                 it('should not include addresses with incoming transactions in selected inputs', () => {
                     const threshold = 10;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold)
-                        .then((result) => {
-                            const { inputs } = result;
-                            const inputAddresses = map(inputs, (input) => input.address);
+                    return getInputs()(addressData, normalisedTransactions, threshold).then((result) => {
+                        const { inputs } = result;
+                        const inputAddresses = map(inputs, (input) => input.address);
 
-                            expect(inputAddresses).to.not.includes('C'.repeat(81));
-                            expect(inputAddresses).to.not.includes('F'.repeat(81));
-                        });
+                        expect(inputAddresses).to.not.includes('C'.repeat(81));
+                        expect(inputAddresses).to.not.includes('F'.repeat(81));
+                    });
                 });
             });
 
@@ -282,8 +293,9 @@ describe('libs: iota/inputs', () => {
                     // Addresses with pending incoming transactions => [CCC...CCC, FFF...FFF]
 
                     // Total Balance - Balance(CCC...CCC, FFF...FFF) => 14
-                    return getInputs()(addressData, normalisedTransactions, threshold)
-                        .catch((error) => expect(error.message).to.equal('Incoming transfers to all selected inputs'));
+                    return getInputs()(addressData, normalisedTransactions, threshold).catch((error) =>
+                        expect(error.message).to.equal('Incoming transfers to all selected inputs'),
+                    );
                 });
             });
         });
@@ -293,13 +305,12 @@ describe('libs: iota/inputs', () => {
                 it('should not include addresses with outgoing transactions in selected inputs', () => {
                     const threshold = 10;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold)
-                        .then((result) => {
-                            const { inputs } = result;
-                            const inputAddresses = map(inputs, (input) => input.address);
+                    return getInputs()(addressData, normalisedTransactions, threshold).then((result) => {
+                        const { inputs } = result;
+                        const inputAddresses = map(inputs, (input) => input.address);
 
-                            expect(inputAddresses).to.not.includes('B'.repeat(81));
-                        });
+                        expect(inputAddresses).to.not.includes('B'.repeat(81));
+                    });
                 });
             });
 
@@ -307,8 +318,9 @@ describe('libs: iota/inputs', () => {
                 it('should throw with an error with message "Input addresses already used in a pending transfer."', () => {
                     const threshold = 16;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold)
-                        .catch((error) => expect(error.message).to.equal('Input addresses already used in a pending transfer.'));
+                    return getInputs()(addressData, normalisedTransactions, threshold).catch((error) =>
+                        expect(error.message).to.equal('Input addresses already used in a pending transfer.'),
+                    );
                 });
             });
         });
@@ -318,16 +330,15 @@ describe('libs: iota/inputs', () => {
                 it('should not include spent addresses in selected inputs', () => {
                     const threshold = 10;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold)
-                        .then((result) => {
-                            const { inputs, balance } = result;
-                            const inputAddresses = map(inputs, (input) => input.address);
+                    return getInputs()(addressData, normalisedTransactions, threshold).then((result) => {
+                        const { inputs, balance } = result;
+                        const inputAddresses = map(inputs, (input) => input.address);
 
-                            expect(inputAddresses).to.not.includes('B'.repeat(81));
-                            expect(inputAddresses).to.not.includes('A'.repeat(81));
+                        expect(inputAddresses).to.not.includes('B'.repeat(81));
+                        expect(inputAddresses).to.not.includes('A'.repeat(81));
 
-                            expect(balance <= 12).to.equal(true);
-                        });
+                        expect(balance <= 12).to.equal(true);
+                    });
                 });
             });
 
@@ -335,8 +346,9 @@ describe('libs: iota/inputs', () => {
                 it('should throw with an error with message "WARNING FUNDS AT SPENT ADDRESSES."', () => {
                     const threshold = 13;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold)
-                        .catch((error) => expect(error.message).to.equal('WARNING FUNDS AT SPENT ADDRESSES.'));
+                    return getInputs()(addressData, normalisedTransactions, threshold).catch((error) =>
+                        expect(error.message).to.equal('WARNING FUNDS AT SPENT ADDRESSES.'),
+                    );
                 });
             });
         });

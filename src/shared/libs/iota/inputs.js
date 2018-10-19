@@ -3,6 +3,7 @@ import differenceBy from 'lodash/differenceBy';
 import head from 'lodash/head';
 import each from 'lodash/each';
 import isNumber from 'lodash/isNumber';
+import isNull from 'lodash/isNull';
 import includes from 'lodash/includes';
 import filter from 'lodash/filter';
 import minBy from 'lodash/minBy';
@@ -14,7 +15,7 @@ import {
     pickUnspentAddressData,
     omitAddressDataWithIncomingTransactions,
     transformAddressDataToInputs,
-    filterAddressDataWithPendingOutgoingTransactions
+    filterAddressDataWithPendingOutgoingTransactions,
 } from './addresses';
 import { VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
 import { DEFAULT_SECURITY } from '../../config';
@@ -56,7 +57,7 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
     const inputs = filter(
         transformAddressDataToInputs(addressData, security),
         // Also filter addresses with zero balance
-        (input) => input.balance > 0
+        (input) => input.balance > 0,
     );
 
     // First try to select inputs by optimal value i.e., select less inputs as possible
@@ -88,9 +89,9 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
             map(
                 // Find subset sum with unique balances
                 inputsWithUniqueBalances,
-                (input) => input.balance
-        ),
-            threshold
+                (input) => input.balance,
+            ),
+            threshold,
         );
 
         // If there exists some inputs that satisfy sum(inputs) === threshold
@@ -116,10 +117,7 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
             const finalInputs = filter(inputsWithUniqueBalances, (input) => includes(inputsWithMinSize, input.balance));
             const balance = reduce(finalInputs, (acc, input) => acc + input.balance, 0);
 
-            if (
-                balance <= threshold ||
-                size(inputsWithMinSize) > limit
-            ) {
+            if (balance <= threshold || size(inputsWithMinSize) > limit) {
                 _throw(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
             }
 
@@ -195,7 +193,7 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
 
         // If some has reached the threshold why bother continuing
         if (sum >= threshold) {
-            return ;
+            return;
         }
 
         each(balances, (balance, index) => {
@@ -216,11 +214,7 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
             );
         });
 
-        if (
-            hasFoundAnExactMatch ||
-            hasFoundNoMatches ||
-            callTimes === MAX_CALL_TIMES
-        ) {
+        if (hasFoundAnExactMatch || hasFoundNoMatches || callTimes === MAX_CALL_TIMES) {
             return {
                 exactMatches,
                 exceeded,
@@ -239,68 +233,51 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
  *   @method getInputs
  *   @param {string} [provider]
  *
- *   @returns {function(object, array, array, number, number, *): Promise<object>}
+ *   @returns {function(object, array, number, *): Promise<object>}
  **/
-export const getInputs = (provider) => (
-    addressData,
-    normalisedTransactionsList,
-    threshold,
-) => {
+export const getInputs = (provider) => (addressData, normalisedTransactionsList, threshold, maxInputs = null) => {
     // Check if there is sufficient balance
     if (reduce(addressData, (acc, data) => acc + data.balance, 0) < threshold) {
         return Promise.reject(new Error(Errors.INSUFFICIENT_BALANCE));
     }
 
+    if (!isNull(maxInputs) && !isNumber(maxInputs)) {
+        return Promise.reject(new Error(Errors.INVALID_MAX_INPUTS_PROVIDED));
+    }
+
     // Filter transactions with non-funded inputs
     return filterNonFundedPendingTransactions(provider)(
         filter(normalisedTransactionsList, (tx) => tx.transferValue !== 0),
-        addressData
+        addressData,
     )
         .then((pendingValueTransactions) => {
             // Remove addresses from addressData with (still funded) pending incoming transactions
-            let addressDataForInputs = omitAddressDataWithIncomingTransactions(
-                addressData,
-                pendingValueTransactions
-            );
+            let addressDataForInputs = omitAddressDataWithIncomingTransactions(addressData, pendingValueTransactions);
 
-            if (
-                reduce(
-                    addressDataForInputs,
-                    (acc, data) => acc + data.balance,
-                    0,
-                ) < threshold
-            ) {
+            if (reduce(addressDataForInputs, (acc, data) => acc + data.balance, 0) < threshold) {
                 throw new Error(Errors.INCOMING_TRANSFERS);
             }
 
             // Filter addresses with pending outgoing transactions
             addressDataForInputs = filterAddressDataWithPendingOutgoingTransactions(
                 addressDataForInputs,
-                normalisedTransactionsList
+                normalisedTransactionsList,
             );
 
-            if (
-                reduce(
-                    addressDataForInputs,
-                    (acc, data) => acc + data.balance,
-                    0) < threshold
-            ) {
+            if (reduce(addressDataForInputs, (acc, data) => acc + data.balance, 0) < threshold) {
                 throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
             }
 
             // Filter all spent addresses
-            return pickUnspentAddressData(provider)(
-                addressDataForInputs,
-                normalisedTransactionsList
-            );
+            return pickUnspentAddressData(provider)(addressDataForInputs, normalisedTransactionsList);
         })
         .then((unspentAddressData) => {
             if (reduce(unspentAddressData, (acc, data) => acc + data.balance, 0) < threshold) {
                 throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
             }
 
-            return prepareInputs(unspentAddressData, threshold);
-    });
+            return prepareInputs(unspentAddressData, threshold, maxInputs);
+        });
 };
 
 /**

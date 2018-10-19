@@ -457,7 +457,12 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getInputs()(accountState.addresses, map(accountState.transfers, (tx) => tx), value);
+                return getInputs()(
+                    accountState.addresses,
+                    map(accountState.transfers, (tx) => tx),
+                    value,
+                    seedStore.maxInputs,
+                );
             })
             .then((inputs) => {
                 // Do not allow receiving address to be one of the user's own input addresses.
