@@ -142,8 +142,9 @@
         "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
         "tryingAgainWithDifferentNode": "Réessayez avec un autre nœud.",
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychain": "Erreur de Porte-clés",
+        "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Presse-papier vidé",
-        "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "seedCopied": "Seed copiée dans le presse-papier",
-        "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
-        "copyToClipboard": "Copier la seed",
-        "shareSeed": "Enregistrer votre seed dans un gestionnaire de mot de passe sécurisé",
-        "storeEncrypted": "Stockez votre seed de manière chiffrée dans un gestionnaire de mot de passe.",
-        "doNotOpen": "N'ouvrez aucune autre application pendant le processus.",
-        "tapConfirm": "Veuillez cocher la case ci-dessous pour confirmer.",
-        "passwordManagerCheckbox": "Je stockerai ma seed dans un gestionnaire de mot de passe",
-        "copy": "COPIER",
-        "noPasswordManagers": "Aucun gestionnaire de mots de passe supporté installé",
-        "noPasswordManagersExplanation": "Aucun gestionnaire de mots de passe supporté n'a été trouvé sur votre appareil. Veuillez installer Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Si vous souhaitez conserver votre seed dans un gestionnaire de mots de passe, vous devriez suivre le tutoriel à partir du lien suivant"
+        "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité."
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -445,7 +434,8 @@
         "receive": "Recevoir",
         "empty": "Vide",
         "retrying": "Nouvelle tentative",
-        "yesterday": "Hier"
+        "yesterday": "Hier",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -522,9 +512,9 @@
         "discordInformation": "Veuillez vous rendre sur le canal #help de Discord pour savoir ce que vous pouvez faire."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Êtes-vous sûr de vouloir supprimer</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "L’historique de votre seed et de vos transactions sera supprimé.",
-        "thisAction": "Cette action est irréversible.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {

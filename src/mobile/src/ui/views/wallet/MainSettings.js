@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
-import Modal from 'react-native-modal';
 import i18next from 'shared-modules/libs/i18next';
+import { Navigation } from 'react-native-navigation';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
 import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
-import LogoutConfirmationModalComponent from 'ui/components/LogoutConfirmationModal';
-import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -19,20 +16,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** Currently selected application mode (Expert or Standard) */
         mode: PropTypes.string.isRequired,
         /** @ignore */
@@ -51,12 +39,11 @@ export class MainSettings extends Component {
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
-        this.toggleModalDisplay = this.toggleModalDisplay.bind(this);
+        this.openLogoutModal = this.openLogoutModal.bind(this);
         this.logout = this.logout.bind(this);
     }
 
@@ -66,10 +53,18 @@ export class MainSettings extends Component {
 
     /**
      * Opens or closes modal
-     * @method toggleModalDisplay
+     * @method openLogoutModal
      */
-    toggleModalDisplay() {
-        this.props.toggleModalActivity();
+    openLogoutModal() {
+        const { theme: { body } } = this.props;
+        this.props.toggleModalActivity('logoutConfirmation', {
+            style: { flex: 1 },
+            hideModal: () => this.props.toggleModalActivity(),
+            logout: this.logout,
+            backgroundColor: { backgroundColor: body.bg },
+            textColor: { color: body.color },
+            borderColor: { borderColor: body.color },
+        });
     }
 
     /**
@@ -81,36 +76,31 @@ export class MainSettings extends Component {
         this.props.toggleModalActivity();
         this.props.clearWalletData();
         this.props.setPassword({});
-        this.props.navigator.resetTo({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
-    }
-
-    renderModalContent() {
-        const { theme: { body, bar } } = this.props;
-        const textColor = { color: body.color };
-        const bodyColor = body.color;
-
-        return (
-            <LogoutConfirmationModalComponent
-                style={{ flex: 1 }}
-                hideModal={this.toggleModalDisplay}
-                logout={this.logout}
-                backgroundColor={{ backgroundColor: body.bg }}
-                textColor={textColor}
-                borderColor={{ borderColor: bodyColor }}
-                barBg={bar.bg}
-            />
-        );
     }
 
     renderSettingsContent() {
@@ -150,36 +140,13 @@ export class MainSettings extends Component {
             { name: t('advanced'), icon: 'advanced', function: () => this.props.setSetting('advancedSettings') },
             { name: 'separator' },
             { name: t('aboutTrinity'), icon: 'info', function: () => this.props.setSetting('about') },
-            { name: t('logout'), icon: 'logout', function: this.toggleModalDisplay },
+            { name: t('logout'), icon: 'logout', function: this.openLogoutModal },
         ];
         return renderSettingsRows(rows, theme);
     }
 
     render() {
-        const { theme, isModalActive } = this.props;
-
-        return (
-            <View style={styles.container}>
-                {this.renderSettingsContent()}
-                <Modal
-                    animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                    animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                    animationInTiming={isAndroid ? 1000 : 300}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={theme.body.bg}
-                    backdropOpacity={0.9}
-                    style={styles.modal}
-                    isVisible={isModalActive}
-                    onBackButtonPress={this.toggleModalDisplay}
-                    useNativeDriver={isAndroid ? true : false}
-                    hideModalContentWhileAnimating
-                >
-                    {this.renderModalContent()}
-                </Modal>
-            </View>
-        );
+        return <View style={styles.container}>{this.renderSettingsContent()}</View>;
     }
 }
 
@@ -188,7 +155,6 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     themeName: state.settings.themeName,
     theme: state.settings.theme,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

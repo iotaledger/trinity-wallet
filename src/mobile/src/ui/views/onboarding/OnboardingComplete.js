@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
         lineHeight: height / 30,
@@ -62,8 +62,6 @@ class OnboardingComplete extends Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
     };
@@ -74,18 +72,30 @@ class OnboardingComplete extends Component {
 
     onNextPress() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'loading',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'loading',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -93,7 +103,6 @@ class OnboardingComplete extends Component {
         const { t, theme: { body, primary } } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
@@ -104,16 +113,15 @@ class OnboardingComplete extends Component {
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Button
-                        onPress={() => this.onNextPress()}
+                    <SingleFooterButton
+                        onButtonPress={() => this.onNextPress()}
                         testID="languageSetup-next"
-                        style={{
+                        buttonStyle={{
                             wrapper: { backgroundColor: primary.color },
                             children: { color: primary.body },
                         }}
-                    >
-                        {t('openYourWallet')}
-                    </Button>
+                        buttonText={t('openYourWallet')}
+                    />
                 </View>
             </View>
         );

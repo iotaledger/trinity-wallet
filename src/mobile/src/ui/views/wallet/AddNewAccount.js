@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BackHandler, View, StyleSheet } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { withNamespaces } from 'react-i18next';
 import timer from 'react-native-timer';
@@ -19,8 +20,6 @@ const styles = StyleSheet.create({
  */
 class AddNewAccount extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** Change current setting
          * @param {string} setting
          */
@@ -48,17 +47,33 @@ class AddNewAccount extends Component {
      */
     addNewSeed() {
         const { theme: { body } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'newSeedSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'newSeedSetup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
         timer.clearInterval('inactivityTimer');
         BackHandler.removeEventListener('homeBackPress');

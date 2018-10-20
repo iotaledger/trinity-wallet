@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -31,8 +32,6 @@ export class AdvancedSettings extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
@@ -98,18 +97,34 @@ export class AdvancedSettings extends PureComponent {
      * @method reset
      */
     reset() {
-        const { theme } = this.props;
-        this.props.navigator.push({
-            screen: 'walletResetConfirm',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        const { theme: { body } } = this.props;
+        Navigation.push('appStack', {
+            component: {
+                name: 'walletResetConfirm',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 

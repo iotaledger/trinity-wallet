@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
@@ -9,13 +10,12 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import SeedStore from 'libs/SeedStore';
 import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import PasswordFields from 'ui/components/PasswordFields';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
 /** Set Password component */
 class SetPassword extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -143,28 +143,38 @@ class SetPassword extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     navigateToOnboardingComplete() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'onboardingComplete',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'onboardingComplete',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
-            animated: false,
         });
     }
 
@@ -209,7 +219,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.3 }} />
                         </KeyboardAvoidingView>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
                                 leftButtonText={t('global:goBack')}
@@ -218,7 +228,6 @@ class SetPassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }

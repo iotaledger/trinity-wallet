@@ -4,7 +4,7 @@ import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native
 import { formatTimeAs } from 'shared-modules/libs/date';
 import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
         width,
     },
     modalContent: {
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 30,
         paddingHorizontal: width / 30,
-        width: width / 1.15,
+        width: Styling.contentWidth,
         alignItems: 'center',
         justifyContent: 'center',
         maxHeight: height / 1.25,
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     itemText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize1,
+        fontSize: Styling.fontSize1,
     },
     line: {
         borderBottomWidth: height / 1000,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     clearButton: {
         borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.7,
         height: height / 17,
         justifyContent: 'center',
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     },
     clearText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
+        fontSize: Styling.fontSize1,
         backgroundColor: 'transparent',
     },
 });
 
-export class NotificationLog extends PureComponent {
+export class NotificationLogModal extends PureComponent {
     static propTypes = {
         /** Content background color */
         backgroundColor: PropTypes.string.isRequired,
@@ -117,7 +117,7 @@ export class NotificationLog extends PureComponent {
                 />
                 <TouchableOpacity onPress={() => this.clearNotificationLog()}>
                     <View style={[styles.clearButton, borderColor]}>
-                        <Text style={[styles.clearText, textColor]}>{t('clear')}</Text>
+                        <Text style={[styles.clearText, textColor]}>{t('clear').toUpperCase()}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -125,4 +125,4 @@ export class NotificationLog extends PureComponent {
     }
 }
 
-export default withNamespaces(['global, notificationLog'])(NotificationLog);
+export default withNamespaces(['global, notificationLog'])(NotificationLogModal);

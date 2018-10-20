@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "다른 노드로 다시 시도합니다.",
         "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "클립보드에서 시드 삭제함",
-        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
-        "seedCopied": "시드가 클립보드에 복사됨",
-        "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
-        "copyToClipboard": "시드 복사",
-        "shareSeed": "안전한 비밀번호 관리자로 시드를 내보내세요.",
-        "storeEncrypted": "시드는 비밀번호 관리자를 사용해 암호화하여 저장하세요.",
-        "doNotOpen": "작업 수행중에 다른 앱을 실행하지 마세요.",
-        "tapConfirm": "확인하셨으면 아래의 박스에 체크해 주세요.",
-        "passwordManagerCheckbox": "비밀번호 관리자에 시드를 저장하겠습니다.",
-        "copy": "복사하기",
-        "noPasswordManagers": "지원되는 비밀번호 관리자가 설치되어있지 않습니다",
-        "noPasswordManagersExplanation": "기기에서 지원되는 비밀번호 관리자를 찾지 못했습니다. Keepass2Android를 설치해 주세요.",
-        "followTutorialToSecurelyShareSeed": "시드를 비밀번호 관리자에 저장하시기 전에 아래의 안내문을 읽어보셔야 합니다."
+        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다."
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함됨",
@@ -445,7 +434,8 @@
         "receive": "받기",
         "empty": "없음",
         "retrying": "다시 시도 중",
-        "yesterday": "어제"
+        "yesterday": "어제",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -522,9 +512,9 @@
         "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>정말로 다음 계정을 삭제하시겠습니까? </1><2></2><3>{{accountName}}</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
-        "thisAction": "이 작업은 되돌릴 수 없습니다.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {

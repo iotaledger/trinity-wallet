@@ -18,9 +18,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            navigator: {
-                push: noop,
-            },
+            componentId: 'foo',
             accountNames: [],
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
@@ -37,8 +35,8 @@ const getProps = (overrides) =>
 
 describe('Testing SetAccountName component', () => {
     describe('propTypes', () => {
-        it('should require a navigator object as a prop', () => {
-            expect(SetAccountName.propTypes.navigator).toEqual(PropTypes.object.isRequired);
+        it('should require a componentId object as a prop', () => {
+            expect(SetAccountName.propTypes.componentId).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {

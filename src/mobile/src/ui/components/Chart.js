@@ -7,7 +7,7 @@ import { withNamespaces } from 'react-i18next';
 import withChartData from 'shared-modules/containers/components/Chart';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const chartWidth = width;
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     chartContainer: {
         flex: 4.7,
-        width: width / 1.15,
+        width: Styling.contentWidth,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
@@ -50,14 +50,14 @@ const styles = StyleSheet.create({
     },
     emptyChartContainer: {
         flex: 4.7,
-        width: width / 1.15,
+        width: Styling.contentWidth,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
     },
     emptyChartText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     marketDataContainer: {
         flex: 1.3,
@@ -65,25 +65,25 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        width: width / 1.15,
+        width: Styling.contentWidth,
     },
     buttonText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
+        fontSize: Styling.fontSize1,
     },
     iotaPrice: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
     },
     marketFigure: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         marginTop: height / 200,
     },
     marketFigureTitle: {
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         fontFamily: 'SourceSansPro-Bold',
         opacity: 0.6,
     },
@@ -227,7 +227,7 @@ class Chart extends PureComponent {
                                     axis: { stroke: 'transparent' },
                                     tickLabels: {
                                         fill: theme.body.color,
-                                        fontSize: GENERAL.fontSize0,
+                                        fontSize: Styling.fontSize0,
                                         fontFamily: 'SourceSansPro-Regular',
                                     },
                                 }}

@@ -2,14 +2,26 @@ import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
+import { isIPhoneX } from 'libs/device';
+import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     tabBar: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'flex-end',
         alignItems: 'stretch',
         opacity: 0.98,
+    },
+    tabBarBackground: {
+        position: 'absolute',
+        flex: 1,
+        width,
+        height: height / 5,
+        marginTop: isIPhoneX ? height / 120 : 0,
     },
 });
 
@@ -24,7 +36,12 @@ class Tabs extends Component {
             }),
         );
 
-        const tabContainer = <View style={[styles.tabBar, { backgroundColor: bar.bg }]}>{childComponents}</View>;
+        const tabContainer = (
+            <View style={styles.container}>
+                <View style={[styles.tabBarBackground, { backgroundColor: bar.alt }]} />
+                <View style={styles.tabBar}>{childComponents}</View>
+            </View>
+        );
 
         return tabContainer;
     }

@@ -120,7 +120,7 @@ class Login extends React.Component {
         if (wallet.addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
         } else {
-            this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
+            this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
     };
 
@@ -176,7 +176,7 @@ class Login extends React.Component {
         const { t, wallet, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (ui.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
+        if (ui.isFetchingAccountInfo || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop

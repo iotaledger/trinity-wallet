@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Intente nuevamente con un nodo diferente.",
         "errorFetchingAccountInformation": "Error al obtener la información de la cuenta.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed removida",
-        "seedClearedExplanation": "Tu seed ha sido bordada del portapapeles para tu seguridad.",
-        "seedCopied": "Semilla copiada al portapapeles",
-        "seedCopiedExplanation": "La semilla será borrada al presionar “Listo” o al pasar 60 segundos.",
-        "copyToClipboard": "Copiar semilla",
-        "shareSeed": "Compartir la semilla con un gestor de contraseñas seguro",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "doNotOpen": "No abra ninguna otra aplicación durante el proceso.",
-        "tapConfirm": "Por favor marque el cuadro de verificación para confirmar.",
-        "passwordManagerCheckbox": "Guardaré mi semilla en un administrador de contraseñas",
-        "copy": "COPIAR",
-        "noPasswordManagers": "No hay administradores de contraseña instalados",
-        "noPasswordManagersExplanation": "No fueron encontrados administradores de contraseña en su dispositivo. Por favor instale Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Si usted desea almacenar su semilla en un administrador de contraseñas, debe seguir el tutorial que se encuentra en el siguiente enlace"
+        "seedClearedExplanation": "Tu seed ha sido bordada del portapapeles para tu seguridad."
     },
     "enterSeed": {
         "invalidCharacters": "La semilla contiene caracteres inválidos",
@@ -445,7 +434,8 @@
         "receive": "Recibir",
         "empty": "Vacío",
         "retrying": "Reintentando",
-        "yesterday": "Ayer"
+        "yesterday": "Ayer",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -522,9 +512,9 @@
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar lo que puede hacer."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>¿Está seguro de que desea eliminar</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Tu semilla y tu historial de transacciones serán eliminados.",
-        "thisAction": "Esta acción no se puede deshacer.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Escribe tu contraseña para eliminar la cuenta."
     },
     "manualSync": {

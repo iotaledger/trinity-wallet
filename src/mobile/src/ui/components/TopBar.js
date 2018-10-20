@@ -9,6 +9,7 @@ import { withNamespaces } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
 import { clearLog } from 'shared-modules/actions/alerts';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import {
     getBalanceForSelectedAccount,
     getAccountNamesFromState,
@@ -30,10 +31,8 @@ import { setPollFor } from 'shared-modules/actions/polling';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid } from 'libs/device';
-import GENERAL from 'ui/theme/general';
-import Modal from 'react-native-modal';
-import NotificationLogComponent from './NotificationLog';
+import { isAndroid, isIPhoneX } from 'libs/device';
+import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
 
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
     },
     mainTitle: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         paddingBottom: height / 170,
         maxWidth: width / 1.35,
     },
@@ -96,13 +95,6 @@ const styles = StyleSheet.create({
         height: width / 18,
         width: width / 18,
     },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-    },
 });
 
 class TopBar extends Component {
@@ -134,11 +126,7 @@ class TopBar extends Component {
         /** Selected account information */
         selectedAccount: PropTypes.object.isRequired,
         /** @ignore */
-        body: PropTypes.object.isRequired,
-        /** @ignore */
-        bar: PropTypes.object.isRequired,
-        /** @ignore */
-        primary: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
         /** @ignore */
@@ -159,6 +147,8 @@ class TopBar extends Component {
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
         /** @ignore */
         currentRoute: PropTypes.string.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -193,7 +183,7 @@ class TopBar extends Component {
     constructor() {
         super();
         this.state = {
-            isModalVisible: false,
+            scrollable: false,
         };
     }
 
@@ -272,14 +262,22 @@ class TopBar extends Component {
     }
 
     showModal() {
-        const { isTransitioning } = this.props;
+        const { isTransitioning, theme: { bar }, notificationLog } = this.props;
         if (!isTransitioning) {
-            this.setState({ isModalVisible: true });
+            this.props.toggleModalActivity('notificationLog', {
+                backgroundColor: bar.bg,
+                hideModal: () => this.hideModal(),
+                textColor: { color: bar.color },
+                borderColor: { borderColor: bar.color },
+                barColor: bar.color,
+                notificationLog,
+                clearLog: this.props.clearLog,
+            });
         }
     }
 
     hideModal() {
-        this.setState({ isModalVisible: false });
+        this.props.toggleModalActivity();
     }
 
     renderTitles() {
@@ -289,8 +287,7 @@ class TopBar extends Component {
             balance,
             accountInfo,
             seedIndex,
-            bar,
-            primary,
+            theme: { bar, primary },
             topBarHeight,
             isKeyboardActive,
             notificationLog,
@@ -336,7 +333,7 @@ class TopBar extends Component {
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     marginTop: isAndroid ? StatusBar.currentHeight : 0,
-                                    paddingBottom: isAndroid ? height / 80 : 0,
+                                    paddingBottom: isAndroid ? height / 60 : 0,
                                 }}
                             >
                                 {hasNotifications && !isKeyboardActive && mode === 'Advanced' ? (
@@ -495,7 +492,7 @@ class TopBar extends Component {
                     }}
                     onContentSizeChange={(x, y) => this.setScrollable(y)}
                     contentContainerView={{ height: height }}
-                    style={{ maxHeight: height - height / 8.8 }}
+                    style={{ maxHeight: isIPhoneX ? height - height / 8.8 - 34 : height - height / 8.8 }}
                 >
                     {restContent}
                 </ScrollView>
@@ -504,8 +501,7 @@ class TopBar extends Component {
     }
 
     render() {
-        const { accountNames, body, bar, notificationLog } = this.props;
-        const { isModalVisible } = this.state;
+        const { accountNames, theme: { bar } } = this.props;
         const children = this.renderTitles();
         const shouldDisable = this.shouldDisable();
 
@@ -532,31 +528,6 @@ class TopBar extends Component {
                         <View scrollEnabled={false} style={styles.scrollViewContainer}>
                             {children}
                         </View>
-                        <Modal
-                            animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                            animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                            animationInTiming={isAndroid ? 1000 : 300}
-                            animationOutTiming={200}
-                            backdropTransitionInTiming={isAndroid ? 500 : 300}
-                            backdropTransitionOutTiming={200}
-                            backdropColor={body.bg}
-                            style={styles.modal}
-                            isVisible={isModalVisible}
-                            onBackButtonPress={() => this.hideModal()}
-                            onBackdropPress={() => this.hideModal()}
-                            hideModalContentWhileAnimating
-                            useNativeDriver={isAndroid ? true : false}
-                        >
-                            <NotificationLogComponent
-                                backgroundColor={bar.bg}
-                                hideModal={() => this.hideModal()}
-                                textColor={{ color: bar.color }}
-                                borderColor={{ borderColor: bar.color }}
-                                barColor={bar.color}
-                                notificationLog={notificationLog}
-                                clearLog={this.props.clearLog}
-                            />
-                        </Modal>
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>
@@ -579,16 +550,15 @@ const mapStateToProps = (state) => ({
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: selectAccountInfo(state),
-    body: state.settings.theme.body,
-    bar: state.settings.theme.bar,
-    primary: state.settings.theme.primary,
+    theme: state.settings.theme,
     notificationLog: state.alerts.notificationLog,
-    isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
+    isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,
 });
 
 const mapDispatchToProps = {
     toggleTopBarDisplay,
+    toggleModalActivity,
     setSeedIndex,
     setPollFor,
     clearLog,

@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
         "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "種子碼已清除",
-        "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。",
-        "seedCopied": "複製種子碼到剪貼簿",
-        "seedCopiedExplanation": "一旦按下「完成」或是 60 秒後種子將會被清除。",
-        "copyToClipboard": "複製種子碼",
-        "shareSeed": "將種子碼儲存至密碼管理工具",
-        "storeEncrypted": "加密儲存您的種子碼到密碼管理工具中。",
-        "doNotOpen": "請勿在此階段開啟其他應用程式。",
-        "tapConfirm": "請點擊以下方框來確認。",
-        "passwordManagerCheckbox": "我會儲存我的種子碼到密碼管理工具中。",
-        "copy": "複製",
-        "noPasswordManagers": "未安裝支援的密碼管理工具",
-        "noPasswordManagersExplanation": "無法在您的裝置中找到有支援的密碼管理工具，請安裝像是 Keepass2Android。",
-        "followTutorialToSecurelyShareSeed": "如果您想儲存您的種子碼到密碼管理工具，您必須先看過以下連結的教學"
+        "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -445,7 +434,8 @@
         "receive": "收款",
         "empty": "清空",
         "retrying": "重試中",
-        "yesterday": "昨日"
+        "yesterday": "昨日",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -522,9 +512,9 @@
         "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>您確定要刪除</1><2></2><3>{{accountName}}？</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
-        "thisAction": "此動作無法復原。",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "請輸入密碼以刪除此帳戶。"
     },
     "manualSync": {

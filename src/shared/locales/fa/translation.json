@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "کلیپ بورد پاک شد",
-        "seedClearedExplanation": "کلیپ بورد برای امنیت شما پاک شده است.",
-        "seedCopied": "سید به کلیپ بورد کپی شد",
-        "seedCopiedExplanation": "وقتی \"انجام شد\" را فشار بدهید، بعد از گذشت 60 ثانیه سید پاک می شود.",
-        "copyToClipboard": "کپی کردن سید",
-        "shareSeed": "سید خود را به یک مدیریت گذرواژه ایمن انتقال بدهید",
-        "storeEncrypted": "سید خود را در یک مدیریت گذرواژه رمزگذاری کنید.",
-        "doNotOpen": "در این فرایند برنامه های دیگر را باز نکنید.",
-        "tapConfirm": "لطفا برای تایید صحت تیک این گزینه را بزنید.",
-        "passwordManagerCheckbox": "سید خود را در یک مدیریت گذرواژه ذخیره خواهم کرد",
-        "copy": "کپی",
-        "noPasswordManagers": "از مدیریت های گذرواژه نصب شده پشتیبانی نمیکند",
-        "noPasswordManagersExplanation": "هیچ مدیریت گذرواژه بر روی دستگاه شما یافت نشد. لطفا Keepass2Android را نصب کنید.",
-        "followTutorialToSecurelyShareSeed": "اگر می خواهید سید خود را در یک مدیریت گذرواژه ذخیره کنید، باید از لینک زیر استفاده کنید"
+        "seedClearedExplanation": "کلیپ بورد برای امنیت شما پاک شده است."
     },
     "enterSeed": {
         "invalidCharacters": "سید ورودی دارای کاراکتر های نامعتبر است",
@@ -445,7 +434,8 @@
         "receive": "دریافت",
         "empty": "خالی",
         "retrying": "درحال تلاش دوباره",
-        "yesterday": "دیروز"
+        "yesterday": "دیروز",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -522,9 +512,9 @@
         "discordInformation": "برای پیدا کردن راه حل برای مسئله خود، به کانال #help در برنامه Discord مراجعه کنید."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>آیا مطمئن هستید که میخواهید حذف کنید</1><2></2><3>{{accountName}}؟</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "سید شما و تاریخچه تراکنش های شما حذف خواهد شد.",
-        "thisAction": "این عمل غیر قابل بازگشت است.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "گذرواژه خود را برای حذف این حساب وارد کنید."
     },
     "manualSync": {

@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import omit from 'lodash/omit';
+import cloneDeep from 'lodash/cloneDeep';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
@@ -12,7 +13,7 @@ class Keychain {
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
-        this.key = key.slice(0);
+        this.key = cloneDeep(key);
         this.accountId = accountId;
     }
 

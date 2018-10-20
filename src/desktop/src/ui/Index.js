@@ -15,7 +15,7 @@ import { getAccountNamesFromState } from 'selectors/accounts';
 import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
-import { disposeOffAlert, generateAlert } from 'actions/alerts';
+import { dismissAlert, generateAlert } from 'actions/alerts';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -55,7 +55,7 @@ class App extends React.Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        disposeOffAlert: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
@@ -127,7 +127,7 @@ class App extends React.Component {
 
         // Dispose alerts on route change
         if (this.props.location.pathname !== nextProps.location.pathname) {
-            this.props.disposeOffAlert();
+            this.props.dismissAlert();
         }
     }
 
@@ -286,7 +286,7 @@ const mapDispatchToProps = {
     setPassword,
     setDeepLink,
     setSeedIndex,
-    disposeOffAlert,
+    dismissAlert,
     generateAlert,
     fetchNodeList,
     updateTheme,
