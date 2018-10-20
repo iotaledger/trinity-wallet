@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
 
@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -161,4 +161,4 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['seedVault', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedVaultSettings));
+export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedVaultSettings));

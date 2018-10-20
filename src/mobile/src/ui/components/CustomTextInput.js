@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     fieldLabel: {
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         marginBottom: height / 100,
         marginLeft: 1,
         backgroundColor: 'transparent',
     },
     textInput: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         flex: 6,
         marginHorizontal: width / 28,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadiusSmall,
+        borderRadius: Styling.borderRadiusSmall,
         height: height / 14,
         borderWidth: 1,
     },
@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     conversionTextContainer: {
-        right: width / 7.5,
+        right: width / 6.5,
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'flex-start',
     },
     conversionText: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
     },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     denominationText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     passwordStrengthIndicatorContainer: {
@@ -83,15 +83,15 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
         borderLeftWidth: 1,
         borderBottomWidth: 1,
-        borderBottomLeftRadius: GENERAL.borderRadius,
-        borderBottomRightRadius: GENERAL.borderRadius,
+        borderBottomLeftRadius: width / 60,
+        borderBottomRightRadius: width / 60,
         position: 'absolute',
         right: width / 100,
         bottom: -width / 19,
     },
     checksumText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontsize1,
+        fontSize: Styling.fontsize1,
     },
 });
 
@@ -404,7 +404,7 @@ class CustomTextInput extends Component {
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
-                        selectionColor={theme.primary.color}
+                        selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
                     />
                     {(widget === 'qr' && this.renderQR({ borderLeftColor: theme.input.alt })) ||

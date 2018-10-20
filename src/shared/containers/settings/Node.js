@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
@@ -119,5 +119,5 @@ export default function withNodeData(NodeComponent) {
         updateAutoNodeSwitching,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(NodeData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(NodeData));
 }

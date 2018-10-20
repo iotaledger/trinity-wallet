@@ -122,9 +122,6 @@ export default {
             balance: 110,
         },
     },
-    accountNames: ['TEST'],
-    seedCount: 1,
-    firstUse: false,
     onboardingComplete: true,
     pendingTxHashesForSpentAddresses: {
         TEST: [],

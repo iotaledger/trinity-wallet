@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { setLoginRoute } from 'shared-modules/actions/ui';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import CtaButton from 'ui/components/CtaButton';
 import NodeSelection from 'ui/views/wallet/NodeSelection';
 import AddCustomNode from 'ui/views/wallet/AddCustomNode';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     titleTextLeft: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -128,4 +128,4 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeOptionsOnLogin));
+export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(NodeOptionsOnLogin));
