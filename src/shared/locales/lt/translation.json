@@ -435,7 +435,7 @@
         "empty": "Tuščia",
         "retrying": "Kraunama",
         "yesterday": "Vakar",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Iškeliamas kitas paketas"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -512,9 +512,9 @@
         "discordInformation": "Apsilankykite mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Ar tikrai norite ištrinti šią paskyrą?",
         "yourSeedWillBeRemoved": "Jūsų užraktas ir pavedimų istorija bus pašalinta.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Paskyra bus ištrinta negrįžtamai",
         "enterPassword": "Įveskite slaptažodį jei norite ištrinti šią paskyrą."
     },
     "manualSync": {
