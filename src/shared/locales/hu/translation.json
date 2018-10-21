@@ -422,7 +422,7 @@
         "scrollToBottom": "Ugrás a végére"
     },
     "history": {
-        "bundleHashCopied": "Tranzakciós csomag hash vágólapra másolva",
+        "bundleHashCopied": "Tranzakciós csomag hash másolva",
         "noTransactionsFound": "Nincs még tranzakció",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
