@@ -2,7 +2,6 @@ import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
-import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
 import findKey from 'lodash/findKey';
@@ -27,7 +26,6 @@ import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
-import pickBy from 'lodash/pickBy';
 import {
     DEFAULT_TAG,
     DEFAULT_BALANCES_THRESHOLD,
@@ -820,14 +818,14 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
 };
 
 /**
- *   Filters all invalid transactions from all pending transactions.
+ *   Filters invalid (non-funded) transactions from all pending transactions.
  *
- *   @method filterInvalidPendingTransactions
+ *   @method filterNonFundedPendingTransactions
  *   @param {string} [provider]
  *
- *   @returns {function(array, object): Promise<object>}
+ *   @returns {function(array, object): Promise<array>}
  **/
-export const filterInvalidPendingTransactions = (provider) => (transactions, addressData) => {
+export const filterNonFundedPendingTransactions = (provider) => (transactions, addressData) => {
     const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransactions)) {
@@ -929,40 +927,6 @@ export const getOwnTransactionHashes = (normalisedTransaction, addressData) => {
             (output) => output.hash,
         ),
     ];
-};
-
-/**
- * Takes addresses and transactions and returns outgoing transfers for those addresses.
- *
- * @param {array} addresses
- * @param {object} transactions
- * @returns {array}
- */
-export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
-    const selectedTransactions = new Set();
-    each(transactions, (tx) => {
-        each(tx.inputs, (input) => {
-            if (addresses.indexOf(input.address) > -1) {
-                selectedTransactions.add(tx);
-            }
-        });
-    });
-
-    return Array.from(selectedTransactions);
-};
-
-/**
- * Takes addresses and transactions and returns pending outgoing transfers for those addresses.
- *
- * @param {array} addresses
- * @param {object} transfers
- * @returns {array}
- */
-export const getPendingOutgoingTransfersForAddresses = (addresses, transfers) => {
-    const addressesWithBalance = pickBy(addresses, (address) => address.balance > 0);
-    const relevantTransfers = filter(transfers, (tx) => !tx.persistence);
-
-    return getOutgoingTransfersForAddresses(keys(addressesWithBalance), relevantTransfers);
 };
 
 /**
@@ -1169,6 +1133,38 @@ export const isFundedBundle = (provider) => (bundle) => {
             accumulateBalance(map(balances.balances, Number))
         );
     });
+};
+
+/**
+ *   Filters non-funded bundles
+ *   Note: Does not validate signatures or other bundle attributes
+ *
+ *   @method filterNonFundedBundles
+ *   @param {string} [provider]
+ *
+ *   @returns {function(array): Promise<boolean>}
+ **/
+
+export const filterNonFundedBundles = (provider) => (bundles) => {
+    if (isEmpty(bundles)) {
+        return Promise.reject(new Error(Errors.EMPTY_BUNDLES_PROVIDED));
+    }
+
+    return reduce(
+        bundles,
+        (promise, bundle) => {
+            return promise.then((result) => {
+                return isFundedBundle(provider)(bundle).then((isFunded) => {
+                    if (isFunded) {
+                        return [...result, bundle];
+                    }
+
+                    return result;
+                });
+            });
+        },
+        Promise.resolve([]),
+    );
 };
 
 /**

@@ -11,10 +11,12 @@ class Keychain {
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
+     * @param {number} maxInputs - Maximum number of inputs allowed per bundle
      */
-    constructor(key, accountId) {
+    constructor(key, accountId, maxInputs) {
         this.key = cloneDeep(key);
         this.accountId = accountId;
+        this.maxInputs = maxInputs || null;
     }
 
     /**

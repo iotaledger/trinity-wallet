@@ -15,8 +15,6 @@ import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
 import size from 'lodash/size';
-import omitBy from 'lodash/omitBy';
-import flatMap from 'lodash/flatMap';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync, sendTransferAsync } from './extendedApi';
 import { prepareTransferArray } from './transfers';
@@ -387,39 +385,35 @@ export const markAddressesAsSpentSync = (bundles, addressData) => {
 };
 
 /**
- * Filters spent addresses from locally stored address data
- *
- * @method filterSpentAddressesSync
- * @param {array} addresses
- * @param {object} addressData
- *
- * @returns {array}
- */
-export const filterSpentAddressesSync = (addresses, addressData) =>
-    filter(addresses, (address) => !get(addressData, `${address}.spent.local`));
-
-/**
  *   Communicates with ledger and checks if the addresses are spent from.
  *
- *   @method filterSpentAddresses
- *   @param {string} provider
+ *   @method filterSpentAddressData
+ *   @param {string} [provider]
  *
- *   @returns {function(array, object, array): Promise<array>}
+ *   @returns {function(array, array): Promise<object>}
  **/
-export const filterSpentAddresses = (provider) => (inputs, addressData, normalisedTransactions) => {
-    const addresses = filterSpentAddressesSync(map(inputs, (input) => input.address), addressData);
-    const filteredInputs = filter(inputs, (input) => includes(addresses, input.address));
+export const filterSpentAddressData = (provider) => (addressData, transactions) => {
+    const unspentAddresses = map(
+        filter(addressData, (addressObject) => addressObject.spent.local === false),
+        (addressObject) => addressObject.address,
+    );
 
     // If all inputs are spent, avoid making the network call
-    if (isEmpty(addresses)) {
+    if (isEmpty(unspentAddresses)) {
         return Promise.resolve([]);
     }
 
-    const spendStatuses = findSpendStatusesFromTransactions(addresses, normalisedTransactions);
+    // Get latest spend statuses against unspent addresses from locally stored transactions
+    const spendStatuses = findSpendStatusesFromTransactions(unspentAddresses, transactions);
 
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) =>
-        filter(filteredInputs, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]),
-    );
+    return wereAddressesSpentFromAsync(provider)(unspentAddresses).then((wereSpent) => {
+        const filteredAddresses = filter(
+            unspentAddresses,
+            (_, idx) => wereSpent[idx] === false && spendStatuses[idx] === false,
+        );
+
+        return filter(addressData, (addressObject) => includes(filteredAddresses, addressObject.address));
+    });
 };
 
 /**
@@ -598,42 +592,31 @@ export const syncAddresses = (provider) => (seedStore, addressData, transactions
  *   Filters inputs with addresses that have pending incoming transfers or
  *   are change addresses.
  *
- *   @method filterAddressesWithIncomingTransfers
- *   @param {array} inputs
- *   @param {array} pendingValueTransfers
- *   @returns {array}
+ *   @method filterAddressDataWithPendingIncomingTransactions
+ *   @param {object} addressData
+ *   @param {array} pendingValueTransactions
+ *
+ *   @returns {object}
  **/
-export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfers) => {
-    if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
-        return inputs;
+export const filterAddressDataWithPendingIncomingTransactions = (addressData, transactions) => {
+    if (isEmpty(transactions) || isEmpty(addressData)) {
+        return addressData;
     }
 
-    const inputsByAddress = transform(
-        inputs,
-        (acc, input) => {
-            acc[input.address] = input;
-        },
-        {},
+    const addresses = map(addressData, (addressObject) => addressObject.address);
+
+    const addressesWithIncomingTransactions = map(
+        filter(
+            transactions,
+            (transaction) =>
+                includes(addresses, transaction.address) &&
+                transaction.persistence === false &&
+                transaction.value !== 0,
+        ),
+        (transaction) => transaction.address,
     );
 
-    const addressesWithIncomingTransfers = new Set();
-
-    // Check outputs of incoming transfers i.e. If there is an incoming value transfer
-    // Checks outputs of sent transfers to check if there is an incoming transfer (change address)
-
-    // Note: Inputs for outgoing transfers should not be checked since filterSpentAddresses already removes spent inputs
-    const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
-
-    each(outputsToCheck, (output) => {
-        if (output.address in inputsByAddress && output.value > 0) {
-            addressesWithIncomingTransfers.add(output.address);
-        }
-    });
-
-    return map(
-        omitBy(inputsByAddress, (input, address) => addressesWithIncomingTransfers.has(address)),
-        (input) => input,
-    );
+    return filter(addressData, (addressObject) => includes(addressesWithIncomingTransactions, addressObject.address));
 };
 
 /**
@@ -723,4 +706,41 @@ export const findSpendStatusesFromTransactions = (addresses, transactions) => {
     const inputAddresses = map(filter(transactions, (tx) => tx.value < 0), (tx) => tx.address);
 
     return map(addresses, (address) => includes(inputAddresses, address));
+};
+
+/**
+ * Transforms address data object to inputs list
+ *
+ * @method transformAddressDataToInputs
+ * @param {array} addressData
+ * @param {number} security
+ *
+ * @returns {array}
+ */
+export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) =>
+    map(addressData, (addressObject) => ({
+        address: addressObject.address,
+        security,
+        balance: addressObject.balance,
+        keyIndex: addressObject.index,
+    }));
+
+/**
+ * Filters address data with pending outgoing transactions
+ *
+ * @method filterAddressDataWithPendingOutgoingTransactions
+ * @param {array} addressData
+ * @param {array} transactions
+ *
+ * @returns {object}
+ */
+export const filterAddressDataWithPendingOutgoingTransactions = (addressData, transactions) => {
+    const pendingTransactions = filter(transactions, (tx) => tx.persistence === false);
+    // Get all input addresses from transactions
+    const inputAddressesFromTransactions = map(
+        filter(pendingTransactions, (transaction) => transaction.value < 0),
+        (transaction) => transaction.address,
+    );
+
+    return filter(addressData, (addressObject) => includes(inputAddressesFromTransactions, addressObject.address));
 };
