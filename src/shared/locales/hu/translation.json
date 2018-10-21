@@ -465,7 +465,7 @@
         "manualSync": "Kézi szinkronizáció",
         "snapshotTransition": "Pillanatkép utáni egyenlegátvezetés",
         "pow": "Kiszabott munka elvégzése",
-        "autoPromotion": "Automatikus tranzakció előrehelyezés",
+        "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
         "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a kiszabott munka távoli elvégzését."
     },
@@ -626,7 +626,7 @@
         "powUpdatedExplanation": "A kiszabott munka beállításait frissítettük."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés beállításai",
+        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés",
         "autoPromotionUpdatedExplanation": "Az automatikus tranzakció előrehelyezés beállításait frissítettük."
     },
     "progressSteps": {
