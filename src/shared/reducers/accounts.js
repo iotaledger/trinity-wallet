@@ -134,36 +134,6 @@ const account = (
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
             };
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
-        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
-        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
-        case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
-        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
-        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
-        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
-            };
-        case ActionTypes.UPDATE_ADDRESSES:
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.accountName]: {
-                        ...state.accountInfo[action.accountName],
-                        addressData: setAddressData(
-                            get(state.accountInfo, `${action.accountName}.addressData`),
-                            action.addressData,
-                        ),
-                    },
-                },
-            };
         case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
@@ -195,6 +165,36 @@ const account = (
                         [action.payload.task]: true,
                     },
                 },
+            };
+        case ActionTypes.UPDATE_ADDRESSES:
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.accountName]: {
+                        ...state.accountInfo[action.accountName],
+                        addressData: setAddressData(
+                            get(state.accountInfo, `${action.accountName}.addressData`),
+                            action.addressData,
+                        ),
+                    },
+                },
+            };
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
+        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
+        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
+        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
+        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
+        case ActionTypes.MANUAL_SYNC_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                ...updateAccountInfo(state, action.payload),
             };
         default:
             return state;
