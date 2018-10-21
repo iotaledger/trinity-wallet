@@ -142,9 +142,9 @@
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Kulcstár-hiba",
+        "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
+        "mainWallet": "Elsődleges számla"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -218,7 +218,7 @@
         "balance": "Egyenleg",
         "send": "KÜLDÉS",
         "receive": "Fogadás",
-        "history": "Tranzakciótörténet",
+        "history": "Tranzakciók",
         "settings": "Beállítások"
     },
     "languageSetup": {
@@ -435,7 +435,7 @@
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Újabb tranzakciócsomag előmozdítása"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -512,9 +512,9 @@
         "discordInformation": "Kérjük keresse fel a #help csatornát az IOTA Discord-on, hogy további információt kapjon arról, mit tehet az emiatt nem hozzáférhető egyenlegének visszaszerzése érdekében."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Biztosan törölni szeretné a számláját?",
         "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Ez a művelet nem vonható vissza",
         "enterPassword": "A számla törléséhez kérjük, adja meg jelszavát."
     },
     "manualSync": {
@@ -619,7 +619,7 @@
     },
     "pow": {
         "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett kiszabott munkát kell elvégezni.",
-        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzést.",
+        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzését.",
         "local": "Helyi",
         "remote": "Távoli",
         "powUpdated": "Kiszabott munka beállításai",
