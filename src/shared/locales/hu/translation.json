@@ -72,7 +72,7 @@
         "all": "Összes",
         "sent": "Elküldött",
         "received": "Fogadott",
-        "sending": "Küldés folyamatban",
+        "sending": "Küldés...",
         "receiving": "Fogadás folyamatban",
         "confirmed": "Megerősítve",
         "pending": "Függőben lévő",
