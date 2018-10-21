@@ -435,7 +435,7 @@
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
-        "promotingAnotherBundle": "Újabb tranzakciócsomag előmozdítása"
+        "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
