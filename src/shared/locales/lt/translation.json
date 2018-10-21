@@ -144,7 +144,7 @@
         "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "PAGRINDINĖ PASKYRA"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
