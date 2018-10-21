@@ -544,7 +544,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "EZ A MŰVELET NEM VONHATÓ VISSZA.",
-        "warning": "<0><0>Minden tárca adat, beleértve a</0><1>mester jelszavakat, a jelszavakat,</1><2>és</2><3>egyéb számlainformációkat</3><4>el fog veszni.</4></0>"
+        "warning": "<0><0>Minden tárca adat, beleértve a </0><1>mester jelszavakat, a jelszavakat,</1><2> és </2><3>egyéb számlainformációkat</3><4> el fog veszni.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Érintse meg az ujjlenyomat leolvasót az ujjlenyomat-azonosítás engedélyezéséhez",
