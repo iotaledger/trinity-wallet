@@ -144,7 +144,7 @@
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "COMPTE PRINCIPAL"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -435,7 +435,7 @@
         "empty": "Vide",
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promotion d'un autre bundle en cours"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -512,9 +512,9 @@
         "discordInformation": "Veuillez vous rendre sur le canal #help de Discord pour savoir ce que vous pouvez faire."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Êtes-vous sûr de vouloir supprimer votre compte ?",
         "yourSeedWillBeRemoved": "L’historique de votre seed et de vos transactions sera supprimé.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Cette action est irréversible",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
