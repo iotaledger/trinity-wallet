@@ -53,7 +53,7 @@ class ProgressBar extends Component {
         /** Text displayed when not in progress */
         staticText: PropTypes.string,
         /** Called on successful swipe */
-        onCompleteSwipe: PropTypes.func,
+        onSwipeSuccess: PropTypes.func,
         /** Interupts the progress bar when changed */
         interupt: PropTypes.bool,
     };
@@ -65,7 +65,7 @@ class ProgressBar extends Component {
 
     constructor(props) {
         super(props);
-        const isAlreadyInProgress = props.progress > -1;
+        const isAlreadyInProgress = props.progress > -1 && props.progress < 1;
         const sliderEndPosition = props.channelWidth - props.channelHeight;
         this.state = {
             progressPosition: new Animated.Value(isAlreadyInProgress ? props.progress : 0),
@@ -79,12 +79,12 @@ class ProgressBar extends Component {
             progressText: isAlreadyInProgress ? props.progressText : '',
             inProgress: isAlreadyInProgress,
             sliderAnimation: sliderLoadingAnimation,
-            sliderSize: new Animated.Value(props.channelHeight * 0.8),
+            sliderSize: new Animated.Value(isAlreadyInProgress ? props.channelHeight : props.channelHeight * 0.8),
         };
     }
 
     componentWillMount() {
-        if (this.props.progress > -1) {
+        if (this.props.progress > -1 && this.props.progress < 1) {
             this.animateProgressBar();
         }
         this._panResponder = PanResponder.create({
@@ -101,9 +101,9 @@ class ProgressBar extends Component {
                     duration: 100,
                 }).start();
                 const moveValue = gestureState.dx;
-                const relativeSlidePosition = moveValue / this.state.thresholdDistance;
-                this.state.textOpacity.setValue(1 - relativeSlidePosition * 2);
-                this.state.sliderOpacity.setValue(1 - relativeSlidePosition / 2.5);
+                const sliderPosition = moveValue / this.state.thresholdDistance;
+                this.state.textOpacity.setValue(1 - sliderPosition * 2);
+                this.state.sliderOpacity.setValue(1 - sliderPosition / 2.5);
                 if (moveValue >= 0 && moveValue <= this.state.thresholdDistance) {
                     this.state.sliderPosition.setValue(gestureState.dx);
                 }
@@ -113,7 +113,7 @@ class ProgressBar extends Component {
                     return;
                 }
                 const releaseValue = gestureState.dx;
-                if (releaseValue >= this.state.thresholdDistance) {
+                if (releaseValue >= this.state.thresholdDistance && this.props.progress === -1) {
                     this.onCompleteSwipe();
                 } else {
                     this.onIncompleteSwipe();
@@ -125,7 +125,7 @@ class ProgressBar extends Component {
     }
 
     componentDidMount() {
-        if (this.props.progress > -1 && this.sliderAnimation) {
+        if (this.props.progress > -1 && this.props.progress < 1 && this.sliderAnimation) {
             this.sliderAnimation.play();
         }
     }
@@ -186,7 +186,6 @@ class ProgressBar extends Component {
                 this.sliderAnimation.reset();
                 this.setState({
                     progressStep: -1,
-                    inProgress: false,
                     sliderAnimation: sliderLoadingAnimation,
                     shouldLoopSliderAnimation: true,
                 });
@@ -220,6 +219,7 @@ class ProgressBar extends Component {
     }
 
     onInterupt() {
+        this.sliderAnimation.reset();
         this.setState({ progressStep: -1, inProgress: false });
         Animated.timing(this.state.progressPosition).stop();
         this.state.progressPosition.setValue(0);
@@ -233,7 +233,7 @@ class ProgressBar extends Component {
             duration: 50,
         }).start();
         this.setState({ sliderColor: this.props.postSwipeColor });
-        this.props.onCompleteSwipe();
+        this.props.onSwipeSuccess();
     }
 
     onProgressStepChange(progressText) {
@@ -325,19 +325,6 @@ class ProgressBar extends Component {
 
     render() {
         const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor } = this.props;
-        const progressBarStyle = {
-            backgroundColor: filledColor,
-            height: channelHeight,
-            width: channelWidth,
-            transform: [
-                {
-                    translateX: this.state.progressPosition.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [-channelWidth, 0],
-                    }),
-                },
-            ],
-        };
         return (
             <View style={[styles.container, { height: channelHeight }]}>
                 <View
@@ -346,7 +333,21 @@ class ProgressBar extends Component {
                         { height: channelHeight, width: channelWidth, backgroundColor: unfilledColor },
                     ]}
                 >
-                    <Animated.View style={progressBarStyle} />
+                    <Animated.View
+                        style={{
+                            backgroundColor: filledColor,
+                            height: channelHeight,
+                            width: channelWidth,
+                            transform: [
+                                {
+                                    translateX: this.state.progressPosition.interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: [-channelWidth, 0],
+                                    }),
+                                },
+                            ],
+                        }}
+                    />
                     {(this.state.inProgress && (
                         <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
                             {this.state.progressText}

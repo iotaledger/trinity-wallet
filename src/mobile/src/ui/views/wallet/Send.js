@@ -843,7 +843,7 @@ export class Send extends Component {
                                 interupt={this.state.shouldInteruptSendAnimation}
                                 progressText={this.getProgressBarText()}
                                 staticText="Swipe to send"
-                                onCompleteSwipe={() => {
+                                onSwipeSuccess={() => {
                                     this.onSendPress();
                                     if (address === '' && amount === '' && message && '') {
                                         this.blurTextFields();

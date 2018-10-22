@@ -703,7 +703,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 setTimeout(() => {
                     dispatch(completeTransfer());
                     dispatch(resetProgress());
-                }, 5000);
+                }, 3500);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
