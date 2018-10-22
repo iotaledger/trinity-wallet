@@ -246,11 +246,14 @@ describe('actions: transfers', () => {
 
     describe('#makeTransaction', () => {
         let powFn;
-        let genFn;
+        let seedStore;
 
         before(() => {
             powFn = () => Promise.resolve('9'.repeat(27));
-            genFn = () => Promise.resolve('A'.repeat(81));
+            seedStore = {
+                generateAddress: () => Promise.resolve('A'.repeat(81)),
+                prepareTransfers: () => Promise.resolve(trytes.zeroValue),
+            };
         });
 
         beforeEach(() => {
@@ -295,7 +298,6 @@ describe('actions: transfers', () => {
 
             it('should create five actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                 const store = mockStore({ accounts });
-                const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
                 const syncAccountAfterSpending = sinon
                     .stub(accountsUtils, 'syncAccountAfterSpending')
@@ -304,13 +306,12 @@ describe('actions: transfers', () => {
                 return store
                     .dispatch(
                         actions.makeTransaction(
-                            'SEED',
+                            seedStore,
                             'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                             0,
                             'TEST MESSAGE',
                             'TEST',
                             powFn,
-                            genFn,
                         ),
                     )
                     .then(() => {
@@ -321,7 +322,6 @@ describe('actions: transfers', () => {
                                 .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
                         ).to.equal(5);
 
-                        prepareTransfers.restore();
                         wereAddressesSpentFrom.restore();
                         syncAccountAfterSpending.restore();
                     });
@@ -330,7 +330,6 @@ describe('actions: transfers', () => {
             it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING', () => {
                 const store = mockStore({ accounts });
 
-                const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
                 const syncAccountAfterSpending = sinon
                     .stub(accountsUtils, 'syncAccountAfterSpending')
@@ -339,13 +338,12 @@ describe('actions: transfers', () => {
                 return store
                     .dispatch(
                         actions.makeTransaction(
-                            'SEED',
+                            seedStore,
                             'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                             0,
                             'TEST MESSAGE',
                             'TEST',
                             powFn,
-                            genFn,
                         ),
                     )
                     .then(() => {
@@ -353,7 +351,6 @@ describe('actions: transfers', () => {
                             'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
                         );
 
-                        prepareTransfers.restore();
                         wereAddressesSpentFrom.restore();
                         syncAccountAfterSpending.restore();
                     });
@@ -387,8 +384,8 @@ describe('actions: transfers', () => {
 
             describe('when transaction is successful', () => {
                 it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
-                    const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+                    const store = mockStore({ accounts });
 
                     const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
                         Promise.resolve({
@@ -407,20 +404,19 @@ describe('actions: transfers', () => {
                         .stub(accountsUtils, 'syncAccountAfterSpending')
                         .returns(() => Promise.resolve({}));
 
-                    const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
-
-                    const store = mockStore({ accounts });
+                    const syncAccount = sinon
+                        .stub(accountsUtils, 'syncAccount')
+                        .returns(() => Promise.resolve(accounts.accountInfo.TEST));
 
                     return store
                         .dispatch(
                             actions.makeTransaction(
-                                'SEED',
+                                seedStore,
                                 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                 2,
                                 'TEST MESSAGE',
                                 'TEST',
                                 powFn,
-                                genFn,
                             ),
                         )
                         .then(() => {
@@ -434,7 +430,6 @@ describe('actions: transfers', () => {
                             syncAccountAfterSpending.restore();
                             syncAccount.restore();
                             getUnspentInputs.restore();
-                            prepareTransfers.restore();
                             wereAddressesSpentFrom.restore();
                         });
                 });
@@ -447,20 +442,21 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
-                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
+                        sinon
+                            .stub(accountsUtils, 'syncAccount')
+                            .returns(() => Promise.resolve(accounts.accountInfo.TEST));
 
                         const store = mockStore({ accounts });
 
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    'SEED',
+                                    seedStore,
                                     'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                     2,
                                     'TEST MESSAGE',
                                     'TEST',
                                     powFn,
-                                    genFn,
                                 ),
                             )
                             .then(() => {
@@ -500,13 +496,12 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    'SEED',
+                                    seedStore,
                                     'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                     200,
                                     'TEST MESSAGE',
                                     'TEST',
                                     powFn,
-                                    genFn,
                                 ),
                             )
                             .then(() => {
@@ -549,13 +544,12 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    'SEED',
+                                    seedStore,
                                     'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
                                     100,
                                     'TEST MESSAGE',
                                     'TEST',
                                     powFn,
-                                    genFn,
                                 ),
                             )
                             .then(() => {
@@ -603,13 +597,12 @@ describe('actions: transfers', () => {
                         return store
                             .dispatch(
                                 actions.makeTransaction(
-                                    'SEED',
+                                    seedStore,
                                     'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLWWSWWTDSVX',
                                     2,
                                     'TEST MESSAGE',
                                     'TEST',
                                     powFn,
-                                    genFn,
                                 ),
                             )
                             .then(() => {

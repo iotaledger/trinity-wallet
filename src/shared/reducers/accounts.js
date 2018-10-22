@@ -8,10 +8,7 @@ import mapValues from 'lodash/mapValues';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
-import filter from 'lodash/filter';
-import findIndex from 'lodash/findIndex';
 import transform from 'lodash/transform';
-import union from 'lodash/union';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
@@ -30,9 +27,7 @@ const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
     mapValues(newAddressData, (data, address) => {
         const isSeenAddress = has(existingAddressData, address);
         if (isSeenAddress && isBoolean(get(existingAddressData[address], 'spent.local'))) {
-            const {
-                spent: { local },
-            } = existingAddressData[address];
+            const { spent: { local } } = existingAddressData[address];
 
             return {
                 ...data,
@@ -94,6 +89,7 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
+            type: payload.accountType || get(state.accountInfo, `${payload.accountName}.type`) || 'keychain',
             balance: payload.balance,
             addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
             transfers: {
@@ -115,20 +111,11 @@ const updateAccountInfo = (state, payload) => ({
  * @returns {{accountInfo: {}}}
  */
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
+    const { accountInfo, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
     const keyMap = { [oldAccountName]: newAccountName };
-    const accountIndex = findIndex(accountNames, (name) => name === oldAccountName);
-
-    const updateName = (name, idx) => {
-        if (idx === accountIndex) {
-            return newAccountName;
-        }
-
-        return name;
-    };
 
     const updateAccountInUnconfirmedBundleTails = (acc, tailTransactions, bundle) => {
         if (some(tailTransactions, (tx) => tx.account === oldAccountName)) {
@@ -143,25 +130,12 @@ const updateAccountName = (state, payload) => {
         failedBundleHashes: renameKeys(failedBundleHashes, keyMap),
         tasks: renameKeys(tasks, keyMap),
         setupInfo: renameKeys(setupInfo, keyMap),
-        accountNames: map(accountNames, updateName),
         unconfirmedBundleTails: transform(unconfirmedBundleTails, updateAccountInUnconfirmedBundleTails, {}),
     };
 };
 
 const account = (
     state = {
-        /**
-         * Keeps track of the number of total seeds (accounts) added in wallet
-         */
-        seedCount: 0,
-        /**
-         * List of unique account names added in wallet
-         */
-        accountNames: [],
-        /**
-         * Determines if the wallet is being setup for the first time
-         */
-        firstUse: true,
         /**
          * Determines if onboarding process is completed
          */
@@ -171,7 +145,7 @@ const account = (
          */
         failedBundleHashes: {},
         /**
-         * Keeps track of each account information (addresses, transfers, balance)
+         * Keeps track of each account information (name, addresses, transfers, balance)
          */
         accountInfo: {},
         /**
@@ -222,8 +196,6 @@ const account = (
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
                     some(tailTransactions, (tx) => tx.account === action.payload),
                 ),
-                accountNames: filter(state.accountNames, (name) => name !== action.payload),
-                seedCount: state.seedCount - 1,
             };
         case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
@@ -252,25 +224,10 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.SET_FIRST_USE:
-            return {
-                ...state,
-                firstUse: action.payload,
-            };
         case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
                 onboardingComplete: action.payload,
-            };
-        case ActionTypes.INCREASE_SEED_COUNT:
-            return {
-                ...state,
-                seedCount: state.seedCount + 1,
-            };
-        case ActionTypes.ADD_ACCOUNT_NAME:
-            return {
-                ...state,
-                accountNames: [...state.accountNames, action.accountName],
             };
         case ActionTypes.MANUAL_SYNC_SUCCESS:
             return {
@@ -324,19 +281,10 @@ const account = (
                     action.payload.unconfirmedBundleTails,
                 ),
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
-                firstUse: false,
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-            };
-        case ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
-                seedCount: state.seedCount + 1,
-                accountNames: union(state.accountNames, [action.payload.accountName]),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
             };
         case ActionTypes.SET_BASIC_ACCOUNT_INFO:

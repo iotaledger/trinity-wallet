@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
+import { Navigation } from 'react-native-navigation';
 import { acceptPrivacy } from 'shared-modules/actions/settings';
 import {
     enPrivacyPolicyAndroid,
@@ -11,11 +12,10 @@ import {
     dePrivacyPolicyAndroid,
     dePrivacyPolicyIOS,
 } from 'shared-modules/markdown';
-import i18next from 'i18next';
-import Button from 'ui/components/Button';
-import GENERAL from 'ui/theme/general';
+import i18next from 'shared-modules/libs/i18next';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
     },
@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
 /** Welcome screen component */
 class PrivacyPolicy extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -88,19 +86,35 @@ class PrivacyPolicy extends Component {
     }
 
     onNextPress() {
-        const { theme } = this.props;
+        const { theme: { body } } = this.props;
         this.props.acceptPrivacy();
-        this.props.navigator.push({
-            screen: 'walletSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'walletSetup',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -110,7 +124,6 @@ class PrivacyPolicy extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                     <Text style={[styles.titleText, textColor]}>{t('privacyPolicy')}</Text>
                 </View>
@@ -134,15 +147,14 @@ class PrivacyPolicy extends Component {
                 </ScrollView>
                 {this.state.hasReadPrivacyPolicy && (
                     <View style={{ position: 'absolute', bottom: 0 }}>
-                        <Button
-                            onPress={() => this.onNextPress()}
-                            style={{
+                        <SingleFooterButton
+                            onButtonPress={() => this.onNextPress()}
+                            buttonStyle={{
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },
                             }}
-                        >
-                            {t('agree')}
-                        </Button>
+                            buttonText={t('agree')}
+                        />
                     </View>
                 )}
             </View>
@@ -158,4 +170,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));
+export default withNamespaces('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));

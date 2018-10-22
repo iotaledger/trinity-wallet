@@ -2,14 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
-import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'actions/accounts';
+import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
-import { setSeed, setTwoFA, hash, clearVault } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
+import { hash, initKeychain, setTwoFA } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
@@ -21,17 +22,9 @@ import PasswordInput from 'ui/components/input/Password';
 class AccountPassword extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        addAccountName: PropTypes.func.isRequired,
-        /** @ignore */
-        increaseSeedCount: PropTypes.func.isRequired,
-        /** @ignore */
-        seedCount: PropTypes.number.isRequired,
-        /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
-        onboarding: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -53,17 +46,7 @@ class AccountPassword extends React.PureComponent {
      * @returns {undefined}
      */
     createAccount = async (e) => {
-        const {
-            setPassword,
-            addAccountName,
-            increaseSeedCount,
-            setOnboardingComplete,
-            seedCount,
-            history,
-            generateAlert,
-            onboarding,
-            t,
-        } = this.props;
+        const { wallet, setPassword, setOnboardingComplete, history, generateAlert, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -96,19 +79,20 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        if (seedCount === 0) {
-            await clearVault(null, true);
+        try {
+            await initKeychain();
+        } catch (e) {
+            return generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
         }
 
         const passwordHash = await hash(password);
 
-        increaseSeedCount();
-
-        addAccountName(onboarding.name);
+        await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
-        await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed());
-        await setTwoFA(passwordHash, null);
+        const seedStore = await new SeedStore[wallet.additionalAccountType](passwordHash);
+        await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
+
         Electron.setOnboardingSeed(null);
 
         setOnboardingComplete(true);
@@ -171,16 +155,13 @@ class AccountPassword extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboarding: state.ui.onboarding,
-    seedCount: state.accounts.accountNames.length,
+    wallet: state.wallet,
 });
 
 const mapDispatchToProps = {
     setPassword,
-    addAccountName,
     setOnboardingComplete,
     generateAlert,
-    increaseSeedCount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountPassword));

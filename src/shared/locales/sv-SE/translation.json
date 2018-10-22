@@ -49,13 +49,6 @@
         "proceed": "Fortsätt",
         "qr": "QR",
         "enterSeed": "Ange din seed.",
-        "mainWallet": "HUVUDKONTO",
-        "secondWallet": "KONTO TVÅ",
-        "thirdWallet": "KONTO TRE",
-        "fourthWallet": "KONTO FYRA",
-        "fifthWallet": "KONTO FEM",
-        "sixthWallet": "KONTO SEX",
-        "otherWallet": "ANNAT KONTO",
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okej",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Ett problem uppstod vid genomförandet av PoW.",
         "tryingAgainWithLocalPoW": "Försöker igen med lokal Proof-of-Work.",
         "tryingAgainWithDifferentNode": "Försöker igen med en annan nod.",
-        "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation."
+        "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed rensad",
-        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhets skull.",
-        "seedCopied": "Seed kopierad till urklipp",
-        "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
-        "copyToClipboard": "Kopiera seed",
-        "shareSeed": "Dela din seed till en säker lösenordshanterare",
-        "storeEncrypted": "Lagra din seed krypterad i en lösenordshanterare.",
-        "doNotOpen": "Öppna inte andra program under denna process.",
-        "tapConfirm": "Vänligen tryck på kryssrutan nedan för att bekräfta.",
-        "passwordManagerCheckbox": "Jag kommer att lagra min seed i en lösenordshanterare",
-        "copy": "KOPIERA",
-        "noPasswordManagers": "Ingen installerad lösenordshanterade som stöds",
-        "noPasswordManagersExplanation": "Ingen installerad lösenordshanterade som stöds hittades på din enhet. Vänligen installera Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Om du vill lagra din seed i en lösenordshanterade måste du följa en guide från följande länk"
+        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhets skull."
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -450,7 +434,8 @@
         "receive": "Motta",
         "empty": "Tomt",
         "retrying": "Försöker igen",
-        "yesterday": "Igår"
+        "yesterday": "Igår",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -527,9 +512,9 @@
         "discordInformation": "Vänligen bege dig till kanalen #help på Discord för att ta reda på vad du kan göra."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Är du säker på att du vill ta bort</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
-        "thisAction": "Denna åtgärd kan inte ångras.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Ange ditt lösenord för att radera detta kontot."
     },
     "manualSync": {
@@ -712,15 +697,15 @@
         "confirmedOut": "Utgående {{value}} från {{account}} har bekräftats"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Tillgångar framgångsrikt upplåsta",
+        "sweepSucceededExplanation": "Dina tillgångar har blivit framgångsrikt upplåsta och flyttade till en ny adress. Befordra transaktionerna för att hjälpa dem bli bekräftade.",
+        "sweepError": "Fel vid upplåsning av tillgångar",
+        "sweepErrorExplanation": "Något gick fel vid upplåsningen av dina tillgångar. Försöker igen.",
+        "warningTitle": "Varning: Låsta tillgångar upptäckta",
+        "explanation": "Trinity Desktop version 0.3.4 innehöll en bugg som tillfälligt låste tillgångar. Detta påverkade ett fåtal användare som utförde transaktioner med 0.3.4.",
+        "explanationAccounts": "Låsta tillgångar har upptäckts på dina konton: {{accounts}}. Trinity kommer nu automatiskt att återställa dina tillgångar, genom att flytta dem till en ny adress.",
+        "proceed": "Fortsätt till återställning",
+        "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
+        "sweepConfirmationTitle": "Svepningsbekräftelse"
     }
 }

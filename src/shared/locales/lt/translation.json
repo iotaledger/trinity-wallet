@@ -45,17 +45,10 @@
         "paperWallet": "Atspausdinti",
         "addToPasswordManager": "Pridėti į slaptažodžių tvarkyklę",
         "shareSeed": "Dalintis užraktu",
-        "share": "Share",
+        "share": "Dalintis",
         "proceed": "Tęsti",
         "qr": "QR",
         "enterSeed": "Įveskite savo užraktą.",
-        "mainWallet": "PAGRINDINĖ PASKYRA",
-        "secondWallet": "ANTROJI PASKYRA",
-        "thirdWallet": "TREČIOJI PASKYRA",
-        "fourthWallet": "KETVIRTOJI PASKYRA",
-        "fifthWallet": "PENKTOJI PASKYRA",
-        "sixthWallet": "ŠEŠTOJI PASKYRA",
-        "otherWallet": "KITA PASKYRA",
         "yes": "Taip",
         "no": "Ne",
         "okay": "Gerai",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Įvyko klaida atliekant apskaičiavimus.",
         "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
-        "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis."
+        "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Užraktas išvalytas",
-        "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
-        "seedCopied": "Užraktas nukopijuotas į iškarpinę",
-        "seedCopiedExplanation": "Užraktas bus išvalytas, kai paspausite \"ATLIKTA\" arba praeis 60 sekundžių.",
-        "copyToClipboard": "Kopijuoti užraktą",
-        "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
-        "storeEncrypted": "Savo užraktą laikykite užšifruotą slaptažodžių tvarkyklėje.",
-        "doNotOpen": "Šio proceso metu neįjunkite jokių kitų programėlių.",
-        "tapConfirm": "Uždėkite varnelę norėdami patvirtinti.",
-        "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
-        "copy": "KOPIJUOTI",
-        "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
-        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jei ketinate savo užraktą laikyti slaptažodžių tvarkyklėje, peržiūrėkite naudojimo instrukciją iš pateiktos nuorodos"
+        "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo."
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
@@ -263,10 +247,10 @@
         "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Spauskite ant <1><0>{{count}}</0></1> simbolio, norėdami jį pakeisti.",
+        "individualLetterCount_plural": "Spauskite ant <1><0>{{count}}</0></1> simbolių, norėdami juos pakeisti.",
+        "randomiseCharsToContinue": "Likęs pakeisti simbolių skaičius: <1>{{count}}</1>",
+        "randomiseCharsToContinue_plural": "Likęs pakeisti simbolių skaičius: <1>{{count}}</1>",
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
@@ -450,7 +434,8 @@
         "receive": "Gauti",
         "empty": "Tuščia",
         "retrying": "Kraunama",
-        "yesterday": "Vakar"
+        "yesterday": "Vakar",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -527,9 +512,9 @@
         "discordInformation": "Apsilankykite mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Ar tikrai norite ištrinti</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Jūsų užraktas ir pavedimų istorija bus pašalinta.",
-        "thisAction": "Duomenys bus pašalinti negrįžtamai.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Įveskite slaptažodį jei norite ištrinti šią paskyrą."
     },
     "manualSync": {
@@ -610,9 +595,9 @@
         "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas iškeltas sėkmingai.",
         "importSuccess": "Užraktas įkeltas",
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropSeedVaultHere": "Įkelti SeedVault čia <1></1> arba spauskite ieškoti failo",
         "enterPasswordExplanation": "Įveskite slaptažodį norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
@@ -694,11 +679,11 @@
         "agree": "Sutinku"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Užduočių juostos programėlė",
+        "trayExplanation": "Suteikia informacijos apie jūsų paskyrų balansus ir atlikus paskutinius pavedimus.",
         "notLoggedIn": "Jūs neprisijungęs",
         "setupIncomplete": "Piniginės nustatymai nebaigti",
-        "completeSetup": "Complete setup"
+        "completeSetup": "Baigti sąranką"
     },
     "notifications": {
         "notifications": "Pranešimai",
@@ -712,15 +697,15 @@
         "confirmedOut": "Pavedimas {{value}} iš {{account}} yra patvirtintas"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Lėšos atrakintos sėkmingai",
+        "sweepSucceededExplanation": "Jūsų lėšos sėkmingai atrakintos ir perkeltos į naują adresą. Iškelkite pavedimus, norėdami greičiau juos patvirtinti.",
+        "sweepError": "Klaida atrakinant lėšas",
+        "sweepErrorExplanation": "Įvyko klaida atrakinant jūsų lėšas. Bandoma dar kart.",
+        "warningTitle": "Įspėjimas: aptiktos užrakintos lėšos",
+        "explanation": "Trinity Dekstop 0.3.4 versija turėjo programavimo klaidą, kuri laikinai užrakina lėšas. Ši klaida palietė mažą vartotojų ratą, kurie atliko pavedimus su 0.3.4 versija.",
+        "explanationAccounts": "Užrakintos lėšos aptiktos šiose paskyrose: {{accounts}}. Trinity automatiškai sugrąžins jūsų lėšas, perkeliant jas į naują adresą.",
+        "proceed": "Pradėti grąžinimo procesą",
+        "sweepConfirmation": "Jūs ketinate perkelti {{amount}} į adresą {{address}}. Paskyra: {{accountName}}, adreso indeksas: {{index}}",
+        "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
     }
 }

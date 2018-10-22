@@ -18,14 +18,7 @@ import size from 'lodash/size';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
 import { iota } from './index';
-import {
-    getBalancesAsync,
-    wereAddressesSpentFromAsync,
-    findTransactionsAsync,
-    sendTransferAsync,
-    generateAddressAsync,
-    generateAddressesAsync,
-} from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync, sendTransferAsync } from './extendedApi';
 import { prepareTransferArray } from './transfers';
 import Errors from '../errors';
 import { DEFAULT_SECURITY } from '../../config';
@@ -75,18 +68,14 @@ export const isAddressUsed = (provider) => (address, addressData, normalisedTran
  *   @method getAddressesDataUptoLatestUnusedAddress
  *   @param {string} provider
  *
- *   @returns {function(string, array, object, function): Promise<object>}
+ *   @returns {function(object, array, object): Promise<object>}
  **/
-export const getAddressesDataUptoLatestUnusedAddress = (provider) => (
-    seed,
-    normalisedTransactions,
-    options,
-    addressGenFn,
-) => {
+export const getAddressesDataUptoLatestUnusedAddress = (provider) => (seedStore, normalisedTransactions, options) => {
     const { index, security } = options;
 
     const generateAddressData = (currentKeyIndex, generatedAddressData) => {
-        return generateAddressAsync(seed, currentKeyIndex, security, addressGenFn)
+        return seedStore
+            .generateAddress({ index, security })
             .then((address) => {
                 return findAddressesData(provider)([address], normalisedTransactions);
             })
@@ -165,14 +154,15 @@ export const getAddressDataAndFormatBalance = (provider) => (addresses, normalis
  *  @method getFullAddressHistory
  *  @param {string} provider
  *
- *  @returns {function(string, function): Promise<object>}
+ *  @returns {function(object): Promise<object>}
  */
-export const getFullAddressHistory = (provider) => (seed, addressGenFn) => {
+export const getFullAddressHistory = (provider) => (seedStore) => {
     let generatedAddresses = [];
     const addressData = { hashes: [], balances: [], wereSpent: [] };
 
     const generateAndStoreAddressesInBatch = (currentOptions) => {
-        return generateAddressesAsync(seed, currentOptions, addressGenFn)
+        return seedStore
+            .generateAddress(currentOptions)
             .then((addresses) => {
                 return findAddressesData(provider)(addresses);
             })
@@ -503,8 +493,7 @@ export const getLatestAddressData = (addressData) => maxBy(map(addressData, (dat
 export const getAddressesUptoRemainder = (provider) => (
     addressData,
     normalisedTransactions,
-    seed,
-    genFn,
+    seedStore,
     blacklistedRemainderAddresses = [],
 ) => {
     const latestAddress = getLatestAddress(addressData);
@@ -515,12 +504,10 @@ export const getAddressesUptoRemainder = (provider) => (
         const latestAddressData = getLatestAddressData(addressData);
         const startIndex = latestAddressData.index + 1;
 
-        return getAddressesDataUptoLatestUnusedAddress(provider)(
-            seed,
-            normalisedTransactions,
-            { index: startIndex, security: DEFAULT_SECURITY },
-            genFn,
-        ).then((newAddressData) => {
+        return getAddressesDataUptoLatestUnusedAddress(provider)(seedStore, normalisedTransactions, {
+            index: startIndex,
+            security: DEFAULT_SECURITY,
+        }).then((newAddressData) => {
             const remainderAddress = getLatestAddress(newAddressData);
 
             const addressDataUptoRemainder = { ...addressData, ...newAddressData };
@@ -529,8 +516,7 @@ export const getAddressesUptoRemainder = (provider) => (
                 return getAddressesUptoRemainder(provider)(
                     addressDataUptoRemainder,
                     normalisedTransactions,
-                    seed,
-                    genFn,
+                    seedStore,
                     blacklistedRemainderAddresses,
                 );
             }
@@ -553,7 +539,7 @@ export const getAddressesUptoRemainder = (provider) => (
  *
  *   @returns {function(string, object, array, function): Promise<object>}
  **/
-export const syncAddresses = (provider) => (seed, existingAddressData, normalisedTransactions, genFn) => {
+export const syncAddresses = (provider) => (seedStore, existingAddressData, normalisedTransactions) => {
     const addressData = cloneDeep(existingAddressData);
     // Find the address object with highest index from existing address data
     const latestAddressData = getLatestAddressData(addressData);
@@ -563,12 +549,10 @@ export const syncAddresses = (provider) => (seed, existingAddressData, normalise
         // Start index should be (highest index in existing address data + 1)
         const startIndex = latestAddressData.index + 1;
 
-        return getAddressesDataUptoLatestUnusedAddress(provider)(
-            seed,
-            normalisedTransactions,
-            { index: startIndex, security: DEFAULT_SECURITY },
-            genFn,
-        ).then((newAddressData) => {
+        return getAddressesDataUptoLatestUnusedAddress(provider)(seedStore, normalisedTransactions, {
+            index: startIndex,
+            security: DEFAULT_SECURITY,
+        }).then((newAddressData) => {
             const mergeInExistingAddressData = (data, newAddress) => {
                 addressData[newAddress] = data;
             };
@@ -638,10 +622,18 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
  *   @method attachAndFormatAddress
  *   @param {string} [provider]
  *
- *   @returns {function(string, number, number, string, array, function): Promise<object>}
+ *   @returns {function(string, number, number, string, array, object, function): Promise<object>}
  **/
-export const attachAndFormatAddress = (provider) => (address, index, balance, seed, normalisedTransactions, powFn) => {
-    const transfers = prepareTransferArray(address);
+export const attachAndFormatAddress = (provider) => (
+    address,
+    index,
+    balance,
+    seedStore,
+    normalisedTransactions,
+    addressData,
+    powFn,
+) => {
+    const transfers = prepareTransferArray(address, 0, '', addressData);
 
     let transfer = [];
 
@@ -651,7 +643,7 @@ export const attachAndFormatAddress = (provider) => (address, index, balance, se
                 throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
             }
 
-            return sendTransferAsync(provider, powFn)(seed, transfers);
+            return sendTransferAsync(provider, powFn)(seedStore, transfers);
         })
         .then((transactionObjects) => {
             transfer = transactionObjects;

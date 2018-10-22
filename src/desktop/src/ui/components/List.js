@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -288,6 +288,7 @@ class List extends React.PureComponent {
                                             <span>
                                                 {formatTime(
                                                     navigator.language,
+                                                    detectedTimezone,
                                                     convertUnixTimeToJSDate(transfer.timestamp),
                                                 )}
                                             </span>
@@ -336,6 +337,7 @@ class List extends React.PureComponent {
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
+                                                detectedTimezone,
                                                 convertUnixTimeToJSDate(activeTransfer.timestamp),
                                             )}
                                         </em>

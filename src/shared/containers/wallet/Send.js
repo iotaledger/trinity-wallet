@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
 import { setDeepLinkInactive } from '../../actions/wallet';
@@ -9,7 +9,12 @@ import { makeTransaction } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
 import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
-import { getSelectedAccountName, getBalanceForSelectedAccount, getAvailableBalanceForSelectedAccount } from '../../selectors/accounts';
+import {
+    getSelectedAccountName,
+    getSelectedAccountType,
+    getBalanceForSelectedAccount,
+    getAvailableBalanceForSelectedAccount,
+} from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
@@ -24,6 +29,7 @@ export default function withSendData(SendComponent) {
             availableBalance: PropTypes.number.isRequired,
             accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
+            accountType: PropTypes.string.isRequired,
             wallet: PropTypes.object.isRequired,
             progress: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
@@ -146,7 +152,7 @@ export default function withSendData(SendComponent) {
             return true;
         };
 
-        sendTransfer = (seed, address, value, message, taskRunner, powFn, genFn) => {
+        sendTransfer = (seedStore, address, value, message, powFn) => {
             const { ui, accountName, generateAlert, t } = this.props;
 
             if (ui.isSyncing) {
@@ -161,11 +167,7 @@ export default function withSendData(SendComponent) {
 
             this.setProgressSteps(value === 0);
 
-            if (typeof taskRunner === 'function') {
-                taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn, genFn]);
-            } else {
-                this.props.makeTransaction(seed, address, value, message, accountName, powFn, genFn);
-            }
+            this.props.makeTransaction(seedStore, address, value, message, accountName, powFn);
         };
 
         render() {
@@ -184,6 +186,7 @@ export default function withSendData(SendComponent) {
                 generateAlert,
                 progress,
                 accountName,
+                accountType,
             } = this.props;
 
             const progressTitle =
@@ -217,6 +220,7 @@ export default function withSendData(SendComponent) {
                     title: progressTitle,
                 },
                 accountName,
+                accountType,
                 generateAlert,
                 balance,
                 availableBalance,
@@ -235,6 +239,7 @@ export default function withSendData(SendComponent) {
         balance: getBalanceForSelectedAccount(state),
         availableBalance: getAvailableBalanceForSelectedAccount(state),
         accountName: getSelectedAccountName(state),
+        accountType: getSelectedAccountType(state),
         settings: state.settings,
         marketData: state.marketData,
         accounts: state.accounts,
@@ -255,5 +260,5 @@ export default function withSendData(SendComponent) {
         resetProgress,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(SendData));
 }

@@ -7,7 +7,7 @@
         "refresh": "Obnoviť",
         "balanceError": "Nedostatok prostriedkov",
         "balanceErrorMessage": "Nemáte dostatočné množstvo IOTA pre dokončenie tejto transakcie.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Celkový zostatok",
         "transferError": "Chyba transakcie",
         "transferErrorMessage": "Nastala chyba počas odosielania vašej transakcie. Prosím, skúste to znova.",
         "transferSent": "Transakcia bola odoslaná",
@@ -34,7 +34,7 @@
         "save": "Uložiť",
         "close": "Zatvoriť",
         "export": "Exportovať",
-        "help": "Help",
+        "help": "Nápoveda",
         "import": "Importovať",
         "continue": "Pokračovať",
         "enable": "Zapnúť",
@@ -45,24 +45,17 @@
         "paperWallet": "Vytlačte si papierovú kópiu",
         "addToPasswordManager": "Pridať do správcu hesiel",
         "shareSeed": "Zdieľať Seed",
-        "share": "Share",
+        "share": "Zdieľať",
         "proceed": "Pokračovať",
         "qr": "QR",
         "enterSeed": "Zadajte váš Seed, prosím.",
-        "mainWallet": "HLAVNÝ ÚČET",
-        "secondWallet": "DRUHÝ ÚČET",
-        "thirdWallet": "TRETÍ ÚČET",
-        "fourthWallet": "ŠTVRTÝ ÚČET",
-        "fifthWallet": "PIATY ÚČET",
-        "sixthWallet": "ŠIESTY ÚČET",
-        "otherWallet": "INÝ ÚČET",
         "yes": "Áno",
         "no": "Nie",
         "okay": "Dobre",
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "emptyPasswordExplanation": "Pre prihlásenie musíte zadať heslo. Prosím, skúste to znova.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Prebieha synchronizácia",
         "syncInProgressExplanation": "Počkajte prosím, kým prebehne synchronizácia.",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Schránka vyčistená",
-        "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky.",
-        "seedCopied": "Seed bol skopírovaný do schránky",
-        "seedCopiedExplanation": "Seed bude zo schránky vymazaný po tom, čo stlačíte \"HOTOVO\" alebo po uplynutí 60 sekúnd.",
-        "copyToClipboard": "Kopírovať Seed",
-        "shareSeed": "Uložte svoj Seed do zabezpečeného správcu hesiel",
-        "storeEncrypted": "Uchovávajte svoj Seed zašifrovaný v správcovi hesiel.",
-        "doNotOpen": "Počas tohto procesu neotvárajte žiadne iné aplikácie.",
-        "tapConfirm": "Pre potvrdenie, prosím, zaškrtnite políčko nižšie.",
-        "passwordManagerCheckbox": "Svoj Seed uložím do správcu hesiel",
-        "copy": "KOPÍROVAŤ",
-        "noPasswordManagers": "Nie sú nainštalovaní žiadni podporovaní správcovia hesiel",
-        "noPasswordManagersExplanation": "Na vašom zariadení neboli nájdení žiadni podporovaní správcovia hesiel. Prosím, nainštalujte si Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Ak si želáte uložiť váš Seed v správcovi hesiel, musíte sa riadiť pokynmi na nasledujúcom odkaze"
+        "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky."
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -450,7 +434,8 @@
         "receive": "Prijať",
         "empty": "Prázdne",
         "retrying": "Pokúša sa znova",
-        "yesterday": "Včera"
+        "yesterday": "Včera",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -527,9 +512,9 @@
         "discordInformation": "Pokiaľ chcete zistiť vaše možnosti, prejdite do #help v aplikácii Discord."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Naozaj chcete odstrániť</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
-        "thisAction": "Túto akciu už nebude možné vrátiť späť.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
@@ -716,11 +701,11 @@
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
+        "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     }
 }

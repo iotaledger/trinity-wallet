@@ -49,13 +49,6 @@
         "proceed": "Continuer",
         "qr": "QR",
         "enterSeed": "Veuillez entrer votre seed.",
-        "mainWallet": "COMPTE PRINCIPAL",
-        "secondWallet": "DEUXIÈME COMPTE",
-        "thirdWallet": "TROISIÈME COMPTE",
-        "fourthWallet": "QUATRIÈME COMPTE",
-        "fifthWallet": "CINQUIÈME COMPTE",
-        "sixthWallet": "SIXIÈME COMPTE",
-        "otherWallet": "AUTRE COMPTE",
         "yes": "Oui",
         "no": "Non",
         "okay": "Ok",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Un problème est survenu durant la preuve de travail.",
         "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
         "tryingAgainWithDifferentNode": "Réessayez avec un autre nœud.",
-        "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte."
+        "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
+        "errorAccessingKeychain": "Erreur de Porte-clés",
+        "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Presse-papier vidé",
-        "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "seedCopied": "Seed copiée dans le presse-papier",
-        "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
-        "copyToClipboard": "Copier la seed",
-        "shareSeed": "Enregistrer votre seed dans un gestionnaire de mot de passe sécurisé",
-        "storeEncrypted": "Stockez votre seed de manière chiffrée dans un gestionnaire de mot de passe.",
-        "doNotOpen": "N'ouvrez aucune autre application pendant le processus.",
-        "tapConfirm": "Veuillez cocher la case ci-dessous pour confirmer.",
-        "passwordManagerCheckbox": "Je stockerai ma seed dans un gestionnaire de mot de passe",
-        "copy": "COPIER",
-        "noPasswordManagers": "Aucun gestionnaire de mots de passe supporté installé",
-        "noPasswordManagersExplanation": "Aucun gestionnaire de mots de passe supporté n'a été trouvé sur votre appareil. Veuillez installer Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Si vous souhaitez conserver votre seed dans un gestionnaire de mots de passe, vous devriez suivre le tutoriel à partir du lien suivant"
+        "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité."
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -263,8 +247,8 @@
         "pressForNewSeed": "Appuyez pour générer une nouvelle seed",
         "generateSuccess": "La seed a été générée avec succès",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées.",
-        "individualLetterCount": "Appuyez sur <1><0>{{count}}</0></1> lettre de plus pour plus d'entropie.",
-        "individualLetterCount_plural": "Appuyez sur <1><0>{{count}}</0></1> lettres de plus pour plus d'entropie.",
+        "individualLetterCount": "Appuyez sur <1><0>{{count}}</0></1> lettre supplémentaire pour plus d'entropie.",
+        "individualLetterCount_plural": "Appuyez sur <1><0>{{count}}</0></1> lettres supplémentaires pour plus d'entropie.",
         "randomiseCharsToContinue": "Randomisez <1>{{count}}</1> caractère pour continuer.",
         "randomiseCharsToContinue_plural": "Randomisez <1>{{count}}</1> caractères pour continuer.",
         "whatIsASeed": "Qu'est-ce qu'une seed ?"
@@ -450,7 +434,8 @@
         "receive": "Recevoir",
         "empty": "Vide",
         "retrying": "Nouvelle tentative",
-        "yesterday": "Hier"
+        "yesterday": "Hier",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -493,7 +478,7 @@
         "mockup": "Maquette"
     },
     "themes": {
-        "classic": "Classic",
+        "classic": "Classique",
         "contemporary": "Contemporain",
         "dark": "Sombre",
         "default": "Par défaut",
@@ -527,9 +512,9 @@
         "discordInformation": "Veuillez vous rendre sur le canal #help de Discord pour savoir ce que vous pouvez faire."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Êtes-vous sûr de vouloir supprimer</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "L’historique de votre seed et de vos transactions sera supprimé.",
-        "thisAction": "Cette action est irréversible.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
@@ -609,16 +594,16 @@
         "exportSuccess": "SeedVault exporté",
         "exportSuccessExplanation": "Le fichier crypté de votre seed a été exporté avec succès.",
         "importSuccess": "Seed importée",
-        "importSuccessExplanation": "Votre seed a été importé avec succès.",
-        "saveToDownloadFolder": "Enregistrer dans téléchargement",
+        "importSuccessExplanation": "Votre seed a été importée avec succès.",
+        "saveToDownloadFolder": "Enregistrer dans le dossier Téléchargements",
         "importSeedVault": "Importer un SeedVault",
-        "dropSeedVaultHere": "Déposez ici le SeedVault <1></1> ou cliquez sur Parcourir",
+        "dropSeedVaultHere": "Déposez le SeedVault ici <1></1> ou cliquez sur parcourir",
         "enterPasswordExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
-        "seedVaultPasswordExplanation": "Tout d’abord, nous avons besoin de sécuriser votre SeedVault. Veuillez choisir un mot de passe pour chiffrer le fichier. Vous aurez besoin de ce mot de passe pour restaurer votre Seed à partir de la sauvegarde SeedVault. N’hésitez pas à utiliser le même mot de passe que vous utilisez pour Trinity."
+        "seedVaultPasswordExplanation": "Tout d’abord, nous avons besoin de sécuriser votre SeedVault. Veuillez choisir un mot de passe pour chiffrer le fichier. Vous aurez besoin de ce mot de passe pour restaurer votre seed à partir de la sauvegarde SeedVault. N’hésitez pas à utiliser le même mot de passe que vous utilisez pour Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -712,15 +697,15 @@
         "confirmedOut": "Envoi de {{value}} depuis {{account}} confirmé"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Fonds déverrouillés avec succès",
+        "sweepSucceededExplanation": "Vos fonds ont été débloqués avec succès et ont été déplacés vers une nouvelle adresse. Promouvez les transactions pour faciliter leur confirmation.",
+        "sweepError": "Erreur pendant le déverrouillage des fonds",
+        "sweepErrorExplanation": "Une erreur s'est produite durant le déverrouillage des fonds. Essayez à nouveau.",
+        "warningTitle": "Avertissement : Des fonds verrouillées ont été détectés",
+        "explanation": "Trinity Desktop version 0.3.4 contenait un bug qui pouvait bloquer temporairement les fonds. Cela concerne un petit nombre d’utilisateurs qui ont effectué des transactions avec la version 0.3.4.",
+        "explanationAccounts": "Des fonds verrouillés ont été détectés sur vos comptes : {{accounts}}. Trinity va récupérer maintenant automatiquement vos fonds, en les déplaçant vers une nouvelle adresse.",
+        "proceed": "Procéder à la récupération",
+        "sweepConfirmation": "Vous êtes sur le point de balayer {{amount}} à l’adresse {{address}}. Compte : {{accountName}}, indice de l’adresse : {{index}}",
+        "sweepConfirmationTitle": "Confirmation de balayage"
     }
 }

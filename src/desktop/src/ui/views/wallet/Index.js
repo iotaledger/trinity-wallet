@@ -1,12 +1,12 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { byteTritCheck, byteTritSweep } from 'actions/recovery';
-import { getSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import Sidebar from 'ui/views/wallet/Sidebar';
 import Dashboard from 'ui/views/wallet/Dashboard';
@@ -24,7 +24,7 @@ import css from './index.scss';
 class Wallet extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        accountNames: PropTypes.array.isRequired,
+        accountData: PropTypes.object.isRequired,
         /** @ignore */
         completedByteTritSweep: PropTypes.bool,
         /** @ignore */
@@ -56,17 +56,25 @@ class Wallet extends React.PureComponent {
     }
 
     byteTritCheck = () => {
-        const { accountNames, password } = this.props;
-        const accounts = accountNames.map(async (accountName) => {
-            const seedTrits = await getSeed(password, accountName, true);
-            return {
-                accountName,
-                seedTrits,
-            };
+        const { accountData, password } = this.props;
+        const accounts = Object.keys(accountData).map(async (accountName) => {
+            if (accountData[accountName].type !== 'keychain') {
+                return null;
+            }
+            try {
+                const seedStore = await new SeedStore.keychain(password, accountName);
+                return {
+                    accountName,
+                    seedStore,
+                };
+            } catch (err) {
+                return null;
+            }
         });
 
-        Promise.all(accounts).then((accounts) => {
-            this.props.byteTritCheck(accounts, Electron.genFn);
+        Promise.all(accounts).then((accountData) => {
+            accountData = accountData.filter((account) => account && account.accountName);
+            this.props.byteTritCheck(accountData, Electron.genFn);
         });
     };
 
@@ -77,7 +85,7 @@ class Wallet extends React.PureComponent {
         this.setState({
             isSweeping: true,
         });
-        return this.props.byteTritSweep(Electron.genFn, Electron.powFn, Electron.dialog);
+        return this.props.byteTritSweep(SeedStore.keychain, Electron.powFn, Electron.dialog);
     };
 
     render() {
@@ -121,7 +129,7 @@ class Wallet extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accountNames: state.accounts.accountNames,
+    accountData: state.accounts.accountInfo,
     completedByteTritSweep: state.settings.completedByteTritSweep,
     byteTritInfo: state.settings.byteTritInfo,
     password: state.wallet.password,
@@ -132,11 +140,4 @@ const mapDispatchToProps = {
     byteTritSweep,
 };
 
-export default withRouter(
-    translate()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(Wallet),
-    ),
-);
+export default withRouter(withI18n()(connect(mapStateToProps, mapDispatchToProps)(Wallet)));

@@ -49,13 +49,6 @@
         "proceed": "Pokračovat",
         "qr": "QR",
         "enterSeed": "Prosím zadejte Váš Seed.",
-        "mainWallet": "HLAVNÍ ÚČET",
-        "secondWallet": "DRUHÝ ÚČET",
-        "thirdWallet": "TŘETÍ ÚČET",
-        "fourthWallet": "ČTVRTÝ ÚČET",
-        "fifthWallet": "PÁTÝ ÚČET",
-        "sixthWallet": "ŠESTÝ ÚČET",
-        "otherWallet": "DALŠÍ ÚČET",
         "yes": "Ano",
         "no": "Ne",
         "okay": "OK",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Při provádění proof of work došlo k chybě.",
         "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
         "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
-        "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě."
+        "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed vymazán",
-        "seedClearedExplanation": "Z bezpečnostních důvodů byl Seed vymazán ze schránky.",
-        "seedCopied": "Seed zkopírován do schránky",
-        "seedCopiedExplanation": "Seed bude vymazán jakmile stisknete \"HOTOVO\" nebo po uplynutí 60 sekund.",
-        "copyToClipboard": "Kopíruj Seed",
-        "shareSeed": "Svůj Seed si uložte do zabezpečeného správce hesel",
-        "storeEncrypted": "Váš Seed ve Správci hesel uchovávejte zakryptovaný.",
-        "doNotOpen": "V průběhu tohoto zpracování, neotvírejte jakékoliv jiné programy.",
-        "tapConfirm": "Pro potvrzení, prosím, zaškrtněte políčko níže.",
-        "passwordManagerCheckbox": "Uložím svůj seed ve správci hesel",
-        "copy": "KOPÍROVAT",
-        "noPasswordManagers": "Žádní podporovaní správci hesel nejsou nainstalováni",
-        "noPasswordManagersExplanation": "Na zařízení nebyli nalezeni žádní správci hesel. Prosím, nainstalujte si Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Pokud si přejete uložit Váš Seed do Správce hesel, musíte se řídit pokyny na následujícím odkazu"
+        "seedClearedExplanation": "Z bezpečnostních důvodů byl Seed vymazán ze schránky."
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -265,8 +249,8 @@
         "individualLetters": "Vyberte náhodné znaky.",
         "individualLetterCount": "Stiskněte <1><0>{{count}}</0></1> písmeno pro náhodný výběr.",
         "individualLetterCount_plural": "Stiskněte <1><0>{{count}}</0></1> písmen pro náhodný výběr.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "Pro pokračování vyberte <1> {{count}} </ 1> náhodný znak.",
+        "randomiseCharsToContinue_plural": "Pro pokračování vyberte <1> {{count}} </ 1> náhodné znaky.",
         "whatIsASeed": "Co je to Seed?"
     },
     "onboardingComplete": {
@@ -450,7 +434,8 @@
         "receive": "Příjem",
         "empty": "Prázdné",
         "retrying": "Opakování",
-        "yesterday": "Včera"
+        "yesterday": "Včera",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -527,9 +512,9 @@
         "discordInformation": "Chcete-li zjistit co můžete udělat, přejděte do #help v aplikaci Diskord."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Opravdu chcete odstranit</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
-        "thisAction": "Tuto akci nelze vrátit zpět.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
     },
     "manualSync": {
@@ -712,15 +697,15 @@
         "confirmedOut": "Byla potvrzena odchozí {{value}} pro {{account}}"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Vaše finanční prostředky byly úspěšně odblokovány",
+        "sweepSucceededExplanation": "Vaše finanční prostředky byly úspěšně odblokovány a přeneseny na novou adresu. Podporujte transakce, které vám pomohou v procesu potvrzování.",
+        "sweepError": "Chyba při odblokování prostředků",
+        "sweepErrorExplanation": "Došlo k chybě při odblokování vašich finančních prostředků. Zkuste to znovu.",
+        "warningTitle": "Varování: Byly zjištěny blokované prostředky",
+        "explanation": "Peněženka Trinity Desktop 0.3.4 obsahovala chybu, která by mohla dočasně zablokovat finanční prostředky na účtu. Tento problém ovlivňuje malý počet uživatelů, kteří uskutečnili transakce s verzí 0.3.4.",
+        "explanationAccounts": "Na vašich účtech byly zjištěny blokované prostředky: {{accounts}}. Trinity nyní automaticky obnoví vaše prostředky a přenese je na novou adresu.",
+        "proceed": "Přejít na obnovení",
+        "sweepConfirmation": "Chystáte se přenést {{amount}} na {{address}}. Účet: {{accountName}}, index adresy: {{index}}",
+        "sweepConfirmationTitle": "Potvrzení převodu"
     }
 }

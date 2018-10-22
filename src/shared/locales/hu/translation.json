@@ -49,13 +49,6 @@
         "proceed": "Tovább",
         "qr": "QR kód",
         "enterSeed": "Kérjük, adja meg a személyes mester jelszavát.",
-        "mainWallet": "Elsődleges számla",
-        "secondWallet": "Második számla",
-        "thirdWallet": "Harmadik számla",
-        "fourthWallet": "Negyedik számla",
-        "fifthWallet": "Ötödik számla",
-        "sixthWallet": "Hatodik számla",
-        "otherWallet": "Egyéb számla",
         "yes": "Igen",
         "no": "Nem",
         "okay": "Rendben",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Hiba történt a kiszabott munka elvégzése során.",
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
-        "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben."
+        "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Vágólap törölve",
-        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük.",
-        "seedCopied": "Mester jelszó a vágólapra másolva",
-        "seedCopiedExplanation": "A mester jelszót a \"Kész\"-re klikkelés után, de legkésőbb 60 másodperc múlva töröljük a vágólapról.",
-        "copyToClipboard": "Mester jelszó másolása",
-        "shareSeed": "Mester jelszó tárolása biztonságos jelszókezelőben",
-        "storeEncrypted": "Tárolja le a titkosított mester jelszavát egy jelszókezelőben.",
-        "doNotOpen": "Ne nyisson meg semmilyen másik alkalmazást a folyamat során.",
-        "tapConfirm": "Az elfogadáshoz kérjük jelölje be az alábbi négyzetet.",
-        "passwordManagerCheckbox": "Jelszókezelőben fogom tárolni a mester jelszavam",
-        "copy": "Másolás",
-        "noPasswordManagers": "Nincs telepítve támogatott jelszókezelő alkalmazás",
-        "noPasswordManagersExplanation": "Nincs telepítve támogatott jelszókezelő alkalmazás a készülékén. Kérjük telepítse a Keepass2Android alkalmazást.",
-        "followTutorialToSecurelyShareSeed": "Ha a mester jelszavát egy jelszókezelőben kívánja tárolni, kövesse az alábbi oldalon található útmutatót"
+        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük."
     },
     "enterSeed": {
         "invalidCharacters": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -450,7 +434,8 @@
         "receive": "Fogadás",
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
-        "yesterday": "Tegnap"
+        "yesterday": "Tegnap",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -527,9 +512,9 @@
         "discordInformation": "Kérjük keresse fel a #help csatornát az IOTA Discord-on, hogy további információt kapjon arról, mit tehet az emiatt nem hozzáférhető egyenlegének visszaszerzése érdekében."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Biztos, hogy törölni szeretné a</1><2></2><3>{{accountName}} számlát?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
-        "thisAction": "Ez a művelet nem vonható vissza.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "A számla törléséhez kérjük, adja meg jelszavát."
     },
     "manualSync": {
@@ -712,15 +697,15 @@
         "confirmedOut": "{{value}} értékű tranzakció kiküldve a(z) {{account}} számlájáról"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Egyenleg sikeresen felszabadítva",
+        "sweepSucceededExplanation": "A zárolt összeget sikeresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
+        "sweepError": "Sikertelen zárolt összeg feloldás",
+        "sweepErrorExplanation": "Hiba történt a zárolt összeg feloldása közben. Kérjük, próbálja újra.",
+        "warningTitle": "Figyelem: zárolt összeget találtunk a számláján",
+        "explanation": "A Trinity 0.3.4 asztali verziójában egy hiba folytán ideiglenesen zárolásra kerülhetett az egyenlegének egy része. Ez a hiba viszonylag kevés felhasználót érint: azokat, akik a 0.3.4 verzióval indítottak tranzakciókat.",
+        "explanationAccounts": "Zárolt összegeket találtunk a következő számláin: {{accounts}}. A Trinity most megpróbálja automatikusan feloldani a zárolást az összegek egy Ön számlájához tartozó másik címre való átutalásával.",
+        "proceed": "Tovább a zárolás feloldásához",
+        "sweepConfirmation": "{{amount}} összeget készül az Ön számlájához tartozó {{address}} címre átutalni. Számlanév: {{accountName}}, címének indexe: {{index}}",
+        "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     }
 }

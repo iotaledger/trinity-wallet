@@ -49,13 +49,6 @@
         "proceed": "ಮುಂದುವರೆಯಿರಿ",
         "qr": "QR",
         "enterSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ.",
-        "mainWallet": "ಮುಖ್ಯ ಖಾತೆ",
-        "secondWallet": "ಎರಡನೇ ಖಾತೆ",
-        "thirdWallet": "ಮೂರನೇ ಖಾತೆ",
-        "fourthWallet": "ನಾಲ್ಕನೇ ಖಾತೆ",
-        "fifthWallet": "ಐದನೇ ಖಾತೆ",
-        "sixthWallet": "ಆರನೇ ಖಾತೆ",
-        "otherWallet": "ಇತರ ಖಾತೆ",
         "yes": "ಹೌದು",
         "no": "ಇಲ್ಲ",
         "okay": "ಸರಿ",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "ಕೆಲಸದ ಪುರಾವೆ ಮಾಡುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ.",
         "tryingAgainWithLocalPoW": "ಸ್ಥಳೀಯ ಕೆಲಸದ ಪುರಾವೆಯೊಂದಿಗೆ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.",
         "tryingAgainWithDifferentNode": "ಬೇರೆ ನೋಡ್ ನೊಂದಿಗೆ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
-        "errorFetchingAccountInformation": "ಖಾತೆ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳುವಲ್ಲಿ ದೋಷ."
+        "errorFetchingAccountInformation": "ಖಾತೆ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳುವಲ್ಲಿ ದೋಷ.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ ತೆರವುಗೊಳಿಸಲಾಗಿದೆ",
-        "seedClearedExplanation": "ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ಕ್ಲಿಪ್ಬೋರ್ಡ್ ಅನ್ನು ತೆರವುಗೊಳಿಸಲಾಗಿದೆ.",
-        "seedCopied": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಕಲಿಸಲಾಗಿದೆ",
-        "seedCopiedExplanation": "ನೀವು \"ಪೂರೈಸಿದೆ\" ಒತ್ತುವ ಮೂಲಕ ಅಥವಾ 60 ಸೆಕೆಂಡ್ಗಳು ಮುಗಿದ ನಂತರ ಬೀಜವನ್ನು ತೆರವುಗೊಳಿಸಲಾಗುತ್ತದೆ.",
-        "copyToClipboard": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಕಲಿಸಿ",
-        "shareSeed": "ಸುರಕ್ಷಿತ ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕದಲ್ಲಿ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ",
-        "storeEncrypted": "ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕದಲ್ಲಿ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿ.",
-        "doNotOpen": "ಈ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಯಾವುದೇ ಇತರ ಅಪ್ಲಿಕೇಶನ್ಗಳನ್ನು ತೆರೆಯಬೇಡಿ.",
-        "tapConfirm": "ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಲು ಕೆಳಗಿನ ಚೆಕ್ಬಾಕ್ಸ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.",
-        "passwordManagerCheckbox": "ನಾನು ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕದಲ್ಲಿ ಸಂಗ್ರಹಿಸುತ್ತೇನೆ",
-        "copy": "ನಕಲಿಸು",
-        "noPasswordManagers": "ಬೆಂಬಲಿತವಾದ ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕವು ಯಾವುದೇ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ",
-        "noPasswordManagersExplanation": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಬೆಂಬಲಿತ ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕವು ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು Keepass2Android ಅನ್ನು ಸ್ಥಾಪಿಸಿ.",
-        "followTutorialToSecurelyShareSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಗುಪ್ತಪದ ವ್ಯವಸ್ಥಾಪಕದಲ್ಲಿ ಶೇಖರಿಸಿಡಲು ನೀವು ಬಯಸಿದರೆ, ನೀವು ಕೆಳಗಿನ ಲಿಂಕ್ನಿಂದ ಟ್ಯುಟೋರಿಯಲ್ ಅನ್ನು ಅನುಸರಿಸಬೇಕು"
+        "seedClearedExplanation": "ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ಕ್ಲಿಪ್ಬೋರ್ಡ್ ಅನ್ನು ತೆರವುಗೊಳಿಸಲಾಗಿದೆ."
     },
     "enterSeed": {
         "invalidCharacters": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -450,7 +434,8 @@
         "receive": "ಸ್ವೀಕರಿಸು",
         "empty": "ಖಾಲಿ",
         "retrying": "ಮರುಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ",
-        "yesterday": "ನೆನ್ನೆ ದಿನ"
+        "yesterday": "ನೆನ್ನೆ ದಿನ",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
@@ -527,9 +512,9 @@
         "discordInformation": "ದಯವಿಟ್ಟು ನೀವು ಏನು ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಕಂಡುಹಿಡಿಯಲು IOTA ಡಿಸ್ಕೋರ್ಡ್ನಲ್ಲಿ #help ಚಾನಲ್ಗೆ ಹೋಗಿ."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ವ್ಯವಹಾರ ಇತಿಹಾಸವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.",
-        "thisAction": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "ಈ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ."
     },
     "manualSync": {
@@ -716,11 +701,11 @@
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
+        "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     }
 }
