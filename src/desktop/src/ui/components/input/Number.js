@@ -11,6 +11,8 @@ import css from './input.scss';
  */
 export default class Number extends React.PureComponent {
     static propTypes = {
+        /** Number input label */
+        label: PropTypes.string,
         /** Current input value */
         value: PropTypes.number.isRequired,
         /** Should input focus when changed to true */
@@ -18,7 +20,7 @@ export default class Number extends React.PureComponent {
         /** Value change event function
          * @param {number} value - Current input value
          */
-        onChange: PropTypes.func.isRequired
+        onChange: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -34,12 +36,13 @@ export default class Number extends React.PureComponent {
     }
 
     render() {
-        const { value, onChange } = this.props;
+        const { label, value, onChange } = this.props;
 
         return (
             <div className={classNames(css.input, css.number)}>
                 <fieldset>
                     <div>
+                        <small>{label}</small>
                         <span onClick={() => onChange(Math.max(0, value - 1))}>
                             <Icon icon="chevronLeft" size={12} />
                         </span>

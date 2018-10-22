@@ -10,6 +10,7 @@ class Ledger {
     constructor(key, accountId, accountMeta) {
         if (accountMeta && typeof accountMeta.index === 'number') {
             this.index = accountMeta.index;
+            this.page = typeof accountMeta.page === 'number' ? accountMeta.page : 0;
         }
     }
 
@@ -99,7 +100,7 @@ class Ledger {
      * Prepare transfers
      */
     prepareTransfers = async (transfers, options = null) => {
-        const seed = await Electron.ledger.selectSeed(this.index);
+        const seed = await Electron.ledger.selectSeed(this.index, this.page);
 
         const remainder = { address: options.address, keyIndex: options.keyIndex };
 
@@ -111,7 +112,7 @@ class Ledger {
     };
 
     getSeed = async () => {
-        const seed = await Electron.ledger.selectSeed(this.index);
+        const seed = await Electron.ledger.selectSeed(this.index, this.page);
         return seed;
     };
 }
