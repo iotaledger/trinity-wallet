@@ -110,7 +110,7 @@ export class MainSettings extends Component {
                 name: t('mode'),
                 icon: 'mode',
                 function: () => this.props.setSetting('modeSelection'),
-                currentSetting: mode,
+                currentSetting: mode === 'Advanced' ? t('modeSelection:advanced') : t('modeSelection:standard'),
             },
             {
                 name: t('theme'),
