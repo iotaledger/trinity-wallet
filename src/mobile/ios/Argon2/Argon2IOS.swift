@@ -18,7 +18,7 @@ class Argon2IOS: NSObject {
   ///   - password: Password to hash
   ///   - resolve: A JS Promise resolve block
   ///   - reject: A JS Promise reject block
-  func hash(_ password: String, salt: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+  @objc func hash(_ password: String, salt: String, params: [String: Any], resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
     // Validate parameters
     if params["t_cost"] is Int && params["m_cost"] is Int && params["parallelism"] is Int && params["hashLength"] is Int {
       // Resolve the hash
