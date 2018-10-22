@@ -30,7 +30,7 @@ class Argon2IOS: NSObject {
     }
   }
   
-  static func requiresMainQueueSetup() -> Bool {
+  @objc static func requiresMainQueueSetup() -> Bool {
     return false
   }
 }
