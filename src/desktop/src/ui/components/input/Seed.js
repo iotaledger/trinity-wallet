@@ -340,7 +340,7 @@ class SeedInput extends React.PureComponent {
                     <Password
                         content={{
                             title: t('enterPassword'),
-                            message: t('seedVault:enterPasswordExplanation'),
+                            message: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
                         isOpen
