@@ -142,7 +142,6 @@ const initMenu = (app, getWindow) => {
                     {
                         type: 'separator',
                     },
-                    /* Disable auto updates for Alpha release
                     {
                         label: `${language.checkUpdate}...`,
                         click: () => {
@@ -150,7 +149,6 @@ const initMenu = (app, getWindow) => {
                         },
                         enabled: state.enabled,
                     },
-                    */
                     {
                         label: language.errorLog,
                         click: () => navigate('errorlog'),
