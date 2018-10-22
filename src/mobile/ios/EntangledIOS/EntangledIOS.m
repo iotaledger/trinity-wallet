@@ -18,7 +18,7 @@ RCT_EXPORT_METHOD(getChecksum:(NSString *)trytes length:(int)length resolver:(RC
 {
   char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
   char * checksum = iota_checksum(trytesChars, strlen(trytesChars), length);
-  memset(trytesChars, 0, strlen(trytesChars));
+  memset_s(trytesChars, strlen(trytesChars), 0, strlen(trytesChars));
   resolve([NSString stringWithFormat:@"%s", checksum]);
 }
 
