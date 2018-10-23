@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import { setOnboardingName } from 'actions/ui';
 import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Icon from 'ui/components/Icon';
@@ -28,8 +27,6 @@ import css from './index.scss';
  */
 class Onboarding extends React.PureComponent {
     static propTypes = {
-        /** @ignore */
-        setOnboardingName: PropTypes.func.isRequired,
         /** @ignore */
         isAuthorised: PropTypes.bool,
         /** @ignore */
@@ -58,16 +55,16 @@ class Onboarding extends React.PureComponent {
      * Reset Onboarding data on close if user authorised
      */
     componentWillUnmount() {
-        const { isAuthorised, setOnboardingName, setAdditionalAccountInfo } = this.props;
+        const { isAuthorised, setAdditionalAccountInfo } = this.props;
 
         if (isAuthorised) {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
+                additionalAccountType: '',
             });
 
             Electron.setOnboardingSeed(null);
-            setOnboardingName('');
         }
     }
     /**
@@ -146,7 +143,6 @@ class Onboarding extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     complete: state.accounts.onboardingComplete,
-    setOnboardingName,
     isAuthorised: state.wallet.ready,
 });
 

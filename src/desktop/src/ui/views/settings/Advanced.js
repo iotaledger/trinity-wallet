@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
@@ -59,11 +59,11 @@ class Advanced extends PureComponent {
      * @param {string} Password - Plain text wallet password
      * @returns {undefined}
      */
-    resetWallet = async (password) => {
+    resetWallet = () => {
         const { t, generateAlert } = this.props;
 
         try {
-            await clearVault(password);
+            clearVault();
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
@@ -228,4 +228,4 @@ const mapDispatchToProps = {
     setNotifications,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));

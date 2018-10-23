@@ -5,11 +5,11 @@
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
         "refresh": "Aktualisieren",
-        "balanceError": "Nicht genügend Guthaben",
-        "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
+        "balanceError": "Nicht genug Guthaben",
+        "balanceErrorMessage": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "totalBalance": "Gesamtsaldo",
         "transferError": "Übertragungsfehler",
-        "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
+        "transferErrorMessage": "Beim Senden der Transaktion ist ein Fehler aufgetreten. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
         "transferSentMessage": "Deine Transaktion wurde an den Tangle gesendet.",
         "messageSent": "Nachricht gesendet",
@@ -49,13 +49,6 @@
         "proceed": "Fortfahren",
         "qr": "QR",
         "enterSeed": "Bitte gib deinen Seed ein.",
-        "mainWallet": "HAUPTKONTO",
-        "secondWallet": "ZWEITES KONTO",
-        "thirdWallet": "DRITTES KONTO",
-        "fourthWallet": "VIERTES KONTO",
-        "fifthWallet": "FÜNFTES KONTO",
-        "sixthWallet": "SECHSTES KONTO",
-        "otherWallet": "ANDERES KONTO",
         "yes": "Ja",
         "no": "Nein",
         "okay": "Okay",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
         "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
-        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen."
+        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
+        "errorAccessingKeychain": "Schlüsselbund-Fehler",
+        "errorAccessingKeychainExplanation": "Der Schlüsselbund konnte nicht geöffnet werden.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -202,24 +198,12 @@
         "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} Zeichen lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
-        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. In Zukunft wirst du dieses Passwort verwenden um auf dein Wallet zuzugreifen.",
+        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf diesem Gerät gespeichert. In Zukunft wirst du dieses Passwort verwenden um auf dein Wallet zuzugreifen.",
         "retypePassword": "Passwort erneut eingeben"
     },
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
-        "seedCopied": "Seed in Zwischenablage kopiert",
-        "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst oder 60 Sekunden vergangen sind.",
-        "copyToClipboard": "Seed kopieren",
-        "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager",
-        "storeEncrypted": "Speichere deinen Seed verschlüsselt in einem Passwort-Manager.",
-        "doNotOpen": "Öffne keine anderen Apps während dieses Vorgangs.",
-        "tapConfirm": "Bitte aktiviere folgende Kontrollbox um zu Bestätigen.",
-        "passwordManagerCheckbox": "Ich werden meinen Seed in einem Passwort Manager speichern",
-        "copy": "KOPIEREN",
-        "noPasswordManagers": "Keine unterstützten Passwort-Manager installiert",
-        "noPasswordManagersExplanation": "Auf Deinem Gerät wurden keine unterstützten Passwort Manager gefunden. Bitte installiere Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Falls du deinen Seed in einem Passwortmanager aufbewahren möchtest, beachte die Anweisungen auf folgender Seite"
+        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht."
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -265,8 +249,8 @@
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
         "individualLetterCount": "Drücke <1><0>{{count}}</0></1> weiteren Buchstaben für eine zufällige Auswahl.",
         "individualLetterCount_plural": "Drücke <1><0>{{count}}</0></1> oder mehr Buchstaben für eine zufällige Auswahl.",
-        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen zum fortfahren.",
-        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen zum fortfahren.",
+        "randomiseCharsToContinue": "Wähle <1>{{count}}</1> zufälliges Zeichen um fortzufahren.",
+        "randomiseCharsToContinue_plural": "Wähle <1>{{count}}</1> zufällige Zeichen um fortzufahren.",
         "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
@@ -413,7 +397,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuche es nochmal."
+        "nodeChangeErrorExplanation": "Beim Wechseln des Nodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -450,7 +434,8 @@
         "receive": "Empfangen",
         "empty": "Keine",
         "retrying": "Erneuter Versuch",
-        "yesterday": "Gestern"
+        "yesterday": "Gestern",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -498,10 +483,10 @@
         "dark": "Dunkel",
         "default": "Standard",
         "electric": "Elektrisch",
-        "ionic": "Ionic",
+        "ionic": "Ionisch",
         "light": "Hell",
-        "lucky": "Lucky",
-        "mint": "Mint",
+        "lucky": "Glücklich",
+        "mint": "Minze",
         "steelblue": "Stahlblau"
     },
     "currencySelection": {
@@ -527,9 +512,9 @@
         "discordInformation": "Bitte besuche den #help Kanal auf Discord um herauszufinden, was du tun kannst."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Bist du sicher, dass du</1> <2></2> <3>{{accountName}}?</3> löschen möchtest",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
-        "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
@@ -612,7 +597,7 @@
         "importSuccessExplanation": "Dein Seed wurde erfolgreich importiert.",
         "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
-        "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder klicke auf Durchsuchen",
+        "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder hier klicken um Datei zu wählen",
         "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
@@ -719,8 +704,8 @@
         "warningTitle": "Warnung: Gesperrtes Guthaben erkannt",
         "explanation": "Trinity Desktop Version 0.3.4 enthielt einen Fehler, der Guthaben vorübergehend sperrte. Dies wirkt sich auf eine kleine Anzahl von Benutzern aus, welche Transaktionen mit 0.3.4 durchgeführt haben.",
         "explanationAccounts": "Gesperrtes Guthaben wurde auf deinen Konten gefunden: {{accounts}}. Trinity wird jetzt automatisch dein Guthaben wiederherstellen, indem es dieses auf eine neue Adresse verschiebt.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "proceed": "Weiter zur Wiederherstellung",
+        "sweepConfirmation": "Du verschiebst {{amount}} zu Adresse {{address}}, Konto: {{accountName}}, Adressindex: {{index}}",
+        "sweepConfirmationTitle": "Transaktion korrigieren"
     }
 }

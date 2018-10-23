@@ -4,14 +4,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import timer from 'react-native-timer';
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
-import GENERAL from 'ui/theme/general';
-import { getPasswordHash, getSeedFromKeychain } from 'libs/keychain';
+import { Styling } from 'ui/theme/general';
+import { hash } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import InfoBox from './InfoBox';
@@ -42,14 +44,14 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     infoBoxText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -65,6 +67,10 @@ class SeedVaultExportComponent extends Component {
         seed: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** Name for selected account */
+        selectedAccountName: PropTypes.string.isRequired,
+        /** Type for selected account */
+        selectedAccountType: PropTypes.string.isRequired,
         /** Returns to page before starting the Seed Vault Export process */
         goBack: PropTypes.func.isRequired,
         /** Current step of the Seed Vault Export process */
@@ -188,14 +194,22 @@ class SeedVaultExportComponent extends Component {
     onExportSuccess() {
         const { t } = this.props;
         if (isAndroid) {
-            this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
-            return this.props.goBack();
+            this.props.goBack();
+            return timer.setTimeout(
+                'timeout',
+                () => this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation')),
+                300,
+            );
         }
         RNFetchBlob.fs
             .unlink(this.state.path)
             .then(() => {
-                this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
                 this.props.goBack();
+                timer.setTimeout(
+                    'timeout',
+                    () => this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation')),
+                    300,
+                );
             })
             .catch(() =>
                 this.props.generateAlert(
@@ -253,14 +267,16 @@ class SeedVaultExportComponent extends Component {
      * @method validateWalletPassword
      */
     async validateWalletPassword() {
-        const { t, storedPasswordHash, selectedAccountName } = this.props;
+        const { t, storedPasswordHash, selectedAccountName, selectedAccountType } = this.props;
         const { password } = this.state;
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
-            const enteredPasswordHash = await getPasswordHash(password);
+            const enteredPasswordHash = await hash(password);
             if (isEqual(enteredPasswordHash, storedPasswordHash)) {
-                const seed = await getSeedFromKeychain(enteredPasswordHash, selectedAccountName);
+                const seedStore = new SeedStore[selectedAccountType](enteredPasswordHash, selectedAccountName);
+                const seed = await seedStore.getSeed();
+
                 this.props.setSeed(seed);
                 this.props.setAuthenticated(true);
                 this.setState({ password: '' });
@@ -306,7 +322,7 @@ class SeedVaultExportComponent extends Component {
                     <CustomTextInput
                         label={t('password')}
                         onChangeText={(password) => this.setState({ password })}
-                        containerStyle={{ width: width / 1.15 }}
+                        containerStyle={{ width: Styling.contentWidth }}
                         autoCapitalize="none"
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
@@ -391,6 +407,7 @@ class SeedVaultExportComponent extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountType: getSelectedAccountType(state),
     theme: state.settings.theme,
     minimised: state.ui.minimised,
     storedPasswordHash: state.wallet.password,
@@ -400,6 +417,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['seedVault', 'global'])(
+export default withNamespaces(['seedVault', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(SeedVaultExportComponent),
 );

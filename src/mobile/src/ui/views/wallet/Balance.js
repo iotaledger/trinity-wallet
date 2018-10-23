@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -29,7 +29,7 @@ import Chart from 'ui/components/Chart';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import TextWithLetterSpacing from 'ui/components/TextWithLetterSpacing';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -52,24 +52,24 @@ const styles = StyleSheet.create({
     },
     iotaBalance: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize6,
+        fontSize: Styling.fontSize6,
         backgroundColor: 'transparent',
     },
     iotaUnit: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         marginTop: height / 31,
         paddingLeft: width / 40,
     },
     fiatBalance: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
     },
     noTransactions: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize1,
+        fontSize: Styling.fontSize1,
         backgroundColor: 'transparent',
     },
     separator: {
@@ -301,4 +301,4 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
 });
 
-export default WithManualRefresh()(translate(['global'])(connect(mapStateToProps)(Balance)));
+export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps)(Balance)));

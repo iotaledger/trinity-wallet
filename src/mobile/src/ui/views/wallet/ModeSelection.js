@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setMode } from 'shared-modules/actions/settings';
@@ -11,7 +11,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
 import Toggle from 'ui/components/Toggle';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         paddingTop: height / 60,
         backgroundColor: 'transparent',
         textAlign: 'left',
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     toggleText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
@@ -171,4 +171,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['modeSelection', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ModeSelection));
+export default withNamespaces(['modeSelection', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ModeSelection));

@@ -31,8 +31,6 @@ class Settings extends Component {
         isSyncing: PropTypes.bool.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
     };
@@ -63,9 +61,6 @@ class Settings extends Component {
             addCustomNode: {
                 backPress: () => this.props.setSetting('advancedSettings'),
             },
-            addExistingSeed: {
-                navigator: this.props.navigator,
-            },
         };
 
         return props[child] || {};
@@ -80,7 +75,6 @@ class Settings extends Component {
                     <View style={{ flex: 1 }} />
                     <View style={styles.settingsContainer}>
                         <SettingsContent
-                            navigator={this.props.navigator}
                             component={this.props.currentSetting}
                             {...childrenProps}
                         />

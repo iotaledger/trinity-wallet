@@ -49,13 +49,6 @@
         "proceed": "Lanjut",
         "qr": "QR",
         "enterSeed": "Silakan masukkan Seed Anda.",
-        "mainWallet": "AKUN UTAMA",
-        "secondWallet": "AKUN KEDUA",
-        "thirdWallet": "AKUN KETIGA",
-        "fourthWallet": "AKUN KEEMPAT",
-        "fifthWallet": "AKUN KELIMA",
-        "sixthWallet": "AKUN KEENAM",
-        "otherWallet": "AKUN LAINNYA",
         "yes": "Iya",
         "no": "Tidak",
         "okay": "Ok",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "Ada masalah ketika melakukan Proof of Work.",
         "tryingAgainWithLocalPoW": "Mencoba lagi dengan lokal Proof of Work.",
         "tryingAgainWithDifferentNode": "Coba lagi dengan node yang berbeda.",
-        "errorFetchingAccountInformation": "Error ketika mengambil informasi akun."
+        "errorFetchingAccountInformation": "Error ketika mengambil informasi akun.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed telah dihapus",
-        "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "seedCopied": "Seed sudah disalin ke papan klip",
-        "seedCopiedExplanation": "Seed akan dihapus setelah menekan \"SELESAI\" atau 60 detik telah berlalu.",
-        "copyToClipboard": "Salin Seed",
-        "shareSeed": "Simpan Seed anda ke kata sandi manajer yang aman",
-        "storeEncrypted": "Simpan Seed terenkripsi di manajer kata sandi.",
-        "doNotOpen": "Jangan buka aplikasi lain dalam proses ini.",
-        "tapConfirm": "Silahkan tekan Checkbox dibawah ini untuk konfirmasi.",
-        "passwordManagerCheckbox": "Saya akan menyimpan Seed ke dalam manajer kata sandi",
-        "copy": "SALIN",
-        "noPasswordManagers": "Tidak ada manajer kata sandi yang telah diinstal",
-        "noPasswordManagersExplanation": "Tidak ada manajer kata sandi kompatibel di perangkat anda. Silahkan instal Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jika anda ingin menyimpan Seed di Manajer kata sandi anda harus mengikuti tutorial berikut ini"
+        "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda."
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -450,7 +434,8 @@
         "receive": "Terima",
         "empty": "Kosong",
         "retrying": "Mencoba lagi",
-        "yesterday": "Kemarin"
+        "yesterday": "Kemarin",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
@@ -527,9 +512,9 @@
         "discordInformation": "Silahkan menuju ke #help pada Discord untuk mengetahui apa yang dapat Anda lakukan."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Anda yakin ingin menghapus</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Riwayat transaksi dan benih akan dihapus.",
-        "thisAction": "Tindakan ini tidak dapat diulang.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda."
     },
     "manualSync": {

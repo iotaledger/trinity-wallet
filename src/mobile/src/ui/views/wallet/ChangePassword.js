@@ -1,15 +1,15 @@
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { changePassword, getPasswordHash } from 'libs/keychain';
+import { changePassword, hash } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -123,7 +123,7 @@ class ChangePassword extends Component {
      */
     async isPasswordChangeValid() {
         const { t, currentPwdHash, generateAlert } = this.props;
-        const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
+        const currentPasswordHash = await hash(this.state.currentPassword);
         if (!isEqual(currentPwdHash, currentPasswordHash)) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (this.state.newPassword === this.state.currentPassword) {
@@ -160,7 +160,7 @@ class ChangePassword extends Component {
                             returnKeyType="next"
                             theme={theme}
                             widget="empty"
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -224,4 +224,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['changePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ChangePassword));
+export default withNamespaces(['changePassword', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ChangePassword),
+);
