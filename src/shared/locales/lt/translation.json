@@ -55,6 +55,8 @@
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "Reikia įvesti slaptažodį. Bandykite dar kartą.",
         "capsLockIsOn": "Caps Lock įjungta",
         "syncInProgress": "Sinchronizuojama",
