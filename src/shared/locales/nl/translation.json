@@ -702,15 +702,15 @@
         "confirmedOut": "Uitgaande {{value}} van {{account}} is bevestigd"
     },
     "bytetrit": {
-        "sweepSucceeded": "Geld succesvol ontgrendeld",
-        "sweepSucceededExplanation": "Uw geld is succesvol ontgrendeld en naar een ander adres verplaatst. Promote de transacties om ze te helpen bevestigd te worden.",
-        "sweepError": "Probleem met geld ontgrendelen",
-        "sweepErrorExplanation": "Er ging iets mis bij het ontgrendelen van uw geld. Opnieuw proberen...",
-        "warningTitle": "Waarschuwing: Vergrendeld geld gedetecteerd",
-        "explanation": "Trinity Desktop versie 0.3.4 bevatte een bug die tijdelijk geld kon vergrendelen. Dit geldt voor een klein aantal gebruikers die transacties met 0.3.4 uitgevoerd hebben.",
-        "explanationAccounts": "Vergrendeld geld gedetecteerd op accounts: {{accounts}}. Trinity zal nu automatisch uw geld herstellen, door het naar een nieuw adres te verplaatsen.",
+        "sweepSucceeded": "Saldo succesvol ontgrendeld",
+        "sweepSucceededExplanation": "Uw saldo is succesvol ontgrendeld en naar een ander adres verplaatst. Promote de transacties om ze te helpen bevestigd te worden.",
+        "sweepError": "Probleem met saldo ontgrendelen",
+        "sweepErrorExplanation": "Er ging iets mis bij het ontgrendelen van uw saldo. Opnieuw proberen...",
+        "warningTitle": "Waarschuwing: Vergrendeld saldo gedetecteerd",
+        "explanation": "Trinity Desktop versie 0.3.4 bevatte een bug die tijdelijk saldo's kon vergrendelen. Dit geldt voor een klein aantal gebruikers die transacties met 0.3.4 uitgevoerd hebben.",
+        "explanationAccounts": "Vergrendeld saldo gedetecteerd op accounts: {{accounts}}. Trinity zal nu automatisch uw saldo herstellen, door het naar een nieuw adres te verplaatsen.",
         "proceed": "Verder gaan met herstel",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmation": "U staat op het punt {{amount}} naar adres {{address}} te verplaatsen. Account: {{accountName}}, adres index {{index}}",
+        "sweepConfirmationTitle": "Verplaatsing bevestigen"
     }
 }
