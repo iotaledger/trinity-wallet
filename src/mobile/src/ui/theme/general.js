@@ -4,8 +4,9 @@ import { isIPhoneX } from 'libs/device';
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
     borderRadius: width / 60,
-    borderRadiusSmall: width / 90,
-    borderRadiusLarge: width / 40,
+    borderRadiusSmall: parseInt(width / 90),
+    borderRadiusLarge: parseInt(width / 40),
+    borderRadiusExtraLarge: parseInt(width / 20),
     fontSize0: width / 37,
     fontSize1: width / 34,
     fontSize2: width / 31,

@@ -489,7 +489,15 @@ export class Send extends Component {
      * @param  {String} modalContent
      */
     showModal(modalContent) {
-        const { theme, theme: { bar, body }, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
+        const {
+            theme,
+            theme: { bar, body },
+            address,
+            amount,
+            selectedAccountName,
+            isFingerprintEnabled,
+            message,
+        } = this.props;
         switch (modalContent) {
             case 'qrScanner':
                 return this.props.toggleModalActivity(modalContent, {
@@ -511,13 +519,12 @@ export class Send extends Component {
                         this.hideModal();
                     },
                     hideModal: (callback) => this.hideModal(callback),
-                    body,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
                     selectedAccountName,
                     activateFingerprintScanner: () => this.activateFingerprintScanner(),
                     isFingerprintEnabled,
+                    theme,
+                    message,
                 });
             case 'unitInfo':
                 return this.props.toggleModalActivity(modalContent, {

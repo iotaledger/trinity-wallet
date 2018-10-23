@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import LottieView from 'lottie-react-native';
+import arrowAnimation from 'shared-modules/animations/arrow-transfer.json';
 import { round } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import ModalButtons from './ModalButtons';
+import DualFooterButtons from './DualFooterButtons';
+import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -15,46 +18,56 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width,
         height,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: Styling.borderRadius,
-        borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        paddingVertical: height / 30,
-        width: Styling.contentWidth,
-        paddingHorizontal: width / 20,
+        width,
+        height: height - height / 8.8,
     },
     textContainer: {
         alignItems: 'center',
         justifyContent: 'center',
+        flex: 1,
     },
-    text: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize2,
-    },
-    regularText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize2,
-    },
-    boldText: {
+    titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
     },
     addressText: {
-        backgroundColor: 'transparent',
         fontFamily: 'SourceCodePro-Medium',
         fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        lineHeight: width / 17,
+        justifyContent: 'center',
     },
-    iotaText: {
+    valueTextLarge: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize6,
+    },
+    messageText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize3,
+    },
+    valueTextSmall: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
+    },
+    itemContainer: {
+        borderRadius: Styling.borderRadiusExtraLarge,
+        width: Styling.contentWidth,
+        alignItems: 'center',
+        paddingVertical: height / 25,
+    },
+    valueContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 
@@ -68,10 +81,6 @@ class TransferConfirmationModal extends Component {
         t: PropTypes.func.isRequired,
         /** Receive address */
         address: PropTypes.string.isRequired,
-        /** Content text color */
-        textColor: PropTypes.object.isRequired,
-        /** Content border color */
-        borderColor: PropTypes.object.isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
         /** Set a flag for a transfer in progress */
@@ -80,8 +89,8 @@ class TransferConfirmationModal extends Component {
         conversionText: PropTypes.string.isRequired,
         /** Transaction value as a string */
         amount: PropTypes.string.isRequired,
-        /** Theme setting */
-        body: PropTypes.object.isRequired,
+        /** @ignore */
+        theme: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -90,30 +99,35 @@ class TransferConfirmationModal extends Component {
         activateFingerprintScanner: PropTypes.func.isRequired,
         /** Cancels send and closes modal */
         cancel: PropTypes.func.isRequired,
+        /** Transaction message */
+        message: PropTypes.string,
+    };
+
+    static defaultProps = {
+        message: '',
     };
 
     constructor() {
         super();
         this.state = {
             sending: false,
+            scrollable: false,
         };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('TransferConfirmationModal');
+        this.animation.play();
     }
 
     onSendPress() {
         const { hideModal, sendTransfer, setSendingTransferFlag, isFingerprintEnabled, value } = this.props;
         const { sending } = this.state;
-
         // Prevent multiple spends
         if (sending) {
             return;
         }
-
         this.setState({ sending: true });
-
         if (isFingerprintEnabled && value > 0) {
             this.props.activateFingerprintScanner();
         } else {
@@ -123,83 +137,115 @@ class TransferConfirmationModal extends Component {
         }
     }
 
+    setScrollable(y) {
+        if (y >= height / 5.8) {
+            return this.setState({ scrollable: true });
+        }
+        this.setState({ scrollable: false });
+    }
+
     render() {
-        const { t, body, textColor, borderColor, value, conversionText, amount, selectedAccountName } = this.props;
-        // TODO: fix this using trans component
-
-        /*
-        let transferContents = null;
-        if (value === 0) {
-            transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
-        } else {
-            transferContents = (
-                <Text style={styles.iotaText}>
-                    {formatValue(value)} {formatUnit(value)}
-                </Text>
-            );
-        }
-        */
-
-        // Hotfix
-
-        let transferContents = null;
-        /* eslint-disable eqeqeq */
-        if (value === 0 || amount === '') {
-            /* eslint-enable eqeqeq */
-            // doesn't work with === for some reason
-            transferContents = <Text style={styles.iotaText}>a message</Text>;
-        } else {
-            transferContents = (
-                <Text style={styles.iotaText}>
-                    {' '}
-                    {round(formatValue(value), 3)} {formatUnit(value)} ({conversionText}){' '}
-                </Text>
-            );
-        }
+        const {
+            t,
+            theme: { body, dark, primary },
+            value,
+            conversionText,
+            amount,
+            selectedAccountName,
+            message,
+        } = this.props;
+        const isMessage = value === 0 || amount === '';
         return (
             <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, borderColor, { backgroundColor: body.bg }]}>
-                    {(value !== 0 && (
-                        <View style={styles.textContainer}>
-                            <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
-                                <Text style={[styles.regularText, textColor]}>Sending {transferContents} from</Text>
+                <View style={[styles.modalContent, { backgroundColor: body.bg }]}>
+                    <View style={[styles.textContainer]}>
+                        <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
+                            <Text style={[styles.titleText, { color: primary.color }]}>
+                                {isMessage
+                                    ? message.length > 0
+                                        ? t('sendingAMessage').toUpperCase()
+                                        : t('sendingAnEmptyMessage').toUpperCase()
+                                    : t('fromAccount', { selectedAccountName }).toUpperCase()}
                             </Text>
-                            <Text style={[styles.boldText, textColor, { paddingTop: height / 25 }]}>
-                                {selectedAccountName}
+                            {isMessage &&
+                                message.length > 0 && (
+                                    <ScrollView
+                                        scrollEnabled={this.state.scrollable}
+                                        showsVerticalScrollIndicator={this.state.scrollable}
+                                        style={{
+                                            maxHeight: height / 5.8,
+                                        }}
+                                        onContentSizeChange={(x, y) => this.setScrollable(y)}
+                                    >
+                                        <View
+                                            style={{
+                                                paddingTop: height / 40,
+                                                alignItems: 'center',
+                                                paddingHorizontal: width / 20,
+                                            }}
+                                        >
+                                            <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
+                                        </View>
+                                    </ScrollView>
+                                )}
+                            {!isMessage && (
+                                <View style={{ paddingTop: height / 80, alignItems: 'center' }}>
+                                    <View style={styles.valueContainer}>
+                                        <TextWithLetterSpacing
+                                            spacing={width / 100}
+                                            textStyle={[styles.valueTextLarge, { color: body.color }]}
+                                        >
+                                            {round(formatValue(value), 3)}
+                                        </TextWithLetterSpacing>
+                                        <Text
+                                            style={[
+                                                styles.valueTextSmall,
+                                                { color: body.color, marginTop: height / 36, paddingLeft: width / 40 },
+                                            ]}
+                                        >
+                                            {formatUnit(value)}
+                                        </Text>
+                                    </View>
+                                    <Text
+                                        style={[styles.valueTextSmall, { color: body.color, marginTop: height / 200 }]}
+                                    >
+                                        {conversionText}
+                                    </Text>
+                                </View>
+                            )}
+                        </View>
+                        <View style={{ paddingVertical: height / 40 }}>
+                            <LottieView
+                                source={arrowAnimation}
+                                style={{ width: width / 17, height: height / 18 }}
+                                loop
+                                autoplay
+                                ref={(animation) => {
+                                    this.animation = animation;
+                                }}
+                            />
+                        </View>
+                        <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
+                            <Text style={[styles.titleText, { color: primary.color }]}>
+                                {t('toAddress').toUpperCase()}
                             </Text>
-                            <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
-                            <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
+                            <Text style={[styles.addressText, { color: body.color }, { marginTop: height / 40 }]}>
                                 {this.props.address.substring(0, 30)}
                             </Text>
-                            <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
-                            <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
+                            <Text style={[styles.addressText, { color: body.color }]}>
+                                {this.props.address.substring(30, 60)}
+                            </Text>
+                            <Text style={[styles.addressText, { color: body.color }]}>
                                 {this.props.address.substring(60, 90)}
                             </Text>
                         </View>
-                    )) || (
-                        <View style={styles.textContainer}>
-                            <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
-                                <Text style={[styles.regularText, textColor]}>
-                                    You are about to send {transferContents}
-                                </Text>
-                            </Text>
-                            <Text style={[styles.regularText, textColor, { paddingTop: height / 90 }]}>to</Text>
-                            <Text style={[styles.addressText, textColor, { marginTop: height / 70 }]}>
-                                {this.props.address.substring(0, 30)}
-                            </Text>
-                            <Text style={[styles.addressText, textColor]}>{this.props.address.substring(30, 60)}</Text>
-                            <Text style={[styles.addressText, textColor, { marginBottom: height / 18 }]}>
-                                {this.props.address.substring(60, 90)}
-                            </Text>
-                        </View>
-                    )}
-                    <ModalButtons
+                    </View>
+                    <View style={{ flex: 0.1 }} />
+                    <DualFooterButtons
                         onLeftButtonPress={() => this.props.cancel()}
                         onRightButtonPress={() => this.onSendPress()}
-                        leftText={t('global:cancel').toUpperCase()}
-                        rightText={t('global:send')}
-                        buttonWidth={{ width: width / 3.2 }}
-                        containerWidth={{ width: width / 1.4 }}
+                        leftButtonText={t('global:cancel').toUpperCase()}
+                        rightButtonText={t('global:confirm').toUpperCase()}
                     />
                 </View>
             </View>

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
-        marginTop: height / 31,
+        marginTop: height / 36,
         paddingLeft: width / 40,
     },
     fiatBalance: {

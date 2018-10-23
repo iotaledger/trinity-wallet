@@ -152,7 +152,8 @@
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "MAIN ACCOUNT",
+        "confirm": "Confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -599,7 +600,12 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "a message",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "view": "View",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Wrong code",

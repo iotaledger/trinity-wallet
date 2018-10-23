@@ -80,13 +80,13 @@ export default function withSafeAreaView(WrappedComponent) {
                     <WrappedComponent {...this.props} />
                     <Modal
                         animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                        animationOut={isAndroid ? 'bounceOut' : 'fadeOut'}
                         animationInTiming={isAndroid ? 1000 : 300}
                         animationOutTiming={200}
                         backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
-                        backdropOpacity={0.9}
+                        backdropOpacity={0.7}
                         style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}

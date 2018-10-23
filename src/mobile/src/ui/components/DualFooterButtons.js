@@ -37,6 +37,8 @@ class DualFooterButtons extends PureComponent {
         leftButtonStyle: PropTypes.object,
         /** Right button optional styles to override the default ones */
         rightButtonStyle: PropTypes.object,
+        /** @ignore */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -55,10 +57,11 @@ class DualFooterButtons extends PureComponent {
             leftButtonStyle,
             rightButtonStyle,
             theme,
+            isModalActive,
         } = this.props;
-        const borderRadius = isIPhoneX ? parseInt(width / 20) : 0;
+        const borderRadius = isIPhoneX ? Styling.borderRadiusExtraLarge : 0;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { marginBottom: isModalActive && isIPhoneX ? 34 : 0 }]}>
                 <Button
                     onPress={onLeftButtonPress}
                     style={merge(
@@ -108,6 +111,7 @@ class DualFooterButtons extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    isModalActive: state.ui.isModalActive,
 });
 
 export default connect(mapStateToProps)(DualFooterButtons);
