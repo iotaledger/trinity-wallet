@@ -117,7 +117,7 @@ describe('Testing HistoryModalContent component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
+            expect(wrapper.name()).toEqual('View');
         });
 
         it('should return a ScrollView component', () => {
@@ -138,51 +138,8 @@ describe('Testing HistoryModalContent component', () => {
                     .children()
                     .at(0)
                     .text(),
-            ).toEqual('Receive');
+            ).toEqual('RECEIVE 200 i');
         });
-
-        it('should return fullValue prop as third child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(2)
-                    .text(),
-            ).toEqual('200');
-        });
-
-        it('should return unit prop as third child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(3)
-                    .text(),
-            ).toEqual('i');
-        });
-
-        it('should return status prop as second child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Receive');
-        });
-
         it('should return a translated "Bundle Hash" message as first child to third Text component', () => {
             const props = getProps();
 

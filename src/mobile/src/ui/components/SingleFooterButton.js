@@ -40,7 +40,7 @@ class SingleFooterButton extends PureComponent {
         const { buttonText, onButtonPress, buttonTestID, buttonStyle, theme: { primary } } = this.props;
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container]}>
                 <Button
                     onPress={onButtonPress}
                     style={merge(

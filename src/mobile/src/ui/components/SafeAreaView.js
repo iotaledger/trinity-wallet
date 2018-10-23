@@ -15,6 +15,8 @@ export default function withSafeAreaView(WrappedComponent) {
             theme: PropTypes.object.isRequired,
             /** @ignore */
             inactive: PropTypes.bool.isRequired,
+            /** @ignore */
+            isModalActive: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -31,7 +33,7 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         render() {
-            const { theme, inactive } = this.props;
+            const { theme, inactive, isModalActive } = this.props;
             const { currentScreen } = this.state;
             return (
                 <SafeAreaView
@@ -39,16 +41,16 @@ export default function withSafeAreaView(WrappedComponent) {
                         flex: 1,
                         backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
                     }}
-                    forceInset={{ top: 'always' }}
                 >
                     <WrappedComponent {...this.props} />
                     {isIPhoneFailingSafeAreaView && (
                         <View
                             style={{
                                 height: 34,
-                                backgroundColor: inactive
-                                    ? theme.body.bg
-                                    : getBackgroundColor(currentScreen, theme, true, inactive),
+                                backgroundColor:
+                                    inactive || isModalActive
+                                        ? theme.body.bg
+                                        : getBackgroundColor(currentScreen, theme, true, inactive),
                             }}
                         />
                     )}
@@ -60,6 +62,7 @@ export default function withSafeAreaView(WrappedComponent) {
     const mapStateToProps = (state) => ({
         theme: state.settings.theme,
         inactive: state.ui.inactive,
+        isModalActive: state.ui.isModalActive,
     });
 
     return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);

@@ -464,7 +464,8 @@
         "empty": "Empty",
         "retrying": "Retrying",
         "yesterday": "Yesterday",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoting another bundle",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "View seed",

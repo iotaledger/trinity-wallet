@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize6,
+        fontSize: Styling.fontSize7,
         textAlign: 'center',
         color: 'red',
         paddingVertical: height / 25,

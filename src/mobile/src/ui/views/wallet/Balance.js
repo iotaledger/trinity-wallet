@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     iotaBalance: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize6,
+        fontSize: Styling.fontSize7,
         backgroundColor: 'transparent',
     },
     iotaUnit: {

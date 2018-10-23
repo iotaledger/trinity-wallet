@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Easing } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
@@ -53,6 +53,36 @@ const MODAL_CONTENT = {
     checksum: Checksum,
 };
 
+const fadeInUpCustom = {
+    from: {
+        opacity: 0.4,
+        scale: 0.9,
+        translateY: 250,
+    },
+    to: {
+        opacity: 1,
+        scale: 1,
+        translateY: 0,
+    },
+    easing: Easing.exp(),
+    duration: 250,
+};
+
+const fadeOutDownCustom = {
+    from: {
+        opacity: 1,
+        scale: 1,
+        translateY: 0,
+    },
+    to: {
+        opacity: 0,
+        scale: 0.9,
+        translateY: 100,
+    },
+    easing: Easing.exp(),
+    duration: 100,
+};
+
 /** HOC to render modal component. Trigger opening/closing and content change by dispatching toggleModalActivity action.
  *  Wrap root views with this component (e.g. LanguageSetup, Login, Home).
  */
@@ -79,8 +109,8 @@ export default function withSafeAreaView(WrappedComponent) {
                 <View style={{ flex: 1 }}>
                     <WrappedComponent {...this.props} />
                     <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'fadeOut'}
+                        animationIn={isAndroid ? 'bounceInUp' : fadeInUpCustom}
+                        animationOut={isAndroid ? 'bounceOut' : fadeOutDownCustom}
                         animationInTiming={isAndroid ? 1000 : 300}
                         animationOutTiming={200}
                         backdropTransitionInTiming={isAndroid ? 500 : 300}

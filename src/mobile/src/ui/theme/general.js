@@ -1,4 +1,4 @@
-import { width } from 'libs/dimensions';
+import { width, height } from 'libs/dimensions';
 import { isIPhoneX } from 'libs/device';
 
 export const Styling = {
@@ -13,7 +13,9 @@ export const Styling = {
     fontSize3: width / 25,
     fontSize4: width / 22,
     fontSize5: width / 19,
-    fontSize6: width / 8,
+    fontSize6: width / 14,
+    fontSize7: width / 8,
+    topbarHeight: height / 8.8,
 };
 
 export function getBackgroundColor(screen, theme, footerColour = false, inactive = false) {

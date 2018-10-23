@@ -532,7 +532,7 @@ export class Send extends Component {
                     textColor: { color: bar.color },
                     lineColor: { borderLeftColor: bar.color },
                     borderColor: { borderColor: bar.color },
-                    bar,
+                    theme,
                 });
             case 'usedAddress':
                 return this.props.toggleModalActivity(modalContent, {

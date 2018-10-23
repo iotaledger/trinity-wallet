@@ -37,8 +37,10 @@ class DualFooterButtons extends PureComponent {
         leftButtonStyle: PropTypes.object,
         /** Right button optional styles to override the default ones */
         rightButtonStyle: PropTypes.object,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
+        /** Determines if left button should display ActivityIndicator */
+        isLeftButtonLoading: PropTypes.bool,
+        /** Determines if right button should display ActivityIndicator */
+        isRightButtonLoading: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -57,11 +59,12 @@ class DualFooterButtons extends PureComponent {
             leftButtonStyle,
             rightButtonStyle,
             theme,
-            isModalActive,
+            isLeftButtonLoading,
+            isRightButtonLoading,
         } = this.props;
         const borderRadius = isIPhoneX ? Styling.borderRadiusExtraLarge : 0;
         return (
-            <View style={[styles.container, { marginBottom: isModalActive && isIPhoneX ? 34 : 0 }]}>
+            <View style={styles.container}>
                 <Button
                     onPress={onLeftButtonPress}
                     style={merge(
@@ -78,10 +81,14 @@ class DualFooterButtons extends PureComponent {
                             children: {
                                 color: theme.dark.body,
                             },
+                            loading: {
+                                color: theme.secondary.color,
+                            },
                         },
                         leftButtonStyle,
                     )}
                     testID={leftButtonTestID}
+                    isLoading={isLeftButtonLoading}
                 >
                     {leftButtonText}
                 </Button>
@@ -96,11 +103,17 @@ class DualFooterButtons extends PureComponent {
                                 borderBottomRightRadius: borderRadius,
                                 borderTopRightRadius: borderRadius,
                             },
-                            children: { color: theme.primary.body },
+                            children: {
+                                color: theme.primary.body,
+                            },
+                            loading: {
+                                color: theme.primary.color,
+                            },
                         },
                         rightButtonStyle,
                     )}
                     testID={rightButtonTestID}
+                    isLoading={isRightButtonLoading}
                 >
                     {rightButtonText}
                 </Button>
@@ -111,7 +124,6 @@ class DualFooterButtons extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    isModalActive: state.ui.isModalActive,
 });
 
 export default connect(mapStateToProps)(DualFooterButtons);

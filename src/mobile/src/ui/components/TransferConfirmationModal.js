@@ -14,7 +14,6 @@ import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const styles = StyleSheet.create({
     modalContainer: {
-        flex: 1,
         alignItems: 'center',
         width,
         height,
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width,
-        height: height - height / 8.8,
+        height: height - Styling.topbarHeight,
     },
     textContainer: {
         alignItems: 'center',
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     valueTextLarge: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize6,
+        fontSize: Styling.fontSize7,
     },
     messageText: {
         backgroundColor: 'transparent',

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 class Tabs extends Component {
     render() {
-        const { children, onPress, currentRoute, theme: { bar } } = this.props;
+        const { children, onPress, currentRoute, theme: { bar, body }, isModalActive } = this.props;
 
         const childComponents = Children.map(children, (child) =>
             cloneElement(child, {
@@ -38,7 +38,7 @@ class Tabs extends Component {
 
         const tabContainer = (
             <View style={styles.container}>
-                <View style={[styles.tabBarBackground, { backgroundColor: bar.alt }]} />
+                <View style={[styles.tabBarBackground, { backgroundColor: isModalActive ? body.bg : bar.alt }]} />
                 <View style={styles.tabBar}>{childComponents}</View>
             </View>
         );
@@ -58,10 +58,13 @@ Tabs.propTypes = {
     currentRoute: PropTypes.string.isRequired,
     /** @ignore */
     theme: PropTypes.object.isRequired,
+    /** @ignore */
+    isModalActive: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
+    isModalActive: state.ui.isModalActive,
 });
 
 export default connect(mapStateToProps)(Tabs);
