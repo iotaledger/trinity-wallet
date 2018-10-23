@@ -143,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Probeer het nogmaals met lokale proof of work.",
         "tryingAgainWithDifferentNode": "Probeer het nogmaals met een andere node.",
         "errorFetchingAccountInformation": "Fout tijdens het ophalen van accountinformatie.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Fout met keychain",
+        "errorAccessingKeychainExplanation": "Kan keychain nodig voor veilige opslag niet bereiken.",
+        "mainWallet": "HOOFDACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -249,9 +249,9 @@
         "generateSuccess": "Seed succesvol gegenereerd",
         "individualLetters": "Druk op de letters om deze te veranderen in een willekeurige letter.",
         "individualLetterCount": "Druk nog op <1><0>{{count}}</0></1> letter om willekeurig te maken.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount_plural": "Druk nog op <1><0>{{count}}</0></1> letters om ze willekeurig te maken.",
+        "randomiseCharsToContinue": "Maak <1>{{count}}</1> teken willekeurig om verder te gaan.",
+        "randomiseCharsToContinue_plural": "Maak <1>{{count}}</1> tekens willekeurig om verder te gaan.",
         "whatIsASeed": "Wat is een seed?"
     },
     "onboardingComplete": {
@@ -436,7 +436,7 @@
         "empty": "Leeg",
         "retrying": "Opnieuw proberen...",
         "yesterday": "Gisteren",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Andere bundel aan het promoten"
     },
     "accountManagement": {
         "viewSeed": "Seed bekijken",
@@ -480,13 +480,13 @@
     },
     "themes": {
         "classic": "Klassiek",
-        "contemporary": "Contemporary",
+        "contemporary": "Modern",
         "dark": "Donker",
         "default": "Standaard",
         "electric": "Elektrisch",
-        "ionic": "Ionic",
+        "ionic": "Ionisch",
         "light": "Licht",
-        "lucky": "Lucky",
+        "lucky": "Geluk",
         "mint": "Munt",
         "steelblue": "Staalblauw"
     },
@@ -702,7 +702,7 @@
         "confirmedOut": "Uitgaande {{value}} van {{account}} is bevestigd"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceeded": "Geld succesvol ontgrendeld",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
