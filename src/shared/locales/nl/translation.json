@@ -703,12 +703,12 @@
     },
     "bytetrit": {
         "sweepSucceeded": "Geld succesvol ontgrendeld",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "sweepSucceededExplanation": "Uw geld is succesvol ontgrendeld en naar een ander adres verplaatst. Promote de transacties om ze te helpen bevestigd te worden.",
+        "sweepError": "Probleem met geld ontgrendelen",
+        "sweepErrorExplanation": "Er ging iets mis bij het ontgrendelen van uw geld. Opnieuw proberen...",
+        "warningTitle": "Waarschuwing: Vergrendeld geld gedetecteerd",
+        "explanation": "Trinity Desktop versie 0.3.4 bevatte een bug die tijdelijk geld kon vergrendelen. Dit geldt voor een klein aantal gebruikers die transacties met 0.3.4 uitgevoerd hebben.",
+        "explanationAccounts": "Vergrendeld geld gedetecteerd op accounts: {{accounts}}. Trinity zal nu automatisch uw geld herstellen, door het naar een nieuw adres te verplaatsen.",
         "proceed": "Verder gaan met herstel",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
