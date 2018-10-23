@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
-import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
-import { setFirstUse } from 'shared-modules/actions/accounts';
-import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
+import { generateAlert } from 'shared-modules/actions/alerts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
+import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
     },
     generalText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
@@ -51,6 +50,8 @@ const styles = StyleSheet.create({
 /** Disable Two Factor Authentication component */
 class Disable2FA extends Component {
     static propTypes = {
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -61,17 +62,13 @@ class Disable2FA extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
         super();
-
         this.state = {
             token: '',
         };
-
         this.goBack = this.goBack.bind(this);
         this.disable2FA = this.disable2FA.bind(this);
     }
@@ -89,7 +86,6 @@ class Disable2FA extends Component {
                 const verified = authenticator.verifyToken(key, this.state.token);
                 if (verified) {
                     this.props.set2FAStatus(false);
-
                     this.goBack();
                     this.timeout = setTimeout(() => {
                         this.props.generateAlert(
@@ -111,19 +107,7 @@ class Disable2FA extends Component {
      * @method goBack
      */
     goBack() {
-        const { theme: { bar, body } } = this.props;
-        this.props.navigator.resetTo({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: bar.alt,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     render() {
@@ -133,7 +117,6 @@ class Disable2FA extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
@@ -144,7 +127,7 @@ class Disable2FA extends Component {
                             <CustomTextInput
                                 label="Token"
                                 onChangeText={(token) => this.setState({ token })}
-                                containerStyle={{ width: width / 1.15 }}
+                                containerStyle={{ width: Styling.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -155,7 +138,7 @@ class Disable2FA extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
                                 leftButtonText={t('global:cancel')}
@@ -164,7 +147,6 @@ class Disable2FA extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -177,11 +159,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     resetWallet,
-    setFirstUse,
     generateAlert,
     set2FAStatus,
 };
 
-export default translate(['resetWalletRequirePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
+export default WithBackPressGoToHome()(
+    withNamespaces(['resetWalletRequirePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Disable2FA)),
 );

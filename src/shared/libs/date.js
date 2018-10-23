@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 import 'moment/min/locales';
-import i18next from '../i18next';
+import i18next from './i18next';
 
 export const formatTimeAs = {
     timeOnly: (locale, timezone, time) => {

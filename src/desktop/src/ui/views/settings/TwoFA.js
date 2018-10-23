@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import QRCode from 'qr.js/lib/QRCode';
 import authenticator from 'authenticator';
 
-import { vaultAuth, setTwoFA } from 'libs/crypto';
+import { setTwoFA, authorize } from 'libs/crypto';
 
 import { set2FAStatus } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
@@ -113,7 +113,7 @@ class TwoFA extends React.Component {
         const { password, generateAlert, set2FAStatus, t } = this.props;
 
         try {
-            const key = await vaultAuth(password);
+            const key = await authorize(password);
             const validCode = authenticator.verifyToken(key, code);
 
             if (!validCode) {
@@ -248,4 +248,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(TwoFA));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(TwoFA));

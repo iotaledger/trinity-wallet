@@ -6,9 +6,6 @@ describe('Reducer: accounts', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
-                seedCount: 0,
-                accountNames: [],
-                firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
                 failedBundleHashes: {},
@@ -172,24 +169,6 @@ describe('Reducer: accounts', () => {
             expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
-        it('should update account name in "accountNames" state prop', () => {
-            const initialState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            const action = actions.changeAccountName({
-                oldAccountName: 'foo',
-                newAccountName: 'bar',
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['bar', 'baz'],
-            };
-
-            expect(newState.accountNames).to.eql(expectedState.accountNames);
-        });
-
         it('should update account prop for each tail transaction with new account name in "unconfirmedBundleTails" state prop', () => {
             const initialState = {
                 unconfirmedBundleTails: {
@@ -278,36 +257,6 @@ describe('Reducer: accounts', () => {
             expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
-        it('should remove payload from accountNames array', () => {
-            const initialState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            const action = actions.removeAccount('foo');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['baz'],
-            };
-
-            expect(newState.accountNames).to.eql(expectedState.accountNames);
-        });
-
-        it('should subtract one from seedCount', () => {
-            const initialState = {
-                seedCount: 1,
-            };
-
-            const action = actions.removeAccount('foo');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 0,
-            };
-
-            expect(newState.seedCount).to.eql(expectedState.seedCount);
-        });
-
         it('should omit all keys from "unconfirmedBundleTails" that have any "account" prop equal to "payload" prop in action', () => {
             const initialState = {
                 unconfirmedBundleTails: {
@@ -330,23 +279,6 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('SET_FIRST_USE', () => {
-        it('should set firstUse to payload', () => {
-            const initialState = {
-                firstUse: false,
-            };
-
-            const action = actions.setFirstUse(true);
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                firstUse: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     describe('SET_ONBOARDING_COMPLETE', () => {
         it('should set onboardingComplete to payload', () => {
             const initialState = {
@@ -360,41 +292,6 @@ describe('Reducer: accounts', () => {
                 onboardingComplete: true,
             };
 
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('INCREASE_SEED_COUNT', () => {
-        it('should increment seedCount by one', () => {
-            const initialState = {
-                seedCount: 4,
-            };
-
-            const action = actions.increaseSeedCount();
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 5,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('ADD_SEED_NAME', () => {
-        it('should concat accountName to list of accountNames in state', () => {
-            const initialState = {
-                accountNames: ['foo'],
-            };
-
-            const action = actions.addAccountName('baz');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            expect(newState).to.not.eql(['baz', 'foo']);
             expect(newState).to.eql(expectedState);
         });
     });
@@ -525,13 +422,13 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
             const initialState = {
                 unconfirmedBundleTails: { foo: {} },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.fullAccountInfoFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -552,8 +449,9 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
                 transfers: {},
                 balance: 100,
@@ -564,6 +462,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         balance: 100,
@@ -579,6 +478,7 @@ describe('Reducer: accounts', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         addresses: { foo: {} },
                         transfers: { foo: { value: 20 }, baz: { value: 0 } },
                         balance: 0,
@@ -586,8 +486,9 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
                 transfers: { foo: { value: 0 } },
                 balance: 100,
@@ -598,6 +499,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         addresses: { foo: {}, baz: {} },
                         transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
@@ -613,6 +515,7 @@ describe('Reducer: accounts', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -621,8 +524,9 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountType: 'bar',
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
@@ -633,6 +537,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -643,39 +548,24 @@ describe('Reducer: accounts', () => {
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
-
-        it('should set firstUse in state to false', () => {
-            const initialState = {
-                firstUse: true,
-            };
-
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ accountName: 'foo' }); // Would break if accountName is missing
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                firstUse: false,
-            };
-
-            expect(newState.firstUse).to.eql(expectedState.firstUse);
-        });
     });
 
-    describe('FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should merge addresses in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         addresses: { foo: {} },
                         transfers: {},
                         balance: 0,
                     },
                 },
-                accountNames: [],
-                seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
                 transfers: {},
                 balance: 100,
@@ -686,13 +576,13 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         balance: 100,
                         hashes: [],
                     },
                 },
-                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -708,12 +598,11 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                     },
                 },
-                accountNames: [],
-                seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountType: 'bar',
                 addresses: { foo: {}, baz: {} },
                 transfers: { foo: { value: 0 } },
                 balance: 100,
@@ -724,13 +613,13 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         hashes: [],
                         addresses: { foo: {}, baz: {} },
                         transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
                     },
                 },
-                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -748,8 +637,9 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountType: 'bar',
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
@@ -760,6 +650,7 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        type: 'bar',
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -769,51 +660,6 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
-        });
-
-        it('should increment seedCount by one', () => {
-            const initialState = {
-                seedCount: 1,
-                accountNames: [],
-            };
-
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
-                accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 2,
-                accountNames: [],
-            };
-
-            expect(newState.seedCount).to.eql(expectedState.seedCount);
-        });
-
-        it('should concat accountName to accountNames', () => {
-            const initialState = {
-                seedCount: 1,
-                accountNames: ['foo'],
-            };
-
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
-                accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 1,
-                accountNames: ['foo', 'baz'],
-            };
-
-            expect(newState.accountNames).to.not.eql(['baz', 'foo']);
-            expect(newState.accountNames).to.not.eql(expectedState.accountNames);
         });
     });
 
@@ -1180,6 +1026,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         dummy: {
+                            type: 'bar',
                             balance: 0,
                             addresses: { foo: {} },
                             transfers: {},
@@ -1202,6 +1049,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         dummy: {
+                            type: 'bar',
                             balance: 0,
                             addresses: { foo: {}, baz: {} },
                             transfers: {},
@@ -1217,6 +1065,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
+                            type: 'bar',
                             balance: 0,
                             transfers: { foo: { value: 20 } },
                         },
@@ -1237,6 +1086,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         foo: {
+                            type: 'bar',
                             balance: 0,
                             transfers: { baz: { value: 0 }, foo: { value: 20 } },
                             hashes: [],
@@ -1253,6 +1103,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
+                            type: 'bar',
                             balance: 0,
                             transfers: [],
                             hashes: ['baz'],
@@ -1274,6 +1125,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         foo: {
+                            type: 'bar',
                             balance: 0,
                             transfers: [],
                             hashes: ['bar'],

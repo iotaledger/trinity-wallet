@@ -6,9 +6,9 @@ import { updateAddresses, updateAccountAfterTransition } from '../actions/accoun
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../libs/iota/addresses';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
-import { getBalancesAsync, generateAddressesAsync } from '../libs/iota/extendedApi';
+import { getBalancesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
 import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
 import { DEFAULT_SECURITY } from '../config';
@@ -315,27 +315,24 @@ export const setDeepLinkInactive = () => {
  *
  * @method generateNewAddress
  *
- * @param {string | array} seed
+ * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {object} existingAccountData
  * @param {function} genFn
  *
  * @returns {function(*): Promise<any>}
  */
-export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
+export const generateNewAddress = (seedStore, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses()(
-            seed,
-            existingAccountData.addresses,
-            map(existingAccountData.transfers, (tx) => tx),
-            genFn,
-        )
+        return syncAddresses()(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
             .then((latestAddressData) => {
                 dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess());
             })
-            .catch(() => dispatch(generateNewAddressError()));
+            .catch(() => {
+                dispatch(generateNewAddressError());
+            });
     };
 };
 
@@ -346,13 +343,13 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
  *
  * @method transitionForSnapshot
  *
- * @param {string | array} seed
+ * @param {object} seedStore - SeedStore class object
  * @param {array} addresses
  * @param {function} genFn
  *
  * @returns {function} - dispatch
  */
-export const transitionForSnapshot = (seed, addresses, genFn) => {
+export const transitionForSnapshot = (seedStore, addresses) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
@@ -360,7 +357,7 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
             dispatch(updateTransitionAddresses(addresses));
         } else {
             setTimeout(() => {
-                dispatch(generateAddressesAndGetBalance(seed, 0, genFn));
+                dispatch(generateAddressesAndGetBalance(seedStore, 0));
             });
         }
     };
@@ -371,14 +368,14 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
  *
  * @method completeSnapshotTransition
  *
- * @param {string | array} seed
+ * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
  * @param {function} powFn
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seed, accountName, addresses, powFn) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses, powFn) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -420,7 +417,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                                 address,
                                 index,
                                 relevantBalances[index],
-                                seed,
+                                seedStore,
                                 map(existingAccountState.transfers, (tx) => tx),
                                 existingAccountState.addresses,
                                 // Pass proof of work function as null, if configuration is set to remote
@@ -475,15 +472,16 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
  *
  * @returns {function}
  */
-export const generateAddressesAndGetBalance = (seed, index, genFn) => {
+export const generateAddressesAndGetBalance = (seedStore, index) => {
     return (dispatch) => {
         const options = {
             index,
-            total: 20,
             security: DEFAULT_SECURITY,
+            total: 20,
         };
 
-        generateAddressesAsync(seed, options, genFn)
+        seedStore
+            .generateAddress(options)
             .then((addresses) => {
                 dispatch(updateTransitionAddresses(addresses));
                 dispatch(getBalanceForCheck(addresses));

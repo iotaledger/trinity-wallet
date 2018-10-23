@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -104,7 +104,7 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboardingName: state.ui.onboarding.name,
+    onboardingName: state.wallet.additionalAccountName,
 });
 
-export default connect(mapStateToProps)(translate()(SeedSave));
+export default connect(mapStateToProps)(withI18n()(SeedSave));

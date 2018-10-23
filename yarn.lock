@@ -45,6 +45,13 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@babel/runtime@^7.1.2":
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
+  integrity sha512-Y3SCjmhSupzFB6wcv1KmmFucH6gDVnI30WjOcicV10ju0cZjak3Jcs67YLIXBrmZYw1xCrVeJPbycFwrqNyxpg==
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/template@7.0.0-beta.40":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.40.tgz#034988c6424eb5c3268fe6a608626de1f4410fc8"
@@ -873,6 +880,14 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
+create-react-context@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
+  integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
 cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -1479,6 +1494,19 @@ fast-levenshtein@~2.0.4:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fbjs@^0.8.0:
+  version "0.8.17"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
+  integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
+
 fbjs@^0.8.16:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
@@ -1811,6 +1839,11 @@ graphlib@^2.1.1:
   dependencies:
     lodash "^4.11.1"
 
+gud@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
+  integrity sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==
+
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
@@ -1875,7 +1908,14 @@ hoek@4.x.x:
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
   integrity sha512-QLg82fGkfnJ/4iy1xZ81/9SIJiq1NGFUMGs6ParyjBZr6jW2Ufj/snDqTHixNlHdPNwN2RLVD0Pi3igeK9+JfA==
 
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
+  integrity sha512-1kXwPsOi0OGQIZNVMPvgWJ9tSnGMiMfJdihqEzrPEXlHOBh9AAHXX/QYmAJTXztnz/K+PQ8ryCb4eGaN6HlGbQ==
+  dependencies:
+    react-is "^16.3.2"
+
+hoist-non-react-statics@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
   integrity sha512-6Bl6XsDT1ntE0lHbIhr4Kp2PGcleGZ66qu5Jqk8lc0Xc/IeG6gVLmwUGs/K0Us+L8VWoKgj0uWdPMataOsm31w==
@@ -1958,10 +1998,10 @@ husky@^0.14.3:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-i18next@^10.2.2:
-  version "10.6.0"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.6.0.tgz#90ffd9f9bc617f34b9a12e037260f524445f7684"
-  integrity sha1-kP/Z+bxhfzS5oS4DcmD1JERfdoQ=
+i18next@^11.9.0:
+  version "11.9.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.9.1.tgz#f2718b11da2460e29e2dbd3dd8dea05dfc88e2dc"
+  integrity sha512-sUAfCdKYi8EufO6B8aY5RF/hqweCpRKvbxUhlzlmlAr+LgJQ2kXe/5y02kaPu6ApFIiW5WOz8+3ehoy97LUtMw==
 
 iconv-lite@0.4.23:
   version "0.4.23"
@@ -3873,14 +3913,20 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-i18next@^7.3.4:
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.6.0.tgz#abdb44b9dee5b43b4340590e25a6f7b04e2df6bc"
-  integrity sha512-QHzlQ5/MNC5LCdZai/H3OL0RdGJyTpJShjKJ6juhD5wzBmNcVKTgJbFJrZ2BcNe+ikqSFfd6XBAUlbyd84vQvQ==
+react-i18next@^8.0.7:
+  version "8.0.7"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-8.0.7.tgz#9e6ffdaa01f4454ba216fa50377a7c2ba6f1e662"
+  integrity sha512-oJDVe5X8QK72NYYH7/VQtopONZPcNiarlWdVuCSkn9PucQCEAOf/yRt0V2LdjC4nBY48Y20/540glwR1nlE9gA==
   dependencies:
-    hoist-non-react-statics "^2.3.1"
+    "@babel/runtime" "^7.1.2"
+    create-react-context "0.2.3"
+    hoist-non-react-statics "3.0.1"
     html-parse-stringify2 "2.0.1"
-    prop-types "^15.6.0"
+
+react-is@^16.3.2:
+  version "16.5.2"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
+  integrity sha512-hSl7E6l25GTjNEZATqZIuWOgSnpXb3kD0DVCujmg46K5zLxsbiKaaT6VO9slkSBDPZfYs30lwfJwbOFOnoEnKQ==
 
 react-redux@^5.0.6:
   version "5.0.7"
@@ -4060,6 +4106,11 @@ redux@^3.7.2:
     lodash-es "^4.2.1"
     loose-envify "^1.1.0"
     symbol-observable "^1.0.3"
+
+regenerator-runtime@^0.12.0:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
+  integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
 
 registry-auth-token@^3.0.1:
   version "3.3.2"
@@ -4310,14 +4361,14 @@ shared-modules@./src/shared/:
   version "0.0.0"
   dependencies:
     bignumber.js "^7.2.1"
-    i18next "^10.2.2"
+    i18next "^11.9.0"
     iota.lib.js "^0.5.1"
     lodash "^4.17.10"
     moment "^2.22.2"
     moment-timezone "^0.5.21"
     proxy-polyfill "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7"
     react "^16.2.0"
-    react-i18next "^7.3.4"
+    react-i18next "^8.0.7"
     react-redux "^5.0.6"
     redux "^3.7.2"
     redux-persist "^4.10.1"
@@ -4977,6 +5028,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+ua-parser-js@^0.7.18:
+  version "0.7.18"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.18.tgz#a7bfd92f56edfb117083b69e31d2aa8882d4b1ed"
+  integrity sha512-LtzwHlVHwFGTptfNSgezHp7WUlwiqb0gA9AALRbKaERfxwJoiX0A73QbTToxteIAuIaFshhgIZfqK8s7clqgnA==
 
 ua-parser-js@^0.7.9:
   version "0.7.17"

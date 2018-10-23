@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BackHandler } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isAndroid } from 'libs/device';
@@ -14,37 +15,62 @@ export default () => (C) => {
             super(props);
 
             if (isAndroid) {
-                this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+                Navigation.events().bindComponent(this);
             }
         }
 
-        onNavigatorEvent(event) {
-            switch (event.id) {
-                case 'willAppear':
-                    this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-                    break;
-                case 'willDisappear':
-                    this.backHandler.remove();
-                    break;
-                default:
-                    break;
+        /**
+         * Remove back handler
+         *
+         * @method componentDidDisappear
+         */
+        componentDidDisappear() {
+            if (this.backHandler) {
+                this.backHandler.remove();
             }
         }
 
+        /**
+         * Add back handler
+         *
+         * @method componentDidAppear
+         */
+        componentDidAppear() {
+            this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        }
+
+        /**
+         * On backpress, navigate to home.
+         *
+         * @method handleBackPress
+         */
         handleBackPress = () => {
             const { theme: { bar, body } } = this.props;
 
-            this.props.navigator.push({
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: bar.bg,
+            Navigation.setStackRoot('appStack', {
+                component: {
+                    name: 'home',
+                    options: {
+                        animations: {
+                            setStackRoot: {
+                                enable: false,
+                            },
+                        },
+                        layout: {
+                            backgroundColor: body.bg,
+                            orientation: ['portrait'],
+                        },
+                        topBar: {
+                            visible: false,
+                            drawBehind: true,
+                            elevation: 0,
+                        },
+                        statusBar: {
+                            drawBehind: true,
+                            backgroundColor: bar.alt,
+                        },
+                    },
                 },
-                animated: false,
             });
 
             return true;
@@ -56,8 +82,6 @@ export default () => (C) => {
     }
 
     WithBackPressGoToHome.propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
     };

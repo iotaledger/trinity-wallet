@@ -49,13 +49,6 @@
         "proceed": "Fortsett",
         "qr": "QR",
         "enterSeed": "Vennligst skriv inn hovednøkkelen.",
-        "mainWallet": "HOVEDKONTO",
-        "secondWallet": "ANDRE KONTO",
-        "thirdWallet": "TREDJE KONTO",
-        "fourthWallet": "FJERDE KONTO",
-        "fifthWallet": "FEMTE KONTO",
-        "sixthWallet": "SJETTE KONTO",
-        "otherWallet": "ANNEN KONTO",
         "yes": "Ja",
         "no": "Nei",
         "okay": "Ok",
@@ -148,7 +141,10 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -207,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
-        "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet.",
-        "seedCopied": "Kopierte hovednøkkelen til utklippstavlen",
-        "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
-        "copyToClipboard": "Kopier hovednøkkel",
-        "shareSeed": "Kopier hovednøkkelen til en sikker passord manager",
-        "storeEncrypted": "Lagre hovednøkkelen din kryptert i en passord manager.",
-        "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
-        "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
-        "passwordManagerCheckbox": "Jeg ønsker å lagre hovednøkkelen i en passord manager",
-        "copy": "KOPIER",
-        "noPasswordManagers": "Ingen støttet passord manager er installert",
-        "noPasswordManagersExplanation": "Ingen støttet passord manager ble funnet på enheten. Vennligst installer Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Dersom du ønsker å lagre hovednøkkelen i en passord manager må du følge guiden fra følgende lenke"
+        "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -450,7 +434,8 @@
         "receive": "Motta",
         "empty": "Tom",
         "retrying": "Prøver på nytt",
-        "yesterday": "I går"
+        "yesterday": "I går",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -527,9 +512,9 @@
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Er du sikker på at du vil slette</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonshistorikk vil bli fjernet.",
-        "thisAction": "Denne handlingen kan ikke angres.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Skriv inn ditt passord for å slette kontoen."
     },
     "manualSync": {

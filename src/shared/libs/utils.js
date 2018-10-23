@@ -183,36 +183,6 @@ export const updatePersistedState = (incomingState, restoredState) => {
 };
 
 /**
- * Takes in the navigator object and pushes screen (mobile)
- *
- * @method pushScreen
- * @param {object} navigator
- * @param {string} screen
- * @param {object} props
- */
-export const pushScreen = (
-    navigator,
-    screen,
-    props = {
-        navigatorStyle: {
-            navBarHidden: true,
-            navBarTransparent: true,
-            screenBackgroundColor: '#1a373e',
-        },
-        animated: false,
-        overrideBackPress: true,
-    },
-) => {
-    // FIXME: Unneeded method. Remove when routing is sorted.
-    if (navigator) {
-        navigator.push({
-            ...props,
-            screen,
-        });
-    }
-};
-
-/**
  * Used for setting correct CryptoCompare URL when fetching chart data
  *
  * @method getUrlTimeFormat
@@ -313,4 +283,29 @@ export const isValidHttpsUrl = (url) => {
         return true;
     }
     return false;
+};
+
+/**
+ * Gets random nodes.
+ *
+ * @method rgbToHex
+ * @param {string} Rgb as string
+ *
+ * @returns {String}
+ */
+export const rgbToHex = (c) => {
+    const convert = (x) =>
+        '#' +
+        x
+            .map((x) => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            })
+            .join('');
+    c = c
+        .split('(')[1]
+        .split(')')[0]
+        .split(', ')
+        .map(Number);
+    return convert(c);
 };

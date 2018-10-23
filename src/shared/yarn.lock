@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@babel/runtime@^7.1.2":
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
+  integrity sha512-Y3SCjmhSupzFB6wcv1KmmFucH6gDVnI30WjOcicV10ju0cZjak3Jcs67YLIXBrmZYw1xCrVeJPbycFwrqNyxpg==
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@sinonjs/formatio@^2.0.0":
   version "2.0.0"
   resolved "http://registry.npmjs.org/@sinonjs/formatio/-/formatio-2.0.0.tgz#84db7e9eb5531df18a8c5e0bfb6e449e55e654b2"
@@ -768,6 +775,14 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+create-react-context@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
+  integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
 crypto-js@^3.1.9-1:
   version "3.1.9-1"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
@@ -832,6 +847,19 @@ esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
+
+fbjs@^0.8.0:
+  version "0.8.17"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
+  integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
 
 fbjs@^0.8.16:
   version "0.8.16"
@@ -898,6 +926,11 @@ growl@1.10.5:
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.10.5.tgz#f2735dc2283674fa67478b10181059355c369e5e"
   integrity sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA==
 
+gud@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
+  integrity sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==
+
 has-ansi@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -915,7 +948,14 @@ he@1.1.1:
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
   integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
 
-hoist-non-react-statics@2.3.1, hoist-non-react-statics@^2.2.1:
+hoist-non-react-statics@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
+  integrity sha512-1kXwPsOi0OGQIZNVMPvgWJ9tSnGMiMfJdihqEzrPEXlHOBh9AAHXX/QYmAJTXztnz/K+PQ8ryCb4eGaN6HlGbQ==
+  dependencies:
+    react-is "^16.3.2"
+
+hoist-non-react-statics@^2.2.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
   integrity sha1-ND24TGAYxlB3iJgkATWhQg7iLOA=
@@ -935,10 +975,10 @@ html-parse-stringify2@2.0.1:
   dependencies:
     void-elements "^2.0.1"
 
-i18next@^10.2.2:
-  version "10.2.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.2.tgz#1f2dc55ca2e8d7e071f7aff9f78654ef7f003c0e"
-  integrity sha512-sWazkOEWjPxfcFEATDaZsHNkIbcCTFzee+qNoJyBWl1jHz0Haabhfk+/j2KVrZcDp2v7tZ9FDSUj3kh6G/IF0Q==
+i18next@^11.9.0:
+  version "11.9.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.9.0.tgz#c30c0a5e0a857124923a8dd1ce8f1df603e30c70"
+  integrity sha512-NDuIoELzyJ+29kc29j9aKgzjZht4kEKh3PPdz0qCEC9ZUpgRVaWUdkMRES/NVTcpe1ei4MMwY8DNWBWCIUlAng==
 
 iconv-lite@~0.4.13:
   version "0.4.19"
@@ -1270,14 +1310,20 @@ querystringify@~1.0.0:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
   integrity sha1-YoYkIRLFtxL6ZU5SZlK/ahP/Bcs=
 
-react-i18next@^7.3.4:
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.3.4.tgz#d5932d47ac7f0d723eecef492ea97b7232673706"
-  integrity sha1-1ZMtR6x/DXI+7O9JLql7cjJnNwY=
+react-i18next@^8.0.7:
+  version "8.0.7"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-8.0.7.tgz#9e6ffdaa01f4454ba216fa50377a7c2ba6f1e662"
+  integrity sha512-oJDVe5X8QK72NYYH7/VQtopONZPcNiarlWdVuCSkn9PucQCEAOf/yRt0V2LdjC4nBY48Y20/540glwR1nlE9gA==
   dependencies:
-    hoist-non-react-statics "2.3.1"
+    "@babel/runtime" "^7.1.2"
+    create-react-context "0.2.3"
+    hoist-non-react-statics "3.0.1"
     html-parse-stringify2 "2.0.1"
-    prop-types "^15.6.0"
+
+react-is@^16.3.2:
+  version "16.5.2"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
+  integrity sha512-hSl7E6l25GTjNEZATqZIuWOgSnpXb3kD0DVCujmg46K5zLxsbiKaaT6VO9slkSBDPZfYs30lwfJwbOFOnoEnKQ==
 
 react-redux@^5.0.6:
   version "5.0.6"
@@ -1364,6 +1410,11 @@ regenerator-runtime@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.0.tgz#7e54fe5b5ccd5d6624ea6255c3473be090b802e1"
   integrity sha512-/aA0kLeRb5N9K0d4fw7ooEbI+xDe+DKD499EQqygGqeS8N3xto15p09uY2xj7ixP81sNPXvRLnAQIqdVStgb1A==
+
+regenerator-runtime@^0.12.0:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
+  integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"
@@ -1590,6 +1641,11 @@ type-detect@^4.0.5:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
+
+ua-parser-js@^0.7.18:
+  version "0.7.18"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.18.tgz#a7bfd92f56edfb117083b69e31d2aa8882d4b1ed"
+  integrity sha512-LtzwHlVHwFGTptfNSgezHp7WUlwiqb0gA9AALRbKaERfxwJoiX0A73QbTToxteIAuIaFshhgIZfqK8s7clqgnA==
 
 ua-parser-js@^0.7.9:
   version "0.7.17"
