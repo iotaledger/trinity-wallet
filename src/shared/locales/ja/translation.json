@@ -608,7 +608,7 @@
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのシード金庫鍵を選んでください。バックアップ用のシード金庫からシードを復元するには、このシード金庫鍵が必要です。シード金庫鍵はTrinityウォレットのパスワードと同じにできます。"
     },
     "chart": {
         "mcap": "時価総額",
