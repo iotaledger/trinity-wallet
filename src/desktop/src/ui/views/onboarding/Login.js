@@ -110,7 +110,13 @@ class Login extends React.Component {
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
         const accountMeta = wallet.addingAdditionalAccount ? wallet.additionalAccountMeta : currentAccountMeta;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        let seedStore;
+        try {
+            seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        } catch (e) {
+            e.accountName = accountName;
+            throw e;
+        }
 
         this.props.getPrice();
         this.props.getChartData();
@@ -120,7 +126,7 @@ class Login extends React.Component {
         if (wallet.addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
         } else {
-            this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
+            this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
     };
 
@@ -168,7 +174,15 @@ class Login extends React.Component {
                 verifyTwoFA: false,
             });
 
-            this.setupAccount();
+            try {
+                await this.setupAccount();
+            } catch (err) {
+                generateAlert(
+                    'error',
+                    t('unrecognisedAccount'),
+                    t('unrecognisedAccountExplanation', { accountName: err.accountName }),
+                );
+            }
         }
     };
 
@@ -176,7 +190,7 @@ class Login extends React.Component {
         const { t, wallet, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (ui.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
+        if (ui.isFetchingAccountInfo || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop

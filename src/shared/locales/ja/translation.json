@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
         "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
         "errorAccessingKeychain": "キーチェーンに関するエラー",
-        "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。"
+        "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "シードを消去しました。",
-        "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
-        "seedCopied": "シードをクリップボードにコピーしました。",
-        "seedCopiedExplanation": "\"完了\"を押すか60秒後にはシードがクリップボードから消去されます。",
-        "copyToClipboard": "シードをコピー",
-        "shareSeed": "シードを安全なパスワードマネージャーで管理してください。",
-        "storeEncrypted": "シードは暗号化してパスワードマネージャーに保存してください。",
-        "doNotOpen": "シードを保存中にパスワードマネージャー以外のアプリを開かないでください。",
-        "tapConfirm": "確認するには、下のチェックボックスをタップしてください。",
-        "passwordManagerCheckbox": "私はシードをパスワードマネージャーに保存します。",
-        "copy": "コピー",
-        "noPasswordManagers": "サポートされているパスワードマネージャーがインストールされていません。",
-        "noPasswordManagersExplanation": "お使いのデバイスにサポートされているパスワードマネージャーが見つかりませんでした。 Keepass2Androidをインストールしてください。",
-        "followTutorialToSecurelyShareSeed": "シードをパスワードマネージャーに保存する場合は、次のリンクからチュートリアルを実行する必要があります。"
+        "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだシードです。",
@@ -445,7 +434,8 @@
         "receive": "受取",
         "empty": "空",
         "retrying": "再試行中",
-        "yesterday": "昨日"
+        "yesterday": "昨日",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -522,9 +512,9 @@
         "discordInformation": "どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>{{accountName}}を</1><2></2><3>削除してもよろしいですか？</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "シードと取引の履歴を削除します。",
-        "thisAction": "この操作は元に戻せません。",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "アカウントを削除するにはパスワードを入力してください。"
     },
     "manualSync": {

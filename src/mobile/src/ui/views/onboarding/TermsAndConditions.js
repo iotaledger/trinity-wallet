@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-markdown-renderer';
 import {
@@ -11,10 +12,9 @@ import {
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
-import Button from 'ui/components/Button';
-import GENERAL from 'ui/theme/general';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import i18next from 'shared-modules/libs/i18next';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
     },
@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
 /** Welcome screen component */
 class TermsAndConditions extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -92,19 +90,35 @@ class TermsAndConditions extends Component {
      * @method onNextPress
      */
     onNextPress() {
-        const { theme } = this.props;
+        const { theme: { bar } } = this.props;
         this.props.acceptTerms();
-        this.props.navigator.push({
-            screen: 'privacyPolicy',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: 'white',
-                drawUnderStatusBar: true,
-                statusBarColor: theme.bar.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'privacyPolicy',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: 'white',
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: bar.bg,
+                    },
+                },
             },
-            animated: false,
         });
     }
 
@@ -114,7 +128,6 @@ class TermsAndConditions extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                     <Text style={[styles.titleText, textColor]}>{t('termsAndConditions')}</Text>
                 </View>
@@ -138,15 +151,14 @@ class TermsAndConditions extends Component {
                 </ScrollView>
                 {this.state.hasReadTerms && (
                     <View style={{ position: 'absolute', bottom: 0 }}>
-                        <Button
-                            onPress={() => this.onNextPress()}
-                            style={{
+                        <SingleFooterButton
+                            onButtonPress={() => this.onNextPress()}
+                            buttonStyle={{
                                 wrapper: { backgroundColor: primary.color },
                                 children: { color: primary.body },
                             }}
-                        >
-                            {t('accept')}
-                        </Button>
+                            buttonText={t('accept')}
+                        />
                     </View>
                 )}
             </View>

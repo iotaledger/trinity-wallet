@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Fonts from 'ui/theme/fonts';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -11,14 +11,14 @@ import { width, height } from 'libs/dimensions';
 const styles = StyleSheet.create({
     modalContent: {
         alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
         paddingHorizontal: width / 10,
     },
     modalText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -30,16 +30,12 @@ export class FingerprintModal extends PureComponent {
         t: PropTypes.func.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
-        /** Modal background color */
-        backgroundColor: PropTypes.object.isRequired,
-        /** Modal text color */
-        textColor: PropTypes.object.isRequired,
-        /** Modal border color */
-        borderColor: PropTypes.object.isRequired,
         /** Determines in which instance the modal is being used*/
         instance: PropTypes.string.isRequired,
         /** @ignore */
-        isFingerprintEnabled: PropTypes.bool,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
+        theme: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -69,15 +65,15 @@ export class FingerprintModal extends PureComponent {
     }
 
     render() {
-        const { backgroundColor, textColor, borderColor } = this.props;
+        const { theme: { body } } = this.props;
 
         return (
             <TouchableOpacity
-                style={[{ width: width / 1.15, alignItems: 'center' }, backgroundColor]}
+                style={[{ width: Styling.contentWidth, alignItems: 'center' }, { backgroundColor: body.bg }]}
                 onPress={this.props.hideModal}
             >
-                <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.modalText, textColor]}>{this.getText()}</Text>
+                <View style={[styles.modalContent, { borderColor: body.color }]}>
+                    <Text style={[styles.modalText, { color: body.color }]}>{this.getText()}</Text>
                 </View>
             </TouchableOpacity>
         );

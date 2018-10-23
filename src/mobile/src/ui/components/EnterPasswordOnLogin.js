@@ -2,24 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard,
-    BackHandler,
-} from 'react-native';
-import Modal from 'react-native-modal';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
+import { connect } from 'react-redux';
+import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { isAndroid } from 'libs/device';
+import { Styling } from 'ui/theme/general';
 import CustomTextInput from './CustomTextInput';
-import InfoBox from './InfoBox';
-import OnboardingButtons from './OnboardingButtons';
+import DualFooterButtons from './DualFooterButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -37,37 +28,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        textAlign: 'left',
-    },
-    infoTextBold: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    okButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    okText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
     },
 });
 
@@ -88,13 +48,12 @@ export class EnterPasswordOnLogin extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
-        this.state = {
-            isModalActive: false,
-        };
         this.openModal = this.openModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
@@ -120,49 +79,20 @@ export class EnterPasswordOnLogin extends Component {
     };
 
     openModal() {
-        this.setState({ isModalActive: true });
+        const { theme, t } = this.props;
+        this.props.toggleModalActivity('biometricInfo', {
+            theme,
+            t,
+            hideModal: () => this.props.toggleModalActivity(),
+        });
     }
 
     hideModal() {
-        this.setState({ isModalActive: false });
+        this.props.toggleModalActivity();
     }
-
-    renderModalContent = () => {
-        const { t, theme: { body, primary } } = this.props;
-        const textColor = { color: body.color };
-
-        return (
-            <View style={{ backgroundColor: body.bg }}>
-                <InfoBox
-                    body={body}
-                    width={width / 1.15}
-                    text={
-                        <View>
-                            <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
-                                {t('whyBiometricDisabled')}
-                            </Text>
-                            <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
-                                {t('whyBiometricDisabledExplanation')}
-                            </Text>
-                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
-                                <TouchableOpacity onPress={() => this.hideModal()}>
-                                    <View style={[styles.okButton, { borderColor: primary.color }]}>
-                                        <Text style={[styles.okText, { color: primary.color }]}>
-                                            {t('global:okay')}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    }
-                />
-            </View>
-        );
-    };
 
     render() {
         const { t, theme, password, isFingerprintEnabled } = this.props;
-        const { isModalActive } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -174,7 +104,7 @@ export class EnterPasswordOnLogin extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -189,30 +119,21 @@ export class EnterPasswordOnLogin extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <OnboardingButtons
+                        <DualFooterButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
                             leftButtonText={t('setNode')}
                             rightButtonText={t('login')}
                         />
                     </View>
-                    <Modal
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={theme.body.bg}
-                        backdropOpacity={0.9}
-                        style={styles.modal}
-                        isVisible={isModalActive}
-                        onBackButtonPress={() => this.hideModal()}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid}
-                    >
-                        {this.renderModalContent()}
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
     }
 }
 
-export default withNamespaces(['login', 'global'])(EnterPasswordOnLogin);
+const mapDispatchToProps = {
+    toggleModalActivity,
+};
+
+export default withNamespaces(['login', 'global'])(connect(null, mapDispatchToProps)(EnterPasswordOnLogin));

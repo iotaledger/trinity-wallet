@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
 import { withNamespaces } from 'react-i18next';
 import { width } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     checksumText: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         marginLeft: width / 70,
     },
     checksum: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         marginLeft: width / 70,
         width: width / 10,

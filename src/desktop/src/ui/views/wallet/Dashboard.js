@@ -59,7 +59,7 @@ class Dashboard extends React.PureComponent {
 
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
-        this.props.getAccountInfo(seedStore, accountName, null, Electron.notify);
+        this.props.getAccountInfo(seedStore, accountName, Electron.notify);
     };
 
     render() {

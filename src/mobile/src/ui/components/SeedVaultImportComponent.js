@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import timer from 'react-native-timer';
 import { DocumentPicker } from 'react-native-document-picker';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
 import { width } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     infoText: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         paddingLeft: width / 70,
     },
@@ -38,6 +39,13 @@ export class SeedVaultImportComponent extends Component {
         onRef: PropTypes.func.isRequired,
     };
 
+    constructor() {
+        super();
+        this.state = {
+            seedVault: [],
+        };
+    }
+
     componentWillMount() {
         const { t, onRef } = this.props;
         onRef(this);
@@ -48,15 +56,20 @@ export class SeedVaultImportComponent extends Component {
                 if (msg === 'error') {
                     return this.props.generateAlert(
                         'error',
-                        t('global:unrecognisedPassword'),
-                        t('global:unrecognisedPasswordExplanation'),
+                        t('seedVault:unrecognisedKey'),
+                        t('seedVault:unrecognisedKeyExplanation'),
                     );
                 }
                 this.props.onSeedImport(msg);
-                return this.props.generateAlert(
-                    'success',
-                    t('seedVault:importSuccess'),
-                    t('seedVault:importSuccessExplanation'),
+                return timer.setTimeout(
+                    'timeout',
+                    () =>
+                        this.props.generateAlert(
+                            'success',
+                            t('seedVault:importSuccess'),
+                            t('seedVault:importSuccessExplanation'),
+                        ),
+                    300,
                 );
             },
             this,
@@ -75,7 +88,7 @@ export class SeedVaultImportComponent extends Component {
     validatePassword(password) {
         const { t } = this.props;
         if (password === '') {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+            return this.props.generateAlert('error', t('seedVault:emptyKey'), t('seedVault:emptyKeyExplanation'));
         }
         const seedVaultString = this.state.seedVault.toString();
         return nodejs.channel.send('import:' + seedVaultString + ':' + password);
@@ -141,7 +154,6 @@ export class SeedVaultImportComponent extends Component {
 
     render() {
         const { t, theme } = this.props;
-
         return (
             <TouchableOpacity onPress={() => this.importSeedVault()} style={{ flex: 0.7, justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'row' }}>

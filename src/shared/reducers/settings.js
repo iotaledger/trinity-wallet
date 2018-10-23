@@ -127,10 +127,6 @@ const initialState = {
      */
     acceptedPrivacy: false,
     /**
-     * Keeps track if a user has visited the seed share tutorial on android devices
-     */
-    hasVisitedSeedShareTutorial: false,
-    /**
      * Determines if wallet should hide empty transactions on history screens
      */
     hideEmptyTransactions: false,
@@ -266,11 +262,6 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 acceptedPrivacy: true,
-            };
-        case ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS:
-            return {
-                ...state,
-                hasVisitedSeedShareTutorial: action.payload,
             };
         case ActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
             return {

@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
         "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
         "errorAccessingKeychain": "Błąd magazynu kluczy",
-        "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć."
+        "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed wyczyszczony",
-        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "seedCopied": "Seed skopiowany do schowka",
-        "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"GOTOWE\", lub po upływie 60 sekund.",
-        "copyToClipboard": "Kopiuj seed",
-        "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł",
-        "storeEncrypted": "Przechowuj swój seed zaszyfrowany w menedżerze haseł.",
-        "doNotOpen": "Nie otwieraj innych aplikacji podczas tego procesu.",
-        "tapConfirm": "Zaznacz poniższe pole, aby potwierdzić.",
-        "passwordManagerCheckbox": "Będę przechowywać mój seed w menedżerze haseł",
-        "copy": "KOPIUJ",
-        "noPasswordManagers": "Brak obsługiwanych menedżerów haseł",
-        "noPasswordManagersExplanation": "Na Twoim urządzeniu nie znaleziono obsługiwanych menedżerów haseł. Zainstaluj Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jeśli chcesz przechowywać swój seed w menedżerze haseł, musisz wykonać samouczek z poniższego linku"
+        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa."
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -445,7 +434,8 @@
         "receive": "Odbierz",
         "empty": "Brak",
         "retrying": "Ponawianie",
-        "yesterday": "Wczoraj"
+        "yesterday": "Wczoraj",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -522,9 +512,9 @@
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Czy na pewno chcesz usunąć</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "Tej czynności nie można cofnąć.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
     },
     "manualSync": {

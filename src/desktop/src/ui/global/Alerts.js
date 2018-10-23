@@ -15,7 +15,7 @@ class Alerts extends React.PureComponent {
 
     static propTypes = {
         /** @ignore */
-        disposeOffAlert: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         alerts: PropTypes.object.isRequired,
     };
@@ -26,7 +26,7 @@ class Alerts extends React.PureComponent {
         }
         if (nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
             this.timeout = setTimeout(() => {
-                this.props.disposeOffAlert();
+                this.props.dismissAlert();
             }, nextProps.alerts.closeInterval);
         }
     }
@@ -35,16 +35,16 @@ class Alerts extends React.PureComponent {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
-        this.props.disposeOffAlert();
+        this.props.dismissAlert();
     }
 
     render() {
-        const { alerts, disposeOffAlert } = this.props;
+        const { alerts, dismissAlert } = this.props;
 
         return (
             <div className={css.wrapper}>
                 <div
-                    onClick={() => disposeOffAlert()}
+                    onClick={() => dismissAlert()}
                     className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
                 >
                     <span>

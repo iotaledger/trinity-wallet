@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Ключ удален из буфера обмена",
-        "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
-        "seedCopied": "Ключ скопирован в буфер обмена",
-        "seedCopiedExplanation": "Ключ будет удалён из буфера обмена после нажатия кнопки «ГОТОВО» или по истечению 60 секунд.",
-        "copyToClipboard": "Скопировать ключ",
-        "shareSeed": "Переслать Ваш ключ в безопасный менеджер паролей",
-        "storeEncrypted": "Поместите Ваш ключ в зашифрованном виде в менеджере паролей.",
-        "doNotOpen": "Не открывайте других приложений во время этого процесса.",
-        "tapConfirm": "Пожалуйста, поставьте галочку ниже, чтобы подтвердить.",
-        "passwordManagerCheckbox": "Я буду хранить мой ключ в менеджере паролей",
-        "copy": "СКОПИРОВАТЬ",
-        "noPasswordManagers": "Не установлено поддерживаемых менеджеров паролей",
-        "noPasswordManagersExplanation": "На Вашем устройстве не было найдено поддерживаемых менеджеров паролей. Пожалуйста, установите Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Если вы хотите хранить ваш ключ в менеджере паролей, вы должны следовать инструкциям по следующей ссылке"
+        "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности."
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -445,7 +434,8 @@
         "receive": "Получить",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -522,9 +512,9 @@
         "discordInformation": "Пожалуйста посетите канал #help в Discord, чтобы узнать, что вы можете сделать."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Вы уверены что хотите удалить</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Ваш ключ и история транзакций будут удалены.",
-        "thisAction": "Это действие нельзя будет отменить.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Введите Ваш пароль для удаления данного счёта."
     },
     "manualSync": {

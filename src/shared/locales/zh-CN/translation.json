@@ -143,7 +143,8 @@
         "tryingAgainWithDifferentNode": "更换到其它节点重试中。",
         "errorFetchingAccountInformation": "获取帐户信息时出错。",
         "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage."
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -202,19 +203,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "剪贴板已清空",
-        "seedClearedExplanation": "为了安全，种子已从剪贴板中清除。",
-        "seedCopied": "将种子复制到剪贴板",
-        "seedCopiedExplanation": "按下\"完成\"按钮或者60秒后，种子将被清除。",
-        "copyToClipboard": "复制种子",
-        "shareSeed": "将种子共享到安全密码管理器中",
-        "storeEncrypted": "将您的种子加密保存在密码管理器中。",
-        "doNotOpen": "在此过程中，请勿打开其他任何应用程序。",
-        "tapConfirm": "请勾选下面的复选框予以确认。",
-        "passwordManagerCheckbox": "我会把我的种子存储在密码管理器中",
-        "copy": "复制",
-        "noPasswordManagers": "未安装支持的密码管理器",
-        "noPasswordManagersExplanation": "在您的设备上找不到支持的密码管理器，请安装 Keepass2Android。",
-        "followTutorialToSecurelyShareSeed": "如果您希望将您的种子存储在密码管理器中，请务必遵循以下链接中的教程"
+        "seedClearedExplanation": "为了安全，种子已从剪贴板中清除。"
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
@@ -445,7 +434,8 @@
         "receive": "接收",
         "empty": "清空",
         "retrying": "重试中",
-        "yesterday": "昨天"
+        "yesterday": "昨天",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -522,9 +512,9 @@
         "discordInformation": "请前往Discord的#help频道寻求帮助。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>您确定要删除</1><2></2><3>{{accountName}}吗？</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
-        "thisAction": "本操作无法撤销。",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "请输入密码以删除该帐户。"
     },
     "manualSync": {

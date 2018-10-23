@@ -28,7 +28,7 @@ import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } 
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
 import SeedStore from 'libs/SeedStore';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
 import { Icon } from 'ui/theme/icons';
@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     flipCard: {
-        width: width / 1.15,
+        width: Styling.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
         borderWidth: 1,
         backfaceVisibility: 'hidden',
     },
     flipCardBack: {
-        width: width / 1.15,
+        width: Styling.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
         position: 'absolute',
@@ -143,11 +143,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     addressText: {
         fontFamily: 'SourceCodePro-Medium',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         lineHeight: width / 17,
         justifyContent: 'center',

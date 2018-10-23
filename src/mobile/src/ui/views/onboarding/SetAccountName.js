@@ -4,25 +4,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import SeedStore from 'libs/SeedStore';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-
-console.ignoredYellowBox = true; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
     container: {
@@ -49,7 +46,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
@@ -59,8 +56,8 @@ const styles = StyleSheet.create({
 /** Set Account Name component */
 export class SetAccountName extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -164,17 +161,7 @@ export class SetAccountName extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        const { theme: { body } } = this.props;
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     /**
@@ -184,33 +171,33 @@ export class SetAccountName extends Component {
      */
     navigateTo(screen) {
         const { theme: { body } } = this.props;
-
-        if (screen === 'loading') {
-            return this.props.navigator.push({
-                screen,
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: screen,
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
                 },
-                animated: false,
-                overrideBackPress: true,
-            });
-        }
-        return this.props.navigator.push({
-            screen,
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
             },
-            animated: false,
         });
     }
 
@@ -221,7 +208,6 @@ export class SetAccountName extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
@@ -234,7 +220,7 @@ export class SetAccountName extends Component {
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={(text) => this.setState({ accountName: text })}
-                                containerStyle={{ width: width / 1.15 }}
+                                containerStyle={{ width: Styling.contentWidth }}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -256,7 +242,7 @@ export class SetAccountName extends Component {
                             <View style={{ flex: 0.5 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
                                 leftButtonText={t('global:goBack')}
@@ -267,7 +253,6 @@ export class SetAccountName extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
             </View>
         );
     }

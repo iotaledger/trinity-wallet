@@ -15,7 +15,7 @@ import SeedStore from 'libs/SeedStore';
 import { hash } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     generalText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -76,25 +76,25 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     viewSeedButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     },
     viewSeedText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -251,7 +251,7 @@ class ViewSeed extends Component {
                                     <CustomTextInput
                                         label={t('global:password')}
                                         onChangeText={(password) => this.setState({ password })}
-                                        containerStyle={{ width: width / 1.15 }}
+                                        containerStyle={{ width: Styling.contentWidth }}
                                         autoCapitalize="none"
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically

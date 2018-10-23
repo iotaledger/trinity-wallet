@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { width, height } from 'libs/dimensions';
 import { locale, timezone } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -12,15 +12,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height / 40,
         alignItems: 'center',
-        width: width / 1.15,
+        width: Styling.contentWidth,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
     },
     icon: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
     },
