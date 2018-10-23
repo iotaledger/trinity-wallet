@@ -38,7 +38,6 @@ export default {
     INVALID_TRANSACTIONS_PROVIDED: 'Invalid transactions provided.',
     INCLUSION_STATES_SIZE_MISMATCH: 'Inclusion states size mismatch.',
     INPUTS_THRESHOLD_CANNOT_BE_ZERO: 'Inputs threshold cannot be zero.',
-    INPUTS_LIMIT_CANNOT_BE_ZERO: 'Inputs limit cannot be zero.',
     CANNOT_FIND_INPUTS_WITH_PROVIDED_LIMIT: 'Cannot find inputs with provided limit.',
     INSUFFICIENT_BALANCE: 'Insufficient balance.',
     INVALID_MAX_INPUTS_PROVIDED: 'Invalid max inputs provided.',

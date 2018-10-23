@@ -24,18 +24,18 @@ describe('libs: iota/inputs', () => {
         let addressData;
 
         before(() => {
-            addressData = {
-                AAA: { index: 0, balance: 1, spent: { local: false, remote: false } },
-                BBB: { index: 1, balance: 2, spent: { local: false, remote: false } },
-                CCC: { index: 2, balance: 0, spent: { local: false, remote: false } },
-                DDD: { index: 3, balance: 99, spent: { local: false, remote: false } },
-                EEE: { index: 4, balance: 0, spent: { local: false, remote: false } },
-                FFF: { index: 5, balance: 50, spent: { local: false, remote: false } },
-                GGG: { index: 6, balance: 30, spent: { local: false, remote: false } },
-                HHH: { index: 7, balance: 6, spent: { local: false, remote: false } },
-                III: { index: 8, balance: 7, spent: { local: false, remote: false } },
-                JJJ: { index: 9, balance: 1, spent: { local: false, remote: false } },
-            };
+            addressData = [
+                { index: 0, balance: 1, spent: { local: false, remote: false }, address: 'AAA' },
+                { index: 1, balance: 2, spent: { local: false, remote: false }, address: 'BBB' },
+                { index: 2, balance: 0, spent: { local: false, remote: false }, address: 'CCC' },
+                { index: 3, balance: 99, spent: { local: false, remote: false }, address: 'DDD' },
+                { index: 4, balance: 0, spent: { local: false, remote: false }, address: 'EEE' },
+                { index: 5, balance: 50, spent: { local: false, remote: false }, address: 'FFF' },
+                { index: 6, balance: 30, spent: { local: false, remote: false }, address: 'GGG' },
+                { index: 7, balance: 6, spent: { local: false, remote: false }, address: 'HHH' },
+                { index: 8, balance: 7, spent: { local: false, remote: false }, address: 'III' },
+                { index: 9, balance: 1, spent: { local: false, remote: false }, address: 'JJJ' },
+            ];
         });
 
         describe('when has insufficient balance on inputs', () => {
@@ -58,18 +58,18 @@ describe('libs: iota/inputs', () => {
             });
         });
 
-        describe('when provided limit is zero', () => {
-            it('should throw with an error "Inputs limit cannot be zero."', () => {
+        describe('when provided maxInputs is not a number', () => {
+            it('should throw with an error "Invalid max inputs provided."', () => {
                 try {
-                    prepareInputs(addressData, 10, 0);
+                    prepareInputs(addressData, 10, null);
                 } catch (e) {
-                    expect(e.message).to.eql('Inputs limit cannot be zero.');
+                    expect(e.message).to.eql('Invalid max inputs provided.');
                 }
             });
         });
 
-        describe('when limit is provided', () => {
-            it('should not select inputs with size greater than the limit', () => {
+        describe('when maxInputs is greater than zero', () => {
+            it('should not select inputs with size greater than maxInputs', () => {
                 const limit = random(1, 4);
                 const threshold = random(1, reduce(addressData, (balance, data) => balance + data.balance, 0));
 
@@ -112,7 +112,7 @@ describe('libs: iota/inputs', () => {
             // TODO: Test when provided threshold does not have an exact match for balance of any address
         });
 
-        describe('when limit is not provided (limit === null)', () => {
+        describe('when maxInputs is zero', () => {
             let inputsMap;
 
             before(() => {
@@ -136,7 +136,7 @@ describe('libs: iota/inputs', () => {
 
             it('should choose inputs by optimal value', () => {
                 each(inputsMap, (inputs, threshold) => {
-                    const result = prepareInputs(addressData, threshold, null);
+                    const result = prepareInputs(addressData, threshold, 0);
 
                     expect(result.inputs).to.eql(inputs);
                     expect(result.balance).to.eql(reduce(inputs, (total, input) => total + input.balance, 0));
@@ -255,7 +255,7 @@ describe('libs: iota/inputs', () => {
             });
         });
 
-        describe('when maxInputs is not null or number', () => {
+        describe('when maxInputs not a number', () => {
             it('should throw with an error with message "Invalid max inputs provided."', () => {
                 return getInputs()(
                     {
@@ -265,7 +265,7 @@ describe('libs: iota/inputs', () => {
                     },
                     [],
                     1,
-                    undefined,
+                    null,
                 ).catch((error) => expect(error.message).to.equal('Invalid max inputs provided.'));
             });
         });

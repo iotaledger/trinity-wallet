@@ -11,12 +11,18 @@ class Keychain {
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
-     * @param {number} maxInputs - Maximum number of inputs allowed per bundle
      */
-    constructor(key, accountId, maxInputs) {
+    constructor(key, accountId) {
         this.key = cloneDeep(key);
         this.accountId = accountId;
-        this.maxInputs = maxInputs || null;
+    }
+
+    /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    get maxInputs() {
+        return 0;
     }
 
     /**

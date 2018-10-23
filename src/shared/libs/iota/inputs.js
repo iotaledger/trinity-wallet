@@ -4,7 +4,6 @@ import differenceBy from 'lodash/differenceBy';
 import head from 'lodash/head';
 import each from 'lodash/each';
 import isNumber from 'lodash/isNumber';
-import isNull from 'lodash/isNull';
 import includes from 'lodash/includes';
 import filter from 'lodash/filter';
 import minBy from 'lodash/minBy';
@@ -29,13 +28,13 @@ import { filterNonFundedBundles, constructBundlesFromTransactions } from './tran
  *
  *   @method prepareInputs
  *   @param {array} addressData
- *   @param {number} limit - Inputs limit
+ *   @param {number} maxInputs - Inputs limit
  *   @param {number} threshold - Maximum value (balance) to stop the search
  *   @param {number} [security= 2]
  *
  *   @returns {object} inputs, balance
  **/
-export const prepareInputs = (addressData, threshold, limit = 2, security = DEFAULT_SECURITY) => {
+export const prepareInputs = (addressData, threshold, maxInputs = 2, security = DEFAULT_SECURITY) => {
     const _throw = (error) => {
         throw new Error(error);
     };
@@ -51,8 +50,8 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
         _throw(Errors.INPUTS_THRESHOLD_CANNOT_BE_ZERO);
     }
 
-    if (limit === 0) {
-        _throw(Errors.INPUTS_LIMIT_CANNOT_BE_ZERO);
+    if (!isNumber(maxInputs)) {
+        _throw(Errors.INVALID_MAX_INPUTS_PROVIDED);
     }
 
     const inputs = filter(
@@ -83,10 +82,10 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
 
     // Then try to find inputs where inputs <= limit & sum(inputs) >= threshold
     // If sum exceeds threshold, try to select inputs with minimum size
-    if (isNumber(limit) && size(selectedInputsByOptimalValue) > limit) {
+    if (maxInputs > 0 && size(selectedInputsByOptimalValue) > maxInputs) {
         const inputsWithUniqueBalances = uniqBy(inputs, 'balance');
 
-        const { exactMatches, exceeded } = subsetSumWithLimit(limit)(
+        const { exactMatches, exceeded } = subsetSumWithLimit(maxInputs)(
             map(
                 // Find subset sum with unique balances
                 inputsWithUniqueBalances,
@@ -118,7 +117,7 @@ export const prepareInputs = (addressData, threshold, limit = 2, security = DEFA
             const finalInputs = filter(inputsWithUniqueBalances, (input) => includes(inputsWithMinSize, input.balance));
             const balance = reduce(finalInputs, (acc, input) => acc + input.balance, 0);
 
-            if (balance <= threshold || size(inputsWithMinSize) > limit) {
+            if (balance <= threshold || size(inputsWithMinSize) > maxInputs) {
                 _throw(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
             }
 
@@ -236,14 +235,14 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
  *
  *   @returns {function(array, array, number, *): Promise<object>}
  **/
-export const getInputs = (provider) => (addressData, transactions, threshold, maxInputs = null) => {
+export const getInputs = (provider) => (addressData, transactions, threshold, maxInputs = 0) => {
     // TODO: Validate address data & transactions
     // Check if there is sufficient balance
     if (reduce(addressData, (acc, addressObject) => acc + addressObject.balance, 0) < threshold) {
         return Promise.reject(new Error(Errors.INSUFFICIENT_BALANCE));
     }
 
-    if (!isNull(maxInputs) && !isNumber(maxInputs)) {
+    if (!isNumber(maxInputs)) {
         return Promise.reject(new Error(Errors.INVALID_MAX_INPUTS_PROVIDED));
     }
 
