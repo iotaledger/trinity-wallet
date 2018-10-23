@@ -104,7 +104,9 @@ class Ledger {
 
         const remainder = { address: options.address, keyIndex: options.keyIndex };
 
-        Electron.send('ledger', { awaitTransaction: true });
+        Electron.send('ledger', {
+            awaitTransaction: { address: options.address, value: transfers.reduce((a, b) => a + b.value, 0) },
+        });
         const trytes = await seed.signTransaction(transfers, options.inputs, remainder);
         Electron.send('ledger', { awaitTransaction: false });
 

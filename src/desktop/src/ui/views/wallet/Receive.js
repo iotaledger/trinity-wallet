@@ -160,7 +160,7 @@ class Receive extends React.PureComponent {
                 <div>
                     <Text
                         value={message}
-                        label={t('receive:message')}
+                        label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
                     />
                     <footer>

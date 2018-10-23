@@ -51,8 +51,16 @@
         margin-bottom: 26px;
     }
 
-    p{
-       margin-bottom: 30px;
+    p {
+        margin-bottom: 30px;
+        word-wrap: break-word;
+
+        strong {
+            display: block;
+            font-family: 'SourceCodePro';
+            color: red;
+            font-weight: 600;
+        }
     }
 
     &.on {

@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import { formatValue, formatUnit } from 'libs/iota/utils';
+
 import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
 
@@ -17,11 +19,12 @@ class Ledger extends React.PureComponent {
 
     static propTypes = {
         /** @ignore */
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
-        view: null
+        view: null,
+        transaction: null,
     };
 
     componentDidMount() {
@@ -35,6 +38,7 @@ class Ledger extends React.PureComponent {
 
     onMessage(message) {
         let view = null;
+        let transaction = null;
 
         if (message.awaitConnection) {
             view = 'connection';
@@ -42,10 +46,12 @@ class Ledger extends React.PureComponent {
             view = 'application';
         } else if (message.awaitTransaction) {
             view = 'transaction';
+            transaction = message.awaitTransaction;
         }
 
         this.setState({
-            view
+            view,
+            transaction,
         });
     }
 
@@ -54,7 +60,7 @@ class Ledger extends React.PureComponent {
         Electron.send('ledger', { abort: true });
 
         this.setState({
-            view: null
+            view: null,
         });
     };
 
@@ -91,7 +97,7 @@ class Ledger extends React.PureComponent {
 
     render() {
         const { t } = this.props;
-        const { view } = this.state;
+        const { view, transaction } = this.state;
 
         return (
             <div className={classNames(css.modal, view ? css.on : null)}>
@@ -102,7 +108,16 @@ class Ledger extends React.PureComponent {
                         </span>
                         <h2>{t(`ledger:${view}Title`)}</h2>
                         {this.getIcon(view)}
-                        <p>{t(`ledger:${view}Explanation`)}</p>
+                        {!transaction ? (
+                            t(`ledger:${view}Explanation`)
+                        ) : (
+                            <p>
+                                {t('transferConfirmation:youAreAbout', {
+                                    contents: `${formatValue(transaction.value)}${formatUnit(transaction.value)}`,
+                                })}{' '}
+                                <strong>{transaction.address}</strong>
+                            </p>
+                        )}
                         {view !== 'transaction' && (
                             <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
                                 {t('cancel')}
