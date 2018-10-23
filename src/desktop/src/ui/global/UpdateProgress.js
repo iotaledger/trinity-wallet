@@ -52,8 +52,8 @@ class UpdateProgress extends React.PureComponent {
                                 type="large"
                                 progress={progress.percent}
                                 subtitle={t('updates:downloadProgress', {
-                                    transferred: (progress.transferred / 1048576).toFixed(2) + ' Mb',
-                                    total: (progress.total / 1048576).toFixed(2) + ' Mb',
+                                    transferred: (progress.transferred / 1048576).toFixed(2) + ' MB',
+                                    total: (progress.total / 1048576).toFixed(2) + ' MB',
                                 })}
                             />
                         )}
