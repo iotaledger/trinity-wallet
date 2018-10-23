@@ -116,7 +116,7 @@ export class MainSettings extends Component {
                 name: t('theme'),
                 icon: 'theme',
                 function: () => this.props.setSetting('themeCustomisation'),
-                currentSetting: themeName,
+                currentSetting: t(`themes:${themeName.toLowerCase()}`),
             },
             {
                 name: t('currency'),
