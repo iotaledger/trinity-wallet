@@ -707,9 +707,9 @@
         "sweepError": "잔액 잠금 해제 실패",
         "sweepErrorExplanation": "잠긴 자금을 해제하려는 중 문제가 발생하였습니다. 다시 시도해 보세요.",
         "warningTitle": "경고: 잠긴 자금이 있음",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
+        "explanation": "트리니티 데스크톱 버전 0.3.4에서 일시적으로 잔액이 잠기는 문제가 있었습니다. 버전 0.3.4를 이용해서 거래를 수행한 소수의 사용자들의 경우 영향을 받았을 수 있습니다.",
+        "explanationAccounts": "{{accounts}} 계정에서 잠긴 잔액이 확인되었습니다. 이제 새 주소로 잔액을 옮겨 이 잔액을 복구할 것입니다.",
+        "proceed": "복구 진행",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     }
