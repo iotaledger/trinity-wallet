@@ -12,8 +12,7 @@ import UnitInfo from 'ui/components/UnitInfoModal';
 import Fingerprint from 'ui/components/FingerprintModal';
 import SnapshotTransitionInfo from 'ui/components/SnapshotTransitionInfoModal';
 import LogoutConfirmation from 'ui/components/LogoutConfirmationModal';
-import DeleteAccount from 'ui/components/DeleteAccountModal';
-import HistoryContent from 'ui/components/HistoryModalContent';
+import TransactionHistory from 'ui/components/TransactionHistoryModal';
 import SeedInfo from 'ui/components/SeedInfoModal';
 import PasswordValidation from 'ui/components/PasswordValidationModal';
 import Checksum from 'ui/components/ChecksumModal';
@@ -37,12 +36,11 @@ const styles = StyleSheet.create({
 const MODAL_CONTENT = {
     snapshotTransitionInfo: SnapshotTransitionInfo,
     logoutConfirmation: LogoutConfirmation,
-    deleteAccount: DeleteAccount,
     fingerprint: Fingerprint,
     transferConfirmation: TransferConfirmation,
     usedAddress: UsedAddress,
     unitInfo: UnitInfo,
-    historyContent: HistoryContent,
+    transactionHistory: TransactionHistory,
     passwordValidation: PasswordValidation,
     qrScanner: QrScanner,
     seedInfo: SeedInfo,

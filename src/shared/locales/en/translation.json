@@ -153,7 +153,8 @@
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "MAIN ACCOUNT",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "delete": "Delete"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

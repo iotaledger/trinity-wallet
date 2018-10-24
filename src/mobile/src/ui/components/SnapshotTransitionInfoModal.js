@@ -1,38 +1,36 @@
 import React, { PureComponent } from 'react';
-import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import InfoBox from './InfoBox';
+import SingleFooterButton from './SingleFooterButton';
 
 const styles = StyleSheet.create({
+    modalContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        width,
+        height,
+    },
+    modalContent: {
+        borderRadius: Styling.borderRadius,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: height - Styling.topbarHeight,
+        width,
+    },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize4,
-        textAlign: 'left',
+        fontSize: Styling.fontSize5,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
         textAlign: 'left',
         backgroundColor: 'transparent',
-    },
-    button: {
-        borderWidth: 1.2,
-        borderRadius: Styling.borderRadius,
-        height: height / 14,
-        width: width / 2.7,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    buttonText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        textAlign: 'center',
     },
 });
 
@@ -52,39 +50,23 @@ export default class SnapshotTransitionInfoModal extends PureComponent {
 
     render() {
         const { theme, t, completeTransitionTask } = this.props;
-
         const textColor = { color: theme.body.color };
-        const isBgLight = tinycolor(theme.body.bg).isLight();
-        const buttonTextColor = { color: isBgLight ? theme.primary.body : theme.primary.color };
-        const borderColor = { borderColor: isBgLight ? 'transparent' : theme.primary.color };
-        const backgroundColor = { backgroundColor: isBgLight ? theme.primary.color : 'transparent' };
-
         return (
-            <View style={{ backgroundColor: theme.body.bg, marginTop: height / 30 }}>
-                <InfoBox
-                    body={theme.body}
-                    width={width / 1.1}
-                    text={
-                        <View>
-                            <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
-                                {t('global:isYourBalanceCorrect')}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                {t('global:ifYourBalanceIsNotCorrect')}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                {t('global:headToAdvancedSettingsForTransition')}
-                            </Text>
-                            <View style={{ paddingTop: height / 18, alignItems: 'center' }}>
-                                <TouchableOpacity onPress={() => completeTransitionTask()}>
-                                    <View style={[styles.button, borderColor, backgroundColor]}>
-                                        <Text style={[styles.buttonText, buttonTextColor]}>{t('global:okay')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    }
-                />
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
+                    <View style={{ flex: 1 }} />
+                    <View style={{ width: width - width / 10, paddingBottom: height / 22 }}>
+                        <Text style={[styles.infoTextBold, textColor]}>{t('global:isYourBalanceCorrect')}</Text>
+                        <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 20 }]}>
+                            {t('global:ifYourBalanceIsNotCorrect')}
+                        </Text>
+                        <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
+                            {t('global:headToAdvancedSettingsForTransition')}
+                        </Text>
+                    </View>
+                    <View style={{ flex: 1 }} />
+                    <SingleFooterButton onButtonPress={() => completeTransitionTask()} buttonText={t('done')} />
+                </View>
             </View>
         );
     }

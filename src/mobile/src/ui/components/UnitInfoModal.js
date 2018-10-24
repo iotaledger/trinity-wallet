@@ -19,14 +19,14 @@ const styles = StyleSheet.create({
         borderRadius: Styling.borderRadius,
         alignItems: 'center',
         justifyContent: 'space-between',
-        width,
         height: height - Styling.topbarHeight,
+        width,
     },
     unitsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: Styling.contentWidth,
+        width: width - width / 10,
     },
     denominationText: {
         backgroundColor: 'transparent',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize4,
+        fontSize: Styling.fontSize5,
         paddingBottom: height / 25,
     },
     numberText: {

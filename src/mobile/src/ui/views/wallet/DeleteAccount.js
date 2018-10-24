@@ -142,49 +142,28 @@ class DeleteAccount extends Component {
     }
 
     /**
-     * Displays a confirmation modal for account deletion if user entered password is correct/valid
+     * Deleres account if user entered correct/valid password
      * Otherwise generates an alert
      *
      * @method onContinuePress
      */
     async onContinuePress() {
-        const { password, t } = this.props;
+        const { password, t, isAutoPromoting } = this.props;
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
         const pwdHash = await hash(this.state.password);
-
         if (isEqual(password, pwdHash)) {
-            return this.showModal();
+            if (isAutoPromoting || this.props.shouldPreventAction) {
+                return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+            }
+            return this.delete();
         }
         return this.props.generateAlert(
             'error',
             t('global:unrecognisedPassword'),
             t('global:unrecognisedPasswordExplanation'),
         );
-    }
-
-    /**
-     * Deletes account
-     *
-     * @method onYesPress
-     */
-    onYesPress() {
-        const { t, isAutoPromoting } = this.props;
-        if (isAutoPromoting || this.props.shouldPreventAction) {
-            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
-        }
-        this.hideModal();
-        this.delete();
-    }
-
-    /**
-     * Hides account deletion confirmation modal
-     *
-     * @method onNoPress
-     */
-    onNoPress() {
-        this.hideModal();
     }
 
     /**
@@ -284,7 +263,9 @@ class DeleteAccount extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:continue')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>
+                                    {this.state.pressedContinue ? t('delete') : t('global:continue')}
+                                </Text>
                                 <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>

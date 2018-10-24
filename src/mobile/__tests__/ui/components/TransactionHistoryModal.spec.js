@@ -4,7 +4,7 @@ import React from 'react';
 import { Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import HistoryModalContent from 'ui/components/HistoryModalContent';
+import TransactionHistoryModal from 'ui/components/TransactionHistoryModal';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -69,46 +69,46 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
-describe('Testing HistoryModalContent component', () => {
+describe('Testing TransactionHistoryModal component', () => {
     describe('propTypes', () => {
         it('should require a t function as a prop', () => {
-            expect(HistoryModalContent.propTypes.t).toEqual(PropTypes.func.isRequired);
+            expect(TransactionHistoryModal.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a status string as a prop', () => {
-            expect(HistoryModalContent.propTypes.status).toEqual(PropTypes.string.isRequired);
+            expect(TransactionHistoryModal.propTypes.status).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a value number as a prop', () => {
-            expect(HistoryModalContent.propTypes.value).toEqual(PropTypes.number.isRequired);
+            expect(TransactionHistoryModal.propTypes.value).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a fullValue number as a prop', () => {
-            expect(HistoryModalContent.propTypes.fullValue).toEqual(PropTypes.number.isRequired);
+            expect(TransactionHistoryModal.propTypes.fullValue).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a unit string as a prop', () => {
-            expect(HistoryModalContent.propTypes.unit).toEqual(PropTypes.string.isRequired);
+            expect(TransactionHistoryModal.propTypes.unit).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a time number as a prop', () => {
-            expect(HistoryModalContent.propTypes.time).toEqual(PropTypes.number.isRequired);
+            expect(TransactionHistoryModal.propTypes.time).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a message string as a prop', () => {
-            expect(HistoryModalContent.propTypes.message).toEqual(PropTypes.string);
+            expect(TransactionHistoryModal.propTypes.message).toEqual(PropTypes.string);
         });
 
         it('should require a bundle string as a prop', () => {
-            expect(HistoryModalContent.propTypes.bundle).toEqual(PropTypes.string.isRequired);
+            expect(TransactionHistoryModal.propTypes.bundle).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a disableWhen boolean as a prop', () => {
-            expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
+            expect(TransactionHistoryModal.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
 
         it('should require a bundleIsBeingPromoted boolean as a prop', () => {
-            expect(HistoryModalContent.propTypes.bundleIsBeingPromoted).toEqual(PropTypes.bool.isRequired);
+            expect(TransactionHistoryModal.propTypes.bundleIsBeingPromoted).toEqual(PropTypes.bool.isRequired);
         });
     });
 
@@ -116,21 +116,21 @@ describe('Testing HistoryModalContent component', () => {
         it('should not explode', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(wrapper.name()).toEqual('View');
         });
 
         it('should return a ScrollView component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(wrapper.find('ScrollViewMock').length).toEqual(1);
         });
 
         it('should return status prop as first child to first Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -143,7 +143,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return a translated "Bundle Hash" message as first child to third Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -157,7 +157,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return a ":" message as second child to third Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -171,7 +171,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return bundle prop as a child to fourth Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -184,7 +184,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should call instance method copy with bundle prop and "bundle" string when onPress prop of second TouchableOpacity is triggered', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             const instance = wrapper.instance();
 
             jest.spyOn(instance, 'copy');
@@ -198,7 +198,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return a ":" message as second child to fifth Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -212,7 +212,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return a translated "Message" message as first child to fifth Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -226,7 +226,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return a ":" message as second child to fifth Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -240,7 +240,7 @@ describe('Testing HistoryModalContent component', () => {
         it('should return message prop as a child to sixth Text component', () => {
             const props = getProps();
 
-            const wrapper = shallow(<HistoryModalContent {...props} />);
+            const wrapper = shallow(<TransactionHistoryModal {...props} />);
             expect(
                 wrapper
                     .find('Text')
@@ -264,7 +264,7 @@ describe('Testing HistoryModalContent component', () => {
                     const props = getProps();
                     jest.spyOn(Clipboard, 'setString');
 
-                    const instance = shallow(<HistoryModalContent {...props} />).instance();
+                    const instance = shallow(<TransactionHistoryModal {...props} />).instance();
                     instance.copy('arg', 'type');
 
                     expect(Clipboard.setString).toHaveBeenCalledWith('arg');

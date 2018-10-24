@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class HistoryModalContent extends PureComponent {
+export default class TransactionHistoryModal extends PureComponent {
     static propTypes = {
         /** Container element press event callback function */
         hideModal: PropTypes.func.isRequired,
