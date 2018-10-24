@@ -55,8 +55,8 @@
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "계정을 찾을 수 없음",
+        "unrecognisedAccountExplanation": "{{accountName}} 계정을 찾을 수 없습니다. 지갑을 초기화해야 할 수도 있습니다.",
         "emptyPasswordExplanation": "비밀번호는 필수 입력 사항입니다. 다시 시도해 주세요.",
         "capsLockIsOn": "캡스 락 켜짐",
         "syncInProgress": "동기화 진행 중",
@@ -143,9 +143,9 @@
         "tryingAgainWithLocalPoW": "기기에서 다시 작업증명을 시도합니다.",
         "tryingAgainWithDifferentNode": "다른 노드로 다시 시도합니다.",
         "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "키체인 오류",
+        "errorAccessingKeychainExplanation": "보안 저장에 필요한 키체인에 접근할 수 없습니다.",
+        "mainWallet": "주 계정"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -436,7 +436,7 @@
         "empty": "없음",
         "retrying": "다시 시도 중",
         "yesterday": "어제",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "다른 번들 프로모트중"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -513,9 +513,9 @@
         "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "정말 계정을 삭제하시겠습니까?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "이 작업은 취소할 수 없습니다",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {
@@ -588,13 +588,13 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedValut 내보내기",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault는 시드를 안전하게 저장하도록 암호화된 파일입니다. 시드는 SeedVault 키를 이용하여 암호화되고, 이 키 없이는 시드에 접근할 수 없습니다.",
         "seedVaultWarning": "여러 위치(예: 하드 드라이브, 클라우드, USB)에 이 파일을 백업하십시오. 이 파일을 잃어버리고 별도로 시드를 보관하지 않은 경우 IOTA를 잃게 됩니다.",
         "exportFail": "SeedVault 내보내기 실패",
         "exportFailExplanation": "SeedVault를 내보내는 도중 문제가 발생하였습니다. 적절한 권한과 충분한 저장 공간이 있는지 다시 확인하세요.",
         "exportSuccess": "SeedVault 내보냄",
         "exportSuccessExplanation": "암호화된 시드 파일을 내보내는 데 성공했습니다.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKey": "SeedVault 키를 찾을 수 없음",
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
