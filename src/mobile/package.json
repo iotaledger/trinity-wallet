@@ -70,7 +70,7 @@
     "react-native-fingerprint-scanner": "^2.3.1",
     "react-native-flag-secure-android": "git+https://github.com/kristiansorens/react-native-flag-secure-android#master",
     "react-native-fs": "^2.8.1",
-    "react-native-google-safetynet": "^0.3.2",
+    "react-native-google-safetynet": "^0.3.3",
     "react-native-haptic-feedback": "^1.1.7",
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted#latest",
