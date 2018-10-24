@@ -1567,11 +1567,6 @@ bser@^2.0.0:
   dependencies:
     node-int64 "^0.4.0"
 
-buffer-equal-constant-time@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
-  integrity sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=
-
 buffer-from@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.0.0.tgz#4cb8832d23612589b0406e9e2956c17f06fdf531"
@@ -2565,13 +2560,6 @@ ecc-jsbn@~0.1.1:
   integrity sha1-D8c6ntXw1Tw4GTOYUj735UN3dQU=
   dependencies:
     jsbn "~0.1.0"
-
-ecdsa-sig-formatter@1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.10.tgz#1c595000f04a8897dfb85000892a0f4c33af86c3"
-  integrity sha1-HFlQAPBKiJffuFAAiSoPTDOvhsM=
-  dependencies:
-    safe-buffer "^5.0.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -4536,22 +4524,10 @@ jszip@^3.1.5:
     pako "~1.0.2"
     readable-stream "~2.0.6"
 
-jwa@^1.1.5:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.1.6.tgz#87240e76c9808dbde18783cf2264ef4929ee50e6"
-  integrity sha512-tBO/cf++BUsJkYql/kBbJroKOgHWEigTKBAjjBEmrMGYd1QMBC74Hr4Wo2zCZw6ZrVhlJPvoMrkcOnlWR/DJfw==
-  dependencies:
-    buffer-equal-constant-time "1.0.1"
-    ecdsa-sig-formatter "1.0.10"
-    safe-buffer "^5.0.1"
-
-jws@^3.1.4:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/jws/-/jws-3.1.5.tgz#80d12d05b293d1e841e7cb8b4e69e561adcf834f"
-  integrity sha512-GsCSexFADNQUr8T5HPJvayTjvPIfoyJPtLQBwn5a4WZQchcrPMPMAWcC1AzJVRDKyD6ZPROPAxgv6rfHViO4uQ==
-  dependencies:
-    jwa "^1.1.5"
-    safe-buffer "^5.0.1"
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
 
 kind-of@^1.1.0:
   version "1.1.0"
@@ -6411,14 +6387,14 @@ react-native-fs@^2.8.1:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
-react-native-google-safetynet@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/react-native-google-safetynet/-/react-native-google-safetynet-0.2.3.tgz#bc6677835cd5eaf7125974a1dc5e51ec9f313898"
-  integrity sha1-vGZ3g1zV6vcSWXSh3F5R7J8xOJg=
+react-native-google-safetynet@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-google-safetynet/-/react-native-google-safetynet-0.3.2.tgz#a7b5b615c8e1e09334c05e5839fa95489f7f4618"
+  integrity sha512-yzKJ9k1Uvg2h0aPs/e8DcYFxbYTzGYhRmtWeqkRr3aMpI8iRBECqzprtyEZaSt2QeFFcAipEXyhHukcv59B5xg==
   dependencies:
     base64-js "^1.3.0"
-    jws "^3.1.4"
-    react-native-securerandom "^0.1.1"
+    jwt-decode "^2.2.0"
+    react-native-securerandom "^0.3.0"
 
 react-native-haptic-feedback@^1.1.7:
   version "1.1.7"
@@ -6558,6 +6534,13 @@ react-native-securerandom@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-securerandom/-/react-native-securerandom-0.1.1.tgz#f130623a412c338b0afadedbc204c5cbb8bf2070"
   integrity sha1-8TBiOkEsM4sK+t7bwgTFy7i/IHA=
+  dependencies:
+    base64-js "*"
+
+react-native-securerandom@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-securerandom/-/react-native-securerandom-0.3.0.tgz#4b85c39eb1babc8cd662c7174d96eb149486fae1"
+  integrity sha512-Le2jxjt2NLseebfZANo3uf2nnyBvb7KrFqlhCoFFlQkovtJM9u+/e+tpzrS9TGmP116zkk/xJSxttZ5psaQ1pQ==
   dependencies:
     base64-js "*"
 
