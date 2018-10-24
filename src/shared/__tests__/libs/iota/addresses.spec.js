@@ -3,12 +3,18 @@ import find from 'lodash/find';
 import merge from 'lodash/merge';
 import maxBy from 'lodash/maxBy';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import nock from 'nock';
 import * as addressesUtils from '../../../libs/iota/addresses';
 import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
+import { addressData as mockAddressData } from '../../__samples__/addresses';
+import transactions, {
+    confirmedZeroValueTransactions,
+    unconfirmedValueTransactions,
+} from '../../__samples__/transactions';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import { IRI_API_VERSION } from '../../../config';
 
@@ -19,6 +25,87 @@ describe('libs: iota/addresses', () => {
 
     after(() => {
         SwitchingConfig.autoSwitch = true;
+    });
+
+    describe('#isAddressUsedSync', () => {
+        describe('when provided argument is not a valid address object', () => {
+            it('should throw an error with message "Invalid address data."', () => {
+                expect(addressesUtils.isAddressUsedSync.bind(null, {}, [])).to.throw('Invalid address data.');
+                expect(addressesUtils.isAddressUsedSync.bind(null, undefined, [])).to.throw('Invalid address data.');
+            });
+        });
+
+        describe('when provided argument is a valid address object', () => {
+            describe('when address has no associated transactions', () => {
+                describe('when address is marked spent locally', () => {
+                    it('should return true', () => {
+                        const addressObject = {
+                            address: 'U'.repeat(81),
+                            balance: 0,
+                            index: 0,
+                            checksum: 'NXELTUENX',
+                            spent: { local: true, remote: true },
+                        };
+
+                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
+
+                        expect(isUsed).to.equal(true);
+                    });
+                });
+
+                describe('when address is marked unspent locally', () => {
+                    it('should return false', () => {
+                        const addressObject = {
+                            address: 'U'.repeat(81),
+                            balance: 0,
+                            index: 0,
+                            checksum: 'NXELTUENX',
+                            spent: { local: false, remote: true },
+                        };
+
+                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
+
+                        expect(isUsed).to.equal(false);
+                    });
+                });
+            });
+
+            describe('when address has associated transactions', () => {
+                describe('when address is marked spent locally', () => {
+                    it('should return true', () => {
+                        const addressObject = {
+                            address:
+                                'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                            balance: 0,
+                            index: 1,
+                            checksum: 'BZIF9ZEBC',
+                            spent: { local: true, remote: true },
+                        };
+
+                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, unconfirmedValueTransactions);
+
+                        expect(isUsed).to.equal(true);
+                    });
+                });
+
+                describe('when address is marked unspent locally', () => {
+                    it('should return true', () => {
+                        const addressObject = {
+                            address:
+                                'RRHMYUP9RNBBNAORNMNHYTLJZWXCWKOYV9TVQPGPKDNTTSTVLCXCDKDKPILANYIOPOHBTNAXZ9IUBPQCC',
+                            balance: 0,
+                            index: 4,
+                            checksum: 'YBBRFADGD',
+                            spent: { local: false, remote: false },
+                        };
+
+                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, confirmedZeroValueTransactions);
+
+                        expect(isUsed).to.equal(true);
+                    });
+                });
+            });
+        });
     });
 
     describe('#accumulateBalance', () => {
@@ -77,62 +164,264 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#omitAddressDataWithIncomingTransactions', () => {
-        describe('when addressData passed as first argument is an empty object', () => {
+    describe('#formatAddressData', () => {
+        let addresses;
+
+        before(() => {
+            addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
+        });
+
+        describe('when balances size does not equal addresses size', () => {
+            describe('when size of spent statuses equal addresses size', () => {
+                describe('when key indexes are not provided', () => {
+                    it('should throw with an error with message "Address metadata length mismatch."', () => {
+                        expect(
+                            addressesUtils.formatAddressData.bind(
+                                null,
+                                addresses,
+                                [],
+                                Array(3)
+                                    .fill()
+                                    .map(() => ({ local: false, remote: false })),
+                            ),
+                        ).to.throw('Address metadata length mismatch.');
+                    });
+                });
+
+                describe('when key indexes are provided', () => {
+                    describe('when key indexes size does not equal addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    [],
+                                    Array(addresses.length)
+                                        .fill()
+                                        .map(() => ({ local: false, remote: false })),
+                                ),
+                                [0],
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+
+                    describe('when key indexes size equals addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    [],
+                                    Array(3)
+                                        .fill()
+                                        .map(() => ({ local: false, remote: false })),
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                ),
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+                });
+            });
+        });
+
+        describe('when address spend statuses size does not equal addresses size', () => {
+            describe('when size of balances equal addresses size', () => {
+                describe('when key indexes are not provided', () => {
+                    it('should throw with an error with message "Address metadata length mismatch."', () => {
+                        expect(
+                            addressesUtils.formatAddressData.bind(
+                                null,
+                                addresses,
+                                Array(3)
+                                    .fill()
+                                    .map((_, i) => i),
+                                [],
+                            ),
+                        ).to.throw('Address metadata length mismatch.');
+                    });
+                });
+
+                describe('when key indexes are provided', () => {
+                    describe('when key indexes size does not equal addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                    [],
+                                    [],
+                                ),
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+
+                    describe('when key indexes size equals addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                    [],
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                ),
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+                });
+            });
+        });
+
+        describe('when address spend statuses size & balances size equal addresses size ', () => {
+            describe('when key indexes are not provided', () => {
+                it('should return address data with key indexes as address index in addresses list (passed as first argument)', () => {
+                    const expectedAddressData = [
+                        {
+                            address:
+                                'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                            index: 0,
+                            spent: { local: true, remote: false },
+                            balance: 0,
+                            checksum: 'YLFHUOJUY',
+                        },
+                        {
+                            address:
+                                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+                            index: 1,
+                            spent: { local: false, remote: false },
+                            balance: 1,
+                            checksum: 'IO9LGIBVB',
+                        },
+                        {
+                            address:
+                                'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+                            index: 2,
+                            spent: { local: true, remote: false },
+                            balance: 2,
+                            checksum: 'X9KV9ELOW',
+                        },
+                    ];
+
+                    const actualAddressData = addressesUtils.formatAddressData(
+                        addresses,
+                        Array(3)
+                            .fill()
+                            .map((_, i) => i),
+                        Array(3)
+                            .fill()
+                            .map((_, i) => ({ local: i % 2 === 0, remote: false })),
+                    );
+
+                    expect(actualAddressData).to.eql(expectedAddressData);
+
+                    // Test valid checksum
+                    expectedAddressData.forEach(({ address, checksum }) => {
+                        expect(iota.utils.isValidChecksum(`${address}${checksum}`)).to.equal(true);
+                    });
+                });
+            });
+
+            describe('when key indexes are provided', () => {
+                it('should return address data with key indexes from key indexes list (passed as fourth argument)', () => {
+                    const expectedAddressData = [
+                        {
+                            address:
+                                'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                            index: 4,
+                            spent: { local: true, remote: false },
+                            balance: 0,
+                            checksum: 'YLFHUOJUY',
+                        },
+                        {
+                            address:
+                                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+                            index: 6,
+                            spent: { local: false, remote: false },
+                            balance: 1,
+                            checksum: 'IO9LGIBVB',
+                        },
+                        {
+                            address:
+                                'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+                            index: 9,
+                            spent: { local: true, remote: false },
+                            balance: 2,
+                            checksum: 'X9KV9ELOW',
+                        },
+                    ];
+
+                    const keyIndexes = [4, 6, 9];
+                    const actualAddressData = addressesUtils.formatAddressData(
+                        addresses,
+                        Array(3)
+                            .fill()
+                            .map((_, i) => i),
+                        Array(3)
+                            .fill()
+                            .map((_, i) => ({ local: i % 2 === 0, remote: false })),
+                        keyIndexes,
+                    );
+
+                    expect(actualAddressData).to.eql(expectedAddressData);
+
+                    // Test valid checksum
+                    expectedAddressData.forEach(({ address, checksum }) => {
+                        expect(iota.utils.isValidChecksum(`${address}${checksum}`)).to.equal(true);
+                    });
+                });
+            });
+        });
+    });
+
+    describe('#filterAddressDataWithPendingIncomingTransactions', () => {
+        describe('when addressData passed as first argument is an empty array', () => {
             it('should return addressData passed as first argument', () => {
-                expect(addressesUtils.omitAddressDataWithIncomingTransactions({}, [{}, {}])).to.eql({});
+                expect(addressesUtils.filterAddressDataWithPendingIncomingTransactions([], [{}, {}])).to.eql([]);
             });
         });
 
         describe('when pendingValueTransactions passed as second argument is an empty array', () => {
             it('should return addressData passed as first argument', () => {
-                expect(addressesUtils.omitAddressDataWithIncomingTransactions({ foo: {} }, [])).to.eql({ foo: {} });
+                expect(addressesUtils.filterAddressDataWithPendingIncomingTransactions([{}], [])).to.eql([{}]);
             });
         });
 
-        describe('when addressData passed as first argument is not an empty object and pendingValueTransactions passed as second argument is not an empty array', () => {
-            let pendingValueTransactions;
-
-            beforeEach(() => {
-                pendingValueTransactions = [
-                    {
-                        transferValue: -100,
-                        incoming: false,
-                        inputs: [{ address: 'A'.repeat(81), value: -100 }],
-                        outputs: [
-                            // Change address
-                            { address: 'C'.repeat(81), value: 20 },
-                            { address: 'U'.repeat(81), value: 80 },
-                        ],
-                        persistence: false,
-                    },
-                    {
-                        transferValue: -50,
-                        incoming: true,
-                        inputs: [{ address: 'D'.repeat(81), value: -40 }],
-                        outputs: [{ address: 'E'.repeat(81), value: 30 }, { address: 'Y'.repeat(81), value: 10 }],
-                        persistence: false,
-                    },
-                ];
-            });
-
+        describe('when addressData passed as first argument is not an empty array and transactions passed as second argument is not an empty array', () => {
             it('should filter addressData with pending incoming value transactions', () => {
-                const addressData = {
-                    // Used as input
-                    ['A'.repeat(81)]: { index: 0 },
-                    // Used as change address
-                    ['C'.repeat(81)]: { index: 1 },
-                    // Has incoming transaction
-                    ['E'.repeat(81)]: { index: 2 },
-                    ['F'.repeat(81)]: { index: 3 },
-                };
-
                 expect(
-                    addressesUtils.omitAddressDataWithIncomingTransactions(addressData, pendingValueTransactions),
-                ).to.eql({
-                    ['A'.repeat(81)]: { index: 0 },
-                    ['F'.repeat(81)]: { index: 3 },
-                });
+                    addressesUtils.filterAddressDataWithPendingIncomingTransactions(mockAddressData, transactions),
+                ).to.eql([
+                    {
+                        address: 'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                        balance: 0,
+                        index: 1,
+                        checksum: 'BZIF9ZEBC',
+                        spent: { local: true, remote: true },
+                    },
+                    {
+                        address: 'D9QCAHCWFN9BCFNNSPNGFVUEUSKBX9XQEKSIRRWXHHBQBJMEEI9ATVWNPJRLO9ETRPCBIRNQBLDMBUYVW',
+                        balance: 0,
+                        index: 2,
+                        checksum: 'NXL99BCPW',
+                        spent: { local: true, remote: false },
+                    },
+                    {
+                        address: 'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                        balance: 0,
+                        index: 3,
+                        checksum: 'FDPMAF9UD',
+                        spent: { local: true, remote: false },
+                    },
+                ]);
             });
         });
     });
@@ -333,19 +622,19 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#pickUnspentAddressData', () => {
+    describe('#filterSpentAddressData', () => {
         describe('when all addresses in addressData are marked spent locally', () => {
-            it('should return an empty object', () => {
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: { local: true } },
-                    ['V'.repeat(81)]: { spent: { local: true } },
-                    ['Y'.repeat(81)]: { spent: { local: true } },
-                };
-
+            it('should return an empty array', () => {
                 return addressesUtils
-                    .pickUnspentAddressData()(addressData, [])
+                    .filterSpentAddressData()(
+                        map(mockAddressData, (addressObject) => ({
+                            ...addressObject,
+                            ...{ spent: { ...addressObject.spent, local: true } },
+                        })),
+                        [],
+                    )
                     .then((unspentAddressData) => {
-                        expect(unspentAddressData).to.eql({});
+                        expect(unspentAddressData).to.eql([]);
                     });
             });
         });
@@ -364,19 +653,16 @@ describe('libs: iota/addresses', () => {
                     .reply(200, (_, body) => {
                         if (body.command === 'wereAddressesSpentFrom') {
                             const addresses = body.addresses;
-                            const resultMap = {
-                                // Should not be part of unspent address data as "spend.local" is true
-                                ['A'.repeat(81)]: false,
-                                // Should be part of unspent address data
-                                ['U'.repeat(81)]: false,
-                                // Should be part of unspent address data
-                                ['V'.repeat(81)]: false,
-                                // Should not be part of unspent address data
-                                ['Y'.repeat(81)]: true,
-                                // Should not be part of unspent address data because
-                                // this address is being used as an input in local transactions history
-                                ['Z'.repeat(81)]: false,
-                            };
+
+                            const resultMap = reduce(
+                                mockAddressData,
+                                (acc, addressObject) => {
+                                    acc = { ...acc, [addressObject.address]: addressObject.spent.remote };
+
+                                    return acc;
+                                },
+                                {},
+                            );
 
                             return { states: map(addresses, (address) => resultMap[address]) };
                         }
@@ -389,27 +675,46 @@ describe('libs: iota/addresses', () => {
                 nock.cleanAll();
             });
 
-            it('should pick unspent addressData', () => {
-                const addressData = {
-                    ['A'.repeat(81)]: { spent: { local: true } },
-                    ['U'.repeat(81)]: { spent: { local: false } },
-                    ['V'.repeat(81)]: { spent: { local: false } },
-                    ['Y'.repeat(81)]: { spent: { local: false } },
-                    ['Z'.repeat(81)]: { spent: { local: false } },
-                };
-
-                const normalisedTransactionsList = [
-                    { inputs: [{ address: 'Z'.repeat(81) }] },
-                    { inputs: [{ address: 'Y'.repeat(81) }] },
-                ];
-
+            it('should filter addressData with spent addresses', () => {
                 return addressesUtils
-                    .pickUnspentAddressData()(addressData, normalisedTransactionsList)
-                    .then((unspentAddressData) => {
-                        expect(unspentAddressData).to.eql({
-                            ['U'.repeat(81)]: { spent: { local: false } },
-                            ['V'.repeat(81)]: { spent: { local: false } },
-                        });
+                    .filterSpentAddressData()(mockAddressData, transactions)
+                    .then((actualUnspentAddressData) => {
+                        const expectedAddressData = [
+                            {
+                                address:
+                                    'RRHMYUP9RNBBNAORNMNHYTLJZWXCWKOYV9TVQPGPKDNTTSTVLCXCDKDKPILANYIOPOHBTNAXZ9IUBPQCC',
+                                balance: 0,
+                                index: 4,
+                                checksum: 'YBBRFADGD',
+                                spent: { local: false, remote: false },
+                            },
+                            {
+                                address:
+                                    'VOVTUPNCVSEYOGYXPER9RRHPICCMTBD9DNTJMBZPCUNXHHYTZQOAVJBBIGRCMBXRVRLHVROE9OMNDKTVW',
+                                balance: 150,
+                                index: 7,
+                                checksum: 'MLUGSLZRA',
+                                spent: { local: false, remote: false },
+                            },
+                            {
+                                address:
+                                    'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
+                                balance: 10,
+                                index: 8,
+                                checksum: 'RHAFCPMZY',
+                                spent: { local: false, remote: false },
+                            },
+                            {
+                                address:
+                                    'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX',
+                                balance: 0,
+                                index: 9,
+                                checksum: 'RHAFCPMZY',
+                                spent: { local: false, remote: false },
+                            },
+                        ];
+
+                        expect(actualUnspentAddressData).to.eql(expectedAddressData);
                     });
             });
         });
@@ -488,232 +793,6 @@ describe('libs: iota/addresses', () => {
                         expect(result.transfer).to.eql([{}, {}]);
                         findTransactions.restore();
                     });
-            });
-        });
-    });
-
-    describe('#formatAddressData', () => {
-        let addresses;
-
-        before(() => {
-            addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
-        });
-
-        describe('when balances size does not equal addresses size', () => {
-            describe('when size of spent statuses equal addresses size', () => {
-                describe('when key indexes are not provided', () => {
-                    it('should throw with an error with message "Address metadata length mismatch."', () => {
-                        try {
-                            addressesUtils.formatAddressData(
-                                addresses,
-                                [],
-                                Array(3)
-                                    .fill()
-                                    .map(() => false),
-                            );
-                        } catch (e) {
-                            expect(e.message).to.equal('Address metadata length mismatch.');
-                        }
-                    });
-                });
-
-                describe('when key indexes are provided', () => {
-                    describe('when key indexes size does not equal addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    [],
-                                    Array(3)
-                                        .fill()
-                                        .map(() => false),
-                                    [],
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-
-                    describe('when key indexes size equals addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    [],
-                                    Array(3)
-                                        .fill()
-                                        .map(() => false),
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-                });
-            });
-        });
-
-        describe('when address spent list size does not equal addresses size', () => {
-            describe('when size of balances equal addresses size', () => {
-                describe('when key indexes are not provided', () => {
-                    it('should throw with an error with message "Address metadata length mismatch."', () => {
-                        try {
-                            addressesUtils.formatAddressData(
-                                addresses,
-                                Array(3)
-                                    .fill()
-                                    .map((v, i) => i),
-                                [],
-                            );
-                        } catch (e) {
-                            expect(e.message).to.equal('Address metadata length mismatch.');
-                        }
-                    });
-                });
-
-                describe('when key indexes are provided', () => {
-                    describe('when key indexes size does not equal addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                    [],
-                                    [],
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-
-                    describe('when key indexes size equals addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                    [],
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-                });
-            });
-        });
-
-        describe('when address spent list size & balances size equal addresses size ', () => {
-            describe('when key indexes are not provided', () => {
-                it('should return address data object with index as address list index', () => {
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                        Array(3)
-                            .fill()
-                            .map(() => false),
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].index).to.equal(index);
-                    });
-                });
-
-                it('should assign correct "local" and "remote" spent status', () => {
-                    const addressesSpentStatus = [
-                        {
-                            local: true,
-                            remote: false,
-                        },
-                        {
-                            local: false,
-                            remote: false,
-                        },
-                        {
-                            local: true,
-                            remote: true,
-                        },
-                    ];
-
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                        addressesSpentStatus,
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].spent.local).to.equal(addressesSpentStatus[index].local);
-                        expect(result[address].spent.remote).to.equal(addressesSpentStatus[index].remote);
-                    });
-                });
-
-                it('should return address data object with balance as corresponding balance in balances list', () => {
-                    const balances = [2, 3, 4];
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        balances,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].balance).to.equal(balances[index]);
-                    });
-                });
-
-                it('should return address data object with checksum as valid address checksum', () => {
-                    const balances = [2, 3, 4];
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        balances,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                    );
-
-                    addresses.forEach((address) => {
-                        const checksum = result[address].checksum;
-                        expect(iota.utils.isValidChecksum(`${address}${checksum}`)).to.equal(true);
-                    });
-                });
-            });
-
-            describe('when key indexes are provided', () => {
-                it('should return address data object with index as corresponding index in keyIndexes list', () => {
-                    const keyIndexes = [4, 6, 9];
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                        Array(3)
-                            .fill()
-                            .map(() => false),
-                        keyIndexes,
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].index).to.not.equal(index);
-                        expect(result[address].index).to.equal(keyIndexes[index]);
-                    });
-                });
             });
         });
     });
@@ -1123,59 +1202,6 @@ describe('libs: iota/addresses', () => {
                 .then((result) => {
                     expect(result.unspent).to.eql(['A'.repeat(81), 'C'.repeat(81)]);
                 });
-        });
-    });
-
-    describe('#isAddressUsedSync', () => {
-        let usedAddress;
-        let unusedAddress;
-        let addressData;
-        let normalisedTransactions;
-
-        before(() => {
-            // Spent address from mock account
-            usedAddress = 'HLPCTS9PI9RE9ROYCNENZPETIDVZJ9TOVMEGVAKCZTNWTVWUCFTPPPMSFBCTFTFFAEWPZNN9SJDPAHQZC';
-            // Unspent address from mock account
-            unusedAddress = 'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW';
-            const { TEST: { addresses, transfers } } = accounts.accountInfo;
-            addressData = addresses;
-            normalisedTransactions = transfers;
-        });
-
-        describe('when address has no associated transactions', () => {
-            describe('when address is marked spent locally', () => {
-                it('should return true', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(usedAddress, addressData, []);
-
-                    expect(isUsed).to.equal(true);
-                });
-            });
-
-            describe('when address is marked unspent locally', () => {
-                it('should return false', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(unusedAddress, addressData, []);
-
-                    expect(isUsed).to.equal(false);
-                });
-            });
-        });
-
-        describe('when address has associated transactions', () => {
-            describe('when address is marked spent locally', () => {
-                it('should return true', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(usedAddress, addressData, normalisedTransactions);
-
-                    expect(isUsed).to.equal(true);
-                });
-            });
-
-            describe('when address is marked unspent locally', () => {
-                it('should return true', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(unusedAddress, addressData, normalisedTransactions);
-
-                    expect(isUsed).to.equal(true);
-                });
-            });
         });
     });
 

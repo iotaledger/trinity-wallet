@@ -508,11 +508,11 @@ export const getLatestAddressObject = (addressData) => maxBy(addressData, 'index
  *   @method getAddressesUptoRemainder
  *   @param {string} [provider]
  *
- *   @returns {function(object, array, string, function, array): Promise<object>}
+ *   @returns {function(array, array, object, array): Promise<object>}
  **/
 export const getAddressesUptoRemainder = (provider) => (
     addressData,
-    normalisedTransactions,
+    transactions,
     seedStore,
     blacklistedRemainderAddresses = [],
 ) => {
@@ -524,7 +524,7 @@ export const getAddressesUptoRemainder = (provider) => (
         const latestAddressData = getLatestAddressObject(addressData);
         const startIndex = latestAddressData.index + 1;
 
-        return getAddressDataUptoLatestUnusedAddress(provider)(seedStore, normalisedTransactions, {
+        return getAddressDataUptoLatestUnusedAddress(provider)(seedStore, transactions, {
             index: startIndex,
             security: DEFAULT_SECURITY,
         }).then((newAddressData) => {
@@ -535,7 +535,7 @@ export const getAddressesUptoRemainder = (provider) => (
             if (isBlacklisted(remainderAddress)) {
                 return getAddressesUptoRemainder(provider)(
                     addressDataUptoRemainder,
-                    normalisedTransactions,
+                    transactions,
                     seedStore,
                     blacklistedRemainderAddresses,
                 );

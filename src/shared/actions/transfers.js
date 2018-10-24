@@ -489,24 +489,19 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder()(
-                    accountState.addresses,
-                    map(accountState.transfers, (tx) => tx),
-                    seedStore,
-                    [
-                        // Make sure inputs are blacklisted
-                        ...map(transferInputs, (input) => input.address),
-                        // Make sure receive address is blacklisted
-                        iota.utils.noChecksum(receiveAddress),
-                    ],
-                );
+                return getAddressesUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
+                    // Make sure inputs are blacklisted
+                    ...map(transferInputs, (input) => input.address),
+                    // Make sure receive address is blacklisted
+                    iota.utils.noChecksum(receiveAddress),
+                ]);
             })
             .then(({ remainderAddress, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
                 // at index 53 it would include address data for 51, 52 and 53.
-                accountState.addresses = addressDataUptoRemainder;
+                accountState.addressData = addressDataUptoRemainder;
 
                 return {
                     inputs: transferInputs,
