@@ -4,21 +4,32 @@ import { TouchableWithoutFeedback, View, Text, StyleSheet, Keyboard } from 'reac
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import InfoBox from './InfoBox';
 import CustomTextInput from './CustomTextInput';
-import ModalButtons from './ModalButtons';
+import DualFooterButtons from './DualFooterButtons';
 
 const styles = StyleSheet.create({
-    container: {
+    modalContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         width,
         height,
+    },
+    modalContent: {
+        borderRadius: Styling.borderRadius,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        height: height - Styling.topbarHeight,
+        width,
+    },
+    textContainer: {
+        width: width - width / 10,
+        paddingBottom: height / 11,
+        alignItems: 'center',
     },
     modalText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -49,52 +60,36 @@ export class PasswordValidationModal extends PureComponent {
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
-                <View>
-                    <View style={styles.container}>
-                        <View style={{ backgroundColor: theme.body.bg }}>
-                            <InfoBox
-                                body={theme.body}
-                                width={Styling.contentWidth}
-                                text={
-                                    <View>
-                                        <Text
-                                            style={[
-                                                styles.modalText,
-                                                { color: theme.body.color },
-                                                { paddingTop: height / 40 },
-                                            ]}
-                                        >
-                                            {t('seedVault:enterPasswordExplanation')}
-                                        </Text>
-                                        <View style={{ paddingTop: height / 15, alignItems: 'center' }}>
-                                            <CustomTextInput
-                                                label={t('global:password')}
-                                                onChangeText={(password) => this.setState({ password })}
-                                                containerStyle={{ width: width / 1.3 }}
-                                                autoCapitalize="none"
-                                                autoCorrect={false}
-                                                enablesReturnKeyAutomatically
-                                                returnKeyType="done"
-                                                secureTextEntry
-                                                onSubmitEditing={() => this.props.validatePassword(password)}
-                                                theme={theme}
-                                                value={this.state.password}
-                                            />
-                                        </View>
-                                        <View style={{ paddingTop: height / 15, alignItems: 'center' }}>
-                                            <ModalButtons
-                                                onLeftButtonPress={() => this.props.hideModal()}
-                                                onRightButtonPress={() => this.props.validatePassword(password)}
-                                                leftText={t('global:back').toUpperCase()}
-                                                rightText={t('okay').toUpperCase()}
-                                                containerWidth={{ width: width / 1.3 }}
-                                                buttonWidth={{ width: width / 3 }}
-                                            />
-                                        </View>
-                                    </View>
-                                }
-                            />
+                <View style={styles.modalContainer}>
+                    <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
+                        <View style={{ flex: 1 }} />
+                        <View style={styles.textContainer}>
+                            <Text style={[styles.modalText, { color: theme.body.color }, { paddingTop: height / 40 }]}>
+                                {t('seedVault:enterPasswordExplanation')}
+                            </Text>
+                            <View style={{ paddingTop: height / 15, alignItems: 'center' }}>
+                                <CustomTextInput
+                                    label={t('global:password')}
+                                    onChangeText={(password) => this.setState({ password })}
+                                    containerStyle={{ width: Styling.contentWidth }}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    secureTextEntry
+                                    onSubmitEditing={() => this.props.validatePassword(password)}
+                                    theme={theme}
+                                    value={this.state.password}
+                                />
+                            </View>
                         </View>
+                        <View style={{ flex: 1 }} />
+                        <DualFooterButtons
+                            onLeftButtonPress={() => this.props.hideModal()}
+                            onRightButtonPress={() => this.props.validatePassword(password)}
+                            leftButtonText={t('back').toUpperCase()}
+                            rightButtonText={t('okay').toUpperCase()}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

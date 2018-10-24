@@ -134,11 +134,12 @@ class FingerprintEnable extends Component {
 
     activateFingerprintScanner() {
         const { t } = this.props;
-        if (isAndroid) {
-            this.openModal();
-        }
+
         FingerprintScanner.isSensorAvailable()
-            .then(
+            .then(() => {
+                if (isAndroid) {
+                    this.openModal();
+                }
                 FingerprintScanner.authenticate({
                     description: t('instructionsEnable'),
                     onAttempt: this.handleAuthenticationAttempted,
@@ -162,8 +163,8 @@ class FingerprintEnable extends Component {
                             t('fingerprintAuthFailed'),
                             t('fingerprintAuthFailedExplanation'),
                         );
-                    }),
-            )
+                    });
+            })
             .catch(() => {
                 this.props.generateAlert('error', t('fingerprintUnavailable'), t('fingerprintUnavailableExplanation'));
             });

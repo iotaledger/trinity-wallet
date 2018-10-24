@@ -208,15 +208,12 @@ class WalletSetup extends Component {
     }
 
     showModal() {
-        const { theme: { negative, body } } = this.props;
+        const { theme } = this.props;
         this.props.toggleModalActivity('rootDetection', {
             style: { flex: 1 },
             hideModal: () => this.hideModal(),
             closeApp: () => this.closeApp(),
-            backgroundColor: body.bg,
-            warningColor: { color: negative.color },
-            textColor: { color: body.color },
-            borderColor: { borderColor: body.color },
+            theme,
         });
     }
 

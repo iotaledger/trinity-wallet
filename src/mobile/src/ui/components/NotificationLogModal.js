@@ -1,36 +1,38 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
+import { View, StyleSheet, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'shared-modules/libs/date';
 import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import DualFooterButtons from './DualFooterButtons';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const styles = StyleSheet.create({
     modalContainer: {
-        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         width,
+        height,
     },
     modalContent: {
         borderRadius: Styling.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 30,
-        paddingHorizontal: width / 30,
-        width: Styling.contentWidth,
         alignItems: 'center',
-        justifyContent: 'center',
-        maxHeight: height / 1.25,
+        justifyContent: 'space-between',
+        height: height - Styling.topbarHeight,
+        width,
+    },
+    textContainer: {
+        width: width - width / 10,
+        alignItems: 'center',
     },
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize4,
     },
     itemText: {
         backgroundColor: 'transparent',
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
     },
     line: {
         borderBottomWidth: height / 1000,
-        width: width / 1.3,
+        width: width - width / 10,
         marginVertical: height / 30,
     },
     separator: {
@@ -65,14 +67,8 @@ const styles = StyleSheet.create({
 
 export class NotificationLogModal extends PureComponent {
     static propTypes = {
-        /** Content background color */
-        backgroundColor: PropTypes.string.isRequired,
-        /** Content border color */
-        borderColor: PropTypes.object.isRequired,
-        /** Content text color */
-        textColor: PropTypes.object.isRequired,
-        /** Bar color */
-        barColor: PropTypes.string.isRequired,
+        /** @ignore */
+        theme: PropTypes.object.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
         /** @ignore */
@@ -93,33 +89,45 @@ export class NotificationLogModal extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, barColor, notificationLog } = this.props;
-        const lineBorder = { borderBottomColor: barColor };
+        const { t, notificationLog, theme: { body } } = this.props;
+        const lineBorder = { borderBottomColor: body.color };
         const trimmedLog = notificationLog.reverse().slice(0, 10);
+        const textColor = { color: body.color };
 
         return (
-            <View style={[styles.modalContent, { backgroundColor }, borderColor]}>
-                <Text style={[styles.titleText, textColor]}>{t('notificationLog:errorLog')}</Text>
-                <View style={[styles.line, lineBorder]} />
-                <ListView
-                    dataSource={ds.cloneWithRows(trimmedLog)}
-                    renderRow={(dataSource) => (
-                        <View>
-                            <Text style={[styles.itemText, textColor]}>
-                                {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, timezone, dataSource.time)} -{' '}
-                                {dataSource.error}
-                            </Text>
-                        </View>
-                    )}
-                    scrollEnabled
-                    renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                    enableEmptySections
-                />
-                <TouchableOpacity onPress={() => this.clearNotificationLog()}>
-                    <View style={[styles.clearButton, borderColor]}>
-                        <Text style={[styles.clearText, textColor]}>{t('clear').toUpperCase()}</Text>
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, { backgroundColor: body.bg }]}>
+                    <View style={{ flex: 1 }} />
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.titleText, textColor]}>{t('notificationLog:errorLog')}</Text>
+                        <View style={[styles.line, lineBorder]} />
+                        <ListView
+                            dataSource={ds.cloneWithRows(trimmedLog)}
+                            renderRow={(dataSource) => (
+                                <View>
+                                    <Text style={[styles.itemText, textColor]}>
+                                        {formatTimeAs.hoursMinutesSecondsDayMonthYear(
+                                            locale,
+                                            timezone,
+                                            dataSource.time,
+                                        )}{' '}
+                                        - {dataSource.error}
+                                    </Text>
+                                </View>
+                            )}
+                            scrollEnabled
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                            enableEmptySections
+                        />
                     </View>
-                </TouchableOpacity>
+                    <View style={{ flex: 2 }} />
+                    <DualFooterButtons
+                        onLeftButtonPress={() => this.clearNotificationLog()}
+                        onRightButtonPress={() => this.props.hideModal()}
+                        leftButtonText={t('clear').toUpperCase()}
+                        rightButtonText={t('done').toUpperCase()}
+                    />
+                </View>
             </View>
         );
     }

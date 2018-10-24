@@ -77,39 +77,33 @@ export class MainSettings extends Component {
     logout() {
         const { theme: { body } } = this.props;
         this.props.toggleModalActivity();
-        timer.setTimeout(
-            'delayLogout',
-            () => {
-                this.props.clearWalletData();
-                this.props.setPassword({});
-                Navigation.setStackRoot('appStack', {
-                    component: {
-                        name: 'login',
-                        options: {
-                            animations: {
-                                setStackRoot: {
-                                    enable: false,
-                                },
-                            },
-                            layout: {
-                                backgroundColor: body.bg,
-                                orientation: ['portrait'],
-                            },
-                            topBar: {
-                                visible: false,
-                                drawBehind: true,
-                                elevation: 0,
-                            },
-                            statusBar: {
-                                drawBehind: true,
-                                backgroundColor: body.bg,
-                            },
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
                         },
                     },
-                });
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            100,
-        );
+        });
+        this.props.clearWalletData();
+        this.props.setPassword({});
     }
 
     renderSettingsContent() {

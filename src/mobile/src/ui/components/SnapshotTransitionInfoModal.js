@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
         height: height - Styling.topbarHeight,
         width,
     },
+    textContainer: {
+        width: width - width / 10,
+        paddingBottom: height / 22,
+    },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize5,
@@ -55,7 +59,7 @@ export default class SnapshotTransitionInfoModal extends PureComponent {
             <View style={styles.modalContainer}>
                 <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
                     <View style={{ flex: 1 }} />
-                    <View style={{ width: width - width / 10, paddingBottom: height / 22 }}>
+                    <View style={styles.textContainer}>
                         <Text style={[styles.infoTextBold, textColor]}>{t('global:isYourBalanceCorrect')}</Text>
                         <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 20 }]}>
                             {t('global:ifYourBalanceIsNotCorrect')}

@@ -10,9 +10,7 @@ const getProps = (overrides) =>
         {},
         {
             backgroundColor: '#ffffff',
-            borderColor: { borderColor: '#ffffff' },
-            textColor: { color: '#ffffff' },
-            barColor: '#ffffff',
+            theme: { body: {} },
             hideModal: noop,
             notificationLog: [],
             clearLog: noop,
@@ -28,20 +26,8 @@ jest.mock('bugsnag-react-native', () => ({
 
 describe('Testing NotificationLog component', () => {
     describe('propTypes', () => {
-        it('should require a backgroundColor string as a prop', () => {
-            expect(NotificationLog.propTypes.backgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a borderColor object as a prop', () => {
-            expect(NotificationLog.propTypes.borderColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a textColor object as a prop', () => {
-            expect(NotificationLog.propTypes.textColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a barColor string as a prop', () => {
-            expect(NotificationLog.propTypes.barColor).toEqual(PropTypes.string.isRequired);
+        it('should require a theme string as a prop', () => {
+            expect(NotificationLog.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a hideModal function as a prop', () => {
@@ -65,7 +51,7 @@ describe('Testing NotificationLog component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should call instance method "clearNotificationLog" when onPress prop of second TouchableOpacity element is triggered', () => {
+        it('should call instance method "clearNotificationLog" when onPress prop of second DualFooterButtons element is triggered', () => {
             const props = getProps();
 
             const wrapper = shallow(<NotificationLog {...props} />);
@@ -73,11 +59,15 @@ describe('Testing NotificationLog component', () => {
 
             jest.spyOn(instance, 'clearNotificationLog');
 
-            const touchableOpacity = wrapper.find('TouchableOpacity').at(0);
-
             expect(instance.clearNotificationLog).toHaveBeenCalledTimes(0);
 
-            touchableOpacity.props().onPress();
+            wrapper
+                .children()
+                .at(0)
+                .children()
+                .last()
+                .props()
+                .onLeftButtonPress();
 
             expect(instance.clearNotificationLog).toHaveBeenCalledTimes(1);
         });

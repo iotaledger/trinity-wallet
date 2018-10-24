@@ -12,10 +12,7 @@ const getProps = (overrides) =>
             t: () => '',
             closeApp: noop,
             hideModal: noop,
-            backgroundColor: '#ffffff',
-            textColor: {},
-            borderColor: {},
-            warningColor: {},
+            theme: { body: {}, negative: {} },
         },
         overrides,
     );
@@ -39,16 +36,8 @@ describe('Testing RootDetectionModal component', () => {
             expect(RootDetectionModalComponent.propTypes.hideModal).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a backgroundColor string as a prop', () => {
-            expect(RootDetectionModalComponent.propTypes.backgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a textColor object as a prop', () => {
-            expect(RootDetectionModalComponent.propTypes.textColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a borderColor object as a prop', () => {
-            expect(RootDetectionModalComponent.propTypes.borderColor).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(RootDetectionModalComponent.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
     });
 
@@ -60,7 +49,7 @@ describe('Testing RootDetectionModal component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should call prop method hideModal when onRightButtonPress prop of OnboardingButtons is triggered', () => {
+        it('should call prop method hideModal when onRightButtonPress prop of DualFooterButtons is triggered', () => {
             const props = getProps({
                 hideModal: jest.fn(),
             });
@@ -80,7 +69,7 @@ describe('Testing RootDetectionModal component', () => {
             expect(props.hideModal).toHaveBeenCalledTimes(1);
         });
 
-        it('should call prop method closeApp when onLeftButtonPress prop of OnboardingButtons is triggered', () => {
+        it('should call prop method closeApp when onLeftButtonPress prop of DualFooterButtons is triggered', () => {
             const props = getProps({
                 closeApp: jest.fn(),
             });
