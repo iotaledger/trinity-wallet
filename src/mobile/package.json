@@ -25,7 +25,7 @@
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "assert": "^1.4.1",
