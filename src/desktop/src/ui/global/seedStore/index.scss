@@ -18,6 +18,7 @@
         background: var(--body-bg);
         opacity: 0;
         transition: opacity 0.15s ease-in;
+        pointer-events: none;
     }
     > div {
         position: relative;
@@ -66,6 +67,7 @@
     &.on {
         &:before {
             opacity: 0.85;
+            pointer-events: all;
         }
         > div {
             opacity: 1;

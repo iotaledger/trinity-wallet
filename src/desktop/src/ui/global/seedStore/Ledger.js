@@ -109,7 +109,7 @@ class Ledger extends React.PureComponent {
                         <h2>{t(`ledger:${view}Title`)}</h2>
                         {this.getIcon(view)}
                         {!transaction ? (
-                            t(`ledger:${view}Explanation`)
+                            <p>{t(`ledger:${view}Explanation`)}</p>
                         ) : (
                             <p>
                                 {t('transferConfirmation:youAreAbout', {
