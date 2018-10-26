@@ -347,7 +347,9 @@
         "advanced": "高级",
         "standard": "标准",
         "advancedModeExplanation": "高级模式会显示更详细的技术信息。",
-        "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。"
+        "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "正在发送交易",
