@@ -767,6 +767,8 @@
         "transactionTitle": "Confirm the transaction on your Ledger",
         "transactionExplanation": "Use your Ledger device to approve your outgoing transaction.",
         "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity."
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Please check that the address matches the one displayed on your Ledger device."
     }
 }

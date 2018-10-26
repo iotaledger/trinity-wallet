@@ -157,6 +157,14 @@ class Keychain {
     };
 
     /**
+     * Placeholder for Trinity compatibillity
+     * @returns {boolean}
+     */
+    validateAddress = () => {
+        return true;
+    };
+
+    /**
      * Prepare transfers
      */
     prepareTransfers = async (transfers, options = null) => {
