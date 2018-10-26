@@ -347,7 +347,9 @@
         "advanced": "Išplėstinis",
         "standard": "Standartinis",
         "advancedModeExplanation": "Išplėstinis režimas rodys išsamesnę techninę informaciją.",
-        "modesExplanation": "Išplėstinį režimą naudokite tik jeigu esate patyręs IOTA naudotojas. Kitu atveju jums gali kilti daug neaiškumų."
+        "modesExplanation": "Išplėstinį režimą naudokite tik jeigu esate patyręs IOTA naudotojas. Kitu atveju jums gali kilti daug neaiškumų.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Pavedimas apdorojamas",
