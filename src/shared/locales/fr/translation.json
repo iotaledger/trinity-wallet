@@ -347,7 +347,9 @@
         "advanced": "Avancé",
         "standard": "Standard",
         "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
-        "modesExplanation": "N'activez le mode Avancé que si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
+        "modesExplanation": "N'activez le mode Avancé que si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Transfert en cours",
