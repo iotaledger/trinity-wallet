@@ -751,7 +751,7 @@
     },
     "ledger": {
         "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect it now",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
@@ -761,12 +761,18 @@
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Change the Page index only to match it with other 3rd party IOTA supported wallet account page index.",
         "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
         "connectionTitle": "Connect your Ledger",
         "connectionExplanation": "A Ledger device must be connected to perform this function.",
         "transactionTitle": "Confirm the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve your outgoing transaction.",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
         "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity."
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device."
     }
 }

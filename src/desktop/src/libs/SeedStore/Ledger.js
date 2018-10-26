@@ -1,4 +1,5 @@
 /* global Electron */
+import Errors from 'libs/errors';
 
 class Ledger {
     /**
@@ -100,17 +101,45 @@ class Ledger {
      * Prepare transfers
      */
     prepareTransfers = async (transfers, options = null) => {
-        const seed = await Electron.ledger.selectSeed(this.index, this.page);
+        try {
+            const seed = await Electron.ledger.selectSeed(this.index, this.page);
 
-        const remainder = { address: options.address, keyIndex: options.keyIndex };
+            const remainder = { address: options.address, keyIndex: options.keyIndex };
 
-        Electron.send('ledger', {
-            awaitTransaction: { address: options.address, value: transfers.reduce((a, b) => a + b.value, 0) },
-        });
-        const trytes = await seed.signTransaction(transfers, options.inputs, remainder);
-        Electron.send('ledger', { awaitTransaction: false });
+            const connectionListener = (connected) => {
+                if (!connected) {
+                    Electron.send('ledger', { awaitTransaction: false });
+                    Electron.ledger.removeListener(connectionListener);
+                }
+            };
+            Electron.ledger.addListener(connectionListener);
 
-        return trytes;
+            Electron.send('ledger', {
+                awaitTransaction: { address: options.address, value: transfers.reduce((a, b) => a + b.value, 0) },
+            });
+
+            const trytes = await seed.signTransaction(transfers, options.inputs, remainder);
+            Electron.send('ledger', { awaitTransaction: false });
+
+            Electron.ledger.removeListener(connectionListener);
+
+            return trytes;
+        } catch (err) {
+            Electron.send('ledger', { awaitTransaction: false });
+
+            const error = err.message;
+
+            if (options === null) {
+                throw new Error(Errors.LEDGER_ZERO_VALUE);
+            }
+            if (error.includes('could not read from HID')) {
+                throw new Error(Errors.LEDGER_DISCONNECTED);
+            } else if (error.includes('Denied by user')) {
+                throw new Error(Errors.LEDGER_DENIED);
+            } else if (error === 'Ledger app error' || error === 'Ledger connection error') {
+                throw new Error(Errors.LEDGER_CANCELLED);
+            }
+        }
     };
 
     getSeed = async () => {

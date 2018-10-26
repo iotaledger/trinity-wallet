@@ -100,7 +100,7 @@ class Ledger extends React.PureComponent {
 
             history.push('/onboarding/account-name');
         } catch (err) {
-            generateAlert('error', t('ledger:connectionError'), t('ledger:connectionErrorExplanation'));
+            // Do nothing if user cancels modal
         }
 
         this.setState({
@@ -162,7 +162,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Ledger));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Ledger));
