@@ -347,7 +347,9 @@
         "advanced": "Avanzado",
         "standard": "Normal",
         "advancedModeExplanation": "Modo avanzado mostrará información técnica más detallada.",
-        "modesExplanation": "Solo habilite modo avanzado si tiene experiencia usando IOTA. Puede resultar confuso de otra forma."
+        "modesExplanation": "Solo habilite modo avanzado si tiene experiencia usando IOTA. Puede resultar confuso de otra forma.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Transferencia en envío",
