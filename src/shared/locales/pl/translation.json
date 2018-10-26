@@ -55,6 +55,8 @@
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
+        "unrecognisedAccount": "Nierozpoznane konto",
+        "unrecognisedAccountExplanation": "Konto o nazwie {{accountName}} nie zostało rozpoznane. Rozważ reset swojego portfela.",
         "emptyPasswordExplanation": "Należy wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "capsLockIsOn": "Caps Lock jest włączony",
         "syncInProgress": "Synchronizacja w toku",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków.",
         "checkForUpdates": "Sprawdź aktualizacje",
         "account": "Konto",
-        "enterYourPassword": "Wprowadź swoje hasło",
         "changeNode": "Zmień serwer",
         "addCustomNode": "Dodaj serwer",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
@@ -144,7 +145,7 @@
         "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "KONTO GŁÓWNE"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -435,7 +436,7 @@
         "empty": "Brak",
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promowanie innego pakietu"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -512,9 +513,9 @@
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Na pewno chcesz usunąć swoje konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Tej czynności nie można cofnąć",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
     },
     "manualSync": {
@@ -593,17 +594,21 @@
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
         "exportSuccess": "Wyeksportowano SeedVault",
         "exportSuccessExplanation": "Zaszyfrowany klucz seed został pomyślnie wyeksportowany.",
+        "unrecognisedKey": "Nierozpoznane hasło pliku SeedVault",
+        "unrecognisedKeyExplanation": "Hasło nie zostało rozpoznane. Spróbuj ponownie.",
+        "emptyKey": "Nie wprowadzono hasła pliku SeedVault",
+        "emptyKeyExplanation": "Należy wprowadzić hasło. Spróbuj ponownie.",
         "importSuccess": "Seed zaimportowany",
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
         "dropSeedVaultHere": "Upuść plik SeedVault tutaj<1></1> lub kliknij, aby wyszukać ręcznie",
-        "enterPasswordExplanation": "Wprowadź swoje hasło, aby otworzyć plik SeedVault",
+        "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultPasswordExplanation": "Najpierw musisz zabezpieczyć swój SeedVault hasłem. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej pliku SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
+        "seedVaultKeyExplanation": "Najpierw musisz zabezpieczyć swój SeedVault hasłem. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej pliku SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
     },
     "chart": {
         "mcap": "Market",
