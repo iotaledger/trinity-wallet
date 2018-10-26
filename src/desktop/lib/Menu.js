@@ -195,7 +195,6 @@ const initMenu = (app, getWindow) => {
                             },
                             {
                                 label: language.advanced,
-                                enabled: state.authorised && state.enabled,
                                 click: () => navigate('settings/advanced'),
                             },
                         ],
