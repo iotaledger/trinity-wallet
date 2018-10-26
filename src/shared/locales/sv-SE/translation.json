@@ -347,7 +347,9 @@
         "advanced": "Avancerat",
         "standard": "Standard",
         "advancedModeExplanation": "Avancerat läge visar mer detaljerad teknisk information.",
-        "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars."
+        "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Överföring pågår",
