@@ -366,10 +366,10 @@ const Electron = {
         try {
             const content = await kdbx.exportVault(seeds, password);
             const now = new Date();
-
+            const prefix = seeds.length === 1 ? seeds[0].title : 'seedvault';
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `seedvault-${now
+                defaultPath: `${prefix}-${now
                     .toISOString()
                     .slice(0, 16)
                     .replace(/[-:]/g, '')
