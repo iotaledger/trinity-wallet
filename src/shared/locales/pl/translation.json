@@ -348,7 +348,7 @@
         "standard": "Standardowy",
         "advancedModeExplanation": "Tryb zaawansowany włącza wyświetlanie bardziej szczegółowych informacji technicznych.",
         "modesExplanation": "Aktywuj tryb zaawansowany jedynie, jeśli jesteś doświadczonym użytkownikiem IOTA. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "Tryb zmieniony",
         "modeUpdatedExplanation": "Zmieniłeś tryb na {{mode}}"
     },
     "settings": {
