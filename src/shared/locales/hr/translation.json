@@ -347,7 +347,9 @@
         "advanced": "Napredni",
         "standard": "Standardno",
         "advancedModeExplanation": "Napredni način rada prikazat će više detaljnih tehničkih informacija.",
-        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom."
+        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Slanje transakcije",
