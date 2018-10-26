@@ -55,8 +55,8 @@
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Ismeretlen számla",
+        "unrecognisedAccountExplanation": "A(z) {{accountName}} nevű számlát nem sikerült felismerni. Kérjük fontolja meg a tárca gyári állapotba való visszaállítását.",
         "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
         "capsLockIsOn": "A nagybetűzár be van kapcsolva",
         "syncInProgress": "Szinkronizálás folyamatban",
@@ -348,7 +348,7 @@
         "standard": "Normál",
         "advancedModeExplanation": "Haladó módban részletesebb technikai információk is megjelennek.",
         "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "Üzemmód megváltoztatva",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
