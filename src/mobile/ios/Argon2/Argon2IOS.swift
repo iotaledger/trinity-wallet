@@ -29,4 +29,8 @@ class Argon2IOS: NSObject {
       reject("Argon2 hash", "Invalid parameters provided: " + params.debugDescription, nil)
     }
   }
+  
+  @objc static func requiresMainQueueSetup() -> Bool {
+    return false
+  }
 }
