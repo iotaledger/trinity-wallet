@@ -347,7 +347,9 @@
         "advanced": "進階",
         "standard": "標準",
         "advancedModeExplanation": "進階模式會顯示更多詳細技術資訊。",
-        "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用進階模式，否則您可能反而會一頭霧水。"
+        "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用進階模式，否則您可能反而會一頭霧水。",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "傳送交易",
