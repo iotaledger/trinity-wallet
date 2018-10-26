@@ -348,8 +348,8 @@
         "standard": "標準",
         "advancedModeExplanation": "上級モードでは、より詳細な技術的情報が表示されます。",
         "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "モード更新",
+        "modeUpdatedExplanation": "モード{{mode}}に変更しました"
     },
     "settings": {
         "transferSending": "送金中",
