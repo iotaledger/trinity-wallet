@@ -347,7 +347,9 @@
         "advanced": "Zaawansowany",
         "standard": "Standardowy",
         "advancedModeExplanation": "Tryb zaawansowany włącza wyświetlanie bardziej szczegółowych informacji technicznych.",
-        "modesExplanation": "Aktywuj tryb zaawansowany jedynie, jeśli jesteś doświadczonym użytkownikiem IOTA. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
+        "modesExplanation": "Aktywuj tryb zaawansowany jedynie, jeśli jesteś doświadczonym użytkownikiem IOTA. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Wykonywanie transferu",
