@@ -347,7 +347,9 @@
         "advanced": "Advanced",
         "standard": "عادي",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "جاري التحويل",
