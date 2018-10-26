@@ -347,7 +347,9 @@
         "advanced": "Haladó",
         "standard": "Normál",
         "advancedModeExplanation": "Haladó módban részletesebb technikai információk is megjelennek.",
-        "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával."
+        "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Küldés folyamatban",
