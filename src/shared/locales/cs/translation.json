@@ -347,7 +347,9 @@
         "advanced": "Pokočilý",
         "standard": "Výchozí",
         "advancedModeExplanation": "Pokročilý režim zobrazí podrobnější technické informace.",
-        "modesExplanation": "Pokročilý režim povolte, pouze pokud jste zkušený uživatel IOTA. Jinak to pro Vás může být matoucí."
+        "modesExplanation": "Pokročilý režim povolte, pouze pokud jste zkušený uživatel IOTA. Jinak to pro Vás může být matoucí.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Odesílání transakce",
