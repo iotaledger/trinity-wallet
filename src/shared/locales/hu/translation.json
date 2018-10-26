@@ -610,7 +610,7 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "A mester jelszavát egy jelszóval védett ún. SeedVault fájlban tároljuk. Kérjük, válasszon egy jelszót a fájl titkosításához. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből kívánja betölteni. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépéshez is használ."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
