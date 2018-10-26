@@ -342,7 +342,7 @@ class SeedVaultExportComponent extends Component {
                 <View style={styles.viewContainer}>
                     <InfoBox
                         body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultPasswordExplanation')}</Text>}
+                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>}
                     />
                 </View>
                 <View style={styles.viewContainer}>

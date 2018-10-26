@@ -12,7 +12,7 @@ export default function withAlertsData(AlertsComponent) {
     class AlertsData extends React.PureComponent {
         static propTypes = {
             dismissAlert: PropTypes.func.isRequired,
-            alerts: PropTypes.object.isRequired
+            alerts: PropTypes.object.isRequired,
         };
 
         render() {
@@ -27,7 +27,7 @@ export default function withAlertsData(AlertsComponent) {
     });
 
     const mapDispatchToProps = {
-        dismissAlert
+        dismissAlert,
     };
 
     return connect(mapStateToProps, mapDispatchToProps)(AlertsData);
