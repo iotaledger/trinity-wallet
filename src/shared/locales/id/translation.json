@@ -347,7 +347,9 @@
         "advanced": "Lanjutan",
         "standard": "Standar",
         "advancedModeExplanation": "Mode lanjutan akan menampilkan informasi teknis lebih rinci.",
-        "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda."
+        "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
