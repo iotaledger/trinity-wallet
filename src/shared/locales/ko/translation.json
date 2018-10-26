@@ -347,7 +347,9 @@
         "advanced": "고급",
         "standard": "기본",
         "advancedModeExplanation": "고급 모드에서는 기술적 정보가 더 자세하게 표시됩니다.",
-        "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다."
+        "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "거래 전송중",
