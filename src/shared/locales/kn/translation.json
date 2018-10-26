@@ -347,7 +347,9 @@
         "advanced": "ಮುಂದುವರೆದ",
         "standard": "ಪ್ರಮಾಣಿತ",
         "advancedModeExplanation": "ಮುಂದುವರೆದ ಮೋಡ್ ಹೆಚ್ಚು ವಿವರವಾದ ತಾಂತ್ರಿಕ ಮಾಹಿತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.",
-        "modesExplanation": "IOTA ಅನ್ನು ಬಳಸಿ ನಿಮಗೆ ಅನುಭವವಿದ್ದರೆ ಮಾತ್ರ ಮುಂದುವರೆದ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅದರಿಂದ ಗೊಂದಲಕ್ಕೊಳಗಾಗಬಹುದು."
+        "modesExplanation": "IOTA ಅನ್ನು ಬಳಸಿ ನಿಮಗೆ ಅನುಭವವಿದ್ದರೆ ಮಾತ್ರ ಮುಂದುವರೆದ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅದರಿಂದ ಗೊಂದಲಕ್ಕೊಳಗಾಗಬಹುದು.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "ಕಳುಹಿಸುವುದನ್ನು ವರ್ಗಾಯಿಸಿ",
