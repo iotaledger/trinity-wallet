@@ -347,7 +347,9 @@
         "advanced": "Ekspert",
         "standard": "Tavaline",
         "advancedModeExplanation": "Ekspert režiimis kuvatakse üksikasjalist tehnilist informatsiooni.",
-        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena."
+        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Toimub ülekanne",
