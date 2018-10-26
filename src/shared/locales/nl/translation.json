@@ -347,7 +347,9 @@
         "advanced": "Geavanceerd",
         "standard": "Standaard",
         "advancedModeExplanation": "Geavanceerde modus toont meer gedetailleerde technische informatie.",
-        "modesExplanation": "Schakel geavanceerde modus alleen in als u bekend bent met IOTA. Het kan anders verwarrend zijn."
+        "modesExplanation": "Schakel geavanceerde modus alleen in als u bekend bent met IOTA. Het kan anders verwarrend zijn.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Transactie in behandeling",
