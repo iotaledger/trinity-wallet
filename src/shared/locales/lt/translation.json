@@ -55,8 +55,8 @@
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Neatpažinta paskyra",
+        "unrecognisedAccountExplanation": "Paskyra pavadinimu {{accountName}} neatpažinta. Bandykite nustatyti piniginę iš naujo.",
         "emptyPasswordExplanation": "Reikia įvesti slaptažodį. Bandykite dar kartą.",
         "capsLockIsOn": "Caps Lock įjungta",
         "syncInProgress": "Sinchronizuojama",
@@ -348,8 +348,8 @@
         "standard": "Standartinis",
         "advancedModeExplanation": "Išplėstinis režimas rodys išsamesnę techninę informaciją.",
         "modesExplanation": "Išplėstinį režimą naudokite tik jeigu esate patyręs IOTA naudotojas. Kitu atveju jums gali kilti daug neaiškumų.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Režimas atnaujintas",
+        "modeUpdatedExplanation": "Jūs pakeitėte režimą į {{mode}}"
     },
     "settings": {
         "transferSending": "Pavedimas apdorojamas",
