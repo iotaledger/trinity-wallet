@@ -610,7 +610,7 @@
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite raktą norėdami užšifruoti failą. Šio rakto jums prireiks, norint susigrąžinti užraktą iš SeedVault failo. Raktas gali būti toks pat, kaip ir slaptažodis Trinity piniginei."
     },
     "chart": {
         "mcap": "MCAP",
