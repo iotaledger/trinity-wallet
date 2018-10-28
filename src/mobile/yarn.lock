@@ -7340,10 +7340,9 @@ react-native-vector-icons@^4.5.0:
   version "2.4.0"
   resolved "git+https://github.com/cvarley100/react-native-view-shot#b7af36520f10c212ff226c32dc72a6c0b9e1521e"
 
-react-native@0.57.0:
+"react-native@https://github.com/rajivshah3/react-native#0.57-forwardref":
   version "0.57.0"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.0.tgz#b0d098bbd5393fc3c079f8d7c2a8bf9a10b86b9e"
-  integrity sha512-L/bPmqWsei1EyHdikg/jOdl9unVyrehmkoNlkGCl3Y5Zr7KGE36j+DOL6M0OqpGVkWIXJ5Jzk/ttea/X3edVVg==
+  resolved "https://github.com/rajivshah3/react-native#e123f1c372a5f5557864efc1de8d5a3264f5bd46"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
