@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -11,7 +12,6 @@ import SeedStore from 'libs/SeedStore';
 import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import { isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
@@ -183,7 +183,7 @@ class SetPassword extends Component {
         const { password, reentry } = this.state;
 
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView contentContainerStyle={styles.container}>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
                     <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
@@ -191,7 +191,7 @@ class SetPassword extends Component {
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('choosePassword')}</Header>
                         </View>
-                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.midContainer}>
+                        <View style={styles.midContainer}>
                             <InfoBox
                                 body={body}
                                 text={
@@ -217,7 +217,7 @@ class SetPassword extends Component {
                                 setReentry={(reentry) => this.setState({ reentry })}
                             />
                             <View style={{ flex: 0.3 }} />
-                        </KeyboardAvoidingView>
+                        </View>
                         <View style={styles.bottomContainer}>
                             <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
@@ -228,7 +228,7 @@ class SetPassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
