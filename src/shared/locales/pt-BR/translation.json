@@ -348,8 +348,8 @@
         "standard": "Padrão",
         "advancedModeExplanation": "Modo avançado exibirá informações técnicas mais detalhadas.",
         "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente no uso da IOTA. Caso contrário, poderá confundir-se.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Modo atualizado",
+        "modeUpdatedExplanation": "Você mudou para o modo {{mode}}"
     },
     "settings": {
         "transferSending": "Enviando transferência",
@@ -596,8 +596,8 @@
         "exportFailExplanation": "Houve um problema ao exportar o SeedVault. Por favor, certifique-se de que você tem as permissões apropriadas e espaço livre suficiente.",
         "exportSuccess": "SeedVault exportada",
         "exportSuccessExplanation": "Seu arquivo criptografado da Seed foi exportado com êxito.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "unrecognisedKey": "Chave de SeedVault não reconhecida",
+        "unrecognisedKeyExplanation": "A chave não foi reconhecida. Por favor, tente novamente.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed importada",
