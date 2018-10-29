@@ -671,7 +671,9 @@
         "newVersionAvailable": "Una nuova versione è disponibile",
         "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",
-        "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento."
+        "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Registro degli errori"
