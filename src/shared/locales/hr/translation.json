@@ -671,7 +671,9 @@
         "newVersionAvailable": "Dostupna je nova inačica",
         "newVersionAvailableExplanation": "Dostupna je nova <strong>Trinity</strong> <strong>{{version}}</strong> inačica. Pažljivo pročitajte informacije o novoj inačici i provjerite izvor preuzimanja prije ažuriranja aplikacije.",
         "installUpdate": "Instaliraj novu inačicu i ponovno pokreni aplikaciju",
-        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje."
+        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Evidencija grešaka"
