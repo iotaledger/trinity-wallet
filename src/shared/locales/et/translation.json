@@ -671,7 +671,9 @@
         "newVersionAvailable": "Uus versioon saadaval",
         "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
         "installUpdate": "Installi värskendus ja taaskäivita",
-        "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks."
+        "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Veateadete logi"
