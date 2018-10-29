@@ -672,8 +672,8 @@
         "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。アップデートする前に、リリースノートを注意深く読み、ダウンロード元をご確認ください：",
         "installUpdate": "インストール、アップデート、リスタートを行う",
         "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "アップデートをダウンロード中",
+        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
