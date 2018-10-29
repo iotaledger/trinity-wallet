@@ -21,9 +21,10 @@ class Ledger {
      * Create Ledger Transport and select seed by index
      * @param {number} index - Target seed index
      * @param {number} page - Target seed page
+     * @param {number} security - Target security level
      * @returns {object} Ledger IOTA transport
      */
-    async selectSeed(index, page) {
+    async selectSeed(index, page, security) {
         if (!this.connected) {
             Wallet.send('ledger', { awaitConnection: true });
             await this.awaitConnection();
@@ -39,7 +40,7 @@ class Ledger {
             this.iota = null;
         }
 
-        await this.awaitApplication(index, page);
+        await this.awaitApplication(index, page, security);
 
         return this.iota;
     }
@@ -74,9 +75,10 @@ class Ledger {
      * Wait for IOTA application and selected seed by index
      * @param {number} index - Target seed index
      * @param {number} page - Target seed page
+     * @param {number} security - Target security level
      * @returns {promise} Resolves with IOTA Transport object
      */
-    async awaitApplication(index, page) {
+    async awaitApplication(index, page, security) {
         return new Promise((resolve, reject) => {
             let timeout = null;
             let rejected = false;
@@ -90,7 +92,7 @@ class Ledger {
                         Wallet.send('ledger', { awaitApplication: true });
                     }, 1000);
 
-                    await this.iota.setActiveSeed(`44'/4218'/${index}'/${page}'`);
+                    await this.iota.setActiveSeed(`44'/4218'/${index}'/${page}'`, security || 2);
 
                     Wallet.send('ledger', { awaitApplication: false });
                     clearTimeout(timeout);

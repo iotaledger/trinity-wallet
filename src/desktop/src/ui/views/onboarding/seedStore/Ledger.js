@@ -92,10 +92,13 @@ class Ledger extends React.PureComponent {
 
         try {
             const vault = await new SeedStore.ledger(null, null, { index });
-            await vault.getSeed();
+            const indexAddress = await vault.generateAddress({
+                index: 0,
+                security: 1,
+            });
 
             this.props.setAdditionalAccountInfo({
-                additionalAccountMeta: { type: 'ledger', index, page },
+                additionalAccountMeta: { type: 'ledger', index, page, indexAddress },
             });
 
             history.push('/onboarding/account-name');

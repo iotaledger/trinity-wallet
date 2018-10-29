@@ -774,6 +774,8 @@
         "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
         "ledgerDeniedTitle": "Transaction denied",
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "A different Ledger device is used for this account or the device mnemonics or password has been changed.",
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Please check that the address matches the one displayed on your Ledger device."
     }

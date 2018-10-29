@@ -12,6 +12,7 @@ class Ledger {
         if (accountMeta && typeof accountMeta.index === 'number') {
             this.index = accountMeta.index;
             this.page = typeof accountMeta.page === 'number' ? accountMeta.page : 0;
+            this.indexAddress = typeof accountMeta.indexAddress === 'string' ? accountMeta.indexAddress : null;
         }
     }
 
@@ -80,7 +81,7 @@ class Ledger {
      * @returns {promise}
      */
     generateAddress = async (options) => {
-        const seed = await this.getSeed();
+        const seed = await this.getSeed(options.security);
 
         if (!options.total || options.total === 1) {
             const address = await seed.getAddress(options.index);
@@ -120,7 +121,7 @@ class Ledger {
      */
     prepareTransfers = async (transfers, options = null) => {
         try {
-            const seed = await Electron.ledger.selectSeed(this.index, this.page);
+            const seed = await this.getSeed(this.index, this.page);
 
             const remainder = { address: options.address, keyIndex: options.keyIndex };
 
@@ -150,6 +151,9 @@ class Ledger {
             if (options === null) {
                 throw new Error(Errors.LEDGER_ZERO_VALUE);
             }
+            if (error === Errors.LEDGER_INVALID_INDEX) {
+                throw new Error(Errors.LEDGER_INVALID_INDEX);
+            }
             if (error.includes('could not read from HID')) {
                 throw new Error(Errors.LEDGER_DISCONNECTED);
             } else if (error.includes('Denied by user')) {
@@ -160,8 +164,23 @@ class Ledger {
         }
     };
 
-    getSeed = async () => {
-        const seed = await Electron.ledger.selectSeed(this.index, this.page);
+    /**
+     * Select active seed on Ledger device
+     * @param {number} security - Address generation security level - 1,2 or 3
+     * @returns {object} Ledger IOTA transport 
+     */
+    getSeed = async (security) => {
+        if (this.indexAddress) {
+            const testSeed = await Electron.ledger.selectSeed(this.index, this.page, 1);
+            const testAddress = await testSeed.getAddress(0);
+
+            if (testAddress !== this.indexAddress) {
+                throw new Error(Errors.LEDGER_INVALID_INDEX);
+            }
+        }
+
+        const seed = await Electron.ledger.selectSeed(this.index, this.page, security);
+
         return seed;
     };
 }

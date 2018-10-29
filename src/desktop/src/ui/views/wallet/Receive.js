@@ -17,6 +17,7 @@ import { generateNewAddress } from 'actions/wallet';
 import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
 import { byteToChar } from 'libs/helpers';
+import Errors from 'libs/errors';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -113,16 +114,21 @@ class Receive extends React.PureComponent {
         try {
             const valid = await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
 
-            console.log(valid);
-
             if (!valid) {
                 history.push('/wallet/');
             } else if (valid.notification) {
                 generateAlert('success', t(valid.notification.title), t(valid.notification.content));
             }
         } catch (err) {
-            console.log(err);
             history.push('/wallet/');
+            if (err.message === Errors.LEDGER_INVALID_INDEX) {
+                generateAlert(
+                    'error',
+                    t('ledger:ledgerIncorrectIndex'),
+                    t('ledger:ledgerIncorrectIndexExplanation'),
+                    20000,
+                );
+            }
         }
     };
 

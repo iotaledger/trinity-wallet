@@ -827,6 +827,15 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             20000,
                         ),
                     );
+                } else if (message === Errors.LEDGER_INVALID_INDEX) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerIncorrectIndex'),
+                            i18next.t('ledger:ledgerIncorrectIndexExplanation'),
+                            20000,
+                        ),
+                    );
                 } else if (message === Errors.LEDGER_CANCELLED) {
                     return;
                 }
