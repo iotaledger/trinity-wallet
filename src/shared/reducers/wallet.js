@@ -60,6 +60,10 @@ const initialState = {
      * Determines if wallet has an active internet connection
      */
     hasConnection: true,
+    /**
+     * Determines if wallet is validating the displayed address
+     */
+    isValidatingAddress: false,
 };
 
 export default (state = initialState, action) => {
@@ -188,6 +192,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasConnection: action.payload.isConnected,
+            };
+        case ActionTypes.ADDRESS_VALIDATION_REQUEST:
+            return {
+                ...state,
+                isValidatingAddress: true,
+            };
+        case ActionTypes.ADDRESS_VALIDATION_SUCCESS:
+            return {
+                ...state,
+                isValidatingAddress: false,
             };
         default:
             return state;

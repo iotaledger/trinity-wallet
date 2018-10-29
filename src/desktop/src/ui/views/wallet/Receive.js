@@ -12,7 +12,7 @@ import {
 } from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
-import { generateNewAddress } from 'actions/wallet';
+import { generateNewAddress, addressValidationRequest, addressValidationSuccess } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
@@ -59,6 +59,12 @@ class Receive extends React.PureComponent {
         }).isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        addressValidationRequest: PropTypes.func.isRequired,
+        /** @ignore */
+        addressValidationSuccess: PropTypes.func.isRequired,
+        /** @ignore */
+        isValidatingAddress: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -67,7 +73,9 @@ class Receive extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.validateAdress();
+        if (!this.props.isGeneratingReceiveAddress && !this.props.isValidatingAddress) {
+            this.validateAdress();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -79,6 +87,10 @@ class Receive extends React.PureComponent {
             });
 
             this.unscramble();
+
+            if (!this.props.isValidatingAddress) {
+                this.validateAdress();
+            }
         }
     }
 
@@ -112,14 +124,14 @@ class Receive extends React.PureComponent {
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         try {
-            const valid = await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
-
-            if (!valid) {
-                history.push('/wallet/');
-            } else if (valid.notification) {
-                generateAlert('success', t(valid.notification.title), t(valid.notification.content));
-            }
+            generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 10000);
+            this.props.addressValidationRequest();
+            await seedStore.validateAddress(
+                Object.keys(account.addresses).length - 1,
+                this.props.addressValidationSuccess,
+            );
         } catch (err) {
+            this.props.addressValidationSuccess();
             history.push('/wallet/');
             if (err.message === Errors.LEDGER_INVALID_INDEX) {
                 generateAlert(
@@ -175,7 +187,8 @@ class Receive extends React.PureComponent {
                     <Clipboard
                         text={receiveAddress}
                         title={t('receive:addressCopied')}
-                        success={t('receive:addressCopiedExplanation')}>
+                        success={t('receive:addressCopiedExplanation')}
+                    >
                         <p>
                             {receiveAddress.split('').map((char, index) => {
                                 const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
@@ -203,7 +216,8 @@ class Receive extends React.PureComponent {
                         <Clipboard
                             text={receiveAddress}
                             title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}>
+                            success={t('receive:addressCopiedExplanation')}
+                        >
                             <Button className="small" onClick={() => {}}>
                                 {t('receive:copyAddress')}
                             </Button>
@@ -224,11 +238,14 @@ const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
+    isValidatingAddress: state.wallet.isValidatingAddress,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     generateNewAddress,
+    addressValidationRequest,
+    addressValidationSuccess,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Receive));
