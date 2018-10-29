@@ -433,18 +433,17 @@ ipc.on('window.focus', (e, payload) => {
 });
 
 /**
- * Create a single instance on win32 platforms
- * Set deep link if defined as argument
+ * Create a single instance only
  */
-const shouldQuit = app.makeSingleInstance((argv) => {
-    if (process.platform === 'win32') {
-        deeplinkingUrl = argv.slice(1);
-    }
-});
+const isFirstInstance = app.requestSingleInstanceLock();
 
-if (shouldQuit) {
+if (!isFirstInstance) {
     app.quit();
-    return;
+} else {
+    if (windows.main) {
+        windows.main.show();
+        windows.main.focus();
+    }
 }
 
 /**

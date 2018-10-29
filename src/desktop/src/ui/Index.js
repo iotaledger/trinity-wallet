@@ -23,6 +23,7 @@ import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
 import ErrorLog from 'ui/global/ErrorLog';
+import UpdateProgress from 'ui/global/UpdateProgress';
 
 import Loading from 'ui/components/Loading';
 
@@ -255,6 +256,7 @@ class App extends React.Component {
                 <About />
                 <ErrorLog />
                 <Idle />
+                <UpdateProgress />
                 <Theme history={history} />
                 <Ledger />
                 <AlphaWarning />
