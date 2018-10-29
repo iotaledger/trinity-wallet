@@ -102,10 +102,9 @@ class Ledger {
      * Trigger on screen address validation
      * @param {number} index -  Address index
      */
-    validateAddress = async (index, onCompleteValidation) => {
+    validateAddress = async (index) => {
         const seed = await this.getSeed();
         await seed.getAddress(index, { display: true });
-        onCompleteValidation();
     };
 
     /**
