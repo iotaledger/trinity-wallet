@@ -671,7 +671,9 @@
         "newVersionAvailable": "Une nouvelle version est disponible",
         "newVersionAvailableExplanation": "Une nouvelle version de Trinity est disponible. Vous voulez mettre à jour maintenant ?",
         "installUpdate": "Installer la mise à jour et redémarrer",
-        "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour."
+        "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Journal des erreurs"
