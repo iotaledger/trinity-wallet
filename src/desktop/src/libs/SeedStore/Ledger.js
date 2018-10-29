@@ -101,19 +101,11 @@ class Ledger {
     /**
      * Trigger on screen address validation
      * @param {number} index -  Address index
-     * @returns {promise}
      */
-    validateAddress = async (index) => {
+    validateAddress = async (index, onCompleteValidation) => {
         const seed = await this.getSeed();
-        const address = await seed.getAddress(index, { display: true });
-        return !address
-            ? false
-            : {
-                  notification: {
-                      title: 'ledger:checkAddress',
-                      content: 'ledger:checkAddressExplanation',
-                  },
-              };
+        await seed.getAddress(index, { display: true });
+        onCompleteValidation();
     };
 
     /**
@@ -167,7 +159,7 @@ class Ledger {
     /**
      * Select active seed on Ledger device
      * @param {number} security - Address generation security level - 1,2 or 3
-     * @returns {object} Ledger IOTA transport 
+     * @returns {object} Ledger IOTA transport
      */
     getSeed = async (security) => {
         if (this.indexAddress) {
