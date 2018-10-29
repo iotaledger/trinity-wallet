@@ -124,12 +124,12 @@ class Receive extends React.PureComponent {
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         try {
-            generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 10000);
+            if (accountMeta.type === 'ledger') {
+                generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 10000);
+            }
             this.props.addressValidationRequest();
-            await seedStore.validateAddress(
-                Object.keys(account.addresses).length - 1,
-                this.props.addressValidationSuccess,
-            );
+            await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
+            this.props.addressValidationSuccess();
         } catch (err) {
             this.props.addressValidationSuccess();
             history.push('/wallet/');
