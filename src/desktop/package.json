@@ -127,6 +127,7 @@
     }
   },
   "dependencies": {
+    "@ledgerhq/hw-transport-node-hid": "^4.24.0",
     "argon2": "rihardsgravis/node-argon2#prebuild-release",
     "authenticator": "^1.1.5",
     "bugsnag-js": "^4.7.3",
@@ -135,6 +136,7 @@
     "electron-settings": "^3.2.0",
     "electron-updater": "3.0.4",
     "entangled-node": "rihardsgravis/entangled-node",
+    "hw-app-iota": "^0.4.1",
     "iota.lib.js": "^0.5.1",
     "kdbxweb": "^1.2.4",
     "keytar": "^4.3.0",
