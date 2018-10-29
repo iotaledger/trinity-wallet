@@ -671,7 +671,9 @@
         "newVersionAvailable": "Ny version tillgänglig",
         "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
         "installUpdate": "Installera uppdateringen och starta om",
-        "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen."
+        "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Fellogg"
