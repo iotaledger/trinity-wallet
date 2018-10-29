@@ -67,11 +67,11 @@ class Settings extends React.PureComponent {
                                         <Icon icon="twoFA" size={20} /> <strong>{t('settings:twoFA')}</strong>
                                     </NavLink>
                                     <hr />
+                                    <NavLink to="/settings/mode">
+                                        <Icon icon="mode" size={20} /> <strong>{t('settings:mode')}</strong>
+                                    </NavLink>
                                 </div>
                             ) : null}
-                            <NavLink to="/settings/mode">
-                                <Icon icon="mode" size={20} /> <strong>{t('settings:mode')}</strong>
-                            </NavLink>
                             <NavLink to="/settings/advanced">
                                 <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
                             </NavLink>

@@ -79,6 +79,7 @@ class Ledger {
     async awaitApplication(index, page) {
         return new Promise((resolve, reject) => {
             let timeout = null;
+            let rejected = false;
 
             const callback = async () => {
                 try {
@@ -98,6 +99,11 @@ class Ledger {
                 } catch (error) {
                     this.transport.close();
                     this.iota = null;
+
+                    if (rejected) {
+                        return;
+                    }
+
                     if (error.statusCode === 0x6e00) {
                         timeout = setTimeout(() => callback(), 4000);
                     } else {
@@ -111,6 +117,8 @@ class Ledger {
 
             const callbackAbort = (e, message) => {
                 if (message && message.abort) {
+                    rejected = true;
+
                     ipc.removeListener('ledger', callbackAbort);
 
                     if (timeout) {

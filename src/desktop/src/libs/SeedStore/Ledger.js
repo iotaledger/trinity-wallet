@@ -98,6 +98,24 @@ class Ledger {
     };
 
     /**
+     * Trigger on screen address validation
+     * @param {number} index -  Address index
+     * @returns {promise}
+     */
+    validateAddress = async (index) => {
+        const seed = await this.getSeed();
+        const address = await seed.getAddress(index, { display: true });
+        return !address
+            ? false
+            : {
+                  notification: {
+                      title: 'ledger:checkAddress',
+                      content: 'ledger:checkAddressExplanation',
+                  },
+              };
+    };
+
+    /**
      * Prepare transfers
      */
     prepareTransfers = async (transfers, options = null) => {

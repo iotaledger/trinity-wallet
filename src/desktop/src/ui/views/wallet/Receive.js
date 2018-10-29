@@ -53,6 +53,10 @@ class Receive extends React.PureComponent {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -60,6 +64,10 @@ class Receive extends React.PureComponent {
         message: '',
         scramble: new Array(ADDRESS_LENGTH).fill(0),
     };
+
+    componentDidMount() {
+        this.validateAdress();
+    }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isGeneratingReceiveAddress && !nextProps.isGeneratingReceiveAddress) {
@@ -96,6 +104,26 @@ class Receive extends React.PureComponent {
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         this.props.generateNewAddress(seedStore, accountName, account);
+    };
+
+    validateAdress = async () => {
+        const { password, accountName, accountMeta, account, history, generateAlert, t } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+
+        try {
+            const valid = await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
+
+            console.log(valid);
+
+            if (!valid) {
+                history.push('/wallet/');
+            } else if (valid.notification) {
+                generateAlert('success', t(valid.notification.title), t(valid.notification.content));
+            }
+        } catch (err) {
+            console.log(err);
+            history.push('/wallet/');
+        }
     };
 
     unscramble() {
@@ -141,8 +169,7 @@ class Receive extends React.PureComponent {
                     <Clipboard
                         text={receiveAddress}
                         title={t('receive:addressCopied')}
-                        success={t('receive:addressCopiedExplanation')}
-                    >
+                        success={t('receive:addressCopiedExplanation')}>
                         <p>
                             {receiveAddress.split('').map((char, index) => {
                                 const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
@@ -170,8 +197,7 @@ class Receive extends React.PureComponent {
                         <Clipboard
                             text={receiveAddress}
                             title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}
-                        >
+                            success={t('receive:addressCopiedExplanation')}>
                             <Button className="small" onClick={() => {}}>
                                 {t('receive:copyAddress')}
                             </Button>
