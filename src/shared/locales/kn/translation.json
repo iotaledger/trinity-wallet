@@ -671,7 +671,9 @@
         "newVersionAvailable": "ಹೊಸ ಆವೃತ್ತಿ ಲಭ್ಯವಿದೆ",
         "newVersionAvailableExplanation": "ಹೊಸ ಟ್ರಿನಿಟಿ ಆವೃತ್ತಿ ಲಭ್ಯವಿದೆ. ನೀವು ಇದೀಗ ನವೀಕರಿಸಲು ಬಯಸುತ್ತೀರಾ?",
         "installUpdate": "ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಿ ಮತ್ತು ಮರುಪ್ರಾರಂಭಿಸಿ",
-        "installUpdateExplanation": "ಡೌನ್ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ, ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಲು ಟ್ರಿನಿಟಿ ಈಗ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ."
+        "installUpdateExplanation": "ಡೌನ್ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ, ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಲು ಟ್ರಿನಿಟಿ ಈಗ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "ಲಾಗ್ನಲ್ಲಿ ದೋಷ"
