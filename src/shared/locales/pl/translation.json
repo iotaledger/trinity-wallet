@@ -672,8 +672,8 @@
         "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
         "installUpdate": "Zainstaluj aktualizację i zrestartuj",
         "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie i zainstaluje aktualizację.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Pobieranie aktualizacji",
+        "downloadProgress": "Pobrano {{transferred}} z {{total}}"
     },
     "notificationLog": {
         "errorLog": "Dziennik błędów"
