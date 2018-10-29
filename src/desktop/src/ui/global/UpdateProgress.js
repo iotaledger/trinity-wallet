@@ -29,7 +29,7 @@ class UpdateProgress extends React.PureComponent {
     }
 
     /**
-     * Proxy update percent to 
+     * Update progress percentage state
      * @param {object} progress - Current update progress percent
      */
     statusChange(progress) {
