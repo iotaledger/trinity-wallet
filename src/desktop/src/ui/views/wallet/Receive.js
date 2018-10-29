@@ -125,7 +125,7 @@ class Receive extends React.PureComponent {
 
         try {
             if (accountMeta.type === 'ledger') {
-                generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 10000);
+                generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 20000);
             }
             this.props.addressValidationRequest();
             await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
