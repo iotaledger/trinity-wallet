@@ -3,6 +3,8 @@ const Iota = require('hw-app-iota').default;
 const Wallet = require('electron').remote.getCurrentWindow().webContents;
 const { ipcRenderer: ipc } = require('electron');
 
+const connectionError = { message: 'Ledger connection error' };
+
 class Ledger {
     constructor() {
         this.connected = false;
@@ -16,11 +18,11 @@ class Ledger {
     }
 
     /**
-    * Create Ledger Transport and select seed by index
-    * @param {number} index - Target seed index
-    * @param {number} page - Target seed page
-    * @returns {object} Ledger IOTA transport
-    */
+     * Create Ledger Transport and select seed by index
+     * @param {number} index - Target seed index
+     * @param {number} page - Target seed page
+     * @returns {object} Ledger IOTA transport
+     */
     async selectSeed(index, page) {
         if (!this.connected) {
             Wallet.send('ledger', { awaitConnection: true });
@@ -61,7 +63,7 @@ class Ledger {
                 if (message && message.abort) {
                     this.removeListener(callbackSuccess);
                     ipc.removeListener('ledger', callbackAbort);
-                    reject();
+                    reject(connectionError);
                 }
             };
             ipc.on('ledger', callbackAbort);
@@ -122,8 +124,7 @@ class Ledger {
                     if (timeout) {
                         clearTimeout(timeout);
                     }
-
-                    reject(new Error('Ledger connection error'));
+                    reject(connectionError);
                 }
             };
 
@@ -133,7 +134,7 @@ class Ledger {
 
     /**
      * Proxy connection status to event listeners
-     * @param {string} status - 
+     * @param {string} status -
      */
     onMessage(status) {
         this.connected = status === 'add';

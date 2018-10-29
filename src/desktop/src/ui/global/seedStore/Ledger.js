@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 
@@ -20,6 +21,8 @@ class Ledger extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -96,9 +99,8 @@ class Ledger extends React.PureComponent {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, addingAdditionalAccount } = this.props;
         const { view, transaction } = this.state;
-
         return (
             <div className={classNames(css.modal, view ? css.on : null)}>
                 {view && (
@@ -118,11 +120,12 @@ class Ledger extends React.PureComponent {
                                 <strong>{transaction.address}</strong>
                             </p>
                         )}
-                        {view !== 'transaction' && (
-                            <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
-                                {t('cancel')}
-                            </Button>
-                        )}
+                        {view !== 'transaction' &&
+                            !addingAdditionalAccount && (
+                                <Button variant="secondary" className="outlineSmall" onClick={this.onCancel}>
+                                    {t('cancel')}
+                                </Button>
+                            )}
                     </div>
                 )}
             </div>
@@ -130,4 +133,8 @@ class Ledger extends React.PureComponent {
     }
 }
 
-export default translate()(Ledger);
+const mapStateToProps = (state) => ({
+    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+});
+
+export default translate()(connect(mapStateToProps)(Ledger));
