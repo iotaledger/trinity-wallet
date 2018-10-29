@@ -121,7 +121,7 @@ class Ledger {
      */
     prepareTransfers = async (transfers, options = null) => {
         try {
-            const seed = await this.getSeed(this.index, this.page);
+            const seed = await this.getSeed();
 
             const remainder = { address: options.address, keyIndex: options.keyIndex };
 
