@@ -671,7 +671,9 @@
         "newVersionAvailable": "新版本可用",
         "newVersionAvailableExplanation": "检测到可用的新版本 <strong>Trinity</strong> <strong>{{version}}</strong> 。在更新之前请仔细阅读发行说明并验证下载源：",
         "installUpdate": "安装更新并重启",
-        "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。"
+        "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "错误日志"
