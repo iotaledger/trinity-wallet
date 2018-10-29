@@ -54,13 +54,15 @@
     p {
         margin-bottom: 30px;
         word-wrap: break-word;
-
         strong {
             display: block;
             font-family: 'SourceCodePro';
             font-weight: 600;
+            color: var(--body)
         }
     }
+
+    p > p {  margin-bottom: 15px; }
 
     &.on {
         pointer-events: all;

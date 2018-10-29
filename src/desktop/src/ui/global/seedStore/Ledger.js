@@ -23,6 +23,8 @@ class Ledger extends React.PureComponent {
         t: PropTypes.func.isRequired,
         /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
+        sendAddressFieldText: PropTypes.string,
     };
 
     state = {
@@ -99,7 +101,7 @@ class Ledger extends React.PureComponent {
     }
 
     render() {
-        const { t, addingAdditionalAccount } = this.props;
+        const { t, addingAdditionalAccount, sendAddressFieldText } = this.props;
         const { view, transaction } = this.state;
         return (
             <div className={classNames(css.modal, view ? css.on : null)}>
@@ -114,10 +116,14 @@ class Ledger extends React.PureComponent {
                             <p>{t(`ledger:${view}Explanation`)}</p>
                         ) : (
                             <p>
-                                {t('transferConfirmation:youAreAbout', {
-                                    contents: `${formatValue(transaction.value)}${formatUnit(transaction.value)}`,
-                                })}{' '}
-                                <strong>{transaction.address}</strong>
+                                <p>
+                                    {t('transferConfirmation:youAreAbout', {
+                                        contents: `${formatValue(transaction.value)}${formatUnit(transaction.value)}`,
+                                    })}
+                                </p>
+                                <strong>{sendAddressFieldText.substring(0, 30)}</strong>
+                                <strong>{sendAddressFieldText.substring(30, 60)}</strong>
+                                <strong>{sendAddressFieldText.substring(60, 90)}</strong>
                             </p>
                         )}
                         {view !== 'transaction' &&
@@ -135,6 +141,7 @@ class Ledger extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    sendAddressFieldText: state.ui.sendAddressFieldText,
 });
 
 export default translate()(connect(mapStateToProps)(Ledger));
