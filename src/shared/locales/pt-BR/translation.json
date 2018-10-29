@@ -671,7 +671,9 @@
         "newVersionAvailable": "Nova versão disponível",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Instale a atualização e reinicie",
-        "installUpdateExplanation": "Download completo, A Trinity será reiniciada agora para instalar a atualização."
+        "installUpdateExplanation": "Download completo, A Trinity será reiniciada agora para instalar a atualização.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Registros de erro"
