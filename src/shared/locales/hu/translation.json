@@ -671,7 +671,9 @@
         "newVersionAvailable": "Új verzió elérhető",
         "newVersionAvailableExplanation": "Elérhető a Trinity egy újabb verziója. Szeretné most frissíteni?",
         "installUpdate": "Frissítés telepítése és újraindítás",
-        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket."
+        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Hibanapló"
