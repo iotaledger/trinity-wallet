@@ -10,6 +10,7 @@ import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Button from 'ui/components/Button';
 import Number from 'ui/components/input/Number';
+import Toggle from 'ui/components/Toggle';
 
 import css from './index.scss';
 
@@ -20,8 +21,6 @@ class Ledger extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         wallet: PropTypes.object.isRequired,
-        /** @ignore */
-        mode: PropTypes.string.isRequired,
         /** @ignore */
         accounts: PropTypes.object.isRequired,
         /** @ignore */
@@ -38,6 +37,7 @@ class Ledger extends React.PureComponent {
         index: this.props.wallet.additionalAccountMeta.index || this.getDefaultIndex(),
         page: this.props.wallet.additionalAccountMeta.page || 0,
         loading: false,
+        advancedMode: false,
     };
 
     getIndexes() {
@@ -109,8 +109,8 @@ class Ledger extends React.PureComponent {
     };
 
     render() {
-        const { mode, t } = this.props;
-        const { page, index, loading } = this.state;
+        const { t } = this.props;
+        const { page, index, loading, advancedMode } = this.state;
 
         const usedIndex = this.getIndexAccountName(index);
 
@@ -119,24 +119,30 @@ class Ledger extends React.PureComponent {
                 <section className={usedIndex ? css.usedIndex : null}>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>
-                    {mode === 'Advanced' && <p>{t('ledger:accountPageExplanation')}</p>}
                     <div>
                         <Number
                             value={index}
                             focus
-                            label={mode === 'Advanced' ? t('ledger:accountIndex') : null}
+                            label={advancedMode ? t('ledger:accountIndex') : null}
                             onChange={(value) => this.setState({ index: value })}
                         />
-                        {mode === 'Advanced' && (
+                        {advancedMode && (
                             <Number
                                 value={page}
                                 focus
-                                label={mode === 'Advanced' ? t('ledger:accountPage') : null}
+                                label={t('ledger:accountPage')}
                                 onChange={(value) => this.setState({ page: value })}
                             />
                         )}
                     </div>
                     <strong>{usedIndex ? t('ledger:indexInUse', { account: usedIndex }) : ' '}</strong>
+                    <Toggle
+                        checked={advancedMode}
+                        onChange={() => this.setState({ advancedMode: !advancedMode, page: 0 })}
+                        on={t('modeSelection:advanced')}
+                        off={t('modeSelection:standard')}
+                    />
+                    <small>{advancedMode && t('ledger:accountPageExplanation')}</small>
                 </section>
                 <footer>
                     <Button disabled={!loading} to="/onboarding/seed-intro" className="square" variant="dark">
@@ -154,7 +160,6 @@ class Ledger extends React.PureComponent {
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
     accounts: state.accounts.accountInfo,
-    mode: state.settings.mode,
 });
 
 const mapDispatchToProps = {
@@ -162,7 +167,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Ledger));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Ledger));
