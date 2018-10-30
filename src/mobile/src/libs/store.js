@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { doesSaltExistInKeychain } from 'libs/keychain';
-import { purge } from 'shared-modules/storage';
+import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
 
 /**
@@ -32,7 +32,8 @@ const shouldMigrate = (restoredState) => {
 export const resetIfKeychainIsEmpty = (store) => {
     return doesSaltExistInKeychain().then((exists) => {
         if (!exists) {
-            return purge().then(() => {
+            // Purge and reinitialise persistent storage
+            return reinitialiseStorage().then(() => {
                 store.dispatch(resetWallet());
                 // Set the new app version
                 store.dispatch(

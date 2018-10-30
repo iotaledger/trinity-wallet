@@ -10,6 +10,8 @@ import {
     AddressSpendStatusSchema,
     WalletSchema,
     NodeSchema,
+    NotificationsSettingsSchema,
+    WalletSettingsSchema,
 } from '../schema';
 import { preserveAddressLocalSpendStatus } from '../reducers/accounts';
 
@@ -130,44 +132,12 @@ class Account {
     }
 }
 
-class Transaction {
-    static schema = TransactionSchema;
-}
-
 class Address {
     static schema = AddressSchema;
 }
 
 class AddressSpendStatus {
     static schema = AddressSpendStatusSchema;
-}
-
-class Wallet {
-    static schema = WalletSchema;
-
-    static get() {
-        return realm.objects('Wallet');
-    }
-
-    static getData() {
-        const data = Wallet.get();
-        return isEmpty(data) ? data : data[0];
-    }
-
-    static setOnboardingComplete() {
-        realm.write(() => {
-            Wallet.getData().onboardingComplete = true;
-        });
-    }
-
-    static createIfNotExists() {
-        const data = Wallet.get();
-        const shouldCreate = isEmpty(data);
-
-        if (shouldCreate) {
-            realm.write(() => realm.create('Wallet', {}));
-        }
-    }
 }
 
 class Node {
@@ -233,11 +203,309 @@ class Node {
     }
 }
 
+class NotificationsSettings {
+    static schema = NotificationsSettingsSchema;
+}
+
+class Transaction {
+    static schema = TransactionSchema;
+}
+
+class Wallet {
+    static schema = WalletSchema;
+
+    static get() {
+        return realm.objects('Wallet');
+    }
+
+    static get data() {
+        const data = Wallet.get();
+        return isEmpty(data) ? data : data[0];
+    }
+
+    static get settings() {
+        return Wallet.data.settings;
+    }
+
+    static setOnboardingComplete() {
+        realm.write(() => {
+            Wallet.data.onboardingComplete = true;
+        });
+    }
+
+    /**
+     * Updates remote proof of work setting.
+     *
+     * @method updateRemotePoWSetting
+     * @param {boolean} payload
+     */
+    static updateRemotePoWSetting(payload) {
+        realm.write(() => {
+            Wallet.settings.remotePoW = payload;
+        });
+    }
+
+    /**
+     * Updates auto-promotion setting.
+     *
+     * @method updateAutoPromotionSetting
+     * @param {boolean} payload
+     */
+    static updateAutoPromotionSetting(payload) {
+        realm.write(() => {
+            Wallet.settings.autoPromotion = payload;
+        });
+    }
+
+    /**
+     * Updates auto node switching configuration.
+     *
+     * @method updateAutoNodeSwitchingSetting
+     * @param {boolean} payload
+     */
+    static updateAutoNodeSwitchingSetting(payload) {
+        realm.write(() => {
+            Wallet.settings.autoNodeSwitching = payload;
+        });
+    }
+
+    /**
+     * Updates lock screen timeout.
+     *
+     * @method updateLockScreenTimeout
+     * @param {number} payload
+     */
+    static updateLockScreenTimeout(payload) {
+        realm.write(() => {
+            Wallet.settings.lockScreenTimeout = payload;
+        });
+    }
+
+    /**
+     * Updates active locale.
+     *
+     * @method updateLocale
+     * @param {string} payload
+     */
+    static updateLocale(payload) {
+        realm.write(() => {
+            Wallet.settings.locale = payload;
+        });
+    }
+
+    /**
+     * Updates wallet's mode.
+     *
+     * @method updateMode
+     * @param {string} payload
+     */
+    static updateMode(payload) {
+        realm.write(() => {
+            Wallet.settings.mode = payload;
+        });
+    }
+
+    /**
+     * Updates wallet's language.
+     *
+     * @method updateLanguage
+     * @param {string} payload
+     */
+    static updateLanguage(payload) {
+        realm.write(() => {
+            Wallet.settings.language = payload;
+        });
+    }
+
+    /**
+     * Updates currency related data (conversionRate, currency, availableCurrencies)
+     *
+     * @method setCurrencyData
+     * @param {object} payload
+     */
+    static setCurrencyData(payload) {
+        const { conversionRate, currency, availableCurrencies } = payload;
+
+        realm.write(() => {
+            Wallet.settings.currency = currency;
+            Wallet.settings.conversionRate = conversionRate;
+            Wallet.settings.availableCurrencies = availableCurrencies;
+        });
+    }
+
+    /**
+     * Updates wallet's theme.
+     *
+     * @method updateThemeName
+     * @param {string} payload
+     */
+    static updateThemeName(payload) {
+        realm.write(() => {
+            Wallet.settings.themeName = payload;
+        });
+    }
+
+    /**
+     * Sets a randomly selected node.
+     *
+     * @method setRandomlySelectedNode
+     * @param {string} payload
+     */
+    static setRandomlySelectedNode(payload) {
+        realm.write(() => {
+            Wallet.settings.node = payload;
+            Wallet.settings.hasRandomizedNode = true;
+        });
+    }
+
+    /**
+     * Updates two factor authentication configuration.
+     *
+     * @method update2FASetting
+     * @param {boolean} payload
+     */
+    static update2FASetting(payload) {
+        realm.write(() => {
+            Wallet.settings.is2FAEnabled = payload;
+        });
+    }
+
+    /**
+     * Updates finger print authentication configuration.
+     *
+     * @method updateFingerPrintAuthenticationSetting
+     * @param {boolean} payload
+     */
+    static updateFingerPrintAuthenticationSetting(payload) {
+        realm.write(() => {
+            Wallet.settings.isFingerprintEnabled = payload;
+        });
+    }
+
+    /**
+     * Sets app versions.
+     *
+     * @method setAppVersions
+     * @param {object} payload
+     */
+    static setVersions(payload) {
+        const { buildNumber, version } = payload;
+
+        realm.write(() => {
+            Wallet.settings.buildNumber = buildNumber;
+            Wallet.settings.version = version;
+        });
+    }
+
+    /**
+     * Sets acceptedTerms to true when user has accepted terms and conditions.
+     *
+     * @method acceptTerms
+     * @param {object} payload
+     */
+    static acceptTerms() {
+        realm.write(() => {
+            Wallet.settings.acceptedTerms = true;
+        });
+    }
+
+    /**
+     * Sets acceptedPrivacy to true when user has accepted privacy policy.
+     *
+     * @method acceptPrivacyPolicy
+     * @param {object} payload
+     */
+    static acceptPrivacyPolicy() {
+        realm.write(() => {
+            Wallet.settings.acceptedPrivacy = true;
+        });
+    }
+
+    /**
+     * Updates configuration for showing/hiding empty transactions.
+     *
+     * @method toggleEmptyTransactionsDisplay
+     */
+    static toggleEmptyTransactionsDisplay() {
+        realm.write(() => {
+            const settings = Wallet.settings;
+
+            settings.hideEmptyTransactions = !settings.hideEmptyTransactions;
+        });
+    }
+
+    /**
+     * Sets to true on forced password update.
+     *
+     * @method completeForcedPasswordUpdate
+     */
+    static completeForcedPasswordUpdate() {
+        realm.write(() => {
+            Wallet.settings.completedForcedPasswordUpdate = true;
+        });
+    }
+
+    /**
+     * Updates byte-trit sweep setting.
+     *
+     * @method updateByteTritSweepSetting
+     * @param {boolean} payload
+     */
+    static updateByteTritSweepSetting(payload) {
+        realm.write(() => {
+            Wallet.settings.completedByteTritSweep = payload;
+        });
+    }
+
+    /**
+     * Updates tray app configuration (desktop wallet)
+     *
+     * @method updateTraySetting
+     * @param {boolean} payload
+     */
+    static updateTraySetting(payload) {
+        realm.write(() => {
+            Wallet.settings.isTrayEnabled = payload;
+        });
+    }
+
+    /**
+     * Updates notifications configuration.
+     *
+     * @method updateNotificationsSetting
+     * @param {object} payload
+     */
+    static updateNotificationsSetting(payload) {
+        const { type, enabled } = payload;
+
+        realm.write(() => {
+            Wallet.settings.notifications[type] = enabled;
+        });
+    }
+
+    static createIfNotExists() {
+        const data = Wallet.get();
+        const shouldCreate = isEmpty(data);
+
+        if (shouldCreate) {
+            realm.write(() => realm.create('Wallet', { settings: { notifications: {} } }));
+        }
+    }
+}
+
+class WalletSettings {
+    static schema = WalletSettingsSchema;
+}
+
+/**
+ * Realm storage default configuration.
+ */
 const config = {
-    schema: [Account, Address, AddressSpendStatus, Node, Transaction, Wallet],
+    schema: [Account, Address, AddressSpendStatus, Node, NotificationsSettings, Transaction, WalletSettings, Wallet],
     schemaVersion: SCHEMA_VERSION,
 };
 
+// Initialise realm instance
 const realm = new Realm(config);
 
 /**
@@ -269,4 +537,12 @@ const initialise = () =>
         }
     });
 
-export { realm, initialise, purge, Account, Transaction, Address, AddressSpendStatus, Wallet };
+/**
+ * Purges persisted data and reinitialises storage.
+ *
+ * @method reinitialise
+ * @param {object} config
+ */
+const reinitialise = (config) => purge(config).then(() => initialise());
+
+export { realm, initialise, reinitialise, purge, Account, Transaction, Address, AddressSpendStatus, Wallet };

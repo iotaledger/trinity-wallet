@@ -17,8 +17,8 @@ import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
 import { resetIfKeychainIsEmpty, migrate } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
-import { initialise as initialiseStorage } from '../../../../shared/storage';
-import { mapStorageToState } from '../../../../shared/libs/storageToStateMappers';
+import { initialise as initialiseStorage } from 'shared-modules/storage';
+import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
 
 const launch = (store) => {
     // Disable auto node switching.

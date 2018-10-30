@@ -19,11 +19,15 @@ export const mapNormalisedTransactions = (transactions, addressData) => {
 
     const bundles = constructBundlesFromTransactions(tailTransactions, transactions, inclusionStates);
 
-    return transform(bundles, (acc, bundle) => {
-        const bundleHead = head(bundle);
+    return transform(
+        bundles,
+        (acc, bundle) => {
+            const bundleHead = head(bundle);
 
-        acc[bundleHead.bundle] = normaliseBundle(bundle, addressData, tailTransactions, bundleHead.persistence);
-    }, {});
+            acc[bundleHead.bundle] = normaliseBundle(bundle, addressData, tailTransactions, bundleHead.persistence);
+        },
+        {},
+    );
 };
 
 /**
@@ -44,41 +48,34 @@ export const mapAccountToAccountInfo = (account) => {
 };
 
 /**
- * Map persisted data for all accounts to redux state (accounts reducer)
- * @method mapToAccount
- *
- * @returns {object}
- */
-const mapToAccount = () => {
-    const accountsData = Account.getAccountsData();
-    const walletData = Wallet.getData();
-
-    return {
-        onboardingComplete: walletData.onboardingComplete,
-        ...transform(accountsData, (acc, data) => {
-            const { 
-                name,
-                usedExistingSeed,
-                displayedSnapshotTransitionGuide
-            } = data;
-
-            acc.accountInfo[name] = mapAccountToAccountInfo(data);
-            acc.setupInfo[name] = { usedExistingSeed };
-            acc.tasks[name] = { displayedSnapshotTransitionGuide };
-        }, {
-            accountInfo: {},
-            setupInfo: {},
-            tasks: {}
-        }),
-    };
-};
-
-/**
  * Map persisted state to redux state
  * @method mapStorageToState
  *
  * @returns {object}
  */
-export const mapStorageToState = () => ({
-   accounts: mapToAccount()
-});
+export const mapStorageToState = () => {
+    const accountsData = Account.getAccountsData();
+    const { settings, onboardingComplete } = Wallet.data;
+
+    return {
+        accounts: {
+            onboardingComplete,
+            ...transform(
+                accountsData,
+                (acc, data) => {
+                    const { name, usedExistingSeed, displayedSnapshotTransitionGuide } = data;
+
+                    acc.accountInfo[name] = mapAccountToAccountInfo(data);
+                    acc.setupInfo[name] = { usedExistingSeed };
+                    acc.tasks[name] = { displayedSnapshotTransitionGuide };
+                },
+                {
+                    accountInfo: {},
+                    setupInfo: {},
+                    tasks: {},
+                },
+            ),
+        },
+        settings,
+    };
+};
