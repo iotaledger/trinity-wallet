@@ -19,7 +19,7 @@ export const TransactionSchema = {
         message: 'string',
         bundle: 'string',
         persistence: 'string',
-        broadcasted: { type: 'bool', default: true }
+        broadcasted: { type: 'bool', default: true },
     },
 };
 
@@ -28,8 +28,8 @@ export const WalletSchema = {
     properties: {
         onboardingComplete: {
             type: 'bool',
-            default: false
-        }
+            default: false,
+        },
     },
 };
 
@@ -45,7 +45,7 @@ export const AddressSchema = {
         index: 'int',
         balance: 'int',
         checksum: 'string',
-        spent: 'AddressSpendStatus'
+        spent: 'AddressSpendStatus',
     },
 };
 
@@ -53,8 +53,8 @@ export const AddressSpendStatusSchema = {
     name: 'AddressSpendStatus',
     properties: {
         local: 'bool',
-        remote: 'bool'
-    }
+        remote: 'bool',
+    },
 };
 
 export const AccountSchema = {
@@ -67,7 +67,7 @@ export const AccountSchema = {
         transactions: 'Transaction[]',
         usedExistingSeed: { type: 'bool', default: false },
         displayedSnapshotTransitionGuide: { type: 'bool', default: false },
-    }
+    },
 };
 
 export const ChartDataSchema = {
@@ -96,5 +96,15 @@ export const DataPointSchema = {
         x: 'int',
         y: 'float',
         time: 'int',
+    },
+};
+
+export const NodeSchema = {
+    name: 'Node',
+    primaryKey: 'url',
+    properties: {
+        url: 'string', // Node URL
+        custom: 'bool', // Whether the node was added by the user
+        remotePow: { type: 'bool', default: false }, // Whether the node supports remote PoW
     },
 };

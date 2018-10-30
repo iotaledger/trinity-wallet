@@ -8,7 +8,8 @@ import {
     AddressSchema,
     AccountSchema,
     AddressSpendStatusSchema,
-    WalletSchema
+    WalletSchema,
+    NodeSchema,
 } from '../schema';
 import { preserveAddressLocalSpendStatus } from '../reducers/accounts';
 
@@ -50,7 +51,7 @@ class Account {
 
         return assign({}, account, {
             addressData: values(account.addressData),
-            transactions: values(account.transactions)
+            transactions: values(account.transactions),
         });
     }
 
@@ -63,10 +64,11 @@ class Account {
     static getAccountsData() {
         const accounts = Account.get();
 
-        return map(accounts, (account) => assign({}, account, {
-            addressData: values(account.addressData),
-            transactions: values(account.transactions)
-        })
+        return map(accounts, (account) =>
+            assign({}, account, {
+                addressData: values(account.addressData),
+                transactions: values(account.transactions),
+            }),
         );
     }
 
@@ -89,20 +91,14 @@ class Account {
      */
     static update(name, data) {
         const existingAccountData = Account.getAccountData(name);
-        const {
-            addressData,
-            ...rest
-        } = data;
+        const { addressData, ...rest } = data;
 
         const shouldUpdate = (value) => !isEmpty(value);
 
         const account = { name, ...rest };
 
         if (shouldUpdate(addressData)) {
-            account.addressData = preserveAddressLocalSpendStatus(
-                existingAccountData.addressData,
-                addressData
-            );
+            account.addressData = preserveAddressLocalSpendStatus(existingAccountData.addressData, addressData);
         }
 
         realm.write(() => realm.create('Account', account, true));
@@ -159,9 +155,9 @@ class Wallet {
     }
 
     static setOnboardingComplete() {
-         realm.write(() => {
-             Wallet.getData().onboardingComplete = true;
-         });
+        realm.write(() => {
+            Wallet.getData().onboardingComplete = true;
+        });
     }
 
     static createIfNotExists() {
@@ -174,14 +170,71 @@ class Wallet {
     }
 }
 
+class Node {
+    static schema = NodeSchema;
+
+    /**
+     * Returns a list of nodes
+     * @return {Realm.Results}
+     */
+    static getNodes() {
+        return realm.objects('Node');
+    }
+
+    /**
+     * Returns the list of nodes that support remote PoW
+     * @return {Realm.Results}
+     */
+    static getRemotePowNodes() {
+        return this.getNodes().filtered('remotePow == true');
+    }
+
+    /**
+     * Adds a custom node
+     * @param {string} url Node URL
+     */
+    static addCustomNode(url) {
+        realm.write(() => {
+            realm.create('Node', {
+                url: url,
+                custom: true,
+                // TODO: Where should we check for remote PoW support?
+            });
+        });
+    }
+
+    /**
+     * Deletes all custom nodes
+     * @param  {string} url New node URL
+     */
+    static deleteAllCustomNodes() {
+        const customNodes = this.getNodes().filtered('custom == true');
+        realm.write(() => {
+            realm.delete(customNodes);
+        });
+    }
+
+    /**
+     * Updates the 'remotePow' property of an existing node
+     * @param  {string} url                URL of the node to be updated
+     * @param  {boolean} supportsRemotePow Whether the node supports remote PoW
+     */
+    static updateRemotePowSupport(url, supportsRemotePow) {
+        realm.write(() => {
+            realm.create(
+                'Node',
+                {
+                    url: url,
+                    remotePow: supportsRemotePow,
+                },
+                true,
+            );
+        });
+    }
+}
+
 const config = {
-    schema: [
-        Account,
-        Address,
-        Transaction,
-        AddressSpendStatus,
-        Wallet
-    ],
+    schema: [Account, Address, AddressSpendStatus, Node, Transaction, Wallet],
     schemaVersion: SCHEMA_VERSION,
 };
 
@@ -195,32 +248,25 @@ const realm = new Realm(config);
  *
  * @returns {Promise<any>}
  */
-const purge = (storageConfig = config) => new Promise((resolve, reject) => {
-   try {
-       realm.write(() => realm.deleteAll());
-       Realm.deleteFile(storageConfig);
-       resolve();
-   } catch (error) {
-       reject(error);
-   }
-});
+const purge = (storageConfig = config) =>
+    new Promise((resolve, reject) => {
+        try {
+            realm.write(() => realm.deleteAll());
+            Realm.deleteFile(storageConfig);
+            resolve();
+        } catch (error) {
+            reject(error);
+        }
+    });
 
-const initialise = () => new Promise((resolve, reject) => {
-   try {
-       Wallet.createIfNotExists();        
-       resolve();
-   } catch (error) {
-       reject(error);
-   }
-});
+const initialise = () =>
+    new Promise((resolve, reject) => {
+        try {
+            Wallet.createIfNotExists();
+            resolve();
+        } catch (error) {
+            reject(error);
+        }
+    });
 
-export {
-    realm,
-    initialise,
-    purge,
-    Account,
-    Transaction,
-    Address,
-    AddressSpendStatus,
-    Wallet
-};
+export { realm, initialise, purge, Account, Transaction, Address, AddressSpendStatus, Wallet };
