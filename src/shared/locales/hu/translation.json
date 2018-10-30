@@ -55,6 +55,8 @@
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
         "capsLockIsOn": "A nagybetűzár be van kapcsolva",
         "syncInProgress": "Szinkronizálás folyamatban",
@@ -72,7 +74,7 @@
         "all": "Összes",
         "sent": "Elküldött",
         "received": "Fogadott",
-        "sending": "Küldés folyamatban",
+        "sending": "Küldés...",
         "receiving": "Fogadás folyamatban",
         "confirmed": "Megerősítve",
         "pending": "Függőben lévő",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Kérjük várjon, amíg az egyenlegátvezetés befejeződik.",
         "checkForUpdates": "Frissítések keresése",
         "account": "Számla",
-        "enterYourPassword": "Adja meg a jelszót",
         "changeNode": "Csomópont választása",
         "addCustomNode": "Saját csomópont hozzáadása",
         "nodeMustUseHTTPS": "Érvénytelen csomópont (nem HTTPS)",
@@ -142,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Kulcstár-hiba",
+        "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
+        "mainWallet": "Elsődleges számla"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -218,7 +219,7 @@
         "balance": "Egyenleg",
         "send": "KÜLDÉS",
         "receive": "Fogadás",
-        "history": "Tranzakciótörténet",
+        "history": "Tranzakciók",
         "settings": "Beállítások"
     },
     "languageSetup": {
@@ -422,7 +423,7 @@
         "scrollToBottom": "Ugrás a végére"
     },
     "history": {
-        "bundleHashCopied": "Tranzakciós csomag hash vágólapra másolva",
+        "bundleHashCopied": "Tranzakciós csomag hash másolva",
         "noTransactionsFound": "Nincs még tranzakció",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
@@ -435,7 +436,7 @@
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -465,7 +466,7 @@
         "manualSync": "Kézi szinkronizáció",
         "snapshotTransition": "Pillanatkép utáni egyenlegátvezetés",
         "pow": "Kiszabott munka elvégzése",
-        "autoPromotion": "Automatikus tranzakció előrehelyezés",
+        "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
         "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a kiszabott munka távoli elvégzését."
     },
@@ -512,9 +513,9 @@
         "discordInformation": "Kérjük keresse fel a #help csatornát az IOTA Discord-on, hogy további információt kapjon arról, mit tehet az emiatt nem hozzáférhető egyenlegének visszaszerzése érdekében."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Biztosan törölni szeretné a számláját?",
         "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Ez a művelet nem vonható vissza",
         "enterPassword": "A számla törléséhez kérjük, adja meg jelszavát."
     },
     "manualSync": {
@@ -544,7 +545,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "EZ A MŰVELET NEM VONHATÓ VISSZA.",
-        "warning": "<0><0>Minden tárca adat, beleértve a</0><1>mester jelszavakat, a jelszavakat,</1><2>és</2><3>egyéb számlainformációkat</3><4>el fog veszni.</4></0>"
+        "warning": "<0><0>Minden tárca adat, beleértve a </0><1>mester jelszavakat, a jelszavakat,</1><2> és </2><3>egyéb számlainformációkat</3><4> el fog veszni.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Érintse meg az ujjlenyomat leolvasót az ujjlenyomat-azonosítás engedélyezéséhez",
@@ -587,23 +588,27 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportálása",
-        "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és a jelszó nélkül a mester jelszó semmilyen módon nem visszafejthető.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
         "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
         "exportSuccess": "SeedVault exportálva",
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Mester jelszó tárolva",
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
         "dropSeedVaultHere": "Húzza be ide <1></1> a SeedVault fájlt vagy klikkeljen a tallózáshoz",
-        "enterPasswordExplanation": "Adja meg a jelszót a SeedVault fájl megnyitásához",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultPasswordExplanation": "A SeedVault fájl biztonságos tárolásához kérjük adjon megy egy jelszót. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a SeedVault biztonsági mentésből vissza szeretné állítani. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépésnél is használ."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -619,14 +624,14 @@
     },
     "pow": {
         "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett kiszabott munkát kell elvégezni.",
-        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzést.",
+        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzését.",
         "local": "Helyi",
         "remote": "Távoli",
         "powUpdated": "Kiszabott munka beállításai",
         "powUpdatedExplanation": "A kiszabott munka beállításait frissítettük."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés beállításai",
+        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés",
         "autoPromotionUpdatedExplanation": "Az automatikus tranzakció előrehelyezés beállításait frissítettük."
     },
     "progressSteps": {

@@ -32,7 +32,7 @@
         "redux-thunk": "^2.2.0",
         "reselect": "^3.0.1",
         "tinycolor2": "^1.4.1",
-        "url-parse": "^1.2.0",
+        "url-parse": "^1.4.3",
         "valid-url": "^1.0.9",
         "zxcvbn": "^4.4.2"
     },

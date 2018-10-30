@@ -1,4 +1,4 @@
-const { Menu, ipcMain, dialog, shell } = require('electron');
+const { app, Menu, ipcMain, dialog, shell } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
 const state = {
@@ -56,6 +56,8 @@ let language = {
     },
 };
 
+let getWindow = null;
+
 // Disable automatic update downloads
 autoUpdater.autoDownload = false;
 
@@ -63,6 +65,10 @@ autoUpdater.autoDownload = false;
  * On update error event callback
  */
 autoUpdater.on('error', (error) => {
+    const mainWindow = getWindow('main');
+    if (mainWindow) {
+        mainWindow.webContents.send('update.progress', false);
+    }
     dialog.showErrorBox(
         language.updates.errorRetrievingUpdateData,
         error === null ? 'unknown' : (error.stack || error).toString(),
@@ -95,6 +101,7 @@ autoUpdater.on('update-not-available', () => {
     dialog.showMessageBox({
         title: language.updates.noUpdatesAvailable,
         message: language.updates.noUpdatesAvailableExplanation,
+        buttons: ['OK'],
     });
 });
 
@@ -102,15 +109,31 @@ autoUpdater.on('update-not-available', () => {
  * On update ready to install event callback
  */
 autoUpdater.on('update-downloaded', () => {
+    const mainWindow = getWindow('main');
+    if (mainWindow) {
+        mainWindow.webContents.send('update.progress', false);
+    }
     dialog.showMessageBox(
         {
             title: language.updates.installUpdate,
             message: language.updates.installUpdateExplanation,
         },
         () => {
-            setImmediate(() => autoUpdater.quitAndInstall());
+            setImmediate(() => {
+                const mainWindow = getWindow('main');
+                mainWindow.removeAllListeners('close');
+                app.removeAllListeners('window-all-closed');
+                autoUpdater.quitAndInstall();
+            });
         },
     );
+});
+
+autoUpdater.on('download-progress', (progressObj) => {
+    const mainWindow = getWindow('main');
+    if (mainWindow) {
+        mainWindow.webContents.send('update.progress', progressObj);
+    }
 });
 
 /**
@@ -119,8 +142,9 @@ autoUpdater.on('update-downloaded', () => {
  * @param {function} getWindow - Get Window instance helper
  * @returns {undefined}
  */
-const initMenu = (app, getWindow) => {
+const initMenu = (app, getWindowFunc) => {
     let mainMenu = null;
+    getWindow = getWindowFunc;
 
     const navigate = (path) => {
         const mainWindow = getWindow('main');
@@ -195,7 +219,6 @@ const initMenu = (app, getWindow) => {
                             },
                             {
                                 label: language.advanced,
-                                enabled: state.authorised && state.enabled,
                                 click: () => navigate('settings/advanced'),
                             },
                         ],

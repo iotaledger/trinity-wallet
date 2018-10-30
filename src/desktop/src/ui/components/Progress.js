@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import css from './progress.scss';
 
@@ -11,17 +12,22 @@ export default class Progress extends React.PureComponent {
         progress: PropTypes.number.isRequired,
         /** Progress bar title */
         title: PropTypes.string,
+        /** Progress bar subtitle */
+        subtitle: PropTypes.string,
+        /** Progress bar style type */
+        type: PropTypes.oneOf(['large']),
     };
 
     render() {
-        const { progress, title } = this.props;
+        const { progress, title, subtitle, type } = this.props;
 
         return (
-            <div className={css.progress}>
-                <p>{title}</p>
+            <div className={classNames(css.progress, type ? css[type] : null)}>
+                {title && <p>{title}</p>}
                 <div>
                     <div style={{ width: `${Math.min(progress, 100)}%` }} />
                 </div>
+                {subtitle && <small>{subtitle}</small>}
             </div>
         );
     }
