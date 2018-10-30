@@ -18,6 +18,7 @@ import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import PasswordFields from 'ui/components/PasswordFields';
+import { isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
@@ -183,8 +184,13 @@ class SetPassword extends Component {
         const { password, reentry } = this.state;
 
         return (
-            <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.container}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                scrollEnabled={false}
+                extraHeight={isIPhoneX ? 150 : 0}
+            >
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
