@@ -288,7 +288,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
                 checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
             };
 
-            if (tx.value < 0 && !isRemainder(tx)) {
+            if (tx.value < 0) {
                 acc.inputs.push(meta);
             } else {
                 acc.outputs.push(meta);

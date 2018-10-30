@@ -56,8 +56,8 @@ export class SeedVaultImportComponent extends Component {
                 if (msg === 'error') {
                     return this.props.generateAlert(
                         'error',
-                        t('global:unrecognisedPassword'),
-                        t('global:unrecognisedPasswordExplanation'),
+                        t('seedVault:unrecognisedKey'),
+                        t('seedVault:unrecognisedKeyExplanation'),
                     );
                 }
                 this.props.onSeedImport(msg);
@@ -88,7 +88,7 @@ export class SeedVaultImportComponent extends Component {
     validatePassword(password) {
         const { t } = this.props;
         if (password === '') {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+            return this.props.generateAlert('error', t('seedVault:emptyKey'), t('seedVault:emptyKeyExplanation'));
         }
         const seedVaultString = this.state.seedVault.toString();
         return nodejs.channel.send('import:' + seedVaultString + ':' + password);
