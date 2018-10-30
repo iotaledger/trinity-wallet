@@ -55,7 +55,7 @@
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
-        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccount": "Okänt konto",
         "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "Du måste ange ett lösenord. Vänligen försök igen.",
         "capsLockIsOn": "Caps Lock är på",
@@ -672,8 +672,8 @@
         "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
         "installUpdate": "Installera uppdateringen och starta om",
         "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Hämtar uppdatering",
+        "downloadProgress": "{{transferred}} av {{total}} hämtat"
     },
     "notificationLog": {
         "errorLog": "Fellogg"
