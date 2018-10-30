@@ -1,5 +1,12 @@
 import { expect } from 'chai';
-import { getNodesFromState, getSelectedNodeFromState, getSeedIndexFromState } from '../../selectors/global';
+import {
+    getNodesFromState,
+    getSelectedNodeFromState,
+    getSeedIndexFromState,
+    getThemeNameFromState,
+    getThemeFromState,
+} from '../../selectors/global';
+import Themes from '../../themes/themes';
 import { defaultNode as DEFAULT_NODE } from '../../config';
 
 describe('selectors: global', () => {
@@ -61,6 +68,30 @@ describe('selectors: global', () => {
         describe('when "seedIndex" prop is defined as a nested prop under "wallet" prop in argument', () => {
             it('should return value for "seedIndex" prop', () => {
                 expect(getSeedIndexFromState({ wallet: { seedIndex: 3 } })).to.equal(3);
+            });
+        });
+    });
+
+    describe('#getThemeNameFromState', () => {
+        it('should return "themeName" prop from settings reducer', () => {
+            expect(getThemeNameFromState({ settings: { themeName: 'Mint' } })).to.equal('Mint');
+        });
+    });
+
+    describe('#getThemeFromState', () => {
+        describe('when active theme name is valid', () => {
+            it('should return active theme object', () => {
+                Object.keys(Themes).forEach((themeName) => {
+                    expect(getThemeFromState({ settings: { themeName } })).to.eql(Themes[themeName]);
+                });
+            });
+        });
+
+        describe('when active theme name is invalid', () => {
+            it('should return theme object for "Default" theme', () => {
+                const theme = getThemeFromState({ settings: { themeName: 'invalid-theme' } });
+
+                expect(theme).to.eql(Themes.Default);
             });
         });
     });

@@ -536,19 +536,17 @@ export function setFullNode(node, addingCustomNode = false) {
  *
  * @method updateTheme
  *
- * @param {object} theme
- * @param {string} themeName
+ * @param {string} payload
  *
  * @returns {function} dispatch
  */
-export function updateTheme(theme, themeName) {
-    Wallet.updateThemeName(themeName);
+export function updateTheme(payload) {
+    Wallet.updateTheme(payload);
 
     return (dispatch) => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
-            theme,
-            themeName,
+            payload,
         });
     };
 }

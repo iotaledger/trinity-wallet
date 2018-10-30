@@ -336,10 +336,10 @@ class Wallet {
     /**
      * Updates wallet's theme.
      *
-     * @method updateThemeName
+     * @method updateTheme
      * @param {string} payload
      */
-    static updateThemeName(payload) {
+    static updateTheme(payload) {
         realm.write(() => {
             Wallet.settings.themeName = payload;
         });

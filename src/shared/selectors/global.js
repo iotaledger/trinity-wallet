@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import Themes from '../themes/themes';
 import { defaultNode as DEFAULT_IRI_NODE } from '../config';
 
 /**
@@ -91,3 +92,16 @@ export const getWalletFromState = (state) => state.wallet || {};
  *   @returns {number}
  **/
 export const getSeedIndexFromState = createSelector(getWalletFromState, (state) => state.seedIndex || 0);
+
+/**
+ * Selects active theme name from state.settings
+ */
+export const getThemeNameFromState = createSelector(getSettingsFromState, (state) => state.themeName);
+
+/**
+ * Selects active theme object
+ */
+export const getThemeFromState = createSelector(
+    getThemeNameFromState,
+    (themeName) => Themes[themeName] || Themes.Default,
+);

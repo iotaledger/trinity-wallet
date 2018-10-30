@@ -3,7 +3,6 @@ import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { defaultNode as node, nodes } from '../config';
-import themes from '../themes/themes';
 
 const initialState = {
     /**
@@ -81,10 +80,6 @@ const initialState = {
      * Active theme name
      */
     themeName: 'Default',
-    /**
-     * Active theme object
-     */
-    theme: themes.Default,
     /**
      * Determines if the wallet has randomised node on initial setup.
      *
@@ -207,11 +202,6 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 mode: action.payload,
             };
-        case ActionTypes.SET_THEME:
-            return {
-                ...state,
-                theme: action.payload,
-            };
         case ActionTypes.SET_LANGUAGE:
             return {
                 ...state,
@@ -230,8 +220,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.UPDATE_THEME:
             return {
                 ...state,
-                theme: action.theme,
-                themeName: action.themeName,
+                themeName: action.payload,
             };
         case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
             return {
