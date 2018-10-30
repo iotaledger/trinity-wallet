@@ -24,7 +24,7 @@
     "electron": "electron main.js",
     "devserver": "node server.js",
     "style:shots": "node scripts/puppeteer.js",
-    "build": "rimraf ./dist && ./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config",
+    "build": "rimraf dist && ./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config",
     "compile": "npm run build && npm run compile:linux && npm run compile:mac && npm run compile:win",
     "compile:linux": "./node_modules/.bin/electron-builder --linux --x64",
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
