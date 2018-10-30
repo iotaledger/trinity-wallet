@@ -20,4 +20,13 @@
             transition: width 2s cubic-bezier(0.55, 0, 0.1, 1);
         }
     }
+
+    &.large {
+        margin-bottom: 38px;
+        small {
+            display: block;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+    }
 }
