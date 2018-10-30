@@ -39,37 +39,25 @@ describe('libs: iota/inputs', () => {
         });
 
         describe('when has insufficient balance on inputs', () => {
-            it('should throw with an error "Insufficient balance."', () => {
-                try {
-                    prepareInputs(addressData, 10000);
-                } catch (e) {
-                    expect(e.message).to.eql('Insufficient balance.');
-                }
+            it('should throw an error with message "Insufficient balance."', () => {
+                expect(prepareInputs.bind(null, addressData, 10000)).to.throw('Insufficient balance.');
             });
         });
 
         describe('when provided threshold is zero', () => {
-            it('should throw with an error "Inputs threshold cannot be zero."', () => {
-                try {
-                    prepareInputs(addressData, 0);
-                } catch (e) {
-                    expect(e.message).to.eql('Inputs threshold cannot be zero.');
-                }
+            it('should throw an error with message "Inputs threshold cannot be zero."', () => {
+                expect(prepareInputs.bind(null, addressData, 0)).to.throw('Inputs threshold cannot be zero.');
             });
         });
 
-        describe('when provided limit is zero', () => {
-            it('should throw with an error "Inputs limit cannot be zero."', () => {
-                try {
-                    prepareInputs(addressData, 10, 0);
-                } catch (e) {
-                    expect(e.message).to.eql('Inputs limit cannot be zero.');
-                }
+        describe('when provided maxInputs is not a number', () => {
+            it('should throw an error with message "Invalid max inputs provided."', () => {
+                expect(prepareInputs.bind(null, addressData, 10, null)).to.throw('Invalid max inputs provided.');
             });
         });
 
-        describe('when limit is provided', () => {
-            it('should not select inputs with size greater than the limit', () => {
+        describe('when maxInputs is greater than zero', () => {
+            it('should not select inputs with size greater than maxInputs', () => {
                 const limit = random(1, 4);
                 const threshold = random(1, reduce(addressData, (balance, data) => balance + data.balance, 0));
 
@@ -112,7 +100,7 @@ describe('libs: iota/inputs', () => {
             // TODO: Test when provided threshold does not have an exact match for balance of any address
         });
 
-        describe('when limit is not provided (limit === null)', () => {
+        describe('when maxInputs is zero', () => {
             let inputsMap;
 
             before(() => {
@@ -136,7 +124,7 @@ describe('libs: iota/inputs', () => {
 
             it('should choose inputs by optimal value', () => {
                 each(inputsMap, (inputs, threshold) => {
-                    const result = prepareInputs(addressData, threshold, null);
+                    const result = prepareInputs(addressData, threshold, 0);
 
                     expect(result.inputs).to.eql(inputs);
                     expect(result.balance).to.eql(reduce(inputs, (total, input) => total + input.balance, 0));

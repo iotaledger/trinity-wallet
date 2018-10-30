@@ -11,16 +11,13 @@ class Keychain {
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
-     * @param {number} maxInputs - Maximum number of inputs allowed per bundle
      */
-    constructor(key, accountId, maxInputs) {
+    constructor(key, accountId) {
         return (async () => {
             this.key = key.slice(0);
             if (accountId) {
                 this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
             }
-
-            this.maxInputs = maxInputs || null;
 
             return this;
         })();
