@@ -372,7 +372,9 @@
         "advancedModeExplanation":
             "Advanced mode will display more detailed technical information.",
         "modesExplanation":
-            "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+            "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -702,7 +704,9 @@
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Error log"

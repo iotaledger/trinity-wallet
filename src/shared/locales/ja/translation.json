@@ -55,6 +55,8 @@
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "unrecognisedAccount": "認識できないアカウントです",
+        "unrecognisedAccountExplanation": "アカウント名{{accountName}}を認識できませんでした。ウォレットのリセットを検討してみてください。",
         "emptyPasswordExplanation": "パスワードを入力する必要があります。もう一度やり直してください。",
         "capsLockIsOn": "Caps Lock キーが有効になっています",
         "syncInProgress": "同期中",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "移行が完了するまで少々お待ちください。",
         "checkForUpdates": "更新を確認",
         "account": "アカウント",
-        "enterYourPassword": "パスワードを入力してください。",
         "changeNode": "ノード変更",
         "addCustomNode": "カスタムノードの追加",
         "nodeMustUseHTTPS": "無効なノード (非HTTPS)",
@@ -144,7 +145,7 @@
         "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "メインアカウント"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -435,7 +436,7 @@
         "empty": "空",
         "retrying": "再試行中",
         "yesterday": "昨日",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "別のバンドルを促進中"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -512,9 +513,9 @@
         "discordInformation": "どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "アカウントを削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "シードと取引の履歴を削除します。",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "この操作は元に戻せません",
         "enterPassword": "アカウントを削除するにはパスワードを入力してください。"
     },
     "manualSync": {
@@ -587,23 +588,27 @@
     },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
-        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。このシードはパスワードによって暗号化され、パスワードがなければアクセスできません。",
+        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。シードはシード金庫鍵によって暗号化され、この鍵がなければアクセスできません。",
         "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
         "exportFail": "シード金庫の書き出しに失敗しました",
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
         "exportSuccess": "シード金庫を書き出しました",
         "exportSuccessExplanation": "暗号化されたシード（シード金庫）は正常に書き出されました。",
+        "unrecognisedKey": "認識できないシード金庫鍵です",
+        "unrecognisedKeyExplanation": "シード金庫鍵を認識できません。もう一度入力してください。",
+        "emptyKey": "シード金庫鍵の入力がありません",
+        "emptyKeyExplanation": "シード金庫鍵を入力する必要があります。もう一度入力してください。",
         "importSuccess": "シード読み込み完了",
         "importSuccessExplanation": "シードは正常に読み込まれました。",
         "saveToDownloadFolder": "ダウンロードフォルダに保存",
         "importSeedVault": "シード金庫を読み込む",
         "dropSeedVaultHere": "シード金庫ファイルがある場合、ここにドラッグ&ドロップするか、<1></1>ここをクリックしてください。",
-        "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
+        "enterKeyExplanation": "シード金庫を開くために、シード金庫鍵を入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "seedVaultPasswordExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのパスワードを選んでください。バックアップ用のシード金庫からシードを復元するには、このパスワードが必要です。Trinityウォレットと同じパスワードにしても構いません。"
+        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのシード金庫鍵を選んでください。バックアップ用のシード金庫からシードを復元するには、このシード金庫鍵が必要です。シード金庫鍵はTrinityウォレットのパスワードと同じにできます。"
     },
     "chart": {
         "mcap": "時価総額",

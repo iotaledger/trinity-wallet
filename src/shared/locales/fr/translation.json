@@ -55,6 +55,8 @@
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "capsLockIsOn": "Majuscules activées",
         "syncInProgress": "Synchronisation en cours",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
-        "enterYourPassword": "Saisissez votre mot de passe",
         "changeNode": "Changer de serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
         "nodeMustUseHTTPS": "Serveur invalide (pas HTTPS)",
@@ -144,7 +145,7 @@
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "COMPTE PRINCIPAL"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -435,7 +436,7 @@
         "empty": "Vide",
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promotion d'un autre bundle en cours"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -512,9 +513,9 @@
         "discordInformation": "Veuillez vous rendre sur le canal #help de Discord pour savoir ce que vous pouvez faire."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Êtes-vous sûr de vouloir supprimer votre compte ?",
         "yourSeedWillBeRemoved": "L’historique de votre seed et de vos transactions sera supprimé.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Cette action est irréversible",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
@@ -587,23 +588,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Exporter SeedVault",
-        "seedVaultExplanation": "Un SeedVault est un fichier crypté pour stocker votre seed en toute sécurité. La seed est encryptée à l'aide d'un mot de passe et n'est pas accessible sans ce mot de passe.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Assurez-bous de conserver le fichier en plusieurs endroits (par ex. disque dur, cloud, USB). Si vous perdez ce fichier et que vous n'avez pas stocké votre seed ailleurs, vous perdrez vos IOTA.",
         "exportFail": "Échec de l'exportation de SeedVault",
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
         "exportSuccess": "SeedVault exporté",
         "exportSuccessExplanation": "Le fichier crypté de votre seed a été exporté avec succès.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed importée",
         "importSuccessExplanation": "Votre seed a été importée avec succès.",
         "saveToDownloadFolder": "Enregistrer dans le dossier Téléchargements",
         "importSeedVault": "Importer un SeedVault",
         "dropSeedVaultHere": "Déposez le SeedVault ici <1></1> ou cliquez sur parcourir",
-        "enterPasswordExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
-        "seedVaultPasswordExplanation": "Tout d’abord, nous avons besoin de sécuriser votre SeedVault. Veuillez choisir un mot de passe pour chiffrer le fichier. Vous aurez besoin de ce mot de passe pour restaurer votre seed à partir de la sauvegarde SeedVault. N’hésitez pas à utiliser le même mot de passe que vous utilisez pour Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
