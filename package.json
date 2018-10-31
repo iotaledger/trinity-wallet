@@ -6,7 +6,7 @@
   "homepage": "https://trinity.iota.org",
   "description": "Cross-platform wallet for IOTA",
   "author": "IOTA Foundation <contact@iota.org>",
-  "license": "Apache-2.0",
+  "license": "Apache-2.0 OR EPL-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iotaledger/trinity-wallet.git"
