@@ -12,6 +12,11 @@ const electronSettings = require('electron-settings');
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 /**
+ * Disable Remote Debugging Port on production build
+ */
+app.commandLine.appendSwitch('remote-debugging-port', '');
+
+/**
  * Set AppUserModelID for Windows notifications functionallity
  */
 app.setAppUserModelId('org.iota.trinity');
@@ -20,13 +25,6 @@ app.setAppUserModelId('org.iota.trinity');
  * Set environment mode
  */
 const devMode = process.env.NODE_ENV === 'development';
-
-/**
- * Disable Remote Debugging Port on production build
- */
-if (!devMode) {
-   app.commandLine.appendSwitch('remote-debugging-port', '');
-}
 
 /**
  * Define deep link state
