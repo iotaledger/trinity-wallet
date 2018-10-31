@@ -135,9 +135,10 @@ class SeedVaultExportComponent extends Component {
         }
         const { t } = this.props;
         const now = new Date();
+        const prefix = this.props.selectedAccountName || 'SeedVault';
         const path =
             (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
-            `/SeedVault${now
+            `/${prefix}${now
                 .toISOString()
                 .slice(0, 16)
                 .replace(/[-:]/g, '')
