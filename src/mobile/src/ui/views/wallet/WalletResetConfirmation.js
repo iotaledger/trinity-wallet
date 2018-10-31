@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { width, height } from 'libs/dimensions';
 import Fonts from 'ui/theme/fonts';
@@ -178,7 +179,7 @@ class WalletResetConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default WithBackPressGoToHome()(

@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutF
 import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { setLanguage, setLocale } from 'shared-modules/actions/settings';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { I18N_LOCALE_LABELS, getLabelFromLocale, getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import i18next from 'shared-modules/libs/i18next';
 import DropdownComponent from 'ui/components/Dropdown';
@@ -159,7 +160,7 @@ class LanguageSelection extends Component {
 
 const mapStateToProps = (state) => ({
     language: state.settings.language,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

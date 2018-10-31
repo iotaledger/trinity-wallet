@@ -7,6 +7,7 @@ import { Navigation } from 'react-native-navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import { clearKeychain, hash } from 'libs/keychain';
@@ -211,7 +212,7 @@ class WalletResetRequirePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     password: state.wallet.password,
 });
 

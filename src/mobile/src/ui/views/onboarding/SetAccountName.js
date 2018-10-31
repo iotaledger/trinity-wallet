@@ -8,7 +8,7 @@ import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -262,7 +262,7 @@ const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountNames: getAccountNamesFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
     password: state.wallet.password,
 });

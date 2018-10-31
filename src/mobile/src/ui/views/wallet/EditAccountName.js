@@ -12,6 +12,7 @@ import {
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeAccountName } from 'shared-modules/actions/accounts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
@@ -201,7 +202,7 @@ const mapStateToProps = (state) => ({
     selectedAccountType: getSelectedAccountType(state),
     accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

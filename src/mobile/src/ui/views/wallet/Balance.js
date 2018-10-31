@@ -23,6 +23,7 @@ import {
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'shared-modules/libs/currency';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithManualRefresh from 'ui/components/ManualRefresh';
 import SimpleTransactionRow from 'ui/components/SimpleTransactionRow';
 import Chart from 'ui/components/Chart';
@@ -113,11 +114,7 @@ export class Balance extends Component {
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
         /** @ignore */
-        primary: PropTypes.object.isRequired,
-        /** @ignore */
-        secondary: PropTypes.object.isRequired,
-        /** @ignore */
-        body: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         /** @ignore */
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
@@ -177,7 +174,8 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transactions, primary, secondary, body, addresses } = this.props;
+        const { transactions, theme, addresses } = this.props;
+        const { primary, secondary, body } = theme;
         const orderedTransfers = orderBy(transactions, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
         const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
@@ -212,7 +210,8 @@ export class Balance extends Component {
     }
 
     renderTransactions() {
-        const { body, t } = this.props;
+        const { theme, t } = this.props;
+        const { body } = theme;
         const data = this.prepTransactions();
 
         return (
@@ -231,7 +230,8 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, usdPrice, body, primary, isRefreshing } = this.props;
+        const { balance, conversionRate, currency, usdPrice, theme, isRefreshing } = this.props;
+        const { body, primary } = theme;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
@@ -296,9 +296,7 @@ const mapStateToProps = (state) => ({
     addresses: getAddressesForSelectedAccount(state),
     currency: state.settings.currency,
     conversionRate: state.settings.conversionRate,
-    primary: state.settings.theme.primary,
-    secondary: state.settings.theme.secondary,
-    body: state.settings.theme.body,
+    theme: getThemeFromState(state),
 });
 
 export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps)(Balance)));

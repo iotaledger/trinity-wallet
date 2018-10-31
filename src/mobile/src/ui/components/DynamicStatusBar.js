@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { Navigation } from 'react-native-navigation';
 import { isAndroid } from 'libs/device';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { rgbToHex } from 'shared-modules/libs/utils';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
@@ -104,7 +105,7 @@ class DynamicStatusBar extends Component {
 
 const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isModalActive: state.ui.isModalActive,
     currentRoute: state.ui.currentRoute,
 });

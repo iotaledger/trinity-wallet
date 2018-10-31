@@ -14,6 +14,7 @@ import { setFullNode } from 'shared-modules/actions/settings';
 import { isValidUrl, isValidHttpsUrl } from 'shared-modules/libs/utils';
 import { setCustomNodeCheckStatus } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -279,7 +280,7 @@ class AddCustomNode extends Component {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isCheckingCustomNode: state.ui.isCheckingCustomNode,
 });
 

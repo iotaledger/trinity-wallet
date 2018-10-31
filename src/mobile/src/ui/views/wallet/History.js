@@ -14,6 +14,7 @@ import {
     getSelectedAccountName,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared-modules/libs/utils';
 import { toggleModalActivity, updateModalProps } from 'shared-modules/actions/ui';
@@ -190,7 +191,7 @@ class History extends Component {
             addresses,
             isAutoPromoting,
             isPromotingTransaction,
-            isRetryingFailedTransaction
+            isRetryingFailedTransaction,
         } = this.props;
         const relevantTransfers = formatRelevantTransactions(transactions, addresses);
 
@@ -211,7 +212,7 @@ class History extends Component {
                 outputs,
                 bundle,
                 message,
-                broadcasted
+                broadcasted,
             } = transfer;
             const value = round(formatValue(transferValue), 1);
             return {
@@ -345,7 +346,7 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     addresses: getAddressesForSelectedAccount(state),
     mode: state.settings.mode,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isSyncing: state.ui.isSyncing,

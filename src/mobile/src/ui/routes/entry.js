@@ -9,6 +9,7 @@ import sharedStore from 'shared-modules/store';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import Themes from 'shared-modules/themes/themes';
 import { ActionTypes } from 'shared-modules/actions/wallet';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
@@ -51,6 +52,8 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
+
+    // Render initial screen
     renderInitialScreen(initialScreen, state);
 };
 
@@ -60,6 +63,8 @@ const onAppStart = () => {
 };
 
 const renderInitialScreen = (initialScreen, state) => {
+    const theme = Themes[state.settings.themeName] || Themes.Default;
+
     Navigation.setRoot({
         root: {
             stack: {
@@ -70,7 +75,7 @@ const renderInitialScreen = (initialScreen, state) => {
                             name: initialScreen,
                             options: {
                                 layout: {
-                                    backgroundColor: state.settings.theme.body.bg,
+                                    backgroundColor: theme.body.bg,
                                     orientation: ['portrait'],
                                 },
                                 topBar: {
@@ -78,12 +83,12 @@ const renderInitialScreen = (initialScreen, state) => {
                                     drawBehind: true,
                                     elevation: 0,
                                     background: {
-                                        color: state.settings.theme.body.bg,
+                                        color: theme.body.bg,
                                     },
                                 },
                                 statusBar: {
                                     drawBehind: true,
-                                    backgroundColor: state.settings.theme.body.bg,
+                                    backgroundColor: theme.body.bg,
                                 },
                             },
                         },

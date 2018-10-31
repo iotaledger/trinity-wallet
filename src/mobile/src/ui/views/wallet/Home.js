@@ -15,6 +15,7 @@ import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wal
 import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import { hash } from 'libs/keychain';
 import UserInactivity from 'ui/components/UserInactivity';
@@ -409,7 +410,7 @@ const mapStateToProps = (state) => ({
     storedPasswordHash: state.wallet.password,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isSyncing: state.ui.isSyncing,
     isCheckingCustomNode: state.ui.isCheckingCustomNode,
     isSendingTransfer: state.ui.isSendingTransfer,

@@ -11,6 +11,7 @@ import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
@@ -229,7 +230,7 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     is2FAEnabled: state.settings.is2FAEnabled,
     accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,

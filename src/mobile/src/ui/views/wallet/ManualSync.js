@@ -5,7 +5,7 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'shared-modules/actions/accounts';
 import SeedStore from 'libs/SeedStore';
@@ -189,7 +189,7 @@ export class ManualSync extends Component {
 const mapStateToProps = (state) => ({
     isSyncing: state.ui.isSyncing,
     password: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountType: getSelectedAccountType(state),
     shouldPreventAction: shouldPreventAction(state),

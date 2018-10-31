@@ -8,7 +8,7 @@ import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Key
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
@@ -376,7 +376,7 @@ class UseExistingSeed extends Component {
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
 });
 

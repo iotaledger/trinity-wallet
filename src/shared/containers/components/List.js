@@ -9,6 +9,8 @@ import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
 import { promoteTransaction, retryFailedTransaction } from '../../actions/transfers';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * List component container
  * @ignore
@@ -121,7 +123,7 @@ export default function withListData(ListComponent) {
         accounts: state.accounts,
         accountName: getSelectedAccountName(state),
         failedHashes: getFailedBundleHashesForSelectedAccount(state),
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,

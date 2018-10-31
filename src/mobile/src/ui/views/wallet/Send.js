@@ -36,6 +36,7 @@ import {
 } from 'shared-modules/selectors/accounts';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import KeepAwake from 'react-native-keep-awake';
 import Toggle from 'ui/components/Toggle';
@@ -134,12 +135,6 @@ export class Send extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        bar: PropTypes.object.isRequired,
-        /** @ignore */
-        body: PropTypes.object.isRequired,
-        /** @ignore */
-        primary: PropTypes.object.isRequired,
-        /** @ignore */
         isSendingTransfer: PropTypes.bool.isRequired,
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
@@ -187,7 +182,9 @@ export class Send extends Component {
 
     constructor(props) {
         super(props);
-        const { t, body } = this.props;
+        const { t, theme } = this.props;
+        const { body } = theme;
+
         this.state = {
             modalContent: '', // eslint-disable-line react/no-unused-state
             maxPressed: false,
@@ -442,10 +439,10 @@ export class Send extends Component {
      *   @method setMaxPressed
      **/
     setMaxPressed() {
-        const { primary, t } = this.props;
+        const { theme, t } = this.props;
         this.setState({
             maxPressed: true,
-            maxColor: primary.color,
+            maxColor: theme.primary.color,
             maxText: t('send:maximumSelected'),
         });
     }
@@ -455,10 +452,10 @@ export class Send extends Component {
      *   @method resetMaxPressed
      **/
     resetMaxPressed() {
-        const { body, t } = this.props;
+        const { theme, t } = this.props;
         this.setState({
             maxPressed: false,
-            maxColor: body.color,
+            maxColor: theme.body.color,
             maxText: t('send:sendMax'),
         });
     }
@@ -499,7 +496,8 @@ export class Send extends Component {
      * @param  {String} modalContent
      */
     showModal(modalContent) {
-        const { bar, theme, body, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
+        const { theme, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
+
         switch (modalContent) {
             case 'qrScanner':
                 return this.props.toggleModalActivity(modalContent, {
@@ -517,9 +515,9 @@ export class Send extends Component {
                     address: address,
                     sendTransfer: () => this.sendWithDelay(),
                     hideModal: (callback) => this.hideModal(callback),
-                    body,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
+                    body: theme.body,
+                    borderColor: { borderColor: theme.body.color },
+                    textColor: { color: theme.body.color },
                     setSendingTransferFlag: () => this.setSendingTransferFlag(),
                     selectedAccountName,
                     activateFingerprintScanner: () => this.activateFingerprintScanner(),
@@ -528,25 +526,25 @@ export class Send extends Component {
             case 'unitInfo':
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: () => this.hideModal(),
-                    textColor: { color: bar.color },
-                    lineColor: { borderLeftColor: bar.color },
-                    borderColor: { borderColor: bar.color },
-                    bar,
+                    textColor: { color: theme.bar.color },
+                    lineColor: { borderLeftColor: theme.bar.color },
+                    borderColor: { borderColor: theme.bar.color },
+                    bar: theme.bar.color,
                 });
             case 'usedAddress':
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: (callback) => this.hideModal(callback),
-                    body,
-                    bar,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
+                    body: theme.body,
+                    bar: theme.bar,
+                    borderColor: { borderColor: theme.body.color },
+                    textColor: { color: theme.body.color },
                 });
             case 'fingerprint':
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: this.hideModal,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
-                    backgroundColor: { backgroundColor: body.bg },
+                    borderColor: { borderColor: theme.body.color },
+                    textColor: { color: theme.body.color },
+                    backgroundColor: { backgroundColor: theme.body.bg },
                     instance: 'send',
                     theme,
                     isFingerprintEnabled,
@@ -724,11 +722,9 @@ export class Send extends Component {
             message,
             denomination,
             theme,
-            body,
-            primary,
             isKeyboardActive,
         } = this.props;
-        const textColor = { color: body.color };
+        const textColor = { color: theme.body.color };
         const opacity = this.getSendMaxOpacity();
         const isSending = sending || isSendingTransfer;
 
@@ -817,8 +813,8 @@ export class Send extends Component {
                                     <Toggle
                                         opacity={opacity}
                                         active={maxPressed}
-                                        bodyColor={body.color}
-                                        primaryColor={primary.color}
+                                        bodyColor={theme.body.color}
+                                        primaryColor={theme.primary.color}
                                     />
                                 </View>
                             </TouchableOpacity>
@@ -850,8 +846,8 @@ export class Send extends Component {
                             !isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={{ flex: 1 }}>
                                     <CtaButton
-                                        ctaColor={primary.color}
-                                        secondaryCtaColor={primary.body}
+                                        ctaColor={theme.primary.color}
+                                        secondaryCtaColor={theme.primary.body}
                                         text={t('send')}
                                         onPress={() => {
                                             this.onSendPress();
@@ -873,8 +869,8 @@ export class Send extends Component {
                                 <ProgressBar
                                     indeterminate={this.props.activeStepIndex === -1}
                                     progress={this.props.activeStepIndex / size(this.props.activeSteps)}
-                                    color={primary.color}
-                                    textColor={body.color}
+                                    color={theme.primary.color}
+                                    textColor={theme.body.color}
                                 >
                                     {this.renderProgressBarChildren()}
                                 </ProgressBar>
@@ -889,7 +885,7 @@ export class Send extends Component {
                                     <Icon
                                         name="info"
                                         size={width / 22}
-                                        color={body.color}
+                                        color={theme.body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
                                     <Text style={[styles.infoText, textColor]}>{t('iotaUnits')}</Text>
@@ -916,10 +912,7 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
-    theme: state.settings.theme,
-    body: state.settings.theme.body,
-    primary: state.settings.theme.primary,
-    bar: state.settings.theme.bar,
+    theme: getThemeFromState(state),
     isTransitioning: state.ui.isTransitioning,
     address: state.ui.sendAddressFieldText,
     amount: state.ui.sendAmountFieldText,
