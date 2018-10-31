@@ -734,7 +734,7 @@
         "connectionErrorExplanation": "Upewnij się, że Twoje urządzenie jest podłączone i odblokowane.",
         "connectionTitle": "Podłącz swój portfel Ledger",
         "connectionExplanation": "Urządzenie Ledger musi być podłączone, aby wykonać tę operację.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionTitle": "Przewiń i zatwierdź transakcję w Twoim portfelu Ledger",
         "transactionExplanation": "Użyj swojego urządzenia Ledger, aby zatwierdzić transakcję wychodzącą.",
         "applicationTitle": "Uruchom aplikację IOTA na urządzeniu Ledger",
         "applicationExplanation": "Uruchom aplikację IOTA na swoim portfelu sprzętowym Ledger, aby kontynuować korzystanie z Trinity.",
