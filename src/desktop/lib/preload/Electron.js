@@ -366,7 +366,7 @@ const Electron = {
         try {
             const content = await kdbx.exportVault(seeds, password);
             const now = new Date();
-            const prefix = seeds.length === 1 ? seeds[0].title : 'seedvault';
+            const prefix = seeds.length === 1 ? seeds[0].title : 'SeedVault';
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
                 defaultPath: `${prefix}-${now
