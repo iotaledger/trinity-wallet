@@ -22,12 +22,10 @@ app.setAppUserModelId('org.iota.trinity');
 const devMode = process.env.NODE_ENV === 'development';
 
 /**
- * Disable Remote Debugging Port and debugging of the main process on production build
+ * Disable Remote Debugging Port on production build
  */
 if (!devMode) {
    app.commandLine.appendSwitch('remote-debugging-port', '');
-   app.commandLine.appendSwitch('inspect', '');
-   app.commandLine.appendSwitch('inspect-brk', '');
 }
 
 /**
