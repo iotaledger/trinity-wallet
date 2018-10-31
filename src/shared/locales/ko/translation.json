@@ -536,7 +536,9 @@
     "viewSeed": {
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
         "viewSeed": "시드 보기",
-        "hideSeed": "시드 숨기기"
+        "hideSeed": "시드 숨기기",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "시드를 저장하셨나요?",
@@ -716,5 +718,35 @@
         "proceed": "복구 진행",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }
