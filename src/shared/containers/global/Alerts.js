@@ -23,7 +23,7 @@ export default function withAlertsData(AlertsComponent) {
     AlertsData.displayName = `withAlertsData(${AlertsComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        alerts: state.alerts,
+        alerts: state.alerts
     });
 
     const mapDispatchToProps = {
