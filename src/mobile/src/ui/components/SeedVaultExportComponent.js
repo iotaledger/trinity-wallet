@@ -133,9 +133,9 @@ class SeedVaultExportComponent extends Component {
         if (isAndroid) {
             await getAndroidFileSystemPermissions();
         }
-        const { t } = this.props;
+        const { t, selectedAccountName } = this.props;
         const now = new Date();
-        const prefix = this.props.selectedAccountName || 'SeedVault';
+        const prefix = selectedAccountName || 'SeedVault';
         const path =
             (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
             `/${prefix}${now
