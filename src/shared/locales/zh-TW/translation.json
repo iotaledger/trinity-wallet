@@ -145,7 +145,7 @@
         "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "主帳戶"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -348,8 +348,8 @@
         "standard": "標準",
         "advancedModeExplanation": "進階模式會顯示更多詳細技術資訊。",
         "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用進階模式，否則您可能反而會一頭霧水。",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "模式已更新",
+        "modeUpdatedExplanation": "您已變更為{{mode}}模式"
     },
     "settings": {
         "transferSending": "傳送交易",
