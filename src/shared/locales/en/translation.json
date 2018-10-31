@@ -75,6 +75,8 @@
         "wallet": "Wallet",
         "all": "All",
         "sent": "Sent",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Received",
         "sending": "Sending",
         "receiving": "Receiving",
@@ -252,7 +254,8 @@
         "login": "Log In",
         "setNode": "Set Node",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
@@ -315,7 +318,8 @@
         "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "I've saved my seed",
         "checksumExplanation":
             "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
@@ -528,18 +532,21 @@
         "currency": "Currency"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Are you sure you want to log out?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Scan your QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "Unit System",
         "trillion": "Trillion",
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
-        "one": "One"
+        "one": "One",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",

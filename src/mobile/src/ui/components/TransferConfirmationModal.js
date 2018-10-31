@@ -9,27 +9,10 @@ import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import DualFooterButtons from './DualFooterButtons';
+import ModalView from './ModalView';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        alignItems: 'center',
-        width,
-        height,
-        justifyContent: 'flex-end',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width,
-        height: height - Styling.topbarHeight,
-    },
-    textContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-    },
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
@@ -155,99 +138,91 @@ class TransferConfirmationModal extends Component {
         } = this.props;
         const isMessage = value === 0 || amount === '';
         return (
-            <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, { backgroundColor: body.bg }]}>
-                    <View style={[styles.textContainer]}>
-                        <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
-                            <Text style={[styles.titleText, { color: primary.color }]}>
-                                {isMessage
-                                    ? message.length > 0
-                                        ? t('sendingAMessage').toUpperCase()
-                                        : t('sendingAnEmptyMessage').toUpperCase()
-                                    : t('fromAccount', { selectedAccountName }).toUpperCase()}
-                            </Text>
-                            {isMessage &&
-                                message.length > 0 && (
-                                    <ScrollView
-                                        scrollEnabled={this.state.scrollable}
-                                        showsVerticalScrollIndicator={this.state.scrollable}
-                                        style={{
-                                            maxHeight: height / 5.8,
-                                        }}
-                                        onContentSizeChange={(x, y) => this.setScrollable(y)}
-                                    >
-                                        <View
-                                            style={{
-                                                paddingTop: height / 40,
-                                                alignItems: 'center',
-                                                paddingHorizontal: width / 20,
-                                            }}
-                                        >
-                                            <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
-                                        </View>
-                                    </ScrollView>
-                                )}
-                            {!isMessage && (
-                                <View style={{ paddingTop: height / 80, alignItems: 'center' }}>
-                                    <View style={styles.valueContainer}>
-                                        <TextWithLetterSpacing
-                                            spacing={width / 100}
-                                            textStyle={[styles.valueTextLarge, { color: body.color }]}
-                                        >
-                                            {round(formatValue(value), 3)}
-                                        </TextWithLetterSpacing>
-                                        <Text
-                                            style={[
-                                                styles.valueTextSmall,
-                                                { color: body.color, marginTop: height / 36, paddingLeft: width / 40 },
-                                            ]}
-                                        >
-                                            {formatUnit(value)}
-                                        </Text>
-                                    </View>
-                                    <Text
-                                        style={[styles.valueTextSmall, { color: body.color, marginTop: height / 200 }]}
-                                    >
-                                        {conversionText}
-                                    </Text>
-                                </View>
-                            )}
-                        </View>
-                        <View style={{ paddingVertical: height / 40 }}>
-                            <LottieView
-                                source={arrowAnimation}
-                                style={{ width: width / 17, height: height / 18 }}
-                                loop
-                                autoplay
-                                ref={(animation) => {
-                                    this.animation = animation;
+            <ModalView
+                dualButtons
+                displayTopBar
+                onLeftButtonPress={() => this.props.cancel()}
+                onRightButtonPress={() => this.onSendPress()}
+                leftButtonText={t('global:cancel')}
+                rightButtonText={t('global:confirm')}
+            >
+                <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
+                    <Text style={[styles.titleText, { color: primary.color }]}>
+                        {isMessage
+                            ? message.length > 0
+                                ? t('sendingAMessage').toUpperCase()
+                                : t('sendingAnEmptyMessage').toUpperCase()
+                            : t('fromAccount', { selectedAccountName }).toUpperCase()}
+                    </Text>
+                    {isMessage &&
+                        message.length > 0 && (
+                            <ScrollView
+                                scrollEnabled={this.state.scrollable}
+                                showsVerticalScrollIndicator={this.state.scrollable}
+                                style={{
+                                    maxHeight: height / 5.8,
                                 }}
-                            />
+                                onContentSizeChange={(x, y) => this.setScrollable(y)}
+                            >
+                                <View
+                                    style={{
+                                        paddingTop: height / 40,
+                                        alignItems: 'center',
+                                        paddingHorizontal: width / 20,
+                                    }}
+                                >
+                                    <Text style={[styles.messageText, { color: body.color }]}>{message}</Text>
+                                </View>
+                            </ScrollView>
+                        )}
+                    {!isMessage && (
+                        <View style={{ paddingTop: height / 80, alignItems: 'center' }}>
+                            <View style={styles.valueContainer}>
+                                <TextWithLetterSpacing
+                                    spacing={width / 100}
+                                    textStyle={[styles.valueTextLarge, { color: body.color }]}
+                                >
+                                    {round(formatValue(value), 3)}
+                                </TextWithLetterSpacing>
+                                <Text
+                                    style={[
+                                        styles.valueTextSmall,
+                                        { color: body.color, marginTop: height / 36, paddingLeft: width / 40 },
+                                    ]}
+                                >
+                                    {formatUnit(value)}
+                                </Text>
+                            </View>
+                            <Text style={[styles.valueTextSmall, { color: body.color, marginTop: height / 200 }]}>
+                                {conversionText}
+                            </Text>
                         </View>
-                        <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
-                            <Text style={[styles.titleText, { color: primary.color }]}>
-                                {t('toAddress').toUpperCase()}
-                            </Text>
-                            <Text style={[styles.addressText, { color: body.color }, { marginTop: height / 40 }]}>
-                                {this.props.address.substring(0, 30)}
-                            </Text>
-                            <Text style={[styles.addressText, { color: body.color }]}>
-                                {this.props.address.substring(30, 60)}
-                            </Text>
-                            <Text style={[styles.addressText, { color: body.color }]}>
-                                {this.props.address.substring(60, 90)}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={{ flex: 0.1 }} />
-                    <DualFooterButtons
-                        onLeftButtonPress={() => this.props.cancel()}
-                        onRightButtonPress={() => this.onSendPress()}
-                        leftButtonText={t('global:cancel').toUpperCase()}
-                        rightButtonText={t('global:confirm').toUpperCase()}
+                    )}
+                </View>
+                <View style={{ paddingVertical: height / 40 }}>
+                    <LottieView
+                        source={arrowAnimation}
+                        style={{ width: width / 17, height: height / 18 }}
+                        loop
+                        autoplay
+                        ref={(animation) => {
+                            this.animation = animation;
+                        }}
                     />
                 </View>
-            </View>
+                <View style={[styles.itemContainer, { backgroundColor: dark.color }]}>
+                    <Text style={[styles.titleText, { color: primary.color }]}>{t('toAddress').toUpperCase()}</Text>
+                    <Text style={[styles.addressText, { color: body.color }, { marginTop: height / 40 }]}>
+                        {this.props.address.substring(0, 30)}
+                    </Text>
+                    <Text style={[styles.addressText, { color: body.color }]}>
+                        {this.props.address.substring(30, 60)}
+                    </Text>
+                    <Text style={[styles.addressText, { color: body.color }]}>
+                        {this.props.address.substring(60, 90)}
+                    </Text>
+                </View>
+            </ModalView>
         );
     }
 }

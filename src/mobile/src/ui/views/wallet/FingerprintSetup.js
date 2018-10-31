@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize5,
         textAlign: 'center',
         backgroundColor: 'transparent',
+        paddingTop: height / 20,
     },
     infoText: {
         fontFamily: Fonts.secondary,
@@ -55,9 +56,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: width / 1.65,
-        height: height / 3.3,
         alignItems: 'center',
-        justifyContent: 'space-between',
         padding: width / 12,
         borderRadius: Styling.borderRadius,
         borderWidth: 1,
@@ -230,7 +229,7 @@ class FingerprintEnable extends Component {
                         onPress={this.onFingerprintPress}
                         style={[styles.button, { borderColor: theme.body.color }]}
                     >
-                        <Icon name="fingerprintLarge" size={width / 4.6} color={theme.body.color} />
+                        <Icon name="fingerprint" size={width / 4.6} color={theme.body.color} />
                         <Text style={[styles.subHeaderText, textColor]}>{authenticationStatus}</Text>
                     </TouchableOpacity>
                 </View>

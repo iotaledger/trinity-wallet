@@ -26,7 +26,7 @@ import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
 import TabContent from 'ui/components/TabContent';
 import EnterPassword from 'ui/components/EnterPassword';
-import { height } from 'libs/dimensions';
+import { Styling } from 'ui/theme/general';
 import { isAndroid, isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -101,7 +101,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
-        this.topBarHeight = isAndroid ? null : new Animated.Value(height / 8.8);
+        this.topBarHeight = isAndroid ? null : new Animated.Value(Styling.topbarHeight);
 
         this.state = {
             isKeyboardActive: false,
@@ -265,7 +265,7 @@ class Home extends Component {
         }).start();
         Animated.timing(this.topBarHeight, {
             duration: event.duration,
-            toValue: height / 8.8,
+            toValue: Styling.topbarHeight,
         }).start();
     };
 
@@ -281,7 +281,7 @@ class Home extends Component {
     };
 
     keyboardDidHide = () => {
-        this.topBarHeight = height / 8.8;
+        this.topBarHeight = Styling.topbarHeight;
         this.viewFlex = 0.7;
         this.setState({ isKeyboardActive: false });
     };

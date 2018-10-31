@@ -150,11 +150,8 @@ class History extends Component {
             if (modalProps.bundle in newProps.transfers && newBundleProps.persistence !== modalProps.persistence) {
                 this.props.updateModalProps({
                     persistence: newBundleProps.persistence,
-                    status: computeStatusText(
-                        newBundleProps.outputs,
-                        newBundleProps.persistence,
-                        newBundleProps.incoming,
-                    ),
+                    outputs: newBundleProps.outputs,
+                    incoming: newBundleProps.incoming,
                     style: { titleColor: modalProps.incoming ? primary.color : secondary.color },
                 });
             }

@@ -7,7 +7,6 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import RootDetection from 'ui/components/RootDetectionModal';
 import TransferConfirmation from 'ui/components/TransferConfirmationModal';
-import UsedAddress from 'ui/components/UsedAddressModal';
 import UnitInfo from 'ui/components/UnitInfoModal';
 import Fingerprint from 'ui/components/FingerprintModal';
 import SnapshotTransitionInfo from 'ui/components/SnapshotTransitionInfoModal';
@@ -38,7 +37,6 @@ const MODAL_CONTENT = {
     logoutConfirmation: LogoutConfirmation,
     fingerprint: Fingerprint,
     transferConfirmation: TransferConfirmation,
-    usedAddress: UsedAddress,
     unitInfo: UnitInfo,
     transactionHistory: TransactionHistory,
     passwordValidation: PasswordValidation,
@@ -107,11 +105,11 @@ export default function withSafeAreaView(WrappedComponent) {
                 <View style={{ flex: 1 }}>
                     <WrappedComponent {...this.props} />
                     <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : fadeInUpCustom}
-                        animationOut={isAndroid ? 'bounceOut' : fadeOutDownCustom}
-                        animationInTiming={isAndroid ? 1000 : 300}
+                        animationIn={fadeInUpCustom}
+                        animationOut={fadeOutDownCustom}
+                        animationInTiming={300}
                         animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
+                        backdropTransitionInTiming={300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
                         backdropOpacity={0.7}

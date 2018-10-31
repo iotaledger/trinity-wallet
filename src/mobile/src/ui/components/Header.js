@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Styling } from 'ui/theme/general';
 import PropTypes from 'prop-types';
-import { width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
     },
     header: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 16,
+        fontSize: Styling.fontSize6,
         textAlign: 'center',
+        width: Styling.contentWidth,
     },
 });
 

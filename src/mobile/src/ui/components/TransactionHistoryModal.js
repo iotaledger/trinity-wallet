@@ -5,7 +5,7 @@ import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollVi
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isAndroid, locale, timezone } from 'libs/device';
+import { isAndroid, isIPhoneX, locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         height,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        flex: isIPhoneX ? 0 : 1,
     },
     modalContent: {
         justifyContent: 'space-between',
@@ -30,19 +31,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
     },
+    statusContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     statusText: {
-        justifyContent: 'space-between',
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize6,
     },
-    statusWrapper: {
-        width,
-        alignItems: 'center',
+    unitText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize4,
+        marginTop: height / 100,
     },
     confirmationWrapper: {
         alignItems: 'center',
-        marginBottom: height / 18,
+        marginBottom: height / 40,
         width: contentWidth,
     },
     bundleWrapper: {
@@ -57,6 +64,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceCodePro-Medium',
         fontSize: Styling.fontSize2,
         marginTop: 2,
+        width: width / 1.4,
     },
     bundleSeparator: {
         flex: 1,
@@ -71,19 +79,24 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
-        paddingTop: height / 40,
+        paddingTop: height / 50,
     },
     heading: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize2,
+        fontSize: Styling.fontSize3,
         paddingTop: height / 50,
-        paddingBottom: height / 200,
+        paddingBottom: height / 300,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceCodePro-Medium',
-        fontSize: Styling.fontSize2,
+        fontSize: Styling.fontSize1,
+    },
+    messageText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceCodePro-Medium',
+        fontSize: Styling.fontSize1,
     },
     addressRowContainer: {
         flexDirection: 'row',
@@ -96,24 +109,19 @@ const styles = StyleSheet.create({
     addressRowBottomWrapper: {
         flex: 1.3,
     },
+    addressRowText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceCodePro-Medium',
+        fontSize: Styling.fontSize1,
+        textAlign: 'left',
+        width: width / 1.4,
+        height: height / 20,
+    },
     addressRowValue: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize3,
+        fontSize: Styling.fontSize1,
         textAlign: 'right',
-    },
-    buttonContainer: {
-        flex: 1,
-        alignItems: 'center',
-        width: contentWidth,
-        justifyContent: 'flex-end',
-        marginTop: height / 40,
-        height: height / 14,
-    },
-    buttonWrapper: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
 });
 
@@ -127,8 +135,10 @@ export default class TransactionHistoryModal extends PureComponent {
          * @param {string} bundle - bundle hash
          */
         promote: PropTypes.func.isRequired,
-        /** Transaction confirmation state */
-        status: PropTypes.string.isRequired,
+        /** Bundle outputs */
+        outputs: PropTypes.array.isRequired,
+        /** Determines whether transaction is sent or received */
+        incoming: PropTypes.bool.isRequired,
         /** Transaction boolean confirmation state */
         persistence: PropTypes.bool.isRequired,
         /** Currently selected mode */
@@ -222,6 +232,13 @@ export default class TransactionHistoryModal extends PureComponent {
         }
     }
 
+    computeStatusText(outputs, persistence, incoming) {
+        const { t } = this.props;
+        const receiveStatus = persistence ? t('global:youReceived') : t('global:receiving');
+        const sendStatus = persistence ? t('global:youSent') : t('global:sending');
+        return incoming ? receiveStatus : sendStatus;
+    }
+
     renderAddressRow(address) {
         const { style } = this.props;
 
@@ -231,7 +248,11 @@ export default class TransactionHistoryModal extends PureComponent {
                     onPress={() => this.copy(address.address, 'address')}
                     style={styles.addressRowTopWrapper}
                 >
-                    <Text style={[styles.text, style.defaultTextColor]} numberOfLines={2}>
+                    <Text
+                        numberOfLines={2}
+                        ellipsizeMode="middle"
+                        style={[styles.addressRowText, style.defaultTextColor]}
+                    >
                         {address.address}
                     </Text>
                 </TouchableOpacity>
@@ -251,7 +272,7 @@ export default class TransactionHistoryModal extends PureComponent {
                 data={relevantAddresses}
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => this.renderAddressRow(item)}
-                ItemSeparatorComponent={() => <View />}
+                ItemSeparatorComponent={() => <View style={{ height: height / 300 }} />}
                 scrollEnabled={false}
             />
         );
@@ -265,8 +286,8 @@ export default class TransactionHistoryModal extends PureComponent {
                 hideModal();
             },
             leftButtonStyle: { children: opacity },
-            leftButtonText: t('global:retry').toUpperCase(),
-            rightButtonText: t('global:done').toUpperCase(),
+            leftButtonText: t('global:retry'),
+            rightButtonText: t('global:done'),
             isLeftButtonLoading: bundleIsBeingPromoted || isRetryingFailedTransaction,
         };
         const props = assign({}, defaultProps, buttonProps);
@@ -278,7 +299,8 @@ export default class TransactionHistoryModal extends PureComponent {
             hideModal,
             fullValue,
             unit,
-            status,
+            outputs,
+            incoming,
             persistence,
             time,
             bundle,
@@ -301,9 +323,15 @@ export default class TransactionHistoryModal extends PureComponent {
                     <View style={{ flex: 1 }} />
                     <View style={styles.historyContent}>
                         <View style={styles.confirmationWrapper}>
-                            <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                {status.toUpperCase() + ' ' + fullValue + ' ' + unit}
-                            </Text>
+                            <View style={styles.statusContainer}>
+                                <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                    {this.computeStatusText(outputs, persistence, incoming)}
+                                </Text>
+                                <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                    {' ' + fullValue + ' '}
+                                </Text>
+                                <Text style={[styles.unitText, { color: style.titleColor }]}>{unit}</Text>
+                            </View>
                             <Text style={[styles.timestamp, style.defaultTextColor]}>
                                 {formatModalTime(locale, timezone, convertUnixTimeToJSDate(time))}
                             </Text>
@@ -314,7 +342,11 @@ export default class TransactionHistoryModal extends PureComponent {
                                 onPress={() => this.copy(bundle, 'bundle')}
                                 style={styles.bundleInnerWrapper}
                             >
-                                <Text style={[styles.bundleHash, style.defaultTextColor]} numberOfLines={2}>
+                                <Text
+                                    style={[styles.bundleHash, style.defaultTextColor]}
+                                    numberOfLines={2}
+                                    ellipsizeMode="middle"
+                                >
                                     {bundle}
                                 </Text>
                                 <View style={styles.bundleSeparator} />
@@ -327,7 +359,7 @@ export default class TransactionHistoryModal extends PureComponent {
                                     scrollEnabled={addressesScrollable}
                                     showsVerticalScrollIndicator={addressesScrollable}
                                     style={{
-                                        maxHeight: height / 5.3,
+                                        maxHeight: height / 5 + height / 75,
                                         width: contentWidth,
                                     }}
                                     onContentSizeChange={(x, y) => this.setAddressesScrollable(y)}
@@ -348,7 +380,7 @@ export default class TransactionHistoryModal extends PureComponent {
                         >
                             <View style={{ width: contentWidth }}>
                                 <TouchableOpacity onPress={() => this.copy(message, 'message')}>
-                                    <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                                    <Text style={[styles.messageText, style.defaultTextColor]}>{message}</Text>
                                 </TouchableOpacity>
                             </View>
                         </ScrollView>

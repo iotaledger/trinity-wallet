@@ -1,44 +1,37 @@
 import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import DualFooterButtons from './DualFooterButtons';
+import { Icon } from 'ui/theme/icons';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        width,
-        height,
-    },
-    modalContent: {
-        borderRadius: Styling.borderRadius,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width,
-        height,
-    },
-    textContainer: {
-        width: width - width / 10,
-        paddingBottom: height / 22,
-        alignItems: 'center',
-    },
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize7,
+        fontSize: Styling.fontSize6,
         textAlign: 'center',
         color: 'red',
-        paddingVertical: height / 25,
+    },
+    icon: {
+        opacity: 0.6,
+        paddingVertical: height / 30,
+        backgroundColor: 'transparent',
+    },
+    infoTextBold: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: Styling.fontSize4,
+        textAlign: 'center',
+        width: width / 1.2,
     },
     infoText: {
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize4,
-        paddingBottom: height / 35,
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         width: width / 1.2,
     },
@@ -64,26 +57,21 @@ export class RootDetectionModal extends PureComponent {
         const { t, theme: { body, negative } } = this.props;
         const textColor = { color: body.color };
         return (
-            <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, { backgroundColor: body.bg }]}>
-                    <View style={{ flex: 1 }} />
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.warningText, { color: negative.color }]}>{t('warning')}</Text>
-                        <View style={{ marginBottom: height / 35 }}>
-                            <Text style={[styles.infoText, textColor]}>{t('appearsRooted')}</Text>
-                            <Text style={[styles.infoText, textColor]}>{t('securityRisk')}</Text>
-                            <Text style={[styles.infoText, textColor]}>{t('continueDepsiteRisk')}</Text>
-                        </View>
-                    </View>
-                    <View style={{ flex: 1 }} />
-                    <DualFooterButtons
-                        onLeftButtonPress={() => this.props.closeApp()}
-                        onRightButtonPress={() => this.props.hideModal()}
-                        leftButtonText={t('no').toUpperCase()}
-                        rightButtonText={t('yes').toUpperCase()}
-                    />
-                </View>
-            </View>
+            <ModalView
+                dualButtons
+                onLeftButtonPress={() => this.props.closeApp()}
+                onRightButtonPress={() => this.props.hideModal()}
+                leftButtonText={t('no')}
+                rightButtonText={t('yes')}
+            >
+                <Text style={[styles.warningText, { color: negative.color }]}>{t('warning')}</Text>
+                <Icon name="warning" size={width / 6} color={body.color} style={styles.icon} />
+                <Text style={[styles.infoTextBold, textColor, { paddingBottom: height / 30 }]}>
+                    {t('appearsRooted')}
+                </Text>
+                <Text style={[styles.infoText, textColor, { paddingBottom: height / 40 }]}>{t('securityRisk')}</Text>
+                <Text style={[styles.infoText, textColor]}>{t('continueDepsiteRisk')}</Text>
+            </ModalView>
         );
     }
 }

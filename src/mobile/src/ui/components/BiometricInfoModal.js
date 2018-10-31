@@ -1,37 +1,30 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import SingleFooterButton from './SingleFooterButton';
+import { Icon } from 'ui/theme/icons';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        alignItems: 'center',
-        width,
-        height,
-        justifyContent: 'flex-end',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width,
-        height: height - Styling.topbarHeight,
-    },
-    textContainer: {
-        width: width - width / 10,
-        paddingBottom: height / 22,
+    questionText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize6,
+        width: width / 1.3,
+        textAlign: 'center',
     },
     infoText: {
+        backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-        textAlign: 'left',
+        width: width / 1.2,
+        textAlign: 'center',
     },
-    infoTextBold: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize3,
+    icon: {
+        opacity: 0.6,
+        paddingVertical: height / 20,
         backgroundColor: 'transparent',
     },
 });
@@ -53,21 +46,16 @@ export default class BiometricInfoModal extends PureComponent {
     render() {
         const { theme: { body }, t } = this.props;
         return (
-            <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, { backgroundColor: body.bg }]}>
-                    <View style={{ flex: 1 }} />
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.infoTextBold, { color: body.color }, { paddingTop: height / 40 }]}>
-                            {t('login:whyBiometricDisabled')}
-                        </Text>
-                        <Text style={[styles.infoText, { color: body.color }, { paddingTop: height / 60 }]}>
-                            {t('login:whyBiometricDisabledExplanation')}
-                        </Text>
-                    </View>
-                    <View style={{ flex: 1 }} />
-                    <SingleFooterButton onButtonPress={() => this.props.hideModal()} buttonText={t('okay')} />
-                </View>
-            </View>
+            <ModalView onButtonPress={() => this.props.hideModal()} buttonText={t('okay')}>
+                <Text style={[styles.questionText, { color: body.color }]}>{t('login:whyBiometricDisabled')}</Text>
+                <Icon name="fingerprintDisabled" size={width / 6} color={body.color} style={styles.icon} />
+                <Text style={[styles.infoText, { color: body.color }]}>
+                    {t('login:whyBiometricDisabledExplanationPart1')}
+                </Text>
+                <Text style={[styles.infoText, { color: body.color }, { paddingTop: height / 40 }]}>
+                    {t('login:whyBiometricDisabledExplanationPart2')}
+                </Text>
+            </ModalView>
         );
     }
 }

@@ -530,7 +530,7 @@ export class Send extends Component {
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: () => this.hideModal(),
                     textColor: { color: bar.color },
-                    lineColor: { borderLeftColor: bar.color },
+                    lineColor: { borderBottomColor: bar.color },
                     borderColor: { borderColor: bar.color },
                     theme,
                 });
