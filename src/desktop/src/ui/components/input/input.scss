@@ -492,3 +492,20 @@
         }
     }
 }
+
+.tooltip {
+    background: var(--box-bg) !important;
+    color: var(--box-body) !important;
+    width: auto !important;
+
+    &:after {
+        border-bottom-color: var(--box-bg) !important;
+    }
+}
+
+.addressHidden {
+    visibility: hidden;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 40px;
+}
