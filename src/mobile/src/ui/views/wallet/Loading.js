@@ -124,7 +124,7 @@ class Loading extends Component {
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        isThemeDark: PropTypes.bool.isRequired
+        isThemeDark: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -245,7 +245,10 @@ class Loading extends Component {
     }
 
     playAnimationTwo() {
-        this.setState({ welcomeAnimationPath: this.props.isThemeDark ? whiteWelcomeAnimationPartTwo : blackWelcomeAnimationPartTwo });
+        this.setState({
+            animationPartOneDone: true,
+            welcomeAnimationPath: this.props.isThemeDark ? whiteWelcomeAnimationPartTwo : blackWelcomeAnimationPartTwo,
+        });
         this.animation.reset();
         this.animation.play();
     }
