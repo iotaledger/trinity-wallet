@@ -537,8 +537,8 @@
         "enterPassword": "シードを閲覧するにはパスワードを入力してください。",
         "viewSeed": "シードを表示",
         "hideSeed": "シードを隠す",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
+        "accountIndex": "Ledgerのアカウントインデックス"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
@@ -720,13 +720,13 @@
         "sweepConfirmationTitle": "移動を承認"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
+        "ready": "Ledger端末は接続完了し、準備完了です",
+        "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
+        "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
+        "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
+        "proceedWithLedger": "Ledgerのセットアップを続行する",
+        "accountIndex": "アカウントインデックス",
+        "accountPage": "アカウントページ",
         "chooseAccountIndex": "Choose your Ledger account index",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",
