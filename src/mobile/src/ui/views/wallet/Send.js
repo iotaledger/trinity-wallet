@@ -202,7 +202,7 @@ export class Send extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { seedIndex, isSendingTransfer } = this.props;
+        const { seedIndex, isSendingTransfer, address } = this.props;
         if (!isSendingTransfer && newProps.isSendingTransfer) {
             KeepAwake.activate();
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
@@ -213,6 +213,9 @@ export class Send extends Component {
         }
         if (seedIndex !== newProps.seedIndex) {
             this.resetMaxPressed();
+        }
+        if (address.length === 0 && newProps.address.length === 90) {
+            this.detectAddressInClipboard();
         }
     }
 
@@ -281,7 +284,7 @@ export class Send extends Component {
      * @returns {function}
      */
     onSendPress() {
-        const { t, amount, address, message, denomination, isKeyboardActive } = this.props;
+        const { t, amount, address, message, denomination } = this.props;
         const { currencySymbol } = this.state;
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
@@ -310,13 +313,6 @@ export class Send extends Component {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
         this.openTransferConfirmationModal();
-        if (parseFloat(amount) * multiplier > 0) {
-            timer.setTimeout(
-                'addressPasteAlertDelay',
-                () => this.detectAddressInClipboard(),
-                isKeyboardActive ? 1000 : 250,
-            );
-        }
     }
 
     onQRRead(data) {
@@ -754,7 +750,6 @@ export class Send extends Component {
                             value={address}
                             editable={!isSending}
                             selectTextOnFocus={!isSending}
-                            detectAddressInClipboard={this.detectAddressInClipboard}
                         />
                         <View style={{ flex: 0.17 }} />
                         <AmountTextInput
