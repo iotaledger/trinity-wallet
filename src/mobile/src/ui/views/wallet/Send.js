@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     maxContainer: {
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'flex-end',
         width: Styling.contentWidth,
         paddingRight: 1,
@@ -782,7 +782,7 @@ export class Send extends Component {
                         <View
                             style={[
                                 styles.maxContainer,
-                                { opacity: opacity, flex: isAndroid ? (isKeyboardActive ? 0.8 : 0.4) : 0.4 },
+                                { opacity: opacity, flex: isAndroid ? (isKeyboardActive ? 0.8 : 0.25) : 0.25 },
                             ]}
                         >
                             <TouchableOpacity
@@ -809,7 +809,7 @@ export class Send extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flex: 0.1 }} />
+                        <View style={{ flex: 0.03 }} />
                         <CustomTextInput
                             onRef={(c) => {
                                 this.messageField = c;
@@ -829,6 +829,7 @@ export class Send extends Component {
                             selectTextOnFocus={!isSending}
                             multiplier={this.getUnitMultiplier()}
                         />
+                        <View style={{ flex: 0.1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <View style={{ flex: 0.25 }} />
@@ -859,6 +860,7 @@ export class Send extends Component {
                             />
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 0.33 }} />
                             <TouchableOpacity
                                 onPress={() => this.showModal('unitInfo')}
                                 hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}

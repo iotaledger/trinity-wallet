@@ -3,7 +3,7 @@ import { isIPhoneX, isAndroid } from 'libs/device';
 
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
-    borderRadius: width / 60,
+    borderRadius: isIPhoneX ? width / 40 : width / 60,
     borderRadiusSmall: parseInt(width / 90),
     borderRadiusLarge: parseInt(width / 40),
     borderRadiusExtraLarge: parseInt(width / 20),

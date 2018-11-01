@@ -60,7 +60,7 @@ class ProgressBar extends Component {
 
     static defaultProps = {
         channelWidth: Styling.contentWidth,
-        channelHeight: deviceHeight / 13,
+        channelHeight: deviceHeight / 12,
     };
 
     constructor(props) {

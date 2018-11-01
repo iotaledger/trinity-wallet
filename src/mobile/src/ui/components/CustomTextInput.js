@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: Styling.borderRadiusSmall,
+        borderRadius: Styling.borderRadius,
         height: height / 14,
         borderWidth: 1,
     },
