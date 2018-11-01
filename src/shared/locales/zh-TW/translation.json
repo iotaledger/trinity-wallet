@@ -713,7 +713,7 @@
         "sweepError": "解鎖資金時出錯",
         "sweepErrorExplanation": "解鎖您的資金時發生錯誤，請再試一次。",
         "warningTitle": "警告：檢測到資金鎖定",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanation": "Trinity 桌面版本 0.3.4 有個錯誤會暫時鎖定資金，少數用 0.3.4 進行交易的使用者會受到影響。",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
