@@ -270,6 +270,7 @@ class UseExistingSeed extends Component {
                     theme,
                     validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
                     hideModal: () => this.hideModal(),
+                    isDashboard: true,
                 });
         }
     };

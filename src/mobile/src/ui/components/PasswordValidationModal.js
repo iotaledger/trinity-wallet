@@ -34,6 +34,12 @@ export class PasswordValidationModal extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** Validate password provided by user */
         validatePassword: PropTypes.func.isRequired,
+        /** Determines if modal is triggered from the wallet dashboard, in case the topbar should be displayed */
+        isDashboard: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        isDashboard: false,
     };
 
     constructor() {
@@ -44,13 +50,14 @@ export class PasswordValidationModal extends PureComponent {
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, isDashboard } = this.props;
         const { password } = this.state;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1, width, height }} onPress={Keyboard.dismiss}>
                 <View style={isAndroid ? { flex: 1, width, height } : null}>
                     <ModalView
+                        displayTopBar={isDashboard}
                         dualButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.props.validatePassword(password)}
