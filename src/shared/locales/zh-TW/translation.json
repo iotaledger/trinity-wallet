@@ -592,7 +592,7 @@
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault 是份能夠安全地保存種子碼的加密檔案。種子碼透過輸入的 SeedVault 金鑰加密，而沒有該金鑰的話也就無法取得。",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -674,7 +674,7 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "安裝更新並重啟",
         "installUpdateExplanation": "下載完成，Trinity 將會重啟並安裝更新。",
-        "downloadingUpdate": "Downloading update",
+        "downloadingUpdate": "下載更新中",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
