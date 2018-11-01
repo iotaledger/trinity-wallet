@@ -55,8 +55,8 @@
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "無法確認帳戶",
+        "unrecognisedAccountExplanation": "帳戶名稱 {{accountName}} 無法確認，請考慮重設您的錢包。",
         "emptyPasswordExplanation": "您必須輸入密碼，請再試一次。",
         "capsLockIsOn": "大寫鎖定已啟用",
         "syncInProgress": "同步處理中",
@@ -143,8 +143,8 @@
         "tryingAgainWithLocalPoW": "請改為本地端工作量證明再試一次。",
         "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
         "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "errorAccessingKeychain": "鑰匙串錯誤",
+        "errorAccessingKeychainExplanation": "無法訪問安全儲存所需的鑰匙串。",
         "mainWallet": "主帳戶"
     },
     "addAdditionalSeed": {
@@ -538,7 +538,7 @@
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
         "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
-        "accountIndex": "Your Ledger account index"
+        "accountIndex": "您的 Ledger 帳戶索引"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您備份種子碼了嗎？",
@@ -598,21 +598,21 @@
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
         "exportSuccess": "SeedVault 已匯出",
         "exportSuccessExplanation": "您的種子碼加密檔案已成功匯出。",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "無法確認 SeedVault 金鑰",
+        "unrecognisedKeyExplanation": "金鑰無法確認，請再試一次。",
+        "emptyKey": "尚未輸入 SeedVault 金鑰",
+        "emptyKeyExplanation": "您必須輸入金鑰，請再試一次。",
         "importSuccess": "種子碼已匯入",
         "importSuccessExplanation": "您的種子碼已成功匯入。",
         "saveToDownloadFolder": "儲存至下載資料夾",
         "importSeedVault": "匯入 SeedVault",
         "dropSeedVaultHere": "拖曳 SeedVault 至此 <1></1> 或者點擊瀏覽",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "請輸入您的金鑰來開啟 SeedVault",
         "noSeedFound": "SeedVault 裡沒儲存有效的種子碼",
         "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
         "seedFileError": "開啟 SeedVault 失敗",
         "seedFileErrorExplanation": "開啟 SeedVault 時遇到問題，如果您選擇的檔案是正確的，那麼它可能已損壞。",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "首先我們必須確保 SeedVault 的安全，請輸入金鑰來加密檔案。您將會需要此金鑰才能從 SeedVault 備份取回種子碼，金鑰也可以用和 Trinity 一樣的密碼。"
     },
     "chart": {
         "mcap": "總市值",
@@ -675,7 +675,7 @@
         "installUpdate": "安裝更新並重啟",
         "installUpdateExplanation": "下載完成，Trinity 將會重啟並安裝更新。",
         "downloadingUpdate": "下載更新中",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadProgress": "已下載 {{transferred}} 分之 {{total}}"
     },
     "notificationLog": {
         "errorLog": "錯誤日誌"
@@ -708,11 +708,11 @@
         "confirmedOut": "{{account}} 轉出的 {{value}} 已確認"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
+        "sweepSucceeded": "資金成功解鎖",
+        "sweepSucceededExplanation": "您的資金已成功解鎖並移至新的地址，促進交易可以幫助他們越快確認。",
+        "sweepError": "解鎖資金時出錯",
+        "sweepErrorExplanation": "解鎖您的資金時發生錯誤，請再試一次。",
+        "warningTitle": "警告：檢測到資金鎖定",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
