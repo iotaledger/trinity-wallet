@@ -728,16 +728,16 @@
         "accountIndex": "Konto Index",
         "accountPage": "Kontoübersicht",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
-        "accountIndexExplanation": "Dein Ledger kann multiple Seeds speichern. Jeder Seed wird durch eine eindeutige Index Nummer identifiziert. Ein ungenutzter Index wurde vorgewählt. Aber du kannst einen anderen wählen. Stelle sicher, dass du deine Index Nummer notierst.",
+        "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
         "connectionError": "Verbindung zu Ledger nicht möglich",
-        "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
+        "connectionErrorExplanation": "Prüfe ob dein Ledger verbunden und entsperrt ist.",
         "connectionTitle": "Mit Ledger verbinden",
-        "connectionExplanation": "Ein Ledger muss verbunden sein um diese Funktion zu nutzen.",
+        "connectionExplanation": "Um diese Funktion nutzen zu können muss ein Ledger verbunden sein.",
         "transactionTitle": "Blättere durch und bestätige die Transaktion auf deinem Ledger",
         "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
         "applicationTitle": "Öffne die Ledger IOTA App",
-        "applicationExplanation": "Nehme deinen Ledger und öffne die IOTA App um mit der Benutzung von Trinity fortzufahren.",
+        "applicationExplanation": "Nimm deinen Ledger und öffne die IOTA App um mit der Benutzung von Trinity fortzufahren.",
         "cannotSendZeroValueTitle": "Null-Wert Transaktionen können nicht gesendet werden",
         "cannotSendZeroValueExplanation": "Null-Wert Transaktionen können mit einem Ledger nicht gesendet werden.",
         "ledgerDisconnectedTitle": "Ledger getrennt",
@@ -745,8 +745,8 @@
         "ledgerDeniedTitle": "Transaktion verweigert",
         "ledgerDeniedExplanation": "Die Transaktion wurde auf dem Ledger verweigert.",
         "ledgerIncorrectIndex": "Falscher Ledger",
-        "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät, oder die Wiederherstellungs-Phrase hat sich geändert.",
+        "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät oder die Wiederherstellungs-Phrase hat sich geändert.",
         "checkAddress": "Prüfe die Empfangsadresse",
-        "checkAddressExplanation": "Prüfe, ob die auf dem Ledger angezeigte Adresse übereinstimmt. Drücke \"Adresse Synchronisieren\" wenn keine Übereinstimmung."
+        "checkAddressExplanation": "Prüfe ob die auf dem Ledger angezeigte Adresse übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist."
     }
 }
