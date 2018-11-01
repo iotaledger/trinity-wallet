@@ -15,7 +15,6 @@ import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
-import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -124,14 +123,17 @@ class Loading extends Component {
         setLoginRoute: PropTypes.func.isRequired,
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
+        /** @ignore */
+        isThemeDark: PropTypes.bool.isRequired
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             elipsis: '',
             animationPartOneDone: false,
             displayNodeChangeOption: false,
+            welcomeAnimationPath: props.isThemeDark ? whiteWelcomeAnimationPartOne : blackWelcomeAnimationPartOne,
         };
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
@@ -227,7 +229,7 @@ class Loading extends Component {
     }
 
     setAnimationOneTimout() {
-        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
+        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 1800);
     }
 
     /**
@@ -243,7 +245,8 @@ class Loading extends Component {
     }
 
     playAnimationTwo() {
-        this.setState({ animationPartOneDone: true });
+        this.setState({ welcomeAnimationPath: this.props.isThemeDark ? whiteWelcomeAnimationPartTwo : blackWelcomeAnimationPartTwo });
+        this.animation.reset();
         this.animation.play();
     }
 
@@ -333,13 +336,10 @@ class Loading extends Component {
     }
 
     render() {
-        const { t, addingAdditionalAccount, theme: { body, primary } } = this.props;
-        const { displayNodeChangeOption } = this.state;
+        const { t, addingAdditionalAccount, theme: { body, primary }, isThemeDark } = this.props;
+        const { displayNodeChangeOption, welcomeAnimationPath } = this.state;
         const textColor = { color: body.color };
-        const isBgLight = tinycolor(body.bg).isLight();
-        const loadingAnimationPath = isBgLight ? blackLoadingAnimation : whiteLoadingAnimation;
-        const welcomeAnimationPartOnePath = isBgLight ? blackWelcomeAnimationPartOne : whiteWelcomeAnimationPartOne;
-        const welcomeAnimationPartTwoPath = isBgLight ? blackWelcomeAnimationPartTwo : whiteWelcomeAnimationPartTwo;
+        const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
         if (addingAdditionalAccount) {
             return (
@@ -379,24 +379,13 @@ class Loading extends Component {
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.animationContainer}>
                     <View>
-                        {(!this.state.animationPartOneDone && (
-                            <LottieView
-                                ref={(animation) => {
-                                    this.animation = animation;
-                                }}
-                                source={welcomeAnimationPartOnePath}
-                                style={styles.animationLoading}
-                            />
-                        )) || (
-                            <LottieView
-                                ref={(animation) => {
-                                    this.animation = animation;
-                                }}
-                                source={welcomeAnimationPartTwoPath}
-                                style={styles.animationLoading}
-                                loop
-                            />
-                        )}
+                        <LottieView
+                            ref={(animation) => {
+                                this.animation = animation;
+                            }}
+                            source={welcomeAnimationPath}
+                            style={styles.animationLoading}
+                        />
                     </View>
                     {displayNodeChangeOption && (
                         <View style={styles.nodeChangeContainer}>
@@ -429,6 +418,7 @@ const mapStateToProps = (state) => ({
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,
+    isThemeDark: state.settings.theme.isDark,
     currency: state.settings.currency,
     deepLinkActive: state.wallet.deepLinkActive,
 });
