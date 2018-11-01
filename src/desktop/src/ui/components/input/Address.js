@@ -115,12 +115,7 @@ export default class Address extends React.PureComponent {
                         data-tip={address}
                     />
                     <small>{label}</small>
-                    <p
-                        ref={(address) => {
-                            this.address = address;
-                        }}
-                        className={css.addressHidden}
-                    >
+                    <p ref={(address) => {this.address = address;}} className={css.addressHidden}>
                         {address}
                     </p>
                     {!inputFocused && this.isInputScrolling() && (
