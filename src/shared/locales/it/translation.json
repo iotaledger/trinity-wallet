@@ -143,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
         "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Errore di portachiavi",
+        "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
+        "mainWallet": "CONTO PRINCIPALE"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -348,8 +348,8 @@
         "standard": "Standard",
         "advancedModeExplanation": "Nella modalità Avanzata saranno visualizzate informazioni tecniche più dettagliate.",
         "modesExplanation": "Abilita la modalità Avanzata solo se hai esperienza nell'uso di IOTA. Altrimenti potresti trovarti disorientato.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Modalità aggiornata",
+        "modeUpdatedExplanation": "Sei passato alla modalità {{mode}}"
     },
     "settings": {
         "transferSending": "Invio transazione",
@@ -438,7 +438,7 @@
         "empty": "Vuota",
         "retrying": "Sto riprovando",
         "yesterday": "Ieri",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promozione di un altro pacchetto"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -515,9 +515,9 @@
         "discordInformation": "Si prega di visitare il canale #help in Discord per scoprire cosa si può fare."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Sei sicuro di voler eliminare il tuo conto?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Questa azione non può essere annullata",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
     "manualSync": {
@@ -537,8 +537,8 @@
         "enterPassword": "Immetti la password per visualizzare il tuo seme.",
         "viewSeed": "Visualizza seme",
         "hideSeed": "Nascondi seme",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
+        "accountIndex": "Il tuo indice di conto su Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
@@ -592,27 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Un SeedVault è un file crittografato per archiviare in modo sicuro il tuo seme. Il seme viene crittografato con la password del SeedVault e non è possibile accedere al seme senza la password.",
         "seedVaultWarning": "Assicurarsi di eseguire un backup del file in più posizioni (per esempio hard disk, nel cloud, USB). Se perdi questo file e non hai archiviato il seme altrove, perderai i tuoi IOTA.",
         "exportFail": "Esportazione come SeedVault fallita",
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
         "exportSuccess": "SeedVault esportato",
         "exportSuccessExplanation": "Il file con il tuo seme crittografato è stato esportato con successo.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Password di SeedVault non riconosciuta",
+        "unrecognisedKeyExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "emptyKey": "Nessuna password di SeedVault immessa",
+        "emptyKeyExplanation": "È necessario immettere una password. Si prega di riprovare.",
         "importSuccess": "Seme importato",
         "importSuccessExplanation": "Il seme è stato importato con successo.",
         "saveToDownloadFolder": "Salva nella cartella Scaricamenti",
         "importSeedVault": "Importa un SeedVault",
         "dropSeedVaultHere": "Trascinare il SeedVault qui <1></1> o fare clic per sfogliare",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Immetti la tua password per accedere il SeedVault",
         "noSeedFound": "Il SeedVault non contiene un seme valido",
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "In primo luogo abbiamo bisogno di mettere in sicurezza il tuo SeedVault. Si prega di scegliere una password per crittografare il file. Avrai bisogno di questa password per recuperare il tuo seme dal SeedVault di backup. Sentiti libero di usare la stessa password che usi per Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -674,8 +674,8 @@
         "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",
         "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Scaricamento aggiornamento",
+        "downloadProgress": "Scaricati {{transferred}} di {{total}}"
     },
     "notificationLog": {
         "errorLog": "Registro degli errori"
@@ -720,14 +720,14 @@
         "sweepConfirmationTitle": "Conferma di trasferimento"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
+        "ready": "Dispositivo Ledger collegato e pronto",
+        "notReady": "Se desideri utilizzare un dispositivo Ledger, collegalo e sbloccalo adesso",
+        "indexInUse": "Indice già in uso per il conto {{account}}",
+        "indexInUseExplanation": "L'indice selezionato è già in uso su uno dei tuoi conti. Si prega di scegliere un altro numero di indice.",
+        "proceedWithLedger": "Procedi con la configurazione di Ledger",
+        "accountIndex": "Indice di conto",
+        "accountPage": "Pagina del conto",
+        "chooseAccountIndex": "Scegli il tuo indice di conto su Ledger",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",
         "connectionError": "Cannot connect to Ledger",
