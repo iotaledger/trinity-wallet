@@ -607,7 +607,7 @@
         "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
         "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder hier klicken um Datei zu wählen",
-        "enterKeyExplanation": "Schlüssel eingeben um den SeedVault zu öffnen",
+        "enterKeyExplanation": "Gib den Schlüssel ein um deinen SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
@@ -722,7 +722,7 @@
     "ledger": {
         "ready": "Ledger verbunden und bereit",
         "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
-        "indexInUse": "Index für Konto {{account}} bereits in Benutzung",
+        "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
         "indexInUseExplanation": "Dein gewählter Index ist bereits in Benutzung für ein anderes Konto. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Fahre fort mit Ledger Einrichtung",
         "accountIndex": "Konto Index",
