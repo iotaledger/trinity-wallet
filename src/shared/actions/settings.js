@@ -1,12 +1,13 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
+import map from 'lodash/map';
 import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
 import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/global';
 import Errors from '../libs/errors';
-import { Wallet } from '../storage';
+import { Wallet, Node } from '../storage';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -111,10 +112,14 @@ const currencyDataFetchRequest = () => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const currencyDataFetchSuccess = (payload) => ({
-    type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
-    payload,
-});
+export const currencyDataFetchSuccess = (payload) => {
+    Wallet.updateCurrencyData(payload);
+
+    return {
+        type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+        payload,
+    };
+};
 
 /**
  * Dispatch when there is an error fetching currency information
@@ -166,12 +171,19 @@ const addCustomNodeRequest = () => ({
  * @method addCustomNodeSuccess
  * @param {string} payload
  *
- * @returns {{type: {string}, payload: {string} }}
+ * @returns {{type: {string}, url: {string}, remotePow: {string} }}
  */
-const addCustomNodeSuccess = (payload) => ({
-    type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
-    payload,
-});
+const addCustomNodeSuccess = (url, remotePow) => {
+    // Add custom node.
+    Node.addCustomNode(url, remotePow);
+    // Update wallet's active node.
+    Wallet.updateNode(url);
+
+    return {
+        type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
+        payload: url,
+    };
+};
 
 /**
  * Dispatch when an error occurs during health check for newly added custom node
@@ -210,7 +222,7 @@ export const setRandomlySelectedNode = (payload) => {
  * @returns {{type: {string}, payload: {string} }}
  */
 export const setMode = (payload) => {
-    Wallet.setMode(payload);
+    Wallet.updateMode(payload);
 
     return {
         type: ActionTypes.SET_MODE,
@@ -226,10 +238,14 @@ export const setMode = (payload) => {
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const setNode = (payload) => ({
-    type: ActionTypes.SET_NODE,
-    payload,
-});
+export const setNode = (payload) => {
+    Wallet.updateNode(payload);
+
+    return {
+        type: ActionTypes.SET_NODE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to set updated list of IRI nodes for wallet
@@ -239,10 +255,14 @@ export const setNode = (payload) => ({
  *
  * @returns {{type: {string}, payload: {array} }}
  */
-export const setNodeList = (payload) => ({
-    type: ActionTypes.SET_NODELIST,
-    payload,
-});
+export const setNodeList = (payload) => {
+    Node.addNodes(payload);
+
+    return {
+        type: ActionTypes.SET_NODELIST,
+        payload: map(payload, (node) => node.url),
+    };
+};
 
 /**
  * Dispatch to remove an added custom node from wallet
@@ -252,10 +272,14 @@ export const setNodeList = (payload) => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const removeCustomNode = (payload) => ({
-    type: ActionTypes.REMOVE_CUSTOM_NODE,
-    payload,
-});
+export const removeCustomNode = (payload) => {
+    Node.delete(payload);
+
+    return {
+        type: ActionTypes.REMOVE_CUSTOM_NODE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update proof of work configuration for wallet
@@ -266,7 +290,7 @@ export const removeCustomNode = (payload) => ({
  * @returns {{type: {string}, payload: {boolean} }}
  */
 export const setRemotePoW = (payload) => {
-    Wallet.updateRemotePoWSetting(payload);
+    Wallet.updateRemotePowSetting(payload);
 
     return {
         type: ActionTypes.SET_REMOTE_POW,
@@ -399,9 +423,6 @@ export function getCurrencyData(currency, withAlerts = false) {
 
                 const payload = { conversionRate, currency, availableCurrencies };
 
-                // Update storage (realm)
-                Wallet.setCurrencyData(payload);
-
                 // Update redux
                 dispatch(currencyDataFetchSuccess(payload));
 
@@ -482,13 +503,15 @@ export function setFullNode(node, addingCustomNode = false) {
                 return checkAttachToTangleAsync(node);
             })
             .then((res) => {
+                const isAttachToTangleAvailable = res.error.includes(Errors.INVALID_PARAMETERS);
+
+                // Update node in redux store
+                dispatch(dispatcher.success(node, isAttachToTangleAvailable));
+
                 // Change IOTA provider on the global iota instance
                 changeIotaNode(node);
 
-                // Update node in redux store
-                dispatch(dispatcher.success(node));
-
-                if (res.error.includes(Errors.INVALID_PARAMETERS)) {
+                if (isAttachToTangleAvailable) {
                     dispatch(
                         generateAlert(
                             'success',

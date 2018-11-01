@@ -39,7 +39,7 @@ export const resetIfKeychainIsEmpty = (store) => {
                 store.dispatch(
                     setAppVersions({
                         version: getVersion(),
-                        buildNumber: getBuildNumber(),
+                        buildNumber: Number(getBuildNumber()),
                     }),
                 );
 
@@ -66,7 +66,7 @@ export const migrate = (store) => {
     store.dispatch(
         setAppVersions({
             version: getVersion(),
-            buildNumber: getBuildNumber(),
+            buildNumber: Number(getBuildNumber()),
         }),
     );
 

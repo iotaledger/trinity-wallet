@@ -1,7 +1,10 @@
 import assign from 'lodash/assign';
+import each from 'lodash/each';
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import values from 'lodash/values';
+import size from 'lodash/size';
 import Realm from 'realm';
 import {
     TransactionSchema,
@@ -16,14 +19,18 @@ import {
 import { preserveAddressLocalSpendStatus } from '../reducers/accounts';
 
 const SCHEMA_VERSION = 0;
+const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
 
+/**
+ * Model for Account.
+ */
 class Account {
     static schema = AccountSchema;
 
     /**
      * Gets object for provided id (account name)
-     * @method getObjectForId
      *
+     * @method getObjectForId
      * @param {string} id
      *
      * @returns {object}
@@ -34,11 +41,11 @@ class Account {
 
     /**
      * Gets objects for all stored accounts.
-     * @method get
+     * @method getAccountsData
      *
      * @returns {Realm.Results<any>}
      */
-    static get() {
+    static getAccountsData() {
         return realm.objects('Account');
     }
 
@@ -47,6 +54,7 @@ class Account {
      * @method getAccountData
      *
      * @param {string} name
+     * @returns {object}
      */
     static getAccountData(name) {
         const account = Account.getObjectForId(name);
@@ -59,12 +67,12 @@ class Account {
 
     /**
      * Gets account data for all stored accounts.
-     * @method getAccountsData
+     * @method getAccountsDataAsArray
      *
      * @returns {array}
      */
-    static getAccountsData() {
-        const accounts = Account.get();
+    static getAccountsDataAsArray() {
+        const accounts = Account.getAccountsData();
 
         return map(accounts, (account) =>
             assign({}, account, {
@@ -132,19 +140,42 @@ class Account {
     }
 }
 
+/**
+ * Model for Address.
+ */
 class Address {
     static schema = AddressSchema;
 }
 
+/**
+ * Model for Address spent status.
+ */
 class AddressSpendStatus {
     static schema = AddressSpendStatusSchema;
 }
 
+/**
+ * Model for node.
+ */
 class Node {
     static schema = NodeSchema;
 
     /**
+     * Gets object for provided id (url)
+     *
+     * @method getObjectForId
+     * @param {string} id
+     *
+     * @returns {object}
+     */
+    static getObjectForId(id) {
+        return realm.objectForPrimaryKey('Node', id);
+    }
+
+    /**
      * Returns a list of nodes
+     * @method getNodes
+     *
      * @return {Realm.Results}
      */
     static getNodes() {
@@ -152,23 +183,26 @@ class Node {
     }
 
     /**
-     * Returns the list of nodes that support remote PoW
-     * @return {Realm.Results}
+     * Returns a list of nodes
+     *
+     * @method getNodes
+     *
+     * @return {array}
      */
-    static getRemotePowNodes() {
-        return this.getNodes().filtered('remotePow == true');
+    static getNodesAsArray() {
+        return map(Node.getNodes(), (node) => node);
     }
 
     /**
      * Adds a custom node
      * @param {string} url Node URL
      */
-    static addCustomNode(url) {
+    static addCustomNode(url, pow) {
         realm.write(() => {
             realm.create('Node', {
-                url: url,
+                url,
                 custom: true,
-                // TODO: Where should we check for remote PoW support?
+                pow,
             });
         });
     }
@@ -185,48 +219,89 @@ class Node {
     }
 
     /**
-     * Updates the 'remotePow' property of an existing node
-     * @param  {string} url                URL of the node to be updated
-     * @param  {boolean} supportsRemotePow Whether the node supports remote PoW
+     * Removes a node.
+     *
+     * @method delete
+     * @param {string} url
      */
-    static updateRemotePowSupport(url, supportsRemotePow) {
-        realm.write(() => {
-            realm.create(
-                'Node',
-                {
-                    url: url,
-                    remotePow: supportsRemotePow,
-                },
-                true,
-            );
-        });
+    static delete(url) {
+        const node = Node.getObjectForId(url);
+
+        realm.write(() => realm.delete(node));
+    }
+
+    /**
+     *
+     * @
+     * @param {array} nodes
+     */
+    static addNodes(nodes) {
+        if (size(nodes)) {
+            const existingUrls = map(Node.getNodes(), (node) => node.url);
+
+            realm.write(() => {
+                each(nodes, (node) => {
+                    // If it's an existing node, just update properties.
+                    if (includes(existingUrls, node.url)) {
+                        realm.create('Node', node, true);
+                    } else {
+                        realm.create('Node', node);
+                    }
+                });
+            });
+        }
     }
 }
 
+/**
+ * Model for notification settings.
+ */
 class NotificationsSettings {
     static schema = NotificationsSettingsSchema;
 }
 
+/**
+ * Model for transaction.
+ */
 class Transaction {
     static schema = TransactionSchema;
 }
 
+/**
+ * Model for wallet data and settings.
+ */
 class Wallet {
     static schema = WalletSchema;
 
-    static get() {
+    /**
+     * Gets wallet data.
+     * @method getData
+     *
+     * @return {Realm.Results}
+     */
+    static getData() {
         return realm.objects('Wallet');
     }
 
+    /**
+     * Wallet data.
+     */
     static get data() {
-        const data = Wallet.get();
+        const data = Wallet.getData();
         return isEmpty(data) ? data : data[0];
     }
 
+    /**
+     * Wallet settings.
+     */
     static get settings() {
         return Wallet.data.settings;
     }
 
+    /**
+     * Sets onboarding complete for wallet.
+     * @method setOnboardingComplete
+     */
     static setOnboardingComplete() {
         realm.write(() => {
             Wallet.data.onboardingComplete = true;
@@ -239,7 +314,7 @@ class Wallet {
      * @method updateRemotePoWSetting
      * @param {boolean} payload
      */
-    static updateRemotePoWSetting(payload) {
+    static updateRemotePowSetting(payload) {
         realm.write(() => {
             Wallet.settings.remotePoW = payload;
         });
@@ -306,6 +381,18 @@ class Wallet {
     }
 
     /**
+     * Updates wallet's node.
+     *
+     * @method updateNode
+     * @param {string} payload
+     */
+    static updateNode(payload) {
+        realm.write(() => {
+            Wallet.settings.node = payload;
+        });
+    }
+
+    /**
      * Updates wallet's language.
      *
      * @method updateLanguage
@@ -320,10 +407,10 @@ class Wallet {
     /**
      * Updates currency related data (conversionRate, currency, availableCurrencies)
      *
-     * @method setCurrencyData
+     * @method updateCurrencyData
      * @param {object} payload
      */
-    static setCurrencyData(payload) {
+    static updateCurrencyData(payload) {
         const { conversionRate, currency, availableCurrencies } = payload;
 
         realm.write(() => {
@@ -483,9 +570,35 @@ class Wallet {
         });
     }
 
+    /**
+     * Updates error log.
+     *
+     * @method updateErrorLog
+     * @param {string} payload
+     */
+    static updateErrorLog(payload) {
+        realm.write(() => {
+            Wallet.data.errorLog.push(payload);
+        });
+    }
+
+    /**
+     * Clears error log.
+     *
+     * @method clearErrorLog
+     */
+    static clearErrorLog() {
+        realm.write(() => {
+            Wallet.data.errorLog = [];
+        });
+    }
+
+    /**
+     * Creates a wallet object if it does not already exist.
+     * @method createIfNotExists
+     */
     static createIfNotExists() {
-        const data = Wallet.get();
-        const shouldCreate = isEmpty(data);
+        const shouldCreate = isEmpty(Wallet.data);
 
         if (shouldCreate) {
             realm.write(() => realm.create('Wallet', { settings: { notifications: {} } }));
@@ -493,6 +606,9 @@ class Wallet {
     }
 }
 
+/**
+ * Model for wallet settings.
+ */
 class WalletSettings {
     static schema = WalletSettingsSchema;
 }
@@ -501,6 +617,7 @@ class WalletSettings {
  * Realm storage default configuration.
  */
 const config = {
+    path: STORAGE_PATH,
     schema: [Account, Address, AddressSpendStatus, Node, NotificationsSettings, Transaction, WalletSettings, Wallet],
     schemaVersion: SCHEMA_VERSION,
 };
@@ -512,21 +629,25 @@ const realm = new Realm(config);
  * Deletes all objects in storage and deletes storage file for provided config
  *
  * @method purge
- * @param {object} [storageConfig]
  *
  * @returns {Promise<any>}
  */
-const purge = (storageConfig = config) =>
+const purge = () =>
     new Promise((resolve, reject) => {
         try {
             realm.write(() => realm.deleteAll());
-            Realm.deleteFile(storageConfig);
             resolve();
         } catch (error) {
             reject(error);
         }
     });
 
+/**
+ * Initialises storage.
+ *
+ * @method initialise
+ * @returns {Promise}
+ */
 const initialise = () =>
     new Promise((resolve, reject) => {
         try {
@@ -541,8 +662,7 @@ const initialise = () =>
  * Purges persisted data and reinitialises storage.
  *
  * @method reinitialise
- * @param {object} config
  */
-const reinitialise = (config) => purge(config).then(() => initialise());
+const reinitialise = () => purge().then(() => initialise());
 
-export { realm, initialise, reinitialise, purge, Account, Transaction, Address, AddressSpendStatus, Wallet };
+export { realm, initialise, reinitialise, purge, Account, Transaction, Address, AddressSpendStatus, Node, Wallet };

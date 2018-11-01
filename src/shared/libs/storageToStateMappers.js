@@ -1,8 +1,9 @@
+import assign from 'lodash/assign';
 import head from 'lodash/head';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import transform from 'lodash/transform';
-import { Account, Wallet } from '../storage';
+import { Account, Node, Wallet } from '../storage';
 import { constructBundlesFromTransactions, normaliseBundle } from './iota/transfers';
 
 /**
@@ -54,8 +55,9 @@ export const mapAccountToAccountInfo = (account) => {
  * @returns {object}
  */
 export const mapStorageToState = () => {
-    const accountsData = Account.getAccountsData();
-    const { settings, onboardingComplete } = Wallet.data;
+    const accountsData = Account.getAccountsDataAsArray();
+    const { settings, onboardingComplete, errorLog } = Wallet.data;
+    const nodes = Node.getNodesAsArray();
 
     return {
         accounts: {
@@ -76,6 +78,10 @@ export const mapStorageToState = () => {
                 },
             ),
         },
-        settings,
+        settings: assign({}, settings, {
+            nodes: map(nodes, (node) => node.url),
+            customNodes: map(filter(nodes, (node) => node.custom === true), (node) => node.url),
+        }),
+        alerts: { notificationLog: map(errorLog, (error) => error) },
     };
 };

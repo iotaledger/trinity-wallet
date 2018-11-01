@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import some from 'lodash/some';
 import union from 'lodash/union';
+import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList, setRandomlySelectedNode, setAutoPromotion } from './settings';
 import { getRandomNode, changeIotaNode } from '../libs/iota';
@@ -15,7 +16,11 @@ import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } 
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { nodes, nodesWithPoWEnabled } from '../config';
+import {
+    nodes as defaultNodes,
+    nodesWithPowEnabled as defaultNodesWithPowEnabled,
+    nodesWithPowDisabled as defaultNodesWithPowDisabled,
+} from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
 import { Account } from '../storage';
@@ -329,30 +334,40 @@ export const fetchNodeList = (chooseRandomNode = false) => {
         const setRandomNode = (nodesList) => {
             if (chooseRandomNode) {
                 const node = getRandomNode(nodesList);
-                changeIotaNode(node);
                 dispatch(setRandomlySelectedNode(node));
+                changeIotaNode(node);
             }
         };
 
         fetchRemoteNodes()
             .then((remoteNodes) => {
                 if (remoteNodes.length) {
-                    const remoteNodesWithPoWEnabled = remoteNodes
+                    const remoteNodesWithPowEnabled = remoteNodes
                         .filter((node) => node.pow)
                         .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
 
-                    const unionNodes = union(nodes, remoteNodes.map((node) => node.node));
-
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
-                    setRandomNode(union(nodesWithPoWEnabled, remoteNodesWithPoWEnabled));
+                    setRandomNode(union(defaultNodesWithPowEnabled, remoteNodesWithPowEnabled));
+
+                    const nodes = [
+                        ...map(defaultNodesWithPowEnabled, (url) => ({ url, pow: true })),
+                        ...map(defaultNodesWithPowDisabled, (url) => ({ url, pow: false })),
+                    ];
+
+                    const unionNodes = unionBy(
+                        nodes,
+                        map(remoteNodes, (node) => ({ url: node.node, pow: node.pow })),
+                        'url',
+                    );
+
                     dispatch(setNodeList(unionNodes));
                 }
 
                 dispatch(fetchNodeListSuccess());
             })
             .catch(() => {
-                setRandomNode(nodes);
+                setRandomNode(defaultNodes);
                 dispatch(fetchNodeListError());
             });
     };

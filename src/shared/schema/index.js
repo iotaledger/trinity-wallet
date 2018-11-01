@@ -1,3 +1,6 @@
+import { defaultNode } from '../config';
+import { availableCurrencies } from '../libs/currency';
+
 /**
  * Schema to define the structure of a Transaction
  * Transactions are indexed and looked up by hash
@@ -36,7 +39,7 @@ export const WalletSchema = {
         /**
          * Error notifications log.
          */
-        errorsLog: {
+        errorLog: {
             type: 'list',
             objectType: 'string',
         },
@@ -105,6 +108,9 @@ export const AccountSchema = {
     },
 };
 
+/**
+ * Schema for wallet settings.
+ */
 export const WalletSettingsSchema = {
     name: 'WalletSettings',
     properties: {
@@ -119,8 +125,8 @@ export const WalletSettingsSchema = {
          * Current wallet's build number (mobile).
          */
         buildNumber: {
-            type: 'string',
-            default: '',
+            type: 'int',
+            optional: true,
         },
         /**
          * Selected locale for wallet.
@@ -157,6 +163,11 @@ export const WalletSettingsSchema = {
         conversionRate: {
             type: 'int',
             default: 1,
+        },
+        availableCurrencies: {
+            type: 'list',
+            objectType: 'string',
+            default: availableCurrencies,
         },
         /**
          * Active theme name.
@@ -210,7 +221,7 @@ export const WalletSettingsSchema = {
         /**
          * Determines if user has enabled finger print authentication.
          */
-        isFingerPrintEnabled: {
+        isFingerprintEnabled: {
             type: 'bool',
             default: false,
         },
@@ -253,15 +264,25 @@ export const WalletSettingsSchema = {
          * Notification settings for wallet.
          */
         notifications: 'NotificationsSettings',
+        /**
+         * Selected IRI node for wallet.
+         */
+        node: {
+            type: 'string',
+            default: defaultNode,
+        },
     },
 };
 
+/**
+ * Schema for available nodes for wallet.
+ */
 export const NodeSchema = {
     name: 'Node',
     primaryKey: 'url',
     properties: {
         url: 'string', // Node URL
         custom: 'bool', // Whether the node was added by the user
-        remotePow: { type: 'bool', default: false }, // Whether the node supports remote PoW
+        pow: { type: 'bool', default: false }, // Whether the node supports remote PoW
     },
 };

@@ -3,6 +3,7 @@ import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { defaultNode as node, nodes } from '../config';
+import { availableCurrencies } from '../libs/currency';
 
 const initialState = {
     /**
@@ -37,41 +38,7 @@ const initialState = {
     /**
      * Wallet's available currencies
      */
-    availableCurrencies: [
-        'USD',
-        'GBP',
-        'EUR',
-        'AUD',
-        'BGN',
-        'BRL',
-        'CAD',
-        'CHF',
-        'CNY',
-        'CZK',
-        'DKK',
-        'HKD',
-        'HRK',
-        'HUF',
-        'IDR',
-        'ILS',
-        'INR',
-        'ISK',
-        'JPY',
-        'KRW',
-        'MXN',
-        'MYR',
-        'NOK',
-        'NZD',
-        'PHP',
-        'PLN',
-        'RON',
-        'RUB',
-        'SEK',
-        'SGD',
-        'THB',
-        'TRY',
-        'ZAR',
-    ],
+    availableCurrencies,
     /**
      * Conversion rate for IOTA token
      */
