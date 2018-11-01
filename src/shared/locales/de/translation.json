@@ -746,7 +746,7 @@
         "ledgerDeniedExplanation": "Die Transaktion wurde auf dem Ledger verweigert.",
         "ledgerIncorrectIndex": "Falscher Ledger",
         "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät, oder die Wiederherstellungs-Phrase hat sich geändert.",
-        "checkAddress": "Prüfe die Empfangsaddresse",
+        "checkAddress": "Prüfe die Empfangsadresse",
         "checkAddressExplanation": "Prüfe, ob die auf dem Ledger angezeigte Adresse übereinstimmt. Drücke \"Adresse Synchronisieren\" wenn keine Übereinstimmung."
     }
 }
