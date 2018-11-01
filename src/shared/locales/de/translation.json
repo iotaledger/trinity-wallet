@@ -55,8 +55,8 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Unbekanntes Konto",
+        "unrecognisedAccountExplanation": "Konto mit dem Namen {{accountName}} wurde nicht erkannt. Überlege die Wallet zurückzusetzen.",
         "emptyPasswordExplanation": "Du musst ein Passwort vergeben. Bitte versuche es erneut.",
         "capsLockIsOn": "Feststelltaste ist aktiviert",
         "syncInProgress": "Synchronisiere...",
@@ -145,7 +145,7 @@
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
         "errorAccessingKeychainExplanation": "Der Schlüsselbund konnte nicht geöffnet werden.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "HAUPTKONTO"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -348,8 +348,8 @@
         "standard": "Standard",
         "advancedModeExplanation": "Der erweiterte Modus zeigt detaillierte technische Informationen.",
         "modesExplanation": "Aktiviere den Experten-Modus nur, wenn du ein erfahrener Tangle-Benutzer bist.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Modus aktualisiert",
+        "modeUpdatedExplanation": "Du hast den Modus zu {{mode}} geändert"
     },
     "settings": {
         "transferSending": "Sende Überweisung",
@@ -515,9 +515,9 @@
         "discordInformation": "Bitte besuche den #help Kanal auf Discord um herauszufinden, was du tun kannst."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Willst du dieses Konto wirklich löschen?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
     "manualSync": {
@@ -537,8 +537,8 @@
         "enterPassword": "Gib dein Passwort ein, um den Seed anzuzeigen.",
         "viewSeed": "Seed anzeigen",
         "hideSeed": "Seed ausblenden",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "notAvailable": "Seed Export ist für Account Typ {{accountType}} nicht verfügbar",
+        "accountIndex": "Dein Ledger Account Index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hast du deinen Seed gespeichert?",
@@ -592,27 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Ein SeedVault ist eine Möglichkeit deinen Seed sicher zu speichern. Dein Seed wird verschlüsselt in einer Datei gespeichert und kann ohne das dazugehörige Passwort nicht eingesehen werden.",
         "seedVaultWarning": "Stelle sicher dass du die Datei an verschiedenen Orten ablegst (zum Beispiel auf einer externen Festplatte, einem Cloudspeicher, etc.). Falls du die Datei verlierst und dein Seed nicht an einem weiteren Ort gespeichert wurde, wirst du deine IOTA verlieren.",
         "exportFail": "SeedVault Export fehlgeschlagen",
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
         "exportSuccess": "SeedVault exportiert",
         "exportSuccessExplanation": "Deine verschlüsselte Datei wurde erfolgreich exportiert.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Unbekannter SeedVault Schlüssel",
+        "unrecognisedKeyExplanation": "Der Schlüssel wurde nicht erkannt. Bitte nochmals Versuchen.",
+        "emptyKey": "Kein SeedVault Schlüssel eingegeben",
+        "emptyKeyExplanation": "Du musst einen Schlüssel eingeben. Bitte erneut versuchen.",
         "importSuccess": "Seed importiert",
         "importSuccessExplanation": "Dein Seed wurde erfolgreich importiert.",
         "saveToDownloadFolder": "In Downloads-Ordner speichern",
         "importSeedVault": "SeedVault importieren",
         "dropSeedVaultHere": "SeedVault hierher ziehen <1></1> oder hier klicken um Datei zu wählen",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Schlüssel eingeben um den SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Zunächst müssen wir deinen SeedVault absichern. Bitte vergib ein Passwort, mit dem deine SeedVault-Datei verschlüsselt wird. Du wirst dieses Passwort bei einer Wiederherstellung deines Kontos benötigen. Wenn du möchtest, kannst du das gleiche Passwort verwenden, welches du auch für Trinity verwendest."
     },
     "chart": {
         "mcap": "MCAP",
@@ -674,8 +674,8 @@
         "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
         "installUpdate": "Update installieren und Trinity neu starten",
         "installUpdateExplanation": "Der Download wurde abgeschlossen. Trinity wird jetzt neu starten um das Update zu installieren.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Aktualisierung wird heruntergeladen",
+        "downloadProgress": "{{transferred}} von {{total}} heruntergeladen"
     },
     "notificationLog": {
         "errorLog": "Fehlerprotokoll"
@@ -720,10 +720,10 @@
         "sweepConfirmationTitle": "Transaktion korrigieren"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "ready": "Ledger verbunden und bereit",
+        "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
+        "indexInUse": "Index für Konto {{account}} bereits in Benutzung",
+        "indexInUseExplanation": "Dein gewählter Index ist bereits in Benutzung für ein anderes Konto. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
         "accountPage": "Account page",
