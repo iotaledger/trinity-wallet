@@ -737,16 +737,16 @@
         "transactionTitle": "Blättere durch und bestätige die Transaktion auf deinem Ledger",
         "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
         "applicationTitle": "Öffne die Ledger IOTA App",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
+        "applicationExplanation": "Nehme deinen Ledger und öffne die IOTA App um mit der Benutzung von Trinity fortzufahren.",
+        "cannotSendZeroValueTitle": "Null-Wert Transaktionen können nicht gesendet werden",
+        "cannotSendZeroValueExplanation": "Null-Wert Transaktionen können mit einem Ledger nicht gesendet werden.",
+        "ledgerDisconnectedTitle": "Ledger getrennt",
+        "ledgerDisconnectedExplanation": "Die Verbindung zum Ledger wurde getrennt. Bitte neu verbinden und erneut versuchen.",
+        "ledgerDeniedTitle": "Transaktion verweigert",
+        "ledgerDeniedExplanation": "Die Transaktion wurde auf dem Ledger verweigert.",
+        "ledgerIncorrectIndex": "Falscher Ledger",
+        "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät, oder die Wiederherstellungs-Phrase hat sich geändert.",
+        "checkAddress": "Prüfe die Empfangsaddresse",
+        "checkAddressExplanation": "Prüfe, ob die auf dem Ledger angezeigte Adresse übereinstimmt. Drücke \"Adresse Synchronisieren\" wenn keine Übereinstimmung."
     }
 }
