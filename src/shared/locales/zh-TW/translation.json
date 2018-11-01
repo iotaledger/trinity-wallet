@@ -438,7 +438,7 @@
         "empty": "清空",
         "retrying": "重試中",
         "yesterday": "昨日",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "正在促進另一組交易中"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -515,9 +515,9 @@
         "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "您確定要刪除您的帳戶嗎？",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "此動作將無法復原",
         "enterPassword": "請輸入密碼以刪除此帳戶。"
     },
     "manualSync": {
@@ -537,7 +537,7 @@
         "enterPassword": "輸入密碼查看您的種子碼。",
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
         "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
