@@ -739,14 +739,14 @@
         "applicationTitle": "LedgerのIOTAアプリを開いてください",
         "applicationExplanation": "Trinityウォレットを使い続けるには、LedgerでIOTAアプリを開いてください。",
         "cannotSendZeroValueTitle": "0値の取引は送金できません",
-        "cannotSendZeroValueExplanation": "Ledgerデバイスでは0値の取引は送金できません。",
+        "cannotSendZeroValueExplanation": "Ledger端末では0値の取引は送金できません。",
         "ledgerDisconnectedTitle": "Ledger端末が切断されました",
         "ledgerDisconnectedExplanation": "Ledger端末が切断されました。再接続してもう一度お試しください。",
         "ledgerDeniedTitle": "取引拒否",
         "ledgerDeniedExplanation": "Ledger端末で取引が拒否されました。",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
+        "ledgerIncorrectIndex": "Ledger端末との不一致",
+        "ledgerIncorrectIndexExplanation": "Ledger端末がアカウントにリンクされている端末と一致しないか、または復元フレーズが変更されています。",
+        "checkAddress": "受取用のアドレスを確認してください",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }
