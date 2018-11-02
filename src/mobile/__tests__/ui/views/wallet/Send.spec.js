@@ -37,8 +37,8 @@ const getProps = (overrides) =>
             isTransitioning: false,
             address: '9'.repeat(81),
             theme: {
-                body: {},
-                primary: {},
+                body: { color: '#FFFFFF' },
+                primary: { color: '#FFFFFF' },
                 bar: {},
                 input: {},
                 dark: {},
@@ -57,7 +57,7 @@ const getProps = (overrides) =>
             activeSteps: [],
             timeTakenByEachProgressStep: [],
             remotePoW: false,
-            password: 'foo',
+            password: {},
             makeTransaction: noop,
             generateTransferErrorAlert: noop,
             availableBalance: 100,
@@ -68,6 +68,8 @@ const getProps = (overrides) =>
             isIOSKeyboardActive: false,
             toggleModalActivity: noop,
             isModalActive: false,
+            selectedAccountType: 'keychain',
+            isKeyboardActive: false,
         },
         overrides,
     );

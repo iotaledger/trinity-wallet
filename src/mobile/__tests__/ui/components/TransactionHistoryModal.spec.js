@@ -15,6 +15,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
+            hideModal: noop,
             t: (arg) => {
                 const translations = {
                     'send:message': 'Message',
@@ -29,16 +30,17 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             promote: noop,
+            outputs: [],
             disableWhen: false,
-            status: 'Receive',
             value: 200,
             fullValue: 200,
             unit: 'i',
+            persistence: false,
+            incoming: false,
             time: Date.now(),
             message: 'Pink floyd',
             bundle: 'BUNDLE',
-            addresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
-            confirmationBool: false,
+            relevantAddresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
             mode: 'Standard',
             generateAlert: noop,
             style: {
@@ -56,7 +58,6 @@ const getProps = (overrides) =>
                 primaryBody: '#000000',
             },
             bundleIsBeingPromoted: false,
-            hasFailedAutopromotion: false,
             isFailedTransaction: noop,
             retryFailedTransaction: noop,
             isRetryingFailedTransaction: false,
