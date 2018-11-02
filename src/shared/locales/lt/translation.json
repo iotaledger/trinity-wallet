@@ -276,7 +276,7 @@
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
-        "generateNewAddress": "Naujas adresas",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
@@ -407,7 +407,6 @@
         "reset": "Iš naujo nustatyti"
     },
     "walletSetup": {
-        "creatingSeed": "Užrakto sukūrimas",
         "okay": "Puiku. Atlikime piniginės nustatymus!",
         "doYouNeedASeed": "Ar jums reikia sukurti naują užraktą?",
         "seedExplanation": "IOTA užraktas yra pagrindinis raktas į jūsų lėšas. Jis sudarytas iš 81 simbolio, raidžių A-Z ir skaičiaus 9.",
