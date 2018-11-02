@@ -276,7 +276,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "คัดลอกที่อยู่แล้ว",
         "addressCopiedExplanation": "ที่อยู่ของคุณได้ถูกคัดลอกไปยังคลิปบอร์ด",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ไม่มีที่อยู่",
         "spent": "Spent",
         "missingPermission": "File system permission required",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
         "okay": "Okay. Let's set up your wallet!",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
