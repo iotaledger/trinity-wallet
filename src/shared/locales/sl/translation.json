@@ -276,7 +276,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "Naslov kopiran",
         "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Sync address",
         "noAddresses": "NO ADDRESSES",
         "spent": "Porabljeno",
         "missingPermission": "File system permission required",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
         "okay": "Okej. Ustvarimo vašo denarnico!",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
