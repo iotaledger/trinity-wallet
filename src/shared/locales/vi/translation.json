@@ -276,7 +276,7 @@
         "copyAddress": "Chép địa chỉ",
         "addressCopied": "Đã sao chép địa chỉ",
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
-        "generateNewAddress": "Địa Chỉ Mới",
+        "generateNewAddress": "Sync address",
         "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
         "spent": "Đã Gửi",
         "missingPermission": "File system permission required",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Đang tạo từ khoá",
         "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
         "doYouNeedASeed": "Bạn có cần tạo từ khoá mới không?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
