@@ -233,40 +233,40 @@
         "login": "Prijavi se",
         "setNode": "Postavi node",
         "whyBiometricDisabled": "Zašto je biometrijska autentikacija onemogućena?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "Biometrijska prijava je onemogućena pri prvom pokretanju aplikacije radi vaše sigurnosti. Kada koristite Trinity novčanik, bićete odjavljeni nakon određenog perioda neaktivnosti. Zatim se možete ponovo prijaviti koristeći biometrijsku autorizaciju."
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "doNotMinimise": "Do not minimise or close the app.",
-        "takingAWhile": "This seems to be taking a while"
+        "loadingFirstTime": "Prvo učitavanje seed-a.",
+        "thisMayTake": "Ovo može potrajati.",
+        "doNotMinimise": "Nemojte minimizirati ili zatvoriti aplikaciju.",
+        "takingAWhile": "Izgleda ovo traje neko vreme"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
-        "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
-        "whatIsASeed": "What is a seed?"
+        "generatedSeed": "Generisan seed",
+        "seedNotGenerated": "Seed nije generisan",
+        "seedNotGeneratedExplanation": "Generišite novu lozinku.",
+        "pressForNewSeed": "Pritisnite za novi seed",
+        "generateSuccess": "Seed uspešno generisan",
+        "individualLetters": "Pritisnite pojedinačno slova kako biste ih učinili nasumičnim.",
+        "individualLetterCount": "Pritisnite još <1><0>{{count}}</0></1> slova da biste ih učinili nasumičnim.",
+        "individualLetterCount_plural": "Pritisnite još <1><0>{{count}}</0></1> slova da biste ih učinili nasumičnim.",
+        "randomiseCharsToContinue": "Učinite nasumičnim još <1>{{count}}</1> znakova da biste nastavili.",
+        "randomiseCharsToContinue_plural": "Učinite nasumičnim još <1>{{count}}</1> da biste nastavili.",
+        "whatIsASeed": "Šta je seed?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "allDone": "Gotovo!",
+        "openYourWallet": "Otvorite novčanik",
+        "walletReady": "Novčanik je sada podešen i spreman za korišćenje. Ako u budućnosti treba da načinite neke izmene, pogledajte meni Postavke."
     },
     "paperWallet": {
-        "neverShare": "Never share your seed with anyone.",
+        "neverShare": "Nikada nikome ne otkrivajte svoj seed.",
         "iotaLogo": "IOTA logo",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
+        "print": "ŠTAMPANJE",
+        "paperConvenience": "Štampanje seed-a je pogodan način za čuvanje istog.",
+        "publicInsecure": "Ali štampanje na javnoj wifi mreži ili javno dostupnom štampaču nije bezbedno.",
+        "tapCheckboxes": "Kliknite na polja u nastavku za potvrdu.",
+        "wifiCheckbox": "Neću odštampati seed na javno dostupnoj wifi mreži",
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
