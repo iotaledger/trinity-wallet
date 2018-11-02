@@ -276,7 +276,7 @@
         "copyAddress": "Kopier adresse",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "Ny adresse",
+        "generateNewAddress": "Sync address",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
         "missingPermission": "Trenger tillatelse til filsystemet",
@@ -407,7 +407,6 @@
         "reset": "Tilbakestill"
     },
     "walletSetup": {
-        "creatingSeed": "Genererer en hovednøkkel",
         "okay": "Ok. La oss sette opp lommeboken din!",
         "doYouNeedASeed": "Trenger du å lage en ny hovednøkkel?",
         "seedExplanation": "Hovednøkkelen gir tilgang til dine IOTA og består av 81 tegn bestående av bokstavene A til Z eller tallet 9.",
