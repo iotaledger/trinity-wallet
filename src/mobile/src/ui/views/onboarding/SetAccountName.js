@@ -143,7 +143,7 @@ export class SetAccountName extends Component {
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
-            additionalAccountType: 'keychain',
+            additionalAccountMeta: { type: 'keychain' },
             usedExistingSeed: false,
         });
 
