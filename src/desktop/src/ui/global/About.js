@@ -59,13 +59,6 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
-                            <h5>0.4.0-RC1</h5>
-                            <ul>
-                                <li>- New: Ledger hardware wallet support</li>
-                                <li>- Update: Add Wallet reset functionality for non authorised users</li>
-                                <li>- Update: Improved auto-updates functionality</li>
-                                <li>- Fix: Dark menu bar icon support for macOS</li>
-                            </ul>
                             <h5>0.3.6</h5>
                             <ul>
                                 <li>
