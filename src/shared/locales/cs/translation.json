@@ -276,7 +276,7 @@
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
-        "generateNewAddress": "Nová adresa",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
         "missingPermission": "Požadovaný přístup k souborovému systému",
@@ -407,7 +407,6 @@
         "reset": "Resetovat"
     },
     "walletSetup": {
-        "creatingSeed": "Vytváření Seedu",
         "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
         "doYouNeedASeed": "Potřebujete vytvořit nový Seed?",
         "seedExplanation": "IOTA Seed je hlavním přístupovým klíčem k vašim prostředkům. Je dlouhý 81 znaků a používá pouze písmena A-Z nebo číslo 9.",
