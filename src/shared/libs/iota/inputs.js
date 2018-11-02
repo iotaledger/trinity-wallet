@@ -190,7 +190,7 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
             exceeded.push(partial);
         }
 
-        // If some has reached the threshold why bother continuing
+        // If sum has reached the threshold why bother continuing
         if (sum >= threshold) {
             return;
         }
