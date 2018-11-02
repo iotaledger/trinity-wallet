@@ -276,7 +276,7 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "新しいアドレス",
+        "generateNewAddress": "Sync address",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
@@ -407,7 +407,6 @@
         "reset": "リセット"
     },
     "walletSetup": {
-        "creatingSeed": "シード作成",
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouNeedASeed": "新しいシードの作成は必要でしょうか？",
         "seedExplanation": "IOTAのシードはあなたの資金のマスターキーです。シードは81文字で、アルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。",
