@@ -308,13 +308,13 @@
         "incorrectSeedExplanation": "Seed koji ste uneli je neispravan. Pokušajte ponovo.",
         "ifYouHaveNotSaved": "Ako niste napravili rezervnu kopiju svog seed-a, vratite se nazad i učinite to.",
         "enterSeedBelow": "Unesite svoj novi seed ispod kako biste potvrdili da ste uspešno kreirali rezervnu kopiju",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Nemojte kopirati i umetnuti svoj seed",
+        "clipboardWarningExplanation": "UPOZORENJE: Kopiranje/umetanje je onemoguće radi vaše sigurnosti."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddress": "Neispravna adresa",
+        "invalidAddressExplanation1": "Adresa treba da sadrži {{maxLength}} znakova i kontrolni zbir.",
+        "invalidAddressExplanation2": "Adresa sadrži nedozvoljene znakove.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Insufficient funds",
