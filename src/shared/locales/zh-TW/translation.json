@@ -276,7 +276,7 @@
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "產生新地址",
+        "generateNewAddress": "Sync address",
         "noAddresses": "無地址",
         "spent": "已支出",
         "missingPermission": "需要檔案系統權限",
@@ -407,7 +407,6 @@
         "reset": "重置"
     },
     "walletSetup": {
-        "creatingSeed": "產生種子碼",
         "okay": "好囉，現在來設置您的錢包！",
         "doYouNeedASeed": "您需要產生新的種子碼嗎?",
         "seedExplanation": "IOTA 種子碼就是您資金的主要金鑰。長度為 81 字元而且只使用字母 A-Z 或數字 9。",
