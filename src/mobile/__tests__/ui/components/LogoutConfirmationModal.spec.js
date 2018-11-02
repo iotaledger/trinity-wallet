@@ -46,14 +46,7 @@ describe('Testing LogoutConfirmationModal component', () => {
             const props = getProps();
 
             const wrapper = shallow(<LogoutConfirmationModal {...props} />);
-            expect(wrapper.name()).toEqual('View');
-        });
-
-        it('should return a Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<LogoutConfirmationModal {...props} />);
-            expect(wrapper.find('Text').length).toEqual(1);
+            expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
     });
 });

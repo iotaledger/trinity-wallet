@@ -75,10 +75,6 @@ describe('Testing TransactionHistoryModal component', () => {
             expect(TransactionHistoryModal.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a status string as a prop', () => {
-            expect(TransactionHistoryModal.propTypes.status).toEqual(PropTypes.string.isRequired);
-        });
-
         it('should require a value number as a prop', () => {
             expect(TransactionHistoryModal.propTypes.value).toEqual(PropTypes.number.isRequired);
         });
@@ -127,60 +123,6 @@ describe('Testing TransactionHistoryModal component', () => {
             expect(wrapper.find('ScrollViewMock').length).toEqual(1);
         });
 
-        it('should return status prop as first child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('RECEIVE 200 i');
-        });
-        it('should return a translated "Bundle Hash" message as first child to third Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(2)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Bundle Hash');
-        });
-
-        it('should return a ":" message as second child to third Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(2)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return bundle prop as a child to fourth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(3)
-                    .children()
-                    .text(),
-            ).toEqual('BUNDLE');
-        });
-
         it('should call instance method copy with bundle prop and "bundle" string when onPress prop of second TouchableOpacity is triggered', () => {
             const props = getProps();
 
@@ -193,61 +135,6 @@ describe('Testing TransactionHistoryModal component', () => {
             touchableOpacity.props().onPress();
 
             expect(instance.copy).toHaveBeenCalledWith('BUNDLE', 'bundle');
-        });
-
-        it('should return a ":" message as second child to fifth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(4)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return a translated "Message" message as first child to fifth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(4)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Message');
-        });
-
-        it('should return a ":" message as second child to fifth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(4)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
-        });
-
-        it('should return message prop as a child to sixth Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(5)
-                    .children()
-                    .text(),
-            ).toEqual('Pink floyd');
         });
     });
 
