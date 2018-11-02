@@ -32,7 +32,6 @@ import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
-import AlphaWarning from 'ui/global/Alpha';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -259,7 +258,6 @@ class App extends React.Component {
                 <UpdateProgress />
                 <Theme history={history} />
                 <Ledger />
-                <AlphaWarning />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>

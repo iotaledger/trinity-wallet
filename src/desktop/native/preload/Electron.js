@@ -360,7 +360,7 @@ const Electron = {
     /**
      * Send a IPC message to current window
      * @param {string} type - Message type
-     * @param {payload} any - Message payload 
+     * @param {any} payload - Message payload 
      */
     send: (type, payload) => {
       currentWindow.webContents.send(type, payload);

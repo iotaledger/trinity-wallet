@@ -15,7 +15,7 @@ import Toggle from 'ui/components/Toggle';
 import css from './index.scss';
 
 /**
- * Onboarding, set Ledger accoutn index
+ * Onboarding, set Ledger account index
  */
 class Ledger extends React.PureComponent {
     static propTypes = {

@@ -40,7 +40,7 @@ class Keychain {
 
     /**
      * Return max supported input count
-     * @returns {boolean} - 0 for no limit
+     * @returns {number} - 0 for no limit
      */
     get maxInputs() {
         return 0;
