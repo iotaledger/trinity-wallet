@@ -276,7 +276,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ADRESİ YOK",
         "spent": "Harcanan",
         "missingPermission": "File system permission required",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
         "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
