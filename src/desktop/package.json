@@ -101,6 +101,7 @@
       ]
     },
     "win": {
+      "publisherName": "IOTA Stiftung",
       "target": "nsis"
     },
     "linux": {
