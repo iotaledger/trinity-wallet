@@ -38,6 +38,8 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
+    ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
+    ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
 };
 
 /**
@@ -516,3 +518,25 @@ export const getBalanceForCheck = (addresses) => {
             });
     };
 };
+
+/**
+ * Dispatch when validating an address
+ *
+ * @method addressValidationRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const addressValidationRequest = () => ({
+    type: ActionTypes.ADDRESS_VALIDATION_REQUEST,
+});
+
+/**
+ * Dispatch when an address has been successfully validated
+ *
+ * @method addressValidationSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const addressValidationSuccess = () => ({
+    type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
+});

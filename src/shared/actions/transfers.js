@@ -475,6 +475,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
+                // Check if input count does not exceed maximum supported by the SeedStore type
+                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
+                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                }
+
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder()(
@@ -489,7 +494,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     ],
                 );
             })
-            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
@@ -499,6 +504,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 return {
                     inputs: transferInputs,
                     address: remainderAddress,
+                    keyIndex: remainderIndex,
                 };
             });
     };
@@ -749,8 +755,45 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             20000,
                         ),
                     );
+                } else if (message === Errors.LEDGER_ZERO_VALUE) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:cannotSendZeroValueTitle'),
+                            i18next.t('ledger:cannotSendZeroValueExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DISCONNECTED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDisconnectedTitle'),
+                            i18next.t('ledger:ledgerDisconnectedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DENIED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDeniedTitle'),
+                            i18next.t('ledger:ledgerDeniedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_INVALID_INDEX) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerIncorrectIndex'),
+                            i18next.t('ledger:ledgerIncorrectIndexExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_CANCELLED) {
+                    return;
                 }
-
                 return dispatch(generateTransferErrorAlert(error));
             })
     );

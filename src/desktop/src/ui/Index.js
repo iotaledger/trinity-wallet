@@ -31,6 +31,7 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -256,6 +257,7 @@ class App extends React.Component {
                 <Idle />
                 <UpdateProgress />
                 <Theme history={history} />
+                <Ledger />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>

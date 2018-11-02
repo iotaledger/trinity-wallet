@@ -195,7 +195,6 @@ class SeedInput extends React.PureComponent {
                     setAdditionalAccountInfo({
                         addingAdditionalAccount: true,
                         additionalAccountName: accounts[0].title,
-                        additionalAccountType: 'keychain',
                     });
                 }
             } else {
@@ -227,7 +226,6 @@ class SeedInput extends React.PureComponent {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: account.title,
-                additionalAccountType: 'keychain',
             });
         }
 
