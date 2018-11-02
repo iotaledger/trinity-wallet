@@ -409,40 +409,40 @@
     "walletSetup": {
         "okay": "U redu. Hajde da podesimo vaš novčanik!",
         "doYouNeedASeed": "Da li treba da kreirate novi seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "seedExplanation": "Vaš IOTA seed je master ključ za vaš ključ. Sastoji se od 81 karaktera i sadrži samo slova A-Z i broj 9.",
+        "noIHaveOne": "Ne, već imam seed",
+        "yesINeedASeed": "Da, potreban mi je novi seed",
+        "explanation": "<0><0>Možete ga koristiti za pristup svojim sredstvima pomoću</0><1> bilo kog novčanika</1><2>, na</2><3> bilo kom uređaju.</3></0>",
+        "loseSeed": "Ali ukoliko izgubite svoj seed, takođe ćete izgubiti IOTA tokene.",
+        "keepSafe": "Čuvajte seed na sigurno."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Hvala na preuzimanju Trinity novčanika"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "writeDownYourSeed": "<0> Zapišite svoj seed i kontrolni zbir, te </0><1>proverite bar 3 puta</1><2> da li su tačni.</2>",
+        "scrollToBottom": "Skrolujte do dna"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Heš paketa kopiran",
+        "noTransactionsFound": "Nisu pronađene transakcije",
+        "hideZeroBalance": "Sakrij transakcije bez sredstava",
+        "bundleHashCopiedExplanation": "Heš paketa je kopiran na klipbord.",
         "addressCopied": "Adresa kopirana",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "Send",
-        "receive": "Receive",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "addressCopiedExplanation": "Adresa je kopirana na klipbord.",
+        "messageCopied": "Poruka kopirana",
+        "messageCopiedExplanation": "Poruka je kopirana na klipbord.",
+        "send": "Pošalji",
+        "receive": "Primi",
+        "empty": "Prazno",
+        "retrying": "Ponovni pokušaj u toku",
+        "yesterday": "Juče",
+        "promotingAnotherBundle": "Promocija drugog paketa"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
+        "viewSeed": "Prikaži seed",
+        "viewAddresses": "Prikaži adrese",
+        "editAccountName": "Uredi ime računa",
         "deleteAccount": "Delete account",
         "addNewAccount": "Add new account",
         "tools": "Tools"
@@ -517,18 +517,18 @@
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Unesite loziku da biste izbrisali nalog."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "outOfSync": "Da li vaša istorija transakcija deluje kao da nije sinhronizovana?",
+        "pressToSync": "Pritisnite dugme u nastavku da biste sinhronizovali nalog.",
+        "thisMayTake": "Ovo može potrajati. Uređaj bi mogao delovati usporeno.",
+        "doNotClose": "Imajte u vidu da će minimiziranje aplikacije otkazati sinhronizaciju.",
+        "syncAccount": "Sinhronizuj nalog",
+        "syncingYourAccount": "Sinhronizacija u toku."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name.",
+        "title": "Unesite seed i naziv računa.",
         "incorrectFormat": "Incorrect seed format",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
