@@ -668,11 +668,11 @@
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom učitavanja podataka o ažuriranju",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "noUpdatesAvailableExplanation": "Koristite najnoviju verziju Trinity novčanika!",
+        "newVersionAvailable": "Nova verzija dostupna",
+        "newVersionAvailableExplanation": "Nova verzija Trinity novčanika je dostupna. Izvršiti ažuriranje sada?",
+        "installUpdate": "Instaliraj novu verziju i restartuj",
+        "installUpdateExplanation": "Preuzimanje završen, Trinity će sada biti ponovo pokrenut kako bi se izvršilo ažuriranje.",
         "downloadingUpdate": "Downloading update",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
