@@ -303,11 +303,11 @@
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potvrdite seed",
         "trinityWillNeverAskToReenter": "Trinity nikada neće tražiti da ponovo unesete seed osim ako resetujete novčanik ili aplikaciju.",
-        "enterYourSeed": "Enter your seed",
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "enterYourSeed": "Unesite seed",
+        "incorrectSeed": "Neispravan seed",
+        "incorrectSeedExplanation": "Seed koji ste uneli je neispravan. Pokušajte ponovo.",
+        "ifYouHaveNotSaved": "Ako niste napravili rezervnu kopiju svog seed-a, vratite se nazad i učinite to.",
+        "enterSeedBelow": "Unesite svoj novi seed ispod kako biste potvrdili da ste uspešno kreirali rezervnu kopiju",
         "clipboardWarning": "Do not copy paste your seed",
         "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
