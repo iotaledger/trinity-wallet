@@ -276,7 +276,7 @@
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Synchronizuj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
