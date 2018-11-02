@@ -276,7 +276,7 @@
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "generateNewAddress": "Ny adress",
+        "generateNewAddress": "Sync address",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
         "missingPermission": "Åtkomst till filsystem krävs",
@@ -407,7 +407,6 @@
         "reset": "Återställ"
     },
     "walletSetup": {
-        "creatingSeed": "Skapar en seed",
         "okay": "Okej. Låt oss konfigurera din plånbok!",
         "doYouNeedASeed": "Behöver du skapa en ny seed?",
         "seedExplanation": "Din IOTA-seed är huvudnyckeln till dina pengar. Den är 81 tecken lång och innehåller endast bokstäverna A-Z eller numret 9.",
