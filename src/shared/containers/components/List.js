@@ -99,7 +99,7 @@ export default function withListData(ListComponent) {
                 isBusy,
                 mode,
                 remotePoW,
-                isLoading: ui.isFetchingLatestAccountInfoOnLogin,
+                isLoading: ui.isFetchingAccountInfo,
                 currentlyPromotingBundleHash: ui.currentlyPromotingBundleHash,
                 isRetryingFailedTransaction: ui.isRetryingFailedTransaction,
                 hideEmptyTransactions,

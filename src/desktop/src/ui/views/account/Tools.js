@@ -6,7 +6,7 @@ import { withI18n } from 'react-i18next';
 
 import { manuallySyncAccount } from 'actions/accounts';
 
-import { getAddressesForSelectedAccount, getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
+import { getAddressesForSelectedAccount, getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
 import {
     transitionForSnapshot,
@@ -76,9 +76,9 @@ class Addresses extends PureComponent {
      * @returns {Promise}
      */
     syncAccount = async () => {
-        const { wallet, accountName, accountType } = this.props;
+        const { wallet, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         this.props.manuallySyncAccount(seedStore, accountName);
     };
@@ -88,9 +88,9 @@ class Addresses extends PureComponent {
      * @returns {Promise}
      */
     startSnapshotTransition = async () => {
-        const { wallet, addresses, accountName, accountType } = this.props;
+        const { wallet, addresses, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         this.props.transitionForSnapshot(seedStore, addresses);
     };
@@ -101,9 +101,9 @@ class Addresses extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, accountType, settings } = this.props;
+        const { wallet, accountName, accountMeta, settings } = this.props;
 
-        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
@@ -116,9 +116,9 @@ class Addresses extends PureComponent {
      */
     transitionBalanceWrong = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, accountType } = this.props;
+        const { wallet, accountName, accountMeta } = this.props;
 
-        const seedStore = await new SeedStore[accountType](wallet.password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
         const currentIndex = wallet.transitionAddresses.length;
 
@@ -216,7 +216,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     settings: state.settings,
     accountName: getSelectedAccountName(state),
-    accountType: getSelectedAccountType(state),
+    accountMeta: getSelectedAccountMeta(state),
     addresses: getAddressesForSelectedAccount(state),
 });
 

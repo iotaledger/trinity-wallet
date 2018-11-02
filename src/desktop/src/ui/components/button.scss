@@ -55,6 +55,14 @@
         font-size: 18px;
         height: 70px;
         line-height: 70px;
+
+        &.loading {
+            text-indent: -4700px;
+            &:before {
+                position: absolute;
+                left: 50%;
+            }
+        }
     }
     &:before {
         content: '';
