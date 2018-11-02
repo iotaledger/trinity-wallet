@@ -276,7 +276,7 @@
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "Nouvelle adresse",
+        "generateNewAddress": "Sync address",
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
@@ -407,7 +407,6 @@
         "reset": "Réinitialiser"
     },
     "walletSetup": {
-        "creatingSeed": "Création d’une seed",
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouNeedASeed": "Avez-vous besoin de créer une nouvelle seed ?",
         "seedExplanation": "Votre seed IOTA est la clé d'accès à vos fonds. Elle est composée de 81 caractères, utilisant uniquement des lettres A-Z ou le numéro 9.",
