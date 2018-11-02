@@ -23,6 +23,30 @@ class Keychain {
     }
 
     /**
+     * If seed is available in plain form
+     * @returns {boolean}
+     */
+    static get isSeedAvailable() {
+        return true;
+    }
+
+    /**
+     * If attaching a message to transactions is available
+     * @returns {boolean}
+     */
+    static get isMessageAvailable() {
+        return true;
+    }
+
+    /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    get maxInputs() {
+        return 0;
+    }
+
+    /**
      * Create new account
      * @param {string} accountId - Account identifier
      * @param {array} seed - Byte array seed
@@ -130,6 +154,14 @@ class Keychain {
         }
 
         return addresses;
+    };
+
+    /**
+     * Placeholder for Trinity compatibillity
+     * @returns {boolean}
+     */
+    validateAddress = () => {
+        return true;
     };
 
     /**

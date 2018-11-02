@@ -6,7 +6,7 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { deleteAccount } from 'shared-modules/actions/accounts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
@@ -101,8 +101,8 @@ class DeleteAccount extends Component {
         t: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Currently selected account type */
-        selectedAccountType: PropTypes.string.isRequired,
+        /** Currently selected account meta */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -193,8 +193,8 @@ class DeleteAccount extends Component {
      * @method delete
      */
     async delete() {
-        const { password, selectedAccountName, selectedAccountType } = this.props;
-        const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+        const { password, selectedAccountName, selectedAccountMeta } = this.props;
+        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
         await seedStore.removeAccount();
         this.props.deleteAccount(selectedAccountName);
     }
@@ -300,7 +300,7 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isAutoPromoting: state.polling.isAutoPromoting,
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),
 });
 
