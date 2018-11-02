@@ -276,7 +276,7 @@
         "copyAddress": "Kopeeri aadress",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Teie aadress on kopeeritud lõikelauale.",
-        "generateNewAddress": "Uus aadress",
+        "generateNewAddress": "Sync address",
         "noAddresses": "AADRESSE POLE",
         "spent": "Kulutatud",
         "missingPermission": "Failisüsteemi luba on nõutud",
@@ -407,7 +407,6 @@
         "reset": "Lähtesta"
     },
     "walletSetup": {
-        "creatingSeed": "Seemne loomine",
         "okay": "Okei. Seadistame teie rahakoti ära!",
         "doYouNeedASeed": "Kas te peate looma uue seemne?",
         "seedExplanation": "Teie IOTA seeme on teie rahaliste vahendite peamine võti. See on 81 tähemärki pikk, kasutades ainult tähti A-Z või numbrit 9.",
