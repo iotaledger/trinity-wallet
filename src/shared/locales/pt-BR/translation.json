@@ -276,7 +276,7 @@
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
-        "generateNewAddress": "Novo Endereço",
+        "generateNewAddress": "Sync address",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
@@ -407,7 +407,6 @@
         "reset": "Redefinir"
     },
     "walletSetup": {
-        "creatingSeed": "Criando uma seed",
         "okay": "Vamos configurar a sua carteira!",
         "doYouNeedASeed": "Precisa criar uma nova seed?",
         "seedExplanation": "Sua seed é a chave para seus fundos. Ela contém 81 caracteres, usando apenas as letras A até Z ou o número 9.",
