@@ -24,7 +24,7 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
-describe('Testing NotificationLog component', () => {
+describe('Testing NotificationLogModal component', () => {
     describe('propTypes', () => {
         it('should require a theme string as a prop', () => {
             expect(NotificationLog.propTypes.theme).toEqual(PropTypes.object.isRequired);
@@ -48,10 +48,11 @@ describe('Testing NotificationLog component', () => {
             const props = getProps();
 
             const wrapper = shallow(<NotificationLog {...props} />);
-            expect(wrapper.name()).toEqual('View');
+
+            expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
 
-        it('should call instance method "clearNotificationLog" when onPress prop of second DualFooterButtons element is triggered', () => {
+        it('should call instance method "clearNotificationLog" when onLeftButtonPress prop of second ModalView element is triggered', () => {
             const props = getProps();
 
             const wrapper = shallow(<NotificationLog {...props} />);
@@ -61,13 +62,7 @@ describe('Testing NotificationLog component', () => {
 
             expect(instance.clearNotificationLog).toHaveBeenCalledTimes(0);
 
-            wrapper
-                .children()
-                .at(0)
-                .children()
-                .last()
-                .props()
-                .onLeftButtonPress();
+            wrapper.props().onLeftButtonPress();
 
             expect(instance.clearNotificationLog).toHaveBeenCalledTimes(1);
         });

@@ -46,10 +46,10 @@ describe('Testing RootDetectionModal component', () => {
             const props = getProps();
 
             const wrapper = shallow(<RootDetectionModalComponent {...props} />);
-            expect(wrapper.name()).toEqual('View');
+            expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
 
-        it('should call prop method hideModal when onRightButtonPress prop of DualFooterButtons is triggered', () => {
+        it('should call prop method hideModal when onRightButtonPress prop of ModalView component is triggered', () => {
             const props = getProps({
                 hideModal: jest.fn(),
             });
@@ -58,18 +58,12 @@ describe('Testing RootDetectionModal component', () => {
 
             expect(props.hideModal).toHaveBeenCalledTimes(0);
 
-            wrapper
-                .children()
-                .at(0)
-                .children()
-                .last()
-                .props()
-                .onRightButtonPress();
+            wrapper.props().onRightButtonPress();
 
             expect(props.hideModal).toHaveBeenCalledTimes(1);
         });
 
-        it('should call prop method closeApp when onLeftButtonPress prop of DualFooterButtons is triggered', () => {
+        it('should call prop method closeApp when onLeftButtonPress prop of ModalView is triggered', () => {
             const props = getProps({
                 closeApp: jest.fn(),
             });
@@ -78,13 +72,7 @@ describe('Testing RootDetectionModal component', () => {
 
             expect(props.closeApp).toHaveBeenCalledTimes(0);
 
-            wrapper
-                .children()
-                .at(0)
-                .children()
-                .last()
-                .props()
-                .onLeftButtonPress();
+            wrapper.props().onLeftButtonPress();
 
             expect(props.closeApp).toHaveBeenCalledTimes(1);
         });
