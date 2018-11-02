@@ -673,30 +673,30 @@
         "newVersionAvailableExplanation": "Nova verzija Trinity novčanika je dostupna. Izvršiti ažuriranje sada?",
         "installUpdate": "Instaliraj novu verziju i restartuj",
         "installUpdateExplanation": "Preuzimanje završen, Trinity će sada biti ponovo pokrenut kako bi se izvršilo ažuriranje.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Preuzimanje ažuriranja u toku",
+        "downloadProgress": "{{transferred}} od {{total}} preuzetog"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Evidencija grešaka"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
-        "readAllToContinue": "Please read the full text"
+        "termsAndConditions": "Uslovo i odredbe",
+        "accept": "Prihvatam",
+        "readAllToContinue": "Pročitajte ceo tekst"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Politika privatnosti",
+        "agree": "Saglasan sam"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "Tray ikona",
+        "trayExplanation": "Pruža pregled stanja vaših računa i nedavnu istoriju transakcija.",
+        "notLoggedIn": "Niste prijavljeni",
+        "setupIncomplete": "Podešavanje novčanika nije završeno",
+        "completeSetup": "Završi podešavanje"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Obaveštenja",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
         "typeMessages": "Notify me about zero value transactions",
