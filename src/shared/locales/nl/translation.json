@@ -276,7 +276,7 @@
         "copyAddress": "Kopieer adres",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het klembord gekopieerd.",
-        "generateNewAddress": "Nieuw Adres",
+        "generateNewAddress": "Sync address",
         "noAddresses": "GEEN ADRESSEN",
         "spent": "Uitgegeven",
         "missingPermission": "Toegang tot bestandsysteem vereist",
@@ -407,7 +407,6 @@
         "reset": "Herstel"
     },
     "walletSetup": {
-        "creatingSeed": "Seed aan het maken",
         "okay": "Oke. Laten we uw portemonnee instellen!",
         "doYouNeedASeed": "Wilt u een nieuwe seed maken?",
         "seedExplanation": "Uw IOTA seed is de hoofdsleutel tot uw munten. Het is 81 karakters lang, en gebruikt alleen de letters A-Z of het nummer 9.",
