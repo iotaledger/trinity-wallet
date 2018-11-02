@@ -1,0 +1,14 @@
+{
+    "groups": {
+        "shared": {
+            "packages": ["package.json", "src/shared/package.json"]
+        },
+        "desktop": {
+            "packages": ["src/desktop/package.json"]
+        },
+        "mobile": {
+            "packages": ["src/mobile/package.json", "src/mobile/nodejs-assets/nodejs-project/package.json"],
+            "ignore": ["react-native"]
+        }
+    }
+}
