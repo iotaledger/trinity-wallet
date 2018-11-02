@@ -276,7 +276,7 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "アドレスを同期",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
