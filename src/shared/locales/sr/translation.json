@@ -529,60 +529,60 @@
     },
     "useExistingSeed": {
         "title": "Unesite seed i naziv računa.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Neispravan format seed-a",
+        "validSeedExplanation": "Važeći seed treba da se sastoji od 81 znaka i isključivo od slova A-Z ili broja 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "enterPassword": "Unesite lozinku za prikaz seed-a.",
+        "viewSeed": "Prikaži seed",
+        "hideSeed": "Sakrij seed",
+        "notAvailable": "Izvod seed-a nije dostupan za {{accountType}} tip naloga",
+        "accountIndex": "Indeks vašeg Ledger naloga"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "alreadyHave": "I have backed up my seed",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "didSaveSeed": "Da li ste napravili rezervnu kopiju seed-a?",
+        "alreadyHave": "Napravio sam rezervnu kopiju seed-a",
+        "reenterSeed": "U sledećem koraku ćete ponovo morati da unesete seed.",
+        "reenterSeedWarning": "Ako niste napravili rezervnu kopiju seed-a, a vaš uređaj se pokvari, izgubićete sve IOTA tokene.",
+        "pleaseConfirm": "Potvrdite da ste sigurno sačuvali svoj seed."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "OVA RADNJA SE NE MOŽE PONIŠTITI.",
+        "warning": "<0><0>Svi podaci koje sadrži vaš novčanik, uključujući </0><1>seed-ove, lozinke,</1><2> i </2><3>druge informacije o nalozima</3><4> biće izgubljeni.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "instructionsEnable": "Dodirnite čitač otiska prstiju kako biste omogućili autorizaciju putem otiska prsta",
+        "instructionsDisable": "Dodirnite čitač otiska prstiju kako biste onemogućili autorizaciju putem otiska prsta",
+        "fingerprintAuthEnabled": "Biometrijska autentikacija omogućena",
+        "fingerprintAuthEnabledExplanation": "Uspešno ste omogućili biometrijsku autorizaciju.",
+        "fingerprintAuthDisabled": "Biometrijska autentikacija onemogućena",
+        "fingerprintAuthDisabledExplanation": "Uspešno ste onemogućili biometrijsku autentikaciju.",
+        "fingerprintAuthFailed": "Greška prilikom biometrijske autorizacije",
+        "fingerprintAuthFailedExplanation": "Došlo je do greške prilikom biometrijske autorizacije. Pokušajte ponovo.",
         "status": "Status",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
+        "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
+        "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta.",
+        "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",
+        "buttonInstructionsDisableIPhoneX": "Pritisnite dugme u nastavku da biste onemogućili Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Pritisnite dugme u nastavku da biste omogućili Face ID.",
+        "instructionsLogin": "Dodirnite čitač otisaka prstiju za prijavu"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Poslaćete {{contents}} na adresu",
+        "aMessage": "poruka"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "wrongCode": "Pogrešan kod",
+        "wrongCodeExplanation": "Kod koji ste uneli je neispravan.",
+        "emptyCode": "Prazan kod",
+        "emptyCodeExplanation": "Unesite kod ponovo.",
+        "keyCopied": "Ključ kopiran u klipbord",
+        "keyCopiedExplanation": "Vaš 2FA ključ je kopiran u klipbord.",
+        "addKey": "Dodajte ovaj ključ 2FA aplikaciji",
+        "key": "Ključ",
+        "twoFAEnabled": "2FA je omogućena",
+        "twoFAEnabledExplanation": "Omogućili ste dvofaktorsku autentikaciju.",
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
@@ -645,29 +645,29 @@
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Emitovanje"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "cannotCompleteTransition": "Nije moguće izvršiti snapshot tranziciju",
+        "cannotCompleteTransitionExplanation": "Vaš saldo mora biti viši od 0 za izvršenje tranzicije.",
+        "transitionComplete": "Tranzicija izvršena",
+        "transitionCompleteExplanation": "Snapshot tranzicija je izvršena.",
+        "detectedBalance": "Detektovan saldo: {{amount}} {{unit}}",
+        "isThisCorrect": "Da li je ovo tačno?",
+        "snapshotExplanation": "Periodično je neophodno izvršiti snaphot radi smanjenja veličine Tangle-a.",
+        "hasSnapshotTakenPlace": "Da li je došlo do snapshot-a? Pritisnite dugme u nastavku za tranziciju.",
+        "transition": "Tranzicija",
+        "transitioning": "Tranzija snapshot-a u toku.",
+        "generatingAndDetecting": "Generisanje adresa i detektovanje salda.",
+        "attaching": "Dodavanje adresa u Tangle."
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Uspešno automatsko popunjavanje",
+        "autofillExplanation": "Podaci o transakciji uspešno automatski popunjeni sa linka."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "noUpdatesAvailable": "No updates available",
+        "errorRetrievingUpdateData": "Greška prilikom učitavanja podataka o ažuriranju",
+        "noUpdatesAvailable": "Nema dostupnih ažuriranja",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity!",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
