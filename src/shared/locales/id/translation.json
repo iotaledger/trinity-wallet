@@ -276,7 +276,7 @@
         "copyAddress": "Salin alamat",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "Alamat baru",
+        "generateNewAddress": "Sync address",
         "noAddresses": "TIDAK ADA ALAMAT",
         "spent": "Dihabiskan",
         "missingPermission": "Izin akses File System dibutuhkan",
@@ -407,7 +407,6 @@
         "reset": "Setel ulang"
     },
     "walletSetup": {
-        "creatingSeed": "Membuat Seed",
         "okay": "Oke. Mari menyiapkan dompet Anda!",
         "doYouNeedASeed": "Apakah Anda butuh Seed baru?",
         "seedExplanation": "Seed IOTA adalah kunci utama ke dana Anda. Terdiri dari 81 karakter dengan campuran A-Z atau angka 9.",
