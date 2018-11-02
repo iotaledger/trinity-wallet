@@ -276,7 +276,7 @@
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "Новый адрес",
+        "generateNewAddress": "Sync address",
         "noAddresses": "НЕТ АДРЕСОВ",
         "spent": "Использованный адрес",
         "missingPermission": "File system permission required",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Создание ключа",
         "okay": "Хорошо, давайте настроим Ваш кошелек!",
         "doYouNeedASeed": "Нужно ли Вам создать новый ключ?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
