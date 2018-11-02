@@ -276,7 +276,7 @@
         "copyAddress": "复制地址",
         "addressCopied": "地址已复制",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "新地址",
+        "generateNewAddress": "Sync address",
         "noAddresses": "无地址",
         "spent": "使用过",
         "missingPermission": "需要文件系统权限",
@@ -407,7 +407,6 @@
         "reset": "重置"
     },
     "walletSetup": {
-        "creatingSeed": "创建种子",
         "okay": "好了。让我们来设置您的钱包！",
         "doYouNeedASeed": "你需要创建一个新的种子吗？",
         "seedExplanation": "种子是您的资金的主密钥。它的长度为81个字符，只可使用字母A-Z或数字9。",
