@@ -276,7 +276,7 @@
         "copyAddress": "Kopioi osoite",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
-        "generateNewAddress": "Uusi Osoite",
+        "generateNewAddress": "Sync address",
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
@@ -407,7 +407,6 @@
         "reset": "Nollaa"
     },
     "walletSetup": {
-        "creatingSeed": "Seed-luvun luonti",
         "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouNeedASeed": "Haluatko luoda uuden seed-luvun?",
         "seedExplanation": "Seed-luku on yleisavain ja samalla myös pääsy varoihin. Se on 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
