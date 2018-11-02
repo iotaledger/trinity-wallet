@@ -276,7 +276,7 @@
         "copyAddress": "Kopiér addresse",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-        "generateNewAddress": "Ny adresse",
+        "generateNewAddress": "Sync address",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brugt",
         "missingPermission": "Filsystemrettighed kræves",
@@ -407,7 +407,6 @@
         "reset": "Nulstil"
     },
     "walletSetup": {
-        "creatingSeed": "Opretter en hovednøgle",
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouNeedASeed": "Har du brug at oprette en nye hovednøgle?",
         "seedExplanation": "Din IOTA-seed er hovednøglen til dine værdier. Den består af 81 tegn, kun store A-Z bogstaver og tallet 9.",
