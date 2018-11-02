@@ -721,23 +721,6 @@
   resolved "https://registry.yarnpkg.com/@bugsnag/safe-json-stringify/-/safe-json-stringify-2.1.0.tgz#c7dd30a33bd888c39cd36d45216f7252f307ed36"
   integrity sha512-tE2cPhAq+WFnA9XrfMfP+u/6L63eH7+PmONMNSXtP6kPt/iUXnwkDsxc1Q6lUP1oM3LsmWBrxn+/93M8JE6fpA==
 
-"@ledgerhq/hw-transport-node-hid@^4.24.0":
-  version "4.24.0"
-  resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.24.0.tgz#8457969d66819e8f7f50d5dd96527ab26cd3787d"
-  integrity sha512-RA3ZlRM+6y/XL/sAFKUpuLIU5tsmEpDBwJEBKC+qdzG508Vl/kBJDMuQyo6pmx/YcKZrtjfKiXXQEXP9Fgk75w==
-  dependencies:
-    "@ledgerhq/hw-transport" "^4.24.0"
-    lodash "^4.17.11"
-    node-hid "^0.7.2"
-    usb "^1.3.3"
-
-"@ledgerhq/hw-transport@^4.24.0":
-  version "4.24.0"
-  resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport/-/hw-transport-4.24.0.tgz#8def925d8c2e1f73d15128d9e27ead729870be58"
-  integrity sha512-L34TG1Ss7goRB+5BxtvBwUuu0CmDSIxS33oUqkpEy6rCs31k7XicV48iUGAnRnt8hNY2DvJ9WFyaOroUE9h6wQ==
-  dependencies:
-    events "^3.0.0"
-
 "@phc/format@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@phc/format/-/format-0.5.0.tgz#a99d27a83d78b3100a191412adda04315e2e3aba"
@@ -1348,11 +1331,6 @@ bindings@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
   integrity sha512-DpLh5EzMR2kzvX1KIlVC0VkC3iZtHKTgdtZ0a3pglBZdaQFjt5S9g9xd1lE+YvXyfd6mtCeRnrUfOLYiTMlNSw==
-
-bip32-path@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/bip32-path/-/bip32-path-0.4.2.tgz#5db0416ad6822712f077836e2557b8697c0c7c99"
-  integrity sha1-XbBBataCJxLwd4NuJVe4aXwMfJk=
 
 bl@^1.0.0:
   version "1.2.2"
@@ -2931,11 +2909,6 @@ events@^1.0.0:
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
   integrity sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ=
 
-events@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
-  integrity sha512-Dc381HFWJzEOhQ+d8pkNon++bk9h6cdAoAj4iE6Q4y6xgTzySWXlKn05/TVNpjnfRqi/X0EpJEJohPjNI3zpVA==
-
 eventsource@0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-0.1.6.tgz#0acede849ed7dd1ccc32c811bb11b944d4f29232"
@@ -3778,16 +3751,6 @@ https-proxy-agent@^2.2.1:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
-hw-app-iota@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/hw-app-iota/-/hw-app-iota-0.4.1.tgz#4acfe75aa218f27ff6e16dc540815d4fcd5cc858"
-  integrity sha512-tee0BAt9QexaoNkdPEoRnp5lJX3KIwOnWH80xSiRERPS49RJ0+qg3wLYStHBE//YO7R08Hr7b3KMxwbOnd5qdg==
-  dependencies:
-    babel-runtime "^6.26.0"
-    bip32-path "^0.4.2"
-    iota.lib.js "^0.5.0"
-    struct "0.0.12"
-
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -3928,7 +3891,7 @@ invert-kv@^2.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
 
-iota.lib.js@^0.5.0, iota.lib.js@^0.5.1:
+iota.lib.js@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.1.tgz#87d424e030308f0029ca6396c92e15d460e7c1b7"
   integrity sha512-4DHieyh24o8TJGSj/j1aINrLtYO2Pj9NZa3kqY1lKT0kZcIOkFMJoOsPiLPqVFpAC0RRONoBxni+d48gRyH5SQ==
@@ -4585,7 +4548,7 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
-lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3, lodash@^4.17.5, lodash@~4.17.4:
+lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.5, lodash@~4.17.4:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -4967,11 +4930,6 @@ nan@^2.10.0, nan@^2.9.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.0.tgz#574e360e4d954ab16966ec102c0c049fd961a099"
   integrity sha512-F4miItu2rGnV2ySkXOQoA8FKz/SR2Q2sWP0sbTxNxz/tuokeC8WxOhPMcwi0qIyGtVn/rrSeLbvVkznqCdwYnw==
 
-nan@^2.8.0:
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.1.tgz#90e22bccb8ca57ea4cd37cc83d3819b52eea6766"
-  integrity sha512-iji6k87OSXa0CcrLl9z+ZiYSuR2o+c0bGuNmXdrhTQTakxytAFsC56SArGYoiHlJlFoHSnvmhpceZJaXkVuOtA==
-
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -5035,15 +4993,6 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-hid@^0.7.2:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/node-hid/-/node-hid-0.7.3.tgz#736e9a4dee5eec96c20fbe301e0311bb185cb2f4"
-  integrity sha512-LOCqWqcOlng+Kn1Qj/54zrPVfCagg1O7RlSgMmugykBcoYvUud6BswTrJM2aXuBac+bCCm3lA2srRG8YfmyXZQ==
-  dependencies:
-    bindings "^1.3.0"
-    nan "^2.10.0"
-    prebuild-install "^4.0.0"
-
 node-libs-browser@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/node-libs-browser/-/node-libs-browser-2.1.0.tgz#5f94263d404f6e44767d726901fff05478d600df"
@@ -5077,22 +5026,6 @@ node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
   integrity sha512-d1xFs+C/IPS8Id0qPTZ4bUT8wWryfR/OzzAFxweG+uLN85oPzyo2Iw6bVlLQ/JOdgNonXLCoRyqDzDWq4iw72A==
-  dependencies:
-    detect-libc "^1.0.2"
-    mkdirp "^0.5.1"
-    needle "^2.2.1"
-    nopt "^4.0.1"
-    npm-packlist "^1.1.6"
-    npmlog "^4.0.2"
-    rc "^1.2.7"
-    rimraf "^2.6.1"
-    semver "^5.3.0"
-    tar "^4"
-
-node-pre-gyp@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.11.0.tgz#db1f33215272f692cd38f03238e3e9b47c5dd054"
-  integrity sha512-TwWAOZb0j7e9eGaf9esRx3ZcLaE5tQ2lvYy1pb5IAaG1a2e2Kv5Lms1Y4hpj+ciXJRofIxxlt5haeQ/2ANeE0Q==
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"
@@ -5720,27 +5653,6 @@ postcss@^6.0.1, postcss@^6.0.23:
     chalk "^2.4.1"
     source-map "^0.6.1"
     supports-color "^5.4.0"
-
-prebuild-install@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-4.0.0.tgz#206ce8106ce5efa4b6cf062fc8a0a7d93c17f3a8"
-  integrity sha512-7tayxeYboJX0RbVzdnKyGl2vhQRWr6qfClEXDhOkXjuaOKCw2q8aiuFhONRYVsG/czia7KhpykIlI2S2VaPunA==
-  dependencies:
-    detect-libc "^1.0.3"
-    expand-template "^1.0.2"
-    github-from-package "0.0.0"
-    minimist "^1.2.0"
-    mkdirp "^0.5.1"
-    node-abi "^2.2.0"
-    noop-logger "^0.1.1"
-    npmlog "^4.0.1"
-    os-homedir "^1.0.1"
-    pump "^2.0.1"
-    rc "^1.1.6"
-    simple-get "^2.7.0"
-    tar-fs "^1.13.0"
-    tunnel-agent "^0.6.0"
-    which-pm-runs "^1.0.0"
 
 prebuild-install@^5.0.0:
   version "5.1.0"
@@ -7260,11 +7172,6 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-struct@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/struct/-/struct-0.0.12.tgz#8330af872664e9a5bd678664524857c50908038a"
-  integrity sha1-gzCvhyZk6aW9Z4ZkUkhXxQkIA4o=
-
 style-loader@^0.23.0:
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.23.0.tgz#8377fefab68416a2e05f1cabd8c3a3acfcce74f1"
@@ -7801,21 +7708,6 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
-
-usb@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/usb/-/usb-1.3.3.tgz#4e8a4b44ab8833fa1c4fb99778ebae1d2d626970"
-  integrity sha512-WRBxI54yEs2QPj28G6kITI3Wu7VxrtHbqiDvDRUDKdg97lcK1pTP8y9LoDWF22OiCCrEvrdeq0lNcr84QOzjXQ==
-  dependencies:
-    nan "^2.8.0"
-    node-pre-gyp "^0.10.0"
-
-"usb@github:tessel/node-usb":
-  version "1.3.3"
-  resolved "https://codeload.github.com/tessel/node-usb/tar.gz/2961e948d93bec0cdd1908c03e3f1f98dfd3fd44"
-  dependencies:
-    nan "^2.8.0"
-    node-pre-gyp "^0.11.0"
 
 use@^3.1.0:
   version "3.1.1"
