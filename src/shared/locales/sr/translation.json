@@ -473,11 +473,11 @@
     },
     "advancedThemeCustomisation": {
         "background": "Pozadina",
-        "frame": "Frame"
+        "frame": "Okvir"
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Model teme"
     },
     "themes": {
         "classic": "Classic",
@@ -495,28 +495,28 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Da li ste sigurni da se želite odjaviti?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skeniraj QR kod"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "SISTEM JEDINICA",
+        "trillion": "Trilion",
+        "billion": "Milijarda",
+        "million": "Milion",
+        "thousand": "Hiljada",
+        "one": "Jedna"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Zašto ne mogu potrošiti ceo iznos?",
+        "spentAddressExplanation": "Imate sredstva na jednoj ili više prethodno upotrebljenih adresa. Ponovna upotreba adresa je opasna kod IOTA-e, stoga ovaj novčanik ne podržava slanje s iste adrese više od jednom.",
+        "discordInformation": "Više informacija o tome i pomoć potražite na #help kanalu zvaničnog Discorda."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone",
+        "areYouSure": "Da li ste sigurni da želite da izbrišete svoj račun?",
+        "yourSeedWillBeRemoved": "Vaš seed i istorija transakcija će biti uklonjeni.",
+        "thisAction": "Ova radnja se ne može poništiti",
         "enterPassword": "Unesite loziku da biste izbrisali nalog."
     },
     "manualSync": {
@@ -583,8 +583,8 @@
         "key": "Ključ",
         "twoFAEnabled": "2FA je omogućena",
         "twoFAEnabledExplanation": "Omogućili ste dvofaktorsku autentikaciju.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA je onemogućena",
+        "twoFADisabledExplanation": "Uspješno ste onemogućili dvofaktorsku autentikaciju.",
         "enterCode": "Enter the code from your 2FA app",
         "code": "Code",
         "twoFaToken": "2FA Token"
@@ -715,34 +715,34 @@
         "explanation": "Trinity Desktop verzija 0.3.4 je sadržala grešku koja privremeno može zaključati sredstva. Ovo utiče na mali broj korisnika koji su izvršili transakcije u verziji 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
         "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepConfirmation": "Premestićete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
+        "sweepConfirmationTitle": "Potvrda prenosa"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ready": "Ledger novčanik je povezan i spreman",
+        "notReady": "Ako želite da koristite Ledge, povežite ga i otklljučajte",
+        "indexInUse": "Indeks se već koristi za račun {{account}}",
+        "indexInUseExplanation": "Vaš izabrani indeks se već koristi na jednom od vaših računa. Izaberite drugi indeks.",
+        "proceedWithLedger": "Nastavite sa postavkom Ledger novčanika",
+        "accountIndex": "Indeks računa",
+        "accountPage": "Strana računa",
+        "chooseAccountIndex": "Izaberite indeks Ledger računa",
+        "accountIndexExplanation": "Vaš Ledger može sačuvati višestruke seed-ove. Svaki seed se identifikuje jedinstvenim brojem indeksa. Nekorišćeni indeks je unapred odabran, ali slobodni ste da izaberete drugi. Obavezno zapišite odabrani broj indeksa.",
+        "accountPageExplanation": "Neki novčanici trećih strana zahtevaju strane.",
+        "connectionError": "Nije moguće povezivanje sa Ledger novčanikom",
+        "connectionErrorExplanation": "Proverite da li je Ledger povezan i otključan.",
+        "connectionTitle": "Povežite Ledger",
+        "connectionExplanation": "Ledger mora biti povezan da bi se izvršila ova funkcija.",
+        "transactionTitle": "Skrolujte i odobrite transakciju na svom Ledger uređaju",
+        "transactionExplanation": "Upotrebite Ledger za odobravanje odlazne transakcije.",
+        "applicationTitle": "Otvorite IOTA aplikaciju",
+        "applicationExplanation": "Na Ledger uređaju otvorite IOTA aplikaciju da biste nastavili da koristite Trinity.",
+        "cannotSendZeroValueTitle": "Transakcija čija je vrednost 0 ne može biti poslata",
+        "cannotSendZeroValueExplanation": "Transakcije čija je vrednost 0 nisu moguče preko Ledger uređaja.",
+        "ledgerDisconnectedTitle": "Ledger nije povezan",
+        "ledgerDisconnectedExplanation": "Ledger više nije povezan. Povežite ga i pokušajte ponovo.",
+        "ledgerDeniedTitle": "Transakcija odbijena",
+        "ledgerDeniedExplanation": "Transakcija je odbijana na Ledger novčaniku.",
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
