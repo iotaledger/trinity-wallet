@@ -122,6 +122,7 @@ class Ledger {
                     rejected = true;
 
                     ipc.removeListener('ledger', callbackAbort);
+                    Wallet.send('ledger', { awaitApplication: false });
 
                     if (timeout) {
                         clearTimeout(timeout);
