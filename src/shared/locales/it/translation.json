@@ -276,7 +276,7 @@
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "Nuovo indirizzo",
+        "generateNewAddress": "Sync address",
         "noAddresses": "NESSUN INDIRIZZO",
         "spent": "Speso",
         "missingPermission": "È richiesto l'accesso al file system",
@@ -407,7 +407,6 @@
         "reset": "Reimposta"
     },
     "walletSetup": {
-        "creatingSeed": "Creazione di un seme",
         "okay": "Va bene. Cominciamo a impostare il tuo portafoglio!",
         "doYouNeedASeed": "È necessario creare un nuovo seme?",
         "seedExplanation": "Il tuo seme IOTA è la chiave d'accesso primario ai tuoi fondi. Consta di 81 caratteri, contiene solo lettere A-Z o il numero 9.",
