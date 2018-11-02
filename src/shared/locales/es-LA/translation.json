@@ -276,7 +276,7 @@
         "copyAddress": "Copiar dirección",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "Tu dirección se ha copiado en el portapapeles.",
-        "generateNewAddress": "NUEVA DIRECCIÓN",
+        "generateNewAddress": "Sync address",
         "noAddresses": "SIN DIRECCIONES",
         "spent": "Usada",
         "missingPermission": "Permisos de sistema requeridos",
@@ -407,7 +407,6 @@
         "reset": "Reiniciar"
     },
     "walletSetup": {
-        "creatingSeed": "Creando una semilla",
         "okay": "OK. ¡Vamos a configurar tu billetera!",
         "doYouNeedASeed": "¿Necesita crear una nueva semilla?",
         "seedExplanation": "Su semilla de IOTA es la clave maestra de sus fondos. Posee 81 caracteres y usa sólo A-Z y el número 9.",
