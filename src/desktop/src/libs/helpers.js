@@ -109,6 +109,23 @@ const tritsToChars = (trits) => {
     return seed;
 };
 
+/**
+ * Replaces all non ASCII (with extended ASCII codes) characters for an empty string
+ * @param {string} source - String with non ASCII chars to be cleansed
+ * @param {string} fallback - Optional string to be returned in the event of a falsy source
+ * @returns {string} Returns a new string without non ASCII characters
+ */
+const removeNonASCII = (source, fallback = '') => {
+    let newStr = '';
+    if (source) {
+        newStr = source.replace(/[^\x00-\xFF]/g, '');
+    }
+    if (!newStr && fallback) {
+        newStr = fallback.replace(/[^\x00-\xFF]/g, '');
+    }
+    return newStr;
+};
+
 module.exports = {
     capitalize,
     shorten,
@@ -117,4 +134,5 @@ module.exports = {
     bytesToTrits,
     tritsToChars,
     charToByte,
+    removeNonASCII,
 };

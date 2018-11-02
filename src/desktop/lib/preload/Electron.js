@@ -11,7 +11,7 @@ const argon2 = require('argon2');
 const machineUuid = require('machine-uuid-sync');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
-const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
+const { byteToTrit, byteToChar, removeNonASCII } = require('../../src/libs/helpers');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -366,7 +366,10 @@ const Electron = {
         try {
             const content = await kdbx.exportVault(seeds, password);
             const now = new Date();
-            const prefix = seeds.length === 1 ? seeds[0].title : 'SeedVault';
+            let prefix = 'SeedVault';
+            if (seeds.length === 1) {
+                prefix = removeNonASCII(seeds[0].title, 'SeedVault').trim();
+            }
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
                 defaultPath: `${prefix}-${now

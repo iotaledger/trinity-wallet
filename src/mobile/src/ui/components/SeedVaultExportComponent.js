@@ -20,6 +20,7 @@ import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 import PasswordFields from './PasswordFields';
+import { removeNonASCII } from '../../../../shared/libs/utils';
 
 const steps = [
     'isValidatingWalletPassword',
@@ -135,7 +136,7 @@ class SeedVaultExportComponent extends Component {
         }
         const { t, selectedAccountName } = this.props;
         const now = new Date();
-        const prefix = selectedAccountName || 'SeedVault';
+        const prefix = removeNonASCII(selectedAccountName, 'SeedVault').trim();
         const path =
             (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
             `/${prefix}${now
