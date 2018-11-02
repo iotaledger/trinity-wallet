@@ -276,7 +276,7 @@
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "Nowy adres",
+        "generateNewAddress": "Sync address",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
@@ -407,7 +407,6 @@
         "reset": "Resetuj"
     },
     "walletSetup": {
-        "creatingSeed": "Tworzenie klucza seed",
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouNeedASeed": "Czy chcesz utworzyć nowy seed?",
         "seedExplanation": "Seed IOTA jest głównym kluczem do Twoich funduszy. Składa się on z 81 znaków i może zawierać jedynie wielkie litery A-Z oraz cyfry 9.",
