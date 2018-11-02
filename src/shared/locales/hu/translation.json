@@ -276,7 +276,7 @@
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Új cím",
+        "generateNewAddress": "Sync address",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
@@ -407,7 +407,6 @@
         "reset": "Gyári állapotba való visszaállítás"
     },
     "walletSetup": {
-        "creatingSeed": "Mester jelszó létrehozása",
         "okay": "Rendben. Állítsuk be a tárcáját!",
         "doYouNeedASeed": "Szüksége van új mester jelszó létrehozására?",
         "seedExplanation": "Az IOTA mester jelszó a számlájához tartozó összes címen levő összeg eléréséhez szolgál. 81 karakter hosszú, és csak nagy A-Z betűkből, valamint a 9-es számjegyből állhat.",
