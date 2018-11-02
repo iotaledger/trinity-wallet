@@ -276,7 +276,7 @@
         "copyAddress": "کپی کردن آدرس",
         "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "آدرس شما در کلیپ بورد کپی شد.",
-        "generateNewAddress": "آدرس جدید",
+        "generateNewAddress": "Sync address",
         "noAddresses": "بدون آدرس",
         "spent": "از قبل ساخته شده",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "ساختن یک سید",
         "okay": "باشه. بیایید کیف پول خود را تنظیم کنیم!",
         "doYouNeedASeed": "آیا شما نیاز به ایجاد یک سید جدید دارید؟",
         "seedExplanation": "سید آیوتا شما کلید اصلی برای وجوه شما است. این سید 81 کاراکتر میباشد، و فقط با حروف A-Z یا تا شماره 9 تشکیل شده است.",
