@@ -112,6 +112,11 @@ const initialState = {
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
+            return {
+                ...state,
+                lockScreenTimeout: action.payload,
+            };
         case ActionTypes.SET_REMOTE_POW:
             return {
                 ...state,
@@ -126,11 +131,6 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoNodeSwitching: action.payload === undefined ? !state.autoNodeSwitching : action.payload,
-            };
-        case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
-            return {
-                ...state,
-                lockScreenTimeout: action.payload,
             };
         case ActionTypes.SET_LOCALE:
             return {
@@ -238,6 +238,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.SET_BYTETRIT_INFO:
             return {
                 ...state,
+                // FIXME: byteTritInfo not defined in initial state.
                 byteTritInfo: action.payload,
             };
         case ActionTypes.SET_TRAY:
