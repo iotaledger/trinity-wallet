@@ -276,7 +276,7 @@
         "copyAddress": "पता कॉपी करें",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "आपका पता क्लिपबोर्ड पर कॉपी किया गया है।",
-        "generateNewAddress": "नया एड्रेस",
+        "generateNewAddress": "Sync address",
         "noAddresses": "कोई पता नहीं",
         "spent": "खर्च",
         "missingPermission": "File system permission required",
@@ -407,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "नया सीड बनाये",
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouNeedASeed": "क्या आपको एक नया सीड बनाने की जरूरत है?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
