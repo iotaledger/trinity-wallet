@@ -34,7 +34,7 @@
         "save": "Sačuvaj",
         "close": "Zatvori",
         "export": "Izvoz",
-        "help": "Help",
+        "help": "Pomoć",
         "import": "Uvoz",
         "continue": "Nastavi",
         "enable": "Omogući",
@@ -45,7 +45,7 @@
         "paperWallet": "Odštampajte kopiju",
         "addToPasswordManager": "Dodati upravljaču lozinkama",
         "shareSeed": "Deljenje seed-a",
-        "share": "Share",
+        "share": "Podeli",
         "proceed": "Nastavi",
         "qr": "QR",
         "enterSeed": "Unesite seed.",
@@ -55,9 +55,9 @@
         "password": "Lozinka",
         "unrecognisedPassword": "Lozinka nije prepoznata",
         "unrecognisedPasswordExplanation": "Lozinka nije prepoznata. Pokušajte ponovo.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "unrecognisedAccount": "Nepoznat nalog",
+        "unrecognisedAccountExplanation": "Račun pod nazivom {{accountName}} nije prepoznat. Razmislite o resetovanju svog novčanika.",
+        "emptyPasswordExplanation": "Morate uneti lozinku. Pokušajte ponovo.",
         "capsLockIsOn": "Caps Lock je uključen",
         "syncInProgress": "Sinhronizacija u toku",
         "syncInProgressExplanation": "Sačekajte dok se sinhronizacija ne završi.",
@@ -143,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Ponovni pokušaj sa lokalnim dokazom o radu.",
         "tryingAgainWithDifferentNode": "Ponovni pokušaj sa drugim čvorom.",
         "errorFetchingAccountInformation": "Greška prilikom dohvata podataka o računu.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Keychain greška",
+        "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u za sigurno skladištenje.",
+        "mainWallet": "GLAVNI RAČUN"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedozvoljene znakove",
@@ -210,29 +210,29 @@
         "invalidCharacters": "Seed sadrži nedozvoljene znakove",
         "invalidCharactersExplanation": "Seed može sadržati samo velika slova A-Z i broj 9. Vaš seed sadrži nedozvoljene znakove. Molimo pokušajte ponovo.",
         "seedTooShort": "Seed je prekratak",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Seed je previše dug",
         "seedTooShortExplanation": "Seed može imati maksimalno {{maxLength}} karaktera. Vaš seed trenutno ima {{currentLength}} karaktera. Molimo pokušajte ponovo.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "Seed treba da se sastoji od {{maxLength}} znakova i treba da sadrži velika slova A-Z ili broj 9. Ne možete koristiti seed duži od {{maxLength}} znakova.",
+        "neverShare": "NIKADA NE OTKRIVAJTE SVOJ SEED BILO KOME"
     },
     "home": {
-        "balance": "BALANCE",
+        "balance": "SALDO",
         "send": "POŠALJI",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "receive": "PRIMI",
+        "history": "ISTORIJA",
+        "settings": "POSTAVKE"
     },
     "languageSetup": {
-        "language": "Language",
-        "letsGetStarted": "Let's get started"
+        "language": "Jezik",
+        "letsGetStarted": "Počnimo"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "login": "Log In",
-        "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "emptyPassword": "Prazna lozinka",
+        "emptyPasswordExplanation": "Za prijavu morate uneti lozinku. Molimo pokušajte ponovo.",
+        "enterPassword": "Unesite lozinku.",
+        "login": "Prijavi se",
+        "setNode": "Postavi node",
+        "whyBiometricDisabled": "Zašto je biometrijska autentikacija onemogućena?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -359,7 +359,7 @@
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
-        "language": "Language",
+        "language": "Jezik",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
