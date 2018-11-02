@@ -276,7 +276,7 @@
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
-        "generateNewAddress": "Neue Adresse",
+        "generateNewAddress": "Sync address",
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
@@ -407,7 +407,6 @@
         "reset": "Zurücksetzen"
     },
     "walletSetup": {
-        "creatingSeed": "Seed erstellen",
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouNeedASeed": "Möchtest du einen neuen Seed erstellen?",
         "seedExplanation": "Dein Seed ist der Hauptzugang zu deinem Guthaben. Er ist 81 Zeichen lang und besteht aus den Buchstaben A-Z, sowie der Zahl 9.",
