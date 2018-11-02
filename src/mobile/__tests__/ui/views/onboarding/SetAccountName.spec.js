@@ -88,7 +88,7 @@ describe('Testing SetAccountName component', () => {
                     expect(props.setAdditionalAccountInfo).toHaveBeenCalledWith({
                         addingAdditionalAccount: true,
                         additionalAccountName: 'foo',
-                        additionalAccountType: 'keychain',
+                        additionalAccountMeta: { type: 'keychain' },
                         usedExistingSeed: false,
                     });
                 });

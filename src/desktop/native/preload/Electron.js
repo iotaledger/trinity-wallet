@@ -12,6 +12,7 @@ const machineUuid = require('machine-uuid-sync');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
 const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
+const ledger = require('../hardware/Ledger');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -357,6 +358,15 @@ const Electron = {
     },
 
     /**
+     * Send a IPC message to current window
+     * @param {string} type - Message type
+     * @param {any} payload - Message payload
+     */
+    send: (type, payload) => {
+        currentWindow.webContents.send(type, payload);
+    },
+
+    /**
      * Export SeedVault file
      * @param {array} - Seed object array
      * @param {string} - Plain text password to use for SeedVault
@@ -382,7 +392,7 @@ const Electron = {
                 throw Error('Export cancelled');
             }
 
-            fs.writeFileSync(path, Buffer.alloc(content));
+            fs.writeFileSync(path, Buffer.from(content));
 
             return false;
         } catch (error) {
@@ -545,6 +555,8 @@ const Electron = {
     },
 
     _eventListeners: {},
+
+    ledger,
 };
 
 module.exports = Electron;

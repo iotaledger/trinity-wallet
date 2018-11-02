@@ -1,6 +1,6 @@
 const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
 const electron = require('electron');
-const initMenu = require('./lib/Menu.js');
+const initMenu = require('./native/Menu.js');
 const path = require('path');
 const URL = require('url');
 const fs = require('fs');
@@ -10,6 +10,11 @@ const electronSettings = require('electron-settings');
  * Expose Garbage Collector flag for manual trigger after seed usage
  */
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
+
+/**
+ * Disable Remote Debugging Port on production build
+ */
+app.commandLine.appendSwitch('remote-debugging-port', '');
 
 /**
  * Set AppUserModelID for Windows notifications functionallity
@@ -107,7 +112,7 @@ function createWindow() {
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(__dirname, `lib/preload/${devMode ? 'development' : 'production'}.js`),
+            preload: path.resolve(__dirname, `native/preload/${devMode ? 'development' : 'production'}.js`),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -125,7 +130,7 @@ function createWindow() {
             show: false,
             webPreferences: {
                 nodeIntegration: false,
-                preload: path.resolve(__dirname, 'lib/preload/tray.js'),
+                preload: path.resolve(__dirname, 'native/preload/tray.js'),
                 disableBlinkFeatures: 'Auxclick',
                 webviewTag: false,
             },

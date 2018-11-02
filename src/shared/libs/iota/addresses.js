@@ -497,6 +497,7 @@ export const getAddressesUptoRemainder = (provider) => (
     blacklistedRemainderAddresses = [],
 ) => {
     const latestAddress = getLatestAddress(addressData);
+    const latestAddressData = getLatestAddressData(addressData);
 
     const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
 
@@ -509,6 +510,7 @@ export const getAddressesUptoRemainder = (provider) => (
             security: DEFAULT_SECURITY,
         }).then((newAddressData) => {
             const remainderAddress = getLatestAddress(newAddressData);
+            const remainderAddressData = getLatestAddressData(newAddressData);
 
             const addressDataUptoRemainder = { ...addressData, ...newAddressData };
 
@@ -523,12 +525,17 @@ export const getAddressesUptoRemainder = (provider) => (
 
             return {
                 remainderAddress,
+                remainderIndex: remainderAddressData.index,
                 addressDataUptoRemainder,
             };
         });
     }
 
-    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressData });
+    return Promise.resolve({
+        remainderAddress: latestAddress,
+        remainderIndex: latestAddressData.index,
+        addressDataUptoRemainder: addressData,
+    });
 };
 
 /**

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountName, getSelectedAccountType, getAccountNamesFromState } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from 'selectors/accounts';
 
 import { MAX_ACC_LENGTH } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
@@ -21,7 +21,7 @@ class AccountName extends PureComponent {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        accountType: PropTypes.string.isRequired,
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -43,7 +43,7 @@ class AccountName extends PureComponent {
      * @returns {undefined}
      **/
     async setAccountName() {
-        const { accountName, accountType, accountNames, password, changeAccountName, generateAlert, t } = this.props;
+        const { accountName, accountMeta, accountNames, password, changeAccountName, generateAlert, t } = this.props;
 
         const newAccountName = this.state.newAccountName.replace(/^\s+|\s+$/g, '');
 
@@ -73,7 +73,7 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        const seedStore = await new SeedStore[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
         await seedStore.renameAccount(newAccountName);
     }
 
@@ -106,7 +106,7 @@ class AccountName extends PureComponent {
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     accountName: getSelectedAccountName(state),
-    accountType: getSelectedAccountType(state),
+    accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
 });
 

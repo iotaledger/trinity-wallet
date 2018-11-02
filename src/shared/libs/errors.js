@@ -30,4 +30,10 @@ export default {
     PROMOTIONS_LIMIT_REACHED: 'Promotions limit reached.',
     EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
     DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
+    MAX_INPUTS_EXCEEDED: (count, max) => `Can't process transactions with ${count} inputs. The limit is ${max}.`,
+    LEDGER_ZERO_VALUE: 'Cannot send 0 value transfers with a Ledger device',
+    LEDGER_DISCONNECTED: 'Ledger device disconnected',
+    LEDGER_CANCELLED: 'Ledger transaction cancelled',
+    LEDGER_DENIED: 'Ledger transaction denied by user',
+    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
 };

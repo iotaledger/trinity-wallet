@@ -11,7 +11,7 @@ import { getCurrencyData } from 'actions/settings';
 import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 
-import { getSelectedAccountName, getSelectedAccountType } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
 import { capitalize } from 'libs/helpers';
 import { hash, authorize } from 'libs/crypto';
@@ -33,7 +33,7 @@ class Login extends React.Component {
         /** @ignore */
         currentAccountName: PropTypes.string,
         /** @ignore */
-        currentAccountType: PropTypes.string,
+        currentAccountMeta: PropTypes.object,
         /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
@@ -105,14 +105,14 @@ class Login extends React.Component {
      * @returns {undefined}
      */
     setupAccount = async () => {
-        const { wallet, currency, currentAccountName, currentAccountType } = this.props;
+        const { wallet, currency, currentAccountName, currentAccountMeta } = this.props;
 
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
-        const accountType = wallet.addingAdditionalAccount ? wallet.additionalAccountType : currentAccountType;
+        const accountMeta = wallet.addingAdditionalAccount ? wallet.additionalAccountMeta : currentAccountMeta;
 
         let seedStore;
         try {
-            seedStore = await new SeedStore[accountType](wallet.password, accountName);
+            seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
         } catch (e) {
             e.accountName = accountName;
             throw e;
@@ -248,7 +248,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
     currentAccountName: getSelectedAccountName(state),
-    currentAccountType: getSelectedAccountType(state),
+    currentAccountMeta: getSelectedAccountMeta(state),
     ui: state.ui,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,

@@ -185,11 +185,14 @@ export const selectAccountInfo = createSelector(
 /**
  *   Selects account name for currently selected account.
  *
- *   @method getSelectedAccountType
+ *   @method getSelectedAccountMeta
  *   @param {object} state
- *   @returns {string}
+ *   @returns {object}
  **/
-export const getSelectedAccountType = createSelector(selectAccountInfo, (account) => account.type || 'keychain');
+export const getSelectedAccountMeta = createSelector(
+    selectAccountInfo,
+    (account) => account.meta || { type: 'keychain' },
+);
 
 /**
  *   Selects latest address from account info state partial.
