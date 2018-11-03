@@ -744,8 +744,8 @@
         "ledgerDeniedTitle": "Transakcija odbijena",
         "ledgerDeniedExplanation": "Transakcija je odbijena na Ledger uređaju.",
         "ledgerIncorrectIndex": "Neodgovarajući Ledger uređaj ili indeks",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
+        "ledgerIncorrectIndexExplanation": "Povezani Ledger uređaj ne odgovara onome povezanom s ovim računom ili je fraza za oporavak izmijenjena.",
+        "checkAddress": "Provjerite adresu primatelja",
+        "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju. Pritisnite \"Sinkroniziraj adresu\" ukoliko ne odgovara."
     }
 }
