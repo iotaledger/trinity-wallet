@@ -689,26 +689,26 @@
         "agree": "Jeg aksepterer"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Systemstatus app",
+        "trayExplanation": "Gir en oversikt over din saldo og nyeste transaksjoner.",
         "notLoggedIn": "Du er ikke innlogget",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "setupIncomplete": "Lommebok-installasjonen er ufullstendig",
+        "completeSetup": "Fullfør installasjon"
     },
     "notifications": {
         "notifications": "Varslinger",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notificationExplanation": "Motta systemomfattende varsler om nye transaksjoner.",
         "typeConfirmations": "Varsle meg om bekreftelser",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "typeMessages": "Varsle meg om null-transaksjoner",
+        "multipleTx": "Mottar fler transaksjoner til {{account}}",
+        "valueTx": "Mottar {{value}} til {{account}}",
+        "messageTx": "Du har mottatt en melding til {{account}}",
+        "confirmedIn": "Innkommende {{value}} til {{account}} er bekreftet",
+        "confirmedOut": "Utgående {{value}} fra {{account}} er bekreftet"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "Midler er ulåst",
+        "sweepSucceededExplanation": "Midlene er vellykket ulåst og flyttet til en ny adresse. Promoter transaksjonen for å hjelp den å bekreftes.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
         "warningTitle": "Warning: Locked funds detected",
