@@ -600,18 +600,18 @@
         "unrecognisedKey": "Ukjent SeedVault nøkkel",
         "unrecognisedKeyExplanation": "Nøkkelen ble ikke gjenkjent. Prøv på nytt.",
         "emptyKey": "Ingen SeedVault nøkkel angitt",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "emptyKeyExplanation": "Du må angi et passord. Vennligst forsøk igjen.",
+        "importSuccess": "Hovednøkkel importert",
+        "importSuccessExplanation": "Din hovednøkkel ble importert.",
+        "saveToDownloadFolder": "Lagre til nedlastingsmappen",
         "importSeedVault": "Importer SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "dropSeedVaultHere": "Slipp SeedVault her <1></1> eller klikk for å bla igjennom",
+        "enterKeyExplanation": "Skriv inn din nøkkel for å åpne SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
         "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil trenge denne nøkkelen for å gjenopprette din hovednøkkel fra SeedVault-sikkerhetskopien. Nøkkelen kan være den samme som passordet du bruker for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -671,18 +671,18 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny versjon tilgjengelig",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "installUpdate": "Installere oppdateringen og starte på nytt",
+        "installUpdateExplanation": "Nedlastingen er fullført, Trinity startes nå på nytt for å installere oppdateringen.",
+        "downloadingUpdate": "Laster ned oppdatering",
+        "downloadProgress": "{{transferred}} av {{total}} er lastet ned"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Feilmeldingslogg"
     },
     "terms": {
         "termsAndConditions": "Vilkår",
         "accept": "Jeg aksepterer",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Les hele teksten"
     },
     "privacyPolicy": {
         "privacyPolicy": "Personvernerklæring",
@@ -745,7 +745,7 @@
         "ledgerDeniedExplanation": "Transaksjonen ble ikke godkjent på Ledger-enheten.",
         "ledgerIncorrectIndex": "Ledger-enhet feil",
         "ledgerIncorrectIndexExplanation": "Tilkoblede Ledger samsvarer ikke med den knyttet til denne kontoen, eller gjenopprettingsfrasen er endret.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
+        "checkAddress": "Kontroller mottaksadressen",
+        "checkAddressExplanation": "Kontroller at adressen er lik den som vises på Ledger-enheten. Trykk \"Synk adresse\" vis ikke."
     }
 }
