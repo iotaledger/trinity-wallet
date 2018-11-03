@@ -276,7 +276,7 @@
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Adresse de synchronisation",
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
