@@ -88,7 +88,7 @@ describe('Testing SetAccountName component', () => {
                     expect(props.setAdditionalAccountInfo).toHaveBeenCalledWith({
                         addingAdditionalAccount: true,
                         additionalAccountName: 'foo',
-                        additionalAccountType: 'keychain',
+                        additionalAccountMeta: { type: 'keychain' },
                         usedExistingSeed: false,
                     });
                 });
@@ -98,10 +98,7 @@ describe('Testing SetAccountName component', () => {
 
                     const wrapper = shallow(<SetAccountName {...props} />);
 
-                    wrapper
-                        .find('CustomTextInput')
-                        .props()
-                        .onChangeText('foo');
+                    wrapper.find('CustomTextInput').props().onChangeText('foo');
 
                     expect(wrapper.state('accountName')).toEqual('foo');
                 });
