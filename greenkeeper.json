@@ -1,7 +1,15 @@
 {
     "groups": {
         "shared": {
-            "packages": ["package.json", "src/shared/package.json"]
+            "packages": ["package.json", "src/shared/package.json"],
+            "ignore": [
+                "babel-eslint",
+                "eslint",
+                "eslint-config-airbnb",
+                "eslint-config-prettier",
+                "eslint-plugin-babel",
+                "lint-staged"
+            ]
         },
         "desktop": {
             "packages": ["src/desktop/package.json"]
