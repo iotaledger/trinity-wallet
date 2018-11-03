@@ -311,21 +311,21 @@ export const rgbToHex = (c) => {
 };
 
 /**
- * Replaces all non ASCII (with extended ASCII codes) characters for an empty string
+ * Replaces all non alpha numeric (plus _ and -) characters for an empty string
  *
- * @method removeNonASCII
+ * @method removeNonAlphaNumeric
  * @param {string} source - String with non ASCII chars to be cleansed
  * @param {string} fallback - Optional string to be returned in the event of a falsy source
  *
  * @returns {string} Returns a new string without non ASCII characters
  */
-export const removeNonASCII = (source, fallback = '') => {
+export const removeNonAlphaNumeric = (source, fallback = '') => {
     let newStr = '';
     if (source) {
-        newStr = source.replace(/[^\x00-\xFF]/g, '');
+        newStr = source.replace(/[^a-zA-Z0-9_-]/g, '');
     }
     if (!newStr && fallback) {
-        newStr = fallback.replace(/[^\x00-\xFF]/g, '');
+        newStr = fallback.replace(/[^a-zA-Z0-9_-]/g, '');
     }
     return newStr;
 };
