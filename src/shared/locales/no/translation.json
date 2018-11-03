@@ -139,13 +139,13 @@
         "broadcastError": "Kunne ikke kringkaste transaksjonen",
         "addressesAlreadySpentFrom": "En eller flere av adressene har allerede blitt brukt.",
         "problemSendingYourTransaction": "Det oppstod et problem ved sending transaksjonen.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "problemPerformingProofOfWork": "Det oppsto et problem med PoW.",
+        "tryingAgainWithLocalPoW": "Prøver igjen med lokal PoW.",
+        "tryingAgainWithDifferentNode": "Prøver igjen med en annen node.",
+        "errorFetchingAccountInformation": "Feil ved henting av kontoinformasjon.",
+        "errorAccessingKeychain": "Nøkkelring feil",
+        "errorAccessingKeychainExplanation": "Ingen tilgang til nøkkelring nødvendig for sikker lagring.",
+        "mainWallet": "HOVEDKONTO"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -248,10 +248,10 @@
         "pressForNewSeed": "Trykk for ny hovednøkkel",
         "generateSuccess": "Hovednøkkel er generert",
         "individualLetters": "Trykk individuelle tegn for å randomisere dem.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Trykk <1><0>{{count}}</0></1> bokstav for å randomisere det.",
+        "individualLetterCount_plural": "Trykk <1><0>{{count}}</0></1> bokstaver for å randomisere det.",
+        "randomiseCharsToContinue": "Randomiser <1>{{count}}</1> tegn til for å fortsette.",
+        "randomiseCharsToContinue_plural": "Randomiser <1>{{count}}</1> tegn til for å fortsette.",
         "whatIsASeed": "Hva er en hovednøkkel?"
     },
     "onboardingComplete": {
@@ -276,7 +276,7 @@
         "copyAddress": "Kopier adresse",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Synkroniser adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
         "missingPermission": "Trenger tillatelse til filsystemet",
@@ -292,7 +292,7 @@
         "paperWallet": "Papirlommebok",
         "writeYourSeedDown": "Skriv ned hovednøkkelen",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
         "whatIsChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum",
@@ -308,8 +308,8 @@
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre.",
         "enterSeedBelow": "Angi din nyopprettede hovednøkkel nedenfor for å bekrefte at du har sikkerhetskopiert den riktig",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Ikke kopier lim din hovednøkkel",
+        "clipboardWarningExplanation": "ADVARSEL: Kopier lim er deaktivert for din sikkerhet."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -346,10 +346,10 @@
     "modeSelection": {
         "advanced": "Avansert",
         "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "advancedModeExplanation": "Ekspertmodus viser mer detaljert teknisk informasjon.",
+        "modesExplanation": "Aktiver kun ekspertmodus dersom du er en erfaren IOTA bruker. Hvis ikke kan dette være forvirrende.",
+        "modeUpdated": "Modus oppdatert",
+        "modeUpdatedExplanation": "Du har endret til {{mode}} -modus"
     },
     "settings": {
         "transferSending": "Sender transaksjon",
@@ -437,7 +437,7 @@
         "empty": "Tom",
         "retrying": "Prøver på nytt",
         "yesterday": "I går",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Fremme en pakke til"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -480,16 +480,16 @@
         "mockup": "Blanding"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
+        "classic": "Klassisk",
+        "contemporary": "Moderne",
+        "dark": "Mørkt",
+        "default": "Standard",
+        "electric": "Elektrisk",
+        "ionic": "Jonisk",
+        "light": "Lyst",
+        "lucky": "Heldig",
         "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "steelblue": "Stålblå"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -514,9 +514,9 @@
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Er du sikker på at du vil slette denne kontoen?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonshistorikk vil bli fjernet.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Denne handlingen kan ikke angres",
         "enterPassword": "Skriv inn ditt passord for å slette kontoen."
     },
     "manualSync": {
@@ -536,8 +536,8 @@
         "enterPassword": "Skriv inn passordet for å vise hovednøkkelen.",
         "viewSeed": "Vis hovednøkkel",
         "hideSeed": "Gjem hovednøkkel",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "notAvailable": "Eksport av hovednøkkel er ikke tilgjengelig for {{accountType}} kontotype",
+        "accountIndex": "Din Ledger konto indeks"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du lagret hovednøkkelen?",
