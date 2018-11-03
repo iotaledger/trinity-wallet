@@ -89,7 +89,7 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
-            type: payload.accountType || get(state.accountInfo, `${payload.accountName}.type`) || 'keychain',
+            meta: payload.accountMeta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             balance: payload.balance,
             addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
             transfers: {
@@ -236,6 +236,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: mergeAddressData(
                             get(state.accountInfo, `${action.payload.accountName}.addresses`),
@@ -262,6 +263,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: setAddressData(
                             get(state.accountInfo, `${action.payload.accountName}.addresses`),

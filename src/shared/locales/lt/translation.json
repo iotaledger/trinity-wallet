@@ -55,8 +55,8 @@
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Neatpažinta paskyra",
+        "unrecognisedAccountExplanation": "Paskyra pavadinimu {{accountName}} neatpažinta. Bandykite nustatyti piniginę iš naujo.",
         "emptyPasswordExplanation": "Reikia įvesti slaptažodį. Bandykite dar kartą.",
         "capsLockIsOn": "Caps Lock įjungta",
         "syncInProgress": "Sinchronizuojama",
@@ -276,7 +276,7 @@
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
-        "generateNewAddress": "Naujas adresas",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
@@ -347,7 +347,9 @@
         "advanced": "Išplėstinis",
         "standard": "Standartinis",
         "advancedModeExplanation": "Išplėstinis režimas rodys išsamesnę techninę informaciją.",
-        "modesExplanation": "Išplėstinį režimą naudokite tik jeigu esate patyręs IOTA naudotojas. Kitu atveju jums gali kilti daug neaiškumų."
+        "modesExplanation": "Išplėstinį režimą naudokite tik jeigu esate patyręs IOTA naudotojas. Kitu atveju jums gali kilti daug neaiškumų.",
+        "modeUpdated": "Režimas atnaujintas",
+        "modeUpdatedExplanation": "Jūs pakeitėte režimą į {{mode}}"
     },
     "settings": {
         "transferSending": "Pavedimas apdorojamas",
@@ -405,7 +407,6 @@
         "reset": "Iš naujo nustatyti"
     },
     "walletSetup": {
-        "creatingSeed": "Užrakto sukūrimas",
         "okay": "Puiku. Atlikime piniginės nustatymus!",
         "doYouNeedASeed": "Ar jums reikia sukurti naują užraktą?",
         "seedExplanation": "IOTA užraktas yra pagrindinis raktas į jūsų lėšas. Jis sudarytas iš 81 simbolio, raidžių A-Z ir skaičiaus 9.",
@@ -534,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Įveskite slaptažodį, norėdami pamatyti užraktą.",
         "viewSeed": "Rodyti užraktą",
-        "hideSeed": "Slėpti užraktą"
+        "hideSeed": "Slėpti užraktą",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Ar išsisaugojote savo užraktą?",
@@ -588,27 +591,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas saugiai laikyti savo užraktą. Užraktas yra užšifruojamas SeedVault raktu ir negali būti atskleistas be to rakto.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
         "exportFail": "SeedVault iškėlimo klaida",
         "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
         "exportSuccess": "SeedVault iškeltas",
         "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas iškeltas sėkmingai.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Neatpažintas SeedVault raktas",
+        "unrecognisedKeyExplanation": "Raktas buvo neatpažintas. Bandykite dar kartą.",
+        "emptyKey": "Neįvestas SeedVault raktas",
+        "emptyKeyExplanation": "Privalote įvesti raktą. Bandykite dar kartą.",
         "importSuccess": "Užraktas įkeltas",
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
         "dropSeedVaultHere": "Įkelti SeedVault čia <1></1> arba spauskite ieškoti failo",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Įveskite raktą norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite raktą norėdami užšifruoti failą. Šio rakto jums prireiks, norint susigrąžinti užraktą iš SeedVault failo. Raktas gali būti toks pat, kaip ir slaptažodis Trinity piniginei."
     },
     "chart": {
         "mcap": "MCAP",
@@ -669,7 +672,9 @@
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
-        "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus."
+        "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Klaidų žurnalas"
@@ -712,5 +717,35 @@
         "proceed": "Pradėti grąžinimo procesą",
         "sweepConfirmation": "Jūs ketinate perkelti {{amount}} į adresą {{address}}. Paskyra: {{accountName}}, adreso indeksas: {{index}}",
         "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

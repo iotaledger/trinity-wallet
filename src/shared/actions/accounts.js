@@ -413,7 +413,7 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 dispatch(setSeedIndex(existingAccountNames.length));
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
-                result.accountType = getState().wallet.additionalAccountType;
+                result.accountMeta = getState().wallet.additionalAccountMeta;
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })

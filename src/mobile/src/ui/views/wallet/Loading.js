@@ -22,7 +22,7 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
 import {
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
     getAccountNamesFromState,
 } from 'shared-modules/selectors/accounts';
 import { Styling } from 'ui/theme/general';
@@ -91,7 +91,7 @@ class Loading extends Component {
         /** Name for currently selected account */
         selectedAccountName: PropTypes.string,
         /** Name for currently selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -105,7 +105,7 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
-        additionalAccountType: PropTypes.string.isRequired,
+        additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -140,9 +140,9 @@ class Loading extends Component {
         const {
             addingAdditionalAccount,
             additionalAccountName,
-            additionalAccountType,
+            additionalAccountMeta,
             selectedAccountName,
-            selectedAccountType,
+            selectedAccountMeta,
             password,
             deepLinkActive,
         } = this.props;
@@ -167,10 +167,10 @@ class Loading extends Component {
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
-            const seedStore = new SeedStore[additionalAccountType](password, additionalAccountName);
+            const seedStore = new SeedStore[additionalAccountMeta.type](password, additionalAccountName);
             this.props.getFullAccountInfo(seedStore, additionalAccountName);
         } else {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
     }
@@ -419,13 +419,13 @@ class Loading extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     accountNames: getAccountNamesFromState(state),
     hasErrorFetchingAccountInfo: state.ui.hasErrorFetchingAccountInfo,
     hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     additionalAccountName: state.wallet.additionalAccountName,
-    additionalAccountType: state.wallet.additionalAccountType,
+    additionalAccountMeta: state.wallet.additionalAccountMeta,
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,
