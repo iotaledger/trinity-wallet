@@ -276,7 +276,7 @@
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Cím szinkronizálás",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
@@ -536,8 +536,8 @@
         "enterPassword": "Adja meg a jelszót a mester jelszó megjelenítéséhez.",
         "viewSeed": "Mester jelszó megtekintése",
         "hideSeed": "Mester jelszó elrejtése",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
+        "accountIndex": "A számlájának sorszáma"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -673,8 +673,8 @@
         "newVersionAvailableExplanation": "Elérhető a Trinity egy újabb verziója. Szeretné most frissíteni?",
         "installUpdate": "Frissítés telepítése és újraindítás",
         "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Frissítések letöltése",
+        "downloadProgress": "{{transferred}} letöltve a {{total}}-ból"
     },
     "notificationLog": {
         "errorLog": "Hibanapló"
@@ -719,8 +719,8 @@
         "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "ready": "Hardveres tárca csatlakoztatva és készen áll",
+        "notReady": "Ha hardveres tárcát szeretne használni, most csatlakoztassa majd nyissa ki",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
