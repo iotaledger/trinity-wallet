@@ -728,7 +728,7 @@
         "accountPage": "Stranica računa (Deviota Romeo)",
         "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
         "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed je povezan s jedinstvenim brojem indeksa. Neiskorišteni broj indeksa je trenutno odabran, no slobodno može biti odabran i neki drugi. Obavezno zapišite odabrani broj indeksa.",
-        "accountPageExplanation": "Some third party wallets require pages.",
+        "accountPageExplanation": "Neki novčanici trećih strana zahtijevaju stranice (npr. Deviota Romeo).",
         "connectionError": "Cannot connect to Ledger",
         "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
         "connectionTitle": "Connect your Ledger",
