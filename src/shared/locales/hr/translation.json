@@ -276,7 +276,7 @@
         "copyAddress": "Kopiraj Adresu",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa kopirana u međuspremnik.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Sinkroniziraj adresu",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrijebljeno",
         "missingPermission": "Potreban pristup datotečnom sustavu",
@@ -536,8 +536,8 @@
         "enterPassword": "Unesite lozinku kako bi vidjeli svoj seed.",
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "notAvailable": "Izvoz seed-a nije dostupan za tip računa {{accountType}}",
+        "accountIndex": "Indeks vašeg Ledger računa"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
@@ -673,8 +673,8 @@
         "newVersionAvailableExplanation": "Dostupna je nova verzija Trinity novčanika. Želite li ažurirati aplikaciju?",
         "installUpdate": "Instaliraj novu verziju i ponovno pokreni aplikaciju",
         "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Preuzimanje ažuriranja u tijeku",
+        "downloadProgress": "Preuzeto {{transferred}} od {{total}}"
     },
     "notificationLog": {
         "errorLog": "Evidencija grešaka"
@@ -719,9 +719,9 @@
         "sweepConfirmationTitle": "Potvrda otključavanja"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
+        "ready": "Ledger uređaj povezan i spreman",
+        "notReady": "Ukoliko želite koristiti Ledger uređaj, povežite ga i otključajte sada",
+        "indexInUse": "Indeks već u upotrebi za račun {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
