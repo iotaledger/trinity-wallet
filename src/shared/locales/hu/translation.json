@@ -537,7 +537,7 @@
         "viewSeed": "Mester jelszó megtekintése",
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
-        "accountIndex": "A számlájának sorszáma"
+        "accountIndex": "Számlájának sorszáma"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -745,7 +745,7 @@
         "ledgerDeniedExplanation": "A tranzakció végrehajtását nem engedélyezte a hardveres tárca.",
         "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
         "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
-        "checkAddress": "Ellenőrizze a címzettet",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
+        "checkAddress": "Ellenőrizze a fogadási címet",
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér."
     }
 }
