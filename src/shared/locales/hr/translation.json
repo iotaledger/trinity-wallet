@@ -248,8 +248,8 @@
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
-        "individualLetterCount": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
-        "individualLetterCount_plural": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "individualLetterCount": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "individualLetterCount_plural": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
         "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
         "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
         "whatIsASeed": "Što je seed?"
