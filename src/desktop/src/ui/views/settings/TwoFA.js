@@ -229,7 +229,7 @@ class TwoFA extends React.Component {
                     onSuccess={(password) => this.enableTwoFA(password)}
                     onClose={() => this.setState({ passwordConfirm: false })}
                     content={{
-                        title: t('enterYourPassword'),
+                        title: t('enterPassword'),
                         confirm: is2FAEnabled ? t('disable') : t('enable'),
                     }}
                 />

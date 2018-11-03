@@ -195,7 +195,6 @@ class SeedInput extends React.PureComponent {
                     setAdditionalAccountInfo({
                         addingAdditionalAccount: true,
                         additionalAccountName: accounts[0].title,
-                        additionalAccountType: 'keychain',
                     });
                 }
             } else {
@@ -208,7 +207,7 @@ class SeedInput extends React.PureComponent {
             Electron.garbageCollect();
         } catch (error) {
             if (error.code === 'InvalidKey') {
-                generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
+                generateAlert('error', t('seedVault:unrecognisedKey'), t('seedVault:unrecognisedKeyExplanation'));
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
@@ -227,7 +226,6 @@ class SeedInput extends React.PureComponent {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: account.title,
-                additionalAccountType: 'keychain',
             });
         }
 
@@ -340,7 +338,7 @@ class SeedInput extends React.PureComponent {
                     <Password
                         content={{
                             title: t('enterPassword'),
-                            message: t('seedVault:enterPasswordExplanation'),
+                            message: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
                         isOpen

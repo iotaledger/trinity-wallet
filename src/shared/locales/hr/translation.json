@@ -52,9 +52,11 @@
         "yes": "Da",
         "no": "Ne",
         "okay": "U redu",
-        "password": "Šifra",
-        "unrecognisedPassword": "Nepoznata Lozinka",
+        "password": "Lozinka",
+        "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
+        "unrecognisedAccount": "Nepoznat račun",
+        "unrecognisedAccountExplanation": "Račun pod nazivom {{accountName}} nije prepoznat. Razmislite o resetiranju vašeg novčanika.",
         "emptyPasswordExplanation": "Morate unijeti lozinku. Molimo pokušajte ponovno.",
         "capsLockIsOn": "Caps Lock je uključen",
         "syncInProgress": "Sinkronizacija u tijeku",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Molimo pričekajte završetak tranzicije.",
         "checkForUpdates": "Provjeri ažuriranja",
         "account": "Profil",
-        "enterYourPassword": "Unesite lozinku",
         "changeNode": "Promijeni node",
         "addCustomNode": "Dodaj prilagođeni node",
         "nodeMustUseHTTPS": "Nedopušten node (ne koristi HTTPS)",
@@ -142,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Pokušajte ponovno s lokalnim PoW-om.",
         "tryingAgainWithDifferentNode": "Pokušajte ponovno s drugim node-om.",
         "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Keychain greška",
+        "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u potrebnom za sigurnu pohranu.",
+        "mainWallet": "GLAVNI RAČUN"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -275,7 +276,7 @@
         "copyAddress": "Kopiraj Adresu",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa kopirana u međuspremnik.",
-        "generateNewAddress": "Nova adresa",
+        "generateNewAddress": "Sync address",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrijebljeno",
         "missingPermission": "Potreban pristup datotečnom sustavu",
@@ -344,9 +345,11 @@
     },
     "modeSelection": {
         "advanced": "Napredni",
-        "standard": "Standardno",
+        "standard": "Standardni",
         "advancedModeExplanation": "Napredni način rada prikazat će više detaljnih tehničkih informacija.",
-        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom."
+        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom.",
+        "modeUpdated": "Način rada ažuriran",
+        "modeUpdatedExplanation": "Promijenili ste način rada u {{mode}}"
     },
     "settings": {
         "transferSending": "Slanje transakcije",
@@ -404,7 +407,6 @@
         "reset": "Resetiraj"
     },
     "walletSetup": {
-        "creatingSeed": "Kreiranje seed-a",
         "okay": "U redu. Idemo postaviti vaš novčanik!",
         "doYouNeedASeed": "Trebate li kreirati novi seed?",
         "seedExplanation": "Vaš IOTA seed je master ključ za vaša sredstva. Sastoji se od 81 znaka, te sadrži samo velika slova A-Z ili broj 9.",
@@ -435,7 +437,7 @@
         "empty": "Prazno",
         "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promocija drugog paketa"
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -512,9 +514,9 @@
         "discordInformation": "Više informacija o tome i pomoć potražite na #help kanalu službenog Discorda."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Jeste li sigurni da želite izbrisati svoj račun?",
         "yourSeedWillBeRemoved": "Vaš seed i povijest transakcija će biti uklonjeni.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Ova radnja se ne može poništiti",
         "enterPassword": "Unesite lozinku da bi izbrisali račun."
     },
     "manualSync": {
@@ -533,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Unesite lozinku kako bi vidjeli svoj seed.",
         "viewSeed": "Prikaži seed",
-        "hideSeed": "Sakrij seed"
+        "hideSeed": "Sakrij seed",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
@@ -593,17 +597,21 @@
         "exportFailExplanation": "Došlo je do greške prilikom izvoza SeedVault-a. Molimo provjerite da li imate sva potrebna ovlaštenja i dovoljno slobodnog prostora na disku.",
         "exportSuccess": "SeedVault izvezen",
         "exportSuccessExplanation": "Vaša kodirana seed datoteka je uspješno izvezena.",
+        "unrecognisedKey": "Neispravna SeedVault lozinka",
+        "unrecognisedKeyExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
+        "emptyKey": "Nije unešena SeedVault lozinka",
+        "emptyKeyExplanation": "Morate unijeti lozinku. Molimo pokušajte ponovno.",
         "importSuccess": "Seed uvezen",
         "importSuccessExplanation": "Vaš seed je uspješno uvezen.",
         "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
         "dropSeedVaultHere": "Ovdje ispustite SeedVault <1></1> ili kliknite da bi ga potražili na računalu",
-        "enterPasswordExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
+        "enterKeyExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultPasswordExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u. Možete koristiti istu lozinku koju koristite za pristup Trinity novčaniku."
+        "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u. Možete koristiti istu lozinku koju koristite za pristup Trinity novčaniku."
     },
     "chart": {
         "mcap": "MCAP",
@@ -664,7 +672,9 @@
         "newVersionAvailable": "Dostupna je nova inačica",
         "newVersionAvailableExplanation": "Dostupna je nova <strong>Trinity</strong> <strong>{{version}}</strong> inačica. Pažljivo pročitajte informacije o novoj inačici i provjerite izvor preuzimanja prije ažuriranja aplikacije.",
         "installUpdate": "Instaliraj novu inačicu i ponovno pokreni aplikaciju",
-        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje."
+        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Evidencija grešaka"
@@ -697,15 +707,45 @@
         "confirmedOut": "Odlazna transakcija od {{value}} s {{account}} je potvrđena"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Sredstva uspješno otključana",
+        "sweepSucceededExplanation": "Vaša sredstva su uspješno otključana i premještena na novu adresu. Promovirajte transakcije kako bi pomogli s njihovom potvrdom.",
+        "sweepError": "Greška prilikom otključavanja sredstava",
+        "sweepErrorExplanation": "Došlo je do greške prilikom otključavanja vaših sredstava. Pokušajte ponovno.",
+        "warningTitle": "Upozorenje: Detektirana su zaključana sredstva na vašem računu",
+        "explanation": "Trinity Desktop verzija 0.3.4 sadržala je bug koji privremeno može zaključati vaša sredstva. Ovo utječe na mali broj korisnika koji su izvršili transakcije koristeći verziju 0.3.4.",
+        "explanationAccounts": "Zaključana sredstva uočena su na vašim računima: {{accounts}}. Trinity će automatski otključati vaša sredstva tako da ih premjesti na novu adresu.",
+        "proceed": "Nastavi s otključavanjem sredstava",
+        "sweepConfirmation": "Premjestit ćete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
+        "sweepConfirmationTitle": "Potvrda otključavanja"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

@@ -91,10 +91,11 @@ class ModeSelection extends Component {
     }
 
     changeMode() {
-        const { mode } = this.props;
+        const { mode, setMode, generateAlert, t } = this.props;
         const nextMode = mode === 'Advanced' ? 'Standard' : 'Advanced';
-        this.props.setMode(nextMode);
-        this.props.generateAlert('success', 'Mode updated', `You have changed to ${nextMode} mode.`);
+        const translatedMode = nextMode === 'Advanced' ? t('advanced') : t('standard');
+        setMode(nextMode);
+        generateAlert('success', t('modeUpdated'), t('modeUpdatedExplanation', { mode: translatedMode }));
     }
 
     render() {

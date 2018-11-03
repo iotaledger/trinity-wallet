@@ -55,6 +55,8 @@
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock aktif",
         "syncInProgress": "Sinkronisasi sedang berlangsung",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Silahkan tunggu sampai transisi selesai.",
         "checkForUpdates": "Periksa pembaruan",
         "account": "Akun",
-        "enterYourPassword": "Masukkan kata sandi Anda",
         "changeNode": "Ubah Node",
         "addCustomNode": "Tambah Node kustom",
         "nodeMustUseHTTPS": "Node tidak valid (bukan HTTPS)",
@@ -275,7 +276,7 @@
         "copyAddress": "Salin alamat",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "Alamat baru",
+        "generateNewAddress": "Sync address",
         "noAddresses": "TIDAK ADA ALAMAT",
         "spent": "Dihabiskan",
         "missingPermission": "Izin akses File System dibutuhkan",
@@ -346,7 +347,9 @@
         "advanced": "Lanjutan",
         "standard": "Standar",
         "advancedModeExplanation": "Mode lanjutan akan menampilkan informasi teknis lebih rinci.",
-        "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda."
+        "modesExplanation": "Hanya aktifkan mode ahli jika Anda berpengalaman. Bila tidak ini dapat membingungkan Anda.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
@@ -404,7 +407,6 @@
         "reset": "Setel ulang"
     },
     "walletSetup": {
-        "creatingSeed": "Membuat Seed",
         "okay": "Oke. Mari menyiapkan dompet Anda!",
         "doYouNeedASeed": "Apakah Anda butuh Seed baru?",
         "seedExplanation": "Seed IOTA adalah kunci utama ke dana Anda. Terdiri dari 81 karakter dengan campuran A-Z atau angka 9.",
@@ -533,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
         "viewSeed": "Lihat Seed",
-        "hideSeed": "Sembunyikan Seed"
+        "hideSeed": "Sembunyikan Seed",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Apa Anda telah menyimpan Seed?",
@@ -587,23 +591,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Ekspor SeedVault",
-        "seedVaultExplanation": "SeedVault adalah file yang dienkripsi untuk menyimpan Seed Anda dengan aman. Seed anda di enkripsi dibalik kata sandi dan tidak bisa diakses tanpa kata sandi.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Pastikan anda buat cadangan di beberapa lokasi (seperti: Hard disk, Cloud, USB). Jika anda kehilangan file dan tidak mempunyai cadangan. Anda akan kehilangan IOTA.",
         "exportFail": "Gagal ekspor SeedVault",
         "exportFailExplanation": "Terjadi kesalahan mengekspor SeedVault. Pastikan anda mempunyai izin yang valid dan cukup ruang.",
         "exportSuccess": "Telah mengekspor SeedVault",
         "exportSuccessExplanation": "File terenkripsi sudah diekspor.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Impor SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
-        "enterPasswordExplanation": "Masukan kata sandi untuk membuka SeedVault",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault tidak mengandung Seed",
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
         "seedFileError": "Gagal membuka SeedVault",
         "seedFileErrorExplanation": "Gagal membuka SeedVault. Jika ini benar, file ini mungkin rusak.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -664,7 +672,9 @@
         "newVersionAvailable": "Versi baru tersedia",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Instal pembaruan dan ulang kembali",
-        "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan."
+        "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Error Log"
@@ -707,5 +717,35 @@
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

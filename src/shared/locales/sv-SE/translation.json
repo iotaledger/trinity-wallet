@@ -55,6 +55,8 @@
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
+        "unrecognisedAccount": "Okänt konto",
+        "unrecognisedAccountExplanation": "Konto med namnet {{accountName}} är okänt. Överväg att återställa din plånbok.",
         "emptyPasswordExplanation": "Du måste ange ett lösenord. Vänligen försök igen.",
         "capsLockIsOn": "Caps Lock är på",
         "syncInProgress": "Synkronisering pågår",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Vänligen vänta tills övergången är klar.",
         "checkForUpdates": "Sök efter uppdateringar",
         "account": "Konto",
-        "enterYourPassword": "Ange ditt lösenord",
         "changeNode": "Ändra nod",
         "addCustomNode": "Lägg till anpassad nod",
         "nodeMustUseHTTPS": "Ogiltig nod (ej HTTPS)",
@@ -142,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Försöker igen med lokal Proof-of-Work.",
         "tryingAgainWithDifferentNode": "Försöker igen med en annan nod.",
         "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Nyckelringsfel",
+        "errorAccessingKeychainExplanation": "Kan inte komma åt nyckelringen som krävs för säker lagring.",
+        "mainWallet": "HUVUDKONTO"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -275,7 +276,7 @@
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "generateNewAddress": "Ny adress",
+        "generateNewAddress": "Sync address",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
         "missingPermission": "Åtkomst till filsystem krävs",
@@ -346,7 +347,9 @@
         "advanced": "Avancerat",
         "standard": "Standard",
         "advancedModeExplanation": "Avancerat läge visar mer detaljerad teknisk information.",
-        "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars."
+        "modesExplanation": "Aktivera endast avancerat läge om du är en erfaren Tangle-användare. Det kan verka förvirrande annars.",
+        "modeUpdated": "Läge uppdaterad",
+        "modeUpdatedExplanation": "Du har ändrat till {{mode}} läge"
     },
     "settings": {
         "transferSending": "Överföring pågår",
@@ -404,7 +407,6 @@
         "reset": "Återställ"
     },
     "walletSetup": {
-        "creatingSeed": "Skapar en seed",
         "okay": "Okej. Låt oss konfigurera din plånbok!",
         "doYouNeedASeed": "Behöver du skapa en ny seed?",
         "seedExplanation": "Din IOTA-seed är huvudnyckeln till dina pengar. Den är 81 tecken lång och innehåller endast bokstäverna A-Z eller numret 9.",
@@ -435,7 +437,7 @@
         "empty": "Tomt",
         "retrying": "Försöker igen",
         "yesterday": "Igår",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Främjar en annan transaktionsbunt"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -512,9 +514,9 @@
         "discordInformation": "Vänligen bege dig till kanalen #help på Discord för att ta reda på vad du kan göra."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Är du säker på att du vill ta bort ditt användarkonto?",
         "yourSeedWillBeRemoved": "Din seed och transaktionshistorik kommer tas bort.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Denna åtgärd kan inte ångras",
         "enterPassword": "Ange ditt lösenord för att radera detta kontot."
     },
     "manualSync": {
@@ -533,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Ange lösenord för att visa din seed.",
         "viewSeed": "Visa seed",
-        "hideSeed": "Dölj seed"
+        "hideSeed": "Dölj seed",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sparade du din seed?",
@@ -587,23 +591,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportera SeedVault",
-        "seedVaultExplanation": "En SeedVault är en krypterad fil för att lagra din seed på ett säkert sätt. Din seed är krypterad bakom ett lösenord och kan inte nås utan lösenordet.",
+        "seedVaultExplanation": "En SeedVault är en krypterad fil för att lagra din seed på ett säkert sätt. Din seed är krypterad bakom ett SeedVault-lösenord och kan inte nås utan lösenordet.",
         "seedVaultWarning": "Kontrollera att du säkerhetskopierar filen på flera platser (t.ex. hårddisk, molnet, USB). Om du förlorar denna fil och inte har lagrat din seed på annat håll, kommer du att förlora dina IOTA.",
         "exportFail": "SeedVault export misslyckades",
         "exportFailExplanation": "Ett problem uppstod vid export av SeedVault. Vänligen se till att du har rätt behörigheter och tillräckligt med ledigt utrymme.",
         "exportSuccess": "SeedVault exporterad",
         "exportSuccessExplanation": "Din krypterade seed-fil exporterades framgångsrikt.",
+        "unrecognisedKey": "Okänt SeedVault-lösenord",
+        "unrecognisedKeyExplanation": "Lösenordet stämde ej. Försök igen.",
+        "emptyKey": "Inget SeedVault lösenord angett",
+        "emptyKeyExplanation": "Du måste ange ett lösenord. Vänligen försök igen.",
         "importSuccess": "Seed importerad",
         "importSuccessExplanation": "Din seed importerades framgångsrikt.",
         "saveToDownloadFolder": "Spara till Hämtade Filer",
         "importSeedVault": "Importera SeedVault",
         "dropSeedVaultHere": "Släpp SeedVault här <1></1> eller klicka för att bläddra",
-        "enterPasswordExplanation": "Ange ditt lösenord för att öppna SeedVault",
+        "enterKeyExplanation": "Ange ditt lösenord för att öppna SeedVault",
         "noSeedFound": "SeedVault innehåller inte en giltig seed",
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
-        "seedVaultPasswordExplanation": "Först måste vi säkra din SeedVault. Vänligen välj ett lösenord för att kryptera filen. Du behöver detta lösenord för att återställa din seed från din sparade SeedVault. Du kan använda samma lösenord som du använder för Trinity."
+        "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj ett lösenord för att kryptera filen. Du behöver detta lösenord för att återställa din seed från din sparade SeedVault. Du kan använda samma lösenord som du använder för Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -664,7 +672,9 @@
         "newVersionAvailable": "Ny version tillgänglig",
         "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
         "installUpdate": "Installera uppdateringen och starta om",
-        "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen."
+        "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen.",
+        "downloadingUpdate": "Hämtar uppdatering",
+        "downloadProgress": "{{transferred}} av {{total}} hämtat"
     },
     "notificationLog": {
         "errorLog": "Fellogg"
@@ -707,5 +717,35 @@
         "proceed": "Fortsätt till återställning",
         "sweepConfirmation": "Du är på väg att svepa {{amount}} till adressen {{address}}. Konto: {{accountName}}, adressindex: {{index}}",
         "sweepConfirmationTitle": "Svepningsbekräftelse"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

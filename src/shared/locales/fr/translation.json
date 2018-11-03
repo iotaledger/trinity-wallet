@@ -55,6 +55,8 @@
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
+        "unrecognisedAccount": "Compte non reconnu",
+        "unrecognisedAccountExplanation": "Compte nommé {{accountName}} n’a pas été reconnu. Envisagez la réinitialisation de votre portefeuille.",
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "capsLockIsOn": "Majuscules activées",
         "syncInProgress": "Synchronisation en cours",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
-        "enterYourPassword": "Saisissez votre mot de passe",
         "changeNode": "Changer de serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
         "nodeMustUseHTTPS": "Serveur invalide (pas HTTPS)",
@@ -144,7 +145,7 @@
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "COMPTE PRINCIPAL"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -275,7 +276,7 @@
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "Nouvelle adresse",
+        "generateNewAddress": "Sync address",
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
@@ -346,7 +347,9 @@
         "advanced": "Avancé",
         "standard": "Standard",
         "advancedModeExplanation": "Le mode avancé affiche des informations techniques plus détaillées.",
-        "modesExplanation": "N'activez le mode Avancé que si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
+        "modesExplanation": "N'activez le mode Avancé que si vous êtes un utilisateur expérimenté. Vous pourriez avoir des difficultés dans le cas contraire.",
+        "modeUpdated": "Mode mis à jour",
+        "modeUpdatedExplanation": "Vous avez changé le mode à {{mode}}"
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -404,7 +407,6 @@
         "reset": "Réinitialiser"
     },
     "walletSetup": {
-        "creatingSeed": "Création d’une seed",
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouNeedASeed": "Avez-vous besoin de créer une nouvelle seed ?",
         "seedExplanation": "Votre seed IOTA est la clé d'accès à vos fonds. Elle est composée de 81 caractères, utilisant uniquement des lettres A-Z ou le numéro 9.",
@@ -435,7 +437,7 @@
         "empty": "Vide",
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promotion d'un autre bundle en cours"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -512,9 +514,9 @@
         "discordInformation": "Veuillez vous rendre sur le canal #help de Discord pour savoir ce que vous pouvez faire."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Êtes-vous sûr de vouloir supprimer votre compte ?",
         "yourSeedWillBeRemoved": "L’historique de votre seed et de vos transactions sera supprimé.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Cette action est irréversible",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
@@ -533,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
         "viewSeed": "Afficher la seed",
-        "hideSeed": "Masquer la seed"
+        "hideSeed": "Masquer la seed",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Avez-vous enregistré votre seed ?",
@@ -593,17 +597,21 @@
         "exportFailExplanation": "Il y a eu un problème lors de l'exportation de SeedVault. Veuillez vous assurer que vous avez les autorisations requises et suffisamment d'espace libre.",
         "exportSuccess": "SeedVault exporté",
         "exportSuccessExplanation": "Le fichier crypté de votre seed a été exporté avec succès.",
+        "unrecognisedKey": "Mot de passe de SeedVault non reconnu",
+        "unrecognisedKeyExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
+        "emptyKey": "Aucun mot de passe de SeedVault entré",
+        "emptyKeyExplanation": "Vous devez entrer un mot de passe. Essayez de nouveau.",
         "importSuccess": "Seed importée",
         "importSuccessExplanation": "Votre seed a été importée avec succès.",
         "saveToDownloadFolder": "Enregistrer dans le dossier Téléchargements",
         "importSeedVault": "Importer un SeedVault",
         "dropSeedVaultHere": "Déposez le SeedVault ici <1></1> ou cliquez sur parcourir",
-        "enterPasswordExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
+        "enterKeyExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
-        "seedVaultPasswordExplanation": "Tout d’abord, nous avons besoin de sécuriser votre SeedVault. Veuillez choisir un mot de passe pour chiffrer le fichier. Vous aurez besoin de ce mot de passe pour restaurer votre seed à partir de la sauvegarde SeedVault. N’hésitez pas à utiliser le même mot de passe que vous utilisez pour Trinity."
+        "seedVaultKeyExplanation": "Tout d’abord, nous avons besoin de sécuriser votre SeedVault. Veuillez choisir un mot de passe pour chiffrer le fichier. Vous aurez besoin de ce mot de passe pour restaurer votre seed à partir de la sauvegarde SeedVault. N’hésitez pas à utiliser le même mot de passe que vous utilisez pour Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -664,7 +672,9 @@
         "newVersionAvailable": "Une nouvelle version est disponible",
         "newVersionAvailableExplanation": "Une nouvelle version de Trinity est disponible. Vous voulez mettre à jour maintenant ?",
         "installUpdate": "Installer la mise à jour et redémarrer",
-        "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour."
+        "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Journal des erreurs"
@@ -707,5 +717,35 @@
         "proceed": "Procéder à la récupération",
         "sweepConfirmation": "Vous êtes sur le point de balayer {{amount}} à l’adresse {{address}}. Compte : {{accountName}}, indice de l’adresse : {{index}}",
         "sweepConfirmationTitle": "Confirmation de balayage"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

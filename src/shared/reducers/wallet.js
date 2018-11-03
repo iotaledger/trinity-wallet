@@ -35,7 +35,7 @@ const initialState = {
     /**
      * Account type set by user during additional account setup
      */
-    additionalAccountType: '',
+    additionalAccountMeta: {},
     /**
      * Total balance detected during snapshot transition
      */
@@ -60,6 +60,10 @@ const initialState = {
      * Determines if wallet has an active internet connection
      */
     hasConnection: true,
+    /**
+     * Determines if wallet is validating the displayed address
+     */
+    isValidatingAddress: false,
 };
 
 export default (state = initialState, action) => {
@@ -127,7 +131,7 @@ export default (state = initialState, action) => {
                 seed: Array(82).join(' '),
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
-                additionalAccountType: '',
+                additionalAccountMeta: {},
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
@@ -188,6 +192,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasConnection: action.payload.isConnected,
+            };
+        case ActionTypes.ADDRESS_VALIDATION_REQUEST:
+            return {
+                ...state,
+                isValidatingAddress: true,
+            };
+        case ActionTypes.ADDRESS_VALIDATION_SUCCESS:
+            return {
+                ...state,
+                isValidatingAddress: false,
             };
         default:
             return state;
