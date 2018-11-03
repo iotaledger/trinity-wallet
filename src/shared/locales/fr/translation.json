@@ -721,7 +721,7 @@
     "ledger": {
         "ready": "Ledger device connected and ready",
         "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUse": "Index en cours d'utilisation pour le compte {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
