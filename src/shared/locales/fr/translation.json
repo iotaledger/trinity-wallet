@@ -537,7 +537,7 @@
         "viewSeed": "Afficher la seed",
         "hideSeed": "Masquer la seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "accountIndex": "Sommaire de votre compte général"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Avez-vous enregistré votre seed ?",
@@ -673,8 +673,8 @@
         "newVersionAvailableExplanation": "Une nouvelle version de Trinity est disponible. Vous voulez mettre à jour maintenant ?",
         "installUpdate": "Installer la mise à jour et redémarrer",
         "installUpdateExplanation": "Téléchargement terminé, Trinity va maintenant redémarrer pour installer la mise à jour.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Téléchargement de la mise à jour",
+        "downloadProgress": "{{transferred}} de {{total}} téléchargé"
     },
     "notificationLog": {
         "errorLog": "Journal des erreurs"
