@@ -1,0 +1,15 @@
+{
+  "name": "trinity-dangerjs",
+  "version": "0.0.0",
+  "main": "dangerfile.js",
+  "license": "Apache-2.0 OR EPL-2.0",
+  "private": true,
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "danger": "^3.8.6",
+    "lodash.includes": "^4.3.0",
+    "lodash.some": "^4.6.0"
+  }
+}

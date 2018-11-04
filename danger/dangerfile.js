@@ -16,18 +16,20 @@ const hasLockfileChanges = some(yarnLock, (y) => includes(modifiedFiles, y));
 
 // Ensure that PRs have a description
 if (prBodyLength < 10) {
-  warn('Please include a description of your PR changes.');
+    warn('Please include a description of your PR changes.');
 }
 
 // Check for changes to package.json or yarn.lock (e.g. dependency changes)
 if (hasPackageJsonChanges || hasLockfileChanges) {
-  warn('Detected changes to package.json or yarn.lock. This PR may require more time to review.');
-  if (!hasLockfileChanges) {
-    message('Detected changes to package.json with no corresponding changes to yarn.lock. Please update the yarn.lock if necessary.');
-  }
+    warn('Detected changes to package.json or yarn.lock. This PR may require more time to review.');
+    if (!hasLockfileChanges) {
+        message(
+            'Detected changes to package.json with no corresponding changes to yarn.lock. Please update the yarn.lock if necessary.',
+        );
+    }
 }
 
 // If mobile tests were run and failed, post the test report
 if (fs.existsSync(mobileTestReport)) {
-  jest({ testResultsJsonPath: mobileTestReport});
+    jest({ testResultsJsonPath: mobileTestReport });
 }
