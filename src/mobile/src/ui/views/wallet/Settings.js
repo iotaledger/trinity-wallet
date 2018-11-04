@@ -74,10 +74,7 @@ class Settings extends Component {
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1 }} />
                     <View style={styles.settingsContainer}>
-                        <SettingsContent
-                            component={this.props.currentSetting}
-                            {...childrenProps}
-                        />
+                        <SettingsContent component={this.props.currentSetting} {...childrenProps} />
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>

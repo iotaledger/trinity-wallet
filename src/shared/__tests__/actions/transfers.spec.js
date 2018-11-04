@@ -13,6 +13,7 @@ import accounts from '../__samples__/accounts';
 import trytes from '../__samples__/trytes';
 import { IRI_API_VERSION } from '../../config';
 import { EMPTY_HASH_TRYTES } from '../../libs/iota/utils';
+import Errors from '../../libs/errors';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -387,14 +388,16 @@ describe('actions: transfers', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
                     const store = mockStore({ accounts });
 
-                    const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
+                    const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
                         Promise.resolve({
-                            totalBalance: 110,
-                            availableBalance: 10,
+                            balance: 10,
                             inputs: [
                                 {
                                     address:
                                         'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                                    balance: 10,
+                                    keyIndex: 0,
+                                    security: 2,
                                 },
                             ],
                         }),
@@ -429,7 +432,8 @@ describe('actions: transfers', () => {
 
                             syncAccountAfterSpending.restore();
                             syncAccount.restore();
-                            getUnspentInputs.restore();
+                            getInputs.restore();
+
                             wereAddressesSpentFrom.restore();
                         });
                 });
@@ -478,18 +482,9 @@ describe('actions: transfers', () => {
                         const wereAddressesSpentFrom = sinon
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
-                        sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
-                            Promise.resolve({
-                                totalBalance: 110,
-                                availableBalance: 10,
-                                inputs: [
-                                    {
-                                        address:
-                                            'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                    },
-                                ],
-                            }),
-                        );
+                        sinon
+                            .stub(inputUtils, 'getInputs')
+                            .returns(() => Promise.reject(new Error(Errors.INSUFFICIENT_BALANCE)));
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
                         sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
@@ -510,7 +505,7 @@ describe('actions: transfers', () => {
                                 ).to.equal('You do not have enough IOTA to complete this transfer.');
 
                                 wereAddressesSpentFrom.restore();
-                                inputUtils.getUnspentInputs.restore();
+                                inputUtils.getInputs.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
                                 accountsUtils.syncAccount.restore();
                             });
@@ -525,19 +520,9 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
 
-                        sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
-                            Promise.resolve({
-                                totalBalance: 110,
-                                availableBalance: 0,
-                                inputs: [],
-                                spentAddresses: [
-                                    {
-                                        address:
-                                            'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                    },
-                                ],
-                            }),
-                        );
+                        sinon
+                            .stub(inputUtils, 'getInputs')
+                            .returns(() => Promise.reject(new Error(Errors.FUNDS_AT_SPENT_ADDRESSES)));
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
                         sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
@@ -560,7 +545,7 @@ describe('actions: transfers', () => {
                                 );
 
                                 wereAddressesSpentFrom.restore();
-                                inputUtils.getUnspentInputs.restore();
+                                inputUtils.getInputs.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
                                 accountsUtils.syncAccount.restore();
                             });
@@ -575,10 +560,9 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
 
-                        sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
+                        sinon.stub(inputUtils, 'getInputs').returns(() =>
                             Promise.resolve({
-                                totalBalance: 110,
-                                availableBalance: 10,
+                                balance: 10,
                                 inputs: [
                                     {
                                         address:
@@ -613,7 +597,7 @@ describe('actions: transfers', () => {
                                 );
 
                                 wereAddressesSpentFrom.restore();
-                                inputUtils.getUnspentInputs.restore();
+                                inputUtils.getInputs.restore();
                                 accountsUtils.syncAccountAfterSpending.restore();
                                 accountsUtils.syncAccount.restore();
                             });

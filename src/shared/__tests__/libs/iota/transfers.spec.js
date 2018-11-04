@@ -19,7 +19,7 @@ import {
     mergeNewTransfers,
     categoriseBundleByInputsOutputs,
     performPow,
-    filterInvalidPendingTransactions,
+    filterNonFundedPendingTransactions,
     getBundleHashesForNewlyConfirmedTransactions,
     constructNormalisedBundles,
     prepareForAutoPromotion,
@@ -1098,7 +1098,7 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#filterInvalidPendingTransactions', () => {
+    describe('#filterNonFundedPendingTransactions', () => {
         let sandbox;
 
         beforeEach(() => {
@@ -1115,7 +1115,7 @@ describe('libs: iota/transfers', () => {
             it('should return an empty array', () => {
                 const transactions = Array.from(new Array(5), () => ({ persistence: true }));
 
-                const promise = filterInvalidPendingTransactions()(transactions, {});
+                const promise = filterNonFundedPendingTransactions()(transactions, {});
 
                 return promise.then((transactions) => {
                     expect(transactions).to.eql([]);
@@ -1126,10 +1126,6 @@ describe('libs: iota/transfers', () => {
         describe('when there are incoming pending transfers', () => {
             it('should filter transaction if input addresses do not have enough balance', () => {
                 const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
 
                 const transactions = [
                     {
@@ -1139,7 +1135,7 @@ describe('libs: iota/transfers', () => {
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
+                const promise = filterNonFundedPendingTransactions()(transactions, {});
                 return promise.then((txs) => {
                     expect(txs).to.eql([]);
                     getBalances.restore();
@@ -1148,10 +1144,6 @@ describe('libs: iota/transfers', () => {
 
             it('should not filter transaction if input addresses still have enough balance', () => {
                 const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
 
                 const transactions = [
                     {
@@ -1161,7 +1153,7 @@ describe('libs: iota/transfers', () => {
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
+                const promise = filterNonFundedPendingTransactions()(transactions, {});
                 return promise.then((txs) => {
                     expect(txs).to.eql(transactions);
                     getBalances.restore();
@@ -1171,43 +1163,41 @@ describe('libs: iota/transfers', () => {
 
         describe('when there are outgoing pending transfers', () => {
             it('should filter transaction if input addresses do not have enough balance', () => {
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
                 const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
+                    ['U'.repeat(81)]: { balance: 0, spent: { local: true, remote: true } },
+                    ['V'.repeat(81)]: { balance: 20, spent: { local: false, remote: false } },
                 };
 
                 const transactions = [
                     {
-                        incoming: true,
+                        incoming: false,
                         persistence: false,
                         inputs: [{ address: 'U'.repeat(81), value: -10 }],
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
+                const promise = filterNonFundedPendingTransactions()(transactions, addressData);
                 return promise.then((txs) => {
                     expect(txs).to.eql([]);
-                    getBalances.restore();
                 });
             });
 
             it('should not filter transaction if input addresses still have enough balance', () => {
                 const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
                 const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
+                    ['U'.repeat(81)]: { balance: 10, spent: { local: true, remote: true } },
+                    ['V'.repeat(81)]: { balance: 20, spent: { local: false, remote: false } },
                 };
 
                 const transactions = [
                     {
-                        incoming: true,
+                        incoming: false,
                         persistence: false,
                         inputs: [{ address: 'U'.repeat(81), value: -10 }],
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions()(transactions, addressData);
+                const promise = filterNonFundedPendingTransactions()(transactions, addressData);
                 return promise.then((txs) => {
                     expect(txs).to.eql(transactions);
                     getBalances.restore();

@@ -1,12 +1,16 @@
+import each from 'lodash/each';
+import find from 'lodash/find';
 import merge from 'lodash/merge';
 import maxBy from 'lodash/maxBy';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import nock from 'nock';
 import * as addressesUtils from '../../../libs/iota/addresses';
 import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/addresses', () => {
     before(() => {
@@ -73,24 +77,24 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#filterAddressesWithIncomingTransfers', () => {
-        describe('when inputs passed as first argument is an empty array', () => {
-            it('should return inputs passed as first argument', () => {
-                expect(addressesUtils.filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
+    describe('#omitAddressDataWithIncomingTransactions', () => {
+        describe('when addressData passed as first argument is an empty object', () => {
+            it('should return addressData passed as first argument', () => {
+                expect(addressesUtils.omitAddressDataWithIncomingTransactions({}, [{}, {}])).to.eql({});
             });
         });
 
-        describe('when pendingValueTransfers passed as second argument is an empty array', () => {
-            it('should return inputs passed as first argument', () => {
-                expect(addressesUtils.filterAddressesWithIncomingTransfers([{}], [])).to.eql([{}]);
+        describe('when pendingValueTransactions passed as second argument is an empty array', () => {
+            it('should return addressData passed as first argument', () => {
+                expect(addressesUtils.omitAddressDataWithIncomingTransactions({ foo: {} }, [])).to.eql({ foo: {} });
             });
         });
 
-        describe('when inputs passed as first argument is not an empty array and pendingValueTransfers passed as second argument is not an empty array', () => {
-            let pendingTransfers;
+        describe('when addressData passed as first argument is not an empty object and pendingValueTransactions passed as second argument is not an empty array', () => {
+            let pendingValueTransactions;
 
             beforeEach(() => {
-                pendingTransfers = [
+                pendingValueTransactions = [
                     {
                         transferValue: -100,
                         incoming: false,
@@ -112,20 +116,23 @@ describe('libs: iota/addresses', () => {
                 ];
             });
 
-            it('should filter inputs that have pending incoming value transfers', () => {
-                const inputs = [{ address: 'E'.repeat(81) }, { address: 'F'.repeat(81) }];
+            it('should filter addressData with pending incoming value transactions', () => {
+                const addressData = {
+                    // Used as input
+                    ['A'.repeat(81)]: { index: 0 },
+                    // Used as change address
+                    ['C'.repeat(81)]: { index: 1 },
+                    // Has incoming transaction
+                    ['E'.repeat(81)]: { index: 2 },
+                    ['F'.repeat(81)]: { index: 3 },
+                };
 
-                expect(addressesUtils.filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
-                    { address: 'F'.repeat(81) },
-                ]);
-            });
-
-            it('should filter inputs that have pending outgoing value transfers on change addresses', () => {
-                const inputs = [{ address: 'C'.repeat(81) }, { address: 'F'.repeat(81) }];
-
-                expect(addressesUtils.filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
-                    { address: 'F'.repeat(81) },
-                ]);
+                expect(
+                    addressesUtils.omitAddressDataWithIncomingTransactions(addressData, pendingValueTransactions),
+                ).to.eql({
+                    ['A'.repeat(81)]: { index: 0 },
+                    ['F'.repeat(81)]: { index: 3 },
+                });
             });
         });
     });
@@ -326,36 +333,9 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#filterSpentAddresses', () => {
-        let inputs;
-        let sandbox;
-
-        before(() => {
-            inputs = [
-                {
-                    address: 'U'.repeat(81),
-                },
-                {
-                    address: 'V'.repeat(81),
-                },
-                {
-                    address: 'Y'.repeat(81),
-                },
-            ];
-        });
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, false, true]);
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when all input addresses are marked spent locally', () => {
-            it('should return an empty array', () => {
+    describe('#pickUnspentAddressData', () => {
+        describe('when all addresses in addressData are marked spent locally', () => {
+            it('should return an empty object', () => {
                 const addressData = {
                     ['U'.repeat(81)]: { spent: { local: true } },
                     ['V'.repeat(81)]: { spent: { local: true } },
@@ -363,32 +343,73 @@ describe('libs: iota/addresses', () => {
                 };
 
                 return addressesUtils
-                    .filterSpentAddresses()(inputs, addressData, [])
-                    .then((unspentInputs) => {
-                        expect(unspentInputs).to.eql([]);
+                    .pickUnspentAddressData()(addressData, [])
+                    .then((unspentAddressData) => {
+                        expect(unspentAddressData).to.eql({});
                     });
             });
         });
 
-        describe('when none of the inputs are marked spent locally', () => {
-            it('should filter spent addresses relying on wereAddressesSpentFrom network call', () => {
+        describe('when some addresses in addressData are marked spent locally', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
+                            const resultMap = {
+                                // Should not be part of unspent address data as "spend.local" is true
+                                ['A'.repeat(81)]: false,
+                                // Should be part of unspent address data
+                                ['U'.repeat(81)]: false,
+                                // Should be part of unspent address data
+                                ['V'.repeat(81)]: false,
+                                // Should not be part of unspent address data
+                                ['Y'.repeat(81)]: true,
+                                // Should not be part of unspent address data because
+                                // this address is being used as an input in local transactions history
+                                ['Z'.repeat(81)]: false,
+                            };
+
+                            return { states: map(addresses, (address) => resultMap[address]) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should pick unspent addressData', () => {
                 const addressData = {
+                    ['A'.repeat(81)]: { spent: { local: true } },
                     ['U'.repeat(81)]: { spent: { local: false } },
                     ['V'.repeat(81)]: { spent: { local: false } },
                     ['Y'.repeat(81)]: { spent: { local: false } },
+                    ['Z'.repeat(81)]: { spent: { local: false } },
                 };
 
+                const normalisedTransactionsList = [
+                    { inputs: [{ address: 'Z'.repeat(81) }] },
+                    { inputs: [{ address: 'Y'.repeat(81) }] },
+                ];
+
                 return addressesUtils
-                    .filterSpentAddresses()(inputs, addressData, [])
-                    .then((unspentInputs) => {
-                        expect(unspentInputs).to.eql([
-                            {
-                                address: 'U'.repeat(81),
-                            },
-                            {
-                                address: 'V'.repeat(81),
-                            },
-                        ]);
+                    .pickUnspentAddressData()(addressData, normalisedTransactionsList)
+                    .then((unspentAddressData) => {
+                        expect(unspentAddressData).to.eql({
+                            ['U'.repeat(81)]: { spent: { local: false } },
+                            ['V'.repeat(81)]: { spent: { local: false } },
+                        });
                     });
             });
         });
@@ -1250,6 +1271,99 @@ describe('libs: iota/addresses', () => {
                 normalisedTransactions,
             );
             expect(result).to.eql([true, false, false]);
+        });
+    });
+
+    describe('#transformAddressDataToInputs', () => {
+        let addressData;
+
+        before(() => {
+            addressData = {
+                ['A'.repeat(81)]: { index: 0, balance: 100, spent: { local: false, remote: false } },
+                ['B'.repeat(81)]: { index: 1, balance: 0, spent: { local: true, remote: false } },
+                ['C'.repeat(81)]: { index: 2, balance: 50, spent: { local: false, remote: false } },
+            };
+        });
+
+        it('should assign "security" passed as second argument to each transformed input', () => {
+            const inputs = addressesUtils.transformAddressDataToInputs(addressData, 3);
+
+            each(inputs, (input) => expect(input.security).to.equal(3));
+        });
+
+        it('should assign correct keyIndex, address and balance to each input', () => {
+            const inputs = addressesUtils.transformAddressDataToInputs(addressData);
+
+            each(addressData, (data, address) => {
+                const input = find(inputs, { address });
+
+                expect(input.address).to.equal(address);
+                expect(input.balance).to.equal(data.balance);
+                expect(input.keyIndex).to.equal(data.index);
+            });
+        });
+    });
+
+    describe('#filterAddressDataWithPendingOutgoingTransactions', () => {
+        it('should filter address data with pending outgoing transactions', () => {
+            const addressData = {
+                ['A'.repeat(81)]: {
+                    index: 0,
+                    balance: 10,
+                },
+                ['B'.repeat(81)]: {
+                    index: 1,
+                    balance: 15,
+                },
+                ['C'.repeat(81)]: {
+                    index: 2,
+                    balance: 20,
+                },
+                ['D'.repeat(81)]: {
+                    index: 3,
+                    balance: 0,
+                },
+            };
+
+            const normalisedTransactionsList = [
+                {
+                    inputs: [{ address: 'A'.repeat(81), value: -1 }],
+                    outputs: [{ address: 'Z'.repeat(81), value: 1 }],
+                    persistence: false,
+                },
+                {
+                    inputs: [],
+                    outputs: [{ address: 'D'.repeat(81), value: 0 }],
+                    persistence: true,
+                },
+                {
+                    inputs: [{ address: 'C'.repeat(81), value: -5 }],
+                    outputs: [{ address: 'Y'.repeat(81), value: 5 }],
+                    persistence: true,
+                },
+            ];
+
+            const result = addressesUtils.filterAddressDataWithPendingOutgoingTransactions(
+                addressData,
+                normalisedTransactionsList,
+            );
+
+            const expectedResult = {
+                ['B'.repeat(81)]: {
+                    index: 1,
+                    balance: 15,
+                },
+                ['C'.repeat(81)]: {
+                    index: 2,
+                    balance: 20,
+                },
+                ['D'.repeat(81)]: {
+                    index: 3,
+                    balance: 0,
+                },
+            };
+
+            expect(result).to.eql(expectedResult);
         });
     });
 });

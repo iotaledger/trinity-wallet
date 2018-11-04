@@ -18,6 +18,7 @@ class Keychain {
             if (accountId) {
                 this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
             }
+
             return this;
         })();
     }

@@ -30,10 +30,14 @@ export default {
     PROMOTIONS_LIMIT_REACHED: 'Promotions limit reached.',
     EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
     DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
+    INPUTS_THRESHOLD_CANNOT_BE_ZERO: 'Inputs threshold cannot be zero.',
+    CANNOT_FIND_INPUTS_WITH_PROVIDED_LIMIT: 'Cannot find inputs with provided limit.',
+    INSUFFICIENT_BALANCE: 'Insufficient balance.',
+    INVALID_MAX_INPUTS_PROVIDED: 'Invalid max inputs provided.',
     MAX_INPUTS_EXCEEDED: (count, max) => `Can't process transactions with ${count} inputs. The limit is ${max}.`,
     LEDGER_ZERO_VALUE: 'Cannot send 0 value transfers with a Ledger device',
     LEDGER_DISCONNECTED: 'Ledger device disconnected',
     LEDGER_CANCELLED: 'Ledger transaction cancelled',
     LEDGER_DENIED: 'Ledger transaction denied by user',
-    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic'
+    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
 };

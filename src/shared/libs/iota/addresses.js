@@ -9,6 +9,7 @@ import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
@@ -377,25 +378,29 @@ export const filterSpentAddressesSync = (addresses, addressData) =>
 /**
  *   Communicates with ledger and checks if the addresses are spent from.
  *
- *   @method filterSpentAddresses
- *   @param {string} provider
+ *   @method pickUnspentAddressData
+ *   @param {string} [provider]
  *
- *   @returns {function(array, object, array): Promise<array>}
+ *   @returns {function(object, array): Promise<object>}
  **/
-export const filterSpentAddresses = (provider) => (inputs, addressData, normalisedTransactions) => {
-    const addresses = filterSpentAddressesSync(map(inputs, (input) => input.address), addressData);
-    const filteredInputs = filter(inputs, (input) => includes(addresses, input.address));
+export const pickUnspentAddressData = (provider) => (addressData, normalisedTransactionsList) => {
+    const addresses = filterSpentAddressesSync(keys(addressData), addressData);
 
     // If all inputs are spent, avoid making the network call
     if (isEmpty(addresses)) {
-        return Promise.resolve([]);
+        return Promise.resolve({});
     }
 
-    const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactions);
+    const spendStatuses = findSpendStatusesFromNormalisedTransactions(addresses, normalisedTransactionsList);
 
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) =>
-        filter(filteredInputs, (input, idx) => !wereSpent[idx] && !spendStatuses[idx]),
-    );
+    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
+        const filteredAddresses = filter(
+            addresses,
+            (input, idx) => wereSpent[idx] === false && spendStatuses[idx] === false,
+        );
+
+        return pickBy(addressData, (data, address) => includes(filteredAddresses, address));
+    });
 };
 
 /**
@@ -531,7 +536,11 @@ export const getAddressesUptoRemainder = (provider) => (
         });
     }
 
-    return Promise.resolve({ remainderAddress: latestAddress, remainderIndex: latestAddressData.index, addressDataUptoRemainder: addressData });
+    return Promise.resolve({
+        remainderAddress: latestAddress,
+        remainderIndex: latestAddressData.index,
+        addressDataUptoRemainder: addressData,
+    });
 };
 
 /**
@@ -581,23 +590,16 @@ export const syncAddresses = (provider) => (seedStore, existingAddressData, norm
  *   Filters inputs with addresses that have pending incoming transfers or
  *   are change addresses.
  *
- *   @method filterAddressesWithIncomingTransfers
- *   @param {array} inputs
- *   @param {array} pendingValueTransfers
- *   @returns {array}
+ *   @method omitAddressDataWithIncomingTransactions
+ *   @param {object} addressData
+ *   @param {array} pendingValueTransactions
+ *
+ *   @returns {object}
  **/
-export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfers) => {
-    if (isEmpty(pendingValueTransfers) || isEmpty(inputs)) {
-        return inputs;
+export const omitAddressDataWithIncomingTransactions = (addressData, pendingValueTransactions) => {
+    if (isEmpty(pendingValueTransactions) || isEmpty(addressData)) {
+        return addressData;
     }
-
-    const inputsByAddress = transform(
-        inputs,
-        (acc, input) => {
-            acc[input.address] = input;
-        },
-        {},
-    );
 
     const addressesWithIncomingTransfers = new Set();
 
@@ -605,18 +607,15 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
     // Checks outputs of sent transfers to check if there is an incoming transfer (change address)
 
     // Note: Inputs for outgoing transfers should not be checked since filterSpentAddresses already removes spent inputs
-    const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
+    const outputsToCheck = flatMap(pendingValueTransactions, (transfer) => transfer.outputs);
 
     each(outputsToCheck, (output) => {
-        if (output.address in inputsByAddress && output.value > 0) {
+        if (output.address in addressData && output.value > 0) {
             addressesWithIncomingTransfers.add(output.address);
         }
     });
 
-    return map(
-        omitBy(inputsByAddress, (input, address) => addressesWithIncomingTransfers.has(address)),
-        (input) => input,
-    );
+    return omitBy(addressData, (_, address) => addressesWithIncomingTransfers.has(address));
 };
 
 /**
@@ -719,4 +718,41 @@ export const findSpendStatusesFromNormalisedTransactions = (addresses, normalise
     const inputAddresses = map(flatMap(normalisedTransactions, (tx) => tx.inputs), (tx) => tx.address);
 
     return map(addresses, (address) => includes(inputAddresses, address));
+};
+
+/**
+ * Transforms address data object to inputs list
+ *
+ * @method transformAddressDataToInputs
+ * @param {object} addressData
+ * @param {number} security
+ *
+ * @returns {array}
+ */
+export const transformAddressDataToInputs = (addressData, security = DEFAULT_SECURITY) =>
+    map(addressData, (data, address) => ({
+        address,
+        security,
+        balance: data.balance,
+        keyIndex: data.index,
+    }));
+
+/**
+ * Filters address data with pending outgoing transactions
+ *
+ * @method filterAddressDataWithPendingOutgoingTransactions
+ * @param {object} addressData
+ * @param {array} normalisedTransactionsList
+ *
+ * @returns {object}
+ */
+export const filterAddressDataWithPendingOutgoingTransactions = (addressData, normalisedTransactionsList) => {
+    const pendingTransactions = filter(normalisedTransactionsList, (tx) => tx.persistence === false);
+    // Get all input addresses from transactions
+    const inputAddressesFromTransactions = map(
+        flatMap(pendingTransactions, (tx) => tx.inputs),
+        (input) => input.address,
+    );
+
+    return omitBy(addressData, (_, address) => includes(inputAddressesFromTransactions, address));
 };
