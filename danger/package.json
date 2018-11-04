@@ -8,7 +8,7 @@
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "danger": "^3.8.6",
+    "danger": "^6.0.2",
     "lodash.includes": "^4.3.0",
     "lodash.some": "^4.6.0"
   }
