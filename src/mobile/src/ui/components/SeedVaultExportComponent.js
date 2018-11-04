@@ -20,7 +20,7 @@ import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 import PasswordFields from './PasswordFields';
-import { removeNonAlphaNumeric } from '../../../../shared/libs/utils';
+import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
 
 const steps = [
     'isValidatingWalletPassword',
