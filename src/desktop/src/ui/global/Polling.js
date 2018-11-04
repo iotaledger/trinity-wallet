@@ -6,6 +6,7 @@ import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
+import { getAccountNamesFromState } from 'selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -49,6 +50,7 @@ class Polling extends React.PureComponent {
 
     state = {
         accountIndex: 0,
+        autoPromoteSkips: 0,
     };
 
     componentDidMount() {
@@ -67,15 +69,15 @@ class Polling extends React.PureComponent {
             props.isSyncing ||
             props.isSendingTransfer ||
             props.isGeneratingReceiveAddress ||
-            props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount ||
             props.isTransitioning;
 
         const isAlreadyPollingSomething =
-            props.isFetchingPrice ||
-            props.isFetchingChartData ||
-            props.isFetchingMarketData ||
-            props.isFetchingAccountInfo ||
+            props.isPollingPrice ||
+            props.isPollingChartData ||
+            props.isPollingMarketData ||
+            props.isPollingAccountInfo ||
             props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
@@ -129,11 +131,19 @@ class Polling extends React.PureComponent {
         const index = allPollingServices.indexOf(pollFor);
         const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
-        if (autoPromotion && !isEmpty(unconfirmedBundleTails)) {
-            const bundles = keys(unconfirmedBundleTails);
-            const top = bundles[0];
+        const { autoPromoteSkips } = this.state;
 
-            return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+        if (autoPromotion && !isEmpty(unconfirmedBundleTails)) {
+            if (autoPromoteSkips) {
+                this.setState({ autoPromoteSkips: autoPromoteSkips - 1 });
+            } else {
+                this.setState({ autoPromoteSkips: 2 });
+
+                const bundles = keys(unconfirmedBundleTails);
+                const top = bundles[0];
+
+                return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+            }
         }
 
         // In case there are no unconfirmed bundle tails or auto-promotion is off, move to the next service item
@@ -148,18 +158,18 @@ class Polling extends React.PureComponent {
 const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
-    isFetchingPrice: state.polling.isFetchingPrice,
-    isFetchingChartData: state.polling.isFetchingChartData,
-    isFetchingMarketData: state.polling.isFetchingMarketData,
-    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isPollingPrice: state.polling.isFetchingPrice,
+    isPollingChartData: state.polling.isFetchingChartData,
+    isPollingMarketData: state.polling.isFetchingMarketData,
+    isPollingAccountInfo: state.polling.isFetchingAccountInfo,
     isAutoPromoting: state.polling.isAutoPromoting,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
-    isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
+    isFetchingAccountInfo: state.ui.isFetchingAccountInfo,
     autoPromotion: state.settings.autoPromotion,
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
 });

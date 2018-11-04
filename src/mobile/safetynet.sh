@@ -3,4 +3,4 @@
 set -e
 
 # Add SafetyNet API key to utils/safetynet.js
-cat utils/safetynet.js | sed -e "s/fakeAPIkey/$SAFETYNET_KEY/" | tee utils/safetynet.js
+cat src/libs/safetynet.js | sed -e "s/fakeAPIkey/$SAFETYNET_KEY/" | tee src/libs/safetynet.js

@@ -9,7 +9,6 @@ import find from 'lodash/find';
 import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
 import {
@@ -39,6 +38,7 @@ import {
     syncAddresses,
     accumulateBalance,
     formatAddressData,
+    findSpendStatusesFromTransactionObjects,
 } from './addresses';
 import Errors from '../errors';
 import { EMPTY_HASH_TRYTES } from './utils';
@@ -93,9 +93,9 @@ const organiseAccountState = (provider) => (accountName, partialAccountData) => 
  *   @method getAccountData
  *
  *   @param {string} provider
- *   @returns {function(string, string, function): Promise<object>}
+ *   @returns {function(object, string, function): Promise<object>}
  **/
-export const getAccountData = (provider) => (seed, accountName, genFn) => {
+export const getAccountData = (provider) => (seedStore, accountName) => {
     const bundleHashes = new Set();
 
     const cached = {
@@ -117,7 +117,7 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
                 throw new Error(Errors.NODE_NOT_SYNCED);
             }
 
-            return getFullAddressHistory(provider)(seed, genFn);
+            return getFullAddressHistory(provider)(seedStore);
         })
         .then((history) => {
             data = { ...data, ...history };
@@ -135,6 +135,11 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
         })
         .then((transactionObjects) => {
             cached.transactionObjects = transactionObjects;
+
+            // Get spent statuses of addresses from transaction objects
+            const spendStatuses = findSpendStatusesFromTransactionObjects(data.addresses, cached.transactionObjects);
+
+            data.wereSpent = map(data.wereSpent, (status, idx) => ({ ...status, local: spendStatuses[idx] }));
 
             each(transactionObjects, (tx) => {
                 if (tx.currentIndex === 0) {
@@ -170,14 +175,14 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
  *   @method syncAccount
  *   @param {string} [provider]
  *
- *   @returns {function(object, string, function): Promise<object>}
+ *   @returns {function(object, object, function): Promise<object>}
  **/
-export const syncAccount = (provider) => (existingAccountState, seed, genFn, notificationFn) => {
+export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
     const thisStateCopy = cloneDeep(existingAccountState);
-    const rescanAddresses = isString(seed);
+    const rescanAddresses = typeof seedStore === 'object';
 
     return (rescanAddresses
-        ? syncAddresses(provider)(seed, thisStateCopy.addresses, genFn)
+        ? syncAddresses(provider)(seedStore, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx))
         : Promise.resolve(thisStateCopy.addresses)
     )
         .then((latestAddressData) => {
@@ -258,8 +263,14 @@ export const syncAccount = (provider) => (existingAccountState, seed, genFn, not
                 );
             }
 
-            // Gets latest address data from ledger
-            return getAddressDataAndFormatBalance(provider)(keys(thisStateCopy.addresses));
+            const addresses = keys(thisStateCopy.addresses);
+            const keyIndexes = map(addresses, (address) => thisStateCopy.addresses[address].index);
+
+            return getAddressDataAndFormatBalance(provider)(
+                addresses,
+                map(thisStateCopy.transfers, (tx) => tx),
+                keyIndexes,
+            );
         })
         .then(({ addresses, balance }) => {
             thisStateCopy.addresses = addresses;
@@ -282,14 +293,7 @@ export const syncAccount = (provider) => (existingAccountState, seed, genFn, not
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider) => (
-    seed,
-    name,
-    newTransfer,
-    accountState,
-    isValueTransfer,
-    genFn,
-) => {
+export const syncAccountAfterSpending = (provider) => (seedStore, name, newTransfer, accountState, isValueTransfer) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
     const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
@@ -322,7 +326,7 @@ export const syncAccountAfterSpending = (provider) => (
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
-    return syncAddresses(provider)(seed, addressData, genFn).then((newAddressData) => {
+    return syncAddresses(provider)(seedStore, addressData, map(transfers, (tx) => tx)).then((newAddressData) => {
         const newState = {
             ...accountState,
             transfers,
@@ -470,13 +474,6 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
     const bundle = get(transaction, '[0].bundle');
 
     const transfers = merge({}, accountState.transfers, { [bundle]: newNormalisedTransfer });
-
-    // Currently we solely rely on wereAddressesSpentFrom and since this failed transaction
-    // was never broadcast, the addresses would be marked false
-    // The transaction would still stop spending from these addresses because during input
-    // selection, local transaction history is also checked.
-    // FIXME: After using a permanent local address status, this would be unnecessary
-    const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(newNormalisedTransfer, accountState.addresses);
 
     const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
@@ -493,7 +490,6 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
         ...accountState,
         unconfirmedBundleTails,
         transfers,
-        addresses: addressData,
         hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
     };
 

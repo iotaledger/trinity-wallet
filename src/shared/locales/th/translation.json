@@ -34,6 +34,7 @@
         "save": "บักทึก",
         "close": "Close",
         "export": "Export",
+        "help": "Help",
         "import": "Import",
         "continue": "ดำเนินการต่อ",
         "enable": "Enable",
@@ -44,22 +45,19 @@
         "paperWallet": "พิมพ์สำเนา",
         "addToPasswordManager": "เพิ่มไปยังการจัดการรหัสผ่าน",
         "shareSeed": "Share seed",
+        "share": "Share",
         "proceed": "Proceed",
         "qr": "QR",
         "enterSeed": "กรุณาใส่ Seed (เลขที่บัญชี)",
-        "mainWallet": "บัญชีหลัก",
-        "secondWallet": "บัญชีที่ 2",
-        "thirdWallet": "บัญชีที่ 3",
-        "fourthWallet": "บัญชีที่ 4",
-        "fifthWallet": "บัญชีที่ 5",
-        "sixthWallet": "บัญชีที่ 6",
-        "otherWallet": "บัญชีอื่นๆ",
         "yes": "Yes",
         "no": "No",
         "okay": "Okay",
         "password": "รหัสผ่าน",
         "unrecognisedPassword": "รหัสผ่านผิด",
         "unrecognisedPasswordExplanation": "รหัสผ่านผิด กรุณาลองอีกครั้ง",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "กำลังอยู่ในระหว่างการซิงค์",
         "syncInProgressExplanation": "กรุณารอจนกว่าการซิงค์เสร็จสมบูรณ์",
@@ -110,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "กรุณารอจนกว่าการเปลี่ยนแปลงเสร็จสมบูรณ์",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
-        "enterYourPassword": "Enter your password",
         "changeNode": "Change Node",
         "addCustomNode": "Add Custom Node",
         "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
@@ -145,7 +142,10 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -204,19 +204,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
-        "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
-        "seedCopied": "คัดลอก Seed (เลขที่บัญชี) ไปยังคลิปบอร์ดแล้ว",
-        "seedCopiedExplanation": "Seed (เลขที่บัญชี) จะถูกเคลียร์ออกไปเมื่อคุณกด \"เสร็จสิ้น\" หรือเมื่อผ่านไป 60 วินาที",
-        "copyToClipboard": "Copy Seed",
-        "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว"
     },
     "enterSeed": {
         "invalidCharacters": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -260,7 +248,10 @@
         "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
@@ -285,7 +276,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "คัดลอกที่อยู่แล้ว",
         "addressCopiedExplanation": "ที่อยู่ของคุณได้ถูกคัดลอกไปยังคลิปบอร์ด",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ไม่มีที่อยู่",
         "spent": "Spent",
         "missingPermission": "File system permission required",
@@ -356,7 +347,9 @@
         "advanced": "Advanced",
         "standard": "มาตรฐาน",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -414,7 +407,6 @@
         "reset": "Reset"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
         "okay": "Okay. Let's set up your wallet!",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
@@ -444,7 +436,8 @@
         "receive": "Receive",
         "empty": "Empty",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -486,6 +479,18 @@
         "theme": "ชุดรูปแบบ",
         "mockup": "Mockup"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "สกุลเงิน"
     },
@@ -509,9 +514,9 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Seed (เลขที่บัญชี) และรายการของคุณจะถูกลบออก",
-        "thisAction": "การกระทำนี้ไม่สามารถยกเลิกได้",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "ป้อนรหัสผ่านของคุณเพื่อที่จะลบบัญชีนี้"
     },
     "manualSync": {
@@ -530,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
         "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "hideSeed": "Hide Seed",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
@@ -584,19 +591,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
         "exportSuccess": "SeedVault exported",
         "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault does not contain a valid seed",
         "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
         "seedFileError": "Failed to open SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -652,13 +667,14 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Error log"
@@ -689,5 +705,47 @@
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": "Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

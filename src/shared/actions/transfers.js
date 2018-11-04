@@ -4,6 +4,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import join from 'lodash/join';
+import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
@@ -13,7 +14,6 @@ import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
     promoteTransactionAsync,
-    prepareTransfersAsync,
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
@@ -22,7 +22,6 @@ import {
 import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
-    selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
     getNodesFromState,
     getSelectedNodeFromState,
@@ -57,11 +56,7 @@ import {
     getAddressesUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
-import {
-    getStartingSearchIndexToPrepareInputs,
-    getUnspentInputs,
-    getSpentAddressesFromTransactions,
-} from '../libs/iota/inputs';
+import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
     generateTransferErrorAlert,
@@ -69,7 +64,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateTransactionSuccessAlert,
 } from './alerts';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
 
@@ -323,13 +318,15 @@ export const forceTransactionPromotion = (
     tailTransactionHashes,
     shouldGenerateAlert,
     powFn = null,
-    maxReplays = 3,
+    maxReplays = 1,
     maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
     let replayCount = 0;
     let promotionAttempt = 0;
 
-    const promote = (hash) => {
+    const promote = (tailTransaction) => {
+        const { hash } = tailTransaction;
+
         promotionAttempt += 1;
 
         return promoteTransactionAsync(null, powFn)(hash).catch((error) => {
@@ -341,7 +338,7 @@ export const forceTransactionPromotion = (
                 promotionAttempt < maxPromotionAttempts
             ) {
                 // Retry promotion on same reference (hash)
-                return promote(hash);
+                return promote(tailTransaction);
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
@@ -386,12 +383,12 @@ export const forceTransactionPromotion = (
             dispatch(updateAccountAfterReattachment(newState));
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promote(tailTransaction.hash);
+            return promote(tailTransaction);
         });
     };
 
     if (has(consistentTail, 'hash')) {
-        return promote(consistentTail.hash);
+        return promote(consistentTail);
     }
 
     return reattachAndPromote();
@@ -400,17 +397,16 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {string} seed
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} receiveAddress
  * @param  {number} value
  * @param  {string} message
  * @param  {string} accountName
  * @param  {function} powFn
- * @param  {function} genFn
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, powFn) => (
     dispatch,
     getState,
 ) => {
@@ -450,7 +446,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount()(accountState, seed, genFn);
+                    return syncAccount()(accountState, seedStore);
                 }
 
                 throw new Error(Errors.KEY_REUSE);
@@ -467,18 +463,23 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             .then((filteredTransfers) => {
                 const { addresses, transfers } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
-                const spentAddressesFromTransactions = getSpentAddressesFromTransactions(transfers);
 
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
                 // Prepare inputs.
                 return getUnspentInputs()(
+                    // Latest address data
                     addresses,
-                    spentAddressesFromTransactions,
+                    // Normalised transactions list
+                    map(transfers, (tx) => tx),
+                    // Pending value transactions
                     filteredTransfers,
+                    // Start index for address (for input selection)
                     startIndex,
+                    // Transfer value
                     value,
+                    // Inputs
                     null,
                 );
             })
@@ -519,16 +520,26 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
+                // Check if input count does not exceed maximum supported by the SeedStore type
+                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
+                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                }
+
                 transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder()(accountState.addresses, seed, genFn, [
-                    // Make sure inputs are blacklisted
-                    ...map(transferInputs, (input) => input.address),
-                    // Make sure receive address is blacklisted
-                    iota.utils.noChecksum(receiveAddress),
-                ]);
+                return getAddressesUptoRemainder()(
+                    accountState.addresses,
+                    map(accountState.transfers, (tx) => tx),
+                    seedStore,
+                    [
+                        // Make sure inputs are blacklisted
+                        ...map(transferInputs, (input) => input.address),
+                        // Make sure receive address is blacklisted
+                        iota.utils.noChecksum(receiveAddress),
+                    ],
+                );
             })
-            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
@@ -538,6 +549,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return {
                     inputs: transferInputs,
                     address: remainderAddress,
+                    keyIndex: remainderIndex,
                 };
             });
     };
@@ -557,13 +569,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
             .then((options) => {
-                const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
-                const transfer = prepareTransferArray(address, value, message, firstAddress);
+                const transfer = prepareTransferArray(address, value, message, accountState.addresses);
 
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return prepareTransfersAsync()(seed, transfer, options);
+                return seedStore.prepareTransfers(transfer, options);
             })
             .then((trytes) => {
                 if (!isZeroValue) {
@@ -681,12 +692,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .then(() => {
                 return syncAccountAfterSpending()(
-                    seed,
+                    seedStore,
                     accountName,
                     cached.transactionObjects,
                     accountState,
                     !isZeroValue,
-                    genFn,
                 );
             })
             .then(({ newState }) => {
@@ -707,7 +717,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
-                    const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
+                    const { newState } = syncAccountOnValueTransactionFailure(
+                        // Sort in ascending order
+                        orderBy(cached.transactionObjects, ['currentIndex']),
+                        accountState,
+                    );
 
                     // Temporarily mark this transaction as failed.
                     // As the inputs were signed and already exposed to the network
@@ -786,8 +800,45 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             20000,
                         ),
                     );
+                } else if (message === Errors.LEDGER_ZERO_VALUE) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:cannotSendZeroValueTitle'),
+                            i18next.t('ledger:cannotSendZeroValueExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DISCONNECTED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDisconnectedTitle'),
+                            i18next.t('ledger:ledgerDisconnectedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DENIED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDeniedTitle'),
+                            i18next.t('ledger:ledgerDeniedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_INVALID_INDEX) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerIncorrectIndex'),
+                            i18next.t('ledger:ledgerIncorrectIndexExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_CANCELLED) {
+                    return;
                 }
-
                 return dispatch(generateTransferErrorAlert(error));
             })
     );

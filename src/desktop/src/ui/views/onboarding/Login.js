@@ -1,21 +1,21 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
-import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
+import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
-import { setOnboardingName } from 'actions/ui';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
 import { capitalize } from 'libs/helpers';
-import { vaultAuth, getSeed, setSeed, hash } from 'libs/crypto';
+import { hash, authorize } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
@@ -31,9 +31,9 @@ import css from './index.scss';
 class Login extends React.Component {
     static propTypes = {
         /** @ignore */
-        accounts: PropTypes.object.isRequired,
-        /** @ignore */
         currentAccountName: PropTypes.string,
+        /** @ignore */
+        currentAccountMeta: PropTypes.object,
         /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
@@ -57,11 +57,7 @@ class Login extends React.Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
-        /** @ignore */
-        getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
-        /** @ignore */
-        setOnboardingName: PropTypes.func.isRequired,
+        getFullAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -75,10 +71,9 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { wallet, ui } = this.props;
+        const { wallet } = this.props;
 
-        if (ui.onboarding.name || (wallet.ready && wallet.addingAdditionalAccount)) {
-            this.props.setOnboardingName('');
+        if (wallet.addingAdditionalAccount) {
             this.setupAccount();
         } else {
             this.props.clearWalletData();
@@ -86,6 +81,18 @@ class Login extends React.Component {
         }
     }
 
+    /**
+     * Update 2fa code value and trigger authentication once necessary length is reached
+     * @param {string} value - Code value
+     */
+    setCode = (value) => {
+        this.setState({ code: value }, () => value.length === 6 && this.handleSubmit());
+    };
+
+    /**
+     * Update current input password value
+     * @param {string} password - Password value
+     */
     setPassword = (password) => {
         this.setState({
             password: password,
@@ -98,43 +105,29 @@ class Login extends React.Component {
      * @returns {undefined}
      */
     setupAccount = async () => {
-        const { accounts, wallet, currency, currentAccountName } = this.props;
+        const { wallet, currency, currentAccountName, currentAccountMeta } = this.props;
 
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
+        const accountMeta = wallet.addingAdditionalAccount ? wallet.additionalAccountMeta : currentAccountMeta;
 
-        const seed = wallet.addingAdditionalAccount
-            ? Electron.getOnboardingSeed(true)
-            : await getSeed(wallet.password, accountName, true);
+        let seedStore;
+        try {
+            seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        } catch (e) {
+            e.accountName = accountName;
+            throw e;
+        }
 
         this.props.getPrice();
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (accounts.firstUse) {
-            this.props.getFullAccountInfoFirstSeed(seed, accountName, null, Electron.genFn);
-        } else if (wallet.addingAdditionalAccount) {
-            this.props.getFullAccountInfoAdditionalSeed(
-                seed,
-                wallet.additionalAccountName,
-                wallet.password,
-                this.setAdditionalSeed,
-                null,
-                Electron.genFn,
-            );
+        if (wallet.addingAdditionalAccount) {
+            this.props.getFullAccountInfo(seedStore, accountName);
         } else {
-            this.props.getAccountInfo(seed, accountName, null, Electron.genFn, Electron.notify);
+            this.props.getAccountInfo(seedStore, accountName, Electron.notify);
         }
-    };
-
-    /**
-     * Store additional seed in keychain
-     */
-    setAdditionalSeed = async () => {
-        const { wallet } = this.props;
-
-        await setSeed(wallet.password, wallet.additionalAccountName, Electron.getOnboardingSeed());
-        Electron.setOnboardingSeed(null);
     };
 
     /**
@@ -154,7 +147,7 @@ class Login extends React.Component {
         let authorised = false;
 
         try {
-            authorised = await vaultAuth(passwordHash);
+            authorised = await authorize(passwordHash);
 
             if (typeof authorised === 'string' && !authenticator.verifyToken(authorised, code)) {
                 if (verifyTwoFA) {
@@ -163,6 +156,7 @@ class Login extends React.Component {
 
                 this.setState({
                     verifyTwoFA: true,
+                    code: '',
                 });
 
                 return;
@@ -176,23 +170,32 @@ class Login extends React.Component {
 
             this.setState({
                 password: '',
+                code: '',
                 verifyTwoFA: false,
             });
 
-            this.setupAccount();
+            try {
+                await this.setupAccount();
+            } catch (err) {
+                generateAlert(
+                    'error',
+                    t('unrecognisedAccount'),
+                    t('unrecognisedAccountExplanation', { accountName: err.accountName }),
+                );
+            }
         }
     };
 
     render() {
-        const { t, accounts, wallet, ui } = this.props;
+        const { t, wallet, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (ui.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
+        if (ui.isFetchingAccountInfo || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
-                    title={accounts.firstUse || wallet.addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
-                    subtitle={accounts.firstUse || wallet.addingAdditionalAccount ? t('loading:thisMayTake') : null}
+                    title={wallet.addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
+                    subtitle={wallet.addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
         }
@@ -221,18 +224,13 @@ class Login extends React.Component {
                 <Modal variant="confirm" isOpen={verifyTwoFA} onClose={() => this.setState({ verifyTwoFA: false })}>
                     <p>{t('twoFA:enterCode')}</p>
                     <form onSubmit={(e) => this.handleSubmit(e)}>
-                        <Text
-                            value={code}
-                            focus={verifyTwoFA}
-                            label={t('twoFA:code')}
-                            onChange={(value) => this.setState({ code: value })}
-                        />
+                        <Text value={code} focus={verifyTwoFA} label={t('twoFA:code')} onChange={this.setCode} />
                         <footer>
                             <Button
                                 onClick={() => {
                                     this.setState({ verifyTwoFA: false });
                                 }}
-                                variant="secondary"
+                                variant="dark"
                             >
                                 {t('back')}
                             </Button>
@@ -248,11 +246,10 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.accounts,
     wallet: state.wallet,
     currentAccountName: getSelectedAccountName(state),
+    currentAccountMeta: getSelectedAccountMeta(state),
     ui: state.ui,
-    firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,
 });
@@ -265,10 +262,8 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     getCurrencyData,
-    getFullAccountInfoFirstSeed,
-    getFullAccountInfoAdditionalSeed,
+    getFullAccountInfo,
     getAccountInfo,
-    setOnboardingName,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Login));

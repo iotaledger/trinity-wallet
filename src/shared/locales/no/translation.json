@@ -7,7 +7,7 @@
         "refresh": "Oppdater",
         "balanceError": "Saldoen er for lav",
         "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Total saldo",
         "transferError": "Transaksjonsfeil",
         "transferErrorMessage": "Noe gikk galt under transaksjonen. Vennligst prøv igjen.",
         "transferSent": "Transaksjon sendt",
@@ -34,6 +34,7 @@
         "save": "Lagre",
         "close": "Lukk",
         "export": "Eksporter",
+        "help": "Help",
         "import": "Importer",
         "continue": "Fortsett",
         "enable": "Aktiver",
@@ -44,23 +45,20 @@
         "paperWallet": "Skriv ut papirkopi",
         "addToPasswordManager": "Legg til i en passord manager",
         "shareSeed": "Del hovednøkkelen",
+        "share": "Share",
         "proceed": "Fortsett",
         "qr": "QR",
         "enterSeed": "Vennligst skriv inn hovednøkkelen.",
-        "mainWallet": "HOVEDKONTO",
-        "secondWallet": "ANDRE KONTO",
-        "thirdWallet": "TREDJE KONTO",
-        "fourthWallet": "FJERDE KONTO",
-        "fifthWallet": "FEMTE KONTO",
-        "sixthWallet": "SJETTE KONTO",
-        "otherWallet": "ANNEN KONTO",
         "yes": "Ja",
         "no": "Nei",
         "okay": "Ok",
         "password": "Passord",
         "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
-        "capsLockIsOn": "Caps Lock is on",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "emptyPasswordExplanation": "You must enter a password. Please try again.",
+        "capsLockIsOn": "Caps Lock er på",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vennligst vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
@@ -110,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Vennligst vent til synkroniseringen er fullført.",
         "checkForUpdates": "Søk etter oppdateringer",
         "account": "Konto",
-        "enterYourPassword": "Angi ditt passord",
         "changeNode": "Endre node",
         "addCustomNode": "Legg til egendefinert node",
         "nodeMustUseHTTPS": "Ugyldig node (ikke HTTPS)",
@@ -145,7 +142,10 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -204,19 +204,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
-        "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet.",
-        "seedCopied": "Kopierte hovednøkkelen til utklippstavlen",
-        "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
-        "copyToClipboard": "Kopier hovednøkkel",
-        "shareSeed": "Kopier hovednøkkelen til en sikker passord manager",
-        "storeEncrypted": "Lagre hovednøkkelen din kryptert i en passord manager.",
-        "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
-        "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
-        "passwordManagerCheckbox": "Jeg ønsker å lagre hovednøkkelen i en passord manager",
-        "copy": "KOPIER",
-        "noPasswordManagers": "Ingen støttet passord manager er installert",
-        "noPasswordManagersExplanation": "Ingen støttet passord manager ble funnet på enheten. Vennligst installer Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Dersom du ønsker å lagre hovednøkkelen i en passord manager må du følge guiden fra følgende lenke"
+        "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -260,7 +248,10 @@
         "pressForNewSeed": "Trykk for ny hovednøkkel",
         "generateSuccess": "Hovednøkkel er generert",
         "individualLetters": "Trykk individuelle tegn for å randomisere dem.",
-        "individualLetterCount": "Trykk på {{letterCount}} flere tegn for å randomisere dem.",
+        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
+        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
+        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Hva er en hovednøkkel?"
     },
     "onboardingComplete": {
@@ -285,7 +276,7 @@
         "copyAddress": "Kopier adresse",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "Ny adresse",
+        "generateNewAddress": "Sync address",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
         "missingPermission": "Trenger tillatelse til filsystemet",
@@ -296,7 +287,7 @@
         "saveYourSeed": "Ta vare på hovednøkkelen",
         "seedCleared": "Hovednøkkelen er fjernet",
         "mostSecure": "Mest sikkert",
-        "recommended": "Recommended",
+        "recommended": "Anbefalt",
         "leastSecure": "Minst sikkert",
         "paperWallet": "Papirlommebok",
         "writeYourSeedDown": "Skriv ned hovednøkkelen",
@@ -353,10 +344,12 @@
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avansert",
         "standard": "Standard",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Sender transaksjon",
@@ -414,7 +407,6 @@
         "reset": "Tilbakestill"
     },
     "walletSetup": {
-        "creatingSeed": "Genererer en hovednøkkel",
         "okay": "Ok. La oss sette opp lommeboken din!",
         "doYouNeedASeed": "Trenger du å lage en ny hovednøkkel?",
         "seedExplanation": "Hovednøkkelen gir tilgang til dine IOTA og består av 81 tegn bestående av bokstavene A til Z eller tallet 9.",
@@ -444,7 +436,8 @@
         "receive": "Motta",
         "empty": "Tom",
         "retrying": "Prøver på nytt",
-        "yesterday": "I går"
+        "yesterday": "I går",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -452,7 +445,7 @@
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slett konto",
         "addNewAccount": "Legge til ny konto",
-        "tools": "Tools"
+        "tools": "Verktøy"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",
@@ -486,6 +479,18 @@
         "theme": "Tema",
         "mockup": "Blanding"
     },
+    "themes": {
+        "classic": "Classic",
+        "contemporary": "Contemporary",
+        "dark": "Dark",
+        "default": "Default",
+        "electric": "Electric",
+        "ionic": "Ionic",
+        "light": "Light",
+        "lucky": "Lucky",
+        "mint": "Mint",
+        "steelblue": "Steel Blue"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -509,9 +514,9 @@
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Er du sikker på at du vil slette</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonshistorikk vil bli fjernet.",
-        "thisAction": "Denne handlingen kan ikke angres.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Skriv inn ditt passord for å slette kontoen."
     },
     "manualSync": {
@@ -530,7 +535,9 @@
     "viewSeed": {
         "enterPassword": "Skriv inn passordet for å vise hovednøkkelen.",
         "viewSeed": "Vis hovednøkkel",
-        "hideSeed": "Gjem hovednøkkel"
+        "hideSeed": "Gjem hovednøkkel",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du lagret hovednøkkelen?",
@@ -584,19 +591,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksporter SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Pass på å sikkerhetskopiere filen flere steder (f.eks harddisk, nettsky, USB). Hvis du mister denne filen og du ikke har hovednøkkelen din lagret et annet sted, mister du tilgangen til dine IOTA.",
         "exportFail": "SeedVault eksport mislyktes",
         "exportFailExplanation": "Det oppstod et problem med å eksportere SeedVault. Kontroller at du har riktige tillatelser og nok plass.",
         "exportSuccess": "SeedVault eksportert",
         "exportSuccessExplanation": "Den kryptert filen med hovednøkkelen ble eksportert.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "importSuccess": "Seed imported",
+        "importSuccessExplanation": "Your seed was imported successfully.",
+        "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Importer SeedVault",
-        "dropSeedVaultHere": "Slipp SeedVault her",
-        "enterPasswordExplanation": "Skriv inn ditt passord for å åpne SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
-        "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet."
+        "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -652,13 +667,14 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
-        "errorRetrievingUpdateDataExplanation": "Det oppstod en feil under innhenting av data. Vennligst forsøk igjen.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny versjon tilgjengelig",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Last ned siste versjon",
-        "skipUpdate": "Hopp over oppdatering"
+        "installUpdate": "Install update and restart",
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Error log"
@@ -675,19 +691,61 @@
     "tray": {
         "trayApplication": "Tray application",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "Du er ikke innlogget",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
     "notifications": {
-        "notifications": "Notifications",
+        "notifications": "Varslinger",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "Varsle meg om bekreftelser",
         "typeMessages": "Notify me about zero value transactions",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": "Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
     }
 }

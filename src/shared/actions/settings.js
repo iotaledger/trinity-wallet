@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
 import Errors from '../libs/errors';
@@ -36,9 +36,10 @@ export const ActionTypes = {
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
-    SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
     TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
     SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
+    SET_BYTETRIT_STATUS: 'IOTA/SETTINGS/SET_BYTETRIT_STATUS',
+    SET_BYTETRIT_INFO: 'IOTA/SETTINGS/SET_BYTETRIT_INFO',
     SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
 };
@@ -284,19 +285,6 @@ export const updateAutoNodeSwitching = (payload) => ({
  */
 export const setLockScreenTimeout = (payload) => ({
     type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
-    payload,
-});
-
-/**
- * Dispatch to mark Android seed share tutorial visit as completed
- *
- * @method setSeedShareTutorialVisitationStatus
- * @param {boolean} payload
- *
- * @returns {{type: {string}, payload: {boolean} }}
- */
-export const setSeedShareTutorialVisitationStatus = (payload) => ({
-    type: ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS,
     payload,
 });
 
@@ -654,6 +642,18 @@ export const setFingerprintStatus = (payload) => ({
 // FIXME: Temporarily needed for password migration
 export const setCompletedForcedPasswordUpdate = () => ({
     type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+});
+
+// FIXME: Temporarily needed for byte-trit check
+export const setCompletedByteTritSweep = (payload) => ({
+    type: ActionTypes.SET_BYTETRIT_STATUS,
+    payload,
+});
+
+// FIXME: Temporarily needed for byte-trit check
+export const setByteTritSweepInfo = (payload) => ({
+    type: ActionTypes.SET_BYTETRIT_INFO,
+    payload,
 });
 
 /**

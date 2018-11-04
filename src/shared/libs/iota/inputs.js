@@ -1,12 +1,14 @@
+import isNumber from 'lodash/isNumber';
+import isObject from 'lodash/isObject';
 import differenceBy from 'lodash/differenceBy';
 import get from 'lodash/get';
 import each from 'lodash/each';
 import isNull from 'lodash/isNull';
 import map from 'lodash/map';
 import keys from 'lodash/keys';
-import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import { filterSpentAddresses, filterAddressesWithIncomingTransfers } from './addresses';
+import { VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX } from './utils';
 import { DEFAULT_SECURITY } from '../../config';
 
 /**
@@ -66,7 +68,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  **/
 export const getUnspentInputs = (provider) => (
     addressData,
-    spentAddresses,
+    normalisedTransactions,
     pendingValueTransfers,
     start,
     threshold,
@@ -85,47 +87,56 @@ export const getUnspentInputs = (provider) => (
     const preparedInputs = prepareInputs(addressData, start, threshold);
     inputs.totalBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
-    return filterSpentAddresses(provider)(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
-        // Keep track of all spent addresses that are filtered
-        inputs.spentAddresses = [
-            ...inputs.spentAddresses,
-            ...map(differenceBy(preparedInputs.inputs, unspentInputs, 'address'), (input) => input.address),
-        ];
+    return filterSpentAddresses(provider)(preparedInputs.inputs, addressData, normalisedTransactions).then(
+        (unspentInputs) => {
+            // Keep track of all spent addresses that are filtered
+            inputs.spentAddresses = [
+                ...inputs.spentAddresses,
+                ...map(differenceBy(preparedInputs.inputs, unspentInputs, 'address'), (input) => input.address),
+            ];
 
-        const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
+            const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
-        // Keep track of all addresses with incoming transfers
-        inputs.addressesWithIncomingTransfers = [
-            ...inputs.addressesWithIncomingTransfers,
-            ...map(differenceBy(unspentInputs, filtered, 'address'), (input) => input.address),
-        ];
+            // Keep track of all addresses with incoming transfers
+            inputs.addressesWithIncomingTransfers = [
+                ...inputs.addressesWithIncomingTransfers,
+                ...map(differenceBy(unspentInputs, filtered, 'address'), (input) => input.address),
+            ];
 
-        const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
+            const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 
-        const diff = threshold - collected;
-        const hasInputs = size(preparedInputs.inputs);
+            const diff = threshold - collected;
+            const hasInputs = size(preparedInputs.inputs);
 
-        if (hasInputs && diff > 0) {
-            const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
-            const end = ordered[0].keyIndex;
+            if (hasInputs && diff > 0) {
+                const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
+                const end = ordered[0].keyIndex;
 
-            return getUnspentInputs(provider)(addressData, spentAddresses, pendingValueTransfers, end + 1, diff, {
+                return getUnspentInputs(provider)(
+                    addressData,
+                    normalisedTransactions,
+                    pendingValueTransfers,
+                    end + 1,
+                    diff,
+                    {
+                        inputs: inputs.inputs.concat(filtered),
+                        availableBalance: inputs.availableBalance + collected,
+                        totalBalance: inputs.totalBalance,
+                        spentAddresses: inputs.spentAddresses,
+                        addressesWithIncomingTransfers: inputs.addressesWithIncomingTransfers,
+                    },
+                );
+            }
+
+            return {
                 inputs: inputs.inputs.concat(filtered),
                 availableBalance: inputs.availableBalance + collected,
                 totalBalance: inputs.totalBalance,
                 spentAddresses: inputs.spentAddresses,
                 addressesWithIncomingTransfers: inputs.addressesWithIncomingTransfers,
-            });
-        }
-
-        return {
-            inputs: inputs.inputs.concat(filtered),
-            availableBalance: inputs.availableBalance + collected,
-            totalBalance: inputs.totalBalance,
-            spentAddresses: inputs.spentAddresses,
-            addressesWithIncomingTransfers: inputs.addressesWithIncomingTransfers,
-        };
-    });
+            };
+        },
+    );
 };
 
 /**
@@ -148,21 +159,20 @@ export const getStartingSearchIndexToPrepareInputs = (addressData) => {
 };
 
 /**
- *   Gets addresses used as inputs in transactions
+ *   Checks if an input object is valid
  *
- *   @method getStartingSearchIndexToPrepareInputs
- *   @param {object | array} normalizedTransactions
+ *   @method isValidInput
+ *   @param {object} input
  *
- *   @returns {array} - spent addresses
+ *   @returns {boolean}
  **/
-export const getSpentAddressesFromTransactions = (normalizedTransactions) => {
-    return reduce(
-        normalizedTransactions,
-        (acc, transaction) => {
-            acc.push(...map(transaction.inputs, (input) => input.address));
-
-            return acc;
-        },
-        [],
+export const isValidInput = (input) => {
+    return (
+        isObject(input) &&
+        VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(input.address) &&
+        isNumber(input.balance) &&
+        isNumber(input.security) &&
+        isNumber(input.keyIndex) &&
+        input.keyIndex >= 0
     );
 };

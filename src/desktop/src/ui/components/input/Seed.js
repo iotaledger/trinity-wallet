@@ -4,13 +4,14 @@ import QrReader from 'react-qr-reader';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
-import { byteToChar, MAX_ACC_LENGTH } from 'libs/crypto';
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+import { byteToChar, charToByte } from 'libs/helpers';
 
-import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
+import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Modal from 'ui/components/modal/Modal';
 import Password from 'ui/components/modal/Password';
@@ -35,13 +36,13 @@ class SeedInput extends React.PureComponent {
         /** Camera modal close label */
         closeLabel: PropTypes.string.isRequired,
         /** Seed change event function
-         * @param {string} value - Current seed value
+         * @param {array} value - Current seed value
          */
         onChange: PropTypes.func.isRequired,
+        /** @ignore */
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** Should the onboarding name be updated to imported SeedVault account name */
         updateImportName: PropTypes.bool,
-        /** Set onboarding seed name */
-        setOnboardingName: PropTypes.func.isRequired,
         /** Create a notification message
          * @param {string} type - notification type - success, error
          * @param {string} title - notification title
@@ -97,7 +98,7 @@ class SeedInput extends React.PureComponent {
                 showScanner: false,
             }));
 
-            const seed = input.split('').map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()));
+            const seed = input.split('').map((char) => charToByte(char));
             Electron.garbageCollect();
 
             this.props.onChange(seed);
@@ -120,6 +121,17 @@ class SeedInput extends React.PureComponent {
         this.setState({
             importBuffer: buffer,
         });
+    };
+
+    /**
+     * Set valid length drag&drop seed to state
+     * @param {array} seed - Target seed byte array
+     */
+    onTextDrop = (seed) => {
+        if (seed.length === MAX_SEED_LENGTH) {
+            this.props.onChange(seed);
+        }
+        Electron.garbageCollect();
     };
 
     getCursor = (element) => {
@@ -157,7 +169,7 @@ class SeedInput extends React.PureComponent {
     };
 
     decryptFile = async (password) => {
-        const { generateAlert, updateImportName, setOnboardingName, t } = this.props;
+        const { generateAlert, setAdditionalAccountInfo, updateImportName, t } = this.props;
 
         try {
             let accounts = await Electron.importSeed(this.state.importBuffer, password);
@@ -180,7 +192,10 @@ class SeedInput extends React.PureComponent {
                 this.props.onChange(accounts[0].seed);
 
                 if (updateImportName && accounts[0].title.length < MAX_ACC_LENGTH) {
-                    setOnboardingName(accounts[0].title);
+                    setAdditionalAccountInfo({
+                        addingAdditionalAccount: true,
+                        additionalAccountName: accounts[0].title,
+                    });
                 }
             } else {
                 this.setState({
@@ -192,7 +207,7 @@ class SeedInput extends React.PureComponent {
             Electron.garbageCollect();
         } catch (error) {
             if (error.code === 'InvalidKey') {
-                generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
+                generateAlert('error', t('seedVault:unrecognisedKey'), t('seedVault:unrecognisedKeyExplanation'));
             } else if (error.message === 'SeedNotFound') {
                 generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
@@ -208,7 +223,10 @@ class SeedInput extends React.PureComponent {
         this.props.onChange(account.seed);
 
         if (this.props.updateImportName && account.title.length < MAX_ACC_LENGTH) {
-            this.props.setOnboardingName(account.title);
+            this.props.setAdditionalAccountInfo({
+                addingAdditionalAccount: true,
+                additionalAccountName: account.title,
+            });
         }
 
         this.setState({
@@ -224,7 +242,7 @@ class SeedInput extends React.PureComponent {
             return true;
         }
 
-        const byte = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(key.toUpperCase());
+        const byte = charToByte(key.toUpperCase());
 
         if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
@@ -302,7 +320,7 @@ class SeedInput extends React.PureComponent {
                     </div>
                     <small>{label}</small>
                 </fieldset>
-                <Dropzone onDrop={this.onDrop} />
+                <Dropzone onDrop={this.onDrop} onTextDrop={this.onTextDrop} />
 
                 {seed.length ? <span className={css.info}>{checkSum}</span> : null}
                 {showScanner && (
@@ -320,7 +338,7 @@ class SeedInput extends React.PureComponent {
                     <Password
                         content={{
                             title: t('enterPassword'),
-                            message: t('seedVault:enterPasswordExplanation'),
+                            message: t('seedVault:enterKeyExplanation'),
                             confirm: t('seedVault:importSeedVault'),
                         }}
                         isOpen
@@ -363,7 +381,7 @@ class SeedInput extends React.PureComponent {
 
 const mapDispatchToProps = {
     generateAlert,
-    setOnboardingName,
+    setAdditionalAccountInfo,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(SeedInput));
+export default connect(null, mapDispatchToProps)(withI18n()(SeedInput));

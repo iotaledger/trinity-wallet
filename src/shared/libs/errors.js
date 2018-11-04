@@ -22,4 +22,18 @@ export default {
     ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
     SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
     NO_NODE_TO_RETRY: 'No node to retry.',
+    EMPTY_ADDRESS_DATA: 'Empty address data.',
+    INVALID_INPUT: 'Invalid input.',
+    INVALID_TRANSFER: 'Invalid transfer.',
+    CANNOT_SWEEP_TO_SAME_ADDRESS: 'Cannot sweep to same address.',
+    BALANCE_MISMATCH: 'Balance mismatch.',
+    PROMOTIONS_LIMIT_REACHED: 'Promotions limit reached.',
+    EMPTY_BUNDLE_PROVIDED: 'Empty bundle provided.',
+    DETECTED_INPUT_WITH_ZERO_BALANCE: 'Detected input with zero balance.',
+    MAX_INPUTS_EXCEEDED: (count, max) => `Can't process transactions with ${count} inputs. The limit is ${max}.`,
+    LEDGER_ZERO_VALUE: 'Cannot send 0 value transfers with a Ledger device',
+    LEDGER_DISCONNECTED: 'Ledger device disconnected',
+    LEDGER_CANCELLED: 'Ledger transaction cancelled',
+    LEDGER_DENIED: 'Ledger transaction denied by user',
+    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic'
 };

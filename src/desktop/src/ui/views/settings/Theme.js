@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { updateTheme } from 'actions/settings';
 import themes from 'themes/themes';
 
@@ -46,13 +46,14 @@ class Theme extends React.PureComponent {
                 }}
             >
                 <Select
-                    label="Theme"
+                    label={t('settings:theme')}
                     value={themeName || this.props.themeName}
+                    valueLabel={t(`themes:${themeName ? themeName.toLowerCase() : this.props.themeName.toLowerCase()}`)}
                     onChange={(value) => this.setState({ themeName: value })}
                     options={Object.keys(themes).map((item) => {
                         return {
                             value: item,
-                            label: item,
+                            label: t(`themes:${item.toLowerCase()}`),
                         };
                     })}
                 />
@@ -74,10 +75,10 @@ class Theme extends React.PureComponent {
                                     color: theme.input.color,
                                 }}
                                 type="text"
-                                value="Lorem ipsum"
+                                value={t('themeCustomisation:mockup')}
                                 onChange={() => {}}
                             />
-                            <small style={{ color: theme.body.color }}>Label</small>
+                            <small style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</small>
                         </fieldset>
                     </div>
                     <div>
@@ -117,4 +118,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Theme));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Theme));

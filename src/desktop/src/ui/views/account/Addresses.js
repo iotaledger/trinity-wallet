@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { selectAccountInfo } from 'selectors/accounts';
 
@@ -23,6 +23,7 @@ class Addresses extends PureComponent {
 
     render() {
         const { account, t } = this.props;
+        const isSpent = ({ spent: { local, remote } }) => local || remote;
 
         return (
             <ul className={css.addresses}>
@@ -34,7 +35,7 @@ class Addresses extends PureComponent {
                             const text = address.match(/.{1,3}/g).join(' ');
                             return (
                                 <li key={address}>
-                                    <p className={account.addresses[item].spent ? css.spent : null}>
+                                    <p className={isSpent(account.addresses[item]) ? css.spent : null}>
                                         <Clipboard
                                             text={address}
                                             title={t('receive:addressCopied')}
@@ -60,4 +61,4 @@ const mapStateToProps = (state) => ({
     account: selectAccountInfo(state),
 });
 
-export default connect(mapStateToProps)(translate()(Addresses));
+export default connect(mapStateToProps)(withI18n()(Addresses));

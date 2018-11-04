@@ -13,6 +13,8 @@ export default class Select extends React.PureComponent {
     static propTypes = {
         /** Current selected value */
         value: PropTypes.string.isRequired,
+        /** Selected value label */
+        valueLabel: PropTypes.string,
         /** Select dropdown options */
         options: PropTypes.array.isRequired,
         /** Select item label */
@@ -61,7 +63,7 @@ export default class Select extends React.PureComponent {
     };
 
     render() {
-        const { value, options, label, disabled } = this.props;
+        const { value, valueLabel, options, label, disabled } = this.props;
         const { open } = this.state;
 
         return (
@@ -79,7 +81,7 @@ export default class Select extends React.PureComponent {
                         }
                         className={css.selectable}
                     >
-                        {value}
+                        {valueLabel || value}
                         <small>&shy;</small>
                     </div>
                     {open && (

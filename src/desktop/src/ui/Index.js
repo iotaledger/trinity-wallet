@@ -5,16 +5,17 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
+import { getAccountNamesFromState } from 'selectors/accounts';
+
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
-import { disposeOffAlert, generateAlert } from 'actions/alerts';
-import { setOnboardingName } from 'actions/ui';
+import { dismissAlert, generateAlert } from 'actions/alerts';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -22,6 +23,7 @@ import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
 import ErrorLog from 'ui/global/ErrorLog';
+import UpdateProgress from 'ui/global/UpdateProgress';
 
 import Loading from 'ui/components/Loading';
 
@@ -29,6 +31,7 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -40,7 +43,7 @@ import css from './index.scss';
 class App extends React.Component {
     static propTypes = {
         /** @ignore */
-        accounts: PropTypes.object.isRequired,
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         isBusy: PropTypes.bool.isRequired,
         /** @ignore */
@@ -54,7 +57,7 @@ class App extends React.Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        disposeOffAlert: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
@@ -68,17 +71,17 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
-        setOnboardingName: PropTypes.func.isRequired,
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired,
+        setDeepLink: PropTypes.func.isRequired
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            fatalError: false,
+            fatalError: false
         };
     }
 
@@ -126,7 +129,7 @@ class App extends React.Component {
 
         // Dispose alerts on route change
         if (this.props.location.pathname !== nextProps.location.pathname) {
-            this.props.disposeOffAlert();
+            this.props.dismissAlert();
         }
     }
 
@@ -151,7 +154,7 @@ class App extends React.Component {
             this.props.setDeepLink(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
-                parsedData.message || '',
+                parsedData.message || ''
             );
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
@@ -169,7 +172,7 @@ class App extends React.Component {
             await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
-                fatalError: true,
+                fatalError: true
             });
         }
     }
@@ -179,7 +182,7 @@ class App extends React.Component {
      * @param {string} accountName - target account name
      */
     accountSwitch(accountName) {
-        const accountIndex = this.props.accounts.accountNames.indexOf(accountName);
+        const accountIndex = this.props.accountNames.indexOf(accountName);
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');
@@ -211,7 +214,11 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
-                this.props.setOnboardingName('');
+                this.props.setAdditionalAccountInfo({
+                    additionalAccountName: '',
+                    addingAdditionalAccount: false,
+                    additionalAccountType: '',
+                });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
                 break;
@@ -248,7 +255,9 @@ class App extends React.Component {
                 <About />
                 <ErrorLog />
                 <Idle />
+                <UpdateProgress />
                 <Theme history={history} />
+                <Ledger />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -268,12 +277,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.accounts,
+    accountNames: getAccountNamesFromState(state),
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
     isBusy:
-        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress
 });
 
 const mapDispatchToProps = {
@@ -281,11 +290,11 @@ const mapDispatchToProps = {
     setPassword,
     setDeepLink,
     setSeedIndex,
-    disposeOffAlert,
+    dismissAlert,
     generateAlert,
     fetchNodeList,
     updateTheme,
-    setOnboardingName,
+    setAdditionalAccountInfo
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 import { generateAlert } from 'actions/alerts';
 
-import { removeSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 import { deleteAccount } from 'actions/accounts';
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -21,6 +21,8 @@ class Remove extends PureComponent {
     static propTypes = {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
         /** @ignore */
@@ -41,14 +43,15 @@ class Remove extends PureComponent {
      * @returns {undefined}
      */
     removeAccount = async (password) => {
-        const { accountName, history, t, generateAlert, deleteAccount } = this.props;
+        const { accountName, accountMeta, history, t, generateAlert, deleteAccount } = this.props;
 
         this.setState({
             removeConfirm: false,
         });
 
         try {
-            await removeSeed(password, accountName);
+            const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+            seedStore.removeAccount();
 
             deleteAccount(accountName);
 
@@ -67,9 +70,9 @@ class Remove extends PureComponent {
 
     render() {
         const { t, accountName } = this.props;
-        const { removeConfirm, vault } = this.state;
+        const { removeConfirm } = this.state;
 
-        if (removeConfirm && !vault) {
+        if (removeConfirm) {
             return (
                 <ModalPassword
                     isOpen
@@ -113,6 +116,7 @@ class Remove extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
+    accountMeta: getSelectedAccountMeta(state),
 });
 
 const mapDispatchToProps = {
@@ -120,4 +124,4 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Remove));
