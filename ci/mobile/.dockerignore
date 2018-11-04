@@ -1,6 +1,0 @@
-.git
-**/node_modules
-README.md
-**/dist
-**/out
-Dockerfile
