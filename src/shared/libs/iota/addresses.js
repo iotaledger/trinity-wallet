@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
@@ -60,9 +61,9 @@ export const isAddressUsedSync = (addressObject, transactions) => {
     }
 
     const transactionAddresses = map(transactions, (tx) => tx.address);
-    const { address, spent: { local } } = addressObject;
+    const { address, spent: { local }, balance } = addressObject;
 
-    return local === true || includes(transactionAddresses, address);
+    return local === true || balance > 0 || includes(transactionAddresses, address);
 };
 
 /**
@@ -83,7 +84,19 @@ export const isAddressUsedAsync = (provider) => (addressObject) => {
     return wereAddressesSpentFromAsync(provider)([address]).then((spent) => {
         const isSpent = head(spent) === true;
 
-        return isSpent || findTransactionsAsync(provider)({ addresses: [address] }).then((hashes) => size(hashes) > 0);
+        return (
+            isSpent ||
+            findTransactionsAsync(provider)({ addresses: [address] }).then((hashes) => {
+                const hasAssociatedHashes = size(hashes) > 0;
+
+                return (
+                    hasAssociatedHashes ||
+                    getBalancesAsync(provider)([address]).then((balances) => {
+                        return accumulateBalance(map(balances.balances, Number)) > 0;
+                    })
+                );
+            })
+        );
     });
 };
 
@@ -96,11 +109,9 @@ export const isAddressUsedAsync = (provider) => (addressObject) => {
  *   @returns {function(object, array, object): Promise<array>}
  **/
 export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, transactions, options) => {
-    const { index, security } = options;
-
     const generateAddressData = (currentKeyIndex, generatedAddressData) => {
         return seedStore
-            .generateAddress({ index, security })
+            .generateAddress({ index: currentKeyIndex, security })
             .then((address) => findAddressesData(provider)([address], transactions))
             .then(({ hashes, balances, wereSpent, addresses }) => {
                 const updatedAddressData = [
@@ -108,7 +119,14 @@ export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, t
                     ...formatAddressData(addresses, balances, wereSpent, [currentKeyIndex]),
                 ];
 
-                if (size(hashes) === 0 && some(wereSpent, (status) => !status.local && !status.remote)) {
+                if (
+                    // No transactions
+                    size(hashes) === 0 &&
+                    // Both local spend status (from transactions) & remote spend status (from wereAddressesSpentFrom) are false
+                    some(wereSpent, (status) => status.local === false && status.remote === false) &&
+                    // Balance should be zero
+                    some(balances, (balance) => balance === 0)
+                ) {
                     return updatedAddressData;
                 }
 
@@ -117,6 +135,8 @@ export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, t
                 return generateAddressData(nextKeyIndex, updatedAddressData);
             });
     };
+
+    const { index, security } = options;
 
     return generateAddressData(index, []);
 };
@@ -209,6 +229,7 @@ export const getFullAddressHistory = (provider) => (seedStore, existingAccountSt
                     lastAddressIndex,
                     latestAddress,
                     generatedAddresses.slice(),
+                    existingAccountState,
                 ).then((addresses) => {
                     const sizeOfAddressesTillOneUnused = size(addresses);
 
@@ -286,7 +307,7 @@ export const removeUnusedAddresses = (provider) => (
             if (
                 size(hashes) === 0 &&
                 some(balances, (balance) => balance === 0) &&
-                some(wereSpent, (status) => !status.remote || !status.local)
+                some(wereSpent, (status) => status.remote === false || status.local === false)
             ) {
                 return removeUnusedAddresses(provider)(
                     index - 1,
@@ -530,7 +551,7 @@ export const getAddressesUptoRemainder = (provider) => (
         }).then((newAddressData) => {
             const remainderAddress = getLatestAddress(newAddressData);
 
-            const addressDataUptoRemainder = { ...addressData, ...newAddressData };
+            const addressDataUptoRemainder = [...addressData, ...newAddressData];
 
             if (isBlacklisted(remainderAddress)) {
                 return getAddressesUptoRemainder(provider)(
@@ -573,13 +594,9 @@ export const syncAddresses = (provider) => (seedStore, addressData, transactions
         }).then((newAddressObjects) => [...addressData, ...newAddressObjects]);
     };
 
-    // First check if address is used from local transactions history
-    if (!isAddressUsedSync(latestAddressObject, transactions)) {
-        return Promise.resolve(addressData);
-    }
     // Check if there are any transactions associated with the latest address or if the address is spent
-    return isAddressUsedAsync(provider)(latestAddressObject, transactions).then((isUsed) => {
-        if (!isUsed) {
+    return isAddressUsedAsync(provider)(latestAddressObject).then((isUsed) => {
+        if (!isUsed && !isAddressUsedSync(latestAddressObject, transactions)) {
             return addressData;
         }
 

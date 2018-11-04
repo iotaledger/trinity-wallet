@@ -1,3 +1,11 @@
+const latestAddressObject = {
+    address: 'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX',
+    balance: 0,
+    index: 9,
+    checksum: 'RHAFCPMZY',
+    spent: { local: false, remote: false },
+};
+
 const addressData = [
     {
         address: 'QVMPTRCCXYHUORXY9BLOZAFGVHRMRLPWFBX9DTWEXI9CNCKRWTNAZUPECVQUHGBTVIFNAWM9GMVDGJVEB',
@@ -62,22 +70,25 @@ const addressData = [
         checksum: 'RHAFCPMZY',
         spent: { local: false, remote: false },
     },
-    {
-        address: 'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX',
-        balance: 0,
-        index: 9,
-        checksum: 'RHAFCPMZY',
-        spent: { local: false, remote: false },
-    },
+    latestAddressObject,
 ];
 
 const latestAddressWithoutChecksum =
     'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX';
 const latestAddressChecksum = 'RHAFCPMZY';
 const latestAddressWithChecksum = `${latestAddressWithoutChecksum}${latestAddressChecksum}`;
+const latestAddressIndex = 9;
 
 const balance = 260;
 
 export default addressData.map((addressObject) => addressObject.address);
 
-export { addressData, latestAddressWithoutChecksum, latestAddressChecksum, latestAddressWithChecksum, balance };
+export {
+    addressData,
+    latestAddressWithoutChecksum,
+    latestAddressChecksum,
+    latestAddressWithChecksum,
+    latestAddressIndex,
+    latestAddressObject,
+    balance,
+};
