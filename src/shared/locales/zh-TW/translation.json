@@ -276,7 +276,7 @@
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "同步地址",
         "noAddresses": "無地址",
         "spent": "已支出",
         "missingPermission": "需要檔案系統權限",
