@@ -33,6 +33,8 @@ class AccountPassword extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        wallet: PropTypes.object.isRequired,
     };
 
     state = {
@@ -115,7 +117,7 @@ class AccountPassword extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, wallet } = this.props;
 
         const score = zxcvbn(this.state.password);
 
@@ -123,7 +125,7 @@ class AccountPassword extends React.PureComponent {
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
                     <h1>{t('setPassword:choosePassword')}</h1>
-                    <p>{t('setPassword:anEncryptedCopy')}</p>
+                    {wallet.additionalAccountMeta.type === 'keychain' && <p>{t('setPassword:anEncryptedCopy')}</p>}
                     <PasswordInput
                         focus
                         value={this.state.password}
