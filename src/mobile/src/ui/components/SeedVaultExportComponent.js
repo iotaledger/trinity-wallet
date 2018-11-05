@@ -16,11 +16,11 @@ import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
 import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 import PasswordFields from './PasswordFields';
-import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
 
 const steps = [
     'isValidatingWalletPassword',
