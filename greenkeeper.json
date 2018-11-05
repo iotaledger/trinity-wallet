@@ -1,8 +1,7 @@
 {
     "groups": {
         "shared": {
-            "packages": ["package.json", "src/shared/package.json"],
-            "shared": ["redux-persist", "react"]
+            "packages": ["package.json", "src/shared/package.json"]
         },
         "desktop": {
             "packages": ["src/desktop/package.json"],
