@@ -91,7 +91,7 @@ class Ledger extends React.PureComponent {
         });
 
         try {
-            const vault = await new SeedStore.ledger(null, null, { index });
+            const vault = await new SeedStore.ledger(null, null, { index, page });
             const indexAddress = await vault.generateAddress({
                 index: 0,
                 security: 1,
