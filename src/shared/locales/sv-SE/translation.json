@@ -745,7 +745,7 @@
         "ledgerDeniedExplanation": "Transaktionen nekades på Ledger-enheten.",
         "ledgerIncorrectIndex": "Ledger-enheten matchade inte",
         "ledgerIncorrectIndexExplanation": "Ledger-enheten matchade inte enheten kopplat till detta konto, alternativt har återställningsfrasen ändrats.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not."
+        "checkAddress": "Kontrollera mottagaradressen",
+        "checkAddressExplanation": "Kontrollera att adressen matchar det som visas på Ledger-enhet. Tryck på ”Synkronisera adress” om den inte gör det."
     }
 }
