@@ -722,7 +722,7 @@
         "ready": "Ledger verbunden und bereit",
         "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
-        "indexInUseExplanation": "Dein gewählter Index ist bereits für ein anderes Konto in Verwendung. Bitte wähle einen anderen Index.",
+        "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Kontoübersicht",
