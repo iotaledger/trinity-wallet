@@ -733,7 +733,7 @@
         "connectionErrorExplanation": "Revise que su ledger está conectado y desbloqueado.",
         "connectionTitle": "Conecte su ledger",
         "connectionExplanation": "Se debe conectar un dispositivo de ledger para realizar esta función.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionTitle": "Desliza y aprueba la transacción en tu Ledger",
         "transactionExplanation": "Use su dispositivo ledger para aprobar la transacción saliente.",
         "applicationTitle": "Abrir la aplicación ledger de IOTA",
         "applicationExplanation": "Diríjase a su ledger y abra la aplicación IOTA para continuar usando Trinity.",
@@ -743,7 +743,7 @@
         "ledgerDisconnectedExplanation": "El dispositivo ledger fue desconectado. Por favor reconectar e intente devuelta.",
         "ledgerDeniedTitle": "Transacción denegada",
         "ledgerDeniedExplanation": "La transacción fue denegada en el dispositivo ledger.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndex": "Desajuste en el dispositivo Ledger",
         "ledgerIncorrectIndexExplanation": "El dispositivo ledger conectado no encuentra el índice referido a esta cuenta, o la frase de recuperación ha cambiado.",
         "checkAddress": "Revise la dirección de recepción",
         "checkAddressExplanation": "Revise que la dirección coincida con la mostrada en su dispositivo ledger. Presione \"Sincronizar dirección\" si eso no ocurre."
