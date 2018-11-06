@@ -537,7 +537,8 @@
         "viewSeed": "Mester jelszó megtekintése",
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
-        "accountIndex": "Számlájának sorszáma"
+        "accountIndex": "Számlájának sorszáma",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
         "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
         "checkAddress": "Ellenőrizze a fogadási címet",
-        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér."
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
