@@ -536,7 +536,7 @@
         "enterPassword": "Gib dein Passwort ein, um den Seed anzuzeigen.",
         "viewSeed": "Seed anzeigen",
         "hideSeed": "Seed ausblenden",
-        "notAvailable": "Seed Export ist für Account Typ {{accountType}} nicht verfügbar",
+        "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
         "accountIndex": "Dein Ledger Account Index"
     },
     "saveSeedConfirmation": {
