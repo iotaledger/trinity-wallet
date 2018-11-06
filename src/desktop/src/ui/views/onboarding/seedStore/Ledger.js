@@ -102,8 +102,14 @@ class Ledger extends React.PureComponent {
             });
 
             history.push('/onboarding/account-name');
-        } catch (err) {
-            // Do nothing if user cancels modal
+        } catch (error) {
+            if (error.statusCode === 27014) {
+                generateAlert(
+                    'error',
+                    t('ledger:applicationNotInitialised'),
+                    t('ledger:applicationNotInitialisedExplanation'),
+                );
+            }
         }
 
         this.setState({
