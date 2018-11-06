@@ -1,5 +1,8 @@
 /* global Electron */
 import Errors from 'libs/errors';
+import { createRandomSeed } from 'libs/crypto';
+import { bytesToTrits } from 'libs/helpers';
+import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
 class Ledger {
     /**
@@ -112,6 +115,11 @@ class Ledger {
      */
     prepareTransfers = async (transfers, options = null) => {
         try {
+            // If sending a 0 value transaction, use a random seed
+            if (options === null) {
+                return prepareTransfersAsync()(bytesToTrits(createRandomSeed()), transfers);
+            }
+
             const seed = await this.getSeed();
 
             const remainder = { address: options.address, keyIndex: options.keyIndex };
