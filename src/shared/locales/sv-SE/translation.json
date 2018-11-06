@@ -537,7 +537,8 @@
         "viewSeed": "Visa seed",
         "hideSeed": "Dölj seed",
         "notAvailable": "Seed export inte tillgänglig för {{accountType}} kontotyp",
-        "accountIndex": "Ditt Ledger konto-index"
+        "accountIndex": "Ditt Ledger konto-index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sparade du din seed?",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Ledger-enheten matchade inte",
         "ledgerIncorrectIndexExplanation": "Ledger-enheten matchade inte enheten kopplat till detta konto, alternativt har återställningsfrasen ändrats.",
         "checkAddress": "Kontrollera mottagaradressen",
-        "checkAddressExplanation": "Kontrollera att adressen matchar det som visas på Ledger-enhet. Tryck på ”Synkronisera adress” om den inte gör det."
+        "checkAddressExplanation": "Kontrollera att adressen matchar det som visas på Ledger-enhet. Tryck på ”Synkronisera adress” om den inte gör det.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
