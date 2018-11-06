@@ -733,7 +733,7 @@
         "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
         "connectionTitle": "Verbinde deinen Ledger",
         "connectionExplanation": "Um diese Funktion nutzen zu können muss ein Ledger verbunden sein.",
-        "transactionTitle": "Blättere durch und bestätige die Transaktion auf deinem Ledger",
+        "transactionTitle": "Blättere durch deinen Ledger und bestätige die Transaktion",
         "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
         "applicationTitle": "Öffne die Ledger IOTA App",
         "applicationExplanation": "Nimm deinen Ledger und öffne die IOTA App um fortzufahren.",
