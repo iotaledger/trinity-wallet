@@ -204,7 +204,7 @@ class Receive extends React.PureComponent {
                                     .substring(81, 90)
                                     .split('')
                                     .map((char, index) => {
-                                        const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
+                                        const scrambleChar = scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
                                         return (
                                             <React.Fragment key={`char-${index}`}>
                                                 {scrambleChar || char}
