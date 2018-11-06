@@ -537,7 +537,8 @@
         "viewSeed": "檢視種子碼",
         "hideSeed": "隱藏種子碼",
         "notAvailable": "{{accountType}} 帳戶類型無法匯出種子碼",
-        "accountIndex": "您的 Ledger 帳戶索引"
+        "accountIndex": "您的 Ledger 帳戶索引",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您備份種子碼了嗎？",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Ledger 裝置不符",
         "ledgerIncorrectIndexExplanation": "連接的 Ledger 裝置與此帳戶不相符，或者回復字組已被更改。",
         "checkAddress": "檢查接收地址",
-        "checkAddressExplanation": "請檢察地址與您 Ledger 裝置上顯示的相符，如果沒有的話請按「同步地址」。"
+        "checkAddressExplanation": "請檢察地址與您 Ledger 裝置上顯示的相符，如果沒有的話請按「同步地址」。",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
