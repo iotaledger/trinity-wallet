@@ -55,8 +55,8 @@
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Cuenta no reconocida",
+        "unrecognisedAccountExplanation": "La cuenta {{accountName}} no fue reconocida. Considere la posibilidad de reestablecer su billetera.",
         "emptyPasswordExplanation": "Debe ingresar una contraseña. Por favor reintente.",
         "capsLockIsOn": "Bloq Mayús está activado",
         "syncInProgress": "Sincronización en progreso",
@@ -143,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Intente nuevamente con local PoW.",
         "tryingAgainWithDifferentNode": "Intente nuevamente con un nodo diferente.",
         "errorFetchingAccountInformation": "Error al obtener la información de la cuenta.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Error de keychain",
+        "errorAccessingKeychainExplanation": "No se puede acceder a la keychain requerida para almacenamiento seguro.",
+        "mainWallet": "CUENTA PRINCIPAL"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -276,7 +276,7 @@
         "copyAddress": "Copie dirección",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado en el portapapeles.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Sincronizar dirección",
         "noAddresses": "SIN DIRECCIONES",
         "spent": "Gastado",
         "missingPermission": "Permisos de sistema requeridos",
@@ -348,8 +348,8 @@
         "standard": "Normal",
         "advancedModeExplanation": "Modo avanzado mostrará información técnica más detallada.",
         "modesExplanation": "Solo habilite modo avanzado si tiene experiencia usando IOTA. Puede resultar confuso de otra forma.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Modo actualizado",
+        "modeUpdatedExplanation": "Has cambiado al modo {{mode}}"
     },
     "settings": {
         "transferSending": "Transferencia en envío",
@@ -437,7 +437,7 @@
         "empty": "Vacío",
         "retrying": "Reintentar",
         "yesterday": "Ayer",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoviendo otro paquete"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -514,9 +514,9 @@
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar qué puede hacer."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "¿Esta usted seguro de borrar su cuenta?",
         "yourSeedWillBeRemoved": "Su semilla y su historial de transacciones serán eliminados.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Esta acción no se puede deshacer",
         "enterPassword": "Escriba su contraseña para eliminar la cuenta."
     },
     "manualSync": {
@@ -536,7 +536,7 @@
         "enterPassword": "Introduzca la contraseña para ver su semilla.",
         "viewSeed": "Ver semilla",
         "hideSeed": "Ocultar semilla",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailable": "La exportación de la semilla no está disponible para el tipo de cuenta {{accountType}}",
         "accountIndex": "Your Ledger account index"
     },
     "saveSeedConfirmation": {
