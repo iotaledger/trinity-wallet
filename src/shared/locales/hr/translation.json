@@ -748,7 +748,7 @@
         "ledgerIncorrectIndexExplanation": "Povezani Ledger uređaj ne odgovara onome povezanom s ovim računom ili je fraza za oporavak izmijenjena.",
         "checkAddress": "Provjerite adresu primatelja",
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju. Pritisnite \"Sinkroniziraj adresu\" ukoliko ne odgovara.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialised": "Upozorenje nije prihvaćeno",
         "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
     }
 }
