@@ -538,7 +538,7 @@
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvoz seed-a nije dostupan za tip računa {{accountType}}",
         "accountIndex": "Indeks vašeg Ledger računa",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Stranica vašeg Ledger uređaja"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
@@ -749,6 +749,6 @@
         "checkAddress": "Provjerite adresu primatelja",
         "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju. Pritisnite \"Sinkroniziraj adresu\" ukoliko ne odgovara.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
     }
 }
