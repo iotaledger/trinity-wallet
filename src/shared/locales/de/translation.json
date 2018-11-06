@@ -746,6 +746,6 @@
         "ledgerIncorrectIndex": "Falscher Ledger",
         "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät oder die Wiederherstellungs-Phrase hat sich geändert.",
         "checkAddress": "Prüfe die Empfangsadresse",
-        "checkAddressExplanation": "Prüfe, ob diese Addresse mit der Addresse auf deinem Ledger übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist."
+        "checkAddressExplanation": "Stelle sicher dass diese Addresse mit der Anzeige auf deinem Ledger übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist."
     }
 }
