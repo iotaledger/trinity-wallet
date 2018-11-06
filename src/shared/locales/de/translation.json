@@ -723,7 +723,7 @@
         "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
         "indexInUseExplanation": "Dein gewählter Index ist bereits in Benutzung für ein anderes Konto. Bitte wähle einen anderen Index.",
-        "proceedWithLedger": "Fahre fort mit Ledger Einrichtung",
+        "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Kontoübersicht",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
@@ -731,7 +731,7 @@
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
         "connectionError": "Verbindung zu Ledger nicht möglich",
         "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
-        "connectionTitle": "Mit Ledger verbinden",
+        "connectionTitle": "Verbinde deinen Ledger",
         "connectionExplanation": "Um diese Funktion nutzen zu können muss ein Ledger verbunden sein.",
         "transactionTitle": "Blättere durch und bestätige die Transaktion auf deinem Ledger",
         "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
@@ -746,6 +746,6 @@
         "ledgerIncorrectIndex": "Falscher Ledger",
         "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät oder die Wiederherstellungs-Phrase hat sich geändert.",
         "checkAddress": "Prüfe die Empfangsadresse",
-        "checkAddressExplanation": "Prüfe, ob die auf dem Ledger angezeigte Adresse übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist."
+        "checkAddressExplanation": "Prüfe, ob diese Addresse mit der Addresse auf deinem Ledger übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist."
     }
 }
