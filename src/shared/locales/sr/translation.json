@@ -537,7 +537,8 @@
         "viewSeed": "Prikaži seed",
         "hideSeed": "Sakrij seed",
         "notAvailable": "Izvod seed-a nije dostupan za {{accountType}} tip naloga",
-        "accountIndex": "Indeks vašeg Ledger naloga"
+        "accountIndex": "Indeks vašeg Ledger naloga",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili rezervnu kopiju seed-a?",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Neodgovarajući Ledger",
         "ledgerIncorrectIndexExplanation": "Povezani Ledger ne odgovara onome koji je povezan sa ovim računom ili je fraza za oporavak izmenjena.",
         "checkAddress": "Proverite adresu za prijem",
-        "checkAddressExplanation": "Proverite da li adresa odgovara onoj koja je prikazana na Ledger novčaniku. Pritisnite „Sinhronizuj adresu\" ako ne odgovara."
+        "checkAddressExplanation": "Proverite da li adresa odgovara onoj koja je prikazana na Ledger novčaniku. Pritisnite „Sinhronizuj adresu\" ako ne odgovara.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
