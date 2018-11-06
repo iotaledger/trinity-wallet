@@ -35,5 +35,5 @@ export default {
     LEDGER_DISCONNECTED: 'Ledger device disconnected',
     LEDGER_CANCELLED: 'Ledger transaction cancelled',
     LEDGER_DENIED: 'Ledger transaction denied by user',
-    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic'
+    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
 };

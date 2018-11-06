@@ -80,13 +80,13 @@ class App extends React.Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        setDeepLink: PropTypes.func.isRequired
+        setDeepLink: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            fatalError: false
+            fatalError: false,
         };
     }
 
@@ -162,7 +162,7 @@ class App extends React.Component {
             this.props.setDeepLink(
                 parsedData.amount ? String(parsedData.amount) : '0',
                 parsedData.address,
-                parsedData.message || ''
+                parsedData.message || '',
             );
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
@@ -180,7 +180,7 @@ class App extends React.Component {
             await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
-                fatalError: true
+                fatalError: true,
             });
         }
     }
@@ -291,7 +291,7 @@ const mapStateToProps = (state) => ({
     themeName: state.settings.themeName,
     onboardingComplete: state.accounts.onboardingComplete,
     isBusy:
-        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
 
 const mapDispatchToProps = {

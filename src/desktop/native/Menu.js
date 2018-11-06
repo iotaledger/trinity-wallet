@@ -84,7 +84,7 @@ autoUpdater.on('update-available', () => {
             type: 'info',
             title: language.updates.newVersionAvailable,
             message: language.updates.newVersionAvailableExplanation,
-            buttons: [ language.yes, language.no ],
+            buttons: [language.yes, language.no],
         },
         (buttonIndex) => {
             if (buttonIndex === 0) {
@@ -101,7 +101,7 @@ autoUpdater.on('update-not-available', () => {
     dialog.showMessageBox({
         title: language.updates.noUpdatesAvailable,
         message: language.updates.noUpdatesAvailableExplanation,
-        buttons: [ 'OK' ],
+        buttons: ['OK'],
     });
 });
 
@@ -342,7 +342,7 @@ const initMenu = (app, getWindowFunc) => {
                                         type: 'question',
                                         title: language.logout,
                                         message: language.logoutConfirm,
-                                        buttons: [ language.yes, language.no ],
+                                        buttons: [language.yes, language.no],
                                     },
                                     (index) => {
                                         if (index === 0) {
