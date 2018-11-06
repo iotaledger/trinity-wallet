@@ -28,12 +28,12 @@ class Seed extends PureComponent {
         /** @ignore */
         accountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
         action: null,
-        seed: null
+        seed: null,
     };
 
     /**
@@ -55,7 +55,7 @@ class Seed extends PureComponent {
         const seed = await seedStore.getSeed();
 
         this.setState({
-            seed
+            seed,
         });
     };
 
@@ -70,6 +70,12 @@ class Seed extends PureComponent {
                     {typeof accountMeta.index === 'number' && (
                         <p>
                             {t('viewSeed:accountIndex')}: <strong>{accountMeta.index}</strong>
+                        </p>
+                    )}
+                    {typeof accountMeta.page === 'number' &&
+                    accountMeta.page > 0 && (
+                        <p>
+                            {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
                         </p>
                     )}
                 </div>
@@ -89,7 +95,7 @@ class Seed extends PureComponent {
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet')
+                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
                     }}
                 />
             );
@@ -157,7 +163,7 @@ class Seed extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
-    accountMeta: getSelectedAccountMeta(state)
+    accountMeta: getSelectedAccountMeta(state),
 });
 
 export default connect(mapStateToProps)(withI18n()(Seed));

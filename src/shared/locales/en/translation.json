@@ -567,7 +567,8 @@
         "viewSeed": "View Seed",
         "hideSeed": "Hide Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index"
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
