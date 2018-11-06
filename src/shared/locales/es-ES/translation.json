@@ -537,7 +537,7 @@
         "viewSeed": "Ver semilla",
         "hideSeed": "Ocultar semilla",
         "notAvailable": "La exportación de la semilla no está disponible para el tipo de cuenta {{accountType}}",
-        "accountIndex": "Your Ledger account index"
+        "accountIndex": "Su índice del ledger de la cuenta"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "¿Hizo una copia de seguridad de la semilla?",
@@ -591,27 +591,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Un SeedVault es un archivo cifrado para almacenar con seguridad su semilla. La semilla está encriptada detrás de una contraseña y no se puede acceder sin ella.",
         "seedVaultWarning": "Asegúrese de copiar el archivo en varios lugares (ej. disco duro, nube, USB). Si pierde este archivo y no ha almacena su semilla en otro lugar, perderá sus IOTA.",
         "exportFail": "Fallo en la exportación de SeedVault",
         "exportFailExplanation": "Hubo un problema al exportar el SeedVault. Por favor asegúrese de que tiene los servicios apropiados y suficiente espacio libre.",
         "exportSuccess": "SeedVault exportado",
         "exportSuccessExplanation": "Su archivo con la semilla encriptada fue exportado con éxito.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "SeedVault no reconocida",
+        "unrecognisedKeyExplanation": "La clave no fue reconocida. Por favor reintente.",
+        "emptyKey": "No se ingreso ningún SeedVault",
+        "emptyKeyExplanation": "Debe ingresar una clave. Por favor reintente.",
         "importSuccess": "Semilla importada",
         "importSuccessExplanation": "Su semilla fue importada con éxito.",
         "saveToDownloadFolder": "Guardar para descargar la carpeta",
         "importSeedVault": "Importar SeedVault",
         "dropSeedVaultHere": "Suelte su SeedVault aquí <1></1> o haga click para buscar",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Ingrese su clave para abrir el SeedVault",
         "noSeedFound": "SeedVault no contiene un semilla válida",
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Primero tenemos que garantizar su SeedVault. Por favor, elija una contraseña para cifrar el archivo. Usted necesitará esta contraseña para restaurar la semilla. No dude en utilizar la misma contraseña que utiliza para Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -673,8 +673,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Instalar actualización y reiniciar",
         "installUpdateExplanation": "Descarga completa, Trinity ahora se reiniciará para instalar la actualización.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Descargando actualización",
+        "downloadProgress": "{{transferred}} de {{total}} descargado"
     },
     "notificationLog": {
         "errorLog": "Error de log"
@@ -719,17 +719,17 @@
         "sweepConfirmationTitle": "Confirmación de barrido"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
+        "ready": "Dispositivo de ledger conectado y listo",
+        "notReady": "Si desea usar un dispositivo de ledger, conecte y desbloquelo ahora",
+        "indexInUse": "Índice actualmente en uso para la cuenta {{account}}",
+        "indexInUseExplanation": "Su índice seleccionado está actualmente en uso en una de sus cuentas. Por favor elija otro número de índice.",
+        "proceedWithLedger": "Proceder con la configuración del ledger",
+        "accountIndex": "Índice de cuenta",
+        "accountPage": "Perfil de cuenta",
+        "chooseAccountIndex": "Elija el índice de cuenta del ledger",
+        "accountIndexExplanation": "Su ledger puede almacenar múltiples semillas. Cada semilla es identificada por un número de índice único. Se ha preseleccionado uno, pero no dude en elegir uno propio. Asegúrese de anotar el número de índice elegido.",
+        "accountPageExplanation": "Algunas billeteras de terceros requieren páginas.",
+        "connectionError": "No se puede conectar al ledger",
         "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
         "connectionTitle": "Connect your Ledger",
         "connectionExplanation": "A Ledger device must be connected to perform this function.",
