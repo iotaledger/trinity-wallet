@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import css from './input.scss';
 
@@ -9,6 +10,8 @@ export default class Text extends React.PureComponent {
     static propTypes = {
         /** Current input value */
         value: PropTypes.string.isRequired,
+        /** Is the input field disabled */
+        disabled: PropTypes.bool,
         /** Should input focus when changed to true */
         focus: PropTypes.bool,
         /** Input label */
@@ -32,10 +35,10 @@ export default class Text extends React.PureComponent {
     }
 
     render() {
-        const { value, label, onChange } = this.props;
+        const { value, label, onChange, disabled } = this.props;
 
         return (
-            <div className={css.input}>
+            <div className={classNames(css.input, disabled ? css.disabled : null)}>
                 <fieldset>
                     <input
                         ref={(input) => {

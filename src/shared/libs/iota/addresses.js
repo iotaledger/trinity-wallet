@@ -75,7 +75,7 @@ export const getAddressesDataUptoLatestUnusedAddress = (provider) => (seedStore,
 
     const generateAddressData = (currentKeyIndex, generatedAddressData) => {
         return seedStore
-            .generateAddress({ index, security })
+            .generateAddress({ index: currentKeyIndex, security })
             .then((address) => {
                 return findAddressesData(provider)([address], normalisedTransactions);
             })
@@ -85,10 +85,16 @@ export const getAddressesDataUptoLatestUnusedAddress = (provider) => (seedStore,
                     ...formatAddressData(addresses, balances, wereSpent, [currentKeyIndex]),
                 };
 
-                if (size(hashes) === 0 && some(wereSpent, (status) => !status.local && !status.remote)) {
+                // Check if the newly generated address is unused (no transactions, zero balance and unspent).
+                if (
+                    size(hashes) === 0 &&
+                    some(balances, (balance) => balance === 0) &&
+                    some(wereSpent, (status) => status.local === false && status.remote === false)
+                ) {
                     return updatedAddressData;
                 }
 
+                // If the newly generated address is used, generate a new address.
                 const nextKeyIndex = currentKeyIndex + 1;
 
                 return generateAddressData(nextKeyIndex, updatedAddressData);
@@ -497,6 +503,7 @@ export const getAddressesUptoRemainder = (provider) => (
     blacklistedRemainderAddresses = [],
 ) => {
     const latestAddress = getLatestAddress(addressData);
+    const latestAddressData = getLatestAddressData(addressData);
 
     const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
 
@@ -509,6 +516,7 @@ export const getAddressesUptoRemainder = (provider) => (
             security: DEFAULT_SECURITY,
         }).then((newAddressData) => {
             const remainderAddress = getLatestAddress(newAddressData);
+            const remainderAddressData = getLatestAddressData(newAddressData);
 
             const addressDataUptoRemainder = { ...addressData, ...newAddressData };
 
@@ -523,12 +531,17 @@ export const getAddressesUptoRemainder = (provider) => (
 
             return {
                 remainderAddress,
+                remainderIndex: remainderAddressData.index,
                 addressDataUptoRemainder,
             };
         });
     }
 
-    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressData });
+    return Promise.resolve({
+        remainderAddress: latestAddress,
+        remainderIndex: latestAddressData.index,
+        addressDataUptoRemainder: addressData,
+    });
 };
 
 /**
