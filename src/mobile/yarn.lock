@@ -6476,10 +6476,10 @@ react-native-modal-translucent@^1.1.3:
   resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-1.1.3.tgz#9b84fd36061cea4ee1a055a0d7c97e1777a776d6"
   integrity sha512-e2DpapaJiKHr+7XUHDa16QeIfER+1MKD7ZtbVVrqDOyVGdVu5ut+6N7XMuH5iLm5O02c90o7q1LQ4x6MlDOl+w==
 
-react-native-modal@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.0.tgz#85bda8b52e0e9181e09bd2ec636ed7cec10d74c3"
-  integrity sha512-i9OFAzuV+pvLcEUB1QvJ/KJlvcApQ+UdNhnjUKac5bP4Mb5kFlj+fkj6Y55hakBISwrQk/0N0Fn1vj8Ob7KR6g==
+react-native-modal@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-6.5.0.tgz#46220b2289a41597d344c1db17454611b426a758"
+  integrity sha512-ewchdETAGd32xLGLK93NETEGkRcePtN7ZwjmLSQnNW1Zd0SRUYE8NqftjamPyfKvK0i2DZjX4YAghGZTqaRUbA==
   dependencies:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
