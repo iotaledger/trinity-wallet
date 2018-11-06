@@ -537,7 +537,8 @@
         "viewSeed": "Visualizza seme",
         "hideSeed": "Nascondi seme",
         "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
-        "accountIndex": "Il tuo indice di conto su Ledger"
+        "accountIndex": "Il tuo indice di conto su Ledger",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Mancata corrispondenza del dispositivo Ledger",
         "ledgerIncorrectIndexExplanation": "Il dispositivo Ledger collegato non corrisponde a quello associato a questo conto, o la sua password è stata modificata.",
         "checkAddress": "Controllare l'indirizzo di ricezione",
-        "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger. Altrimenti premi \"Sincronizza indirizzo\"."
+        "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger. Altrimenti premi \"Sincronizza indirizzo\".",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
