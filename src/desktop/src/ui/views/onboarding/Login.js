@@ -143,8 +143,14 @@ class Login extends React.Component {
         const { password, code, verifyTwoFA } = this.state;
         const { setPassword, generateAlert, t } = this.props;
 
-        const passwordHash = await hash(password);
+        let passwordHash = null;
         let authorised = false;
+
+        try {
+            passwordHash = await hash(password);
+        } catch (err) {
+            generateAlert('error', t('errorAccessingKeychain'), t('errorAccessingKeychainExplanation'));
+        }
 
         try {
             authorised = await authorize(passwordHash);
