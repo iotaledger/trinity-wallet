@@ -537,7 +537,8 @@
         "viewSeed": "Vis hovednøkkel",
         "hideSeed": "Gjem hovednøkkel",
         "notAvailable": "Eksport av hovednøkkel er ikke tilgjengelig for {{accountType}} kontotype",
-        "accountIndex": "Din Ledger konto indeks"
+        "accountIndex": "Din Ledger konto indeks",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du lagret hovednøkkelen?",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Ledger-enhet feil",
         "ledgerIncorrectIndexExplanation": "Tilkoblede Ledger samsvarer ikke med den knyttet til denne kontoen, eller gjenopprettingsfrasen er endret.",
         "checkAddress": "Kontroller mottaksadressen",
-        "checkAddressExplanation": "Kontroller at adressen er lik den som vises på Ledger-enheten. Trykk \"Synk adresse\" vis ikke."
+        "checkAddressExplanation": "Kontroller at adressen er lik den som vises på Ledger-enheten. Trykk \"Synk adresse\" vis ikke.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
