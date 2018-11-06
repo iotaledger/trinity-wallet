@@ -95,7 +95,9 @@ class Ledger {
 
                     resolve(true);
                 } catch (error) {
-                    this.transport.close();
+                    if (this.transport) {
+                        this.transport.close();
+                    }
                     this.iota = null;
 
                     Wallet.send('ledger', { awaitApplication: true });
