@@ -538,7 +538,7 @@
         "hideSeed": "Seed ausblenden",
         "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
         "accountIndex": "Dein Ledger Account Index",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Ledger Kontoübersicht"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hast du deinen Seed gespeichert?",
