@@ -11,7 +11,7 @@ import { getCurrencyData } from 'actions/settings';
 import { getAccountInfo, getFullAccountInfo } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
 
-import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { capitalize } from 'libs/helpers';
 import { hash, authorize } from 'libs/crypto';
@@ -38,6 +38,12 @@ class Login extends React.Component {
         wallet: PropTypes.object.isRequired,
         /** @ignore */
         ui: PropTypes.object.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
+        additionalAccountMeta: PropTypes.object.isRequired,
+        /** @ignore */
+        additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
@@ -71,9 +77,9 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { wallet } = this.props;
+        const { addingAdditionalAccount } = this.props;
 
-        if (wallet.addingAdditionalAccount) {
+        if (addingAdditionalAccount) {
             this.setupAccount();
         } else {
             this.props.clearWalletData();
@@ -105,10 +111,18 @@ class Login extends React.Component {
      * @returns {undefined}
      */
     setupAccount = async () => {
-        const { wallet, currency, currentAccountName, currentAccountMeta } = this.props;
+        const {
+            wallet,
+            addingAdditionalAccount,
+            additionalAccountName,
+            additionalAccountMeta,
+            currency,
+            currentAccountName,
+            currentAccountMeta,
+        } = this.props;
 
-        const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
-        const accountMeta = wallet.addingAdditionalAccount ? wallet.additionalAccountMeta : currentAccountMeta;
+        const accountName = addingAdditionalAccount ? additionalAccountName : currentAccountName;
+        const accountMeta = addingAdditionalAccount ? additionalAccountMeta : currentAccountMeta;
 
         let seedStore;
         try {
@@ -123,7 +137,7 @@ class Login extends React.Component {
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (wallet.addingAdditionalAccount) {
+        if (addingAdditionalAccount) {
             this.props.getFullAccountInfo(seedStore, accountName);
         } else {
             this.props.getAccountInfo(seedStore, accountName, Electron.notify);
@@ -193,15 +207,15 @@ class Login extends React.Component {
     };
 
     render() {
-        const { t, wallet, ui } = this.props;
+        const { t, addingAdditionalAccount, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (ui.isFetchingAccountInfo || wallet.addingAdditionalAccount) {
+        if (ui.isFetchingAccountInfo || addingAdditionalAccount) {
             return (
                 <Loading
                     loop
-                    title={wallet.addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
-                    subtitle={wallet.addingAdditionalAccount ? t('loading:thisMayTake') : null}
+                    title={addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
+                    subtitle={addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
         }
@@ -255,6 +269,9 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     currentAccountName: getSelectedAccountName(state),
     currentAccountMeta: getSelectedAccountMeta(state),
+    addingAdditionalAccount: isSettingUpNewAccount(state),
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     ui: state.ui,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,

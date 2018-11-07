@@ -20,6 +20,8 @@ class SeedVerify extends React.PureComponent {
         /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
+        additionalAccountName: PropTypes.string.isRequired,
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -60,7 +62,7 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { wallet, history, generateAlert, t } = this.props;
+        const { wallet, additionalAccountName, history, generateAlert, t } = this.props;
         const { seed, isGenerated } = this.state;
 
         if (
@@ -89,7 +91,7 @@ class SeedVerify extends React.PureComponent {
         } else {
             if (wallet.ready) {
                 const seedStore = await new SeedStore.keychain(wallet.password);
-                await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
+                await seedStore.addAccount(additionalAccountName, Electron.getOnboardingSeed());
 
                 Electron.setOnboardingSeed(null);
 
@@ -140,6 +142,7 @@ class SeedVerify extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {
