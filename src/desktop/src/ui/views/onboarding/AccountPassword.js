@@ -6,7 +6,6 @@ import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
-import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
@@ -23,8 +22,6 @@ class AccountPassword extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** @ignore */
-        setOnboardingComplete: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -48,7 +45,7 @@ class AccountPassword extends React.PureComponent {
      * @returns {undefined}
      */
     createAccount = async (e) => {
-        const { wallet, setPassword, setOnboardingComplete, history, generateAlert, t } = this.props;
+        const { wallet, setPassword, history, generateAlert, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -96,8 +93,6 @@ class AccountPassword extends React.PureComponent {
         await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
 
         Electron.setOnboardingSeed(null);
-
-        setOnboardingComplete(true);
 
         history.push('/onboarding/done');
     };
@@ -162,7 +157,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setPassword,
-    setOnboardingComplete,
     generateAlert,
 };
 

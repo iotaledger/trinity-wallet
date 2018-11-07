@@ -195,6 +195,11 @@ export const hash = async (inputPlain) => {
     }
 
     const saltHex = await Electron.readKeychain(`${ACC_MAIN}-salt`);
+
+    if (!saltHex) {
+        throw new Error('Keychain unavailable');
+    }
+
     const saltArray = saltHex.split(',');
     const salt = Uint8Array.from(saltArray);
 

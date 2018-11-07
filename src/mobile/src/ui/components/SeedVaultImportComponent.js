@@ -116,40 +116,41 @@ export class SeedVaultImportComponent extends Component {
      */
     importSeedVault() {
         const { t } = this.props;
-        DocumentPicker.show(
-            {
-                filetype: isAndroid
-                    ? ['application/octet-stream']
-                    : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
-            },
-            (error, res) => {
-                if (error) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain'),
-                    );
-                }
-                let path = res.uri;
-                if (path.startsWith('file://')) {
-                    path = path.slice(7);
-                }
-
-                (isAndroid ? this.grantPermissions() : Promise.resolve())
-                    .then(() => RNFetchBlob.fs.readFile(path, 'ascii'))
-                    .then((data) => {
-                        this.setState({ seedVault: data });
-                        this.props.openPasswordValidationModal();
-                    })
-                    .catch(() =>
-                        this.props.generateAlert(
+        (isAndroid ? this.grantPermissions() : Promise.resolve()).then(() => {
+            DocumentPicker.show(
+                {
+                    filetype: isAndroid
+                        ? ['application/octet-stream']
+                        : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
+                },
+                (error, res) => {
+                    if (error) {
+                        return this.props.generateAlert(
                             'error',
-                            t('seedVault:seedFileError'),
-                            t('seedVault:seedFileErrorExplanation'),
-                        ),
-                    );
-            },
-        );
+                            t('global:somethingWentWrong'),
+                            t('global:somethingWentWrongTryAgain'),
+                        );
+                    }
+                    let path = res.uri;
+                    if (path.startsWith('file://')) {
+                        path = path.slice(7);
+                    }
+                    RNFetchBlob.fs
+                        .readFile(path, 'ascii')
+                        .then((data) => {
+                            this.setState({ seedVault: data });
+                            this.props.openPasswordValidationModal();
+                        })
+                        .catch(() =>
+                            this.props.generateAlert(
+                                'error',
+                                t('seedVault:seedFileError'),
+                                t('seedVault:seedFileErrorExplanation'),
+                            ),
+                        );
+                },
+            );
+        });
     }
 
     render() {
