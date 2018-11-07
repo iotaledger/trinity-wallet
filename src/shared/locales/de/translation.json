@@ -536,8 +536,9 @@
         "enterPassword": "Gib dein Passwort ein, um den Seed anzuzeigen.",
         "viewSeed": "Seed anzeigen",
         "hideSeed": "Seed ausblenden",
-        "notAvailable": "Seed Export ist für Account Typ {{accountType}} nicht verfügbar",
-        "accountIndex": "Dein Ledger Account Index"
+        "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
+        "accountIndex": "Dein Ledger Account Index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hast du deinen Seed gespeichert?",
@@ -722,8 +723,8 @@
         "ready": "Ledger verbunden und bereit",
         "notReady": "Wenn du einen Ledger verwenden möchtest verbinde und entsperre das Gerät jetzt",
         "indexInUse": "Dieser Index wird bereits für das Konto {{account}} verwendet",
-        "indexInUseExplanation": "Dein gewählter Index ist bereits in Benutzung für ein anderes Konto. Bitte wähle einen anderen Index.",
-        "proceedWithLedger": "Fahre fort mit Ledger Einrichtung",
+        "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
+        "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
         "accountPage": "Kontoübersicht",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
@@ -731,9 +732,9 @@
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
         "connectionError": "Verbindung zu Ledger nicht möglich",
         "connectionErrorExplanation": "Prüfe, ob dein Ledger verbunden und entsperrt ist.",
-        "connectionTitle": "Mit Ledger verbinden",
+        "connectionTitle": "Verbinde deinen Ledger",
         "connectionExplanation": "Um diese Funktion nutzen zu können muss ein Ledger verbunden sein.",
-        "transactionTitle": "Blättere durch und bestätige die Transaktion auf deinem Ledger",
+        "transactionTitle": "Blättere durch deinen Ledger und bestätige die Transaktion",
         "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
         "applicationTitle": "Öffne die Ledger IOTA App",
         "applicationExplanation": "Nimm deinen Ledger und öffne die IOTA App um fortzufahren.",
@@ -746,6 +747,8 @@
         "ledgerIncorrectIndex": "Falscher Ledger",
         "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät oder die Wiederherstellungs-Phrase hat sich geändert.",
         "checkAddress": "Prüfe die Empfangsadresse",
-        "checkAddressExplanation": "Prüfe, ob die auf dem Ledger angezeigte Adresse übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist."
+        "checkAddressExplanation": "Stelle sicher dass diese Addresse mit der Anzeige auf deinem Ledger übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

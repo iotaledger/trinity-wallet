@@ -11,7 +11,7 @@ const argon2 = require('argon2');
 const machineUuid = require('machine-uuid-sync');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
-const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
+const { byteToTrit, byteToChar, removeNonAlphaNumeric } = require('../../src/libs/helpers');
 const ledger = require('../hardware/Ledger');
 
 const capitalize = (string) => {
@@ -360,10 +360,10 @@ const Electron = {
     /**
      * Send a IPC message to current window
      * @param {string} type - Message type
-     * @param {any} payload - Message payload 
+     * @param {any} payload - Message payload
      */
     send: (type, payload) => {
-      currentWindow.webContents.send(type, payload);
+        currentWindow.webContents.send(type, payload);
     },
 
     /**
@@ -376,10 +376,13 @@ const Electron = {
         try {
             const content = await kdbx.exportVault(seeds, password);
             const now = new Date();
-
+            let prefix = 'SeedVault';
+            if (seeds.length === 1) {
+                prefix = removeNonAlphaNumeric(seeds[0].title, 'SeedVault').trim();
+            }
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `seedvault-${now
+                defaultPath: `${prefix}-${now
                     .toISOString()
                     .slice(0, 16)
                     .replace(/[-:]/g, '')

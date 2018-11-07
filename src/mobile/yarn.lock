@@ -6806,10 +6806,9 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rn-fetch-blob@^0.10.13:
+"rn-fetch-blob@https://github.com/rajivshah3/rn-fetch-blob#10.13-226":
   version "0.10.13"
-  resolved "https://registry.yarnpkg.com/rn-fetch-blob/-/rn-fetch-blob-0.10.13.tgz#e0fd5eac1a3a872563b35061353d96c4e51ae1cc"
-  integrity sha512-CEz7coPlMMUpX5RB+k7Mqzq+eYYfZuFbpuNkFYhvEFnT5DnZyqdNF50Xk6BuZyqZwAjNvsQ1CUMz7XDvuN10DA==
+  resolved "https://github.com/rajivshah3/rn-fetch-blob#4d4119360fdc9889a31d599f263ea455ccdc3d02"
   dependencies:
     base-64 "0.1.0"
     glob "7.0.6"

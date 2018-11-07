@@ -34,36 +34,11 @@ class Ledger extends React.PureComponent {
     };
 
     state = {
-        index: this.props.wallet.additionalAccountMeta.index || this.getDefaultIndex(),
+        index: this.props.wallet.additionalAccountMeta.index || 0,
         page: this.props.wallet.additionalAccountMeta.page || 0,
         loading: false,
         advancedMode: false,
     };
-
-    getIndexes() {
-        const { accounts } = this.props;
-
-        const indexes = Object.keys(accounts).map(
-            (account) =>
-                accounts[account].meta && accounts[account].meta.type === 'ledger' ? accounts[account].meta.index : -1,
-        );
-        return indexes;
-    }
-
-    getDefaultIndex() {
-        const indexes = this.getIndexes();
-
-        for (let i = 0; i <= indexes.length; i++) {
-            if (indexes.indexOf(i) < 0) {
-                return i;
-            }
-        }
-    }
-
-    getIndexAccountName(index) {
-        const indexes = this.getIndexes();
-        return Object.keys(this.props.accounts)[indexes.indexOf(index)];
-    }
 
     /**
      * Check for unused ledger index and set it to state
@@ -72,54 +47,66 @@ class Ledger extends React.PureComponent {
      */
     setIndex = async (event) => {
         const { index, page } = this.state;
-        const { generateAlert, history, t } = this.props;
+        const { accounts, generateAlert, history, t } = this.props;
 
         event.preventDefault();
-
-        const indexInUse = this.getIndexAccountName(index);
-
-        if (indexInUse) {
-            return generateAlert(
-                'error',
-                t('ledger:indexInUse', { account: indexInUse }),
-                t('ledger:indexInUseExplanation', { account: indexInUse }),
-            );
-        }
 
         this.setState({
             loading: true,
         });
 
         try {
-            const vault = await new SeedStore.ledger(null, null, { index });
+            const vault = await new SeedStore.ledger(null, null, { index, page });
             const indexAddress = await vault.generateAddress({
                 index: 0,
                 security: 1,
             });
+
+            this.setState({
+                loading: false,
+            });
+
+            const existingAccount = Object.keys(accounts).find(
+                (account) =>
+                    accounts[account].meta &&
+                    accounts[account].meta.type === 'ledger' &&
+                    accounts[account].meta.indexAddress === indexAddress,
+            );
+
+            if (existingAccount) {
+                return generateAlert(
+                    'error',
+                    t('ledger:indexInUse', { account: existingAccount }),
+                    t('ledger:indexInUseExplanation', { account: existingAccount }),
+                );
+            }
 
             this.props.setAdditionalAccountInfo({
                 additionalAccountMeta: { type: 'ledger', index, page, indexAddress },
             });
 
             history.push('/onboarding/account-name');
-        } catch (err) {
-            // Do nothing if user cancels modal
+        } catch (error) {
+            if (error.statusCode === 27014) {
+                generateAlert(
+                    'error',
+                    t('ledger:applicationNotInitialised'),
+                    t('ledger:applicationNotInitialisedExplanation'),
+                );
+            }
+            this.setState({
+                loading: false,
+            });
         }
-
-        this.setState({
-            loading: false,
-        });
     };
 
     render() {
         const { t } = this.props;
         const { page, index, loading, advancedMode } = this.state;
 
-        const usedIndex = this.getIndexAccountName(index);
-
         return (
             <form className={css.ledger} onSubmit={this.setIndex}>
-                <section className={usedIndex ? css.usedIndex : null}>
+                <section>
                     <h1>{t('ledger:chooseAccountIndex')}</h1>
                     <p>{t('ledger:accountIndexExplanation')}</p>
                     <div>
@@ -138,7 +125,6 @@ class Ledger extends React.PureComponent {
                             />
                         )}
                     </div>
-                    <strong>{usedIndex ? t('ledger:indexInUse', { account: usedIndex }) : ' '}</strong>
                     <Toggle
                         checked={advancedMode}
                         onChange={() => this.setState({ advancedMode: !advancedMode, page: 0 })}
