@@ -720,8 +720,6 @@
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@bugsnag/safe-json-stringify/-/safe-json-stringify-2.1.0.tgz#c7dd30a33bd888c39cd36d45216f7252f307ed36"
   integrity sha512-tE2cPhAq+WFnA9XrfMfP+u/6L63eH7+PmONMNSXtP6kPt/iUXnwkDsxc1Q6lUP1oM3LsmWBrxn+/93M8JE6fpA==
-<<<<<<< HEAD
-=======
 
 "@ledgerhq/hw-transport-node-hid@^4.24.0":
   version "4.24.0"
@@ -739,7 +737,6 @@
   integrity sha512-L34TG1Ss7goRB+5BxtvBwUuu0CmDSIxS33oUqkpEy6rCs31k7XicV48iUGAnRnt8hNY2DvJ9WFyaOroUE9h6wQ==
   dependencies:
     events "^3.0.0"
->>>>>>> develop
 
 "@phc/format@^0.5.0":
   version "0.5.0"
@@ -1356,14 +1353,11 @@ bindings@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
   integrity sha512-DpLh5EzMR2kzvX1KIlVC0VkC3iZtHKTgdtZ0a3pglBZdaQFjt5S9g9xd1lE+YvXyfd6mtCeRnrUfOLYiTMlNSw==
-<<<<<<< HEAD
-=======
 
 bip32-path@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/bip32-path/-/bip32-path-0.4.2.tgz#5db0416ad6822712f077836e2557b8697c0c7c99"
   integrity sha1-XbBBataCJxLwd4NuJVe4aXwMfJk=
->>>>>>> develop
 
 bl@^1.0.0:
   version "1.2.2"
@@ -1786,14 +1780,11 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
-<<<<<<< HEAD
-=======
 
 chickencurry@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/chickencurry/-/chickencurry-1.1.1.tgz#02655f2b26b3bc2ee1ae1e5316886de38eb79738"
   integrity sha1-AmVfKyazvC7hrh5TFoht4463lzg=
->>>>>>> develop
 
 chokidar@^2.0.0, chokidar@^2.0.2:
   version "2.0.4"
@@ -2014,8 +2005,6 @@ component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
   integrity sha1-E3kY1teCg/ffemt8WmPhQOaUJeY=
-<<<<<<< HEAD
-=======
 
 compose-function@^2.0.0:
   version "2.0.0"
@@ -2023,7 +2012,6 @@ compose-function@^2.0.0:
   integrity sha1-5kL6fh2iFSlyADFHZ3b8JGkawLA=
   dependencies:
     arity-n "^1.0.4"
->>>>>>> develop
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -2420,8 +2408,6 @@ debug@^3.0.0, debug@^3.1.0:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.5.tgz#c2418fbfd7a29f4d4f70ff4cea604d4b64c46407"
   integrity sha512-D61LaDQPQkxJ5AUM2mbSJRbPkNs/TmdmOeLAi1hgDkpDfIfetSrjmWhccwtuResSwMbACjx/xXQofvM9CE/aeg==
-<<<<<<< HEAD
-=======
   dependencies:
     ms "^2.1.1"
 
@@ -2429,7 +2415,6 @@ debug@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
   integrity sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==
->>>>>>> develop
   dependencies:
     ms "^2.1.1"
 
@@ -2620,8 +2605,6 @@ domhandler@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.1.0.tgz#d2646f5e57f6c3bab11cf6cb05d3c0acf7412594"
   integrity sha1-0mRvXlf2w7qxHPbLBdPArPdBJZQ=
-<<<<<<< HEAD
-=======
   dependencies:
     domelementtype "1"
 
@@ -2629,7 +2612,6 @@ domhandler@^2.3.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.4.2.tgz#8805097e933d65e85546f726d60f5eb88b44f803"
   integrity sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
->>>>>>> develop
   dependencies:
     domelementtype "1"
 
@@ -2644,8 +2626,6 @@ domutils@1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
   integrity sha1-3NhIiib1Y9YQeeSMn3t+Mjc2gs8=
-<<<<<<< HEAD
-=======
   dependencies:
     dom-serializer "0"
     domelementtype "1"
@@ -2654,7 +2634,6 @@ domutils@^1.5.1:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.7.0.tgz#56ea341e834e06e6748af7a1cb25da67ea9f8c2a"
   integrity sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==
->>>>>>> develop
   dependencies:
     dom-serializer "0"
     domelementtype "1"
@@ -2806,17 +2785,10 @@ electron-to-chromium@^1.3.62:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.69.tgz#0fd5d4bfd89ba6a431a144375245aea65073e3ca"
   integrity sha512-BXOfu4dyeouzx9CuSnU2fV6ElZYUlVxADxkJI4jUl1DlmkmaaEqDhgm7balB5yR0jMtk2p+h68geOv9z1/F10g==
 
-<<<<<<< HEAD
-electron-updater@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-3.1.2.tgz#30d9790d5b16048e4afc74a31748790348b153bf"
-  integrity sha512-y3n37O01pdynMJHhJbOd2UVhVrmDW6zLvR2SOZ+gk3S6r16872+0nNbC48GXWwc26lTeus/Zja/XUpiqrvdw4A==
-=======
 electron-updater@3.1.6:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-3.1.6.tgz#142ab3341a0a483ed377005b8dce961999d2b4d5"
   integrity sha512-ZzNrFqvJJmG2O0qEVhAhI25WqJx6Nq3lNlXvBvX3i0zqWtAuSmcAdCbq4VyDymun/glsZ4bD3ZzATcIk3sYygg==
->>>>>>> develop
   dependencies:
     bluebird-lst "^1.0.5"
     builder-util-runtime "~5.0.0"
@@ -3012,14 +2984,11 @@ events@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
   integrity sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ=
-<<<<<<< HEAD
-=======
 
 events@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
   integrity sha512-Dc381HFWJzEOhQ+d8pkNon++bk9h6cdAoAj4iE6Q4y6xgTzySWXlKn05/TVNpjnfRqi/X0EpJEJohPjNI3zpVA==
->>>>>>> develop
 
 eventsource@0.1.6:
   version "0.1.6"
@@ -5079,14 +5048,11 @@ nan@^2.10.0, nan@^2.9.2:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.0.tgz#574e360e4d954ab16966ec102c0c049fd961a099"
   integrity sha512-F4miItu2rGnV2ySkXOQoA8FKz/SR2Q2sWP0sbTxNxz/tuokeC8WxOhPMcwi0qIyGtVn/rrSeLbvVkznqCdwYnw==
-<<<<<<< HEAD
-=======
 
 nan@^2.8.0:
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.1.tgz#90e22bccb8ca57ea4cd37cc83d3819b52eea6766"
   integrity sha512-iji6k87OSXa0CcrLl9z+ZiYSuR2o+c0bGuNmXdrhTQTakxytAFsC56SArGYoiHlJlFoHSnvmhpceZJaXkVuOtA==
->>>>>>> develop
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -6203,17 +6169,10 @@ react-lottie@^1.2.3:
     babel-runtime "^6.26.0"
     lottie-web "^5.1.3"
 
-<<<<<<< HEAD
-react-markdown@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-3.6.0.tgz#29f6aaab5270c8ef0a5e234093a873ec3e01722b"
-  integrity sha512-TV0wQDHHPCEeKJHWXFfEAKJ8uSEsJ9LgrMERkXx05WV/3q6Ig+59KDNaTmjcoqlCpE/sH5PqqLMh4t0QWKrJ8Q==
-=======
 react-markdown@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-4.0.3.tgz#8851f9265d0322bb5d60ab2766b3ab48cdbeb890"
   integrity sha512-CIc3eLVpW5XocM1MCid2rS0vs9skhvdL/slAkY/a3Cr9y72b0J/25GiD70fGmStjuxsd5ROdm4ZYfiYYxPPyGA==
->>>>>>> develop
   dependencies:
     html-to-react "^1.3.3"
     mdast-add-list-metadata "1.0.1"
@@ -6300,15 +6259,9 @@ react-transition-group@^2.5.0:
     react-lifecycles-compat "^3.0.4"
 
 react@^16.5.2:
-<<<<<<< HEAD
-  version "16.5.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
-  integrity sha512-FDCSVd3DjVTmbEAjUNX6FgfAmQ+ypJfHUsqUJOYNCBUp1h8lqmtC+0mXJ+JjsWx4KAVTkk1vKd1hLQPvEviSuw==
-=======
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.6.0.tgz#b34761cfaf3e30f5508bc732fb4736730b7da246"
   integrity sha512-zJPnx/jKtuOEXCbQ9BKaxDMxR0001/hzxXwYxG8septeyYGfsgAei6NgfbVgOhbY1WOP2o3VPs/E9HaN+9hV3Q==
->>>>>>> develop
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -6505,15 +6458,9 @@ reduce-function-call@^1.0.1:
     balanced-match "^0.4.2"
 
 redux@^4.0.0:
-<<<<<<< HEAD
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
-  integrity sha512-NnnHF0h0WVE/hXyrB6OlX67LYRuaf/rJcbWvnHHEPCF/Xa/AZpwhs/20WyqzQae5x4SD2F9nPObgBh2rxAgLiA==
-=======
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
   integrity sha512-R7bAtSkk7nY6O/OYMVR9RiBI+XghjF9rlbl5806HJbQph0LJVHZrU5oaO4q70eUKiqMRqm4y07KLTlMZ2BlVmg==
->>>>>>> develop
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
@@ -6782,14 +6729,11 @@ ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
-<<<<<<< HEAD
-=======
 
 reverse-arguments@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/reverse-arguments/-/reverse-arguments-1.0.0.tgz#c28095a3a921ac715d61834ddece9027992667cd"
   integrity sha1-woCVo6khrHFdYYNN3s6QJ5kmZ80=
->>>>>>> develop
 
 rimraf@^2.5.2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
@@ -6947,14 +6891,11 @@ semver-diff@^2.0.0:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
   integrity sha512-PqpAxfrEhlSUWge8dwIp4tZnQ25DIOthpiaHNIthsjEFQD6EvqUKUDM7L8O2rShkFccYo1VjJR0coWfNkCubRw==
-<<<<<<< HEAD
-=======
 
 semver@^5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
->>>>>>> develop
 
 send@0.16.2:
   version "0.16.2"
@@ -7417,14 +7358,11 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
-<<<<<<< HEAD
-=======
 
 struct@0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/struct/-/struct-0.0.12.tgz#8330af872664e9a5bd678664524857c50908038a"
   integrity sha1-gzCvhyZk6aW9Z4ZkUkhXxQkIA4o=
->>>>>>> develop
 
 style-loader@^0.23.0:
   version "0.23.0"
