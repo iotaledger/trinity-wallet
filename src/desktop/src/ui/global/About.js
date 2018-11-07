@@ -61,6 +61,7 @@ class About extends React.PureComponent {
                         <Scrollbar>
                             <h5>0.4.1</h5>
                             <ul>
+                                <li>- Update: Complete address tooltip on Send page address input</li> 
                                 <li>- Update: Highlight receive address checksum</li>
                                 <li>- Update: Ledger device accounts can send 0 value transactions</li>
                                 <li>- Update: Prefix SeedVault export file name with Account name</li>
