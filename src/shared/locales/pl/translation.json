@@ -671,8 +671,8 @@
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
-        "installUpdate": "Zainstaluj aktualizację i zrestartuj",
+        "newVersionAvailableExplanation": "Dostępna jest nowa wersja portfela Trinity. Czy chcesz dokonać aktualizacji?",
+        "installUpdate": "Instalacja aktualizacji i restart",
         "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie i zainstaluje aktualizację.",
         "downloadingUpdate": "Pobieranie aktualizacji",
         "downloadProgress": "Pobrano {{transferred}} z {{total}}"
