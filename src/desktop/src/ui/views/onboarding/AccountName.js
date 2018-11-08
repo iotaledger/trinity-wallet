@@ -102,7 +102,11 @@ class AccountName extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history } = this.props;
+        const { history, wallet } = this.props;
+
+        if (wallet.additionalAccountMeta.type === 'ledger') {
+            return history.push('/onboarding/seed-ledger');
+        }
 
         if (Electron.getOnboardingGenerated()) {
             history.push('/onboarding/seed-generate');

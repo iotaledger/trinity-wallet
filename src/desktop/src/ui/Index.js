@@ -12,6 +12,7 @@ import { ACC_MAIN } from 'libs/crypto';
 
 import { getAccountNamesFromState } from 'selectors/accounts';
 
+import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
@@ -48,6 +49,10 @@ class App extends React.Component {
         isBusy: PropTypes.bool.isRequired,
         /** @ignore */
         location: PropTypes.object,
+        /** @ignore */
+        onboardingComplete: PropTypes.bool.isRequired,
+        /** @ignore */
+        setOnboardingComplete: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
@@ -116,12 +121,15 @@ class App extends React.Component {
             Electron.updateMenu('authorised', true);
 
             // If there was an error adding additional seed, go back to onboarding
-            if (
-                this.props.wallet.addingAdditionalAccount &&
-                !nextProps.wallet.addingAdditionalAccount &&
-                nextProps.wallet.additionalAccountName.length
-            ) {
-                return this.props.history.push('/onboarding/account-name');
+            if (nextProps.wallet.addingAdditionalAccount) {
+                if (nextProps.accountNames.length > 0) {
+                    return this.props.history.push('/onboarding/account-name');
+                }
+                return this.props.history.push('/onboarding/login');
+            }
+
+            if (!this.props.onboardingComplete) {
+                this.props.setOnboardingComplete(true);
             }
 
             this.props.history.push('/wallet/');
@@ -281,6 +289,7 @@ const mapStateToProps = (state) => ({
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
+    onboardingComplete: state.accounts.onboardingComplete,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
@@ -295,6 +304,7 @@ const mapDispatchToProps = {
     fetchNodeList,
     updateTheme,
     setAdditionalAccountInfo,
+    setOnboardingComplete,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

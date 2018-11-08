@@ -16,6 +16,7 @@ import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
+import { removeNonAlphaNumeric } from 'shared-modules/libs/utils';
 import InfoBox from './InfoBox';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
@@ -133,11 +134,12 @@ class SeedVaultExportComponent extends Component {
         if (isAndroid) {
             await getAndroidFileSystemPermissions();
         }
-        const { t } = this.props;
+        const { t, selectedAccountName } = this.props;
         const now = new Date();
+        const prefix = removeNonAlphaNumeric(selectedAccountName, 'SeedVault').trim();
         const path =
             (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
-            `/SeedVault${now
+            `/${prefix}${now
                 .toISOString()
                 .slice(0, 16)
                 .replace(/[-:]/g, '')

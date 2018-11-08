@@ -853,7 +853,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
             .catch((error) => {
                 dispatch(retryFailedTransactionError());
 
-                if (error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
                     dispatch(
                         generateAlert(
                             'error',
