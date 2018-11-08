@@ -744,7 +744,7 @@
         "ledgerDisconnectedExplanation": "Urządzenie Ledger zostało odłączone. Podłącz je oraz spróbuj ponownie.",
         "ledgerDeniedTitle": "Odrzucenie transakcji",
         "ledgerDeniedExplanation": "Transakcja nie została zaakceptowana na urządzeniu Ledger.",
-        "ledgerIncorrectIndex": "Niezgodność urządzenia Ledger",
+        "ledgerIncorrectIndex": "Niezgodne urządzenie Ledger",
         "ledgerIncorrectIndexExplanation": "Podłączony portfel sprzętowy Ledger, nie pasuje do połączonego z tym kontem lub frazy odzyskiwania na urządzeniu, zostały zmienione.",
         "checkAddress": "Sprawdź adres odbioru",
         "checkAddressExplanation": "Sprawdź, czy adres odpowiada adresowi wyświetlanemu na urządzeniu Ledger. Jeśli nie, naciśnij \"Synchronizuj adres\".",
