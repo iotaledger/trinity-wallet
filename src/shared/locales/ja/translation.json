@@ -748,7 +748,7 @@
         "ledgerIncorrectIndexExplanation": "Ledger端末がアカウントにリンクされている端末と一致しないか、または復元フレーズが変更されています。",
         "checkAddress": "受取用のアドレスを確認してください",
         "checkAddressExplanation": "受取用アドレスがLedger端末に表示されているアドレスと一致することをご確認ください。表示されていない場合は、「アドレスの同期」を押してください。",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialised": "未確定に関する警告",
+        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。"
     }
 }
