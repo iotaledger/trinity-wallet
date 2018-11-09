@@ -538,7 +538,7 @@
         "hideSeed": "シードを隠す",
         "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
         "accountIndex": "Ledgerのアカウントインデックス",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Ledgerのアカウントページ"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
