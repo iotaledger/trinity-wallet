@@ -154,6 +154,7 @@ class PrivacyPolicy extends Component {
                                 children: { color: primary.body },
                             }}
                             buttonText={t('agree')}
+                            buttonTestID="privacyPolicy-next"
                         />
                     </View>
                 )}

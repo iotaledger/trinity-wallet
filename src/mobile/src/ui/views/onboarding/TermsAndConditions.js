@@ -158,6 +158,7 @@ class TermsAndConditions extends Component {
                                 children: { color: primary.body },
                             }}
                             buttonText={t('accept')}
+                            buttonTestID="termsAndConditions-next"
                         />
                     </View>
                 )}
