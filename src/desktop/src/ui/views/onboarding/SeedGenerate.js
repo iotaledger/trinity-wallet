@@ -1,7 +1,7 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 import { createRandomSeed, randomBytes } from 'libs/crypto';
 import { capitalize, byteToChar } from 'libs/helpers';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
@@ -215,4 +215,4 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
-export default translate()(GenerateSeed);
+export default withI18n()(GenerateSeed);

@@ -10,14 +10,14 @@ import { byteToChar, bytesToTrits } from '../libs/iota/converter';
 import { getLatestAddress } from '../libs/iota/addresses';
 import { DEFAULT_SECURITY } from '../config';
 import { setByteTritSweepInfo, setCompletedByteTritSweep } from './settings';
-import i18next from '../i18next';
+import i18next from '../libs/i18next';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { generateAlert } from './alerts';
 import Errors from '../libs/errors';
 
 /**
  * Do byte-trit check
- * @param {object} accounts - Account information {accountName, seed}
+ * @param {object} accounts - Account information {accountName, seedStore}
  * @param {function} genFn - Address generation function
  */
 export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => {
@@ -30,7 +30,9 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
 
         const addressCount = Math.max(accountInfo.addresses ? Object.keys(accountInfo.addresses).length + 20 : 30, 30);
 
-        const seedTrits = bytesToTrits(accounts[i].seedTrits.filter((trit) => trit > -1).slice(0, 81));
+        const seed = await accounts[i].seedStore.getSeed(true);
+
+        const seedTrits = bytesToTrits(seed.filter((trit) => trit > -1).slice(0, 81));
         const addresses = await genFn(seedTrits, 0, 2, addressCount);
 
         const balances = await getBalancesAsync()(typeof addresses === 'string' ? [addresses] : addresses);
@@ -46,7 +48,7 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
                 }))
                 .filter((addressData) => addressData.balance > 0);
 
-            affectedAccounts.push(Object.assign({}, accounts[i], { inputs }));
+            affectedAccounts.push({ accountName: accounts[i].accountName, inputs });
         }
     }
 
@@ -59,19 +61,17 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
 
 /**
  * Do byte-trit sweep
- * @param {function} genFn - Address generation function
- * @param {function} powFn - Proof-of-Work function
  * @param {function} dialogFn - Confirmation dialog functions
  */
-export const byteTritSweep = (genFn, powFn, dialogFn) => (dispatch, getState) => {
+export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState) => {
     const accounts = getState().settings.byteTritInfo;
+    const password = getState().wallet.password;
 
     const sweeps = accounts.map(async (account) => {
-        await dispatch(cleanUpAccountState(account.seedTrits, account.accountName, genFn));
+        const seedStore = await new SeedStore(password, account.accountName);
+        await dispatch(cleanUpAccountState(seedStore, account.accountName));
 
-        let result = await dispatch(
-            recover(account.accountName, account.seedTrits, account.inputs, powFn, genFn, dialogFn),
-        );
+        let result = await dispatch(recover(account.accountName, seedStore, account.inputs, powFn, dialogFn));
 
         while (result.failedInputs.length) {
             dispatch(
@@ -82,9 +82,7 @@ export const byteTritSweep = (genFn, powFn, dialogFn) => (dispatch, getState) =>
                     10000,
                 ),
             );
-            result = await dispatch(
-                recover(account.accountName, account.seedTrits, result.failedInputs, powFn, genFn, dialogFn),
-            );
+            result = await dispatch(recover(account.accountName, seedStore, result.failedInputs, powFn, dialogFn));
         }
     });
 
@@ -107,16 +105,16 @@ export const byteTritSweep = (genFn, powFn, dialogFn) => (dispatch, getState) =>
  * Recover funds.
  *
  * @param  {string} accountName
- * @param  {array} seedTrits
+ * @param  {object} seedStore
  * @param  {object} inputs Inputs list [{ address, keyIndex, balance, security }]
  * @param  {function} powFn
- * @param  {function} genFn
  * @param  {function} dialogFn
  *
  * @returns {function} dispatch
  */
-export const recover = (accountName, seedTrits, inputs, powFn, genFn, dialogFn) => (dispatch, getState) => {
-    const seedFromBytes = map(seedTrits, (byte) => byteToChar(byte)).join('');
+export const recover = (accountName, seedStore, inputs, powFn, dialogFn) => async (dispatch, getState) => {
+    const seed = await seedStore.getSeed(true);
+    const seedFromBytes = map(seed, (byte) => byteToChar(byte)).join('');
 
     if (some(inputs, (input) => input.balance === 0)) {
         return Promise.reject(new Error(Errors.DETECTED_INPUT_WITH_ZERO_BALANCE));
@@ -127,7 +125,7 @@ export const recover = (accountName, seedTrits, inputs, powFn, genFn, dialogFn) 
         (promise, input) => {
             return promise.then((result) => {
                 // Sync account state in each iteration
-                return syncAccount()(selectedAccountStateFactory(accountName)(getState()), seedTrits, genFn)
+                return syncAccount()(selectedAccountStateFactory(accountName)(getState()), seedStore)
                     .then((newState) => {
                         dispatch(syncAccountBeforeSweeping(newState));
 
@@ -160,7 +158,7 @@ export const recover = (accountName, seedTrits, inputs, powFn, genFn, dialogFn) 
                     })
                     .then(({ transactionObjects }) =>
                         syncAccountAfterSpending()(
-                            seedTrits,
+                            seedStore,
                             accountName,
                             transactionObjects,
                             // Since we updated state before sweeping
@@ -168,7 +166,6 @@ export const recover = (accountName, seedTrits, inputs, powFn, genFn, dialogFn) 
                             selectedAccountStateFactory(accountName)(getState()),
                             // We are sure that it is a value transaction
                             true,
-                            genFn,
                         ),
                     )
                     .then(({ newState }) => {

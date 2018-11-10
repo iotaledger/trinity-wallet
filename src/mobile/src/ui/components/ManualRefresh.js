@@ -3,9 +3,9 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAccountInfo } from 'shared-modules/actions/accounts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
-import { translate } from 'react-i18next';
-import { getSeedFromKeychain } from 'libs/keychain';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
+import { withNamespaces } from 'react-i18next';
+import SeedStore from 'libs/SeedStore';
 
 const mapDispatchToProps = {
     generateAlert,
@@ -14,12 +14,13 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
-    isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
+    isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
     isSyncing: state.ui.isSyncing,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
     seedIndex: state.wallet.seedIndex,
 });
@@ -71,19 +72,10 @@ export default () => (C) => {
          *  Updates account with latest data
          */
         updateAccountData() {
-            const { t, selectedAccountName, password } = this.props;
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongTryAgain'),
-                        );
-                    }
-                    this.props.getAccountInfo(seed, selectedAccountName);
-                })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+            const { selectedAccountName, selectedAccountMeta, password } = this.props;
+
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            this.props.getAccountInfo(seedStore, selectedAccountName);
         }
 
         /**
@@ -117,6 +109,8 @@ export default () => (C) => {
         t: PropTypes.func.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Account meta data for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
         /** @ignore */
@@ -139,5 +133,5 @@ export default () => (C) => {
         seedIndex: PropTypes.number.isRequired,
     };
 
-    return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
+    return withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
 };

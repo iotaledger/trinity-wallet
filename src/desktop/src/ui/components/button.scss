@@ -30,7 +30,7 @@
         height: 42px;
         line-height: 42px;
         min-width: 30px;
-        border-radius: 2px;
+        border-radius: 5px;
         font-size: 13px;
 
         &.loading {
@@ -55,6 +55,14 @@
         font-size: 18px;
         height: 70px;
         line-height: 70px;
+
+        &.loading {
+            text-indent: -4700px;
+            &:before {
+                position: absolute;
+                left: 50%;
+            }
+        }
     }
     &:before {
         content: '';

@@ -34,7 +34,7 @@ const getProps = (overrides) =>
         {
             theme: { body: { bg: '#ffffff' } },
             generateAlert: noop,
-            navigator: {},
+            componentId: 'foo',
             t: () => '',
             password: {},
         },
@@ -45,10 +45,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
     describe('propTypes', () => {
         it('should require a theme object as a prop', () => {
             expect(TwoFactorSetupAddKey.propTypes.theme).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a navigator object as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.navigator).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {
@@ -62,6 +58,10 @@ describe('Testing TwoFactorSetupAddKey component', () => {
         it('should require a password object as a prop', () => {
             expect(TwoFactorSetupAddKey.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
+
+        it('should require a componentId string as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.componentId).toEqual(PropTypes.string.isRequired);
+        });
     });
 
     describe('when renders', () => {
@@ -70,13 +70,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
 
             const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
             expect(wrapper.name()).toEqual('View');
-        });
-
-        it('should return a DynamicStatusBar component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
-            expect(wrapper.find('DynamicStatusBar').length).toEqual(1);
         });
 
         it('should return six View components', () => {
@@ -105,19 +98,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
 
             const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
             expect(wrapper.find('Text').length).toEqual(5);
-        });
-
-        it('should return a StatefulDropdownAlert component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
-            expect(
-                wrapper
-                    .children()
-                    .last()
-                    .name()
-                    .includes('StatefulDropdownAlert'),
-            ).toEqual(true);
         });
     });
 
@@ -195,19 +175,6 @@ describe('Testing TwoFactorSetupAddKey component', () => {
                     instance.navigateToEnterToken();
 
                     expect(keychainUtils.storeTwoFactorAuthKeyInKeychain).toHaveBeenCalledTimes(1);
-                });
-
-                it('should call push method on navigator object in props', () => {
-                    const props = getProps({
-                        navigator: {
-                            push: jest.fn(),
-                        },
-                    });
-
-                    const instance = shallow(<TwoFactorSetupAddKey {...props} />).instance();
-                    return instance.navigateToEnterToken().then(() => {
-                        expect(props.navigator.push).toHaveBeenCalledTimes(1);
-                    });
                 });
             });
         });

@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { updateTheme } from 'shared-modules/actions/settings';
 import THEMES from 'shared-modules/themes/themes';
 import Dropdown from 'ui/components/Dropdown'; // eslint-disable-line import/no-named-as-default
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 44,
         paddingHorizontal: height / 26,
         paddingBottom: height / 26,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 1.5,
         borderStyle: 'dotted',
         alignItems: 'center',
@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     frameBarTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         color: '#ffffff',
         zIndex: 1,
     },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     button: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 3.4,
         height: height / 15,
         alignItems: 'center',
@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     ctaButton: {
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 3.4,
         height: height / 15,
         alignItems: 'center',
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     ctaText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -158,8 +158,25 @@ class ThemeCustomisation extends Component {
         this.props.updateTheme(newTheme, themeName);
     }
 
+    getLocalizedThemeName(themeName) {
+        const { t } = this.props;
+        return t(`themes:${themeName.toLowerCase()}`);
+    }
+
+    getLocalizedThemes() {
+        const localizedThemes = this.state.themes.map((item) => {
+            return this.getLocalizedThemeName(item);
+        });
+        return localizedThemes;
+    }
+
+    getThemeName(localizedThemeName) {
+        const localizedThemes = this.getLocalizedThemes();
+        return this.state.themes[localizedThemes.indexOf(localizedThemeName)];
+    }
+
     render() {
-        const { themes, theme, themeName } = this.state;
+        const { theme, themeName } = this.state;
         const { body, bar, secondary, primary, positive, negative } = this.state.theme;
         const { t } = this.props;
         const bodyColor = this.props.theme.body.color;
@@ -183,9 +200,10 @@ class ThemeCustomisation extends Component {
                                 dropdownWidth={{ width: width / 1.45 }}
                                 background
                                 shadow
-                                defaultOption={themeName}
-                                options={themes}
-                                saveSelection={(selection) => {
+                                defaultOption={this.getLocalizedThemeName(themeName)}
+                                options={this.getLocalizedThemes()}
+                                saveSelection={(localizedSelection) => {
+                                    const selection = this.getThemeName(localizedSelection);
                                     const newTHEMES = cloneDeep(THEMES);
                                     let newTheme = newTHEMES[selection];
                                     if (selection === 'Custom' && this.props.themeName === 'Custom') {
@@ -209,7 +227,7 @@ class ThemeCustomisation extends Component {
                                 <Text
                                     style={{
                                         fontFamily: 'SourceSansPro-Regular',
-                                        fontSize: GENERAL.fontSize2,
+                                        fontSize: Styling.fontSize2,
                                         color: body.color,
                                     }}
                                 >
@@ -288,6 +306,6 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default translate(['themeCustomisation', 'global'])(
+export default withNamespaces(['themeCustomisation', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(ThemeCustomisation),
 );

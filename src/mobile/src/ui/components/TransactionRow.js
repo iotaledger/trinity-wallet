@@ -4,9 +4,9 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import spinner from 'shared-modules/animations/spinner.json';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { locale } from 'libs/device';
+import { locale, timezone } from 'libs/device';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     },
     row: {
         flex: 1,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         borderWidth: 1,
         paddingVertical: height / 55,
-        width: width / 1.15,
+        width: Styling.contentWidth,
         justifyContent: 'center',
         marginBottom: height / 60,
         height: height / 10,
@@ -177,7 +177,7 @@ export default class TransactionRow extends PureComponent {
                                     </View>
                                     <View style={styles.timestampWrapper}>
                                         <Text style={[styles.timestamp, style.rowTextColor]}>
-                                            {formatTime(locale, convertUnixTimeToJSDate(time))}
+                                            {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
                                         </Text>
                                     </View>
                                 </View>

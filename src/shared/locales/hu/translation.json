@@ -49,19 +49,14 @@
         "proceed": "Tovább",
         "qr": "QR kód",
         "enterSeed": "Kérjük, adja meg a személyes mester jelszavát.",
-        "mainWallet": "Elsődleges számla",
-        "secondWallet": "Második számla",
-        "thirdWallet": "Harmadik számla",
-        "fourthWallet": "Negyedik számla",
-        "fifthWallet": "Ötödik számla",
-        "sixthWallet": "Hatodik számla",
-        "otherWallet": "Egyéb számla",
         "yes": "Igen",
         "no": "Nem",
         "okay": "Rendben",
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
+        "unrecognisedAccount": "Helytelen számla",
+        "unrecognisedAccountExplanation": "A(z) {{accountName}} nevű számlát nem sikerült azonosítani. Kérjük fontolja meg a tárca gyári állapotba való visszaállítását.",
         "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
         "capsLockIsOn": "A nagybetűzár be van kapcsolva",
         "syncInProgress": "Szinkronizálás folyamatban",
@@ -79,7 +74,7 @@
         "all": "Összes",
         "sent": "Elküldött",
         "received": "Fogadott",
-        "sending": "Küldés folyamatban",
+        "sending": "Küldés...",
         "receiving": "Fogadás folyamatban",
         "confirmed": "Megerősítve",
         "pending": "Függőben lévő",
@@ -113,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Kérjük várjon, amíg az egyenlegátvezetés befejeződik.",
         "checkForUpdates": "Frissítések keresése",
         "account": "Számla",
-        "enterYourPassword": "Adja meg a jelszót",
         "changeNode": "Csomópont választása",
         "addCustomNode": "Saját csomópont hozzáadása",
         "nodeMustUseHTTPS": "Érvénytelen csomópont (nem HTTPS)",
@@ -148,7 +142,10 @@
         "problemPerformingProofOfWork": "Hiba történt a kiszabott munka elvégzése során.",
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
-        "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben."
+        "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
+        "errorAccessingKeychain": "Kulcstár-hiba",
+        "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
+        "mainWallet": "Elsődleges számla"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -207,19 +204,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Vágólap törölve",
-        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük.",
-        "seedCopied": "Mester jelszó a vágólapra másolva",
-        "seedCopiedExplanation": "A mester jelszót a \"Kész\"-re klikkelés után, de legkésőbb 60 másodperc múlva töröljük a vágólapról.",
-        "copyToClipboard": "Mester jelszó másolása",
-        "shareSeed": "Mester jelszó tárolása biztonságos jelszókezelőben",
-        "storeEncrypted": "Tárolja le a titkosított mester jelszavát egy jelszókezelőben.",
-        "doNotOpen": "Ne nyisson meg semmilyen másik alkalmazást a folyamat során.",
-        "tapConfirm": "Az elfogadáshoz kérjük jelölje be az alábbi négyzetet.",
-        "passwordManagerCheckbox": "Jelszókezelőben fogom tárolni a mester jelszavam",
-        "copy": "Másolás",
-        "noPasswordManagers": "Nincs telepítve támogatott jelszókezelő alkalmazás",
-        "noPasswordManagersExplanation": "Nincs telepítve támogatott jelszókezelő alkalmazás a készülékén. Kérjük telepítse a Keepass2Android alkalmazást.",
-        "followTutorialToSecurelyShareSeed": "Ha a mester jelszavát egy jelszókezelőben kívánja tárolni, kövesse az alábbi oldalon található útmutatót"
+        "seedClearedExplanation": "A vágólap tartalmát a biztonsága érdekében töröltük."
     },
     "enterSeed": {
         "invalidCharacters": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -234,7 +219,7 @@
         "balance": "Egyenleg",
         "send": "KÜLDÉS",
         "receive": "Fogadás",
-        "history": "Tranzakciótörténet",
+        "history": "Tranzakciók",
         "settings": "Beállítások"
     },
     "languageSetup": {
@@ -291,7 +276,7 @@
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Új cím",
+        "generateNewAddress": "Cím szinkronizálás",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
@@ -362,7 +347,9 @@
         "advanced": "Haladó",
         "standard": "Normál",
         "advancedModeExplanation": "Haladó módban részletesebb technikai információk is megjelennek.",
-        "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával."
+        "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával.",
+        "modeUpdated": "Üzemmód megváltoztatva",
+        "modeUpdatedExplanation": "Sikeresen {{mode}} üzemmódra váltott"
     },
     "settings": {
         "transferSending": "Küldés folyamatban",
@@ -420,7 +407,6 @@
         "reset": "Gyári állapotba való visszaállítás"
     },
     "walletSetup": {
-        "creatingSeed": "Mester jelszó létrehozása",
         "okay": "Rendben. Állítsuk be a tárcáját!",
         "doYouNeedASeed": "Szüksége van új mester jelszó létrehozására?",
         "seedExplanation": "Az IOTA mester jelszó a számlájához tartozó összes címen levő összeg eléréséhez szolgál. 81 karakter hosszú, és csak nagy A-Z betűkből, valamint a 9-es számjegyből állhat.",
@@ -438,7 +424,7 @@
         "scrollToBottom": "Ugrás a végére"
     },
     "history": {
-        "bundleHashCopied": "Tranzakciós csomag hash vágólapra másolva",
+        "bundleHashCopied": "Tranzakciós csomag hash másolva",
         "noTransactionsFound": "Nincs még tranzakció",
         "hideZeroBalance": "Nulla egyenleg elrejtése",
         "bundleHashCopiedExplanation": "A tranzakciós csomag hash a vágólapra lett másolva.",
@@ -450,7 +436,8 @@
         "receive": "Fogadás",
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
-        "yesterday": "Tegnap"
+        "yesterday": "Tegnap",
+        "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése"
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -480,7 +467,7 @@
         "manualSync": "Kézi szinkronizáció",
         "snapshotTransition": "Pillanatkép utáni egyenlegátvezetés",
         "pow": "Kiszabott munka elvégzése",
-        "autoPromotion": "Automatikus tranzakció előrehelyezés",
+        "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
         "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a kiszabott munka távoli elvégzését."
     },
@@ -527,9 +514,9 @@
         "discordInformation": "Kérjük keresse fel a #help csatornát az IOTA Discord-on, hogy további információt kapjon arról, mit tehet az emiatt nem hozzáférhető egyenlegének visszaszerzése érdekében."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Biztos, hogy törölni szeretné a</1><2></2><3>{{accountName}} számlát?</3>",
+        "areYouSure": "Biztosan törölni szeretné a számláját?",
         "yourSeedWillBeRemoved": "A mester jelszava és a tranzakciótörténete törlésre kerül.",
-        "thisAction": "Ez a művelet nem vonható vissza.",
+        "thisAction": "Ez a művelet nem vonható vissza",
         "enterPassword": "A számla törléséhez kérjük, adja meg jelszavát."
     },
     "manualSync": {
@@ -548,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "Adja meg a jelszót a mester jelszó megjelenítéséhez.",
         "viewSeed": "Mester jelszó megtekintése",
-        "hideSeed": "Mester jelszó elrejtése"
+        "hideSeed": "Mester jelszó elrejtése",
+        "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
+        "accountIndex": "Számlájának sorszáma",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -559,7 +549,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "EZ A MŰVELET NEM VONHATÓ VISSZA.",
-        "warning": "<0><0>Minden tárca adat, beleértve a</0><1>mester jelszavakat, a jelszavakat,</1><2>és</2><3>egyéb számlainformációkat</3><4>el fog veszni.</4></0>"
+        "warning": "<0><0>Minden tárca adat, beleértve a </0><1>mester jelszavakat, a jelszavakat,</1><2> és </2><3>egyéb számlainformációkat</3><4> el fog veszni.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Érintse meg az ujjlenyomat leolvasót az ujjlenyomat-azonosítás engedélyezéséhez",
@@ -608,17 +598,21 @@
         "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
         "exportSuccess": "SeedVault exportálva",
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
+        "unrecognisedKey": "Helytelen SeedVault jelszó",
+        "unrecognisedKeyExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
+        "emptyKey": "Hiányzó SeedVault jelszó",
+        "emptyKeyExplanation": "A mester jelszó biztonságos tárolásához meg kell adnia egy jelszót. Kérjük, próbálja újra.",
         "importSuccess": "Mester jelszó tárolva",
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
         "dropSeedVaultHere": "Húzza be ide <1></1> a SeedVault fájlt vagy klikkeljen a tallózáshoz",
-        "enterPasswordExplanation": "Adja meg a jelszót a SeedVault fájl megnyitásához",
+        "enterKeyExplanation": "Adja meg a SeedVault jelszavát",
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultPasswordExplanation": "A SeedVault fájl biztonságos tárolásához kérjük adjon megy egy jelszót. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a SeedVault biztonsági mentésből vissza szeretné állítani. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépésnél is használ."
+        "seedVaultKeyExplanation": "A mester jelszavát egy jelszóval védett ún. SeedVault fájlban tároljuk. Kérjük, válasszon egy jelszót a fájl titkosításához. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből kívánja betölteni. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépéshez is használ."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -634,14 +628,14 @@
     },
     "pow": {
         "feeless": "Az ingyenes tranzakciók küldéséhez némi processzor használatot igénylő, úgynevezett kiszabott munkát kell elvégezni.",
-        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzést.",
+        "localOrRemote": "A kiszabott munka elvégezhető helyben a készülékén, vagy átterhelhető a csomópontra, amennyiben az támogatja a kiszabott munka távoli elvégzését.",
         "local": "Helyi",
         "remote": "Távoli",
         "powUpdated": "Kiszabott munka beállításai",
         "powUpdatedExplanation": "A kiszabott munka beállításait frissítettük."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés beállításai",
+        "autoPromotionUpdated": "Automatikus tranzakció előrehelyezés",
         "autoPromotionUpdatedExplanation": "Az automatikus tranzakció előrehelyezés beállításait frissítettük."
     },
     "progressSteps": {
@@ -679,7 +673,9 @@
         "newVersionAvailable": "Új verzió elérhető",
         "newVersionAvailableExplanation": "Elérhető a Trinity egy újabb verziója. Szeretné most frissíteni?",
         "installUpdate": "Frissítés telepítése és újraindítás",
-        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket."
+        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket.",
+        "downloadingUpdate": "Frissítések letöltése",
+        "downloadProgress": "{{transferred}} letöltve a {{total}}-ból"
     },
     "notificationLog": {
         "errorLog": "Hibanapló"
@@ -712,15 +708,47 @@
         "confirmedOut": "{{value}} értékű tranzakció kiküldve a(z) {{account}} számlájáról"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": " Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}, address index: {{index}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Egyenleg sikeresen felszabadítva",
+        "sweepSucceededExplanation": "A zárolt összeget sikeresen feloldottuk és egy új címére átutaltuk. A tranzakció előmozdítása révén elősegítheti annak teljesülését.",
+        "sweepError": "Sikertelen zárolt összeg feloldás",
+        "sweepErrorExplanation": "Hiba történt a zárolt összeg feloldása közben. Kérjük, próbálja újra.",
+        "warningTitle": "Figyelem: zárolt összeget találtunk a számláján",
+        "explanation": "A Trinity 0.3.4 asztali verziójában egy hiba folytán ideiglenesen zárolásra kerülhetett az egyenlegének egy része. Ez a hiba viszonylag kevés felhasználót érint: azokat, akik a 0.3.4 verzióval indítottak tranzakciókat.",
+        "explanationAccounts": "Zárolt összegeket találtunk a következő számláin: {{accounts}}. A Trinity most megpróbálja automatikusan feloldani a zárolást az összegek egy Ön számlájához tartozó másik címre való átutalásával.",
+        "proceed": "Tovább a zárolás feloldásához",
+        "sweepConfirmation": "{{amount}} összeget készül az Ön számlájához tartozó {{address}} címre átutalni. Számlanév: {{accountName}}, címének indexe: {{index}}",
+        "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
+    },
+    "ledger": {
+        "ready": "Hardveres tárca csatlakoztatva és készen áll",
+        "notReady": "Ha hardveres tárcát szeretne használni, most csatlakoztassa majd nyissa ki",
+        "indexInUse": "{{account}} számla által már használt számlasorszám",
+        "indexInUseExplanation": "A választott számlasorszámot korábban már egy másik számlájához rendelte. Kérjük, válasszon egy másik számlasorszámot.",
+        "proceedWithLedger": "Hardveres tárca beállítása",
+        "accountIndex": "Számlasorszám",
+        "accountPage": "Számla oldal",
+        "chooseAccountIndex": "Válassza ki a hardveres tárca számlasorszámát",
+        "accountIndexExplanation": "A hardveres tárca több mester jelszót is képes tárolni. Minden mester jelszót egy egyedi számlasorszám azonosít. Egy még használaton kÍvüli számlasorszámot kiválasztottunk, de ha kívánja, nyugodtan megadhat egy szabadon választott számlasorszámot. Kérjük, jegyezze fel a választott számlasorszámot.",
+        "accountPageExplanation": "Néhány gyártó tárcája ún. számla oldal megadását igényli.",
+        "connectionError": "Sikertelen kapcsolódás a tárcához",
+        "connectionErrorExplanation": "Kérjük ellenőrizze, hogy a tárca csatlakoztatva és nyitva van.",
+        "connectionTitle": "Csatlakoztassa a tárcáját",
+        "connectionExplanation": "A művelet végrehajtása előtt kérjük csatlakoztasson egy hardveres tárcát.",
+        "transactionTitle": "Fussa át és hagyja jóvá a tranzakciót a hardveres tárcáján",
+        "transactionExplanation": "Használja a hardveres tárcáját a kimenő tranzakciók jóváhagyásához.",
+        "applicationTitle": "Open Ledger IOTA applikáció",
+        "applicationExplanation": "A Trinity használatához a hardveres tárcáján nyissa meg az IOTA applikációt.",
+        "cannotSendZeroValueTitle": "Hiányzó összeg",
+        "cannotSendZeroValueExplanation": "Hardveres tárcával nem indítható 0 összegű tranzakció.",
+        "ledgerDisconnectedTitle": "Hardveres tárca kapcsolat megszakadt",
+        "ledgerDisconnectedExplanation": "Megszakadt a kapcsolat a hardveres tárcával. Kérjük csatlakoztassa, majd próbálja újra.",
+        "ledgerDeniedTitle": "Tranzakció elutasítva",
+        "ledgerDeniedExplanation": "A tranzakció végrehajtását nem engedélyezte a hardveres tárca.",
+        "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
+        "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
+        "checkAddress": "Ellenőrizze a fogadási címet",
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { updateTheme } from 'actions/settings';
 import themes from 'themes/themes';
 
@@ -118,4 +118,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Theme));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Theme));

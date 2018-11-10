@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -24,22 +24,17 @@ import {
     selectLatestAddressFromAccountFactory,
 } from 'shared-modules/selectors/accounts';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
-import {
-    getFromKeychainRequest,
-    getFromKeychainSuccess,
-    getFromKeychainError,
-} from 'shared-modules/actions/keychain';
+import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getSeedFromKeychain } from 'libs/keychain';
-import GENERAL from 'ui/theme/general';
+import SeedStore from 'libs/SeedStore';
+import { Styling } from 'ui/theme/general';
 import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
 import { Icon } from 'ui/theme/icons';
 import ScramblingText from 'ui/components/ScramblingText';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
-import { getAddressGenFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -49,14 +44,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     flipCard: {
-        width: width / 1.15,
+        width: Styling.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
         borderWidth: 1,
         backfaceVisibility: 'hidden',
     },
     flipCardBack: {
-        width: width / 1.15,
+        width: Styling.contentWidth,
         height: height / 1.5,
         borderRadius: 6,
         position: 'absolute',
@@ -148,11 +143,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
     },
     addressText: {
         fontFamily: 'SourceCodePro-Medium',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'center',
         lineHeight: width / 17,
         justifyContent: 'center',
@@ -415,13 +410,14 @@ class Receive extends Component {
         this.startLetterScramble();
         this.triggerRefreshAnimations();
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
-        const seed = await getSeedFromKeychain(password, selectedAccountName);
-        if (seed === null) {
+
+        try {
+            const seedStore = new SeedStore[selectedAccountData.type || 'keychain'](password, selectedAccountName);
+            this.props.getFromKeychainSuccess('receive', 'addressGeneration');
+            this.props.generateNewAddress(seedStore, selectedAccountName, selectedAccountData);
+        } catch (err) {
             return error();
         }
-        this.props.getFromKeychainSuccess('receive', 'addressGeneration');
-        const genFn = getAddressGenFn();
-        this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData, genFn);
     }
 
     clearInteractions() {
@@ -738,4 +734,4 @@ const mapDispatchToProps = {
     flipReceiveCard,
 };
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

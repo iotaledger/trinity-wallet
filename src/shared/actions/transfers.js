@@ -14,7 +14,6 @@ import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
     promoteTransactionAsync,
-    prepareTransfersAsync,
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
@@ -23,7 +22,6 @@ import {
 import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
-    selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
     getNodesFromState,
     getSelectedNodeFromState,
@@ -38,7 +36,6 @@ import {
     filterInvalidPendingTransactions,
     getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
-    isAboveMaxDepth,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -67,7 +64,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateTransactionSuccessAlert,
 } from './alerts';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
 
@@ -328,7 +325,7 @@ export const forceTransactionPromotion = (
     let promotionAttempt = 0;
 
     const promote = (tailTransaction) => {
-        const { hash, attachmentTimestamp } = tailTransaction;
+        const { hash } = tailTransaction;
 
         promotionAttempt += 1;
 
@@ -345,8 +342,6 @@ export const forceTransactionPromotion = (
             } else if (
                 isTransactionInconsistent &&
                 promotionAttempt === maxPromotionAttempts &&
-                // Temporarily disable reattachments if transaction is still above max depth
-                !isAboveMaxDepth(attachmentTimestamp) &&
                 // If number of reattachments haven't exceeded max reattachments
                 replayCount < maxReplays
             ) {
@@ -402,17 +397,16 @@ export const forceTransactionPromotion = (
 /**
  * Sends a transaction
  *
- * @param  {string | array} seed
+ * @param  {object} seedStore - SeedStore class object
  * @param  {string} receiveAddress
  * @param  {number} value
  * @param  {string} message
  * @param  {string} accountName
  * @param  {function} powFn
- * @param  {function} genFn
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, powFn) => (
     dispatch,
     getState,
 ) => {
@@ -452,7 +446,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount()(accountState, seed, genFn);
+                    return syncAccount()(accountState, seedStore);
                 }
 
                 throw new Error(Errors.KEY_REUSE);
@@ -526,13 +520,17 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
+                // Check if input count does not exceed maximum supported by the SeedStore type
+                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
+                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                }
+
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder()(
                     accountState.addresses,
                     map(accountState.transfers, (tx) => tx),
-                    seed,
-                    genFn,
+                    seedStore,
                     [
                         // Make sure inputs are blacklisted
                         ...map(transferInputs, (input) => input.address),
@@ -541,7 +539,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     ],
                 );
             })
-            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
@@ -551,6 +549,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return {
                     inputs: transferInputs,
                     address: remainderAddress,
+                    keyIndex: remainderIndex,
                 };
             });
     };
@@ -570,13 +569,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
             .then((options) => {
-                const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
-                const transfer = prepareTransferArray(address, value, message, firstAddress);
+                const transfer = prepareTransferArray(address, value, message, accountState.addresses);
 
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return prepareTransfersAsync()(seed, transfer, options);
+                return seedStore.prepareTransfers(transfer, options);
             })
             .then((trytes) => {
                 if (!isZeroValue) {
@@ -694,12 +692,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .then(() => {
                 return syncAccountAfterSpending()(
-                    seed,
+                    seedStore,
                     accountName,
                     cached.transactionObjects,
                     accountState,
                     !isZeroValue,
-                    genFn,
                 );
             })
             .then(({ newState }) => {
@@ -803,8 +800,45 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             20000,
                         ),
                     );
+                } else if (message === Errors.LEDGER_ZERO_VALUE) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:cannotSendZeroValueTitle'),
+                            i18next.t('ledger:cannotSendZeroValueExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DISCONNECTED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDisconnectedTitle'),
+                            i18next.t('ledger:ledgerDisconnectedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DENIED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDeniedTitle'),
+                            i18next.t('ledger:ledgerDeniedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_INVALID_INDEX) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerIncorrectIndex'),
+                            i18next.t('ledger:ledgerIncorrectIndexExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_CANCELLED) {
+                    return;
                 }
-
                 return dispatch(generateTransferErrorAlert(error));
             })
     );
@@ -864,7 +898,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
             .catch((error) => {
                 dispatch(retryFailedTransactionError());
 
-                if (error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
                     dispatch(
                         generateAlert(
                             'error',

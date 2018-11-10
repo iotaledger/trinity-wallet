@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'shared-modules/actions/accounts';
-import { getSeedFromKeychain } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
-import { getMultiAddressGenFn } from 'libs/nativeModules';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
@@ -86,6 +85,8 @@ export class ManualSync extends Component {
         password: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Account meta for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -97,23 +98,11 @@ export class ManualSync extends Component {
     }
 
     sync() {
-        const { password, selectedAccountName, t, shouldPreventAction } = this.props;
+        const { password, selectedAccountName, selectedAccountMeta, t, shouldPreventAction } = this.props;
 
         if (!shouldPreventAction) {
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('global:somethingWentWrong'),
-                            t('global:somethingWentWrongTryAgain'),
-                        );
-                    }
-
-                    const genFn = getMultiAddressGenFn();
-                    this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            this.props.manuallySyncAccount(seedStore, selectedAccountName);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -202,6 +191,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),
 });
 
@@ -211,4 +201,4 @@ const mapDispatchToProps = {
     manuallySyncAccount,
 };
 
-export default translate(['manualSync', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ManualSync));
+export default withNamespaces(['manualSync', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ManualSync));

@@ -183,36 +183,6 @@ export const updatePersistedState = (incomingState, restoredState) => {
 };
 
 /**
- * Takes in the navigator object and pushes screen (mobile)
- *
- * @method pushScreen
- * @param {object} navigator
- * @param {string} screen
- * @param {object} props
- */
-export const pushScreen = (
-    navigator,
-    screen,
-    props = {
-        navigatorStyle: {
-            navBarHidden: true,
-            navBarTransparent: true,
-            screenBackgroundColor: '#1a373e',
-        },
-        animated: false,
-        overrideBackPress: true,
-    },
-) => {
-    // FIXME: Unneeded method. Remove when routing is sorted.
-    if (navigator) {
-        navigator.push({
-            ...props,
-            screen,
-        });
-    }
-};
-
-/**
  * Used for setting correct CryptoCompare URL when fetching chart data
  *
  * @method getUrlTimeFormat
@@ -313,4 +283,49 @@ export const isValidHttpsUrl = (url) => {
         return true;
     }
     return false;
+};
+
+/**
+ * Gets random nodes.
+ *
+ * @method rgbToHex
+ * @param {string} Rgb as string
+ *
+ * @returns {String}
+ */
+export const rgbToHex = (c) => {
+    const convert = (x) =>
+        '#' +
+        x
+            .map((x) => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            })
+            .join('');
+    c = c
+        .split('(')[1]
+        .split(')')[0]
+        .split(', ')
+        .map(Number);
+    return convert(c);
+};
+
+/**
+ * Replaces all non alpha numeric (plus _ and -) characters for an empty string
+ *
+ * @method removeNonAlphaNumeric
+ * @param {string} source - String with non ASCII chars to be cleansed
+ * @param {string} fallback - Optional string to be returned in the event of a falsy source
+ *
+ * @returns {string} Returns a new string without non ASCII characters
+ */
+export const removeNonAlphaNumeric = (source, fallback = '') => {
+    let newStr = '';
+    if (source) {
+        newStr = source.replace(/[^a-zA-Z0-9_-]/g, '');
+    }
+    if (!newStr && fallback) {
+        newStr = fallback.replace(/[^a-zA-Z0-9_-]/g, '');
+    }
+    return newStr;
 };

@@ -4,7 +4,7 @@ import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import i18next from 'libs/i18next.js';
+import i18next from 'shared-modules/libs/i18next.js';
 import MainSettingsComponent from 'ui/views/wallet/MainSettings';
 import AdvancedSettingsComponent from 'ui/views/wallet/AdvancedSettings';
 import AccountManagement from 'ui/views/wallet/AccountManagement';
@@ -30,7 +30,7 @@ import SeedVaultSettings from 'ui/views/wallet/SeedVaultSettings';
 import About from 'ui/views/wallet/About';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
@@ -83,12 +83,12 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     separator: {
-        borderBottomWidth: 0.25,
+        borderBottomWidth: 0.5,
         width: width / 1.16,
         alignSelf: 'center',
     },
@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
     },
     settingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
