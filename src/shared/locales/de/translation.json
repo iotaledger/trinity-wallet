@@ -236,7 +236,7 @@
         "whyBiometricDisabledExplanation": "Die biometrische Anmeldung ist für den ersten Start zu deiner eigenen Sicherheit deaktiviert. Während der Nutzung von Trinity wirst du bei Inaktivität ausgeloggt. Du kannst dich dann erneut mit biometrischer Authentifizierung einloggen."
     },
     "loading": {
-        "loadingFirstTime": "Lade den Seed zum ersten Mal.",
+        "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "takingAWhile": "Das scheint eine Weile zu dauern"
@@ -538,7 +538,7 @@
         "hideSeed": "Seed ausblenden",
         "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
         "accountIndex": "Dein Ledger Account Index",
-        "accountPage": "Ledger Kontoübersicht"
+        "accountPage": "Deine Ledger Account Seite"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hast du deinen Seed gespeichert?",
@@ -726,7 +726,7 @@
         "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
-        "accountPage": "Kontoübersicht",
+        "accountPage": "Konto Seite",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
