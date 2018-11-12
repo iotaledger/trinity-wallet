@@ -59,6 +59,11 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         paddingTop: height / 60,
     },
+    seedVaultImportContainer: {
+        flex: isAndroid ? 0.4 : 0,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
 });
 
 /** Seed Reentry component */
@@ -232,6 +237,7 @@ class SeedReentry extends Component {
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
                                         delay={300}
+                                        style={styles.seedVaultImportContainer}
                                     >
                                         <CustomTextInput
                                             label={t('global:seed')}
@@ -259,6 +265,7 @@ class SeedReentry extends Component {
                                             animationInType={['slideInRight', 'fadeIn']}
                                             animationOutType={['slideOutLeft', 'fadeOut']}
                                             delay={200}
+                                            style={{ flex: 0.3 }}
                                         >
                                             <SeedVaultImport
                                                 openPasswordValidationModal={() => this.showModal('passwordValidation')}
@@ -272,6 +279,7 @@ class SeedReentry extends Component {
                                             />
                                         </AnimatedComponent>
                                     )}
+                                    {isAndroid && <View style={{ flex: 0.05 }} />}
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}

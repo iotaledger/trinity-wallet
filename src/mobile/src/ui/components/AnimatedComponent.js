@@ -79,6 +79,7 @@ class AnimatedComponent extends Component {
             newProps.navStack.length === 1 &&
             last(this.props.navStack) !== last(newProps.navStack)
         ) {
+            this.reverseSlideIn = false;
             this.reverseSlideOut = false;
             this.iniatialiseAnimations(this.props.animationOutType);
             this.animateOut();

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getBackgroundColor } from 'ui/theme/general';
@@ -40,11 +40,15 @@ export default function withSafeAreaView(WrappedComponent) {
                     style={{
                         flex: 1,
                         backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
+                        paddingBottom: isModalActive ? 5 : 0,
                     }}
                 >
                     <WrappedComponent {...this.props} />
                     {isIPhoneFailingSafeAreaView && (
-                        <View
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={200}
                             style={{
                                 height: 34,
                                 backgroundColor:

@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     helloBackground: {
-        position: 'absolute',
         width,
         height: width / 0.95,
     },
@@ -140,9 +139,6 @@ class LanguageSetup extends Component {
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <View style={styles.container}>
-                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
-                            <Image style={styles.helloBackground} source={helloBackImagePath} />
-                        </AnimatedComponent>
                         <View style={styles.topContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={200}>
                                 <Icon name="iota" size={width / 8} color={body.color} />
@@ -171,6 +167,14 @@ class LanguageSetup extends Component {
                                 />
                             </AnimatedComponent>
                         </View>
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            delay={0}
+                            style={[styles.helloBackground, { position: 'absolute' }]}
+                        >
+                            <Image style={styles.helloBackground} source={helloBackImagePath} />
+                        </AnimatedComponent>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

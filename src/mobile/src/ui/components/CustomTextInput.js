@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: width / 60,
         position: 'absolute',
         right: width / 100,
-        bottom: -width / 19,
+        bottom: -width / 20,
     },
     checksumText: {
         fontFamily: 'SourceSansPro-Regular',
