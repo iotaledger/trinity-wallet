@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Prøver igjen med lokal PoW.",
         "tryingAgainWithDifferentNode": "Prøver igjen med en annen node.",
         "errorFetchingAccountInformation": "Feil ved henting av kontoinformasjon.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Nøkkelring feil",
         "errorAccessingKeychainExplanation": "Ingen tilgang til nøkkelring nødvendig for sikker lagring.",
         "mainWallet": "HOVEDKONTO"
