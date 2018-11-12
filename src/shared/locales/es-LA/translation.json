@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Intente nuevamente con PoW local.",
         "tryingAgainWithDifferentNode": "Intente nuevamente con un nodo diferente.",
         "errorFetchingAccountInformation": "Error al obtener la información de la cuenta.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "MAIN ACCOUNT"
