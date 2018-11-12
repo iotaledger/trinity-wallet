@@ -55,9 +55,9 @@ export const mapAccountToAccountInfo = (account) => {
  * @returns {object}
  */
 export const mapStorageToState = () => {
-    const accountsData = Account.getAccountsDataAsArray();
-    const { settings, onboardingComplete, errorLog } = Wallet.data;
-    const nodes = Node.getNodesAsArray();
+    const accountsData = Account.getDataAsArray();
+    const { settings, onboardingComplete, errorLog } = Wallet.latestData;
+    const nodes = Node.getDataAsArray();
 
     return {
         accounts: {

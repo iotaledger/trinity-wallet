@@ -237,16 +237,11 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            const tailTransactions = getTailTransactionsForThisBundleHash(accountState.transactions);
-            const inclusionStates = map(transactionsForThisBundleHash, (transaction) => transaction.persistence);
-
             const bundles = constructBundlesFromTransactions(
-                tailTransactions,
-                accountState.transactions,
-                inclusionStates,
+                filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
             );
 
-            if (isEmpty(bundles)) {
+            if (isEmpty(filter(bundles, iota.utils.isBundle))) {
                 throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
             }
 

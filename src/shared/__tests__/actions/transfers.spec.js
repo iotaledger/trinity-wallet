@@ -1,4 +1,5 @@
 import nock from 'nock';
+import Realm from 'realm';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { expect } from 'chai';
@@ -8,11 +9,13 @@ import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as extendedApis from '../../libs/iota/extendedApi';
 import * as inputUtils from '../../libs/iota/inputs';
-import { iota, SwitchingConfig } from '../../libs/iota/index';
+import { iota, SwitchingConfig } from '../../libs/iota';
+import { realm, config as realmConfig, Account, Wallet } from '../../storage';
 import accounts from '../__samples__/accounts';
+import { addressData } from '../__samples__/addresses';
 import trytes from '../__samples__/trytes';
+import transactions from '../__samples__/transactions';
 import { IRI_API_VERSION } from '../../config';
-import { EMPTY_HASH_TRYTES } from '../../libs/iota/utils';
 import Errors from '../../libs/errors';
 
 const middlewares = [thunk];
@@ -31,221 +34,254 @@ describe('actions: transfers', () => {
         let powFn;
 
         before(() => {
+            Realm.deleteFile(realmConfig);
             powFn = () => Promise.resolve('9'.repeat(27));
         });
 
-        describe('when bundle is invalid', () => {
+        beforeEach(() => {
+            Account.create({ name: 'test' });
+            Wallet.createIfNotExists();
+        });
+
+        afterEach(() => {
+            realm.write(() => {
+                realm.delete(Account.data);
+                realm.delete(Wallet.data);
+            });
+        });
+
+        after(() => {
+            Realm.deleteFile(realmConfig);
+        });
+
+        describe('when called', () => {
             let sandbox;
 
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
-                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').returns(() => Promise.resolve(false));
-                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve(accounts.accountInfo.TEST));
+                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.reject(new Error()));
             });
 
             afterEach(() => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
+            it('should create an action of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST', () => {
                 const store = mockStore({ accounts, settings: { remotePoW: false } });
 
-                const expectedActions = [
-                    'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
-                ];
+                return store
+                    .dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', powFn))
+                    .then(() =>
+                        expect(store.getActions().map((action) => action.type)).to.include(
+                            'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                        ),
+                    );
+            });
+
+            it('should sync account', () => {
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
-                    .dispatch(
-                        actions.promoteTransaction(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                            powFn,
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.eql(expectedActions);
-                    });
+                    .dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', powFn))
+                    .then(() => expect(accountsUtils.syncAccount.calledOnce).to.equal(true));
             });
-        });
 
-        describe('when bundle is valid and has a consistent tail', () => {
-            let sandbox;
+            describe('when remotePoW in settings is false', () => {
+                it('should create an action of type IOTA/ALERTS/SHOW with message "Your device may become unresponsive for a while."', () => {
+                    const store = mockStore({ accounts, settings: { remotePoW: false } });
 
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                nock('http://localhost:14265', {
-                    reqheaders: {
-                        'Content-Type': 'application/json',
-                        'X-IOTA-API-Version': IRI_API_VERSION,
-                    },
-                })
-                    .persist()
-                    .filteringRequestBody(() => '*')
-                    .post('/', '*')
-                    .reply(200, (_, body) => {
-                        const resultMap = {
-                            checkConsistency: { state: true },
-                            getTransactionsToApprove: {
-                                trunkTransaction: EMPTY_HASH_TRYTES,
-                                branchTransaction: EMPTY_HASH_TRYTES,
-                            },
+                    return store.dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', powFn)).then(() => {
+                        const expectedAction = {
+                            category: 'info',
+                            closeInterval: 5500,
+                            message: 'Your device may become unresponsive for a while.',
+                            title: 'Promoting transaction',
+                            type: 'IOTA/ALERTS/SHOW',
                         };
 
-                        return resultMap[body.command] || {};
+                        const actualAction = store
+                            .getActions()
+                            .find(
+                                (action) =>
+                                    action.type === 'IOTA/ALERTS/SHOW' &&
+                                    action.message === 'Your device may become unresponsive for a while.',
+                            );
+
+                        expect(actualAction).to.eql(expectedAction);
                     });
-
-                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve(accounts.accountInfo.TEST));
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').returns(() => Promise.resolve(true));
-                sandbox.stub(transferUtils, 'findPromotableTail').returns(() =>
-                    Promise.resolve({
-                        hash: 'YVDXKCJNZIDNKBCLLRVJATPFYQC9XANKBWRDDXOOUMNKALDWGXHUBAJJCHGECUEHAUFGJZQZUMCV99999',
-                    }),
-                );
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-                nock.cleanAll();
-            });
-
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
-
-                const expectedActions = [
-                    'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
-                ];
-
-                return store
-                    .dispatch(
-                        actions.promoteTransaction(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                            powFn,
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.eql(expectedActions);
-                    });
-            });
-
-            it('should not create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
-
-                return store
-                    .dispatch(
-                        actions.promoteTransaction(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                            powFn,
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.not.include(
-                            'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
-                        );
-                    });
-            });
-        });
-
-        describe('when bundle is valid and does not have any consistent tail', () => {
-            let sandbox;
-            let syncAccountAfterReattachment;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                nock('http://localhost:14265', {
-                    reqheaders: {
-                        'Content-Type': 'application/json',
-                        'X-IOTA-API-Version': IRI_API_VERSION,
-                    },
-                })
-                    .filteringRequestBody(() => '*')
-                    .persist()
-                    .post('/', '*')
-                    .reply(200, (_, body) => {
-                        const resultMap = {
-                            checkConsistency: { state: false },
-                            getTransactionsToApprove: {
-                                trunkTransaction: EMPTY_HASH_TRYTES,
-                                branchTransaction: EMPTY_HASH_TRYTES,
-                            },
-                        };
-
-                        return resultMap[body.command] || {};
-                    });
-
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').returns(() => Promise.resolve(true));
-                sandbox.stub(extendedApis, 'replayBundleAsync').returns(() =>
-                    Promise.resolve([
-                        {
-                            currentIndex: 0,
-                            hash: EMPTY_HASH_TRYTES,
-                        },
-                    ]),
-                );
-                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve(accounts.accountInfo.TEST));
-                syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').returns({
-                    newState: {},
-                    reattachment: [],
-                    normalisedReattachment: {},
                 });
             });
 
+            describe('when remotePoW in settings is true', () => {
+                it('should not create an action of type IOTA/ALERTS/SHOW with message "Your device may become unresponsive for a while."', () => {
+                    const store = mockStore({ accounts, settings: { remotePoW: true } });
+
+                    return store.dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', powFn)).then(() => {
+                        const expectedAction = {
+                            category: 'info',
+                            closeInterval: 5500,
+                            message: 'Your device may become unresponsive for a while.',
+                            title: 'Promoting transaction',
+                            type: 'IOTA/ALERTS/SHOW',
+                        };
+
+                        const actualAction = store
+                            .getActions()
+                            .find(
+                                (action) =>
+                                    action.type === 'IOTA/ALERTS/SHOW' &&
+                                    action.message === 'Your device may become unresponsive for a while.',
+                            );
+
+                        expect(actualAction).to.not.eql(expectedAction);
+                        expect(actualAction).to.equal(undefined);
+                    });
+                });
+            });
+        });
+
+        describe('when successfully syncs account', () => {
+            it('should dispatch an action of type "IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION" with updated account state', () => {
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(
+                    // Updated account state
+                    () => Promise.resolve({ addressData, transactions }),
+                );
+
+                return store.dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', powFn)).then(() => {
+                    const expectedAction = {
+                        type: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
+                        payload: {
+                            transactions,
+                            addressData,
+                        },
+                    };
+
+                    const actualAction = store
+                        .getActions()
+                        .find((action) => action.type === 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION');
+                    expect(actualAction).to.eql(expectedAction);
+
+                    // Restore stub
+                    syncAccount.restore();
+                });
+            });
+        });
+
+        describe('when account syncing fails', () => {
+            it('should dispatch an action of type "IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION" with updated account state', () => {
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(
+                    // Reject account syncing
+                    () => Promise.reject(new Error()),
+                );
+
+                return store.dispatch(actions.promoteTransaction('9'.repeat(81), 'TEST', powFn)).then(() => {
+                    const expectedAction = {
+                        type: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
+                        payload: {
+                            transactions,
+                            addressData,
+                        },
+                    };
+
+                    const actualAction = store
+                        .getActions()
+                        .find((action) => action.type === 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION');
+
+                    expect(actualAction).to.not.eql(expectedAction);
+                    expect(actualAction).to.equal(undefined);
+
+                    // Restore stub
+                    syncAccount.restore();
+                });
+            });
+        });
+
+        describe('when transaction is already confirmed', () => {
+            it('should create an action of type "IOTA/ALERTS/SHOW" with message "The transaction you are trying to promote is already confirmed."', () => {
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(
+                    // Updated account state
+                    () => Promise.resolve({ addressData, transactions }),
+                );
+
+                // Bundle hash of a confirmed value transaction. See __samples__/transactions
+                const bundleHash = 'AGLVISDEBEYCZVIQFVHSSZISEZDCPKQJNQIHLQASIGHJWEJPWLHQUTPDQZUEZQIBHEDY9SRIBGJJEQQLZ';
+
+                return store.dispatch(actions.promoteTransaction(bundleHash, 'TEST', powFn)).then(() => {
+                    const expectedAction = {
+                        category: 'success',
+                        type: 'IOTA/ALERTS/SHOW',
+                        title: 'Transaction already confirmed',
+                        message: 'The transaction you are trying to promote is already confirmed.',
+                        closeInterval: 5500,
+                    };
+
+                    const actualAction = store
+                        .getActions()
+                        .find(
+                            (action) =>
+                                action.type === 'IOTA/ALERTS/SHOW' &&
+                                action.message === 'The transaction you are trying to promote is already confirmed.',
+                        );
+                    expect(actualAction).to.eql(expectedAction);
+
+                    // Restore stub
+                    syncAccount.restore();
+                });
+            });
+        });
+
+        describe('when bundle is not funded', () => {
+            let sandbox;
+
+            beforeEach(() => {
+                sandbox = sinon.sandbox.create();
+
+                sandbox.stub(transferUtils, 'isFundedBundle').returns(() => Promise.resolve(false));
+                sandbox
+                    .stub(accountsUtils, 'syncAccount')
+                    .returns(() => Promise.resolve({ addressData, transactions }));
+            });
+
             afterEach(() => {
-                nock.cleanAll();
                 sandbox.restore();
             });
 
-            it('should call accounts util "syncAccountAfterReattachment"', () => {
+            it('should create an action of type IOTA/ALERTS/SHOW with message "The bundle you are trying to promote is no longer valid"', () => {
                 const store = mockStore({ accounts, settings: { remotePoW: false } });
 
-                return store
-                    .dispatch(
-                        actions.promoteTransaction(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                        ),
-                    )
-                    .then(() => {
-                        expect(syncAccountAfterReattachment.called).to.equal(true);
-                        syncAccountAfterReattachment.restore();
-                    });
-            });
+                // Bundle hash for unconfirmed value transactions. See __samples__/transactions.
+                const bundleHash = 'VGPSTOJHLLXGCOIQJPFIGGPYLISUNBBHDLQUINNKNRKEDQZLBTKCT9KJELDEXSQNPSQDSPHWQICTJFLCB';
 
-            it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT', () => {
-                const store = mockStore({ accounts, settings: { remotePoW: false } });
+                return store.dispatch(actions.promoteTransaction(bundleHash, 'TEST', powFn)).then(() => {
+                    const expectedAction = {
+                        category: 'error',
+                        title: 'Could not promote transaction',
+                        message: 'The bundle you are trying to promote is no longer valid',
+                        closeInterval: 5500,
+                        type: 'IOTA/ALERTS/SHOW',
+                    };
 
-                return store
-                    .dispatch(
-                        actions.promoteTransaction(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.include(
-                            'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
+                    const actualAction = store
+                        .getActions()
+                        .find(
+                            (action) =>
+                                action.type === 'IOTA/ALERTS/SHOW' &&
+                                action.message === 'The bundle you are trying to promote is no longer valid',
                         );
-                        syncAccountAfterReattachment.restore();
-                    });
+
+                    expect(expectedAction).to.eql(actualAction);
+                });
             });
         });
+
+        // TODO: Add coverage when successfully promotes.
     });
 
-    describe('#makeTransaction', () => {
+    describe.skip('#makeTransaction', () => {
         let powFn;
         let seedStore;
 

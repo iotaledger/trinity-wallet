@@ -11,7 +11,7 @@ export const TransactionSchema = {
     properties: {
         hash: 'string',
         signatureMessageFragment: 'string',
-        address: 'Address',
+        address: 'string',
         value: 'int',
         timestamp: 'int',
         currentIndex: 'int',
@@ -19,16 +19,22 @@ export const TransactionSchema = {
         tag: 'string',
         trunkTransaction: 'string',
         branchTransaction: 'string',
-        message: 'string',
         bundle: 'string',
-        persistence: 'string',
+        persistence: 'bool',
         broadcasted: { type: 'bool', default: true },
     },
 };
 
 export const WalletSchema = {
     name: 'Wallet',
+    primaryKey: 'version',
     properties: {
+        /**
+         * Wallet's schema version
+         */
+        version: {
+            type: 'int',
+        },
         /**
          * Determines if wallet has completed onboarding.
          */
@@ -39,10 +45,7 @@ export const WalletSchema = {
         /**
          * Error notifications log.
          */
-        errorLog: {
-            type: 'list',
-            objectType: 'string',
-        },
+        errorLog: 'ErrorLog[]',
         /**
          * Wallet settings.
          */
@@ -92,6 +95,14 @@ export const AddressSpendStatusSchema = {
     properties: {
         local: 'bool',
         remote: 'bool',
+    },
+};
+
+export const ErrorLogSchema = {
+    name: 'ErrorLog',
+    properties: {
+        error: 'string',
+        time: 'int',
     },
 };
 

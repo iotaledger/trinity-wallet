@@ -670,7 +670,7 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#getAddressesUptoRemainder', () => {
+    describe.skip('#getAddressesUptoRemainder', () => {
         let addressData;
         let seedStore;
 
@@ -1010,7 +1010,7 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#syncAddresses', () => {
+    describe.skip('#syncAddresses', () => {
         let seedStore;
 
         before(() => {

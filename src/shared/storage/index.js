@@ -15,8 +15,8 @@ import {
     NodeSchema,
     NotificationsSettingsSchema,
     WalletSettingsSchema,
+    ErrorLogSchema,
 } from '../schema';
-import { preserveAddressLocalSpendStatus } from '../reducers/accounts';
 
 const SCHEMA_VERSION = 0;
 const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
@@ -41,38 +41,21 @@ class Account {
 
     /**
      * Gets objects for all stored accounts.
-     * @method getAccountsData
      *
      * @returns {Realm.Results<any>}
      */
-    static getAccountsData() {
+    static get data() {
         return realm.objects('Account');
     }
 
     /**
-     * Gets account data for provided account name.
-     * @method getAccountData
-     *
-     * @param {string} name
-     * @returns {object}
-     */
-    static getAccountData(name) {
-        const account = Account.getObjectForId(name);
-
-        return assign({}, account, {
-            addressData: values(account.addressData),
-            transactions: values(account.transactions),
-        });
-    }
-
-    /**
      * Gets account data for all stored accounts.
-     * @method getAccountsDataAsArray
+     * @method getDataAsArray
      *
      * @returns {array}
      */
-    static getAccountsDataAsArray() {
-        const accounts = Account.getAccountsData();
+    static getDataAsArray() {
+        const accounts = Account.data;
 
         return map(accounts, (account) =>
             assign({}, account, {
@@ -100,18 +83,7 @@ class Account {
      * @param {object} data
      */
     static update(name, data) {
-        const existingAccountData = Account.getAccountData(name);
-        const { addressData, ...rest } = data;
-
-        const shouldUpdate = (value) => !isEmpty(value);
-
-        const account = { name, ...rest };
-
-        if (shouldUpdate(addressData)) {
-            account.addressData = preserveAddressLocalSpendStatus(existingAccountData.addressData, addressData);
-        }
-
-        realm.write(() => realm.create('Account', account, true));
+        realm.write(() => realm.create('Account', { name, ...data }, true));
     }
 
     /**
@@ -133,10 +105,14 @@ class Account {
      * @param {string} to - New account name
      */
     static migrate(from, to) {
-        const accountData = Account.getAccountData(from);
-        Account.create(assign({}, accountData, { accountName: to }));
+        const accountData = Account.getObjectForId(from);
 
-        Account.delete(from);
+        realm.write(() => {
+            // Create account with new name.
+            realm.create('Account', assign({}, accountData, { accountName: to }));
+            // Delete account with old name.
+            realm.delete(accountData);
+        });
     }
 }
 
@@ -174,23 +150,22 @@ class Node {
 
     /**
      * Returns a list of nodes
-     * @method getNodes
      *
      * @return {Realm.Results}
      */
-    static getNodes() {
+    static get data() {
         return realm.objects('Node');
     }
 
     /**
-     * Returns a list of nodes
+     * Returns nodes as array
      *
-     * @method getNodes
+     * @method getDataAsArray
      *
      * @return {array}
      */
-    static getNodesAsArray() {
-        return map(Node.getNodes(), (node) => node);
+    static getDataAsArray() {
+        return map(Node.data, (node) => assign({}, node));
     }
 
     /**
@@ -204,17 +179,6 @@ class Node {
                 custom: true,
                 pow,
             });
-        });
-    }
-
-    /**
-     * Deletes all custom nodes
-     * @param  {string} url New node URL
-     */
-    static deleteAllCustomNodes() {
-        const customNodes = this.getNodes().filtered('custom == true');
-        realm.write(() => {
-            realm.delete(customNodes);
         });
     }
 
@@ -237,7 +201,7 @@ class Node {
      */
     static addNodes(nodes) {
         if (size(nodes)) {
-            const existingUrls = map(Node.getNodes(), (node) => node.url);
+            const existingUrls = map(Node.getDataAsArray(), (node) => node.url);
 
             realm.write(() => {
                 each(nodes, (node) => {
@@ -272,30 +236,43 @@ class Transaction {
  */
 class Wallet {
     static schema = WalletSchema;
+    static version = Number(SCHEMA_VERSION);
+
+    /**
+     * Gets object for provided id (version)
+     *
+     * @method getObjectForId
+     * @param {number} id
+     *
+     * @returns {object}
+     */
+    static getObjectForId(id = Wallet.version) {
+        return realm.objectForPrimaryKey('Wallet', id);
+    }
 
     /**
      * Gets wallet data.
-     * @method getData
      *
      * @return {Realm.Results}
      */
-    static getData() {
+    static get data() {
         return realm.objects('Wallet');
     }
 
     /**
-     * Wallet data.
+     * Wallet settings for most recent version.
      */
-    static get data() {
-        const data = Wallet.getData();
-        return isEmpty(data) ? data : data[0];
+    static get latestSettings() {
+        const dataForCurrentVersion = Wallet.getObjectForId();
+
+        return dataForCurrentVersion.settings;
     }
 
     /**
-     * Wallet settings.
+     * Wallet data for most recent version.
      */
-    static get settings() {
-        return Wallet.data.settings;
+    static get latestData() {
+        return Wallet.getObjectForId();
     }
 
     /**
@@ -304,7 +281,7 @@ class Wallet {
      */
     static setOnboardingComplete() {
         realm.write(() => {
-            Wallet.data.onboardingComplete = true;
+            Wallet.latestData.onboardingComplete = true;
         });
     }
 
@@ -316,7 +293,7 @@ class Wallet {
      */
     static updateRemotePowSetting(payload) {
         realm.write(() => {
-            Wallet.settings.remotePoW = payload;
+            Wallet.latestSettings.remotePoW = payload;
         });
     }
 
@@ -328,7 +305,7 @@ class Wallet {
      */
     static updateAutoPromotionSetting(payload) {
         realm.write(() => {
-            Wallet.settings.autoPromotion = payload;
+            Wallet.latestSettings.autoPromotion = payload;
         });
     }
 
@@ -340,7 +317,7 @@ class Wallet {
      */
     static updateAutoNodeSwitchingSetting(payload) {
         realm.write(() => {
-            Wallet.settings.autoNodeSwitching = payload;
+            Wallet.latestSettings.autoNodeSwitching = payload;
         });
     }
 
@@ -352,7 +329,7 @@ class Wallet {
      */
     static updateLockScreenTimeout(payload) {
         realm.write(() => {
-            Wallet.settings.lockScreenTimeout = payload;
+            Wallet.latestSettings.lockScreenTimeout = payload;
         });
     }
 
@@ -364,7 +341,7 @@ class Wallet {
      */
     static updateLocale(payload) {
         realm.write(() => {
-            Wallet.settings.locale = payload;
+            Wallet.latestSettings.locale = payload;
         });
     }
 
@@ -376,7 +353,7 @@ class Wallet {
      */
     static updateMode(payload) {
         realm.write(() => {
-            Wallet.settings.mode = payload;
+            Wallet.latestSettings.mode = payload;
         });
     }
 
@@ -388,7 +365,7 @@ class Wallet {
      */
     static updateNode(payload) {
         realm.write(() => {
-            Wallet.settings.node = payload;
+            Wallet.latestSettings.node = payload;
         });
     }
 
@@ -400,7 +377,7 @@ class Wallet {
      */
     static updateLanguage(payload) {
         realm.write(() => {
-            Wallet.settings.language = payload;
+            Wallet.latestSettings.language = payload;
         });
     }
 
@@ -414,9 +391,9 @@ class Wallet {
         const { conversionRate, currency, availableCurrencies } = payload;
 
         realm.write(() => {
-            Wallet.settings.currency = currency;
-            Wallet.settings.conversionRate = conversionRate;
-            Wallet.settings.availableCurrencies = availableCurrencies;
+            Wallet.latestSettings.currency = currency;
+            Wallet.latestSettings.conversionRate = conversionRate;
+            Wallet.latestSettings.availableCurrencies = availableCurrencies;
         });
     }
 
@@ -428,7 +405,7 @@ class Wallet {
      */
     static updateTheme(payload) {
         realm.write(() => {
-            Wallet.settings.themeName = payload;
+            Wallet.latestSettings.themeName = payload;
         });
     }
 
@@ -440,8 +417,8 @@ class Wallet {
      */
     static setRandomlySelectedNode(payload) {
         realm.write(() => {
-            Wallet.settings.node = payload;
-            Wallet.settings.hasRandomizedNode = true;
+            Wallet.latestSettings.node = payload;
+            Wallet.latestSettings.hasRandomizedNode = true;
         });
     }
 
@@ -453,7 +430,7 @@ class Wallet {
      */
     static update2FASetting(payload) {
         realm.write(() => {
-            Wallet.settings.is2FAEnabled = payload;
+            Wallet.latestSettings.is2FAEnabled = payload;
         });
     }
 
@@ -465,7 +442,7 @@ class Wallet {
      */
     static updateFingerPrintAuthenticationSetting(payload) {
         realm.write(() => {
-            Wallet.settings.isFingerprintEnabled = payload;
+            Wallet.latestSettings.isFingerprintEnabled = payload;
         });
     }
 
@@ -479,8 +456,8 @@ class Wallet {
         const { buildNumber, version } = payload;
 
         realm.write(() => {
-            Wallet.settings.buildNumber = buildNumber;
-            Wallet.settings.version = version;
+            Wallet.latestSettings.buildNumber = buildNumber;
+            Wallet.latestSettings.version = version;
         });
     }
 
@@ -492,7 +469,7 @@ class Wallet {
      */
     static acceptTerms() {
         realm.write(() => {
-            Wallet.settings.acceptedTerms = true;
+            Wallet.latestSettings.acceptedTerms = true;
         });
     }
 
@@ -504,7 +481,7 @@ class Wallet {
      */
     static acceptPrivacyPolicy() {
         realm.write(() => {
-            Wallet.settings.acceptedPrivacy = true;
+            Wallet.latestSettings.acceptedPrivacy = true;
         });
     }
 
@@ -515,7 +492,7 @@ class Wallet {
      */
     static toggleEmptyTransactionsDisplay() {
         realm.write(() => {
-            const settings = Wallet.settings;
+            const settings = Wallet.latestSettings;
 
             settings.hideEmptyTransactions = !settings.hideEmptyTransactions;
         });
@@ -528,7 +505,7 @@ class Wallet {
      */
     static completeForcedPasswordUpdate() {
         realm.write(() => {
-            Wallet.settings.completedForcedPasswordUpdate = true;
+            Wallet.latestSettings.completedForcedPasswordUpdate = true;
         });
     }
 
@@ -540,7 +517,7 @@ class Wallet {
      */
     static updateByteTritSweepSetting(payload) {
         realm.write(() => {
-            Wallet.settings.completedByteTritSweep = payload;
+            Wallet.latestSettings.completedByteTritSweep = payload;
         });
     }
 
@@ -552,7 +529,7 @@ class Wallet {
      */
     static updateTraySetting(payload) {
         realm.write(() => {
-            Wallet.settings.isTrayEnabled = payload;
+            Wallet.latestSettings.isTrayEnabled = payload;
         });
     }
 
@@ -566,7 +543,7 @@ class Wallet {
         const { type, enabled } = payload;
 
         realm.write(() => {
-            Wallet.settings.notifications[type] = enabled;
+            Wallet.latestSettings.notifications[type] = enabled;
         });
     }
 
@@ -578,7 +555,7 @@ class Wallet {
      */
     static updateErrorLog(payload) {
         realm.write(() => {
-            Wallet.data.errorLog.push(payload);
+            Wallet.latestData.errorLog.push(payload);
         });
     }
 
@@ -589,7 +566,7 @@ class Wallet {
      */
     static clearErrorLog() {
         realm.write(() => {
-            Wallet.data.errorLog = [];
+            Wallet.latestData.errorLog = [];
         });
     }
 
@@ -598,10 +575,15 @@ class Wallet {
      * @method createIfNotExists
      */
     static createIfNotExists() {
-        const shouldCreate = isEmpty(Wallet.data);
+        const shouldCreate = isEmpty(Wallet.getObjectForId());
 
         if (shouldCreate) {
-            realm.write(() => realm.create('Wallet', { settings: { notifications: {} } }));
+            realm.write(() =>
+                realm.create('Wallet', {
+                    version: Wallet.version,
+                    settings: { notifications: {} },
+                }),
+            );
         }
     }
 }
@@ -614,11 +596,28 @@ class WalletSettings {
 }
 
 /**
+ * Model for error logs.
+ */
+class ErrorLog {
+    static schema = ErrorLogSchema;
+}
+
+/**
  * Realm storage default configuration.
  */
-const config = {
+export const config = {
     path: STORAGE_PATH,
-    schema: [Account, Address, AddressSpendStatus, Node, NotificationsSettings, Transaction, WalletSettings, Wallet],
+    schema: [
+        Account,
+        Address,
+        AddressSpendStatus,
+        ErrorLog,
+        Node,
+        NotificationsSettings,
+        Transaction,
+        WalletSettings,
+        Wallet,
+    ],
     schemaVersion: SCHEMA_VERSION,
 };
 
@@ -665,4 +664,16 @@ const initialise = () =>
  */
 const reinitialise = () => purge().then(() => initialise());
 
-export { realm, initialise, reinitialise, purge, Account, Transaction, Address, AddressSpendStatus, Node, Wallet };
+export {
+    realm,
+    initialise,
+    reinitialise,
+    purge,
+    Account,
+    ErrorLog,
+    Transaction,
+    Address,
+    AddressSpendStatus,
+    Node,
+    Wallet,
+};
