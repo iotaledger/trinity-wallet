@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
         "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
         "errorAccessingKeychainExplanation": "Der Schlüsselbund konnte nicht geöffnet werden.",
         "mainWallet": "HAUPTKONTO"
