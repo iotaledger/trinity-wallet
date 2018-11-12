@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "請改為本地端工作量證明再試一次。",
         "tryingAgainWithDifferentNode": "請使用不同節點再試一次。",
         "errorFetchingAccountInformation": "取得帳戶資訊時發生錯誤。",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "鑰匙串錯誤",
         "errorAccessingKeychainExplanation": "無法訪問安全儲存所需的鑰匙串。",
         "mainWallet": "主帳戶"
