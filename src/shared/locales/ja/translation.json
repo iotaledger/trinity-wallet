@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでやり直してください。",
         "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
         "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
         "mainWallet": "メインアカウント"
