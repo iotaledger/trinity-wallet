@@ -23,7 +23,7 @@
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && yarn nodejs-deps",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
-    "audit": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
+    "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
