@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import Header from 'ui/components/Header';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -43,6 +44,10 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
+    },
+    header: {
+        flex: 1,
+        alignItems: 'center',
     },
     checkboxContainer: {
         height: height / 15,
@@ -128,39 +133,34 @@ class SaveSeedConfirmation extends Component {
     }
 
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     onNextPress() {
         const { theme: { body } } = this.props;
         const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
         if (hasSavedSeed && hasAgreedToNotCopyPaste) {
-            Navigation.push('appStack', {
-                component: {
-                    name: 'seedReentry',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
-                        },
+            navigator.push('seedReentry', {
+                animations: {
+                    push: {
+                        enable: false,
                     },
+                    pop: {
+                        enable: false,
+                    },
+                },
+                layout: {
+                    backgroundColor: body.bg,
+                    orientation: ['portrait'],
+                },
+                topBar: {
+                    visible: false,
+                    drawBehind: true,
+                    elevation: 0,
+                },
+                statusBar: {
+                    drawBehind: true,
+                    backgroundColor: body.bg,
                 },
             });
         }
@@ -228,17 +228,34 @@ class SaveSeedConfirmation extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 0.7 }} />
-                    <Header textColor={body.color}>{t('didSaveSeed')}</Header>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={400}
+                        style={styles.header}
+                    >
+                        <Icon name="iota" size={width / 8} color={body.color} />
+                        <View style={{ flex: 0.7 }} />
+                        <Header textColor={body.color}>{t('didSaveSeed')}</Header>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.3 }} />
-                    <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={200}
+                    >
+                        <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
+                    </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
                         {this.state.showCheckbox ? (
-                            <View>
+                            <AnimatedComponent
+                                animationInType={['fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={0}
+                            >
                                 {map(this.state.checkBoxesDetails, (detail, idx) => {
                                     if (!isAndroid && isSecondCheckbox(idx)) {
                                         return null;
@@ -255,20 +272,22 @@ class SaveSeedConfirmation extends Component {
                                         </TouchableOpacity>
                                     );
                                 })}
-                            </View>
+                            </AnimatedComponent>
                         ) : (
                             <View style={{ flex: 1.2 }} />
                         )}
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <DualFooterButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftButtonText={t('global:goBack')}
-                        rightButtonText={t('global:continue')}
-                        rightButtonStyle={{ wrapper: { opacity } }}
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <DualFooterButtons
+                            onLeftButtonPress={() => this.onBackPress()}
+                            onRightButtonPress={() => this.onNextPress()}
+                            leftButtonText={t('global:goBack')}
+                            rightButtonText={t('global:continue')}
+                            rightButtonStyle={{ wrapper: { opacity } }}
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );

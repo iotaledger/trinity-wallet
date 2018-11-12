@@ -8,7 +8,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import nodejs from 'nodejs-mobile-react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { withNamespaces } from 'react-i18next';
-import { width } from 'libs/dimensions';
+import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
@@ -18,6 +18,16 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         paddingLeft: width / 70,
+    },
+    button: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 20,
     },
 });
 
@@ -156,8 +166,8 @@ export class SeedVaultImportComponent extends Component {
     render() {
         const { t, theme } = this.props;
         return (
-            <TouchableOpacity onPress={() => this.importSeedVault()} style={{ flex: 0.7, justifyContent: 'center' }}>
-                <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity onPress={() => this.importSeedVault()} style={styles.button}>
+                <View style={styles.container}>
                     <Icon name="vault" size={width / 22} color={theme.body.color} />
                     <Text style={[styles.infoText, { color: theme.body.color }]}>{t('seedVault:importSeedVault')}</Text>
                 </View>

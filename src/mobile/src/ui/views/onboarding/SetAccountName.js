@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
@@ -13,6 +13,7 @@ import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import SeedStore from 'libs/SeedStore';
 import InfoBox from 'ui/components/InfoBox';
@@ -43,6 +44,10 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
+    },
+    header: {
+        flex: 1,
+        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -161,7 +166,7 @@ export class SetAccountName extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -171,32 +176,27 @@ export class SetAccountName extends Component {
      */
     navigateTo(screen) {
         const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: screen,
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push(screen, {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -211,45 +211,66 @@ export class SetAccountName extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
-                            <View style={{ flex: 0.7 }} />
-                            <Header textColor={theme.body.color}>{t('letsAddName')}</Header>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                                style={styles.header}
+                            >
+                                <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                <View style={{ flex: 0.7 }} />
+                                <Header textColor={theme.body.color}>{t('letsAddName')}</Header>
+                            </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.15 }} />
-                            <CustomTextInput
-                                label={t('addAdditionalSeed:accountName')}
-                                onChangeText={(text) => this.setState({ accountName: text })}
-                                containerStyle={{ width: Styling.contentWidth }}
-                                autoCapitalize="words"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                onSubmitEditing={() => this.onDonePress()}
-                                theme={theme}
-                                value={accountName}
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={266}
+                            >
+                                <CustomTextInput
+                                    label={t('addAdditionalSeed:accountName')}
+                                    onChangeText={(text) => this.setState({ accountName: text })}
+                                    containerStyle={{ width: Styling.contentWidth }}
+                                    autoCapitalize="words"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    onSubmitEditing={() => this.onDonePress()}
+                                    theme={theme}
+                                    value={accountName}
+                                />
+                            </AnimatedComponent>
                             <View style={{ flex: 0.3 }} />
-                            <InfoBox
-                                body={theme.body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
-                                        <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
-                                    </View>
-                                }
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={133}
+                            >
+                                <InfoBox
+                                    body={theme.body}
+                                    text={
+                                        <View>
+                                            <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
+                                            <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
+                                        </View>
+                                    }
+                                />
+                            </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <DualFooterButtons
-                                onLeftButtonPress={() => this.onBackPress()}
-                                onRightButtonPress={() => this.onDonePress()}
-                                leftButtonText={t('global:goBack')}
-                                rightButtonText={t('global:done')}
-                                leftButtonTestID="setSeedName-back"
-                                rightButtonTestID="setSeedName-done"
-                            />
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
+                                    leftButtonText={t('global:goBack')}
+                                    rightButtonText={t('global:done')}
+                                    leftButtonTestID="setSeedName-back"
+                                    rightButtonTestID="setSeedName-done"
+                                />
+                            </AnimatedComponent>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

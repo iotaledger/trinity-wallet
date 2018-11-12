@@ -1,5 +1,7 @@
 import merge from 'lodash/merge';
+import last from 'lodash/last';
 import PropTypes from 'prop-types';
+import timer from 'react-native-timer';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
@@ -41,19 +43,44 @@ class DualFooterButtons extends PureComponent {
         isLeftButtonLoading: PropTypes.bool,
         /** Determines if right button should display ActivityIndicator */
         isRightButtonLoading: PropTypes.bool,
+        /** Timeframe to debounce button presses */
+        debounceTime: PropTypes.number,
+        /** Current screen is navstack*/
+        currentScreen: PropTypes.string,
     };
 
     static defaultProps = {
         leftButtonStyle: {},
         rightButtonStyle: {},
+        debounceTime: 300,
     };
+
+    componentWillUnmount() {
+        this.timer = null;
+    }
+
+    /**
+     *  Prevents multiple button presses in a given time period
+     *  @method debounceHandler
+     */
+    debounceHandler(func) {
+        if (this.timer) {
+            return;
+        }
+        func();
+        this.timer = timer.setTimeout(
+            'debounce' + this.props.currentScreen,
+            () => {
+                this.timer = null;
+            },
+            this.props.debounceTime,
+        );
+    }
 
     render() {
         const {
             leftButtonText,
             rightButtonText,
-            onLeftButtonPress,
-            onRightButtonPress,
             leftButtonTestID,
             rightButtonTestID,
             leftButtonStyle,
@@ -61,12 +88,14 @@ class DualFooterButtons extends PureComponent {
             theme,
             isLeftButtonLoading,
             isRightButtonLoading,
+            onLeftButtonPress,
+            onRightButtonPress,
         } = this.props;
         const borderRadius = isIPhoneX ? Styling.borderRadiusExtraLarge : 0;
         return (
             <View style={styles.container}>
                 <Button
-                    onPress={onLeftButtonPress}
+                    onPress={() => this.debounceHandler(onLeftButtonPress)}
                     style={merge(
                         {},
                         {
@@ -93,7 +122,7 @@ class DualFooterButtons extends PureComponent {
                     {leftButtonText}
                 </Button>
                 <Button
-                    onPress={onRightButtonPress}
+                    onPress={() => this.debounceHandler(onRightButtonPress)}
                     style={merge(
                         {},
                         {
@@ -124,6 +153,7 @@ class DualFooterButtons extends PureComponent {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    currentScreen: last(state.wallet.navStack),
 });
 
 export default connect(mapStateToProps)(DualFooterButtons);

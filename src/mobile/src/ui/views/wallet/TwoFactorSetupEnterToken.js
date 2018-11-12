@@ -4,13 +4,14 @@ import authenticator from 'authenticator';
 import { set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
@@ -67,10 +68,8 @@ class TwoFactorSetupEnterToken extends Component {
 
     constructor() {
         super();
-
         this.goBack = this.goBack.bind(this);
         this.check2FA = this.check2FA.bind(this);
-
         this.state = {
             code: '',
         };
@@ -93,7 +92,7 @@ class TwoFactorSetupEnterToken extends Component {
      * @method goBack
      */
     goBack() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -102,29 +101,24 @@ class TwoFactorSetupEnterToken extends Component {
      */
     navigateToHome() {
         const { theme: { body, bar } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'home',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: bar.alt,
-                    },
+        navigator.setStackRoot('home', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: bar.alt,
             },
         });
     }
@@ -167,31 +161,51 @@ class TwoFactorSetupEnterToken extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container, backgroundColor]}>
                     <View style={styles.topWrapper}>
-                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={400}
+                        >
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        </AnimatedComponent>
                     </View>
                     <View style={styles.midWrapper}>
                         <View style={{ flex: 0.25 }} />
-                        <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
-                        <CustomTextInput
-                            label={t('code')}
-                            onChangeText={(code) => this.setState({ code })}
-                            containerStyle={{ width: Styling.contentWidth }}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="done"
-                            onSubmitEditing={this.check2FA}
-                            theme={theme}
-                            keyboardType="numeric"
-                        />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={266}
+                        >
+                            <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
+                        </AnimatedComponent>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={133}
+                        >
+                            <CustomTextInput
+                                label={t('code')}
+                                onChangeText={(code) => this.setState({ code })}
+                                containerStyle={{ width: Styling.contentWidth }}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically
+                                returnKeyType="done"
+                                onSubmitEditing={this.check2FA}
+                                theme={theme}
+                                keyboardType="numeric"
+                            />
+                        </AnimatedComponent>
                     </View>
                     <View style={styles.bottomWrapper}>
-                        <DualFooterButtons
-                            onLeftButtonPress={this.goBack}
-                            onRightButtonPress={this.check2FA}
-                            leftButtonText={t('global:back')}
-                            rightButtonText={t('global:done')}
-                        />
+                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                            <DualFooterButtons
+                                onLeftButtonPress={this.goBack}
+                                onRightButtonPress={this.check2FA}
+                                leftButtonText={t('global:back')}
+                                rightButtonText={t('global:done')}
+                            />
+                        </AnimatedComponent>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

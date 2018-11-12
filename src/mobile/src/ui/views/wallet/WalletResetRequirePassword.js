@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { persistConfig } from 'libs/store';
 import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
@@ -90,7 +91,7 @@ class WalletResetRequirePassword extends Component {
      * @method goBack
      */
     goBack() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -109,29 +110,24 @@ class WalletResetRequirePassword extends Component {
      */
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'languageSetup',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.setStackRoot('languageSetup', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -178,30 +174,44 @@ class WalletResetRequirePassword extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                            >
+                                <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            </AnimatedComponent>
                         </View>
                         <View style={styles.midWrapper}>
-                            <CustomTextInput
-                                label={t('global:password')}
-                                onChangeText={(password) => this.setState({ password })}
-                                value={this.state.password}
-                                containerStyle={{ width: Styling.contentWidth }}
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                theme={theme}
-                                secureTextEntry
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={200}
+                            >
+                                <CustomTextInput
+                                    label={t('global:password')}
+                                    onChangeText={(password) => this.setState({ password })}
+                                    value={this.state.password}
+                                    containerStyle={{ width: Styling.contentWidth }}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    theme={theme}
+                                    secureTextEntry
+                                />
+                            </AnimatedComponent>
                             <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <DualFooterButtons
-                                onLeftButtonPress={this.goBack}
-                                onRightButtonPress={this.resetWallet}
-                                leftButtonText={t('global:cancel')}
-                                rightButtonText={t('reset')}
-                            />
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={this.goBack}
+                                    onRightButtonPress={this.resetWallet}
+                                    leftButtonText={t('global:cancel')}
+                                    rightButtonText={t('reset')}
+                                />
+                            </AnimatedComponent>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

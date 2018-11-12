@@ -34,7 +34,7 @@ class StatefulDropdownAlert extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        currentRoute: PropTypes.string.isRequired,
+        currentRoute: PropTypes.string,
     };
 
     static defaultProps = {

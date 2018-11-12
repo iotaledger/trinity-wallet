@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { width, height } from 'libs/dimensions';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Icon } from 'ui/theme/icons';
 import InfoBox from 'ui/components/InfoBox';
 import { Styling } from 'ui/theme/general';
@@ -94,33 +95,27 @@ class WalletResetConfirmation extends Component {
      */
     navigateToPasswordConfirmation() {
         const { theme: { body } } = this.props;
-
-        Navigation.push('appStack', {
-            component: {
-                name: 'walletResetRequirePassword',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push('walletResetRequirePassword', {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -130,7 +125,7 @@ class WalletResetConfirmation extends Component {
      * @method goBack
      */
     goBack() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     render() {
@@ -142,35 +137,65 @@ class WalletResetConfirmation extends Component {
         return (
             <View style={[styles.container, backgroundColor]}>
                 <View style={styles.topWrapper}>
-                    <Icon name="iota" size={width / 8} color={theme.body.color} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={400}
+                    >
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midWrapper}>
-                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={300}
+                    >
+                        <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
+                    </AnimatedComponent>
                     <View style={{ flex: 0.2 }} />
-                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={200}
+                    >
+                        <Text style={[styles.subHeaderText, primaryColor]}>
+                            {t('walletResetConfirmation:cannotUndo')}
+                        </Text>
+                    </AnimatedComponent>
                     <View style={{ flex: 0.4 }} />
-                    <InfoBox
-                        body={theme.body}
-                        text={
-                            <Trans i18nKey="walletResetConfirmation:warning">
-                                <Text style={[styles.infoText, textColor]}>
-                                    <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
-                                    <Text style={styles.infoTextRegular}>seeds, password,</Text>
-                                    <Text style={styles.infoTextLight}> and </Text>
-                                    <Text style={styles.infoTextRegular}>other account information</Text>
-                                    <Text style={styles.infoTextLight}> will be lost.</Text>
-                                </Text>
-                            </Trans>
-                        }
-                    />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={100}
+                    >
+                        <InfoBox
+                            body={theme.body}
+                            text={
+                                <Trans i18nKey="walletResetConfirmation:warning">
+                                    <Text style={[styles.infoText, textColor]}>
+                                        <Text style={styles.infoTextLight}>
+                                            All of your wallet data including your{' '}
+                                        </Text>
+                                        <Text style={styles.infoTextRegular}>seeds, password,</Text>
+                                        <Text style={styles.infoTextLight}> and </Text>
+                                        <Text style={styles.infoTextRegular}>other account information</Text>
+                                        <Text style={styles.infoTextLight}> will be lost.</Text>
+                                    </Text>
+                                </Trans>
+                            }
+                        />
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <DualFooterButtons
-                        onLeftButtonPress={this.goBack}
-                        onRightButtonPress={this.navigateToPasswordConfirmation}
-                        leftButtonText={t('global:no')}
-                        rightButtonText={t('global:yes')}
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <DualFooterButtons
+                            onLeftButtonPress={this.goBack}
+                            onRightButtonPress={this.navigateToPasswordConfirmation}
+                            leftButtonText={t('global:no')}
+                            rightButtonText={t('global:yes')}
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );

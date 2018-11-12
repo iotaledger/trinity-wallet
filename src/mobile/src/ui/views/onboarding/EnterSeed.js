@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -13,6 +13,7 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid, isIPhone11 } from 'libs/device';
@@ -44,6 +45,10 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
+    },
+    header: {
+        flex: 1,
+        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -118,32 +123,27 @@ class EnterSeed extends React.Component {
                 FlagSecure.deactivate();
             }
             this.props.setOnboardingSeed(seed, true);
-            Navigation.push('appStack', {
-                component: {
-                    name: 'setAccountName',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
-                        },
+            navigator.push('setAccountName', {
+                animations: {
+                    push: {
+                        enable: false,
                     },
+                    pop: {
+                        enable: false,
+                    },
+                },
+                layout: {
+                    backgroundColor: body.bg,
+                    orientation: ['portrait'],
+                },
+                topBar: {
+                    visible: false,
+                    drawBehind: true,
+                    elevation: 0,
+                },
+                statusBar: {
+                    drawBehind: true,
+                    backgroundColor: body.bg,
                 },
             });
         }
@@ -154,7 +154,7 @@ class EnterSeed extends React.Component {
      * @method onBackPress
      */
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -218,72 +218,103 @@ class EnterSeed extends React.Component {
                     {!minimised && (
                         <View>
                             <View style={styles.topContainer}>
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                <View style={{ flex: 0.7 }} />
-                                <Header textColor={theme.body.color}>{t('seedReentry:enterYourSeed')}</Header>
+                                <AnimatedComponent
+                                    animationInType={['slideInRight', 'fadeIn']}
+                                    animationOutType={['slideOutLeft', 'fadeOut']}
+                                    delay={400}
+                                    style={styles.header}
+                                >
+                                    <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                    <View style={{ flex: 0.7 }} />
+                                    <Header textColor={theme.body.color}>{t('seedReentry:enterYourSeed')}</Header>
+                                </AnimatedComponent>
                             </View>
                             <View style={styles.midContainer}>
                                 <View style={{ flex: 0.15 }} />
-                                <CustomTextInput
-                                    label={t('global:seed')}
-                                    onChangeText={(text) => {
-                                        if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                            this.setState({ seed: text.toUpperCase() });
-                                        }
-                                    }}
-                                    containerStyle={{ width: Styling.contentWidth }}
-                                    theme={theme}
-                                    autoCapitalize="characters"
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    onSubmitEditing={() => this.onDonePress()}
-                                    maxLength={MAX_SEED_LENGTH}
-                                    value={seed}
-                                    widget="qr"
-                                    onQRPress={() => this.onQRPress()}
-                                    testID="enterSeed-seedbox"
-                                    seed={seed}
-                                />
+                                <AnimatedComponent
+                                    animationInType={['slideInRight', 'fadeIn']}
+                                    animationOutType={['slideOutLeft', 'fadeOut']}
+                                    delay={300}
+                                >
+                                    <CustomTextInput
+                                        label={t('global:seed')}
+                                        onChangeText={(text) => {
+                                            if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                                this.setState({ seed: text.toUpperCase() });
+                                            }
+                                        }}
+                                        containerStyle={{ width: Styling.contentWidth }}
+                                        theme={theme}
+                                        autoCapitalize="characters"
+                                        autoCorrect={false}
+                                        enablesReturnKeyAutomatically
+                                        returnKeyType="done"
+                                        onSubmitEditing={() => this.onDonePress()}
+                                        maxLength={MAX_SEED_LENGTH}
+                                        value={seed}
+                                        widget="qr"
+                                        onQRPress={() => this.onQRPress()}
+                                        testID="enterSeed-seedbox"
+                                        seed={seed}
+                                    />
+                                </AnimatedComponent>
                                 <View style={{ flex: 0.4 }} />
                                 {!isIPhone11 && (
-                                    <SeedVaultImport
-                                        openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                        onSeedImport={(seed) => {
-                                            this.setState({ seed });
-                                            this.hideModal();
-                                        }}
-                                        onRef={(ref) => {
-                                            this.SeedVaultImport = ref;
-                                        }}
-                                    />
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={200}
+                                    >
+                                        <SeedVaultImport
+                                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                            onSeedImport={(seed) => {
+                                                this.setState({ seed });
+                                                this.hideModal();
+                                            }}
+                                            onRef={(ref) => {
+                                                this.SeedVaultImport = ref;
+                                            }}
+                                        />
+                                    </AnimatedComponent>
                                 )}
                                 <View style={{ flex: 0.4 }} />
-                                <InfoBox
-                                    body={theme.body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                                {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                            </Text>
-                                            <Text style={[styles.warningText, { color: theme.body.color }]}>
-                                                {'\n'}
-                                                {t('neverShare')}
-                                            </Text>
-                                        </View>
-                                    }
-                                />
+                                <AnimatedComponent
+                                    animationInType={['slideInRight', 'fadeIn']}
+                                    animationOutType={['slideOutLeft', 'fadeOut']}
+                                    delay={100}
+                                >
+                                    <InfoBox
+                                        body={theme.body}
+                                        text={
+                                            <View>
+                                                <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                                                </Text>
+                                                <Text style={[styles.warningText, { color: theme.body.color }]}>
+                                                    {'\n'}
+                                                    {t('neverShare')}
+                                                </Text>
+                                            </View>
+                                        }
+                                    />
+                                </AnimatedComponent>
                                 <View style={{ flex: 0.7 }} />
                             </View>
                             <View style={styles.bottomContainer}>
-                                <DualFooterButtons
-                                    onLeftButtonPress={() => this.onBackPress()}
-                                    onRightButtonPress={() => this.onDonePress()}
-                                    leftButtonText={t('global:goBack')}
-                                    rightButtonText={t('global:continue')}
-                                    leftButtonTestID="enterSeed-back"
-                                    rightButtonTestID="enterSeed-next"
-                                />
+                                <AnimatedComponent
+                                    animationInType={['fadeIn']}
+                                    animationOutType={['fadeOut']}
+                                    delay={0}
+                                >
+                                    <DualFooterButtons
+                                        onLeftButtonPress={() => this.onBackPress()}
+                                        onRightButtonPress={() => this.onDonePress()}
+                                        leftButtonText={t('global:goBack')}
+                                        rightButtonText={t('global:continue')}
+                                        leftButtonTestID="enterSeed-back"
+                                        rightButtonTestID="enterSeed-next"
+                                    />
+                                </AnimatedComponent>
                             </View>
                         </View>
                     )}

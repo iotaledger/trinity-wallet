@@ -20,6 +20,7 @@ describe('Reducer: wallet', () => {
                 hasConnection: true,
                 usedExistingSeed: false,
                 isValidatingAddress: false,
+                navStack: [],
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

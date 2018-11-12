@@ -18,7 +18,7 @@ class DynamicStatusBar extends Component {
         /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
         /** @ignore */
-        currentRoute: PropTypes.string.isRequired,
+        currentRoute: PropTypes.string,
     };
 
     componentWillMount() {

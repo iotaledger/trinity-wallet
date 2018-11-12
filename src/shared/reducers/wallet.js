@@ -64,6 +64,10 @@ const initialState = {
      * Determines if wallet is validating the displayed address
      */
     isValidatingAddress: false,
+    /**
+     * Navigation stack
+     */
+    navStack: [],
 };
 
 export default (state = initialState, action) => {
@@ -202,6 +206,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isValidatingAddress: false,
+            };
+        case ActionTypes.PUSH_ROUTE:
+            return {
+                ...state,
+                navStack: state.navStack.slice().concat(action.payload),
+            };
+        case ActionTypes.POP_ROUTE:
+            return {
+                ...state,
+                navStack: state.navStack.slice(0, state.navStack.length - 1),
+            };
+        case ActionTypes.RESET_ROUTE:
+            return {
+                ...state,
+                navStack: [action.payload],
             };
         default:
             return state;
