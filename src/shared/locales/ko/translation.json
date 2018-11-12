@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "기기에서 다시 작업증명을 시도합니다.",
         "tryingAgainWithDifferentNode": "다른 노드로 다시 시도합니다.",
         "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "키체인 오류",
         "errorAccessingKeychainExplanation": "보안 저장에 필요한 키체인에 접근할 수 없습니다.",
         "mainWallet": "주 계정"
