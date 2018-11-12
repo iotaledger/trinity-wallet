@@ -1,14 +1,9 @@
 import get from 'lodash/get';
-import has from 'lodash/has';
+import find from 'lodash/find';
 import isBoolean from 'lodash/isBoolean';
 import isEmpty from 'lodash/isEmpty';
-import some from 'lodash/some';
 import map from 'lodash/map';
-import mapValues from 'lodash/mapValues';
-import merge from 'lodash/merge';
 import omit from 'lodash/omit';
-import omitBy from 'lodash/omitBy';
-import transform from 'lodash/transform';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
@@ -23,19 +18,20 @@ import { renameKeys } from '../libs/utils';
  *
  * @returns {object}
  */
-const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
-    mapValues(newAddressData, (data, address) => {
-        const isSeenAddress = has(existingAddressData, address);
-        if (isSeenAddress && isBoolean(get(existingAddressData[address], 'spent.local'))) {
-            const { spent: { local } } = existingAddressData[address];
+export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
+    map(newAddressData, (addressObject) => {
+        const seenAddress = find(existingAddressData, { address: addressObject.address });
+
+        if (seenAddress && isBoolean(get(seenAddress, 'spent.local'))) {
+            const { spent: { local } } = seenAddress;
 
             return {
-                ...data,
-                spent: { ...data.spent, local: local || get(data, 'spent.local') },
+                ...addressObject,
+                spent: { ...addressObject.spent, local: local || get(seenAddress, 'spent.local') },
             };
         }
 
-        return data;
+        return addressObject;
     });
 
 /**
@@ -56,26 +52,6 @@ export const setAddressData = (existingAddressData, newAddressData) => {
 };
 
 /**
- * Merge latest address data into existing address data for an account
- *
- * @method mergeAddressData
- * @param {object} existingAddressData
- * @param {object} newAddressData
- *
- * @returns {object}
- */
-export const mergeAddressData = (existingAddressData, newAddressData) => {
-    if (isEmpty(existingAddressData)) {
-        return newAddressData;
-    }
-
-    return {
-        ...existingAddressData,
-        ...preserveAddressLocalSpendStatus(existingAddressData, newAddressData),
-    };
-};
-
-/**
  * Updates account information for a single account
  *
  * @method updateAccountInfo
@@ -90,13 +66,11 @@ const updateAccountInfo = (state, payload) => ({
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
             type: payload.accountType || get(state.accountInfo, `${payload.accountName}.type`) || 'keychain',
-            balance: payload.balance,
-            addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
-            transfers: {
-                ...get(state.accountInfo, `${payload.accountName}.transfers`),
-                ...payload.transfers,
-            },
-            hashes: payload.hashes,
+            addressData: setAddressData(
+                get(state.accountInfo, `${payload.accountName}.addressData`),
+                payload.addressData,
+            ),
+            transactions: payload.transactions,
         },
     },
 });
@@ -111,26 +85,16 @@ const updateAccountInfo = (state, payload) => ({
  * @returns {{accountInfo: {}}}
  */
 const updateAccountName = (state, payload) => {
-    const { accountInfo, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
+    const { accountInfo, setupInfo, tasks } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
     const keyMap = { [oldAccountName]: newAccountName };
 
-    const updateAccountInUnconfirmedBundleTails = (acc, tailTransactions, bundle) => {
-        if (some(tailTransactions, (tx) => tx.account === oldAccountName)) {
-            acc[bundle] = map(tailTransactions, (tx) => ({ ...tx, account: newAccountName }));
-        } else {
-            acc[bundle] = tailTransactions;
-        }
-    };
-
     return {
         accountInfo: renameKeys(accountInfo, keyMap),
-        failedBundleHashes: renameKeys(failedBundleHashes, keyMap),
         tasks: renameKeys(tasks, keyMap),
         setupInfo: renameKeys(setupInfo, keyMap),
-        unconfirmedBundleTails: transform(unconfirmedBundleTails, updateAccountInUnconfirmedBundleTails, {}),
     };
 };
 
@@ -141,11 +105,7 @@ const account = (
          */
         onboardingComplete: false,
         /**
-         * Keeps track of signed bundle hashes failed to broadcast
-         */
-        failedBundleHashes: {},
-        /**
-         * Keeps track of each account information (name, addresses, transfers, balance)
+         * Keeps track of each account information (name, addresses[], transactions[])
          */
         accountInfo: {},
         /**
@@ -158,29 +118,10 @@ const account = (
          * For example: Keeps track if user was displayed with the transaction guide modal
          */
         tasks: {},
-        /**
-         * Keeps track of all unconfirmed transfers categorised by bundle hashes for all accounts
-         */
-        unconfirmedBundleTails: {},
     },
     action,
 ) => {
     switch (action.type) {
-        case ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS:
-            return {
-                ...state,
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload),
-            };
-        case ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS:
-            return {
-                ...state,
-                unconfirmedBundleTails: omit(state.unconfirmedBundleTails, action.payload),
-            };
-        case ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS:
-            return {
-                ...state,
-                unconfirmedBundleTails: action.payload,
-            };
         case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
@@ -190,102 +131,13 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
-                failedBundleHashes: omit(state.failedBundleHashes, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
-                unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
-                    some(tailTransactions, (tx) => tx.account === action.payload),
-                ),
-            };
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
-        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
-        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
-        case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
-        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
-        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
-                // All these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
-                // Also they omit confirmed bundles
-                unconfirmedBundleTails: action.payload.unconfirmedBundleTails,
-            };
-        case ActionTypes.UPDATE_ADDRESSES:
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.accountName]: {
-                        ...state.accountInfo[action.accountName],
-                        addresses: action.addresses,
-                    },
-                },
             };
         case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
                 onboardingComplete: action.payload,
-            };
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
-            return {
-                ...state,
-                // Set new account info by assigning latest balance, addresses and transfers
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        balance: action.payload.balance,
-                        addresses: mergeAddressData(
-                            get(state.accountInfo, `${action.payload.accountName}.addresses`),
-                            action.payload.addresses,
-                        ),
-                        transfers: action.payload.transfers,
-                        hashes: action.payload.hashes,
-                    },
-                },
-                unconfirmedBundleTails: merge(
-                    {},
-                    // Remove all tail transactions that were associated with this account.
-                    omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
-                        some(tailTransactions, (tx) => tx.account === action.payload.accountName),
-                    ),
-                    // Merge latest tail transactions for valid pending value transfers
-                    action.payload.unconfirmedBundleTails,
-                ),
-            };
-        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
-            return {
-                ...state,
-                // Override account state for provided account name
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.payload.accountName]: {
-                        balance: action.payload.balance,
-                        addresses: setAddressData(
-                            get(state.accountInfo, `${action.payload.accountName}.addresses`),
-                            action.payload.addresses,
-                        ),
-                        transfers: action.payload.transfers,
-                        hashes: action.payload.hashes,
-                    },
-                },
-                unconfirmedBundleTails: merge(
-                    {},
-                    // Remove all existing bundle tails from provided account
-                    omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
-                        some(tailTransactions, (tx) => tx.account === action.payload.accountName),
-                    ),
-                    // Merge latest bundle tails
-                    action.payload.unconfirmedBundleTails,
-                ),
-            };
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
             };
         case ActionTypes.SET_BASIC_ACCOUNT_INFO:
             return {
@@ -299,7 +151,7 @@ const account = (
                 tasks: {
                     ...state.tasks,
                     [action.payload.accountName]: {
-                        hasDisplayedTransitionGuide: false, // Initialize with a default
+                        displayedSnapshotTransitionGuide: false, // Initialize with a default
                     },
                 },
             };
@@ -314,29 +166,35 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING:
+        case ActionTypes.UPDATE_ADDRESSES:
             return {
                 ...state,
-                failedBundleHashes: {
-                    ...state.failedBundleHashes,
-                    [action.payload.accountName]: {
-                        ...state.failedBundleHashes[action.payload.accountName],
-                        ...{
-                            [action.payload.bundleHash]: action.payload.transactionObjects,
-                        },
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.accountName]: {
+                        ...state.accountInfo[action.accountName],
+                        addressData: setAddressData(
+                            get(state.accountInfo, `${action.accountName}.addressData`),
+                            action.addressData,
+                        ),
                     },
                 },
             };
-        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE:
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
+        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
+        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
+        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
+        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
+        case ActionTypes.MANUAL_SYNC_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
-                failedBundleHashes: {
-                    ...state.failedBundleHashes,
-                    [action.payload.accountName]: omit(
-                        state.failedBundleHashes[action.payload.accountName],
-                        action.payload.bundleHash,
-                    ),
-                },
+                ...updateAccountInfo(state, action.payload),
             };
         default:
             return state;

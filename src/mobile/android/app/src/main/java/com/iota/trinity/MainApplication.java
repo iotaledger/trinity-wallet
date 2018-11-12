@@ -96,6 +96,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNReactNativeHapticFeedbackPackage(),
                 new RNSharePackage(),
                 new RNViewShotPackage(),
+                new RealmReactPackage(),
                 new RNFetchBlobPackage()
         );
     }

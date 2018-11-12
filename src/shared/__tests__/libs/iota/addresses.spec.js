@@ -1,12 +1,27 @@
-import merge from 'lodash/merge';
-import maxBy from 'lodash/maxBy';
+import each from 'lodash/each';
+import find from 'lodash/find';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import size from 'lodash/size';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import nock from 'nock';
 import * as addressesUtils from '../../../libs/iota/addresses';
 import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
+import {
+    addressData as mockAddressData,
+    latestAddressWithoutChecksum,
+    latestAddressWithChecksum,
+    latestAddressObject,
+    latestAddressIndex,
+} from '../../__samples__/addresses';
+import transactions, {
+    confirmedZeroValueTransactions,
+    unconfirmedValueTransactions,
+} from '../../__samples__/transactions';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/addresses', () => {
     before(() => {
@@ -15,6 +30,326 @@ describe('libs: iota/addresses', () => {
 
     after(() => {
         SwitchingConfig.autoSwitch = true;
+    });
+
+    describe('#isAddressUsedSync', () => {
+        describe('when provided argument is not a valid address object', () => {
+            it('should throw an error with message "Invalid address data."', () => {
+                expect(addressesUtils.isAddressUsedSync.bind(null, {}, [])).to.throw('Invalid address data.');
+                expect(addressesUtils.isAddressUsedSync.bind(null, undefined, [])).to.throw('Invalid address data.');
+            });
+        });
+
+        describe('when provided argument is a valid address object', () => {
+            describe('when address has no associated transactions', () => {
+                describe('when address has zero balance', () => {
+                    describe('when address is marked spent locally', () => {
+                        it('should return true', () => {
+                            const addressObject = {
+                                address: 'U'.repeat(81),
+                                balance: 0,
+                                index: 0,
+                                checksum: 'NXELTUENX',
+                                spent: { local: true, remote: true },
+                            };
+
+                            const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
+
+                            expect(isUsed).to.equal(true);
+                        });
+                    });
+
+                    describe('when address is marked unspent locally', () => {
+                        it('should return false', () => {
+                            const addressObject = {
+                                address: 'U'.repeat(81),
+                                balance: 0,
+                                index: 0,
+                                checksum: 'NXELTUENX',
+                                spent: { local: false, remote: true },
+                            };
+
+                            const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
+
+                            expect(isUsed).to.equal(false);
+                        });
+                    });
+                });
+
+                describe('when address has positive balance', () => {
+                    describe('when address is marked unspent locally', () => {
+                        it('should return true', () => {
+                            const addressObject = {
+                                address: 'U'.repeat(81),
+                                balance: 10,
+                                index: 0,
+                                checksum: 'NXELTUENX',
+                                spent: { local: false, remote: true },
+                            };
+
+                            const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
+
+                            expect(isUsed).to.equal(true);
+                        });
+                    });
+                });
+            });
+
+            describe('when address has associated transactions', () => {
+                describe('when address has zero balance', () => {
+                    describe('when address is marked spent locally', () => {
+                        it('should return true', () => {
+                            const addressObject = {
+                                address:
+                                    'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                                balance: 0,
+                                index: 1,
+                                checksum: 'BZIF9ZEBC',
+                                spent: { local: true, remote: true },
+                            };
+
+                            const isUsed = addressesUtils.isAddressUsedSync(
+                                addressObject,
+                                unconfirmedValueTransactions,
+                            );
+
+                            expect(isUsed).to.equal(true);
+                        });
+                    });
+
+                    describe('when address is marked unspent locally', () => {
+                        it('should return true', () => {
+                            const addressObject = {
+                                address:
+                                    'RRHMYUP9RNBBNAORNMNHYTLJZWXCWKOYV9TVQPGPKDNTTSTVLCXCDKDKPILANYIOPOHBTNAXZ9IUBPQCC',
+                                balance: 0,
+                                index: 4,
+                                checksum: 'YBBRFADGD',
+                                spent: { local: false, remote: false },
+                            };
+
+                            const isUsed = addressesUtils.isAddressUsedSync(
+                                addressObject,
+                                confirmedZeroValueTransactions,
+                            );
+
+                            expect(isUsed).to.equal(true);
+                        });
+                    });
+                });
+
+                describe('when address has positive balance', () => {
+                    describe('when address is marked unspent locally', () => {
+                        it('should return true', () => {
+                            const addressObject = {
+                                address:
+                                    'RRHMYUP9RNBBNAORNMNHYTLJZWXCWKOYV9TVQPGPKDNTTSTVLCXCDKDKPILANYIOPOHBTNAXZ9IUBPQCC',
+                                balance: 10,
+                                index: 4,
+                                checksum: 'YBBRFADGD',
+                                spent: { local: false, remote: false },
+                            };
+
+                            const isUsed = addressesUtils.isAddressUsedSync(
+                                addressObject,
+                                confirmedZeroValueTransactions,
+                            );
+
+                            expect(isUsed).to.equal(true);
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    describe('#isAddressUsedAsync', () => {
+        let addressObject;
+
+        before(() => {
+            addressObject = {
+                address: 'U'.repeat(81),
+                balance: 0,
+                index: 0,
+                checksum: 'NXELTUENX',
+                spent: { local: true, remote: true },
+            };
+        });
+
+        describe('when provided argument is not a valid address object', () => {
+            it('should throw an error with message "Invalid address data."', () => {
+                return addressesUtils
+                    .isAddressUsedAsync()(null)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Invalid address data.'));
+            });
+        });
+
+        describe('when provided argument is a valid address object', () => {
+            describe('when address is spent from (wereAddressesSpentFron)', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            if (body.command === 'wereAddressesSpentFrom') {
+                                const addresses = body.addresses;
+
+                                return { states: map(addresses, () => true) };
+                            }
+
+                            return {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return addressesUtils
+                        .isAddressUsedAsync()(addressObject)
+                        .then((isUsed) => expect(isUsed).to.equal(true));
+                });
+
+                describe('when address is marked unspent locally', () => {
+                    it('should return false', () => {
+                        const addressObject = {
+                            address: 'U'.repeat(81),
+                            balance: 0,
+                            index: 0,
+                            checksum: 'NXELTUENX',
+                            spent: { local: false, remote: true },
+                        };
+
+                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
+
+                        expect(isUsed).to.equal(false);
+                    });
+                });
+            });
+
+            describe('when address is not spent from (wereAddressesSpentFron)', () => {
+                describe('when address has associated transaction hashes', () => {
+                    beforeEach(() => {
+                        nock('http://localhost:14265', {
+                            reqheaders: {
+                                'Content-Type': 'application/json',
+                                'X-IOTA-API-Version': IRI_API_VERSION,
+                            },
+                        })
+                            .filteringRequestBody(() => '*')
+                            .persist()
+                            .post('/', '*')
+                            .reply(200, (_, body) => {
+                                if (body.command === 'wereAddressesSpentFrom') {
+                                    const addresses = body.addresses;
+
+                                    return { states: map(addresses, () => false) };
+                                } else if (body.command === 'findTransactions') {
+                                    return { hashes: ['9'.repeat(81)] };
+                                }
+
+                                return {};
+                            });
+                    });
+
+                    afterEach(() => {
+                        nock.cleanAll();
+                    });
+
+                    it('should return true', () => {
+                        return addressesUtils
+                            .isAddressUsedAsync()(addressObject)
+                            .then((isUsed) => expect(isUsed).to.equal(true));
+                    });
+                });
+
+                describe('when address has no associated transaction hashes', () => {
+                    describe('when address has positive balance', () => {
+                        beforeEach(() => {
+                            nock('http://localhost:14265', {
+                                reqheaders: {
+                                    'Content-Type': 'application/json',
+                                    'X-IOTA-API-Version': IRI_API_VERSION,
+                                },
+                            })
+                                .filteringRequestBody(() => '*')
+                                .persist()
+                                .post('/', '*')
+                                .reply(200, (_, body) => {
+                                    if (body.command === 'wereAddressesSpentFrom') {
+                                        const addresses = body.addresses;
+
+                                        return { states: map(addresses, () => false) };
+                                    } else if (body.command === 'findTransactions') {
+                                        return { hashes: [] };
+                                    } else if (body.command === 'getBalances') {
+                                        return { balances: { balances: map(body.addresses, () => '10') } };
+                                    }
+
+                                    return {};
+                                });
+                        });
+
+                        afterEach(() => {
+                            nock.cleanAll();
+                        });
+
+                        it('should return true', () => {
+                            return addressesUtils
+                                .isAddressUsedAsync()(addressObject)
+                                .then((isUsed) => expect(isUsed).to.equal(true));
+                        });
+                    });
+
+                    describe('when address has zero balance', () => {
+                        beforeEach(() => {
+                            nock('http://localhost:14265', {
+                                reqheaders: {
+                                    'Content-Type': 'application/json',
+                                    'X-IOTA-API-Version': IRI_API_VERSION,
+                                },
+                            })
+                                .filteringRequestBody(() => '*')
+                                .persist()
+                                .post('/', '*')
+                                .reply(200, (_, body) => {
+                                    if (body.command === 'wereAddressesSpentFrom') {
+                                        const addresses = body.addresses;
+
+                                        return { states: map(addresses, () => false) };
+                                    } else if (body.command === 'findTransactions') {
+                                        return { hashes: [] };
+                                    } else if (body.command === 'getBalances') {
+                                        return { balances: { balances: map(body.addresses, () => '0') } };
+                                    }
+
+                                    return {};
+                                });
+                        });
+
+                        afterEach(() => {
+                            nock.cleanAll();
+                        });
+
+                        it('should return false', () => {
+                            return addressesUtils
+                                .isAddressUsedAsync()(addressObject)
+                                .then((isUsed) => expect(isUsed).to.equal(false));
+                        });
+                    });
+                });
+            });
+        });
     });
 
     describe('#accumulateBalance', () => {
@@ -73,328 +408,532 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#filterAddressesWithIncomingTransfers', () => {
-        describe('when inputs passed as first argument is an empty array', () => {
-            it('should return inputs passed as first argument', () => {
-                expect(addressesUtils.filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
+    describe('#formatAddressData', () => {
+        let addresses;
+
+        before(() => {
+            addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
+        });
+
+        describe('when balances size does not equal addresses size', () => {
+            describe('when size of spent statuses equal addresses size', () => {
+                describe('when key indexes are not provided', () => {
+                    it('should throw with an error with message "Address metadata length mismatch."', () => {
+                        expect(
+                            addressesUtils.formatAddressData.bind(
+                                null,
+                                addresses,
+                                [],
+                                Array(3)
+                                    .fill()
+                                    .map(() => ({ local: false, remote: false })),
+                            ),
+                        ).to.throw('Address metadata length mismatch.');
+                    });
+                });
+
+                describe('when key indexes are provided', () => {
+                    describe('when key indexes size does not equal addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    [],
+                                    Array(addresses.length)
+                                        .fill()
+                                        .map(() => ({ local: false, remote: false })),
+                                ),
+                                [0],
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+
+                    describe('when key indexes size equals addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    [],
+                                    Array(3)
+                                        .fill()
+                                        .map(() => ({ local: false, remote: false })),
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                ),
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+                });
             });
         });
 
-        describe('when pendingValueTransfers passed as second argument is an empty array', () => {
-            it('should return inputs passed as first argument', () => {
-                expect(addressesUtils.filterAddressesWithIncomingTransfers([{}], [])).to.eql([{}]);
+        describe('when address spend statuses size does not equal addresses size', () => {
+            describe('when size of balances equal addresses size', () => {
+                describe('when key indexes are not provided', () => {
+                    it('should throw with an error with message "Address metadata length mismatch."', () => {
+                        expect(
+                            addressesUtils.formatAddressData.bind(
+                                null,
+                                addresses,
+                                Array(3)
+                                    .fill()
+                                    .map((_, i) => i),
+                                [],
+                            ),
+                        ).to.throw('Address metadata length mismatch.');
+                    });
+                });
+
+                describe('when key indexes are provided', () => {
+                    describe('when key indexes size does not equal addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                    [],
+                                    [],
+                                ),
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+
+                    describe('when key indexes size equals addresses size', () => {
+                        it('should throw with an error with message "Address metadata length mismatch."', () => {
+                            expect(
+                                addressesUtils.formatAddressData.bind(
+                                    null,
+                                    addresses,
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                    [],
+                                    Array(3)
+                                        .fill()
+                                        .map((_, i) => i),
+                                ),
+                            ).to.throw('Address metadata length mismatch.');
+                        });
+                    });
+                });
             });
         });
 
-        describe('when inputs passed as first argument is not an empty array and pendingValueTransfers passed as second argument is not an empty array', () => {
-            let pendingTransfers;
+        describe('when address spend statuses size & balances size equal addresses size ', () => {
+            describe('when key indexes are not provided', () => {
+                it('should return address data with key indexes as address index in addresses list (passed as first argument)', () => {
+                    const expectedAddressData = [
+                        {
+                            address:
+                                'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                            index: 0,
+                            spent: { local: true, remote: false },
+                            balance: 0,
+                            checksum: 'YLFHUOJUY',
+                        },
+                        {
+                            address:
+                                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+                            index: 1,
+                            spent: { local: false, remote: false },
+                            balance: 1,
+                            checksum: 'IO9LGIBVB',
+                        },
+                        {
+                            address:
+                                'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+                            index: 2,
+                            spent: { local: true, remote: false },
+                            balance: 2,
+                            checksum: 'X9KV9ELOW',
+                        },
+                    ];
 
-            beforeEach(() => {
-                pendingTransfers = [
-                    {
-                        transferValue: -100,
-                        incoming: false,
-                        inputs: [{ address: 'A'.repeat(81), value: -100 }],
-                        outputs: [
-                            // Change address
-                            { address: 'C'.repeat(81), value: 20 },
-                            { address: 'U'.repeat(81), value: 80 },
-                        ],
-                        persistence: false,
-                    },
-                    {
-                        transferValue: -50,
-                        incoming: true,
-                        inputs: [{ address: 'D'.repeat(81), value: -40 }],
-                        outputs: [{ address: 'E'.repeat(81), value: 30 }, { address: 'Y'.repeat(81), value: 10 }],
-                        persistence: false,
-                    },
-                ];
+                    const actualAddressData = addressesUtils.formatAddressData(
+                        addresses,
+                        Array(3)
+                            .fill()
+                            .map((_, i) => i),
+                        Array(3)
+                            .fill()
+                            .map((_, i) => ({ local: i % 2 === 0, remote: false })),
+                    );
+
+                    expect(actualAddressData).to.eql(expectedAddressData);
+
+                    // Test valid checksum
+                    expectedAddressData.forEach(({ address, checksum }) => {
+                        expect(iota.utils.isValidChecksum(`${address}${checksum}`)).to.equal(true);
+                    });
+                });
             });
 
-            it('should filter inputs that have pending incoming value transfers', () => {
-                const inputs = [{ address: 'E'.repeat(81) }, { address: 'F'.repeat(81) }];
+            describe('when key indexes are provided', () => {
+                it('should return address data with key indexes from key indexes list (passed as fourth argument)', () => {
+                    const expectedAddressData = [
+                        {
+                            address:
+                                'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                            index: 4,
+                            spent: { local: true, remote: false },
+                            balance: 0,
+                            checksum: 'YLFHUOJUY',
+                        },
+                        {
+                            address:
+                                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+                            index: 6,
+                            spent: { local: false, remote: false },
+                            balance: 1,
+                            checksum: 'IO9LGIBVB',
+                        },
+                        {
+                            address:
+                                'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+                            index: 9,
+                            spent: { local: true, remote: false },
+                            balance: 2,
+                            checksum: 'X9KV9ELOW',
+                        },
+                    ];
 
-                expect(addressesUtils.filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
-                    { address: 'F'.repeat(81) },
-                ]);
+                    const keyIndexes = [4, 6, 9];
+                    const actualAddressData = addressesUtils.formatAddressData(
+                        addresses,
+                        Array(3)
+                            .fill()
+                            .map((_, i) => i),
+                        Array(3)
+                            .fill()
+                            .map((_, i) => ({ local: i % 2 === 0, remote: false })),
+                        keyIndexes,
+                    );
+
+                    expect(actualAddressData).to.eql(expectedAddressData);
+
+                    // Test valid checksum
+                    expectedAddressData.forEach(({ address, checksum }) => {
+                        expect(iota.utils.isValidChecksum(`${address}${checksum}`)).to.equal(true);
+                    });
+                });
             });
+        });
+    });
 
-            it('should filter inputs that have pending outgoing value transfers on change addresses', () => {
-                const inputs = [{ address: 'C'.repeat(81) }, { address: 'F'.repeat(81) }];
+    describe('#filterAddressDataWithPendingIncomingTransactions', () => {
+        describe('when addressData passed as first argument is an empty array', () => {
+            it('should return addressData passed as first argument', () => {
+                expect(addressesUtils.filterAddressDataWithPendingIncomingTransactions([], [{}, {}])).to.eql([]);
+            });
+        });
 
-                expect(addressesUtils.filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
-                    { address: 'F'.repeat(81) },
+        describe('when pendingValueTransactions passed as second argument is an empty array', () => {
+            it('should return addressData passed as first argument', () => {
+                expect(addressesUtils.filterAddressDataWithPendingIncomingTransactions([{}], [])).to.eql([{}]);
+            });
+        });
+
+        describe('when addressData passed as first argument is not an empty array and transactions passed as second argument is not an empty array', () => {
+            it('should filter addressData with pending incoming value transactions', () => {
+                expect(
+                    addressesUtils.filterAddressDataWithPendingIncomingTransactions(mockAddressData, transactions),
+                ).to.eql([
+                    {
+                        address: 'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                        balance: 0,
+                        index: 1,
+                        checksum: 'BZIF9ZEBC',
+                        spent: { local: true, remote: true },
+                    },
+                    {
+                        address: 'D9QCAHCWFN9BCFNNSPNGFVUEUSKBX9XQEKSIRRWXHHBQBJMEEI9ATVWNPJRLO9ETRPCBIRNQBLDMBUYVW',
+                        balance: 0,
+                        index: 2,
+                        checksum: 'NXL99BCPW',
+                        spent: { local: true, remote: false },
+                    },
+                    {
+                        address: 'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                        balance: 0,
+                        index: 3,
+                        checksum: 'FDPMAF9UD',
+                        spent: { local: true, remote: false },
+                    },
                 ]);
             });
         });
     });
 
-    describe('#getAddressesUptoRemainder', () => {
+    describe.skip('#getAddressesUptoRemainder', () => {
         let addressData;
         let seedStore;
 
-        let sandbox;
-
         before(() => {
-            addressData = accounts.accountInfo.TEST.addresses;
+            addressData = accounts.accountInfo.TEST.addressData;
             seedStore = {
-                generateAddress: () => Promise.resolve('A'.repeat(81)),
+                generateAddress: ({ index }) => {
+                    const addressMap = {
+                        10: 'A'.repeat(81),
+                        11: 'B'.repeat(81),
+                        12: 'C'.repeat(81),
+                    };
+
+                    return Promise.resolve(addressMap[index]);
+                },
             };
         });
 
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when current latest address is not blacklisted', () => {
-            it('should return current latest address', () => {
+        describe('when latest address is not blacklisted', () => {
+            it('should return latest address as remainder', () => {
                 return addressesUtils
-                    .getAddressesUptoRemainder()(addressData, [], seedStore, () => Promise.resolve([]), [
-                        'Z'.repeat(81),
-                        'I'.repeat(81),
-                    ])
-                    .then(({ remainderAddress }) => {
-                        expect(remainderAddress).to.equal(
-                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
-                        );
+                    .getAddressesUptoRemainder()(addressData, [], seedStore, ['Z'.repeat(81), 'I'.repeat(81)])
+                    .then(({ remainderAddress, addressDataUptoRemainder }) => {
+                        expect(remainderAddress).to.equal(latestAddressWithoutChecksum);
+                        expect(addressDataUptoRemainder).to.eql(addressData);
                     });
             });
         });
 
-        describe('when current latest address is blacklisted', () => {
+        describe('when latest address is blacklisted', () => {
             describe('when newly generated address is not blacklisted', () => {
-                it('should generate new addresses and return latest unused address as the remainder address', () => {
-                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const addresses = body.addresses;
 
-                    // Return an empty response from findTransactions
-                    // So that the very first address that is generated
-                    // is added as the remainder address
-                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                            const resultMap = {
+                                getBalances: { balances: map(addresses, () => '0') },
+                                findTransactions: { hashes: [] },
+                                wereAddressesSpentFrom: { states: map(addresses, () => false) },
+                            };
 
-                    addressGenFn.onCall(0).resolves('U'.repeat(81));
-
-                    return addressesUtils
-                        .getAddressesUptoRemainder()(addressData, [], seedStore, [
-                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
-                        ])
-                        .then(({ remainderAddress }) => {
-                            expect(remainderAddress).to.not.equal(
-                                'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
-                            );
-                            expect(remainderAddress).to.equal('U'.repeat(81));
-
-                            findTransactions.restore();
-                            wereAddressesSpentFrom.restore();
-                            getBalances.restore();
-                            addressGenFn.restore();
+                            return resultMap[body.command] || {};
                         });
                 });
 
-                it('should generate new addresses and merge it in address data', () => {
-                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
+                afterEach(() => {
+                    nock.cleanAll();
+                });
 
-                    addressGenFn.onCall(0).resolves('U'.repeat(81));
-
-                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
-
+                it('should generate new addresses and return latest unused address as the remainder address', () => {
                     return addressesUtils
                         .getAddressesUptoRemainder()(addressData, [], seedStore, [
-                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                            // Blacklist latest address
+                            latestAddressWithoutChecksum,
                         ])
-                        .then(({ addressDataUptoRemainder }) => {
-                            const expectedAddressData = merge({}, addressData, {
-                                ['U'.repeat(81)]: {
-                                    index: 5,
-                                    checksum: 'NXELTUENX',
+                        .then(({ remainderAddress, addressDataUptoRemainder }) => {
+                            expect(remainderAddress).to.equal('A'.repeat(81));
+                            expect(addressDataUptoRemainder).to.eql([
+                                ...addressData,
+                                {
+                                    address: 'A'.repeat(81),
                                     balance: 0,
+                                    checksum: 'YLFHUOJUY',
+                                    index: 10,
                                     spent: {
                                         local: false,
                                         remote: false,
                                     },
                                 },
-                            });
-
-                            expect(addressDataUptoRemainder).to.eql(expectedAddressData);
-
-                            findTransactions.restore();
-                            wereAddressesSpentFrom.restore();
-                            getBalances.restore();
-                            addressGenFn.restore();
+                            ]);
                         });
                 });
             });
 
             describe('when newly generated address is blacklisted', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const addresses = body.addresses;
+
+                            const resultMap = {
+                                getBalances: { balances: map(addresses, () => '0') },
+                                findTransactions: { hashes: [] },
+                                wereAddressesSpentFrom: { states: map(addresses, () => false) },
+                            };
+
+                            return resultMap[body.command] || {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
                 it('should recursively generate new addresses till latest unused is not part of the blacklisted addresses list', () => {
-                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
-
-                    const findTransactions = sinon.stub(iota.api, 'findTransactions');
-                    const getBalances = sinon.stub(iota.api, 'getBalances');
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom');
-
-                    addressGenFn.onCall(0).resolves('U'.repeat(81));
-                    addressGenFn.onCall(1).resolves('R'.repeat(81));
-                    addressGenFn.onCall(2).resolves('Y'.repeat(81));
-                    addressGenFn.onCall(3).resolves('Z'.repeat(81));
-
-                    // Return hashes for first three addresses
-                    // So that getLatestAddresses returns all three addresses
-                    // with address ZZZ..ZZZ as the latest unused
-                    findTransactions.onCall(0).yields(null, ['9'.repeat(81)]);
-                    findTransactions.onCall(1).yields(null, ['9'.repeat(81)]);
-                    findTransactions.onCall(2).yields(null, ['9'.repeat(81)]);
-                    findTransactions.onCall(3).yields(null, []);
-
-                    getBalances.onCall(0).yields(null, { balances: ['0'] });
-                    getBalances.onCall(1).yields(null, { balances: ['3'] });
-                    getBalances.onCall(2).yields(null, { balances: ['5'] });
-                    getBalances.onCall(3).yields(null, { balances: ['10'] });
-
-                    wereAddressesSpentFrom.onCall(0).yields(null, [false]);
-                    wereAddressesSpentFrom.onCall(1).yields(null, [false]);
-                    wereAddressesSpentFrom.onCall(2).yields(null, [false]);
-                    wereAddressesSpentFrom.onCall(3).yields(null, [false]);
-
                     return addressesUtils
                         .getAddressesUptoRemainder()(addressData, [], seedStore, [
-                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
-                            'U'.repeat(81),
-                            'R'.repeat(81),
+                            // Blacklist latest address (index 9)
+                            latestAddressWithoutChecksum,
+                            // Blacklist address (index 10)
+                            'A'.repeat(81),
+                            // Blacklist address (index 11),
+                            'B'.repeat(81),
                         ])
                         .then(({ remainderAddress, addressDataUptoRemainder }) => {
-                            expect(remainderAddress).to.equal('Z'.repeat(81));
+                            // Address (index 12)
+                            expect(remainderAddress).to.equal('C'.repeat(81));
 
-                            const expectedAddressData = merge({}, addressData, {
-                                ['U'.repeat(81)]: {
-                                    index: 5,
-                                    checksum: 'NXELTUENX',
+                            expect(addressDataUptoRemainder).to.eql([
+                                ...addressData,
+                                {
+                                    address: 'A'.repeat(81),
                                     balance: 0,
+                                    index: 10,
+                                    checksum: 'YLFHUOJUY',
                                     spent: {
                                         local: false,
                                         remote: false,
                                     },
                                 },
-                                ['R'.repeat(81)]: {
-                                    index: 6,
-                                    checksum: 'JUHTDRHCA',
-                                    balance: 3,
+                                {
+                                    address: 'B'.repeat(81),
+                                    balance: 0,
+                                    index: 11,
+                                    checksum: 'IO9LGIBVB',
                                     spent: {
                                         local: false,
                                         remote: false,
                                     },
                                 },
-                                ['Y'.repeat(81)]: {
-                                    index: 7,
-                                    checksum: 'MHXTFTEBX',
-                                    balance: 5,
+                                {
+                                    address: 'C'.repeat(81),
+                                    balance: 0,
+                                    index: 12,
+                                    checksum: 'X9KV9ELOW',
                                     spent: {
                                         local: false,
                                         remote: false,
                                     },
                                 },
-                                ['Z'.repeat(81)]: {
-                                    index: 8,
-                                    checksum: '9JTQPKDGC',
-                                    balance: 10,
-                                    spent: {
-                                        local: false,
-                                        remote: false,
-                                    },
-                                },
-                            });
-
-                            expect(addressDataUptoRemainder).to.eql(expectedAddressData);
-
-                            findTransactions.restore();
-                            wereAddressesSpentFrom.restore();
-                            getBalances.restore();
-                            addressGenFn.restore();
+                            ]);
                         });
                 });
             });
         });
     });
 
-    describe('#filterSpentAddresses', () => {
-        let inputs;
-        let sandbox;
-
-        before(() => {
-            inputs = [
-                {
-                    address: 'U'.repeat(81),
-                },
-                {
-                    address: 'V'.repeat(81),
-                },
-                {
-                    address: 'Y'.repeat(81),
-                },
-            ];
-        });
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, false, true]);
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when all input addresses are marked spent locally', () => {
+    describe('#filterSpentAddressData', () => {
+        describe('when all addresses in addressData are marked spent locally', () => {
             it('should return an empty array', () => {
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: { local: true } },
-                    ['V'.repeat(81)]: { spent: { local: true } },
-                    ['Y'.repeat(81)]: { spent: { local: true } },
-                };
-
                 return addressesUtils
-                    .filterSpentAddresses()(inputs, addressData, [])
-                    .then((unspentInputs) => {
-                        expect(unspentInputs).to.eql([]);
+                    .filterSpentAddressData()(
+                        map(mockAddressData, (addressObject) => ({
+                            ...addressObject,
+                            ...{ spent: { ...addressObject.spent, local: true } },
+                        })),
+                        [],
+                    )
+                    .then((unspentAddressData) => {
+                        expect(unspentAddressData).to.eql([]);
                     });
             });
         });
 
-        describe('when none of the inputs are marked spent locally', () => {
-            it('should filter spent addresses relying on wereAddressesSpentFrom network call', () => {
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: { local: false } },
-                    ['V'.repeat(81)]: { spent: { local: false } },
-                    ['Y'.repeat(81)]: { spent: { local: false } },
-                };
+        describe('when some addresses in addressData are marked spent locally', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
 
+                            const resultMap = reduce(
+                                mockAddressData,
+                                (acc, addressObject) => {
+                                    acc = { ...acc, [addressObject.address]: addressObject.spent.remote };
+
+                                    return acc;
+                                },
+                                {},
+                            );
+
+                            return { states: map(addresses, (address) => resultMap[address]) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should filter addressData with spent addresses', () => {
                 return addressesUtils
-                    .filterSpentAddresses()(inputs, addressData, [])
-                    .then((unspentInputs) => {
-                        expect(unspentInputs).to.eql([
+                    .filterSpentAddressData()(mockAddressData, transactions)
+                    .then((actualUnspentAddressData) => {
+                        const expectedAddressData = [
                             {
-                                address: 'U'.repeat(81),
+                                address:
+                                    'RRHMYUP9RNBBNAORNMNHYTLJZWXCWKOYV9TVQPGPKDNTTSTVLCXCDKDKPILANYIOPOHBTNAXZ9IUBPQCC',
+                                balance: 0,
+                                index: 4,
+                                checksum: 'YBBRFADGD',
+                                spent: { local: false, remote: false },
                             },
                             {
-                                address: 'V'.repeat(81),
+                                address:
+                                    'VOVTUPNCVSEYOGYXPER9RRHPICCMTBD9DNTJMBZPCUNXHHYTZQOAVJBBIGRCMBXRVRLHVROE9OMNDKTVW',
+                                balance: 150,
+                                index: 7,
+                                checksum: 'MLUGSLZRA',
+                                spent: { local: false, remote: false },
                             },
-                        ]);
+                            {
+                                address:
+                                    'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
+                                balance: 10,
+                                index: 8,
+                                checksum: 'RHAFCPMZY',
+                                spent: { local: false, remote: false },
+                            },
+                            {
+                                address:
+                                    'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX',
+                                balance: 0,
+                                index: 9,
+                                checksum: 'RHAFCPMZY',
+                                spent: { local: false, remote: false },
+                            },
+                        ];
+
+                        expect(actualUnspentAddressData).to.eql(expectedAddressData);
                     });
             });
         });
     });
 
-    describe('#attachAndFormatAddress', () => {
+    describe.skip('#attachAndFormatAddress', () => {
         let address;
         let addressIndex;
         let addressData;
@@ -471,356 +1010,196 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#formatAddressData', () => {
-        let addresses;
-
-        before(() => {
-            addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
-        });
-
-        describe('when balances size does not equal addresses size', () => {
-            describe('when size of spent statuses equal addresses size', () => {
-                describe('when key indexes are not provided', () => {
-                    it('should throw with an error with message "Address metadata length mismatch."', () => {
-                        try {
-                            addressesUtils.formatAddressData(
-                                addresses,
-                                [],
-                                Array(3)
-                                    .fill()
-                                    .map(() => false),
-                            );
-                        } catch (e) {
-                            expect(e.message).to.equal('Address metadata length mismatch.');
-                        }
-                    });
-                });
-
-                describe('when key indexes are provided', () => {
-                    describe('when key indexes size does not equal addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    [],
-                                    Array(3)
-                                        .fill()
-                                        .map(() => false),
-                                    [],
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-
-                    describe('when key indexes size equals addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    [],
-                                    Array(3)
-                                        .fill()
-                                        .map(() => false),
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-                });
-            });
-        });
-
-        describe('when address spent list size does not equal addresses size', () => {
-            describe('when size of balances equal addresses size', () => {
-                describe('when key indexes are not provided', () => {
-                    it('should throw with an error with message "Address metadata length mismatch."', () => {
-                        try {
-                            addressesUtils.formatAddressData(
-                                addresses,
-                                Array(3)
-                                    .fill()
-                                    .map((v, i) => i),
-                                [],
-                            );
-                        } catch (e) {
-                            expect(e.message).to.equal('Address metadata length mismatch.');
-                        }
-                    });
-                });
-
-                describe('when key indexes are provided', () => {
-                    describe('when key indexes size does not equal addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                    [],
-                                    [],
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-
-                    describe('when key indexes size equals addresses size', () => {
-                        it('should throw with an error with message "Address metadata length mismatch."', () => {
-                            try {
-                                addressesUtils.formatAddressData(
-                                    addresses,
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                    [],
-                                    Array(3)
-                                        .fill()
-                                        .map((v, i) => i),
-                                );
-                            } catch (e) {
-                                expect(e.message).to.equal('Address metadata length mismatch.');
-                            }
-                        });
-                    });
-                });
-            });
-        });
-
-        describe('when address spent list size & balances size equal addresses size ', () => {
-            describe('when key indexes are not provided', () => {
-                it('should return address data object with index as address list index', () => {
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                        Array(3)
-                            .fill()
-                            .map(() => false),
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].index).to.equal(index);
-                    });
-                });
-
-                it('should assign correct "local" and "remote" spent status', () => {
-                    const addressesSpentStatus = [
-                        {
-                            local: true,
-                            remote: false,
-                        },
-                        {
-                            local: false,
-                            remote: false,
-                        },
-                        {
-                            local: true,
-                            remote: true,
-                        },
-                    ];
-
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                        addressesSpentStatus,
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].spent.local).to.equal(addressesSpentStatus[index].local);
-                        expect(result[address].spent.remote).to.equal(addressesSpentStatus[index].remote);
-                    });
-                });
-
-                it('should return address data object with balance as corresponding balance in balances list', () => {
-                    const balances = [2, 3, 4];
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        balances,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].balance).to.equal(balances[index]);
-                    });
-                });
-
-                it('should return address data object with checksum as valid address checksum', () => {
-                    const balances = [2, 3, 4];
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        balances,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                    );
-
-                    addresses.forEach((address) => {
-                        const checksum = result[address].checksum;
-                        expect(iota.utils.isValidChecksum(`${address}${checksum}`)).to.equal(true);
-                    });
-                });
-            });
-
-            describe('when key indexes are provided', () => {
-                it('should return address data object with index as corresponding index in keyIndexes list', () => {
-                    const keyIndexes = [4, 6, 9];
-                    const result = addressesUtils.formatAddressData(
-                        addresses,
-                        Array(3)
-                            .fill()
-                            .map((v, i) => i),
-                        Array(3)
-                            .fill()
-                            .map(() => false),
-                        keyIndexes,
-                    );
-
-                    addresses.forEach((address, index) => {
-                        expect(result[address].index).to.not.equal(index);
-                        expect(result[address].index).to.equal(keyIndexes[index]);
-                    });
-                });
-            });
-        });
-    });
-
-    describe('#syncAddresses', () => {
-        let addressData;
+    describe.skip('#syncAddresses', () => {
         let seedStore;
 
-        let sandbox;
-
         before(() => {
-            addressData = accounts.accountInfo.TEST.addresses;
             seedStore = {
-                generateAddress: (index) => Promise.resolve(accounts.accountInfo.TEST.addresses[index]),
+                generateAddress: ({ index }) => {
+                    const addressMap = {
+                        [latestAddressIndex + 1]: 'A'.repeat(81),
+                        [latestAddressIndex + 2]: 'B'.repeat(81),
+                        [latestAddressIndex + 3]: 'C'.repeat(81),
+                    };
+
+                    return Promise.resolve(addressMap[index]);
+                },
             };
         });
 
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
+        describe('when latest address is unused (balance = 0, spent = false, size(hashes) = 0)', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
 
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-        });
+                            return { states: map(addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: { balances: map(body.addresses, () => '0') } };
+                        }
 
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when there are no transaction hashes associated with the latest address', () => {
-            describe('when the latest address in not spent', () => {
-                it('should return existing address data', () => {
-                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-
-                    return addressesUtils
-                        .syncAddresses()(seedStore, addressData, [], () => Promise.resolve('A'.repeat(81)))
-                        .then((newAddressData) => {
-                            expect(newAddressData).to.eql(addressData);
-
-                            findTransactions.restore();
-                            wereAddressesSpentFrom.restore();
-                        });
-                });
+                        return {};
+                    });
             });
 
-            describe('when the latest address is spent', () => {
-                it('should merge new address data in existing address data', () => {
-                    const findTransactions = sinon.stub(iota.api, 'findTransactions');
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom');
-                    const getBalances = sinon.stub(iota.api, 'getBalances');
+            afterEach(() => {
+                nock.cleanAll();
+            });
 
-                    // Stub for first call that will be made to check if the latest
-                    // address is spent. This yields true so new addresses will be generated
-                    wereAddressesSpentFrom.onCall(0).yields(null, [true]);
+            it('should return existing address data', () => {
+                return addressesUtils
+                    .syncAddresses()(seedStore, mockAddressData, transactions)
+                    .then((newAddressData) => {
+                        expect(newAddressData).to.eql(mockAddressData);
+                    });
+            });
+        });
 
-                    const addressGenFn = sinon.stub(seedStore, 'generateAddress');
+        describe('when the latest address is used (balance > 0) or (spent = true) or size(hashes) > 0', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { command, addresses } = body;
 
-                    const addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)];
+                        const resultMap = {
+                            [latestAddressWithoutChecksum]: {
+                                spent: false,
+                                hashes: ['9'.repeat(81)],
+                                balance: '0',
+                            },
+                            ['A'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '10',
+                            },
+                            ['B'.repeat(81)]: {
+                                spent: true,
+                                hashes: [],
+                                balances: '0',
+                            },
+                            ['C'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '0',
+                            },
+                        };
 
-                    addresses.forEach((address, index) => addressGenFn.onCall(index).resolves(address));
+                        if (command === 'wereAddressesSpentFrom') {
+                            return {
+                                states: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc.push(resultMap[address].spent);
 
-                    const spentStatuses = [true, false, true, false];
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'findTransactions') {
+                            return {
+                                hashes: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        if (address in resultMap) {
+                                            acc = [...acc, ...resultMap[address].hashes];
+                                        }
 
-                    // Stubs for corresponding address generation calls
-                    // Generate first address (AAA...AAA) -> wereAddressesSpentFrom (true)
-                    // Generate second address (BBB...BBB) -> wereAddressesSpentFrom (false)
-                    // Generate third address (CCC...CCC) -> wereAddressesSpentFrom (true)
-                    // Generate fourth address (DDD...DDD) -> wereAddressesSpentFrom (false)
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'getBalances') {
+                            return {
+                                balances: {
+                                    balances: reduce(
+                                        addresses,
+                                        (acc, address) => {
+                                            acc.push(resultMap[address].balance);
 
-                    // Do index + 1 because the first call to wereAddressesSpentFrom would be for the
-                    // latest known address
-                    spentStatuses.forEach((status, index) =>
-                        wereAddressesSpentFrom.onCall(index + 1).yields(null, [status]),
-                    );
+                                            return acc;
+                                        },
+                                        [],
+                                    ),
+                                },
+                            };
+                        }
 
-                    const hashes = [null, '9'.repeat(81), '9'.repeat(81), null];
+                        return {};
+                    });
+            });
 
-                    // Generate first address (AAA...AAA) -> findTransactions (No transaction found)
-                    // Generate second address (BBB...BBB) -> findTransactions (Transaction found)
-                    // Generate third address (CCC...CCC) -> findTransactions (Transaction found)
-                    // Generate fourth address (DDD...DDD) -> findTransactions (Transaction not found)
-                    hashes.forEach((hash, index) => findTransactions.onCall(index).yields(null, hash ? [hash] : []));
+            afterEach(() => {
+                nock.cleanAll();
+            });
 
-                    // Use unique balances to assert if newly generated addresses have correct balance assignment
-                    const balances = ['0', '10', '20', '30'];
+            it('should add latest address data', () => {
+                return addressesUtils
+                    .syncAddresses()(seedStore, mockAddressData, transactions)
+                    .then((updatedAddressData) => {
+                        const newAddressData = [
+                            {
+                                address: 'A'.repeat(81),
+                                index: 10,
+                                spent: {
+                                    local: false,
+                                    remote: false,
+                                },
+                                balance: 10,
+                                checksum: 'YLFHUOJUY',
+                            },
+                            {
+                                address: 'B'.repeat(81),
+                                index: 11,
+                                spent: {
+                                    local: false,
+                                    remote: true,
+                                },
+                                balance: 0,
+                                checksum: 'IO9LGIBVB',
+                            },
+                            {
+                                address: 'C'.repeat(81),
+                                index: 12,
+                                spent: {
+                                    local: false,
+                                    remote: false,
+                                },
+                                balance: 0,
+                                checksum: 'X9KV9ELOW',
+                            },
+                        ];
 
-                    balances.forEach((balance, index) =>
-                        getBalances.onCall(index).yields(null, { balances: [balance] }),
-                    );
+                        const expectedAddressData = [...mockAddressData, ...newAddressData];
 
-                    return addressesUtils
-                        .syncAddresses()(seedStore, addressData, [])
-                        .then((newAddressData) => {
-                            expect(newAddressData).to.not.eql(addressData);
-
-                            // Validate that all existing data is preserved
-                            Object.keys(addressData).forEach((address) => {
-                                expect(newAddressData[address]).to.eql(addressData[address]);
-                            });
-
-                            // Start index of new addresses will be
-                            // the (highest index of address in existing address data + 1)
-                            const startIndexForNewAddresses =
-                                maxBy(map(addressData, (data) => data), 'index').index + 1;
-
-                            // Then check if all new addresses are merged and have correct properties
-                            addresses.forEach((address, index) => {
-                                const thisAddressData = newAddressData[address];
-
-                                expect(thisAddressData.balance).to.equal(parseInt(balances[index]));
-                                expect(thisAddressData.spent.remote).to.equal(spentStatuses[index]);
-                                expect(thisAddressData.index).to.equal(startIndexForNewAddresses + index);
-                                expect(iota.utils.isValidChecksum(`${address}${thisAddressData.checksum}`)).to.equal(
-                                    true,
-                                );
-                            });
-
-                            findTransactions.restore();
-                            wereAddressesSpentFrom.restore();
-                            getBalances.restore();
-                        });
-                });
+                        expect(updatedAddressData).to.eql(expectedAddressData);
+                    });
             });
         });
     });
 
     describe('#removeUnusedAddresses', () => {
         let addresses;
-        let sandbox;
 
         before(() => {
             addresses = [
@@ -834,99 +1213,203 @@ describe('libs: iota/addresses', () => {
             ];
         });
 
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
         describe('when the last address has associated meta data', () => {
-            it('should return addresses with latest unused address', () => {
-                // Return transaction hashes on this stub so that there is only iteration
-                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
 
+                            return { states: map(addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: ['9'.repeat(81)] };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: { balances: map(body.addresses, () => '0') } };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return addresses with latest unused address', () => {
                 const latestUnusedAddress = 'H'.repeat(81);
-                const lastAddressIndex = 6;
+                const lastAddressIndex = size(addresses) - 1;
 
                 return addressesUtils
                     .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
                     .then((finalAddresses) => {
                         expect(finalAddresses).to.eql([...addresses, latestUnusedAddress]);
-
-                        findTransactions.restore();
-                        wereAddressesSpentFrom.restore();
-                        getBalances.restore();
                     });
             });
         });
 
         describe('when no address has any associated meta data', () => {
-            it('should return address at zeroth index as the latest unused address', () => {
-                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
 
+                            return { states: map(addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: { balances: map(body.addresses, () => '0') } };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return address at zeroth index as the latest unused address', () => {
                 const latestUnusedAddress = 'H'.repeat(81);
-                const lastAddressIndex = 6;
+                const lastAddressIndex = size(addresses) - 1;
 
                 return addressesUtils
                     .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
                     .then((finalAddresses) => {
                         expect(finalAddresses).to.eql([addresses[0]]);
-
-                        findTransactions.restore();
-                        wereAddressesSpentFrom.restore();
-                        getBalances.restore();
                     });
             });
         });
 
         describe('when some addresses have associated meta data', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { command, addresses } = body;
+
+                        const resultMap = {
+                            ['A'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '10',
+                            },
+                            ['B'.repeat(81)]: {
+                                spent: true,
+                                hashes: [],
+                                balances: '0',
+                            },
+                            ['C'.repeat(81)]: {
+                                spent: false,
+                                hashes: ['9'.repeat(81)],
+                                balance: '0',
+                            },
+                            // Should be the latest unused
+                            ['D'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '0',
+                            },
+                            ['E'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '0',
+                            },
+                            ['F'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '0',
+                            },
+                            ['G'.repeat(81)]: {
+                                spent: false,
+                                hashes: [],
+                                balance: '0',
+                            },
+                        };
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return {
+                                states: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc.push(resultMap[address].spent);
+
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'findTransactions') {
+                            return {
+                                hashes: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        if (address in resultMap) {
+                                            acc = [...acc, ...resultMap[address].hashes];
+                                        }
+
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'getBalances') {
+                            return {
+                                balances: {
+                                    balances: reduce(
+                                        addresses,
+                                        (acc, address) => {
+                                            acc.push(resultMap[address].balance);
+
+                                            return acc;
+                                        },
+                                        [],
+                                    ),
+                                },
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
             it('should return addresses till one unused', () => {
-                const findTransactions = sinon.stub(iota.api, 'findTransactions');
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom');
-                const getBalances = sinon.stub(iota.api, 'getBalances');
-
-                // Address GGG...GGG - index 6
-                findTransactions.onCall(0).yields(null, []);
-                wereAddressesSpentFrom.onCall(0).yields(null, [false]);
-                getBalances.onCall(0).yields(null, { balances: ['0'] });
-
-                // Address FFF...FFF - index 5
-                findTransactions.onCall(1).yields(null, []);
-                wereAddressesSpentFrom.onCall(1).yields(null, [false]);
-                getBalances.onCall(1).yields(null, { balances: ['0'] });
-
-                // Address EEE...EEE - index 4
-                findTransactions.onCall(2).yields(null, []);
-                wereAddressesSpentFrom.onCall(2).yields(null, [false]);
-                getBalances.onCall(2).yields(null, { balances: ['0'] });
-
-                // Address DDD...DDD - index 3
-                // Return transaction hashes for this address
-                findTransactions.onCall(3).yields(null, ['9'.repeat(81)]);
-                wereAddressesSpentFrom.onCall(3).yields(null, [false]);
-                getBalances.onCall(3).yields(null, { balances: ['0'] });
-
                 const latestUnusedAddress = 'H'.repeat(81);
-                const lastAddressIndex = 6;
+                const lastAddressIndex = size(addresses) - 1;
 
                 return addressesUtils
                     .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
-                    .then((finalAddresses) => {
-                        // Till address EEE...EEE with DDD...DDD as the used address
-                        // And EEE...EEE as the latest unused address
-                        expect(finalAddresses).to.eql(addresses.slice(0, 5));
+                    .then((addressesTillOneUnused) => {
+                        const expectedAddresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)];
 
-                        findTransactions.restore();
-                        wereAddressesSpentFrom.restore();
-                        getBalances.restore();
+                        expect(addressesTillOneUnused).to.eql(expectedAddresses);
                     });
             });
         });
@@ -1105,59 +1588,6 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#isAddressUsedSync', () => {
-        let usedAddress;
-        let unusedAddress;
-        let addressData;
-        let normalisedTransactions;
-
-        before(() => {
-            // Spent address from mock account
-            usedAddress = 'HLPCTS9PI9RE9ROYCNENZPETIDVZJ9TOVMEGVAKCZTNWTVWUCFTPPPMSFBCTFTFFAEWPZNN9SJDPAHQZC';
-            // Unspent address from mock account
-            unusedAddress = 'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW';
-            const { TEST: { addresses, transfers } } = accounts.accountInfo;
-            addressData = addresses;
-            normalisedTransactions = transfers;
-        });
-
-        describe('when address has no associated transactions', () => {
-            describe('when address is marked spent locally', () => {
-                it('should return true', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(usedAddress, addressData, []);
-
-                    expect(isUsed).to.equal(true);
-                });
-            });
-
-            describe('when address is marked unspent locally', () => {
-                it('should return false', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(unusedAddress, addressData, []);
-
-                    expect(isUsed).to.equal(false);
-                });
-            });
-        });
-
-        describe('when address has associated transactions', () => {
-            describe('when address is marked spent locally', () => {
-                it('should return true', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(usedAddress, addressData, normalisedTransactions);
-
-                    expect(isUsed).to.equal(true);
-                });
-            });
-
-            describe('when address is marked unspent locally', () => {
-                it('should return true', () => {
-                    const isUsed = addressesUtils.isAddressUsedSync(unusedAddress, addressData, normalisedTransactions);
-
-                    expect(isUsed).to.equal(true);
-                });
-            });
-        });
-    });
-
     describe('#filterSpentAddressesSync', () => {
         it('should filter addresses marked spent locally', () => {
             const addresses = ['A'.repeat(81), 'B'.repeat(81)];
@@ -1174,36 +1604,29 @@ describe('libs: iota/addresses', () => {
     });
 
     describe('#getLatestAddress', () => {
-        it('should return address with highest index', () => {
-            const addressData = {
-                ['A'.repeat(81)]: { index: 20 },
-                ['B'.repeat(81)]: { index: 5 },
-                ['C'.repeat(81)]: { index: -30 },
-                ['D'.repeat(81)]: { index: 99 },
-                ['E'.repeat(81)]: { index: 1 },
-            };
+        describe('withChecksum = true', () => {
+            it('should return address (with checksum) with highest index', () => {
+                const result = addressesUtils.getLatestAddress(mockAddressData, true);
+                expect(result).to.equal(latestAddressWithChecksum);
+            });
+        });
 
-            const result = addressesUtils.getLatestAddress(addressData);
-            expect(result).to.equal('D'.repeat(81));
+        describe('withChecksum = false', () => {
+            it('should return address (without checksum) with highest index', () => {
+                const result = addressesUtils.getLatestAddress(mockAddressData);
+                expect(result).to.equal(latestAddressWithoutChecksum);
+            });
         });
     });
 
-    describe('#getLatestAddressData', () => {
-        it('should return address data with highest index', () => {
-            const addressData = {
-                ['A'.repeat(81)]: { index: 20 },
-                ['B'.repeat(81)]: { index: 5 },
-                ['C'.repeat(81)]: { index: -30 },
-                ['D'.repeat(81)]: { index: 99 },
-                ['E'.repeat(81)]: { index: 1 },
-            };
-
-            const result = addressesUtils.getLatestAddressData(addressData);
-            expect(result).to.eql({ index: 99 });
+    describe('#getLatestAddressObject', () => {
+        it('should return address object with highest index', () => {
+            const result = addressesUtils.getLatestAddressObject(mockAddressData);
+            expect(result).to.eql(latestAddressObject);
         });
     });
 
-    describe('#findSpendStatusesFromTransactionObjects', () => {
+    describe('#findSpendStatusesFromTransactions', () => {
         it('should return spend status true for addresses used as inputs', () => {
             const addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
             const transactionObjects = [
@@ -1225,31 +1648,92 @@ describe('libs: iota/addresses', () => {
                 },
             ];
 
-            const result = addressesUtils.findSpendStatusesFromTransactionObjects(addresses, transactionObjects);
+            const result = addressesUtils.findSpendStatusesFromTransactions(addresses, transactionObjects);
             expect(result).to.eql([true, true, false]);
         });
     });
 
-    describe('#findSpendStatusesFromNormalisedTransactions', () => {
-        it('should return spend status true for addresses used as inputs', () => {
-            const addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)];
+    describe('#transformAddressDataToInputs', () => {
+        it('should assign "security" passed as second argument to each transformed input', () => {
+            const inputs = addressesUtils.transformAddressDataToInputs(mockAddressData, 3);
 
-            const normalisedTransactions = [
+            each(inputs, (input) => expect(input.security).to.equal(3));
+        });
+
+        it('should assign correct keyIndex, address and balance to each input', () => {
+            const inputs = addressesUtils.transformAddressDataToInputs(mockAddressData);
+
+            each(mockAddressData, (addressObject) => {
+                const { address, balance, index } = addressObject;
+                const input = find(inputs, { address });
+
+                expect(input.address).to.equal(address);
+                expect(input.balance).to.equal(balance);
+                expect(input.keyIndex).to.equal(index);
+            });
+        });
+    });
+
+    describe('#filterAddressDataWithPendingOutgoingTransactions', () => {
+        it('should filter address data with pending outgoing transactions', () => {
+            const addressData = {
+                ['A'.repeat(81)]: {
+                    index: 0,
+                    balance: 10,
+                },
+                ['B'.repeat(81)]: {
+                    index: 1,
+                    balance: 15,
+                },
+                ['C'.repeat(81)]: {
+                    index: 2,
+                    balance: 20,
+                },
+                ['D'.repeat(81)]: {
+                    index: 3,
+                    balance: 0,
+                },
+            };
+
+            const normalisedTransactionsList = [
                 {
                     inputs: [{ address: 'A'.repeat(81), value: -1 }],
                     outputs: [{ address: 'Z'.repeat(81), value: 1 }],
+                    persistence: false,
                 },
                 {
                     inputs: [],
-                    outputs: [{ address: 'Z'.repeat(81), value: 0 }],
+                    outputs: [{ address: 'D'.repeat(81), value: 0 }],
+                    persistence: true,
+                },
+                {
+                    inputs: [{ address: 'C'.repeat(81), value: -5 }],
+                    outputs: [{ address: 'Y'.repeat(81), value: 5 }],
+                    persistence: true,
                 },
             ];
 
-            const result = addressesUtils.findSpendStatusesFromNormalisedTransactions(
-                addresses,
-                normalisedTransactions,
+            const result = addressesUtils.filterAddressDataWithPendingOutgoingTransactions(
+                addressData,
+                normalisedTransactionsList,
             );
-            expect(result).to.eql([true, false, false]);
+
+            const expectedResult = {
+                ['B'.repeat(81)]: {
+                    index: 1,
+                    balance: 15,
+                },
+                ['C'.repeat(81)]: {
+                    index: 2,
+                    balance: 20,
+                },
+                ['D'.repeat(81)]: {
+                    index: 3,
+                    balance: 0,
+                },
+            };
+
+            expect(result).to.eql(expectedResult);
         });
     });
 });

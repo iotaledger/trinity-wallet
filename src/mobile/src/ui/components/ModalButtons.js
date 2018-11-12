@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 
@@ -106,7 +107,7 @@ class ModalButtons extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(ModalButtons);

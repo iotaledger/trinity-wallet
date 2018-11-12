@@ -7,6 +7,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'reac
 import { Navigation } from 'react-native-navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import Fonts from 'ui/theme/fonts';
@@ -153,7 +154,7 @@ class Disable2FA extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     password: state.wallet.password,
 });
 

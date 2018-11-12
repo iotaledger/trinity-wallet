@@ -7,6 +7,7 @@ import i18next from 'shared-modules/libs/i18next';
 import { Navigation } from 'react-native-navigation';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
@@ -154,7 +155,7 @@ const mapStateToProps = (state) => ({
     mode: state.settings.mode,
     currency: state.settings.currency,
     themeName: state.settings.themeName,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

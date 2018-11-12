@@ -11,6 +11,7 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
 import { setSeedShareTutorialVisitationStatus } from 'shared-modules/actions/settings';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
 import Button from 'ui/components/Button';
@@ -473,7 +474,7 @@ class SaveYourSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
     seed: state.wallet.seed,
 });

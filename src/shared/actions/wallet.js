@@ -10,14 +10,15 @@ import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getRemotePoWFromState } from '../selectors/global';
 import { DEFAULT_SECURITY } from '../config';
+import { Account } from '../storage';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
-    SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
     SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
@@ -38,6 +39,7 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
+    MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
 };
 
 /**
@@ -318,16 +320,18 @@ export const setDeepLinkInactive = () => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {object} existingAccountData
- * @param {function} genFn
  *
  * @returns {function(*): Promise<any>}
  */
 export const generateNewAddress = (seedStore, accountName, existingAccountData) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses()(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
-            .then((latestAddressData) => {
-                dispatch(updateAddresses(accountName, latestAddressData));
+        return syncAddresses()(seedStore, existingAccountData.addressData, existingAccountData.transactions)
+            .then((addressData) => {
+                // Update address data in storage (realm)
+                Account.update(accountName, { addressData });
+
+                dispatch(updateAddresses(accountName, addressData));
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {
@@ -418,17 +422,21 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 index,
                                 relevantBalances[index],
                                 seedStore,
-                                map(existingAccountState.transfers, (tx) => tx),
-                                existingAccountState.addresses,
+                                existingAccountState.transactions,
+                                existingAccountState.addressData,
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
                             )
-                                .then(({ addressData, transfer }) => {
-                                    const { newState } = syncAccountDuringSnapshotTransition(
-                                        transfer,
-                                        addressData,
+                                .then(({ latestAddressData, attachedTransaction }) => {
+                                    const newState = syncAccountDuringSnapshotTransition(
+                                        attachedTransaction,
+                                        latestAddressData,
                                         existingAccountState,
                                     );
+
+                                    // Update storage (realm)
+                                    Account.update(accountName, newState);
+                                    // Update redux store
                                     dispatch(updateAccountAfterTransition(newState));
 
                                     return result;

@@ -5,6 +5,8 @@ import { withI18n } from 'react-i18next';
 
 import { getCurrencyData } from '../../actions/settings';
 
+import { getThemeFromState } from '../../selectors/global';
+
 /**
  * Currency settings container
  * @ignore
@@ -62,7 +64,7 @@ export default function withCurrencyData(CurrencyComponent) {
         hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
         currentCurrency: state.settings.currency,
         availableCurrencies: state.settings.availableCurrencies,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
     });
 
     const mapDispatchToProps = {

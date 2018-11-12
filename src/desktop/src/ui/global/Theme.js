@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { getMarketData, getChartData, getPrice, setTimeframe } from 'actions/marketData';
 import { setOnboardingComplete, accountInfoFetchSuccess } from 'actions/accounts';
 import { updateTheme } from 'actions/settings';
+
+import { getThemeFromState } from 'selectors/global';
 import themes from 'themes/themes';
 
 const routes = [
@@ -93,7 +95,7 @@ class Theme extends PureComponent {
         const themeNames = Object.keys(themes);
 
         if (themeIndex >= themeNames.length) {
-            this.props.updateTheme(themes[originalTheme], originalTheme);
+            this.props.updateTheme(originalTheme);
 
             if (routeIndex >= routes.length - 1) {
                 Electron.screenshotsDone();
@@ -185,7 +187,7 @@ class Theme extends PureComponent {
             themeIndex: themeIndex + 1,
         });
 
-        this.props.updateTheme(themes[themeName], themeName);
+        this.props.updateTheme(themeName);
 
         setTimeout(() => {
             Electron.screenshot(fileName);
@@ -214,7 +216,7 @@ class Theme extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     themeName: state.settings.themeName,
 });
 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
@@ -129,7 +130,7 @@ class OnboardingComplete extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default WithBackPressCloseApp()(

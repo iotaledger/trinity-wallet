@@ -1,6 +1,5 @@
 import merge from 'lodash/merge';
 import map from 'lodash/map';
-import has from 'lodash/has';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -11,11 +10,11 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { computeStatusText, formatRelevantTransactions } from 'shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actions/transfers';
 import {
-    getTransfersForSelectedAccount,
+    getTransactionsForSelectedAccount,
     getSelectedAccountName,
     getAddressesForSelectedAccount,
-    getFailedBundleHashesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared-modules/libs/utils';
 import { toggleModalActivity, updateModalProps } from 'shared-modules/actions/ui';
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
 class History extends Component {
     static propTypes = {
         /** Transactions for selected account */
-        transfers: PropTypes.object.isRequired,
+        transactions: PropTypes.object.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
         /** @ignore */
@@ -100,8 +99,6 @@ class History extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        /** Failed transactions bundle hashes for selected account */
-        failedBundleHashes: PropTypes.object.isRequired,
         /** @ignore */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** @ignore */
@@ -132,7 +129,7 @@ class History extends Component {
         } = this.props;
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
         if (isModalActive && modalContent === 'historyContent') {
-            const newBundleProps = newProps.transfers[modalProps.bundle];
+            const newBundleProps = newProps.transactions[modalProps.bundle];
             if (
                 isRetryingFailedTransaction !== newProps.isRetryingFailedTransaction ||
                 isAutoPromoting !== newProps.isAutoPromoting ||
@@ -147,7 +144,7 @@ class History extends Component {
                         newProps.currentlyPromotingBundleHash === modalProps.bundle && !newBundleProps.persistence,
                 });
             }
-            if (modalProps.bundle in newProps.transfers && newBundleProps.persistence !== modalProps.persistence) {
+            if (modalProps.bundle in newProps.transactions && newBundleProps.persistence !== modalProps.persistence) {
                 this.props.updateModalProps({
                     persistence: newBundleProps.persistence,
                     status: computeStatusText(
@@ -184,7 +181,7 @@ class History extends Component {
      */
     prepTransactions() {
         const {
-            transfers,
+            transactions,
             theme: { primary, secondary, body, bar, dark },
             mode,
             t,
@@ -195,9 +192,8 @@ class History extends Component {
             isAutoPromoting,
             isPromotingTransaction,
             isRetryingFailedTransaction,
-            failedBundleHashes,
         } = this.props;
-        const relevantTransfers = formatRelevantTransactions(transfers, addresses);
+        const relevantTransfers = formatRelevantTransactions(transactions, addresses);
 
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,
@@ -207,7 +203,17 @@ class History extends Component {
 
         const proofOfWorkFunction = getPowFn();
         const formattedTransfers = map(relevantTransfers, (transfer) => {
-            const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
+            const {
+                timestamp,
+                incoming,
+                persistence,
+                transferValue,
+                inputs,
+                outputs,
+                bundle,
+                message,
+                broadcasted,
+            } = transfer;
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
@@ -224,6 +230,7 @@ class History extends Component {
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 status: computeStatusText(outputs, persistence, incoming),
                 outputs,
+                isFailedTransaction: !broadcasted,
                 updateModalProps: (content) => this.props.updateModalProps(content),
                 onPress: (props) => {
                     if (isRefreshing) {
@@ -235,7 +242,6 @@ class History extends Component {
                             disableWhen: isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction,
                             isRetryingFailedTransaction,
                             currentlyPromotingBundleHash,
-                            isFailedTransaction: (bundle) => has(failedBundleHashes, bundle),
                             retryFailedTransaction: (bundle) =>
                                 this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
                             promote: (bundle) =>
@@ -336,11 +342,11 @@ class History extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    transfers: getTransfersForSelectedAccount(state),
+    transactions: getTransactionsForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
     addresses: getAddressesForSelectedAccount(state),
     mode: state.settings.mode,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isSyncing: state.ui.isSyncing,
@@ -348,7 +354,6 @@ const mapStateToProps = (state) => ({
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isAutoPromoting: state.polling.isAutoPromoting,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
-    failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
     modalProps: state.ui.modalProps,
     isModalActive: state.ui.isModalActive,

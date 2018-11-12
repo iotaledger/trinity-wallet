@@ -114,5 +114,7 @@ src/mobile/nodejs-assets/build-native-modules*
 src/mobile/android/build/nodejs-native-assets-temp-build*
 src/mobile/android/build/nodejs-assets*
 
-# Realm
-src/shared/default.realm*
+# realm
+*.realm
+*.realm.lock
+*.management/

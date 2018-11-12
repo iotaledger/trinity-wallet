@@ -9,6 +9,7 @@ import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unch
 import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import tinycolor from 'tinycolor2';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
@@ -276,7 +277,7 @@ class SaveSeedConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

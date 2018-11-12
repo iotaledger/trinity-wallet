@@ -5,6 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
@@ -132,7 +133,7 @@ class SeedVaultBackup extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['seedVault', 'global'])(connect(mapStateToProps, null)(SeedVaultBackup));

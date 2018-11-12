@@ -28,6 +28,7 @@ import {
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'shared-modules/actions/polling';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
@@ -219,7 +220,7 @@ class TopBar extends Component {
      */
     onChange(newSeedIdx) {
         const { isGeneratingReceiveAddress } = this.props;
-        const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
+        const hasAddresses = Object.keys(this.props.selectedAccount.addressData).length > 0;
 
         // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
@@ -550,7 +551,7 @@ const mapStateToProps = (state) => ({
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: selectAccountInfo(state),
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     notificationLog: state.alerts.notificationLog,
     isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,

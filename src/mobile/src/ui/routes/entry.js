@@ -9,14 +9,17 @@ import sharedStore from 'shared-modules/store';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import Themes from 'shared-modules/themes/themes';
 import { ActionTypes } from 'shared-modules/actions/wallet';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
-import { persistStoreAsync, migrate, resetIfKeychainIsEmpty } from 'libs/store';
+import { resetIfKeychainIsEmpty, migrate } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
+import { initialise as initialiseStorage } from 'shared-modules/storage';
+import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
 
 const launch = (store) => {
     // Disable auto node switching.
@@ -49,6 +52,8 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
+
+    // Render initial screen
     renderInitialScreen(initialScreen, state);
 };
 
@@ -58,6 +63,8 @@ const onAppStart = () => {
 };
 
 const renderInitialScreen = (initialScreen, state) => {
+    const theme = Themes[state.settings.themeName] || Themes.Default;
+
     Navigation.setRoot({
         root: {
             stack: {
@@ -68,7 +75,7 @@ const renderInitialScreen = (initialScreen, state) => {
                             name: initialScreen,
                             options: {
                                 layout: {
-                                    backgroundColor: state.settings.theme.body.bg,
+                                    backgroundColor: theme.body.bg,
                                     orientation: ['portrait'],
                                 },
                                 topBar: {
@@ -76,12 +83,12 @@ const renderInitialScreen = (initialScreen, state) => {
                                     drawBehind: true,
                                     elevation: 0,
                                     background: {
-                                        color: state.settings.theme.body.bg,
+                                        color: theme.body.bg,
                                     },
                                 },
                                 statusBar: {
                                     drawBehind: true,
-                                    backgroundColor: state.settings.theme.body.bg,
+                                    backgroundColor: theme.body.bg,
                                 },
                             },
                         },
@@ -157,10 +164,24 @@ const hasConnection = (
     );
 };
 
+// Initialise application.
 onAppStart()
-    .then(() => persistStoreAsync())
-    .then(({ store, restoredState }) => migrate(store, restoredState))
+    //  Initialise persistent storage
+    .then(() => initialiseStorage())
+    // Restore persistent storage (Map to redux store)
+    .then(() =>
+        Promise.resolve(
+            sharedStore.dispatch({
+                type: ActionTypes.MAP_STORAGE_TO_STATE,
+                payload: mapStorageToState(),
+            }),
+        ),
+    )
+    // Migrate state if necessary.
+    .then(() => migrate(sharedStore))
+    // Reset persistent state if keychain has no entries
     .then((store) => resetIfKeychainIsEmpty(store))
+    // Launch application
     .then((store) => {
         overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
@@ -169,12 +190,17 @@ onAppStart()
                 type: ActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
+
+            // Fetch remote nodes list
             fetchNodeList(store);
+            // Listener callback for connection change event
             startListeningToConnectivityChanges(store);
 
+            // Register components
             registerScreens(store, Provider);
             withNamespaces.setI18n(i18next);
 
+            // Render initial screen
             launch(store);
         };
 

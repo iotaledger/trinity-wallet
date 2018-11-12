@@ -7,6 +7,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFee
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
 import Seedbox from 'ui/components/SeedBox';
@@ -357,7 +358,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountType: getSelectedAccountType(state),
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

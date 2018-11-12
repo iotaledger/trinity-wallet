@@ -8,6 +8,7 @@ import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithUserActivity from 'ui/components/UserActivity';
 import { width, height } from 'libs/dimensions';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -287,7 +288,7 @@ class SeedReentry extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     minimised: state.ui.minimised,
 });
 

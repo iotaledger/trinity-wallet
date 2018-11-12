@@ -3,10 +3,11 @@ import { BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid } from 'libs/device';
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default () => (C) => {

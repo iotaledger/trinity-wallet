@@ -1,9 +1,11 @@
+import assign from 'lodash/assign';
 import {
-    selectedAccountStateFactory,
+    selectedAccountTasksFactory,
+    selectedAccountSetupInfoFactory,
     getAccountNamesFromState,
-    getNodesFromState,
-    getSelectedNodeFromState,
+    selectedAccountStateFactory,
 } from '../selectors/accounts';
+import { getNodesFromState, getSelectedNodeFromState } from '../selectors/global';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { setSeedIndex } from './wallet';
 import {
@@ -18,6 +20,7 @@ import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
+import { Account, Wallet } from '../storage';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -27,9 +30,6 @@ export const ActionTypes = {
     REMOVE_ACCOUNT: 'IOTA/ACCOUNTS/REMOVE_ACCOUNT',
     SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNTS/SET_ONBOARDING_COMPLETE',
     UPDATE_ACCOUNT_AFTER_TRANSITION: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_TRANSITION',
-    SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
-    UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
-    REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNTS/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
     FULL_ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST',
     FULL_ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
     FULL_ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_ERROR',
@@ -42,8 +42,6 @@ export const ActionTypes = {
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
     MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
-    MARK_BUNDLE_BROADCAST_STATUS_PENDING: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
-    MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
     SYNC_ACCOUNT_BEFORE_SWEEPING: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_SWEEPING',
     OVERRIDE_ACCOUNT_INFO: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
 };
@@ -109,10 +107,15 @@ export const updateAddresses = (accountName, addresses) => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const changeAccountName = (payload) => ({
-    type: ActionTypes.CHANGE_ACCOUNT_NAME,
-    payload,
-});
+export const changeAccountName = (payload) => {
+    const { oldAccountName, newAccountName } = payload;
+    Account.migrate(oldAccountName, newAccountName);
+
+    return {
+        type: ActionTypes.CHANGE_ACCOUNT_NAME,
+        payload,
+    };
+};
 
 /**
  * Dispatch to remove an account and its associated data from state
@@ -122,10 +125,14 @@ export const changeAccountName = (payload) => ({
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const removeAccount = (payload) => ({
-    type: ActionTypes.REMOVE_ACCOUNT,
-    payload,
-});
+export const removeAccount = (payload) => {
+    Account.delete(payload);
+
+    return {
+        type: ActionTypes.REMOVE_ACCOUNT,
+        payload,
+    };
+};
 
 /**
  * Dispatch to set onboarding as completed
@@ -135,10 +142,14 @@ export const removeAccount = (payload) => ({
  *
  * @returns {{type: {string}, payload: {boolean} }}
  */
-export const setOnboardingComplete = (payload) => ({
-    type: ActionTypes.SET_ONBOARDING_COMPLETE,
-    payload,
-});
+export const setOnboardingComplete = (payload) => {
+    Wallet.setOnboardingComplete();
+
+    return {
+        type: ActionTypes.SET_ONBOARDING_COMPLETE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update account state after snapshot transition
@@ -150,45 +161,6 @@ export const setOnboardingComplete = (payload) => ({
  */
 export const updateAccountAfterTransition = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
-    payload,
-});
-
-/**
- * Dispatch to store unconfirmed transaction tails in state for auto promotion
- *
- * @method setNewUnconfirmedBundleTails
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setNewUnconfirmedBundleTails = (payload) => ({
-    type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
-    payload,
-});
-
-/**
- * Dispatch to update unconfirmed transaction tails in state with new unconfirmed transactions
- *
- * @method updateUnconfirmedBundleTails
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const updateUnconfirmedBundleTails = (payload) => ({
-    type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
-    payload,
-});
-
-/**
- * Dispatch to remove bundle hash (payload) from unconfirmed transaction tails for auto promotion
- *
- * @method removeBundleFromUnconfirmedBundleTails
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const removeBundleFromUnconfirmedBundleTails = (payload) => ({
-    type: ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
@@ -323,42 +295,15 @@ export const setBasicAccountInfo = (payload) => ({
  * @param {object} payload
  * @returns {{type: {string}, payload: {object} }}
  */
-export const markTaskAsDone = (payload) => ({
-    type: ActionTypes.MARK_TASK_AS_DONE,
-    payload,
-});
+export const markTaskAsDone = (payload) => {
+    const { accountName, ...rest } = payload;
+    Account.update(accountName, rest);
 
-/**
- * Dispatch to mark broadcast status of a failed transaction as pending
- *
- * During a transaction, after the inputs are signed, if there is a network error during broadcast
- * we need to store the signed trytes in state so a user could broadcast them afterwards
- *
- * @method markBundleBroadcastStatusPending
- *
- * @param {object} payload
- * @returns {{type: {string}, payload: {object} }}
- */
-export const markBundleBroadcastStatusPending = (payload) => ({
-    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING,
-    payload,
-});
-
-/**
- * Dispatch to mark broadcast status of a failed transaction as complete
- *
- * When a failed transaction is successfully broadcast,
- * dispatching this action will remove locally stored signed trytes for the provided bundle hash
- *
- * @method markBundleBroadcastStatusPending
- *
- * @param {object} payload
- * @returns {{type: {string}, payload: {object} }}
- */
-export const markBundleBroadcastStatusComplete = (payload) => ({
-    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE,
-    payload,
-});
+    return {
+        type: ActionTypes.MARK_TASK_AS_DONE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to update account state before recovering/sweeping
@@ -414,6 +359,15 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
                 result.accountType = getState().wallet.additionalAccountType;
+                // Create account in storage (realm)
+                Account.create(
+                    assign({}, result, {
+                        type: result.accountType,
+                        name: result.accountName,
+                        ...selectedAccountTasksFactory(accountName)(getState()),
+                        ...selectedAccountSetupInfoFactory(accountName)(getState()),
+                    }),
+                );
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })
@@ -442,7 +396,6 @@ export const getFullAccountInfo = (seedStore, accountName) => {
  * @method manuallySyncAccount
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
- * @param {function} genFn
  *
  * @returns {function} dispatch
  */
@@ -451,14 +404,18 @@ export const manuallySyncAccount = (seedStore, accountName) => {
         dispatch(manualSyncRequest());
 
         const selectedNode = getSelectedNodeFromState(getState());
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(getAccountData)(seedStore, accountName)
+        )(getAccountData)(seedStore, accountName, existingAccountState)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
+
+                // Update account in storage (realm)
+                Account.update(accountName, result);
                 dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
@@ -486,8 +443,8 @@ export const manuallySyncAccount = (seedStore, accountName) => {
 export const getAccountInfo = (seedStore, accountName, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
-        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
         const selectedNode = getSelectedNodeFromState(getState());
+        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
@@ -495,6 +452,10 @@ export const getAccountInfo = (seedStore, accountName, notificationFn) => {
         )(syncAccount)(existingAccountState, seedStore, notificationFn)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
+
+                // Update account in storage (realm)
+                Account.update(accountName, result);
+
                 dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
@@ -523,7 +484,6 @@ export const deleteAccount = (accountName) => (dispatch) => {
  * @method cleanUpAccountState
  * @param {object} seedStore
  * @param {string} accountName
- * @param {function} genFn
  *
  * @returns {function(*, *): Promise<object>}
  */
@@ -533,7 +493,15 @@ export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getSta
     return withRetriesOnDifferentNodes(
         [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
         () => dispatch(generateAccountSyncRetryAlert()),
-    )(getAccountData)(seedStore, accountName).then(({ node, result }) => {
+    )(getAccountData)(
+        seedStore,
+        accountName,
+        // Do not pass existing account state
+        // Empty account state will lead to fresh address data & transactions
+    ).then(({ node, result }) => {
+        // Update storage (realm)
+        Account.update(accountName, result);
+
         dispatch(changeNode(node));
         dispatch(overrideAccountInfo(result));
 

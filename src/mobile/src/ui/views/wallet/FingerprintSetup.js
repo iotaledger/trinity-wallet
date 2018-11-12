@@ -5,6 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { setFingerprintStatus } from 'shared-modules/actions/settings';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { withNamespaces } from 'react-i18next';
@@ -249,7 +250,7 @@ class FingerprintEnable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 

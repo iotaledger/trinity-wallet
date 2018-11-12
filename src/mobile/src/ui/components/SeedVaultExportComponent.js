@@ -15,6 +15,7 @@ import { Styling } from 'ui/theme/general';
 import { hash } from 'libs/keychain';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import InfoBox from './InfoBox';
 import Button from './Button';
@@ -408,7 +409,7 @@ class SeedVaultExportComponent extends Component {
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountType: getSelectedAccountType(state),
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     minimised: state.ui.minimised,
     storedPasswordHash: state.wallet.password,
 });

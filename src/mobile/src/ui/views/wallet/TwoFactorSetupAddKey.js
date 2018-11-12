@@ -7,6 +7,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { Navigation } from 'react-native-navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
@@ -211,7 +212,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     password: state.wallet.password,
 });
 

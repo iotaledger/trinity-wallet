@@ -22,6 +22,7 @@ import Print from 'ui/components/PrintModal';
 import BiometricInfo from 'ui/components/BiometricInfoModal';
 import NotificationLog from 'ui/components/NotificationLogModal';
 import { isAndroid } from 'libs/device';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
@@ -105,7 +106,7 @@ export default function withSafeAreaView(WrappedComponent) {
         modalProps: state.ui.modalProps,
         isModalActive: state.ui.isModalActive,
         modalContent: state.ui.modalContent,
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
     });
 
     const mapDispatchToProps = {

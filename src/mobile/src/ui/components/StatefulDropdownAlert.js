@@ -7,6 +7,7 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling, getBackgroundColor } from 'ui/theme/general';
 import { rgbToHex } from 'shared-modules/libs/utils';
 
@@ -194,7 +195,7 @@ class StatefulDropdownAlert extends Component {
 const mapStateToProps = (state) => ({
     alerts: state.alerts,
     hasConnection: state.wallet.hasConnection,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     currentRoute: state.ui.currentRoute,
 });
 

@@ -1,17 +1,11 @@
 import get from 'lodash/get';
-import omitBy from 'lodash/omitBy';
-import each from 'lodash/each';
 import size from 'lodash/size';
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
-import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import keys from 'lodash/keys';
-import merge from 'lodash/merge';
 import filter from 'lodash/filter';
-import cloneDeep from 'lodash/cloneDeep';
-import unset from 'lodash/unset';
 import validUrl from 'valid-url';
 
 /**
@@ -152,34 +146,6 @@ export const rearrangeObjectKeys = (obj, prop) => {
     }
 
     return obj;
-};
-
-export const updatePersistedState = (incomingState, restoredState) => {
-    const blacklistedStateProps = ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'];
-
-    const incomingStateWithWhitelistedProps = omitBy(incomingState, (value, key) =>
-        includes(blacklistedStateProps, key),
-    );
-
-    const { settings: { theme, versions } } = incomingStateWithWhitelistedProps;
-    const restoredCopy = cloneDeep(restoredState);
-
-    if ('settings' in restoredCopy) {
-        restoredCopy.settings.theme = theme;
-        restoredCopy.settings.versions = versions;
-    }
-
-    if ('accounts' in restoredCopy) {
-        const accountNames = keys(restoredCopy.accounts.accountInfo);
-
-        each(accountNames, (accountName) => {
-            restoredCopy.accounts.accountInfo[accountName].hashes = [];
-        });
-
-        unset(restoredCopy.accounts, ['txHashesForUnspentAddresses', 'pendingTxHashesForSpentAddresses']);
-    }
-
-    return merge({}, incomingStateWithWhitelistedProps, restoredCopy);
 };
 
 /**

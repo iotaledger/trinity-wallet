@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedStore from 'libs/SeedStore';
 import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
@@ -236,7 +237,7 @@ class SetPassword extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountName: state.wallet.additionalAccountName,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

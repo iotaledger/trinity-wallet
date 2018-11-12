@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 
 export default function withDropdownAlert(WrappedComponent) {
@@ -24,7 +25,7 @@ export default function withDropdownAlert(WrappedComponent) {
     }
 
     const mapStateToProps = (state) => ({
-        theme: state.settings.theme,
+        theme: getThemeFromState(state),
         isModalActive: state.ui.isModalActive,
     });
 

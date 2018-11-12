@@ -6,6 +6,7 @@ import map from 'lodash/map';
 import join from 'lodash/join';
 import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
@@ -19,23 +20,17 @@ import {
     storeAndBroadcastAsync,
     isNodeSynced,
 } from '../libs/iota/extendedApi';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getFailedBundleHashesForSelectedAccount,
-    getNodesFromState,
-    getSelectedNodeFromState,
-} from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getRemotePoWFromState, getNodesFromState, getSelectedNodeFromState } from '../selectors/global';
 import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
-    isStillAValidTransaction,
     findPromotableTail,
     prepareTransferArray,
-    filterInvalidPendingTransactions,
-    getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
+    constructBundlesFromTransactions,
+    isFundedBundle,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -48,15 +43,13 @@ import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
-    markBundleBroadcastStatusComplete,
-    markBundleBroadcastStatusPending,
 } from './accounts';
 import {
     shouldAllowSendingToAddress,
     getAddressesUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import { getInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
     generateTransferErrorAlert,
@@ -67,6 +60,7 @@ import {
 import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 import { DEFAULT_RETRIES } from '../config';
+import { Account } from '../storage';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -222,37 +216,50 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
         );
     }
 
-    let accountState = {};
+    let accountState = selectedAccountStateFactory(accountName)(getState());
+    const getTailTransactionsForThisBundleHash = (transactions) =>
+        filter(transactions, (transaction) => transaction.bundle === bundleHash && transaction.currentIndex === 0);
 
-    return syncAccount()(selectedAccountStateFactory(accountName)(getState()))
+    return syncAccount()(accountState)
         .then((newAccountState) => {
             accountState = newAccountState;
 
+            Account.update(accountName, accountState);
+
             dispatch(syncAccountBeforeManualPromotion(accountState));
 
-            const transaction = accountState.transfers[bundleHash];
+            const transactionsForThisBundleHash = filter(
+                accountState.transactions,
+                (transaction) => transaction.bundle === bundleHash,
+            );
 
-            if (transaction.persistence) {
+            if (some(transactionsForThisBundleHash, (transaction) => transaction.persistence === true)) {
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            return isStillAValidTransaction()(transaction, accountState.addresses);
+            const bundles = constructBundlesFromTransactions(
+                filter(accountState.transactions, (transaction) => transaction.bundle === bundleHash),
+            );
+
+            if (isEmpty(filter(bundles, iota.utils.isBundle))) {
+                throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
+            }
+
+            return isFundedBundle()(head(bundles));
         })
-        .then((isValid) => {
-            if (!isValid) {
+        .then((isFunded) => {
+            if (!isFunded) {
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
-            const tailTransactions = accountState.transfers[bundleHash].tailTransactions;
-
-            return findPromotableTail()(tailTransactions, 0);
+            return findPromotableTail()(getTailTransactionsForThisBundleHash(accountState.transactions), 0);
         })
         .then((consistentTail) => {
             return dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
-                    accountState.transfers[bundleHash].tailTransactions,
+                    getTailTransactionsForThisBundleHash(accountState.transactions),
                     true,
                     // If proof of work configuration is set to remote, pass proof of work function as null
                     remotePoW ? null : powFn,
@@ -377,9 +384,12 @@ export const forceTransactionPromotion = (
             }
 
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-            const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
+            const newState = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
 
-            // Update local store
+            // Update storage (realm)
+            Account.update(accountName, newState);
+
+            // Update redux store
             dispatch(updateAccountAfterReattachment(newState));
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
@@ -456,60 +466,12 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Only update the local store with updated account information after this transaction is successfully completed.
                 accountState = newState;
 
-                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
-
-                return filterInvalidPendingTransactions()(valueTransfers, accountState.addresses);
-            })
-            .then((filteredTransfers) => {
-                const { addresses, transfers } = accountState;
-                const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
-
                 // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                // Prepare inputs.
-                return getUnspentInputs()(
-                    // Latest address data
-                    addresses,
-                    // Normalised transactions list
-                    map(transfers, (tx) => tx),
-                    // Pending value transactions
-                    filteredTransfers,
-                    // Start index for address (for input selection)
-                    startIndex,
-                    // Transfer value
-                    value,
-                    // Inputs
-                    null,
-                );
+                return getInputs()(accountState.addressData, accountState.transactions, value, seedStore.maxInputs);
             })
             .then((inputs) => {
-                // Input selection prepares inputs sequentially starting from the first address with balance
-                // If total balance is less than transfer value, do not allow transaction.
-                if (get(inputs, 'totalBalance') < value) {
-                    throw new Error(Errors.NOT_ENOUGH_BALANCE);
-
-                    // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
-                    // Contains only spendable balance
-                    // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-                } else if (get(inputs, 'availableBalance') < value) {
-                    const addresses = accountState.addresses;
-                    const transfers = accountState.transfers;
-                    const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
-
-                    if (size(pendingOutgoingTransfers)) {
-                        throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    } else {
-                        if (size(get(inputs, 'spentAddresses'))) {
-                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
-                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
-                            throw new Error(Errors.INCOMING_TRANSFERS);
-                        }
-
-                        throw new Error(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
-                    }
-                }
-
                 // Do not allow receiving address to be one of the user's own input addresses.
                 const isSendingToAnyInputAddress = some(
                     get(inputs, 'inputs'),
@@ -522,24 +484,19 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder()(
-                    accountState.addresses,
-                    map(accountState.transfers, (tx) => tx),
-                    seedStore,
-                    [
-                        // Make sure inputs are blacklisted
-                        ...map(transferInputs, (input) => input.address),
-                        // Make sure receive address is blacklisted
-                        iota.utils.noChecksum(receiveAddress),
-                    ],
-                );
+                return getAddressesUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
+                    // Make sure inputs are blacklisted
+                    ...map(transferInputs, (input) => input.address),
+                    // Make sure receive address is blacklisted
+                    iota.utils.noChecksum(receiveAddress),
+                ]);
             })
             .then(({ remainderAddress, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
                 // at index 53 it would include address data for 51, 52 and 53.
-                accountState.addresses = addressDataUptoRemainder;
+                accountState.addressData = addressDataUptoRemainder;
 
                 return {
                     inputs: transferInputs,
@@ -717,16 +674,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         accountState,
                     );
 
-                    // Temporarily mark this transaction as failed.
-                    // As the inputs were signed and already exposed to the network
-                    dispatch(
-                        markBundleBroadcastStatusPending({
-                            accountName,
-                            bundleHash: head(cached.transactionObjects).bundle,
-                            transactionObjects: cached.transactionObjects,
-                        }),
-                    );
-
                     dispatch(updateAccountInfoAfterSpending(newState));
                     // Clear send screen text fields
                     dispatch(clearSendFields());
@@ -749,7 +696,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                     );
-                } else if (message === Errors.NOT_ENOUGH_BALANCE) {
+                } else if (message === Errors.INSUFFICIENT_BALANCE) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -812,16 +759,17 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  */
 export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-    const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
+    const failedTransactionsForThisBundleHash = filter(
+        existingAccountState.transactions,
+        (tx) => tx.bundle === bundleHash,
+    );
 
     dispatch(retryFailedTransactionRequest());
 
     // First check spent statuses against transaction addresses
     return (
-        categoriseAddressesBySpentStatus()(
-            map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
-        )
+        categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
@@ -830,19 +778,17 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
                 // If all addresses are still unspent, retry
                 return retry()(
-                    existingFailedTransactionsForThisAccount[bundleHash],
+                    failedTransactionsForThisBundleHash,
                     // If proof of work is set to remote, pass in null as the proof of work function
                     shouldOffloadPow ? null : powFn,
                 );
             })
             .then(({ transactionObjects }) => {
-                dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
+                // Update state
+                const newState = syncAccountOnSuccessfulRetryAttempt(transactionObjects, existingAccountState);
 
-                const { newState } = syncAccountOnSuccessfulRetryAttempt(
-                    accountName,
-                    transactionObjects,
-                    existingAccountState,
-                );
+                // Persist updated state
+                Account.update(accountName, newState);
 
                 // Since this transaction was never sent to the tangle
                 // Generate the same alert we display when a transaction is successfully sent to the tangle

@@ -18,6 +18,14 @@ class Keychain {
     }
 
     /**
+     * Return max supported input count
+     * @returns {number} - 0 for no limit
+     */
+    get maxInputs() {
+        return 0;
+    }
+
+    /**
      * Create new account
      * @param {string} accountId - Account identifier
      * @param {string} seed - Account seed

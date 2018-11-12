@@ -1,7 +1,8 @@
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
-import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getRemotePoWFromState } from '../selectors/global';
 import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { cleanUpAccountState, updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
 import { sweep } from '../libs/iota/recovery';
@@ -14,6 +15,7 @@ import i18next from '../libs/i18next';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { generateAlert } from './alerts';
 import Errors from '../libs/errors';
+import { Account } from '../storage';
 
 /**
  * Do byte-trit check
@@ -127,9 +129,12 @@ export const recover = (accountName, seedStore, inputs, powFn, dialogFn) => asyn
                 // Sync account state in each iteration
                 return syncAccount()(selectedAccountStateFactory(accountName)(getState()), seedStore)
                     .then((newState) => {
+                        // Update storage (realm)
+                        Account.update(accountName, newState);
+                        // Update redux store
                         dispatch(syncAccountBeforeSweeping(newState));
 
-                        const receiveAddress = getLatestAddress(newState.addresses);
+                        const receiveAddress = getLatestAddress(newState.addressData);
 
                         return (
                             dialogFn(
@@ -159,16 +164,16 @@ export const recover = (accountName, seedStore, inputs, powFn, dialogFn) => asyn
                     .then(({ transactionObjects }) =>
                         syncAccountAfterSpending()(
                             seedStore,
-                            accountName,
                             transactionObjects,
                             // Since we updated state before sweeping
                             // Get the latest state directly via store.getState()
                             selectedAccountStateFactory(accountName)(getState()),
-                            // We are sure that it is a value transaction
-                            true,
                         ),
                     )
-                    .then(({ newState }) => {
+                    .then((newState) => {
+                        // Update storage (realm)
+                        Account.update(accountName, newState);
+                        // Update redux store
                         dispatch(updateAccountInfoAfterSpending(newState));
                         result.sweptInputs.push(input);
 
