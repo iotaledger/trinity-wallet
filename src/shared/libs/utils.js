@@ -309,3 +309,23 @@ export const rgbToHex = (c) => {
         .map(Number);
     return convert(c);
 };
+
+/**
+ * Replaces all non alpha numeric (plus _ and -) characters for an empty string
+ *
+ * @method removeNonAlphaNumeric
+ * @param {string} source - String with non ASCII chars to be cleansed
+ * @param {string} fallback - Optional string to be returned in the event of a falsy source
+ *
+ * @returns {string} Returns a new string without non ASCII characters
+ */
+export const removeNonAlphaNumeric = (source, fallback = '') => {
+    let newStr = '';
+    if (source) {
+        newStr = source.replace(/[^a-zA-Z0-9_-]/g, '');
+    }
+    if (!newStr && fallback) {
+        newStr = fallback.replace(/[^a-zA-Z0-9_-]/g, '');
+    }
+    return newStr;
+};

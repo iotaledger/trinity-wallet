@@ -276,7 +276,7 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "新しいアドレス",
+        "generateNewAddress": "アドレスを同期",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
@@ -347,7 +347,9 @@
         "advanced": "上級",
         "standard": "標準",
         "advancedModeExplanation": "上級モードでは、より詳細な技術的情報が表示されます。",
-        "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。",
+        "modeUpdated": "モード更新",
+        "modeUpdatedExplanation": "モード{{mode}}に変更しました"
     },
     "settings": {
         "transferSending": "送金中",
@@ -405,7 +407,6 @@
         "reset": "リセット"
     },
     "walletSetup": {
-        "creatingSeed": "シード作成",
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouNeedASeed": "新しいシードの作成は必要でしょうか？",
         "seedExplanation": "IOTAのシードはあなたの資金のマスターキーです。シードは81文字で、アルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。",
@@ -534,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "シードを閲覧するにはパスワードを入力してください。",
         "viewSeed": "シードを表示",
-        "hideSeed": "シードを隠す"
+        "hideSeed": "シードを隠す",
+        "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
+        "accountIndex": "Ledgerのアカウントインデックス",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
@@ -669,7 +673,9 @@
         "newVersionAvailable": "新しいバージョンが利用可能です。",
         "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。アップデートする前に、リリースノートを注意深く読み、ダウンロード元をご確認ください：",
         "installUpdate": "インストール、アップデート、リスタートを行う",
-        "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。"
+        "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
+        "downloadingUpdate": "アップデートをダウンロード中",
+        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
@@ -712,5 +718,37 @@
         "proceed": "資金回復に進む",
         "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
         "sweepConfirmationTitle": "移動を承認"
+    },
+    "ledger": {
+        "ready": "Ledger端末の接続が完了し、準備完了です",
+        "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
+        "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
+        "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
+        "proceedWithLedger": "Ledgerのセットアップを続行する",
+        "accountIndex": "アカウントインデックス",
+        "accountPage": "アカウントページ",
+        "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
+        "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
+        "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",
+        "connectionError": "Ledgerに接続できません",
+        "connectionErrorExplanation": "Ledgerがきちんと接続され、ロックが解除されていることをお確かめください。",
+        "connectionTitle": "Ledgerを接続してください",
+        "connectionExplanation": "この機能を使うには、Ledgerデバイスを接続する必要があります。",
+        "transactionTitle": "Ledgerでスクロールして、取引を承認してください",
+        "transactionExplanation": "Ledgerデバイスで、送金する取引を承認してください。",
+        "applicationTitle": "LedgerのIOTAアプリを開いてください",
+        "applicationExplanation": "Trinityウォレットを使い続けるには、LedgerでIOTAアプリを開いてください。",
+        "cannotSendZeroValueTitle": "0値の取引は送金できません",
+        "cannotSendZeroValueExplanation": "Ledger端末では0値の取引は送金できません。",
+        "ledgerDisconnectedTitle": "Ledger端末が切断されました",
+        "ledgerDisconnectedExplanation": "Ledger端末が切断されました。再接続してもう一度お試しください。",
+        "ledgerDeniedTitle": "取引拒否",
+        "ledgerDeniedExplanation": "Ledger端末で取引が拒否されました。",
+        "ledgerIncorrectIndex": "Ledger端末との不一致",
+        "ledgerIncorrectIndexExplanation": "Ledger端末がアカウントにリンクされている端末と一致しないか、または復元フレーズが変更されています。",
+        "checkAddress": "受取用のアドレスを確認してください",
+        "checkAddressExplanation": "受取用アドレスがLedger端末に表示されているアドレスと一致することをご確認ください。表示されていない場合は、「アドレスの同期」を押してください。",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

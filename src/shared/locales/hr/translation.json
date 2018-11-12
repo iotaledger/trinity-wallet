@@ -55,8 +55,8 @@
         "password": "Lozinka",
         "unrecognisedPassword": "Neispravna Lozinka",
         "unrecognisedPasswordExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Nepoznat račun",
+        "unrecognisedAccountExplanation": "Račun pod nazivom {{accountName}} nije prepoznat. Razmislite o resetiranju vašeg novčanika.",
         "emptyPasswordExplanation": "Morate unijeti lozinku. Molimo pokušajte ponovno.",
         "capsLockIsOn": "Caps Lock je uključen",
         "syncInProgress": "Sinkronizacija u tijeku",
@@ -248,8 +248,8 @@
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
-        "individualLetterCount": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
-        "individualLetterCount_plural": "Preostali broj slova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "individualLetterCount": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
+        "individualLetterCount_plural": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
         "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
         "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
         "whatIsASeed": "Što je seed?"
@@ -276,7 +276,7 @@
         "copyAddress": "Kopiraj Adresu",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa kopirana u međuspremnik.",
-        "generateNewAddress": "Nova adresa",
+        "generateNewAddress": "Sinkroniziraj adresu",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrijebljeno",
         "missingPermission": "Potreban pristup datotečnom sustavu",
@@ -345,9 +345,11 @@
     },
     "modeSelection": {
         "advanced": "Napredni",
-        "standard": "Standardno",
+        "standard": "Standardni",
         "advancedModeExplanation": "Napredni način rada prikazat će više detaljnih tehničkih informacija.",
-        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom."
+        "modesExplanation": "Omogućavanje naprednog načina rada preporučuje se isključivo korisnicima iskusnim s IOTA protokolom.",
+        "modeUpdated": "Način rada ažuriran",
+        "modeUpdatedExplanation": "Promijenili ste način rada u {{mode}}"
     },
     "settings": {
         "transferSending": "Slanje transakcije",
@@ -405,7 +407,6 @@
         "reset": "Resetiraj"
     },
     "walletSetup": {
-        "creatingSeed": "Kreiranje seed-a",
         "okay": "U redu. Idemo postaviti vaš novčanik!",
         "doYouNeedASeed": "Trebate li kreirati novi seed?",
         "seedExplanation": "Vaš IOTA seed je master ključ za vaša sredstva. Sastoji se od 81 znaka, te sadrži samo velika slova A-Z ili broj 9.",
@@ -534,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "Unesite lozinku kako bi vidjeli svoj seed.",
         "viewSeed": "Prikaži seed",
-        "hideSeed": "Sakrij seed"
+        "hideSeed": "Sakrij seed",
+        "notAvailable": "Izvoz seed-a nije dostupan za tip računa {{accountType}}",
+        "accountIndex": "Indeks vašeg Ledger računa",
+        "accountPage": "Stranica vašeg Ledger uređaja"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
@@ -588,27 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault je kodirana datoteka namijenjena spremanju vašeg seed-a na siguran način. Seed je kodiran i zaštićen lozinkom, te mu se ne može pristupiti bez lozinke.",
         "seedVaultWarning": "Pobrinite se da napravite sigurnosne kopije datoteke, te ih pohranite na više mjesta (npr. hard disk, oblak, USB). Ako izgubite ovu datoteku, a niste pohranili svoj seed na nekom drugom mjestu, izgubit ćete svoje IOTA-e.",
         "exportFail": "Izvoz SeedVault-a neuspješan",
         "exportFailExplanation": "Došlo je do greške prilikom izvoza SeedVault-a. Molimo provjerite da li imate sva potrebna ovlaštenja i dovoljno slobodnog prostora na disku.",
         "exportSuccess": "SeedVault izvezen",
         "exportSuccessExplanation": "Vaša kodirana seed datoteka je uspješno izvezena.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Neispravna SeedVault lozinka",
+        "unrecognisedKeyExplanation": "Vaša lozinka je neispravna. Molimo pokušajte ponovno.",
+        "emptyKey": "Nije unešena SeedVault lozinka",
+        "emptyKeyExplanation": "Morate unijeti lozinku. Molimo pokušajte ponovno.",
         "importSuccess": "Seed uvezen",
         "importSuccessExplanation": "Vaš seed je uspješno uvezen.",
         "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
         "dropSeedVaultHere": "Ovdje ispustite SeedVault <1></1> ili kliknite da bi ga potražili na računalu",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u. Možete koristiti istu lozinku koju koristite za pristup Trinity novčaniku."
     },
     "chart": {
         "mcap": "MCAP",
@@ -665,11 +669,13 @@
     "updates": {
         "errorRetrievingUpdateData": "Greška prilikom dohvata podataka o ažuriranju",
         "noUpdatesAvailable": "Nema dostupnih ažuriranja",
-        "noUpdatesAvailableExplanation": "Imate najnoviju inačicu Trinity Desktop-a!",
-        "newVersionAvailable": "Dostupna je nova inačica",
-        "newVersionAvailableExplanation": "Dostupna je nova <strong>Trinity</strong> <strong>{{version}}</strong> inačica. Pažljivo pročitajte informacije o novoj inačici i provjerite izvor preuzimanja prije ažuriranja aplikacije.",
-        "installUpdate": "Instaliraj novu inačicu i ponovno pokreni aplikaciju",
-        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje."
+        "noUpdatesAvailableExplanation": "Imate najnoviju verziju Trinity Desktop-a!",
+        "newVersionAvailable": "Dostupna je nova verzija",
+        "newVersionAvailableExplanation": "Dostupna je nova verzija Trinity novčanika. Želite li ažurirati aplikaciju?",
+        "installUpdate": "Instaliraj novu verziju i ponovno pokreni aplikaciju",
+        "installUpdateExplanation": "Preuzimanje završeno. Aplikacija Trinity će sada biti ponovno pokrenuta kako bi se izvršilo ažuriranje.",
+        "downloadingUpdate": "Preuzimanje ažuriranja u tijeku",
+        "downloadProgress": "Preuzeto {{transferred}} od {{total}}"
     },
     "notificationLog": {
         "errorLog": "Evidencija grešaka"
@@ -712,5 +718,37 @@
         "proceed": "Nastavi s otključavanjem sredstava",
         "sweepConfirmation": "Premjestit ćete {{amount}} na adresu {{address}}. Račun: {{accountName}}, indeks adrese: {{index}}",
         "sweepConfirmationTitle": "Potvrda otključavanja"
+    },
+    "ledger": {
+        "ready": "Ledger uređaj povezan i spreman",
+        "notReady": "Ukoliko želite koristiti Ledger uređaj, povežite ga i otključajte sada",
+        "indexInUse": "Indeks već u upotrebi za račun {{account}}",
+        "indexInUseExplanation": "Odabrani indeks je već u upotrebi na nekom od vaših računa. Molimo odaberite neki drugi broj indeksa.",
+        "proceedWithLedger": "Nastavite s postavljanjem Ledger uređaja",
+        "accountIndex": "Indeks računa (Ledger Nano S)",
+        "accountPage": "Stranica računa (Deviota Romeo)",
+        "chooseAccountIndex": "Odaberite indeks računa vašeg Ledger uređaja",
+        "accountIndexExplanation": "Vaš Ledger može pohraniti više seed-ova. Svaki seed je povezan s jedinstvenim brojem indeksa. Neiskorišteni broj indeksa je trenutno odabran, no slobodno može biti odabran i neki drugi. Obavezno zapišite odabrani broj indeksa.",
+        "accountPageExplanation": "Neki novčanici trećih strana zahtijevaju stranice (npr. Deviota Romeo).",
+        "connectionError": "Nije moguće povezivanje s Ledger uređajem",
+        "connectionErrorExplanation": "Provjerite da li je vaš Ledger uređaj povezan i otključan.",
+        "connectionTitle": "Povežite Ledger uređaj",
+        "connectionExplanation": "Ledger uređaj mora biti povezan da bi se izvršila ova funkcija.",
+        "transactionTitle": "Pregledajte i odobrite transakciju na vašem Ledger uređaju",
+        "transactionExplanation": "Upotrijebite vaš Ledger uređaj kako bi odobrili odlaznu transakciju.",
+        "applicationTitle": "Otvorite Ledger IOTA aplikaciju",
+        "applicationExplanation": "Otvorite IOTA aplikaciju na vašem Ledger uređaju da bi nastavili koristiti Trinity.",
+        "cannotSendZeroValueTitle": "Nije moguće poslati transakciju s nula vrijednosti",
+        "cannotSendZeroValueExplanation": "Nije moguće poslati transakcije s nula vrijednosti putem Ledger uređaja.",
+        "ledgerDisconnectedTitle": "Izgubljena veza s Ledger uređajem",
+        "ledgerDisconnectedExplanation": "Izgubljena je veza s Ledger uređajem. Povežite ga i pokušajte ponovno.",
+        "ledgerDeniedTitle": "Transakcija odbijena",
+        "ledgerDeniedExplanation": "Transakcija je odbijena na Ledger uređaju.",
+        "ledgerIncorrectIndex": "Neodgovarajući Ledger uređaj ili indeks",
+        "ledgerIncorrectIndexExplanation": "Povezani Ledger uređaj ne odgovara onome povezanom s ovim računom ili je fraza za oporavak izmijenjena.",
+        "checkAddress": "Provjerite adresu primatelja",
+        "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju. Pritisnite \"Sinkroniziraj adresu\" ukoliko ne odgovara.",
+        "applicationNotInitialised": "Upozorenje nije prihvaćeno",
+        "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
     }
 }
