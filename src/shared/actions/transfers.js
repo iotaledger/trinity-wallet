@@ -17,7 +17,6 @@ import {
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
-    isNodeSynced,
 } from '../libs/iota/extendedApi';
 import {
     selectedAccountStateFactory,
@@ -26,7 +25,12 @@ import {
     getNodesFromState,
     getSelectedNodeFromState,
 } from '../selectors/accounts';
-import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes } from '../libs/iota/utils';
+import {
+    withRetriesOnDifferentNodes,
+    fetchRemoteNodes,
+    getRandomNodes,
+    throwIfNodeNotSynced,
+} from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -426,21 +430,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     let transferInputs = [];
 
     const withPreTransactionSecurityChecks = () => {
-        // Progressbar step => (Checking node's health)
+        // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
-        return isNodeSynced()
-            .then((isSynced) => {
-                if (isSynced) {
-                    // Progressbar step => (Validating receive address)
-                    dispatch(setNextStepAsActive());
-
-                    // Make sure that the address a user is about to send to is not already used.
-                    return shouldAllowSendingToAddress()([address]);
-                }
-
-                throw new Error(Errors.NODE_NOT_SYNCED);
-            })
+        // Make sure that the address a user is about to send to is not already used.
+        return shouldAllowSendingToAddress()([address])
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
                     // Progressbar step => (Syncing account)
@@ -860,11 +854,14 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     dispatch(retryFailedTransactionRequest());
 
-    // First check spent statuses against transaction addresses
     return (
-        categoriseAddressesBySpentStatus()(
-            map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
-        )
+        throwIfNodeNotSynced()
+            // First check spent statuses against transaction addresses
+            .then(() =>
+                categoriseAddressesBySpentStatus()(
+                    map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
+                ),
+            )
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
