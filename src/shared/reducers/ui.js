@@ -284,7 +284,6 @@ export default (state = initialState, action) => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
-                modalProps: {},
                 qrMessage: '',
                 qrAmount: '',
                 qrTag: '',

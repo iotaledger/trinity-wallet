@@ -260,6 +260,7 @@ class SeedReentry extends Component {
                                             seed={seed}
                                         />
                                     </AnimatedComponent>
+                                    {/* FIXME: Not clean */}
                                     {!isIPhone11 && (
                                         <AnimatedComponent
                                             animationInType={['slideInRight', 'fadeIn']}
