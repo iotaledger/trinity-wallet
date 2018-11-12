@@ -19,7 +19,7 @@ class Done extends React.PureComponent {
     };
 
     /**
-     * Set onboarding state as complete and navigate to Login view
+     * Navigate to Login view
      * @returns {undefined}
      */
     setComplete = () => {

@@ -110,7 +110,7 @@
 
     section {
         position: relative;
-        border-radius: 6px;
+        border-radius: 5px;
     }
 }
 
@@ -145,6 +145,7 @@
     > div:nth-child(3) {
         position: absolute;
         background: var(--box-bg);
+        border-radius: 5px;
         width: 100%;
         height: 100%;
         top: 0px;

@@ -72,6 +72,12 @@ class Seed extends PureComponent {
                             {t('viewSeed:accountIndex')}: <strong>{accountMeta.index}</strong>
                         </p>
                     )}
+                    {typeof accountMeta.page === 'number' &&
+                    accountMeta.page > 0 && (
+                        <p>
+                            {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
+                        </p>
+                    )}
                 </div>
             );
         }

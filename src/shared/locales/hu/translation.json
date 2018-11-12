@@ -55,8 +55,8 @@
         "password": "Jelszó",
         "unrecognisedPassword": "Helytelen jelszó",
         "unrecognisedPasswordExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Helytelen számla",
+        "unrecognisedAccountExplanation": "A(z) {{accountName}} nevű számlát nem sikerült azonosítani. Kérjük fontolja meg a tárca gyári állapotba való visszaállítását.",
         "emptyPasswordExplanation": "A belépéshez meg kell adnia jelszavát. Kérjük, próbálja újra.",
         "capsLockIsOn": "A nagybetűzár be van kapcsolva",
         "syncInProgress": "Szinkronizálás folyamatban",
@@ -276,7 +276,7 @@
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Új cím",
+        "generateNewAddress": "Cím szinkronizálás",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
@@ -347,7 +347,9 @@
         "advanced": "Haladó",
         "standard": "Normál",
         "advancedModeExplanation": "Haladó módban részletesebb technikai információk is megjelennek.",
-        "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával."
+        "modesExplanation": "Csak akkor állítsa be a Haladó módot, ha már van kellő tapasztalata az IOTA használatával.",
+        "modeUpdated": "Üzemmód megváltoztatva",
+        "modeUpdatedExplanation": "Sikeresen {{mode}} üzemmódra váltott"
     },
     "settings": {
         "transferSending": "Küldés folyamatban",
@@ -405,7 +407,6 @@
         "reset": "Gyári állapotba való visszaállítás"
     },
     "walletSetup": {
-        "creatingSeed": "Mester jelszó létrehozása",
         "okay": "Rendben. Állítsuk be a tárcáját!",
         "doYouNeedASeed": "Szüksége van új mester jelszó létrehozására?",
         "seedExplanation": "Az IOTA mester jelszó a számlájához tartozó összes címen levő összeg eléréséhez szolgál. 81 karakter hosszú, és csak nagy A-Z betűkből, valamint a 9-es számjegyből állhat.",
@@ -534,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "Adja meg a jelszót a mester jelszó megjelenítéséhez.",
         "viewSeed": "Mester jelszó megtekintése",
-        "hideSeed": "Mester jelszó elrejtése"
+        "hideSeed": "Mester jelszó elrejtése",
+        "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
+        "accountIndex": "Számlájának sorszáma",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -588,27 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportálása",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és a jelszó nélkül a mester jelszó semmilyen módon nem visszafejthető.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
         "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
         "exportSuccess": "SeedVault exportálva",
         "exportSuccessExplanation": "A titkosított SeedVault fájl exportálása sikeres volt.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Helytelen SeedVault jelszó",
+        "unrecognisedKeyExplanation": "Helytelen jelszó. Kérjük, próbálja újra.",
+        "emptyKey": "Hiányzó SeedVault jelszó",
+        "emptyKeyExplanation": "A mester jelszó biztonságos tárolásához meg kell adnia egy jelszót. Kérjük, próbálja újra.",
         "importSuccess": "Mester jelszó tárolva",
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
         "dropSeedVaultHere": "Húzza be ide <1></1> a SeedVault fájlt vagy klikkeljen a tallózáshoz",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Adja meg a SeedVault jelszavát",
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "A mester jelszavát egy jelszóval védett ún. SeedVault fájlban tároljuk. Kérjük, válasszon egy jelszót a fájl titkosításához. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből kívánja betölteni. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépéshez is használ."
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -669,7 +673,9 @@
         "newVersionAvailable": "Új verzió elérhető",
         "newVersionAvailableExplanation": "Elérhető a Trinity egy újabb verziója. Szeretné most frissíteni?",
         "installUpdate": "Frissítés telepítése és újraindítás",
-        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket."
+        "installUpdateExplanation": "A letöltés sikeresen befejeződött. A Trinity most újraindul és telepíti a frissítéseket.",
+        "downloadingUpdate": "Frissítések letöltése",
+        "downloadProgress": "{{transferred}} letöltve a {{total}}-ból"
     },
     "notificationLog": {
         "errorLog": "Hibanapló"
@@ -712,5 +718,37 @@
         "proceed": "Tovább a zárolás feloldásához",
         "sweepConfirmation": "{{amount}} összeget készül az Ön számlájához tartozó {{address}} címre átutalni. Számlanév: {{accountName}}, címének indexe: {{index}}",
         "sweepConfirmationTitle": "Zárolás feloldás jóváhagyása"
+    },
+    "ledger": {
+        "ready": "Hardveres tárca csatlakoztatva és készen áll",
+        "notReady": "Ha hardveres tárcát szeretne használni, most csatlakoztassa majd nyissa ki",
+        "indexInUse": "{{account}} számla által már használt számlasorszám",
+        "indexInUseExplanation": "A választott számlasorszámot korábban már egy másik számlájához rendelte. Kérjük, válasszon egy másik számlasorszámot.",
+        "proceedWithLedger": "Hardveres tárca beállítása",
+        "accountIndex": "Számlasorszám",
+        "accountPage": "Számla oldal",
+        "chooseAccountIndex": "Válassza ki a hardveres tárca számlasorszámát",
+        "accountIndexExplanation": "A hardveres tárca több mester jelszót is képes tárolni. Minden mester jelszót egy egyedi számlasorszám azonosít. Egy még használaton kÍvüli számlasorszámot kiválasztottunk, de ha kívánja, nyugodtan megadhat egy szabadon választott számlasorszámot. Kérjük, jegyezze fel a választott számlasorszámot.",
+        "accountPageExplanation": "Néhány gyártó tárcája ún. számla oldal megadását igényli.",
+        "connectionError": "Sikertelen kapcsolódás a tárcához",
+        "connectionErrorExplanation": "Kérjük ellenőrizze, hogy a tárca csatlakoztatva és nyitva van.",
+        "connectionTitle": "Csatlakoztassa a tárcáját",
+        "connectionExplanation": "A művelet végrehajtása előtt kérjük csatlakoztasson egy hardveres tárcát.",
+        "transactionTitle": "Fussa át és hagyja jóvá a tranzakciót a hardveres tárcáján",
+        "transactionExplanation": "Használja a hardveres tárcáját a kimenő tranzakciók jóváhagyásához.",
+        "applicationTitle": "Open Ledger IOTA applikáció",
+        "applicationExplanation": "A Trinity használatához a hardveres tárcáján nyissa meg az IOTA applikációt.",
+        "cannotSendZeroValueTitle": "Hiányzó összeg",
+        "cannotSendZeroValueExplanation": "Hardveres tárcával nem indítható 0 összegű tranzakció.",
+        "ledgerDisconnectedTitle": "Hardveres tárca kapcsolat megszakadt",
+        "ledgerDisconnectedExplanation": "Megszakadt a kapcsolat a hardveres tárcával. Kérjük csatlakoztassa, majd próbálja újra.",
+        "ledgerDeniedTitle": "Tranzakció elutasítva",
+        "ledgerDeniedExplanation": "A tranzakció végrehajtását nem engedélyezte a hardveres tárca.",
+        "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
+        "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
+        "checkAddress": "Ellenőrizze a fogadási címet",
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
