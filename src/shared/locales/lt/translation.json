@@ -143,7 +143,7 @@
         "tryingAgainWithLocalPoW": "Bandykite dar kartą su lokaliu skaičiavimu.",
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
         "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Klaida sinchronizuojant adreso informaciją. Bandykite dar kart pasirinkę kitą serverį.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "PAGRINDINĖ PASKYRA"
@@ -277,7 +277,7 @@
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Sinchronizuoti adresą",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
@@ -675,8 +675,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Siunčiami atnaujinimai",
+        "downloadProgress": "{{transferred}} iš {{total}} atsiųsta"
     },
     "notificationLog": {
         "errorLog": "Klaidų žurnalas"
