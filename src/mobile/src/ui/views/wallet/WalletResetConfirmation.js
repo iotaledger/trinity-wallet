@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { navigator } from 'libs/navigation';
-import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { width, height } from 'libs/dimensions';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -206,6 +205,4 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
 });
 
-export default WithBackPressGoToHome()(
-    withNamespaces(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation)),
-);
+export default withNamespaces(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));

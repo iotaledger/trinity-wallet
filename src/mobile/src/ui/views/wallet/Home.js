@@ -20,7 +20,6 @@ import { hash } from 'libs/keychain';
 import UserInactivity from 'ui/components/UserInactivity';
 import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
-import WithBackPress from 'ui/components/BackPress';
 import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
@@ -436,5 +435,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    WithBackPress()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
+    withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
 );

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
-import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -144,6 +143,4 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
 });
 
-export default WithBackPressCloseApp()(
-    withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete)),
-);
+export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));

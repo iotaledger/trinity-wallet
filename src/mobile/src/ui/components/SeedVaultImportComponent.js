@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
         paddingLeft: width / 70,
     },
     button: {
-        flex: 1,
         justifyContent: 'center',
     },
     container: {

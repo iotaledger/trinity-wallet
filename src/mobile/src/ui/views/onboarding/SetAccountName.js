@@ -232,7 +232,6 @@ export class SetAccountName extends Component {
                                 <CustomTextInput
                                     label={t('addAdditionalSeed:accountName')}
                                     onChangeText={(text) => this.setState({ accountName: text })}
-                                    containerStyle={{ width: Styling.contentWidth }}
                                     autoCapitalize="words"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically

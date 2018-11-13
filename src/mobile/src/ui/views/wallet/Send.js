@@ -730,7 +730,6 @@ export class Send extends Component {
                                     this.props.setSendAddressField(text);
                                 }
                             }}
-                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -763,7 +762,6 @@ export class Send extends Component {
                                 this.props.setSendDenomination(text);
                                 this.resetMaxPressed();
                             }}
-                            containerStyle={{ width: Styling.contentWidth }}
                             onRef={(c) => {
                                 this.amountField = c;
                             }}
@@ -812,7 +810,6 @@ export class Send extends Component {
                             keyboardType="default"
                             label={t('message')}
                             onChangeText={(text) => this.props.setSendMessageField(text)}
-                            containerStyle={{ width: Styling.contentWidth }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="send"

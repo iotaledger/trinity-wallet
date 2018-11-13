@@ -60,9 +60,10 @@ const styles = StyleSheet.create({
         paddingTop: height / 60,
     },
     seedVaultImportContainer: {
-        flex: isAndroid ? 0.4 : 0,
-        justifyContent: 'flex-start',
+        flex: 0.7,
         alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: width / 18,
     },
 });
 
@@ -232,12 +233,11 @@ class SeedReentry extends Component {
                                     </AnimatedComponent>
                                 </View>
                                 <View style={styles.midContainer}>
-                                    <View style={{ flex: 0.01 }} />
+                                    <View style={{ flex: 0.7 }} />
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
                                         delay={300}
-                                        style={styles.seedVaultImportContainer}
                                     >
                                         <CustomTextInput
                                             label={t('global:seed')}
@@ -246,7 +246,6 @@ class SeedReentry extends Component {
                                                     this.setState({ seed: text.toUpperCase() });
                                                 }
                                             }}
-                                            containerStyle={{ width: Styling.contentWidth }}
                                             maxLength={MAX_SEED_LENGTH}
                                             autoCapitalize="characters"
                                             autoCorrect={false}
@@ -258,6 +257,7 @@ class SeedReentry extends Component {
                                             widget="qr"
                                             onQRPress={() => this.onQRPress()}
                                             seed={seed}
+                                            isSeedInput
                                         />
                                     </AnimatedComponent>
                                     {/* FIXME: Not clean */}
@@ -266,7 +266,7 @@ class SeedReentry extends Component {
                                             animationInType={['slideInRight', 'fadeIn']}
                                             animationOutType={['slideOutLeft', 'fadeOut']}
                                             delay={200}
-                                            style={{ flex: 0.3 }}
+                                            style={styles.seedVaultImportContainer}
                                         >
                                             <SeedVaultImport
                                                 openPasswordValidationModal={() => this.showModal('passwordValidation')}
@@ -280,7 +280,6 @@ class SeedReentry extends Component {
                                             />
                                         </AnimatedComponent>
                                     )}
-                                    {isAndroid && <View style={{ flex: 0.05 }} />}
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
@@ -300,7 +299,7 @@ class SeedReentry extends Component {
                                             }
                                         />
                                     </AnimatedComponent>
-                                    <View style={{ flex: 0.2 }} />
+                                    <View style={{ flex: 0.7 }} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <AnimatedComponent

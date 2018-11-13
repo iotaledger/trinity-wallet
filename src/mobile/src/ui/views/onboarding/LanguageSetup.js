@@ -11,7 +11,6 @@ import helloBackImagePath from 'shared-modules/images/hello-back.png';
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import i18next from 'shared-modules/libs/i18next';
-import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
@@ -194,6 +193,4 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default WithBackPressCloseApp()(
-    withNamespaces(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup)),
-);
+export default withNamespaces(['languageSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup));

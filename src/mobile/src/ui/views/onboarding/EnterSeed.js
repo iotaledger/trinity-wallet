@@ -63,9 +63,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     seedVaultImportContainer: {
-        flex: isAndroid ? 1 : 0,
-        justifyContent: 'flex-start',
+        flex: 0.7,
         alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: width / 18,
     },
 });
 
@@ -235,12 +236,11 @@ class EnterSeed extends React.Component {
                                 </AnimatedComponent>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={{ flex: 0.05 }} />
+                                <View style={{ flex: 0.7 }} />
                                 <AnimatedComponent
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={300}
-                                    style={styles.seedVaultImportContainer}
                                 >
                                     <CustomTextInput
                                         label={t('global:seed')}
@@ -249,7 +249,6 @@ class EnterSeed extends React.Component {
                                                 this.setState({ seed: text.toUpperCase() });
                                             }
                                         }}
-                                        containerStyle={{ width: Styling.contentWidth }}
                                         theme={theme}
                                         autoCapitalize="characters"
                                         autoCorrect={false}
@@ -262,6 +261,7 @@ class EnterSeed extends React.Component {
                                         onQRPress={() => this.onQRPress()}
                                         testID="enterSeed-seedbox"
                                         seed={seed}
+                                        isSeedInput
                                     />
                                 </AnimatedComponent>
                                 {/* FIXME: Not clean */}
@@ -270,7 +270,7 @@ class EnterSeed extends React.Component {
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
                                         delay={200}
-                                        style={{ flex: 0.5 }}
+                                        style={styles.seedVaultImportContainer}
                                     >
                                         <SeedVaultImport
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
@@ -284,7 +284,6 @@ class EnterSeed extends React.Component {
                                         />
                                     </AnimatedComponent>
                                 )}
-                                {isAndroid && <View style={{ flex: 0.25 }} />}
                                 <AnimatedComponent
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
@@ -305,7 +304,7 @@ class EnterSeed extends React.Component {
                                         }
                                     />
                                 </AnimatedComponent>
-                                <View style={{ flex: 0.4 }} />
+                                <View style={{ flex: 0.7 }} />
                             </View>
                             <View style={styles.bottomContainer}>
                                 <AnimatedComponent

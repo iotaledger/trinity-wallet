@@ -12,7 +12,6 @@ import { setFullNode } from 'shared-modules/actions/settings';
 import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
 import Enter2FAComponent from 'ui/components/Enter2FA';
@@ -245,6 +244,4 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default WithBackPressCloseApp()(
-    withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login)),
-);
+export default withNamespaces(['login', 'global', 'twoFA'])(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -8,7 +8,6 @@ import { navigator } from 'libs/navigation';
 import { resetWallet, set2FAStatus } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
-import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
@@ -145,7 +144,6 @@ class Disable2FA extends Component {
                                 <CustomTextInput
                                     label="Token"
                                     onChangeText={(token) => this.setState({ token })}
-                                    containerStyle={{ width: Styling.contentWidth }}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -184,6 +182,6 @@ const mapDispatchToProps = {
     set2FAStatus,
 };
 
-export default WithBackPressGoToHome()(
-    withNamespaces(['resetWalletRequirePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Disable2FA)),
+export default withNamespaces(['resetWalletRequirePassword', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
 );

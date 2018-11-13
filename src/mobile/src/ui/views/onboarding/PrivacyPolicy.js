@@ -79,7 +79,6 @@ class PrivacyPolicy extends Component {
 
     constructor() {
         super();
-
         this.state = { hasReadPrivacyPolicy: false };
     }
 
