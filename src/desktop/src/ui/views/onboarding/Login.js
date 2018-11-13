@@ -35,7 +35,7 @@ class Login extends React.Component {
         /** @ignore */
         currentAccountMeta: PropTypes.object,
         /** @ignore */
-        wallet: PropTypes.object.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         ui: PropTypes.object.isRequired,
         /** @ignore */
@@ -112,7 +112,7 @@ class Login extends React.Component {
      */
     setupAccount = async () => {
         const {
-            wallet,
+            password,
             addingAdditionalAccount,
             additionalAccountName,
             additionalAccountMeta,
@@ -126,7 +126,7 @@ class Login extends React.Component {
 
         let seedStore;
         try {
-            seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+            seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
         } catch (e) {
             e.accountName = accountName;
             throw e;
@@ -266,7 +266,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
+    password: state.wallet.password,
     currentAccountName: getSelectedAccountName(state),
     currentAccountMeta: getSelectedAccountMeta(state),
     addingAdditionalAccount: isSettingUpNewAccount(state),
