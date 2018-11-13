@@ -125,7 +125,7 @@
     },
     "publish": {
       "provider": "generic",
-      "url": "https://iotaledger-files.s3.amazonaws.com",
+      "url": "https://iotaledger-files.s3.amazonaws.com/trinity/desktop/releases/",
       "publishAutoUpdate": true,
       "channel": "latest"
     }
