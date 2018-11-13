@@ -143,7 +143,7 @@
         "tryingAgainWithLocalPoW": "Ponawianie próby przy użyciu lokalnego trybu PoW.",
         "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
         "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Błąd synchronizacji informacji adresowych. Trwa ponawianie próby z użyciem innego serwera.",
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
         "mainWallet": "KONTO GŁÓWNE"
