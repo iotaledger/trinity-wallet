@@ -26,9 +26,10 @@ import {
 } from 'shared-modules/selectors/accounts';
 import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 
 import { width, height } from 'libs/dimensions';
 
@@ -64,12 +65,17 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: isIPhoneX ? height / 40 : height / 20,
     },
-    nodeChangeContainer: {
+    bottomContainer: {
         position: 'absolute',
         bottom: 0,
         alignItems: 'center',
+        justifyContent: 'center',
+        width,
+    },
+    loadingAnimationContainer: {
+        height,
         justifyContent: 'center',
     },
 });
@@ -337,9 +343,13 @@ class Loading extends Component {
         if (addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
-                        <View>
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            delay={0}
+                            style={styles.loadingAnimationContainer}
+                        >
                             <LottieView
                                 ref={(animation) => {
                                     this.animation = animation;
@@ -348,22 +358,29 @@ class Loading extends Component {
                                 style={styles.animationNewSeed}
                                 loop
                             />
-                        </View>
+                        </AnimatedComponent>
                     </View>
-                    <View style={styles.infoTextContainer}>
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
-                            <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
-                                <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                    <Text style={[styles.infoText, textColor]}>
-                                        {isAndroid ? '..' : this.state.elipsis}
-                                    </Text>
+                    <AnimatedComponent
+                        animationInType={['fadeIn']}
+                        animationOutType={['fadeOut']}
+                        delay={0}
+                        style={styles.bottomContainer}
+                    >
+                        <View style={styles.infoTextContainer}>
+                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                                    <View style={{ alignItems: 'flex-start', width: width / 30 }}>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            {isAndroid ? '..' : this.state.elipsis}
+                                        </Text>
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    </AnimatedComponent>
                 </View>
             );
         }
@@ -371,7 +388,7 @@ class Loading extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.animationContainer}>
-                    <View>
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                         <LottieView
                             ref={(animation) => {
                                 this.animation = animation;
@@ -379,9 +396,14 @@ class Loading extends Component {
                             source={welcomeAnimationPath}
                             style={styles.animationLoading}
                         />
-                    </View>
+                    </AnimatedComponent>
                     {displayNodeChangeOption && (
-                        <View style={styles.nodeChangeContainer}>
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            delay={0}
+                            style={styles.bottomContainer}
+                        >
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
                             <SingleFooterButton
                                 onButtonPress={this.onChangeNodePress}
@@ -391,7 +413,7 @@ class Loading extends Component {
                                 }}
                                 buttonText={t('global:changeNode')}
                             />
-                        </View>
+                        </AnimatedComponent>
                     )}
                 </View>
             </View>

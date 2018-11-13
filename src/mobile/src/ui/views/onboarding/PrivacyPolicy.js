@@ -22,7 +22,7 @@ import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
+        flex: 1,
         alignItems: 'center',
         height,
     },
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 20,
         paddingVertical: height / 75,
-        height: height - height / 8,
+        height: height,
     },
 });
 
@@ -151,6 +151,7 @@ class PrivacyPolicy extends Component {
                         <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
                             {PrivacyPolicy.getPrivacyPolicy()}
                         </Markdown>
+                        <View style={{ height: height / 8 }} />
                     </ScrollView>
                 </AnimatedComponent>
                 {this.state.hasReadPrivacyPolicy && (

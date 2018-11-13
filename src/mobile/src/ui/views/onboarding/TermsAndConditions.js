@@ -22,9 +22,9 @@ import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
         alignItems: 'center',
         height,
+        flex: 1,
     },
     titleText: {
         fontFamily: 'SourceSansPro-SemiBold',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 20,
         paddingVertical: height / 75,
-        height: height - height / 8,
+        height: height,
     },
 });
 
@@ -155,6 +155,7 @@ class TermsAndConditions extends Component {
                         <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
                             {TermsAndConditions.getTermsAndConditions()}
                         </Markdown>
+                        <View style={{ height: height / 9 }} />
                     </ScrollView>
                 </AnimatedComponent>
                 {this.state.hasReadTerms && (

@@ -100,26 +100,22 @@ class OnboardingComplete extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={400}
-                    >
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={400}>
                         <Icon name="iota" size={width / 8} color={body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
                     <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        animationInType={['fadeIn']}
+                        animationOutType={['fadeOut']}
                         delay={200}
                         style={styles.infoTextContainer}
                     >
                         <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
                     </AnimatedComponent>
                     <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        animationInType={['fadeIn']}
+                        animationOutType={['fadeOut']}
                         delay={0}
                         style={{ height, width }}
                     >

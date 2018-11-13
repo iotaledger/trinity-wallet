@@ -46,9 +46,8 @@ export default function withSafeAreaView(WrappedComponent) {
                     <WrappedComponent {...this.props} />
                     {isIPhoneFailingSafeAreaView && (
                         <AnimatedComponent
-                            animationInType={['slideInRight', 'fadeIn']}
-                            animationOutType={['slideOutLeft', 'fadeOut']}
-                            delay={200}
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
                             style={{
                                 height: 34,
                                 backgroundColor:

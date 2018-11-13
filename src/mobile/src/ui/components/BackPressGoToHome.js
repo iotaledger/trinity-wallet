@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isAndroid } from 'libs/device';
@@ -46,33 +47,26 @@ export default () => (C) => {
          */
         handleBackPress = () => {
             const { theme: { bar, body } } = this.props;
-
-            Navigation.setStackRoot('appStack', {
-                component: {
-                    name: 'home',
-                    options: {
-                        animations: {
-                            setStackRoot: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: bar.alt,
-                        },
+            navigator.setStackRoot('home', {
+                animations: {
+                    setStackRoot: {
+                        enable: false,
                     },
                 },
+                layout: {
+                    backgroundColor: body.bg,
+                    orientation: ['portrait'],
+                },
+                topBar: {
+                    visible: false,
+                    drawBehind: true,
+                    elevation: 0,
+                },
+                statusBar: {
+                    drawBehind: true,
+                    backgroundColor: bar.alt,
+                },
             });
-
             return true;
         };
 
