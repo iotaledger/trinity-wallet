@@ -1,5 +1,5 @@
 import { width, height } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
+import { isIPhoneX, isAndroid } from 'libs/device';
 
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
@@ -15,7 +15,7 @@ export const Styling = {
     fontSize5: width / 19,
     fontSize6: width / 14,
     fontSize7: width / 8,
-    topbarHeight: height / 8.8,
+    topbarHeight: isAndroid ? height / 10 : height / 8.8,
 };
 
 export function getBackgroundColor(screen, theme, footerColour = false, inactive = false) {
