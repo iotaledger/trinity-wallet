@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import { setFullNode } from 'shared-modules/actions/settings';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import DropdownComponent from 'ui/components/Dropdown';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
     titleTextLeft: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -202,4 +202,4 @@ const mapDispatchToProps = {
     setLoginRoute,
 };
 
-export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));
+export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));

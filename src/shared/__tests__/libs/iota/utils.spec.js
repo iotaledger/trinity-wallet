@@ -1,7 +1,13 @@
 import map from 'lodash/map';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { convertFromTrytes, getRandomNodes, withRetriesOnDifferentNodes } from '../../../libs/iota/utils';
+import * as extendedApis from '../../../libs/iota/extendedApi';
+import {
+    convertFromTrytes,
+    getRandomNodes,
+    withRetriesOnDifferentNodes,
+    throwIfNodeNotSynced,
+} from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
     describe('#convertFromTrytes', () => {
@@ -128,6 +134,34 @@ describe('libs: iota/utils', () => {
             const result = getRandomNodes(nodes, size, blacklisted);
 
             expect(result).to.not.include([3, 5]);
+        });
+    });
+
+    describe('#throwIfNodeNotSynced', () => {
+        describe('when node is synced', () => {
+            it('should return true', () => {
+                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+
+                return throwIfNodeNotSynced('foo').then((isSynced) => {
+                    expect(isSynced).to.equal(true);
+                    stub.restore();
+                });
+            });
+        });
+
+        describe('when node is not synced', () => {
+            it('should return throw an error with message "Node not synced"', () => {
+                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(false);
+
+                return throwIfNodeNotSynced('foo')
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => {
+                        expect(error.message).to.equal('Node not synced');
+                        stub.restore();
+                    });
+            });
         });
     });
 });

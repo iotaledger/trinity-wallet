@@ -2,19 +2,20 @@ import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback, AppState } from 'react-native';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from 'ui/theme/fonts';
 import Seedbox from 'ui/components/SeedBox';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import { getSeedFromKeychain, getPasswordHash } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
+import { hash } from 'libs/keychain';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import { isAndroid } from 'libs/device';
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     },
     generalText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -75,25 +76,25 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     viewSeedButton: {
         borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
+        borderRadius: Styling.borderRadius,
         width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     },
     viewSeedText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -115,6 +116,8 @@ class ViewSeed extends Component {
         password: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Type for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -166,23 +169,18 @@ class ViewSeed extends Component {
      * @returns {Promise<void>}
      */
     async viewSeed() {
-        const { password, selectedAccountName, t } = this.props;
-        const pwdHash = await getPasswordHash(this.state.password);
+        const { password, selectedAccountName, selectedAccountMeta, t } = this.props;
+        const pwdHash = await hash(this.state.password);
 
         if (isEqual(password, pwdHash)) {
-            getSeedFromKeychain(pwdHash, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        throw new Error('Error');
-                    } else {
-                        if (isAndroid) {
-                            FlagSecure.activate();
-                        }
-                        this.setState({ seed });
-                        this.setState({ showSeed: true });
-                    }
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
+            const seedStore = new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
+            const seed = await seedStore.getSeed();
+
+            if (isAndroid) {
+                FlagSecure.activate();
+            }
+            this.setState({ seed });
+            this.setState({ showSeed: true });
         } else {
             this.props.generateAlert(
                 'error',
@@ -253,7 +251,7 @@ class ViewSeed extends Component {
                                     <CustomTextInput
                                         label={t('global:password')}
                                         onChangeText={(password) => this.setState({ password })}
-                                        containerStyle={{ width: width / 1.15 }}
+                                        containerStyle={{ width: Styling.contentWidth }}
                                         autoCapitalize="none"
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically
@@ -358,6 +356,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     theme: state.settings.theme,
 });
 
@@ -366,4 +365,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewSeed));
+export default withNamespaces(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewSeed));

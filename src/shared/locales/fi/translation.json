@@ -49,19 +49,14 @@
         "proceed": "Jatka",
         "qr": "QR",
         "enterSeed": "Anna seed-lukusi.",
-        "mainWallet": "PÄÄTILI",
-        "secondWallet": "TOINEN TILI",
-        "thirdWallet": "KOLMAS TILI",
-        "fourthWallet": "NELJÄS TILI",
-        "fifthWallet": "VIIDES TILI",
-        "sixthWallet": "KUUDES TILI",
-        "otherWallet": "MUU TILI",
         "yes": "Kyllä",
         "no": "Ei",
         "okay": "Selvä",
         "password": "Salasana",
         "unrecognisedPassword": "Tunnistamaton salasana",
         "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "Sinun on pakko kirjoittaa salasana. Ole hyvä ja yritä uudestaan.",
         "capsLockIsOn": "Caps Lock on päällä",
         "syncInProgress": "Synkronointi käynnissä",
@@ -113,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis.",
         "checkForUpdates": "Tarkista päivitykset",
         "account": "Oma tili",
-        "enterYourPassword": "Anna salasanasi",
         "changeNode": "Vaihda Palvelinta",
         "addCustomNode": "Lisää Omavalintainen Palvelin",
         "nodeMustUseHTTPS": "Virheellinen palvelin (ei HTTPS yhteyttä)",
@@ -148,7 +142,10 @@
         "problemPerformingProofOfWork": "There was a problem performing proof of work.",
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -207,19 +204,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed-luku tyhjennetty",
-        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "seedCopied": "Seed-luku kopioitu leikepöydälle",
-        "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
-        "copyToClipboard": "Kopioi Seed-luku",
-        "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintasovellukseen",
-        "storeEncrypted": "Kun käytät salasanan hallintasovellusta, tallenna seed-lukusi salatussa muodossa.",
-        "doNotOpen": "Älä avaa muita sovelluksia kesken tämän toiminnon.",
-        "tapConfirm": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
-        "passwordManagerCheckbox": "Tallennan seed-lukuni salasanan hallintasovellukseen",
-        "copy": "KOPIOI",
-        "noPasswordManagers": "Tuettuja salasanojen hallintasovelluksia ei ole asennettuna",
-        "noPasswordManagersExplanation": "Tuettuja salasanojen hallintasovelluksia ei ole löydetty laitteeltasi. Voit asentaa sovelluksen nimeltä Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jos haluat tallentaa seed-lukusi salasanan hallintasovellukseen, seuraa linkin ohjeita"
+        "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä."
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -291,7 +276,7 @@
         "copyAddress": "Kopioi osoite",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
-        "generateNewAddress": "Uusi Osoite",
+        "generateNewAddress": "Sync address",
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
@@ -362,7 +347,9 @@
         "advanced": "Advanced",
         "standard": "Tavallinen käyttäjä",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Siirto käynnissä",
@@ -420,7 +407,6 @@
         "reset": "Nollaa"
     },
     "walletSetup": {
-        "creatingSeed": "Seed-luvun luonti",
         "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouNeedASeed": "Haluatko luoda uuden seed-luvun?",
         "seedExplanation": "Seed-luku on yleisavain ja samalla myös pääsy varoihin. Se on 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
@@ -450,7 +436,8 @@
         "receive": "Vastaanota",
         "empty": "Tyhjä",
         "retrying": "Yritetään uudelleen",
-        "yesterday": "Eilen"
+        "yesterday": "Eilen",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -527,9 +514,9 @@
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Oletko varma että haluat poistaa tilin</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
-        "thisAction": "Tätä toimintoa ei voi kumota.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
@@ -548,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
         "viewSeed": "Näytä Seed-luku",
-        "hideSeed": "Piilota Seed-luku"
+        "hideSeed": "Piilota Seed-luku",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Tallensitko seed-lukusi?",
@@ -602,23 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Vie SeedVault-tiedosto",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Varmista että tallennat tiedoston useaan eri paikkaan (kovalevy, pilvi, USB-tikku). Jos hävitä tiedoston, etkä ole tallentanut tiedostoa muualle, menetät pääsyn IOTA-varoihisi.",
         "exportFail": "SeedVault-tiedoston vienti epäonnistui",
         "exportFailExplanation": "SeedVault-tiedoston viennissä ilmeni ongelmia. Varmista että sinulla on riittävät oikeudet ja tarpeeksi tilaa levyllä.",
         "exportSuccess": "SeedVault-tiedoston vienti onnistui",
         "exportSuccessExplanation": "Salattu seed-tiedostosi on tallennettu onnistuneesti.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Tuo Seedvault-tiedosto",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
-        "enterPasswordExplanation": "Kirjoita salasanasi avataksesi SeedVault-tiedostosi",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault-tiedosto ei sisällä kelvolista seed-lukua",
         "noSeedFoundExplanation": "SeedVault-tiedosto on joko tyhjä tai sisältää seed-luvun virheellisessä muodossa.",
         "seedFileError": "SeedVault-tiedoston avaaminen epäonnistui",
         "seedFileErrorExplanation": "SeedVault-tiedoston avaamisessa ilmeni ongelmia. Varmista että sinulla on oikea tiedosto, eikä se ole korruptoitunut.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "MARVO",
@@ -679,7 +673,9 @@
         "newVersionAvailable": "Uusi versio saatavilla",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update."
+        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Virhe loki"
@@ -710,5 +706,49 @@
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": "Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

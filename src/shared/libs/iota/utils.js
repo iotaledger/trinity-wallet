@@ -9,6 +9,7 @@ import size from 'lodash/size';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
+import { isNodeSynced } from './extendedApi';
 import { NODELIST_URL } from '../../config';
 import Errors from '../errors';
 
@@ -17,6 +18,8 @@ export const MAX_SEED_LENGTH = 81;
 export const ADDRESS_LENGTH = 90;
 
 export const VALID_SEED_REGEX = /^[A-Z9]+$/;
+
+export const VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX = VALID_SEED_REGEX;
 
 export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
 
@@ -383,4 +386,22 @@ export const fetchRemoteNodes = (
  */
 export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
     return sampleSize(filter(nodes, (node) => !includes(blacklisted, node)), size);
+};
+
+/**
+ * Throws an error if a node is not synced.
+ *
+ * @method throwIfNodeNotSynced
+ * @param {string} provider
+ *
+ * @returns {Promise<boolean>}
+ */
+export const throwIfNodeNotSynced = (provider) => {
+    return isNodeSynced(provider).then((isSynced) => {
+        if (!isSynced) {
+            throw new Error(Errors.NODE_NOT_SYNCED);
+        }
+
+        return isSynced;
+    });
 };

@@ -8,31 +8,28 @@ import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part
 import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
 import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
 import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
-import { translate } from 'react-i18next';
+import { Navigation } from 'react-native-navigation';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
-import {
-    getAccountInfo,
-    getFullAccountInfoFirstSeed,
-    getFullAccountInfoAdditionalSeed,
-} from 'shared-modules/actions/accounts';
+import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'shared-modules/actions/home';
-import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
-import GENERAL from 'ui/theme/general';
-import { getSeedFromKeychain, storeSeedInKeychain } from 'libs/keychain';
-import DynamicStatusBar from 'ui/components/DynamicStatusBar';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
+import {
+    getSelectedAccountName,
+    getSelectedAccountMeta,
+    getAccountNamesFromState,
+} from 'shared-modules/selectors/accounts';
+import { Styling } from 'ui/theme/general';
+import SeedStore from 'libs/SeedStore';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import Button from 'ui/components/Button';
+import SingleFooterButton from 'ui/components/SingleFooterButton';
 
 import { width, height } from 'libs/dimensions';
 
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
         paddingBottom: height / 30,
@@ -82,19 +79,19 @@ const styles = StyleSheet.create({
 class Loading extends Component {
     static propTypes = {
         /** @ignore */
-        firstUse: PropTypes.bool.isRequired,
-        /** @ignore */
         addingAdditionalAccount: PropTypes.bool.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
-        getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
+        hasErrorFetchingAccountInfo: PropTypes.bool.isRequired,
         /** @ignore */
-        getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
+        getFullAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        hasErrorFetchingFullAccountInfo: PropTypes.bool.isRequired,
         /** Name for currently selected account */
-        selectedAccountName: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string,
+        /** Name for currently selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
@@ -108,9 +105,9 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
+        additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
@@ -122,11 +119,11 @@ class Loading extends Component {
         /** @ignore */
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** @ignore */
-        generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
         deepLinkActive: PropTypes.bool.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
+        /** All stored account names */
+        accountNames: PropTypes.array.isRequired,
     };
 
     constructor() {
@@ -141,74 +138,64 @@ class Loading extends Component {
 
     componentDidMount() {
         const {
-            firstUse,
             addingAdditionalAccount,
             additionalAccountName,
+            additionalAccountMeta,
             selectedAccountName,
-            seed,
+            selectedAccountMeta,
             password,
-            navigator,
-            t,
             deepLinkActive,
         } = this.props;
+
         leaveNavigationBreadcrumb('Loading');
+        KeepAwake.activate();
         this.animation.play();
-        if (!firstUse && !addingAdditionalAccount) {
+        if (addingAdditionalAccount) {
+            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 150000);
+            if (!isAndroid) {
+                this.animateElipses(['.', '..', ''], 0);
+            }
+        } else {
             this.setAnimationOneTimout();
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
+        this.props.setSetting('mainSettings');
         this.getWalletData();
-        if ((firstUse || addingAdditionalAccount) && !isAndroid) {
-            this.animateElipses(['.', '..', ''], 0);
-        }
-        KeepAwake.activate();
         if (deepLinkActive) {
             this.props.changeHomeScreenRoute('send');
         } else {
             this.props.changeHomeScreenRoute('balance');
         }
-        this.props.setSetting('mainSettings');
-
-        let genFn = null;
-
-        if (firstUse || addingAdditionalAccount) {
-            genFn = getMultiAddressGenFn();
+        if (addingAdditionalAccount) {
+            const seedStore = new SeedStore[additionalAccountMeta.type](password, additionalAccountName);
+            this.props.getFullAccountInfo(seedStore, additionalAccountName);
         } else {
-            genFn = getAddressGenFn();
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            this.props.getAccountInfo(seedStore, selectedAccountName);
         }
-
-        if (!firstUse && addingAdditionalAccount) {
-            return this.props.getFullAccountInfoAdditionalSeed(
-                seed,
-                additionalAccountName,
-                password,
-                storeSeedInKeychain,
-                navigator,
-                genFn,
-            );
-        }
-
-        getSeedFromKeychain(password, selectedAccountName).then((currentSeed) => {
-            if (currentSeed === null) {
-                return this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongRestart'),
-                );
-            }
-            if (firstUse) {
-                this.props.getFullAccountInfoFirstSeed(currentSeed, selectedAccountName, navigator, genFn);
-            } else {
-                this.props.getAccountInfo(currentSeed, selectedAccountName, navigator, genFn);
-            }
-        });
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, firstUse, addingAdditionalAccount } = this.props;
+        const {
+            ready,
+            addingAdditionalAccount,
+            hasErrorFetchingAccountInfo,
+            hasErrorFetchingFullAccountInfo,
+            accountNames,
+        } = this.props;
         const isReady = !ready && newProps.ready;
-        if ((isReady && this.state.animationPartOneDone) || (isReady && (firstUse || addingAdditionalAccount))) {
+        if ((isReady && this.state.animationPartOneDone) || (isReady && addingAdditionalAccount)) {
             this.launchHomeScreen();
+        }
+        if (!hasErrorFetchingAccountInfo && newProps.hasErrorFetchingAccountInfo) {
+            this.redirectToLogin();
+        }
+        if (!hasErrorFetchingFullAccountInfo && newProps.hasErrorFetchingFullAccountInfo) {
+            if (accountNames.length <= 1) {
+                this.redirectToLogin();
+            } else {
+                this.redirectToHome();
+            }
         }
     }
 
@@ -227,20 +214,8 @@ class Loading extends Component {
     }
 
     onChangeNodePress() {
-        const { theme: { body } } = this.props;
         this.props.setLoginRoute('nodeSelection');
-        this.props.navigator.resetTo({
-            screen: 'login',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
-            },
-            animated: false,
-        });
+        this.redirectToLogin();
     }
 
     getWalletData() {
@@ -261,20 +236,8 @@ class Loading extends Component {
      * @method launchHomeScreen
      */
     launchHomeScreen() {
-        const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
-        this.props.navigator.resetTo({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: bar.alt,
-            },
-            animated: false,
-        });
+        this.redirectToHome();
         this.clearTimeouts();
         this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
     }
@@ -301,8 +264,76 @@ class Loading extends Component {
         }, time);
     };
 
+    /**
+     * Redirect to login page
+     *
+     * @method redirectToLogin
+     */
+    redirectToLogin() {
+        const { theme: { body } } = this.props;
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'login',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
+            },
+        });
+    }
+
+    /**
+     * Redirect to home page
+     *
+     * @method redirectToHome
+     */
+    redirectToHome() {
+        const { theme: { body, bar } } = this.props;
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'home',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: bar.alt,
+                    },
+                },
+            },
+        });
+    }
+
     render() {
-        const { firstUse, t, addingAdditionalAccount, theme: { body, primary } } = this.props;
+        const { t, addingAdditionalAccount, theme: { body, primary } } = this.props;
         const { displayNodeChangeOption } = this.state;
         const textColor = { color: body.color };
         const isBgLight = tinycolor(body.bg).isLight();
@@ -310,10 +341,9 @@ class Loading extends Component {
         const welcomeAnimationPartOnePath = isBgLight ? blackWelcomeAnimationPartOne : whiteWelcomeAnimationPartOne;
         const welcomeAnimationPartTwoPath = isBgLight ? blackWelcomeAnimationPartTwo : whiteWelcomeAnimationPartTwo;
 
-        if (firstUse || addingAdditionalAccount) {
+        if (addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <DynamicStatusBar backgroundColor={body.bg} />
                     <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
                         <View>
@@ -341,14 +371,12 @@ class Loading extends Component {
                             </View>
                         </View>
                     </View>
-                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
             );
         }
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.animationContainer}>
                     <View>
                         {(!this.state.animationPartOneDone && (
@@ -373,30 +401,31 @@ class Loading extends Component {
                     {displayNodeChangeOption && (
                         <View style={styles.nodeChangeContainer}>
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
-                            <Button
-                                onPress={this.onChangeNodePress}
-                                style={{
+                            <SingleFooterButton
+                                onButtonPress={this.onChangeNodePress}
+                                buttonStyle={{
                                     wrapper: { backgroundColor: primary.color },
                                     children: { color: primary.body },
                                 }}
-                            >
-                                {t('global:changeNode')}
-                            </Button>
+                                buttonText={t('global:changeNode')}
+                            />
                         </View>
                     )}
                 </View>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    firstUse: state.accounts.firstUse,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
+    accountNames: getAccountNamesFromState(state),
+    hasErrorFetchingAccountInfo: state.ui.hasErrorFetchingAccountInfo,
+    hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     additionalAccountName: state.wallet.additionalAccountName,
-    seed: state.wallet.seed,
+    additionalAccountMeta: state.wallet.additionalAccountMeta,
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,
@@ -408,14 +437,12 @@ const mapDispatchToProps = {
     changeHomeScreenRoute,
     setSetting,
     getAccountInfo,
-    getFullAccountInfoFirstSeed,
-    getFullAccountInfoAdditionalSeed,
+    getFullAccountInfo,
     getMarketData,
     getPrice,
     getChartData,
     getCurrencyData,
-    generateAlert,
     setLoginRoute,
 };
 
-export default translate(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));
+export default withNamespaces(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));

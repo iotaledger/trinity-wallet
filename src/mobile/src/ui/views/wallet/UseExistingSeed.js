@@ -1,26 +1,24 @@
 import trim from 'lodash/trim';
-import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
-import Modal from 'react-native-modal';
+import { Navigation } from 'react-native-navigation';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { toggleModalActivity, setDoNotMinimise } from 'shared-modules/actions/ui';
 import timer from 'react-native-timer';
-import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
-import PasswordValidation from 'ui/components/PasswordValidationModal';
 import CustomTextInput from 'ui/components/CustomTextInput';
-import QRScannerComponent from 'ui/components/QrScanner';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isAndroid, isIPhone11 } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { isIPhone11 } from 'libs/device';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -47,7 +45,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -63,30 +61,21 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
-    },
-    modal: {
-        height,
-        width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
     },
 });
 
 /** Use Existing Seed component */
 class UseExistingSeed extends Component {
     static propTypes = {
-        /** @ignore */
-        seedCount: PropTypes.number.isRequired,
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -95,8 +84,6 @@ class UseExistingSeed extends Component {
         shouldPreventAction: PropTypes.bool.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -105,8 +92,6 @@ class UseExistingSeed extends Component {
         setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
@@ -118,7 +103,7 @@ class UseExistingSeed extends Component {
 
         this.state = {
             seed: '',
-            accountName: this.getDefaultAccountName(),
+            accountName: '',
         };
     }
 
@@ -135,7 +120,7 @@ class UseExistingSeed extends Component {
      * @method onQRPress
      */
     onQRPress() {
-        this.showModal('qr');
+        this.showModal('qrScanner');
     }
 
     /**
@@ -168,56 +153,48 @@ class UseExistingSeed extends Component {
     }
 
     /**
-     * Gets a default account name
-     * @method getDefaultAccountName
-     */
-    getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.seedCount === 0) {
-            return t('global:mainWallet');
-        } else if (this.props.seedCount === 1) {
-            return t('global:secondWallet');
-        } else if (this.props.seedCount === 2) {
-            return t('global:thirdWallet');
-        } else if (this.props.seedCount === 3) {
-            return t('global:fourthWallet');
-        } else if (this.props.seedCount === 4) {
-            return t('global:fifthWallet');
-        } else if (this.props.seedCount === 5) {
-            return t('global:sixthWallet');
-        } else if (this.props.seedCount === 6) {
-            return t('global:otherWallet');
-        }
-        return '';
-    }
-
-    /**
      * Adds additional account information to store
      * Navigates to loading screen
      * @method fetchAccountInfo
      */
-    fetchAccountInfo(seed, accountName) {
-        const { theme: { body } } = this.props;
+    async fetchAccountInfo(seed, accountName) {
+        const { password, theme: { body } } = this.props;
+
+        const seedStore = new SeedStore.keychain(password);
+        await seedStore.addAccount(accountName, seed);
 
         this.props.setAdditionalAccountInfo({
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
+            additionalAccountMeta: { type: 'keychain' },
             seed,
             usedExistingSeed: true,
         });
 
-        this.props.navigator.push({
-            screen: 'loading',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.setStackRoot('appStack', {
+            component: {
+                name: 'loading',
+                options: {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -228,7 +205,7 @@ class UseExistingSeed extends Component {
      * @param {string} seed
      * @param {string} accountName
      */
-    addExistingSeed(seed, accountName) {
+    async addExistingSeed(seed, accountName) {
         const { t, accountNames, password, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
@@ -251,7 +228,7 @@ class UseExistingSeed extends Component {
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
             );
-        } else if (accountNames.includes(accountName)) {
+        } else if (accountNames.map((name) => name.toLowerCase()).indexOf(accountName.toLowerCase()) > -1) {
             this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:nameInUse'),
@@ -261,71 +238,47 @@ class UseExistingSeed extends Component {
             if (shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
-            getAllSeedsFromKeychain(password)
-                .then((seedInfo) => {
-                    if (isNull(seedInfo)) {
-                        return this.fetchAccountInfo(seed, accountName);
-                    }
-                    if (hasDuplicateAccountName(seedInfo, accountName)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:nameInUse'),
-                            t('addAdditionalSeed:nameInUseExplanation'),
-                        );
-                    } else if (hasDuplicateSeed(seedInfo, seed)) {
-                        return this.props.generateAlert(
-                            'error',
-                            t('addAdditionalSeed:seedInUse'),
-                            t('addAdditionalSeed:seedInUseExplanation'),
-                        );
-                    }
-                    Clipboard.setString(' ');
-                    return this.fetchAccountInfo(seed, accountName);
-                })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+
+            const seedStore = new SeedStore.keychain(password);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+
+            if (!isUniqueSeed) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:seedInUse'),
+                    t('addAdditionalSeed:seedInUseExplanation'),
+                );
+            }
+
+            return this.fetchAccountInfo(seed, accountName);
         }
     }
 
     showModal = (modalContent) => {
-        this.setState({ modalContent });
-        this.props.toggleModalActivity();
+        const { theme } = this.props;
+        switch (modalContent) {
+            case 'qrScanner':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    onQRRead: (data) => this.onQRRead(data),
+                    hideModal: () => this.hideModal(),
+                    onMount: () => this.props.setDoNotMinimise(true),
+                    onUnmount: () => this.props.setDoNotMinimise(false),
+                });
+            case 'passwordValidation':
+                return this.props.toggleModalActivity(modalContent, {
+                    theme,
+                    validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
+                    hideModal: () => this.hideModal(),
+                });
+        }
     };
 
     hideModal = () => this.props.toggleModalActivity();
 
-    renderModalContent = (modalContent) => {
-        const { theme, theme: { body, primary } } = this.props;
-        let content = '';
-        switch (modalContent) {
-            case 'qr':
-                content = (
-                    <QRScannerComponent
-                        primary={primary}
-                        body={body}
-                        onQRRead={(data) => this.onQRRead(data)}
-                        hideModal={() => this.hideModal()}
-                        onMount={() => this.props.setDoNotMinimise(true)}
-                        onUnmount={() => this.props.setDoNotMinimise(false)}
-                    />
-                );
-                break;
-            case 'passwordValidation':
-                content = (
-                    <PasswordValidation
-                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
-                        hideModal={() => this.hideModal()}
-                        theme={theme}
-                    />
-                );
-                break;
-        }
-        return content;
-    };
-
     render() {
-        const { t, theme, isModalActive } = this.props;
-        const { modalContent, seed, accountName } = this.state;
-
+        const { t, theme } = this.props;
+        const { seed, accountName } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -344,7 +297,7 @@ class UseExistingSeed extends Component {
                                     this.setState({ seed: text.toUpperCase() });
                                 }
                             }}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
@@ -381,7 +334,7 @@ class UseExistingSeed extends Component {
                             }}
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.15 }}
+                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}
@@ -414,23 +367,6 @@ class UseExistingSeed extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                        animationInTiming={isAndroid ? 1000 : 300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={theme.body.bg}
-                        backdropOpacity={0.9}
-                        style={styles.modal}
-                        isVisible={isModalActive}
-                        onBackButtonPress={() => this.props.toggleModalActivity()}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid}
-                    >
-                        {this.renderModalContent(modalContent)}
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -438,12 +374,10 @@ class UseExistingSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seedCount: state.accounts.seedCount,
-    accountNames: state.accounts.accountNames,
+    accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
@@ -454,6 +388,6 @@ const mapDispatchToProps = {
     setDoNotMinimise,
 };
 
-export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
+export default withNamespaces(['addAdditionalSeed', 'useExistingSeed', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(UseExistingSeed),
 );

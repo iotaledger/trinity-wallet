@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
@@ -16,16 +16,15 @@ const routeToComponent = {
     settings: Settings,
 };
 
-class TabContent extends Component {
+class TabContent extends PureComponent {
     render() {
-        const { currentRoute, navigator, isKeyboardActive } = this.props;
+        const { currentRoute, isKeyboardActive } = this.props;
         const Content = routeToComponent[currentRoute];
 
         return (
             <View style={{ flex: 1 }}>
                 <Content
                     type={currentRoute}
-                    navigator={navigator}
                     closeTopBar={() => this.props.handleCloseTopBar()}
                     isKeyboardActive={isKeyboardActive}
                     onTabSwitch={(name) => this.props.onTabSwitch(name)}
@@ -40,8 +39,6 @@ const mapStateToProps = (state) => ({
 });
 
 TabContent.propTypes = {
-    /** Navigation object */
-    navigator: PropTypes.object.isRequired,
     /** Currently selected home screen route */
     currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
     /** onTabSwitch callback function

@@ -8,10 +8,11 @@ const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
-const machineUuid = require('machine-uuid');
+const machineUuid = require('machine-uuid-sync');
 const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
-const { byteToTrit, byteToChar } = require('../../src/libs/helpers');
+const { byteToTrit, byteToChar, removeNonAlphaNumeric } = require('../../src/libs/helpers');
+const ledger = require('../hardware/Ledger');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -43,6 +44,9 @@ let locales = {
 
 let onboardingSeed = null;
 let onboardingGenerated = false;
+
+// Use a different keychain entry for development versions
+const KEYTAR_SERVICE = process.env.NODE_ENV === 'development' ? 'Trinity wallet (dev)' : 'Trinity wallet';
 
 /**
  * Global Electron helper for native support
@@ -105,11 +109,9 @@ const Electron = {
 
     /**
      * Gets machine UUID
-     * @return {Promise} resolves to the machine UUID
+     * @return {string}
      */
-    getUuid: () => {
-        return machineUuid();
-    },
+    getUuid: () => machineUuid(),
 
     /**
      * Proxy native menu attribute settings
@@ -185,7 +187,7 @@ const Electron = {
      * @returns {promise} Promise resolves in an Array of entries
      */
     listKeychain: () => {
-        return keytar.findCredentials('Trinity wallet');
+        return keytar.findCredentials(KEYTAR_SERVICE);
     },
 
     /**
@@ -194,7 +196,7 @@ const Electron = {
      * @returns {promise} Promise resolves in account object
      */
     readKeychain: (accountName) => {
-        return keytar.getPassword('Trinity wallet', accountName);
+        return keytar.getPassword(KEYTAR_SERVICE, accountName);
     },
 
     /**
@@ -204,7 +206,7 @@ const Electron = {
      * @returns {promise} Promise resolves in success boolean
      */
     setKeychain: (accountName, content) => {
-        return keytar.setPassword('Trinity wallet', accountName, content);
+        return keytar.setPassword(KEYTAR_SERVICE, accountName, content);
     },
 
     /**
@@ -213,7 +215,7 @@ const Electron = {
      * @returns {promise} Promise resolves in a success boolean
      */
     removeKeychain: (accountName) => {
-        return keytar.deletePassword('Trinity wallet', accountName);
+        return keytar.deletePassword(KEYTAR_SERVICE, accountName);
     },
 
     /**
@@ -340,6 +342,31 @@ const Electron = {
     },
 
     /**
+     * Show a native dialog box
+     * @param {string} message - Dialog box content
+     * @param {string} buttonTitle - dialog box button title
+     * @param {string} title - Dialog box title, is not shown on all platforms
+     * @returns {number} Returns 0 after dialog button press
+     */
+    dialog: async (message, buttonTitle, title) => {
+        return await dialog.showMessageBox(currentWindow, {
+            type: 'info',
+            title,
+            message,
+            buttons: [buttonTitle],
+        });
+    },
+
+    /**
+     * Send a IPC message to current window
+     * @param {string} type - Message type
+     * @param {any} payload - Message payload
+     */
+    send: (type, payload) => {
+        currentWindow.webContents.send(type, payload);
+    },
+
+    /**
      * Export SeedVault file
      * @param {array} - Seed object array
      * @param {string} - Plain text password to use for SeedVault
@@ -349,10 +376,13 @@ const Electron = {
         try {
             const content = await kdbx.exportVault(seeds, password);
             const now = new Date();
-
+            let prefix = 'SeedVault';
+            if (seeds.length === 1) {
+                prefix = removeNonAlphaNumeric(seeds[0].title, 'SeedVault').trim();
+            }
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `seedvault-${now
+                defaultPath: `${prefix}-${now
                     .toISOString()
                     .slice(0, 16)
                     .replace(/[-:]/g, '')
@@ -365,7 +395,7 @@ const Electron = {
                 throw Error('Export cancelled');
             }
 
-            fs.writeFileSync(path, new Buffer(content));
+            fs.writeFileSync(path, Buffer.from(content));
 
             return false;
         } catch (error) {
@@ -528,6 +558,8 @@ const Electron = {
     },
 
     _eventListeners: {},
+
+    ledger,
 };
 
 module.exports = Electron;

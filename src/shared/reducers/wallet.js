@@ -21,10 +21,6 @@ const initialState = {
      */
     usedExistingSeed: false,
     /**
-     * Account name set by user during initial account setup
-     */
-    accountName: 'MAIN WALLET',
-    /**
      * Active account index from the list of added account names
      */
     seedIndex: 0,
@@ -36,6 +32,10 @@ const initialState = {
      * Account name set by user during additional account setup
      */
     additionalAccountName: '',
+    /**
+     * Account type set by user during additional account setup
+     */
+    additionalAccountMeta: {},
     /**
      * Total balance detected during snapshot transition
      */
@@ -60,6 +60,10 @@ const initialState = {
      * Determines if wallet has an active internet connection
      */
     hasConnection: true,
+    /**
+     * Determines if wallet is validating the displayed address
+     */
+    isValidatingAddress: false,
 };
 
 export default (state = initialState, action) => {
@@ -115,31 +119,21 @@ export default (state = initialState, action) => {
                 ...state,
                 currentSetting: action.payload,
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
                 ready: false,
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
                 seed: Array(82).join(' '),
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
+                additionalAccountMeta: {},
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR:
-            return {
-                ...state,
-                ready: true,
-                addingAdditionalAccount: false,
-            };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
-            return {
-                ...state,
-                ready: false
-            };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
                 ready: true,
@@ -198,6 +192,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasConnection: action.payload.isConnected,
+            };
+        case ActionTypes.ADDRESS_VALIDATION_REQUEST:
+            return {
+                ...state,
+                isValidatingAddress: true,
+            };
+        case ActionTypes.ADDRESS_VALIDATION_SUCCESS:
+            return {
+                ...state,
+                isValidatingAddress: false,
             };
         default:
             return state;

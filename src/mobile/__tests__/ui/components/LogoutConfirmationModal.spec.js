@@ -15,7 +15,6 @@ const getProps = (overrides) =>
             backgroundColor: { backgroundColor: '#FFFFFF' },
             textColor: {},
             borderColor: {},
-            barBg: '#ffffff',
         },
         overrides,
     );
@@ -49,10 +48,6 @@ describe('Testing LogoutConfirmationModal component', () => {
 
         it('should require a borderColor object as a prop', () => {
             expect(LogoutConfirmationModal.propTypes.borderColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a barBg string as a prop', () => {
-            expect(LogoutConfirmationModal.propTypes.barBg).toEqual(PropTypes.string.isRequired);
         });
     });
 
