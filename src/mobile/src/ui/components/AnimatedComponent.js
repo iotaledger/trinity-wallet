@@ -1,3 +1,4 @@
+import head from 'lodash/head';
 import last from 'lodash/last';
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
@@ -66,7 +67,7 @@ class AnimatedComponent extends Component {
         if (
             this.props.navStack.length > newProps.navStack.length &&
             this.screen === last(this.props.navStack) &&
-            newProps.navStack.length !== 1
+            head(this.props.navStack) === head(newProps.navStack)
         ) {
             this.reverseSlideOut = true;
             this.iniatialiseAnimations(this.props.animationOutType);
@@ -77,7 +78,7 @@ class AnimatedComponent extends Component {
         if (
             this.screen === last(this.props.navStack) &&
             newProps.navStack.length === 1 &&
-            last(this.props.navStack) !== last(newProps.navStack)
+            head(this.props.navStack) !== head(newProps.navStack)
         ) {
             this.reverseSlideIn = false;
             this.reverseSlideOut = false;
