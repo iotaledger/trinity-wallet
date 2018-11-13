@@ -55,8 +55,8 @@
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Conto non riconosciuto",
+        "unrecognisedAccountExplanation": "Il conto {{accountName}} non è stato riconosciuto. Valuta se è il caso di reimpostare il tuo portafoglio.",
         "emptyPasswordExplanation": "È necessario immettere una password. Si prega di riprovare.",
         "capsLockIsOn": "Blocco maiuscole è attivo",
         "syncInProgress": "Sincronizzazione in corso",
@@ -143,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
         "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Errore di portachiavi",
+        "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
+        "mainWallet": "CONTO PRINCIPALE"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -276,7 +276,7 @@
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "Nuovo indirizzo",
+        "generateNewAddress": "Sync address",
         "noAddresses": "NESSUN INDIRIZZO",
         "spent": "Speso",
         "missingPermission": "È richiesto l'accesso al file system",
@@ -347,7 +347,9 @@
         "advanced": "Avanzata",
         "standard": "Standard",
         "advancedModeExplanation": "Nella modalità Avanzata saranno visualizzate informazioni tecniche più dettagliate.",
-        "modesExplanation": "Abilita la modalità Avanzata solo se hai esperienza nell'uso di IOTA. Altrimenti potresti trovarti disorientato."
+        "modesExplanation": "Abilita la modalità Avanzata solo se hai esperienza nell'uso di IOTA. Altrimenti potresti trovarti disorientato.",
+        "modeUpdated": "Modalità aggiornata",
+        "modeUpdatedExplanation": "Sei passato alla modalità {{mode}}"
     },
     "settings": {
         "transferSending": "Invio transazione",
@@ -405,7 +407,6 @@
         "reset": "Reimposta"
     },
     "walletSetup": {
-        "creatingSeed": "Creazione di un seme",
         "okay": "Va bene. Cominciamo a impostare il tuo portafoglio!",
         "doYouNeedASeed": "È necessario creare un nuovo seme?",
         "seedExplanation": "Il tuo seme IOTA è la chiave d'accesso primario ai tuoi fondi. Consta di 81 caratteri, contiene solo lettere A-Z o il numero 9.",
@@ -436,7 +437,7 @@
         "empty": "Vuota",
         "retrying": "Sto riprovando",
         "yesterday": "Ieri",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promozione di un altro pacchetto"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -513,9 +514,9 @@
         "discordInformation": "Si prega di visitare il canale #help in Discord per scoprire cosa si può fare."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Sei sicuro di voler eliminare il tuo conto?",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Questa azione non può essere annullata",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
     "manualSync": {
@@ -534,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "Immetti la password per visualizzare il tuo seme.",
         "viewSeed": "Visualizza seme",
-        "hideSeed": "Nascondi seme"
+        "hideSeed": "Nascondi seme",
+        "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
+        "accountIndex": "Il tuo indice di conto su Ledger",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
@@ -588,27 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Un SeedVault è un file crittografato per archiviare in modo sicuro il tuo seme. Il seme viene crittografato con la password del SeedVault e non è possibile accedere al seme senza la password.",
         "seedVaultWarning": "Assicurarsi di eseguire un backup del file in più posizioni (per esempio hard disk, nel cloud, USB). Se perdi questo file e non hai archiviato il seme altrove, perderai i tuoi IOTA.",
         "exportFail": "Esportazione come SeedVault fallita",
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
         "exportSuccess": "SeedVault esportato",
         "exportSuccessExplanation": "Il file con il tuo seme crittografato è stato esportato con successo.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Password di SeedVault non riconosciuta",
+        "unrecognisedKeyExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "emptyKey": "Nessuna password di SeedVault immessa",
+        "emptyKeyExplanation": "È necessario immettere una password. Si prega di riprovare.",
         "importSuccess": "Seme importato",
         "importSuccessExplanation": "Il seme è stato importato con successo.",
         "saveToDownloadFolder": "Salva nella cartella Scaricamenti",
         "importSeedVault": "Importa un SeedVault",
         "dropSeedVaultHere": "Trascinare il SeedVault qui <1></1> o fare clic per sfogliare",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Immetti la tua password per accedere il SeedVault",
         "noSeedFound": "Il SeedVault non contiene un seme valido",
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "In primo luogo abbiamo bisogno di mettere in sicurezza il tuo SeedVault. Si prega di scegliere una password per crittografare il file. Avrai bisogno di questa password per recuperare il tuo seme dal SeedVault di backup. Sentiti libero di usare la stessa password che usi per Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -669,7 +673,9 @@
         "newVersionAvailable": "Una nuova versione è disponibile",
         "newVersionAvailableExplanation": "È disponibile una nuova versione di Trinity. Vuoi aggiornare ora?",
         "installUpdate": "Installa l'aggiornamento e riavvia",
-        "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento."
+        "installUpdateExplanation": "Il download è completo, Trinità verrà riavviato per installare l'aggiornamento.",
+        "downloadingUpdate": "Scaricamento aggiornamento",
+        "downloadProgress": "Scaricati {{transferred}} di {{total}}"
     },
     "notificationLog": {
         "errorLog": "Registro degli errori"
@@ -712,5 +718,37 @@
         "proceed": "Procedere al recupero",
         "sweepConfirmation": "Stai per trasferire {{amount}} verso l'indirizzo {{address}}. Conto: {{accountName}}, indice dell'indirizzo: {{index}}",
         "sweepConfirmationTitle": "Conferma di trasferimento"
+    },
+    "ledger": {
+        "ready": "Dispositivo Ledger collegato e pronto",
+        "notReady": "Se desideri utilizzare un dispositivo Ledger, collegalo e sbloccalo adesso",
+        "indexInUse": "Indice già in uso per il conto {{account}}",
+        "indexInUseExplanation": "L'indice selezionato è già in uso su uno dei tuoi conti. Si prega di scegliere un altro numero di indice.",
+        "proceedWithLedger": "Procedi con la configurazione di Ledger",
+        "accountIndex": "Indice di conto",
+        "accountPage": "Pagina del conto",
+        "chooseAccountIndex": "Scegli il tuo indice di conto su Ledger",
+        "accountIndexExplanation": "Il tuo Ledger può memorizzare più semi. Ogni seme è identificato da un numero di indice univoco. È stato pre-selezionato un indice inutilizzato, ma puoi sceglierne un altro. Assicurati di aver annotato il numero di indice scelto.",
+        "accountPageExplanation": "Alcuni portafogli di terze parti richiedono pagine.",
+        "connectionError": "Impossibile connettersi al Ledger",
+        "connectionErrorExplanation": "Verifica che il Ledger sia collegato e sbloccato.",
+        "connectionTitle": "Collega il Ledger",
+        "connectionExplanation": "Un dispositivo Ledger deve essere collegato per eseguire questa funzione.",
+        "transactionTitle": "Scorrere e approvare la transazione sul Ledger",
+        "transactionExplanation": "Usa il Ledger per approvare la transazione in uscita.",
+        "applicationTitle": "Apri la app IOTA sul Ledger",
+        "applicationExplanation": "Sul tuo Ledger apri la app IOTA per continuare a utilizzare Trinity.",
+        "cannotSendZeroValueTitle": "Non è possibile inviare trasferimenti di valore zero",
+        "cannotSendZeroValueExplanation": "Non è possibile inviare trasferimenti di valore zero con un dispositivo Ledger.",
+        "ledgerDisconnectedTitle": "Dispositivo Ledger disconnesso",
+        "ledgerDisconnectedExplanation": "Il dispositivo Ledger è stato disconnesso. Si prega di riconnettere e riprovare.",
+        "ledgerDeniedTitle": "Transazione negata",
+        "ledgerDeniedExplanation": "La transazione è stata negata sul dispositivo Ledger.",
+        "ledgerIncorrectIndex": "Mancata corrispondenza del dispositivo Ledger",
+        "ledgerIncorrectIndexExplanation": "Il dispositivo Ledger collegato non corrisponde a quello associato a questo conto, o la sua password è stata modificata.",
+        "checkAddress": "Controllare l'indirizzo di ricezione",
+        "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger. Altrimenti premi \"Sincronizza indirizzo\".",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

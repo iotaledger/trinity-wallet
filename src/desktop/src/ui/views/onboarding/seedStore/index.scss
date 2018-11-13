@@ -1,19 +1,4 @@
 .ledger {
-    .usedIndex {
-        input {
-            border-color: var(--negative);
-        }
-    }
-
-    strong {
-        display: block;
-        height: 21px;
-        line-height: 21px;
-        margin-top: -10px;
-        font-size: 14px;
-        color: var(--negative);
-    }
-
     section {
         > div:first-of-type {
             display: flex;

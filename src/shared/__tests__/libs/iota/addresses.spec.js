@@ -1,12 +1,15 @@
 import merge from 'lodash/merge';
 import maxBy from 'lodash/maxBy';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import nock from 'nock';
 import * as addressesUtils from '../../../libs/iota/addresses';
 import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
-import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { iota, SwitchingConfig } from '../../../libs/iota';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/addresses', () => {
     before(() => {
@@ -15,6 +18,176 @@ describe('libs: iota/addresses', () => {
 
     after(() => {
         SwitchingConfig.autoSwitch = true;
+    });
+
+    describe('#getAddressesDataUptoLatestUnusedAddress', () => {
+        describe('when (first) generated address for provided index is unused', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+                        if (command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => false) };
+                        } else if (command === 'getBalances') {
+                            return { balances: { balances: map(addresses, () => '0') } };
+                        }
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should call generateAddress method on seedStore object with provided index and security', () => {
+                const seedStore = {
+                    generateAddress: sinon.stub().resolves('A'.repeat(81)),
+                };
+                const options = { index: 9, security: 3 };
+                return addressesUtils
+                    .getAddressesDataUptoLatestUnusedAddress()(seedStore, {}, options)
+                    .then(() => expect(seedStore.generateAddress.calledWith({ index: 9, security: 3 })).to.equal(true));
+            });
+
+            it('should return address data for generated address', () => {
+                const seedStore = {
+                    generateAddress: () => Promise.resolve('A'.repeat(81)),
+                };
+                const options = { index: 9, security: 3 };
+                return addressesUtils
+                    .getAddressesDataUptoLatestUnusedAddress()(seedStore, {}, options)
+                    .then((addressData) => {
+                        const expectedAddressData = {
+                            ['A'.repeat(81)]: {
+                                index: 9,
+                                spent: { local: false, remote: false },
+                                balance: 0,
+                                checksum: 'YLFHUOJUY',
+                            },
+                        };
+                        expect(addressData).to.eql(expectedAddressData);
+                    });
+            });
+        });
+
+        describe('when (first) generated address for provided index is used', () => {
+            beforeEach(() => {
+                const resultMap = {
+                    ['A'.repeat(81)]: {
+                        spent: true,
+                        hashes: [],
+                        balance: '0',
+                    },
+                    ['B'.repeat(81)]: {
+                        spent: false,
+                        hashes: ['9'.repeat(81)],
+                        balance: '0',
+                    },
+                    ['C'.repeat(81)]: {
+                        spent: false,
+                        hashes: [],
+                        balance: '10',
+                    },
+                    ['D'.repeat(81)]: {
+                        spent: false,
+                        hashes: [],
+                        balance: '0',
+                    },
+                };
+
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+                        if (command === 'findTransactions') {
+                            return {
+                                hashes: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc = [...acc, ...resultMap[address].hashes];
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, (address) => resultMap[address].spent) };
+                        } else if (command === 'getBalances') {
+                            return { balances: { balances: map(addresses, (address) => resultMap[address].balance) } };
+                        }
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should generate addresses and return address data upto latest unused address', () => {
+                const seedStore = {
+                    generateAddress: ({ index }) => {
+                        const addressMap = {
+                            0: 'A'.repeat(81),
+                            1: 'B'.repeat(81),
+                            2: 'C'.repeat(81),
+                            3: 'D'.repeat(81),
+                        };
+                        return Promise.resolve(addressMap[index]);
+                    },
+                };
+                const options = { index: 0, security: 2 };
+
+                return addressesUtils
+                    .getAddressesDataUptoLatestUnusedAddress()(seedStore, {}, options)
+                    .then((addressData) => {
+                        const expectedAddressData = {
+                            ['A'.repeat(81)]: {
+                                index: 0,
+                                spent: { local: false, remote: true },
+                                balance: 0,
+                                checksum: 'YLFHUOJUY',
+                            },
+                            ['B'.repeat(81)]: {
+                                index: 1,
+                                spent: { local: false, remote: false },
+                                balance: 0,
+                                checksum: 'IO9LGIBVB',
+                            },
+                            ['C'.repeat(81)]: {
+                                index: 2,
+                                spent: { local: false, remote: false },
+                                balance: 10,
+                                checksum: 'X9KV9ELOW',
+                            },
+                            ['D'.repeat(81)]: {
+                                index: 3,
+                                spent: { local: false, remote: false },
+                                balance: 0,
+                                checksum: 'CDCQDMVNW',
+                            },
+                        };
+
+                        expect(addressData).to.eql(expectedAddressData);
+                    });
+            });
+        });
     });
 
     describe('#accumulateBalance', () => {
@@ -156,10 +329,7 @@ describe('libs: iota/addresses', () => {
         describe('when current latest address is not blacklisted', () => {
             it('should return current latest address', () => {
                 return addressesUtils
-                    .getAddressesUptoRemainder()(addressData, [], seedStore, () => Promise.resolve([]), [
-                        'Z'.repeat(81),
-                        'I'.repeat(81),
-                    ])
+                    .getAddressesUptoRemainder()(addressData, [], seedStore, ['Z'.repeat(81), 'I'.repeat(81)])
                     .then(({ remainderAddress }) => {
                         expect(remainderAddress).to.equal(
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
@@ -259,7 +429,7 @@ describe('libs: iota/addresses', () => {
                     getBalances.onCall(0).yields(null, { balances: ['0'] });
                     getBalances.onCall(1).yields(null, { balances: ['3'] });
                     getBalances.onCall(2).yields(null, { balances: ['5'] });
-                    getBalances.onCall(3).yields(null, { balances: ['10'] });
+                    getBalances.onCall(3).yields(null, { balances: ['0'] });
 
                     wereAddressesSpentFrom.onCall(0).yields(null, [false]);
                     wereAddressesSpentFrom.onCall(1).yields(null, [false]);
@@ -306,7 +476,7 @@ describe('libs: iota/addresses', () => {
                                 ['Z'.repeat(81)]: {
                                     index: 8,
                                     checksum: '9JTQPKDGC',
-                                    balance: 10,
+                                    balance: 0,
                                     spent: {
                                         local: false,
                                         remote: false,
@@ -727,7 +897,7 @@ describe('libs: iota/addresses', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
                     return addressesUtils
-                        .syncAddresses()(seedStore, addressData, [], () => Promise.resolve('A'.repeat(81)))
+                        .syncAddresses()(seedStore, addressData, [])
                         .then((newAddressData) => {
                             expect(newAddressData).to.eql(addressData);
 
@@ -776,7 +946,7 @@ describe('libs: iota/addresses', () => {
                     hashes.forEach((hash, index) => findTransactions.onCall(index).yields(null, hash ? [hash] : []));
 
                     // Use unique balances to assert if newly generated addresses have correct balance assignment
-                    const balances = ['0', '10', '20', '30'];
+                    const balances = ['30', '10', '20', '0'];
 
                     balances.forEach((balance, index) =>
                         getBalances.onCall(index).yields(null, { balances: [balance] }),

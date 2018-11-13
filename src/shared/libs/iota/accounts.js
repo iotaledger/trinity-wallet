@@ -12,7 +12,6 @@ import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
 import {
-    isNodeSynced,
     findTransactionObjectsAsync,
     getLatestInclusionAsync,
     getTransactionsObjectsAsync,
@@ -40,8 +39,7 @@ import {
     formatAddressData,
     findSpendStatusesFromTransactionObjects,
 } from './addresses';
-import Errors from '../errors';
-import { EMPTY_HASH_TRYTES } from './utils';
+import { EMPTY_HASH_TRYTES, throwIfNodeNotSynced } from './utils';
 
 /**
  *   Takes in account data fetched from ledger.
@@ -111,14 +109,8 @@ export const getAccountData = (provider) => (seedStore, accountName) => {
         hashes: [],
     };
 
-    return isNodeSynced(provider)
-        .then((isSynced) => {
-            if (!isSynced) {
-                throw new Error(Errors.NODE_NOT_SYNCED);
-            }
-
-            return getFullAddressHistory(provider)(seedStore);
-        })
+    return throwIfNodeNotSynced(provider)
+        .then(() => getFullAddressHistory(provider)(seedStore))
         .then((history) => {
             data = { ...data, ...history };
 
@@ -181,10 +173,17 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return (rescanAddresses
-        ? syncAddresses(provider)(seedStore, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx))
-        : Promise.resolve(thisStateCopy.addresses)
-    )
+    return throwIfNodeNotSynced(provider)
+        .then(
+            () =>
+                rescanAddresses
+                    ? syncAddresses(provider)(
+                          seedStore,
+                          thisStateCopy.addresses,
+                          map(thisStateCopy.transfers, (tx) => tx),
+                      )
+                    : Promise.resolve(thisStateCopy.addresses),
+        )
         .then((latestAddressData) => {
             thisStateCopy.addresses = latestAddressData;
 
