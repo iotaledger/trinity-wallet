@@ -243,14 +243,14 @@
         "takingAWhile": "Atrodo, kad tai užtruks"
     },
     "newSeedSetup": {
-        "generatedSeed": "Užraktas sukurtas",
+        "generatedSeed": "Sukurtas užraktas",
         "seedNotGenerated": "Sukurti užrakto nepavyko",
         "seedNotGeneratedExplanation": "Susikurkite naują užraktą.",
         "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "individualLetterCount": "Spauskite ant <1><0>{{count}}</0></1> simbolio, norėdami jį pakeisti.",
-        "individualLetterCount_plural": "Spauskite ant <1><0>{{count}}</0></1> simbolių, norėdami juos pakeisti.",
+        "individualLetterCount": "Spauskite ant simbolio norėdami jį pakeisti kitu. Likęs pakeisti simbolių skaičius: <1><0>{{count}}</0></1>",
+        "individualLetterCount_plural": "Spauskite ant simbolio norėdami jį pakeisti kitu. Likęs pakeisti simbolių skaičius: <1><0>{{count}}</0></1>",
         "randomiseCharsToContinue": "Likęs pakeisti simbolių skaičius: <1>{{count}}</1>",
         "randomiseCharsToContinue_plural": "Likęs pakeisti simbolių skaičius: <1>{{count}}</1>",
         "whatIsASeed": "Kas yra užraktas?"
@@ -721,7 +721,7 @@
         "sweepConfirmationTitle": "Perkėlimo patvirtinimas"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
+        "ready": "Ledger įrenginys prijungtas",
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
         "indexInUse": "Index already in use for account {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
