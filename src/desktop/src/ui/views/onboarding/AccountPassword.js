@@ -6,7 +6,6 @@ import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
-import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
@@ -24,8 +23,6 @@ class AccountPassword extends React.PureComponent {
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
-        setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -33,6 +30,8 @@ class AccountPassword extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        wallet: PropTypes.object.isRequired,
     };
 
     state = {
@@ -46,7 +45,7 @@ class AccountPassword extends React.PureComponent {
      * @returns {undefined}
      */
     createAccount = async (e) => {
-        const { wallet, setPassword, setOnboardingComplete, history, generateAlert, t } = this.props;
+        const { wallet, setPassword, history, generateAlert, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -95,8 +94,6 @@ class AccountPassword extends React.PureComponent {
 
         Electron.setOnboardingSeed(null);
 
-        setOnboardingComplete(true);
-
         history.push('/onboarding/done');
     };
 
@@ -115,7 +112,7 @@ class AccountPassword extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, wallet } = this.props;
 
         const score = zxcvbn(this.state.password);
 
@@ -123,7 +120,7 @@ class AccountPassword extends React.PureComponent {
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
                     <h1>{t('setPassword:choosePassword')}</h1>
-                    <p>{t('setPassword:anEncryptedCopy')}</p>
+                    {wallet.additionalAccountMeta.type === 'keychain' && <p>{t('setPassword:anEncryptedCopy')}</p>}
                     <PasswordInput
                         focus
                         value={this.state.password}
@@ -160,7 +157,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setPassword,
-    setOnboardingComplete,
     generateAlert,
 };
 

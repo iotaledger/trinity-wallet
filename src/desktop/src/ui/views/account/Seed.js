@@ -28,12 +28,12 @@ class Seed extends PureComponent {
         /** @ignore */
         accountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
         action: null,
-        seed: null
+        seed: null,
     };
 
     /**
@@ -55,7 +55,7 @@ class Seed extends PureComponent {
         const seed = await seedStore.getSeed();
 
         this.setState({
-            seed
+            seed,
         });
     };
 
@@ -70,6 +70,12 @@ class Seed extends PureComponent {
                     {typeof accountMeta.index === 'number' && (
                         <p>
                             {t('viewSeed:accountIndex')}: <strong>{accountMeta.index}</strong>
+                        </p>
+                    )}
+                    {typeof accountMeta.page === 'number' &&
+                    accountMeta.page > 0 && (
+                        <p>
+                            {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
                         </p>
                     )}
                 </div>
@@ -89,7 +95,7 @@ class Seed extends PureComponent {
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet')
+                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
                     }}
                 />
             );
@@ -102,40 +108,40 @@ class Seed extends PureComponent {
                 <form>
                     <p className={css.seed}>
                         <span>
-                            {seed && action === 'view' ? (
-                                seed.map((byte, index) => {
-                                    if (index % 3 !== 0) {
-                                        return null;
-                                    }
-                                    const letter = byteToChar(byte);
-                                    return (
-                                        <React.Fragment key={`${index}${letter}`}>
-                                            {letter}
-                                            {byteToChar(seed[index + 1])}
-                                            {byteToChar(seed[index + 2])}{' '}
-                                        </React.Fragment>
-                                    );
-                                })
-                            ) : (
-                                new Array(MAX_SEED_LENGTH / 3).join('... ')
-                            )}
+                            {seed && action === 'view'
+                                ? seed.map((byte, index) => {
+                                      if (index % 3 !== 0) {
+                                          return null;
+                                      }
+                                      const letter = byteToChar(byte);
+                                      return (
+                                          <React.Fragment key={`${index}${letter}`}>
+                                              {letter}
+                                              {byteToChar(seed[index + 1])}
+                                              {byteToChar(seed[index + 2])}{' '}
+                                          </React.Fragment>
+                                      );
+                                  })
+                                : new Array(MAX_SEED_LENGTH / 3).join('... ')}
                         </span>
                         {seed &&
-                        action === 'view' && (
-                            <small>
-                                {t('checksum')}: <strong>{checksum}</strong>
-                            </small>
-                        )}
+                            action === 'view' && (
+                                <small>
+                                    {t('checksum')}: <strong>{checksum}</strong>
+                                </small>
+                            )}
                     </p>
                     <fieldset>
                         <Button
                             className="small"
-                            onClick={() => this.setState({ action: action !== 'view' ? 'view' : null })}>
+                            onClick={() => this.setState({ action: action !== 'view' ? 'view' : null })}
+                        >
                             {action === 'view' ? t('settings:hide') : t('settings:show')}
                         </Button>
                         <Button
                             className="small"
-                            onClick={() => (!seed ? this.setState({ action: 'print' }) : window.print())}>
+                            onClick={() => (!seed ? this.setState({ action: 'print' }) : window.print())}
+                        >
                             {t('paperWallet')}
                         </Button>
                         <Button className="small" onClick={() => this.setState({ action: 'export' })}>
@@ -147,7 +153,8 @@ class Seed extends PureComponent {
                 <Modal
                     variant="fullscreen"
                     isOpen={seed && action === 'export'}
-                    onClose={() => this.setState({ action: null })}>
+                    onClose={() => this.setState({ action: null })}
+                >
                     <SeedExport seed={seed || []} title={accountName} onClose={() => this.setState({ action: null })} />
                 </Modal>
             </React.Fragment>
@@ -157,7 +164,7 @@ class Seed extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
-    accountMeta: getSelectedAccountMeta(state)
+    accountMeta: getSelectedAccountMeta(state),
 });
 
 export default connect(mapStateToProps)(withI18n()(Seed));

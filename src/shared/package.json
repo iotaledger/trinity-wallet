@@ -12,7 +12,7 @@
     "scripts": {
         "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --require @babel/register \"__tests__/**/*.spec.js\"",
         "test:watch": "yarn test --watch",
-        "audit": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
+        "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
         "themes:sync": "node themes/sync.js"
     },
     "license": "Apache-2.0 OR EPL-2.0",

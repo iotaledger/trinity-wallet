@@ -103,7 +103,12 @@ class Send extends React.PureComponent {
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, fields.message, powFn);
+        const message =
+            SeedStore[accountMeta.type].isMessageAvailable || parseInt(fields.amount || '0') === 0
+                ? fields.message
+                : '';
+
+        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message, powFn);
     };
 
     render() {
@@ -154,9 +159,9 @@ class Send extends React.PureComponent {
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
                     <TextInput
-                        value={isMessageAvailable ? fields.message : ''}
+                        value={isMessageAvailable || parseInt(fields.amount || '0') === 0 ? fields.message : ''}
                         label={t('send:message')}
-                        disabled={!isMessageAvailable}
+                        disabled={!isMessageAvailable && parseInt(fields.amount) > 0}
                         onChange={(value) => this.props.setSendMessageField(value)}
                     />
                     <footer>

@@ -22,11 +22,11 @@ class SeedIntro extends React.PureComponent {
         /** @ignore */
         history: PropTypes.object,
         /** @ignore */
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
-        ledger: false
+        ledger: false,
     };
 
     componentDidMount() {
@@ -42,13 +42,13 @@ class SeedIntro extends React.PureComponent {
 
     ledgerCallback(isConnected) {
         this.setState({
-            ledger: isConnected
+            ledger: isConnected,
         });
     }
 
     stepForward(route) {
         this.props.setAdditionalAccountInfo({
-            additionalAccountMeta: { type: 'keychain' }
+            additionalAccountMeta: { type: 'keychain' },
         });
 
         this.props.history.push(`/onboarding/${route}`);
@@ -109,7 +109,7 @@ class SeedIntro extends React.PureComponent {
 }
 
 const mapDispatchToProps = {
-    setAdditionalAccountInfo
+    setAdditionalAccountInfo,
 };
 
 export default connect(null, mapDispatchToProps)(withI18n()(SeedIntro));

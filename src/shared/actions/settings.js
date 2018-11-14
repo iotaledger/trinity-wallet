@@ -3,8 +3,9 @@ import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
-import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
+import { throwIfNodeNotSynced } from '../libs/utils';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -430,15 +431,8 @@ export function setFullNode(node, addingCustomNode = false) {
     return (dispatch) => {
         dispatch(dispatcher.request());
 
-        // Passing in provider will create a new IOTA instance
-        isNodeSynced(node)
-            .then((isSynced) => {
-                if (!isSynced) {
-                    throw new Error(Errors.NODE_NOT_SYNCED);
-                }
-
-                return checkAttachToTangleAsync(node);
-            })
+        throwIfNodeNotSynced(node)
+            .then(() => checkAttachToTangleAsync(node))
             .then((res) => {
                 // Change IOTA provider on the global iota instance
                 changeIotaNode(node);

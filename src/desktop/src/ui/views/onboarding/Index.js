@@ -113,7 +113,7 @@ class Onboarding extends React.PureComponent {
         return (
             <main className={css.onboarding}>
                 <header>
-                    {!isAuthorised ? (
+                    {!isAuthorised && currentKey !== 'login' ? (
                         this.steps(currentKey)
                     ) : (
                         <a onClick={() => history.push('/wallet/')}>
@@ -133,6 +133,7 @@ class Onboarding extends React.PureComponent {
                                 <Route path="/onboarding/account-name" component={SeedName} />
                                 <Route path="/onboarding/account-password" component={SecurityEnter} />
                                 <Route path="/onboarding/done" component={Done} />
+                                <Route path="/onboarding/login" component={Login} />
                                 <Route path="/" component={indexComponent} />
                             </Switch>
                         </div>

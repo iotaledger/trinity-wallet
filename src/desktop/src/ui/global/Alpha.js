@@ -8,7 +8,7 @@ import Button from 'ui/components/Button';
  */
 class AlphaWarning extends React.PureComponent {
     state = {
-        active: true
+        active: true,
     };
 
     render() {
@@ -19,7 +19,10 @@ class AlphaWarning extends React.PureComponent {
                 <section>
                     <article>
                         <h1 style={{ color: 'var(--negative)' }}>Alpha release warning</h1>
-                        <p>This is an early (alpha) release of the wallet. It is to be used for testing purposes only, with very small amounts of tokens.</p>
+                        <p>
+                            This is an early (alpha) release of the wallet. It is to be used for testing purposes only,
+                            with very small amounts of tokens.
+                        </p>
                     </article>
                     <footer>
                         <Button onClick={() => this.setState({ active: false })} variant="dark">
