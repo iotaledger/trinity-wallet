@@ -70,6 +70,7 @@ export default function withBackPress(C) {
          */
         withBackPressPopRoute() {
             navigator.pop(this.props.componentId);
+            return true;
         }
 
         /**
@@ -83,6 +84,7 @@ export default function withBackPress(C) {
             }
             this.lastBackPressed = Date.now();
             ToastAndroid.show(i18next.t('global:pressBackAgain'), ToastAndroid.SHORT);
+            return true;
         }
 
         /**
@@ -93,8 +95,7 @@ export default function withBackPress(C) {
         withBackPressNavigateSettings(currentSetting) {
             switch (currentSetting) {
                 case 'mainSettings':
-                    this.withBackPressCloseApp();
-                    return true;
+                    return this.withBackPressCloseApp();
                 case 'modeSelection':
                 case 'themeCustomisation':
                 case 'currencySelection':
@@ -103,29 +104,24 @@ export default function withBackPress(C) {
                 case 'securitySettings':
                 case 'advancedSettings':
                 case 'about':
-                    this.props.setSetting('mainSettings');
-                    return true;
+                    return this.props.setSetting('mainSettings');
                 case 'nodeSelection':
                 case 'addCustomNode':
                 case 'manualSync':
                 case 'snapshotTransition':
                 case 'pow':
                 case 'autoPromotion':
-                    this.props.setSetting('advancedSettings');
-                    return true;
+                    return this.props.setSetting('advancedSettings');
                 case 'viewSeed':
                 case 'viewAddresses':
                 case 'editAccountName':
                 case 'deleteAccount':
                 case 'addNewAccount':
-                    this.props.setSetting('accountManagement');
-                    return true;
+                    return this.props.setSetting('accountManagement');
                 case 'addExistingSeed':
-                    this.props.setSetting('addNewAccount');
-                    return true;
+                    return this.props.setSetting('addNewAccount');
                 case 'changePassword':
-                    this.props.setSetting('securitySettings');
-                    return true;
+                    return this.props.setSetting('securitySettings');
                 default:
                     break;
             }

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 3.2,
         width,
         alignItems: 'center',
     },
