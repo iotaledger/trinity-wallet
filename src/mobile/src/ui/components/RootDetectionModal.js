@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         color: 'red',
     },
     icon: {
-        opacity: 0.6,
+        opacity: 0.8,
         paddingVertical: height / 30,
         backgroundColor: 'transparent',
     },
@@ -65,7 +65,7 @@ export class RootDetectionModal extends PureComponent {
                 rightButtonText={t('yes')}
             >
                 <Text style={[styles.warningText, { color: negative.color }]}>{t('warning')}</Text>
-                <Icon name="warning" size={width / 6} color={body.color} style={styles.icon} />
+                <Icon name="attention" size={width / 6} color={body.color} style={styles.icon} />
                 <Text style={[styles.infoTextBold, textColor, { paddingBottom: height / 30 }]}>
                     {t('appearsRooted')}
                 </Text>
