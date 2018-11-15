@@ -1033,25 +1033,70 @@ describe('libs: iota/addresses', () => {
             sandbox.restore();
         });
 
-        describe('when the last address has associated meta data', () => {
-            it('should return addresses with latest unused address', () => {
-                // Return transaction hashes on this stub so that there is only iteration
-                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+        describe('when last address has associated meta data', () => {
+            describe('when last address has associated balance', () => {
+                it('should return addresses with latest unused address', () => {
+                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
 
-                const latestUnusedAddress = 'H'.repeat(81);
-                const lastAddressIndex = 6;
+                    const latestUnusedAddress = 'H'.repeat(81);
+                    const lastAddressIndex = 6;
 
-                return addressesUtils
-                    .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
-                    .then((finalAddresses) => {
-                        expect(finalAddresses).to.eql([...addresses, latestUnusedAddress]);
+                    return addressesUtils
+                        .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
+                        .then((finalAddresses) => {
+                            expect(finalAddresses).to.eql([...addresses, latestUnusedAddress]);
 
-                        findTransactions.restore();
-                        wereAddressesSpentFrom.restore();
-                        getBalances.restore();
-                    });
+                            findTransactions.restore();
+                            wereAddressesSpentFrom.restore();
+                            getBalances.restore();
+                        });
+                });
+            });
+
+            describe('when last address has associated transactions', () => {
+                it('should return addresses with latest unused address', () => {
+                    // Return transaction hashes on this stub so that there is only iteration
+                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
+                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+
+                    const latestUnusedAddress = 'H'.repeat(81);
+                    const lastAddressIndex = 6;
+
+                    return addressesUtils
+                        .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
+                        .then((finalAddresses) => {
+                            expect(finalAddresses).to.eql([...addresses, latestUnusedAddress]);
+
+                            findTransactions.restore();
+                            wereAddressesSpentFrom.restore();
+                            getBalances.restore();
+                        });
+                });
+            });
+
+            describe('when last address is spent', () => {
+                it('should return addresses with latest unused address', () => {
+                    // Return transaction hashes on this stub so that there is only iteration
+                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [true]);
+                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+
+                    const latestUnusedAddress = 'H'.repeat(81);
+                    const lastAddressIndex = 6;
+
+                    return addressesUtils
+                        .removeUnusedAddresses()(lastAddressIndex, latestUnusedAddress, addresses)
+                        .then((finalAddresses) => {
+                            expect(finalAddresses).to.eql([...addresses, latestUnusedAddress]);
+
+                            findTransactions.restore();
+                            wereAddressesSpentFrom.restore();
+                            getBalances.restore();
+                        });
+                });
             });
         });
 
@@ -1098,9 +1143,9 @@ describe('libs: iota/addresses', () => {
                 getBalances.onCall(2).yields(null, { balances: ['0'] });
 
                 // Address DDD...DDD - index 3
-                // Return transaction hashes for this address
-                findTransactions.onCall(3).yields(null, ['9'.repeat(81)]);
-                wereAddressesSpentFrom.onCall(3).yields(null, [false]);
+                // Return spend status as true for this address.
+                findTransactions.onCall(3).yields(null, []);
+                wereAddressesSpentFrom.onCall(3).yields(null, [true]);
                 getBalances.onCall(3).yields(null, { balances: ['0'] });
 
                 const latestUnusedAddress = 'H'.repeat(81);
