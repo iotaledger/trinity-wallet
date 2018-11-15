@@ -4,8 +4,9 @@ import map from 'lodash/map';
 import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
-import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
-import { getSelectedNodeFromState } from '../selectors/global';
+import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import { getSelectedNodeFromState } from '../selectors/accounts';
+import { throwIfNodeNotSynced } from '../libs/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
 
@@ -493,15 +494,8 @@ export function setFullNode(node, addingCustomNode = false) {
     return (dispatch) => {
         dispatch(dispatcher.request());
 
-        // Passing in provider will create a new IOTA instance
-        isNodeSynced(node)
-            .then((isSynced) => {
-                if (!isSynced) {
-                    throw new Error(Errors.NODE_NOT_SYNCED);
-                }
-
-                return checkAttachToTangleAsync(node);
-            })
+        throwIfNodeNotSynced(node)
+            .then(() => checkAttachToTangleAsync(node))
             .then((res) => {
                 const isAttachToTangleAvailable = res.error.includes(Errors.INVALID_PARAMETERS);
 

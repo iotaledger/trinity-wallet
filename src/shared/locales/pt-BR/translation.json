@@ -55,6 +55,8 @@
         "password": "Senha",
         "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
+        "unrecognisedAccount": "Conta não reconhecida",
+        "unrecognisedAccountExplanation": "Conta denominada {{accountName}} não foi reconhecida. Considere a possibilidade de redefinir sua carteira.",
         "emptyPasswordExplanation": "Você deve digitar uma senha. Por favor, tente novamente.",
         "capsLockIsOn": "O Caps Lock está ativado",
         "syncInProgress": "Sincronizando",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada.",
         "checkForUpdates": "Verificar Atualizações",
         "account": "Conta",
-        "enterYourPassword": "Insira sua senha",
         "changeNode": "Alterar Servidor",
         "addCustomNode": "Adicionar Servidor Personalizado",
         "nodeMustUseHTTPS": "Servidor Inválido (sem HTTPS)",
@@ -142,9 +143,9 @@
         "tryingAgainWithLocalPoW": "Tentando novamente com prova de trabalho local.",
         "tryingAgainWithDifferentNode": "Tentar novamente com um servidor diferente.",
         "errorFetchingAccountInformation": "Erro ao buscar informações da conta.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "errorAccessingKeychain": "Erro de chaveiro",
+        "errorAccessingKeychainExplanation": "Não foi possível acessar o chaveiro necessário para armazenamento seguro.",
+        "mainWallet": "CONTA PRINCIPAL"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -275,7 +276,7 @@
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
-        "generateNewAddress": "Novo Endereço",
+        "generateNewAddress": "Sync address",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
@@ -346,7 +347,9 @@
         "advanced": "Avançado",
         "standard": "Padrão",
         "advancedModeExplanation": "Modo avançado exibirá informações técnicas mais detalhadas.",
-        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente no uso da IOTA. Caso contrário, poderá confundir-se."
+        "modesExplanation": "Somente habilite o modo Avançado se você for um usuário experiente no uso da IOTA. Caso contrário, poderá confundir-se.",
+        "modeUpdated": "Modo atualizado",
+        "modeUpdatedExplanation": "Você mudou para o modo {{mode}}"
     },
     "settings": {
         "transferSending": "Enviando transferência",
@@ -404,7 +407,6 @@
         "reset": "Redefinir"
     },
     "walletSetup": {
-        "creatingSeed": "Criando uma seed",
         "okay": "Vamos configurar a sua carteira!",
         "doYouNeedASeed": "Precisa criar uma nova seed?",
         "seedExplanation": "Sua seed é a chave para seus fundos. Ela contém 81 caracteres, usando apenas as letras A até Z ou o número 9.",
@@ -435,7 +437,7 @@
         "empty": "Vazio",
         "retrying": "Tentando de novo",
         "yesterday": "Ontem",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promover outro pacote"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -512,9 +514,9 @@
         "discordInformation": "Por favor, acesse canal #help no Discord para encontrar o que pode fazer."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Tem certeza que deseja excluir sua conta?",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Esta operação não pode ser desfeita",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
     },
     "manualSync": {
@@ -533,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "Digite a senha para exibir sua seed.",
         "viewSeed": "Ver Seed",
-        "hideSeed": "Esconder Seed"
+        "hideSeed": "Esconder Seed",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Você fez backup de sua seed?",
@@ -587,23 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "Um \"cofre\" de Seed é um arquivo criptografado para armazenar sua semente com segurança. A semente é criptografada por uma senha e não pode ser acessada sem a mesma.",
+        "seedVaultExplanation": "O SeedVault é um arquivo criptografado para armazenar sua Seed com segurança. A Seed é criptografada por trás de uma chave SeedVault e não pode ser acessada sem a chave.",
         "seedVaultWarning": "Certifique-se de fazer backup do arquivo em vários locais (por exemplo, disco rígido, nuvem, USB). Se você perde esse arquivo e não armazenou sua semente em outro lugar, você vai perder seus IOTAs.",
         "exportFail": "SeedVault exportação falhou",
         "exportFailExplanation": "Houve um problema ao exportar o SeedVault. Por favor, certifique-se de que você tem as permissões apropriadas e espaço livre suficiente.",
         "exportSuccess": "SeedVault exportada",
         "exportSuccessExplanation": "Seu arquivo criptografado da Seed foi exportado com êxito.",
+        "unrecognisedKey": "Chave de SeedVault não reconhecida",
+        "unrecognisedKeyExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
+        "emptyKey": "Nenhuma chave de SeedVault inserida",
+        "emptyKeyExplanation": "Você deve digitar uma senha. Por favor, tente novamente.",
         "importSuccess": "Seed importada",
         "importSuccessExplanation": "Sua seed foi importada com sucesso.",
         "saveToDownloadFolder": "Salvar na pasta de download",
         "importSeedVault": "Importar SeedVault",
         "dropSeedVaultHere": "Arraste sua SeedVault até aqui <1></1> ou clique para procurar",
-        "enterPasswordExplanation": "Digite sua senha para abrir o SeedVault",
+        "enterKeyExplanation": "Digite sua senha para abrir o SeedVault",
         "noSeedFound": "SeedVault não contém uma Seed válida",
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
-        "seedVaultPasswordExplanation": "Primeiro temos que proteger seu SeedVault. Por favor, escolha uma senha para criptografar o arquivo. Você precisará desta senha para recuperar a seed do backup do SeedVault. Sinta-se livre para usar a mesma senha que você usa na Trinity."
+        "seedVaultKeyExplanation": "Primeiro temos que proteger seu SeedVault. Por favor, escolha uma senha para criptografar o arquivo. Você precisará desta senha para recuperar a seed do backup do SeedVault. Sinta-se livre para usar a mesma senha que você usa na Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -664,7 +673,9 @@
         "newVersionAvailable": "Nova versão disponível",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Instale a atualização e reinicie",
-        "installUpdateExplanation": "Download completo, A Trinity será reiniciada agora para instalar a atualização."
+        "installUpdateExplanation": "Download completo, A Trinity será reiniciada agora para instalar a atualização.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Registros de erro"
@@ -697,15 +708,47 @@
         "confirmedOut": "O envio de {{value}} da {{account}} foi confirmado"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "Fundos desbloqueados com sucesso",
+        "sweepSucceededExplanation": "Seus fundos foram desbloqueados com sucesso e movidos para um novo endereço. Fomente as operações para ajudar a confirmá-las.",
+        "sweepError": "Erro ao desbloquear fundos",
+        "sweepErrorExplanation": "Alguma coisa deu errado ao desbloquear seus fundos. Tentando de novo.",
+        "warningTitle": "Aviso: Fundos bloqueados detectados",
+        "explanation": "A versão 0.3.4 da Trinity Desktop possuía um bug que poderia bloquear fundos temporariamente. Isso afeta um pequeno número de usuários que realizaram transações com a 0.3.4.",
+        "explanationAccounts": "Foram detectados fundos bloqueados na suas contas: {{accounts}}. Agora a Trinity vai recuperar seus fundos automaticamente, movendo-os para um novo endereço.",
+        "proceed": "Continuar com a recuperação",
+        "sweepConfirmation": "Você está prestes a varrer {{amount}} para o endereço {{address}}. Conta: {{accountName}}, índice do endereco: {{index}}",
+        "sweepConfirmationTitle": "Confirmação de varredura"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

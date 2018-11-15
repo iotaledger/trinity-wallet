@@ -57,8 +57,8 @@ export class SeedVaultImportComponent extends Component {
                 if (msg === 'error') {
                     return this.props.generateAlert(
                         'error',
-                        t('global:unrecognisedPassword'),
-                        t('global:unrecognisedPasswordExplanation'),
+                        t('seedVault:unrecognisedKey'),
+                        t('seedVault:unrecognisedKeyExplanation'),
                     );
                 }
                 this.props.onSeedImport(msg);
@@ -89,7 +89,7 @@ export class SeedVaultImportComponent extends Component {
     validatePassword(password) {
         const { t } = this.props;
         if (password === '') {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+            return this.props.generateAlert('error', t('seedVault:emptyKey'), t('seedVault:emptyKeyExplanation'));
         }
         const seedVaultString = this.state.seedVault.toString();
         return nodejs.channel.send('import:' + seedVaultString + ':' + password);
@@ -117,40 +117,41 @@ export class SeedVaultImportComponent extends Component {
      */
     importSeedVault() {
         const { t } = this.props;
-        DocumentPicker.show(
-            {
-                filetype: isAndroid
-                    ? ['application/octet-stream']
-                    : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
-            },
-            (error, res) => {
-                if (error) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain'),
-                    );
-                }
-                let path = res.uri;
-                if (path.startsWith('file://')) {
-                    path = path.slice(7);
-                }
-
-                (isAndroid ? this.grantPermissions() : Promise.resolve())
-                    .then(() => RNFetchBlob.fs.readFile(path, 'ascii'))
-                    .then((data) => {
-                        this.setState({ seedVault: data });
-                        this.props.openPasswordValidationModal();
-                    })
-                    .catch(() =>
-                        this.props.generateAlert(
+        (isAndroid ? this.grantPermissions() : Promise.resolve()).then(() => {
+            DocumentPicker.show(
+                {
+                    filetype: isAndroid
+                        ? ['application/octet-stream']
+                        : ['public.data', 'public.item', 'dyn.ah62d4rv4ge8003dcta'],
+                },
+                (error, res) => {
+                    if (error) {
+                        return this.props.generateAlert(
                             'error',
-                            t('seedVault:seedFileError'),
-                            t('seedVault:seedFileErrorExplanation'),
-                        ),
-                    );
-            },
-        );
+                            t('global:somethingWentWrong'),
+                            t('global:somethingWentWrongTryAgain'),
+                        );
+                    }
+                    let path = res.uri;
+                    if (path.startsWith('file://')) {
+                        path = path.slice(7);
+                    }
+                    RNFetchBlob.fs
+                        .readFile(path, 'ascii')
+                        .then((data) => {
+                            this.setState({ seedVault: data });
+                            this.props.openPasswordValidationModal();
+                        })
+                        .catch(() =>
+                            this.props.generateAlert(
+                                'error',
+                                t('seedVault:seedFileError'),
+                                t('seedVault:seedFileErrorExplanation'),
+                            ),
+                        );
+                },
+            );
+        });
     }
 
     render() {

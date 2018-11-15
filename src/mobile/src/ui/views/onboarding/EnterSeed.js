@@ -3,6 +3,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
+import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
@@ -77,6 +78,8 @@ class EnterSeed extends React.Component {
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -119,6 +122,10 @@ class EnterSeed extends React.Component {
                 FlagSecure.deactivate();
             }
             this.props.setOnboardingSeed(seed, true);
+
+            // Since this seed was not generated in Trinity, mark "usedExistingSeed" as true.
+            this.props.setAccountInfoDuringSetup({ usedExistingSeed: true });
+
             Navigation.push('appStack', {
                 component: {
                     name: 'setAccountName',
@@ -303,6 +310,7 @@ const mapDispatchToProps = {
     setOnboardingSeed,
     generateAlert,
     toggleModalActivity,
+    setAccountInfoDuringSetup,
 };
 
 export default WithUserActivity()(

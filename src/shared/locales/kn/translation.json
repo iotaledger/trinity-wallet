@@ -55,6 +55,8 @@
         "password": "ಗುಪ್ತಪದ",
         "unrecognisedPassword": "ಗುರುತಿಗೆ ಸಿಕ್ಕದ ಗುಪ್ತಪದ",
         "unrecognisedPasswordExplanation": "ಗುಪ್ತಪದ ಗುರುತಿಸಲಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "You must enter a password. Please try again.",
         "capsLockIsOn": "ಕ್ಯಾಪ್ಸ್ ಲಾಕ್ ಆನ್ ಆಗಿದೆ",
         "syncInProgress": "ಒಡವಾಗುನಂಟು ಪ್ರಗತಿಯಲ್ಲಿದೆ",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "ಪರಿವರ್ತನೆ ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ.",
         "checkForUpdates": "ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ",
         "account": "ಖಾತೆ",
-        "enterYourPassword": "ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ",
         "changeNode": "ನೋಡ್ ಬದಲಿಸಿ",
         "addCustomNode": "ಕಸ್ಟಮ್ ನೋಡ್ ಸೇರಿಸಿ",
         "nodeMustUseHTTPS": "ಅಮಾನ್ಯ ನೋಡ್ (ಅಲ್ಲದ HTTPS)",
@@ -275,7 +276,7 @@
         "copyAddress": "ವಿಳಾಸವನ್ನು ನಕಲಿಸಿ",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
         "addressCopiedExplanation": "ನಿಮ್ಮ ವಿಳಾಸವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
-        "generateNewAddress": "ಹೊಸ ವಿಳಾಸ",
+        "generateNewAddress": "Sync address",
         "noAddresses": "ವಿಳಾಸವಿಲ್ಲ",
         "spent": "ಖರ್ಚು ಮಾಡಿದ",
         "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
@@ -346,7 +347,9 @@
         "advanced": "ಮುಂದುವರೆದ",
         "standard": "ಪ್ರಮಾಣಿತ",
         "advancedModeExplanation": "ಮುಂದುವರೆದ ಮೋಡ್ ಹೆಚ್ಚು ವಿವರವಾದ ತಾಂತ್ರಿಕ ಮಾಹಿತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ.",
-        "modesExplanation": "IOTA ಅನ್ನು ಬಳಸಿ ನಿಮಗೆ ಅನುಭವವಿದ್ದರೆ ಮಾತ್ರ ಮುಂದುವರೆದ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅದರಿಂದ ಗೊಂದಲಕ್ಕೊಳಗಾಗಬಹುದು."
+        "modesExplanation": "IOTA ಅನ್ನು ಬಳಸಿ ನಿಮಗೆ ಅನುಭವವಿದ್ದರೆ ಮಾತ್ರ ಮುಂದುವರೆದ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅದರಿಂದ ಗೊಂದಲಕ್ಕೊಳಗಾಗಬಹುದು.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "ಕಳುಹಿಸುವುದನ್ನು ವರ್ಗಾಯಿಸಿ",
@@ -404,7 +407,6 @@
         "reset": "ಮರುಹೊಂದಿಸಿ"
     },
     "walletSetup": {
-        "creatingSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ರಚಿಸಲಾಗಿದೆ",
         "okay": "ಸರಿ. ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ಹೊಂದಿಸೋಣ!",
         "doYouNeedASeed": "ನೀವು ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ರಚಿಸಬೇಕೇ?",
         "seedExplanation": "ನಿಮ್ಮ IOTA ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ನಿಮ್ಮ ನಿಧಿಯ ಪ್ರಮುಖ ಕೀಲಿಯಾಗಿರುತ್ತದೆ. A-Z ಅಕ್ಷರಗಳು ಅಥವಾ 9 ನೆಯ ಅಕ್ಷರಗಳನ್ನು ಮಾತ್ರ ಬಳಸಿಕೊಂಡು 81 ಅಕ್ಷರಗಳಷ್ಟು ಉದ್ದವಿದೆ.",
@@ -533,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಲು ಗುಪ್ತಪದ ನಮೂದಿಸಿ.",
         "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
-        "hideSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮರೆಮಾಡಿ"
+        "hideSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮರೆಮಾಡಿ",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿದ್ದೀರಾ?",
@@ -587,23 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ಮಾಡಿ",
-        "seedVaultExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಎಂಬುದು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಲು ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಫೈಲ್ ಆಗಿದೆ. ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಗುಪ್ತಪದದ ಹಿಂದೆ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲ್ಪಟ್ಟಿದೆ ಮತ್ತು ಆ ಗುಪ್ತಪದ ಇಲ್ಲದೆ ಪ್ರವೇಶಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "ನೀವು ಬಹು ಸ್ಥಳಗಳಲ್ಲಿ ಫೈಲ್ ಅನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ (ಉದಾ. ಹಾರ್ಡ್ ಡ್ರೈವ್, ಕ್ಲೌಡ್, ಯುಎಸ್ಬಿ). ನೀವು ಈ ಫೈಲ್ ಅನ್ನು ಕಳೆದುಕೊಂಡರೆ ಮತ್ತು ಬೇರೆಲ್ಲಿಯಾದರೂ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಸಂಗ್ರಹಿಸದಿದ್ದರೆ, ನಿಮ್ಮ IOTA ವನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.",
         "exportFail": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ವಿಫಲವಾಗಿದೆ",
         "exportFailExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ಮಾಡುವಲ್ಲಿ ಸಮಸ್ಯೆ ಇದೆ. ನಿಮಗೆ ಸೂಕ್ತವಾದ ಅನುಮತಿಗಳು ಮತ್ತು ಸಾಕಷ್ಟು ಉಚಿತ ಸ್ಥಳಾವಕಾಶವಿದೆಯೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
         "exportSuccess": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ರಫ್ತು ಮಾಡಲಾಗಿದೆ",
         "exportSuccessExplanation": "ನಿಮ್ಮ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಫೈಲ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರಫ್ತು ಮಾಡಲಾಗಿದೆ.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
-        "enterPasswordExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "ಸೀಡ್ವಾಲ್ಟ್ ಮಾನ್ಯ ಬೀಜವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ",
         "noSeedFoundExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಖಾಲಿಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ವರೂಪದಲ್ಲಿ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "seedFileError": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು.",
-        "seedVaultPasswordExplanation": "First we need to secure your SeedVault. Please choose a password to encrypt the file. You will need this password to restore your seed from the SeedVault back up. Feel free to use the same password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
@@ -664,7 +673,9 @@
         "newVersionAvailable": "ಹೊಸ ಆವೃತ್ತಿ ಲಭ್ಯವಿದೆ",
         "newVersionAvailableExplanation": "ಹೊಸ ಟ್ರಿನಿಟಿ ಆವೃತ್ತಿ ಲಭ್ಯವಿದೆ. ನೀವು ಇದೀಗ ನವೀಕರಿಸಲು ಬಯಸುತ್ತೀರಾ?",
         "installUpdate": "ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಿ ಮತ್ತು ಮರುಪ್ರಾರಂಭಿಸಿ",
-        "installUpdateExplanation": "ಡೌನ್ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ, ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಲು ಟ್ರಿನಿಟಿ ಈಗ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ."
+        "installUpdateExplanation": "ಡೌನ್ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ, ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಲು ಟ್ರಿನಿಟಿ ಈಗ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "ಲಾಗ್ನಲ್ಲಿ ದೋಷ"
@@ -707,5 +718,37 @@
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

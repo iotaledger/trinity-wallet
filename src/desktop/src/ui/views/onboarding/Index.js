@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import { setAdditionalAccountInfo } from 'actions/wallet';
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 
 import Icon from 'ui/components/Icon';
 import Waves from 'ui/components/Waves';
@@ -19,6 +19,8 @@ import SeedEnter from 'ui/views/onboarding/SeedVerify';
 import SeedName from 'ui/views/onboarding/AccountName';
 import SecurityEnter from 'ui/views/onboarding/AccountPassword';
 import Done from 'ui/views/onboarding/Done';
+
+import Ledger from 'ui/views/onboarding/seedStore/Ledger';
 
 import css from './index.scss';
 
@@ -36,7 +38,7 @@ class Onboarding extends React.PureComponent {
         /** @ignore */
         history: PropTypes.object,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     state = {
@@ -55,13 +57,12 @@ class Onboarding extends React.PureComponent {
      * Reset Onboarding data on close if user authorised
      */
     componentWillUnmount() {
-        const { isAuthorised, setAdditionalAccountInfo } = this.props;
+        const { isAuthorised } = this.props;
 
         if (isAuthorised) {
-            setAdditionalAccountInfo({
-                addingAdditionalAccount: false,
-                additionalAccountName: '',
-                additionalAccountType: '',
+            this.props.setAccountInfoDuringSetup({
+                name: '',
+                meta: {},
             });
 
             Electron.setOnboardingSeed(null);
@@ -111,7 +112,7 @@ class Onboarding extends React.PureComponent {
         return (
             <main className={css.onboarding}>
                 <header>
-                    {!isAuthorised ? (
+                    {!isAuthorised && currentKey !== 'login' ? (
                         this.steps(currentKey)
                     ) : (
                         <a onClick={() => history.push('/wallet/')}>
@@ -124,12 +125,14 @@ class Onboarding extends React.PureComponent {
                         <div>
                             <Switch location={location}>
                                 <Route path="/onboarding/seed-intro" component={SeedIntro} />
+                                <Route path="/onboarding/seed-ledger" component={Ledger} />
                                 <Route path="/onboarding/seed-generate" component={GenerateSeed} />
                                 <Route path="/onboarding/seed-save" component={SaveYourSeedOptions} />
                                 <Route path="/onboarding/seed-verify" component={SeedEnter} />
                                 <Route path="/onboarding/account-name" component={SeedName} />
                                 <Route path="/onboarding/account-password" component={SecurityEnter} />
                                 <Route path="/onboarding/done" component={Done} />
+                                <Route path="/onboarding/login" component={Login} />
                                 <Route path="/" component={indexComponent} />
                             </Switch>
                         </div>
@@ -147,7 +150,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Onboarding));

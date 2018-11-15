@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
-import { getSelectedAccountName, getSelectedAccountType } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'shared-modules/selectors/accounts';
 import { manuallySyncAccount } from 'shared-modules/actions/accounts';
 import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
@@ -85,8 +85,8 @@ export class ManualSync extends Component {
         password: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Account name for selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        /** Account meta for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -98,10 +98,10 @@ export class ManualSync extends Component {
     }
 
     sync() {
-        const { password, selectedAccountName, selectedAccountType, t, shouldPreventAction } = this.props;
+        const { password, selectedAccountName, selectedAccountMeta, t, shouldPreventAction } = this.props;
 
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.manuallySyncAccount(seedStore, selectedAccountName);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
@@ -191,7 +191,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: getThemeFromState(state),
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),
 });
 

@@ -7,7 +7,7 @@ import { withNamespaces } from 'react-i18next';
 import {
     getAccountNamesFromState,
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
 } from 'shared-modules/selectors/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -72,8 +72,8 @@ export class EditAccountName extends Component {
     static propTypes = {
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Account type for selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        /** Account meta for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -115,7 +115,7 @@ export class EditAccountName extends Component {
      * @method save
      */
     save(accountName) {
-        const { accountNames, password, selectedAccountName, selectedAccountType, t } = this.props;
+        const { accountNames, password, selectedAccountName, selectedAccountMeta, t } = this.props;
 
         if (accountNames.includes(accountName)) {
             this.props.generateAlert(
@@ -124,7 +124,7 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
 
             seedStore
                 .accountRename(accountName)
@@ -199,7 +199,7 @@ export class EditAccountName extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     accountNames: getAccountNamesFromState(state),
     password: state.wallet.password,
     theme: getThemeFromState(state),

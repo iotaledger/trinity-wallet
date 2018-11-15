@@ -65,7 +65,7 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
-            type: payload.accountType || get(state.accountInfo, `${payload.accountName}.type`) || 'keychain',
+            meta: payload.accountMeta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             addressData: setAddressData(
                 get(state.accountInfo, `${payload.accountName}.addressData`),
                 payload.addressData,
@@ -101,6 +101,23 @@ const updateAccountName = (state, payload) => {
 const account = (
     state = {
         /**
+         * Temporary storage for account info during setup
+         */
+        accountInfoDuringSetup: {
+            /**
+             * Account name
+             */
+            name: '',
+            /**
+             * Account meta - { type, index, page, indexAddress }
+             */
+            meta: {},
+            /**
+             * Determines if a user used an existing seed during account setup
+             */
+            usedExistingSeed: false,
+        },
+        /**
          * Determines if onboarding process is completed
          */
         onboardingComplete: false,
@@ -122,6 +139,14 @@ const account = (
     action,
 ) => {
     switch (action.type) {
+        case ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP:
+            return {
+                ...state,
+                accountInfoDuringSetup: {
+                    ...state.accountInfoDuringSetup,
+                    ...action.payload,
+                },
+            };
         case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,

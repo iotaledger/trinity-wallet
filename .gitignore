@@ -118,3 +118,6 @@ src/mobile/android/build/nodejs-assets*
 *.realm
 *.realm.lock
 *.management/
+
+# NPM lockfiles
+package-lock.json

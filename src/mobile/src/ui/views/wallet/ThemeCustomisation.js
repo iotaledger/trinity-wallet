@@ -157,8 +157,25 @@ class ThemeCustomisation extends Component {
         this.props.updateTheme(themeName);
     }
 
+    getLocalizedThemeName(themeName) {
+        const { t } = this.props;
+        return t(`themes:${themeName.toLowerCase()}`);
+    }
+
+    getLocalizedThemes() {
+        const localizedThemes = this.state.themes.map((item) => {
+            return this.getLocalizedThemeName(item);
+        });
+        return localizedThemes;
+    }
+
+    getThemeName(localizedThemeName) {
+        const localizedThemes = this.getLocalizedThemes();
+        return this.state.themes[localizedThemes.indexOf(localizedThemeName)];
+    }
+
     render() {
-        const { themes, themeName } = this.state;
+        const { themeName } = this.state;
         const { body, bar, secondary, primary, positive, negative } = this.state.theme;
         const { t } = this.props;
         const bodyColor = this.props.theme.body.color;
@@ -182,9 +199,10 @@ class ThemeCustomisation extends Component {
                                 dropdownWidth={{ width: width / 1.45 }}
                                 background
                                 shadow
-                                defaultOption={themeName}
-                                options={themes}
-                                saveSelection={(selection) => {
+                                defaultOption={this.getLocalizedThemeName(themeName)}
+                                options={this.getLocalizedThemes()}
+                                saveSelection={(localizedSelection) => {
+                                    const selection = this.getThemeName(localizedSelection);
                                     const newTHEMES = cloneDeep(THEMES);
                                     let newTheme = newTHEMES[selection];
                                     if (selection === 'Custom' && this.props.themeName === 'Custom') {

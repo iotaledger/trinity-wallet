@@ -31,10 +31,11 @@ const reducers = combineReducers({
     polling,
     progress,
     ui,
-    wallet
+    wallet,
 });
 
 const rootReducer = (state, action) => {
+    /* eslint-disable no-param-reassign */
     if (action.type === ActionTypes.WALLET_RESET) {
         state = undefined;
     }

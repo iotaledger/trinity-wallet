@@ -8,15 +8,16 @@ import {
     selectLatestAddressFromAccountFactory,
     selectAccountInfo,
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
 } from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
-import { generateNewAddress } from 'actions/wallet';
+import { generateNewAddress, addressValidationRequest, addressValidationSuccess } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
 import { byteToChar } from 'libs/helpers';
+import Errors from 'libs/errors';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -37,7 +38,7 @@ class Receive extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        accountType: PropTypes.string.isRequired,
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
@@ -53,13 +54,29 @@ class Receive extends React.PureComponent {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        addressValidationRequest: PropTypes.func.isRequired,
+        /** @ignore */
+        addressValidationSuccess: PropTypes.func.isRequired,
+        /** @ignore */
+        isValidatingAddress: PropTypes.bool.isRequired,
     };
 
     state = {
         message: '',
         scramble: new Array(ADDRESS_LENGTH).fill(0),
     };
+
+    componentDidMount() {
+        if (!this.props.isGeneratingReceiveAddress && !this.props.isValidatingAddress) {
+            this.validateAdress();
+        }
+    }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isGeneratingReceiveAddress && !nextProps.isGeneratingReceiveAddress) {
@@ -70,6 +87,10 @@ class Receive extends React.PureComponent {
             });
 
             this.unscramble();
+
+            if (!this.props.isValidatingAddress) {
+                this.validateAdress();
+            }
         }
     }
 
@@ -81,7 +102,7 @@ class Receive extends React.PureComponent {
         const {
             password,
             accountName,
-            accountType,
+            accountMeta,
             account,
             isSyncing,
             isTransitioning,
@@ -93,9 +114,34 @@ class Receive extends React.PureComponent {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seedStore = await new SeedStore[accountType](password, accountName);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
         this.props.generateNewAddress(seedStore, accountName, account);
+    };
+
+    validateAdress = async () => {
+        const { password, accountName, accountMeta, account, history, generateAlert, t } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+
+        try {
+            if (accountMeta.type === 'ledger') {
+                generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 20000);
+            }
+            this.props.addressValidationRequest();
+            await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
+            this.props.addressValidationSuccess();
+        } catch (err) {
+            this.props.addressValidationSuccess();
+            history.push('/wallet/');
+            if (err.message === Errors.LEDGER_INVALID_INDEX) {
+                generateAlert(
+                    'error',
+                    t('ledger:ledgerIncorrectIndex'),
+                    t('ledger:ledgerIncorrectIndexExplanation'),
+                    20000,
+                );
+            }
+        }
     };
 
     unscramble() {
@@ -144,10 +190,29 @@ class Receive extends React.PureComponent {
                         success={t('receive:addressCopiedExplanation')}
                     >
                         <p>
-                            {receiveAddress.split('').map((char, index) => {
-                                const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
-                                return <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>;
-                            })}
+                            {receiveAddress
+                                .substring(0, 81)
+                                .split('')
+                                .map((char, index) => {
+                                    const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
+                                    return (
+                                        <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>
+                                    );
+                                })}
+                            <span>
+                                {receiveAddress
+                                    .substring(81, 90)
+                                    .split('')
+                                    .map((char, index) => {
+                                        const scrambleChar =
+                                            scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                        return (
+                                            <React.Fragment key={`char-${index}`}>
+                                                {scrambleChar || char}
+                                            </React.Fragment>
+                                        );
+                                    })}
+                            </span>
                         </p>
                     </Clipboard>
                 </div>
@@ -160,7 +225,7 @@ class Receive extends React.PureComponent {
                 <div>
                     <Text
                         value={message}
-                        label={t('receive:message')}
+                        label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
                     />
                     <footer>
@@ -190,13 +255,16 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
-    accountType: getSelectedAccountType(state),
+    accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
+    isValidatingAddress: state.wallet.isValidatingAddress,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     generateNewAddress,
+    addressValidationRequest,
+    addressValidationSuccess,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Receive));

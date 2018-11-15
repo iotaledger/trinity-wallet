@@ -3,8 +3,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import find from 'lodash/find';
-import { isNodeSynced, findTransactionsAsync } from './extendedApi';
+import { findTransactionsAsync } from './extendedApi';
 import { syncTransactions, getTransactionsDiff } from './transfers';
+import { throwIfNodeNotSynced } from './utils';
 import {
     mapLatestAddressDataAndBalances,
     getFullAddressHistory,
@@ -13,7 +14,6 @@ import {
     formatAddressData,
     findSpendStatusesFromTransactions,
 } from './addresses';
-import Errors from '../errors';
 
 /**
  *   Gets information associated with a seed from the ledger.
@@ -38,14 +38,8 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
     const existingTransactions = get(existingAccountState, 'transactions') || [];
     const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
 
-    return isNodeSynced(provider)
-        .then((isSynced) => {
-            if (!isSynced) {
-                throw new Error(Errors.NODE_NOT_SYNCED);
-            }
-
-            return getFullAddressHistory(provider)(seedStore, existingAccountState);
-        })
+    return throwIfNodeNotSynced(provider)
+        .then(() => getFullAddressHistory(provider)(seedStore))
         .then((history) => {
             data = { ...data, ...history };
 
@@ -91,10 +85,13 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return (rescanAddresses
-        ? syncAddresses(provider)(seedStore, thisStateCopy.addressData, thisStateCopy.transactions)
-        : Promise.resolve(thisStateCopy.addressData)
-    )
+    return throwIfNodeNotSynced(provider)
+        .then(
+            () =>
+                rescanAddresses
+                    ? syncAddresses(provider)(seedStore, thisStateCopy.addressData, thisStateCopy.transactions)
+                    : Promise.resolve(thisStateCopy.addressData),
+        )
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
 

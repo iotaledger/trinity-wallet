@@ -42,4 +42,10 @@ export default {
     INSUFFICIENT_BALANCE: 'Insufficient balance.',
     INVALID_MAX_INPUTS_PROVIDED: 'Invalid max inputs provided.',
     NO_STORED_DATA_FOUND: 'No stored data found.',
+    MAX_INPUTS_EXCEEDED: (count, max) => `Can't process transactions with ${count} inputs. The limit is ${max}.`,
+    LEDGER_ZERO_VALUE: 'Cannot send 0 value transfers with a Ledger device',
+    LEDGER_DISCONNECTED: 'Ledger device disconnected',
+    LEDGER_CANCELLED: 'Ledger transaction cancelled',
+    LEDGER_DENIED: 'Ledger transaction denied by user',
+    LEDGER_INVALID_INDEX: 'Incorrect Ledger device or changed mnemonic',
 };

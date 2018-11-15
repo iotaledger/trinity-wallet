@@ -3,6 +3,7 @@ import {
     selectedAccountTasksFactory,
     selectedAccountSetupInfoFactory,
     getAccountNamesFromState,
+    getAccountInfoDuringSetup,
     selectedAccountStateFactory,
 } from '../selectors/accounts';
 import { getNodesFromState, getSelectedNodeFromState } from '../selectors/global';
@@ -41,6 +42,7 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+    SET_ACCOUNT_INFO_DURING_SETUP: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
     MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
     SYNC_ACCOUNT_BEFORE_SWEEPING: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_SWEEPING',
     OVERRIDE_ACCOUNT_INFO: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
@@ -285,6 +287,19 @@ export const setBasicAccountInfo = (payload) => ({
 });
 
 /**
+ * Dispatch to store account information during setup
+ *
+ * @method setAccountInfoDuringSetup
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setAccountInfoDuringSetup = (payload) => ({
+    type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
+    payload,
+});
+
+/**
  * Dispatch to mark a task as completed in state
  *
  * For example: to display a modal if the user's balance on initial login is zero
@@ -346,7 +361,7 @@ export const getFullAccountInfo = (seedStore, accountName) => {
 
         const selectedNode = getSelectedNodeFromState(getState());
         const existingAccountNames = getAccountNamesFromState(getState());
-        const usedExistingSeed = getState().wallet.usedExistingSeed;
+        const usedExistingSeed = getAccountInfoDuringSetup(getState()).usedExistingSeed;
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
@@ -358,7 +373,6 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 dispatch(setSeedIndex(existingAccountNames.length));
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
-                result.accountType = getState().wallet.additionalAccountType;
                 // Create account in storage (realm)
                 Account.create(
                     assign({}, result, {
@@ -368,6 +382,7 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                         ...selectedAccountSetupInfoFactory(accountName)(getState()),
                     }),
                 );
+                result.accountMeta = getAccountInfoDuringSetup(getState()).meta;
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })

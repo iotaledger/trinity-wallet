@@ -1,0 +1,18 @@
+.ledger {
+    section {
+        > div:first-of-type {
+            display: flex;
+            max-width: 385px;
+            margin: 0 auto;
+        }
+        p + p {
+            margin-top: -42px;
+        }
+
+        small {
+            display: block;
+            height: 18px;
+            font-size: 14px;
+        }
+    }
+}

@@ -6,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
+import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { connect } from 'react-redux';
 import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
@@ -63,7 +63,7 @@ export class SetAccountName extends Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -140,11 +140,9 @@ export class SetAccountName extends Component {
             }
         }
 
-        this.props.setAdditionalAccountInfo({
-            addingAdditionalAccount: true,
-            additionalAccountName: accountName,
-            additionalAccountType: 'keychain',
-            usedExistingSeed: false,
+        this.props.setAccountInfoDuringSetup({
+            name: accountName,
+            meta: { type: 'keychain' },
         });
 
         if (!onboardingComplete) {
@@ -269,7 +267,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
 };
 
 export default withNamespaces(['setSeedName', 'global', 'addAdditionalSeed'])(

@@ -3,17 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Keyboard,
-    KeyboardAvoidingView,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { zxcvbn } from 'shared-modules/libs/exports';
 import { setPassword, setSetting } from 'shared-modules/actions/wallet';
 import { passwordReasons } from 'shared-modules/libs/password';
@@ -262,11 +255,11 @@ class ForceChangePassword extends Component {
         const isValid = score.score === 4;
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
+            <KeyboardAwareScrollView contentContainerStyle={[styles.container, { backgroundColor: body.bg }]}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1, width }}>
                     <View style={styles.container}>
                         <View style={{ flex: 1.5 }} />
-                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.topContainer}>
+                        <View style={styles.topContainer}>
                             <InfoBox
                                 body={body}
                                 text={
@@ -324,7 +317,7 @@ class ForceChangePassword extends Component {
                                 isValid && newPassword === newPasswordReentry,
                             )}
                             <View style={{ flex: 0.2 }} />
-                        </KeyboardAvoidingView>
+                        </View>
                         <View style={styles.bottomContainer}>
                             {currentPassword !== '' &&
                                 newPassword !== '' &&
@@ -348,7 +341,7 @@ class ForceChangePassword extends Component {
                         <View style={{ flex: 0.5 }} />
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }

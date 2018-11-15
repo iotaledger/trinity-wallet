@@ -11,7 +11,7 @@ import { reset as resetProgress, startTrackingProgress } from '../../actions/pro
 
 import {
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
 } from '../../selectors/accounts';
@@ -31,7 +31,7 @@ export default function withSendData(SendComponent) {
             availableBalance: PropTypes.number.isRequired,
             accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
-            accountType: PropTypes.string.isRequired,
+            accountMeta: PropTypes.object.isRequired,
             wallet: PropTypes.object.isRequired,
             progress: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
@@ -78,7 +78,6 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:broadcasting'),
                   ]
                 : [
-                      t('progressSteps:checkingNodeHealth'),
                       t('progressSteps:validatingReceiveAddress'),
                       t('progressSteps:syncingAccount'),
                       t('progressSteps:preparingInputs'),
@@ -188,7 +187,7 @@ export default function withSendData(SendComponent) {
                 generateAlert,
                 progress,
                 accountName,
-                accountType,
+                accountMeta,
             } = this.props;
 
             const progressTitle =
@@ -222,7 +221,7 @@ export default function withSendData(SendComponent) {
                     title: progressTitle,
                 },
                 accountName,
-                accountType,
+                accountMeta,
                 generateAlert,
                 balance,
                 availableBalance,
@@ -241,7 +240,7 @@ export default function withSendData(SendComponent) {
         balance: getBalanceForSelectedAccount(state),
         availableBalance: getAvailableBalanceForSelectedAccount(state),
         accountName: getSelectedAccountName(state),
-        accountType: getSelectedAccountType(state),
+        accountMeta: getSelectedAccountMeta(state),
         settings: state.settings,
         marketData: state.marketData,
         accounts: state.accounts,

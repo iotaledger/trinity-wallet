@@ -55,6 +55,8 @@
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不正确，请重试。",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "您必须输入密码。请重试。",
         "capsLockIsOn": "大写锁定键已开启",
         "syncInProgress": "正在同步中",
@@ -106,7 +108,6 @@
         "snapshotTransitionInProgressExplanation": "请等待交易完成。",
         "checkForUpdates": "检查更新",
         "account": "账户",
-        "enterYourPassword": "请输入密码",
         "changeNode": "更换节点",
         "addCustomNode": "添加自定义节点",
         "nodeMustUseHTTPS": "无效节点 (非HTTPS)",
@@ -275,7 +276,7 @@
         "copyAddress": "复制地址",
         "addressCopied": "地址已复制",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "新地址",
+        "generateNewAddress": "Sync address",
         "noAddresses": "无地址",
         "spent": "使用过",
         "missingPermission": "需要文件系统权限",
@@ -346,7 +347,9 @@
         "advanced": "高级",
         "standard": "标准",
         "advancedModeExplanation": "高级模式会显示更详细的技术信息。",
-        "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。"
+        "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "正在发送交易",
@@ -404,7 +407,6 @@
         "reset": "重置"
     },
     "walletSetup": {
-        "creatingSeed": "创建种子",
         "okay": "好了。让我们来设置您的钱包！",
         "doYouNeedASeed": "你需要创建一个新的种子吗？",
         "seedExplanation": "种子是您的资金的主密钥。它的长度为81个字符，只可使用字母A-Z或数字9。",
@@ -533,7 +535,10 @@
     "viewSeed": {
         "enterPassword": "输入密码查看您的种子。",
         "viewSeed": "查看种子",
-        "hideSeed": "隐藏种子"
+        "hideSeed": "隐藏种子",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您备份过种子了吗？",
@@ -587,23 +592,27 @@
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
-        "seedVaultExplanation": "SeedVault是一个用于安全的存储种子的加密文件。种子被加密保护在一个密码之后，且无法在没有该密码的情况下访问种子。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "请确保您在多个位置备份了该文件（例如硬盘、云端、USB）。如果您遗失了该文件并且没有在其他地方储存您的种子，那么您将失去您的IOTA。",
         "exportFail": "SeedVault 导出失败",
         "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
         "exportSuccess": "SeedVault 已导出",
         "exportSuccessExplanation": "已成功导出加密的种子文件。",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "种子已导入",
         "importSuccessExplanation": "您的种子已成功导入。",
         "saveToDownloadFolder": "保存到下载文件夹",
         "importSeedVault": "导入SeedVault",
         "dropSeedVaultHere": "拖动 SeedVault 到此处<1></1>或者点击浏览",
-        "enterPasswordExplanation": "输入密码以打开SeedVault",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault 不包含有效种子",
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
-        "seedVaultPasswordExplanation": "首先我们需要保护SeedVault的安全。请选择一个密码以加密该文件。当从SeedVault备份恢复您的种子时需要使用该密码。可使用与Trinity相同的密码。"
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "市值",
@@ -664,7 +673,9 @@
         "newVersionAvailable": "新版本可用",
         "newVersionAvailableExplanation": "检测到可用的新版本 <strong>Trinity</strong> <strong>{{version}}</strong> 。在更新之前请仔细阅读发行说明并验证下载源：",
         "installUpdate": "安装更新并重启",
-        "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。"
+        "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "错误日志"
@@ -707,5 +718,37 @@
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

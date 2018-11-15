@@ -64,7 +64,7 @@ export class PasswordValidationModal extends PureComponent {
                                                 { paddingTop: height / 40 },
                                             ]}
                                         >
-                                            {t('seedVault:enterPasswordExplanation')}
+                                            {t('seedVault:enterKeyExplanation')}
                                         </Text>
                                         <View style={{ paddingTop: height / 15, alignItems: 'center' }}>
                                             <CustomTextInput

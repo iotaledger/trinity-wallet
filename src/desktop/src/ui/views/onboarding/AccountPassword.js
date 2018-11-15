@@ -6,7 +6,6 @@ import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
-import { setOnboardingComplete } from 'actions/accounts';
 import { setPassword } from 'actions/wallet';
 
 import SeedStore from 'libs/SeedStore';
@@ -24,8 +23,6 @@ class AccountPassword extends React.PureComponent {
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
-        setOnboardingComplete: PropTypes.func.isRequired,
-        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -33,6 +30,10 @@ class AccountPassword extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        additionalAccountName: PropTypes.string.isRequired,
+        /** @ignore */
+        additionalAccountMeta: PropTypes.object.isRequired,
     };
 
     state = {
@@ -46,7 +47,7 @@ class AccountPassword extends React.PureComponent {
      * @returns {undefined}
      */
     createAccount = async (e) => {
-        const { wallet, setPassword, setOnboardingComplete, history, generateAlert, t } = this.props;
+        const { additionalAccountMeta, additionalAccountName, setPassword, history, generateAlert, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -90,12 +91,10 @@ class AccountPassword extends React.PureComponent {
         await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
-        const seedStore = await new SeedStore[wallet.additionalAccountType](passwordHash);
-        await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
+        const seedStore = await new SeedStore[additionalAccountMeta.type](passwordHash);
+        await seedStore.addAccount(additionalAccountName, Electron.getOnboardingSeed());
 
         Electron.setOnboardingSeed(null);
-
-        setOnboardingComplete(true);
 
         history.push('/onboarding/done');
     };
@@ -115,7 +114,7 @@ class AccountPassword extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, additionalAccountMeta } = this.props;
 
         const score = zxcvbn(this.state.password);
 
@@ -123,7 +122,7 @@ class AccountPassword extends React.PureComponent {
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
                     <h1>{t('setPassword:choosePassword')}</h1>
-                    <p>{t('setPassword:anEncryptedCopy')}</p>
+                    {additionalAccountMeta.type === 'keychain' && <p>{t('setPassword:anEncryptedCopy')}</p>}
                     <PasswordInput
                         focus
                         value={this.state.password}
@@ -155,12 +154,12 @@ class AccountPassword extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {
     setPassword,
-    setOnboardingComplete,
     generateAlert,
 };
 

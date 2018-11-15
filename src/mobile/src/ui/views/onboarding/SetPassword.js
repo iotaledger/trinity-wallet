@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -12,13 +13,13 @@ import SeedStore from 'libs/SeedStore';
 import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import { isAndroid } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import PasswordFields from 'ui/components/PasswordFields';
+import { isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
@@ -184,15 +185,20 @@ class SetPassword extends Component {
         const { password, reentry } = this.state;
 
         return (
-            <View style={styles.container}>
-                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.container}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                scrollEnabled={false}
+                extraHeight={isIPhoneX ? 150 : 0}
+            >
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('choosePassword')}</Header>
                         </View>
-                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.midContainer}>
+                        <View style={styles.midContainer}>
                             <InfoBox
                                 body={body}
                                 text={
@@ -218,7 +224,7 @@ class SetPassword extends Component {
                                 setReentry={(reentry) => this.setState({ reentry })}
                             />
                             <View style={{ flex: 0.3 }} />
-                        </KeyboardAvoidingView>
+                        </View>
                         <View style={styles.bottomContainer}>
                             <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
@@ -229,14 +235,14 @@ class SetPassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    accountName: state.wallet.additionalAccountName,
+    accountName: state.accounts.accountInfoDuringSetup.name,
     theme: getThemeFromState(state),
 });
 

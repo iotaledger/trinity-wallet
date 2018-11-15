@@ -19,6 +19,8 @@ import {
     selectLatestAddressFromAccountFactory,
     getSelectedAccountType,
     getPromotableBundlesFromState,
+    getAccountInfoDuringSetup,
+    isSettingUpNewAccount,
 } from '../../selectors/accounts';
 import accounts from '../__samples__/accounts';
 import addresses, { latestAddressWithoutChecksum, latestAddressWithChecksum, balance } from '../__samples__/addresses';
@@ -226,6 +228,14 @@ describe('selectors: accounts', () => {
         });
     });
 
+    describe('#getAccountInfoDuringSetup', () => {
+        it('should return value for "accountInfoDuringSetup" prop', () => {
+            expect(getAccountInfoDuringSetup({ accounts: { accountInfoDuringSetup: { foo: {} } } })).to.eql({
+                foo: {},
+            });
+        });
+    });
+
     describe('#getTasksFromAccounts', () => {
         describe('when "tasks" prop is not defined as a nested prop under "accounts" reducer', () => {
             it('should return an empty object', () => {
@@ -376,6 +386,59 @@ describe('selectors: accounts', () => {
             });
 
             expect(keys(promotableBundles)).to.eql(promotableBundleHashes);
+        });
+    });
+
+    describe('#isSettingUpNewAccount', () => {
+        describe('when accountInfoDuringSetup.name is empty', () => {
+            describe('when accountInfoDuringSetup.meta is not empty', () => {
+                it('should return false', () => {
+                    expect(
+                        isSettingUpNewAccount({
+                            accounts: {
+                                accountInfoDuringSetup: {
+                                    name: '',
+                                    meta: { foo: {} },
+                                },
+                            },
+                        }),
+                    ).to.equal(false);
+                });
+            });
+        });
+
+        describe('when accountInfoDuringSetup.name is not empty', () => {
+            describe('when accountInfoDuringSetup.meta is empty', () => {
+                it('should return false', () => {
+                    expect(
+                        isSettingUpNewAccount({
+                            accounts: {
+                                accountInfoDuringSetup: {
+                                    name: 'foo',
+                                    meta: {},
+                                },
+                            },
+                        }),
+                    ).to.equal(false);
+                });
+            });
+        });
+
+        describe('when accountInfoDuringSetup.name is not empty', () => {
+            describe('when accountInfoDuringSetup.meta is not empty', () => {
+                it('should return true', () => {
+                    expect(
+                        isSettingUpNewAccount({
+                            accounts: {
+                                accountInfoDuringSetup: {
+                                    name: 'foo',
+                                    meta: { baz: {} },
+                                },
+                            },
+                        }),
+                    ).to.equal(true);
+                });
+            });
         });
     });
 });

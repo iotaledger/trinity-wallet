@@ -3,30 +3,41 @@ import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
-import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
+import {
+    generateAlert,
+    generateTransitionErrorAlert,
+    generateAddressesSyncRetryAlert,
+    generateNodeOutOfSyncErrorAlert,
+} from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
+import { changeNode } from '../actions/settings';
 import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../libs/iota/addresses';
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
+import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotSynced } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory } from '../selectors/accounts';
-import { getRemotePoWFromState } from '../selectors/global';
-import { DEFAULT_SECURITY } from '../config';
+import {
+    selectedAccountStateFactory,
+    getRemotePoWFromState,
+    getSelectedNodeFromState,
+    getNodesFromState,
+} from '../selectors/accounts';
 import { Account } from '../storage';
+import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
     SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
+    SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
     CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
-    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
     SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
@@ -40,6 +51,8 @@ export const ActionTypes = {
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
     MAP_STORAGE_TO_STATE: 'IOTA/SETTINGS/MAP_STORAGE_TO_STATE',
+    ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
+    ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
 };
 
 /**
@@ -73,19 +86,6 @@ export const generateNewAddressSuccess = () => ({
  */
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-/**
- * Dispatch to set new account name during mobile onboarding
- *
- * @method setAccountName
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setAccountName = (payload) => ({
-    type: ActionTypes.SET_ACCOUNT_NAME,
-    payload,
 });
 
 /**
@@ -159,19 +159,6 @@ export const clearSeed = () => ({
  */
 export const setSetting = (payload) => ({
     type: ActionTypes.SET_SETTING,
-    payload,
-});
-
-/**
- * Dispatch to temporarily store account information for additional seeds in state
- *
- * @method setAdditionalAccountInfo
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setAdditionalAccountInfo = (payload) => ({
-    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
@@ -337,14 +324,29 @@ export const mapStorageToState = (payload) => ({
  * @returns {function(*): Promise<any>}
  */
 export const generateNewAddress = (seedStore, accountName, existingAccountData) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses()(seedStore, existingAccountData.addressData, existingAccountData.transactions)
-            .then((addressData) => {
-                // Update address data in storage (realm)
-                Account.update(accountName, { addressData });
 
-                dispatch(updateAddresses(accountName, addressData));
+        const syncAddressesWithSyncedNode = (provider) => {
+            return (...args) => throwIfNodeNotSynced(provider).then(() => syncAddresses(provider)(...args));
+        };
+
+        const selectedNode = getSelectedNodeFromState(getState());
+        return withRetriesOnDifferentNodes(
+            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
+            () => dispatch(generateAddressesSyncRetryAlert()),
+        )(syncAddressesWithSyncedNode)(
+            seedStore,
+            existingAccountData.addresses,
+            map(existingAccountData.transfers, (tx) => tx),
+        )
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+
+                // Update address data in storage (realm)
+                Account.update(accountName, { addressData: result });
+
+                dispatch(updateAddresses(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {
@@ -404,8 +406,10 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
 
         dispatch(snapshotAttachToTangleRequest());
 
-        // Find balance on all addresses
-        getBalancesAsync()(addresses)
+        // Check node's health
+        throwIfNodeNotSynced()
+            .then(() => getBalancesAsync()(addresses))
+            // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
                 const totalBalance = accumulateBalance(allBalances);
@@ -475,9 +479,14 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                 dispatch(resetProgress());
             })
             .catch((error) => {
+                if (error.message === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert());
+                } else {
+                    dispatch(generateTransitionErrorAlert(error));
+                }
+
                 dispatch(snapshotTransitionError());
                 dispatch(snapshotAttachToTangleComplete());
-                dispatch(generateTransitionErrorAlert(error));
             });
     };
 };
@@ -537,3 +546,25 @@ export const getBalanceForCheck = (addresses) => {
             });
     };
 };
+
+/**
+ * Dispatch when validating an address
+ *
+ * @method addressValidationRequest
+ *
+ * @returns {{type: {string} }}
+ */
+export const addressValidationRequest = () => ({
+    type: ActionTypes.ADDRESS_VALIDATION_REQUEST,
+});
+
+/**
+ * Dispatch when an address has been successfully validated
+ *
+ * @method addressValidationSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const addressValidationSuccess = () => ({
+    type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
+});

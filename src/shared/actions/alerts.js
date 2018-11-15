@@ -223,7 +223,7 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
 export const generateAccountSyncRetryAlert = () => (dispatch) =>
     dispatch(
         generateAlert(
-            'info',
+            'error',
             i18next.t('global:pleaseWait'),
             `${i18next.t('global:errorFetchingAccountInformation')} ${i18next.t(
                 'global:tryingAgainWithDifferentNode',
@@ -231,6 +231,16 @@ export const generateAccountSyncRetryAlert = () => (dispatch) =>
             20000,
         ),
     );
+
+/**
+ * Generates an info alert (if addresses syncing fails) for auto retrying addresses sync
+ *
+ * @method generateAddressesSyncRetryAlert
+ *
+ * @returns {function} dispatch
+ */
+export const generateAddressesSyncRetryAlert = () => (dispatch) =>
+    dispatch(generateAlert('info', i18next.t('global:pleaseWait'), i18next.t('global:errorSyncingAddresses'), 20000));
 
 /**
  * Generates a success alert on successful transaction. Generates different alerts based on value/non-value transaction

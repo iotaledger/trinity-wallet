@@ -130,6 +130,7 @@ export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, t
                     return updatedAddressData;
                 }
 
+                // If the newly generated address is used, generate a new address.
                 const nextKeyIndex = currentKeyIndex + 1;
 
                 return generateAddressData(nextKeyIndex, updatedAddressData);
@@ -307,7 +308,7 @@ export const removeUnusedAddresses = (provider) => (
             if (
                 size(hashes) === 0 &&
                 some(balances, (balance) => balance === 0) &&
-                some(wereSpent, (status) => status.remote === false || status.local === false)
+                some(wereSpent, (status) => status.remote === false && status.local === false)
             ) {
                 return removeUnusedAddresses(provider)(
                     index - 1,
@@ -516,7 +517,7 @@ export const getLatestAddress = (addressData, withChecksum = false) => {
 /**
  *   Takes address data and returns the address data object with highest index
  *
- *   @method getLatestAddressData
+ *   @method getLatestAddressObject
  *   @param {array} addressData
  *   `
  *   @returns {string} - latest address
@@ -538,6 +539,7 @@ export const getAddressesUptoRemainder = (provider) => (
     blacklistedRemainderAddresses = [],
 ) => {
     const latestAddress = getLatestAddress(addressData);
+    const latestAddressData = getLatestAddressObject(addressData);
 
     const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
 
@@ -550,6 +552,7 @@ export const getAddressesUptoRemainder = (provider) => (
             security: DEFAULT_SECURITY,
         }).then((newAddressData) => {
             const remainderAddress = getLatestAddress(newAddressData);
+            const remainderAddressData = getLatestAddressObject(newAddressData);
 
             const addressDataUptoRemainder = [...addressData, ...newAddressData];
 
@@ -564,12 +567,17 @@ export const getAddressesUptoRemainder = (provider) => (
 
             return {
                 remainderAddress,
+                remainderIndex: remainderAddressData.index,
                 addressDataUptoRemainder,
             };
         });
     }
 
-    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressData });
+    return Promise.resolve({
+        remainderAddress: latestAddress,
+        remainderIndex: latestAddressData.index,
+        addressDataUptoRemainder: addressData,
+    });
 };
 
 /**

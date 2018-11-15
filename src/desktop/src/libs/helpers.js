@@ -109,6 +109,23 @@ const tritsToChars = (trits) => {
     return seed;
 };
 
+/**
+ * Replaces all non alpha numeric (plus _ and -) characters for an empty string
+ * @param {string} source - String with non ASCII chars to be cleansed
+ * @param {string} fallback - Optional string to be returned in the event of a falsy source
+ * @returns {string} Returns a new string without non ASCII characters
+ */
+const removeNonAlphaNumeric = (source, fallback = '') => {
+    let newStr = '';
+    if (source) {
+        newStr = source.replace(/[^a-zA-Z0-9_-]/g, '');
+    }
+    if (!newStr && fallback) {
+        newStr = fallback.replace(/[^a-zA-Z0-9_-]/g, '');
+    }
+    return newStr;
+};
+
 module.exports = {
     capitalize,
     shorten,
@@ -117,4 +134,5 @@ module.exports = {
     bytesToTrits,
     tritsToChars,
     charToByte,
+    removeNonAlphaNumeric,
 };

@@ -32,7 +32,7 @@ import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
     getSelectedAccountName,
-    getSelectedAccountType,
+    getSelectedAccountMeta,
 } from 'shared-modules/selectors/accounts';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'shared-modules/actions/alerts';
@@ -113,7 +113,7 @@ export class Send extends Component {
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Name for selected account */
-        selectedAccountType: PropTypes.string.isRequired,
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
         /** @ignore */
@@ -610,7 +610,7 @@ export class Send extends Component {
             t,
             password,
             selectedAccountName,
-            selectedAccountType,
+            selectedAccountMeta,
             isSyncing,
             isTransitioning,
             message,
@@ -643,7 +643,7 @@ export class Send extends Component {
         this.props.getFromKeychainRequest('send', 'makeTransaction');
 
         try {
-            const seedStore = new SeedStore[selectedAccountType](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
             const powFn = getPowFn();
@@ -905,7 +905,7 @@ const mapStateToProps = (state) => ({
     balance: getBalanceForSelectedAccount(state),
     availableBalance: getAvailableBalanceForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
-    selectedAccountType: getSelectedAccountType(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     isSyncing: state.ui.isSyncing,
     isSendingTransfer: state.ui.isSendingTransfer,
     seedIndex: state.wallet.seedIndex,

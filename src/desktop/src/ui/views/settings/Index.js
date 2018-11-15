@@ -70,11 +70,11 @@ class Settings extends React.PureComponent {
                                     <NavLink to="/settings/mode">
                                         <Icon icon="mode" size={20} /> <strong>{t('settings:mode')}</strong>
                                     </NavLink>
-                                    <NavLink to="/settings/advanced">
-                                        <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
-                                    </NavLink>
                                 </div>
                             ) : null}
+                            <NavLink to="/settings/advanced">
+                                <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
+                            </NavLink>
                         </nav>
                     </section>
                     <section className={css.content}>

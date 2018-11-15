@@ -43,13 +43,12 @@ export const prepareInputs = (addressData, threshold, maxInputs = 2, security = 
         _throw(Errors.INSUFFICIENT_BALANCE);
     }
 
-    // Return prematurely in case threshold is zero
-    // This check prevents adding input on the first iteration
-    // if address data has addresses with balance.
+    // Throw if threshold is zero
     if (!threshold) {
         _throw(Errors.INPUTS_THRESHOLD_CANNOT_BE_ZERO);
     }
 
+    // Throw if provided maxInputs param is not a number
     if (!isNumber(maxInputs)) {
         _throw(Errors.INVALID_MAX_INPUTS_PROVIDED);
     }
@@ -80,7 +79,7 @@ export const prepareInputs = (addressData, threshold, maxInputs = 2, security = 
     // If there is a limit applied on the number of selected inputs and
     // and if the selected inputs (by optimal value) exceed the limit
 
-    // Then try to find inputs where inputs <= limit & sum(inputs) >= threshold
+    // Then try to find inputs where size(inputs) <= maxInputs & sum(inputs) >= threshold
     // If sum exceeds threshold, try to select inputs with minimum size
     if (maxInputs > 0 && size(selectedInputsByOptimalValue) > maxInputs) {
         const inputsWithUniqueBalances = uniqBy(inputs, 'balance');
@@ -191,7 +190,7 @@ export const subsetSumWithLimit = (limit = 2, MAX_CALL_TIMES = 100000) => {
             exceeded.push(partial);
         }
 
-        // If some has reached the threshold why bother continuing
+        // If sum has reached the threshold why bother continuing
         if (sum >= threshold) {
             return;
         }

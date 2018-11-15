@@ -1,5 +1,6 @@
 import each from 'lodash/each';
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
@@ -86,6 +87,18 @@ export const selectLatestAddressFromAccountFactory = (withChecksum = true) =>
     createSelector(selectAccountInfo, (state) => getLatestAddress(state.addressData, withChecksum));
 
 /**
+ *   Selects account meta from account info state partial.
+ *
+ *   @method getSelectedAccountMeta
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getSelectedAccountMeta = createSelector(
+    selectAccountInfo,
+    (account) => account.meta || { type: 'keychain' },
+);
+
+/**
  *   Selects account name for currently selected account.
  *
  *   @method getSelectedAccountType
@@ -148,6 +161,18 @@ export const getAvailableBalanceForSelectedAccount = createSelector(selectAccoun
  *   @returns {object}
  **/
 export const getSetupInfoFromAccounts = createSelector(getAccountsFromState, (state) => state.setupInfo || {});
+
+/**
+ *   Selects getAccountInfoDuringSetup prop from accounts reducer state object.
+ *
+ *   @method getAccountInfoDuringSetup
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getAccountInfoDuringSetup = createSelector(
+    getAccountsFromState,
+    (state) => state.accountInfoDuringSetup || {},
+);
 
 /**
  *   Selects getTasksFromAccounts prop from accounts reducer state object.
@@ -301,3 +326,15 @@ export const selectedAccountStateFactory = (accountName) => {
         return {};
     });
 };
+
+/**
+ *   Determines if a new account is being setup.
+ *
+ *   @method isSettingUpNewAccount
+ *   @param {object} state
+ *   @returns {boolean}
+ **/
+export const isSettingUpNewAccount = createSelector(
+    getAccountInfoDuringSetup,
+    (accountInfoDuringSetup) => !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
+);

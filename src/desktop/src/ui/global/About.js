@@ -59,6 +59,28 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.4.1</h5>
+                            <ul>
+                                <li>- Update: Complete address tooltip on Send page address input</li>
+                                <li>- Update: Highlight receive address checksum</li>
+                                <li>- Update: Ledger device accounts can send 0 value transactions</li>
+                                <li>- Update: Prefix SeedVault export file name with Account name</li>
+                                <li>- Update: Increase request timeout for all network calls to IRI</li>
+                                <li>- Fix: New account addition results in crash on node errors</li>
+                                <li>- Fix: Unresponsive login button if keychain is not available</li>
+                                <li>- Fix: Cannot add Ledger device account with a specific page</li>
+                                <li>- Fix: Cannot use multiple Ledger devices with the same index</li>
+                                <li>- Fix: IOTA App request does not respond when opening the app</li>
+                                <li>- Fix: Incorrect back navigation when setting Account name</li>
+                                <li>- Fix: Provide correct key index for generating addresses</li>
+                            </ul>
+                            <h5>0.4.0</h5>
+                            <ul>
+                                <li>- New: Ledger hardware wallet support</li>
+                                <li>- Update: Add Wallet reset functionality for non authorised users</li>
+                                <li>- Update: Improved auto-updates functionality</li>
+                                <li>- Fix: Dark menu bar icon support for macOS</li>
+                            </ul>
                             <h5>0.3.6</h5>
                             <ul>
                                 <li>

@@ -10,9 +10,10 @@ import { withI18n } from 'react-i18next';
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
-import { getAccountNamesFromState } from 'selectors/accounts';
+import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
+import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
@@ -23,6 +24,7 @@ import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
 import ErrorLog from 'ui/global/ErrorLog';
+import UpdateProgress from 'ui/global/UpdateProgress';
 
 import Loading from 'ui/components/Loading';
 
@@ -30,6 +32,7 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -47,7 +50,13 @@ class App extends React.Component {
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
+        onboardingComplete: PropTypes.bool.isRequired,
+        /** @ignore */
+        setOnboardingComplete: PropTypes.func.isRequired,
+        /** @ignore */
         history: PropTypes.object.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
         /** @ignore */
         locale: PropTypes.string.isRequired,
         /** @ignore */
@@ -69,7 +78,7 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -114,12 +123,15 @@ class App extends React.Component {
             Electron.updateMenu('authorised', true);
 
             // If there was an error adding additional seed, go back to onboarding
-            if (
-                this.props.wallet.addingAdditionalAccount &&
-                !nextProps.wallet.addingAdditionalAccount &&
-                nextProps.wallet.additionalAccountName.length
-            ) {
-                return this.props.history.push('/onboarding/account-name');
+            if (nextProps.addingAdditionalAccount) {
+                if (nextProps.accountNames.length > 0) {
+                    return this.props.history.push('/onboarding/account-name');
+                }
+                return this.props.history.push('/onboarding/login');
+            }
+
+            if (!this.props.onboardingComplete) {
+                this.props.setOnboardingComplete(true);
             }
 
             this.props.history.push('/wallet/');
@@ -212,10 +224,10 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
-                this.props.setAdditionalAccountInfo({
-                    additionalAccountName: '',
-                    addingAdditionalAccount: false,
-                    additionalAccountType: '',
+                this.props.setAccountInfoDuringSetup({
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
                 });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
@@ -253,7 +265,9 @@ class App extends React.Component {
                 <About />
                 <ErrorLog />
                 <Idle />
+                <UpdateProgress />
                 <Theme history={history} />
+                <Ledger />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -274,9 +288,11 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
+    onboardingComplete: state.accounts.onboardingComplete,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
@@ -290,7 +306,8 @@ const mapDispatchToProps = {
     generateAlert,
     fetchNodeList,
     updateTheme,
-    setAdditionalAccountInfo,
+    setOnboardingComplete,
+    setAccountInfoDuringSetup,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

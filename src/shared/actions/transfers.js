@@ -18,11 +18,19 @@ import {
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
-    isNodeSynced,
 } from '../libs/iota/extendedApi';
-import { selectedAccountStateFactory } from '../selectors/accounts';
-import { getRemotePoWFromState, getNodesFromState, getSelectedNodeFromState } from '../selectors/global';
-import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes } from '../libs/iota/utils';
+import {
+    selectedAccountStateFactory,
+    getRemotePoWFromState,
+    getNodesFromState,
+    getSelectedNodeFromState,
+} from '../selectors/accounts';
+import {
+    withRetriesOnDifferentNodes,
+    fetchRemoteNodes,
+    getRandomNodes,
+    throwIfNodeNotSynced,
+} from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -436,21 +444,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     let transferInputs = [];
 
     const withPreTransactionSecurityChecks = () => {
-        // Progressbar step => (Checking node's health)
+        // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
-        return isNodeSynced()
-            .then((isSynced) => {
-                if (isSynced) {
-                    // Progressbar step => (Validating receive address)
-                    dispatch(setNextStepAsActive());
-
-                    // Make sure that the address a user is about to send to is not already used.
-                    return shouldAllowSendingToAddress()([address]);
-                }
-
-                throw new Error(Errors.NODE_NOT_SYNCED);
-            })
+        // Make sure that the address a user is about to send to is not already used.
+        return shouldAllowSendingToAddress()([address])
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
                     // Progressbar step => (Syncing account)
@@ -482,6 +480,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
+                // Check if input count does not exceed maximum supported by the SeedStore type
+                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
+                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                }
+
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
@@ -491,7 +494,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     iota.utils.noChecksum(receiveAddress),
                 ]);
             })
-            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address
                 // Also returns updated address data including new address data for the intermediate addresses.
                 // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
@@ -501,6 +504,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 return {
                     inputs: transferInputs,
                     address: remainderAddress,
+                    keyIndex: remainderIndex,
                 };
             });
     };
@@ -741,8 +745,45 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                             20000,
                         ),
                     );
+                } else if (message === Errors.LEDGER_ZERO_VALUE) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:cannotSendZeroValueTitle'),
+                            i18next.t('ledger:cannotSendZeroValueExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DISCONNECTED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDisconnectedTitle'),
+                            i18next.t('ledger:ledgerDisconnectedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_DENIED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerDeniedTitle'),
+                            i18next.t('ledger:ledgerDeniedExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_INVALID_INDEX) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('ledger:ledgerIncorrectIndex'),
+                            i18next.t('ledger:ledgerIncorrectIndexExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.LEDGER_CANCELLED) {
+                    return;
                 }
-
                 return dispatch(generateTransferErrorAlert(error));
             })
     );
@@ -767,9 +808,12 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     dispatch(retryFailedTransactionRequest());
 
-    // First check spent statuses against transaction addresses
     return (
-        categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
+        throwIfNodeNotSynced()
+            // First check spent statuses against transaction addresses
+            .then(() =>
+                categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address)),
+            )
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
@@ -801,7 +845,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
             .catch((error) => {
                 dispatch(retryFailedTransactionError());
 
-                if (error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                if (error.message && error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
                     dispatch(
                         generateAlert(
                             'error',

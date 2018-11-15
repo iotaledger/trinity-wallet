@@ -11,4 +11,7 @@
     <style name="SplashTheme" parent="AppTheme">
     	<item name="android:windowBackground">@drawable/background_splash</item>
     </style>
+    <style name="DevSettingsTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 </resources>
