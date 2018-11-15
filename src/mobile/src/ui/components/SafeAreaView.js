@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getBackgroundColor } from 'ui/theme/general';
 import { isIPhoneFailingSafeAreaView } from 'libs/device';
+import { width, height } from 'libs/dimensions';
 
 export default function withSafeAreaView(WrappedComponent) {
     class EnhancedComponent extends Component {
@@ -38,9 +39,9 @@ export default function withSafeAreaView(WrappedComponent) {
             return (
                 <SafeAreaView
                     style={{
-                        flex: 1,
+                        height,
+                        width,
                         backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
-                        paddingBottom: isModalActive ? 5 : 0,
                     }}
                 >
                     <WrappedComponent {...this.props} />

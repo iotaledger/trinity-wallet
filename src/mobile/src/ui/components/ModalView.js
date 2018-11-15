@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         width,
         justifyContent: 'flex-end',
         height,
-        flex: isIPhoneX ? 0 : 1,
+        flex: 1,
     },
     modalContainer: {
         justifyContent: 'space-between',
@@ -84,13 +84,11 @@ export class ModalViewComponent extends PureComponent {
 
         return (
             <View style={styles.container}>
-                <View
+                <SafeAreaView
                     style={[
                         styles.modalContainer,
                         { backgroundColor: body.bg },
-                        displayTopBar
-                            ? { height: isIPhoneX ? height - Styling.topbarHeight - 5 : height - Styling.topbarHeight }
-                            : { flex: 1 },
+                        displayTopBar ? { height: height - Styling.topbarHeight } : { flex: 1 },
                     ]}
                 >
                     <View style={styles.modalContent}>{children}</View>
@@ -103,7 +101,7 @@ export class ModalViewComponent extends PureComponent {
                             disableRightButton={disableRightButton}
                         />
                     )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
-                </View>
+                </SafeAreaView>
             </View>
         );
     }

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 class InfoBox extends PureComponent {
     static propTypes = {
         /** Infobox children content */
-        children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+        children: PropTypes.oneOfType([PropTypes.node, PropTypes.number, PropTypes.object]),
         /** Container style object */
         containerStyle: PropTypes.object,
         /** @ignore */
