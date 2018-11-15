@@ -51,6 +51,8 @@ export class ModalViewComponent extends PureComponent {
         buttonText: PropTypes.string,
         /** Triggered on button press for single footer button */
         onButtonPress: PropTypes.func,
+        /** Determines whether right footer button should be disabled */
+        disableRightButton: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -62,6 +64,7 @@ export class ModalViewComponent extends PureComponent {
         onRightButtonPress: () => {},
         onButtonPress: () => {},
         buttonText: '',
+        disableRightButton: false,
     };
 
     render() {
@@ -76,6 +79,7 @@ export class ModalViewComponent extends PureComponent {
             onRightButtonPress,
             buttonText,
             onButtonPress,
+            disableRightButton,
         } = this.props;
 
         return (
@@ -84,7 +88,9 @@ export class ModalViewComponent extends PureComponent {
                     style={[
                         styles.modalContainer,
                         { backgroundColor: body.bg },
-                        displayTopBar ? { height: height - Styling.topbarHeight } : { flex: 1 },
+                        displayTopBar
+                            ? { height: isIPhoneX ? height - Styling.topbarHeight - 5 : height - Styling.topbarHeight }
+                            : { flex: 1 },
                     ]}
                 >
                     <View style={styles.modalContent}>{children}</View>
@@ -94,6 +100,7 @@ export class ModalViewComponent extends PureComponent {
                             onRightButtonPress={() => onRightButtonPress()}
                             leftButtonText={leftButtonText}
                             rightButtonText={rightButtonText}
+                            disableRightButton={disableRightButton}
                         />
                     )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
                 </View>

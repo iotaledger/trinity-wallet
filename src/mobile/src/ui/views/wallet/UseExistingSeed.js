@@ -259,6 +259,7 @@ class UseExistingSeed extends Component {
                     hideModal: () => this.hideModal(),
                     onMount: () => this.props.setDoNotMinimise(true),
                     onUnmount: () => this.props.setDoNotMinimise(false),
+                    displayTopBar: true,
                 });
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {

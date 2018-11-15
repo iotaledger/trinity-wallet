@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     itemLeft: {
@@ -99,17 +99,12 @@ class Pow extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 2 }} />
-                        <InfoBox
-                            body={body}
-                            text={
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('feeless')}</Text>
-                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                        {t('localOrRemote')}
-                                    </Text>
-                                </View>
-                            }
-                        />
+                        <InfoBox>
+                            <Text style={[styles.infoText, textColor]}>{t('feeless')}</Text>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                {t('localOrRemote')}
+                            </Text>
+                        </InfoBox>
                         <View style={{ flex: 1.1 }} />
                         <TouchableWithoutFeedback
                             onPress={this.onChange}

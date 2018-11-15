@@ -44,12 +44,11 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        marginBottom: height / 15,
+        marginBottom: height / 20,
     },
     infoText: {
         fontSize: Styling.fontSize3,
         textAlign: 'center',
-        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: Styling.borderRadiusLarge,
         padding: width / 30,
-        marginBottom: height / 25,
+        marginBottom: height / 20,
         alignItems: 'center',
     },
 });

@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        marginBottom: height / 8,
     },
 });
 
@@ -178,6 +177,7 @@ class TwoFactorSetupEnterToken extends Component {
                         >
                             <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
                         </AnimatedComponent>
+                        <View style={{ flex: 0.15 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}

@@ -139,12 +139,20 @@ class LanguageSetup extends Component {
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
-                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={200}>
+                            <AnimatedComponent
+                                animationInType={['fadeIn']}
+                                animationOutType={['fadeOut', 'slideOutLeft']}
+                                delay={200}
+                            >
                                 <Icon name="iota" size={width / 8} color={body.color} />
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={100}>
+                            <AnimatedComponent
+                                animationInType={['fadeIn']}
+                                animationOutType={['fadeOut', 'slideOutLeft']}
+                                delay={100}
+                            >
                                 <View style={{ flex: 0.5 }} />
                                 <DropdownComponent
                                     onRef={(c) => {
@@ -158,7 +166,11 @@ class LanguageSetup extends Component {
                             </AnimatedComponent>
                         </View>
                         <View style={styles.bottomContainer}>
-                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                            <AnimatedComponent
+                                animationInType={['fadeIn']}
+                                animationOutType={['fadeOut', 'slideOutLeft']}
+                                delay={0}
+                            >
                                 <SingleFooterButton
                                     onButtonPress={() => this.onNextPress()}
                                     testID="languageSetup-next"

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     itemLeft: {
@@ -254,18 +254,13 @@ class ForceChangePassword extends Component {
                     <View style={styles.container}>
                         <View style={{ flex: 1.5 }} />
                         <View style={styles.topContainer}>
-                            <InfoBox
-                                body={body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            With update 0.5.0, it is necessary to change your password before using
-                                            Trinity. If your current password fulfils the password strength requirements
-                                            then you may use your current password again.
-                                        </Text>
-                                    </View>
-                                }
-                            />
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>
+                                    With update 0.5.0, it is necessary to change your password before using Trinity. If
+                                    your current password fulfils the password strength requirements then you may use
+                                    your current password again.
+                                </Text>
+                            </InfoBox>
                             <View style={{ flex: 0.2 }} />
                             {this.renderTextField(
                                 (c) => {

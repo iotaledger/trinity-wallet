@@ -502,6 +502,7 @@ export class Send extends Component {
                     theme,
                     onMount: () => this.props.setDoNotMinimise(true),
                     onUnmount: () => this.props.setDoNotMinimise(false),
+                    displayTopBar: true,
                 });
             case 'transferConfirmation':
                 return this.props.toggleModalActivity(modalContent, {

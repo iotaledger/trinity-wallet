@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
-        paddingTop: height / 60,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
 });
@@ -223,7 +222,7 @@ export class SetAccountName extends Component {
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.15 }} />
+                            <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
@@ -247,15 +246,10 @@ export class SetAccountName extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={133}
                             >
-                                <InfoBox
-                                    body={theme.body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
-                                            <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
-                                        </View>
-                                    }
-                                />
+                                <InfoBox>
+                                    <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
+                                </InfoBox>
                             </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
                         </View>

@@ -47,12 +47,18 @@ class DualFooterButtons extends PureComponent {
         debounceTime: PropTypes.number,
         /** Current screen is navstack*/
         currentScreen: PropTypes.string,
+        /** Determines whether to disable left button */
+        disableLeftButton: PropTypes.bool,
+        /** Determines whether to disable right button */
+        disableRightButton: PropTypes.bool,
     };
 
     static defaultProps = {
         leftButtonStyle: {},
         rightButtonStyle: {},
         debounceTime: 300,
+        disableLeftButton: false,
+        disableRightButton: false,
     };
 
     componentWillUnmount() {
@@ -90,12 +96,14 @@ class DualFooterButtons extends PureComponent {
             isRightButtonLoading,
             onLeftButtonPress,
             onRightButtonPress,
+            disableLeftButton,
+            disableRightButton,
         } = this.props;
         const borderRadius = isIPhoneX ? Styling.borderRadiusExtraLarge : 0;
         return (
             <View style={styles.container}>
                 <Button
-                    onPress={() => this.debounceHandler(onLeftButtonPress)}
+                    onPress={() => disableLeftButton === false && this.debounceHandler(onLeftButtonPress)}
                     style={merge(
                         {},
                         {
@@ -118,11 +126,12 @@ class DualFooterButtons extends PureComponent {
                     )}
                     testID={leftButtonTestID}
                     isLoading={isLeftButtonLoading}
+                    disable={disableLeftButton}
                 >
                     {leftButtonText}
                 </Button>
                 <Button
-                    onPress={() => this.debounceHandler(onRightButtonPress)}
+                    onPress={() => disableRightButton === false && this.debounceHandler(onRightButtonPress)}
                     style={merge(
                         {},
                         {
@@ -131,6 +140,7 @@ class DualFooterButtons extends PureComponent {
                                 backgroundColor: theme.primary.color,
                                 borderBottomRightRadius: borderRadius,
                                 borderTopRightRadius: borderRadius,
+                                opacity: this.rightFooterButtonOpacity,
                             },
                             children: {
                                 color: theme.primary.body,
@@ -143,6 +153,7 @@ class DualFooterButtons extends PureComponent {
                     )}
                     testID={rightButtonTestID}
                     isLoading={isRightButtonLoading}
+                    disable={disableRightButton}
                 >
                     {rightButtonText}
                 </Button>

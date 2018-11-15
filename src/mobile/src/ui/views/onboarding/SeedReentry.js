@@ -51,13 +51,14 @@ const styles = StyleSheet.create({
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
         paddingTop: height / 60,
+        textAlign: 'center',
     },
     seedVaultImportContainer: {
         flex: 0.7,
@@ -233,7 +234,7 @@ class SeedReentry extends Component {
                                     </AnimatedComponent>
                                 </View>
                                 <View style={styles.midContainer}>
-                                    <View style={{ flex: 0.7 }} />
+                                    <View style={{ flex: 0.3 }} />
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
@@ -285,19 +286,14 @@ class SeedReentry extends Component {
                                         animationOutType={['slideOutLeft', 'fadeOut']}
                                         delay={100}
                                     >
-                                        <InfoBox
-                                            body={theme.body}
-                                            text={
-                                                <View>
-                                                    <Text style={[styles.infoTextBottom, textColor]}>
-                                                        {t('ifYouHaveNotSaved')}
-                                                    </Text>
-                                                    <Text style={[styles.warningText, textColor]}>
-                                                        {t('trinityWillNeverAskToReenter')}
-                                                    </Text>
-                                                </View>
-                                            }
-                                        />
+                                        <InfoBox>
+                                            <Text style={[styles.infoTextBottom, textColor]}>
+                                                {t('ifYouHaveNotSaved')}
+                                            </Text>
+                                            <Text style={[styles.warningText, textColor]}>
+                                                {t('trinityWillNeverAskToReenter')}
+                                            </Text>
+                                        </InfoBox>
                                     </AnimatedComponent>
                                     <View style={{ flex: 0.7 }} />
                                 </View>

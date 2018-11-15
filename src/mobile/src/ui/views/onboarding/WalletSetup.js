@@ -49,8 +49,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
-        paddingTop: height / 60,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -233,27 +232,22 @@ class WalletSetup extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={133}
                     >
-                        <InfoBox
-                            body={body}
-                            text={
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>
-                                        {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                    </Text>
-                                    <Trans i18nKey="walletSetup:explanation">
-                                        <Text style={[styles.infoText, textColor]}>
-                                            <Text style={styles.infoTextLight}>
-                                                You can use it to access your funds from
-                                            </Text>
-                                            <Text style={styles.infoTextRegular}> any wallet</Text>
-                                            <Text style={styles.infoTextLight}>, on</Text>
-                                            <Text style={styles.infoTextRegular}> any device.</Text>
-                                        </Text>
-                                    </Trans>
-                                    <Text style={[styles.infoText, textColor]}>{t('loseSeed')}</Text>
-                                </View>
-                            }
-                        />
+                        <InfoBox>
+                            <Text style={[styles.infoText, textColor]}>
+                                {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                            </Text>
+                            <Trans i18nKey="walletSetup:explanation">
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                                    <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
+                                    <Text style={styles.infoTextRegular}> any wallet</Text>
+                                    <Text style={styles.infoTextLight}>, on</Text>
+                                    <Text style={styles.infoTextRegular}> any device.</Text>
+                                </Text>
+                            </Trans>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                                {t('loseSeed')}
+                            </Text>
+                        </InfoBox>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>

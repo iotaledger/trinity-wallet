@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Light',
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -145,6 +145,7 @@ class WalletResetConfirmation extends Component {
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midWrapper}>
+                    <View style={{ flex: 0.1 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
@@ -152,7 +153,7 @@ class WalletResetConfirmation extends Component {
                     >
                         <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     </AnimatedComponent>
-                    <View style={{ flex: 0.2 }} />
+                    <View style={{ flex: 0.1 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
@@ -162,29 +163,25 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </AnimatedComponent>
-                    <View style={{ flex: 0.4 }} />
+                    <View style={{ flex: 0.1 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={100}
                     >
-                        <InfoBox
-                            body={theme.body}
-                            text={
-                                <Trans i18nKey="walletResetConfirmation:warning">
-                                    <Text style={[styles.infoText, textColor]}>
-                                        <Text style={styles.infoTextLight}>
-                                            All of your wallet data including your{' '}
-                                        </Text>
-                                        <Text style={styles.infoTextRegular}>seeds, password,</Text>
-                                        <Text style={styles.infoTextLight}> and </Text>
-                                        <Text style={styles.infoTextRegular}>other account information</Text>
-                                        <Text style={styles.infoTextLight}> will be lost.</Text>
-                                    </Text>
-                                </Trans>
-                            }
-                        />
+                        <InfoBox>
+                            <Trans i18nKey="walletResetConfirmation:warning">
+                                <Text style={[styles.infoText, textColor]}>
+                                    <Text style={styles.infoTextLight}>All of your wallet data including your </Text>
+                                    <Text style={styles.infoTextRegular}>seeds, password,</Text>
+                                    <Text style={styles.infoTextLight}> and </Text>
+                                    <Text style={styles.infoTextRegular}>other account information</Text>
+                                    <Text style={styles.infoTextLight}> will be lost.</Text>
+                                </Text>
+                            </Trans>
+                        </InfoBox>
                     </AnimatedComponent>
+                    <View style={{ flex: 0.1 }} />
                 </View>
                 <View style={styles.bottomWrapper}>
                     <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>

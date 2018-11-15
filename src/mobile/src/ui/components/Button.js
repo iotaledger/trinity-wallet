@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -33,18 +33,36 @@ export default class Button extends PureComponent {
         testID: PropTypes.string,
         /** Determines whether to display ActivityIndicator */
         isLoading: PropTypes.bool,
+        /** Determines whether to disable button */
+        disable: PropTypes.bool,
     };
 
     static defaultProps = {
         style: {},
         testID: '',
+        disable: false,
     };
+
+    constructor(props) {
+        super(props);
+        this.opacity = new Animated.Value(props.disable ? 0.4 : 1);
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.disable && !newProps.disable) {
+            Animated.timing(this.opacity, {
+                toValue: 1,
+                duration: 900,
+                easing: Easing.ease,
+            }).start();
+        }
+    }
 
     render() {
         const { style, children, testID, isLoading } = this.props;
 
         return (
-            <View style={[styles.container, style.container]}>
+            <Animated.View style={[styles.container, style.container, { opacity: this.opacity }]}>
                 <TouchableOpacity onPress={() => this.props.onPress()} testID={testID}>
                     <View style={[styles.wrapper, style.wrapper]}>
                         {(isLoading && <ActivityIndicator color={style.loading.color} size="small" />) || (
@@ -52,7 +70,7 @@ export default class Button extends PureComponent {
                         )}
                     </View>
                 </TouchableOpacity>
-            </View>
+            </Animated.View>
         );
     }
 }

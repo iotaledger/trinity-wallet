@@ -53,17 +53,17 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     seedVaultImportContainer: {
-        flex: 0.7,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: width / 18,
@@ -236,7 +236,7 @@ class EnterSeed extends React.Component {
                                 </AnimatedComponent>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={{ flex: 0.7 }} />
+                                <View style={{ flex: 0.3 }} />
                                 <AnimatedComponent
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
@@ -289,20 +289,15 @@ class EnterSeed extends React.Component {
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={100}
                                 >
-                                    <InfoBox
-                                        body={theme.body}
-                                        text={
-                                            <View>
-                                                <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                                </Text>
-                                                <Text style={[styles.warningText, { color: theme.body.color }]}>
-                                                    {'\n'}
-                                                    {t('neverShare')}
-                                                </Text>
-                                            </View>
-                                        }
-                                    />
+                                    <InfoBox>
+                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                            {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                                        </Text>
+                                        <Text style={[styles.warningText, { color: theme.body.color }]}>
+                                            {'\n'}
+                                            {t('neverShare')}
+                                        </Text>
+                                    </InfoBox>
                                 </AnimatedComponent>
                                 <View style={{ flex: 0.7 }} />
                             </View>

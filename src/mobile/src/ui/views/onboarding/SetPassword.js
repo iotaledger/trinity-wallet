@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
     },
@@ -205,24 +205,18 @@ class SetPassword extends Component {
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
+                            <View style={{ flex: 0.1 }} />
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={266}
                             >
-                                <InfoBox
-                                    body={body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoText, { color: body.color }]}>
-                                                {t('anEncryptedCopy')}
-                                            </Text>
-                                            <Text style={[styles.warningText, { color: body.color }]}>
-                                                {t('changePassword:ensureStrongPassword')}
-                                            </Text>
-                                        </View>
-                                    }
-                                />
+                                <InfoBox>
+                                    <Text style={[styles.infoText, { color: body.color }]}>{t('anEncryptedCopy')}</Text>
+                                    <Text style={[styles.warningText, { color: body.color }]}>
+                                        {t('changePassword:ensureStrongPassword')}
+                                    </Text>
+                                </InfoBox>
                             </AnimatedComponent>
                             <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
