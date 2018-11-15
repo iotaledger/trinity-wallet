@@ -313,6 +313,19 @@ export const setDeepLinkInactive = () => {
 };
 
 /**
+ * Dispatch to map storage (persisted) data to redux state
+ *
+ * @method mapStorageToState
+ * @param {object} payload
+
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const mapStorageToState = (payload) => ({
+    type: ActionTypes.MAP_STORAGE_TO_STATE,
+    payload,
+});
+
+/**
  * Generate new receive address for wallet
  *
  * @method generateNewAddress

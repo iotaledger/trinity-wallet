@@ -41,4 +41,5 @@ export default {
     CANNOT_FIND_INPUTS_WITH_PROVIDED_LIMIT: 'Cannot find inputs with provided limit.',
     INSUFFICIENT_BALANCE: 'Insufficient balance.',
     INVALID_MAX_INPUTS_PROVIDED: 'Invalid max inputs provided.',
+    NO_STORED_DATA_FOUND: 'No stored data found.',
 };

@@ -126,19 +126,9 @@ export const WalletSettingsSchema = {
     name: 'WalletSettings',
     properties: {
         /**
-         * Current wallet's version.
+         * Wallet versions (version & build number)
          */
-        version: {
-            type: 'string',
-            default: '',
-        },
-        /**
-         * Current wallet's build number (mobile).
-         */
-        buildNumber: {
-            type: 'int',
-            optional: true,
-        },
+        versions: 'WalletVersions',
         /**
          * Selected locale for wallet.
          */
@@ -281,6 +271,37 @@ export const WalletSettingsSchema = {
         node: {
             type: 'string',
             default: defaultNode,
+        },
+        /**
+         * Determines the status of AsyncStorage to realm migration
+         */
+        completedMigration: {
+            type: 'bool',
+            default: false,
+        },
+    },
+};
+
+/**
+ * Schema for Wallet versions.
+ */
+export const WalletVersionsSchema = {
+    name: 'WalletVersions',
+    primaryKey: 'version',
+    properties: {
+        /**
+         * Current wallet's version.
+         */
+        version: {
+            type: 'string',
+            default: '',
+        },
+        /**
+         * Current wallet's build number (mobile).
+         */
+        buildNumber: {
+            type: 'int',
+            optional: true,
         },
     },
 };

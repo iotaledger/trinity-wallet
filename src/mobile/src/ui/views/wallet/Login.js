@@ -59,6 +59,8 @@ class Login extends Component {
         setLoginRoute: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
+        completedMigration: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -92,7 +94,7 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const { t, is2FAEnabled, hasConnection, password } = this.props;
+        const { t, is2FAEnabled, hasConnection, password, completedMigration } = this.props;
         if (!hasConnection) {
             return;
         }
@@ -107,7 +109,7 @@ class Login extends Component {
                 this.props.setPassword(pwdHash);
                 this.props.setLoginPasswordField('');
                 if (!is2FAEnabled) {
-                    this.navigateToLoading();
+                    this.navigateTo(completedMigration ? 'migration' : 'loading');
                 } else {
                     this.props.setLoginRoute('complete2FA');
                 }
@@ -126,7 +128,7 @@ class Login extends Component {
      * @method onComplete2FA
      */
     async onComplete2FA(token) {
-        const { t, pwdHash, hasConnection } = this.props;
+        const { t, pwdHash, hasConnection, completedMigration } = this.props;
         if (!hasConnection) {
             return;
         }
@@ -141,7 +143,7 @@ class Login extends Component {
             }
             const verified = authenticator.verifyToken(key, token);
             if (verified) {
-                this.navigateToLoading();
+                this.navigateTo(completedMigration ? 'loading' : 'migration');
                 this.props.setLoginRoute('login');
             } else {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
@@ -167,14 +169,16 @@ class Login extends Component {
     }
 
     /**
-     * Navigates to loading screen
-     * @method navigateToLoading
+     * Navigates to provided screen
+     * @method navigateTo
+     *
+     * @param {string} name
      */
-    navigateToLoading() {
+    navigateTo(name) {
         const { theme: { body } } = this.props;
         Navigation.setStackRoot('appStack', {
             component: {
-                name: 'loading',
+                name,
                 options: {
                     animations: {
                         setStackRoot: {
@@ -232,12 +236,12 @@ const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: getThemeFromState(state),
     is2FAEnabled: state.settings.is2FAEnabled,
-    accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    completedMigration: state.settings.completedMigration,
 });
 
 const mapDispatchToProps = {
