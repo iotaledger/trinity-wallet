@@ -2,6 +2,7 @@ import merge from 'lodash/merge';
 import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
+import { ActionTypes as MigrationsActionTypes } from '../actions/migrations';
 import { defaultNode as node, nodes } from '../config';
 import { availableCurrencies } from '../libs/currency';
 
@@ -108,6 +109,10 @@ const initialState = {
         confirmations: true,
         messages: true,
     },
+    /**
+     * Determines the status of AsyncStorage to realm migration
+     */
+    completedMigration: true,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -253,6 +258,11 @@ const settingsReducer = (state = initialState, action) => {
                     ...state.notifications,
                     [action.payload.type]: action.payload.enabled,
                 },
+            };
+        case MigrationsActionTypes.SET_MIGRATION_STATUS:
+            return {
+                ...state,
+                completedMigration: action.payload,
             };
     }
 

@@ -1,8 +1,10 @@
 import assign from 'lodash/assign';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
 import Realm from 'realm';
@@ -15,6 +17,7 @@ import {
     NodeSchema,
     NotificationsSettingsSchema,
     WalletSettingsSchema,
+    WalletVersionsSchema,
     ErrorLogSchema,
 } from '../schema';
 
@@ -73,6 +76,21 @@ class Account {
      */
     static create(data) {
         realm.write(() => realm.create('Account', data));
+    }
+
+    /**
+     * Creates an account if it does not already exist.
+     *
+     * @method createIfNotExists
+     * @param {string} name
+     * @param {object} data
+     */
+    static createIfNotExists(name, data) {
+        const shouldCreate = isEmpty(Account.getObjectForId(name));
+
+        if (shouldCreate) {
+            Account.create(assign({}, data, { name }));
+        }
     }
 
     /**
@@ -453,11 +471,8 @@ class Wallet {
      * @param {object} payload
      */
     static setVersions(payload) {
-        const { buildNumber, version } = payload;
-
         realm.write(() => {
-            Wallet.latestSettings.buildNumber = buildNumber;
-            Wallet.latestSettings.version = version;
+            Wallet.latestSettings.versions = payload;
         });
     }
 
@@ -510,6 +525,18 @@ class Wallet {
     }
 
     /**
+     * Sets migration (AsyncStorage to Realm) status.
+     *
+     * @method setMigrationStatus
+     * @param {bool} payload
+     */
+    static setMigrationStatus(payload) {
+        realm.write(() => {
+            Wallet.latestSettings.completedMigration = payload;
+        });
+    }
+
+    /**
      * Updates byte-trit sweep setting.
      *
      * @method updateByteTritSweepSetting
@@ -551,11 +578,15 @@ class Wallet {
      * Updates error log.
      *
      * @method updateErrorLog
-     * @param {string} payload
+     * @param {object | array} payload
      */
     static updateErrorLog(payload) {
         realm.write(() => {
-            Wallet.latestData.errorLog.push(payload);
+            if (isArray(payload)) {
+                each(payload, (value) => Wallet.latestData.errorLog.push(value));
+            } else {
+                Wallet.latestData.errorLog.push(payload);
+            }
         });
     }
 
@@ -586,6 +617,25 @@ class Wallet {
             );
         }
     }
+
+    /**
+     * Updates latest wallet.
+     *
+     * @method updateLatest
+     * @param {object} data
+     */
+    static updateLatest(data) {
+        realm.write(() =>
+            realm.create(
+                'Wallet',
+                {
+                    version: Wallet.version,
+                    ...merge({}, Wallet.latestData, data),
+                },
+                true,
+            ),
+        );
+    }
 }
 
 /**
@@ -593,6 +643,13 @@ class Wallet {
  */
 class WalletSettings {
     static schema = WalletSettingsSchema;
+}
+
+/**
+ * Model for wallet versions.
+ */
+class WalletVersions {
+    static schema = WalletVersionsSchema;
 }
 
 /**
@@ -616,6 +673,7 @@ export const config = {
         NotificationsSettings,
         Transaction,
         WalletSettings,
+        WalletVersions,
         Wallet,
     ],
     schemaVersion: SCHEMA_VERSION,

@@ -670,7 +670,12 @@
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Broadcasting",
+        "preparingData": "Preparing data",
+        "migratingSettings": "Migrating settings",
+        "migratingAccounts": "Migrating accounts",
+        "cleaningUpOldData": "Cleaning up old data",
+        "migrationComplete": "Migration complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
@@ -740,5 +745,10 @@
         "proceed": "Proceed to Recovery",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
+     },
+     "migration": {
+         "dataMigration": "Data migration",
+         "dataMigrationExplanation": "Due to performance and storage limitations, Trinity now uses a new database for storing your wallet settings and accounts data. Please wait while Trinity automatically migrates your wallet settings and account information.",
+         "problemMigratingYourData": "There was a probelm migrating your data. Please try again"
      }
 }

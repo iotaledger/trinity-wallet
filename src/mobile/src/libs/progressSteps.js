@@ -17,4 +17,11 @@ export default {
         i18next.t('progressSteps:proofOfWork'),
         i18next.t('progressSteps:broadcasting'),
     ],
+    migration: [
+        i18next.t('progressSteps:preparingData'),
+        i18next.t('progressSteps:migratingSettings'),
+        i18next.t('progressSteps:migratingAccounts'),
+        i18next.t('progressSteps:cleaningUpOldData'),
+        i18next.t('progressSteps:migrationComplete'),
+    ],
 };
