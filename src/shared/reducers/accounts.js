@@ -137,6 +137,23 @@ const updateAccountName = (state, payload) => {
 const account = (
     state = {
         /**
+         * Temporary storage for account info during setup
+         */
+        accountInfoDuringSetup: {
+            /**
+             * Account name
+             */
+            name: '',
+            /**
+             * Account meta - { type, index, page, indexAddress }
+             */
+            meta: {},
+            /**
+             * Determines if a user used an existing seed during account setup
+             */
+            usedExistingSeed: false,
+        },
+        /**
          * Determines if onboarding process is completed
          */
         onboardingComplete: false,
@@ -166,6 +183,14 @@ const account = (
     action,
 ) => {
     switch (action.type) {
+        case ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP:
+            return {
+                ...state,
+                accountInfoDuringSetup: {
+                    ...state.accountInfoDuringSetup,
+                    ...action.payload,
+                },
+            };
         case ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS:
             return {
                 ...state,
@@ -288,6 +313,12 @@ const account = (
                 ...state,
                 ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                // Reset (temporarily) stored account info during account setup.
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
             };
         case ActionTypes.SET_BASIC_ACCOUNT_INFO:
             return {

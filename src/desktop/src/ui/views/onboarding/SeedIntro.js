@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withI18n, Trans } from 'react-i18next';
 
-import { setAdditionalAccountInfo } from 'actions/wallet';
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 
 import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
@@ -18,7 +18,7 @@ import css from './index.scss';
 class SeedIntro extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.object,
         /** @ignore */
@@ -47,8 +47,8 @@ class SeedIntro extends React.PureComponent {
     }
 
     stepForward(route) {
-        this.props.setAdditionalAccountInfo({
-            additionalAccountMeta: { type: 'keychain' },
+        this.props.setAccountInfoDuringSetup({
+            meta: { type: 'keychain' },
         });
 
         this.props.history.push(`/onboarding/${route}`);
@@ -109,7 +109,7 @@ class SeedIntro extends React.PureComponent {
 }
 
 const mapDispatchToProps = {
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
 };
 
 export default connect(null, mapDispatchToProps)(withI18n()(SeedIntro));

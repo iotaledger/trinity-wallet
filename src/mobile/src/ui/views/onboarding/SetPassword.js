@@ -241,7 +241,7 @@ class SetPassword extends Component {
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    accountName: state.wallet.additionalAccountName,
+    accountName: state.accounts.accountInfoDuringSetup.name,
     theme: state.settings.theme,
 });
 

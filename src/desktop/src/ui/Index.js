@@ -10,10 +10,10 @@ import { withI18n } from 'react-i18next';
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
-import { getAccountNamesFromState } from 'selectors/accounts';
+import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
-import { setOnboardingComplete } from 'actions/accounts';
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex, setAdditionalAccountInfo } from 'actions/wallet';
+import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
@@ -56,6 +56,8 @@ class App extends React.Component {
         /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
+        /** @ignore */
         locale: PropTypes.string.isRequired,
         /** @ignore */
         wallet: PropTypes.object.isRequired,
@@ -76,7 +78,7 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -121,15 +123,15 @@ class App extends React.Component {
             Electron.updateMenu('authorised', true);
 
             // If there was an error adding additional seed, go back to onboarding
-            if (nextProps.wallet.addingAdditionalAccount) {
+            if (nextProps.addingAdditionalAccount) {
                 if (nextProps.accountNames.length > 0) {
                     return this.props.history.push('/onboarding/account-name');
                 }
                 return this.props.history.push('/onboarding/login');
             }
 
-            if (!this.props.onboardingComplete){
-               this.props.setOnboardingComplete(true);
+            if (!this.props.onboardingComplete) {
+                this.props.setOnboardingComplete(true);
             }
 
             this.props.history.push('/wallet/');
@@ -222,10 +224,10 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
-                this.props.setAdditionalAccountInfo({
-                    additionalAccountName: '',
-                    addingAdditionalAccount: false,
-                    additionalAccountType: '',
+                this.props.setAccountInfoDuringSetup({
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
                 });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
@@ -286,6 +288,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
@@ -303,8 +306,8 @@ const mapDispatchToProps = {
     generateAlert,
     fetchNodeList,
     updateTheme,
-    setAdditionalAccountInfo,
-    setOnboardingComplete
+    setOnboardingComplete,
+    setAccountInfoDuringSetup,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));
