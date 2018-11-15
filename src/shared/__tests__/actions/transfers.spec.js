@@ -384,7 +384,7 @@ describe('actions: transfers', () => {
             });
 
             describe('when transaction is successful', () => {
-                it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
+                it('should create eight actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
                     const store = mockStore({ accounts });
 
@@ -428,7 +428,7 @@ describe('actions: transfers', () => {
                                     .getActions()
                                     .map((action) => action.type)
                                     .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                            ).to.equal(9);
+                            ).to.equal(8);
 
                             syncAccountAfterSpending.restore();
                             syncAccount.restore();

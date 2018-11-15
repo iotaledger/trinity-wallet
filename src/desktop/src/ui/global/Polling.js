@@ -6,7 +6,7 @@ import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
-import { getAccountNamesFromState } from 'selectors/accounts';
+import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -164,7 +164,7 @@ const mapStateToProps = (state) => ({
     isPollingAccountInfo: state.polling.isFetchingAccountInfo,
     isAutoPromoting: state.polling.isAutoPromoting,
     isSyncing: state.ui.isSyncing,
-    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingAccountInfo: state.ui.isFetchingAccountInfo,

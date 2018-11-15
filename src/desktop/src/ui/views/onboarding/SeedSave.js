@@ -104,7 +104,7 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboardingName: state.wallet.additionalAccountName,
+    onboardingName: state.accounts.accountInfoDuringSetup.name,
 });
 
 export default connect(mapStateToProps)(withI18n()(SeedSave));
