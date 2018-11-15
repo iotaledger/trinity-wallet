@@ -540,3 +540,25 @@
         }
     }
 }
+
+.tooltip {
+    background: var(--bar-bg) !important;
+    color: var(--bar) !important;
+    width: 324px !important;
+    font-family: 'SourceCodePro';
+    letter-spacing: 2px;
+    word-wrap: break-word;
+    line-height: 21px;
+    padding: 12px 14px 12px 16px !important;
+
+    &:after {
+        border-bottom-color: var(--bar-bg) !important;
+    }
+}
+
+.addressHidden {
+    visibility: hidden;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 40px;
+}

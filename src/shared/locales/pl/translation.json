@@ -538,7 +538,7 @@
         "hideSeed": "Ukryj seed",
         "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
         "accountIndex": "Indeks Twojego konta Ledger",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Strona Twojego konta Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Czy zrobiłeś kopię swojego klucza?",
@@ -748,7 +748,7 @@
         "ledgerIncorrectIndexExplanation": "Podłączony portfel sprzętowy Ledger, nie pasuje do połączonego z tym kontem lub frazy odzyskiwania na urządzeniu, zostały zmienione.",
         "checkAddress": "Sprawdź adres odbioru",
         "checkAddressExplanation": "Sprawdź, czy adres odpowiada adresowi wyświetlanemu na urządzeniu Ledger. Jeśli nie, naciśnij \"Synchronizuj adres\".",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
+        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
     }
 }
