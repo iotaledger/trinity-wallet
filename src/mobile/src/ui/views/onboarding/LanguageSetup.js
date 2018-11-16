@@ -138,6 +138,14 @@ class LanguageSetup extends Component {
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <View style={styles.container}>
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            delay={0}
+                            style={[styles.helloBackground, { position: 'absolute' }]}
+                        >
+                            <Image style={styles.helloBackground} source={helloBackImagePath} />
+                        </AnimatedComponent>
                         <View style={styles.topContainer}>
                             <AnimatedComponent
                                 animationInType={['fadeIn']}
@@ -148,11 +156,7 @@ class LanguageSetup extends Component {
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <AnimatedComponent
-                                animationInType={['fadeIn']}
-                                animationOutType={['fadeOut', 'slideOutLeft']}
-                                delay={100}
-                            >
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={100}>
                                 <View style={{ flex: 0.5 }} />
                                 <DropdownComponent
                                     onRef={(c) => {
@@ -178,14 +182,6 @@ class LanguageSetup extends Component {
                                 />
                             </AnimatedComponent>
                         </View>
-                        <AnimatedComponent
-                            animationInType={['fadeIn']}
-                            animationOutType={['fadeOut']}
-                            delay={0}
-                            style={[styles.helloBackground, { position: 'absolute' }]}
-                        >
-                            <Image style={styles.helloBackground} source={helloBackImagePath} />
-                        </AnimatedComponent>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

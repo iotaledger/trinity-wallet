@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
 });
@@ -336,16 +336,14 @@ class SeedVaultExportComponent extends Component {
                     />
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox
-                        body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultExplanation')}</Text>}
-                    />
+                    <InfoBox>
+                        <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultExplanation')}</Text>
+                    </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox
-                        body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>}
-                    />
+                    <InfoBox>
+                        <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>
+                    </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
                     <PasswordFields
@@ -360,10 +358,9 @@ class SeedVaultExportComponent extends Component {
                     />
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox
-                        body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultWarning')}</Text>}
-                    />
+                    <InfoBox>
+                        <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultWarning')}</Text>
+                    </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
                     <Button
