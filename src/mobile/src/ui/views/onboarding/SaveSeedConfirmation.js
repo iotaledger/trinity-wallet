@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
+import timer from 'react-native-timer';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -77,11 +78,16 @@ class SaveSeedConfirmation extends Component {
         this.state = {
             hasConfirmedBackup: false,
             hasAgreedToNotCopyPaste: !isAndroid,
+            confirmationText: isAndroid ? props.t('willNotCopyPasteSeed') : props.t('iHaveBackedUp'),
         };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SaveSeedConfirmation');
+    }
+
+    componentWillUnmount() {
+        timer.clearTimeout('delayTextUpdate');
     }
 
     onBackPress() {
@@ -116,8 +122,10 @@ class SaveSeedConfirmation extends Component {
     }
 
     onSwipeSuccess() {
+        const { t } = this.props;
         if (!this.state.hasAgreedToNotCopyPaste) {
             this.setState({ hasAgreedToNotCopyPaste: true });
+            timer.setTimeout('delayTextUpdate', () => this.setState({ confirmationText: t('iHaveBackedUp') }), 1000);
         }
         this.setState({ hasConfirmedBackup: true });
     }
@@ -178,9 +186,7 @@ class SaveSeedConfirmation extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={200}
                     >
-                        <Text style={[styles.infoTextBold, { color: body.color }]}>
-                            {this.state.hasAgreedToNotCopyPaste ? t('iHaveBackedUp') : t('willNotCopyPasteSeed')}
-                        </Text>
+                        <Text style={[styles.infoTextBold, { color: body.color }]}>{this.state.confirmationText}</Text>
                     </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
                     <AnimatedComponent

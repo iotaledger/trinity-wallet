@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     passwordStrengthIndicator: {
         width: width / 15,
-        height: height / 120,
+        height: height / 160,
         marginLeft: width / 150,
     },
     labelContainer: {

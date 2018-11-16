@@ -311,13 +311,13 @@ class SeedVaultExportComponent extends Component {
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, isAuthenticated } = this.props;
         const { password, reentry } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
             <Animated.View style={[styles.container, { transform: [{ translateX: this.animatedValue }] }]}>
-                <View style={styles.viewContainer}>
+                <View style={[styles.viewContainer, isAuthenticated && { opacity: 0 }]}>
                     <Text style={[styles.infoText, textColor, { marginBottom: height / 15 }]}>
                         {t('login:enterPassword')}
                     </Text>
@@ -336,12 +336,12 @@ class SeedVaultExportComponent extends Component {
                     />
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox>
+                    <InfoBox containerStyle={{ minHeight: height / 4.5 }}>
                         <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultExplanation')}</Text>
                     </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox>
+                    <InfoBox containerStyle={{ minHeight: height / 4.5 }}>
                         <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>
                     </InfoBox>
                 </View>
