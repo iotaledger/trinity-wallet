@@ -17,6 +17,14 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 app.commandLine.appendSwitch('remote-debugging-port', '');
 
 /**
+ * Terminate application if Node remote debugging detected
+ */
+const argv = process.argv.join();
+if (argv.includes('inspect') || typeof v8debug !== 'undefined') {
+    return app.quit();
+}
+
+/**
  * Set AppUserModelID for Windows notifications functionallity
  */
 app.setAppUserModelId('org.iota.trinity');
