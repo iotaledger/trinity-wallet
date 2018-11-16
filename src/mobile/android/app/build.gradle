@@ -104,7 +104,7 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative51"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
