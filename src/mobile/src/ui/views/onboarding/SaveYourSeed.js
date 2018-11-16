@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RNPrint from 'react-native-print';
 import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { getChecksum } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { paperWalletFilled } from 'shared-modules/images/PaperWallets.js';
@@ -15,6 +16,7 @@ import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
 import Button from 'ui/components/Button';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
@@ -44,6 +46,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
+    },
+    header: {
+        flex: 1,
+        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -102,6 +108,7 @@ class SaveYourSeed extends Component {
         timer.clearTimeout('delayPrint');
         timer.clearTimeout('clipboardClear');
         timer.clearTimeout('delayAlert');
+        timer.clearTimeout('saveYourSeed');
     }
 
     /**
@@ -110,32 +117,27 @@ class SaveYourSeed extends Component {
      */
     onDonePress() {
         const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: 'saveSeedConfirmation',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push('saveSeedConfirmation', {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -145,7 +147,7 @@ class SaveYourSeed extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -154,32 +156,27 @@ class SaveYourSeed extends Component {
      */
     onWriteSeedDownPress() {
         const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: 'writeSeedDown',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push('writeSeedDown', {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -194,32 +191,27 @@ class SaveYourSeed extends Component {
 
     onExportSeedVaultPress() {
         const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: 'seedVaultBackup',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push('seedVaultBackup', {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -383,24 +375,80 @@ class SaveYourSeed extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 0.7 }} />
-                    <Header textColor={body.color}>{t('saveYourSeed')}</Header>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={400}
+                        style={styles.header}
+                    >
+                        <Icon name="iota" size={width / 8} color={body.color} />
+                        <View style={{ flex: 0.7 }} />
+                        <Header textColor={body.color}>{t('saveYourSeed')}</Header>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
-                        <Text style={[styles.infoText, textColor]}>
-                            <Text style={styles.infoTextNormal}>You must save your seed with </Text>
-                            <Text style={styles.infoTextBold}>at least one</Text>
-                            <Text style={styles.infoTextNormal}> of the options listed below.</Text>
-                        </Text>
-                    </Trans>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={320}
+                    >
+                        <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
+                            <Text style={[styles.infoText, textColor]}>
+                                <Text style={styles.infoTextNormal}>You must save your seed with </Text>
+                                <Text style={styles.infoTextBold}>at least one</Text>
+                                <Text style={styles.infoTextNormal}> of the options listed below.</Text>
+                            </Text>
+                        </Trans>
+                    </AnimatedComponent>
                     <View style={{ flex: 0.5 }} />
-                    <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
-                    <View style={[styles.line, lineColor]} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={240}
+                    >
+                        <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
+                        <View style={[styles.line, lineColor]} />
+                    </AnimatedComponent>
                     {!isIPhone11 && (
+                        <View style={{ alignItems: 'center' }}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={240}
+                            >
+                                <Button
+                                    onPress={() => this.onExportSeedVaultPress()}
+                                    style={{
+                                        wrapper: {
+                                            width: width / 1.36,
+                                            height: height / 13,
+                                            borderRadius: height / 90,
+                                            backgroundColor: secondary.color,
+                                        },
+                                        children: {
+                                            color: secondary.body,
+                                        },
+                                    }}
+                                >
+                                    {t('seedVault:exportSeedVault')}
+                                </Button>
+                            </AnimatedComponent>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={240}
+                            >
+                                <View style={[styles.line, lineColor]} />
+                            </AnimatedComponent>
+                        </View>
+                    )}
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={160}
+                    >
                         <Button
-                            onPress={() => this.onExportSeedVaultPress()}
+                            onPress={() => this.onWriteSeedDownPress()}
                             style={{
                                 wrapper: {
                                     width: width / 1.36,
@@ -413,59 +461,68 @@ class SaveYourSeed extends Component {
                                 },
                             }}
                         >
-                            {t('seedVault:exportSeedVault')}
+                            {t('saveYourSeed:writeYourSeedDown')}
                         </Button>
-                    )}
-                    {!isIPhone11 && <View style={[styles.line, lineColor]} />}
-                    <Button
-                        onPress={() => this.onWriteSeedDownPress()}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: secondary.color,
-                            },
-                            children: {
-                                color: secondary.body,
-                            },
-                        }}
+                    </AnimatedComponent>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={160}
                     >
-                        {t('saveYourSeed:writeYourSeedDown')}
-                    </Button>
-                    <View style={[styles.line, lineColor]} />
+                        <View style={[styles.line, lineColor]} />
+                    </AnimatedComponent>
                     {/* FIXME Temporarily disable paper wallet on Android */}
                     {!isAndroid && (
                         <View style={{ alignItems: 'center' }}>
-                            <Button
-                                onPress={() => this.onPrintPaperWalletPress()}
-                                style={{
-                                    wrapper: {
-                                        width: width / 1.36,
-                                        height: height / 13,
-                                        borderRadius: height / 90,
-                                        backgroundColor: secondary.color,
-                                    },
-                                    children: {
-                                        color: secondary.body,
-                                    },
-                                }}
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={80}
                             >
-                                {t('global:paperWallet')}
-                            </Button>
-                            <View style={[styles.line, lineColor]} />
+                                <Button
+                                    onPress={() => this.onPrintPaperWalletPress()}
+                                    style={{
+                                        wrapper: {
+                                            width: width / 1.36,
+                                            height: height / 13,
+                                            borderRadius: height / 90,
+                                            backgroundColor: secondary.color,
+                                        },
+                                        children: {
+                                            color: secondary.body,
+                                        },
+                                    }}
+                                >
+                                    {t('global:paperWallet')}
+                                </Button>
+                            </AnimatedComponent>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={80}
+                            >
+                                <View style={[styles.line, lineColor]} />
+                            </AnimatedComponent>
                         </View>
                     )}
-                    <Text style={[styles.infoTextSmall, textColor]}>{t('leastSecure')}</Text>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={80}
+                    >
+                        <Text style={[styles.infoTextSmall, textColor]}>{t('leastSecure')}</Text>
+                    </AnimatedComponent>
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <DualFooterButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onDonePress()}
-                        leftButtonText={t('global:goBack')}
-                        rightButtonText={t('iHavesavedMySeed')}
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <DualFooterButtons
+                            onLeftButtonPress={() => this.onBackPress()}
+                            onRightButtonPress={() => this.onDonePress()}
+                            leftButtonText={t('global:goBack')}
+                            rightButtonText={t('iHavesavedMySeed')}
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );

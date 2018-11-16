@@ -1,7 +1,10 @@
+import last from 'lodash/last';
 import React, { Component } from 'react';
 import { BackHandler, ToastAndroid } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import RNExitApp from 'react-native-exit-app';
+import i18next from 'shared-modules/libs/i18next.js';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,6 +16,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
+    currentRoute: last(state.wallet.navStack),
 });
 
 /**
@@ -20,8 +24,18 @@ const mapStateToProps = (state) => ({
  * @param {Component} C Component to be wrapped
  * @return {Component} A wrapped component
  */
-export default () => (C) => {
-    class WithBackPress extends Component {
+export default function withBackPress(C) {
+    class EnhancedComponent extends Component {
+        static propTypes = {
+            /** @ignore */
+            setSetting: PropTypes.func.isRequired,
+            /** @ignore */
+            currentSetting: PropTypes.string.isRequired,
+            /** @ignore */
+            currentRoute: PropTypes.string.isRequired,
+            /** Component ID */
+            componentId: PropTypes.string.isRequired,
+        };
         constructor(props) {
             super(props);
             if (isAndroid) {
@@ -50,25 +64,38 @@ export default () => (C) => {
         }
 
         /**
-         * On back press, display alert. On second back press, close app.
+         * On back press, pop current route
          *
-         * @method handleBackPressFromMainSettings
+         * @method withBackPressPopRoute
          */
-        handleBackPressFromMainSettings() {
-            const { t } = this.props;
+        withBackPressPopRoute() {
+            navigator.pop(this.props.componentId);
+            return true;
+        }
+
+        /**
+         * On back press, display alert. On second back press, close app
+         *
+         * @method withBackPressCloseApp
+         */
+        withBackPressCloseApp() {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 RNExitApp.exitApp();
             }
             this.lastBackPressed = Date.now();
-            ToastAndroid.show(t('global:pressBackAgain'), ToastAndroid.SHORT);
+            ToastAndroid.show(i18next.t('global:pressBackAgain'), ToastAndroid.SHORT);
+            return true;
         }
 
-        handleBackPress = () => {
-            const { currentSetting } = this.props;
+        /**
+         * On back press, navigate to appropriate setting menu
+         *
+         * @method withBackPressNavigateSettings
+         */
+        withBackPressNavigateSettings(currentSetting) {
             switch (currentSetting) {
                 case 'mainSettings':
-                    this.handleBackPressFromMainSettings();
-                    return true;
+                    return this.withBackPressCloseApp();
                 case 'modeSelection':
                 case 'themeCustomisation':
                 case 'currencySelection':
@@ -77,33 +104,47 @@ export default () => (C) => {
                 case 'securitySettings':
                 case 'advancedSettings':
                 case 'about':
-                    this.props.setSetting('mainSettings');
-                    return true;
+                    return this.props.setSetting('mainSettings');
                 case 'nodeSelection':
                 case 'addCustomNode':
                 case 'manualSync':
                 case 'snapshotTransition':
                 case 'pow':
                 case 'autoPromotion':
-                    this.props.setSetting('advancedSettings');
-                    return true;
+                    return this.props.setSetting('advancedSettings');
                 case 'viewSeed':
                 case 'viewAddresses':
                 case 'editAccountName':
                 case 'deleteAccount':
                 case 'addNewAccount':
-                    this.props.setSetting('accountManagement');
-                    return true;
+                    return this.props.setSetting('accountManagement');
                 case 'addExistingSeed':
-                    this.props.setSetting('addNewAccount');
-                    return true;
+                    return this.props.setSetting('addNewAccount');
                 case 'changePassword':
-                    this.props.setSetting('securitySettings');
-                    return true;
+                    return this.props.setSetting('securitySettings');
                 default:
                     break;
             }
             return true;
+        }
+
+        /**
+         * Choose appropriate action on back press
+         *
+         * @method handleBackPress
+         */
+        handleBackPress = () => {
+            const { currentSetting, currentRoute } = this.props;
+            switch (currentRoute) {
+                case 'home':
+                    return this.withBackPressNavigateSettings(currentSetting);
+                case 'languageSetup':
+                case 'onboardingComplete':
+                case 'login':
+                    return this.withBackPressCloseApp();
+                default:
+                    return this.withBackPressPopRoute();
+            }
         };
 
         render() {
@@ -111,14 +152,5 @@ export default () => (C) => {
         }
     }
 
-    WithBackPress.propTypes = {
-        /** @ignore */
-        setSetting: PropTypes.func.isRequired,
-        /** Current setting */
-        currentSetting: PropTypes.string.isRequired,
-        /** @ignore */
-        t: PropTypes.func.isRequired,
-    };
-
-    return connect(mapStateToProps, mapDispatchToProps)(WithBackPress);
-};
+    return connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent);
+}

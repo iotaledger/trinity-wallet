@@ -149,10 +149,6 @@ const initialState = {
      * Determines if receive card is flipped on receive screen
      */
     isReceiveCardFlipped: false,
-    /**
-     * Current navigation route
-     */
-    currentRoute: 'login',
 };
 
 export default (state = initialState, action) => {
@@ -288,7 +284,6 @@ export default (state = initialState, action) => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
-                modalProps: {},
                 qrMessage: '',
                 qrAmount: '',
                 qrTag: '',
@@ -464,11 +459,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isReceiveCardFlipped: !state.isReceiveCardFlipped,
-            };
-        case UiActionTypes.SET_ROUTE:
-            return {
-                ...state,
-                currentRoute: action.payload,
             };
         default:
             return state;

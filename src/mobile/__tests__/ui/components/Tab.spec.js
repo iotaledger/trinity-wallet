@@ -14,6 +14,7 @@ const getProps = (overrides) =>
             theme: { primary: {}, bar: {} },
             isActive: false,
             onPress: noop,
+            name: 'send',
         },
         overrides,
     );

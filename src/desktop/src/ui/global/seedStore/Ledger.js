@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 
+import { isSettingUpNewAccount } from 'selectors/accounts';
+
 import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
 
@@ -140,7 +142,7 @@ class Ledger extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     sendAddressFieldText: state.ui.sendAddressFieldText,
 });
 

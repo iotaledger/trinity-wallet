@@ -30,14 +30,12 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
-    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
     CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
-    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
     SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
@@ -52,6 +50,9 @@ export const ActionTypes = {
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
+    PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
+    POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
+    RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
 
 /**
@@ -85,19 +86,6 @@ export const generateNewAddressSuccess = () => ({
  */
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-/**
- * Dispatch to set new account name during mobile onboarding
- *
- * @method setAccountName
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setAccountName = (payload) => ({
-    type: ActionTypes.SET_ACCOUNT_NAME,
-    payload,
 });
 
 /**
@@ -171,19 +159,6 @@ export const clearSeed = () => ({
  */
 export const setSetting = (payload) => ({
     type: ActionTypes.SET_SETTING,
-    payload,
-});
-
-/**
- * Dispatch to temporarily store account information for additional seeds in state
- *
- * @method setAdditionalAccountInfo
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setAdditionalAccountInfo = (payload) => ({
-    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
@@ -573,3 +548,46 @@ export const addressValidationRequest = () => ({
 export const addressValidationSuccess = () => ({
     type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
 });
+
+/**
+ * Dispatch to push to navigation stack
+ *
+ * @method pushRoute
+ * @param {string} payload
+ *
+ * @returns {{ type: {string}, payload: {string} }}
+ */
+export const pushRoute = (payload) => {
+    return {
+        type: ActionTypes.PUSH_ROUTE,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to pop from navigation stack
+ *
+ * @method popRoute
+ *
+ * @returns {{type: {string}}}
+ */
+export const popRoute = () => {
+    return {
+        type: ActionTypes.POP_ROUTE,
+    };
+};
+
+/**
+ * Dispatch to set navigation root
+ *
+ * @method resetRoute
+ * @param {string} payload
+ *
+ * @returns {{ type: {string}, payload: {string} }}
+ */
+export const resetRoute = (payload) => {
+    return {
+        type: ActionTypes.RESET_ROUTE,
+        payload,
+    };
+};

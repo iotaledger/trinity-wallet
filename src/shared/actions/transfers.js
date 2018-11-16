@@ -703,11 +703,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 setTimeout(() => {
                     dispatch(completeTransfer());
                     dispatch(resetProgress());
-                }, 5000);
+                }, 3500);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-
+                dispatch(resetProgress());
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {

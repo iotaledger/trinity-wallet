@@ -17,7 +17,6 @@ export const ActionTypes = {
     SET_QR_DENOMINATION: 'IOTA/UI/SET_QR_DENOMINATION',
     SET_SELECTED_QR_TAB: 'IOTA/UI/SET_SELECTED_QR_TAB',
     FLIP_RECEIVE_CARD: 'IOTA/UI/FLIP_RECEIVE_CARD',
-    SET_ROUTE: 'IOTA/UI/SET_ROUTE',
 };
 
 /**
@@ -257,21 +256,6 @@ export const updateModalProps = (payload) => {
 export const setLoginRoute = (payload) => {
     return {
         type: ActionTypes.SET_LOGIN_ROUTE,
-        payload,
-    };
-};
-
-/**
- * Dispatch to set active route
- *
- * @method setRoute
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setRoute = (payload) => {
-    return {
-        type: ActionTypes.SET_ROUTE,
         payload,
     };
 };

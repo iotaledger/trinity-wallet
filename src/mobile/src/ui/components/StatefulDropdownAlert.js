@@ -1,3 +1,4 @@
+import last from 'lodash/last';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -34,7 +35,7 @@ class StatefulDropdownAlert extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        currentRoute: PropTypes.string.isRequired,
+        navStack: PropTypes.array,
     };
 
     static defaultProps = {
@@ -51,7 +52,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, currentRoute } = this.props;
+        const { alerts, navStack } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
         const alertIsNotEmpty = newProps.alerts.message !== '';
@@ -61,7 +62,7 @@ class StatefulDropdownAlert extends Component {
                 this.dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
             }
         }
-        if (currentRoute !== newProps.currentRoute && this.dropdown) {
+        if (last(navStack) !== last(newProps.navStack) && this.dropdown) {
             this.dropdown.closeDirectly(false);
         }
         this.disposeIfConnectionIsRestored(newProps);
@@ -101,7 +102,7 @@ class StatefulDropdownAlert extends Component {
      * @returns {string}
      */
     getStatusBarStyle() {
-        return tinycolor(getBackgroundColor(this.props.currentRoute, this.props.theme)).isDark()
+        return tinycolor(getBackgroundColor(last(this.props.navStack), this.props.theme)).isDark()
             ? 'light-content'
             : 'dark-content';
     }
@@ -138,7 +139,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative }, currentRoute, dismissAlert } = this.props;
+        const { onRef, theme: { positive, negative }, navStack, dismissAlert } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -180,7 +181,7 @@ class StatefulDropdownAlert extends Component {
                     alignSelf: 'center',
                 }}
                 inactiveStatusBarStyle={statusBarStyle}
-                inactiveStatusBarBackgroundColor={this.getStatusBarColor(currentRoute)}
+                inactiveStatusBarBackgroundColor={this.getStatusBarColor(last(navStack))}
                 onCancel={dismissAlert}
                 onClose={dismissAlert}
                 closeInterval={closeAfter}
@@ -195,7 +196,7 @@ const mapStateToProps = (state) => ({
     alerts: state.alerts,
     hasConnection: state.wallet.hasConnection,
     theme: state.settings.theme,
-    currentRoute: state.ui.currentRoute,
+    navStack: state.wallet.navStack,
 });
 
 const mapDispatchToProps = { dismissAlert };

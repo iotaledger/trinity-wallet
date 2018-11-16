@@ -262,14 +262,11 @@ class TopBar extends Component {
     }
 
     showModal() {
-        const { isTransitioning, theme: { bar }, notificationLog } = this.props;
+        const { isTransitioning, theme, notificationLog } = this.props;
         if (!isTransitioning) {
             this.props.toggleModalActivity('notificationLog', {
-                backgroundColor: bar.bg,
                 hideModal: () => this.hideModal(),
-                textColor: { color: bar.color },
-                borderColor: { borderColor: bar.color },
-                barColor: bar.color,
+                theme,
                 notificationLog,
                 clearLog: this.props.clearLog,
             });
@@ -314,7 +311,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight } ]}>
+            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {

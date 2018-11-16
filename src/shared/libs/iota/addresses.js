@@ -278,7 +278,7 @@ export const removeUnusedAddresses = (provider) => (index, latestUnusedAddress, 
         if (
             size(hashes) === 0 &&
             some(balances, (balance) => balance === 0) &&
-            some(wereSpent, (status) => !status.remote || !status.local)
+            some(wereSpent, (status) => status.remote === false && status.local === false)
         ) {
             return removeUnusedAddresses(provider)(index - 1, finalAddresses[index], finalAddresses.slice(0, index));
         }

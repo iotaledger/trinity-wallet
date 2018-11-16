@@ -8,14 +8,13 @@ import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part
 import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
 import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
 import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import { getAccountInfo, getFullAccountInfo } from 'shared-modules/actions/accounts';
 import { setLoginRoute } from 'shared-modules/actions/ui';
-import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'shared-modules/actions/marketData';
 import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -24,12 +23,14 @@ import {
     getSelectedAccountName,
     getSelectedAccountMeta,
     getAccountNamesFromState,
+    isSettingUpNewAccount,
 } from 'shared-modules/selectors/accounts';
 import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 
 import { width, height } from 'libs/dimensions';
 
@@ -65,12 +66,17 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        paddingBottom: isIPhoneX ? height / 40 : height / 20,
     },
-    nodeChangeContainer: {
+    bottomContainer: {
         position: 'absolute',
         bottom: 0,
         alignItems: 'center',
+        justifyContent: 'center',
+        width,
+    },
+    loadingAnimationContainer: {
+        height,
         justifyContent: 'center',
     },
 });
@@ -124,14 +130,17 @@ class Loading extends Component {
         setLoginRoute: PropTypes.func.isRequired,
         /** All stored account names */
         accountNames: PropTypes.array.isRequired,
+        /** @ignore */
+        isThemeDark: PropTypes.bool.isRequired,
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             elipsis: '',
             animationPartOneDone: false,
             displayNodeChangeOption: false,
+            welcomeAnimationPath: props.isThemeDark ? whiteWelcomeAnimationPartOne : blackWelcomeAnimationPartOne,
         };
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
@@ -227,7 +236,7 @@ class Loading extends Component {
     }
 
     setAnimationOneTimout() {
-        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
+        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 1800);
     }
 
     /**
@@ -243,7 +252,11 @@ class Loading extends Component {
     }
 
     playAnimationTwo() {
-        this.setState({ animationPartOneDone: true });
+        this.setState({
+            animationPartOneDone: true,
+            welcomeAnimationPath: this.props.isThemeDark ? whiteWelcomeAnimationPartTwo : blackWelcomeAnimationPartTwo,
+        });
+        this.animation.reset();
         this.animation.play();
     }
 
@@ -271,29 +284,24 @@ class Loading extends Component {
      */
     redirectToLogin() {
         const { theme: { body } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'login',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.setStackRoot('login', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -305,48 +313,44 @@ class Loading extends Component {
      */
     redirectToHome() {
         const { theme: { body, bar } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'home',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: bar.alt,
-                    },
+        navigator.setStackRoot('home', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: bar.alt,
             },
         });
     }
 
     render() {
-        const { t, addingAdditionalAccount, theme: { body, primary } } = this.props;
-        const { displayNodeChangeOption } = this.state;
+        const { t, addingAdditionalAccount, theme: { body, primary }, isThemeDark } = this.props;
+        const { displayNodeChangeOption, welcomeAnimationPath } = this.state;
         const textColor = { color: body.color };
-        const isBgLight = tinycolor(body.bg).isLight();
-        const loadingAnimationPath = isBgLight ? blackLoadingAnimation : whiteLoadingAnimation;
-        const welcomeAnimationPartOnePath = isBgLight ? blackWelcomeAnimationPartOne : whiteWelcomeAnimationPartOne;
-        const welcomeAnimationPartTwoPath = isBgLight ? blackWelcomeAnimationPartTwo : whiteWelcomeAnimationPartTwo;
+        const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
         if (addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
-                        <View>
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            delay={0}
+                            style={styles.loadingAnimationContainer}
+                        >
                             <LottieView
                                 ref={(animation) => {
                                     this.animation = animation;
@@ -355,22 +359,29 @@ class Loading extends Component {
                                 style={styles.animationNewSeed}
                                 loop
                             />
-                        </View>
+                        </AnimatedComponent>
                     </View>
-                    <View style={styles.infoTextContainer}>
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
-                            <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
-                                <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                    <Text style={[styles.infoText, textColor]}>
-                                        {isAndroid ? '..' : this.state.elipsis}
-                                    </Text>
+                    <AnimatedComponent
+                        animationInType={['fadeIn']}
+                        animationOutType={['fadeOut']}
+                        delay={0}
+                        style={styles.bottomContainer}
+                    >
+                        <View style={styles.infoTextContainer}>
+                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                                    <View style={{ alignItems: 'flex-start', width: width / 30 }}>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            {isAndroid ? '..' : this.state.elipsis}
+                                        </Text>
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    </AnimatedComponent>
                 </View>
             );
         }
@@ -378,28 +389,22 @@ class Loading extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.animationContainer}>
-                    <View>
-                        {(!this.state.animationPartOneDone && (
-                            <LottieView
-                                ref={(animation) => {
-                                    this.animation = animation;
-                                }}
-                                source={welcomeAnimationPartOnePath}
-                                style={styles.animationLoading}
-                            />
-                        )) || (
-                            <LottieView
-                                ref={(animation) => {
-                                    this.animation = animation;
-                                }}
-                                source={welcomeAnimationPartTwoPath}
-                                style={styles.animationLoading}
-                                loop
-                            />
-                        )}
-                    </View>
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <LottieView
+                            ref={(animation) => {
+                                this.animation = animation;
+                            }}
+                            source={welcomeAnimationPath}
+                            style={styles.animationLoading}
+                        />
+                    </AnimatedComponent>
                     {displayNodeChangeOption && (
-                        <View style={styles.nodeChangeContainer}>
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            delay={0}
+                            style={styles.bottomContainer}
+                        >
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
                             <SingleFooterButton
                                 onButtonPress={this.onChangeNodePress}
@@ -409,7 +414,7 @@ class Loading extends Component {
                                 }}
                                 buttonText={t('global:changeNode')}
                             />
-                        </View>
+                        </AnimatedComponent>
                     )}
                 </View>
             </View>
@@ -423,12 +428,13 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     hasErrorFetchingAccountInfo: state.ui.hasErrorFetchingAccountInfo,
     hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
-    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
-    additionalAccountName: state.wallet.additionalAccountName,
-    additionalAccountMeta: state.wallet.additionalAccountMeta,
+    addingAdditionalAccount: isSettingUpNewAccount(state),
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,
+    isThemeDark: state.settings.theme.isDark,
     currency: state.settings.currency,
     deepLinkActive: state.wallet.deepLinkActive,
 });
