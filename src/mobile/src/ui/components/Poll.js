@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, isSettingUpNewAccount } from 'shared-modules/selectors/accounts';
 import { removeBundleFromUnconfirmedBundleTails } from 'shared-modules/actions/accounts';
 import {
     fetchMarketData,
@@ -176,7 +176,7 @@ const mapStateToProps = (state) => ({
     isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isSyncing: state.ui.isSyncing,
-    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingAccountInfo: state.ui.isFetchingAccountInfo,

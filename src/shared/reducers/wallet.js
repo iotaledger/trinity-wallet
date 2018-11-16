@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
@@ -17,10 +18,6 @@ const initialState = {
      */
     seed: Array(82).join(' '),
     /**
-     * Determines if a user used an existing seed during account setup
-     */
-    usedExistingSeed: false,
-    /**
      * Active account index from the list of added account names
      */
     seedIndex: 0,
@@ -29,14 +26,6 @@ const initialState = {
      */
     currentSetting: 'mainSettings',
     /**
-     * Account name set by user during additional account setup
-     */
-    additionalAccountName: '',
-    /**
-     * Account type set by user during additional account setup
-     */
-    additionalAccountMeta: {},
-    /**
      * Total balance detected during snapshot transition
      */
     transitionBalance: 0,
@@ -44,10 +33,6 @@ const initialState = {
      * Total addresses found during snapshot transition that will be attached to tangle
      */
     transitionAddresses: [],
-    /**
-     * Determines if wallet is adding additional account
-     */
-    addingAdditionalAccount: false,
     /**
      * Displays balance check request during snapshot transition
      */
@@ -72,21 +57,16 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO:
+        case AccountsActionTypes.SET_ACCOUNT_INFO_DURING_SETUP:
             return {
                 ...state,
-                ...action.payload,
+                seed: !isEmpty(action.payload.seed) ? action.payload.seed : state.seed,
             };
         case UiActionTypes.SET_ONBOARDING_SEED:
             return {
                 ...state,
                 seed: action.payload.seed,
                 usedExistingSeed: !action.payload.isGenerated,
-            };
-        case ActionTypes.SET_ACCOUNT_NAME:
-            return {
-                ...state,
-                accountName: action.payload,
             };
         case ActionTypes.SET_PASSWORD:
             return {
@@ -111,7 +91,6 @@ export default (state = initialState, action) => {
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
                 deepLinkActive: false,
-                usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:
             return {
@@ -133,9 +112,6 @@ export default (state = initialState, action) => {
                 ...state,
                 ready: true,
                 seed: Array(82).join(' '),
-                addingAdditionalAccount: false,
-                additionalAccountName: '',
-                additionalAccountMeta: {},
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {

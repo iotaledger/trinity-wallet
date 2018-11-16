@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import keys from 'lodash/keys';
 import findKey from 'lodash/findKey';
@@ -262,6 +263,18 @@ export const getAvailableBalanceForSelectedAccount = createSelector(selectAccoun
 export const getSetupInfoFromAccounts = createSelector(getAccountsFromState, (state) => state.setupInfo || {});
 
 /**
+ *   Selects getAccountInfoDuringSetup prop from accounts reducer state object.
+ *
+ *   @method getAccountInfoDuringSetup
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getAccountInfoDuringSetup = createSelector(
+    getAccountsFromState,
+    (state) => state.accountInfoDuringSetup || {},
+);
+
+/**
  *   Selects getTasksFromAccounts prop from accounts reducer state object.
  *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
@@ -349,4 +362,16 @@ export const getFailedBundleHashesForSelectedAccount = createSelector(
     getSelectedAccountName,
     getFailedBundleHashesFromAccounts,
     (accountName, failedBundleHashes) => get(failedBundleHashes, accountName) || {},
+);
+
+/**
+ *   Determines if a new account is being setup.
+ *
+ *   @method isSettingUpNewAccount
+ *   @param {object} state
+ *   @returns {boolean}
+ **/
+export const isSettingUpNewAccount = createSelector(
+    getAccountInfoDuringSetup,
+    (accountInfoDuringSetup) => !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
 );
