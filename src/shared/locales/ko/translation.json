@@ -277,7 +277,7 @@
         "copyAddress": "주소 복사",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
         "missingPermission": "파일 시스템 권한 필요",
@@ -748,7 +748,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

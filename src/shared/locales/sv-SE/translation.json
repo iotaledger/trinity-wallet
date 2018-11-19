@@ -277,7 +277,7 @@
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "generateNewAddress": "Synkronisera adress",
+        "generateNewAddress": "Generate address",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
         "missingPermission": "Åtkomst till filsystem krävs",
@@ -748,7 +748,7 @@
         "ledgerIncorrectIndex": "Ledger-enheten matchade inte",
         "ledgerIncorrectIndexExplanation": "Ledger-enheten matchade inte enheten kopplat till detta konto, alternativt har återställningsfrasen ändrats.",
         "checkAddress": "Kontrollera mottagaradressen",
-        "checkAddressExplanation": "Kontrollera att adressen matchar det som visas på Ledger-enhet. Tryck på ”Synkronisera adress” om den inte gör det.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen."
     }
