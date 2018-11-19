@@ -216,6 +216,8 @@ class Receive extends Component {
         usdPrice: PropTypes.number.isRequired,
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
+        /** @ignore */
+        hadErrorGeneratingNewAddress: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -223,6 +225,7 @@ class Receive extends Component {
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
             scramblingLetters: [],
+            hasPressedGenerateAddress: false,
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -278,6 +281,12 @@ class Receive extends Component {
         if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
             timer.clearInterval('scramble');
         }
+        if (!this.props.hadErrorGeneratingNewAddress && newProps.hadErrorGeneratingNewAddress) {
+            this.setState({ hasPressedGenerateAddress: false });
+        }
+        if (this.props.selectedAccountName !== newProps.selectedAccountName) {
+            this.setState({ hasPressedGenerateAddress: false });
+        }
     }
 
     shouldComponentUpdate(newProps) {
@@ -299,7 +308,10 @@ class Receive extends Component {
      *   @method onCopyAddressPress
      **/
     onCopyAddressPress() {
-        const { t, receiveAddress } = this.props;
+        const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
+        if (!this.state.hasPressedGenerateAddress || isGeneratingReceiveAddress) {
+            return this.props.generateAlert('error', t('generateAnAddressTitle'), t('generateAnAddressExplanation'));
+        }
         Clipboard.setString(receiveAddress);
         this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
@@ -396,6 +408,7 @@ class Receive extends Component {
      **/
     async generateAddress() {
         const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
+        this.setState({ hasPressedGenerateAddress: true });
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -455,8 +468,13 @@ class Receive extends Component {
      *   @method flipCard
      **/
     flipCard() {
-        const { isCardFlipped } = this.props;
+        const { t, isCardFlipped } = this.props;
         const toValue = isCardFlipped ? 0 : 1;
+
+        if (!this.state.hasPressedGenerateAddress || this.props.isGeneratingReceiveAddress) {
+            return this.props.generateAlert('error', t('generateAnAddressTitle'), t('generateAnAddressExplanation'));
+        }
+
         Animated.parallel([
             Animated.timing(isCardFlipped ? this.scaleAnimatedValueBack : this.scaleAnimatedValueFront, {
                 toValue,
@@ -491,13 +509,13 @@ class Receive extends Component {
         const {
             t,
             theme: { primary, dark, positive },
-            receiveAddress,
             isGeneratingReceiveAddress,
             isCardFlipped,
             qrMessage,
             qrTag,
+            receiveAddress,
         } = this.props;
-        const { scramblingLetters } = this.state;
+        const { scramblingLetters, hasPressedGenerateAddress } = this.state;
         const qrContent = JSON.stringify({
             address: receiveAddress,
             amount: this.getQrValue(),
@@ -548,12 +566,15 @@ class Receive extends Component {
                                     { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
                                 ]}
                             >
-                                <CustomQrCodeComponent
-                                    value={qrContent}
-                                    size={width / 3}
-                                    color="black"
-                                    backgroundColor="transparent"
-                                />
+                                {!isGeneratingReceiveAddress &&
+                                    hasPressedGenerateAddress && (
+                                        <CustomQrCodeComponent
+                                            value={qrContent}
+                                            size={width / 3}
+                                            color="black"
+                                            backgroundColor="transparent"
+                                        />
+                                    )}
                                 {/* FIXME: Overflow: 'visible' is not supported on Android */}
                                 {isAndroid && (
                                     <TouchableWithoutFeedback onPress={this.generateAddress}>
@@ -597,30 +618,34 @@ class Receive extends Component {
                                             />
                                         </Animated.View>
                                     </View>
-                                    <ScramblingText
-                                        scramble={isGeneratingReceiveAddress}
-                                        textStyle={[styles.addressText, { color: dark.body }]}
-                                        scramblingLetters={scramblingLetters}
-                                        rowIndex={0}
-                                    >
-                                        {receiveAddress.substring(0, 30)}
-                                    </ScramblingText>
-                                    <ScramblingText
-                                        scramble={isGeneratingReceiveAddress}
-                                        textStyle={[styles.addressText, { color: dark.body }]}
-                                        scramblingLetters={scramblingLetters}
-                                        rowIndex={1}
-                                    >
-                                        {receiveAddress.substring(30, 60)}
-                                    </ScramblingText>
-                                    <ScramblingText
-                                        scramble={isGeneratingReceiveAddress}
-                                        textStyle={[styles.addressText, { color: dark.body }]}
-                                        scramblingLetters={scramblingLetters}
-                                        rowIndex={2}
-                                    >
-                                        {receiveAddress.substring(60, 90)}
-                                    </ScramblingText>
+                                    {hasPressedGenerateAddress && (
+                                        <View>
+                                            <ScramblingText
+                                                scramble={isGeneratingReceiveAddress}
+                                                textStyle={[styles.addressText, { color: dark.body }]}
+                                                scramblingLetters={scramblingLetters}
+                                                rowIndex={0}
+                                            >
+                                                {receiveAddress.substring(0, 30)}
+                                            </ScramblingText>
+                                            <ScramblingText
+                                                scramble={isGeneratingReceiveAddress}
+                                                textStyle={[styles.addressText, { color: dark.body }]}
+                                                scramblingLetters={scramblingLetters}
+                                                rowIndex={1}
+                                            >
+                                                {receiveAddress.substring(30, 60)}
+                                            </ScramblingText>
+                                            <ScramblingText
+                                                scramble={isGeneratingReceiveAddress}
+                                                textStyle={[styles.addressText, { color: dark.body }]}
+                                                scramblingLetters={scramblingLetters}
+                                                rowIndex={2}
+                                            >
+                                                {receiveAddress.substring(60, 90)}
+                                            </ScramblingText>
+                                        </View>
+                                    )}
                                 </View>
                             </TouchableWithoutFeedback>
                             <View style={styles.footerButtonContainer}>
@@ -629,9 +654,13 @@ class Receive extends Component {
                                         styles.footerButton,
                                         { backgroundColor: primary.color, borderColor: primary.border },
                                     ]}
-                                    onPress={() => this.onCopyAddressPress()}
+                                    onPress={() =>
+                                        !hasPressedGenerateAddress ? this.generateAddress() : this.onCopyAddressPress()
+                                    }
                                 >
-                                    <Text style={[styles.buttonText, { color: primary.body }]}>{t('copyAddress')}</Text>
+                                    <Text style={[styles.buttonText, { color: primary.body }]}>
+                                        {!hasPressedGenerateAddress ? t('generateAnAddress') : t('copyAddress')}
+                                    </Text>
                                 </TouchableOpacity>
                             </View>
                         </Animated.View>
@@ -723,6 +752,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,
+    hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
 });
 
 const mapDispatchToProps = {

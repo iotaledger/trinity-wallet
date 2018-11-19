@@ -43,7 +43,7 @@ describe('Reducer: ui', () => {
                 modalContent: 'snapshotTransitionInfo',
                 modalProps: {},
                 currentRoute: 'login',
-                hadErrorGeneratingNewAddress: false
+                hadErrorGeneratingNewAddress: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
