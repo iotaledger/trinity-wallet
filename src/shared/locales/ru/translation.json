@@ -282,7 +282,10 @@
         "spent": "Использованный адрес",
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
-        "tag": "Метка"
+        "tag": "Метка",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
