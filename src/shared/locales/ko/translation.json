@@ -282,7 +282,10 @@
         "spent": "이미 사용함",
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다.",
-        "tag": "태그"
+        "tag": "태그",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
