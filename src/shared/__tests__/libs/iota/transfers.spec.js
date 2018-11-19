@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import each from 'lodash/each';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
@@ -9,7 +10,6 @@ import nock from 'nock';
 import {
     prepareTransferArray,
     getTransactionsDiff,
-    categoriseTransactions,
     normaliseBundle,
     categoriseBundleByInputsOutputs,
     performPow,
@@ -21,8 +21,10 @@ import {
     isValidTransfer,
     isFundedBundle,
     categoriseInclusionStatesByBundleHash,
+    assignInclusionStatesToBundles,
 } from '../../../libs/iota/transfers';
-import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { confirmedValueBundles } from '../../__samples__/bundles';
+import { iota, SwitchingConfig } from '../../../libs/iota';
 import { failedTrytesWithCorrectTransactionHashes } from '../../__samples__/trytes';
 import {
     confirmedValueTransactions,
@@ -275,28 +277,6 @@ describe('libs: iota/transfers', () => {
             it('should return an array with difference of first and second arguments', () => {
                 expect(getTransactionsDiff(firstArgument, secondArgument)).to.eql(['baz']);
             });
-        });
-    });
-
-    describe('#categoriseTransactions', () => {
-        it('should always return an object with props "incoming" and "outgoing"', () => {
-            const args = [[undefined], [null], [], [{}], [''], [0], ['foo']];
-
-            args.forEach((arg) => {
-                expect(categoriseTransactions(...arg)).to.have.keys(['incoming', 'outgoing']);
-            });
-        });
-
-        it('should categorise incoming transactions to "incoming" prop array', () => {
-            const transactions = [{ incoming: true }, { incoming: false }, { incoming: false }];
-
-            expect(categoriseTransactions(transactions).incoming).to.eql([{ incoming: true }]);
-        });
-
-        it('should categorise outgoing transactions to "outgoing" prop array', () => {
-            const transactions = [{ incoming: true }, { incoming: false }];
-
-            expect(categoriseTransactions(transactions).outgoing).to.eql([{ incoming: false }]);
         });
     });
 
@@ -781,11 +761,7 @@ describe('libs: iota/transfers', () => {
     describe('#constructBundlesFromTransactions', () => {
         describe('when provided argument is not an array', () => {
             it('should throw an error with message "Invalid transactions provided"', () => {
-                try {
-                    constructBundlesFromTransactions({});
-                } catch (error) {
-                    expect(error.message).to.equal('Invalid transactions provided.');
-                }
+                expect(constructBundlesFromTransactions.bind(null, {})).to.throw('Invalid transactions provided.');
             });
         });
 
@@ -1069,6 +1045,59 @@ describe('libs: iota/transfers', () => {
                     ['A'.repeat(81)]: true,
                     ['B'.repeat(81)]: false,
                     ['C'.repeat(81)]: false,
+                });
+            });
+        });
+    });
+
+    describe('#assignInclusionStatesToBundles', () => {
+        describe('when provided bundles is not an array', () => {
+            it('should throw with an error "Invalid bundles provided."', () => {
+                return assignInclusionStatesToBundles()(0)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Invalid bundles provided.'));
+            });
+        });
+
+        describe('when provided bundles is an empty array', () => {
+            it('should return an empty array', () => {
+                return assignInclusionStatesToBundles()([]).then((result) => expect(result).to.eql([]));
+            });
+        });
+
+        describe('when provided bundles is not an empty array', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const resultMap = {
+                            getNodeInfo: { latestSolidSubtangleMilestone: 'A'.repeat(81) },
+                            // Return inclusion states as false for all tail transactions
+                            getInclusionStates: { states: map(body.transactions, () => false) },
+                        };
+
+                        return resultMap[body.command] || {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should assign correct inclusion state to each transaction in bundle', () => {
+                return assignInclusionStatesToBundles()(confirmedValueBundles).then((updatedBundles) => {
+                    each(updatedBundles, (bundle) =>
+                        each(bundle, (transaction) => expect(transaction.persistence).to.equal(false)),
+                    );
                 });
             });
         });

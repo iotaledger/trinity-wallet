@@ -109,7 +109,7 @@ class Login extends Component {
                 this.props.setPassword(pwdHash);
                 this.props.setLoginPasswordField('');
                 if (!is2FAEnabled) {
-                    this.navigateTo(completedMigration ? 'migration' : 'loading');
+                    this.navigateTo(completedMigration ? 'loading' : 'migration');
                 } else {
                     this.props.setLoginRoute('complete2FA');
                 }

@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import get from 'lodash/get';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
@@ -8,10 +9,13 @@ import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
 import Realm from 'realm';
+import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 import {
     TransactionSchema,
     AddressSchema,
     AccountSchema,
+    AccountInfoDuringSetupSchema,
+    AccountMetaSchema,
     AddressSpendStatusSchema,
     WalletSchema,
     NodeSchema,
@@ -101,7 +105,19 @@ class Account {
      * @param {object} data
      */
     static update(name, data) {
-        realm.write(() => realm.create('Account', { name, ...data }, true));
+        realm.write(() => {
+            const existingData = Account.getObjectForId(name);
+            const updatedData = assign({}, existingData, {
+                ...data,
+                name,
+                // If addressData is provided, then make sure we preserve the local spend status
+                addressData: get(data, 'addressData')
+                    ? preserveAddressLocalSpendStatus(existingData.addressData, data.addressData)
+                    : existingData.addressData,
+            });
+
+            realm.create('Account', updatedData, true);
+        });
     }
 
     /**
@@ -146,6 +162,20 @@ class Address {
  */
 class AddressSpendStatus {
     static schema = AddressSpendStatusSchema;
+}
+
+/**
+ * Model for account information during setup
+ */
+class AccountInfoDuringSetup {
+    static schema = AccountInfoDuringSetupSchema;
+}
+
+/**
+ * Model for account meta
+ */
+class AccountMeta {
+    static schema = AccountMetaSchema;
 }
 
 /**
@@ -602,6 +632,34 @@ class Wallet {
     }
 
     /**
+     * Updates account information during account setup.
+     * @method updateAccountInfoDuringSetup
+     *
+     * @param {object} payload
+     */
+    static updateAccountInfoDuringSetup(payload) {
+        realm.write(() => {
+            const data = Wallet.latestData;
+            data.accountInfoDuringSetup = assign({}, data.accountInfoDuringSetup, payload);
+        });
+    }
+
+    /**
+     * Adds new account and removes temporarily stored account info during setup
+     *
+     * @method addAccount
+     *
+     * @param {object} accountData
+     */
+    static addAccount(accountData) {
+        realm.write(() => {
+            const data = Wallet.latestData;
+            data.accountInfoDuringSetup = { name: '', meta: {}, usedExistingSeed: false };
+            realm.create('Account', accountData);
+        });
+    }
+
+    /**
      * Creates a wallet object if it does not already exist.
      * @method createIfNotExists
      */
@@ -613,6 +671,7 @@ class Wallet {
                 realm.create('Wallet', {
                     version: Wallet.version,
                     settings: { notifications: {} },
+                    accountInfoDuringSetup: { meta: {} },
                 }),
             );
         }
@@ -668,6 +727,8 @@ export const config = {
         Account,
         Address,
         AddressSpendStatus,
+        AccountInfoDuringSetup,
+        AccountMeta,
         ErrorLog,
         Node,
         NotificationsSettings,

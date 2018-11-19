@@ -26,7 +26,7 @@ import { Account, Wallet } from '../storage';
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
     UPDATE_ACCOUNT_AFTER_REATTACHMENT: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
-    UPDATE_ADDRESSES: 'IOTA/ACCOUNTS/UPDATE_ADDRESSES',
+    UPDATE_ADDRESS_DATA: 'IOTA/ACCOUNTS/UPDATE_ADDRESS_DATA',
     CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNTS/CHANGE_ACCOUNT_NAME',
     REMOVE_ACCOUNT: 'IOTA/ACCOUNTS/REMOVE_ACCOUNT',
     SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNTS/SET_ONBOARDING_COMPLETE',
@@ -90,15 +90,15 @@ export const updateAccountAfterReattachment = (payload) => ({
 /**
  * Dispatch to update address data for provided account
  *
- * @method updateAddresses
+ * @method updateAddressData
  * @param {string} accountName
  * @param {object} addresses
  * @returns {{type: string, accountName: string, addresses: object }}
  */
-export const updateAddresses = (accountName, addresses) => ({
-    type: ActionTypes.UPDATE_ADDRESSES,
+export const updateAddressData = (accountName, addressData) => ({
+    type: ActionTypes.UPDATE_ADDRESS_DATA,
     accountName,
-    addresses,
+    addressData,
 });
 
 /**
@@ -294,10 +294,14 @@ export const setBasicAccountInfo = (payload) => ({
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-export const setAccountInfoDuringSetup = (payload) => ({
-    type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
-    payload,
-});
+export const setAccountInfoDuringSetup = (payload) => {
+    Wallet.updateAccountInfoDuringSetup(payload);
+
+    return {
+        type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
+        payload,
+    };
+};
 
 /**
  * Dispatch to mark a task as completed in state
@@ -311,8 +315,8 @@ export const setAccountInfoDuringSetup = (payload) => ({
  * @returns {{type: {string}, payload: {object} }}
  */
 export const markTaskAsDone = (payload) => {
-    const { accountName, ...rest } = payload;
-    Account.update(accountName, rest);
+    const { accountName, task } = payload;
+    Account.update(accountName, { [task]: true });
 
     return {
         type: ActionTypes.MARK_TASK_AS_DONE,
@@ -373,18 +377,18 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 dispatch(setSeedIndex(existingAccountNames.length));
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
-                // Create account in storage (realm)
-                Account.create(
-                    assign({}, result, {
-                        type: result.accountType,
-                        name: result.accountName,
-                        ...selectedAccountTasksFactory(accountName)(getState()),
-                        ...selectedAccountSetupInfoFactory(accountName)(getState()),
-                    }),
-                );
-                result.accountMeta = getAccountInfoDuringSetup(getState()).meta;
+                const resultWithAccountMeta = assign({}, result, {
+                    meta: getAccountInfoDuringSetup(getState()).meta,
+                    name: result.accountName,
+                    ...selectedAccountTasksFactory(accountName)(getState()),
+                    ...selectedAccountSetupInfoFactory(accountName)(getState()),
+                });
 
-                dispatch(fullAccountInfoFetchSuccess(result));
+                // Create account in storage (realm)
+                Wallet.addAccount(resultWithAccountMeta);
+
+                // Update redux store with newly fetched account info
+                dispatch(fullAccountInfoFetchSuccess(resultWithAccountMeta));
             })
             .catch((err) => {
                 const dispatchErrors = () => {

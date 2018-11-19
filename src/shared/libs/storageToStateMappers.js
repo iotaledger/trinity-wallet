@@ -32,23 +32,6 @@ export const mapNormalisedTransactions = (transactions, addressData) => {
 };
 
 /**
- * Map persisted account related data to redux state (accounts.accountInfo reducer)
- * @method mapAccountToAccountInfo
- *
- * @param {object} account
- * @returns {object}
- */
-export const mapAccountToAccountInfo = (account) => {
-    const { addressData, transactions, type } = account;
-
-    return {
-        type,
-        addressData,
-        transactions: mapNormalisedTransactions(transactions, addressData),
-    };
-};
-
-/**
  * Map persisted state to redux state
  * @method mapStorageToState
  *
@@ -56,18 +39,30 @@ export const mapAccountToAccountInfo = (account) => {
  */
 export const mapStorageToState = () => {
     const accountsData = Account.getDataAsArray();
-    const { settings, onboardingComplete, errorLog } = Wallet.latestData;
+    const { settings, onboardingComplete, errorLog, accountInfoDuringSetup } = Wallet.latestData;
     const nodes = Node.getDataAsArray();
 
     return {
         accounts: {
+            accountInfoDuringSetup,
             onboardingComplete,
             ...transform(
                 accountsData,
                 (acc, data) => {
-                    const { name, usedExistingSeed, displayedSnapshotTransitionGuide } = data;
+                    const {
+                        name,
+                        usedExistingSeed,
+                        displayedSnapshotTransitionGuide,
+                        meta,
+                        addressData,
+                        transactions,
+                    } = data;
 
-                    acc.accountInfo[name] = mapAccountToAccountInfo(data);
+                    acc.accountInfo[name] = {
+                        meta,
+                        addressData,
+                        transactions,
+                    };
                     acc.setupInfo[name] = { usedExistingSeed };
                     acc.tasks[name] = { displayedSnapshotTransitionGuide };
                 },

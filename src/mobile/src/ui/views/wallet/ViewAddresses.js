@@ -109,16 +109,17 @@ export class ViewAddresses extends Component {
      * Converts address data (object) to an array and orders it by key index
      *
      * @method prepAddresses
-     * @returns {Array}
+     * @returns {array}
      */
     prepAddresses() {
-        const { addresses } = this.props.selectedAccount;
-        const preparedAddresses = map(addresses, (data, address) => ({
-            ...data,
-            balance: round(formatValue(data.balance), 1),
-            unit: formatUnit(data.balance),
-            address: `${address}${data.checksum}`,
+        const { addressData } = this.props.selectedAccount;
+        const preparedAddresses = map(addressData, (addressObject) => ({
+            ...addressObject,
+            balance: round(formatValue(addressObject.balance), 1),
+            unit: formatUnit(addressObject.balance),
+            address: `${addressObject.address}${addressObject.checksum}`,
         }));
+
         return orderBy(preparedAddresses, 'index', ['desc']);
     }
 

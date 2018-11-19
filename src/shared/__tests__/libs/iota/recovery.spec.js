@@ -57,7 +57,7 @@ const setupNock = (resultMap = defaultResultMap) => {
 
 const destroyNock = () => nock.cleanAll();
 
-describe('libs: iota/recovery', () => {
+describe.skip('libs: iota/recovery', () => {
     before(() => {
         SwitchingConfig.autoSwitch = false;
     });

@@ -1,38 +1,11 @@
 import get from 'lodash/get';
-import find from 'lodash/find';
-import isBoolean from 'lodash/isBoolean';
 import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
 import omit from 'lodash/omit';
+import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
-
-/**
- * Stop overriding local spend status for a known address
- *
- * @method preserveAddressLocalSpendStatus
- * @param existingAddressData
- * @param newAddressData
- *
- * @returns {object}
- */
-export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
-    map(newAddressData, (addressObject) => {
-        const seenAddress = find(existingAddressData, { address: addressObject.address });
-
-        if (seenAddress && isBoolean(get(seenAddress, 'spent.local'))) {
-            const { spent: { local } } = seenAddress;
-
-            return {
-                ...addressObject,
-                spent: { ...addressObject.spent, local: local || get(seenAddress, 'spent.local') },
-            };
-        }
-
-        return addressObject;
-    });
 
 /**
  * Merge latest address data into existing address data for an account
@@ -191,7 +164,7 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.UPDATE_ADDRESSES:
+        case ActionTypes.UPDATE_ADDRESS_DATA:
             return {
                 ...state,
                 accountInfo: {
@@ -216,10 +189,19 @@ const account = (
         case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
         case ActionTypes.OVERRIDE_ACCOUNT_INFO:
         case ActionTypes.MANUAL_SYNC_SUCCESS:
+            return {
+                ...state,
+                ...updateAccountInfo(state, action.payload),
+            };
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
             };
         default:
             return state;

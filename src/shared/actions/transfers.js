@@ -1,7 +1,7 @@
+import assign from 'lodash/assign';
 import has from 'lodash/has';
 import head from 'lodash/head';
 import find from 'lodash/find';
-import get from 'lodash/get';
 import map from 'lodash/map';
 import join from 'lodash/join';
 import orderBy from 'lodash/orderBy';
@@ -19,12 +19,8 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
 } from '../libs/iota/extendedApi';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getNodesFromState,
-    getSelectedNodeFromState,
-} from '../selectors/accounts';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
 import {
     withRetriesOnDifferentNodes,
     fetchRemoteNodes,
@@ -54,7 +50,7 @@ import {
 } from './accounts';
 import {
     shouldAllowSendingToAddress,
-    getAddressesUptoRemainder,
+    getAddressDataUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
 import { getInputs } from '../libs/iota/inputs';
@@ -441,7 +437,6 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
-    let transferInputs = [];
 
     const withPreTransactionSecurityChecks = () => {
         // Progressbar step => (Validating receive address)
@@ -472,7 +467,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             .then((inputs) => {
                 // Do not allow receiving address to be one of the user's own input addresses.
                 const isSendingToAnyInputAddress = some(
-                    get(inputs, 'inputs'),
+                    inputs,
                     (input) => input.address === iota.utils.noChecksum(address),
                 );
 
@@ -485,27 +480,24 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
                 }
 
-                transferInputs = get(inputs, 'inputs');
-
-                return getAddressesUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
+                return getAddressDataUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
                     // Make sure inputs are blacklisted
-                    ...map(transferInputs, (input) => input.address),
+                    ...map(inputs, (input) => input.address),
                     // Make sure receive address is blacklisted
                     iota.utils.noChecksum(receiveAddress),
-                ]);
-            })
-            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
-                // getAddressesUptoRemainder returns the latest unused address as the remainder address
-                // Also returns updated address data including new address data for the intermediate addresses.
-                // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
-                // at index 53 it would include address data for 51, 52 and 53.
-                accountState.addressData = addressDataUptoRemainder;
+                ]).then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
+                    // getAddressesUptoRemainder returns the latest unused address as the remainder address
+                    // Also returns updated address data including new address data for the intermediate addresses.
+                    // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
+                    // at index 53 it would include address data for 51, 52 and 53.
+                    accountState.addressData = addressDataUptoRemainder;
 
-                return {
-                    inputs: transferInputs,
-                    address: remainderAddress,
-                    keyIndex: remainderIndex,
-                };
+                    return {
+                        inputs,
+                        address: remainderAddress,
+                        keyIndex: remainderIndex,
+                    };
+                });
             });
     };
 
@@ -524,7 +516,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
             .then((options) => {
-                const transfer = prepareTransferArray(address, value, message, accountState.addresses);
+                const transfer = prepareTransferArray(address, value, message, accountState.addressData);
 
                 // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
@@ -543,7 +535,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
                     isValidBundle = true;
-                    // Progressbar step =>  (Getting transactions to approve)
+                    // Progressbar step => (Getting transactions to approve)
                     dispatch(setNextStepAsActive());
 
                     return getTransactionsToApproveAsync()();
@@ -646,16 +638,13 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
-                return syncAccountAfterSpending()(
-                    seedStore,
-                    accountName,
-                    cached.transactionObjects,
-                    accountState,
-                    !isZeroValue,
-                );
+                return syncAccountAfterSpending()(seedStore, cached.transactionObjects, accountState);
             })
-            .then(({ newState }) => {
-                dispatch(updateAccountInfoAfterSpending(newState));
+            .then((newState) => {
+                // Update account in (Realm) storage
+                Account.update(accountName, newState);
+
+                dispatch(updateAccountInfoAfterSpending(assign({}, newState, { accountName })));
 
                 // Progressbar => (Progress summary)
                 dispatch(setNextStepAsActive());
@@ -672,11 +661,14 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
-                    const { newState } = syncAccountOnValueTransactionFailure(
+                    const newState = syncAccountOnValueTransactionFailure(
                         // Sort in ascending order
                         orderBy(cached.transactionObjects, ['currentIndex']),
                         accountState,
                     );
+
+                    // Update account in (Realm) storage
+                    Account.update(accountName, newState);
 
                     dispatch(updateAccountInfoAfterSpending(newState));
                     // Clear send screen text fields

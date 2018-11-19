@@ -22,8 +22,8 @@ import some from 'lodash/some';
 import size from 'lodash/size';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
-import difference from 'lodash/difference';
 import orderBy from 'lodash/orderBy';
+import xor from 'lodash/xor';
 import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD } from '../../config';
 import { iota } from './index';
 import nativeBindings from './nativeBindings';
@@ -186,20 +186,6 @@ export const prepareTransferArray = (address, value, message, addressData, tag =
     }
 
     return [transfer];
-};
-
-/**
- *   Categorises transactions as incoming/outgoing
- *
- *   @method categoriseTransactions
- *   @param {array} transactions - Array of transfer objects
- *   @returns {object} Categorised transactions by incoming/outgoing.
- **/
-export const categoriseTransactions = (transactions) => {
-    return transform(transactions, (acc, tx) => (tx.incoming ? acc.incoming.push(tx) : acc.outgoing.push(tx)), {
-        incoming: [],
-        outgoing: [],
-    });
 };
 
 /**
@@ -381,7 +367,7 @@ export const constructBundlesFromTransactions = (transactions) => {
  *
  * @returns {array}
  */
-export const filterInvalidBundles = (bundles) => filter(bundles, !iota.utils.isBundle);
+export const filterInvalidBundles = (bundles) => filter(bundles, iota.utils.isBundle);
 
 /**
  *   Normalises bundle.
@@ -470,24 +456,23 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
         );
 
         return assignInclusionStatesToBundles(provider)(unconfirmed).then((bundles) => [
-            ...flatMap(confirmed, (bundle) => bundle),
-            ...flatMap(bundles, (bundle) => bundle),
+            ...flatMap(confirmed),
+            ...flatMap(bundles),
         ]);
     });
 };
 
 /**
+ *  Finds difference between seed transaction hashes with new transaction hashes.
  *
- *   with bundle hash is valid or not.
+ *  @method getTransactionsDiff
+ *  @param {array} existingHashes
+ *  @param {array} newHashes
  *
- *   @method getTransactionsDiff
- *   @param {array} existingHashes
- *   @param {array} newHashes
-= *
- *   @returns {array}
+ *  @returns {array}
  **/
 export const getTransactionsDiff = (existingHashes, newHashes) => {
-    return difference(newHashes, existingHashes);
+    return xor(existingHashes, newHashes);
 };
 
 /**

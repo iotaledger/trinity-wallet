@@ -7,7 +7,7 @@ import { findTransactionsAsync } from './extendedApi';
 import { syncTransactions, getTransactionsDiff } from './transfers';
 import { throwIfNodeNotSynced } from './utils';
 import {
-    mapLatestAddressDataAndBalances,
+    mapLatestAddressData,
     getFullAddressHistory,
     markAddressesAsSpentSync,
     syncAddresses,
@@ -44,7 +44,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
             data = { ...data, ...history };
 
             return syncTransactions(provider)(
-                getTransactionsDiff(history.hashes, existingTransactionsHashes),
+                getTransactionsDiff(existingTransactionsHashes, history.hashes),
                 existingTransactions,
             );
         })
@@ -124,7 +124,7 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
 
             thisStateCopy.transactions = transactions;
 
-            return mapLatestAddressDataAndBalances(provider)(thisStateCopy.addressData, thisStateCopy.transactions);
+            return mapLatestAddressData(provider)(thisStateCopy.addressData, thisStateCopy.transactions);
         })
         .then((addressData) => {
             thisStateCopy.addressData = addressData;
@@ -146,18 +146,25 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
  *
  *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (provider) => (seedStore, newTransactionObjects, accountState) => {
+export const syncAccountAfterSpending = (provider) => (seedStore, newTransactions, accountState) => {
     // Update transactions
-    const updatedTransactions = [...accountState.transactions, ...newTransactionObjects];
+    const updatedTransactions = [
+        ...accountState.transactions,
+        ...map(newTransactions, (transaction) => ({
+            ...transaction,
+            // Assign persistence as false
+            persistence: false,
+            // Since these transactions were successfully broadcasted, assign broadcast status as true
+            broadcasted: true,
+        })),
+    ];
     // Update address data
-    const updatedAddressData = markAddressesAsSpentSync([newTransactionObjects], accountState.addressData);
+    const updatedAddressData = markAddressesAsSpentSync([newTransactions], accountState.addressData);
 
     return (
         syncAddresses(provider)(seedStore, updatedAddressData, updatedTransactions)
             // Map latest address data (spend statuses & balances) to addresses
-            .then((latestAddressData) =>
-                mapLatestAddressDataAndBalances(provider)(latestAddressData, updatedTransactions),
-            )
+            .then((latestAddressData) => mapLatestAddressData(provider)(latestAddressData, updatedTransactions))
             .then((latestAddressData) => ({ addressData: latestAddressData, transactions: updatedTransactions }))
     );
 };

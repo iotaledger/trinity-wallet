@@ -69,6 +69,7 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
+                completedMigration: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

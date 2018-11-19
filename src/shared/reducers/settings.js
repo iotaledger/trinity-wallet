@@ -112,7 +112,7 @@ const initialState = {
     /**
      * Determines the status of AsyncStorage to realm migration
      */
-    completedMigration: true,
+    completedMigration: false,
 };
 
 const settingsReducer = (state = initialState, action) => {

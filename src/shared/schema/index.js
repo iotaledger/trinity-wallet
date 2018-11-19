@@ -50,6 +50,10 @@ export const WalletSchema = {
          * Wallet settings.
          */
         settings: 'WalletSettings',
+        /**
+         * Temporarily stored account information while the account is being setup
+         */
+        accountInfoDuringSetup: 'AccountInfoDuringSetup',
     },
 };
 
@@ -110,7 +114,7 @@ export const AccountSchema = {
     name: 'Account',
     primaryKey: 'name',
     properties: {
-        type: { type: 'string', default: 'keychain' },
+        meta: 'AccountMeta',
         name: 'string',
         addressData: 'Address[]',
         transactions: 'Transaction[]',
@@ -314,7 +318,54 @@ export const NodeSchema = {
     primaryKey: 'url',
     properties: {
         url: 'string', // Node URL
-        custom: 'bool', // Whether the node was added by the user
+        // Whether the node was added by the user
+        custom: {
+            type: 'bool',
+            default: false,
+        },
         pow: { type: 'bool', default: false }, // Whether the node supports remote PoW
+    },
+};
+
+/**
+ * Schema for account information (while the account is being setup)
+ */
+export const AccountInfoDuringSetupSchema = {
+    name: 'AccountInfoDuringSetup',
+    properties: {
+        name: {
+            type: 'string',
+            default: '',
+        },
+        usedExistingSeed: {
+            type: 'bool',
+            default: false,
+        },
+        meta: 'AccountMeta',
+    },
+};
+
+/**
+ * Schema for account meta
+ */
+export const AccountMetaSchema = {
+    name: 'AccountMeta',
+    properties: {
+        type: {
+            type: 'string',
+            default: 'keychain',
+        },
+        index: {
+            type: 'int',
+            optional: true,
+        },
+        page: {
+            type: 'int',
+            optional: true,
+        },
+        indexAddress: {
+            type: 'string',
+            optional: true,
+        },
     },
 };

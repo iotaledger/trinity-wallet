@@ -17,12 +17,8 @@ import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotSynced } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import {
-    selectedAccountStateFactory,
-    getRemotePoWFromState,
-    getSelectedNodeFromState,
-    getNodesFromState,
-} from '../selectors/accounts';
+import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState } from '../selectors/global';
 import { Account } from '../storage';
 import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
 
@@ -335,11 +331,7 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddressesWithSyncedNode)(
-            seedStore,
-            existingAccountData.addresses,
-            map(existingAccountData.transfers, (tx) => tx),
-        )
+        )(syncAddressesWithSyncedNode)(seedStore, existingAccountData.addressData, existingAccountData.transactions)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 

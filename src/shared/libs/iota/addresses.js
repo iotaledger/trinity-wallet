@@ -47,6 +47,31 @@ export const isValidAddressObject = (addressObject) => {
 };
 
 /**
+ * Stop overriding local spend status for a known address
+ *
+ * @method preserveAddressLocalSpendStatus
+ * @param existingAddressData
+ * @param newAddressData
+ *
+ * @returns {object}
+ */
+export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
+    map(newAddressData, (addressObject) => {
+        const seenAddress = find(existingAddressData, { address: addressObject.address });
+
+        if (seenAddress && isBoolean(get(seenAddress, 'spent.local'))) {
+            const { spent: { local } } = seenAddress;
+
+            return {
+                ...addressObject,
+                spent: { ...addressObject.spent, local: local || get(seenAddress, 'spent.local') },
+            };
+        }
+
+        return addressObject;
+    });
+
+/**
  * Checks if an address is used (Uses locally stored address data and transactions)
  *
  * @method isAddressUsedSync
@@ -148,12 +173,12 @@ export const getAddressDataUptoLatestUnusedAddress = (provider) => (seedStore, t
  *   Finds latest spent statuses on addresses.
  *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
  *
- *   @method mapLatestAddressDataAndBalances
+ *   @method mapLatestAddressData
  *   @param {string} provider
  *
  *   @returns {function(array, array): Promise<object>}
  **/
-export const mapLatestAddressDataAndBalances = (provider) => (addressData, transactions) => {
+export const mapLatestAddressData = (provider) => (addressData, transactions) => {
     const cached = {
         balances: [],
         wereSpent: [],
@@ -172,15 +197,23 @@ export const mapLatestAddressDataAndBalances = (provider) => (addressData, trans
             return wereAddressesSpentFromAsync(provider)(addresses);
         })
         .then((wereSpent) => {
-            // Get spend statuses of addresses from normalised transactions
+            // Get spend statuses of addresses from transactions
             const spendStatuses = findSpendStatusesFromTransactions(addresses, transactions);
 
-            cached.wereSpent = map(wereSpent, (status, idx) => ({
-                remote: status,
-                local: spendStatuses[idx],
-            }));
+            cached.wereSpent = map(wereSpent, (status, idx) => {
+                const existingLocalSpendStatus = get(find(addressData, { address: addresses[idx] }), 'spent.local');
 
-            return formatAddressData(addresses, cached.balances, cached.wereSpent);
+                return {
+                    remote: status,
+                    local: existingLocalSpendStatus || spendStatuses[idx],
+                };
+            });
+
+            return map(addressData, (addressObject, idx) => ({
+                ...addressObject,
+                balance: cached.balances[idx],
+                spent: cached.wereSpent[idx],
+            }));
         });
 };
 
@@ -527,12 +560,12 @@ export const getLatestAddressObject = (addressData) => maxBy(addressData, 'index
 /**
  *   Generate addresses till remainder (unused and also not blacklisted for being a remainder address)
  *
- *   @method getAddressesUptoRemainder
+ *   @method getAddressDataUptoRemainder
  *   @param {string} [provider]
  *
  *   @returns {function(array, array, object, array): Promise<object>}
  **/
-export const getAddressesUptoRemainder = (provider) => (
+export const getAddressDataUptoRemainder = (provider) => (
     addressData,
     transactions,
     seedStore,
@@ -557,7 +590,7 @@ export const getAddressesUptoRemainder = (provider) => (
             const addressDataUptoRemainder = [...addressData, ...newAddressData];
 
             if (isBlacklisted(remainderAddress)) {
-                return getAddressesUptoRemainder(provider)(
+                return getAddressDataUptoRemainder(provider)(
                     addressDataUptoRemainder,
                     transactions,
                     seedStore,

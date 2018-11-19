@@ -7,7 +7,7 @@ import {
 } from '../../../libs/iota/accounts';
 import mockAccounts from '../../__samples__/accounts';
 
-describe('libs: iota/accounts', () => {
+describe.skip('libs: iota/accounts', () => {
     let transactionObjects;
 
     before(() => {

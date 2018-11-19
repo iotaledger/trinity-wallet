@@ -1,3 +1,4 @@
+import map from 'lodash/map';
 import nock from 'nock';
 import Realm from 'realm';
 import configureMockStore from 'redux-mock-store';
@@ -5,18 +6,17 @@ import thunk from 'redux-thunk';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import * as actions from '../../actions/transfers';
+import * as addressesUtils from '../../libs/iota/addresses';
 import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
-import * as extendedApis from '../../libs/iota/extendedApi';
 import * as inputUtils from '../../libs/iota/inputs';
-import { iota, SwitchingConfig } from '../../libs/iota';
+import { SwitchingConfig } from '../../libs/iota';
 import { realm, config as realmConfig, Account, Wallet } from '../../storage';
 import accounts from '../__samples__/accounts';
-import { addressData } from '../__samples__/addresses';
-import trytes from '../__samples__/trytes';
-import transactions from '../__samples__/transactions';
+import { addressData, latestAddressObject } from '../__samples__/addresses';
+import { newZeroValueTransactionTrytes, newValueTransactionTrytes } from '../__samples__/trytes';
+import transactions, { newZeroValueTransaction, newValueTransaction } from '../__samples__/transactions';
 import { IRI_API_VERSION } from '../../config';
-import Errors from '../../libs/errors';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -39,7 +39,7 @@ describe('actions: transfers', () => {
         });
 
         beforeEach(() => {
-            Account.create({ name: 'test' });
+            Account.create({ name: 'TEST' });
             Wallet.createIfNotExists();
         });
 
@@ -281,363 +281,388 @@ describe('actions: transfers', () => {
         // TODO: Add coverage when successfully promotes.
     });
 
-    describe.skip('#makeTransaction', () => {
+    describe('#makeTransaction', () => {
         let powFn;
         let seedStore;
 
         before(() => {
+            Realm.deleteFile(realmConfig);
             powFn = () => Promise.resolve('9'.repeat(27));
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
-                prepareTransfers: () => Promise.resolve(trytes.zeroValue),
+                prepareTransfers: (transfer) => {
+                    return Promise.resolve(
+                        transfer.value === 0 ? newZeroValueTransactionTrytes : newValueTransactionTrytes,
+                    );
+                },
             };
         });
 
         beforeEach(() => {
+            Account.create({ name: 'TEST' });
+            Wallet.createIfNotExists();
+
             nock('http://localhost:14265', {
                 reqheaders: {
                     'Content-Type': 'application/json',
                     'X-IOTA-API-Version': IRI_API_VERSION,
                 },
             })
-                .persist()
                 .filteringRequestBody(() => '*')
+                .persist()
                 .post('/', '*')
-                .reply(200, {});
+                .reply(200, (_, body) => {
+                    if (body.command === 'getTransactionsToApprove') {
+                        return {
+                            branchTransaction:
+                                'MFZXHOXKGVVBDGSVXIGEFBFDXICQDK9UQFVSQCAJMZICRXDGBRZMHHJUGTDPWTEHWSREZFDCRRYD99999',
+                            trunkTransaction:
+                                'OAAMETLECXOVQNTTAKCNWPZSQALUYEGTO9QGEQL9ST9RFJ9JPNBHTOABJQTCIHKMNUMHEKZJSFYT99999',
+                        };
+                    }
+
+                    return {};
+                });
         });
 
         afterEach(() => {
+            realm.write(() => {
+                realm.delete(Account.data);
+                realm.delete(Wallet.data);
+            });
+
             nock.cleanAll();
         });
 
+        after(() => {
+            Realm.deleteFile(realmConfig);
+        });
+
         describe('zero value transactions', () => {
-            let sandbox;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction:
-                        'PMEL9E9ZACLGEUPHNX9TSLEBDKTIGXDERNQSURABASAIGPWTFB9WUIXQVPKIFTHUQBRXEYQJANBDZ9999',
-                    branchTransaction:
-                        'BPZXKIPUOMPXZFLASWNSOXOACWOKYYIQCPYEVEPQSNAHJIRMLQZUZEHQAPTBGOILOTUWJUXLIBZP99999',
-                });
-                sandbox.stub(iota.api, 'attachToTangle').yields(null, trytes.zeroValue);
-                sandbox.stub(iota.api, 'findTransactions').yields(null, []);
-                sandbox.stub(iota.api, 'getBalances').yields(null, []);
-                sandbox.stub(iota.api, 'getInclusionStates').yields(null, []);
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-            });
-
-            it('should create five actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
+            it('should call prepareTransfers method on seedStore', () => {
                 const store = mockStore({ accounts });
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon
+                sinon.spy(seedStore, 'prepareTransfers');
+                sinon
                     .stub(accountsUtils, 'syncAccountAfterSpending')
-                    .returns(() => Promise.resolve({}));
+                    .returns(() => Promise.resolve([...transactions, ...newZeroValueTransaction]));
 
                 return store
-                    .dispatch(
-                        actions.makeTransaction(
-                            seedStore,
-                            'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
-                            0,
-                            'TEST MESSAGE',
-                            'TEST',
-                            powFn,
-                        ),
-                    )
+                    .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 0, 'foo', 'TEST', powFn))
                     .then(() => {
-                        expect(
-                            store
-                                .getActions()
-                                .map((action) => action.type)
-                                .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                        ).to.equal(5);
-
-                        wereAddressesSpentFrom.restore();
-                        syncAccountAfterSpending.restore();
+                        expect(seedStore.prepareTransfers.calledOnce).to.equal(true);
+                        seedStore.prepareTransfers.restore();
+                        accountsUtils.syncAccountAfterSpending.restore();
                     });
             });
 
-            it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING', () => {
+            it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING with updated account state', () => {
                 const store = mockStore({ accounts });
+                const updatedTransactions = [
+                    ...transactions,
+                    ...map(newZeroValueTransaction, (transaction) => ({
+                        ...transaction,
+                        persistence: false,
+                        broadcasted: true,
+                    })),
+                ];
 
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon
-                    .stub(accountsUtils, 'syncAccountAfterSpending')
-                    .returns(() => Promise.resolve({}));
+                sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() =>
+                    Promise.resolve({
+                        transactions: updatedTransactions,
+                        addressData,
+                    }),
+                );
 
                 return store
-                    .dispatch(
-                        actions.makeTransaction(
-                            seedStore,
-                            'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
-                            0,
-                            'TEST MESSAGE',
-                            'TEST',
-                            powFn,
-                        ),
-                    )
+                    .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 0, 'foo', 'TEST', powFn))
                     .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.include(
-                            'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
-                        );
+                        const expectedAction = {
+                            type: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
+                            payload: {
+                                accountName: 'TEST',
+                                transactions: updatedTransactions,
+                                addressData,
+                            },
+                        };
 
-                        wereAddressesSpentFrom.restore();
-                        syncAccountAfterSpending.restore();
+                        const actualAction = store
+                            .getActions()
+                            .find((action) => action.type === 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING');
+
+                        expect(expectedAction).to.eql(actualAction);
+                        accountsUtils.syncAccountAfterSpending.restore();
                     });
             });
         });
 
         describe('value transactions', () => {
-            let sandbox;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(extendedApis, 'isNodeSynced').resolves(true);
-                sandbox.stub(iota.api, 'getTransactionsToApprove').yields(null, {
-                    trunkTransaction:
-                        'PMEL9E9ZACLGEUPHNX9TSLEBDKTIGXDERNQSURABASAIGPWTFB9WUIXQVPKIFTHUQBRXEYQJANBDZ9999',
-                    branchTransaction:
-                        'BPZXKIPUOMPXZFLASWNSOXOACWOKYYIQCPYEVEPQSNAHJIRMLQZUZEHQAPTBGOILOTUWJUXLIBZP99999',
-                });
-                sandbox.stub(iota.api, 'attachToTangle').yields(null, trytes.zeroValue);
-                sandbox.stub(iota.api, 'storeAndBroadcast').yields(null);
-                sandbox.stub(iota.api, 'findTransactions').yields(null, []);
-                sandbox.stub(iota.api, 'getBalances').yields(null, []);
-                sandbox.stub(iota.api, 'getInclusionStates').yields(null, []);
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-            });
-
-            describe('when transaction is successful', () => {
-                it('should create eight actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+            describe('when receive address is used', () => {
+                it('should create an action of type IOTA/ALERTS/SHOW with message "You cannot send to an address that has already been spent from."', () => {
                     const store = mockStore({ accounts });
-
-                    const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
-                        Promise.resolve({
-                            balance: 10,
-                            inputs: [
-                                {
-                                    address:
-                                        'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                    balance: 10,
-                                    keyIndex: 0,
-                                    security: 2,
-                                },
-                            ],
-                        }),
-                    );
-
-                    const syncAccountAfterSpending = sinon
-                        .stub(accountsUtils, 'syncAccountAfterSpending')
-                        .returns(() => Promise.resolve({}));
-
-                    const syncAccount = sinon
-                        .stub(accountsUtils, 'syncAccount')
-                        .returns(() => Promise.resolve(accounts.accountInfo.TEST));
+                    const shouldAllowSendingToAddress = sinon
+                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
+                        .returns(() => Promise.resolve(false));
 
                     return store
-                        .dispatch(
-                            actions.makeTransaction(
-                                seedStore,
-                                'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
-                                2,
-                                'TEST MESSAGE',
-                                'TEST',
-                                powFn,
-                            ),
-                        )
+                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
                         .then(() => {
-                            expect(
-                                store
-                                    .getActions()
-                                    .map((action) => action.type)
-                                    .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                            ).to.equal(8);
+                            const expectedAction = {
+                                category: 'error',
+                                closeInterval: 5500,
+                                message: 'You cannot send to an address that has already been spent from.',
+                                title: 'Sending to spent address',
+                                type: 'IOTA/ALERTS/SHOW',
+                            };
 
-                            syncAccountAfterSpending.restore();
-                            syncAccount.restore();
-                            getInputs.restore();
+                            const actualAction = store
+                                .getActions()
+                                .find(
+                                    (action) =>
+                                        action.type === 'IOTA/ALERTS/SHOW' &&
+                                        action.message ===
+                                            'You cannot send to an address that has already been spent from.',
+                                );
 
-                            wereAddressesSpentFrom.restore();
+                            expect(expectedAction).to.eql(actualAction);
+                            shouldAllowSendingToAddress.restore();
                         });
                 });
             });
 
-            describe('when transaction fails', () => {
-                describe('when recipient address is used', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot send to an address that has already been spent from."', () => {
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [true]);
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
-                        sinon
-                            .stub(accountsUtils, 'syncAccount')
-                            .returns(() => Promise.resolve(accounts.accountInfo.TEST));
+            describe('when receive address is one of the input addresses', () => {
+                it('should create an action of type IOTA/ALERTS/SHOW with message "You cannot send to an address that is being used as an input in the transaction."', () => {
+                    const store = mockStore({ accounts });
 
-                        const store = mockStore({ accounts });
+                    // Stub syncAccount implementation and return mocked transactions and address data
+                    const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() =>
+                        Promise.resolve({
+                            transactions,
+                            addressData,
+                        }),
+                    );
 
-                        return store
-                            .dispatch(
-                                actions.makeTransaction(
-                                    seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
-                                    2,
-                                    'TEST MESSAGE',
-                                    'TEST',
-                                    powFn,
-                                ),
-                            )
-                            .then(() => {
-                                expect(
-                                    store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
-                                ).to.equal('You cannot send to an address that has already been spent from.');
+                    // Stub shouldAllowSendingToAddress implementation and allow sending to the receive address
+                    const shouldAllowSendingToAddress = sinon
+                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
+                        .returns(() => Promise.resolve(true));
 
-                                wereAddressesSpentFrom.restore();
-                                accountsUtils.syncAccountAfterSpending.restore();
-                                accountsUtils.syncAccount.restore();
-                            });
-                    });
-                });
+                    // Stub getInputs implementation and return receive address (UUU...UUU)
+                    // as one of the input addresses
+                    const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
+                        Promise.resolve([
+                            {
+                                // Receive address
+                                address: 'U'.repeat(81),
+                                balance: 5,
+                                keyIndex: 11,
+                                security: 2,
+                            },
+                            {
+                                address: 'Z'.repeat(81),
+                                balance: 6,
+                                keyIndex: 12,
+                                security: 2,
+                            },
+                        ]),
+                    );
 
-                describe('when does not have enough balance', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "You do not have enough IOTA to complete this transfer."', () => {
-                        const store = mockStore({ accounts });
+                    return store
+                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .then(() => {
+                            const expectedAction = {
+                                category: 'error',
+                                closeInterval: 20000,
+                                message:
+                                    'You cannot send to an address that is being used as an input in the transaction.',
+                                title: 'Sending to an input address',
+                                type: 'IOTA/ALERTS/SHOW',
+                            };
 
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [false]);
-                        sinon
-                            .stub(inputUtils, 'getInputs')
-                            .returns(() => Promise.reject(new Error(Errors.INSUFFICIENT_BALANCE)));
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
-                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
-
-                        return store
-                            .dispatch(
-                                actions.makeTransaction(
-                                    seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
-                                    200,
-                                    'TEST MESSAGE',
-                                    'TEST',
-                                    powFn,
-                                ),
-                            )
-                            .then(() => {
-                                expect(
-                                    store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
-                                ).to.equal('You do not have enough IOTA to complete this transfer.');
-
-                                wereAddressesSpentFrom.restore();
-                                inputUtils.getInputs.restore();
-                                accountsUtils.syncAccountAfterSpending.restore();
-                                accountsUtils.syncAccount.restore();
-                            });
-                    });
-                });
-
-                describe('when has funds at spent addresses', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."', () => {
-                        const store = mockStore({ accounts });
-
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [false]);
-
-                        sinon
-                            .stub(inputUtils, 'getInputs')
-                            .returns(() => Promise.reject(new Error(Errors.FUNDS_AT_SPENT_ADDRESSES)));
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
-                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
-
-                        return store
-                            .dispatch(
-                                actions.makeTransaction(
-                                    seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
-                                    100,
-                                    'TEST MESSAGE',
-                                    'TEST',
-                                    powFn,
-                                ),
-                            )
-                            .then(() => {
-                                expect(
-                                    store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
-                                ).to.equal(
-                                    'Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.',
+                            const actualAction = store
+                                .getActions()
+                                .find(
+                                    (action) =>
+                                        action.type === 'IOTA/ALERTS/SHOW' &&
+                                        action.message ===
+                                            'You cannot send to an address that is being used as an input in the transaction.',
                                 );
 
-                                wereAddressesSpentFrom.restore();
-                                inputUtils.getInputs.restore();
-                                accountsUtils.syncAccountAfterSpending.restore();
-                                accountsUtils.syncAccount.restore();
-                            });
-                    });
+                            expect(expectedAction).to.eql(actualAction);
+
+                            // Restore stubs
+                            syncAccount.restore();
+                            shouldAllowSendingToAddress.restore();
+                            getInputs.restore();
+                        });
                 });
+            });
 
-                describe('when receive address is one of the input addresses', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot send to an address that is being used as an input in the transaction."', () => {
-                        const store = mockStore({ accounts });
+            describe('when constructs invalid bundle', () => {
+                it('should create an action of type IOTA/ALERTS/SHOW with message "Something went wrong while sending your transfer. Please try again."', () => {
+                    const store = mockStore({ accounts });
 
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [false]);
+                    // Stub prepareTransfers implementation and return invalid trytes.
+                    // Invalid trytes should lead to invalid bundle construction
+                    const prepareTransfers = sinon.stub(seedStore, 'prepareTransfers').resolves(
+                        map(
+                            newValueTransactionTrytes,
+                            (tryteString) =>
+                                // Replace signature message fragments with all nines
+                                `${'9'.repeat(2187)}${tryteString.slice(2187)}`,
+                        ),
+                    );
 
-                        sinon.stub(inputUtils, 'getInputs').returns(() =>
+                    // Stub syncAccount implementation and return mocked transactions and address data
+                    const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() =>
+                        Promise.resolve({
+                            transactions,
+                            addressData,
+                        }),
+                    );
+
+                    const getAddressDataUptoRemainder = sinon
+                        .stub(addressesUtils, 'getAddressDataUptoRemainder')
+                        .returns(() =>
                             Promise.resolve({
-                                balance: 10,
-                                inputs: [
-                                    {
-                                        address:
-                                            'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                    },
-                                    {
-                                        address:
-                                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
-                                    },
-                                ],
+                                addressDataUptoRemainder: addressData,
+                                remainderAddress: latestAddressObject.address,
+                                keyIndex: latestAddressObject.index,
                             }),
                         );
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
-                        sinon.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve({}));
 
-                        return store
-                            .dispatch(
-                                actions.makeTransaction(
-                                    seedStore,
-                                    'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLWWSWWTDSVX',
-                                    2,
-                                    'TEST MESSAGE',
-                                    'TEST',
-                                    powFn,
-                                ),
-                            )
-                            .then(() => {
-                                expect(
-                                    store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
-                                ).to.equal(
-                                    'You cannot send to an address that is being used as an input in the transaction.',
+                    // Stub shouldAllowSendingToAddress implementation and allow sending to the receive address
+                    const shouldAllowSendingToAddress = sinon
+                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
+                        .returns(() => Promise.resolve(true));
+
+                    // Stub getInputs implementation and return receive address (UUU...UUU)
+                    // as one of the input addresses
+                    const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
+                        Promise.resolve([
+                            {
+                                address:
+                                    'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
+                                balance: 10,
+                                keyIndex: 8,
+                                security: 2,
+                            },
+                        ]),
+                    );
+
+                    return store
+                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .then(() => {
+                            const expectedAction = {
+                                category: 'error',
+                                closeInterval: 20000,
+                                message: 'Something went wrong while sending your transfer. Please try again.',
+                                title: 'Transfer error',
+                                type: 'IOTA/ALERTS/SHOW',
+                            };
+
+                            const actualAction = store
+                                .getActions()
+                                .find(
+                                    (action) =>
+                                        action.type === 'IOTA/ALERTS/SHOW' &&
+                                        action.message ===
+                                            'Something went wrong while sending your transfer. Please try again.',
                                 );
 
-                                wereAddressesSpentFrom.restore();
-                                inputUtils.getInputs.restore();
-                                accountsUtils.syncAccountAfterSpending.restore();
-                                accountsUtils.syncAccount.restore();
-                            });
-                    });
+                            expect(expectedAction).to.eql(actualAction);
+
+                            // Restore stubs
+                            prepareTransfers.restore();
+                            syncAccount.restore();
+                            getAddressDataUptoRemainder.restore();
+                            shouldAllowSendingToAddress.restore();
+                            getInputs.restore();
+                        });
+                });
+            });
+
+            describe('when successfully broadcasts', () => {
+                it('should create an action of type IOTA/ALERTS/SHOW with message "Something went wrong while sending your transfer. Please try again."', () => {
+                    const store = mockStore({ accounts });
+
+                    const updatedTransactions = [
+                        ...transactions,
+                        ...map(newValueTransaction, (transaction) => ({
+                            ...transaction,
+                            persistence: false,
+                            broadcasted: true,
+                        })),
+                    ];
+
+                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() =>
+                        Promise.resolve({
+                            transactions: updatedTransactions,
+                            addressData,
+                        }),
+                    );
+
+                    // Stub syncAccount implementation and return mocked transactions and address data
+                    const syncAccount = sinon.stub(accountsUtils, 'syncAccount').returns(() =>
+                        Promise.resolve({
+                            transactions,
+                            addressData,
+                        }),
+                    );
+
+                    const getAddressDataUptoRemainder = sinon
+                        .stub(addressesUtils, 'getAddressDataUptoRemainder')
+                        .returns(() =>
+                            Promise.resolve({
+                                addressDataUptoRemainder: addressData,
+                                remainderAddress: latestAddressObject.address,
+                                keyIndex: latestAddressObject.index,
+                            }),
+                        );
+
+                    // Stub shouldAllowSendingToAddress implementation and allow sending to the receive address
+                    const shouldAllowSendingToAddress = sinon
+                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
+                        .returns(() => Promise.resolve(true));
+
+                    // Stub getInputs implementation and return receive address (UUU...UUU)
+                    // as one of the input addresses
+                    const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
+                        Promise.resolve([
+                            {
+                                address:
+                                    'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
+                                balance: 10,
+                                keyIndex: 8,
+                                security: 2,
+                            },
+                        ]),
+                    );
+
+                    return store
+                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .then(() => {
+                            const expectedAction = {
+                                type: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
+                                payload: {
+                                    accountName: 'TEST',
+                                    transactions: updatedTransactions,
+                                    addressData,
+                                },
+                            };
+
+                            const actualAction = store
+                                .getActions()
+                                .find((action) => action.type === 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING');
+
+                            expect(expectedAction).to.eql(actualAction);
+
+                            // Restore stubs
+                            syncAccountAfterSpending.restore();
+                            syncAccount.restore();
+                            getAddressDataUptoRemainder.restore();
+                            shouldAllowSendingToAddress.restore();
+                            getInputs.restore();
+                        });
                 });
             });
         });

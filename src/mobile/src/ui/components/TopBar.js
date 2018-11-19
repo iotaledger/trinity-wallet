@@ -31,6 +31,7 @@ import { setPollFor } from 'shared-modules/actions/polling';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
+import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid, isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
@@ -296,6 +297,7 @@ class TopBar extends Component {
             minimised,
             currentRoute,
         } = this.props;
+
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
@@ -305,7 +307,10 @@ class TopBar extends Component {
 
         const getBalance = (currentIdx) => {
             const account = accountInfo[accountNames[currentIdx]];
-            return TopBar.humanizeBalance(account.balance);
+
+            return TopBar.humanizeBalance(
+                accumulateBalance(map(account.addressData, (addressObject) => addressObject.balance)),
+            );
         };
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
