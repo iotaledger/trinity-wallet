@@ -282,7 +282,10 @@
         "spent": "ಖರ್ಚು ಮಾಡಿದ",
         "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
         "missingPermissionExplanation": "QR ಸಂಕೇತಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಫೈಲ್ ವ್ಯವಸ್ಥೆಗೆ ಪ್ರವೇಶ ಅಗತ್ಯವಿರುತ್ತದೆ.",
-        "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ"
+        "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿಕೊಳ್ಳಿ",
