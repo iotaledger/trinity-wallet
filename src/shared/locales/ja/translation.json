@@ -277,7 +277,7 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "アドレスを同期",
+        "generateNewAddress": "Generate address",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
@@ -748,7 +748,7 @@
         "ledgerIncorrectIndex": "Ledger端末との不一致",
         "ledgerIncorrectIndexExplanation": "Ledger端末がアカウントにリンクされている端末と一致しないか、または復元フレーズが変更されています。",
         "checkAddress": "受取用のアドレスを確認してください",
-        "checkAddressExplanation": "受取用アドレスがLedger端末に表示されているアドレスと一致することをご確認ください。表示されていない場合は、「アドレスの同期」を押してください。",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "未確定に関する警告",
         "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。"
     }
