@@ -282,7 +282,10 @@
         "spent": "Dihabiskan",
         "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Izin akses ke File System dibutuhkan untuk membagi QR codes.",
-        "tag": "Label"
+        "tag": "Label",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Simpang Seed anda",
