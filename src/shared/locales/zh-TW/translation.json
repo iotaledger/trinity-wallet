@@ -277,7 +277,7 @@
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "同步地址",
+        "generateNewAddress": "Generate address",
         "noAddresses": "無地址",
         "spent": "已支出",
         "missingPermission": "需要檔案系統權限",
@@ -748,7 +748,7 @@
         "ledgerIncorrectIndex": "Ledger 裝置不符",
         "ledgerIncorrectIndexExplanation": "連接的 Ledger 裝置與此帳戶不相符，或者回復字組已被更改。",
         "checkAddress": "檢查接收地址",
-        "checkAddressExplanation": "請檢察地址與您 Ledger 裝置上顯示的相符，如果沒有的話請按「同步地址」。",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
