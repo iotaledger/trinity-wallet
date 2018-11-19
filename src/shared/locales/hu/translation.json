@@ -282,7 +282,10 @@
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A QR kód megosztásához szükség van a fájlrendszerhez való hozzáféréshez.",
-        "tag": "Címke"
+        "tag": "Címke",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
