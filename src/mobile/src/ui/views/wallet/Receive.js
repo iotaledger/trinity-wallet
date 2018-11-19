@@ -284,6 +284,9 @@ class Receive extends Component {
         if (!this.props.hadErrorGeneratingNewAddress && newProps.hadErrorGeneratingNewAddress) {
             this.setState({ hasPressedGenerateAddress: false });
         }
+        if (this.props.selectedAccountName !== newProps.selectedAccountName) {
+            this.setState({ hasPressedGenerateAddress: false });
+        }
     }
 
     shouldComponentUpdate(newProps) {
