@@ -277,7 +277,7 @@
         "copyAddress": "Kopiraj adresu",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa je kopirana na klipbord.",
-        "generateNewAddress": "Sinhronizuj adresu",
+        "generateNewAddress": "Generate address",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrebljeno",
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
@@ -748,7 +748,7 @@
         "ledgerIncorrectIndex": "Neodgovarajući Ledger",
         "ledgerIncorrectIndexExplanation": "Povezani Ledger ne odgovara onome koji je povezan sa ovim računom ili je fraza za oporavak izmenjena.",
         "checkAddress": "Proverite adresu za prijem",
-        "checkAddressExplanation": "Proverite da li adresa odgovara onoj koja je prikazana na Ledger novčaniku. Pritisnite „Sinhronizuj adresu\" ako ne odgovara.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
