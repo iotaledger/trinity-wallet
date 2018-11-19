@@ -282,7 +282,10 @@
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR.",
-        "tag": "Étiquette"
+        "tag": "Étiquette",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
