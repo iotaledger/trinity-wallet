@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
         "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Errore di portachiavi",
         "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
         "mainWallet": "CONTO PRINCIPALE"
@@ -749,6 +750,6 @@
         "checkAddress": "Controllare l'indirizzo di ricezione",
         "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger. Altrimenti premi \"Sincronizza indirizzo\".",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare."
     }
 }

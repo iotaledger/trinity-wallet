@@ -31,7 +31,9 @@ class AccountPassword extends React.PureComponent {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        wallet: PropTypes.object.isRequired,
+        additionalAccountName: PropTypes.string.isRequired,
+        /** @ignore */
+        additionalAccountMeta: PropTypes.object.isRequired,
     };
 
     state = {
@@ -45,7 +47,7 @@ class AccountPassword extends React.PureComponent {
      * @returns {undefined}
      */
     createAccount = async (e) => {
-        const { wallet, setPassword, history, generateAlert, t } = this.props;
+        const { additionalAccountMeta, additionalAccountName, setPassword, history, generateAlert, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -89,8 +91,8 @@ class AccountPassword extends React.PureComponent {
         await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
 
-        const seedStore = await new SeedStore[wallet.additionalAccountMeta.type](passwordHash);
-        await seedStore.addAccount(wallet.additionalAccountName, Electron.getOnboardingSeed());
+        const seedStore = await new SeedStore[additionalAccountMeta.type](passwordHash);
+        await seedStore.addAccount(additionalAccountName, Electron.getOnboardingSeed());
 
         Electron.setOnboardingSeed(null);
 
@@ -112,7 +114,7 @@ class AccountPassword extends React.PureComponent {
     };
 
     render() {
-        const { t, wallet } = this.props;
+        const { t, additionalAccountMeta } = this.props;
 
         const score = zxcvbn(this.state.password);
 
@@ -120,7 +122,7 @@ class AccountPassword extends React.PureComponent {
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
                     <h1>{t('setPassword:choosePassword')}</h1>
-                    {wallet.additionalAccountMeta.type === 'keychain' && <p>{t('setPassword:anEncryptedCopy')}</p>}
+                    {additionalAccountMeta.type === 'keychain' && <p>{t('setPassword:anEncryptedCopy')}</p>}
                     <PasswordInput
                         focus
                         value={this.state.password}
@@ -152,7 +154,8 @@ class AccountPassword extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {

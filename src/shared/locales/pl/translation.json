@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Ponawianie próby przy użyciu lokalnego trybu PoW.",
         "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
         "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
+        "errorSyncingAddresses": "Błąd synchronizacji informacji adresowych. Trwa ponawianie próby z użyciem innego serwera.",
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
         "mainWallet": "KONTO GŁÓWNE"
@@ -671,8 +672,8 @@
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
-        "installUpdate": "Zainstaluj aktualizację i zrestartuj",
+        "newVersionAvailableExplanation": "Dostępna jest nowa wersja portfela Trinity. Czy chcesz dokonać aktualizacji?",
+        "installUpdate": "Instalacja aktualizacji i restart",
         "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie i zainstaluje aktualizację.",
         "downloadingUpdate": "Pobieranie aktualizacji",
         "downloadProgress": "Pobrano {{transferred}} z {{total}}"
@@ -744,7 +745,7 @@
         "ledgerDisconnectedExplanation": "Urządzenie Ledger zostało odłączone. Podłącz je oraz spróbuj ponownie.",
         "ledgerDeniedTitle": "Odrzucenie transakcji",
         "ledgerDeniedExplanation": "Transakcja nie została zaakceptowana na urządzeniu Ledger.",
-        "ledgerIncorrectIndex": "Niezgodność urządzenia Ledger",
+        "ledgerIncorrectIndex": "Niezgodne urządzenie Ledger",
         "ledgerIncorrectIndexExplanation": "Podłączony portfel sprzętowy Ledger, nie pasuje do połączonego z tym kontem lub frazy odzyskiwania na urządzeniu, zostały zmienione.",
         "checkAddress": "Sprawdź adres odbioru",
         "checkAddressExplanation": "Sprawdź, czy adres odpowiada adresowi wyświetlanemu na urządzeniu Ledger. Jeśli nie, naciśnij \"Synchronizuj adres\".",
