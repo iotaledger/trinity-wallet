@@ -282,7 +282,10 @@
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
         "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
-        "tag": "タグ"
+        "tag": "タグ",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
