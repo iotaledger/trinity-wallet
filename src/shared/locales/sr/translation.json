@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Ponovni pokušaj sa lokalnim dokazom o radu.",
         "tryingAgainWithDifferentNode": "Ponovni pokušaj sa drugim node-om.",
         "errorFetchingAccountInformation": "Greška prilikom dohvata podataka o računu.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain greška",
         "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u za sigurno skladištenje.",
         "mainWallet": "GLAVNI RAČUN"

@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Tentando novamente com prova de trabalho local.",
         "tryingAgainWithDifferentNode": "Tentar novamente com um servidor diferente.",
         "errorFetchingAccountInformation": "Erro ao buscar informações da conta.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Erro de chaveiro",
         "errorAccessingKeychainExplanation": "Não foi possível acessar o chaveiro necessário para armazenamento seguro.",
         "mainWallet": "CONTA PRINCIPAL"

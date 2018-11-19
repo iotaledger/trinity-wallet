@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "ಸ್ಥಳೀಯ ಕೆಲಸದ ಪುರಾವೆಯೊಂದಿಗೆ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.",
         "tryingAgainWithDifferentNode": "ಬೇರೆ ನೋಡ್ ನೊಂದಿಗೆ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "errorFetchingAccountInformation": "ಖಾತೆ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳುವಲ್ಲಿ ದೋಷ.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "MAIN ACCOUNT"
