@@ -277,12 +277,15 @@
         "copyAddress": "复制地址",
         "addressCopied": "地址已复制",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "无地址",
         "spent": "使用过",
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "分享二维码需要具备文件系统访问权限。",
-        "tag": "标签"
+        "tag": "标签",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",
@@ -748,7 +751,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

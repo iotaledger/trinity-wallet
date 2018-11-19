@@ -81,7 +81,6 @@ class AccountName extends React.PureComponent {
 
         this.props.setAccountInfoDuringSetup({
             name: this.state.name,
-            meta: { type: 'keychain' },
         });
 
         if (Electron.getOnboardingGenerated()) {

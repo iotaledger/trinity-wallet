@@ -153,6 +153,10 @@ const initialState = {
      * Current navigation route
      */
     currentRoute: 'login',
+    /**
+     * Determines whether an error occurred during address generation
+     */
+    hadErrorGeneratingNewAddress: false,
 };
 
 export default (state = initialState, action) => {
@@ -242,8 +246,14 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isGeneratingReceiveAddress: true,
+                hadErrorGeneratingNewAddress: false,
             };
         case WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+                hadErrorGeneratingNewAddress: true,
+            };
         case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
             return {
                 ...state,

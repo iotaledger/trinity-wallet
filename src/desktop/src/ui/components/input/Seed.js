@@ -260,10 +260,6 @@ class SeedInput extends React.PureComponent {
                     seed.splice(Math.min(...cursor), Math.abs(cursor[0] - cursor[1]), byte);
                 }
 
-                if (seed.length > MAX_SEED_LENGTH) {
-                    return;
-                }
-
                 this.setState({
                     cursor: seed.length ? cursorPos : 0,
                 });
@@ -277,7 +273,10 @@ class SeedInput extends React.PureComponent {
         const { seed, label, closeLabel, t } = this.props;
         const { importBuffer, accounts, accountIndex, showScanner, hidden } = this.state;
 
-        const checkSum = seed.length < MAX_SEED_LENGTH ? '< 81' : Electron.getChecksum(seed);
+        const checkSum =
+            seed.length < MAX_SEED_LENGTH
+                ? '< 81'
+                : seed.length > MAX_SEED_LENGTH ? '> 81' : Electron.getChecksum(seed);
 
         return (
             <div className={classNames(css.input, css.seed)}>
