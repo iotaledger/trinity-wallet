@@ -223,6 +223,7 @@ class Receive extends Component {
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
             scramblingLetters: [],
+            hasPressedGenerateAddress: false,
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -495,8 +496,6 @@ class Receive extends Component {
             }),
         ]).start(() => this.props.flipReceiveCard());
     }
-
-    blockActionDuringSync() {}
 
     render() {
         const {
