@@ -282,7 +282,10 @@
         "spent": "已支出",
         "missingPermission": "需要檔案系統權限",
         "missingPermissionExplanation": "分享 QR 碼必須要有訪問檔案系統的權限。",
-        "tag": "標籤"
+        "tag": "標籤",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
