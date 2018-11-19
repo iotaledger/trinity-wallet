@@ -216,6 +216,8 @@ class Receive extends Component {
         usdPrice: PropTypes.number.isRequired,
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
+        /** @ignore */
+        hadErrorGeneratingNewAddress: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -278,6 +280,9 @@ class Receive extends Component {
     componentWillReceiveProps(newProps) {
         if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
             timer.clearInterval('scramble');
+        }
+        if (!this.props.hadErrorGeneratingNewAddress && newProps.hadErrorGeneratingNewAddress) {
+            this.setState({ hasPressedGenerateAddress: false });
         }
     }
 
@@ -744,6 +749,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,
+    hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
 });
 
 const mapDispatchToProps = {
