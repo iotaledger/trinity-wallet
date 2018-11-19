@@ -282,7 +282,10 @@
         "spent": "Utratené",
         "missingPermission": "Je požadované povolenie súborového systému",
         "missingPermissionExplanation": "Pre zdieľanie QR kódu je požadivaný prístup k súborovému systému.",
-        "tag": "Značka"
+        "tag": "Značka",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
