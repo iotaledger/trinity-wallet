@@ -282,7 +282,10 @@
         "spent": "Kulutatud",
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "QR-koodide jagamiseks on vaja failisüsteemi luba.",
-        "tag": "Silt"
+        "tag": "Silt",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Varunda oma seeme",
