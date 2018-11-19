@@ -12,9 +12,12 @@ const electronSettings = require('electron-settings');
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 /**
- * Disable Remote Debugging Port on production build
+ * Terminate application if Node remote debugging detected
  */
-app.commandLine.appendSwitch('remote-debugging-port', '');
+const argv = process.argv.join();
+if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+    return app.quit();
+}
 
 /**
  * Set AppUserModelID for Windows notifications functionallity

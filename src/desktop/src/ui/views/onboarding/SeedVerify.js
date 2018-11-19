@@ -76,10 +76,10 @@ class SeedVerify extends React.PureComponent {
             return;
         }
 
-        if (seed.length < MAX_SEED_LENGTH) {
+        if (seed.length !== MAX_SEED_LENGTH) {
             generateAlert(
                 'error',
-                t('enterSeed:seedTooShort'),
+                seed.length < MAX_SEED_LENGTH ? t('enterSeed:seedTooShort') : t('enterSeed:seedTooLong'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
             return;

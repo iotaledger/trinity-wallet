@@ -153,7 +153,9 @@ const initialState = {
      * Current navigation route
      */
     currentRoute: 'login',
-    /** Determines whether an error occurred during address generation */
+    /**
+     * Determines whether an error occurred during address generation
+     */
     hadErrorGeneratingNewAddress: false,
 };
 
