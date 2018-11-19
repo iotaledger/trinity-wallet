@@ -282,7 +282,10 @@
         "spent": "Uitgegeven",
         "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Toegang tot het bestandsysteem is nodig om QR codes te delen.",
-        "tag": "Label"
+        "tag": "Label",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Back uw seed up",
