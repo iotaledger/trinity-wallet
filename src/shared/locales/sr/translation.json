@@ -282,7 +282,10 @@
         "spent": "Upotrebljeno",
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
         "missingPermissionExplanation": "Potreban je pristup sistemu datoteka radi deljenja QR kodova.",
-        "tag": "Oznaka"
+        "tag": "Oznaka",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Napravite rezervnu kopiju svog seed-a",

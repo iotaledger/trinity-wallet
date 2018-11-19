@@ -282,7 +282,10 @@
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
-        "tag": "Etiketė"
+        "tag": "Etiketė",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",

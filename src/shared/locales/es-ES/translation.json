@@ -282,7 +282,10 @@
         "spent": "Gastado",
         "missingPermission": "Permisos de sistema requeridos",
         "missingPermissionExplanation": "El acceso a los archivos del sistema son requeridos para compartir los códigos QR.",
-        "tag": "Etiqueta"
+        "tag": "Etiqueta",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga una copia de respaldo de su semilla",

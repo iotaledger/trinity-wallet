@@ -282,7 +282,10 @@
         "spent": "Brugt",
         "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at dele QR-koder.",
-        "tag": "Tag"
+        "tag": "Tag",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sikkerhedskopiere din hovednøgle",

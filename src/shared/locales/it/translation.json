@@ -282,7 +282,10 @@
         "spent": "Speso",
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario al fine di condividere codici QR.",
-        "tag": "Etichetta"
+        "tag": "Etichetta",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Esegui il backup del tuo seme",

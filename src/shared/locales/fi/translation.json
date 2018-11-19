@@ -282,7 +282,10 @@
         "spent": "Käytetty",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
         "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan, jotta voit jakaa QR-koodeja.",
-        "tag": "Tunniste"
+        "tag": "Tunniste",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",

@@ -282,7 +282,10 @@
         "spent": "使用过",
         "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "分享二维码需要具备文件系统访问权限。",
-        "tag": "标签"
+        "tag": "标签",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",

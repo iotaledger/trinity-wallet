@@ -282,7 +282,10 @@
         "spent": "از قبل ساخته شده",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "برای به اشتراک گذاشتن کدهای QR، دسترسی به سیستم فایل لازم است.",
-        "tag": "برچسب"
+        "tag": "برچسب",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "از سید خود پشتیبان بگیرید",

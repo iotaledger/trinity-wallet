@@ -282,7 +282,10 @@
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
-        "tag": "Tag"
+        "tag": "Tag",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
