@@ -279,6 +279,9 @@ class Receive extends Component {
         }
         if (this.props.selectedAccountName !== newProps.selectedAccountName) {
             this.setState({ hasPressedGenerateAddress: false });
+            if (this.state.isCardFlipped) {
+                this.flipCard();
+            }
         }
     }
 
