@@ -30,12 +30,12 @@ const shouldMigrate = (restoredState) => {
  *
  */
 export const versionCheck = (store) => {
-    const restoredBuildNumber = get(store.getState(), 'settings.versions.buildNumber');
+    const currentBuildNumber = get(store.getState(), 'settings.versions.buildNumber');
     return fetchVersions()
         .then(({ mobileBlacklist, latestMobile }) => {
-            if (mobileBlacklist.includes(restoredBuildNumber)) {
+            if (mobileBlacklist.includes(currentBuildNumber)) {
                 store.dispatch(triggerForceUpdate());
-            } else if (latestMobile > restoredBuildNumber) {
+            } else if (latestMobile > currentBuildNumber) {
                 store.dispatch(triggerShouldUpdate());
             }
             return store;
