@@ -505,8 +505,6 @@ class Receive extends Component {
         ]).start(() => this.props.flipReceiveCard());
     }
 
-    blockActionDuringSync() {}
-
     render() {
         const {
             t,
