@@ -39,7 +39,6 @@ describe('Reducer: ui', () => {
                 qrMessage: '',
                 qrTag: '',
                 selectedQrTab: 'message',
-                isReceiveCardFlipped: false,
                 modalContent: 'snapshotTransitionInfo',
                 modalProps: {},
                 currentRoute: 'login',
