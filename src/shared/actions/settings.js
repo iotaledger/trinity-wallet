@@ -481,7 +481,7 @@ export function setFullNode(node, addingCustomNode = false) {
                         generateAlert(
                             'error',
                             i18next.t('settings:nodeChangeError'),
-                            i18next.t('settings:thisNodeNotUsingCoo'),
+                            i18next.t('settings:thisNodeNotUsingCooExplanation'),
                         ),
                     );
                 } else {

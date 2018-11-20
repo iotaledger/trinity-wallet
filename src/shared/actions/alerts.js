@@ -97,7 +97,13 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
  * @returns {function} dispatch
  */
 export const generateNodeNotUsingCooAlert = () => (dispatch) => {
-    dispatch(generateAlert('error', 'Node not using coo!', 'Node not using coo!'));
+    dispatch(
+        generateAlert(
+            'error',
+            i18next.t('global:thisNodeNotUsingCoo'),
+            i18next.t('global:thisNodeNotUsingCooExplanation'),
+        ),
+    );
 };
 
 /**
