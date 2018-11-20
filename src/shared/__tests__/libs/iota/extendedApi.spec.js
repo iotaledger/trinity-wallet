@@ -1,8 +1,9 @@
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
+import head from 'lodash/head';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { getIotaInstance, isNodeSyncedAndUsingCoo } from '../../../libs/iota/extendedApi';
+import { getIotaInstance, isNodeSyncedAndUsingCoo, isNodeUsingCoo } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -144,6 +145,24 @@ describe('libs: iota/extendedApi', () => {
                     expect(result).to.equal(true);
                     getTrytes.restore();
                 });
+            });
+        });
+    });
+
+    describe('#isNodeUsingCoo', () => {
+        describe('when milestone is not issued by the coordinator', () => {
+            it('should return false', () => {
+                const txObject = iota.utils.transactionObject(head(trytes.zeroValue));
+                const result = isNodeUsingCoo(txObject);
+                expect(result).to.equal(false);
+            });
+        });
+
+        describe('when milestone is issued by the coordinator', () => {
+            it('should return true', () => {
+                const txObject = iota.utils.transactionObject(head(trytes.milestone));
+                const result = isNodeUsingCoo(txObject);
+                expect(result).to.equal(true);
             });
         });
     });
