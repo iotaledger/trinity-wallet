@@ -89,6 +89,13 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
     dispatch(generateAlert('error', i18next.t('global:nodeOutOfSync'), i18next.t('global:nodeOutOfSyncExplanation')));
 };
 
+/**
+ * Generates an error alert if a node is not using the coordinator
+ *
+ * @method generateNodeNotUsingCooAlert
+ *
+ * @returns {function} dispatch
+ */
 export const generateNodeNotUsingCooAlert = () => (dispatch) => {
     dispatch(generateAlert('error', 'Node not using coo!', 'Node not using coo!'));
 };
