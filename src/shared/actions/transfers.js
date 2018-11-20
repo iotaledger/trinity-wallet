@@ -66,6 +66,7 @@ import {
     generateTransferErrorAlert,
     generatePromotionErrorAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateNodeNotUsingCooAlert,
     generateTransactionSuccessAlert,
 } from './alerts';
 import i18next from '../libs/i18next.js';
@@ -745,6 +746,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 if (message === Errors.NODE_NOT_SYNCED) {
                     return dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (message === Errors.NODE_NOT_USING_COO) {
+                    return dispatch(generateNodeNotUsingCooAlert());
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),

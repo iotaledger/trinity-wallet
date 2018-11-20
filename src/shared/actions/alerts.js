@@ -89,6 +89,10 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
     dispatch(generateAlert('error', i18next.t('global:nodeOutOfSync'), i18next.t('global:nodeOutOfSyncExplanation')));
 };
 
+export const generateNodeNotUsingCooAlert = () => (dispatch) => {
+    dispatch(generateAlert('error', 'Node not using coo!', 'Node not using coo!'));
+};
+
 /**
  * Generates an error alert if something goes wrong during snapshot transition
  *

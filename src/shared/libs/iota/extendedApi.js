@@ -533,10 +533,27 @@ const isNodeSynced = (provider) => {
             },
         )
         .then((trytes) => {
-            const { timestamp } = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
+            const txObject = iota.utils.transactionObject(head(trytes), cached.latestMilestone);
 
-            return isWithinMinutes(timestamp * 1000, 5);
+            if (!isNodeUsingCoo(txObject)) {
+                throw new Error(Errors.NODE_NOT_USING_COO);
+            }
+            return isWithinMinutes(txObject.timestamp * 1000, 5);
         });
+};
+
+/**
+ * Checks if a milestone was issued by the coordinator
+ * @param  {object}  txObject Milestone transaction object
+ * @return {boolean}
+ */
+const isNodeUsingCoo = (txObject) => {
+    // https://github.com/iotaledger/iri/blob/94377986bda39fd5ab0b5bc94231a42510484af6/src/main/java/com/iota/iri/conf/BaseIotaConfig.java#L753
+    const MAINNET_COORDINATOR = 'KPWCHICGJZXKE9GSUDXZYUAPLHAKAHYHDXNPHENTERYMMBQOPSQIDENXKLKCEYCPVTZQLEEJVYJZV9BWU';
+    // https://github.com/iotaledger/iri/blob/94377986bda39fd5ab0b5bc94231a42510484af6/src/main/java/com/iota/iri/conf/TestnetConfig.java#L163
+    const TESTNET_COORDINATOR = 'EQQFCZBIHRHWPXKMTOLMYUYPCN9XLMJPYZVFJSAY9FQHCCLWTOLLUGKKMXYFDBOOYFBLBI9WUEILGECYM';
+
+    return txObject.address === MAINNET_COORDINATOR || txObject.address === TESTNET_COORDINATOR;
 };
 
 /**
@@ -568,5 +585,6 @@ export {
     attachToTangleAsync,
     checkAttachToTangleAsync,
     isNodeSynced,
+    isNodeUsingCoo,
     isPromotable,
 };
