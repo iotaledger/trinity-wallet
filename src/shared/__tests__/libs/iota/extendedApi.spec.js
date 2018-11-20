@@ -2,7 +2,7 @@ import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { getIotaInstance, isNodeSynced } from '../../../libs/iota/extendedApi';
+import { getIotaInstance, isNodeSyncedAndUsingCoo } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -32,7 +32,7 @@ describe('libs: iota/extendedApi', () => {
         });
     });
 
-    describe('#isNodeSynced', () => {
+    describe('#isNodeSyncedAndUsingCoo', () => {
         let sandbox;
 
         beforeEach(() => {
@@ -52,7 +52,7 @@ describe('libs: iota/extendedApi', () => {
             });
 
             it('should throw with an error "Node not synced"', () => {
-                return isNodeSynced().catch((error) => expect(error.message).to.equal('Node not synced'));
+                return isNodeSyncedAndUsingCoo().catch((error) => expect(error.message).to.equal('Node not synced'));
             });
         });
 
@@ -65,7 +65,7 @@ describe('libs: iota/extendedApi', () => {
             });
 
             it('should throw with an error "Node not synced"', () => {
-                return isNodeSynced().catch((error) => expect(error.message).to.equal('Node not synced'));
+                return isNodeSyncedAndUsingCoo().catch((error) => expect(error.message).to.equal('Node not synced'));
             });
         });
 
@@ -82,7 +82,7 @@ describe('libs: iota/extendedApi', () => {
             it('should return false if "timestamp" on trytes is from five minutes ago', () => {
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytes.zeroValue);
 
-                return isNodeSynced().then((result) => {
+                return isNodeSyncedAndUsingCoo().then((result) => {
                     expect(result).to.equal(false);
                     getTrytes.restore();
                 });
@@ -102,7 +102,7 @@ describe('libs: iota/extendedApi', () => {
 
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytesWithLatestTimestamp);
 
-                return isNodeSynced().then((result) => {
+                return isNodeSyncedAndUsingCoo().then((result) => {
                     expect(result).to.equal(true);
                     getTrytes.restore();
                 });
@@ -120,7 +120,7 @@ describe('libs: iota/extendedApi', () => {
             it('should return false if "timestamp" on trytes is from five minutes ago', () => {
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytes.zeroValue);
 
-                return isNodeSynced().then((result) => {
+                return isNodeSyncedAndUsingCoo().then((result) => {
                     expect(result).to.equal(false);
                     getTrytes.restore();
                 });
@@ -140,7 +140,7 @@ describe('libs: iota/extendedApi', () => {
 
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytesWithLatestTimestamp);
 
-                return isNodeSynced().then((result) => {
+                return isNodeSyncedAndUsingCoo().then((result) => {
                     expect(result).to.equal(true);
                     getTrytes.restore();
                 });

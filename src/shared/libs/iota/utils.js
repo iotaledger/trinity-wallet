@@ -9,7 +9,7 @@ import size from 'lodash/size';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
-import { isNodeSynced } from './extendedApi';
+import { isNodeSyncedAndUsingCoo } from './extendedApi';
 import { NODELIST_URL } from '../../config';
 import Errors from '../errors';
 
@@ -397,7 +397,7 @@ export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
  * @returns {Promise<boolean>}
  */
 export const throwIfNodeNotSynced = (provider) => {
-    return isNodeSynced(provider).then((isSynced) => {
+    return isNodeSyncedAndUsingCoo(provider).then((isSynced) => {
         if (!isSynced) {
             throw new Error(Errors.NODE_NOT_SYNCED);
         }

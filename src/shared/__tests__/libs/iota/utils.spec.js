@@ -140,7 +140,7 @@ describe('libs: iota/utils', () => {
     describe('#throwIfNodeNotSynced', () => {
         describe('when node is synced', () => {
             it('should return true', () => {
-                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+                const stub = sinon.stub(extendedApis, 'isNodeSyncedAndUsingCoo').resolves(true);
 
                 return throwIfNodeNotSynced('foo').then((isSynced) => {
                     expect(isSynced).to.equal(true);
@@ -151,7 +151,7 @@ describe('libs: iota/utils', () => {
 
         describe('when node is not synced', () => {
             it('should return throw an error with message "Node not synced"', () => {
-                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(false);
+                const stub = sinon.stub(extendedApis, 'isNodeSyncedAndUsingCoo').resolves(false);
 
                 return throwIfNodeNotSynced('foo')
                     .then(() => {

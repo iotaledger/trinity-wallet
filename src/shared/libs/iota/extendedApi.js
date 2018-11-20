@@ -500,14 +500,14 @@ const getTrytesAsync = (provider) => (hashes) =>
     });
 
 /**
- * Checks if a node is synced
+ * Checks if a node is synced and using the coordinator
  *
- * @method isNodeSynced
+ * @method isNodeSyncedAndUsingCoo
  * @param {string} [provider]
  *
  * @returns {Promise}
  */
-const isNodeSynced = (provider) => {
+const isNodeSyncedAndUsingCoo = (provider) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
@@ -584,7 +584,7 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
-    isNodeSynced,
+    isNodeSyncedAndUsingCoo,
     isNodeUsingCoo,
     isPromotable,
 };
