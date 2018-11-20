@@ -154,7 +154,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "MAIN ACCOUNT",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update your app now",
+        "forceUpdateExplanation": "A critical update has been released. You must update the app to continue."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

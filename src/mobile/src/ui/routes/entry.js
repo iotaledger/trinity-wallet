@@ -15,7 +15,7 @@ import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
-import { persistStoreAsync, migrate, resetIfKeychainIsEmpty } from 'libs/store';
+import { persistStoreAsync, migrate, versionCheck, resetIfKeychainIsEmpty } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
 
 const launch = (store) => {
@@ -161,6 +161,7 @@ onAppStart()
     .then(() => persistStoreAsync())
     .then(({ store, restoredState }) => migrate(store, restoredState))
     .then((store) => resetIfKeychainIsEmpty(store))
+    .then((store) => versionCheck(store))
     .then((store) => {
         overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
@@ -169,6 +170,7 @@ onAppStart()
                 type: ActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
+
             fetchNodeList(store);
             startListeningToConnectivityChanges(store);
 
