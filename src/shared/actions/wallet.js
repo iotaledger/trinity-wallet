@@ -8,6 +8,7 @@ import {
     generateTransitionErrorAlert,
     generateAddressesSyncRetryAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateNodeNotUsingCooAlert,
 } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { changeNode } from '../actions/settings';
@@ -15,7 +16,7 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotSynced } from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotSyncedOrUsingCoo } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import {
     selectedAccountStateFactory,
@@ -313,7 +314,7 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
         dispatch(generateNewAddressRequest());
 
         const syncAddressesWithSyncedNode = (provider) => {
-            return (...args) => throwIfNodeNotSynced(provider).then(() => syncAddresses(provider)(...args));
+            return (...args) => throwIfNodeNotSyncedOrUsingCoo(provider).then(() => syncAddresses(provider)(...args));
         };
 
         const selectedNode = getSelectedNodeFromState(getState());
@@ -388,7 +389,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
         dispatch(snapshotAttachToTangleRequest());
 
         // Check node's health
-        throwIfNodeNotSynced()
+        throwIfNodeNotSyncedOrUsingCoo()
             .then(() => getBalancesAsync()(addresses))
             // Find balance on all addresses
             .then((balances) => {
@@ -458,6 +459,8 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
             .catch((error) => {
                 if (error.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (error.message === Errors.NODE_NOT_USING_COO) {
+                    dispatch(generateNodeNotUsingCooAlert());
                 } else {
                     dispatch(generateTransitionErrorAlert(error));
                 }

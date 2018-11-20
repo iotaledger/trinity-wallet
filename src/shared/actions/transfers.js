@@ -29,7 +29,7 @@ import {
     withRetriesOnDifferentNodes,
     fetchRemoteNodes,
     getRandomNodes,
-    throwIfNodeNotSynced,
+    throwIfNodeNotSyncedOrUsingCoo,
 } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
@@ -858,7 +858,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
     dispatch(retryFailedTransactionRequest());
 
     return (
-        throwIfNodeNotSynced()
+        throwIfNodeNotSyncedOrUsingCoo()
             // First check spent statuses against transaction addresses
             .then(() =>
                 categoriseAddressesBySpentStatus()(

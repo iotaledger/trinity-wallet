@@ -23,6 +23,7 @@
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeNotUsingCoo": "This node is not using the coordinator. Please change node or try again.",
         "seed": "Seed",
         "checksum": "Checksum",
         "back": "Back",

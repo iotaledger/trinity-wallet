@@ -6,7 +6,7 @@ import {
     convertFromTrytes,
     getRandomNodes,
     withRetriesOnDifferentNodes,
-    throwIfNodeNotSynced,
+    throwIfNodeNotSyncedOrUsingCoo,
 } from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
@@ -137,12 +137,12 @@ describe('libs: iota/utils', () => {
         });
     });
 
-    describe('#throwIfNodeNotSynced', () => {
+    describe('#throwIfNodeNotSyncedOrUsingCoo', () => {
         describe('when node is synced', () => {
             it('should return true', () => {
                 const stub = sinon.stub(extendedApis, 'isNodeSyncedAndUsingCoo').resolves(true);
 
-                return throwIfNodeNotSynced('foo').then((isSynced) => {
+                return throwIfNodeNotSyncedOrUsingCoo('foo').then((isSynced) => {
                     expect(isSynced).to.equal(true);
                     stub.restore();
                 });
@@ -153,7 +153,7 @@ describe('libs: iota/utils', () => {
             it('should return throw an error with message "Node not synced"', () => {
                 const stub = sinon.stub(extendedApis, 'isNodeSyncedAndUsingCoo').resolves(false);
 
-                return throwIfNodeNotSynced('foo')
+                return throwIfNodeNotSyncedOrUsingCoo('foo')
                     .then(() => {
                         throw new Error();
                     })

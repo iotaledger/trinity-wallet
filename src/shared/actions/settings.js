@@ -5,7 +5,7 @@ import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
-import { throwIfNodeNotSynced } from '../libs/iota/utils';
+import { throwIfNodeNotSyncedOrUsingCoo } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -431,7 +431,7 @@ export function setFullNode(node, addingCustomNode = false) {
     return (dispatch) => {
         dispatch(dispatcher.request());
 
-        throwIfNodeNotSynced(node)
+        throwIfNodeNotSyncedOrUsingCoo(node)
             .then(() => checkAttachToTangleAsync(node))
             .then((res) => {
                 // Change IOTA provider on the global iota instance
@@ -474,6 +474,14 @@ export function setFullNode(node, addingCustomNode = false) {
                             i18next.t('settings:nodeChangeError'),
                             i18next.t('settings:thisNodeOutOfSync'),
                             7000,
+                        ),
+                    );
+                } else if (err.message === Errors.NODE_NOT_USING_COO) {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('settings:nodeChangeError'),
+                            i18next.t('settings:thisNodeNotUsingCoo'),
                         ),
                     );
                 } else {

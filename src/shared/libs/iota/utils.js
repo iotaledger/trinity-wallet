@@ -389,19 +389,23 @@ export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
 };
 
 /**
- * Throws an error if a node is not synced.
+ * Throws an error if a node is not synced or using the coordinator
  *
- * @method throwIfNodeNotSynced
+ * @method throwIfNodeNotSyncedOrUsingCoo
  * @param {string} provider
  *
  * @returns {Promise<boolean>}
  */
-export const throwIfNodeNotSynced = (provider) => {
-    return isNodeSyncedAndUsingCoo(provider).then((isSynced) => {
-        if (!isSynced) {
-            throw new Error(Errors.NODE_NOT_SYNCED);
-        }
+export const throwIfNodeNotSyncedOrUsingCoo = (provider) => {
+    return isNodeSyncedAndUsingCoo(provider)
+        .then((isSynced) => {
+            if (!isSynced) {
+                throw new Error(Errors.NODE_NOT_SYNCED);
+            }
 
-        return isSynced;
-    });
+            return isSynced;
+        })
+        .catch((err) => {
+            throw err;
+        });
 };
