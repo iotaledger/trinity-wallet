@@ -679,7 +679,7 @@
         "noUpdatesAvailable": "Keine Updates verfügbar",
         "noUpdatesAvailableExplanation": "Du hast bereits die neueste Version von Trinity Desktop installiert.",
         "newVersionAvailable": "Neue Version verfügbar",
-        "newVersionAvailableExplanation": "Eine neue Trinity-Version ist verfügbar. Möchten Sie jetzt ein Update durchführen?",
+        "newVersionAvailableExplanation": "Eine neue Trinity Version ist verfügbar. Möchten Sie jetzt ein Update durchführen?",
         "installUpdate": "Update installieren und Trinity neu starten",
         "installUpdateExplanation": "Der Download wurde abgeschlossen. Trinity wird jetzt neu starten um das Update zu installieren.",
         "downloadingUpdate": "Aktualisierung wird heruntergeladen",
