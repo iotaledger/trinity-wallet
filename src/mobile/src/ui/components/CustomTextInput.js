@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX, getChecksum } from 'shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -216,8 +216,10 @@ class CustomTextInput extends Component {
 
         if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
             checksumValue = '!';
-        } else if (seed.length !== 0 && seed.length < 81) {
+        } else if (seed.length !== 0 && seed.length < MAX_SEED_LENGTH) {
             checksumValue = '< 81';
+        } else if (seed.length > MAX_SEED_LENGTH) {
+            checksumValue = '> 81';
         } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }

@@ -121,13 +121,13 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
-        } else if (seed.length < MAX_SEED_LENGTH) {
+        } else if (seed.length !== MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
-                t('seedTooShort'),
+                seed.length > MAX_SEED_LENGTH ? t('seedTooLong') : t('seedTooShort'),
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
-        } else if (seed.length === MAX_SEED_LENGTH) {
+        } else {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
