@@ -9,11 +9,12 @@ import { withI18n } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
+import { fetchVersions } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex, shouldUpdate, forceUpdate } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
@@ -78,6 +79,10 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
+        shouldUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.func.isRequired,
+        /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -107,6 +112,7 @@ class App extends React.Component {
         Electron.requestDeepLink();
 
         this.checkVaultAvailability();
+        this.versionCheck();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -184,6 +190,17 @@ class App extends React.Component {
             this.setState({
                 fatalError: true,
             });
+        }
+    }
+
+    async versionCheck() {
+        const data = await fetchVersions();
+        const versionId = Electron.getVersion();
+
+        if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
+            this.props.forceUpdate();
+        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
+            this.props.shouldUpdate();
         }
     }
 
@@ -308,6 +325,8 @@ const mapDispatchToProps = {
     updateTheme,
     setOnboardingComplete,
     setAccountInfoDuringSetup,
+    shouldUpdate,
+    forceUpdate,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

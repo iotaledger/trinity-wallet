@@ -53,6 +53,14 @@ const initialState = {
      * Navigation stack
      */
     navStack: [],
+    /**
+     * Determines whether user should update
+     */
+    shouldUpdate: false,
+    /**
+     * Determines whether user is forced to update
+     */
+    forceUpdate: false,
 };
 
 export default (state = initialState, action) => {
@@ -197,6 +205,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 navStack: [action.payload],
+            };
+        case ActionTypes.SHOULD_UPDATE:
+            return {
+                ...state,
+                shouldUpdate: true,
+            };
+        case ActionTypes.FORCE_UPDATE:
+            return {
+                ...state,
+                forceUpdate: true,
             };
         default:
             return state;
