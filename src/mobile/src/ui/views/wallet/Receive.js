@@ -16,7 +16,6 @@ import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
 import { generateNewAddress } from 'shared-modules/actions/wallet';
-import { flipReceiveCard } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     selectAccountInfo,
@@ -199,10 +198,6 @@ class Receive extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        isCardFlipped: PropTypes.bool.isRequired,
-        /** @ignore */
-        flipReceiveCard: PropTypes.func.isRequired,
-        /** @ignore */
         qrMessage: PropTypes.string.isRequired,
         /** @ignore */
         qrAmount: PropTypes.string.isRequired,
@@ -226,6 +221,7 @@ class Receive extends Component {
             currencySymbol: getCurrencySymbol(props.currency),
             scramblingLetters: [],
             hasPressedGenerateAddress: false,
+            isCardFlipped: false,
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -233,14 +229,11 @@ class Receive extends Component {
 
     componentWillMount() {
         this.scrambleLetters();
-
-        const value = this.props.isCardFlipped ? 1 : 0;
-
         this.rotateAnimatedValue = new Animated.Value(0);
-        this.flipAnimatedValue = new Animated.Value(value);
-        this.scaleAnimatedValueFront = new Animated.Value(value);
-        this.scaleAnimatedValueBack = new Animated.Value(value);
-        this.opacityAnimatedValue = new Animated.Value(value);
+        this.flipAnimatedValue = new Animated.Value(0);
+        this.scaleAnimatedValueFront = new Animated.Value(0);
+        this.scaleAnimatedValueBack = new Animated.Value(0);
+        this.opacityAnimatedValue = new Animated.Value(0);
 
         this.rotateInterpolate = this.rotateAnimatedValue.interpolate({
             inputRange: [0, 1],
@@ -286,6 +279,9 @@ class Receive extends Component {
         }
         if (this.props.selectedAccountName !== newProps.selectedAccountName) {
             this.setState({ hasPressedGenerateAddress: false });
+            if (this.state.isCardFlipped) {
+                this.flipCard();
+            }
         }
     }
 
@@ -468,7 +464,8 @@ class Receive extends Component {
      *   @method flipCard
      **/
     flipCard() {
-        const { t, isCardFlipped } = this.props;
+        const { t } = this.props;
+        const { isCardFlipped } = this.state;
         const toValue = isCardFlipped ? 0 : 1;
 
         if (!this.state.hasPressedGenerateAddress || this.props.isGeneratingReceiveAddress) {
@@ -502,7 +499,7 @@ class Receive extends Component {
                 delay: 200,
                 useNativeDriver: true,
             }),
-        ]).start(() => this.props.flipReceiveCard());
+        ]).start(() => this.setState({ isCardFlipped: !isCardFlipped }));
     }
 
     blockActionDuringSync() {}
@@ -512,12 +509,11 @@ class Receive extends Component {
             t,
             theme: { primary, dark, positive },
             isGeneratingReceiveAddress,
-            isCardFlipped,
             qrMessage,
             qrTag,
             receiveAddress,
         } = this.props;
-        const { scramblingLetters, hasPressedGenerateAddress } = this.state;
+        const { scramblingLetters, hasPressedGenerateAddress, isCardFlipped } = this.state;
         const qrContent = JSON.stringify({
             address: receiveAddress,
             amount: this.getQrValue(),
@@ -545,7 +541,7 @@ class Receive extends Component {
                                     transform: [{ perspective: 1000 }, flipStyleFront, scaleStyleFront],
                                 },
                             ]}
-                            pointerEvents={this.props.isCardFlipped ? 'none' : 'auto'}
+                            pointerEvents={isCardFlipped ? 'none' : 'auto'}
                         >
                             {qrOptionsActive && (
                                 <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
@@ -667,7 +663,7 @@ class Receive extends Component {
                             </View>
                         </Animated.View>
                         <Animated.View
-                            pointerEvents={this.props.isCardFlipped ? 'auto' : 'none'}
+                            pointerEvents={isCardFlipped ? 'auto' : 'none'}
                             style={[
                                 styles.flipCard,
                                 styles.flipCardBack,
@@ -746,7 +742,6 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isTransitioning: state.ui.isTransitioning,
     password: state.wallet.password,
-    isCardFlipped: state.ui.isReceiveCardFlipped,
     qrMessage: state.ui.qrMessage,
     qrAmount: state.ui.qrAmount,
     qrTag: state.ui.qrTag,
@@ -763,7 +758,6 @@ const mapDispatchToProps = {
     getFromKeychainRequest,
     getFromKeychainSuccess,
     getFromKeychainError,
-    flipReceiveCard,
 };
 
 export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));
