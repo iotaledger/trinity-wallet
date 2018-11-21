@@ -124,7 +124,7 @@ describe('Testing HistoryModalContent component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('ScrollViewMock').length).toEqual(1);
+            expect(wrapper.find('ScrollView').length).toEqual(1);
         });
 
         it('should return status prop as first child to first Text component', () => {
