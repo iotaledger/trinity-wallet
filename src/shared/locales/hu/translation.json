@@ -280,7 +280,7 @@
         "shareQr": "QR kód megosztása",
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
-        "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
+        "addressCopiedExplanation": "A cím a vágólapra lett másolva.",
         "generateNewAddress": "Új cím generálása",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
