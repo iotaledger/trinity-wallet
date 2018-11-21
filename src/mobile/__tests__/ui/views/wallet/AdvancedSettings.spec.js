@@ -15,6 +15,8 @@ jest.mock('rn-fetch-blob', () => {});
 
 jest.mock('rn-fetch-blob', () => {});
 
+jest.mock('react-native-share', () => {});
+
 const getProps = (overrides) =>
     assign(
         {},
