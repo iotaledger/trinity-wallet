@@ -146,7 +146,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "키체인 오류",
         "errorAccessingKeychainExplanation": "보안 저장에 필요한 키체인에 접근할 수 없습니다.",
-        "mainWallet": "주 계정"
+        "mainWallet": "주 계정",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
