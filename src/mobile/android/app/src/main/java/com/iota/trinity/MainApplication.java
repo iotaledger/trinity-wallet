@@ -28,7 +28,7 @@ import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import cl.json.RNSharePackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
-import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
+import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
