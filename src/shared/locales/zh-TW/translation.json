@@ -146,7 +146,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "鑰匙串錯誤",
         "errorAccessingKeychainExplanation": "無法訪問安全儲存所需的鑰匙串。",
-        "mainWallet": "主帳戶"
+        "mainWallet": "主帳戶",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
