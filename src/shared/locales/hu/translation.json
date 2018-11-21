@@ -143,14 +143,14 @@
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Hiba történt a címekhez tartozó adatok lekérése közben. Válasszon egy másik csomópontot és próbálja újra.",
         "errorAccessingKeychain": "Kulcstár-hiba",
         "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
         "mainWallet": "Elsődleges számla",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "shouldUpdate": "Új frissítés érhető el",
+        "shouldUpdateExplanation": "Egy új szoftverfrissítés jelent meg. Ajánlott az alkalmazást a legújabb verzióra frissíteni.",
+        "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
+        "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -281,15 +281,15 @@
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Új cím generálása",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A QR kód megosztásához szükség van a fájlrendszerhez való hozzáféréshez.",
         "tag": "Címke",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Új cím generálása",
+        "generateAnAddressTitle": "Új cím generálása",
+        "generateAnAddressExplanation": "Kérjük ennek a funkciónak a használata előtt generáljon egy új címet."
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
@@ -546,7 +546,7 @@
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
         "accountIndex": "Számlájának sorszáma",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Hardveres tárca számla oldala"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -755,7 +755,7 @@
         "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
         "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
         "checkAddress": "Ellenőrizze a fogadási címet",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
