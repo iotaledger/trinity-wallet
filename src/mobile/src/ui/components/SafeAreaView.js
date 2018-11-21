@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
-import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getBackgroundColor } from 'ui/theme/general';
-import { isIPhoneFailingSafeAreaView } from 'libs/device';
 import { width, height } from 'libs/dimensions';
 
 export default function withSafeAreaView(WrappedComponent) {
@@ -34,7 +32,7 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         render() {
-            const { theme, inactive, isModalActive } = this.props;
+            const { theme, inactive } = this.props;
             const { currentScreen } = this.state;
             return (
                 <SafeAreaView
@@ -45,19 +43,6 @@ export default function withSafeAreaView(WrappedComponent) {
                     }}
                 >
                     <WrappedComponent {...this.props} />
-                    {isIPhoneFailingSafeAreaView && (
-                        <AnimatedComponent
-                            animationInType={['fadeIn']}
-                            animationOutType={['fadeOut']}
-                            style={{
-                                height: 34,
-                                backgroundColor:
-                                    inactive || isModalActive
-                                        ? theme.body.bg
-                                        : getBackgroundColor(currentScreen, theme, true, inactive),
-                            }}
-                        />
-                    )}
                 </SafeAreaView>
             );
         }

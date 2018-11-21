@@ -48,7 +48,7 @@ class DynamicStatusBar extends Component {
      */
     getStatusBarColor(currentRoute) {
         const { theme, inactive } = this.props;
-        const backgroundColor = getBackgroundColor(currentRoute, theme, false, inactive);
+        const backgroundColor = getBackgroundColor(currentRoute, theme, inactive);
         if (backgroundColor) {
             return rgbToHex(backgroundColor);
         }
