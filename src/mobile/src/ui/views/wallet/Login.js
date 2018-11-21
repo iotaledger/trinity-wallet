@@ -58,6 +58,8 @@ class Login extends Component {
         setLoginRoute: PropTypes.func.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -91,8 +93,8 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const { t, is2FAEnabled, hasConnection, password } = this.props;
-        if (!hasConnection) {
+        const { t, is2FAEnabled, hasConnection, password, forceUpdate } = this.props;
+        if (!hasConnection || forceUpdate) {
             return;
         }
         if (!password) {
@@ -237,6 +239,7 @@ const mapStateToProps = (state) => ({
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {

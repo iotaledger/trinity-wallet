@@ -43,7 +43,10 @@ export default class Button extends React.PureComponent {
 
         if (to) {
             return (
-                <Link {...this.props} className={classNames(css.button, css[className], css[variant])}>
+                <Link
+                    {...this.props}
+                    className={classNames(css.button, css[className], css[variant], disabled ? css.disabled : null)}
+                >
                     {children}
                 </Link>
             );

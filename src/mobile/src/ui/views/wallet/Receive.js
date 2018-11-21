@@ -502,8 +502,6 @@ class Receive extends Component {
         ]).start(() => this.setState({ isCardFlipped: !isCardFlipped }));
     }
 
-    blockActionDuringSync() {}
-
     render() {
         const {
             t,
