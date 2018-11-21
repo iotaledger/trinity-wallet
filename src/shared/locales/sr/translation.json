@@ -146,7 +146,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain greška",
         "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u za sigurno skladištenje.",
-        "mainWallet": "GLAVNI RAČUN"
+        "mainWallet": "GLAVNI RAČUN",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedozvoljene znakove",
