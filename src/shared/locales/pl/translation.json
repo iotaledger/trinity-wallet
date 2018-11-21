@@ -149,8 +149,8 @@
         "mainWallet": "KONTO GŁÓWNE",
         "shouldUpdate": "Dostępna jest nowa aktualizacja",
         "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -281,14 +281,14 @@
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
         "tag": "Tag",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddress": "Wygeneruj adres",
+        "generateAnAddressTitle": "Wygeneruj adres",
         "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji."
     },
     "saveYourSeed": {
@@ -755,7 +755,7 @@
         "ledgerIncorrectIndex": "Niezgodne urządzenie Ledger",
         "ledgerIncorrectIndexExplanation": "Podłączony portfel sprzętowy Ledger, nie pasuje do połączonego z tym kontem lub frazy odzyskiwania na urządzeniu, zostały zmienione.",
         "checkAddress": "Sprawdź adres odbioru",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
     }
