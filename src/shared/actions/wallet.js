@@ -30,14 +30,12 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
-    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
     CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
-    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
     SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
@@ -48,6 +46,8 @@ export const ActionTypes = {
     SET_BALANCE_CHECK_FLAG: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
     CANCEL_SNAPSHOT_TRANSITION: 'IOTA/WALLET/CANCEL_SNAPSHOT_TRANSITION',
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
+    SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
+    FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
@@ -85,19 +85,6 @@ export const generateNewAddressSuccess = () => ({
  */
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-/**
- * Dispatch to set new account name during mobile onboarding
- *
- * @method setAccountName
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setAccountName = (payload) => ({
-    type: ActionTypes.SET_ACCOUNT_NAME,
-    payload,
 });
 
 /**
@@ -171,19 +158,6 @@ export const clearSeed = () => ({
  */
 export const setSetting = (payload) => ({
     type: ActionTypes.SET_SETTING,
-    payload,
-});
-
-/**
- * Dispatch to temporarily store account information for additional seeds in state
- *
- * @method setAdditionalAccountInfo
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setAdditionalAccountInfo = (payload) => ({
-    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
@@ -572,4 +546,26 @@ export const addressValidationRequest = () => ({
  */
 export const addressValidationSuccess = () => ({
     type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
+});
+
+/**
+ * Dispatch to suggest that user should update
+ *
+ * @method shouldUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const shouldUpdate = () => ({
+    type: ActionTypes.SHOULD_UPDATE,
+});
+
+/**
+ * Dispatch to force user to update
+ *
+ * @method forceUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const forceUpdate = () => ({
+    type: ActionTypes.FORCE_UPDATE,
 });

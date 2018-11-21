@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import SeedStore from 'libs/SeedStore';
 
 import { generateAlert } from 'actions/alerts';
-import { setAdditionalAccountInfo } from 'actions/wallet';
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 
 import Button from 'ui/components/Button';
 import Number from 'ui/components/input/Number';
@@ -20,11 +20,11 @@ import css from './index.scss';
 class Ledger extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        wallet: PropTypes.object.isRequired,
+        additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         accounts: PropTypes.object.isRequired,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
@@ -34,8 +34,8 @@ class Ledger extends React.PureComponent {
     };
 
     state = {
-        index: this.props.wallet.additionalAccountMeta.index || 0,
-        page: this.props.wallet.additionalAccountMeta.page || 0,
+        index: this.props.additionalAccountMeta.index || 0,
+        page: this.props.additionalAccountMeta.page || 0,
         loading: false,
         advancedMode: false,
     };
@@ -81,8 +81,8 @@ class Ledger extends React.PureComponent {
                 );
             }
 
-            this.props.setAdditionalAccountInfo({
-                additionalAccountMeta: { type: 'ledger', index, page, indexAddress },
+            this.props.setAccountInfoDuringSetup({
+                meta: { type: 'ledger', index, page, indexAddress },
             });
 
             history.push('/onboarding/account-name');
@@ -147,13 +147,13 @@ class Ledger extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
     accounts: state.accounts.accountInfo,
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Ledger));

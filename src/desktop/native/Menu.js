@@ -396,6 +396,10 @@ const initMenu = (app, getWindowFunc) => {
             mainMenu.popup(mainWindow);
         });
 
+        ipcMain.on('updates.check', () => {
+            autoUpdater.checkForUpdates();
+        });
+
         mainMenu = createMenu();
     });
 };

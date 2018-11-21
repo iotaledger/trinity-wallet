@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
         "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Errore di portachiavi",
         "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
         "mainWallet": "CONTO PRINCIPALE"
@@ -276,12 +277,15 @@
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "NESSUN INDIRIZZO",
         "spent": "Speso",
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario al fine di condividere codici QR.",
-        "tag": "Etichetta"
+        "tag": "Etichetta",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Esegui il backup del tuo seme",
@@ -747,8 +751,8 @@
         "ledgerIncorrectIndex": "Mancata corrispondenza del dispositivo Ledger",
         "ledgerIncorrectIndexExplanation": "Il dispositivo Ledger collegato non corrisponde a quello associato a questo conto, o la sua password è stata modificata.",
         "checkAddress": "Controllare l'indirizzo di ricezione",
-        "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger. Altrimenti premi \"Sincronizza indirizzo\".",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare."
     }
 }

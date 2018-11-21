@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでやり直してください。",
         "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
         "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
+        "errorSyncingAddresses": "アドレス情報の同期中にエラーが発生しました。別のノードでもう一度試してみてください。",
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
         "mainWallet": "メインアカウント"
@@ -276,12 +277,15 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "アドレスを同期",
+        "generateNewAddress": "Generate address",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
         "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
-        "tag": "タグ"
+        "tag": "タグ",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
@@ -538,7 +542,7 @@
         "hideSeed": "シードを隠す",
         "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
         "accountIndex": "Ledgerのアカウントインデックス",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Ledgerのアカウントページ"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
@@ -747,8 +751,8 @@
         "ledgerIncorrectIndex": "Ledger端末との不一致",
         "ledgerIncorrectIndexExplanation": "Ledger端末がアカウントにリンクされている端末と一致しないか、または復元フレーズが変更されています。",
         "checkAddress": "受取用のアドレスを確認してください",
-        "checkAddressExplanation": "受取用アドレスがLedger端末に表示されているアドレスと一致することをご確認ください。表示されていない場合は、「アドレスの同期」を押してください。",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "applicationNotInitialised": "未確定に関する警告",
+        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。"
     }
 }

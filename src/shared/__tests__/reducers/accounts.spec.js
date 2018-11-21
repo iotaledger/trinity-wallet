@@ -6,6 +6,11 @@ describe('Reducer: accounts', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
                 onboardingComplete: false,
                 accountInfo: {},
                 failedBundleHashes: {},
@@ -15,6 +20,35 @@ describe('Reducer: accounts', () => {
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP', () => {
+        it('should assign payload to accountInfoDuringSetup prop in state', () => {
+            const initialState = {
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
+            };
+
+            const action = actions.setAccountInfoDuringSetup({
+                name: 'bar',
+                meta: { foo: '' },
+                usedExistingSeed: true,
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfoDuringSetup: {
+                    name: 'bar',
+                    meta: { foo: '' },
+                    usedExistingSeed: true,
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
         });
     });
 
@@ -547,6 +581,29 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+        });
+
+        it('should reset accountInfoDuringSetup to default state', () => {
+            const initialState = {
+                accountInfoDuringSetup: {
+                    name: 'foo',
+                    meta: { bar: {} },
+                    usedExistingSeed: true,
+                },
+            };
+
+            const action = actions.fullAccountInfoFetchSuccess({});
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
+            };
+
+            expect(newState.accountInfoDuringSetup).to.eql(expectedState.accountInfoDuringSetup);
         });
     });
 
