@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { getSelectedAccountName, getFailedBundleHashesForSelectedAccount } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
@@ -72,7 +72,7 @@ export default function withListData(ListComponent) {
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
-            const accountName = accounts.accountNames[typeof index === 'number' ? index : seedIndex];
+            const accountName = Object.keys(accounts.accountInfo)[typeof index === 'number' ? index : seedIndex];
 
             if (!accountName && index !== -1) {
                 return null;
@@ -99,7 +99,7 @@ export default function withListData(ListComponent) {
                 isBusy,
                 mode,
                 remotePoW,
-                isLoading: ui.isFetchingLatestAccountInfoOnLogin,
+                isLoading: ui.isFetchingAccountInfo,
                 currentlyPromotingBundleHash: ui.currentlyPromotingBundleHash,
                 isRetryingFailedTransaction: ui.isRetryingFailedTransaction,
                 hideEmptyTransactions,
@@ -135,5 +135,5 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(translate()(ListData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(ListData));
 }

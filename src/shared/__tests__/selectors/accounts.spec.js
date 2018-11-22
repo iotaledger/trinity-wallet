@@ -22,6 +22,8 @@ import {
     getFailedBundleHashesForSelectedAccount,
     getNodesFromState,
     getSelectedNodeFromState,
+    getAccountInfoDuringSetup,
+    isSettingUpNewAccount,
 } from '../../selectors/accounts';
 import { defaultNode as DEFAULT_NODE } from '../../config';
 
@@ -148,15 +150,15 @@ describe('selectors: accounts', () => {
     });
 
     describe('#getAccountNamesFromState', () => {
-        describe('when "accountNames" prop is not defined as a nested prop under "accounts" prop in argument', () => {
+        describe('when "accountInfo" prop is not defined as a nested prop under "accounts" prop in argument', () => {
             it('should return an empty array', () => {
-                expect(getAccountNamesFromState({ accounts: { notAccountNames: [] } })).to.eql([]);
+                expect(getAccountNamesFromState({ accounts: { notAccountInfo: [] } })).to.eql([]);
             });
         });
 
-        describe('when "accountNames" prop is defined as a nested prop under "accounts" prop in argument', () => {
+        describe('when "accountInfo" prop is defined as a nested prop under "accounts" prop in argument', () => {
             it('should return value for "accountNames" prop', () => {
-                expect(getAccountNamesFromState({ accounts: { accountNames: [{}, {}] } })).to.eql([{}, {}]);
+                expect(getAccountNamesFromState({ accounts: { accountInfo: { a: {}, b: [] } } })).to.eql(['a', 'b']);
             });
         });
     });
@@ -197,7 +199,6 @@ describe('selectors: accounts', () => {
                             balance: 20,
                         },
                     },
-                    accountNames: ['foo', 'baz'],
                 },
                 wallet: {
                     seedIndex: 0,
@@ -230,7 +231,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -260,7 +260,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -290,7 +289,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -320,7 +318,6 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -347,7 +344,6 @@ describe('selectors: accounts', () => {
                                     addresses: {},
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -374,7 +370,6 @@ describe('selectors: accounts', () => {
                                     balance: 10,
                                 },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -391,7 +386,10 @@ describe('selectors: accounts', () => {
         beforeEach(() => {
             state = {
                 accounts: {
-                    accountNames: ['foo', 'baz'],
+                    accountInfo: {
+                        foo: {},
+                        baz: {},
+                    },
                 },
                 wallet: {
                     seedIndex: 0,
@@ -414,6 +412,14 @@ describe('selectors: accounts', () => {
         describe('when "setupInfo" prop is defined as a nested prop under "accounts" reducer', () => {
             it('should return value for "setupInfo" prop', () => {
                 expect(getSetupInfoFromAccounts({ accounts: { setupInfo: { foo: {} } } })).to.eql({ foo: {} });
+            });
+        });
+    });
+
+    describe('#getAccountInfoDuringSetup', () => {
+        it('should return value for "accountInfoDuringSetup" prop', () => {
+            expect(getAccountInfoDuringSetup({ accounts: { accountInfoDuringSetup: { foo: {} } } })).to.eql({
+                foo: {},
             });
         });
     });
@@ -442,7 +448,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 1,
@@ -457,11 +462,12 @@ describe('selectors: accounts', () => {
                 expect(
                     getSetupInfoForSelectedAccount({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             setupInfo: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -498,7 +504,6 @@ describe('selectors: accounts', () => {
                             failedBundleHashes: {
                                 foo: { AAA: [{}] },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 1,
@@ -513,13 +518,14 @@ describe('selectors: accounts', () => {
                 expect(
                     getFailedBundleHashesForSelectedAccount({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             failedBundleHashes: {
                                 foo: {
                                     AAA: [{}, {}],
                                 },
                             },
-                            accountNames: ['foo'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -540,7 +546,6 @@ describe('selectors: accounts', () => {
                             tasks: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 1,
@@ -555,11 +560,12 @@ describe('selectors: accounts', () => {
                 expect(
                     getTasksForSelectedAccount({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             tasks: {
                                 foo: { prop: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -582,7 +588,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { usedExistingSeed: false },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -603,7 +608,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { usedExistingSeed: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -624,7 +628,6 @@ describe('selectors: accounts', () => {
                             setupInfo: {
                                 foo: { usedExistingSeed: true },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -641,11 +644,12 @@ describe('selectors: accounts', () => {
                 expect(
                     hasDisplayedSnapshotTransitionGuide({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             tasks: {
                                 foo: { unknownProp: false },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -660,13 +664,14 @@ describe('selectors: accounts', () => {
                 expect(
                     hasDisplayedSnapshotTransitionGuide({
                         accounts: {
-                            accountInfo: {},
+                            accountInfo: {
+                                foo: {},
+                            },
                             tasks: {
                                 // Set hasDisplayedTransitionGuide to string instead of boolean
                                 // to check for false positives
                                 foo: { hasDisplayedTransitionGuide: 'raw' },
                             },
-                            accountNames: ['foo', 'baz'],
                         },
                         wallet: {
                             seedIndex: 0,
@@ -721,6 +726,59 @@ describe('selectors: accounts', () => {
         describe('when "nodes" prop is undefined in settings reducer', () => {
             it('should return wallet default node', () => {
                 expect(getSelectedNodeFromState({ settings: {} })).to.equal(DEFAULT_NODE);
+            });
+        });
+    });
+
+    describe('#isSettingUpNewAccount', () => {
+        describe('when accountInfoDuringSetup.name is empty', () => {
+            describe('when accountInfoDuringSetup.meta is not empty', () => {
+                it('should return false', () => {
+                    expect(
+                        isSettingUpNewAccount({
+                            accounts: {
+                                accountInfoDuringSetup: {
+                                    name: '',
+                                    meta: { foo: {} },
+                                },
+                            },
+                        }),
+                    ).to.equal(false);
+                });
+            });
+        });
+
+        describe('when accountInfoDuringSetup.name is not empty', () => {
+            describe('when accountInfoDuringSetup.meta is empty', () => {
+                it('should return false', () => {
+                    expect(
+                        isSettingUpNewAccount({
+                            accounts: {
+                                accountInfoDuringSetup: {
+                                    name: 'foo',
+                                    meta: {},
+                                },
+                            },
+                        }),
+                    ).to.equal(false);
+                });
+            });
+        });
+
+        describe('when accountInfoDuringSetup.name is not empty', () => {
+            describe('when accountInfoDuringSetup.meta is not empty', () => {
+                it('should return true', () => {
+                    expect(
+                        isSettingUpNewAccount({
+                            accounts: {
+                                accountInfoDuringSetup: {
+                                    name: 'foo',
+                                    meta: { baz: {} },
+                                },
+                            },
+                        }),
+                    ).to.equal(true);
+                });
             });
         });
     });

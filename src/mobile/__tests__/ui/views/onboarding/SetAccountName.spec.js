@@ -18,22 +18,14 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            navigator: {
-                push: noop,
-            },
-            setAccountName: noop,
+            componentId: 'foo',
+            accountNames: [],
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
-            t: (arg) => {
-                const translations = {
-                    'global:mainWallet': 'MAIN ACCOUNT',
-                };
-
-                return translations[arg] ? translations[arg] : 'foo';
-            },
+            t: noop,
+            accountCount: 0,
             seed: 'SEED',
             onboardingComplete: false,
-            seedCount: 0,
             theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
             password: {},
             shouldPreventAction: false,
@@ -43,20 +35,16 @@ const getProps = (overrides) =>
 
 describe('Testing SetAccountName component', () => {
     describe('propTypes', () => {
-        it('should require a navigator object as a prop', () => {
-            expect(SetAccountName.propTypes.navigator).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a setAccountName function as a prop', () => {
-            expect(SetAccountName.propTypes.setAccountName).toEqual(PropTypes.func.isRequired);
+        it('should require a componentId object as a prop', () => {
+            expect(SetAccountName.propTypes.componentId).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {
             expect(SetAccountName.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a setAdditionalAccountInfo function as a prop', () => {
-            expect(SetAccountName.propTypes.setAdditionalAccountInfo).toEqual(PropTypes.func.isRequired);
+        it('should require a setAccountInfoDuringSetup function as a prop', () => {
+            expect(SetAccountName.propTypes.setAccountInfoDuringSetup).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
@@ -69,10 +57,6 @@ describe('Testing SetAccountName component', () => {
 
         it('should require a onboardingComplete bool as a prop', () => {
             expect(SetAccountName.propTypes.onboardingComplete).toEqual(PropTypes.bool.isRequired);
-        });
-
-        it('should require a seedCount number as a prop', () => {
-            expect(SetAccountName.propTypes.seedCount).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a theme object as a prop', () => {
@@ -91,9 +75,9 @@ describe('Testing SetAccountName component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
             describe('onDonePress', () => {
-                it('should call setAccountName prop method with trimmed accountName state prop', () => {
+                it('should call setAccountInfoDuringSetup prop method with trimmed accountName state prop', () => {
                     const props = getProps({
-                        setAccountName: jest.fn(),
+                        setAccountInfoDuringSetup: jest.fn(),
                     });
 
                     const wrapper = shallow(<SetAccountName {...props} />);
@@ -101,15 +85,16 @@ describe('Testing SetAccountName component', () => {
                     const inst = wrapper.instance();
                     inst.onDonePress();
 
-                    expect(props.setAccountName).toHaveBeenCalledWith('foo');
+                    expect(props.setAccountInfoDuringSetup).toHaveBeenCalledWith({
+                        name: 'foo',
+                        meta: { type: 'keychain' },
+                    });
                 });
 
                 it('should call update accountName prop in state with text when onChangeText prop method on CustomTextInput is triggered', () => {
                     const props = getProps();
 
                     const wrapper = shallow(<SetAccountName {...props} />);
-
-                    expect(wrapper.state('accountName')).toEqual('MAIN ACCOUNT');
 
                     wrapper
                         .find('CustomTextInput')

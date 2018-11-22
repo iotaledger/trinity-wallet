@@ -1,7 +1,7 @@
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { round } from 'shared-modules/libs/utils';
@@ -14,19 +14,23 @@ import {
     cancelSnapshotTransition,
 } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'shared-modules/selectors/accounts';
+import {
+    getSelectedAccountName,
+    getSelectedAccountMeta,
+    getAddressesForSelectedAccount,
+} from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import ModalButtons from 'ui/components/ModalButtons';
-import GENERAL from 'ui/theme/general';
-import { getSeedFromKeychain } from 'libs/keychain';
+import { Styling } from 'ui/theme/general';
+import SeedStore from 'libs/SeedStore';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import ProgressBar from 'ui/components/ProgressBar';
-import { getMultiAddressGenFn, getPowFn } from 'libs/nativeModules';
+import { getPowFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -69,18 +73,18 @@ const styles = StyleSheet.create({
     },
     buttonInfoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     buttonQuestionText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         paddingTop: height / 60,
     },
@@ -124,6 +128,8 @@ class SnapshotTransition extends Component {
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Currently selected account meta */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -176,22 +182,10 @@ class SnapshotTransition extends Component {
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
-        const { transitionAddresses, selectedAccountName, password } = this.props;
+        const { transitionAddresses, selectedAccountName, selectedAccountMeta, password } = this.props;
         setTimeout(() => {
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        throw new Error('Error');
-                    } else {
-                        this.props.completeSnapshotTransition(
-                            seed,
-                            selectedAccountName,
-                            transitionAddresses,
-                            getPowFn(),
-                        );
-                    }
-                })
-                .catch((err) => console.error(err));
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses, getPowFn());
         }, 300);
     }
 
@@ -200,18 +194,12 @@ class SnapshotTransition extends Component {
      * @method onBalanceIncompletePress
      */
     onBalanceIncompletePress() {
-        const genFn = getMultiAddressGenFn();
-        const { transitionAddresses, password, selectedAccountName } = this.props;
+        const { transitionAddresses, password, selectedAccountName, selectedAccountMeta } = this.props;
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
         setTimeout(() => {
-            getSeedFromKeychain(password, selectedAccountName).then((seed) => {
-                if (seed === null) {
-                    throw new Error('Error');
-                } else {
-                    this.props.generateAddressesAndGetBalance(seed, currentIndex, genFn);
-                }
-            });
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
         }, 300);
     }
 
@@ -221,18 +209,10 @@ class SnapshotTransition extends Component {
      * @method onSnapshotTransitionPress
      */
     onSnapshotTransitionPress() {
-        const { addresses, shouldPreventAction, password, selectedAccountName, t } = this.props;
+        const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountMeta, t } = this.props;
         if (!shouldPreventAction) {
-            const genFn = getMultiAddressGenFn();
-            getSeedFromKeychain(password, selectedAccountName)
-                .then((seed) => {
-                    if (seed === null) {
-                        throw new Error('Error');
-                    } else {
-                        this.props.transitionForSnapshot(seed, addresses, genFn);
-                    }
-                })
-                .catch((err) => console.error(err));
+            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -404,11 +384,11 @@ const mapStateToProps = (state) => ({
     transitionAddresses: state.wallet.transitionAddresses,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),
     addresses: getAddressesForSelectedAccount(state),
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
-    isModalActive: state.ui.isModalActive,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
 });
@@ -423,6 +403,6 @@ const mapDispatchToProps = {
     cancelSnapshotTransition,
 };
 
-export default translate(['snapshotTransition', 'global', 'loading'])(
+export default withNamespaces(['snapshotTransition', 'global', 'loading'])(
     connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition),
 );

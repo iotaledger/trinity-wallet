@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-    setQrMessage,
-    setQrAmount,
-    setQrTag,
-    setSelectedQrTab,
-    setQrDenomination,
-} from 'shared-modules/actions/ui';
+import { setQrMessage, setQrAmount, setQrTag, setSelectedQrTab, setQrDenomination } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { width, height } from 'libs/dimensions';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import AmountTextInput from './AmountTextInput';
 
 const styles = StyleSheet.create({
@@ -27,7 +21,7 @@ const styles = StyleSheet.create({
     },
     label: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
         marginLeft: 1,
         marginRight: width / 18,
     },
@@ -37,14 +31,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     messageInput: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         flex: 1,
         margin: width / 28,
         justifyContent: 'flex-start',
     },
     tagInput: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: Styling.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         marginHorizontal: width / 28,
         paddingTop: 0,
@@ -56,7 +50,7 @@ const styles = StyleSheet.create({
     },
     messageInputContainer: {
         flex: 1,
-        borderRadius: GENERAL.borderRadiusSmall,
+        borderRadius: Styling.borderRadiusSmall,
         borderWidth: 1,
     },
 });
@@ -240,4 +234,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MultiTextInput));

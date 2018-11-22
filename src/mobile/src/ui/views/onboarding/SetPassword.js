@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { withNamespaces } from 'react-i18next';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import {
-    increaseSeedCount,
-    addAccountName,
-    setOnboardingComplete,
-    setBasicAccountInfo,
-} from 'shared-modules/actions/accounts';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { setOnboardingComplete } from 'shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import {
-    hasDuplicateSeed,
-    hasDuplicateAccountName,
-    storeSeedInKeychain,
-    getAllSeedsFromKeychain,
-    storeSaltInKeychain,
-} from 'libs/keychain';
+import SeedStore from 'libs/SeedStore';
+import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
-import OnboardingButtons from 'ui/components/OnboardingButtons';
-import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
-import { isAndroid } from 'libs/device';
+import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { width, height } from 'libs/dimensions';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import PasswordFields from 'ui/components/PasswordFields';
+import { isIPhoneX } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
@@ -57,13 +48,13 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         textAlign: 'left',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
@@ -73,8 +64,8 @@ const styles = StyleSheet.create({
 /** Set Password component */
 class SetPassword extends Component {
     static propTypes = {
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Component ID */
+        componentId: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -83,10 +74,6 @@ class SetPassword extends Component {
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
         clearSeed: PropTypes.func.isRequired,
-        /** @ignore */
-        increaseSeedCount: PropTypes.func.isRequired,
-        /** @ignore */
-        addAccountName: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -97,10 +84,6 @@ class SetPassword extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** @ignore */
-        setBasicAccountInfo: PropTypes.func.isRequired,
-        /** @ignore */
-        usedExistingSeed: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -116,58 +99,36 @@ class SetPassword extends Component {
     }
 
     /**
-     * Validates correct password hash and checks for duplicate seed/account name
+     * Stores seed in keychain and clears seed from state
      * @method onAcceptPassword
      * @returns {Promise<void>}
      */
     async onAcceptPassword() {
         const { t, seed, accountName } = this.props;
+
         const salt = await getSalt();
         const pwdHash = await generatePasswordHash(this.state.password, salt);
-        getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
-            if (hasDuplicateAccountName(seedInfo, accountName)) {
-                return this.props.generateAlert(
-                    'error',
-                    t('addAdditionalSeed:nameInUse'),
-                    t('addAdditionalSeed:nameInUseExplanation'),
-                );
-            } else if (hasDuplicateSeed(seedInfo, seed)) {
-                return this.props.generateAlert(
-                    'error',
-                    t('addAdditionalSeed:seedInUse'),
-                    t('addAdditionalSeed:seedInUseExplanation'),
-                );
-            }
-            return this.onAcceptInKeychain(pwdHash, salt, seed, accountName);
-        });
-    }
 
-    /**
-     * Stores seed in keychain and clears seed from state
-     * @method onAcceptInKeychain
-     * @returns {Promise<void>}
-     */
-    onAcceptInKeychain(pwdHash, salt, seed, accountName) {
-        const { t, usedExistingSeed } = this.props;
-        storeSeedInKeychain(pwdHash, seed, accountName)
-            .then(async () => {
-                await storeSaltInKeychain(salt);
-                this.props.setPassword(pwdHash);
-                this.props.addAccountName(accountName);
-                this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
-                this.props.increaseSeedCount();
-                this.props.clearWalletData();
-                this.props.clearSeed();
-                this.props.setOnboardingComplete(true);
-                this.navigateToOnboardingComplete();
-            })
-            .catch(() =>
-                this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongRestart'),
-                ),
+        await storeSaltInKeychain(salt);
+        this.props.setPassword(pwdHash);
+
+        const seedStore = new SeedStore.keychain(pwdHash);
+
+        const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+        if (!isUniqueSeed) {
+            return this.props.generateAlert(
+                'error',
+                t('addAdditionalSeed:seedInUse'),
+                t('addAdditionalSeed:seedInUseExplanation'),
             );
+        }
+
+        await seedStore.addAccount(accountName, seed);
+
+        this.props.clearWalletData();
+        this.props.clearSeed();
+        this.props.setOnboardingComplete(true);
+        this.navigateToOnboardingComplete();
     }
 
     /**
@@ -183,28 +144,38 @@ class SetPassword extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        Navigation.pop(this.props.componentId);
     }
 
     navigateToOnboardingComplete() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'onboardingComplete',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                topBarElevationShadowEnabled: false,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.push('appStack', {
+            component: {
+                name: 'onboardingComplete',
+                options: {
+                    animations: {
+                        push: {
+                            enable: false,
+                        },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                },
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
-            animated: false,
         });
     }
 
@@ -213,15 +184,20 @@ class SetPassword extends Component {
         const { password, reentry } = this.state;
 
         return (
-            <View style={styles.container}>
-                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.container}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                scrollEnabled={false}
+                extraHeight={isIPhoneX ? 150 : 0}
+            >
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('choosePassword')}</Header>
                         </View>
-                        <KeyboardAvoidingView behavior={isAndroid ? null : 'padding'} style={styles.midContainer}>
+                        <View style={styles.midContainer}>
                             <InfoBox
                                 body={body}
                                 text={
@@ -247,9 +223,9 @@ class SetPassword extends Component {
                                 setReentry={(reentry) => this.setState({ reentry })}
                             />
                             <View style={{ flex: 0.3 }} />
-                        </KeyboardAvoidingView>
+                        </View>
                         <View style={styles.bottomContainer}>
-                            <OnboardingButtons
+                            <DualFooterButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
                                 leftButtonText={t('global:goBack')}
@@ -258,16 +234,14 @@ class SetPassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
-    accountName: state.wallet.accountName,
-    usedExistingSeed: state.wallet.usedExistingSeed,
+    accountName: state.accounts.accountInfoDuringSetup.name,
     theme: state.settings.theme,
 });
 
@@ -275,13 +249,10 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     clearWalletData,
     clearSeed,
-    increaseSeedCount,
-    addAccountName,
-    generateAlert,
     setPassword,
-    setBasicAccountInfo,
+    generateAlert,
 };
 
-export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
+export default withNamespaces(['setPassword', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(SetPassword),
 );

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
-import { getSelectedAccountName } from 'shared-modules/selectors/accounts';
+import { getSelectedAccountName, isSettingUpNewAccount } from 'shared-modules/selectors/accounts';
 import { removeBundleFromUnconfirmedBundleTails } from 'shared-modules/actions/accounts';
 import {
     fetchMarketData,
@@ -74,17 +74,17 @@ export class Poll extends Component {
             props.isSyncing ||
             props.isSendingTransfer ||
             props.isGeneratingReceiveAddress ||
-            props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            props.isFetchingAccountInfo || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount ||
             props.isTransitioning ||
             props.isPromotingTransaction;
 
         const isAlreadyPollingSomething =
-            props.isFetchingPrice ||
-            props.isFetchingNodeList ||
-            props.isFetchingChartData ||
-            props.isFetchingMarketData ||
-            props.isFetchingAccountInfo ||
+            props.isPollingPrice ||
+            props.isPollingNodeList ||
+            props.isPollingChartData ||
+            props.isPollingMarketData ||
+            props.isPollingAccountInfo ||
             props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
@@ -167,19 +167,19 @@ export class Poll extends Component {
 const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
-    isFetchingPrice: state.polling.isFetchingPrice,
-    isFetchingNodeList: state.polling.isFetchingNodeList,
-    isFetchingChartData: state.polling.isFetchingChartData,
-    isFetchingMarketData: state.polling.isFetchingMarketData,
-    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
+    isPollingPrice: state.polling.isFetchingPrice,
+    isPollingNodeList: state.polling.isFetchingNodeList,
+    isPollingChartData: state.polling.isFetchingChartData,
+    isPollingMarketData: state.polling.isFetchingMarketData,
+    isPollingAccountInfo: state.polling.isFetchingAccountInfo,
     isAutoPromoting: state.polling.isAutoPromoting,
     isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isSyncing: state.ui.isSyncing,
-    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
-    isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
+    isFetchingAccountInfo: state.ui.isFetchingAccountInfo,
     seedIndex: state.wallet.seedIndex,
     selectedAccountName: getSelectedAccountName(state),
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,

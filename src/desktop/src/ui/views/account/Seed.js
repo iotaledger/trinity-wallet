@@ -1,13 +1,14 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToChar } from 'libs/crypto';
+import { byteToChar, capitalize } from 'libs/helpers';
+import SeedStore from 'libs/SeedStore';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
@@ -24,6 +25,8 @@ class Seed extends PureComponent {
     static propTypes = {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -42,16 +45,49 @@ class Seed extends PureComponent {
         }
     }
 
+    /**
+     * Retrieve seed and set to state
+     */
+    setSeed = async (password) => {
+        const { accountName, accountMeta } = this.props;
+
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+        const seed = await seedStore.getSeed();
+
+        this.setState({
+            seed,
+        });
+    };
+
     render() {
-        const { accountName, t } = this.props;
+        const { accountName, accountMeta, t } = this.props;
         const { seed, action } = this.state;
+
+        if (!SeedStore[accountMeta.type].isSeedAvailable) {
+            return (
+                <div>
+                    <h3>{t('viewSeed:notAvailable', { accountType: capitalize(accountMeta.type) })}</h3>
+                    {typeof accountMeta.index === 'number' && (
+                        <p>
+                            {t('viewSeed:accountIndex')}: <strong>{accountMeta.index}</strong>
+                        </p>
+                    )}
+                    {typeof accountMeta.page === 'number' &&
+                        accountMeta.page > 0 && (
+                            <p>
+                                {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
+                            </p>
+                        )}
+                </div>
+            );
+        }
 
         if (action && !seed) {
             return (
                 <ModalPassword
                     isOpen
                     inline
-                    onSuccess={(password, seed) => this.setState({ seed })}
+                    onSuccess={this.setSeed}
                     onClose={() => this.setState({ action: null })}
                     seedName={accountName}
                     content={{
@@ -77,7 +113,7 @@ class Seed extends PureComponent {
                                       if (index % 3 !== 0) {
                                           return null;
                                       }
-                                      const letter = byteToChar(byte % 27);
+                                      const letter = byteToChar(byte);
                                       return (
                                           <React.Fragment key={`${index}${letter}`}>
                                               {letter}
@@ -128,6 +164,7 @@ class Seed extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
+    accountMeta: getSelectedAccountMeta(state),
 });
 
-export default connect(mapStateToProps)(translate()(Seed));
+export default connect(mapStateToProps)(withI18n()(Seed));

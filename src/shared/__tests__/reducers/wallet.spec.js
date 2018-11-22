@@ -8,38 +8,61 @@ describe('Reducer: wallet', () => {
                 ready: false,
                 password: {},
                 seed: Array(82).join(' '),
-                accountName: 'MAIN WALLET',
                 seedIndex: 0,
                 currentSetting: 'mainSettings',
-                additionalAccountName: '',
                 transitionBalance: 0,
                 transitionAddresses: [],
-                addingAdditionalAccount: false,
                 balanceCheckFlag: false,
                 deepLinkActive: false,
                 hasConnection: true,
-                usedExistingSeed: false,
+                isValidatingAddress: false,
+                forceUpdate: false,
+                shouldUpdate: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
         });
     });
 
-    describe('IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO', () => {
-        it('should assign payload to state', () => {
-            const initialState = {};
+    describe('IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP', () => {
+        describe('when seed is defined as a prop in action.payload', () => {
+            it('should set action.payload.seed to state.seed', () => {
+                const initialState = {
+                    seed: 'foo',
+                };
 
-            const action = {
-                type: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
-                payload: { foo: {} },
-            };
+                const action = {
+                    type: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
+                    payload: { seed: 'bar' },
+                };
 
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                foo: {},
-            };
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    seed: 'bar',
+                };
 
-            expect(newState).to.eql(expectedState);
+                expect(newState).to.eql(expectedState);
+            });
+        });
+
+        describe('when seed is not defined as a prop in action.payload', () => {
+            it('should not update state.seed', () => {
+                const initialState = {
+                    seed: 'foo',
+                };
+
+                const action = {
+                    type: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
+                    payload: { randomProp: 'bar' },
+                };
+
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    seed: 'foo',
+                };
+
+                expect(newState).to.eql(expectedState);
+            });
         });
     });
 
@@ -78,26 +101,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(newState.usedExistingSeed).to.eql(expectedState.usedExistingSeed);
-        });
-    });
-
-    describe('IOTA/WALLET/SET_ACCOUNT_NAME', () => {
-        it('should assign payload to "accountName" in state', () => {
-            const initialState = {
-                accountName: '',
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/SET_ACCOUNT_NAME',
-                payload: 'foo',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountName: 'foo',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 
@@ -288,14 +291,14 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST', () => {
+    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST', () => {
         it('should set "ready" in state to false', () => {
             const initialState = {
                 ready: true,
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_REQUEST',
             };
 
             const newState = reducer(initialState, action);
@@ -307,14 +310,14 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS', () => {
+    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should set "ready" in state to true', () => {
             const initialState = {
                 ready: false,
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
+                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
             };
 
             const newState = reducer(initialState, action);
@@ -323,78 +326,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(newState.ready).to.eql(expectedState.ready);
-        });
-
-        it('should set "addingAdditionalAccount" in state to false', () => {
-            const initialState = {
-                addingAdditionalAccount: true,
-            };
-
-            const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                addingAdditionalAccount: false,
-            };
-
-            expect(newState.addingAdditionalAccount).to.equal(expectedState.addingAdditionalAccount);
-        });
-
-        it('should set "additionalAccountName" in state to an empty string', () => {
-            const initialState = {
-                additionalAccountName: 'foo',
-            };
-
-            const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                additionalAccountName: '',
-            };
-
-            expect(newState.additionalAccountName).to.equal(expectedState.additionalAccountName);
-        });
-    });
-
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST', () => {
-        it('should set "ready" in state to false', () => {
-            const initialState = {
-                ready: true
-            };
-
-            const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                ready: false
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS', () => {
-        it('should set "ready" in state to true', () => {
-            const initialState = {
-                ready: false,
-            };
-
-            const action = {
-                type: 'IOTA/ACCOUNTS/FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                ready: true,
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
-import { byteToChar } from 'libs/crypto';
+import { byteToChar } from 'libs/helpers';
 
 import Button from 'ui/components/Button';
 import Tooltip from 'ui/components/Tooltip';
@@ -104,4 +104,4 @@ class SeedSave extends PureComponent {
     }
 }
 
-export default translate()(SeedSave);
+export default withI18n()(SeedSave);

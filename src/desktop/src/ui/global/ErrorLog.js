@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { format } from 'date-fns';
+import { withI18n } from 'react-i18next';
+import { formatTimeAs, detectedTimezone } from 'libs/date';
 
 import { clearLog } from 'actions/alerts';
 
@@ -66,7 +66,14 @@ class ErrorLog extends React.PureComponent {
                                     .map((entry, index) => {
                                         return (
                                             <li key={`log-${index}`}>
-                                                <strong>{format(entry.time, 'DD.MM.YY HH:mm')}</strong> {entry.error}
+                                                <strong>
+                                                    {formatTimeAs.dayMonthYearHoursMinutes(
+                                                        navigator.language,
+                                                        detectedTimezone,
+                                                        entry.date,
+                                                    )}
+                                                </strong>{' '}
+                                                {entry.error}
                                             </li>
                                         );
                                     })}
@@ -95,4 +102,4 @@ const mapDispatchToProps = {
     clearLog,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(ErrorLog));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(ErrorLog));

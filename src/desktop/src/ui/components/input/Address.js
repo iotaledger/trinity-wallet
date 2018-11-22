@@ -1,5 +1,6 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
+import ReactTooltip from 'react-tooltip';
 import PropTypes from 'prop-types';
 import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
 
@@ -31,6 +32,7 @@ export default class Address extends React.PureComponent {
 
     state = {
         showScanner: false,
+        inputFocused: false,
     };
 
     componentDidMount() {
@@ -55,6 +57,18 @@ export default class Address extends React.PureComponent {
         }
     };
 
+    handleFocus = () => {
+        this.setState(() => ({
+            inputFocused: true,
+        }));
+    };
+
+    handleBlur = () => {
+        this.setState(() => ({
+            inputFocused: false,
+        }));
+    };
+
     closeScanner = () => {
         this.setState(() => ({
             showScanner: false,
@@ -67,9 +81,20 @@ export default class Address extends React.PureComponent {
         }));
     };
 
+    /**
+     * Address is displayed in a hidden <p> element used for calculating the width of address input.
+     * @returns boolean - if entered address is longer than input width
+     */
+    isInputScrolling = () => {
+        if (this.input && this.address) {
+            return this.address.clientWidth > this.input.clientWidth;
+        }
+        return false;
+    };
+
     render() {
         const { address, label, closeLabel } = this.props;
-        const { showScanner } = this.state;
+        const { showScanner, inputFocused } = this.state;
 
         return (
             <div className={css.input}>
@@ -84,9 +109,22 @@ export default class Address extends React.PureComponent {
                         }}
                         value={address}
                         onChange={(e) => this.props.onChange(e.target.value)}
+                        onFocus={() => this.handleFocus()}
+                        onBlur={() => this.handleBlur()}
                         maxLength={ADDRESS_LENGTH}
+                        data-tip={address}
                     />
                     <small>{label}</small>
+                    <p
+                        ref={(address) => {
+                            this.address = address;
+                        }}
+                        className={css.addressHidden}
+                    >
+                        {address}
+                    </p>
+                    {!inputFocused &&
+                        this.isInputScrolling() && <ReactTooltip place="bottom" className={css.tooltip} />}
                 </fieldset>
                 {showScanner && (
                     <Modal isOpen onClose={this.closeScanner}>

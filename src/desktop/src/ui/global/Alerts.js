@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -15,9 +16,19 @@ class Alerts extends React.PureComponent {
 
     static propTypes = {
         /** @ignore */
-        disposeOffAlert: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         alerts: PropTypes.object.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        shouldUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+    };
+
+    state = {
+        dismissUpdate: false,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -26,7 +37,7 @@ class Alerts extends React.PureComponent {
         }
         if (nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
             this.timeout = setTimeout(() => {
-                this.props.disposeOffAlert();
+                this.props.dismissAlert();
             }, nextProps.alerts.closeInterval);
         }
     }
@@ -35,24 +46,41 @@ class Alerts extends React.PureComponent {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
-        this.props.disposeOffAlert();
+        this.props.dismissAlert();
     }
 
     render() {
-        const { alerts, disposeOffAlert } = this.props;
+        const { alerts, dismissAlert, forceUpdate, shouldUpdate, t } = this.props;
+        const { dismissUpdate } = this.state;
+
+        const os = Electron.getOS();
 
         return (
             <div className={css.wrapper}>
-                <div
-                    onClick={() => disposeOffAlert()}
-                    className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
-                >
-                    <span>
-                        <Icon icon="cross" size={14} />
-                    </span>
-                    {alerts.title && <h2>{alerts.title}</h2>}
-                    {alerts.message && <p>{alerts.message}</p>}
-                </div>
+                {!dismissUpdate && (forceUpdate || shouldUpdate) ? (
+                    <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
+                        <strong onClick={() => Electron.autoUpdate()}>
+                            {t(`global:${forceUpdate ? 'forceUpdate' : 'shouldUpdate'}`)}
+                        </strong>{' '}
+                        {t(`global:${forceUpdate ? 'forceUpdate' : 'shouldUpdate'}Explanation`)}
+                        {shouldUpdate && (
+                            <a onClick={() => this.setState({ dismissUpdate: true })}>
+                                <Icon icon="cross" size={16} />
+                            </a>
+                        )}
+                    </section>
+                ) : (
+                    <div
+                        onClick={() => dismissAlert()}
+                        className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
+                    >
+                        <span>
+                            <Icon icon="cross" size={14} />
+                        </span>
+                        {alerts.title && <h2>{alerts.title}</h2>}
+                        {alerts.message && <p>{alerts.message}</p>}
+                    </div>
+                )}
             </div>
         );
     }

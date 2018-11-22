@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { width, height } from 'libs/dimensions';
-import { locale } from 'libs/device';
-import GENERAL from 'ui/theme/general';
+import { locale, timezone } from 'libs/device';
+import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
@@ -12,15 +12,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height / 40,
         alignItems: 'center',
-        width: width / 1.15,
+        width: Styling.contentWidth,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: Styling.fontSize2,
     },
     icon: {
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
     },
@@ -68,7 +68,7 @@ export default class SimpleTransactionRow extends PureComponent {
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>
-                        {formatTime(locale, convertUnixTimeToJSDate(time))}
+                        {formatTime(locale, timezone, convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>

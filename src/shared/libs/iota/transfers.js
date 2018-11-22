@@ -5,8 +5,12 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
+import findKey from 'lodash/findKey';
+import findIndex from 'lodash/findIndex';
 import head from 'lodash/head';
 import has from 'lodash/has';
+import isObject from 'lodash/isObject';
+import isNumber from 'lodash/isNumber';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omitBy from 'lodash/omitBy';
@@ -42,9 +46,16 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
     isPromotable,
+    promoteTransactionAsync,
+    replayBundleAsync,
 } from './extendedApi';
-import i18next from '../../i18next.js';
-import { convertFromTrytes, EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_MESSAGE } from './utils';
+import i18next from '../../libs/i18next.js';
+import {
+    convertFromTrytes,
+    EMPTY_HASH_TRYTES,
+    EMPTY_TRANSACTION_MESSAGE,
+    VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX,
+} from './utils';
 import Errors from './../errors';
 
 /**
@@ -122,7 +133,7 @@ export const findPromotableTail = (provider) => (tails, idx) => {
 
     return isPromotable(provider)(get(thisTail, 'hash'))
         .then((state) => {
-            if (state && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
+            if (state === true && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
@@ -155,19 +166,19 @@ export const isAboveMaxDepth = (attachmentTimestamp) => {
  *   @param {string} address
  *   @param {number} [value]
  *   @param {string} [message]
- *   @param {string} [firstOwnAddress]
+ *   @param {object} addressData
  *   @param {string} [tag='TRINITY']
+ *
  *   @returns {array} Transfer object
  **/
-export const prepareTransferArray = (
-    address,
-    value = 0,
-    message = '',
-    firstOwnAddress = EMPTY_HASH_TRYTES,
-    tag = DEFAULT_TAG,
-) => {
+export const prepareTransferArray = (address, value, message, addressData, tag = DEFAULT_TAG) => {
+    const firstAddress = findKey(addressData, { index: 0 });
+
+    if (!firstAddress) {
+        throw new Error(Errors.EMPTY_ADDRESS_DATA);
+    }
+
     const trytesConvertedMessage = iota.utils.toTrytes(message);
-    const isZeroValue = value === 0;
     const transfer = {
         address,
         value,
@@ -175,10 +186,12 @@ export const prepareTransferArray = (
         tag,
     };
 
-    const isSendingToFirstOwnAddress = firstOwnAddress === address;
+    const isZeroValueTransaction = value === 0;
 
-    if (isZeroValue && !isSendingToFirstOwnAddress) {
-        return [transfer, assign({}, transfer, { address: firstOwnAddress })];
+    if (isZeroValueTransaction) {
+        return iota.utils.noChecksum(address) in addressData
+            ? [transfer]
+            : [transfer, assign({}, transfer, { address: firstAddress })];
     }
 
     return [transfer];
@@ -276,7 +289,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
                 checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
             };
 
-            if (tx.value < 0 && !isRemainder(tx)) {
+            if (tx.value < 0) {
                 acc.inputs.push(meta);
             } else {
                 acc.outputs.push(meta);
@@ -1125,4 +1138,138 @@ export const sortTransactionTrytesArray = (trytes, sortBy = 'currentIndex', orde
     );
 
     return map(orderBy(transactionObjects, [sortBy], [order]), iota.utils.transactionTrytes);
+};
+
+/**
+ *   Checks if a transfer object is valid
+ *
+ *   @method isValidTransfer
+ *   @param {object} transfer
+ *
+ *   @returns {boolean}
+ **/
+export const isValidTransfer = (transfer) => {
+    return (
+        isObject(transfer) && VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(transfer.address) && isNumber(transfer.value)
+    );
+};
+
+/**
+ *   Checks if a bundle is funded
+ *   Note: Does not validate signatures or other bundle attributes
+ *
+ *   @method isFundedBundle
+ *   @param {string} [provider]
+ *
+ *   @returns {function(array): Promise<boolean>}
+ **/
+
+export const isFundedBundle = (provider) => (bundle) => {
+    if (isEmpty(bundle)) {
+        return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
+    }
+
+    return getBalancesAsync(provider)(
+        reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), []),
+    ).then((balances) => {
+        return (
+            reduce(bundle, (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0) <=
+            accumulateBalance(map(balances.balances, Number))
+        );
+    });
+};
+
+/**
+ * Categorises inclusion states by bundle hash of tail transactions
+ * Note: Make sure the order of tail transactions -> inclusion states is preserved before using this function
+ *
+ * @method categoriseInclusionStatesByBundleHash
+ * @param {array} transactions
+ * @param {array} inclusionStates
+ *
+ * @returns {object}
+ */
+export const categoriseInclusionStatesByBundleHash = (transactions, inclusionStates) =>
+    transform(
+        transactions,
+        (acc, tailTransaction, idx) => {
+            if (tailTransaction.bundle in acc) {
+                acc[tailTransaction.bundle] = acc[tailTransaction.bundle] || inclusionStates[idx];
+            } else {
+                acc[tailTransaction.bundle] = inclusionStates[idx];
+            }
+        },
+        {},
+    );
+
+/**
+ * Promotes a transaction till it gets confirmed.
+ *
+ * @method promoteTransactionTilConfirmed
+ * @param {string} [provider]
+ * @param {function} [powFn]
+ *
+ * @returns {function(array, [number]): Promise<object>}
+ */
+export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransactions, promotionsAttemptsLimit = 50) => {
+    let promotionAttempt = 0;
+    const tailTransactionsClone = cloneDeep(tailTransactions);
+
+    const _promote = (tailTransaction) => {
+        promotionAttempt += 1;
+
+        if (promotionAttempt === promotionsAttemptsLimit) {
+            return Promise.reject(new Error(Errors.PROMOTIONS_LIMIT_REACHED));
+        }
+
+        // Before every promotion, check confirmation state
+        return getLatestInclusionAsync(provider)(map(tailTransactionsClone, (tx) => tx.hash)).then((states) => {
+            if (some(states, (state) => state === true)) {
+                // If any of the tail is confirmed, return the "confirmed" tail transaction object.
+                return find(tailTransactionsClone, (_, idx) => idx === findIndex(states, (state) => state === true));
+            }
+
+            const { hash, attachmentTimestamp } = tailTransaction;
+
+            // Promote transaction
+            return promoteTransactionAsync(provider, powFn)(hash)
+                .then(() => {
+                    return _promote(tailTransaction);
+                })
+                .catch((error) => {
+                    const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
+
+                    if (isTransactionInconsistent) {
+                        // Temporarily disable reattachments if transaction is still above max depth
+                        return !isAboveMaxDepth(attachmentTimestamp)
+                            ? _reattachAndPromote()
+                            : _promote(tailTransaction);
+                    }
+
+                    throw error;
+                });
+        });
+    };
+
+    const _reattachAndPromote = () => {
+        // Grab first tail transaction hash
+        const tailTransaction = head(tailTransactionsClone);
+        const hash = tailTransaction.hash;
+
+        return replayBundleAsync(provider, powFn)(hash).then((reattachment) => {
+            const tailTransaction = find(reattachment, { currentIndex: 0 });
+            // Add newly reattached transaction
+            tailTransactionsClone.push(tailTransaction);
+
+            return _promote(tailTransaction);
+        });
+    };
+
+    return findPromotableTail(provider)(tailTransactionsClone, 0).then((consistentTail) => {
+        if (has(consistentTail, 'hash')) {
+            return _promote(consistentTail);
+        }
+
+        return _reattachAndPromote();
+    });
 };

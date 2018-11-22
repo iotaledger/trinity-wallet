@@ -7,11 +7,11 @@ import { getCurrencyData } from 'shared-modules/actions/settings';
 import { setQrDenomination, setSendDenomination } from 'shared-modules/actions/ui';
 import { IOTA_DENOMINATIONS } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { width, height } from 'libs/dimensions';
 import DropdownComponent from 'ui/components/Dropdown';
 import { Icon } from 'ui/theme/icons';
-import GENERAL from 'ui/theme/general';
+import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -213,6 +213,6 @@ const mapDispatchToProps = {
     setSendDenomination,
 };
 
-export default translate(['currencySelection', 'global'])(
+export default withNamespaces(['currencySelection', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(CurrencySelection),
 );

@@ -1,8 +1,7 @@
-import i18next from 'libs/i18next';
+import i18next from 'shared-modules/libs/i18next';
 
 export default {
     valueTransaction: [
-        i18next.t('progressSteps:checkingNodeHealth'),
         i18next.t('progressSteps:validatingReceiveAddress'),
         i18next.t('progressSteps:syncingAccount'),
         i18next.t('progressSteps:preparingInputs'),

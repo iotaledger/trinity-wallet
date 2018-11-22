@@ -1,6 +1,6 @@
 const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
 const electron = require('electron');
-const initMenu = require('./lib/Menu.js');
+const initMenu = require('./native/Menu.js');
 const path = require('path');
 const URL = require('url');
 const fs = require('fs');
@@ -10,6 +10,14 @@ const electronSettings = require('electron-settings');
  * Expose Garbage Collector flag for manual trigger after seed usage
  */
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
+
+/**
+ * Terminate application if Node remote debugging detected
+ */
+const argv = process.argv.join();
+if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+    return app.quit();
+}
 
 /**
  * Set AppUserModelID for Windows notifications functionallity
@@ -107,7 +115,7 @@ function createWindow() {
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(__dirname, `lib/preload/${devMode ? 'development' : 'production'}.js`),
+            preload: path.resolve(__dirname, `native/preload/${devMode ? 'development' : 'production'}.js`),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -125,7 +133,7 @@ function createWindow() {
             show: false,
             webPreferences: {
                 nodeIntegration: false,
-                preload: path.resolve(__dirname, 'lib/preload/tray.js'),
+                preload: path.resolve(__dirname, 'native/preload/tray.js'),
                 disableBlinkFeatures: 'Auxclick',
                 webviewTag: false,
             },
@@ -272,7 +280,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${__dirname}/dist/tray@2x.png`);
+    tray = new Tray(`${__dirname}/dist/trayTemplate@2x.png`);
 
     tray.on('click', () => {
         toggleTray();
@@ -433,18 +441,17 @@ ipc.on('window.focus', (e, payload) => {
 });
 
 /**
- * Create a single instance on win32 platforms
- * Set deep link if defined as argument
+ * Create a single instance only
  */
-const shouldQuit = app.makeSingleInstance((argv) => {
-    if (process.platform === 'win32') {
-        deeplinkingUrl = argv.slice(1);
-    }
-});
+const isFirstInstance = app.requestSingleInstanceLock();
 
-if (shouldQuit) {
+if (!isFirstInstance) {
     app.quit();
-    return;
+} else {
+    if (windows.main) {
+        windows.main.show();
+        windows.main.focus();
+    }
 }
 
 /**

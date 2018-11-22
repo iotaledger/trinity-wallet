@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { round } from 'shared-modules/libs/utils';
-import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
@@ -165,4 +165,4 @@ const mapStateToProps = (state) => ({
     conversionRate: state.settings.conversionRate,
 });
 
-export default translate(['receive', 'global'])(connect(mapStateToProps, null)(MultiTextInput));
+export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, null)(MultiTextInput));

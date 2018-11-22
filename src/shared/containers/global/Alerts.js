@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
-import { disposeOffAlert } from '../../actions/alerts';
+import { dismissAlert } from '../../actions/alerts';
 
 /**
  * Alerts component container
@@ -12,9 +12,10 @@ import { disposeOffAlert } from '../../actions/alerts';
 export default function withAlertsData(AlertsComponent) {
     class AlertsData extends React.PureComponent {
         static propTypes = {
-            disposeOffAlert: PropTypes.func.isRequired,
+            dismissAlert: PropTypes.func.isRequired,
             alerts: PropTypes.object.isRequired,
-            t: PropTypes.func.isRequired,
+            forceUpdate: PropTypes.bool.isRequired,
+            shouldUpdate: PropTypes.bool.isRequired,
         };
 
         render() {
@@ -26,11 +27,13 @@ export default function withAlertsData(AlertsComponent) {
 
     const mapStateToProps = (state) => ({
         alerts: state.alerts,
+        forceUpdate: state.wallet.forceUpdate,
+        shouldUpdate: state.wallet.shouldUpdate,
     });
 
     const mapDispatchToProps = {
-        disposeOffAlert,
+        dismissAlert,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(AlertsData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(AlertsData));
 }

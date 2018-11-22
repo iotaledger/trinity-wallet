@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
 import { acceptTerms, acceptPrivacy } from 'actions/settings';
@@ -29,6 +29,8 @@ class Welcome extends React.PureComponent {
         acceptedPrivacy: PropTypes.bool.isRequired,
         /** @ignore */
         acceptedTerms: PropTypes.bool.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         acceptTerms: PropTypes.func.isRequired,
         /** @ignore */
@@ -71,7 +73,7 @@ class Welcome extends React.PureComponent {
     };
 
     render() {
-        const { language, t } = this.props;
+        const { forceUpdate, language, t } = this.props;
         const { step, scrollEnd } = this.state;
 
         let markdown = '';
@@ -105,7 +107,7 @@ class Welcome extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        disabled={step !== 'language' && !scrollEnd}
+                        disabled={forceUpdate || (step !== 'language' && !scrollEnd)}
                         onClick={this.onNextClick}
                         className="square"
                         variant="primary"
@@ -124,6 +126,7 @@ const mapStateToProps = (state) => ({
     acceptedPrivacy: state.settings.acceptedPrivacy,
     acceptedTerms: state.settings.acceptedTerms,
     language: state.settings.locale,
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {
@@ -131,4 +134,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Welcome));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Welcome));

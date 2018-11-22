@@ -5,16 +5,19 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
+import { fetchVersions } from 'libs/utils';
 
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
+import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
+
+import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex, shouldUpdate, forceUpdate } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
-import { disposeOffAlert, generateAlert } from 'actions/alerts';
-import { setOnboardingName } from 'actions/ui';
+import { dismissAlert, generateAlert } from 'actions/alerts';
 
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
@@ -22,6 +25,7 @@ import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
 import ErrorLog from 'ui/global/ErrorLog';
+import UpdateProgress from 'ui/global/UpdateProgress';
 
 import Loading from 'ui/components/Loading';
 
@@ -29,6 +33,7 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
+import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -40,13 +45,19 @@ import css from './index.scss';
 class App extends React.Component {
     static propTypes = {
         /** @ignore */
-        accounts: PropTypes.object.isRequired,
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         isBusy: PropTypes.bool.isRequired,
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
+        onboardingComplete: PropTypes.bool.isRequired,
+        /** @ignore */
+        setOnboardingComplete: PropTypes.func.isRequired,
+        /** @ignore */
         history: PropTypes.object.isRequired,
+        /** @ignore */
+        addingAdditionalAccount: PropTypes.bool.isRequired,
         /** @ignore */
         locale: PropTypes.string.isRequired,
         /** @ignore */
@@ -54,7 +65,7 @@ class App extends React.Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        disposeOffAlert: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
@@ -68,7 +79,11 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
-        setOnboardingName: PropTypes.func.isRequired,
+        shouldUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -97,6 +112,7 @@ class App extends React.Component {
         Electron.requestDeepLink();
 
         this.checkVaultAvailability();
+        this.versionCheck();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -113,12 +129,15 @@ class App extends React.Component {
             Electron.updateMenu('authorised', true);
 
             // If there was an error adding additional seed, go back to onboarding
-            if (
-                this.props.wallet.addingAdditionalAccount &&
-                !nextProps.wallet.addingAdditionalAccount &&
-                nextProps.wallet.additionalAccountName.length
-            ) {
-                return this.props.history.push('/onboarding/account-name');
+            if (nextProps.addingAdditionalAccount) {
+                if (nextProps.accountNames.length > 0) {
+                    return this.props.history.push('/onboarding/account-name');
+                }
+                return this.props.history.push('/onboarding/login');
+            }
+
+            if (!this.props.onboardingComplete) {
+                this.props.setOnboardingComplete(true);
             }
 
             this.props.history.push('/wallet/');
@@ -126,7 +145,7 @@ class App extends React.Component {
 
         // Dispose alerts on route change
         if (this.props.location.pathname !== nextProps.location.pathname) {
-            this.props.disposeOffAlert();
+            this.props.dismissAlert();
         }
     }
 
@@ -174,12 +193,23 @@ class App extends React.Component {
         }
     }
 
+    async versionCheck() {
+        const data = await fetchVersions();
+        const versionId = Electron.getVersion();
+
+        if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
+            this.props.forceUpdate();
+        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
+            this.props.shouldUpdate();
+        }
+    }
+
     /**
      * Switch to an account based on account name
      * @param {string} accountName - target account name
      */
     accountSwitch(accountName) {
-        const accountIndex = this.props.accounts.accountNames.indexOf(accountName);
+        const accountIndex = this.props.accountNames.indexOf(accountName);
         if (accountIndex > -1 && !this.props.isBusy) {
             this.props.setSeedIndex(accountIndex);
             this.props.history.push('/wallet');
@@ -211,7 +241,11 @@ class App extends React.Component {
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
-                this.props.setOnboardingName('');
+                this.props.setAccountInfoDuringSetup({
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                });
                 Electron.setOnboardingSeed(null);
                 this.props.history.push('/onboarding/login');
                 break;
@@ -248,7 +282,9 @@ class App extends React.Component {
                 <About />
                 <ErrorLog />
                 <Idle />
+                <UpdateProgress />
                 <Theme history={history} />
+                <Ledger />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -268,10 +304,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.accounts,
+    accountNames: getAccountNamesFromState(state),
+    addingAdditionalAccount: isSettingUpNewAccount(state),
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
+    onboardingComplete: state.accounts.onboardingComplete,
     isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
@@ -281,11 +319,14 @@ const mapDispatchToProps = {
     setPassword,
     setDeepLink,
     setSeedIndex,
-    disposeOffAlert,
+    dismissAlert,
     generateAlert,
     fetchNodeList,
     updateTheme,
-    setOnboardingName,
+    setOnboardingComplete,
+    setAccountInfoDuringSetup,
+    shouldUpdate,
+    forceUpdate,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

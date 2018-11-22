@@ -5,7 +5,7 @@ import { formatValue, formatUnit } from 'libs/iota/utils';
 import { getCurrencySymbol } from 'libs/currency';
 import { round } from 'libs/utils';
 
-import { getSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -34,6 +34,8 @@ class Send extends React.PureComponent {
         isSending: PropTypes.bool.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
+        /** @ignore */
+        accountMeta: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
@@ -91,20 +93,26 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, accountName, sendTransfer, settings } = this.props;
+        const { fields, password, accountName, accountMeta, sendTransfer, settings } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
         });
 
-        const seed = await getSeed(password, accountName, true);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn, Electron.genFn);
+        const message =
+            SeedStore[accountMeta.type].isMessageAvailable || parseInt(fields.amount || '0') === 0
+                ? fields.message
+                : '';
+
+        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message, powFn);
     };
 
     render() {
-        const { fields, isSending, availableBalance, settings, progress, t } = this.props;
+        const { accountMeta, fields, isSending, availableBalance, settings, progress, t } = this.props;
         const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
@@ -112,9 +120,11 @@ class Send extends React.PureComponent {
                 ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
                       settings.currency,
                   )}${(
-                    round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
-                ).toFixed(2)})`
+                      round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                  ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
+
+        const isMessageAvailable = SeedStore[accountMeta.type].isMessageAvailable;
 
         return (
             <form className={css.send} onSubmit={(e) => this.validateInputs(e)}>
@@ -149,8 +159,9 @@ class Send extends React.PureComponent {
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
                     <TextInput
-                        value={fields.message}
+                        value={isMessageAvailable || parseInt(fields.amount || '0') === 0 ? fields.message : ''}
                         label={t('send:message')}
+                        disabled={!isMessageAvailable && parseInt(fields.amount) > 0}
                         onChange={(value) => this.props.setSendMessageField(value)}
                     />
                     <footer>

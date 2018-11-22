@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+
+import { charToByte } from 'libs/helpers';
 
 import Icon from 'ui/components/Icon';
 
@@ -13,11 +15,16 @@ import css from './dropzone.scss';
  */
 class Dropzone extends React.Component {
     static propTypes = {
-        /** Succesfull file drop callback
+        /** Succesful file dropped callback
          * @param {buffer} FileBuffer - Droped file content buffer
          * @returns {undefined}
          */
         onDrop: PropTypes.func.isRequired,
+        /** Succesful text seed dropped callback
+         * @param {array} seed - Seed byte array
+         * @returns {undefined}
+         */
+        onTextDrop: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -85,6 +92,22 @@ class Dropzone extends React.Component {
         e.stopPropagation();
         e.preventDefault();
 
+        try {
+            const seed = e.dataTransfer
+                .getData('Text')
+                .split('')
+                .map((char) => charToByte(char.toUpperCase()))
+                .filter((byte) => byte > -1);
+
+            this.setState({
+                isDragActive: false,
+            });
+
+            if (seed.length) {
+                return this.props.onTextDrop(seed);
+            }
+        } catch (err) {}
+
         const { onDrop } = this.props;
 
         this.setState({
@@ -149,4 +172,4 @@ class Dropzone extends React.Component {
     }
 }
 
-export default connect()(translate()(Dropzone));
+export default connect()(withI18n()(Dropzone));

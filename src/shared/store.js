@@ -13,12 +13,13 @@ import progress from './reducers/progress';
 import ui from './reducers/ui';
 import { ActionTypes } from './actions/settings';
 import networkMiddleware from './middlewares/network';
+import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
 import { __DEV__ } from './config';
 
-const developmentMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
-const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
+const developmentMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
+const productionMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
 
 const reducers = combineReducers({
     alerts,
@@ -34,6 +35,7 @@ const reducers = combineReducers({
 });
 
 const rootReducer = (state, action) => {
+    /* eslint-disable no-param-reassign */
     if (action.type === ActionTypes.WALLET_RESET) {
         state = undefined;
     }
