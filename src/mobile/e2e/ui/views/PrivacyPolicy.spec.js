@@ -1,12 +1,9 @@
 /*global expect element by*/
+import { navigateToPrivacyPolicy } from '../../internal/navigation';
+
 describe('PrivacyPolicy', () => {
     it('should show the privacy policy', async () => {
-        await element(by.id('languageSetup-next')).tap();
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
-        await element(by.id('termsAndConditions-next')).tap();
+        await navigateToPrivacyPolicy();
         await expect(element(by.type('RCTScrollView'))).toBeVisible();
     });
 

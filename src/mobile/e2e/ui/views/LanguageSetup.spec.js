@@ -4,7 +4,7 @@ describe('LanguageSetup', () => {
         await expect(element(by.id('languageSetup-dropdown'))).toBeVisible();
     });
 
-    it("should have a 'next' button", async () => {
+    it('should have a "next" button', async () => {
         await expect(element(by.id('languageSetup-next'))).toBeVisible();
         await element(by.id('languageSetup-next')).tap();
     });

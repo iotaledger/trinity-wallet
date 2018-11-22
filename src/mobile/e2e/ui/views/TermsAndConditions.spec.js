@@ -1,7 +1,9 @@
 /*global expect element by*/
+import { navigateToTermsAndConditions } from '../../internal/navigation';
+
 describe('TermsAndConditions', () => {
     it('should show the terms and conditions', async () => {
-        await element(by.id('languageSetup-next')).tap();
+        await navigateToTermsAndConditions();
         await expect(element(by.type('RCTScrollView'))).toBeVisible();
     });
 

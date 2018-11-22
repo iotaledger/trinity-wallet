@@ -169,7 +169,7 @@ class LanguageSetup extends Component {
                         <View style={styles.bottomContainer}>
                             <SingleFooterButton
                                 onButtonPress={() => this.onNextPress()}
-                                testID="languageSetup-next"
+                                buttonTestID="languageSetup-next"
                                 buttonText={t('letsGetStarted')}
                             />
                         </View>
