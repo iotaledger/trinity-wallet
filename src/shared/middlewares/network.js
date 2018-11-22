@@ -11,11 +11,13 @@ const networkMiddleware = (store) => (next) => (action) => {
             message: i18next.t('global:noNetworkConnectionExplanation'),
             closeInterval: 3600000,
         });
+        next(action);
     } else if (
         !store.getState().wallet.hasConnection &&
         action.type === ActionTypes.CONNECTION_CHANGED &&
         action.payload.isConnected
     ) {
+        next(action);
         next({ type: AlertsActionTypes.HIDE });
     } else {
         next(action);
