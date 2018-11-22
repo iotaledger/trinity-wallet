@@ -149,8 +149,8 @@
         "mainWallet": "メインアカウント",
         "shouldUpdate": "新しいアップデートがあります",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdate": "続けるにはアプリをアップデートしてください",
+        "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -281,15 +281,15 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "アドレスを生成",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
         "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
         "tag": "タグ",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "アドレスを生成",
+        "generateAnAddressTitle": "アドレスを生成",
+        "generateAnAddressExplanation": "この機能を使用する前にアドレスを生成してください。"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
