@@ -1,9 +1,9 @@
 /*global expect element by*/
-import { navigateToTermsAndConditions } from '../../internal/navigation';
+import { navigateToPrivacyPolicy } from '../../../internal/navigation';
 
-describe('TermsAndConditions', () => {
-    it('should show the terms and conditions', async () => {
-        await navigateToTermsAndConditions();
+describe('PrivacyPolicy', () => {
+    it('should show the privacy policy', async () => {
+        await navigateToPrivacyPolicy();
         await expect(element(by.type('RCTScrollView'))).toBeVisible();
     });
 
@@ -14,8 +14,8 @@ describe('TermsAndConditions', () => {
         await element(by.type('RCTScrollView')).swipe('up', 'fast', 0.99);
     });
 
-    it('should show a button once the terms and conditions have been read', async () => {
-        await expect(element(by.id('termsAndConditions-next'))).toBeVisible();
-        await element(by.id('termsAndConditions-next')).tap();
+    it('should show a button once the privacy policy has been read', async () => {
+        await expect(element(by.id('privacyPolicy-next'))).toBeVisible();
+        await element(by.id('privacyPolicy-next')).tap();
     });
 });

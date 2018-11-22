@@ -21,13 +21,15 @@ export default class Header extends PureComponent {
         textColor: PropTypes.string.isRequired,
         /* Heading text content */
         children: PropTypes.string.isRequired,
+        /** Id for automated screenshots */
+        testID: PropTypes.string,
     };
 
     render() {
-        const { textColor, children } = this.props;
+        const { textColor, children, testID } = this.props;
 
         return (
-            <View style={styles.container}>
+            <View style={styles.container} testID={testID}>
                 <Text style={[styles.header, { color: textColor }]}>{children}</Text>
             </View>
         );

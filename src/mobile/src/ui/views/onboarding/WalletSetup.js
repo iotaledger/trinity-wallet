@@ -246,7 +246,9 @@ class WalletSetup extends Component {
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 0.7 }} />
-                    <Header textColor={body.color}>{t('welcome:thankYou')}</Header>
+                    <Header textColor={body.color} testID="walletSetup-thankYou">
+                        {t('welcome:thankYou')}
+                    </Header>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.05 }} />
