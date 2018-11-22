@@ -449,21 +449,23 @@ describe('actions: transfers', () => {
                     // Stub getInputs implementation and return receive address (UUU...UUU)
                     // as one of the input addresses
                     const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
-                        Promise.resolve([
-                            {
-                                // Receive address
-                                address: 'U'.repeat(81),
-                                balance: 5,
-                                keyIndex: 11,
-                                security: 2,
-                            },
-                            {
-                                address: 'Z'.repeat(81),
-                                balance: 6,
-                                keyIndex: 12,
-                                security: 2,
-                            },
-                        ]),
+                        Promise.resolve({
+                            inputs: [
+                                {
+                                    // Receive address
+                                    address: 'U'.repeat(81),
+                                    balance: 5,
+                                    keyIndex: 11,
+                                    security: 2,
+                                },
+                                {
+                                    address: 'Z'.repeat(81),
+                                    balance: 6,
+                                    keyIndex: 12,
+                                    security: 2,
+                                },
+                            ],
+                        }),
                     );
 
                     return store
@@ -538,15 +540,17 @@ describe('actions: transfers', () => {
                     // Stub getInputs implementation and return receive address (UUU...UUU)
                     // as one of the input addresses
                     const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
-                        Promise.resolve([
-                            {
-                                address:
-                                    'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
-                                balance: 10,
-                                keyIndex: 8,
-                                security: 2,
-                            },
-                        ]),
+                        Promise.resolve({
+                            inputs: [
+                                {
+                                    address:
+                                        'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
+                                    balance: 10,
+                                    keyIndex: 8,
+                                    security: 2,
+                                },
+                            ],
+                        }),
                     );
 
                     return store
@@ -627,15 +631,17 @@ describe('actions: transfers', () => {
                     // Stub getInputs implementation and return receive address (UUU...UUU)
                     // as one of the input addresses
                     const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
-                        Promise.resolve([
-                            {
-                                address:
-                                    'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
-                                balance: 10,
-                                keyIndex: 8,
-                                security: 2,
-                            },
-                        ]),
+                        Promise.resolve({
+                            inputs: [
+                                {
+                                    address:
+                                        'JEFTSJGSNYGDSYHTCIZF9WXPWGHOPKRJSGXGNNZIUJUZGOFEGXRHPJVGPUZNIZMQ9QSNAITO9QUYQZZEC',
+                                    balance: 10,
+                                    keyIndex: 8,
+                                    security: 2,
+                                },
+                            ],
+                        }),
                     );
 
                     return store
