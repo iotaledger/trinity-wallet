@@ -46,6 +46,8 @@ export const ActionTypes = {
     SET_BALANCE_CHECK_FLAG: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
     CANCEL_SNAPSHOT_TRANSITION: 'IOTA/WALLET/CANCEL_SNAPSHOT_TRANSITION',
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
+    SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
+    FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
@@ -591,3 +593,25 @@ export const resetRoute = (payload) => {
         payload,
     };
 };
+
+/**
+ * Dispatch to suggest that user should update
+ *
+ * @method shouldUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const shouldUpdate = () => ({
+    type: ActionTypes.SHOULD_UPDATE,
+});
+
+/**
+ * Dispatch to force user to update
+ *
+ * @method forceUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const forceUpdate = () => ({
+    type: ActionTypes.FORCE_UPDATE,
+});

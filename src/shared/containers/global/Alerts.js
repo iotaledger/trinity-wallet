@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withI18n } from 'react-i18next';
 
 import { dismissAlert } from '../../actions/alerts';
 
@@ -13,6 +14,8 @@ export default function withAlertsData(AlertsComponent) {
         static propTypes = {
             dismissAlert: PropTypes.func.isRequired,
             alerts: PropTypes.object.isRequired,
+            forceUpdate: PropTypes.bool.isRequired,
+            shouldUpdate: PropTypes.bool.isRequired,
         };
 
         render() {
@@ -24,11 +27,13 @@ export default function withAlertsData(AlertsComponent) {
 
     const mapStateToProps = (state) => ({
         alerts: state.alerts,
+        forceUpdate: state.wallet.forceUpdate,
+        shouldUpdate: state.wallet.shouldUpdate,
     });
 
     const mapDispatchToProps = {
         dismissAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(AlertsData);
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(AlertsData));
 }
