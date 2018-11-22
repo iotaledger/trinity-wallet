@@ -2,7 +2,7 @@ import values from 'lodash/values';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
+import { Animated, Text, View, StyleSheet, Keyboard, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -69,7 +69,7 @@ class SeedVaultExportComponent extends Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Name for selected account */
-        selectedAccountName: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string,
         /** Type for selected account */
         selectedAccountMeta: PropTypes.object.isRequired,
         /** Returns to page before starting the Seed Vault Export process */
@@ -300,11 +300,9 @@ class SeedVaultExportComponent extends Component {
     navigateToStep(nextStep) {
         const stepIndex = steps.indexOf(nextStep);
         const animatedValue = [2.5, 1.5, 0.5, -0.5, -1.5, -2.5];
-        Animated.spring(this.animatedValue, {
+        Animated.timing(this.animatedValue, {
             toValue: animatedValue[stepIndex] * width,
-            velocity: 3,
-            tension: 2,
-            friction: 8,
+            easing: Easing.bezier(0.25, 1, 0.25, 1),
         }).start();
         this.props.setProgressStep(nextStep);
     }
