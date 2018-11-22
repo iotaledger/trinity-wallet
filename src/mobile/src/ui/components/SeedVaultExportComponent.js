@@ -302,6 +302,7 @@ class SeedVaultExportComponent extends Component {
         const animatedValue = [2.5, 1.5, 0.5, -0.5, -1.5, -2.5];
         Animated.timing(this.animatedValue, {
             toValue: animatedValue[stepIndex] * width,
+            duration: 500,
             easing: Easing.bezier(0.25, 1, 0.25, 1),
         }).start();
         this.props.setProgressStep(nextStep);

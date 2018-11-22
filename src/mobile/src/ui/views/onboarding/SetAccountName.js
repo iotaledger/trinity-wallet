@@ -238,7 +238,7 @@ export class SetAccountName extends Component {
                                     value={accountName}
                                 />
                             </AnimatedComponent>
-                            <View style={{ flex: 0.3 }} />
+                            <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
