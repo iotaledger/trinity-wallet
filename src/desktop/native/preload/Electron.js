@@ -13,6 +13,7 @@ const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
 const { byteToTrit, byteToChar, removeNonAlphaNumeric } = require('../../src/libs/helpers');
 const ledger = require('../hardware/Ledger');
+const { version } = require('../../package.json');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -127,6 +128,14 @@ const Electron = {
     },
 
     /**
+     * Trigger auto update
+     * @returns {undefined}
+     */
+    autoUpdate: () => {
+        ipc.send('updates.check');
+    },
+
+    /**
      * Proxy deep link value to main process
      * @returns {undefined}
      */
@@ -237,6 +246,14 @@ const Electron = {
      */
     getOS: () => {
         return process.platform;
+    },
+
+    /**
+     * Get currrent release number
+     * @returns {string}
+     */
+    getVersion: () => {
+        return version;
     },
 
     /**

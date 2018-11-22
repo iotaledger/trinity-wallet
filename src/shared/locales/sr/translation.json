@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Ponovni pokušaj sa lokalnim dokazom o radu.",
         "tryingAgainWithDifferentNode": "Ponovni pokušaj sa drugim node-om.",
         "errorFetchingAccountInformation": "Greška prilikom dohvata podataka o računu.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain greška",
         "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u za sigurno skladištenje.",
         "mainWallet": "GLAVNI RAČUN"
@@ -276,12 +277,15 @@
         "copyAddress": "Kopiraj adresu",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa je kopirana na klipbord.",
-        "generateNewAddress": "Sinhronizuj adresu",
+        "generateNewAddress": "Generate address",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrebljeno",
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
         "missingPermissionExplanation": "Potreban je pristup sistemu datoteka radi deljenja QR kodova.",
-        "tag": "Oznaka"
+        "tag": "Oznaka",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Napravite rezervnu kopiju svog seed-a",
@@ -747,7 +751,7 @@
         "ledgerIncorrectIndex": "Neodgovarajući Ledger",
         "ledgerIncorrectIndexExplanation": "Povezani Ledger ne odgovara onome koji je povezan sa ovim računom ili je fraza za oporavak izmenjena.",
         "checkAddress": "Proverite adresu za prijem",
-        "checkAddressExplanation": "Proverite da li adresa odgovara onoj koja je prikazana na Ledger novčaniku. Pritisnite „Sinhronizuj adresu\" ako ne odgovara.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

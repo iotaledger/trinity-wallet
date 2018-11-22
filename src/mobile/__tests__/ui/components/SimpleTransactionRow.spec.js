@@ -99,7 +99,7 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(
                 text
                     .children()
-                    .at(3)
+                    .at(4)
                     .text(),
             ).toEqual('i');
         });

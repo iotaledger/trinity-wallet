@@ -146,13 +146,13 @@ const initialState = {
      */
     selectedQrTab: 'message',
     /**
-     * Determines if receive card is flipped on receive screen
-     */
-    isReceiveCardFlipped: false,
-    /**
      * Current navigation route
      */
     currentRoute: 'login',
+    /**
+     * Determines whether an error occurred during address generation
+     */
+    hadErrorGeneratingNewAddress: false,
 };
 
 export default (state = initialState, action) => {
@@ -242,8 +242,14 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isGeneratingReceiveAddress: true,
+                hadErrorGeneratingNewAddress: false,
             };
         case WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+                hadErrorGeneratingNewAddress: true,
+            };
         case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
             return {
                 ...state,
@@ -294,7 +300,6 @@ export default (state = initialState, action) => {
                 qrTag: '',
                 qrDenomination: 'i',
                 selectedQrTab: 'message',
-                isReceiveCardFlipped: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
@@ -459,11 +464,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 selectedQrTab: action.payload,
-            };
-        case UiActionTypes.FLIP_RECEIVE_CARD:
-            return {
-                ...state,
-                isReceiveCardFlipped: !state.isReceiveCardFlipped,
             };
         case UiActionTypes.SET_ROUTE:
             return {

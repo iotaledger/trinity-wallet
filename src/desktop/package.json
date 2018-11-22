@@ -1,7 +1,7 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -30,7 +30,7 @@
     "compile:linux": "./node_modules/.bin/electron-builder --linux --x64",
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
     "compile:win": "./node_modules/.bin/electron-builder --win --x64",
-    "audit": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
+    "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
     "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
     "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
   },
@@ -124,9 +124,10 @@
       ]
     },
     "publish": {
-      "provider": "github",
+      "provider": "generic",
+      "url": "https://iotaledger-files.s3.amazonaws.com/trinity/desktop/releases/",
       "publishAutoUpdate": true,
-      "vPrefixedTagName": false
+      "channel": "latest"
     }
   },
   "dependencies": {

@@ -164,7 +164,7 @@ describe('Testing HistoryModalContent component', () => {
                     .find('Text')
                     .at(0)
                     .children()
-                    .at(3)
+                    .at(4)
                     .text(),
             ).toEqual('i');
         });

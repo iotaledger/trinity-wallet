@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Kulcstár-hiba",
         "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
         "mainWallet": "Elsődleges számla"
@@ -276,12 +277,15 @@
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
         "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Cím szinkronizálás",
+        "generateNewAddress": "Generate address",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A QR kód megosztásához szükség van a fájlrendszerhez való hozzáféréshez.",
-        "tag": "Címke"
+        "tag": "Címke",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
@@ -747,7 +751,7 @@
         "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
         "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
         "checkAddress": "Ellenőrizze a fogadási címet",
-        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
