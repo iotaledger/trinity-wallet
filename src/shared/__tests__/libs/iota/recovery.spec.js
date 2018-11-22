@@ -98,9 +98,13 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Invalid input."', () => {
-                return sweep()(seed, assign({}, validInput, { address: undefined }), validTransfer).catch((err) => {
-                    expect(err.message).to.equal('Invalid input.');
-                });
+                return sweep()(seed, assign({}, validInput, { address: undefined }), validTransfer)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Invalid input.');
+                    });
             });
         });
 
@@ -114,9 +118,13 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Invalid transfer."', () => {
-                return sweep()(seed, validInput, assign({}, validTransfer, { value: null })).catch((err) => {
-                    expect(err.message).to.equal('Invalid transfer.');
-                });
+                return sweep()(seed, validInput, assign({}, validTransfer, { value: null }))
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Invalid transfer.');
+                    });
             });
         });
 
@@ -134,9 +142,13 @@ describe.skip('libs: iota/recovery', () => {
                     seed,
                     assign({}, validInput, { address: 'U'.repeat(81) }),
                     assign({}, validTransfer, { address: 'U'.repeat(81) }),
-                ).catch((err) => {
-                    expect(err.message).to.equal('Cannot sweep to same address.');
-                });
+                )
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Cannot sweep to same address.');
+                    });
             });
         });
 
@@ -150,9 +162,13 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Balance mismatch."', () => {
-                return sweep()(seed, validInput, validTransfer).catch((err) => {
-                    expect(err.message).to.equal('Balance mismatch.');
-                });
+                return sweep()(seed, validInput, validTransfer)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Balance mismatch.');
+                    });
             });
         });
 

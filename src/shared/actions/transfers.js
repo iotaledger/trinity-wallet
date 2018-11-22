@@ -464,7 +464,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 return getInputs()(accountState.addressData, accountState.transactions, value, seedStore.maxInputs);
             })
-            .then((inputs) => {
+            .then(({ inputs }) => {
                 // Do not allow receiving address to be one of the user's own input addresses.
                 const isSendingToAnyInputAddress = some(
                     inputs,

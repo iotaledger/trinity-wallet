@@ -11,8 +11,9 @@ import {
     getFullAddressHistory,
     markAddressesAsSpentSync,
     syncAddresses,
-    formatAddressData,
+    createAddressData,
     findSpendStatusesFromTransactions,
+    mergeAddressData,
 } from './addresses';
 
 /**
@@ -35,6 +36,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
         wereSpent: [],
     };
 
+    const existingAddressData = get(existingAccountState, 'addressData') || [];
     const existingTransactions = get(existingAccountState, 'transactions') || [];
     const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
 
@@ -61,10 +63,12 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
                 local: spendStatuses[idx],
             }));
 
+            const addressData = createAddressData(data.addresses, data.balances, data.wereSpent);
+
             return {
                 accountName,
                 transactions,
-                addressData: formatAddressData(data.addresses, data.balances, data.wereSpent),
+                addressData: mergeAddressData(existingAddressData, addressData),
             };
         });
 };
@@ -184,7 +188,10 @@ export const syncAccountAfterSpending = (provider) => (seedStore, newTransaction
  **/
 export const syncAccountAfterReattachment = (reattachment, accountState) => ({
     ...accountState,
-    transactions: [...accountState.transactions, ...reattachment],
+    transactions: [
+        ...accountState.transactions,
+        ...map(reattachment, (transaction) => ({ ...transaction, persistence: false, broadcasted: true })),
+    ],
 });
 
 /**
@@ -197,7 +204,11 @@ export const syncAccountAfterReattachment = (reattachment, accountState) => ({
  *   @returns {object}
  **/
 export const syncAccountOnValueTransactionFailure = (newTransactionObjects, accountState) => {
-    const failedTransactions = map(newTransactionObjects, (transaction) => ({ ...transaction, broadcasted: false }));
+    const failedTransactions = map(newTransactionObjects, (transaction) => ({
+        ...transaction,
+        persistence: false,
+        broadcasted: false,
+    }));
     const addressData = markAddressesAsSpentSync([failedTransactions], accountState.addressData);
 
     return {

@@ -8,13 +8,13 @@ import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
 /**
- * Merge latest address data into existing address data for an account
+ * Set latest address data
  *
  * @method setAddressData
  * @param {object} existingAddressData
  * @param {object} newAddressData
  *
- * @returns {object}
+ * @returns {array}
  */
 export const setAddressData = (existingAddressData, newAddressData) => {
     if (isEmpty(existingAddressData)) {
@@ -187,8 +187,8 @@ const account = (
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_SWEEPING:
-        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
         case ActionTypes.MANUAL_SYNC_SUCCESS:
+        case ActionTypes.OVERRIDE_ACCOUNT_INFO:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),

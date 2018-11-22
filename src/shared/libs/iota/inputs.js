@@ -245,13 +245,16 @@ export const getInputs = (provider) => (addressData, transactions, threshold, ma
         return Promise.reject(new Error(Errors.INVALID_MAX_INPUTS_PROVIDED));
     }
 
-    // Filter transactions with non-funded inputs
-    return filterNonFundedBundles(provider)(constructBundlesFromTransactions(transactions))
+    // Filter pending transactions with non-funded inputs
+    return filterNonFundedBundles(provider)(
+        constructBundlesFromTransactions(filter(transactions, (transaction) => transaction.persistence === false)),
+    )
         .then((fundedBundles) => {
             // Remove addresses from addressData with (still funded) pending incoming transactions
+            // This mitigates an attack where an adversary could broadcast a fake transaction to block spending from this input address.
             let addressDataForInputs = filterAddressDataWithPendingIncomingTransactions(
                 addressData,
-                flatMap(fundedBundles, (bundle) => bundle),
+                flatMap(fundedBundles),
             );
 
             if (reduce(addressDataForInputs, (acc, addressObject) => acc + addressObject.balance, 0) < threshold) {

@@ -716,6 +716,16 @@ export const isFundedBundle = (provider) => (bundle) => {
 };
 
 /**
+ * Filters zero value bundles
+ *
+ * @method filterZeroValueBundles
+ * @param {array} bundles
+ */
+export const filterZeroValueBundles = (bundles) => {
+    return filter(bundles, (bundle) => some(bundle, (transaction) => transaction.value < 0));
+};
+
+/**
  *   Filters non-funded bundles
  *   Note: Does not validate signatures or other bundle attributes
  *
@@ -730,7 +740,8 @@ export const filterNonFundedBundles = (provider) => (bundles) => {
     }
 
     return reduce(
-        bundles,
+        // Only check funds for value transactions
+        filterZeroValueBundles(bundles),
         (promise, bundle) => {
             return promise.then((result) => {
                 return isFundedBundle(provider)(bundle).then((isFunded) => {

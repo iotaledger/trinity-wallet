@@ -22,8 +22,9 @@ import {
     isFundedBundle,
     categoriseInclusionStatesByBundleHash,
     assignInclusionStatesToBundles,
+    filterZeroValueBundles,
 } from '../../../libs/iota/transfers';
-import { confirmedValueBundles } from '../../__samples__/bundles';
+import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
 import { iota, SwitchingConfig } from '../../../libs/iota';
 import { failedTrytesWithCorrectTransactionHashes } from '../../__samples__/trytes';
 import {
@@ -835,6 +836,7 @@ describe('libs: iota/transfers', () => {
         });
     });
 
+    // FIXME: The following test fails occasionally
     describe('#sortTransactionTrytesArray', () => {
         it('should sort transaction trytes in ascending order', () => {
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default
@@ -1100,6 +1102,20 @@ describe('libs: iota/transfers', () => {
                     );
                 });
             });
+        });
+    });
+
+    describe('#filterZeroValueBundles', () => {
+        it('should filter zero value bundles', () => {
+            const result = filterZeroValueBundles([
+                ...confirmedValueBundles,
+                ...unconfirmedValueBundles,
+                ...confirmedZeroValueBundles,
+            ]);
+
+            const expectedResult = [...confirmedValueBundles, ...unconfirmedValueBundles];
+
+            expect(result).to.eql(expectedResult);
         });
     });
 });

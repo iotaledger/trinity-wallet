@@ -699,6 +699,10 @@ const normalisedTransactions = {
         message: 'Trinity test transaction one',
         tailTransactions: [
             {
+                hash: 'MFZXHOXKGVVBDGSVXIGEFBFDXICQDK9UQFVSQCAJMZICRXDGBRZMHHJUGTDPWTEHWSREZFDCRRYD99999',
+                attachmentTimestamp: 1542561283975,
+            },
+            {
                 hash: 'FQVZNSOUKKSQPCFWCBJCSMAZNAGGVFROELHOOZGFXUVZUWL9TXIQGSUZORIUXJSBKKSUCWNPPWFGA9999',
                 attachmentTimestamp: 1539988169342,
             },

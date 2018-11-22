@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import head from 'lodash/head';
 import random from 'lodash/random';
@@ -8,7 +9,9 @@ import reduce from 'lodash/reduce';
 import { expect } from 'chai';
 import nock from 'nock';
 import { prepareInputs, getInputs, isValidInput } from '../../../libs/iota/inputs';
-import { SwitchingConfig } from '../../../libs/iota/index';
+import { addressData as mockAddressData, balance as totalBalanceOfMockAddressData } from '../../__samples__/addresses';
+import mockTransactions from '../../__samples__/transactions';
+import { SwitchingConfig } from '../../../libs/iota';
 import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/inputs', () => {
@@ -134,209 +137,326 @@ describe('libs: iota/inputs', () => {
     });
 
     describe('#getInputs', () => {
-        let addressData;
-        let normalisedTransactions;
-
-        before(() => {
-            addressData = {
-                ['A'.repeat(81)]: { index: 0, balance: 3, spent: { local: true, remote: true } },
-                ['B'.repeat(81)]: { index: 1, balance: 2, spent: { local: true, remote: false } },
-                ['C'.repeat(81)]: { index: 2, balance: 1, spent: { local: false, remote: false } },
-                ['D'.repeat(81)]: { index: 3, balance: 5, spent: { local: false, remote: false } },
-                ['E'.repeat(81)]: { index: 4, balance: 7, spent: { local: false, remote: false } },
-                ['F'.repeat(81)]: { index: 5, balance: 0, spent: { local: false, remote: false } },
-            };
-
-            normalisedTransactions = [
-                {
-                    // Pending outgoing transaction
-                    inputs: [{ address: 'B'.repeat(81), value: -2 }],
-                    outputs: [{ address: 'Z'.repeat(81), value: 1 }, { address: 'F'.repeat(81), value: 1 }],
-                    persistence: false,
-                    incoming: false,
-                },
-                {
-                    // Pending incoming transaction
-                    inputs: [{ address: 'Y'.repeat(81), value: -100 }],
-                    outputs: [{ address: 'C'.repeat(81), value: 100 }],
-                    persistence: false,
-                    incoming: true,
-                },
-                {
-                    inputs: [{ address: 'X'.repeat(81), value: -50 }],
-                    outputs: [{ address: 'D'.repeat(81), value: 50 }],
-                    persistence: true,
-                    incoming: true,
-                },
-            ];
-        });
-
-        beforeEach(() => {
-            nock('http://localhost:14265', {
-                reqheaders: {
-                    'Content-Type': 'application/json',
-                    'X-IOTA-API-Version': IRI_API_VERSION,
-                },
-            })
-                .filteringRequestBody(() => '*')
-                .persist()
-                .post('/', '*')
-                .reply(200, (_, body) => {
-                    if (body.command === 'getBalances') {
-                        const resultMap = {
-                            ['A'.repeat(81)]: '3',
-                            ['B'.repeat(81)]: '2',
-                            ['C'.repeat(81)]: '1',
-                            ['D'.repeat(81)]: '5',
-                            ['E'.repeat(81)]: '7',
-                            ['F'.repeat(81)]: '0',
-                            ['X'.repeat(81)]: '0',
-                            ['Y'.repeat(81)]: '100',
-                            ['Z'.repeat(81)]: '0',
-                        };
-                        const addresses = body.addresses;
-
-                        return { balances: map(addresses, (address) => resultMap[address]) };
-                    } else if (body.command === 'wereAddressesSpentFrom') {
-                        const resultMap = {
-                            ['A'.repeat(81)]: true,
-                            ['B'.repeat(81)]: false,
-                            ['C'.repeat(81)]: false,
-                            ['D'.repeat(81)]: false,
-                            ['E'.repeat(81)]: false,
-                            ['F'.repeat(81)]: false,
-                            ['X'.repeat(81)]: true,
-                            ['Y'.repeat(81)]: true,
-                            ['Z'.repeat(81)]: false,
-                        };
-                        const addresses = body.addresses;
-
-                        return { states: map(addresses, (address) => resultMap[address]) };
-                    }
-
-                    return {};
-                });
-        });
-
-        afterEach(() => {
-            nock.cleanAll();
-        });
-
-        // Total balance on address data => 18
-        // Addresses with pending incoming transactions => [CCC...CCC, FFF...FFF]
-        // Addresses with pending outgoing transactions => [BBB...BBB]
-        // Spent addresses => [AAA...AAA, BBB...BBB]
-
-        // Available balance => Total balance - Balance(CCC...CCC, FFF...FFF) - Balance(BBB...BBB) - Balance(AAA...AAA) => 12
-        // Whenever inputs are resolved, assert inputs balance <= 12
         describe('when has insufficient balance Sum(balances) < threshold', () => {
             it('should throw with an error with message "Insufficient balance."', () => {
-                return getInputs()(
-                    {
-                        ['A'.repeat(81)]: { index: 0, balance: 1 },
-                        ['B'.repeat(81)]: { index: 1, balance: 2 },
-                        ['C'.repeat(81)]: { index: 2, balance: 5 },
-                    },
-                    [],
-                    50,
-                ).catch((error) => expect(error.message).to.equal('Insufficient balance.'));
+                return getInputs()(mockAddressData, mockTransactions, totalBalanceOfMockAddressData + 10).catch(
+                    (error) => expect(error.message).to.equal('Insufficient balance.'),
+                );
             });
         });
 
         describe('when maxInputs not a number', () => {
             it('should throw with an error with message "Invalid max inputs provided."', () => {
-                return getInputs()(
-                    {
-                        ['A'.repeat(81)]: { index: 0, balance: 1 },
-                        ['B'.repeat(81)]: { index: 1, balance: 2 },
-                        ['C'.repeat(81)]: { index: 2, balance: 5 },
-                    },
-                    [],
-                    1,
-                    null,
-                ).catch((error) => expect(error.message).to.equal('Invalid max inputs provided.'));
+                return getInputs()(mockAddressData, mockTransactions, totalBalanceOfMockAddressData, null).catch(
+                    (error) => expect(error.message).to.equal('Invalid max inputs provided.'),
+                );
             });
         });
 
         describe('when has pending incoming transactions on some addresses', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'getBalances') {
+                            const addresses = body.addresses;
+
+                            const resultMap = reduce(
+                                [
+                                    ...mockAddressData,
+                                    ...[
+                                        {
+                                            address:
+                                                'QSHVEHOFGUYBDPMPUUPLNRDQGAHPMGQKRIEOIMLVMIKQSTHERN9DRLCN9J9RYFGPSPOIONQNYELEQUDUC',
+                                            balance: 60,
+                                        },
+                                    ],
+                                ],
+                                (acc, addressObject) => {
+                                    acc[addressObject.address] = addressObject.balance.toString();
+
+                                    return acc;
+                                },
+                                {},
+                            );
+
+                            return {
+                                balances: map(addresses, (address) => resultMap[address]),
+                            };
+                        } else if (body.command === 'wereAddressesSpentFrom') {
+                            // Just return spend status as false for every address
+                            // We're asserting if addresses with incoming transactions are filtered out
+                            const addresses = body.addresses;
+
+                            return { states: map(addresses, () => false) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
             describe('when has enough balance after filtering addresses in address data with pending incoming transactions', () => {
                 it('should not include addresses with incoming transactions in selected inputs', () => {
-                    const threshold = 10;
+                    const threshold = 160;
+                    const addressesWithPendingIncomingTransactions = [
+                        // See shared/__tests__/__samples/transactions -> unconfirmedValueTransactions
+                        'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                    ];
 
-                    return getInputs()(addressData, normalisedTransactions, threshold).then((result) => {
-                        const { inputs } = result;
+                    return getInputs()(mockAddressData, mockTransactions, threshold).then((inputs) => {
                         const inputAddresses = map(inputs, (input) => input.address);
 
-                        expect(inputAddresses).to.not.includes('C'.repeat(81));
-                        expect(inputAddresses).to.not.includes('F'.repeat(81));
+                        // FIXME (laumair): Also assert #prepareInputs is not called with any address with pending incoming transactions
+                        each(inputAddresses, (address) =>
+                            expect(includes(addressesWithPendingIncomingTransactions, address)).to.equal(false),
+                        );
                     });
                 });
             });
 
             describe('when does not have enough balance after filtering addresses in address data with pending incoming transactions', () => {
                 it('should throw with an error with message "Incoming transfers to all selected inputs"', () => {
-                    const threshold = 18;
-                    // Total balance on address data => 15
-                    // Threshold = 15
-                    // Addresses with pending incoming transactions => [CCC...CCC, FFF...FFF]
+                    const threshold = 300;
+                    const addressesWithPendingIncomingTransactions = [
+                        // See shared/__tests__/__samples/transactions -> unconfirmedValueTransactions
+                        'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                    ];
 
-                    // Total Balance - Balance(CCC...CCC, FFF...FFF) => 14
-                    return getInputs()(addressData, normalisedTransactions, threshold).catch((error) =>
-                        expect(error.message).to.equal('Incoming transfers to all selected inputs'),
-                    );
+                    return getInputs()(
+                        map(mockAddressData, (addressObject) => {
+                            if (includes(addressesWithPendingIncomingTransactions, addressObject.address)) {
+                                return { ...addressObject, balance: addressObject.balance + 100 };
+                            }
+
+                            return addressObject;
+                        }),
+                        mockTransactions,
+                        threshold,
+                    )
+                        .then(() => {
+                            throw new Error();
+                        })
+                        .catch((error) => expect(error.message).to.equal('Incoming transfers to all selected inputs'));
                 });
             });
         });
 
         describe('when has pending outgoing transactions on some addresses', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'getBalances') {
+                            const addresses = body.addresses;
+
+                            const resultMap = reduce(
+                                [
+                                    ...mockAddressData,
+                                    ...[
+                                        {
+                                            address:
+                                                'QSHVEHOFGUYBDPMPUUPLNRDQGAHPMGQKRIEOIMLVMIKQSTHERN9DRLCN9J9RYFGPSPOIONQNYELEQUDUC',
+                                            balance: 60,
+                                        },
+                                    ],
+                                ],
+                                (acc, addressObject) => {
+                                    acc[addressObject.address] = addressObject.balance.toString();
+
+                                    return acc;
+                                },
+                                {},
+                            );
+
+                            return {
+                                balances: map(addresses, (address) => resultMap[address]),
+                            };
+                        } else if (body.command === 'wereAddressesSpentFrom') {
+                            // Just return spend status as false for every address
+                            // We're asserting if addresses with outgoing transactions are filtered out
+                            const addresses = body.addresses;
+
+                            return { states: map(addresses, () => false) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
             describe('when has enough balance to spend after filtering addresses in address data with pending outgoing transactions', () => {
                 it('should not include addresses with outgoing transactions in selected inputs', () => {
-                    const threshold = 10;
+                    const threshold = 160;
+                    const addressesWithPendingOutgoingTransactions = [
+                        // See shared/__tests__/__samples/transactions -> unconfirmedValueTransactions
+                        'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                        // See shared/__tests__/__samples/transactions -> failedTransactionsWithCorrectTransactionHashes
+                        'D9QCAHCWFN9BCFNNSPNGFVUEUSKBX9XQEKSIRRWXHHBQBJMEEI9ATVWNPJRLO9ETRPCBIRNQBLDMBUYVW',
+                        // See shared/__tests__/__samples/transactions -> failedTransactionsWithIncorrectTransactionHashes
+                        'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                    ];
 
-                    return getInputs()(addressData, normalisedTransactions, threshold).then((result) => {
-                        const { inputs } = result;
+                    return getInputs()(mockAddressData, mockTransactions, threshold).then((inputs) => {
                         const inputAddresses = map(inputs, (input) => input.address);
 
-                        expect(inputAddresses).to.not.includes('B'.repeat(81));
+                        each(inputAddresses, (address) =>
+                            expect(includes(addressesWithPendingOutgoingTransactions, address)).to.equal(false),
+                        );
                     });
                 });
             });
 
             describe('when does not have enough balance after filtering addresses in address data with pending outgoing transactions', () => {
                 it('should throw with an error with message "Input addresses already used in a pending transfer."', () => {
-                    const threshold = 16;
+                    const threshold = 300;
+                    const addressesWithPendingOutgoingTransactions = [
+                        // See shared/__tests__/__samples/transactions -> unconfirmedValueTransactions
+                        'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                        // See shared/__tests__/__samples/transactions -> failedTransactionsWithCorrectTransactionHashes
+                        'D9QCAHCWFN9BCFNNSPNGFVUEUSKBX9XQEKSIRRWXHHBQBJMEEI9ATVWNPJRLO9ETRPCBIRNQBLDMBUYVW',
+                        // See shared/__tests__/__samples/transactions -> failedTransactionsWithIncorrectTransactionHashes
+                        'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                    ];
 
-                    return getInputs()(addressData, normalisedTransactions, threshold).catch((error) =>
-                        expect(error.message).to.equal('Input addresses already used in a pending transfer.'),
-                    );
+                    return getInputs()(
+                        map(mockAddressData, (addressObject) => {
+                            if (includes(addressesWithPendingOutgoingTransactions, addressObject.address)) {
+                                return { ...addressObject, balance: addressObject.balance + 100 };
+                            }
+
+                            return addressObject;
+                        }),
+                        mockTransactions,
+                        threshold,
+                    )
+                        .then(() => {
+                            throw new Error();
+                        })
+                        .catch((error) =>
+                            expect(error.message).to.equal('Input addresses already used in a pending transfer.'),
+                        );
                 });
             });
         });
 
         describe('when has spent addresses', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'getBalances') {
+                            const addresses = body.addresses;
+
+                            const resultMap = reduce(
+                                [
+                                    ...mockAddressData,
+                                    ...[
+                                        {
+                                            address:
+                                                'QSHVEHOFGUYBDPMPUUPLNRDQGAHPMGQKRIEOIMLVMIKQSTHERN9DRLCN9J9RYFGPSPOIONQNYELEQUDUC',
+                                            balance: 60,
+                                        },
+                                    ],
+                                ],
+                                (acc, addressObject) => {
+                                    acc[addressObject.address] = addressObject.balance.toString();
+
+                                    return acc;
+                                },
+                                {},
+                            );
+
+                            return {
+                                balances: map(addresses, (address) => resultMap[address]),
+                            };
+                        } else if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
+
+                            const resultMap = reduce(
+                                mockAddressData,
+                                (acc, addressObject) => {
+                                    acc[addressObject.address] = addressObject.spent.remote;
+
+                                    return acc;
+                                },
+                                {},
+                            );
+
+                            return { states: map(addresses, (address) => resultMap[address]) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
             describe('when has enough balance to spend after filtering spent addresses in address data', () => {
                 it('should not include spent addresses in selected inputs', () => {
-                    const threshold = 10;
+                    const threshold = 160;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold).then((result) => {
-                        const { inputs, balance } = result;
+                    const spentAddresses = [
+                        // (Index: 0) Local spend status -> true, Remote spend status -> true
+                        'QVMPTRCCXYHUORXY9BLOZAFGVHRMRLPWFBX9DTWEXI9CNCKRWTNAZUPECVQUHGBTVIFNAWM9GMVDGJVEB',
+                        // (Index: 1) Local spend status -> true, Remote spend status -> true
+                        'EGESUXEIFAHIRLP9PB9YQJUPNWNWVDBEZAIYWUFKYKHTAHDHRVKSBCYYRJOUJSRBZKUTJGJIIGUGLDPVX',
+                        // (Index: 2) Local spend status -> true, Remote spend status -> true
+                        'D9QCAHCWFN9BCFNNSPNGFVUEUSKBX9XQEKSIRRWXHHBQBJMEEI9ATVWNPJRLO9ETRPCBIRNQBLDMBUYVW',
+                        // (Index: 3) Local spend status -> true, Remote spend status -> false
+                        'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                        // (Index: 5) Local spend status -> false, Remote spend status -> true
+                        'FXWIQUQWEATQQGUIWQTVOBHQBIEYCCYKZSNNAYBBILGA9ZRQKYQVPZKDBO9W9AUZBBGEDKNTTZQECBIBX',
+                        // (Index: 6) Local spend status -> false, Remote spend status -> true
+                        'ZBQWFOZVCOURPSVBNIBWOBQNRQXDBESSEJWWETTWWMGSJDUJLITMJYYBM9ZUFXTYTTPSGDTVBNIKLKXJA',
+                    ];
+
+                    return getInputs()(mockAddressData, mockTransactions, threshold).then((inputs) => {
                         const inputAddresses = map(inputs, (input) => input.address);
 
-                        expect(inputAddresses).to.not.includes('B'.repeat(81));
-                        expect(inputAddresses).to.not.includes('A'.repeat(81));
-
-                        expect(balance <= 12).to.equal(true);
+                        each(inputAddresses, (address) => expect(includes(spentAddresses, address)).to.equal(false));
                     });
                 });
             });
 
             describe('when does not have enough balance to spend after filtering spent addresses in address data', () => {
                 it('should throw with an error with message "WARNING FUNDS AT SPENT ADDRESSES."', () => {
-                    const threshold = 13;
+                    const threshold = 170;
 
-                    return getInputs()(addressData, normalisedTransactions, threshold).catch((error) =>
-                        expect(error.message).to.equal('WARNING FUNDS AT SPENT ADDRESSES.'),
-                    );
+                    return getInputs()(mockAddressData, mockTransactions, threshold)
+                        .then(() => {
+                            throw new Error();
+                        })
+                        .catch((error) => expect(error.message).to.equal('WARNING FUNDS AT SPENT ADDRESSES.'));
                 });
             });
         });

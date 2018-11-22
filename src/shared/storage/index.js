@@ -1,5 +1,4 @@
 import assign from 'lodash/assign';
-import get from 'lodash/get';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
@@ -9,7 +8,6 @@ import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
 import Realm from 'realm';
-import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 import {
     TransactionSchema,
     AddressSchema,
@@ -110,10 +108,6 @@ class Account {
             const updatedData = assign({}, existingData, {
                 ...data,
                 name,
-                // If addressData is provided, then make sure we preserve the local spend status
-                addressData: get(data, 'addressData')
-                    ? preserveAddressLocalSpendStatus(existingData.addressData, data.addressData)
-                    : existingData.addressData,
             });
 
             realm.create('Account', updatedData, true);

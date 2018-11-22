@@ -30,7 +30,10 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
     for (let i = 0; i < accounts.length; i++) {
         const accountInfo = state.accounts.accountInfo[accounts[i].accountName];
 
-        const addressCount = Math.max(accountInfo.addresses ? Object.keys(accountInfo.addresses).length + 20 : 30, 30);
+        const addressCount = Math.max(
+            accountInfo.addressData ? Object.keys(accountInfo.addressData).length + 20 : 30,
+            30,
+        );
 
         const seed = await accounts[i].seedStore.getSeed(true);
 

@@ -33,9 +33,11 @@ describe('Reducer: accounts', () => {
 
             const action = {
                 type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
-                name: 'bar',
-                meta: { foo: '' },
-                usedExistingSeed: true,
+                payload: {
+                    name: 'bar',
+                    meta: { foo: '' },
+                    usedExistingSeed: true,
+                },
             };
 
             const newState = reducer(initialState, action);
