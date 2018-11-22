@@ -10,10 +10,32 @@ import union from 'lodash/union';
 import uniq from 'lodash/uniq';
 import IOTA from 'iota.lib.js';
 import { isNodeSynced } from './extendedApi';
-import { QUORUM_THRESHOLD, QUORUM_SIZE, DEFAULT_BALANCES_THRESHOLD } from '../../config';
-import { EMPTY_HASH_TRYTES } from './utils';
+import {
+    QUORUM_THRESHOLD,
+    QUORUM_SIZE,
+    QUORUM_NODES_SYNC_CHECKS_INTERVAL,
+    DEFAULT_BALANCES_THRESHOLD,
+} from '../../config';
+import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
+
+/**
+ * Resolves only if size of synced nodes is greater than or equal to quorum size
+ *
+ * @method rejectIfNotEnoughSyncedNodes
+ *
+ * @param {array} nodes
+ * @param {number} quorumSize
+ * @returns {Promise}
+ */
+const rejectIfNotEnoughSyncedNodes = (nodes, quorumSize = QUORUM_SIZE) => {
+    if (size(nodes) < quorumSize) {
+        return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
+    }
+
+    return Promise.resolve();
+};
 
 /**
  *   Determines quorum result for supported methods.
@@ -24,12 +46,12 @@ import Errors from '../errors';
  *
  *   @returns {function}
  **/
-const determineQuorumResult = (validResults, faultyResultCount = 0) => {
+const determineQuorumResult = (validResults, quorumSize = QUORUM_SIZE) => {
     const { frequency, mostFrequent } = findMostFrequent(validResults);
 
     return (method, threshold) => {
         // Include faulty result count while determining percentage
-        const percentage = frequency[mostFrequent] / (size(validResults) + faultyResultCount) * 100;
+        const percentage = frequency[mostFrequent] / quorumSize * 100;
 
         if (percentage > threshold) {
             return mostFrequent;
@@ -52,6 +74,7 @@ const fallbackToSafeResult = (method) => {
         wereAddressesSpentFrom: true,
         getInclusionStates: false,
         getBalances: '0',
+        getTrytes: EMPTY_TRANSACTION_TRYTES,
         latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
     };
 
@@ -68,7 +91,7 @@ const fallbackToSafeResult = (method) => {
  *
  *   @returns {Promise}
  **/
-const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = []) => {
+const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes = []) => {
     const sizeOfSyncedNodes = size(syncedNodes);
     const whitelistedNodes = filter(nodes, (node) => !includes(blacklistedNodes, node) && !includes(syncedNodes, node));
 
@@ -77,7 +100,7 @@ const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = []) => {
     }
 
     const selectedNodes =
-        sizeOfSyncedNodes === QUORUM_SIZE ? syncedNodes : sampleSize(whitelistedNodes, QUORUM_SIZE - sizeOfSyncedNodes);
+        sizeOfSyncedNodes === quorumSize ? syncedNodes : sampleSize(whitelistedNodes, quorumSize - sizeOfSyncedNodes);
 
     return Promise.all(map(selectedNodes, (provider) => isNodeSynced(provider).catch(() => undefined))).then(
         (results) => {
@@ -93,6 +116,7 @@ const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = []) => {
 
             return findSyncedNodes(
                 nodes,
+                quorumSize,
                 // Add active nodes to synced nodes
                 [...syncedNodes, ...activeNodes],
                 // Add inactive nodes to blacklisted nodes
@@ -112,45 +136,44 @@ const findSyncedNodes = (nodes, syncedNodes = [], blacklistedNodes = []) => {
  *   @returns {Promise}
  **/
 const getQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
-    if (isEmpty(syncedNodes)) {
-        return Promise.reject(new Error(Errors.NO_SYNCED_NODES_FOR_QUORUM));
-    }
-
     const requestPayloadSize = size(payload);
 
-    return Promise.all(
-        map(
-            syncedNodes,
-            (provider) =>
-                new Promise((resolve, reject) => {
-                    new IOTA({ provider }).api.wereAddressesSpentFrom(
-                        payload,
-                        (err, spendStatuses) => (err ? reject(err) : resolve(spendStatuses)),
-                    );
-                }),
-        ),
-    ).then((results) => {
-        const validResults = filter(results, (result) => !isUndefined(result));
-        const invalidResultsCount = size(results) - size(validResults);
-
-        let idx = 0;
-        const quorumResult = [];
-
-        while (idx < requestPayloadSize) {
-            /* eslint-disable no-loop-func */
-            quorumResult.push(
-                determineQuorumResult(map(validResults, (result) => result[idx]), invalidResultsCount)(
-                    'wereAddressesSpentFrom',
-                    QUORUM_THRESHOLD,
+    return rejectIfNotEnoughSyncedNodes(syncedNodes)
+        .then(() =>
+            Promise.all(
+                map(
+                    syncedNodes,
+                    (provider) =>
+                        new Promise((resolve) => {
+                            new IOTA({ provider }).api.wereAddressesSpentFrom(
+                                payload,
+                                (err, spendStatuses) => (err ? resolve(undefined) : resolve(spendStatuses)),
+                            );
+                        }),
                 ),
-            );
-            /* eslint-enable no-loop-func */
+            ),
+        )
+        .then((results) => {
+            const validResults = filter(results, (result) => !isUndefined(result));
 
-            idx += 1;
-        }
+            let idx = 0;
+            const quorumResult = [];
 
-        return quorumResult;
-    });
+            while (idx < requestPayloadSize) {
+                /* eslint-disable no-loop-func */
+                quorumResult.push(
+                    determineQuorumResult(map(validResults, (result) => result[idx]))(
+                        'wereAddressesSpentFrom',
+                        QUORUM_THRESHOLD,
+                    ),
+                );
+                /* eslint-enable no-loop-func */
+
+                idx += 1;
+            }
+
+            return quorumResult;
+        });
 };
 
 /**
@@ -164,46 +187,45 @@ const getQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
  *   @returns {Promise}
  **/
 const getQuorumForGetLatestInclusion = (payload, tips, syncedNodes) => {
-    if (isEmpty(syncedNodes)) {
-        return Promise.reject(new Error(Errors.NO_SYNCED_NODES_FOR_QUORUM));
-    }
-
     const requestPayloadSize = size(payload);
 
-    return Promise.all(
-        map(
-            syncedNodes,
-            (provider) =>
-                new Promise((resolve, reject) => {
-                    new IOTA({ provider }).api.getInclusionStates(
-                        payload,
-                        tips,
-                        (err, states) => (err ? reject(err) : resolve(states)),
-                    );
-                }),
-        ),
-    ).then((results) => {
-        const validResults = filter(results, (result) => !isUndefined(result));
-        const invalidResultsCount = size(results) - size(validResults);
-
-        let idx = 0;
-        const quorumResult = [];
-
-        while (idx < requestPayloadSize) {
-            /* eslint-disable no-loop-func */
-            quorumResult.push(
-                determineQuorumResult(map(validResults, (result) => result[idx]), invalidResultsCount)(
-                    'getInclusionStates',
-                    QUORUM_THRESHOLD,
+    return rejectIfNotEnoughSyncedNodes(syncedNodes)
+        .then(() =>
+            Promise.all(
+                map(
+                    syncedNodes,
+                    (provider) =>
+                        new Promise((resolve) => {
+                            new IOTA({ provider }).api.getInclusionStates(
+                                payload,
+                                tips,
+                                (err, states) => (err ? resolve(undefined) : resolve(states)),
+                            );
+                        }),
                 ),
-            );
-            /* eslint-enable no-loop-func */
+            ),
+        )
+        .then((results) => {
+            const validResults = filter(results, (result) => !isUndefined(result));
 
-            idx += 1;
-        }
+            let idx = 0;
+            const quorumResult = [];
 
-        return quorumResult;
-    });
+            while (idx < requestPayloadSize) {
+                /* eslint-disable no-loop-func */
+                quorumResult.push(
+                    determineQuorumResult(map(validResults, (result) => result[idx]))(
+                        'getInclusionStates',
+                        QUORUM_THRESHOLD,
+                    ),
+                );
+                /* eslint-enable no-loop-func */
+
+                idx += 1;
+            }
+
+            return quorumResult;
+        });
 };
 
 /**
@@ -211,55 +233,102 @@ const getQuorumForGetLatestInclusion = (payload, tips, syncedNodes) => {
  *
  *   @method getQuorumForGetBalances
  *   @param {array} payload - Addresses
+ *   @param {number} threshold
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const getQuorumForGetBalances = (payload, tips, syncedNodes) => {
-    if (isEmpty(syncedNodes)) {
-        return Promise.reject(new Error(Errors.NO_SYNCED_NODES_FOR_QUORUM));
-    }
-
+const getQuorumForGetBalances = (payload, threshold, tips, syncedNodes) => {
     const requestPayloadSize = size(payload);
 
-    return Promise.all(
-        map(
-            syncedNodes,
-            (provider) =>
-                new Promise((resolve, reject) => {
-                    new IOTA({ provider }).api.getBalances(
-                        payload,
-                        DEFAULT_BALANCES_THRESHOLD,
-                        tips,
-                        (err, states) => (err ? reject(err) : resolve(states)),
-                    );
-                }),
-        ),
-    ).then((results) => {
-        const validResults = filter(results, (result) => !isUndefined(result));
-        const invalidResultsCount = size(results) - size(validResults);
-
-        let idx = 0;
-        const quorumResult = {
-            references: tips,
-            balances: [],
-        };
-
-        while (idx < requestPayloadSize) {
-            /* eslint-disable no-loop-func */
-            quorumResult.balances.push(
-                determineQuorumResult(map(validResults, ({ balances }) => balances[idx]), invalidResultsCount)(
-                    'getBalances',
-                    QUORUM_THRESHOLD,
+    return rejectIfNotEnoughSyncedNodes(syncedNodes)
+        .then(() =>
+            Promise.all(
+                map(
+                    syncedNodes,
+                    (provider) =>
+                        new Promise((resolve) => {
+                            new IOTA({ provider }).api.getBalances(
+                                payload,
+                                threshold,
+                                tips,
+                                (err, states) => (err ? resolve(undefined) : resolve(states)),
+                            );
+                        }),
                 ),
-            );
-            /* eslint-enable no-loop-func */
+            ),
+        )
+        .then((results) => {
+            const validResults = filter(results, (result) => !isUndefined(result));
 
-            idx += 1;
-        }
+            let idx = 0;
+            const quorumResult = {
+                references: tips,
+                balances: [],
+            };
 
-        return quorumResult;
-    });
+            while (idx < requestPayloadSize) {
+                /* eslint-disable no-loop-func */
+                quorumResult.balances.push(
+                    determineQuorumResult(map(validResults, ({ balances }) => balances[idx]))(
+                        'getBalances',
+                        QUORUM_THRESHOLD,
+                    ),
+                );
+                /* eslint-enable no-loop-func */
+
+                idx += 1;
+            }
+
+            return quorumResult;
+        });
+};
+
+/**
+ *   From a list of synced nodes, compute a quorum result for getTrytes iota api
+ *
+ *   @method getQuorumForGetTrytes
+ *   @param {array} payload - hashes
+ *   @param {array} syncedNodes
+ *
+ *   @returns {Promise}
+ **/
+const getQuorumForGetTrytes = (payload, syncedNodes) => {
+    const requestPayloadSize = size(payload);
+
+    return rejectIfNotEnoughSyncedNodes(syncedNodes)
+        .then(() =>
+            Promise.all(
+                map(
+                    syncedNodes,
+                    (provider) =>
+                        new Promise((resolve) => {
+                            new IOTA({ provider }).api.getTrytes(
+                                payload,
+                                (err, trytes) => (err ? resolve(undefined) : resolve(trytes)),
+                            );
+                        }),
+                ),
+            ),
+        )
+        .then((results) => {
+            const validResults = filter(results, (result) => !isUndefined(result));
+
+            let idx = 0;
+            const quorumResult = [];
+
+            while (idx < requestPayloadSize) {
+                /* eslint-disable no-loop-func */
+                quorumResult.push(
+                    determineQuorumResult(map(validResults, (result) => result[idx]))('getTrytes', QUORUM_THRESHOLD),
+                );
+                /* eslint-enable no-loop-func */
+
+                idx += 1;
+            }
+
+            return quorumResult;
+        });
 };
 
 /**
@@ -271,37 +340,37 @@ const getQuorumForGetBalances = (payload, tips, syncedNodes) => {
  *   @returns {Promise}
  **/
 const getQuorumForLatestSolidSubtangleMilestone = (syncedNodes) => {
-    if (isEmpty(syncedNodes)) {
-        return Promise.reject(new Error(Errors.NO_SYNCED_NODES_FOR_QUORUM));
-    }
+    return rejectIfNotEnoughSyncedNodes(syncedNodes)
+        .then(() =>
+            Promise.all(
+                map(
+                    syncedNodes,
+                    (provider) =>
+                        new Promise((resolve) => {
+                            new IOTA({ provider }).api.getNodeInfo(
+                                (err, info) => (err ? resolve(undefined) : resolve(info)),
+                            );
+                        }),
+                ),
+            ),
+        )
+        .then((results) => {
+            const validResults = filter(results, (result) => !isUndefined(result));
 
-    return Promise.all(
-        map(
-            syncedNodes,
-            (provider) =>
-                new Promise((resolve, reject) => {
-                    new IOTA({ provider }).api.getNodeInfo((err, info) => (err ? reject(err) : resolve(info)));
-                }),
-        ),
-    ).then((results) => {
-        const validResults = filter(results, (result) => !isUndefined(result));
-        const invalidResultsCount = size(results) - size(validResults);
+            // Get quorum result for latest solid subtangle milestone
+            const latestSolidSubtangleMilestone = determineQuorumResult(
+                map(validResults, (nodeInfo) => nodeInfo.latestSolidSubtangleMilestone),
+            )('latestSolidSubtangleMilestone', QUORUM_THRESHOLD);
 
-        // Get quorum result for latest solid subtangle milestone
-        const latestSolidSubtangleMilestone = determineQuorumResult(
-            map(validResults, (nodeInfo) => nodeInfo.latestSolidSubtangleMilestone),
-            invalidResultsCount,
-        )('latestSolidSubtangleMilestone', QUORUM_THRESHOLD);
+            // If nodes cannot agree on the latestSolidSubtangleMilestone
+            // Then just throw an exception
+            if (latestSolidSubtangleMilestone === EMPTY_HASH_TRYTES) {
+                // TODO (laumair): Might need to replace the error message here.
+                throw new Error(Errors.NOT_ENOUGH_HEALTHY_QUORUM_NODES);
+            }
 
-        // If nodes cannot agree on the latestSolidSubtangleMilestone
-        // Then just throw an exception
-        if (latestSolidSubtangleMilestone === EMPTY_HASH_TRYTES) {
-            // TODO (laumair): Might need to replace the error message here.
-            throw new Error(Errors.NOT_ENOUGH_HEALTHY_QUORUM_NODES);
-        }
-
-        return latestSolidSubtangleMilestone;
-    });
+            return latestSolidSubtangleMilestone;
+        });
 };
 
 /**
@@ -322,8 +391,8 @@ export default function Quorum(quorumNodes) {
     const findSyncedNodesIfNecessary = () => {
         const timeElapsed = (new Date() - lastSyncedAt) / 1000;
 
-        if (isEmpty(syncedNodes) || timeElapsed >= 120) {
-            return findSyncedNodes(nodes, syncedNodes).then((newSyncedNodes) => {
+        if (isEmpty(syncedNodes) || timeElapsed >= QUORUM_NODES_SYNC_CHECKS_INTERVAL) {
+            return findSyncedNodes(nodes, QUORUM_SIZE, syncedNodes).then((newSyncedNodes) => {
                 syncedNodes = newSyncedNodes;
                 lastSyncedAt = new Date();
 
@@ -350,12 +419,15 @@ export default function Quorum(quorumNodes) {
                 ),
             );
         },
-        getBalances(addresses) {
+        getBalances(addresses, threshold = DEFAULT_BALANCES_THRESHOLD) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
                 getQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
-                    getQuorumForGetBalances(addresses, [latestSolidSubtangleMilestone], newSyncedNodes),
+                    getQuorumForGetBalances(addresses, threshold, [latestSolidSubtangleMilestone], newSyncedNodes),
                 ),
             );
+        },
+        getTrytes(hashes) {
+            return findSyncedNodesIfNecessary().then((newSyncedNodes) => getQuorumForGetTrytes(hashes, newSyncedNodes));
         },
     };
 }

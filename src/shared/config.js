@@ -47,3 +47,4 @@ export const IRI_API_VERSION = '1';
 
 export const QUORUM_THRESHOLD = 67;
 export const QUORUM_SIZE = 7;
+export const QUORUM_NODES_SYNC_CHECKS_INTERVAL = 120;
