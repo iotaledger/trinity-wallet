@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import values from 'lodash/values';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -145,13 +145,12 @@ class SeedVaultExportComponent extends Component {
                 .replace(/[-:]/g, '')
                 .replace('T', '-')}.kdbx`;
         this.setState({ path });
-        const vaultParsed = map(vault.split(','), (num) => parseInt(num));
         RNFetchBlob.fs.exists(path).then((fileExists) => {
             if (fileExists) {
                 RNFetchBlob.fs.unlink(path);
             }
             RNFetchBlob.fs
-                .createFile(path, vaultParsed, 'ascii')
+                .createFile(path, values(vault), 'ascii')
                 .then(() => {
                     if (this.state.saveToDownloadFolder) {
                         return this.onExportSuccess();
