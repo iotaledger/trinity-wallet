@@ -7123,7 +7123,7 @@ readable-stream@~2.0.6:
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-realm@^2.18.0:
+realm@2.18.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/realm/-/realm-2.18.0.tgz#83d7184653a9aaf0c9a28c9270e233d5d32d028a"
   integrity sha512-+FzQ0S3WjcnklhCZx/SPFh/rU311w+gfPOrtlG2wZPB6qq4ZJ6sarIIrHAyB0y7eHiWxDpwIYTW0oMQgwpNh3g==
@@ -7698,7 +7698,6 @@ shared-modules@../shared/:
     react "16.2.0"
     react-i18next "^8.0.7"
     react-redux "^5.0.6"
-    realm "^2.18.0"
     redux "^4.0.1"
     redux-persist "^4.10.1"
     redux-thunk "^2.2.0"

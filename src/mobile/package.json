@@ -102,6 +102,7 @@
     "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
+    "realm": "2.18.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
