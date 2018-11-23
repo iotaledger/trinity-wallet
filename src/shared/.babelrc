@@ -2,7 +2,13 @@
     "presets": ["es2015", "stage-2"],
     "plugins": [
         "transform-object-rest-spread",
-        "transform-react-jsx"
+        "transform-react-jsx",
+        "module-resolver", {
+            "root": ["."],
+            "alias": {
+              "realm": "./libs/realm"
+            }
+        }
     ]
 
 }
