@@ -25,6 +25,10 @@ class AnimatedComponent extends Component {
         navStack: PropTypes.array.isRequired,
         /** Style prop */
         style: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number]),
+        /** Determines whether animation is triggered by dashboard tab change */
+        isDashboard: PropTypes.bool,
+        /** Current home screen route */
+        homeRoute: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
@@ -35,6 +39,7 @@ class AnimatedComponent extends Component {
         duration: 300,
         triggerAnimationIn: false,
         triggerAnimationOut: false,
+        isDashboard: false,
     };
 
     constructor(props) {
@@ -50,19 +55,31 @@ class AnimatedComponent extends Component {
     }
 
     componentDidMount() {
-        // Animate in on mount
+        // Animate in on page mount
         if (this.props.animateOnMount) {
             this.animateIn(this.props.delay);
         }
     }
 
     componentWillReceiveProps(newProps) {
+        if (this.props.isDashboard && this.props.homeRoute !== newProps.homeRoute) {
+            const routes = ['balance', 'send', 'receive', 'history', 'settings'];
+            if (routes.indexOf(newProps.homeRoute) < routes.indexOf(this.props.homeRoute)) {
+                this.reverseSlideOut = true;
+            } else {
+                this.reverseSlideOut = false;
+            }
+            this.iniatialiseAnimations(this.props.animationOutType);
+            return this.animateOut();
+        }
+
         // Animate out if pushing from current screen
         if (this.props.navStack.length < newProps.navStack.length && this.screen === last(this.props.navStack)) {
             this.reverseSlideOut = false;
             this.iniatialiseAnimations(this.props.animationOutType);
             this.animateOut();
         }
+
         // Animate out if popping from current screen
         if (
             this.props.navStack.length > newProps.navStack.length &&
@@ -106,15 +123,15 @@ class AnimatedComponent extends Component {
         animationType.map((type) => {
             switch (type) {
                 case 'fadeIn':
-                    animatedStyle = merge({}, animatedStyle, { opacity: this.fadeValue });
-                    break;
                 case 'fadeOut':
                     animatedStyle = merge({}, animatedStyle, { opacity: this.fadeValue });
                     break;
+                case 'slideInLeft':
                 case 'slideInRight':
-                    animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateX: this.slideValue }] });
-                    break;
                 case 'slideOutLeft':
+                case 'slideInLeftSmall':
+                case 'slideInRightSmall':
+                case 'slideOutLeftSmall':
                     animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateX: this.slideValue }] });
                     break;
             }
@@ -136,7 +153,15 @@ class AnimatedComponent extends Component {
                 return 1;
             case 'slideInRight':
                 return this.reverseSlideIn ? -width : width;
+            case 'slideInLeft':
+                return -width;
             case 'slideOutLeft':
+                return 0;
+            case 'slideInLeftSmall':
+                return -width / 8;
+            case 'slideInRightSmall':
+                return width / 8;
+            case 'slideOutLeftSmall':
                 return 0;
         }
     }
@@ -153,10 +178,17 @@ class AnimatedComponent extends Component {
                 return 1;
             case 'fadeOut':
                 return 0;
+            case 'slideInLeft':
             case 'slideInRight':
                 return 0;
             case 'slideOutLeft':
                 return this.reverseSlideOut ? width : -width;
+            case 'slideInLeftSmall':
+                return 0;
+            case 'slideInRightSmall':
+                return 0;
+            case 'slideOutLeftSmall':
+                return this.reverseSlideOut ? width / 8 : -width / 8;
         }
     }
 
@@ -169,12 +201,14 @@ class AnimatedComponent extends Component {
     getEasing(animationType) {
         switch (animationType) {
             case 'fadeIn':
-                return Easing.ease;
             case 'fadeOut':
-                return Easing.ease;
+                return Easing.elastic();
+            case 'slideInLeft':
             case 'slideOutLeft':
-                return Easing.bezier(0.25, 1, 0.25, 1);
             case 'slideInRight':
+            case 'slideInLeftSmall':
+            case 'slideInRightSmall':
+            case 'slideOutLeftSmall':
                 return Easing.bezier(0.25, 1, 0.25, 1);
         }
     }
@@ -188,12 +222,14 @@ class AnimatedComponent extends Component {
     getAnimationPointer(animationType) {
         switch (animationType) {
             case 'fadeIn':
-                return this.fadeValue;
             case 'fadeOut':
                 return this.fadeValue;
+            case 'slideInLeft':
             case 'slideInRight':
-                return this.slideValue;
             case 'slideOutLeft':
+            case 'slideInLeftSmall':
+            case 'slideInRightSmall':
+            case 'slideOutLeftSmall':
                 return this.slideValue;
         }
     }
@@ -229,15 +265,15 @@ class AnimatedComponent extends Component {
         animationType.map((type) => {
             switch (type) {
                 case 'fadeIn':
-                    this.fadeValue = new Animated.Value(this.getStartingAnimatedValue(type));
-                    break;
                 case 'fadeOut':
                     this.fadeValue = new Animated.Value(this.getStartingAnimatedValue(type));
                     break;
+                case 'slideInLeft':
                 case 'slideInRight':
-                    this.slideValue = new Animated.Value(this.getStartingAnimatedValue(type));
-                    break;
                 case 'slideOutLeft':
+                case 'slideInLeftSmall':
+                case 'slideInRightSmall':
+                case 'slideOutLeftSmall':
                     this.slideValue = new Animated.Value(this.getStartingAnimatedValue(type));
                     break;
             }
@@ -274,6 +310,7 @@ class AnimatedComponent extends Component {
 
 const mapStateToProps = (state) => ({
     navStack: state.wallet.navStack,
+    homeRoute: state.home.childRoute,
 });
 
 export default connect(mapStateToProps)(AnimatedComponent);

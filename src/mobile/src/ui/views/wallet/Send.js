@@ -47,6 +47,7 @@ import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { getPowFn } from 'libs/nativeModules';
 import { Styling } from 'ui/theme/general';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -167,6 +168,8 @@ export class Send extends Component {
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines tab switch animation in */
+        animationInType: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -717,7 +720,13 @@ export class Send extends Component {
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
-                <View style={styles.container}>
+                <AnimatedComponent
+                    isDashboard
+                    animationInType={this.props.animationInType}
+                    animationOutType={['slideOutLeftSmall', 'fadeOut']}
+                    duration={150}
+                    style={styles.container}
+                >
                     <View style={{ flex: 0.5 }} />
                     <View style={styles.topContainer}>
                         <CustomTextInput
@@ -871,7 +880,7 @@ export class Send extends Component {
                         </View>
                         <View style={{ flex: 0.3 }} />
                     </View>
-                </View>
+                </AnimatedComponent>
             </TouchableWithoutFeedback>
         );
     }

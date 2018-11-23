@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import timer from 'react-native-timer';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
@@ -17,14 +18,27 @@ const routeToComponent = {
 };
 
 class TabContent extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            route: props.currentRoute,
+        };
+    }
+    componentWillReceiveProps(newProps) {
+        if (this.props.currentRoute !== newProps.currentRoute) {
+            timer.setTimeout('delayRouteChange', () => this.setState({ route: newProps.currentRoute }), 150);
+        }
+    }
     render() {
-        const { currentRoute, isKeyboardActive } = this.props;
-        const Content = routeToComponent[currentRoute];
+        const { isKeyboardActive, animationInType } = this.props;
+        const { route } = this.state;
+        const Content = routeToComponent[route];
 
         return (
             <View style={{ flex: 1 }}>
                 <Content
-                    type={currentRoute}
+                    animationInType={animationInType}
+                    type={route}
                     closeTopBar={() => this.props.handleCloseTopBar()}
                     isKeyboardActive={isKeyboardActive}
                     onTabSwitch={(name) => this.props.onTabSwitch(name)}
@@ -48,6 +62,7 @@ TabContent.propTypes = {
     handleCloseTopBar: PropTypes.func.isRequired,
     /** Determines whether keyboard is open on iOS */
     isKeyboardActive: PropTypes.bool.isRequired,
+    animationInType: PropTypes.string.isRequired,
 };
 
 TabContent.defaultProps = {

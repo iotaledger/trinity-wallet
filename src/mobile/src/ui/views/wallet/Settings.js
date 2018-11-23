@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
 import SettingsContent from 'ui/components/SettingsContent';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -33,6 +34,8 @@ class Settings extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
+        /** Determines tab switch animation in */
+        animationInType: PropTypes.array.isRequired,
     };
 
     componentDidMount() {
@@ -71,16 +74,19 @@ class Settings extends Component {
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={() => this.props.closeTopBar()}>
-                <View style={{ flex: 1 }}>
+                <AnimatedComponent
+                    isDashboard
+                    animationInType={this.props.animationInType}
+                    animationOutType={['slideOutLeftSmall', 'fadeOut']}
+                    duration={150}
+                    style={{ flex: 1 }}
+                >
                     <View style={{ flex: 1 }} />
                     <View style={styles.settingsContainer}>
-                        <SettingsContent
-                            component={this.props.currentSetting}
-                            {...childrenProps}
-                        />
+                        <SettingsContent component={this.props.currentSetting} {...childrenProps} />
                     </View>
                     <View style={{ flex: 1 }} />
-                </View>
+                </AnimatedComponent>
             </TouchableWithoutFeedback>
         );
     }

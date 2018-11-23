@@ -26,6 +26,7 @@ import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { getPowFn } from 'libs/nativeModules';
 import CtaButton from 'ui/components/CtaButton';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -114,6 +115,8 @@ class History extends Component {
         isModalActive: PropTypes.bool,
         /** @ignore */
         modalContent: PropTypes.string,
+        /** Determines tab switch animation in */
+        animationInType: PropTypes.array.isRequired,
     };
 
     componentDidMount() {
@@ -323,10 +326,16 @@ class History extends Component {
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
-                <View style={styles.container}>
+                <AnimatedComponent
+                    isDashboard
+                    animationInType={this.props.animationInType}
+                    animationOutType={['slideOutLeftSmall', 'fadeOut']}
+                    duration={150}
+                    style={styles.container}
+                >
                     <View style={{ flex: 0.2 }} />
                     <View style={styles.listView}>{transactions}</View>
-                </View>
+                </AnimatedComponent>
             </TouchableWithoutFeedback>
         );
     }
