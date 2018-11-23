@@ -147,10 +147,10 @@
         "errorAccessingKeychain": "Errore di portachiavi",
         "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
         "mainWallet": "CONTO PRINCIPALE",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "shouldUpdate": "E' disponibile un nuovo aggiornamento",
+        "shouldUpdateExplanation": "È stato rilasciato un nuovo aggiornamento. Si consiglia di aggiornare all'ultima versione.",
+        "forceUpdate": "Aggiornare l'app per continuare",
+        "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
