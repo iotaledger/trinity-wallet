@@ -732,7 +732,7 @@
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
         "indexInUse": "Šis indeksas jau priskirtas paskyrai: {{account}}",
         "indexInUseExplanation": "Pasirinktas indeksas jau priskirtas vienai iš jūsų paskyrų. Pasirinkite kitą indekso numerį.",
-        "proceedWithLedger": "Proceed with Ledger setup",
+        "proceedWithLedger": "Tęskite su Ledger vedliu",
         "accountIndex": "Paskyros indeksas",
         "accountPage": "Paskyros puslapis",
         "chooseAccountIndex": "Pasirinkite Ledger paskyros indeksą",
