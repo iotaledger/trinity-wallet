@@ -6369,7 +6369,7 @@ react-native-google-safetynet@^0.3.3:
     jwt-decode "^2.2.0"
     react-native-securerandom "^0.1.1"
 
-react-native-haptic-feedback@^1.1.7:
+react-native-haptic-feedback@^1.4.0:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.4.2.tgz#e15ed66f2ffe9ec886b4098b792591136efd5ee2"
   integrity sha512-uLtdxKL4nul5QQUczctCdAr2b6P7/KPLyfQVP8lfcVaNANHpL1WFhCnrWPNCkh2LHSduA88MNgPcTsN9CHbwlw==
