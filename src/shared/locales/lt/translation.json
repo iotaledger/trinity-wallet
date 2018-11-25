@@ -742,7 +742,7 @@
         "connectionErrorExplanation": "Patikrinkite ar Ledger prijungtas ir atrakintas.",
         "connectionTitle": "Prijungti Ledger",
         "connectionExplanation": "Ledger įrenginys turi būti prijungtas norint atlikti šią funkciją.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionTitle": "Peržiūrėkite ir patvirtinkite pavedimą savo Ledger įrenginyje",
         "transactionExplanation": "Savo Ledger įrenginyje patvirtinkite išeinantį pavedimą.",
         "applicationTitle": "Atidaryti Ledger IOTA aplikaciją",
         "applicationExplanation": "Savo Ledger įrenginyje atidarykite IOTA aplikaciją norėdami tęsti.",
