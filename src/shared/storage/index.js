@@ -7,7 +7,7 @@ import map from 'lodash/map';
 import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
-import Realm from 'realm';
+import Realm from 'realm'; // eslint-disable-line import/no-unresolved
 import {
     TransactionSchema,
     AddressSchema,

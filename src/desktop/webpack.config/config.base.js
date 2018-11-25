@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { IgnorePlugin } = require('webpack');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -15,6 +16,7 @@ module.exports = {
         publicPath: '/',
     },
     module: {
+        noParse: /realm\/lib\/browser/,
         rules: [
             {
                 test: /\.js$/,
@@ -75,6 +77,9 @@ module.exports = {
     },
     resolve: {
         modules: ['node_modules', path.resolve(__dirname, '..', 'src'), path.resolve(__dirname, '..', '..', 'shared')],
+        alias: {
+            realm: path.resolve(__dirname, '..', 'node_modules', 'realm'),
+        },
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -91,5 +96,6 @@ module.exports = {
             { from: 'assets/icon.icns', to: 'icon.icns' },
             { from: 'assets/icon.ico', to: 'icon.ico' },
         ]),
+        new IgnorePlugin(/^\.\/browser$/, /realm/),
     ],
 };
