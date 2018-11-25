@@ -12822,17 +12822,17 @@
             }
         },
         "realm": {
-            "version": "2.18.0",
-            "resolved": "https://registry.npmjs.org/realm/-/realm-2.18.0.tgz",
+            "version": "2.19.0",
+            "resolved": "https://registry.npmjs.org/realm/-/realm-2.19.0.tgz",
             "integrity":
-                "sha512-+FzQ0S3WjcnklhCZx/SPFh/rU311w+gfPOrtlG2wZPB6qq4ZJ6sarIIrHAyB0y7eHiWxDpwIYTW0oMQgwpNh3g==",
+                "sha512-PvfBqth++g93gunnQfDyYX8oL0V2aHOjsPsx728CcY3gC+iP32hohZqpsY2M+G+LeIg7dj/9f2fwDs6qFyZH6w==",
             "requires": {
                 "command-line-args": "^4.0.6",
                 "decompress": "^4.2.0",
                 "deepmerge": "2.1.0",
                 "fs-extra": "^4.0.2",
                 "ini": "^1.3.4",
-                "nan": "2.8.0",
+                "nan": "^2.10.0",
                 "node-fetch": "^1.6.3",
                 "node-pre-gyp": "^0.11.0",
                 "progress": "^2.0.0",
@@ -12853,11 +12853,6 @@
                         "jsonfile": "^4.0.0",
                         "universalify": "^0.1.0"
                     }
-                },
-                "nan": {
-                    "version": "2.8.0",
-                    "resolved": "https://registry.npmjs.org/nan/-/nan-2.8.0.tgz",
-                    "integrity": "sha1-7XFfP+neArV6XmJS2QqWZ14fCFo="
                 },
                 "node-pre-gyp": {
                     "version": "0.11.0",
