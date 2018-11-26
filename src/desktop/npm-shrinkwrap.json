@@ -6041,14 +6041,15 @@
             }
         },
         "hw-app-iota": {
-            "version": "0.4.1",
-            "resolved": "https://registry.npmjs.org/hw-app-iota/-/hw-app-iota-0.4.1.tgz",
+            "version": "0.5.1",
+            "resolved": "https://registry.npmjs.org/hw-app-iota/-/hw-app-iota-0.5.1.tgz",
             "integrity":
-                "sha512-tee0BAt9QexaoNkdPEoRnp5lJX3KIwOnWH80xSiRERPS49RJ0+qg3wLYStHBE//YO7R08Hr7b3KMxwbOnd5qdg==",
+                "sha512-H8N6TGG/TFCmqMLCd94v5XLqpSmNZTq2yDbYNBf3McJpsacHdw9aiQFuqY1V2LMXzHeL6tj2o0F+EVwl8c5u1Q==",
             "requires": {
                 "babel-runtime": "^6.26.0",
                 "bip32-path": "^0.4.2",
                 "iota.lib.js": "^0.5.0",
+                "semver": "^5.6.0",
                 "struct": "0.0.12"
             }
         },
