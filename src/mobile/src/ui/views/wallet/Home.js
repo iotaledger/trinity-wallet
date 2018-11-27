@@ -107,7 +107,6 @@ class Home extends Component {
         this.state = {
             isKeyboardActive: false,
         };
-        this.tabAnimationInType = ['fadeIn'];
     }
 
     componentWillMount() {
@@ -174,7 +173,6 @@ class Home extends Component {
                 t('global:unrecognisedPasswordExplanation'),
             );
         } else {
-            this.tabAnimationInType = ['fadeIn'];
             this.props.setUserActivity({ inactive: false });
             this.userInactivity.setActiveFromComponent();
         }
@@ -346,7 +344,6 @@ class Home extends Component {
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                     <View style={{ flex: 4.72 }}>
                                         <TabContent
-                                            animationInType={this.tabAnimationInType}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
                                             isKeyboardActive={isKeyboardActive}

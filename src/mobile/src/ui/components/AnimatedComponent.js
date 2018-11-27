@@ -25,10 +25,6 @@ class AnimatedComponent extends Component {
         navStack: PropTypes.array.isRequired,
         /** Style prop */
         style: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number]),
-        /** Determines whether animation is triggered by dashboard tab change */
-        isDashboard: PropTypes.bool,
-        /** Current home screen route */
-        homeRoute: PropTypes.string.isRequired,
         /** Trigger animation out on change */
         animateOutTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
         /** Trigger animation in on change */
@@ -75,17 +71,6 @@ class AnimatedComponent extends Component {
 
         if (this.props.animateOutTrigger !== newProps.animateOutTrigger) {
             return this.iniatialiseAnimations(newProps.animationOutType);
-        }
-
-        if (this.props.isDashboard && this.props.homeRoute !== newProps.homeRoute) {
-            const routes = ['balance', 'send', 'receive', 'history', 'settings'];
-            if (routes.indexOf(newProps.homeRoute) < routes.indexOf(this.props.homeRoute)) {
-                this.reverseSlideOut = true;
-            } else {
-                this.reverseSlideOut = false;
-            }
-            this.iniatialiseAnimations(this.props.animationOutType);
-            return this.animateOut();
         }
 
         // Animate out if pushing from current screen
@@ -342,7 +327,6 @@ class AnimatedComponent extends Component {
 
 const mapStateToProps = (state) => ({
     navStack: state.wallet.navStack,
-    homeRoute: state.home.childRoute,
 });
 
 export default connect(mapStateToProps)(AnimatedComponent);

@@ -29,7 +29,6 @@ import Chart from 'ui/components/Chart';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import TextWithLetterSpacing from 'ui/components/TextWithLetterSpacing';
-import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -125,8 +124,6 @@ export class Balance extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        /** Determines tab switch animation in */
-        animationInType: PropTypes.array.isRequired,
     };
 
     /**
@@ -259,13 +256,7 @@ export class Balance extends Component {
                 showsVerticalScrollIndicator={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
-                    <AnimatedComponent
-                        isDashboard
-                        animationInType={this.props.animationInType}
-                        animationOutType={['slideOutLeftSmall', 'fadeOut']}
-                        duration={150}
-                        style={styles.container}
-                    >
+                    <View style={styles.container}>
                         <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
                             <View style={styles.balanceContainer}>
                                 <View style={styles.iotaBalanceContainer}>
@@ -290,7 +281,7 @@ export class Balance extends Component {
                         <View style={styles.chartContainer}>
                             <Chart />
                         </View>
-                    </AnimatedComponent>
+                    </View>
                 </TouchableWithoutFeedback>
             </ScrollView>
         );

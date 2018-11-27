@@ -35,8 +35,6 @@ class Settings extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
-        /** Determines tab switch animation in */
-        animationInType: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -57,8 +55,8 @@ class Settings extends Component {
             KeepAwake.deactivate();
         }
         if (this.props.currentSetting !== newProps.currentSetting) {
-            this.animationOut = this.getAnimation(this.props.currentSetting, newProps.currentSetting, false);
-            this.animationIn = this.getAnimation(this.props.currentSetting, newProps.currentSetting);
+            this.animationOutType = this.getAnimation(this.props.currentSetting, newProps.currentSetting, false);
+            this.animationInType = this.getAnimation(this.props.currentSetting, newProps.currentSetting);
             timer.setTimeout(
                 'delaySettingChange',
                 () => {
@@ -94,7 +92,7 @@ class Settings extends Component {
      *
      * @param {string} currentSetting
      * @param {string} nextSetting
-     * @param {bool} currentSetting
+     * @param {bool} animationIn
      * @returns {object}
      */
     getAnimation(currentSetting, nextSetting, animationIn = true) {
@@ -145,18 +143,12 @@ class Settings extends Component {
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={() => this.props.closeTopBar()}>
-                <AnimatedComponent
-                    isDashboard
-                    animationInType={this.props.animationInType}
-                    animationOutType={['slideOutLeftSmall', 'fadeOut']}
-                    duration={150}
-                    style={{ flex: 1 }}
-                >
+                <View style={{ flex: 1 }}>
                     <View style={{ flex: 1 }} />
                     <AnimatedComponent
                         animateOnMount={false}
-                        animationInType={this.animationIn}
-                        animationOutType={this.animationOut}
+                        animationInType={this.animationInType}
+                        animationOutType={this.animationOutType}
                         animateInTrigger={this.state.nextSetting}
                         animateOutTrigger={this.props.currentSetting}
                         duration={150}
@@ -165,7 +157,7 @@ class Settings extends Component {
                         <SettingsContent component={this.state.nextSetting} {...childrenProps} />
                     </AnimatedComponent>
                     <View style={{ flex: 1 }} />
-                </AnimatedComponent>
+                </View>
             </TouchableWithoutFeedback>
         );
     }

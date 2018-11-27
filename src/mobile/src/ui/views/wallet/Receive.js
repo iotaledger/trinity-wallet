@@ -32,7 +32,6 @@ import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
 import { Icon } from 'ui/theme/icons';
 import ScramblingText from 'ui/components/ScramblingText';
-import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -214,8 +213,6 @@ class Receive extends Component {
         conversionRate: PropTypes.number.isRequired,
         /** @ignore */
         hadErrorGeneratingNewAddress: PropTypes.bool.isRequired,
-        /** Determines tab switch animation in */
-        animationInType: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -530,13 +527,7 @@ class Receive extends Component {
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
-                <AnimatedComponent
-                    isDashboard
-                    animationInType={this.props.animationInType}
-                    animationOutType={['slideOutLeftSmall', 'fadeOut']}
-                    duration={150}
-                    style={styles.container}
-                >
+                <View style={styles.container}>
                     <View>
                         <Animated.View
                             style={[
@@ -733,7 +724,7 @@ class Receive extends Component {
                             </View>
                         </Animated.View>
                     </View>
-                </AnimatedComponent>
+                </View>
             </TouchableWithoutFeedback>
         );
     }
