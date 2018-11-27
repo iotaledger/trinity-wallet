@@ -289,7 +289,7 @@
         "tag": "Tagg",
         "generateAnAddress": "Generera ny adress",
         "generateAnAddressTitle": "Generera en adress",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion."
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -755,7 +755,7 @@
         "ledgerIncorrectIndex": "Ledger-enheten matchade inte",
         "ledgerIncorrectIndexExplanation": "Ledger-enheten matchade inte enheten kopplat till detta konto, alternativt har återställningsfrasen ändrats.",
         "checkAddress": "Kontrollera mottagaradressen",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen."
     }
