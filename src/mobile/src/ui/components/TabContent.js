@@ -62,7 +62,7 @@ TabContent.propTypes = {
     handleCloseTopBar: PropTypes.func.isRequired,
     /** Determines whether keyboard is open on iOS */
     isKeyboardActive: PropTypes.bool.isRequired,
-    animationInType: PropTypes.string.isRequired,
+    animationInType: PropTypes.array.isRequired,
 };
 
 TabContent.defaultProps = {

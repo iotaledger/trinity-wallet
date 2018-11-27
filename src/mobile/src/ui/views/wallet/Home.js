@@ -106,8 +106,8 @@ class Home extends Component {
 
         this.state = {
             isKeyboardActive: false,
-            tabAnimationInType: ['fadeIn'],
         };
+        this.tabAnimationInType = ['fadeIn'];
     }
 
     componentWillMount() {
@@ -174,7 +174,7 @@ class Home extends Component {
                 t('global:unrecognisedPasswordExplanation'),
             );
         } else {
-            this.setState({ tabAnimationInType: ['fadeIn'] });
+            this.tabAnimationInType = ['fadeIn'];
             this.props.setUserActivity({ inactive: false });
             this.userInactivity.setActiveFromComponent();
         }
@@ -193,12 +193,10 @@ class Home extends Component {
         }
         // Set tab animation in type according to relative position of next active tab
         const routes = ['balance', 'send', 'receive', 'history', 'settings'];
-        this.setState({
-            tabAnimationInType:
-                routes.indexOf(nextRoute) < routes.indexOf(this.props.currentRoute)
-                    ? ['slideInLeftSmall', 'fadeIn']
-                    : ['slideInRightSmall', 'fadeIn'],
-        });
+        this.tabAnimationInType =
+            routes.indexOf(nextRoute) < routes.indexOf(this.props.currentRoute)
+                ? ['slideInLeftSmall', 'fadeIn']
+                : ['slideInRightSmall', 'fadeIn'];
         this.props.changeHomeScreenRoute(nextRoute);
 
         if (!isSyncing && !isCheckingCustomNode) {
@@ -328,7 +326,7 @@ class Home extends Component {
 
     render() {
         const { t, inactive, minimised, isFingerprintEnabled, theme: { body, negative, positive }, theme } = this.props;
-        const { isKeyboardActive, tabAnimationInType } = this.state;
+        const { isKeyboardActive } = this.state;
         const textColor = { color: body.color };
 
         return (
@@ -348,7 +346,7 @@ class Home extends Component {
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                     <View style={{ flex: 4.72 }}>
                                         <TabContent
-                                            animationInType={tabAnimationInType}
+                                            animationInType={this.tabAnimationInType}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
                                             isKeyboardActive={isKeyboardActive}
