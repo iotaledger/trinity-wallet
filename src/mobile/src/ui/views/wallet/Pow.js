@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
+        paddingVertical: height / 70,
         justifyContent: 'flex-start',
     },
     titleTextLeft: {
