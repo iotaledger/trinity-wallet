@@ -147,10 +147,10 @@
         "errorAccessingKeychain": "Nøgleringsfejl",
         "errorAccessingKeychainExplanation": "Kan ikke tilgå nødvendig nøglering til sikker lagring.",
         "mainWallet": "HOVEDKONTO",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "shouldUpdate": "Ny opdateringer er tilgængelig",
+        "shouldUpdateExplanation": "En ny opdatering er frigivet. Det anbefales at opdatere til den seneste version.",
+        "forceUpdate": "Opdatér app'en for at fortsætte",
+        "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -253,10 +253,10 @@
         "pressForNewSeed": "Tryk for ny hovednøgle",
         "generateSuccess": "Hovednøglen genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "Tryk på <1><0>{{count}}</0></1> yderligere bogstaver for at randomisere den.",
+        "individualLetterCount_plural": "Tryk på <1><0>{{count}}</0></1> yderligere bogstaver for at randomisere dem.",
+        "randomiseCharsToContinue": "Randomisér <1>{{count}}</1> tegn for at fortsætte.",
+        "randomiseCharsToContinue_plural": "Randomisér <1>{{count}}</1> tegn for at fortsætte.",
         "whatIsASeed": "Hvad er en hovednøgle?"
     },
     "onboardingComplete": {
@@ -281,26 +281,26 @@
         "copyAddress": "Kopiér addresse",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Generér adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brugt",
         "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at dele QR-koder.",
         "tag": "Tag",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Generér adresse",
+        "generateAnAddressTitle": "Generér en adresse",
+        "generateAnAddressExplanation": "Generér en adresse inden du benytter denne funktion."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sikkerhedskopiere din hovednøgle",
         "seedCleared": "Hovednøgle ryddet",
         "mostSecure": "Mest sikre",
-        "recommended": "Recommended",
+        "recommended": "Anbefalet",
         "leastSecure": "Mindst sikre",
         "paperWallet": "Papirtegnebog",
         "writeYourSeedDown": "Nedskriv din hovednøgle",
         "seedClearedExplanation": "Hovednøglen er ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Lad os skrive din hovednøgle ned",
         "youCanHighlightCharacters": "Du kan markere 9 tegn ad gangen",
         "printBlankWallet": "Udskriv en tom tegnebog",
         "whatIsChecksum": "Hver hovednøgle har en korresponderende 3-tegns kontrolsum",
@@ -316,8 +316,8 @@
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "ifYouHaveNotSaved": "Gå tilbage og sikkerhedskopiér din hovednøgle, hvis du ikke allerede har gjort dette.",
         "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Kopiér og indsæt ikke din hovednøgle",
+        "clipboardWarningExplanation": "ADVARSEL: Kopér/indsæt er deaktiveret af hensyn til din sikkerhed."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -352,12 +352,12 @@
         "youCanAdd": "Du kan tilføje flere hovednøgler i menuen Indstillinger."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avanceret",
         "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "advancedModeExplanation": "Avanceret tilstand vil vise fleere detaljerede tekniske oplysninger.",
+        "modesExplanation": "Aktivér kun Eksperttilstand, hvis du er en erfaren IOTA-bruger. Det vil ellers kunne virke forvirrende.",
+        "modeUpdated": "Tilstand opdateret",
+        "modeUpdatedExplanation": "Du har skiftet til {{mode}}-tilstand"
     },
     "settings": {
         "transferSending": "Sender transaktion",
@@ -445,7 +445,7 @@
         "empty": "Tom",
         "retrying": "Forsøger igen",
         "yesterday": "I går",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Forfremmer et anden bundt"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -453,7 +453,7 @@
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slet konto",
         "addNewAccount": "Tilføj ny konto",
-        "tools": "Tools"
+        "tools": "Værktøjer"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
@@ -488,16 +488,16 @@
         "mockup": "Model"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
+        "classic": "Klassisk",
+        "contemporary": "Moderne",
+        "dark": "Mørk",
+        "default": "Standard",
+        "electric": "Elektrisk",
+        "ionic": "Ionisk",
+        "light": "Lys",
+        "lucky": "Heldig",
         "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "steelblue": "Stålblå"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -522,9 +522,9 @@
         "discordInformation": "Søg venligst hjælp via #help-kanalen på Discord for at finde ud af, hvad du kan gøre."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Sikker på, at du vil slette din konto?",
         "yourSeedWillBeRemoved": "Din hovednøgle og transaktionshistorik vil blive fjernet.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Denne handling er uigenkaldelig",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
     },
     "manualSync": {
@@ -544,9 +544,9 @@
         "enterPassword": "Indtast din adgangskode for at se din hovednøgle.",
         "viewSeed": "Se hovednøgle",
         "hideSeed": "Skjul hovednøgle",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailable": "Hovednøgleeksport er ikke tilgængelig for {{accountType}}-kontotypen",
+        "accountIndex": "Dit hovedkontoindeks",
+        "accountPage": "Din hovedkontoside"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sikkerhedskopierede du din hovednøgle?",
@@ -600,14 +600,14 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportere SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "En SeedVault er en krypteret fil til sikker lagring af din hovednøgle. Hovednøglen er krypteret bag en SeedVault-nøgle og kan ikke tilgås uden denne nøgle.",
         "seedVaultWarning": "Sørg for, at du opretter flere sikkerhedskopier af filen (på f.eks. harddisk, Sky, USB-nøgle). Mister du denne fil, og har du ikke lagret din hovednøgle andetsteds, vil du miste dine IOTA.",
         "exportFail": "SeedVault-eksport mislykkedes",
         "exportFailExplanation": "Der opstod et problem ved eksport af SeedVault. Kontrollér at du har de nødvendige tilladelser og tilstrækkelig ledig lagerplads.",
         "exportSuccess": "SeedVault eksporteret",
         "exportSuccessExplanation": "Din krypterede hovednøglefil er eksporteret.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "unrecognisedKey": "Ukendt SeedVault-nøgle",
+        "unrecognisedKeyExplanation": "Nøglen er ukendt. Forsøg igen.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
