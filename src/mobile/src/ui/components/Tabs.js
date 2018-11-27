@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
 });
 
 class Tabs extends Component {
-    constructor() {
-        super();
-        this.activeTabPosition = new Animated.Value(0);
+    constructor(props) {
+        super(props);
+        this.activeTabPosition = new Animated.Value(this.getPosition(props.currentRoute));
     }
 
     componentWillReceiveProps(newProps) {
@@ -46,23 +46,28 @@ class Tabs extends Component {
         }
     }
 
-    animateActiveTab(currentRoute) {
+    getPosition(route) {
         const routes = ['balance', 'send', 'receive', 'history', 'settings'];
+        return routes.indexOf(route) * width / 5;
+    }
+
+    animateActiveTab(currentRoute) {
         Animated.timing(this.activeTabPosition, {
-            toValue: routes.indexOf(currentRoute) * width / 5,
-            duration: 300,
+            toValue: this.getPosition(currentRoute),
+            duration: 150,
             easing: Easing.bezier(0.25, 1, 0.25, 1),
         }).start();
     }
 
     render() {
-        const { children, onPress, theme: { bar, primary } } = this.props;
-
+        const { currentRoute, children, onPress, theme: { bar, primary } } = this.props;
         const childComponents = Children.map(children, (child) =>
-            cloneElement(child, { onPress: () => onPress(child.props.name) }),
+            cloneElement(child, {
+                onPress: () => onPress(child.props.name),
+                isActive: child.props.name === currentRoute,
+            }),
         );
-
-        const tabContainer = (
+        return (
             <View style={styles.container}>
                 <View style={[styles.tabBarBackground, { backgroundColor: bar.alt }]}>
                     <Animated.View
@@ -82,8 +87,6 @@ class Tabs extends Component {
                 <View style={styles.tabBar}>{childComponents}</View>
             </View>
         );
-
-        return tabContainer;
     }
 }
 
