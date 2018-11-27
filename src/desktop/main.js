@@ -72,8 +72,17 @@ try {
     if (windowStateData) {
         windowState = windowStateData;
     }
-    settings = JSON.parse(data);
+    settings = JSON.parse(data) || {};
 } catch (error) {}
+
+/**
+ * Temporary disable proxy if not overrided by settings
+ */
+
+if (settings.ignoreProxy) {
+    app.commandLine.appendSwitch('auto-detect', 'false');
+    app.commandLine.appendSwitch('no-proxy-server');
+}
 
 function createWindow() {
     /**
@@ -90,7 +99,7 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings && settings.theme.body.bg) || 'rgb(3, 41, 62)';
+    let bgColor = (settings.theme && settings.theme.body.bg) || 'rgb(3, 41, 62)';
 
     if (bgColor.indexOf('rgb') === 0) {
         bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
