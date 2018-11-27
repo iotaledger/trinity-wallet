@@ -54,7 +54,7 @@
   NSString * manifestPath = [self getManifestPath];
   if ([fileManager fileExistsAtPath:manifestPath]) {
     NSURL* manifestURL= [NSURL fileURLWithPath: manifestPath];
-    
+
     NSError *error = nil;
     BOOL success = [manifestURL setResourceValue: @(YES)
                                           forKey: NSURLIsExcludedFromBackupKey error: &error];
