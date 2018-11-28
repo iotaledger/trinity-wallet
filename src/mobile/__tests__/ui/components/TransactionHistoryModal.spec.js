@@ -121,7 +121,7 @@ describe('Testing TransactionHistoryModal component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(wrapper.find('ScrollViewMock').length).toEqual(1);
+            expect(wrapper.find('ScrollViewMock').length).toEqual(0);
         });
 
         it('should call instance method copy with bundle prop and "bundle" string when onPress prop of second TouchableOpacity is triggered', () => {
