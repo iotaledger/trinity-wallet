@@ -55,6 +55,14 @@ class Alerts extends React.PureComponent {
 
         const os = Electron.getOS();
 
+        /**
+         * Temporarily override account fetch error by adding Proxy setting suggestion
+         */
+        const message =
+            alerts.message === t('invalidResponseFetchingAccount')
+                ? t('invalidResponseFetchingAccountDesktop')
+                : alerts.message;
+
         return (
             <div className={css.wrapper}>
                 {!dismissUpdate && (forceUpdate || shouldUpdate) ? (
@@ -78,7 +86,7 @@ class Alerts extends React.PureComponent {
                             <Icon icon="cross" size={14} />
                         </span>
                         {alerts.title && <h2>{alerts.title}</h2>}
-                        {alerts.message && <p>{alerts.message}</p>}
+                        {message && <p>{message}</p>}
                     </div>
                 )}
             </div>

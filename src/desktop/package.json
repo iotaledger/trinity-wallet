@@ -140,7 +140,7 @@
     "electron-settings": "^3.2.0",
     "electron-updater": "3.0.4",
     "entangled-node": "rihardsgravis/entangled-node",
-    "hw-app-iota": "^0.4.1",
+    "hw-app-iota": "^0.5.1",
     "i18next": "^12.0.0",
     "iota.lib.js": "^0.5.1",
     "kdbxweb": "^1.2.4",
