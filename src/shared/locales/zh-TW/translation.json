@@ -19,6 +19,7 @@
         "invalidResponse": "節點錯誤",
         "invalidResponseExplanation": "節點回傳錯誤，請嘗試更換節點。",
         "invalidResponseFetchingAccount": "節點在取得您的帳戶訊息時點回傳錯誤，請嘗試更換節點。",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
@@ -703,6 +704,10 @@
         "notLoggedIn": "您尚未登入",
         "setupIncomplete": "錢包設定未完成",
         "completeSetup": "設定完成"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "通知",
