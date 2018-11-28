@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
         "tryingAgainWithDifferentNode": "Réessayez avec un autre nœud.",
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
         "mainWallet": "COMPTE PRINCIPAL"
@@ -276,12 +277,15 @@
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "Adresse de synchronisation",
+        "generateNewAddress": "Generate address",
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR.",
-        "tag": "Étiquette"
+        "tag": "Étiquette",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -747,7 +751,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

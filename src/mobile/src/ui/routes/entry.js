@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { withNamespaces } from 'react-i18next';
-import { Text, TextInput, NetInfo } from 'react-native';
+import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
 import sharedStore from 'shared-modules/store';
@@ -15,7 +15,7 @@ import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { getDigestFn } from 'libs/nativeModules';
-import { persistStoreAsync, migrate, resetIfKeychainIsEmpty } from 'libs/store';
+import { persistStoreAsync, migrate, versionCheck, resetIfKeychainIsEmpty } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
 
 const launch = (store) => {
@@ -23,11 +23,12 @@ const launch = (store) => {
     SwitchingConfig.autoSwitch = false;
 
     // Disable accessibility fonts
+    Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
     // Ignore specific warnings
-    console.ignoredYellowBox = ['Setting a timer', 'Breadcrumb']; // eslint-disable-line no-console
+    YellowBox.ignoreWarnings(['Setting a timer', 'Breadcrumb', 'main queue setup', 'Share was not exported']);
 
     const state = store.getState();
 
@@ -161,6 +162,7 @@ onAppStart()
     .then(() => persistStoreAsync())
     .then(({ store, restoredState }) => migrate(store, restoredState))
     .then((store) => resetIfKeychainIsEmpty(store))
+    .then((store) => versionCheck(store))
     .then((store) => {
         overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
 
@@ -169,6 +171,7 @@ onAppStart()
                 type: ActionTypes.CONNECTION_CHANGED,
                 payload: { isConnected },
             });
+
             fetchNodeList(store);
             startListeningToConnectivityChanges(store);
 

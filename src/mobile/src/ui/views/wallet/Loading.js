@@ -23,6 +23,7 @@ import {
     getSelectedAccountName,
     getSelectedAccountMeta,
     getAccountNamesFromState,
+    isSettingUpNewAccount,
 } from 'shared-modules/selectors/accounts';
 import { Styling } from 'ui/theme/general';
 import SeedStore from 'libs/SeedStore';
@@ -415,9 +416,9 @@ const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     hasErrorFetchingAccountInfo: state.ui.hasErrorFetchingAccountInfo,
     hasErrorFetchingFullAccountInfo: state.ui.hasErrorFetchingFullAccountInfo,
-    addingAdditionalAccount: state.wallet.addingAdditionalAccount,
-    additionalAccountName: state.wallet.additionalAccountName,
-    additionalAccountMeta: state.wallet.additionalAccountMeta,
+    addingAdditionalAccount: isSettingUpNewAccount(state),
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
     password: state.wallet.password,
     theme: state.settings.theme,

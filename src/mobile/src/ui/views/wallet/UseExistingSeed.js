@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
-import { setSetting, setAdditionalAccountInfo } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
+import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { shouldPreventAction } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
@@ -89,7 +90,7 @@ class UseExistingSeed extends Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
@@ -163,10 +164,9 @@ class UseExistingSeed extends Component {
         const seedStore = new SeedStore.keychain(password);
         await seedStore.addAccount(accountName, seed);
 
-        this.props.setAdditionalAccountInfo({
-            addingAdditionalAccount: true,
-            additionalAccountName: accountName,
-            additionalAccountMeta: { type: 'keychain' },
+        this.props.setAccountInfoDuringSetup({
+            name: accountName,
+            meta: { type: 'keychain' },
             seed,
             usedExistingSeed: true,
         });
@@ -384,7 +384,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
     toggleModalActivity,
     setDoNotMinimise,
 };

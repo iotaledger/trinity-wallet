@@ -20,6 +20,8 @@
         "invalidResponseExplanation": "The node returned an error. Try changing node.",
         "invalidResponseFetchingAccount":
             "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccountDesktop":
+        "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
@@ -158,7 +160,11 @@
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "MAIN ACCOUNT",
         "confirm": "Confirm",
-        "delete": "Delete"
+        "delete": "Delete",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -300,12 +306,15 @@
         "copyAddress": "Copy address",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "NO ADDRESSES",
         "spent": "Spent",
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
-        "tag": "Tag"
+        "tag": "Tag",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -745,6 +754,10 @@
          "setupIncomplete": "Wallet setup incomplete",
          "completeSetup": "Complete setup"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+    },
     "notifications": {
       "notifications": "Notifications",
       "notificationExplanation": "Receive system-wide notifications about new transactions.",
@@ -796,7 +809,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation" : "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

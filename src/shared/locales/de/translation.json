@@ -143,6 +143,7 @@
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
         "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
+        "errorSyncingAddresses": "Deine Adressinformationen konnten nicht synchronisiert werden. Es wird mit einem anderen Node erneut versucht.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
         "errorAccessingKeychainExplanation": "Der Schlüsselbund konnte nicht geöffnet werden.",
         "mainWallet": "HAUPTKONTO"
@@ -236,7 +237,7 @@
         "whyBiometricDisabledExplanation": "Die biometrische Anmeldung ist für den ersten Start zu deiner eigenen Sicherheit deaktiviert. Während der Nutzung von Trinity wirst du bei Inaktivität ausgeloggt. Du kannst dich dann erneut mit biometrischer Authentifizierung einloggen."
     },
     "loading": {
-        "loadingFirstTime": "Lade den Seed zum ersten Mal.",
+        "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
         "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "takingAWhile": "Das scheint eine Weile zu dauern"
@@ -276,12 +277,15 @@
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
-        "generateNewAddress": "Adresse synchronisieren",
+        "generateNewAddress": "Generate address",
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Um QR-Codes teilen zu konenn, muss der Zugriff auf das Dateisystem erlaubt werden.",
-        "tag": "Tag"
+        "tag": "Tag",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -538,7 +542,7 @@
         "hideSeed": "Seed ausblenden",
         "notAvailable": "Dein Seed kann bei einem {{accountType}}-Konto nicht angezeigt werden",
         "accountIndex": "Dein Ledger Account Index",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Deine Ledger Account Seite"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hast du deinen Seed gespeichert?",
@@ -726,7 +730,7 @@
         "indexInUseExplanation": "Der gewählte Index ist bereits in Verwendung. Bitte wähle einen anderen Index.",
         "proceedWithLedger": "Mit der Einrichtung von Ledger fortfahren",
         "accountIndex": "Konto Index",
-        "accountPage": "Kontoübersicht",
+        "accountPage": "Konto Seite",
         "chooseAccountIndex": "Wähle deinen Ledger Konto Index",
         "accountIndexExplanation": "Dein Ledger kann mehrere Seeds speichern. Jeder Seed wird durch einen eindeutigen Index identifiziert. Ein ungenutzter Index wurde bereits ausgewählt aber wenn du möchtest kannst du Diesen ändern. Stelle sicher, dass du deinen Index notierst.",
         "accountPageExplanation": "Einige Drittanbieter Wallets benötigen Seiten.",
@@ -747,8 +751,8 @@
         "ledgerIncorrectIndex": "Falscher Ledger",
         "ledgerIncorrectIndexExplanation": "Der verbundene Ledger passt nicht zu dem mit diesem Konto verbundenen Gerät oder die Wiederherstellungs-Phrase hat sich geändert.",
         "checkAddress": "Prüfe die Empfangsadresse",
-        "checkAddressExplanation": "Stelle sicher dass diese Addresse mit der Anzeige auf deinem Ledger übereinstimmt. Verwende \"Adresse Synchronisieren\" wenn das nicht der Fall ist.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "applicationNotInitialised": "Unbestätigte Warnung",
+        "applicationNotInitialisedExplanation": "Öffne die IOTA-App auf deinem Ledger, akzeptiere die Hinweise und versuche es erneut."
     }
 }
