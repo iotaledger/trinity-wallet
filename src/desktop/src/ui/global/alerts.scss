@@ -2,7 +2,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 1002;
+    z-index: 99999;
     pointer-events: none;
 
     > div {
@@ -82,6 +82,44 @@
             span:hover {
                 color: var(--positive-hover);
             }
+        }
+    }
+
+    > section {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 100vw;
+        min-height: 46px;
+        padding: 12px;
+        background: var(--negative);
+        color: var(--negative-body);
+        line-height: 21px;
+        text-align: center;
+        pointer-events: all;
+        -webkit-app-region: drag;
+
+        strong {
+            text-decoration: underline;
+            cursor: pointer;
+            margin-right: 10px;
+
+            @media screen and (max-width: 860px) {
+                display: block;
+                margin-bottom: 8px;
+            }
+        }
+
+        &.win {
+            top: 40px;
+        }
+
+        > a {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            cursor: pointer;
+            -webkit-app-region: no-drag;
         }
     }
 }

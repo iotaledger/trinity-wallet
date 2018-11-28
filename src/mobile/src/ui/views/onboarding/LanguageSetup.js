@@ -64,6 +64,8 @@ class LanguageSetup extends Component {
         acceptedPrivacy: PropTypes.bool.isRequired,
         /** @ignore */
         acceptedTerms: PropTypes.bool.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.bool.isRequired,
     };
 
     componentWillMount() {
@@ -78,7 +80,10 @@ class LanguageSetup extends Component {
     }
 
     onNextPress() {
-        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy } = this.props;
+        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy, forceUpdate } = this.props;
+        if (forceUpdate) {
+            return;
+        }
         navigator.push(this.getNextRoute(), {
             animations: {
                 push: {
@@ -193,6 +198,7 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     acceptedPrivacy: state.settings.acceptedPrivacy,
     acceptedTerms: state.settings.acceptedTerms,
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {

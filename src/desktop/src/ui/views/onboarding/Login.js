@@ -45,6 +45,8 @@ class Login extends React.Component {
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
+        forceUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
@@ -207,10 +209,10 @@ class Login extends React.Component {
     };
 
     render() {
-        const { t, addingAdditionalAccount, ui } = this.props;
+        const { forceUpdate, t, addingAdditionalAccount, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (ui.isFetchingAccountInfo || addingAdditionalAccount) {
+        if (ui.isFetchingAccountInfo) {
             return (
                 <Loading
                     loop
@@ -230,13 +232,14 @@ class Login extends React.Component {
                             label={t('password')}
                             name="password"
                             onChange={this.setPassword}
+                            disabled={forceUpdate}
                         />
                     </section>
                     <footer>
-                        <Button to="/settings/node" className="square" variant="dark">
+                        <Button disabled={forceUpdate} to="/settings/node" className="square" variant="dark">
                             {capitalize(t('home:settings'))}
                         </Button>
-                        <Button type="submit" className="square" variant="primary">
+                        <Button disabled={forceUpdate} type="submit" className="square" variant="primary">
                             {capitalize(t('login:login'))}
                         </Button>
                     </footer>
@@ -275,6 +278,7 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {
