@@ -546,8 +546,8 @@
         "viewSeed": "Zobrazit Seed",
         "hideSeed": "Skrýt Seed",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountIndex": "Index účtu ve Vašem Ledgeru",
+        "accountPage": "Stránka účtu ve Vašem Ledgeru"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali jste si Váš Seed?",
@@ -608,9 +608,9 @@
         "exportSuccess": "SeedVault export dokončen",
         "exportSuccessExplanation": "Váš kryptovaný Seed soubor byl úspěšně exportován.",
         "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "unrecognisedKeyExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
         "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "emptyKeyExplanation": "Musíte zadat heslo. Zkuste to prosím znovu.",
         "importSuccess": "Seed importován",
         "importSuccessExplanation": "Váš Seed byl úspěšně importován.",
         "saveToDownloadFolder": "Uložit do složky pro stahování",
