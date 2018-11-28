@@ -19,6 +19,7 @@
         "invalidResponse": "Greška node-a",
         "invalidResponseExplanation": "Node je prijavio grešku. Pokušajte da promenite node.",
         "invalidResponseFetchingAccount": "Node je prijavio grešku prilikom preuzimanja informacija o vašem nalogu. Pokušajte da promenite node.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node nije sinhronizovan",
         "nodeOutOfSyncExplanation": "Trenutno izabrani node nije sinhronizovan. Promenite node ili pokušajte ponovo.",
         "thisNodeOutOfSync": "Ovaj node nije sinhronizovan. Promenite node ili pokušajte ponovo.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "Niste prijavljeni",
         "setupIncomplete": "Podešavanje novčanika nije završeno",
         "completeSetup": "Završi podešavanje"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Obaveštenja",
