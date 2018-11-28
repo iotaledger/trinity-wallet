@@ -92,6 +92,8 @@ class Tab extends Component {
     render() {
         const { onPress, icon, text, theme: { bar } } = this.props;
         const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+        AnimatedIcon.displayName = 'AnimatedIcon';
+
         return (
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={[{ position: 'absolute', left: this.getPosition() }, styles.button]}>
