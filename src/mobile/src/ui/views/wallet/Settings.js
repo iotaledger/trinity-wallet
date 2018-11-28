@@ -58,13 +58,17 @@ class Settings extends Component {
             this.animationOutType = this.getAnimation(this.props.currentSetting, newProps.currentSetting, false);
             this.animationInType = this.getAnimation(this.props.currentSetting, newProps.currentSetting);
             timer.setTimeout(
-                'delaySettingChange',
+                'delaySettingChange' + newProps.currentSetting,
                 () => {
                     this.setState({ nextSetting: newProps.currentSetting });
                 },
                 150,
             );
         }
+    }
+
+    componentWillUnmount() {
+        timer.clearTimeout('delaySettingChange' + this.props.currentSetting);
     }
 
     /**

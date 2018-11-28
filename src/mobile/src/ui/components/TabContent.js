@@ -29,12 +29,20 @@ class TabContent extends PureComponent {
         if (this.props.currentRoute !== newProps.currentRoute) {
             this.animationOutType = this.getAnimation(this.props.currentRoute, newProps.currentRoute, false);
             this.animationInType = this.getAnimation(this.props.currentRoute, newProps.currentRoute);
-            timer.setTimeout('delayRouteChange', () => this.setState({ nextRoute: newProps.currentRoute }), 150);
+            timer.setTimeout(
+                'delayRouteChange' + newProps.currentRoute,
+                () => this.setState({ nextRoute: newProps.currentRoute }),
+                150,
+            );
         }
 
         if (this.props.inactive && newProps.inactive) {
             this.animationInType = ['fadeIn'];
         }
+    }
+
+    componentWillUnmount() {
+        timer.clearTimeout('delaySettingChange' + this.props.currentRoute);
     }
 
     /**
