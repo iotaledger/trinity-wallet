@@ -758,10 +758,10 @@
         "ledgerDeniedTitle": "Transakce byla zamítnuta",
         "ledgerDeniedExplanation": "Transakce byla zamítnuta na zařízení Ledger.",
         "ledgerIncorrectIndex": "Nekompatibilní zařízení Ledger",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "ledgerIncorrectIndexExplanation": "Připojené zařízení Ledger se neshoduje s tím které je s tímto účtem spárováno, nebo jeho heslo bylo změněno.",
+        "checkAddress": "Zkontrolujte adresu příjemce",
+        "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
+        "applicationNotInitialised": "Upozornění, nebylo přijato",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
