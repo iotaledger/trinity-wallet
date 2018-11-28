@@ -25,7 +25,8 @@
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "haul": "haul"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -130,6 +131,7 @@
     "cross-env": "^5.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
+    "haul": "^1.0.0-rc.10",
     "jest": "23.5.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.45.0",
