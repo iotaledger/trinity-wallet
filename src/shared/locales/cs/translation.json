@@ -57,7 +57,7 @@
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
         "unrecognisedAccount": "Nerozpoznaný účet",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccountExplanation": "Účet s názvem {{accountName}} nebyl rozpoznán. Zvažte možnost resetování Vaší peněženky.",
         "emptyPasswordExplanation": "Musíte zadat heslo. Prosím zkuste znovu.",
         "capsLockIsOn": "Caps Lock je zapnutý",
         "syncInProgress": "Probíhá synchronizace",
@@ -144,14 +144,14 @@
         "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
         "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
         "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Chyba při synchronizaci informací adresy. Zkuste znovu s jiným Nodem.",
         "errorAccessingKeychain": "Chyba klíčenky",
         "errorAccessingKeychainExplanation": "Nelze získat přístup k úložišti klíčů.",
         "mainWallet": "HLAVNÍ ÚČET",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "shouldUpdate": "Nová aktualizace je k dispozici",
+        "shouldUpdateExplanation": "Byla vydána nová aktualizace. Doporučujeme aktualizovat na nejnovější verzi.",
+        "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
+        "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -282,15 +282,15 @@
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Vygenerovat adresu",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému.",
         "tag": "Značka",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Vygenerovat adresu",
+        "generateAnAddressTitle": "Vygenerovat adresu",
+        "generateAnAddressExplanation": "Prosím vygenerujte adresu před použitím této funkce."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -357,7 +357,7 @@
         "standard": "Výchozí",
         "advancedModeExplanation": "Pokročilý režim zobrazí podrobnější technické informace.",
         "modesExplanation": "Pokročilý režim povolte, pouze pokud jste zkušený uživatel IOTA. Jinak to pro Vás může být matoucí.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "Režim modifikován",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
