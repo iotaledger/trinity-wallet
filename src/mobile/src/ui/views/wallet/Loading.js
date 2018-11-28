@@ -140,8 +140,8 @@ class Loading extends Component {
             elipsis: '',
             animationPartOneDone: false,
             displayNodeChangeOption: false,
-            welcomeAnimationPath: props.isThemeDark ? whiteWelcomeAnimationPartOne : blackWelcomeAnimationPartOne,
         };
+        this.welcomeAnimationPath = props.isThemeDark ? whiteWelcomeAnimationPartOne : blackWelcomeAnimationPartOne;
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
 
@@ -236,7 +236,7 @@ class Loading extends Component {
     }
 
     setAnimationOneTimout() {
-        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 1800);
+        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 1900);
     }
 
     /**
@@ -252,11 +252,12 @@ class Loading extends Component {
     }
 
     playAnimationTwo() {
+        this.welcomeAnimationPath = this.props.isThemeDark
+            ? whiteWelcomeAnimationPartTwo
+            : blackWelcomeAnimationPartTwo;
         this.setState({
             animationPartOneDone: true,
-            welcomeAnimationPath: this.props.isThemeDark ? whiteWelcomeAnimationPartTwo : blackWelcomeAnimationPartTwo,
         });
-        this.animation.reset();
         this.animation.play();
     }
 
@@ -337,7 +338,6 @@ class Loading extends Component {
 
     render() {
         const { t, addingAdditionalAccount, theme: { body, primary }, isThemeDark } = this.props;
-        const { displayNodeChangeOption, welcomeAnimationPath } = this.state;
         const textColor = { color: body.color };
         const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
@@ -394,11 +394,11 @@ class Loading extends Component {
                             ref={(animation) => {
                                 this.animation = animation;
                             }}
-                            source={welcomeAnimationPath}
+                            source={this.welcomeAnimationPath}
                             style={styles.animationLoading}
                         />
                     </AnimatedComponent>
-                    {displayNodeChangeOption && (
+                    {this.state.displayNodeChangeOption && (
                         <AnimatedComponent
                             animationInType={['fadeIn']}
                             animationOutType={['fadeOut']}
