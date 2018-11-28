@@ -36,7 +36,7 @@ export default class Confirm extends React.PureComponent {
                         {content.cancel}
                     </Button>
                     <Button
-                        disabled={countdown && countdown > 0}
+                        disabled={countdown > 0}
                         onClick={this.props.onConfirm}
                         variant={category ? category : 'primary'}>
                         {countdown && countdown > 0 ? countdown : content.confirm}

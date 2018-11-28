@@ -212,7 +212,7 @@ class Login extends React.Component {
         const { forceUpdate, t, addingAdditionalAccount, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (ui.isFetchingAccountInfo || addingAdditionalAccount) {
+        if (ui.isFetchingAccountInfo) {
             return (
                 <Loading
                     loop
