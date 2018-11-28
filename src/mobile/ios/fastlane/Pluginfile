@@ -5,3 +5,4 @@
 gem 'fastlane-plugin-bugsnag'
 gem 'fastlane-plugin-load_json'
 gem 'fastlane-plugin-localization'
+gem 'fastlane-plugin-clean_testflight_testers'
