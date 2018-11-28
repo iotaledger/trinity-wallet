@@ -19,6 +19,7 @@
         "invalidResponse": "노드 오류",
         "invalidResponseExplanation": "노드가 오류를 보냈습니다. 노드를 변경해 보세요.",
         "invalidResponseFetchingAccount": "계정 정보를 불러오는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "노드가 동기화되지 않음",
         "nodeOutOfSyncExplanation": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
         "thisNodeOutOfSync": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "로그인하지 않았습니다",
         "setupIncomplete": "지갑 설정이 완료되지 않음",
         "completeSetup": "설정 완료"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "알림",
