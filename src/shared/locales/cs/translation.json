@@ -56,7 +56,7 @@
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
-        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccount": "Nerozpoznaný účet",
         "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
         "emptyPasswordExplanation": "Musíte zadat heslo. Prosím zkuste znovu.",
         "capsLockIsOn": "Caps Lock je zapnutý",
