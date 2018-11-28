@@ -76,7 +76,7 @@ try {
 } catch (error) {}
 
 /**
- * Temporary disable proxy if not overrided by settings
+ * Temporarily disable proxy if not overridden by settings
  */
 
 if (settings.ignoreProxy) {

@@ -739,7 +739,7 @@
     },
     "proxy": {
         "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after setting change."
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
       "notifications": "Notifications",
