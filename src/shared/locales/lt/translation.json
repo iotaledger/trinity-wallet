@@ -19,6 +19,7 @@
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "Jūs neprisijungęs",
         "setupIncomplete": "Piniginės nustatymai nebaigti",
         "completeSetup": "Baigti sąranką"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Pranešimai",
