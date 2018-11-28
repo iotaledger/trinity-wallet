@@ -754,14 +754,14 @@
         "cannotSendZeroValueTitle": "Cannot send zero value transfer",
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
         "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDisconnectedExplanation": "Zařízení Ledger bylo odpojeno. Připojte ho a akci opakujte.",
         "ledgerDeniedTitle": "Transakce byla zamítnuta",
         "ledgerDeniedExplanation": "Transakce byla zamítnuta na zařízení Ledger.",
         "ledgerIncorrectIndex": "Nekompatibilní zařízení Ledger",
         "ledgerIncorrectIndexExplanation": "Připojené zařízení Ledger se neshoduje s tím které je s tímto účtem spárováno, nebo jeho heslo bylo změněno.",
         "checkAddress": "Zkontrolujte adresu příjemce",
         "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
-        "applicationNotInitialised": "Upozornění, nebylo přijato",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialised": "Informační upozornění, nebylo přijato",
+        "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu."
     }
 }
