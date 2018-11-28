@@ -7,6 +7,12 @@ import { Styling } from 'ui/theme/general';
 import { isIPhoneX } from 'libs/device';
 
 const styles = StyleSheet.create({
+    container: {
+        height: width / 8.5,
+        width: width / 5,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
     button: {
         width: width / 5,
         height: parseInt(width / 5 + height / (isIPhoneX ? 120 : 160)),
@@ -18,7 +24,6 @@ const styles = StyleSheet.create({
     iconTitle: {
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingTop: height / 80,
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
     },
@@ -48,8 +53,7 @@ class Tab extends Component {
     constructor(props) {
         super(props);
         this.iconSize = new Animated.Value(props.isActive ? width / 14 : width / 18);
-        this.fontSize = new Animated.Value(props.isActive ? 1 : Styling.fontSize1);
-        this.fontOpacity = new Animated.Value(props.isActive ? 0 : 1);
+        this.fontSize = new Animated.Value(props.isActive ? width / 42 : Styling.fontSize1);
     }
 
     componentWillReceiveProps(newProps) {
@@ -60,11 +64,7 @@ class Tab extends Component {
                     duration: 150,
                 }),
                 Animated.timing(this.fontSize, {
-                    toValue: 1,
-                    duration: 150,
-                }),
-                Animated.timing(this.fontOpacity, {
-                    toValue: 0,
+                    toValue: width / 42,
                     duration: 150,
                 }),
             ]).start();
@@ -77,10 +77,6 @@ class Tab extends Component {
                 }),
                 Animated.timing(this.fontSize, {
                     toValue: Styling.fontSize1,
-                    duration: 150,
-                }),
-                Animated.timing(this.fontOpacity, {
-                    toValue: 1,
                     duration: 150,
                 }),
             ]).start();
@@ -99,20 +95,19 @@ class Tab extends Component {
         return (
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={[{ position: 'absolute', left: this.getPosition() }, styles.button]}>
-                    <AnimatedIcon
-                        name={icon}
-                        color={bar.color}
-                        style={[{ backgroundColor: 'transparent', fontSize: this.iconSize }]}
-                    />
-                    <Animated.Text
-                        numberOfLines={1}
-                        style={[
-                            styles.iconTitle,
-                            { color: bar.color, fontSize: this.fontSize, opacity: this.fontOpacity },
-                        ]}
-                    >
-                        {text}
-                    </Animated.Text>
+                    <View style={styles.container}>
+                        <AnimatedIcon
+                            name={icon}
+                            color={bar.color}
+                            style={[{ backgroundColor: 'transparent', fontSize: this.iconSize }]}
+                        />
+                        <Animated.Text
+                            numberOfLines={1}
+                            style={[styles.iconTitle, { color: bar.color, fontSize: this.fontSize }]}
+                        >
+                            {text}
+                        </Animated.Text>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );

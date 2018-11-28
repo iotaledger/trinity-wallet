@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderTopColor: 'transparent',
         borderTopWidth: parseInt(height / (isIPhoneX ? 120 : 160)),
+        position: 'absolute',
     },
 });
 
@@ -69,21 +70,20 @@ class Tabs extends Component {
         );
         return (
             <View style={styles.container}>
-                <View style={[styles.tabBarBackground, { backgroundColor: bar.alt }]}>
-                    <Animated.View
-                        style={[
-                            styles.activeTab,
-                            {
-                                backgroundColor: bar.hover,
-                                borderTopColor: primary.color,
-                                borderRadius: isIPhoneX ? Styling.borderRadius : 0,
-                            },
-                            {
-                                transform: [{ translateX: this.activeTabPosition }],
-                            },
-                        ]}
-                    />
-                </View>
+                <View style={[styles.tabBarBackground, { backgroundColor: bar.alt }]} />
+                <Animated.View
+                    style={[
+                        styles.activeTab,
+                        {
+                            backgroundColor: bar.hover,
+                            borderTopColor: primary.color,
+                            borderRadius: isIPhoneX ? Styling.borderRadius : 0,
+                        },
+                        {
+                            transform: [{ translateX: this.activeTabPosition }],
+                        },
+                    ]}
+                />
                 <View style={styles.tabBar}>{childComponents}</View>
             </View>
         );

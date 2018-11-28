@@ -291,7 +291,7 @@ class NewSeedSetup extends Component {
                                 <FlatList
                                     contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                                     data={split(seed, '')}
-                                    keyExtractor={(item, index) => index}
+                                    keyExtractor={(item, index) => index.toString()}
                                     renderItem={({ item, index }) => this.renderChequerboard(item, index)}
                                     initialNumToRender={MAX_SEED_LENGTH}
                                     scrollEnabled={false}

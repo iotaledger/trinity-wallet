@@ -175,7 +175,7 @@ export class ViewAddresses extends Component {
                 contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
                 initialNumToRender={10} // TODO: Should be dynamically computed.
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => this.renderAddress(item)}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
