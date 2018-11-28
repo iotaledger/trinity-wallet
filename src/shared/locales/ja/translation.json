@@ -19,7 +19,7 @@
         "invalidResponse": "ノードエラー",
         "invalidResponseExplanation": "ノードがエラーを返しました。 ノードを変更してみてください。",
         "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。 ノードを変更してみてください。",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
@@ -706,7 +706,7 @@
         "completeSetup": "セットアップ完了"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "システムプロキシを使用してみてください",
         "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
