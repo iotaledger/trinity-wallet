@@ -19,6 +19,7 @@
         "invalidResponse": "Erro no servidor",
         "invalidResponseExplanation": "O servidor retornou um erro. Tente mudar o servidor.",
         "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta. Tente mudar de servidor.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
         "thisNodeOutOfSync": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "Você não está logado em",
         "setupIncomplete": "Configuração da carteira incompleta",
         "completeSetup": "Configuração completa"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notificações",
