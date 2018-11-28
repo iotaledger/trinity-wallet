@@ -19,6 +19,7 @@
         "invalidResponse": "Nodefeil",
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node eller forsøk igjen.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "Du er ikke innlogget",
         "setupIncomplete": "Lommebok-installasjonen er ufullstendig",
         "completeSetup": "Fullfør installasjon"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Varslinger",
