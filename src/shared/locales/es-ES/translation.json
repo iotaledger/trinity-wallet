@@ -19,6 +19,7 @@
         "invalidResponse": "Error de nodo",
         "invalidResponseExplanation": "El nodo devolvió un error. Pruebe cambiando de nodo.",
         "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intenta cambiar el nodo.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado esta desincronizado. Por favor cámbielo y pruebe devuelta.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "No ha iniciado sesión",
         "setupIncomplete": "Configuración de billetera incompleta",
         "completeSetup": "Configuración completada"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notificaciones",
