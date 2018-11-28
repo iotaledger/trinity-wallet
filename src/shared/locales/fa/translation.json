@@ -19,6 +19,7 @@
         "invalidResponse": "خطای Node",
         "invalidResponseExplanation": "Node یک خطا را دریافت کرد. سعی کنید Node را تغییر دهید.",
         "invalidResponseFetchingAccount": "Node هنگام دریافت اطلاعات حساب شما، خطایی را دریافت کرد. سعی کنید Node را تغییر دهید.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node خارج از همگام سازی",
         "nodeOutOfSyncExplanation": "Node در حال حاضر انتخاب شده شما از همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
         "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
@@ -703,6 +704,10 @@
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifications",
