@@ -125,6 +125,7 @@
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
+    "babel-loader": "^8.0.4",
     "babel-plugin-jest-hoist": "^23.2.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-stage-0": "^7.0.0-beta",
@@ -132,6 +133,7 @@
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "haul": "^1.0.0-rc.10",
+    "imports-loader": "^0.8.0",
     "jest": "23.5.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.45.0",

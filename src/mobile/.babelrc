@@ -4,7 +4,6 @@
         [
             "module-resolver",
             {
-                "cwd": "babelrc",
                 "root": [".", "src"],
                 "extensions": [".ios.js", ".android.js", ".js", ".json"]
             }
