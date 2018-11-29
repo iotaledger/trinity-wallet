@@ -167,6 +167,7 @@ class AnimatedComponent extends Component {
             case 'slideInLeft':
                 return -width;
             case 'slideOutLeft':
+            case 'slideOutRight':
                 return 0;
             case 'slideInLeftSmall':
                 return -width / 8;
@@ -195,6 +196,8 @@ class AnimatedComponent extends Component {
                 return 0;
             case 'slideOutLeft':
                 return this.reverseSlideOut ? width : -width;
+            case 'slideOutRight':
+                return width;
             case 'slideInLeftSmall':
                 return 0;
             case 'slideInRightSmall':
@@ -218,8 +221,9 @@ class AnimatedComponent extends Component {
             case 'fadeOut':
                 return Easing.elastic();
             case 'slideInLeft':
-            case 'slideOutLeft':
             case 'slideInRight':
+            case 'slideOutLeft':
+            case 'slideOutRight':
             case 'slideInLeftSmall':
             case 'slideInRightSmall':
             case 'slideOutLeftSmall':
@@ -242,6 +246,7 @@ class AnimatedComponent extends Component {
             case 'slideInLeft':
             case 'slideInRight':
             case 'slideOutLeft':
+            case 'slideOutRight':
             case 'slideInLeftSmall':
             case 'slideInRightSmall':
             case 'slideOutLeftSmall':
@@ -287,6 +292,7 @@ class AnimatedComponent extends Component {
                 case 'slideInLeft':
                 case 'slideInRight':
                 case 'slideOutLeft':
+                case 'slideOutRight':
                 case 'slideInLeftSmall':
                 case 'slideInRightSmall':
                 case 'slideOutLeftSmall':
