@@ -254,8 +254,8 @@
         "pressForNewSeed": "Stlačte pre nový Seed",
         "generateSuccess": "Seed úspešne vygenerovaný",
         "individualLetters": "Vyberte náhodné znaky.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
+        "individualLetterCount": "Stlačte <1><0>{{count}}</0></1> písmeno pre náhodný výber.",
+        "individualLetterCount_plural": "Stlačte <1><0>{{count}}</0></1> písmen pre náhodný výber.",
         "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
         "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
         "whatIsASeed": "Čo je to Seed?"
@@ -353,7 +353,7 @@
         "youCanAdd": "Viac Seedov môžete pridať v menu Nastavenia."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Pokročilý",
         "standard": "Štandardný",
         "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
@@ -413,7 +413,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
-        "reset": "Reset"
+        "reset": "Resetovať"
     },
     "walletSetup": {
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
@@ -454,7 +454,7 @@
         "editAccountName": "Upraviť názov účtu",
         "deleteAccount": "Vymazať účet",
         "addNewAccount": "Pridať nový účet",
-        "tools": "Tools"
+        "tools": "Nástroje"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",
@@ -611,8 +611,8 @@
         "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
+        "importSuccess": "Seed importovaný",
+        "importSuccessExplanation": "Váš Seed bol úspešne importovaný.",
         "saveToDownloadFolder": "Uložiť do priečinku stiahnuté",
         "importSeedVault": "Importovať SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
