@@ -615,7 +615,7 @@
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
-        "dropSeedVaultHere": "Upuść plik SeedVault tutaj lub kliknij, aby wyszukać ręcznie",
+        "dropSeedVaultHere": "Upuść plik SeedVault tutaj <1></1> lub kliknij, aby wyszukać ręcznie",
         "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
