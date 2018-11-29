@@ -161,7 +161,12 @@ class LanguageSetup extends Component {
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={100}>
+                            <AnimatedComponent
+                                style={{ position: 'absolute', height: height / 1.3 }}
+                                animationInType={['fadeIn']}
+                                animationOutType={['fadeOut', 'slideOutLeft']}
+                                delay={100}
+                            >
                                 <View style={{ flex: 0.5 }} />
                                 <DropdownComponent
                                     onRef={(c) => {
