@@ -19,6 +19,7 @@
         "invalidResponse": "Pogreška na čvoru",
         "invalidResponseExplanation": "Čvor je poslao pogrešku. Probajte sa promjenom čvora.",
         "invalidResponseFetchingAccount": "Greška prilikom dohvata podataka o vašem računu. Pokušajte promijeniti node.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Vaš node nije sinkroniziran",
         "nodeOutOfSyncExplanation": "Vaš odabrani node nije sinkroniziran. Molimo vas promijenite node i pokušajte ponovno.",
         "thisNodeOutOfSync": "Ovaj node nije sinkroniziran. Molimo vas promijenite node ili pokušajte ponovno.",
@@ -143,10 +144,14 @@
         "tryingAgainWithLocalPoW": "Pokušajte ponovno s lokalnim PoW-om.",
         "tryingAgainWithDifferentNode": "Pokušajte ponovno s drugim node-om.",
         "errorFetchingAccountInformation": "Greška u dohvatu podataka o računu.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Greška prilikom sinkronizacije adresa. Pokušavam ponovno s drugim node-om.",
         "errorAccessingKeychain": "Keychain greška",
         "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u potrebnom za sigurnu pohranu.",
-        "mainWallet": "GLAVNI RAČUN"
+        "mainWallet": "GLAVNI RAČUN",
+        "shouldUpdate": "Dostupno je novo ažuriranje",
+        "shouldUpdateExplanation": "Dostupna je nova verzija aplikacije. Preporučuje se ažuriranje aplikacije na najnoviju verziju.",
+        "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
+        "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -277,15 +282,15 @@
         "copyAddress": "Kopiraj Adresu",
         "addressCopied": "Adresa kopirana",
         "addressCopiedExplanation": "Adresa kopirana u međuspremnik.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Generiraj adresu",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrijebljeno",
         "missingPermission": "Potreban pristup datotečnom sustavu",
         "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se QR kod mogao podijeliti.",
         "tag": "Etiketa",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Generiraj adresu",
+        "generateAnAddressTitle": "Generiraj adresu",
+        "generateAnAddressExplanation": "Molimo generirajte adresu prije upotrebe ove funkcije."
     },
     "saveYourSeed": {
         "saveYourSeed": "Napravite sigurnosnu kopiju vašeg seed-a",
@@ -700,6 +705,10 @@
         "setupIncomplete": "Postavljanje novčanika nedovršeno",
         "completeSetup": "Završi postavljanje"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+    },
     "notifications": {
         "notifications": "Obavijesti",
         "notificationExplanation": "Primanje sistemskih obavijesti o novim transakcijama.",
@@ -751,7 +760,7 @@
         "ledgerIncorrectIndex": "Neodgovarajući Ledger uređaj ili indeks",
         "ledgerIncorrectIndexExplanation": "Povezani Ledger uređaj ne odgovara onome povezanom s ovim računom ili je fraza za oporavak izmijenjena.",
         "checkAddress": "Provjerite adresu primatelja",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "Provjerite da li adresa odgovara onoj prikazanoj na vašem Ledger uređaju.",
         "applicationNotInitialised": "Upozorenje nije prihvaćeno",
         "applicationNotInitialisedExplanation": "Ponovno otvorite IOTA aplikaciju na vašem Ledger uređaju, prihvatite informativno upozorenje i pokušajte ponovno."
     }
