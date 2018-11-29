@@ -102,6 +102,7 @@ class Login extends Component {
     componentWillUnmount() {
         Linking.removeEventListener('url');
         timer.clearTimeout('delayRouteChange' + this.props.loginRoute);
+        timer.clearTimeout('delayNavigation');
     }
 
     /**
@@ -214,26 +215,33 @@ class Login extends Component {
      */
     navigateToLoading() {
         const { theme: { body } } = this.props;
-        navigator.setStackRoot('loading', {
-            animations: {
-                setStackRoot: {
-                    enable: false,
-                },
+        this.animationOutType = ['fadeOut'];
+        timer.setTimeout(
+            'delayNavigation',
+            () => {
+                navigator.setStackRoot('loading', {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
+                    },
+                });
             },
-            layout: {
-                backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: true,
-                elevation: 0,
-            },
-            statusBar: {
-                drawBehind: true,
-                backgroundColor: body.bg,
-            },
-        });
+            150,
+        );
     }
 
     render() {
