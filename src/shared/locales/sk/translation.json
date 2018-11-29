@@ -146,7 +146,7 @@
         "errorFetchingAccountInformation": "Pri načítavaní informacií o účte došlo ku chybe.",
         "errorSyncingAddresses": "Chyba pri synchronizácii informácii adresy. Skúste opakovať s iným Nodom.",
         "errorAccessingKeychain": "Chyba kľúčenky",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "errorAccessingKeychainExplanation": "Nie je možné získať prístup k úložišti kľúčov.",
         "mainWallet": "HLAVNÝ ÚČET",
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
@@ -256,8 +256,8 @@
         "individualLetters": "Vyberte náhodné znaky.",
         "individualLetterCount": "Stlačte <1><0>{{count}}</0></1> písmeno pre náhodný výber.",
         "individualLetterCount_plural": "Stlačte <1><0>{{count}}</0></1> písmen pre náhodný výber.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "randomiseCharsToContinue": "Pre pokračovanie vyberte <1> {{count}} </ 1> náhodný znak.",
+        "randomiseCharsToContinue_plural": "Pre pokračovanie vyberte <1> {{count}} </ 1> náhodné znaky.",
         "whatIsASeed": "Čo je to Seed?"
     },
     "onboardingComplete": {
