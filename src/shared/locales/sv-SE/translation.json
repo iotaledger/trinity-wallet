@@ -706,8 +706,8 @@
         "completeSetup": "Installation fullständig"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxy": "Använd system-proxy",
+        "proxyExplanation": "Upptäcka och använda systembrett nätverksproxyinställningar. Starta om plånboken efter ändring av den här inställningen."
     },
     "notifications": {
         "notifications": "Aviseringar",
