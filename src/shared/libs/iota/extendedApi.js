@@ -41,19 +41,22 @@ const getIotaInstance = (provider) => {
  *
  * @method getBalancesAsync
  * @param {string} [provider]
+ * @param {boolean} [withQuorum]
  *
  * @returns {function(array, number): Promise<object>}
  */
-const getBalancesAsync = (provider) => (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) =>
-    new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.getBalances(addresses, threshold, (err, balances) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(balances);
-            }
-        });
-    });
+const getBalancesAsync = (provider, withQuorum = false) => (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) =>
+    withQuorum
+        ? quorum.getBalances(addresses, threshold)
+        : new Promise((resolve, reject) => {
+              getIotaInstance(provider).api.getBalances(addresses, threshold, (err, balances) => {
+                  if (err) {
+                      reject(err);
+                  } else {
+                      resolve(balances);
+                  }
+              });
+          });
 
 /**
  * Promisified version of iota.api.getNodeInfo
@@ -98,11 +101,14 @@ const getTransactionsObjectsAsync = (provider) => (hashes) =>
  *
  * @method findTransactionObjectsAsync
  * @param {string} [provider]
+ * @param {boolean} [withQuorum]
  *
  * @returns {function(object): Promise<any>}
  */
-const findTransactionObjectsAsync = (provider) => (args) =>
-    findTransactionsAsync(provider)(args).then((hashes) => getTransactionsObjectsAsync(provider)(hashes));
+const findTransactionObjectsAsync = (provider, withQuorum = false) => (args) =>
+    withQuorum
+        ? quorum.findTransactions(args)
+        : findTransactionsAsync(provider)(args).then((hashes) => getTransactionsObjectsAsync(provider)(hashes));
 
 /**
  * Promisified version of iota.api.findTransactions
@@ -128,19 +134,22 @@ const findTransactionsAsync = (provider) => (args) =>
  *
  * @method getLatestInclusionAsync
  * @param {string} [provider]
+ * @param {boolean} [withQuorum]
  *
  * @returns {function(array): Promise<array>}
  */
-const getLatestInclusionAsync = (provider) => (hashes) =>
-    new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.getLatestInclusion(hashes, (err, states) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(states);
-            }
-        });
-    });
+const getLatestInclusionAsync = (provider, withQuorum = false) => (hashes) =>
+    withQuorum
+        ? quorum.getLatestInclusion(hashes)
+        : new Promise((resolve, reject) => {
+              getIotaInstance(provider).api.getLatestInclusion(hashes, (err, states) => {
+                  if (err) {
+                      reject(err);
+                  } else {
+                      resolve(states);
+                  }
+              });
+          });
 
 /**
  * Extended version of iota.api.promoteTransaction with an option to perform PoW locally
@@ -265,7 +274,7 @@ const getBundleAsync = (provider) => (tailTransactionHash) =>
  *
  * @returns {function(array): Promise<array>}
  */
-const wereAddressesSpentFromAsync = (provider, withQuorum) => (addresses) =>
+const wereAddressesSpentFromAsync = (provider, withQuorum = false) => (addresses) =>
     withQuorum
         ? quorum.wereAddressesSpentFrom(addresses)
         : new Promise((resolve, reject) => {
@@ -488,19 +497,22 @@ const attachToTangleAsync = (provider, powFn) => (
  *
  * @method getTrytesAsync
  * @param {string} [provider]
+ * @param {boolean} [withQuorum]
  *
  * @returns {function(array): Promise<array>}
  */
-const getTrytesAsync = (provider) => (hashes) =>
-    new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(trytes);
-            }
-        });
-    });
+const getTrytesAsync = (provider, withQuorum = false) => (hashes) =>
+    withQuorum
+        ? quorum.getTrytes(hashes)
+        : new Promise((resolve, reject) => {
+              getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
+                  if (err) {
+                      reject(err);
+                  } else {
+                      resolve(trytes);
+                  }
+              });
+          });
 
 /**
  * Checks if a node is synced
