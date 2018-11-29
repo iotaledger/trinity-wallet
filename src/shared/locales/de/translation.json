@@ -19,7 +19,7 @@
         "invalidResponse": "Nodefehler",
         "invalidResponseExplanation": "Der Node hat einen Fehler zurückgegeben. Versuche einen anderen Node.",
         "invalidResponseFetchingAccount": "Der Node hat beim Abrufen der Kontoinformationen einen Fehler zurückgegeben. Versuche einen anderen Node.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Der Node hat einen Fehler gemeldet während deine Kontoinformationen abgerufen wurden. Verwende einen anderen Node oder deaktiviere die Verwendung der systemweiten Proxyeinstellungen falls das Problem weiterhin besteht.",
         "nodeOutOfSync": "Node nicht synchronisiert",
         "nodeOutOfSyncExplanation": "Dein gewählter Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
