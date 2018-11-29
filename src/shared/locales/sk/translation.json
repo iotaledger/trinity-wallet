@@ -613,7 +613,7 @@
         "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
         "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "saveToDownloadFolder": "Uložiť do priečinku stiahnuté",
         "importSeedVault": "Importovať SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
@@ -683,11 +683,11 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
+        "downloadingUpdate": "Sťahuje sa aktualizácia...",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Zoznam chýb"
     },
     "terms": {
         "termsAndConditions": "Podmienky používania",
