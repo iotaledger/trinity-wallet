@@ -19,6 +19,7 @@
         "invalidResponse": "Csomóponti hiba",
         "invalidResponseExplanation": "A csomópont hibát jelzett. Kérjük, próbáljon egy másik csomópontot választani.",
         "invalidResponseFetchingAccount": "A csomópont hibát jelzett a számla adatainak lekérése közben. Próbáljon egy másik csomópontot választani.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
@@ -75,7 +76,7 @@
         "sent": "Elküldött",
         "received": "Fogadott",
         "sending": "Küldés...",
-        "receiving": "Fogadás folyamatban",
+        "receiving": "Fogadás...",
         "confirmed": "Megerősítve",
         "pending": "Függőben lévő",
         "bundleHash": "Tranzakciós csomag hash",
@@ -143,10 +144,14 @@
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Hiba történt a címekhez tartozó adatok lekérése közben. Válasszon egy másik csomópontot és próbálja újra.",
         "errorAccessingKeychain": "Kulcstár-hiba",
         "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
-        "mainWallet": "Elsődleges számla"
+        "mainWallet": "Elsődleges számla",
+        "shouldUpdate": "Új frissítés érhető el",
+        "shouldUpdateExplanation": "Egy új szoftverfrissítés jelent meg. Ajánlott az alkalmazást a legújabb verzióra frissíteni.",
+        "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
+        "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -276,16 +281,16 @@
         "shareQr": "QR kód megosztása",
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
-        "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Generate address",
+        "addressCopiedExplanation": "A cím a vágólapra lett másolva.",
+        "generateNewAddress": "Új cím generálása",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A QR kód megosztásához szükség van a fájlrendszerhez való hozzáféréshez.",
         "tag": "Címke",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Új cím generálása",
+        "generateAnAddressTitle": "Új cím generálása",
+        "generateAnAddressExplanation": "Kérjük ennek a funkciónak a használata előtt generáljon egy új címet."
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
@@ -416,7 +421,7 @@
         "seedExplanation": "Az IOTA mester jelszó a számlájához tartozó összes címen levő összeg eléréséhez szolgál. 81 karakter hosszú, és csak nagy A-Z betűkből, valamint a 9-es számjegyből állhat.",
         "noIHaveOne": "Nem, már van",
         "yesINeedASeed": "Igen, szükségem van egy mester jelszóra",
-        "explanation": "<0><0>A mester jelszavát az összes hozzá tartozó címen levő összeg eléréséhez használhatja</0><1>bármely tárcából</1><2>és</2><3>bármely eszközről.</3></0>",
+        "explanation": "<0><0>A mester jelszavát az összes hozzá tartozó címen levő összeg eléréséhez használhatja</0><1> bármely tárcából</1><2> és</2><3> bármely eszközről.</3></0>",
         "loseSeed": "De ha elveszíti a mester jelszavát, akkor elveszíti az összes IOTA-ját.",
         "keepSafe": "Kérjük, hogy a mester jelszavát mindig tartsa titokban."
     },
@@ -542,7 +547,7 @@
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
         "accountIndex": "Számlájának sorszáma",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Hardveres tárca számla oldala"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
@@ -574,7 +579,7 @@
         "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez"
     },
     "transferConfirmation": {
-        "youAreAbout": "A következő tartalmat készül elküldeni a címre {{contents}}",
+        "youAreAbout": "Ön {{contents}} összeget készül elküldeni az alábbi címre",
         "aMessage": "egy üzenet"
     },
     "twoFA": {
@@ -700,6 +705,10 @@
         "setupIncomplete": "Tárca nem lett beállítva",
         "completeSetup": "Beállítások befejezése"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+    },
     "notifications": {
         "notifications": "Értesítések",
         "notificationExplanation": "Rendszerszintű értesítéseket kaphat az új tranzakciókról.",
@@ -751,8 +760,8 @@
         "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
         "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
         "checkAddress": "Ellenőrizze a fogadási címet",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
+        "applicationNotInitialised": "Jóváhagyásra váró figyelmeztetés",
+        "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra."
     }
 }

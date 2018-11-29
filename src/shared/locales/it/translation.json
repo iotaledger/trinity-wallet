@@ -19,6 +19,7 @@
         "invalidResponse": "Errore di nodo",
         "invalidResponseExplanation": "Il nodo ha restituito un errore. Provare a cambiare il nodo.",
         "invalidResponseFetchingAccount": "Il nodo ha restituito un errore durante il recupero di informazioni del tuo conto. Prova a cambiare nodo.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Nodo non sincronizzato",
         "nodeOutOfSyncExplanation": "Il nodo attualmente selezionato non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
         "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
@@ -143,10 +144,14 @@
         "tryingAgainWithLocalPoW": "Ritento con Prova di Lavoro locale.",
         "tryingAgainWithDifferentNode": "Ritento con un altro nodo.",
         "errorFetchingAccountInformation": "Errore nel recupero informazioni sul conto.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Un errore nella sincronizzazione delle informazioni sull'indirizzo. Riprovo con un altro nodo.",
         "errorAccessingKeychain": "Errore di portachiavi",
         "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
-        "mainWallet": "CONTO PRINCIPALE"
+        "mainWallet": "CONTO PRINCIPALE",
+        "shouldUpdate": "E' disponibile un nuovo aggiornamento",
+        "shouldUpdateExplanation": "È stato rilasciato un nuovo aggiornamento. Si consiglia di aggiornare all'ultima versione.",
+        "forceUpdate": "Aggiornare l'app per continuare",
+        "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -277,15 +282,15 @@
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Genera un indirizzo",
         "noAddresses": "NESSUN INDIRIZZO",
         "spent": "Speso",
         "missingPermission": "È richiesto l'accesso al file system",
         "missingPermissionExplanation": "L'accesso al file system è necessario al fine di condividere codici QR.",
         "tag": "Etichetta",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Genera un indirizzo",
+        "generateAnAddressTitle": "Genera un indirizzo",
+        "generateAnAddressExplanation": "Si prega di generare un indirizzo prima di utilizzare questa funzione."
     },
     "saveYourSeed": {
         "saveYourSeed": "Esegui il backup del tuo seme",
@@ -542,7 +547,7 @@
         "hideSeed": "Nascondi seme",
         "notAvailable": "Esportazione di seme non è disponibile per il tipo di account {{accountType}}",
         "accountIndex": "Il tuo indice di conto su Ledger",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Pagina di conto sul Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
@@ -700,6 +705,10 @@
         "setupIncomplete": "Incompleta configurazione del portafoglio",
         "completeSetup": "Completa la configurazione"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+    },
     "notifications": {
         "notifications": "Notifiche",
         "notificationExplanation": "Ricevi notifiche di sistema sulle nuove transazioni.",
@@ -751,8 +760,8 @@
         "ledgerIncorrectIndex": "Mancata corrispondenza del dispositivo Ledger",
         "ledgerIncorrectIndexExplanation": "Il dispositivo Ledger collegato non corrisponde a quello associato a questo conto, o la sua password è stata modificata.",
         "checkAddress": "Controllare l'indirizzo di ricezione",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "checkAddressExplanation": "Verifica che l'indirizzo corrisponda a quello visualizzato sul dispositivo Ledger.",
+        "applicationNotInitialised": "Avvertenza non confermato",
         "applicationNotInitialisedExplanation": "Riaprire l'app IOTA sul dispositivo Ledger, accettare l'avviso informativo e riprovare."
     }
 }
