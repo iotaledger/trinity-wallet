@@ -19,7 +19,7 @@
         "invalidResponse": "Fel på nod",
         "invalidResponseExplanation": "Noden returnerade ett fel. Försök att ändra nod.",
         "invalidResponseFetchingAccount": "Noden returnerade ett fel vid hämtning av din kontoinformation. Försök att byta nod.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
