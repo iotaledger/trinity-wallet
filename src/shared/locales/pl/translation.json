@@ -19,7 +19,7 @@
         "invalidResponse": "Błąd serwera",
         "invalidResponseExplanation": "Serwer zwrócił błąd. Spróbuj zmienić serwer.",
         "invalidResponseFetchingAccount": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer.",
-        "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz system proxy w ustawieniach Trinity.",
+        "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
@@ -706,8 +706,8 @@
         "completeSetup": "Zakończ konfigurację"
     },
     "proxy": {
-        "proxy": "Użyj systemu proxy",
-        "proxyExplanation": "Wykrywaj i używaj ogólnosystemowych ustawień sieci proxy. Zrestartuj portfel po zmianie tego ustawienia."
+        "proxy": "Użyj serwera proxy",
+        "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Zrestartuj portfel po zmianie tego ustawienia."
     },
     "notifications": {
         "notifications": "Powiadomienia",
