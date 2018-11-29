@@ -706,7 +706,7 @@
         "completeSetup": "Zakończ konfigurację"
     },
     "proxy": {
-        "proxy": "Używaj systemowych ustawień proxy",
+        "proxy": "Użycie ustawień proxy",
         "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Zrestartuj portfel po zmianie tego ustawienia."
     },
     "notifications": {
