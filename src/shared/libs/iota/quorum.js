@@ -129,13 +129,13 @@ const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes =
 /**
  *   From a list of synced nodes, compute a quorum result for wereAddressesSpentFrom iota api
  *
- *   @method doQuorumForWereAddressesSpentFrom
+ *   @method getQuorumForWereAddressesSpentFrom
  *   @param {array} payload - Addresses
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const doQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
+const getQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
     const requestPayloadSize = size(payload);
 
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
@@ -179,14 +179,14 @@ const doQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
 /**
  *   From a list of synced nodes, compute a quorum result for getLatestInclusion iota api
  *
- *   @method doQuorumForGetLatestInclusion
+ *   @method getQuorumForGetLatestInclusion
  *   @param {array} payload - Hashes
  *   @param {array} tips
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const doQuorumForGetLatestInclusion = (payload, tips, syncedNodes) => {
+const getQuorumForGetLatestInclusion = (payload, tips, syncedNodes) => {
     const requestPayloadSize = size(payload);
 
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
@@ -231,14 +231,14 @@ const doQuorumForGetLatestInclusion = (payload, tips, syncedNodes) => {
 /**
  *   From a list of synced nodes, compute a quorum result for getBalances iota api
  *
- *   @method doQuorumForGetBalances
+ *   @method getQuorumForGetBalances
  *   @param {array} payload - Addresses
  *   @param {number} threshold
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const doQuorumForGetBalances = (payload, threshold, tips, syncedNodes) => {
+const getQuorumForGetBalances = (payload, threshold, tips, syncedNodes) => {
     const requestPayloadSize = size(payload);
 
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
@@ -287,13 +287,13 @@ const doQuorumForGetBalances = (payload, threshold, tips, syncedNodes) => {
 /**
  *   From a list of synced nodes, compute a quorum result for getTrytes iota api
  *
- *   @method doQuorumForGetTrytes
+ *   @method getQuorumForGetTrytes
  *   @param {array} payload - hashes
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const doQuorumForGetTrytes = (payload, syncedNodes) => {
+const getQuorumForGetTrytes = (payload, syncedNodes) => {
     const requestPayloadSize = size(payload);
 
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
@@ -334,13 +334,13 @@ const doQuorumForGetTrytes = (payload, syncedNodes) => {
 /**
  *   From a list of synced nodes, compute a quorum result for findTransactions iota api
  *
- *   @method doQuorumForFindTransactions
+ *   @method getQuorumForFindTransactions
  *   @param {array} payload - hashes
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const doQuorumForFindTransactions = (payload, syncedNodes) => {
+const getQuorumForFindTransactions = (payload, syncedNodes) => {
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
         .then(() =>
             Promise.all(
@@ -368,12 +368,12 @@ const doQuorumForFindTransactions = (payload, syncedNodes) => {
 /**
  *   For a list of synced nodes, compute a quorum result for latestSolidSubtangleMilestone
  *
- *   @method doQuorumForLatestSolidSubtangleMilestone
+ *   @method getQuorumForLatestSolidSubtangleMilestone
  *   @param {array} syncedNodes
  *
  *   @returns {Promise}
  **/
-const doQuorumForLatestSolidSubtangleMilestone = (syncedNodes) => {
+const getQuorumForLatestSolidSubtangleMilestone = (syncedNodes) => {
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
         .then(() =>
             Promise.all(
@@ -457,7 +457,7 @@ export default function Quorum(quorumNodes) {
          */
         wereAddressesSpentFrom(addresses) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                doQuorumForWereAddressesSpentFrom(addresses, newSyncedNodes),
+                getQuorumForWereAddressesSpentFrom(addresses, newSyncedNodes),
             );
         },
         /**
@@ -470,8 +470,8 @@ export default function Quorum(quorumNodes) {
          */
         getLatestInclusion(hashes) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                doQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
-                    doQuorumForGetLatestInclusion(hashes, [latestSolidSubtangleMilestone], newSyncedNodes),
+                getQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
+                    getQuorumForGetLatestInclusion(hashes, [latestSolidSubtangleMilestone], newSyncedNodes),
                 ),
             );
         },
@@ -486,8 +486,8 @@ export default function Quorum(quorumNodes) {
          */
         getBalances(addresses, threshold = DEFAULT_BALANCES_THRESHOLD) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                doQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
-                    doQuorumForGetBalances(addresses, threshold, [latestSolidSubtangleMilestone], newSyncedNodes),
+                getQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
+                    getQuorumForGetBalances(addresses, threshold, [latestSolidSubtangleMilestone], newSyncedNodes),
                 ),
             );
         },
@@ -500,7 +500,7 @@ export default function Quorum(quorumNodes) {
          * @returns {Promise}
          */
         getTrytes(hashes) {
-            return findSyncedNodesIfNecessary().then((newSyncedNodes) => doQuorumForGetTrytes(hashes, newSyncedNodes));
+            return findSyncedNodesIfNecessary().then((newSyncedNodes) => getQuorumForGetTrytes(hashes, newSyncedNodes));
         },
         /**
          * Performs a quorum for findTransactions api endpoint
@@ -512,7 +512,7 @@ export default function Quorum(quorumNodes) {
          */
         findTransactions(payload) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                doQuorumForFindTransactions(payload, newSyncedNodes),
+                getQuorumForFindTransactions(payload, newSyncedNodes),
             );
         },
     };
