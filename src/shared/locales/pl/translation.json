@@ -596,7 +596,7 @@
         "twoFADisabled": "Wyłączono 2FA",
         "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
         "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod",
+        "code": "Kod 2FA",
         "twoFaToken": "Kod 2FA"
     },
     "seedVault": {
