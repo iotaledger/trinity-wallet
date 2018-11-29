@@ -25,7 +25,6 @@ import PasswordFields from './PasswordFields';
 const steps = [
     'isValidatingWalletPassword',
     'isViewingGeneralInfo',
-    'isViewingPasswordInfo',
     'isSettingPassword',
     'isExporting',
     'isSelectingSaveMethodAndroid',
@@ -105,7 +104,7 @@ class SeedVaultExportComponent extends Component {
     componentWillMount() {
         const { isAuthenticated, onRef } = this.props;
         onRef(this);
-        this.animatedValue = new Animated.Value(isAuthenticated ? width * 1.5 : width * 2.5);
+        this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
@@ -178,8 +177,6 @@ class SeedVaultExportComponent extends Component {
         if (step === 'isValidatingWalletPassword') {
             return this.validateWalletPassword();
         } else if (step === 'isViewingGeneralInfo') {
-            return this.navigateToStep('isViewingPasswordInfo');
-        } else if (step === 'isViewingPasswordInfo') {
             return this.navigateToStep('isSettingPassword');
         } else if (step === 'isExporting') {
             return this.navigateToStep('isSelectingSaveMethodAndroid');
@@ -237,10 +234,8 @@ class SeedVaultExportComponent extends Component {
      */
     onBackPress() {
         const { step } = this.props;
-        if (step === 'isViewingPasswordInfo') {
+        if (step === 'isSettingPassword') {
             return this.navigateToStep('isViewingGeneralInfo');
-        } else if (step === 'isSettingPassword') {
-            return this.navigateToStep('isViewingPasswordInfo');
         } else if (step === 'isExporting') {
             return this.navigateToStep('isSettingPassword');
         } else if (step === 'isSelectingSaveMethodAndroid') {
@@ -299,7 +294,7 @@ class SeedVaultExportComponent extends Component {
      */
     navigateToStep(nextStep) {
         const stepIndex = steps.indexOf(nextStep);
-        const animatedValue = [2.5, 1.5, 0.5, -0.5, -1.5, -2.5];
+        const animatedValue = [2, 1, 0, -1, -2];
         Animated.timing(this.animatedValue, {
             toValue: animatedValue[stepIndex] * width,
             duration: 500,
@@ -334,21 +329,21 @@ class SeedVaultExportComponent extends Component {
                     />
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox containerStyle={{ minHeight: height / 4.5 }}>
+                    <InfoBox>
                         <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultExplanation')}</Text>
                     </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox containerStyle={{ minHeight: height / 4.5 }}>
+                    <InfoBox containerStyle={{ marginBottom: height / 30 }}>
                         <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>
                     </InfoBox>
-                </View>
-                <View style={styles.viewContainer}>
                     <PasswordFields
                         onRef={(ref) => {
                             this.passwordFields = ref;
                         }}
                         onAcceptPassword={() => this.navigateToStep('isExporting')}
+                        passwordLabel={t('twoFA:key')}
+                        reentryLabel={t('retypeKey')}
                         password={password}
                         reentry={reentry}
                         setPassword={(password) => this.setState({ password })}

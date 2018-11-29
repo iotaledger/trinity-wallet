@@ -106,7 +106,7 @@ class Settings extends Component {
             securitySettings: 1,
             advancedSettings: 1,
             addNewAccount: 2,
-            useExistingSeed: 3,
+            addExistingSeed: 3,
             modeSelection: 3,
             themeCustomisation: 3,
             currencySelection: 3,
