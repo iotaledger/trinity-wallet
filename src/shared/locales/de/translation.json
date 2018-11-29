@@ -683,7 +683,7 @@
         "newVersionAvailableExplanation": "Eine neue Trinity Version ist verfügbar. Möchtest du das Update jetzt durchführen?",
         "installUpdate": "Update installieren und Trinity neu starten",
         "installUpdateExplanation": "Der Download wurde abgeschlossen. Trinity wird jetzt neu starten um das Update zu installieren.",
-        "downloadingUpdate": "Aktualisierung wird heruntergeladen",
+        "downloadingUpdate": "Update wird heruntergeladen",
         "downloadProgress": "{{transferred}} von {{total}} heruntergeladen"
     },
     "notificationLog": {
