@@ -56,7 +56,7 @@ if (!devMode) {
     app.setAsDefaultProtocolClient('iota');
 }
 
-let settings = null;
+let settings = {};
 
 let windowState = {
     width: 1280,
