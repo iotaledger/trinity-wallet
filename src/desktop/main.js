@@ -16,7 +16,7 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
  */
 const argv = process.argv.join();
 if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
-    return app.quit();
+    app.quit();
 }
 
 /**
@@ -28,6 +28,8 @@ app.setAppUserModelId('org.iota.trinity');
  * Set environment mode
  */
 const devMode = process.env.NODE_ENV === 'development';
+
+const appPath = app.getAppPath();
 
 /**
  * Define deep link state
@@ -119,12 +121,14 @@ function createWindow() {
         titleBarStyle: 'hidden',
         icon:
             process.platform === 'win32'
-                ? `${__dirname}/dist/icon.ico`
-                : process.platform === 'darwin' ? `${__dirname}/dist/icon.icns` : `${__dirname}/dist/icon.png`,
+                ? `${appPath}/dist/icon.ico`
+                : process.platform === 'darwin'
+                    ? `${appPath}/dist/icon.icns`
+                    : `${appPath}/dist/icon.png`,
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(__dirname, `native/preload/${devMode ? 'development' : 'production'}.js`),
+            preload: path.resolve(appPath, `dist/preload${devMode ? 'Dev' : 'Prod'}.js`),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -142,7 +146,7 @@ function createWindow() {
             show: false,
             webPreferences: {
                 nodeIntegration: false,
-                preload: path.resolve(__dirname, 'native/preload/tray.js'),
+                preload: path.resolve(appPath, 'dist/preloadTray.js'),
                 disableBlinkFeatures: 'Auxclick',
                 webviewTag: false,
             },
@@ -289,7 +293,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${__dirname}/dist/trayTemplate@2x.png`);
+    tray = new Tray(`${appPath}/dist/trayTemplate@2x.png`);
 
     tray.on('click', () => {
         toggleTray();
