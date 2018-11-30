@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -5,8 +6,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
-module.exports = {
+const config = {
     entry: ['./src/index.js'],
+    mode: devMode ? 'development' : 'production',
     output: {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: false,
@@ -14,6 +16,7 @@ module.exports = {
         globalObject: 'this',
         publicPath: '/',
     },
+    devtool: devMode ? 'eval-source-map' : 'source-map',
     module: {
         rules: [
             {
@@ -86,10 +89,23 @@ module.exports = {
             template: __dirname + '/index.html',
         }),
         new CopyWebpackPlugin([
-            { from: 'assets/icon-128.png', to: 'icon.png' },
-            { from: 'assets/icon-64.png', to: 'trayTemplate@2x.png' },
+            { from: 'assets/icon.png', to: 'icon.png' },
+            { from: 'assets/trayTemplate@2x.png', to: 'trayTemplate@2x.png' },
             { from: 'assets/icon.icns', to: 'icon.icns' },
             { from: 'assets/icon.ico', to: 'icon.ico' },
         ]),
     ],
 };
+
+if (devMode) {
+    config.entry = ['webpack-hot-middleware/client?reload=true'].concat(config.entry);
+
+    config.plugins = [new webpack.HotModuleReplacementPlugin()].concat(config.plugins);
+
+    config.devServer = {
+        contentBase: './dist',
+        hot: true,
+    };
+}
+
+module.exports = config;

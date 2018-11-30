@@ -29,7 +29,10 @@ app.setAppUserModelId('org.iota.trinity');
  */
 const devMode = process.env.NODE_ENV === 'development';
 
-const appPath = app.getAppPath();
+const paths = {
+    assets: devMode ? path.resolve(__dirname, 'assets') : path.resolve(app.getAppPath(), 'dist'),
+    preload: devMode ? path.resolve(__dirname, 'dist') : path.resolve(app.getAppPath(), 'dist'),
+};
 
 /**
  * Define deep link state
@@ -119,16 +122,13 @@ function createWindow() {
         minHeight: 720,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon:
-            process.platform === 'win32'
-                ? `${appPath}/dist/icon.ico`
-                : process.platform === 'darwin'
-                    ? `${appPath}/dist/icon.icns`
-                    : `${appPath}/dist/icon.png`,
+        icon: `${paths.assets}icon.${
+            process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'
+        }`,
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(appPath, `dist/preload${devMode ? 'Dev' : 'Prod'}.js`),
+            preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -146,7 +146,7 @@ function createWindow() {
             show: false,
             webPreferences: {
                 nodeIntegration: false,
-                preload: path.resolve(appPath, 'dist/preloadTray.js'),
+                preload: path.resolve(paths.preload, 'preloadTray.js'),
                 disableBlinkFeatures: 'Auxclick',
                 webviewTag: false,
             },
@@ -194,9 +194,8 @@ function createWindow() {
     /**
      * Enable React and Redux devtools in development mode
      */
+    windows.main.webContents.openDevTools({ mode: 'detach' });
     if (devMode) {
-        windows.main.webContents.openDevTools({ mode: 'detach' });
-
         if (process.platform === 'darwin') {
             windows.tray.webContents.openDevTools({ mode: 'detach' });
         }
@@ -293,7 +292,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${appPath}/dist/trayTemplate@2x.png`);
+    tray = new Tray(path.resolve(paths.assets, 'trayTemplate@2x.png'));
 
     tray.on('click', () => {
         toggleTray();
