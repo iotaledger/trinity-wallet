@@ -813,9 +813,9 @@ export class Send extends Component {
                             onChangeText={(text) => this.props.setSendMessageField(text)}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
-                            returnKeyType="send"
+                            returnKeyType="done"
                             blurOnSubmit
-                            onSubmitEditing={() => this.onSendPress()}
+                            onSubmitEditing={() => Keyboard.dismiss()}
                             theme={theme}
                             value={message}
                             editable={!isSending}
