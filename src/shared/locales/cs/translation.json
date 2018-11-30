@@ -6,7 +6,7 @@
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
-        "balanceErrorMessage": "Nemáte dostatek IOTA k dokončení této transakce.",
+        "balanceErrorMessage": "Nemáte dostatek peněz na vytvoření této bedny.",
         "totalBalance": "Celkový zůstatek",
         "transferError": "Chyba transakce",
         "transferErrorMessage": "Došlo k chybě při odesílání transakce. Prosím zkuste to znovu.",
