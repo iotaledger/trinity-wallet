@@ -1,7 +1,7 @@
 import { fork } from 'child_process';
 import path from 'path';
 import { powFunc, genFunc } from 'entangled-node';
-import { tritsToChars } from '../src/libs/helpers';
+import { tritsToChars } from '../../shared/libs/iota/converter';
 
 let timeout = null;
 

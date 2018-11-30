@@ -9,7 +9,11 @@ module.exports = {
         main: './main.js',
         preloadDev: './native/preload/development.js',
         preloadProd: './native/preload/production.js',
+        Entangled: './native/Entangled.js',
         preloadTray: './native/preload/tray.js',
+    },
+    node: {
+        __dirname: false,
     },
     module: {
         rules: [

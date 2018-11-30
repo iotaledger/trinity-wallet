@@ -9,7 +9,7 @@ import argon2 from 'argon2';
 import machineUuid from 'machine-uuid-sync';
 import kdbx from '../kdbx';
 import Entangled from '../Entangled';
-import { byteToTrit, byteToChar } from '../../src/libs/helpers';
+import { byteToTrit, byteToChar } from '../../../shared/libs/iota/converter';
 import ledger from '../hardware/Ledger';
 import { version } from '../../package.json';
 import { removeNonAlphaNumeric } from '../../../shared/libs/utils';

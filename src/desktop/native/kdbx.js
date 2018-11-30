@@ -1,6 +1,6 @@
 import argon2 from 'argon2';
 import kdbxweb from 'kdbxweb';
-import { byteToChar, charToByte } from '../src/libs/helpers';
+import { byteToChar, charToByte } from '../../shared/libs/iota/converter';
 
 /**
  * Bind kdbxweb and argon2
