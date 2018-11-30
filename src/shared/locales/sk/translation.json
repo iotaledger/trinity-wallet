@@ -681,7 +681,7 @@
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozícií je nová verzia",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Install update and restart",
+        "installUpdate": "Nainštalujte aktualizáciu a reštartujte",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
         "downloadingUpdate": "Sťahuje sa aktualizácia...",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
@@ -749,7 +749,7 @@
         "connectionExplanation": "A Ledger device must be connected to perform this function.",
         "transactionTitle": "Scroll through and approve the transaction on your Ledger",
         "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
+        "applicationTitle": "Spustite aplikáciu IOTA na Vašom zariadení Ledger",
         "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
         "cannotSendZeroValueTitle": "Cannot send zero value transfer",
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
