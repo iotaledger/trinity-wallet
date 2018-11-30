@@ -706,7 +706,7 @@
         "completeSetup": "Završi postavljanje"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Korištenje proxy postavka sustava",
         "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
