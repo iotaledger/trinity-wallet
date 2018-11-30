@@ -19,7 +19,7 @@
         "invalidResponse": "Pogreška na čvoru",
         "invalidResponseExplanation": "Čvor je poslao pogrešku. Probajte sa promjenom čvora.",
         "invalidResponseFetchingAccount": "Greška prilikom dohvata podataka o vašem računu. Pokušajte promijeniti node.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Greška prilikom dohvata podataka o vašem računu. U slučaju ponavljanja problema, pokušajte promijeniti node ili onemogućiti korištenje proxy postavka sustava u Trinity postavkama.",
         "nodeOutOfSync": "Vaš node nije sinkroniziran",
         "nodeOutOfSyncExplanation": "Vaš odabrani node nije sinkroniziran. Molimo vas promijenite node i pokušajte ponovno.",
         "thisNodeOutOfSync": "Ovaj node nije sinkroniziran. Molimo vas promijenite node ili pokušajte ponovno.",
