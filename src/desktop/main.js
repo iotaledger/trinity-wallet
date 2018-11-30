@@ -1,10 +1,10 @@
-const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
-const electron = require('electron');
-const initMenu = require('./native/Menu.js');
-const path = require('path');
-const URL = require('url');
-const fs = require('fs');
-const electronSettings = require('electron-settings');
+import electron, { ipcMain as ipc, app, protocol, shell, Tray } from 'electron';
+import { default as installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
+import initMenu from './native/Menu.js';
+import path from 'path';
+import URL from 'url';
+import fs from 'fs';
+import electronSettings from 'electron-settings';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
@@ -194,18 +194,12 @@ function createWindow() {
     /**
      * Enable React and Redux devtools in development mode
      */
-   
+
     if (devMode) {
         windows.main.webContents.openDevTools({ mode: 'detach' });
         if (process.platform === 'darwin') {
             windows.tray.webContents.openDevTools({ mode: 'detach' });
         }
-
-        const {
-            default: installExtension,
-            REACT_DEVELOPER_TOOLS,
-            REDUX_DEVTOOLS,
-        } = require('electron-devtools-installer');
 
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);

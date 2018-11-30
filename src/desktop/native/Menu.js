@@ -1,5 +1,5 @@
-const { app, Menu, ipcMain, dialog, shell } = require('electron');
-const { autoUpdater } = require('electron-updater');
+import { app, Menu, ipcMain, dialog, shell } from 'electron';
+import { autoUpdater } from 'electron-updater';
 
 const state = {
     authorised: false,
@@ -404,4 +404,4 @@ const initMenu = (app, getWindowFunc) => {
     });
 };
 
-module.exports = initMenu;
+export default initMenu;

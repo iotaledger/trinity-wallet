@@ -1,4 +1,4 @@
-const Electron = require('./Electron');
+import Electron from './Electron';
 
 // Define environment mode as Production
 Electron.mode = 'prod';
