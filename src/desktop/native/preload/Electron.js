@@ -7,12 +7,13 @@ import Curl from 'iota.lib.js/lib/crypto/curl/curl';
 import Converter from 'iota.lib.js/lib/crypto/converter/converter';
 import argon2 from 'argon2';
 import machineUuid from 'machine-uuid-sync';
+import { byteToTrit, byteToChar } from 'libs/iota/converter';
+import { removeNonAlphaNumeric } from 'libs/utils';
+
 import kdbx from '../kdbx';
 import Entangled from '../Entangled';
-import { byteToTrit, byteToChar } from '../../../shared/libs/iota/converter';
 import ledger from '../hardware/Ledger';
 import { version } from '../../package.json';
-import { removeNonAlphaNumeric } from '../../../shared/libs/utils';
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -268,7 +269,7 @@ const Electron = {
      * @returns {undefined}
      */
     maximize: () => {
-        const window = remote.getCurrentWindow()
+        const window = remote.getCurrentWindow();
         if (window.isMaximized()) {
             window.unmaximize();
         } else {

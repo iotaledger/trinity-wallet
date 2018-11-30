@@ -28,14 +28,11 @@ module.exports = {
     },
     resolve: {
         modules: ['node_modules', path.resolve(__dirname, '..', 'src'), path.resolve(__dirname, '..', '..', 'shared')],
+        extensions: ['.js', '.jsx', '.json'],
     },
     output: {
         path: path.join(__dirname, '..', 'dist'),
         filename: '[name].js',
         libraryTarget: 'commonjs2',
-    },
-
-    resolve: {
-        extensions: ['.js', '.jsx', '.json'],
     },
 };

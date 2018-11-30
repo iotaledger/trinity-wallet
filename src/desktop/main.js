@@ -1,10 +1,11 @@
 import electron, { ipcMain as ipc, app, protocol, shell, Tray } from 'electron';
-import { default as installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
-import initMenu from './native/Menu.js';
+import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
+import electronSettings from 'electron-settings';
 import path from 'path';
 import URL from 'url';
 import fs from 'fs';
-import electronSettings from 'electron-settings';
+
+import initMenu from './native/Menu.js';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
