@@ -44,7 +44,6 @@
     "bugsnag-build-reporter": "^1.0.0",
     "bugsnag-sourcemaps": "^1.0.4",
     "concurrently": "^4.0.1",
-    "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "dart-sass": "^1.14.1",
@@ -77,6 +76,7 @@
     },
     "files": [
       "dist/",
+      "assets/",
       "package.json"
     ],
     "appId": "org.iota.trinity",

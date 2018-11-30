@@ -30,8 +30,8 @@ app.setAppUserModelId('org.iota.trinity');
 const devMode = process.env.NODE_ENV === 'development';
 
 const paths = {
-    assets: devMode ? path.resolve(__dirname, 'assets') : path.resolve(app.getAppPath(), 'dist'),
-    preload: devMode ? path.resolve(__dirname, 'dist') : path.resolve(app.getAppPath(), 'dist'),
+    assets: path.resolve(devMode ? __dirname : app.getAppPath(), 'assets'),
+    preload: path.resolve(devMode ? __dirname : app.getAppPath(), 'dist'),
 };
 
 /**
@@ -194,8 +194,9 @@ function createWindow() {
     /**
      * Enable React and Redux devtools in development mode
      */
-    windows.main.webContents.openDevTools({ mode: 'detach' });
+   
     if (devMode) {
+        windows.main.webContents.openDevTools({ mode: 'detach' });
         if (process.platform === 'darwin') {
             windows.tray.webContents.openDevTools({ mode: 'detach' });
         }

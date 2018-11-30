@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -87,13 +86,7 @@ const config = {
             title: 'Trinity',
             inject: false,
             template: __dirname + '/index.html',
-        }),
-        new CopyWebpackPlugin([
-            { from: 'assets/icon.png', to: 'icon.png' },
-            { from: 'assets/trayTemplate@2x.png', to: 'trayTemplate@2x.png' },
-            { from: 'assets/icon.icns', to: 'icon.icns' },
-            { from: 'assets/icon.ico', to: 'icon.ico' },
-        ]),
+        })
     ],
 };
 
