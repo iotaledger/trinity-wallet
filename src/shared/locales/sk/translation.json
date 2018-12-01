@@ -759,9 +759,9 @@
         "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
         "ledgerIncorrectIndex": "Nekompatibilné zariadenie Ledger",
         "ledgerIncorrectIndexExplanation": "Pripojené zariadenie Ledger sa nezhoduje s tým ktoré je spárované s týmto účtom, alebo jeho heslo bolo zmenené.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
+        "checkAddress": "Skontrolujte adresu príjemcu",
+        "checkAddressExplanation": "Skontrolujte, či adresa odpovedá adrese zobrazenej na Vašom zariadení Ledger.",
+        "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }
