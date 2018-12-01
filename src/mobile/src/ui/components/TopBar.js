@@ -320,7 +320,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
+            <Animated.View style={[styles.titleWrapper, { height: topBarHeight } ]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
