@@ -8,5 +8,8 @@ module.exports = {
     watchFolders: alternateRoots,
     resolver: {
         blacklistRE: blacklist,
+        extraNodeModules: {
+            realm: './node_modules/realm',
+        },
     },
 };
