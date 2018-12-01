@@ -547,7 +547,7 @@
         "hideSeed": "Skryť Seed",
         "notAvailable": "Seed export nie je k dispozícii pre typ účtu {{accountType}}",
         "accountIndex": "Index účtu vo Vašom Ledgeri",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Stránka účtu vo Vašom Ledgeri"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali ste si váš Seed?",
