@@ -356,7 +356,7 @@
         "advanced": "Pokročilý",
         "standard": "Štandardný",
         "advancedModeExplanation": "Pokročilý režim zobrazí podrobnejšie technické informácie.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
+        "modesExplanation": "Pokročilý režim povolte iba ako skúsený uživateľ IOTA. Inak to môže byť pre Vás matúce.",
         "modeUpdated": "Režim zmenený",
         "modeUpdatedExplanation": "Zmenili ste na {{mode}} rezimu"
     },
@@ -523,9 +523,9 @@
         "discordInformation": "Pokiaľ chcete zistiť vaše možnosti, prejdite do #help v aplikácii Discord."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "Naozaj si prajete vymazať tento účet?",
         "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Túto akciu nie je možné vrátiť späť",
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
@@ -545,8 +545,8 @@
         "enterPassword": "Pre zobrazenie vášho Seedu vložte heslo.",
         "viewSeed": "Zobraziť Seed",
         "hideSeed": "Skryť Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
+        "notAvailable": "Seed export nie je k dispozícii pre typ účtu {{accountType}}",
+        "accountIndex": "Index účtu vo Vašom Ledgeri",
         "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
