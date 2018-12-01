@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingHorizontal: width / 27,
     },
     centralView: {
         alignItems: 'center',
@@ -408,7 +409,7 @@ class TopBar extends Component {
                     <View
                         style={[
                             styles.childView,
-                            { backgroundColor: isSelected ? bar.hover : bar.bg, paddingHorizontal: width / 27 },
+                            { backgroundColor: isSelected ? bar.hover : bar.bg },
                             isSelected ? activeHighlight : null,
                         ]}
                     >

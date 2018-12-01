@@ -218,7 +218,6 @@ class DeleteAccount extends Component {
                                         {t('yourSeedWillBeRemoved')}
                                     </Text>
                                 </InfoBox>
-                                ={' '}
                             </View>
                         )}
                         {this.state.pressedContinue && (
