@@ -154,7 +154,10 @@
     },
     "transformIgnorePatterns": [
       "node_modules/?!(react-native|shared-modules)/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "realm": "<rootDir>/node_modules/realm"
+    }
   },
   "react-native": {
     "zlib": "browserify-zlib",
