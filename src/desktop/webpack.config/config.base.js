@@ -16,7 +16,6 @@ module.exports = {
         publicPath: '/',
     },
     module: {
-        noParse: /realm\/lib\/browser/,
         rules: [
             {
                 test: /\.js$/,
@@ -96,6 +95,6 @@ module.exports = {
             { from: 'assets/icon.icns', to: 'icon.icns' },
             { from: 'assets/icon.ico', to: 'icon.ico' },
         ]),
-        new IgnorePlugin(/^\.\/browser$/, /realm/),
+        new IgnorePlugin(/react-native/, /realm/),
     ],
 };
