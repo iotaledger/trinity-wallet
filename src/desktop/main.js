@@ -5,7 +5,6 @@ const path = require('path');
 const URL = require('url');
 const fs = require('fs');
 const electronSettings = require('electron-settings');
-require('./global');
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
