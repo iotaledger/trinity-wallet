@@ -692,28 +692,28 @@
     "terms": {
         "termsAndConditions": "Podmienky používania",
         "accept": "Akceptujem",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Prečítajte si prosím celý text"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",
         "agree": "Súhlasím"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "System Tray - Ikona v oznamovacej oblasti",
         "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
+        "notLoggedIn": "Nie ste prihláseny(a)",
         "setupIncomplete": "Nastavenia nekompletné",
         "completeSetup": "Inštalácia kompletná"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Pomocou proxy serveru",
         "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Hlásenia",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
+        "typeConfirmations": "Informuj ma o potvrdení transakcie",
+        "typeMessages": "Informuj ma o nulových transakciach",
         "multipleTx": "Receiving multiple transactions to {{account}}",
         "valueTx": "Receiving {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
