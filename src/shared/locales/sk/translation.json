@@ -290,7 +290,7 @@
         "tag": "Značka",
         "generateAnAddress": "Generovať adresu",
         "generateAnAddressTitle": "Generovať adresu",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Prosím vygenerujte adresu pred použitím tejto funkcie."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
@@ -301,7 +301,7 @@
         "paperWallet": "Papierová peňaženka",
         "writeYourSeedDown": "Zapíšte si váš Seed",
         "seedClearedExplanation": "Kvôli väčšej bezpečnosti bol Seed zo schránky vymazaný.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Zapíšte si niekde Váš Seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
         "printBlankWallet": "Tlač prázdnej šablóny",
         "whatIsChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet",
@@ -446,7 +446,7 @@
         "empty": "Prázdne",
         "retrying": "Pokúša sa znova",
         "yesterday": "Včera",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Podpora ďalšieho balíčku"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
