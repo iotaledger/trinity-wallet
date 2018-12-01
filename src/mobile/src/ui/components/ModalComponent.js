@@ -24,8 +24,7 @@ import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     modal: {
-        height,
-        width,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 0,
@@ -114,6 +113,8 @@ export default function withSafeAreaView(WrappedComponent) {
                         backdropColor={body.bg}
                         backdropOpacity={0}
                         style={styles.modal}
+                        deviceHeight={height}
+                        deviceWidth={width}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         useNativeDriver={isAndroid}

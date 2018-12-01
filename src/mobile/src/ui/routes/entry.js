@@ -74,14 +74,14 @@ const renderInitialScreen = (initialScreen, state, store) => {
                                 },
                                 topBar: {
                                     visible: false,
-                                    drawBehind: true,
+                                    drawBehind: false,
                                     elevation: 0,
                                     background: {
                                         color: state.settings.theme.body.bg,
                                     },
                                 },
                                 statusBar: {
-                                    drawBehind: true,
+                                    drawBehind: false,
                                     backgroundColor: state.settings.theme.body.bg,
                                 },
                             },

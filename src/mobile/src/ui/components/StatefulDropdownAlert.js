@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
 import { Styling, getBackgroundColor } from 'ui/theme/general';
 import { rgbToHex } from 'shared-modules/libs/utils';
 
@@ -194,7 +193,6 @@ class StatefulDropdownAlert extends Component {
                 onClose={dismissAlert}
                 closeInterval={closeAfter}
                 tapToCloseEnabled={this.props.hasConnection && forceUpdate === false}
-                translucent={isAndroid}
             />
         );
     }
