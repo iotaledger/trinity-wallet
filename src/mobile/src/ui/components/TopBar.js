@@ -371,14 +371,14 @@ class TopBar extends Component {
                                 </Animated.View>
                                 <View style={styles.iconWrapper}>
                                     <Animated.View style={[styles.iconWrapper, { height: topBarHeight }]}>
-                                        {hasMultipleSeeds && (
+                                        {(hasMultipleSeeds && (
                                             <Icon
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
                                                 style={[shouldDisable ? styles.disabledImage : null]}
                                             />
-                                        )}
+                                        )) || <View />}
                                     </Animated.View>
                                 </View>
                             </View>
