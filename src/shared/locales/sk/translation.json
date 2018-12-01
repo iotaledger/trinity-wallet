@@ -355,10 +355,10 @@
     "modeSelection": {
         "advanced": "Pokročilý",
         "standard": "Štandardný",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
+        "advancedModeExplanation": "Pokročilý režim zobrazí podrobnejšie technické informácie.",
         "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Režim zmenený",
+        "modeUpdatedExplanation": "Zmenili ste na {{mode}} rezimu"
     },
     "settings": {
         "transferSending": "Odosielanie transakcie",
