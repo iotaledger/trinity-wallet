@@ -2,7 +2,7 @@ import assign from 'lodash/assign';
 import React, { PureComponent } from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView, StatusBar } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
@@ -323,7 +323,7 @@ export default class TransactionHistoryModal extends PureComponent {
                 <SafeAreaView
                     style={[
                         styles.modalContainer,
-                        { height: height - Styling.topbarHeight, backgroundColor: style.backgroundColor },
+                        { height: isAndroid ? height - Styling.topbarHeight - StatusBar.currentHeight: height - Styling.topbarHeight, backgroundColor: style.backgroundColor },
                     ]}
                 >
                     <View style={{ flex: 1 }} />
