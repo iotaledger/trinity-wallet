@@ -723,7 +723,7 @@
     "bytetrit": {
         "sweepSucceeded": "Funds successfully unlocked",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
+        "sweepError": "Chyba pri odblokovaní prostriedkov",
         "sweepErrorExplanation": "Došlo ku chybe pri odblokovaní vašich finančných prostriedkov. Skúste to znova.",
         "warningTitle": "Varovanie: Boli zistené blokované prostriedky",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
