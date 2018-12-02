@@ -1,6 +1,6 @@
 const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
 const electron = require('electron');
-const initMenu = require('./lib/Menu.js');
+const initMenu = require('./native/Menu.js');
 const path = require('path');
 const URL = require('url');
 const fs = require('fs');
@@ -10,6 +10,14 @@ const electronSettings = require('electron-settings');
  * Expose Garbage Collector flag for manual trigger after seed usage
  */
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
+
+/**
+ * Terminate application if Node remote debugging detected
+ */
+const argv = process.argv.join();
+if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+    return app.quit();
+}
 
 /**
  * Set AppUserModelID for Windows notifications functionallity
@@ -48,7 +56,7 @@ if (!devMode) {
     app.setAsDefaultProtocolClient('iota');
 }
 
-let settings = null;
+let settings = {};
 
 let windowState = {
     width: 1280,
@@ -64,8 +72,17 @@ try {
     if (windowStateData) {
         windowState = windowStateData;
     }
-    settings = JSON.parse(data);
+    settings = JSON.parse(data) || {};
 } catch (error) {}
+
+/**
+ * Temporarily disable proxy if not overridden by settings
+ */
+
+if (settings.ignoreProxy) {
+    app.commandLine.appendSwitch('auto-detect', 'false');
+    app.commandLine.appendSwitch('no-proxy-server');
+}
 
 function createWindow() {
     /**
@@ -82,7 +99,7 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings && settings.theme.body.bg) || 'rgb(3, 41, 62)';
+    let bgColor = (settings.theme && settings.theme.body.bg) || 'rgb(3, 41, 62)';
 
     if (bgColor.indexOf('rgb') === 0) {
         bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
@@ -107,7 +124,7 @@ function createWindow() {
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(__dirname, `lib/preload/${devMode ? 'development' : 'production'}.js`),
+            preload: path.resolve(__dirname, `native/preload/${devMode ? 'development' : 'production'}.js`),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -125,7 +142,7 @@ function createWindow() {
             show: false,
             webPreferences: {
                 nodeIntegration: false,
-                preload: path.resolve(__dirname, 'lib/preload/tray.js'),
+                preload: path.resolve(__dirname, 'native/preload/tray.js'),
                 disableBlinkFeatures: 'Auxclick',
                 webviewTag: false,
             },
@@ -272,7 +289,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${__dirname}/dist/tray@2x.png`);
+    tray = new Tray(`${__dirname}/dist/trayTemplate@2x.png`);
 
     tray.on('click', () => {
         toggleTray();
@@ -433,18 +450,17 @@ ipc.on('window.focus', (e, payload) => {
 });
 
 /**
- * Create a single instance on win32 platforms
- * Set deep link if defined as argument
+ * Create a single instance only
  */
-const shouldQuit = app.makeSingleInstance((argv) => {
-    if (process.platform === 'win32') {
-        deeplinkingUrl = argv.slice(1);
-    }
-});
+const isFirstInstance = app.requestSingleInstanceLock();
 
-if (shouldQuit) {
+if (!isFirstInstance) {
     app.quit();
-    return;
+} else {
+    if (windows.main) {
+        windows.main.show();
+        windows.main.focus();
+    }
 }
 
 /**

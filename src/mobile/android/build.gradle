@@ -2,11 +2,11 @@
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath 'com.bugsnag:bugsnag-android-gradle-plugin:3.+'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -16,13 +16,13 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
+        google()
         jcenter()
         maven { url "https://jitpack.io" }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
-        google()
         maven { url 'https://maven.google.com' }
     }
 }
@@ -35,6 +35,18 @@ subprojects {
                 buildToolsVersion '27.0.3'
             }
         }
+        if ((project.plugins.hasPlugin('android') || project.plugins.hasPlugin('android-library'))) {
+            android {
+                variantFilter { variant ->
+                    def names = variant.flavors*.name
+                    // To check for a certain build type, use variant.buildType.name == "<buildType>"
+                    if (names.contains("reactNative55") || names.contains("reactNative56")) {
+                        // Gradle ignores any variants that satisfy the conditions above.
+                        setIgnore(true)
+                    }
+                }
+            }
+        }
     }
     project.configurations.all {
         resolutionStrategy.eachDependency { details ->
@@ -45,5 +57,3 @@ subprojects {
     }
     }
 }
-
-

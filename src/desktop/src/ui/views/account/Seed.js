@@ -1,13 +1,14 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToChar } from 'libs/crypto';
+import { byteToChar, capitalize } from 'libs/helpers';
+import SeedStore from 'libs/SeedStore';
 
-import { getSelectedAccountName } from 'selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
@@ -25,6 +26,8 @@ class Seed extends PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
+        accountMeta: PropTypes.object.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -34,27 +37,50 @@ class Seed extends PureComponent {
     };
 
     /**
-     * Set seed to state, trigger print if necessary
-     * @param {string} Password - Unused
-     * @param {Array} Seed - Seed byte array
-     * @returns {undefined}
+     * Trigger seed print after component is updated
      */
-    setSeed = (password, seed) => {
-        const { action } = this.state;
-
-        if (action === 'print') {
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.action === 'print' && !prevState.seed && this.state.seed) {
             window.print();
         }
+    }
+
+    /**
+     * Retrieve seed and set to state
+     */
+    setSeed = async (password) => {
+        const { accountName, accountMeta } = this.props;
+
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+        const seed = await seedStore.getSeed();
 
         this.setState({
             seed,
-            action: action !== 'print' ? action : null,
         });
     };
 
     render() {
-        const { accountName, t } = this.props;
+        const { accountName, accountMeta, t } = this.props;
         const { seed, action } = this.state;
+
+        if (!SeedStore[accountMeta.type].isSeedAvailable) {
+            return (
+                <div>
+                    <h3>{t('viewSeed:notAvailable', { accountType: capitalize(accountMeta.type) })}</h3>
+                    {typeof accountMeta.index === 'number' && (
+                        <p>
+                            {t('viewSeed:accountIndex')}: <strong>{accountMeta.index}</strong>
+                        </p>
+                    )}
+                    {typeof accountMeta.page === 'number' &&
+                    accountMeta.page > 0 && (
+                        <p>
+                            {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
+                        </p>
+                    )}
+                </div>
+            );
+        }
 
         if (action && !seed) {
             return (
@@ -87,7 +113,7 @@ class Seed extends PureComponent {
                                       if (index % 3 !== 0) {
                                           return null;
                                       }
-                                      const letter = byteToChar(byte % 27);
+                                      const letter = byteToChar(byte);
                                       return (
                                           <React.Fragment key={`${index}${letter}`}>
                                               {letter}
@@ -106,7 +132,10 @@ class Seed extends PureComponent {
                             )}
                     </p>
                     <fieldset>
-                        <Button className="small" onClick={() => this.setState({ action: !action ? 'view' : null })}>
+                        <Button
+                            className="small"
+                            onClick={() => this.setState({ action: action !== 'view' ? 'view' : null })}
+                        >
                             {action === 'view' ? t('settings:hide') : t('settings:show')}
                         </Button>
                         <Button
@@ -119,7 +148,7 @@ class Seed extends PureComponent {
                             {t('seedVault:exportSeedVault')}
                         </Button>
                     </fieldset>
-                    {seed && <SeedPrint seed={seed} checksum={checksum} filled />}
+                    <SeedPrint seed={seed} checksum={checksum} filled />
                 </form>
                 <Modal
                     variant="fullscreen"
@@ -135,6 +164,7 @@ class Seed extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
+    accountMeta: getSelectedAccountMeta(state),
 });
 
-export default connect(mapStateToProps)(translate()(Seed));
+export default connect(mapStateToProps)(withI18n()(Seed));

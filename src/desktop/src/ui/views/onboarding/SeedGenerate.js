@@ -1,9 +1,10 @@
 /* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate, Interpolate } from 'react-i18next';
-import { createRandomSeed, byteToChar } from 'libs/crypto';
-import { capitalize } from 'libs/helpers';
+import { withI18n, Trans } from 'react-i18next';
+import { createRandomSeed, randomBytes } from 'libs/crypto';
+import { capitalize, byteToChar } from 'libs/helpers';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
@@ -25,7 +26,7 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: Electron.getOnboardingSeed() || createRandomSeed(),
-        scramble: Electron.getOnboardingSeed() ? new Array(81).fill(0) : createRandomSeed(),
+        scramble: Electron.getOnboardingSeed() ? new Array(MAX_SEED_LENGTH).fill(0) : randomBytes(MAX_SEED_LENGTH, 27),
         existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
     };
@@ -105,7 +106,7 @@ class GenerateSeed extends React.PureComponent {
         this.frame = 0;
 
         this.setState({
-            scramble: createRandomSeed(),
+            scramble: randomBytes(MAX_SEED_LENGTH, 27),
         });
 
         this.unscramble();
@@ -157,23 +158,21 @@ class GenerateSeed extends React.PureComponent {
             <form>
                 <section className={css.wide}>
                     <h1>{t('newSeedSetup:generatedSeed')}</h1>
-                    <Interpolate
-                        i18nKey="newSeedSetup:individualLetterCount"
-                        letterCount={
-                            !existingSeed && clicksLeft > 0 ? (
-                                <strong className={css.highlight}>{!existingSeed ? clicksLeft : 0}</strong>
-                            ) : null
-                        }
-                    >
-                        <p>
-                            Press <strong /> individual letters to randomise them.
-                        </p>
-                    </Interpolate>
+                    <p>
+                        {!existingSeed && clicksLeft > 0 ? (
+                            <Trans i18nKey="newSeedSetup:individualLetterCount" count={clicksLeft}>
+                                Press <strong className={css.highlight}>{{ count: clicksLeft }}</strong> more letter to
+                                randomise it.
+                            </Trans>
+                        ) : (
+                            <span>&nbsp;</span>
+                        )}
+                    </p>
                     <div className={css.seed}>
                         <div>
                             {seed.map((byte, index) => {
                                 const offset = scramble[index];
-                                const letter = byteToChar(byte + offset);
+                                const letter = offset > 0 ? byteToChar(offset) : byteToChar(byte);
                                 return (
                                     <button
                                         onClick={this.updateLetter}
@@ -202,9 +201,13 @@ class GenerateSeed extends React.PureComponent {
                         className="square"
                         variant="primary"
                     >
-                        {!existingSeed && clicksLeft > 0
-                            ? `Randomise ${clicksLeft} characters to continue`
-                            : t('continue')}
+                        {!existingSeed && clicksLeft > 0 ? (
+                            <Trans i18nKey="newSeedSetup:randomiseCharsToContinue" count={clicksLeft}>
+                                Randomise {{ count: clicksLeft }} character to continue.
+                            </Trans>
+                        ) : (
+                            t('continue')
+                        )}
                     </Button>
                 </footer>
             </form>
@@ -212,4 +215,4 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
-export default translate()(GenerateSeed);
+export default withI18n()(GenerateSeed);

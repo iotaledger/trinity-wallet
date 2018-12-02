@@ -26,7 +26,7 @@
             padding: 0 20px 0 14px;
             resize: none;
             -webkit-appearance: none;
-            border-radius: 4px;
+            border-radius: 5px;
             transition: border 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
             &:focus {
                 outline: none;
@@ -37,6 +37,15 @@
                 opacity: 0.5;
             }
         }
+
+        input[type='number'] {
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+
         .editable {
             display: block;
             font-family: 'SourceCodePro';
@@ -121,7 +130,7 @@
                 height: 22px;
                 top: 50%;
                 left: -2px;
-                border-radius: 4px;
+                border-radius: 5px;
                 background: var(--input-alt);
                 transform: translate(0, -50%);
             }
@@ -318,7 +327,7 @@
         }
         &:last-of-type {
             padding-bottom: 8px;
-            border-radius: 0 0 4px 4px;
+            border-radius: 0 0 5px 5px;
         }
         &:hover {
             color: var(--input);
@@ -450,7 +459,7 @@
             top: -32px;
             left: 0px;
             background: var(--box-bg);
-            border-radius: 4px;
+            border-radius: 5px;
             padding: 10px 0px 10px 0;
             z-index: 2;
 
@@ -491,4 +500,65 @@
             }
         }
     }
+}
+
+.number {
+    small {
+        width: 100%;
+    }
+
+    fieldset > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        input {
+            width: 68px;
+            font-size: 28px;
+            text-align: center;
+            padding: 8px 0;
+        }
+    }
+    div > span {
+        display: block;
+        width: 26px;
+        height: 26px;
+        line-height: 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: var(--body);
+        text-align: center;
+        background: var(--box-bg);
+        border: 1px solid var(--box-alt);
+        margin: 0 18px;
+        &:hover {
+            background: 1px solid var(--box-alt);
+        }
+        span {
+            cursor: pointer;
+        }
+    }
+}
+
+.tooltip {
+    background: var(--bar-bg) !important;
+    color: var(--bar) !important;
+    width: 324px !important;
+    font-family: 'SourceCodePro';
+    letter-spacing: 2px;
+    word-wrap: break-word;
+    line-height: 21px;
+    padding: 12px 14px 12px 16px !important;
+
+    &:after {
+        border-bottom-color: var(--bar-bg) !important;
+    }
+}
+
+.addressHidden {
+    visibility: hidden;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 40px;
 }

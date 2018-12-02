@@ -63,9 +63,6 @@
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
         <target xml:lang="hu" state="translated">A Trinity a QR kódok olvasásához hozzáférési jogosultságot igényel a kamerához.</target>
-        <alt-trans>
-          <target xml:lang="hu">A Trinity a QR kódok olvasása miatt hozzáférési jogosultságot igényel a kamerához.</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>

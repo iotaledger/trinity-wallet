@@ -7,7 +7,7 @@
         "refresh": "Opfrisk",
         "balanceError": "Utilstrækkelig saldo",
         "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
-        "totalBalance": "Total balance",
+        "totalBalance": "Saldo i alt",
         "transferError": "Transaktionsfejl",
         "transferErrorMessage": "Noget gik galt under din transaktion. Prøv venligst igen.",
         "transferSent": "Transaktion sendt",
@@ -19,6 +19,7 @@
         "invalidResponse": "Node-fejl",
         "invalidResponseExplanation": "Noden returnerede en fejl. Prøv at skifte node.",
         "invalidResponseFetchingAccount": "Noden returnerede en fejl under indhentning af dine kontooplysninger. Prøv at skifte node.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Din valgte node er ude af synkronisering. Skift node eller forsøg igen.",
         "thisNodeOutOfSync": "Denne node er ude af synkronisering. Skift node eller forsøg igen.",
@@ -34,6 +35,7 @@
         "save": "Gem",
         "close": "Luk",
         "export": "Eksportér",
+        "help": "Hjælp",
         "import": "Importér",
         "continue": "Fortsæt",
         "enable": "Aktiver",
@@ -44,22 +46,19 @@
         "paperWallet": "Udskriv papirkopi",
         "addToPasswordManager": "Tilføj til adgangskodehåndtering",
         "shareSeed": "Del hovednøgle",
+        "share": "Del",
         "proceed": "Fortsæt",
         "qr": "QR",
         "enterSeed": "Indtast venligst din hovednøgle.",
-        "mainWallet": "HOVEDKONTO",
-        "secondWallet": "2. KONTO",
-        "thirdWallet": "3. KONTO",
-        "fourthWallet": "4. KONTO",
-        "fifthWallet": "5. KONTO",
-        "sixthWallet": "6. KONTO",
-        "otherWallet": "ANDEN KONTO",
         "yes": "Ja",
         "no": "Nej",
         "okay": "Okay",
         "password": "Adgangskode",
         "unrecognisedPassword": "Ukendt adgangskode",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
+        "unrecognisedAccount": "Ukendt konto",
+        "unrecognisedAccountExplanation": "Konto med navnet {{accountName}} er ukendt. Overvej at nulstille din tegnebog.",
+        "emptyPasswordExplanation": "Du skal angive adgangskode. Prøv igen.",
         "capsLockIsOn": "Caps Lock er slået til",
         "syncInProgress": "Synkronisering i gang",
         "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
@@ -110,7 +109,6 @@
         "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
         "checkForUpdates": "Søg efter opdateringer",
         "account": "Brugerkonto",
-        "enterYourPassword": "Angiv dit kodeord",
         "changeNode": "Skift node",
         "addCustomNode": "Tilføj tilpasset node",
         "nodeMustUseHTTPS": "Ugyldig node (bruger ikke HTTPS)",
@@ -124,7 +122,7 @@
         "seedThief": "Har en andre dit seed, kan de stjæle dine IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjenester er ikke tilgængelige",
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verificere enhedens integritet, da Google Play-tjenester ikke er tilgængelige.",
-        "clear": "Clear",
+        "clear": "Ryd",
         "noNetworkConnection": "Ingen netværksforbindelse",
         "noNetworkConnectionExplanation": "Din Internetforbindelse ser ud til at være offline.",
         "spentAddressExplanation": "ADVARSEL: Værdier på en brugt adresse",
@@ -139,13 +137,21 @@
         "headToAdvancedSettingsForTransition": "Gå til avancerede indstillinger og udfør en Snapshot transition.",
         "usingTrinityWalletWithKeePass": "Benytter Trinity Wallet med Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "En netværksfejl opstod under afsendelse af din transaktion.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Kunne ikke udsende transaktion",
+        "addressesAlreadySpentFrom": "Én eller flere af adresserne har der allerede været forbrug fra.",
+        "problemSendingYourTransaction": "Det var problemer med at sende din invitation.",
+        "problemPerformingProofOfWork": "Der var problemer ned at gennemføre arbejdsdokumentation.",
+        "tryingAgainWithLocalPoW": "Forsøger igen med lokal Arbejdsdokumentation.",
+        "tryingAgainWithDifferentNode": "Forsøger igen med en anden node.",
+        "errorFetchingAccountInformation": "Fejl ved hentning af kontooplysninger.",
+        "errorSyncingAddresses": "Fejl under synkronisering af adresseoplysninger. Forsøger igen med en anden knude.",
+        "errorAccessingKeychain": "Nøgleringsfejl",
+        "errorAccessingKeychainExplanation": "Kan ikke tilgå nødvendig nøglering til sikker lagring.",
+        "mainWallet": "HOVEDKONTO",
+        "shouldUpdate": "Ny opdateringer er tilgængelig",
+        "shouldUpdateExplanation": "En ny opdatering er frigivet. Det anbefales at opdatere til den seneste version.",
+        "forceUpdate": "Opdatér app'en for at fortsætte",
+        "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -204,19 +210,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Udklipsholder ryddet",
-        "seedClearedExplanation": "Udklipsholderen er blevet ryddet for din sikkerhed.",
-        "seedCopied": "Hovednøglen er kopieret til din udklipsholder",
-        "seedCopiedExplanation": "Hovednøgle fjernes fra Udklipsholderen ved at trykke \"UDFØRT\" eller efter 60 sekunder.",
-        "copyToClipboard": "Kopiér hovednøgle",
-        "shareSeed": "Del din hovednøgle via en sikker adgangskodehåndtering",
-        "storeEncrypted": "Benyt en adgangskodehåndtering til lagring af din krypterede hovednøgle.",
-        "doNotOpen": "Undlad at åbne andre apps under denne proces.",
-        "tapConfirm": "Tryk på afkrydsningsfeltet nedenfor for at bekræfte.",
-        "passwordManagerCheckbox": "Jeg vil benytte en adgangskodehåndtering til lagring af min hovednøgle",
-        "copy": "KOPIÉR",
-        "noPasswordManagers": "Ingen understøttet adgangskodehåndtering installeret",
-        "noPasswordManagersExplanation": "Ingen understøttede adgangskodehåndterings-apps fundet på din enhed. Installér Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Ønsker du at lagre din hovednøgle i en adgangskodehåndterings-app, så følg vejledningen i følgende link"
+        "seedClearedExplanation": "Udklipsholderen er blevet ryddet for din sikkerhed."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
@@ -260,7 +254,10 @@
         "pressForNewSeed": "Tryk for ny hovednøgle",
         "generateSuccess": "Hovednøglen genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
-        "individualLetterCount": "Tryk på {{letterCount}} flere individuelle tegn for at tilfældiggøre dem.",
+        "individualLetterCount": "Tryk på <1><0>{{count}}</0></1> yderligere bogstaver for at randomisere den.",
+        "individualLetterCount_plural": "Tryk på <1><0>{{count}}</0></1> yderligere bogstaver for at randomisere dem.",
+        "randomiseCharsToContinue": "Randomisér <1>{{count}}</1> tegn for at fortsætte.",
+        "randomiseCharsToContinue_plural": "Randomisér <1>{{count}}</1> tegn for at fortsætte.",
         "whatIsASeed": "Hvad er en hovednøgle?"
     },
     "onboardingComplete": {
@@ -285,23 +282,26 @@
         "copyAddress": "Kopiér addresse",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-        "generateNewAddress": "Ny adresse",
+        "generateNewAddress": "Generér adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brugt",
         "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at dele QR-koder.",
-        "tag": "Tag"
+        "tag": "Tag",
+        "generateAnAddress": "Generér adresse",
+        "generateAnAddressTitle": "Generér en adresse",
+        "generateAnAddressExplanation": "Generér en adresse inden du benytter denne funktion."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sikkerhedskopiere din hovednøgle",
         "seedCleared": "Hovednøgle ryddet",
         "mostSecure": "Mest sikre",
-        "recommended": "Recommended",
+        "recommended": "Anbefalet",
         "leastSecure": "Mindst sikre",
         "paperWallet": "Papirtegnebog",
         "writeYourSeedDown": "Nedskriv din hovednøgle",
         "seedClearedExplanation": "Hovednøglen er ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "Lad os skrive din hovednøgle ned",
         "youCanHighlightCharacters": "Du kan markere 9 tegn ad gangen",
         "printBlankWallet": "Udskriv en tom tegnebog",
         "whatIsChecksum": "Hver hovednøgle har en korresponderende 3-tegns kontrolsum",
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "ifYouHaveNotSaved": "Gå tilbage og sikkerhedskopiér din hovednøgle, hvis du ikke allerede har gjort dette.",
         "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Kopiér og indsæt ikke din hovednøgle",
+        "clipboardWarningExplanation": "ADVARSEL: Kopér/indsæt er deaktiveret af hensyn til din sikkerhed."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -353,10 +353,12 @@
         "youCanAdd": "Du kan tilføje flere hovednøgler i menuen Indstillinger."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "Avanceret",
         "standard": "Standard",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "Avanceret tilstand vil vise fleere detaljerede tekniske oplysninger.",
+        "modesExplanation": "Aktivér kun Eksperttilstand, hvis du er en erfaren IOTA-bruger. Det vil ellers kunne virke forvirrende.",
+        "modeUpdated": "Tilstand opdateret",
+        "modeUpdatedExplanation": "Du har skiftet til {{mode}}-tilstand"
     },
     "settings": {
         "transferSending": "Sender transaktion",
@@ -414,7 +416,6 @@
         "reset": "Nulstil"
     },
     "walletSetup": {
-        "creatingSeed": "Opretter en hovednøgle",
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouNeedASeed": "Har du brug at oprette en nye hovednøgle?",
         "seedExplanation": "Din IOTA-seed er hovednøglen til dine værdier. Den består af 81 tegn, kun store A-Z bogstaver og tallet 9.",
@@ -444,7 +445,8 @@
         "receive": "Modtag",
         "empty": "Tom",
         "retrying": "Forsøger igen",
-        "yesterday": "I går"
+        "yesterday": "I går",
+        "promotingAnotherBundle": "Forfremmer et anden bundt"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -452,7 +454,7 @@
         "editAccountName": "Rediger kontonavn",
         "deleteAccount": "Slet konto",
         "addNewAccount": "Tilføj ny konto",
-        "tools": "Tools"
+        "tools": "Værktøjer"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
@@ -486,6 +488,18 @@
         "theme": "Tema",
         "mockup": "Model"
     },
+    "themes": {
+        "classic": "Klassisk",
+        "contemporary": "Moderne",
+        "dark": "Mørk",
+        "default": "Standard",
+        "electric": "Elektrisk",
+        "ionic": "Ionisk",
+        "light": "Lys",
+        "lucky": "Heldig",
+        "mint": "Mint",
+        "steelblue": "Stålblå"
+    },
     "currencySelection": {
         "currency": "Valuta"
     },
@@ -509,9 +523,9 @@
         "discordInformation": "Søg venligst hjælp via #help-kanalen på Discord for at finde ud af, hvad du kan gøre."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Sikker på, at du vil slette</1> <2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Sikker på, at du vil slette din konto?",
         "yourSeedWillBeRemoved": "Din hovednøgle og transaktionshistorik vil blive fjernet.",
-        "thisAction": "Denne handling kan ikke fortrydes.",
+        "thisAction": "Denne handling er uigenkaldelig",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
     },
     "manualSync": {
@@ -530,7 +544,10 @@
     "viewSeed": {
         "enterPassword": "Indtast din adgangskode for at se din hovednøgle.",
         "viewSeed": "Se hovednøgle",
-        "hideSeed": "Skjul hovednøgle"
+        "hideSeed": "Skjul hovednøgle",
+        "notAvailable": "Hovednøgleeksport er ikke tilgængelig for {{accountType}}-kontotypen",
+        "accountIndex": "Dit hovedkontoindeks",
+        "accountPage": "Din hovedkontoside"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sikkerhedskopierede du din hovednøgle?",
@@ -584,19 +601,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportere SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "En SeedVault er en krypteret fil til sikker lagring af din hovednøgle. Hovednøglen er krypteret bag en SeedVault-nøgle og kan ikke tilgås uden denne nøgle.",
         "seedVaultWarning": "Sørg for, at du opretter flere sikkerhedskopier af filen (på f.eks. harddisk, Sky, USB-nøgle). Mister du denne fil, og har du ikke lagret din hovednøgle andetsteds, vil du miste dine IOTA.",
         "exportFail": "SeedVault-eksport mislykkedes",
         "exportFailExplanation": "Der opstod et problem ved eksport af SeedVault. Kontrollér at du har de nødvendige tilladelser og tilstrækkelig ledig lagerplads.",
         "exportSuccess": "SeedVault eksporteret",
         "exportSuccessExplanation": "Din krypterede hovednøglefil er eksporteret.",
+        "unrecognisedKey": "Ukendt SeedVault-nøgle",
+        "unrecognisedKeyExplanation": "Nøglen er ukendt. Forsøg igen.",
+        "emptyKey": "Ingen SeedVault-nøgle angivet",
+        "emptyKeyExplanation": "Du skal angive en nøgle. Forsøg igen.",
+        "importSuccess": "Hovednøgle importeret",
+        "importSuccessExplanation": "Din hovednøgle er importeret.",
+        "saveToDownloadFolder": "Gem i Download-mappe",
         "importSeedVault": "Impotér SeedVault",
-        "dropSeedVaultHere": "Slip SeedVault hér",
-        "enterPasswordExplanation": "Angiv din adgangskode for at nulstille SeedVault",
+        "dropSeedVaultHere": "Slip SeedVault hér <1></1> eller klik for at gennemse",
+        "enterKeyExplanation": "Angiv din nøgle for at nulstille denne SeedVault",
         "noSeedFound": "SeedVault indeholder ikke en gyldig hovednøgle",
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
-        "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget."
+        "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
+        "seedVaultKeyExplanation": "Din SeedVault skal først sikres. Vælg en nøgle til at kryptering af filen. Du skal benytte denne nøgle til at genoprette din hovednøgle fra SeedVault-sikkerhedskopien. Nøglen kan være den samme som den adgangskode, du benytter til Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -652,16 +677,17 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "En fejl opstod under indhentning af opdateringsdata. Forsøg igen.",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny version tilgængelig",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "Download version",
-        "skipUpdate": "Spring opdatering over"
+        "installUpdate": "Installér opdatering og genstart",
+        "installUpdateExplanation": "Download fuldført, Trinity genstarter nu for at installere opdateringen.",
+        "downloadingUpdate": "Downloader opdatering",
+        "downloadProgress": "{{transferred}} af {{total}} downloadet"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Fejllog"
     },
     "terms": {
         "termsAndConditions": "Betingelser og Vilkår",
@@ -679,6 +705,10 @@
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+    },
     "notifications": {
         "notifications": "Notifications",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
@@ -689,5 +719,49 @@
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": "Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Bogføringsenhed tilsluttet og klar",
+        "notReady": "Ønsker du at benytte en Bogføringsenheden, så tilslut og oplås den nu",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Fortsæt med Bogføringsopsætning",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Vælg din Bogføringskontoindeks",
+        "accountIndexExplanation": "Din Hovedkonto kan gemme flere hovednøgler. Hver hovednøgle er identificeret af et entydigt indeksnummer. Et ubrugt indeks er blevet forudvalgt, men du er velkommen til at vælge din eget. Sørg for at du registrerer dit valgte indeksnummer.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Kan ikke oprette forbindelse til Hovedkonto",
+        "connectionErrorExplanation": "Tjek at din Hovedkonto er tilsluttet og oplåst.",
+        "connectionTitle": "Tilslut din Hovedkonto",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "Den forbundne Bogføringsenhed matcher ikke den til kontoen tilknyttede enhed eller genoprettelsesfrasen er ændret.",
+        "checkAddress": "Tjek modtagelsesadressen",
+        "checkAddressExplanation": "Tjek at adressen matcher dén, der vises på din Bogføringsenhed.",
+        "applicationNotInitialised": "Advarsel, ubekræftet",
+        "applicationNotInitialisedExplanation": "Genåbn IOTA-app'en på din Bogføringsenhed, acceptér oplysningsadvarslen og forsøg igen."
     }
 }

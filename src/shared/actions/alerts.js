@@ -1,5 +1,5 @@
 import isString from 'lodash/isString';
-import i18next from '../i18next.js';
+import i18next from '../libs/i18next.js';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -32,11 +32,11 @@ const generate = (category, title, message, closeInterval = 5500) => ({
 /**
  * Dispatch to hide an alert
  *
- * @method dispose
+ * @method dismiss
  *
  * @returns {{type: {string} }}
  */
-const dispose = () => ({ type: ActionTypes.HIDE });
+const dismiss = () => ({ type: ActionTypes.HIDE });
 
 /**
  * Generates an alert. If an error string is passed then it also updates notification log in state
@@ -222,7 +222,7 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
 export const generateAccountSyncRetryAlert = () => (dispatch) =>
     dispatch(
         generateAlert(
-            'info',
+            'error',
             i18next.t('global:pleaseWait'),
             `${i18next.t('global:errorFetchingAccountInformation')} ${i18next.t(
                 'global:tryingAgainWithDifferentNode',
@@ -230,6 +230,16 @@ export const generateAccountSyncRetryAlert = () => (dispatch) =>
             20000,
         ),
     );
+
+/**
+ * Generates an info alert (if addresses syncing fails) for auto retrying addresses sync
+ *
+ * @method generateAddressesSyncRetryAlert
+ *
+ * @returns {function} dispatch
+ */
+export const generateAddressesSyncRetryAlert = () => (dispatch) =>
+    dispatch(generateAlert('info', i18next.t('global:pleaseWait'), i18next.t('global:errorSyncingAddresses'), 20000));
 
 /**
  * Generates a success alert on successful transaction. Generates different alerts based on value/non-value transaction
@@ -254,11 +264,11 @@ export const generateTransactionSuccessAlert = (isZeroValue = false) => (dispatc
 /**
  * Hides an active alert
  *
- * @method disposeOffAlert
+ * @method dismissAlert
  *
  * @returns {function} dispatch
  */
-export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
+export const dismissAlert = () => (dispatch) => dispatch(dismiss());
 
 /**
  * Formats error object, assigns error receive time and update notification logs with the newly received error

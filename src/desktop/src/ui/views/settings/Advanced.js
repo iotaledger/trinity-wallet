@@ -1,7 +1,7 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
@@ -12,11 +12,13 @@ import {
     setLockScreenTimeout,
     setTray,
     setNotifications,
+    setProxy,
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
+import Confirm from 'ui/components/modal/Confirm';
 import ModalPassword from 'ui/components/modal/Password';
 import Toggle from 'ui/components/Toggle';
 import Checkbox from 'ui/components/Checkbox';
@@ -33,7 +35,11 @@ class Advanced extends PureComponent {
         /** @ignore */
         settings: PropTypes.object.isRequired,
         /** @ignore */
+        wallet: PropTypes.object,
+        /** @ignore */
         setTray: PropTypes.func.isRequired,
+        /** @ignore */
+        setProxy: PropTypes.func.isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
@@ -52,18 +58,24 @@ class Advanced extends PureComponent {
 
     state = {
         resetConfirm: false,
+        resetCountdown: 0,
     };
+
+    componentWillUnmount() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+    }
 
     /**
      * Hard reset wallet
-     * @param {string} Password - Plain text wallet password
      * @returns {undefined}
      */
-    resetWallet = async (password) => {
+    resetWallet = () => {
         const { t, generateAlert } = this.props;
 
         try {
-            await clearVault(password);
+            clearVault();
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
@@ -87,88 +99,125 @@ class Advanced extends PureComponent {
         this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
     };
 
+    confirmReset = () => {
+        const { wallet } = this.props;
+
+        this.setState({ resetConfirm: !this.state.resetConfirm, resetCountdown: 15 });
+
+        if (!wallet || !wallet.isOpen) {
+            this.interval = setInterval(() => {
+                if (this.state.resetCountdown === 1) {
+                    clearInterval(this.interval);
+                }
+
+                this.setState({
+                    resetCountdown: this.state.resetCountdown - 1,
+                });
+            }, 1000);
+        }
+    };
+
     render() {
         const {
             settings,
+            wallet,
             changePowSettings,
             changeAutoPromotionSettings,
             lockScreenTimeout,
             setTray,
             setNotifications,
+            setProxy,
             t,
         } = this.props;
 
-        const { resetConfirm } = this.state;
+        const { resetConfirm, resetCountdown } = this.state;
 
         return (
             <div className={css.scroll}>
                 <Scrollbar>
-                    <h3>{t('pow:powUpdated')}</h3>
-                    <Toggle
-                        checked={settings.remotePoW}
-                        onChange={() => changePowSettings()}
-                        on={t('pow:remote')}
-                        off={t('pow:local')}
-                    />
-                    <p>
-                        {t('pow:feeless')} {t('pow:localOrRemote')}
-                    </p>
-                    <hr />
-
-                    <h3>{t('advancedSettings:autoPromotion')}</h3>
-                    <Toggle
-                        checked={settings.autoPromotion}
-                        onChange={() => changeAutoPromotionSettings()}
-                        on={t('enabled')}
-                        off={t('disabled')}
-                    />
-                    <p>{t('advancedSettings:autoPromotionExplanation')}</p>
-                    <hr />
-
-                    {Electron.getOS() === 'darwin' && (
+                    {wallet && wallet.ready ? (
                         <React.Fragment>
-                            <h3>{t('tray:trayApplication')}</h3>
+                            <h3>{t('pow:powUpdated')}</h3>
                             <Toggle
-                                checked={settings.isTrayEnabled}
-                                onChange={() => setTray(!settings.isTrayEnabled)}
+                                checked={settings.remotePoW}
+                                onChange={() => changePowSettings()}
+                                on={t('pow:remote')}
+                                off={t('pow:local')}
+                            />
+                            <p>
+                                {t('pow:feeless')} {t('pow:localOrRemote')}
+                            </p>
+                            <hr />
+
+                            <h3>{t('advancedSettings:autoPromotion')}</h3>
+                            <Toggle
+                                checked={settings.autoPromotion}
+                                onChange={() => changeAutoPromotionSettings()}
                                 on={t('enabled')}
                                 off={t('disabled')}
                             />
-                            <p>{t('tray:trayExplanation')}</p>
+                            <p>{t('advancedSettings:autoPromotionExplanation')}</p>
+                            <hr />
+
+                            {Electron.getOS() === 'darwin' && (
+                                <React.Fragment>
+                                    <h3>{t('tray:trayApplication')}</h3>
+                                    <Toggle
+                                        checked={settings.isTrayEnabled}
+                                        onChange={() => setTray(!settings.isTrayEnabled)}
+                                        on={t('enabled')}
+                                        off={t('disabled')}
+                                    />
+                                    <p>{t('tray:trayExplanation')}</p>
+                                    <hr />
+                                </React.Fragment>
+                            )}
+
+                            <h3>{t('notifications:notifications')}</h3>
+                            <Toggle
+                                checked={settings.notifications.general}
+                                onChange={() =>
+                                    setNotifications({ type: 'general', enabled: !settings.notifications.general })}
+                                on={t('enabled')}
+                                off={t('disabled')}
+                            />
+                            <Checkbox
+                                disabled={!settings.notifications.general}
+                                checked={settings.notifications.confirmations}
+                                label={t('notifications:typeConfirmations')}
+                                className="small"
+                                onChange={(value) => setNotifications({ type: 'confirmations', enabled: value })}
+                            />
+                            <Checkbox
+                                disabled={!settings.notifications.general}
+                                checked={settings.notifications.messages}
+                                label={t('notifications:typeMessages')}
+                                className="small"
+                                onChange={(value) => setNotifications({ type: 'messages', enabled: value })}
+                            />
+                            <p>{t('notifications:notificationExplanation')}</p>
+                            <hr />
+
+                            <TextInput
+                                value={lockScreenTimeout.toString()}
+                                label={t('settings:lockScreenTimeout')}
+                                onChange={this.changeLockScreenTimeout}
+                            />
                             <hr />
                         </React.Fragment>
-                    )}
+                    ) : null}
 
-                    <h3>{t('notifications:notifications')}</h3>
-                    <Toggle
-                        checked={settings.notifications.general}
-                        onChange={() => setNotifications({ type: 'general', enabled: !settings.notifications.general })}
-                        on={t('enabled')}
-                        off={t('disabled')}
-                    />
-                    <Checkbox
-                        disabled={!settings.notifications.general}
-                        checked={settings.notifications.confirmations}
-                        label={t('notifications:typeConfirmations')}
-                        className="small"
-                        onChange={(value) => setNotifications({ type: 'confirmations', enabled: value })}
-                    />
-                    <Checkbox
-                        disabled={!settings.notifications.general}
-                        checked={settings.notifications.messages}
-                        label={t('notifications:typeMessages')}
-                        className="small"
-                        onChange={(value) => setNotifications({ type: 'messages', enabled: value })}
-                    />
-                    <p>{t('notifications:notificationExplanation')}</p>
-                    <hr />
-
-                    <TextInput
-                        value={lockScreenTimeout.toString()}
-                        label={t('settings:lockScreenTimeout')}
-                        onChange={this.changeLockScreenTimeout}
-                    />
-                    <hr />
+                    <React.Fragment>
+                        <h3>{t('proxy:proxy')}</h3>
+                        <Toggle
+                            checked={!settings.ignoreProxy}
+                            onChange={() => setProxy(!settings.ignoreProxy)}
+                            on={t('enabled')}
+                            off={t('disabled')}
+                        />
+                        <p>{t('proxy:proxyExplanation')}</p>
+                        <hr />
+                    </React.Fragment>
 
                     <h3>{t('settings:reset')}</h3>
                     <Trans i18nKey="walletResetConfirmation:warning">
@@ -180,34 +229,56 @@ class Advanced extends PureComponent {
                             <React.Fragment> will be lost.</React.Fragment>
                         </p>
                     </Trans>
-                    <Button
-                        className="small"
-                        onClick={() => this.setState({ resetConfirm: !resetConfirm })}
-                        variant="negative"
-                    >
+                    <Button className="small" onClick={this.confirmReset} variant="negative">
                         {t('settings:reset')}
                     </Button>
-                    <ModalPassword
-                        isOpen={resetConfirm}
-                        category="negative"
-                        onSuccess={(password) => this.resetWallet(password)}
-                        onClose={() => this.setState({ resetConfirm: false })}
-                        content={{
-                            title: t('walletResetConfirmation:cannotUndo'),
-                            message: (
-                                <Trans i18nKey="walletResetConfirmation:warning">
-                                    <React.Fragment>
-                                        <React.Fragment>All of your wallet data including your </React.Fragment>
-                                        <strong>seeds, password,</strong>
-                                        <React.Fragment>and </React.Fragment>
-                                        <strong>other account information</strong>
-                                        <React.Fragment> will be lost.</React.Fragment>
-                                    </React.Fragment>
-                                </Trans>
-                            ),
-                            confirm: t('settings:reset'),
-                        }}
-                    />
+                    {wallet && wallet.ready ? (
+                        <ModalPassword
+                            isOpen={resetConfirm}
+                            category="negative"
+                            onSuccess={() => this.resetWallet()}
+                            onClose={() => this.setState({ resetConfirm: false })}
+                            content={{
+                                title: t('walletResetConfirmation:cannotUndo'),
+                                message: (
+                                    <Trans i18nKey="walletResetConfirmation:warning">
+                                        <React.Fragment>
+                                            <React.Fragment>All of your wallet data including your </React.Fragment>
+                                            <strong>seeds, password,</strong>
+                                            <React.Fragment>and </React.Fragment>
+                                            <strong>other account information</strong>
+                                            <React.Fragment> will be lost.</React.Fragment>
+                                        </React.Fragment>
+                                    </Trans>
+                                ),
+                                confirm: t('settings:reset'),
+                            }}
+                        />
+                    ) : (
+                        <Confirm
+                            isOpen={resetConfirm}
+                            category="negative"
+                            content={{
+                                title: t('walletResetConfirmation:cannotUndo'),
+                                message: (
+                                    <Trans i18nKey="walletResetConfirmation:warning">
+                                        <React.Fragment>
+                                            <React.Fragment>All of your wallet data including your </React.Fragment>
+                                            <strong>seeds, password,</strong>
+                                            <React.Fragment>and </React.Fragment>
+                                            <strong>other account information</strong>
+                                            <React.Fragment> will be lost.</React.Fragment>
+                                        </React.Fragment>
+                                    </Trans>
+                                ),
+                                cancel: t('cancel'),
+                                confirm: t('settings:reset'),
+                            }}
+                            onCancel={() => this.setState({ resetConfirm: false })}
+                            countdown={resetCountdown}
+                            onConfirm={() => this.resetWallet()}
+                        />
+                    )}
                 </Scrollbar>
             </div>
         );
@@ -216,6 +287,7 @@ class Advanced extends PureComponent {
 
 const mapStateToProps = (state) => ({
     settings: state.settings,
+    wallet: state.wallet,
     lockScreenTimeout: state.settings.lockScreenTimeout,
 });
 
@@ -226,6 +298,7 @@ const mapDispatchToProps = {
     setLockScreenTimeout,
     setTray,
     setNotifications,
+    setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));

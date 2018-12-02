@@ -1,5 +1,7 @@
 /* global Electron */
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withI18n } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -14,6 +16,11 @@ import css from './about.scss';
  * About window component
  */
 class About extends React.PureComponent {
+    static propTypes = {
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+    };
+
     state = {
         visible: false,
     };
@@ -39,6 +46,7 @@ class About extends React.PureComponent {
 
     render() {
         const { visible } = this.state;
+        const { t } = this.props;
 
         return (
             <Modal variant="global" isOpen={visible} onClose={() => this.setState({ visible: false })}>
@@ -51,6 +59,70 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.4.3</h5>
+                            <ul>
+                                <li>- Add: System network proxy ignore setting</li>
+                                <li>- Update: Display update alerts and force critical updates</li>
+                            </ul>
+                            <h5>0.4.2</h5>
+                            <ul>
+                                <li>- Update: Require manual address generation</li>
+                                <li>- Update: Disallow Node.js runtime debugging mode</li>
+                                <li>- Update: Add indicator for over 81 char on seed field</li>
+                                <li>- Fix: Wrong spent address status check condition</li>
+                            </ul>
+                            <h5>0.4.1</h5>
+                            <ul>
+                                <li>- Update: Complete address tooltip on Send page address input</li>
+                                <li>- Update: Highlight receive address checksum</li>
+                                <li>- Update: Ledger device accounts can send 0 value transactions</li>
+                                <li>- Update: Prefix SeedVault export file name with Account name</li>
+                                <li>- Update: Increase request timeout for all network calls to IRI</li>
+                                <li>- Fix: New account addition results in crash on node errors</li>
+                                <li>- Fix: Unresponsive login button if keychain is not available</li>
+                                <li>- Fix: Cannot add Ledger device account with a specific page</li>
+                                <li>- Fix: Cannot use multiple Ledger devices with the same index</li>
+                                <li>- Fix: IOTA App request does not respond when opening the app</li>
+                                <li>- Fix: Incorrect back navigation when setting Account name</li>
+                                <li>- Fix: Provide correct key index for generating addresses</li>
+                            </ul>
+                            <h5>0.4.0</h5>
+                            <ul>
+                                <li>- New: Ledger hardware wallet support</li>
+                                <li>- Update: Add Wallet reset functionality for non authorised users</li>
+                                <li>- Update: Improved auto-updates functionality</li>
+                                <li>- Fix: Dark menu bar icon support for macOS</li>
+                            </ul>
+                            <h5>0.3.6</h5>
+                            <ul>
+                                <li>
+                                    - Fix: Automatically fixes addresses affected in version 0.3.4 (relevant to a
+                                    handful of users)
+                                </li>
+                            </ul>
+                            <h5>0.3.5</h5>
+                            <ul>
+                                <li>- Hotfix: Incorrect byte to trit conversion on Manual sync</li>
+                            </ul>
+                            <h5>0.3.4</h5>
+                            <ul>
+                                <li>- New: Drag&amp;drop text seed support</li>
+                                <li>- Update: Trigger 2fa verification once necessary code string length is reached</li>
+                                <li>- Update: Seed in memory use update</li>
+                                <li>- Update: Adjusted auto promotion timing</li>
+                                <li>- Fix: Reattach only if transaction falls below max depth</li>
+                                <li>- Fix: On Windows resizing wallet window using top corners does not work</li>
+                                <li>- Fix: Filled and empty paper wallet templates are mixed</li>
+                            </ul>
+                            <h5>0.3.3</h5>
+                            <ul>
+                                <li>- New: Support for Persian, Kannada, and Serbian (Latin)</li>
+                                <li>- Update: Linux tutorial missing a required step</li>
+                                <li>- Fix: Printing paper wallet from settings prints a blank page on first try</li>
+                                <li>- Fix: Paper wallet prints with scrambled characters</li>
+                                <li>- Fix: Grammatical errors in German privacy policy</li>
+                                <li>- Fix: Auto update dialog raises missing locale error</li>
+                            </ul>
                             <h5>0.3.2</h5>
                             <ul>
                                 <li>Update: Update currency order</li>
@@ -230,12 +302,9 @@ class About extends React.PureComponent {
                             </ul>
                         </Scrollbar>
                     </article>
-                    <p>
-                        <strong>BETA version warning:</strong> Do not send large amounts with this wallet.
-                    </p>
                     <footer>
                         <Button onClick={() => this.setState({ visible: false })} variant="dark">
-                            Close
+                            {t('close')}
                         </Button>
                     </footer>
                 </section>
@@ -244,4 +313,4 @@ class About extends React.PureComponent {
     }
 }
 
-export default About;
+export default withI18n()(About);

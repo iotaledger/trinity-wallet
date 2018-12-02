@@ -1,17 +1,23 @@
-/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
+import {
+    selectLatestAddressFromAccountFactory,
+    selectAccountInfo,
+    getSelectedAccountName,
+    getSelectedAccountMeta,
+} from 'selectors/accounts';
 
 import { generateAlert } from 'actions/alerts';
-import { generateNewAddress } from 'actions/wallet';
-import { selectLatestAddressFromAccountFactory } from 'iota-wallet-shared-modules/selectors/accounts';
+import { generateNewAddress, addressValidationRequest, addressValidationSuccess } from 'actions/wallet';
 
-import { byteToChar, getSeed, createRandomSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
+import { randomBytes } from 'libs/crypto';
+import { byteToChar } from 'libs/helpers';
+import Errors from 'libs/errors';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -32,11 +38,15 @@ class Receive extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
+        accountMeta: PropTypes.object.isRequired,
+        /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
         password: PropTypes.object,
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
+        /** @ignore */
+        hadErrorGeneratingNewAddress: PropTypes.bool.isRequired,
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
         /** @ignore */
@@ -46,12 +56,23 @@ class Receive extends React.PureComponent {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        addressValidationRequest: PropTypes.func.isRequired,
+        /** @ignore */
+        addressValidationSuccess: PropTypes.func.isRequired,
+        /** @ignore */
+        isValidatingAddress: PropTypes.bool.isRequired,
     };
 
     state = {
         message: '',
         scramble: new Array(ADDRESS_LENGTH).fill(0),
+        hasSyncedAddress: false,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -59,10 +80,15 @@ class Receive extends React.PureComponent {
             this.frame = 0;
 
             this.setState({
-                scramble: createRandomSeed(ADDRESS_LENGTH),
+                scramble: randomBytes(ADDRESS_LENGTH),
+                hasSyncedAddress: true,
             });
 
             this.unscramble();
+
+            if (!this.props.isValidatingAddress) {
+                this.validateAdress();
+            }
         }
     }
 
@@ -71,15 +97,53 @@ class Receive extends React.PureComponent {
     }
 
     onGeneratePress = async () => {
-        const { password, accountName, account, isSyncing, isTransitioning, generateAlert, t } = this.props;
+        const {
+            password,
+            accountName,
+            accountMeta,
+            account,
+            isSyncing,
+            isTransitioning,
+            generateAlert,
+            t,
+        } = this.props;
 
         if (isSyncing || isTransitioning) {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seed = await getSeed(password, accountName, true);
+        this.setState({
+            hasSyncedAddress: false,
+        });
 
-        this.props.generateNewAddress(seed, accountName, account, Electron.genFn);
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+
+        this.props.generateNewAddress(seedStore, accountName, account);
+    };
+
+    validateAdress = async () => {
+        const { password, accountName, accountMeta, account, history, generateAlert, t } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+
+        try {
+            if (accountMeta.type === 'ledger') {
+                generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 20000);
+            }
+            this.props.addressValidationRequest();
+            await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
+            this.props.addressValidationSuccess();
+        } catch (err) {
+            this.props.addressValidationSuccess();
+            history.push('/wallet/');
+            if (err.message === Errors.LEDGER_INVALID_INDEX) {
+                generateAlert(
+                    'error',
+                    t('ledger:ledgerIncorrectIndex'),
+                    t('ledger:ledgerIncorrectIndexExplanation'),
+                    20000,
+                );
+            }
+        }
     };
 
     unscramble() {
@@ -115,36 +179,51 @@ class Receive extends React.PureComponent {
     }
 
     render() {
-        const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
-        const { message, scramble } = this.state;
+        const { t, receiveAddress, isGeneratingReceiveAddress, hadErrorGeneratingNewAddress } = this.props;
+        const { message, scramble, hasSyncedAddress } = this.state;
 
         return (
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
-                <div className={isGeneratingReceiveAddress ? css.loading : null}>
-                    <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
-                    <Clipboard
-                        text={receiveAddress}
-                        title={t('receive:addressCopied')}
-                        success={t('receive:addressCopiedExplanation')}
-                    >
-                        <p>
-                            {receiveAddress.split('').map((char, index) => {
-                                const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
-                                return <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>;
-                            })}
-                        </p>
-                    </Clipboard>
-                </div>
-                <div>
-                    <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>
-                        <Icon icon="sync" size={32} />
-                        {t('receive:generateNewAddress')}
-                    </Button>
-                </div>
+                {!hadErrorGeneratingNewAddress && hasSyncedAddress ? (
+                    <div className={isGeneratingReceiveAddress ? css.loading : null}>
+                        <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
+                        <Clipboard
+                            text={receiveAddress}
+                            title={t('receive:addressCopied')}
+                            success={t('receive:addressCopiedExplanation')}>
+                            <p>
+                                {receiveAddress.substring(0, 81).split('').map((char, index) => {
+                                    const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
+                                    return (
+                                        <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>
+                                    );
+                                })}
+                                <span>
+                                    {receiveAddress.substring(81, 90).split('').map((char, index) => {
+                                        const scrambleChar =
+                                            scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                        return (
+                                            <React.Fragment key={`char-${index}`}>
+                                                {scrambleChar || char}
+                                            </React.Fragment>
+                                        );
+                                    })}
+                                </span>
+                            </p>
+                        </Clipboard>
+                    </div>
+                ) : (
+                    <div>
+                        <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>
+                            <Icon icon="sync" size={32} />
+                            {t('receive:generateNewAddress')}
+                        </Button>
+                    </div>
+                )}
                 <div>
                     <Text
                         value={message}
-                        label={t('receive:message')}
+                        label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
                     />
                     <footer>
@@ -154,8 +233,7 @@ class Receive extends React.PureComponent {
                         <Clipboard
                             text={receiveAddress}
                             title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}
-                        >
+                            success={t('receive:addressCopiedExplanation')}>
                             <Button className="small" onClick={() => {}}>
                                 {t('receive:copyAddress')}
                             </Button>
@@ -172,14 +250,19 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSyncing: state.ui.isSyncing,
     isTransitioning: state.ui.isTransitioning,
+    hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
+    accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
+    isValidatingAddress: state.wallet.isValidatingAddress,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     generateNewAddress,
+    addressValidationRequest,
+    addressValidationSuccess,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Receive));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Receive));

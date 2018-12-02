@@ -24,10 +24,7 @@ export const bugsnagClient = bugsnag({
     appVersion: settings.version,
     interactionBreadcrumbsEnabled: false,
     collectUserIp: false,
-    beforeSend: async (report) => {
-        const uuid = await Electron.getUuid();
-        report.user = { id: uuid };
-    },
+    user: { id: Electron.getUuid() },
 });
 
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));

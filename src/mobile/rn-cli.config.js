@@ -1,5 +1,12 @@
 const path = require('path');
+const metroBlacklist = require('metro-config/src/defaults/blacklist');
+
+const alternateRoots = [path.join(__dirname, '../shared')];
+const blacklist = metroBlacklist([/nodejs-project\/.*/]);
 
 module.exports = {
-    getProjectRoots: () => [__dirname, path.join(__dirname, '../shared')],
+    watchFolders: alternateRoots,
+    resolver: {
+        blacklistRE: blacklist,
+    },
 };

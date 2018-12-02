@@ -5,11 +5,14 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
+import findKey from 'lodash/findKey';
+import findIndex from 'lodash/findIndex';
 import head from 'lodash/head';
 import has from 'lodash/has';
+import isObject from 'lodash/isObject';
+import isNumber from 'lodash/isNumber';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
-import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import pick from 'lodash/pick';
 import includes from 'lodash/includes';
@@ -43,53 +46,66 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
     isPromotable,
+    promoteTransactionAsync,
+    replayBundleAsync,
 } from './extendedApi';
-import i18next from '../../i18next.js';
-import { convertFromTrytes, EMPTY_HASH_TRYTES } from './utils';
+import i18next from '../../libs/i18next.js';
+import {
+    convertFromTrytes,
+    EMPTY_HASH_TRYTES,
+    EMPTY_TRANSACTION_MESSAGE,
+    VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX,
+} from './utils';
 import Errors from './../errors';
 
 /**
  * Gets total transfer value from a bundle
  *
  * @method getTransferValue
- * @param {array} bundle
+ * @param {array} inputs
+ * @param {array} outputs
  * @param {array} addresses
  *
  * @returns {number}
  */
-export const getTransferValue = (bundle, addresses) => {
-    let value = 0;
-    let j = 0;
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                value = bundle[0].value;
-                return value;
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                value += bundle[i].value;
-                j++;
-            }
-        }
-    }
-    if (j === 0) {
-        return extractTailTransferFromBundle(bundle).value;
-    }
-    return value;
+export const getTransferValue = (inputs, outputs, addresses) => {
+    const remainderValue = get(
+        find(outputs, (output) => output.currentIndex === output.lastIndex && output.lastIndex !== 0),
+        'value',
+    );
+
+    const ownInputs = filter(inputs, (input) => includes(addresses, input.address));
+    const inputsValue = reduce(inputs, (acc, input) => acc + Math.abs(input.value), 0);
+
+    return size(ownInputs)
+        ? inputsValue - remainderValue
+        : reduce(
+              filter(outputs, (output) => includes(addresses, output.address)),
+              (acc, output) => acc + output.value,
+              0,
+          );
 };
 
-export const getRelevantTransfer = (bundle, addresses) => {
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                return bundle[0];
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return bundle[i];
-            }
+/**
+ * Finds transaction message from a bundle.
+ *
+ * @method computeTransactionMessage
+ * @param {array} bundle
+ *
+ * @returns {string}
+ */
+export const computeTransactionMessage = (bundle) => {
+    let message = EMPTY_TRANSACTION_MESSAGE;
+
+    each(bundle, (tx) => {
+        message = convertFromTrytes(tx.signatureMessageFragment);
+
+        if (message !== EMPTY_TRANSACTION_MESSAGE) {
+            return false;
         }
-    }
-    return extractTailTransferFromBundle(bundle);
+    });
+
+    return message;
 };
 
 /**
@@ -117,7 +133,7 @@ export const findPromotableTail = (provider) => (tails, idx) => {
 
     return isPromotable(provider)(get(thisTail, 'hash'))
         .then((state) => {
-            if (state && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
+            if (state === true && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
@@ -150,19 +166,19 @@ export const isAboveMaxDepth = (attachmentTimestamp) => {
  *   @param {string} address
  *   @param {number} [value]
  *   @param {string} [message]
- *   @param {string} [firstOwnAddress]
+ *   @param {object} addressData
  *   @param {string} [tag='TRINITY']
+ *
  *   @returns {array} Transfer object
  **/
-export const prepareTransferArray = (
-    address,
-    value = 0,
-    message = '',
-    firstOwnAddress = EMPTY_HASH_TRYTES,
-    tag = DEFAULT_TAG,
-) => {
+export const prepareTransferArray = (address, value, message, addressData, tag = DEFAULT_TAG) => {
+    const firstAddress = findKey(addressData, { index: 0 });
+
+    if (!firstAddress) {
+        throw new Error(Errors.EMPTY_ADDRESS_DATA);
+    }
+
     const trytesConvertedMessage = iota.utils.toTrytes(message);
-    const isZeroValue = value === 0;
     const transfer = {
         address,
         value,
@@ -170,32 +186,15 @@ export const prepareTransferArray = (
         tag,
     };
 
-    const isSendingToFirstOwnAddress = firstOwnAddress === address;
+    const isZeroValueTransaction = value === 0;
 
-    if (isZeroValue && !isSendingToFirstOwnAddress) {
-        return [transfer, assign({}, transfer, { address: firstOwnAddress })];
+    if (isZeroValueTransaction) {
+        return iota.utils.noChecksum(address) in addressData
+            ? [transfer]
+            : [transfer, assign({}, transfer, { address: firstAddress })];
     }
 
     return [transfer];
-};
-
-/**
- *   Accepts a transfer bundle and returns the tail object
- *
- *   @method extractTailTransferFromBundle
- *   @param {array} bundle - Array of transfer objects
- *   @returns {object} transfer object
- **/
-export const extractTailTransferFromBundle = (bundle) => {
-    const extractTail = (res, tx) => {
-        if (tx.currentIndex === 0) {
-            res = tx;
-        }
-
-        return res;
-    };
-
-    return reduce(bundle, extractTail, {});
 };
 
 /**
@@ -290,7 +289,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
                 checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
             };
 
-            if (tx.value < 0 && !isRemainder(tx)) {
+            if (tx.value < 0) {
                 acc.inputs.push(meta);
             } else {
                 acc.outputs.push(meta);
@@ -301,8 +300,6 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
             outputs: [],
         },
     );
-
-    const removeUnnecessaryProps = (object) => omit(object, ['currentIndex', 'lastIndex']);
 
     // Note: Ideally we should categorise all outputs
     // But some bundles esp carriota field donation bundles are huge
@@ -317,17 +314,14 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
     // TODO: But to make this process more secure, always sync addresses during poll
     return size(categorisedBundle.outputs) <= outputsThreshold
         ? {
-              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
-              outputs: map(categorisedBundle.outputs, removeUnnecessaryProps),
+              inputs: categorisedBundle.inputs,
+              outputs: categorisedBundle.outputs,
           }
         : {
-              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
-              outputs: map(
-                  filter(
-                      categorisedBundle.outputs,
-                      (output) => includes(addresses, output.address) || isRemainder(output),
-                  ),
-                  removeUnnecessaryProps,
+              inputs: categorisedBundle.inputs,
+              outputs: filter(
+                  categorisedBundle.outputs,
+                  (output) => includes(addresses, output.address) || isRemainder(output),
               ),
           };
 };
@@ -342,7 +336,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
  **/
 export const isSentTransfer = (bundle, addresses) => {
     const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses);
-    const value = getTransferValue(bundle, addresses);
+    const value = getTransferValue(categorisedBundle.inputs, categorisedBundle.outputs, addresses);
 
     if (value === 0) {
         return (
@@ -679,16 +673,18 @@ export const constructNormalisedBundles = (tailTransactions, transactionObjects,
  *   @returns {object} - Normalised bundle
  **/
 export const normaliseBundle = (bundle, addresses, tailTransactions, persistence) => {
-    const transfer = getRelevantTransfer(bundle, addresses);
-    const bundleHash = transfer.bundle;
+    const transaction = get(bundle, '[0]');
+    const bundleHash = transaction.bundle;
+    const { inputs, outputs } = categoriseBundleByInputsOutputs(bundle, addresses);
 
     return {
-        ...pick(transfer, ['hash', 'bundle', 'timestamp', 'attachmentTimestamp']),
-        ...categoriseBundleByInputsOutputs(bundle, addresses),
+        ...pick(transaction, ['bundle', 'timestamp', 'attachmentTimestamp']),
+        inputs,
+        outputs,
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
-        transferValue: getTransferValue(bundle, addresses),
-        message: convertFromTrytes(transfer.signatureMessageFragment),
+        transferValue: getTransferValue(inputs, outputs, addresses),
+        message: computeTransactionMessage(bundle),
         tailTransactions: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => ({
             hash: tx.hash,
             attachmentTimestamp: tx.attachmentTimestamp,
@@ -1142,4 +1138,138 @@ export const sortTransactionTrytesArray = (trytes, sortBy = 'currentIndex', orde
     );
 
     return map(orderBy(transactionObjects, [sortBy], [order]), iota.utils.transactionTrytes);
+};
+
+/**
+ *   Checks if a transfer object is valid
+ *
+ *   @method isValidTransfer
+ *   @param {object} transfer
+ *
+ *   @returns {boolean}
+ **/
+export const isValidTransfer = (transfer) => {
+    return (
+        isObject(transfer) && VALID_ADDRESS_WITHOUT_CHECKSUM_REGEX.test(transfer.address) && isNumber(transfer.value)
+    );
+};
+
+/**
+ *   Checks if a bundle is funded
+ *   Note: Does not validate signatures or other bundle attributes
+ *
+ *   @method isFundedBundle
+ *   @param {string} [provider]
+ *
+ *   @returns {function(array): Promise<boolean>}
+ **/
+
+export const isFundedBundle = (provider) => (bundle) => {
+    if (isEmpty(bundle)) {
+        return Promise.reject(new Error(Errors.EMPTY_BUNDLE_PROVIDED));
+    }
+
+    return getBalancesAsync(provider)(
+        reduce(bundle, (acc, tx) => (tx.value < 0 ? [...acc, tx.address] : acc), []),
+    ).then((balances) => {
+        return (
+            reduce(bundle, (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0) <=
+            accumulateBalance(map(balances.balances, Number))
+        );
+    });
+};
+
+/**
+ * Categorises inclusion states by bundle hash of tail transactions
+ * Note: Make sure the order of tail transactions -> inclusion states is preserved before using this function
+ *
+ * @method categoriseInclusionStatesByBundleHash
+ * @param {array} transactions
+ * @param {array} inclusionStates
+ *
+ * @returns {object}
+ */
+export const categoriseInclusionStatesByBundleHash = (transactions, inclusionStates) =>
+    transform(
+        transactions,
+        (acc, tailTransaction, idx) => {
+            if (tailTransaction.bundle in acc) {
+                acc[tailTransaction.bundle] = acc[tailTransaction.bundle] || inclusionStates[idx];
+            } else {
+                acc[tailTransaction.bundle] = inclusionStates[idx];
+            }
+        },
+        {},
+    );
+
+/**
+ * Promotes a transaction till it gets confirmed.
+ *
+ * @method promoteTransactionTilConfirmed
+ * @param {string} [provider]
+ * @param {function} [powFn]
+ *
+ * @returns {function(array, [number]): Promise<object>}
+ */
+export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransactions, promotionsAttemptsLimit = 50) => {
+    let promotionAttempt = 0;
+    const tailTransactionsClone = cloneDeep(tailTransactions);
+
+    const _promote = (tailTransaction) => {
+        promotionAttempt += 1;
+
+        if (promotionAttempt === promotionsAttemptsLimit) {
+            return Promise.reject(new Error(Errors.PROMOTIONS_LIMIT_REACHED));
+        }
+
+        // Before every promotion, check confirmation state
+        return getLatestInclusionAsync(provider)(map(tailTransactionsClone, (tx) => tx.hash)).then((states) => {
+            if (some(states, (state) => state === true)) {
+                // If any of the tail is confirmed, return the "confirmed" tail transaction object.
+                return find(tailTransactionsClone, (_, idx) => idx === findIndex(states, (state) => state === true));
+            }
+
+            const { hash, attachmentTimestamp } = tailTransaction;
+
+            // Promote transaction
+            return promoteTransactionAsync(provider, powFn)(hash)
+                .then(() => {
+                    return _promote(tailTransaction);
+                })
+                .catch((error) => {
+                    const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
+
+                    if (isTransactionInconsistent) {
+                        // Temporarily disable reattachments if transaction is still above max depth
+                        return !isAboveMaxDepth(attachmentTimestamp)
+                            ? _reattachAndPromote()
+                            : _promote(tailTransaction);
+                    }
+
+                    throw error;
+                });
+        });
+    };
+
+    const _reattachAndPromote = () => {
+        // Grab first tail transaction hash
+        const tailTransaction = head(tailTransactionsClone);
+        const hash = tailTransaction.hash;
+
+        return replayBundleAsync(provider, powFn)(hash).then((reattachment) => {
+            const tailTransaction = find(reattachment, { currentIndex: 0 });
+            // Add newly reattached transaction
+            tailTransactionsClone.push(tailTransaction);
+
+            return _promote(tailTransaction);
+        });
+    };
+
+    return findPromotableTail(provider)(tailTransactionsClone, 0).then((consistentTail) => {
+        if (has(consistentTail, 'hash')) {
+            return _promote(consistentTail);
+        }
+
+        return _reattachAndPromote();
+    });
 };

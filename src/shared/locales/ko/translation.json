@@ -7,7 +7,7 @@
         "refresh": "새로고침",
         "balanceError": "잔고 부족",
         "balanceErrorMessage": "잔고가 부족하여 거래를 완료할 수 없습니다.",
-        "totalBalance": "Total balance",
+        "totalBalance": "총 잔액",
         "transferError": "전송 오류",
         "transferErrorMessage": "전송 중에 오류가 발생했습니다. 다시 시도해주세요.",
         "transferSent": "전송 완료",
@@ -19,6 +19,7 @@
         "invalidResponse": "노드 오류",
         "invalidResponseExplanation": "노드가 오류를 보냈습니다. 노드를 변경해 보세요.",
         "invalidResponseFetchingAccount": "계정 정보를 불러오는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "노드가 동기화되지 않음",
         "nodeOutOfSyncExplanation": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
         "thisNodeOutOfSync": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
@@ -34,6 +35,7 @@
         "save": "저장",
         "close": "닫기",
         "export": "내보내기",
+        "help": "도움말",
         "import": "가져오기",
         "continue": "계속",
         "enable": "활성화",
@@ -44,22 +46,19 @@
         "paperWallet": "종이에 인쇄하기",
         "addToPasswordManager": "비밀번호 관리자에 입력하기",
         "shareSeed": "시드 보내기",
+        "share": "공유하기",
         "proceed": "계속",
         "qr": "QR",
         "enterSeed": "시드를 입력하세요.",
-        "mainWallet": "주 계정",
-        "secondWallet": "두 번째 계정",
-        "thirdWallet": "세 번째 계정",
-        "fourthWallet": "네 번째 계정",
-        "fifthWallet": "다섯 번째 계정",
-        "sixthWallet": "여섯 번째 계정",
-        "otherWallet": "기타 계정",
         "yes": "네",
         "no": "아니오",
         "okay": "확인",
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
+        "unrecognisedAccount": "계정을 찾을 수 없음",
+        "unrecognisedAccountExplanation": "{{accountName}} 계정을 찾을 수 없습니다. 지갑을 초기화해야 할 수도 있습니다.",
+        "emptyPasswordExplanation": "비밀번호는 필수 입력 사항입니다. 다시 시도해 주세요.",
         "capsLockIsOn": "캡스 락 켜짐",
         "syncInProgress": "동기화 진행 중",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
@@ -73,7 +72,7 @@
         "attachToTangleUnavailableExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하거나 고급 설정에서 작업증명 주체를 기기로 변경하세요.",
         "attachToTangleUnavailableExplanationShort": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다.",
         "wallet": "지갑",
-        "all": "All",
+        "all": "전부",
         "sent": "보냄",
         "received": "받음",
         "sending": "보내는 중",
@@ -99,8 +98,8 @@
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
         "transactionAlreadyConfirmed": "이미 승인된 트랜잭션",
         "transactionAlreadyConfirmedExplanation": "이미 승인된 트랜잭션은 프로모트할 수 없습니다.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "출금중인 주소로 보내는 중",
+        "cannotSendToOwnExplanation": "출금 트랜잭션이 이루어지는 주소로는 전송할 수 없습니다.",
         "pleaseWait": "잠시 기다려 주세요",
         "pleaseWaitEllipses": "잠시 기다려 주세요...",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주세요.",
@@ -110,7 +109,6 @@
         "snapshotTransitionInProgressExplanation": "스냅샷 이전 작업이 완료될 때까지 기다려 주세요.",
         "checkForUpdates": "업데이트 확인",
         "account": "계정",
-        "enterYourPassword": "비밀번호 입력",
         "changeNode": "노드 변경",
         "addCustomNode": "커스텀 노드 추가",
         "nodeMustUseHTTPS": "잘못된 노드 (HTTPS를 사용하지 않음)",
@@ -124,7 +122,7 @@
         "seedThief": "만일 다른 사람이 시드를 손에 넣게 된다면 IOTA를 훔칠 수 있습니다.",
         "googlePlayServicesNotAvailable": "Google 플레이 서비스를 이용할 수 없음",
         "couldNotVerifyDeviceIntegrity": "Google 플레이 서비스를 사용할 수 없어 기기의 무결성을 확인하지 못했습니다.",
-        "clear": "Clear",
+        "clear": "지우기",
         "noNetworkConnection": "네트워크에 연결되지 않음",
         "noNetworkConnectionExplanation": "인터넷 연결이 오프라인 상태입니다.",
         "spentAddressExplanation": "경고: 이미 사용한 주소에 잔고가 있습니다",
@@ -139,13 +137,21 @@
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
         "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
         "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "전송을 송출할 수 없음",
+        "addressesAlreadySpentFrom": "하나 이상의 주소가 이미 사용된 주소입니다.",
+        "problemSendingYourTransaction": "트랜잭션 전송 중 문제가 발생하였습니다.",
+        "problemPerformingProofOfWork": "작업증명 수행 중 문제가 발생하였습니다.",
+        "tryingAgainWithLocalPoW": "기기에서 다시 작업증명을 시도합니다.",
+        "tryingAgainWithDifferentNode": "다른 노드로 다시 시도합니다.",
+        "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorAccessingKeychain": "키체인 오류",
+        "errorAccessingKeychainExplanation": "보안 저장에 필요한 키체인에 접근할 수 없습니다.",
+        "mainWallet": "주 계정",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -178,12 +184,12 @@
         "newPassword": "새 비밀번호",
         "confirmPassword": "새 비밀번호 확인",
         "passwordTooWeak": "너무 약한 비밀번호",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
+        "passwordTooWeakReason": "비밀번호가 너무 약합니다. 여러 단어의 조합을 사용하고, 흔한 문장, 이름, 날짜 등은 피해 주세요.",
         "reasonRow": "연속되는 키의 입력은 추측하기 쉽습니다.",
         "reasonPattern": "반복되는 짧은 패턴은 추측하기 쉽습니다.",
         "reasonNames": "흔한 이름은 추측하기 쉽습니다.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats": "'aaa'와 같이 반복되는 문자는 추측해내기 쉽습니다.",
+        "reasonRepeats2": "'abcabcabc'와 같이 반복되는 문자열은 'abc'와 비해 보안성이 크게 강하지 않습니다.",
         "reasonSequence": "abc나 54321과 같은 연속되는 문자는 추측하기 쉽습니다.",
         "reasonYears": "최근 년도는 추측하기 쉽습니다.",
         "reasonDates": "날짜는 추측하기 쉬운 경우가 많습니다.",
@@ -191,7 +197,7 @@
         "reasonTop100": "가장 흔한 비밀번호 100가지 안에 포함됩니다.",
         "reasonCommon": "매우 흔한 비밀번호입니다.",
         "reasonSimilar": "가장 흔한 비밀번호들과 유사합니다.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonWord": "하나의 단어로 구성된 암호는 추측하기 쉽습니다."
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
@@ -204,19 +210,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "클립보드에서 시드 삭제함",
-        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
-        "seedCopied": "시드가 클립보드에 복사됨",
-        "seedCopiedExplanation": "'완료'를 누르거나 60초가 지나면 시드가 삭제됩니다.",
-        "copyToClipboard": "시드 복사",
-        "shareSeed": "안전한 비밀번호 관리자로 시드를 내보내세요.",
-        "storeEncrypted": "시드는 비밀번호 관리자를 사용해 암호화하여 저장하세요.",
-        "doNotOpen": "작업 수행중에 다른 앱을 실행하지 마세요.",
-        "tapConfirm": "확인하셨으면 아래의 박스에 체크해 주세요.",
-        "passwordManagerCheckbox": "비밀번호 관리자에 시드를 저장하겠습니다.",
-        "copy": "복사하기",
-        "noPasswordManagers": "지원되는 비밀번호 관리자가 설치되어있지 않습니다",
-        "noPasswordManagersExplanation": "기기에서 지원되는 비밀번호 관리자를 찾지 못했습니다. Keepass2Android를 설치해 주세요.",
-        "followTutorialToSecurelyShareSeed": "시드를 비밀번호 관리자에 저장하시기 전에 아래의 안내문을 읽어보셔야 합니다."
+        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다."
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함됨",
@@ -260,7 +254,10 @@
         "pressForNewSeed": "새 시드",
         "generateSuccess": "시드 생성에 성공했습니다.",
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다.",
-        "individualLetterCount": "각각의 문자를 {{letterCount}}번 더 눌러서 무작위로 변경하세요.",
+        "individualLetterCount": "<1><0>{{count}}</0></1>글자를 더 눌러서 바꿔 주세요.",
+        "individualLetterCount_plural": "<1><0>{{count}}</0></1>글자를 더 눌러서 바꿔 주세요.",
+        "randomiseCharsToContinue": "<1>{{count}}</1>글자를 더 바꿔 주세요.",
+        "randomiseCharsToContinue_plural": "<1>{{count}}</1>글자를 더 바꿔 주세요.",
         "whatIsASeed": "시드가 뭐죠?"
     },
     "onboardingComplete": {
@@ -285,23 +282,26 @@
         "copyAddress": "주소 복사",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "generateNewAddress": "새 주소",
+        "generateNewAddress": "Generate address",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
         "missingPermission": "파일 시스템 권한 필요",
         "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다.",
-        "tag": "태그"
+        "tag": "태그",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
         "seedCleared": "시드 삭제됨",
         "mostSecure": "안전함",
-        "recommended": "Recommended",
+        "recommended": "권장",
         "leastSecure": "덜 안전함",
         "paperWallet": "종이 지갑",
         "writeYourSeedDown": "시드 기록하기",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
         "youCanHighlightCharacters": "9글자 단위로 강조해서 볼 수 있습니다",
         "printBlankWallet": "빈 지갑 인쇄하기",
         "whatIsChecksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다",
@@ -317,8 +317,8 @@
         "incorrectSeedExplanation": "입력하신 시드가 잘못되었습니다. 다시 시도해 주세요.",
         "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오.",
         "enterSeedBelow": "시드를 입력해서 정확하게 저장하였는지 확인해 주세요",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "시드를 복사/붙여넣기하지 마세요",
+        "clipboardWarningExplanation": "경고: 보안을 위해 복사/붙여넣기가 비활성화되었습니다."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
@@ -353,10 +353,12 @@
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "고급",
         "standard": "기본",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise."
+        "advancedModeExplanation": "고급 모드에서는 기술적 정보가 더 자세하게 표시됩니다.",
+        "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -411,10 +413,9 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
-        "reset": "Reset"
+        "reset": "재설정"
     },
     "walletSetup": {
-        "creatingSeed": "시드 만들기",
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouNeedASeed": "새 시드가 필요하신가요?",
         "seedExplanation": "IOTA 시드는 지갑에 있어 마스터키와 같은 역할을 합니다. 시드는 81글자로 이루어지며 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다.",
@@ -444,7 +445,8 @@
         "receive": "받기",
         "empty": "없음",
         "retrying": "다시 시도 중",
-        "yesterday": "어제"
+        "yesterday": "어제",
+        "promotingAnotherBundle": "다른 번들 프로모트중"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -452,7 +454,7 @@
         "editAccountName": "계정 이름 변경",
         "deleteAccount": "계정 삭제",
         "addNewAccount": "새 계정 추가",
-        "tools": "Tools"
+        "tools": "도구"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
@@ -486,6 +488,18 @@
         "theme": "테마",
         "mockup": "예시"
     },
+    "themes": {
+        "classic": "클래식",
+        "contemporary": "현대",
+        "dark": "블랙",
+        "default": "기본",
+        "electric": "전기",
+        "ionic": "아이오닉",
+        "light": "화이트",
+        "lucky": "행운",
+        "mint": "민트",
+        "steelblue": "스틸블루"
+    },
     "currencySelection": {
         "currency": "통화"
     },
@@ -509,9 +523,9 @@
         "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>정말로 다음 계정을 삭제하시겠습니까? </1><2></2><3>{{accountName}}</3>",
+        "areYouSure": "정말 계정을 삭제하시겠습니까?",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
-        "thisAction": "이 작업은 되돌릴 수 없습니다.",
+        "thisAction": "이 작업은 취소할 수 없습니다",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
     },
     "manualSync": {
@@ -530,7 +544,10 @@
     "viewSeed": {
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
         "viewSeed": "시드 보기",
-        "hideSeed": "시드 숨기기"
+        "hideSeed": "시드 숨기기",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "시드를 저장하셨나요?",
@@ -584,19 +601,27 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedValut 내보내기",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password.",
+        "seedVaultExplanation": "SeedVault는 시드를 안전하게 저장하도록 암호화된 파일입니다. 시드는 SeedVault 키를 이용하여 암호화되고, 이 키 없이는 시드에 접근할 수 없습니다.",
         "seedVaultWarning": "여러 위치(예: 하드 드라이브, 클라우드, USB)에 이 파일을 백업하십시오. 이 파일을 잃어버리고 별도로 시드를 보관하지 않은 경우 IOTA를 잃게 됩니다.",
         "exportFail": "SeedVault 내보내기 실패",
         "exportFailExplanation": "SeedVault를 내보내는 도중 문제가 발생하였습니다. 적절한 권한과 충분한 저장 공간이 있는지 다시 확인하세요.",
         "exportSuccess": "SeedVault 내보냄",
         "exportSuccessExplanation": "암호화된 시드 파일을 내보내는 데 성공했습니다.",
+        "unrecognisedKey": "SeedVault 키를 찾을 수 없음",
+        "unrecognisedKeyExplanation": "SeedVault 키가 잘못된 것 같습니다. 다시 시도해주세요.",
+        "emptyKey": "SeedVault 키가 입력되지 않음",
+        "emptyKeyExplanation": "SeedVault 키를 입력해야 합니다. 다시 시도해 주세요.",
+        "importSuccess": "시드 가져옴",
+        "importSuccessExplanation": "시드를 성공적으로 가져왔습니다.",
+        "saveToDownloadFolder": "다운로드 폴더에 저장",
         "importSeedVault": "SeedValut 가져오기",
-        "dropSeedVaultHere": "SeedVault를 여기에 끌어다 놓으세요",
-        "enterPasswordExplanation": "SeedVault를 열기 위해 비밀번호를 입력하세요",
+        "dropSeedVaultHere": "SeedVault 끌어다 놓기 <1></1> 또는 여기를 눌러 찾아보기",
+        "enterKeyExplanation": "SeedVault를 열기 위해 키를 입력하세요",
         "noSeedFound": "SeedVault 내 유효한 시드 없음",
         "noSeedFoundExplanation": "SeedVault가 비어있거나 시드가 유효하지 않은 형식으로 저장되어 있습니다.",
         "seedFileError": "SeedVault 열기 실패함",
-        "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다."
+        "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다.",
+        "seedVaultKeyExplanation": "먼저 SeedVault를 암호화하여야 합니다. 파일을 암호화하는 데 사용할 SeedVault 키를 입력해 주세요. 이 키가 있어야 SeedVault에서 시드를 꺼낼 수 있습니다. 트리니티에 사용하는 암호를 키로 사용하여도 됩니다."
     },
     "chart": {
         "mcap": "시가총액",
@@ -652,42 +677,91 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
-        "errorRetrievingUpdateDataExplanation": "업데이트 데이터를 받아오는 중 오류가 발생하였습니다. 다시 시도해 주세요.",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "새 버전 이용 가능",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "downloadRelease": "새 버전 다운로드",
-        "skipUpdate": "업데이트 건너뛰기"
+        "installUpdate": "업데이트를 설치하고 다시 시작",
+        "installUpdateExplanation": "다운로드가 완료되었습니다. 트리니티를 재시작하여 업데이트를 설치합니다.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "오류 로그"
     },
     "terms": {
         "termsAndConditions": "이용 약관",
         "accept": "동의합니다",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "전체 내용을 읽어 주세요"
     },
     "privacyPolicy": {
         "privacyPolicy": "개인정보 정책",
         "agree": "동의합니다"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "알림 아이콘",
+        "trayExplanation": "계정 잔고 및 최근 거래 내역에 대한 개요를 보여줍니다.",
+        "notLoggedIn": "로그인하지 않았습니다",
+        "setupIncomplete": "지갑 설정이 완료되지 않음",
+        "completeSetup": "설정 완료"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "알림",
+        "notificationExplanation": "새로운 거래에 대한 시스템 알림을 받습니다.",
+        "typeConfirmations": "거래 확인 알림",
+        "typeMessages": "0i 거래 알림",
+        "multipleTx": "계정 {{account}}에 여러 거래를 받는 중",
+        "valueTx": "계정 {{account}}에 {{value}}를 받는 중",
+        "messageTx": "계정 {{account}}에 메시지를 받았습니다",
+        "confirmedIn": "계정 {{account}}로 {{value}}를 받는 거래가 성공적으로 확인되었습니다",
+        "confirmedOut": "계정 {{account}}에서 {{value}}를 보내는 거래가 성공적으로 확인되었습니다"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "잔액 잠금 해제 성공",
+        "sweepSucceededExplanation": "잠긴 자금이 성공적으로 새 주소로 이동되었습니다. 해당 거래를 프로모트해서 거래가 더 빨리 확인되도록 할 수 있습니다.",
+        "sweepError": "잔액 잠금 해제 실패",
+        "sweepErrorExplanation": "잠긴 자금을 해제하려는 중 문제가 발생하였습니다. 다시 시도해 보세요.",
+        "warningTitle": "경고: 잠긴 자금이 있음",
+        "explanation": "트리니티 데스크톱 버전 0.3.4에서 일시적으로 잔액이 잠기는 문제가 있었습니다. 버전 0.3.4를 이용해서 거래를 수행한 소수의 사용자들의 경우 영향을 받았을 수 있습니다.",
+        "explanationAccounts": "{{accounts}} 계정에서 잠긴 잔액이 확인되었습니다. 이제 새 주소로 잔액을 옮겨 이 잔액을 복구할 것입니다.",
+        "proceed": "복구 진행",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

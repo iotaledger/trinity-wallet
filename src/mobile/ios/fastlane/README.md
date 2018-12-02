@@ -25,9 +25,9 @@ fastlane build_release
 fastlane screenshots
 ```
 
-### refresh_dsyms
+### upload_dsyms
 ```
-fastlane refresh_dsyms
+fastlane upload_dsyms
 ```
 
 ### release
@@ -43,6 +43,16 @@ fastlane deploy
 ### localization
 ```
 fastlane localization
+```
+
+### clean_testers_dry_run
+```
+fastlane clean_testers_dry_run
+```
+
+### clean_testers
+```
+fastlane clean_testers
 ```
 
 

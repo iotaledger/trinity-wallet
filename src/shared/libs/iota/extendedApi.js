@@ -1,5 +1,4 @@
 import head from 'lodash/head';
-import isNull from 'lodash/isNull';
 import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -283,10 +282,10 @@ const wereAddressesSpentFromAsync = (provider) => (addresses) =>
  * @param {*} [provider]
  * @param {function} [powFn]
  *
- * @returns {function(string, array, function, *, number, number): Promise<array>}
+ * @returns {function(object, array, function, *, number, number): Promise<array>}
  */
 const sendTransferAsync = (provider, powFn) => (
-    seed,
+    seedStore,
     transfers,
     options = null,
     depth = DEFAULT_DEPTH,
@@ -297,7 +296,8 @@ const sendTransferAsync = (provider, powFn) => (
         transactionObjects: [],
     };
 
-    return prepareTransfersAsync(provider)(seed, transfers, options)
+    return seedStore
+        .prepareTransfers(transfers, options)
         .then((trytes) => {
             cached.trytes = trytes;
 
@@ -347,7 +347,7 @@ const getTransactionsToApproveAsync = (provider) => (reference = {}, depth = DEF
  *
  * @returns {function(string, array, *): Promise<any>}
  */
-const prepareTransfersAsync = (provider) => (seed, transfers, options = null) => {
+export const prepareTransfersAsync = (provider) => (seed, transfers, options = null) => {
     // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
     let args = [seed, transfers];
 
@@ -540,54 +540,6 @@ const isNodeSynced = (provider) => {
 };
 
 /**
- * Generates single address for provided index and security
- *
- * @method generateAddressAsync
- *
- * @param {string} seed
- * @param {number} index
- * @param {number} security
- * @param {function} addressGenFn
- *
- * @returns {Promise}
- */
-const generateAddressAsync = (seed, index, security, addressGenFn = null) => {
-    if (isNull(addressGenFn)) {
-        return Promise.resolve(iota.api._newAddress(seed, index, security, false));
-    }
-
-    return addressGenFn(seed, index, security);
-};
-
-/**
- * Generates bulk addresses
- *
- * @method generateAddressesAsync
- *
- * @param {string} seed
- * @param {object} options { index, security, total }
- * @param {function} addressesGenFn
- *
- * @returns {Promise}
- */
-const generateAddressesAsync = (seed, options, addressesGenFn = null) => {
-    const { index, security, total } = options;
-    if (isNull(addressesGenFn)) {
-        return new Promise((resolve, reject) => {
-            iota.api.getNewAddress(seed, { index, security, total }, (err, addresses) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(addresses);
-                }
-            });
-        });
-    }
-
-    return addressesGenFn(seed, index, security, total);
-};
-
-/**
  * Extended version of iota.api.isPromotable.
  *
  * @method isPromotable
@@ -612,12 +564,9 @@ export {
     wereAddressesSpentFromAsync,
     sendTransferAsync,
     getTransactionsToApproveAsync,
-    prepareTransfersAsync,
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
     isNodeSynced,
-    generateAddressAsync,
-    generateAddressesAsync,
     isPromotable,
 };

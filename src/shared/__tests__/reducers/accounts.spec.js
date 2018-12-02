@@ -1,14 +1,16 @@
 import { expect } from 'chai';
-import reducer from '../../reducers/accounts';
+import reducer, { mergeAddressData } from '../../reducers/accounts';
 import * as actions from '../../actions/accounts';
 
 describe('Reducer: accounts', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
-                seedCount: 0,
-                accountNames: [],
-                firstUse: true,
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
                 onboardingComplete: false,
                 accountInfo: {},
                 failedBundleHashes: {},
@@ -18,6 +20,35 @@ describe('Reducer: accounts', () => {
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP', () => {
+        it('should assign payload to accountInfoDuringSetup prop in state', () => {
+            const initialState = {
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
+            };
+
+            const action = actions.setAccountInfoDuringSetup({
+                name: 'bar',
+                meta: { foo: '' },
+                usedExistingSeed: true,
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfoDuringSetup: {
+                    name: 'bar',
+                    meta: { foo: '' },
+                    usedExistingSeed: true,
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
         });
     });
 
@@ -172,24 +203,6 @@ describe('Reducer: accounts', () => {
             expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
-        it('should update account name in "accountNames" state prop', () => {
-            const initialState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            const action = actions.changeAccountName({
-                oldAccountName: 'foo',
-                newAccountName: 'bar',
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['bar', 'baz'],
-            };
-
-            expect(newState.accountNames).to.eql(expectedState.accountNames);
-        });
-
         it('should update account prop for each tail transaction with new account name in "unconfirmedBundleTails" state prop', () => {
             const initialState = {
                 unconfirmedBundleTails: {
@@ -278,36 +291,6 @@ describe('Reducer: accounts', () => {
             expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
-        it('should remove payload from accountNames array', () => {
-            const initialState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            const action = actions.removeAccount('foo');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['baz'],
-            };
-
-            expect(newState.accountNames).to.eql(expectedState.accountNames);
-        });
-
-        it('should subtract one from seedCount', () => {
-            const initialState = {
-                seedCount: 1,
-            };
-
-            const action = actions.removeAccount('foo');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 0,
-            };
-
-            expect(newState.seedCount).to.eql(expectedState.seedCount);
-        });
-
         it('should omit all keys from "unconfirmedBundleTails" that have any "account" prop equal to "payload" prop in action', () => {
             const initialState = {
                 unconfirmedBundleTails: {
@@ -330,23 +313,6 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('SET_FIRST_USE', () => {
-        it('should set firstUse to payload', () => {
-            const initialState = {
-                firstUse: false,
-            };
-
-            const action = actions.setFirstUse(true);
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                firstUse: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     describe('SET_ONBOARDING_COMPLETE', () => {
         it('should set onboardingComplete to payload', () => {
             const initialState = {
@@ -360,41 +326,6 @@ describe('Reducer: accounts', () => {
                 onboardingComplete: true,
             };
 
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('INCREASE_SEED_COUNT', () => {
-        it('should increment seedCount by one', () => {
-            const initialState = {
-                seedCount: 4,
-            };
-
-            const action = actions.increaseSeedCount();
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 5,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('ADD_SEED_NAME', () => {
-        it('should concat accountName to list of accountNames in state', () => {
-            const initialState = {
-                accountNames: ['foo'],
-            };
-
-            const action = actions.addAccountName('baz');
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountNames: ['foo', 'baz'],
-            };
-
-            expect(newState).to.not.eql(['baz', 'foo']);
             expect(newState).to.eql(expectedState);
         });
     });
@@ -525,13 +456,13 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
             const initialState = {
                 unconfirmedBundleTails: { foo: {} },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
+            const action = actions.fullAccountInfoFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -546,16 +477,17 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         addresses: { foo: {} },
-                        transfers: [],
+                        transfers: {},
                         balance: 0,
                     },
                 },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
+                accountMeta: { type: 'bar' },
+                addresses: { foo: {}, baz: {} },
+                transfers: {},
                 balance: 100,
                 hashes: [],
             });
@@ -564,8 +496,9 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         addresses: { foo: {}, baz: {} },
-                        transfers: [{}],
+                        transfers: {},
                         balance: 100,
                         hashes: [],
                     },
@@ -575,21 +508,23 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set transfers and balance in payload to accountName in accountInfo', () => {
+        it('should assign transfers and set balance in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         addresses: { foo: {} },
-                        transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 20 }, baz: { value: 0 } },
                         balance: 0,
                     },
                 },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [[{}, {}], [{}, {}]],
+                accountMeta: { type: 'bar' },
+                addresses: { foo: {}, baz: {} },
+                transfers: { foo: { value: 0 } },
                 balance: 100,
                 hashes: [],
             });
@@ -598,8 +533,9 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         addresses: { foo: {}, baz: {} },
-                        transfers: [[{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
                         hashes: [],
                     },
@@ -613,6 +549,7 @@ describe('Reducer: accounts', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -621,17 +558,20 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountMeta: { type: 'bar' },
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
+                addresses: {},
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -643,40 +583,48 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set firstUse in state to false', () => {
+        it('should reset accountInfoDuringSetup to default state', () => {
             const initialState = {
-                firstUse: true,
+                accountInfoDuringSetup: {
+                    name: 'foo',
+                    meta: { bar: {} },
+                    usedExistingSeed: true,
+                },
             };
 
-            const action = actions.fullAccountInfoFirstSeedFetchSuccess({ accountName: 'foo' }); // Would break if accountName is missing
+            const action = actions.fullAccountInfoFetchSuccess({});
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                firstUse: false,
+                accountInfoDuringSetup: {
+                    name: '',
+                    meta: {},
+                    usedExistingSeed: false,
+                },
             };
 
-            expect(newState.firstUse).to.eql(expectedState.firstUse);
+            expect(newState.accountInfoDuringSetup).to.eql(expectedState.accountInfoDuringSetup);
         });
     });
 
-    describe('FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS', () => {
+    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should merge addresses in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         addresses: { foo: {} },
-                        transfers: [],
+                        transfers: {},
                         balance: 0,
                     },
                 },
-                accountNames: [],
-                seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
+                accountMeta: { type: 'bar' },
+                addresses: { foo: {}, baz: {} },
+                transfers: {},
                 balance: 100,
                 hashes: [],
             });
@@ -685,36 +633,35 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         addresses: { foo: {}, baz: {} },
-                        transfers: [{}],
+                        transfers: {},
                         balance: 100,
                         hashes: [],
                     },
                 },
-                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should set transfers and balance in payload to accountName in accountInfo', () => {
+        it('should assign transfers and set balance in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
                     foo: {
                         hashes: [],
                         addresses: { foo: {} },
-                        transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 20 }, baz: { value: 0 } },
                         balance: 0,
                     },
                 },
-                accountNames: [],
-                seedCount: 0,
             };
 
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [[{}, {}], [{}, {}]],
+                accountMeta: { type: 'bar' },
+                addresses: { foo: {}, baz: {} },
+                transfers: { foo: { value: 0 } },
                 balance: 100,
                 hashes: [],
             });
@@ -723,13 +670,13 @@ describe('Reducer: accounts', () => {
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         hashes: [],
                         addresses: { foo: {}, baz: {} },
-                        transfers: [[{}, {}], [{}, {}]],
+                        transfers: { foo: { value: 0 }, baz: { value: 0 } },
                         balance: 100,
                     },
                 },
-                accountNames: [],
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
@@ -747,17 +694,20 @@ describe('Reducer: accounts', () => {
                 },
             };
 
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
+            const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountMeta: { type: 'bar' },
                 hashes: ['baz', 'bar'],
                 transfers: {},
                 balance: 0,
+                addresses: {},
             });
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 accountInfo: {
                     foo: {
+                        meta: { type: 'bar' },
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -767,51 +717,6 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
-        });
-
-        it('should increment seedCount by one', () => {
-            const initialState = {
-                seedCount: 1,
-                accountNames: [],
-            };
-
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
-                accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 2,
-                accountNames: [],
-            };
-
-            expect(newState.seedCount).to.eql(expectedState.seedCount);
-        });
-
-        it('should concat accountName to accountNames', () => {
-            const initialState = {
-                seedCount: 1,
-                accountNames: ['foo'],
-            };
-
-            const action = actions.fullAccountInfoAdditionalSeedFetchSuccess({
-                accountName: 'foo',
-                addresses: { baz: {} },
-                transfers: [{}],
-                balance: 100,
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seedCount: 1,
-                accountNames: ['foo', 'baz'],
-            };
-
-            expect(newState.accountNames).to.not.eql(['baz', 'foo']);
-            expect(newState.accountNames).to.not.eql(expectedState.accountNames);
         });
     });
 
@@ -971,6 +876,200 @@ describe('Reducer: accounts', () => {
         });
     });
 
+    describe('IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO', () => {
+        it('should remove all existing bundle hashes for account in "unconfirmedBundleTails"', () => {
+            const initialState = {
+                unconfirmedBundleTails: {
+                    AAA: [{ account: 'foo' }],
+                    BBB: [{ account: 'baz' }],
+                    CCC: [{ account: 'foo' }, { account: 'baz' }],
+                    DDD: [{ account: 'bar' }],
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName: 'foo',
+                    unconfirmedBundleTails: {
+                        BBB: [{ account: 'baz' }],
+                        CCC: [{ account: 'foo' }, { account: 'foo' }],
+                    },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                unconfirmedBundleTails: {
+                    BBB: [{ account: 'baz' }],
+                    CCC: [{ account: 'foo' }, { account: 'foo' }],
+                    DDD: [{ account: 'bar' }],
+                },
+            };
+
+            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+        });
+
+        it('should override addresses', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: { AAA: {} },
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    addresses: { BBB: {} },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: { BBB: {} },
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].addresses).to.eql(
+                expectedState.accountInfo[accountName].addresses,
+            );
+        });
+
+        it('should preserve local spend statuses', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: {
+                            AAA: { spent: { local: true, remote: true } },
+                            BBB: { spent: { local: true, remote: true } },
+                        },
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    addresses: { BBB: { spent: { local: false, remote: false } } },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        addresses: { BBB: { spent: { local: true, remote: false } } },
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].addresses).to.eql(
+                expectedState.accountInfo[accountName].addresses,
+            );
+        });
+
+        it('should override transfers', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        transfers: {},
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    transfers: { ['9'.repeat(81)]: {} },
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        transfers: { ['9'.repeat(81)]: {} },
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].transfers).to.eql(
+                expectedState.accountInfo[accountName].transfers,
+            );
+        });
+
+        it('should override balance', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        balance: 100,
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    balance: 99,
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        balance: 99,
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].balance).to.eql(expectedState.accountInfo[accountName].balance);
+        });
+
+        it('should override hashes', () => {
+            const accountName = 'foo';
+            const initialState = {
+                accountInfo: {
+                    [accountName]: {
+                        hashes: ['U'.repeat(81), 'Z'.repeat(81)],
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+                payload: {
+                    accountName,
+                    hashes: [{}, {}, {}],
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    [accountName]: {
+                        hashes: [{}, {}, {}],
+                    },
+                },
+            };
+
+            expect(newState.accountInfo[accountName].hashes).to.eql(expectedState.accountInfo[accountName].hashes);
+        });
+    });
+
     [
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
@@ -984,9 +1083,10 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         dummy: {
+                            meta: { type: 'bar' },
                             balance: 0,
                             addresses: { foo: {} },
-                            transfers: [],
+                            transfers: {},
                         },
                     },
                 };
@@ -996,8 +1096,8 @@ describe('Reducer: accounts', () => {
                     payload: {
                         balance: 0,
                         accountName: 'dummy',
-                        addresses: { baz: {} },
-                        transfers: [],
+                        addresses: { foo: {}, baz: {} },
+                        transfers: {},
                         hashes: [],
                     },
                 };
@@ -1006,9 +1106,10 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         dummy: {
+                            meta: { type: 'bar' },
                             balance: 0,
                             addresses: { foo: {}, baz: {} },
-                            transfers: [],
+                            transfers: {},
                             hashes: [],
                         },
                     },
@@ -1017,12 +1118,13 @@ describe('Reducer: accounts', () => {
                 expect(newState.accountInfo).to.eql(expectedState.accountInfo);
             });
 
-            it('should set transfers in payload to accountName in accountInfo', () => {
+            it('should assign transfers in payload to accountName in accountInfo', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
+                            meta: { type: 'bar' },
                             balance: 0,
-                            transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                            transfers: { foo: { value: 20 } },
                         },
                     },
                 };
@@ -1032,7 +1134,7 @@ describe('Reducer: accounts', () => {
                     type: actionType,
                     payload: {
                         accountName,
-                        transfers: [[{}, {}], [{}, {}]],
+                        transfers: { baz: { value: 0 } },
                         hashes: [],
                     },
                 };
@@ -1041,8 +1143,9 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         foo: {
+                            meta: { type: 'bar' },
                             balance: 0,
-                            transfers: [[{}, {}], [{}, {}]],
+                            transfers: { baz: { value: 0 }, foo: { value: 20 } },
                             hashes: [],
                         },
                     },
@@ -1057,6 +1160,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         foo: {
+                            meta: { type: 'bar' },
                             balance: 0,
                             transfers: [],
                             hashes: ['baz'],
@@ -1078,6 +1182,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         foo: {
+                            meta: { type: 'bar' },
                             balance: 0,
                             transfers: [],
                             hashes: ['bar'],
@@ -1108,6 +1213,49 @@ describe('Reducer: accounts', () => {
                 };
 
                 expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+            });
+        });
+    });
+
+    describe('#mergeAddressData', () => {
+        describe('when address in new address data is part of existing address data', () => {
+            describe('when address local spend status is true', () => {
+                it('should not reassign local spend status', () => {
+                    const result = mergeAddressData(
+                        { foo: { spent: { local: true, remote: true } } },
+                        { foo: { spent: { local: undefined, remote: null } } },
+                    );
+
+                    expect(result).to.eql({ foo: { spent: { local: true, remote: null } } });
+                });
+            });
+
+            describe('when address local spend status is false', () => {
+                it('should reassign local spend status', () => {
+                    const result = mergeAddressData(
+                        { foo: { spent: { local: false, remote: true } } },
+                        { foo: { spent: { local: true, remote: null } } },
+                    );
+
+                    expect(result).to.eql({ foo: { spent: { local: true, remote: null } } });
+                });
+            });
+        });
+
+        describe('when address in new address data is not part of existing address data', () => {
+            it('should not reassign any prop', () => {
+                const result = mergeAddressData(
+                    { foo: { spent: { local: true, remote: true } } },
+                    {
+                        baz: { spent: { local: undefined, remote: null } },
+                        foo: { spent: { local: true, remote: true } },
+                    },
+                );
+
+                expect(result).to.eql({
+                    baz: { spent: { local: undefined, remote: null } },
+                    foo: { spent: { local: true, remote: true } },
+                });
             });
         });
     });

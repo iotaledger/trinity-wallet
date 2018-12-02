@@ -1,12 +1,37 @@
 # Trinity Mobile Changelog
 
+## v0.5.0 (22)
+
+### Additions
+- New Crowdin translations (#335, #354, #363, #367)
+- Adds SeedVault import and Export (#327)
+- Add checksum component to CustomTextInput (#327)
+- Updates to Argon2 password hashing (#210, #215, #327)
+
+### Fixes and Improvements
+- Compute correct transaction value for exchange/field bundles (#343)
+- Ensure react-native-view-shot saves to internal cache (#344)
+- Fallback to default transaction message if message contains non-ascii characters - fix garbled messages in transaction history (#351)
+- Fix Android account name cut-off (#358)
+- Fix chart cut-off on Android (#358)
+- Fix text input keyboard avoidance issues (#358)
+- Refactors various code areas (#327)
+- Fixes hacky navigation workaround (#327)
+- Fixes double modal bug (#327)
+- Fixes terms/privacy being hidden by buttons (#327)
+- Ensures first loading animation completes before login (#327)
+- Update build settings to only support 64 bit iOS devices (#327)
+- Remove all references to iota-wallet-shared-modules (#369)
+- Fix send max button (#370)
+- Promotion adjustments (#368)
+
 ## v0.4.1 (17)
 ### Additions
 - Add more translations
 - Add timeouts for API calls made to nodes
 - Replace SHA256 password hashing with Scrypt - A password change is enforced on app load
 
-### Fixes and improvements
+### Fixes and Improvements
 - Major refactoring
 - Remove unused and duplicate translation strings
 - Improve handling of input selection errors

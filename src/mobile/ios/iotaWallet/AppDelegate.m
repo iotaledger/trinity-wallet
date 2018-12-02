@@ -8,23 +8,21 @@
  */
 
 #import "AppDelegate.h"
-#import "SplashScreen.h"
+#import "RNSplashScreen.h"
 #import <BugsnagReactNative/BugsnagReactNative.h>
 
 
 
 #import <React/RCTBundleURLProvider.h>
-#import "RCCManager.h"
+#import <ReactNativeNavigation/ReactNativeNavigation.h>
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-  return [RCTLinkingManager application:application openURL:url
-                      sourceApplication:sourceApplication annotation:annotation];
+  return [RCTLinkingManager application:application openURL:url options:options];
 }
 
 // Only if your app is using [Universal Links](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html).
@@ -37,16 +35,14 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSURL *jsCodeLocation;
+  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
-  [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
   [BugsnagReactNative start];
   [self excludeManifestFromBackup];
-  [SplashScreen show];
+  [RNSplashScreen show];
   return YES;
 }
 
@@ -58,7 +54,7 @@
   NSString * manifestPath = [self getManifestPath];
   if ([fileManager fileExistsAtPath:manifestPath]) {
     NSURL* manifestURL= [NSURL fileURLWithPath: manifestPath];
-    
+
     NSError *error = nil;
     BOOL success = [manifestURL setResourceValue: @(YES)
                                           forKey: NSURLIsExcludedFromBackupKey error: &error];

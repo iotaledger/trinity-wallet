@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { withI18n, Trans } from 'react-i18next';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -43,7 +43,9 @@ class SeedSave extends PureComponent {
                     <h1>{t('saveYourSeed:saveYourSeed')}</h1>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <p>
-                            You must save your seed with <strong>at least one</strong> of the options listed below.
+                            <span>You must save your seed with </span>
+                            <strong>at least one</strong>
+                            <span> of the options listed below.</span>
                         </p>
                     </Trans>
                     <nav className={css.choice}>
@@ -102,7 +104,7 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboardingName: state.ui.onboarding.name,
+    onboardingName: state.accounts.accountInfoDuringSetup.name,
 });
 
-export default connect(mapStateToProps)(translate()(SeedSave));
+export default connect(mapStateToProps)(withI18n()(SeedSave));

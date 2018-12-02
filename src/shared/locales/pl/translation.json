@@ -19,6 +19,7 @@
         "invalidResponse": "Błąd serwera",
         "invalidResponseExplanation": "Serwer zwrócił błąd. Spróbuj zmienić serwer.",
         "invalidResponseFetchingAccount": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer.",
+        "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
@@ -34,6 +35,7 @@
         "save": "Zapisz",
         "close": "Zamknij",
         "export": "Eksportuj",
+        "help": "Pomoc",
         "import": "Importuj",
         "continue": "Kontynuuj",
         "enable": "Włącz",
@@ -44,22 +46,19 @@
         "paperWallet": "Wydrukuj kopię papierową",
         "addToPasswordManager": "Dodaj do menedżera haseł",
         "shareSeed": "Udostępnij seed",
+        "share": "Udostępnij",
         "proceed": "Kontynuuj",
         "qr": "Kod QR",
         "enterSeed": "Proszę wpisz swój seed.",
-        "mainWallet": "KONTO GŁÓWNE",
-        "secondWallet": "DRUGIE KONTO",
-        "thirdWallet": "TRZECIE KONTO",
-        "fourthWallet": "CZWARTE KONTO",
-        "fifthWallet": "PIĄTE KONTO",
-        "sixthWallet": "SZÓSTE KONTO",
-        "otherWallet": "INNE KONTO",
         "yes": "Tak",
         "no": "Nie",
         "okay": "Okej",
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
+        "unrecognisedAccount": "Nierozpoznane konto",
+        "unrecognisedAccountExplanation": "Konto o nazwie {{accountName}} nie zostało rozpoznane. Rozważ reset swojego portfela.",
+        "emptyPasswordExplanation": "Należy wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "capsLockIsOn": "Caps Lock jest włączony",
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
@@ -110,7 +109,6 @@
         "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków.",
         "checkForUpdates": "Sprawdź aktualizacje",
         "account": "Konto",
-        "enterYourPassword": "Wprowadź swoje hasło",
         "changeNode": "Zmień serwer",
         "addCustomNode": "Dodaj serwer",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
@@ -145,7 +143,15 @@
         "problemPerformingProofOfWork": "Wystąpił problem podczas wykonywania Proof of Work.",
         "tryingAgainWithLocalPoW": "Ponawianie próby przy użyciu lokalnego trybu PoW.",
         "tryingAgainWithDifferentNode": "Ponawianie próby przy użyciu innego serwera.",
-        "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie."
+        "errorFetchingAccountInformation": "Błąd pobierania informacji o koncie.",
+        "errorSyncingAddresses": "Błąd synchronizacji informacji adresowych. Trwa ponawianie próby z użyciem innego serwera.",
+        "errorAccessingKeychain": "Błąd magazynu kluczy",
+        "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
+        "mainWallet": "KONTO GŁÓWNE",
+        "shouldUpdate": "Dostępna jest nowa aktualizacja",
+        "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
+        "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -179,8 +185,8 @@
         "confirmPassword": "Potwierdź nowe hasło",
         "passwordTooWeak": "Zbyt słabe hasło",
         "passwordTooWeakReason": "Hasło jest zbyt słabe. Użyj kombinacji słów oraz unikaj powszechnych zwrotów, imion lub dat.",
-        "reasonRow": "Proste rzędy klawiszy są łatwe do odgadnięcia.",
-        "reasonPattern": "Krótkie odstępy klawiszy są łatwe do odgadnięcia.",
+        "reasonRow": "Użycie prostych rzędów klawiszy jest łatwe do odgadnięcia.",
+        "reasonPattern": "Użycie klawiszy w krótkich odstępach jest łatwe do odgadnięcia.",
         "reasonNames": "Powszechne imiona i nazwiska są łatwe do odgadnięcia.",
         "reasonRepeats": "Powtórzenia takie jak 'aaa' są łatwe do odgadnięcia.",
         "reasonRepeats2": "Powtórzenia takie jak 'abcabcabc' są jedynie nieco trudniejsze do odgadnięcia niż 'abc'.",
@@ -204,19 +210,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed wyczyszczony",
-        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "seedCopied": "Seed skopiowany do schowka",
-        "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"GOTOWE\", lub po upływie 60 sekund.",
-        "copyToClipboard": "Kopiuj seed",
-        "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł",
-        "storeEncrypted": "Przechowuj swój seed zaszyfrowany w menedżerze haseł.",
-        "doNotOpen": "Nie otwieraj innych aplikacji podczas tego procesu.",
-        "tapConfirm": "Zaznacz poniższe pole, aby potwierdzić.",
-        "passwordManagerCheckbox": "Będę przechowywać mój seed w menedżerze haseł",
-        "copy": "KOPIUJ",
-        "noPasswordManagers": "Brak obsługiwanych menedżerów haseł",
-        "noPasswordManagersExplanation": "Na Twoim urządzeniu nie znaleziono obsługiwanych menedżerów haseł. Zainstaluj Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Jeśli chcesz przechowywać swój seed w menedżerze haseł, musisz wykonać samouczek z poniższego linku"
+        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa."
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -260,7 +254,10 @@
         "pressForNewSeed": "Generuj nowy klucz seed",
         "generateSuccess": "Klucz seed wygenerowany",
         "individualLetters": "Naciśnij na dane pola, aby wylosować je ponownie.",
-        "individualLetterCount": "Naciśnij {{letterCount}} więcej pojedynczych liter, aby je wylosować.",
+        "individualLetterCount": "Naciśnij jeszcze <1><0>{{count}}</0></1> literę, w celu jej wylosowania.",
+        "individualLetterCount_plural": "Naciśnij jeszcze <1><0>{{count}}</0></1> liter, w celu ich wylosowania.",
+        "randomiseCharsToContinue": "Wylosuj <1>{{count}}</1> znak, aby kontynuować.",
+        "randomiseCharsToContinue_plural": "Wylosuj <1>{{count}}</1> znaków, aby kontynuować.",
         "whatIsASeed": "Czym jest seed?"
     },
     "onboardingComplete": {
@@ -285,12 +282,15 @@
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "Nowy adres",
+        "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
-        "tag": "Tag"
+        "tag": "Tag",
+        "generateAnAddress": "Wygeneruj adres",
+        "generateAnAddressTitle": "Wygeneruj adres",
+        "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
@@ -316,7 +316,7 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
-        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
+        "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
         "clipboardWarning": "Nie kopiuj swojego klucza",
         "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
     },
@@ -356,7 +356,9 @@
         "advanced": "Zaawansowany",
         "standard": "Standardowy",
         "advancedModeExplanation": "Tryb zaawansowany włącza wyświetlanie bardziej szczegółowych informacji technicznych.",
-        "modesExplanation": "Aktywuj tryb zaawansowany jedynie, jeśli jesteś doświadczonym użytkownikiem IOTA. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
+        "modesExplanation": "Aktywuj tryb zaawansowany jedynie, jeśli jesteś doświadczonym użytkownikiem IOTA. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe.",
+        "modeUpdated": "Tryb zmieniony",
+        "modeUpdatedExplanation": "Zmieniłeś tryb na {{mode}}"
     },
     "settings": {
         "transferSending": "Wykonywanie transferu",
@@ -414,7 +416,6 @@
         "reset": "Resetuj"
     },
     "walletSetup": {
-        "creatingSeed": "Tworzenie klucza seed",
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouNeedASeed": "Czy chcesz utworzyć nowy seed?",
         "seedExplanation": "Seed IOTA jest głównym kluczem do Twoich funduszy. Składa się on z 81 znaków i może zawierać jedynie wielkie litery A-Z oraz cyfry 9.",
@@ -444,7 +445,8 @@
         "receive": "Odbierz",
         "empty": "Brak",
         "retrying": "Ponawianie",
-        "yesterday": "Wczoraj"
+        "yesterday": "Wczoraj",
+        "promotingAnotherBundle": "Promowanie innego pakietu"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -486,6 +488,18 @@
         "theme": "Motyw",
         "mockup": "Podgląd"
     },
+    "themes": {
+        "classic": "Klasyczny",
+        "contemporary": "Nowoczesny",
+        "dark": "Ciemny",
+        "default": "Domyślny",
+        "electric": "Elektryczny",
+        "ionic": "Joński",
+        "light": "Jasny",
+        "lucky": "Fortunny",
+        "mint": "Miętowy",
+        "steelblue": "Stalowy błękit"
+    },
     "currencySelection": {
         "currency": "Waluta"
     },
@@ -509,9 +523,9 @@
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Czy na pewno chcesz usunąć</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "Na pewno chcesz usunąć swoje konto?",
         "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
-        "thisAction": "Tej czynności nie można cofnąć.",
+        "thisAction": "Tej czynności nie można cofnąć",
         "enterPassword": "Wprowadź swoje hasło, aby usunąć to konto."
     },
     "manualSync": {
@@ -530,7 +544,10 @@
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
         "viewSeed": "Pokaż seed",
-        "hideSeed": "Ukryj seed"
+        "hideSeed": "Ukryj seed",
+        "notAvailable": "Eksport klucza seed nie jest dostępny dla tego rodzaju konta: {{accountType}}",
+        "accountIndex": "Indeks Twojego konta Ledger",
+        "accountPage": "Strona Twojego konta Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Czy zrobiłeś kopię swojego klucza?",
@@ -579,24 +596,32 @@
         "twoFADisabled": "Wyłączono 2FA",
         "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
         "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod",
+        "code": "Kod 2FA",
         "twoFaToken": "Kod 2FA"
     },
     "seedVault": {
         "exportSeedVault": "Eksportuj SeedVault",
         "seedVaultExplanation": "SeedVault to zaszyfrowany plik do bezpiecznego przechowywania Twojego klucza. Seed zostaje zaszyfrowany hasłem i nie jest dostępny bez jego podania.",
-        "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, USB). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
+        "seedVaultWarning": "Upewnij się, że utworzysz kopie zapasowe pliku SeedVault w wielu lokalizacjach (np. twardy dysk, chmura, pendrive). Jeśli utracisz ten plik, a nie zapisałeś swojego klucza seed w inny sposób, stracisz swoje środki IOTA.",
         "exportFail": "Błąd eksportu SeedVault",
         "exportFailExplanation": "Wystąpił problem podczas eksportowania pliku SeedVault. Upewnij się, że posiadasz odpowiednie uprawnienia i wystarczająco dużo wolnego miejsca na Twoim urządzeniu.",
         "exportSuccess": "Wyeksportowano SeedVault",
         "exportSuccessExplanation": "Zaszyfrowany klucz seed został pomyślnie wyeksportowany.",
+        "unrecognisedKey": "Nierozpoznane hasło pliku SeedVault",
+        "unrecognisedKeyExplanation": "Hasło nie zostało rozpoznane. Spróbuj ponownie.",
+        "emptyKey": "Nie wprowadzono hasła pliku SeedVault",
+        "emptyKeyExplanation": "Należy wprowadzić hasło. Spróbuj ponownie.",
+        "importSuccess": "Seed zaimportowany",
+        "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
+        "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
-        "dropSeedVaultHere": "Upuść plik SeedVault tutaj",
-        "enterPasswordExplanation": "Wprowadź swoje hasło, aby otworzyć plik SeedVault",
+        "dropSeedVaultHere": "Upuść plik SeedVault tutaj <1></1> lub kliknij, aby wyszukać ręcznie",
+        "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
-        "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony."
+        "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
+        "seedVaultKeyExplanation": "Najpierw musisz zabezpieczyć swój SeedVault hasłem. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej pliku SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
     },
     "chart": {
         "mcap": "Market",
@@ -640,7 +665,7 @@
         "detectedBalance": "Wykryte saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Czy jest ono poprawne?",
         "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzana jest tzw. migawka (snapshot).",
-        "hasSnapshotTakenPlace": "Czy snapshot został wykonany? Kliknij poniższy przycisk, aby rozpocząć aktualizację swoich środków.",
+        "hasSnapshotTakenPlace": "Jeśli snapshot został wykonany, kliknij poniższy przycisk, aby rozpocząć aktualizację swoich środków.",
         "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
         "generatingAndDetecting": "Generuję adresy oraz wykrywam saldo.",
@@ -652,13 +677,14 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
-        "errorRetrievingUpdateDataExplanation": "Wystąpił błąd podczas pobierania danych aktualizacji. Proszę spróbować ponownie.",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Masz zainstalowaną najnowszą wersję portfela Trinity.",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
-        "downloadRelease": "Pobierz aktualizację",
-        "skipUpdate": "Pomiń aktualizację"
+        "newVersionAvailableExplanation": "Dostępna jest nowa wersja portfela Trinity. Czy chcesz dokonać aktualizacji?",
+        "installUpdate": "Instalacja aktualizacji i restart",
+        "installUpdateExplanation": "Pobieranie zakończone. Trinity uruchomi się ponownie i zainstaluje aktualizację.",
+        "downloadingUpdate": "Pobieranie aktualizacji",
+        "downloadProgress": "Pobrano {{transferred}} z {{total}}"
     },
     "notificationLog": {
         "errorLog": "Dziennik błędów"
@@ -679,6 +705,10 @@
         "setupIncomplete": "Konfiguracja portfela niekompletna",
         "completeSetup": "Zakończ konfigurację"
     },
+    "proxy": {
+        "proxy": "Używaj systemowych ustawień proxy",
+        "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Zrestartuj portfel po zmianie tego ustawienia."
+    },
     "notifications": {
         "notifications": "Powiadomienia",
         "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
@@ -689,5 +719,49 @@
         "messageTx": "Otrzymano wiadomość na konto {{account}}",
         "confirmedIn": "Transakcja przychodząca {{value}} na konto {{account}} została potwierdzona",
         "confirmedOut": "Transakcja wychodząca {{value}} z konta {{account}} została potwierdzona"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Środki odblokowane pomyślnie",
+        "sweepSucceededExplanation": "Twoje środki zostały pomyślnie odblokowane i przeniesione na nowy adres. Promuj transakcje, aby pomóc w procesie ich potwierdzania.",
+        "sweepError": "Błąd odblokowania środków",
+        "sweepErrorExplanation": "Coś poszło nie tak podczas odblokowywania Twoich środków. Trwa ponawianie próby.",
+        "warningTitle": "Uwaga: Wykryto zablokowane środki",
+        "explanation": "Portfel Trinity Desktop w wersji 0.3.4 zawierał błąd, który mógł tymczasowo zablokować środki na koncie. Problem ten dotyczy niewielkiej liczby użytkowników, którzy wykonali transakcje na wersji 0.3.4 portfela.",
+        "explanationAccounts": "Zablokowane środki zostały wykryte na Twoich kontach: {{accounts}}. Trinity odzyska teraz Twoje środki, automatycznie przenosząc je na nowy adres.",
+        "proceed": "Przejdź do odzyskiwania",
+        "sweepConfirmation": "Masz zamiar przenieść {{amount}} na adres {{address}}. Konto: {{accountName}}, indeks adresu: {{index}}",
+        "sweepConfirmationTitle": "Potwierdzenie przenoszenia"
+    },
+    "ledger": {
+        "ready": "Urządzenie Ledger podłączone i gotowe do pracy",
+        "notReady": "Jeśli chcesz użyć portfela sprzętowego Ledger, podłącz go teraz, a następnie odblokuj",
+        "indexInUse": "Ten indeks jest już używany przez konto {{account}}",
+        "indexInUseExplanation": "Indeks, który wybrałeś, jest już używany na jednym z Twoich kont. Wybierz inny numer indeksu.",
+        "proceedWithLedger": "Kontynuuj konfigurację portfela Ledger",
+        "accountIndex": "Indeks konta",
+        "accountPage": "Strona konta",
+        "chooseAccountIndex": "Wybierz indeks Twojego konta Ledger",
+        "accountIndexExplanation": "Twoje urządzenie Ledger może przechowywać wiele kluczy seed. Każdy z kluczy, jest identyfikowany przez unikatowy numer indeksu. Nieużywany indeks został wstępnie wybrany, jednak możesz wybrać swój własny. Upewnij się, że zanotowałeś swój wybrany numer indeksu.",
+        "accountPageExplanation": "Niektóre portfele firm trzecich, wymagają użycia \"stron\".",
+        "connectionError": "Nie można połączyć się z portfelem Ledger",
+        "connectionErrorExplanation": "Upewnij się, że Twoje urządzenie jest podłączone i odblokowane.",
+        "connectionTitle": "Podłącz swój portfel Ledger",
+        "connectionExplanation": "Urządzenie Ledger musi być podłączone, aby wykonać tę operację.",
+        "transactionTitle": "Przewiń i zatwierdź transakcję w Twoim portfelu Ledger",
+        "transactionExplanation": "Użyj swojego urządzenia Ledger, aby zatwierdzić transakcję wychodzącą.",
+        "applicationTitle": "Uruchom aplikację IOTA na urządzeniu Ledger",
+        "applicationExplanation": "Uruchom aplikację IOTA na swoim portfelu sprzętowym Ledger, aby kontynuować korzystanie z Trinity.",
+        "cannotSendZeroValueTitle": "Nie można wysłać zerowej transakcji",
+        "cannotSendZeroValueExplanation": "Przy użyciu portfela Ledger, nie można wysyłać transakcji bez wartości.",
+        "ledgerDisconnectedTitle": "Portfel Ledger odłączony",
+        "ledgerDisconnectedExplanation": "Urządzenie Ledger zostało odłączone. Podłącz je oraz spróbuj ponownie.",
+        "ledgerDeniedTitle": "Odrzucenie transakcji",
+        "ledgerDeniedExplanation": "Transakcja nie została zaakceptowana na urządzeniu Ledger.",
+        "ledgerIncorrectIndex": "Niezgodne urządzenie Ledger",
+        "ledgerIncorrectIndexExplanation": "Podłączony portfel sprzętowy Ledger, nie pasuje do połączonego z tym kontem lub frazy odzyskiwania na urządzeniu, zostały zmienione.",
+        "checkAddress": "Sprawdź adres odbioru",
+        "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
+        "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
+        "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
     }
 }

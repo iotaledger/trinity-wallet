@@ -2,10 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { uniqueSeed } from 'libs/crypto';
+import SeedStore from 'libs/SeedStore';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -18,9 +18,9 @@ import SeedInput from 'ui/components/input/Seed';
 class SeedVerify extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        firstAccount: PropTypes.bool.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
+        additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -62,30 +62,24 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, firstAccount, password, generateAlert, t } = this.props;
+        const { wallet, additionalAccountName, history, generateAlert, t } = this.props;
         const { seed, isGenerated } = this.state;
 
         if (
             isGenerated &&
             (seed.length !== Electron.getOnboardingSeed().length ||
-                !Electron.getOnboardingSeed().every((v, i) => v % 27 === seed[i] % 27))
+                !Electron.getOnboardingSeed().every(
+                    (v, i) => v[0] === seed[i][0] && v[1] === seed[i][1] && v[2] === seed[i][2],
+                ))
         ) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
         }
 
-        if (password.length) {
-            const isUniqueSeed = await uniqueSeed(password, seed);
-            if (!isUniqueSeed) {
-                generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
-                return;
-            }
-        }
-
-        if (seed.length < MAX_SEED_LENGTH) {
+        if (seed.length !== MAX_SEED_LENGTH) {
             generateAlert(
                 'error',
-                t('enterSeed:seedTooShort'),
+                seed.length < MAX_SEED_LENGTH ? t('enterSeed:seedTooShort') : t('enterSeed:seedTooLong'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
             return;
@@ -95,7 +89,12 @@ class SeedVerify extends React.PureComponent {
             Electron.setOnboardingSeed(seed, false);
             history.push('/onboarding/account-name');
         } else {
-            if (!firstAccount) {
+            if (wallet.ready) {
+                const seedStore = await new SeedStore.keychain(wallet.password);
+                await seedStore.addAccount(additionalAccountName, Electron.getOnboardingSeed());
+
+                Electron.setOnboardingSeed(null);
+
                 history.push('/onboarding/login');
             } else {
                 history.push('/onboarding/account-password');
@@ -142,12 +141,12 @@ class SeedVerify extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    firstAccount: !state.wallet.ready,
-    password: state.wallet.password,
+    wallet: state.wallet,
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
 });
 
 const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(SeedVerify));

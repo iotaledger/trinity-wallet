@@ -19,6 +19,7 @@
         "invalidResponse": "Sõlme viga",
         "invalidResponseExplanation": "Sõlm tagastas tõrke. Proovige muuta sõlme.",
         "invalidResponseFetchingAccount": "Sõlm andis teie konto informatsiooni toomisel sobimatu vastuse. Proovige muud sõlme.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Sõlm on sünkroonist väljas",
         "nodeOutOfSyncExplanation": "Teie valitud sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
         "thisNodeOutOfSync": "See sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
@@ -34,6 +35,7 @@
         "save": "Salvesta",
         "close": "Sulge",
         "export": "Ekspordi",
+        "help": "Abi",
         "import": "Impordi",
         "continue": "Jätka",
         "enable": "Luba",
@@ -44,22 +46,19 @@
         "paperWallet": "Prindi paberkandjal",
         "addToPasswordManager": "Lisa paroolihaldurisse",
         "shareSeed": "Jaga seemet",
+        "share": "Jaga",
         "proceed": "Jätka",
         "qr": "QR",
         "enterSeed": "Palun sisestage oma seeme.",
-        "mainWallet": "PEAMINE KONTO",
-        "secondWallet": "TEINE KONTO",
-        "thirdWallet": "KOLMAS KONTO",
-        "fourthWallet": "NELJAS KONTO",
-        "fifthWallet": "VIIES KONTO",
-        "sixthWallet": "KUUES KONTO",
-        "otherWallet": "MUU KONTO",
         "yes": "Jah",
         "no": "Ei",
         "okay": "Okei",
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
         "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
+        "unrecognisedAccount": "Unrecognised account",
+        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "emptyPasswordExplanation": "Te peate sisestama parooli. Palun proovige uuesti.",
         "capsLockIsOn": "Caps Lock on sisse lülitatud",
         "syncInProgress": "Sünkroonimine on pooleli",
         "syncInProgressExplanation": "Palun oodake, kuni sünkroonimine on lõpule viidud.",
@@ -110,7 +109,6 @@
         "snapshotTransitionInProgressExplanation": "Palun oodake, kuni üleminek on lõpule viidud.",
         "checkForUpdates": "Otsi uuendusi",
         "account": "Konto",
-        "enterYourPassword": "Sisestage oma parool",
         "changeNode": "Muuda sõlme",
         "addCustomNode": "Lisa kohandatud sõlm",
         "nodeMustUseHTTPS": "Sobimatu sõlm (mitte-HTTPS)",
@@ -145,7 +143,15 @@
         "problemPerformingProofOfWork": "Töötõendi tegemisel tekkis probleem.",
         "tryingAgainWithLocalPoW": "Kohaliku töötõendiga uuesti proovimine.",
         "tryingAgainWithDifferentNode": "Uue sõlmega uuesti proovimine.",
-        "errorFetchingAccountInformation": "Konto teabe hankimisel tekkis viga."
+        "errorFetchingAccountInformation": "Konto teabe hankimisel tekkis viga.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorAccessingKeychain": "Keychain error",
+        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "mainWallet": "MAIN ACCOUNT",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -204,19 +210,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Lõikelaud puhastatud",
-        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud.",
-        "seedCopied": "Seeme kopeeritud lõikelauale",
-        "seedCopiedExplanation": "Seeme puhastatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
-        "copyToClipboard": "Kopeeri seeme",
-        "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
-        "storeEncrypted": "Varundage oma seeme krüptitud paroolihaldurisse.",
-        "doNotOpen": "Ärge avage ühtegi teist rakendust selle protsessi ajal.",
-        "tapConfirm": "Kinnitamiseks puudutage palun allpool olevat märkeruutu.",
-        "passwordManagerCheckbox": "Ma varundan oma seemne paroolihaldurisse",
-        "copy": "KOPEERI",
-        "noPasswordManagers": "Ühtegi toetatud paroolihaldurit pole installitud",
-        "noPasswordManagersExplanation": "Teie seadmes ei leitud ühtegi toetatud paroolihaldurit. Palun installige Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Kui soovite varundada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
+        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud."
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
@@ -260,7 +254,10 @@
         "pressForNewSeed": "Vajutage uue seemne saamiseks",
         "generateSuccess": "Seeme edukalt loodud",
         "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti.",
-        "individualLetterCount": "Vajutage {{letterCount}} rohkem individuaalseid tähti nende juhuslikuks saamiseks.",
+        "individualLetterCount": "Vajuta <1><0>{{count}}</0></1> tähemärki veel, et neid randomiseerida.",
+        "individualLetterCount_plural": "Vajuta <1><0>{{count}}</0></1> tähemärki veel, et neid randomiseerida.",
+        "randomiseCharsToContinue": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
+        "randomiseCharsToContinue_plural": "Jätkamiseks randomiseeri <1>{{count}}</1> tähemärki.",
         "whatIsASeed": "Mis on seeme?"
     },
     "onboardingComplete": {
@@ -285,18 +282,21 @@
         "copyAddress": "Kopeeri aadress",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Teie aadress on kopeeritud lõikelauale.",
-        "generateNewAddress": "Uus aadress",
+        "generateNewAddress": "Generate address",
         "noAddresses": "AADRESSE POLE",
         "spent": "Kulutatud",
         "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "QR-koodide jagamiseks on vaja failisüsteemi luba.",
-        "tag": "Silt"
+        "tag": "Silt",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Varunda oma seeme",
         "seedCleared": "Seeme puhastatud",
         "mostSecure": "Kõige turvalisem",
-        "recommended": "Recommended",
+        "recommended": "Soovitatav",
         "leastSecure": "Kõige ebaturvalisem",
         "paperWallet": "Paber rahakott",
         "writeYourSeedDown": "Kirjutage oma seeme üles",
@@ -356,7 +356,9 @@
         "advanced": "Ekspert",
         "standard": "Tavaline",
         "advancedModeExplanation": "Ekspert režiimis kuvatakse üksikasjalist tehnilist informatsiooni.",
-        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena."
+        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena.",
+        "modeUpdated": "Mode updated",
+        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
         "transferSending": "Toimub ülekanne",
@@ -414,7 +416,6 @@
         "reset": "Lähtesta"
     },
     "walletSetup": {
-        "creatingSeed": "Seemne loomine",
         "okay": "Okei. Seadistame teie rahakoti ära!",
         "doYouNeedASeed": "Kas te peate looma uue seemne?",
         "seedExplanation": "Teie IOTA seeme on teie rahaliste vahendite peamine võti. See on 81 tähemärki pikk, kasutades ainult tähti A-Z või numbrit 9.",
@@ -444,7 +445,8 @@
         "receive": "Võta vastu",
         "empty": "Tühi",
         "retrying": "Uuesti proovimine",
-        "yesterday": "Eile"
+        "yesterday": "Eile",
+        "promotingAnotherBundle": "Promoting another bundle"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -452,7 +454,7 @@
         "editAccountName": "Muuda konto nime",
         "deleteAccount": "Kustuta konto",
         "addNewAccount": "Lisa uus konto",
-        "tools": "Tools"
+        "tools": "Tööriistad"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",
@@ -486,6 +488,18 @@
         "theme": "Teema",
         "mockup": "Eelvaade"
     },
+    "themes": {
+        "classic": "Klassikaline",
+        "contemporary": "Kaasaegne",
+        "dark": "Tume",
+        "default": "Vaikimisi",
+        "electric": "Elektriline",
+        "ionic": "Joonia",
+        "light": "Hele",
+        "lucky": "Õnnelik",
+        "mint": "Piparmünt",
+        "steelblue": "Terassinine"
+    },
     "currencySelection": {
         "currency": "Valuuta"
     },
@@ -509,9 +523,9 @@
         "discordInformation": "Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha."
     },
     "deleteAccount": {
-        "areYouSure": "<0> </ 0> <1> Kas soovite kindlasti kustutada </ 1> <2> </ 2> <3> {{accountName}}? </ 3>",
+        "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
-        "thisAction": "Seda tegevust ei saa tagasi võtta.",
+        "thisAction": "This action cannot be undone",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
     "manualSync": {
@@ -530,7 +544,10 @@
     "viewSeed": {
         "enterPassword": "Seemne vaatamiseks sisestage oma parool.",
         "viewSeed": "Vaata seemet",
-        "hideSeed": "Peida seeme"
+        "hideSeed": "Peida seeme",
+        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "accountIndex": "Your Ledger account index",
+        "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Kas te varundasite oma seemne?",
@@ -583,20 +600,28 @@
         "twoFaToken": "2FA kood"
     },
     "seedVault": {
-        "exportSeedVault": "Eksportige seemnehoidla",
-        "seedVaultExplanation": "Seemnehoidla on krüptitud fail seemne turvalisena hoidmiseks. Seeme on krüptitud parooli taha ning sellele pole võimalik ilma paroolita ligi pääseda.",
+        "exportSeedVault": "Ekspordi seemnehoidla",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
         "exportSuccess": "Seemnehoidla eksporditud",
         "exportSuccessExplanation": "Krüptitud seemne faili eksporditimine õnnestus.",
+        "unrecognisedKey": "Unrecognised SeedVault Key",
+        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
+        "emptyKey": "No SeedVault Key entered",
+        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "importSuccess": "Seeme imporditud",
+        "importSuccessExplanation": "Teie seeme imporditi edukalt.",
+        "saveToDownloadFolder": "Salvesta allalaadimiste kausta",
         "importSeedVault": "Importige seemnehoidla",
-        "dropSeedVaultHere": "Lohistage seemenhoidla siia",
-        "enterPasswordExplanation": "Seemnehoidla avamiseks sisestage oma parool",
+        "dropSeedVaultHere": "Sisestage seemnehoidla siia <1></1> või vajutage sirvimiseks",
+        "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
-        "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud."
+        "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
     },
     "chart": {
         "mcap": "TURUKAPITAL",
@@ -652,13 +677,14 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
-        "errorRetrievingUpdateDataExplanation": "Värskendusteabe allalaadimisel ilmnes viga. Palun proovige uuesti.",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
         "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
         "newVersionAvailable": "Uus versioon saadaval",
         "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
-        "downloadRelease": "Laadige värskendus alla",
-        "skipUpdate": "Jätke värskendus vahele"
+        "installUpdate": "Installi värskendus ja taaskäivita",
+        "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks.",
+        "downloadingUpdate": "Downloading update",
+        "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
         "errorLog": "Veateadete logi"
@@ -679,6 +705,10 @@
         "setupIncomplete": "Rahakoti seadistus on mittetäielik",
         "completeSetup": "Lõpeta seadistus"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+    },
     "notifications": {
         "notifications": "Teated",
         "notificationExplanation": "Saage kogu süsteemi teateid uute tehingute kohta.",
@@ -689,5 +719,49 @@
         "messageTx": "Teile saabus sõnum {{account}}",
         "confirmedIn": "Sissetulev {{value}} kasutajale {{account}} on kinnitatud",
         "confirmedOut": "Väljaminev {{value}} kasutajalt {{account}} on kinnitanud"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepError": "Error unlocking funds",
+        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "warningTitle": "Warning: Locked funds detected",
+        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
+        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "proceed": "Proceed to Recovery",
+        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepConfirmationTitle": "Sweep confirmation"
+    },
+    "ledger": {
+        "ready": "Ledger device connected and ready",
+        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "indexInUse": "Index already in use for account {{account}}",
+        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
+        "proceedWithLedger": "Proceed with Ledger setup",
+        "accountIndex": "Account index",
+        "accountPage": "Account page",
+        "chooseAccountIndex": "Choose your Ledger account index",
+        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "accountPageExplanation": "Some third party wallets require pages.",
+        "connectionError": "Cannot connect to Ledger",
+        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
+        "connectionTitle": "Connect your Ledger",
+        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "applicationTitle": "Open Ledger IOTA app",
+        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
+        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "ledgerDisconnectedTitle": "Ledger device disconnected",
+        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDeniedTitle": "Transaction denied",
+        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerIncorrectIndex": "Ledger device mismatch",
+        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "checkAddress": "Check the receive address",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "applicationNotInitialised": "Warning unconfirmed",
+        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
 }

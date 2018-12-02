@@ -8,6 +8,7 @@ describe('Reducer: settings', () => {
     describe('initial state', () => {
         it('should have an initial state', () => {
             const initialState = {
+                completedByteTritSweep: false,
                 locale: 'en',
                 node: defaultNode,
                 nodes,
@@ -60,7 +61,6 @@ describe('Reducer: settings', () => {
                 versions: {},
                 is2FAEnabled: false,
                 isFingerprintEnabled: false,
-                hasVisitedSeedShareTutorial: false,
                 acceptedTerms: false,
                 acceptedPrivacy: false,
                 autoPromotion: true,
@@ -71,6 +71,7 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
+                ignoreProxy: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -371,23 +372,6 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe('SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS', () => {
-        it('should set hasVisitedSeedShareTutorial to payload', () => {
-            const initialState = {
-                hasVisitedSeedShareTutorial: false,
-            };
-
-            const action = actions.setSeedShareTutorialVisitationStatus(true);
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                hasVisitedSeedShareTutorial: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     describe('SET_TRAY', () => {
         it('should set isTrayEnabled to payload', () => {
             const initialState = {
@@ -424,6 +408,23 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_PROXY', () => {
+        it('should set ignoreProxy to payload', () => {
+            const initialState = {
+                ignoreProxy: false,
+            };
+
+            const action = actions.setProxy(true);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                ignoreProxy: true,
             };
 
             expect(newState).to.eql(expectedState);

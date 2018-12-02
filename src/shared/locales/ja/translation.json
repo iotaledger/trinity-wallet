@@ -19,6 +19,7 @@
         "invalidResponse": "ノードエラー",
         "invalidResponseExplanation": "ノードがエラーを返しました。 ノードを変更してみてください。",
         "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。 ノードを変更してみてください。",
+        "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
@@ -34,6 +35,7 @@
         "save": "保存",
         "close": "閉じる",
         "export": "書き出す",
+        "help": "ヘルプ",
         "import": "読み込む",
         "continue": "続ける",
         "enable": "有効",
@@ -44,22 +46,19 @@
         "paperWallet": "印刷する",
         "addToPasswordManager": "パスワードマネージャーに追加する",
         "shareSeed": "シードを共有",
+        "share": "共有",
         "proceed": "続ける",
         "qr": "QRコード",
         "enterSeed": "シードを入力してください。",
-        "mainWallet": "メインアカウント",
-        "secondWallet": "2番目のアカウント",
-        "thirdWallet": "3番目のアカウント",
-        "fourthWallet": "4番目のアカウント",
-        "fifthWallet": "5番目のアカウント",
-        "sixthWallet": "6番目のアカウント",
-        "otherWallet": "その他のアカウント",
         "yes": "はい",
         "no": "いいえ",
         "okay": "OK",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "unrecognisedAccount": "認識できないアカウントです",
+        "unrecognisedAccountExplanation": "アカウント名{{accountName}}を認識できませんでした。ウォレットのリセットを検討してみてください。",
+        "emptyPasswordExplanation": "パスワードを入力する必要があります。もう一度やり直してください。",
         "capsLockIsOn": "Caps Lock キーが有効になっています",
         "syncInProgress": "同期中",
         "syncInProgressExplanation": "同期が完了するまでお待ちください。",
@@ -110,7 +109,6 @@
         "snapshotTransitionInProgressExplanation": "移行が完了するまで少々お待ちください。",
         "checkForUpdates": "更新を確認",
         "account": "アカウント",
-        "enterYourPassword": "パスワードを入力してください。",
         "changeNode": "ノード変更",
         "addCustomNode": "カスタムノードの追加",
         "nodeMustUseHTTPS": "無効なノード (非HTTPS)",
@@ -145,7 +143,15 @@
         "problemPerformingProofOfWork": "プルーフ・オブ・ワークを実行中に問題が発生しました。",
         "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでやり直してください。",
         "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
-        "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。"
+        "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。",
+        "errorSyncingAddresses": "アドレス情報の同期中にエラーが発生しました。別のノードでもう一度試してみてください。",
+        "errorAccessingKeychain": "キーチェーンに関するエラー",
+        "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
+        "mainWallet": "メインアカウント",
+        "shouldUpdate": "新しいアップデートがあります",
+        "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
+        "forceUpdate": "続けるにはアプリをアップデートしてください",
+        "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -204,19 +210,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "シードを消去しました。",
-        "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
-        "seedCopied": "シードをクリップボードにコピーしました。",
-        "seedCopiedExplanation": "\"完了\"を押すか60秒後にはシードがクリップボードから消去されます。",
-        "copyToClipboard": "シードをコピー",
-        "shareSeed": "シードを安全なパスワードマネージャーで管理してください。",
-        "storeEncrypted": "シードは暗号化してパスワードマネージャーに保存してください。",
-        "doNotOpen": "シードを保存中にパスワードマネージャー以外のアプリを開かないでください。",
-        "tapConfirm": "確認するには、下のチェックボックスをタップしてください。",
-        "passwordManagerCheckbox": "私はシードをパスワードマネージャーに保存します。",
-        "copy": "コピー",
-        "noPasswordManagers": "サポートされているパスワードマネージャーがインストールされていません。",
-        "noPasswordManagersExplanation": "お使いのデバイスにサポートされているパスワードマネージャーが見つかりませんでした。 Keepass2Androidをインストールしてください。",
-        "followTutorialToSecurelyShareSeed": "シードをパスワードマネージャーに保存する場合は、次のリンクからチュートリアルを実行する必要があります。"
+        "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだシードです。",
@@ -260,7 +254,10 @@
         "pressForNewSeed": "新しいシードの元を生成",
         "generateSuccess": "シードは正常に生成されました。",
         "individualLetters": "文字をタップして更にランダムにしてください。",
-        "individualLetterCount": "シードをさらにランダムにするために、{{letterCount}}個以上の文字を押してください。",
+        "individualLetterCount": "シードをランダム化するために、<1><0>{{count}}</0></1>文字以上をタップしてください。",
+        "individualLetterCount_plural": "シードをランダム化するために、<1><0>{{count}}</0></1>文字以上をタップしてください。",
+        "randomiseCharsToContinue": "続けて<1>{{count}}</1>文字をランダム化してください。",
+        "randomiseCharsToContinue_plural": "続けて<1>{{count}}</1>文字をランダム化してください。",
         "whatIsASeed": "シードとは何か？"
     },
     "onboardingComplete": {
@@ -285,12 +282,15 @@
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "新しいアドレス",
+        "generateNewAddress": "アドレスを生成",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
         "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
-        "tag": "タグ"
+        "tag": "タグ",
+        "generateAnAddress": "アドレスを生成",
+        "generateAnAddressTitle": "アドレスを生成",
+        "generateAnAddressExplanation": "この機能を使用する前にアドレスを生成してください。"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
@@ -356,7 +356,9 @@
         "advanced": "上級",
         "standard": "標準",
         "advancedModeExplanation": "上級モードでは、より詳細な技術的情報が表示されます。",
-        "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "modesExplanation": "経験豊富なIOTAユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。",
+        "modeUpdated": "モード更新",
+        "modeUpdatedExplanation": "モード{{mode}}に変更しました"
     },
     "settings": {
         "transferSending": "送金中",
@@ -414,7 +416,6 @@
         "reset": "リセット"
     },
     "walletSetup": {
-        "creatingSeed": "シード作成",
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouNeedASeed": "新しいシードの作成は必要でしょうか？",
         "seedExplanation": "IOTAのシードはあなたの資金のマスターキーです。シードは81文字で、アルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。",
@@ -428,8 +429,8 @@
         "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>",
-        "scrollToBottom": "下までスクロール"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>３回チェック</1><2>を行ってください。</2>",
+        "scrollToBottom": "下までスクロールしてください"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
@@ -444,7 +445,8 @@
         "receive": "受取",
         "empty": "空",
         "retrying": "再試行中",
-        "yesterday": "昨日"
+        "yesterday": "昨日",
+        "promotingAnotherBundle": "別のバンドルを促進中"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -486,6 +488,18 @@
         "theme": "テーマ",
         "mockup": "モックアップ"
     },
+    "themes": {
+        "classic": "α版の色",
+        "contemporary": "現代色",
+        "dark": "暗色",
+        "default": "既定色",
+        "electric": "電気色",
+        "ionic": "イオン色",
+        "light": "明色",
+        "lucky": "幸運色",
+        "mint": "ハッカ色",
+        "steelblue": "暗青灰色"
+    },
     "currencySelection": {
         "currency": "通貨"
     },
@@ -509,9 +523,9 @@
         "discordInformation": "どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>{{accountName}}を</1><2></2><3>削除してもよろしいですか？</3>",
+        "areYouSure": "アカウントを削除してもよろしいですか？",
         "yourSeedWillBeRemoved": "シードと取引の履歴を削除します。",
-        "thisAction": "この操作は元に戻せません。",
+        "thisAction": "この操作は元に戻せません",
         "enterPassword": "アカウントを削除するにはパスワードを入力してください。"
     },
     "manualSync": {
@@ -530,7 +544,10 @@
     "viewSeed": {
         "enterPassword": "シードを閲覧するにはパスワードを入力してください。",
         "viewSeed": "シードを表示",
-        "hideSeed": "シードを隠す"
+        "hideSeed": "シードを隠す",
+        "notAvailable": "シード出力は{{accountType}}のアカウントタイプでは利用できません",
+        "accountIndex": "Ledgerのアカウントインデックス",
+        "accountPage": "Ledgerのアカウントページ"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
@@ -584,19 +601,27 @@
     },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
-        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。このシードはパスワードによって暗号化され、パスワードがなければアクセスできません。",
+        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。シードはシード金庫鍵によって暗号化され、この鍵がなければアクセスできません。",
         "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
         "exportFail": "シード金庫の書き出しに失敗しました",
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
         "exportSuccess": "シード金庫を書き出しました",
         "exportSuccessExplanation": "暗号化されたシード（シード金庫）は正常に書き出されました。",
+        "unrecognisedKey": "認識できないシード金庫鍵です",
+        "unrecognisedKeyExplanation": "シード金庫鍵を認識できません。もう一度入力してください。",
+        "emptyKey": "シード金庫鍵の入力がありません",
+        "emptyKeyExplanation": "シード金庫鍵を入力する必要があります。もう一度入力してください。",
+        "importSuccess": "シード読み込み完了",
+        "importSuccessExplanation": "シードは正常に読み込まれました。",
+        "saveToDownloadFolder": "ダウンロードフォルダに保存",
         "importSeedVault": "シード金庫を読み込む",
-        "dropSeedVaultHere": "シード金庫をここにドロップしてください",
-        "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
+        "dropSeedVaultHere": "シード金庫ファイルがある場合、ここにドラッグ&ドロップするか、<1></1>ここをクリックしてください。",
+        "enterKeyExplanation": "シード金庫を開くために、シード金庫鍵を入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
-        "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。"
+        "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
+        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのシード金庫鍵を選んでください。バックアップ用のシード金庫からシードを復元するには、このシード金庫鍵が必要です。シード金庫鍵はTrinityウォレットのパスワードと同じにできます。"
     },
     "chart": {
         "mcap": "時価総額",
@@ -652,13 +677,14 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
-        "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
         "noUpdatesAvailableExplanation": "最新バージョンを利用しています。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
-        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。アップデートする前に、リリースノートを注意深く読み、ダウンロード元をご確認ください：",
-        "downloadRelease": "リリースをダウンロード",
-        "skipUpdate": "更新をスキップ"
+        "newVersionAvailableExplanation": "最新バージョンがご利用可能です。今すぐにアップデートしますか？",
+        "installUpdate": "インストール、アップデート、リスタートを行う",
+        "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
+        "downloadingUpdate": "アップデートをダウンロード中",
+        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
@@ -679,6 +705,10 @@
         "setupIncomplete": "ウォレットの設定が不十分です",
         "completeSetup": "セットアップ完了"
     },
+    "proxy": {
+        "proxy": "システムプロキシを使用",
+        "proxyExplanation": "システム全体のネットワークプロキシ設定を検出して使用します。この設定を変更した後は、Trinityを再起動してください。"
+    },
     "notifications": {
         "notifications": "通知設定",
         "notificationExplanation": "新しいトランザクションに関するシステム全体の通知を受け取ります。",
@@ -689,5 +719,49 @@
         "messageTx": "{{account}}にメッセージを受け取りました",
         "confirmedIn": "{{account}}への入金{{value}}が確定しました",
         "confirmedOut": "{{account}}からの出金{{value}}が確定しました"
+    },
+    "bytetrit": {
+        "sweepSucceeded": "資金のロック解除に成功",
+        "sweepSucceededExplanation": "資金のロック解除と新しいアドレスへの移動手続きが完了しました。新しいアドレスへの移動トランザクションを確定させるために、促進を行なってください。",
+        "sweepError": "資金のロック解除エラー",
+        "sweepErrorExplanation": "資金のロック解除に失敗しました。もう一度やり直してください。",
+        "warningTitle": "警告：ロックされた資金が検出されました",
+        "explanation": "Trinity デスクトップウォレット ver. 0.3.4には、一時的に資金をロックできてしまうバグが含まれていました。これはver. 0.3.4でトランザクションを発行した少数のユーザーに影響します。",
+        "explanationAccounts": "アカウント：{{accounts}} にロックされた資金が検出されました。Trinity ウォレットでは自動的に資金を新しいアドレスに移動させることで、資金を回復します。",
+        "proceed": "資金回復に進む",
+        "sweepConfirmation": "アドレス{{address}}（アカウント名：{{accountName}}、アドレスインデックス：{{index}}）に資金{{amount}} を移動させようとしています。",
+        "sweepConfirmationTitle": "移動を承認"
+    },
+    "ledger": {
+        "ready": "Ledger端末の接続が完了し、準備完了です",
+        "notReady": "Ledger端末を使いたい場合、今、接続しロックを解除してください",
+        "indexInUse": "アカウント{{account}}で既に使用されているインデックスです",
+        "indexInUseExplanation": "選択したインデックスは、いずれかのアカウントですでに使用されています。別のインデックス番号を選択してください。",
+        "proceedWithLedger": "Ledgerのセットアップを続行する",
+        "accountIndex": "アカウントインデックス",
+        "accountPage": "アカウントページ",
+        "chooseAccountIndex": "Ledgerのアカウントインデックスを選択してください",
+        "accountIndexExplanation": "Ledgerは複数のシードを保存できます。各シードは一意のインデックス番号で識別されます。未使用のインデックスが事前に選択されますが、自分で選択することもできます。自分で選択したインデックス番号は書き留めておいてください。",
+        "accountPageExplanation": "一部のサードパーティ製のウォレットではページが必要です。",
+        "connectionError": "Ledgerに接続できません",
+        "connectionErrorExplanation": "Ledgerがきちんと接続され、ロックが解除されていることをお確かめください。",
+        "connectionTitle": "Ledgerを接続してください",
+        "connectionExplanation": "この機能を使うには、Ledgerデバイスを接続する必要があります。",
+        "transactionTitle": "Ledgerでスクロールして、取引を承認してください",
+        "transactionExplanation": "Ledgerデバイスで、送金する取引を承認してください。",
+        "applicationTitle": "LedgerのIOTAアプリを開いてください",
+        "applicationExplanation": "Trinityウォレットを使い続けるには、LedgerでIOTAアプリを開いてください。",
+        "cannotSendZeroValueTitle": "0値の取引は送金できません",
+        "cannotSendZeroValueExplanation": "Ledger端末では0値の取引は送金できません。",
+        "ledgerDisconnectedTitle": "Ledger端末が切断されました",
+        "ledgerDisconnectedExplanation": "Ledger端末が切断されました。再接続してもう一度お試しください。",
+        "ledgerDeniedTitle": "取引拒否",
+        "ledgerDeniedExplanation": "Ledger端末で取引が拒否されました。",
+        "ledgerIncorrectIndex": "Ledger端末との不一致",
+        "ledgerIncorrectIndexExplanation": "Ledger端末がアカウントにリンクされている端末と一致しないか、または復元フレーズが変更されています。",
+        "checkAddress": "受取用のアドレスを確認してください",
+        "checkAddressExplanation": "アプリのアドレスがLedger端末に表示されているアドレスと一致することを確認してください。",
+        "applicationNotInitialised": "未確定に関する警告",
+        "applicationNotInitialisedExplanation": "LedgerでIOTAアプリを再度開いて、警告情報に同意してから、もう一度やり直してください。"
     }
 }

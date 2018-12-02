@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import Icon from 'ui/components/Icon';
@@ -70,11 +70,11 @@ class Settings extends React.PureComponent {
                                     <NavLink to="/settings/mode">
                                         <Icon icon="mode" size={20} /> <strong>{t('settings:mode')}</strong>
                                     </NavLink>
-                                    <NavLink to="/settings/advanced">
-                                        <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
-                                    </NavLink>
                                 </div>
                             ) : null}
+                            <NavLink to="/settings/advanced">
+                                <Icon icon="advanced" size={20} /> <strong>{t('settings:advanced')}</strong>
+                            </NavLink>
                         </nav>
                     </section>
                     <section className={css.content}>
@@ -105,4 +105,4 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
 });
 
-export default connect(mapStateToProps)(translate()(Settings));
+export default connect(mapStateToProps)(withI18n()(Settings));

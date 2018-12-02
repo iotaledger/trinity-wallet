@@ -28,6 +28,9 @@ export const nodes = [...nodesWithPoWEnabled, ...nodesWithPoWDisabled];
 
 export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 
+export const VERSIONS_URL =
+    'https://raw.githubusercontent.com/iotaledger/trinity-wallet/develop/src/shared/libs/versions.json';
+
 export const DEFAULT_DEPTH = 4;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
 export const DEFAULT_TAG = 'TRINITY';
@@ -36,7 +39,7 @@ export const DEFAULT_BALANCES_THRESHOLD = 100;
 
 export const BUNDLE_OUTPUTS_THRESHOLD = 50;
 
-export const NODE_REQUEST_TIMEOUT = 6000;
+export const NODE_REQUEST_TIMEOUT = 6000 * 2;
 
 export const DEFAULT_RETRIES = 4;
 
