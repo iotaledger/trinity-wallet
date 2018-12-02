@@ -51,6 +51,7 @@
     "electron": "^3.0.10",
     "electron-builder": "^20.38",
     "electron-devtools-installer": "^2.2.4",
+    "electron-notarize": "0.0.5",
     "electron-screenshot": "^1.0.5",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",

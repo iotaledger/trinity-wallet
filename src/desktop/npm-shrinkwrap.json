@@ -4198,6 +4198,41 @@
                 }
             }
         },
+        "electron-notarize": {
+            "version": "0.0.5",
+            "resolved": "https://registry.npmjs.org/electron-notarize/-/electron-notarize-0.0.5.tgz",
+            "integrity":
+                "sha512-YzrqZ6RDQ7Wt2RWlxzRoQUuxnTeXrfp7laH7XKcmQqrZ6GaAr50DMPvFMpqDKdrZSHSbcgZgB7ktIQbjvITmCQ==",
+            "dev": true,
+            "requires": {
+                "debug": "^4.1.0",
+                "fs-extra": "^7.0.0"
+            },
+            "dependencies": {
+                "debug": {
+                    "version": "4.1.0",
+                    "resolved": "https://registry.npmjs.org/debug/-/debug-4.1.0.tgz",
+                    "integrity":
+                        "sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==",
+                    "dev": true,
+                    "requires": {
+                        "ms": "^2.1.1"
+                    }
+                },
+                "fs-extra": {
+                    "version": "7.0.1",
+                    "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-7.0.1.tgz",
+                    "integrity":
+                        "sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==",
+                    "dev": true,
+                    "requires": {
+                        "graceful-fs": "^4.1.2",
+                        "jsonfile": "^4.0.0",
+                        "universalify": "^0.1.0"
+                    }
+                }
+            }
+        },
         "electron-screenshot": {
             "version": "1.0.5",
             "resolved": "https://registry.npmjs.org/electron-screenshot/-/electron-screenshot-1.0.5.tgz",
