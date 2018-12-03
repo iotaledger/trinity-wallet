@@ -726,8 +726,8 @@
         "sweepError": "Chyba uvoľnenie finančných prostriedkov",
         "sweepErrorExplanation": "Došlo ku chybe pri odblokovaní vašich finančných prostriedkov. Skúste to znova.",
         "warningTitle": "Varovanie: Boli zistené blokované prostriedky",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
+        "explanation": "Peňaženka Trinity Desktop 0.3.4 obsahovala chybu, ktorá by mohla dočasne zablokovať finančné prostriedky na účte. Tento problém ovplyvňuje malý počet užívateľov, ktorí uskutočnili transakcie s verziou 0.3.4.",
+        "explanationAccounts": "Na vašich účtoch boli zistené blokované prostriedky: {{accounts}}. Trinity teraz automaticky obnoví vaše prostriedky a prenesie ich na novú adresu.",
         "proceed": "Prejsť na obnovenie",
         "sweepConfirmation": "Chystáte sa preniesť {{amount}} na {{address}}. Účet: {{accountName}}, index adresy: {{index}}",
         "sweepConfirmationTitle": "Potvrdenie prevodu"
