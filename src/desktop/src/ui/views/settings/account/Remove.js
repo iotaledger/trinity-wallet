@@ -20,9 +20,7 @@ import Info from 'ui/components/Info';
 class Remove extends PureComponent {
     static propTypes = {
         /** @ignore */
-        accountName: PropTypes.string.isRequired,
-        /** @ignore */
-        accountMeta: PropTypes.object.isRequired,
+        account: PropTypes.object.isRequired,
         /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
         /** @ignore */
@@ -43,17 +41,21 @@ class Remove extends PureComponent {
      * @returns {undefined}
      */
     removeAccount = async (password) => {
-        const { accountName, accountMeta, history, t, generateAlert, deleteAccount } = this.props;
+        const { account, history, t, generateAlert, deleteAccount } = this.props;
 
         this.setState({
             removeConfirm: false,
         });
 
         try {
-            const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+            const seedStore = await new SeedStore[account.accountMeta.type](
+                password,
+                account.accountName,
+                account.accountMeta,
+            );
             seedStore.removeAccount();
 
-            deleteAccount(accountName);
+            deleteAccount(account.accountName);
 
             history.push('/wallet/');
 
@@ -69,7 +71,7 @@ class Remove extends PureComponent {
     };
 
     render() {
-        const { t, accountName } = this.props;
+        const { t, account } = this.props;
         const { removeConfirm } = this.state;
 
         if (removeConfirm) {
@@ -101,7 +103,7 @@ class Remove extends PureComponent {
                     isOpen={removeConfirm}
                     category="negative"
                     content={{
-                        title: `Are you sure you want to delete ${accountName}?`, //FIXME
+                        title: `Are you sure you want to delete ${account.accountName}?`, //FIXME
                         message: t('deleteAccount:yourSeedWillBeRemoved'),
                         cancel: t('cancel'),
                         confirm: t('accountManagement:deleteAccount'),
@@ -114,14 +116,12 @@ class Remove extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    accountName: getSelectedAccountName(state),
-    accountMeta: getSelectedAccountMeta(state),
-});
-
 const mapDispatchToProps = {
     generateAlert,
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Remove));
+export default connect(
+    {},
+    mapDispatchToProps,
+)(withI18n()(Remove));

@@ -1,18 +1,56 @@
-$header: 60px;
-$sidebar-narrow: 70px;
-
 .settings {
-    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+
+    aside {
+        flex: 0 0 280px;
+        background: var(--bar-bg);
+        padding: 60px 0;
+
+        @media print {
+            display: none;
+        }
+
+        > a {
+            display: block;
+            font-size: 21px;
+            line-height: 48px;
+            padding: 0 20px;
+        }
+
+        nav {
+            padding: 20px 20px 20px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            a {
+                display: flex;
+                color: var(--body);
+                line-height: 32px;
+                font-size: 16px;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover,
+                &[aria-current='page'] {
+                    color: var(--secondary);
+                }
+
+                > span {
+                    margin: 8px 14px 0 0;
+                }
+            }
+
+            hr {
+                margin: 20px 0;
+            }
+        }
+    }
 
     header {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         width: 100%;
-        max-width: 680px;
-        height: $header;
+        height: 60px;
+        padding: 0 40px;
         a:hover {
             color: var(--primary);
         }
@@ -27,22 +65,14 @@ $sidebar-narrow: 70px;
         }
     }
 
-    > div {
-        display: flex;
-        justify-content: center;
-        max-width: 780px;
-        width: 100%;
-        height: 100%;
-    }
-
-    section:first-of-type {
-        flex: 0 0 240px;
-        padding: 120px 0 20px;
-    }
-
-    section:last-of-type {
+    section {
         flex: 1;
-        padding: 60px 20px 0;
+        padding-top: 60px;
+        > div {
+            margin: 0 auto;
+            max-width: 560px;
+            padding: 20px;
+        }
 
         @media print {
             p,
@@ -62,36 +92,6 @@ $sidebar-narrow: 70px;
         border-top: 1px solid var(--body-alt);
     }
 
-    nav {
-        margin-bottom: 30px;
-        max-width: 220px;
-
-        @media print {
-            display: none;
-        }
-
-        a {
-            display: flex;
-            color: var(--body);
-            line-height: 20px;
-            text-decoration: none;
-            margin-bottom: 16px;
-            cursor: pointer;
-            &:hover,
-            &[aria-current='page'] {
-                color: var(--secondary);
-            }
-
-            > span {
-                margin-right: 20px;
-            }
-        }
-
-        hr {
-            margin: 20px 0;
-        }
-    }
-
     h3 {
         font-size: 21px;
         margin-bottom: 21px;
@@ -109,52 +109,6 @@ $sidebar-narrow: 70px;
 
     p + button {
         margin-top: -32px;
-    }
-
-    form {
-        max-width: 480px;
-    }
-
-    @media (max-width: 860px) {
-        > div {
-            max-width: none;
-        }
-
-        section:first-of-type {
-            flex: 0 0 $sidebar-narrow;
-            height: 100vh;
-            background: var(--bar-bg);
-        }
-
-        nav {
-            a {
-                text-align: center;
-                color: var(--bar);
-                width: 100%;
-                height: 60px;
-                margin: 0px;
-                border-right: 2px solid transparent;
-                span {
-                    font-size: 24px !important;
-                    width: 100%;
-                    text-align: center;
-                    line-height: 60px;
-                    margin: 18px 0 0;
-                }
-                strong {
-                    display: none;
-                }
-                &:hover {
-                    color: var(--bar);
-                    background: var(--bar-hover);
-                }
-                &[aria-current='true'] {
-                    background: var(--bar-hover);
-                    color: var(--bar);
-                    border-right: 2px solid var(--primary);
-                }
-            }
-        }
     }
 }
 

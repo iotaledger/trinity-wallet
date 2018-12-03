@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 import { formatValue, formatUnit } from 'libs/iota/utils';
-import { selectAccountInfo } from 'selectors/accounts';
 
 import Scrollbar from 'ui/components/Scrollbar';
 import Clipboard from 'ui/components/Clipboard';
@@ -57,8 +55,4 @@ class Addresses extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    account: selectAccountInfo(state),
-});
-
-export default connect(mapStateToProps)(withI18n()(Addresses));
+export default withI18n()(Addresses);
