@@ -747,7 +747,7 @@
         "connectionErrorExplanation": "Skontrolujte, či je Váš Ledger pripojený a odomknutý.",
         "connectionTitle": "Pripojte Váš Ledger",
         "connectionExplanation": "K vykonaniu tejto funkcie musí byť pripojené zariadenie Ledger.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
+        "transactionTitle": "Prekontrolujte a potvrďte transakciu vo Vašom zariadení Ledger",
         "transactionExplanation": "Potvrďte odchádzajúcu transakciu pomocou zariadenia Ledger.",
         "applicationTitle": "Spustite aplikáciu IOTA na Vašom zariadení Ledger",
         "applicationExplanation": "Aby ste mohli pokračovať v používaní Trinity, otvorte v zariadení Ledger aplikáciu IOTA.",
@@ -762,6 +762,6 @@
         "checkAddress": "Skontrolujte adresu príjemcu",
         "checkAddressExplanation": "Skontrolujte, či adresa odpovedá adrese zobrazenej na Vašom zariadení Ledger.",
         "applicationNotInitialised": "Informačné upozornenie nebolo prijaté",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "Znovu otvorte aplikáciu IOTA na Vašom zariadení Ledger, prijmite informačné upozornenie a skúste to znova."
     }
 }
