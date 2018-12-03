@@ -756,7 +756,7 @@
         "ledgerDisconnectedTitle": "Ledger je odpojený",
         "ledgerDisconnectedExplanation": "Ledger bol odpojený. Pripojte ho a opakujte akciu.",
         "ledgerDeniedTitle": "Transakcia bola odmietnutá",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
+        "ledgerDeniedExplanation": "Transakcia bola zamietnutá na zariadení Ledger.",
         "ledgerIncorrectIndex": "Nekompatibilné zariadenie Ledger",
         "ledgerIncorrectIndexExplanation": "Pripojené zariadenie Ledger sa nezhoduje s tým ktoré je spárované s týmto účtom, alebo jeho heslo bolo zmenené.",
         "checkAddress": "Skontrolujte adresu príjemcu",
