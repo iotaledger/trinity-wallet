@@ -77,7 +77,7 @@ export class ModalViewComponent extends PureComponent {
     getModalHeight() {
         if (this.props.displayTopBar) {
             if (isAndroid) {
-                return height - Styling.topbarHeight - StatusBar.currentHeight;
+                return height - Styling.topbarHeight + StatusBar.currentHeight;
             }
             return height - Styling.topbarHeight;
         }

@@ -323,7 +323,12 @@ export default class TransactionHistoryModal extends PureComponent {
                 <SafeAreaView
                     style={[
                         styles.modalContainer,
-                        { height: isAndroid ? height - Styling.topbarHeight - StatusBar.currentHeight: height - Styling.topbarHeight, backgroundColor: style.backgroundColor },
+                        {
+                            height: isAndroid
+                                ? height - Styling.topbarHeight + StatusBar.currentHeight
+                                : height - Styling.topbarHeight,
+                            backgroundColor: style.backgroundColor,
+                        },
                     ]}
                 >
                     <View style={{ flex: 1 }} />
