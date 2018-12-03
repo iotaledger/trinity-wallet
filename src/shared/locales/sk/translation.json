@@ -721,8 +721,8 @@
         "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
+        "sweepSucceeded": "Vaše finančné prostriedky boli úspešne odblokované",
+        "sweepSucceededExplanation": "Vaše finančné prostriedky boli úspešne odblokované a prenesené na novú adresu. Podporujte transakcie, ktoré Vám pomôžu v procese potvrdzovania.",
         "sweepError": "Chyba uvoľnenie finančných prostriedkov",
         "sweepErrorExplanation": "Došlo ku chybe pri odblokovaní vašich finančných prostriedkov. Skúste to znova.",
         "warningTitle": "Varovanie: Boli zistené blokované prostriedky",
