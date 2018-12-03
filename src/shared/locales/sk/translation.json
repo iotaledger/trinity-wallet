@@ -621,7 +621,7 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Najprv potrebujeme zabezpečiť Váš SeedVault. Zadajte heslo k zašifrovaniu súboru. Toto heslo budete potrebovať k obnoveniu Vášho Seedu zo zálohy súboru SeedVault. Môžete použiť rovnaké heslo, ktoré používate pre prihlásenie do Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -718,7 +718,7 @@
         "valueTx": "Prijímanie {{value}} na {{account}}",
         "messageTx": "Dostali ste správu pre {{account}}",
         "confirmedIn": "Bola potvrdená príchozia {{value}} pre {{account}}",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "confirmedOut": "Bola potvrdená odchádzajúca {{value}} pre {{account}}"
     },
     "bytetrit": {
         "sweepSucceeded": "Vaše finančné prostriedky boli úspešne odblokované",
