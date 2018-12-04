@@ -16,7 +16,7 @@ import { generateNewAddress, addressValidationRequest, addressValidationSuccess 
 
 import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
-import { byteToChar } from 'libs/helpers';
+import { byteToChar } from 'libs/iota/converter';
 import Errors from 'libs/errors';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
