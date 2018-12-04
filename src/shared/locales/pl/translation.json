@@ -707,7 +707,7 @@
     },
     "proxy": {
         "proxy": "Użycie ustawień proxy",
-        "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Zrestartuj portfel po zmianie tego ustawienia."
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Powiadomienia",
