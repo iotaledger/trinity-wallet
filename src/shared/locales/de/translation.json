@@ -707,7 +707,7 @@
     },
     "proxy": {
         "proxy": "System-Proxy verwenden",
-        "proxyExplanation": "Übernimmt die systemweiten Proxyeinstellungen für Trinity. Starte das Wallet neu nachdem du diese Option geändert hast-."
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Benachrichtigungen",
