@@ -707,7 +707,7 @@
     },
     "proxy": {
         "proxy": "Pomocí proxy serveru",
-        "proxyExplanation": "Rozpoznat a použít systémové nastavení proxy serveru. Po změně tohoto nastavení restartujte peněženku."
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Oznámení",
