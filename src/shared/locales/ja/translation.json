@@ -707,7 +707,7 @@
     },
     "proxy": {
         "proxy": "システムプロキシを使用",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "システム全体のネットワークプロキシ設定を検出して使用します。この設定を変更した時は、Trinityを一度閉じてから再起動を行ってください。"
     },
     "notifications": {
         "notifications": "通知設定",
