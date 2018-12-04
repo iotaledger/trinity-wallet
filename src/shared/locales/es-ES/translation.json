@@ -630,7 +630,7 @@
         "error": "Error obteniendo datos de gráfico"
     },
     "rootDetection": {
-        "warning": "ALERTA",
+        "warning": "ADVERTENCIA",
         "appearsRooted": "Su dispositivo parece estar rooteado.",
         "securityRisk": "Esto puede significar un gran riesgo para la seguridad de su cartera.",
         "continueDepsiteRisk": "Desea continuar a pesar de este riesgo?"
@@ -707,7 +707,7 @@
     },
     "proxy": {
         "proxy": "Usar proxy del sistema",
-        "proxyExplanation": "Detectar y usar configuración de proxy de red de sistema. Reiniciar la billetera después de cambiar esta configuración."
+        "proxyExplanation": "Detectar y usar configuración de proxy de red de sistema. Cerrar y abrir nuevamente la billetera después de cambiar esta configuración."
     },
     "notifications": {
         "notifications": "Notificaciones",
