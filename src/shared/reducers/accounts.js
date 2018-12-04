@@ -152,6 +152,10 @@ const account = (
              * Determines if a user used an existing seed during account setup
              */
             usedExistingSeed: false,
+            /**
+             * Determines if the account info is complete and account ready to be created and synced
+             */
+            completed: false
         },
         /**
          * Determines if onboarding process is completed
@@ -317,6 +321,7 @@ const account = (
                 accountInfoDuringSetup: {
                     name: '',
                     meta: {},
+                    completed: false,
                     usedExistingSeed: false,
                 },
             };

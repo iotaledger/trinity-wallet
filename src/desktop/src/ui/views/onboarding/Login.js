@@ -79,9 +79,9 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { addingAdditionalAccount } = this.props;
+        const { password, addingAdditionalAccount } = this.props;
 
-        if (addingAdditionalAccount) {
+        if (password.length && addingAdditionalAccount) {
             this.setupAccount();
         } else {
             this.props.clearWalletData();

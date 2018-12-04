@@ -244,6 +244,7 @@ class App extends React.Component {
                 this.props.setAccountInfoDuringSetup({
                     name: '',
                     meta: {},
+                    completed: false,
                     usedExistingSeed: false,
                 });
                 Electron.setOnboardingSeed(null);
