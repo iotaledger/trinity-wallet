@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import { shorten, capitalize } from 'libs/helpers';
+import { shorten, capitalize } from 'libs/iota/converter';
 import { formatIota } from 'libs/iota/utils';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';

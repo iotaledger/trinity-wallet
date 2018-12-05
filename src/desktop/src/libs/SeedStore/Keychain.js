@@ -1,6 +1,6 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
-import { byteToTrit } from 'libs/helpers';
+import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
 // Prefix for seed account titles stored in Keychain

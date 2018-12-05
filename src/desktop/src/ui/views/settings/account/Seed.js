@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToChar, capitalize } from 'libs/helpers';
+import { byteToChar, capitalize } from 'libs/iota/converter';
 import SeedStore from 'libs/SeedStore';
 
 import Button from 'ui/components/Button';
