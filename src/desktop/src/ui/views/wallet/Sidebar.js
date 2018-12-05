@@ -62,9 +62,7 @@ class Sidebar extends React.PureComponent {
 
     accountSettings = (e, index) => {
         e.stopPropagation();
-
-        this.props.setSeedIndex(index);
-        this.props.history.push('/account/name');
+        this.props.history.push(`/settings/account/name/${index}`);
     };
 
     toggleLogout = () => {

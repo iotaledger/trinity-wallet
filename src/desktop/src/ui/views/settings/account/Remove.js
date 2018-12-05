@@ -48,11 +48,7 @@ class Remove extends PureComponent {
         });
 
         try {
-            const seedStore = await new SeedStore[account.accountMeta.type](
-                password,
-                account.accountName,
-                account.accountMeta,
-            );
+            const seedStore = await new SeedStore[account.meta.type](password, account.meta, account.accountMeta);
             seedStore.removeAccount();
 
             deleteAccount(account.accountName);
@@ -122,6 +118,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-    {},
+    null,
     mapDispatchToProps,
 )(withI18n()(Remove));

@@ -12,20 +12,25 @@
 
         > a {
             display: block;
-            font-size: 21px;
-            line-height: 48px;
+            font-size: 18px;
+            line-height: 56px;
             padding: 0 20px;
+            color: var(--bar-body);
+
+            &[aria-current='page'] {
+                background: var(--bar-hover);
+            }
         }
 
         nav {
-            padding: 20px 20px 20px 40px;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 0px 20px 20px 40px;
+            background: var(--bar-hover);
             margin-bottom: 20px;
             a {
                 display: flex;
                 color: var(--body);
                 line-height: 32px;
-                font-size: 16px;
+                font-size: 14px;
                 text-decoration: none;
                 cursor: pointer;
                 &:hover,
@@ -39,7 +44,8 @@
             }
 
             hr {
-                margin: 20px 0;
+                margin: 12px 0;
+                border-top: 1px solid var(--bar-bg);
             }
         }
     }
@@ -84,12 +90,6 @@
         fieldset button {
             margin: 0 20px 20px 0;
         }
-    }
-
-    hr {
-        border: none;
-        margin: 32px 0;
-        border-top: 1px solid var(--body-alt);
     }
 
     h3 {

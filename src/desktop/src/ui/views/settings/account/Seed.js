@@ -44,9 +44,9 @@ class Seed extends PureComponent {
      * Retrieve seed and set to state
      */
     setSeed = async (password) => {
-        const { accountName, accountMeta } = this.props.account;
+        const { accountName, meta } = this.props.account;
 
-        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+        const seedStore = await new SeedStore[meta.type](password, accountName, meta);
         const seed = await seedStore.getSeed();
 
         this.setState({
@@ -55,24 +55,25 @@ class Seed extends PureComponent {
     };
 
     render() {
-        const { account, t } = this.props;
+        const { t } = this.props;
+        const { meta, accountName } = this.props.account;
         const { seed, action } = this.state;
 
-        if (!SeedStore[accountMeta.type].isSeedAvailable) {
+        if (!SeedStore[meta.type].isSeedAvailable) {
             return (
                 <div>
-                    <h3>{t('viewSeed:notAvailable', { accountType: capitalize(account.accountMeta.type) })}</h3>
-                    {typeof accountMeta.index === 'number' && (
+                    <h3>{t('viewSeed:notAvailable', { accountType: capitalize(meta.type) })}</h3>
+                    {typeof meta.index === 'number' && (
                         <p>
-                            {t('viewSeed:accountIndex')}: <strong>{account.accountMeta.index}</strong>
+                            {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
                         </p>
                     )}
-                    {typeof account.accountMeta.page === 'number' &&
-                    account.accountMeta.page > 0 && (
-                        <p>
-                            {t('viewSeed:accountPage')}: <strong>{account.accountMeta.page}</strong>
-                        </p>
-                    )}
+                    {typeof meta.page === 'number' &&
+                        meta.page > 0 && (
+                            <p>
+                                {t('viewSeed:accountPage')}: <strong>{meta.page}</strong>
+                            </p>
+                        )}
                 </div>
             );
         }
@@ -84,13 +85,15 @@ class Seed extends PureComponent {
                     inline
                     onSuccess={this.setSeed}
                     onClose={() => this.setState({ action: null })}
-                    seedName={account.accountName}
+                    seedName={accountName}
                     content={{
                         title: action === 'view' ? t('viewSeed:enterPassword') : t('login:enterPassword'),
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
+                                : action === 'export'
+                                    ? t('seedVault:exportSeedVault')
+                                    : t('paperWallet'),
                     }}
                 />
             );
@@ -150,7 +153,11 @@ class Seed extends PureComponent {
                     isOpen={seed && action === 'export'}
                     onClose={() => this.setState({ action: null })}
                 >
-                    <SeedExport seed={seed || []} title={account.accountName} onClose={() => this.setState({ action: null })} />
+                    <SeedExport
+                        seed={seed || []}
+                        title={accountName}
+                        onClose={() => this.setState({ action: null })}
+                    />
                 </Modal>
             </React.Fragment>
         );

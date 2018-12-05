@@ -4,6 +4,8 @@ import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import { shorten } from 'libs/iota/converter';
+
 import Icon from 'ui/components/Icon';
 
 import Language from 'ui/views/settings/Language';
@@ -58,7 +60,7 @@ class Settings extends React.PureComponent {
         return (
             <main className={css.settings}>
                 <aside>
-                    <NavLink to="/settings/">Trinity settings</NavLink>
+                    <NavLink to="/settings/language">Trinity settings</NavLink>
                     {!accountSettings && (
                         <nav>
                             <NavLink to="/settings/language">
@@ -98,7 +100,7 @@ class Settings extends React.PureComponent {
                         accountNames.map((account, index) => {
                             return (
                                 <React.Fragment key={`account-${index}`}>
-                                    <NavLink to={`/settings/account/name/${index}`}>{account}</NavLink>
+                                    <NavLink to={`/settings/account/name/${index}`}>{shorten(account, 28)}</NavLink>
                                     {accountIndex === String(index) && (
                                         <nav>
                                             <NavLink to={`/settings/account/name/${accountIndex}`}>
