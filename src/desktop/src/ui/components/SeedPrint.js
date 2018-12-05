@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import QRCode from 'qr.js/lib/QRCode';
 
-import { byteToChar } from 'libs/helpers';
+import { byteToChar } from 'libs/iota/converter';
 
 import paperWallet from 'themes/paper-wallet.svg';
 import paperWalletFilled from 'themes/paper-wallet-filled.svg';

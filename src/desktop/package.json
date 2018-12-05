@@ -1,12 +1,12 @@
 {
   "name": "trinity-desktop",
   "productName": "Trinity",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
   "description": "Desktop wallet for IOTA",
-  "main": "main.js",
+  "main": "dist/main.js",
   "author": "IOTA Foundation <contact@iota.org>",
   "license": "Apache-2.0 OR EPL-2.0",
   "moduleRoots": [
@@ -19,13 +19,13 @@
     "url": "git+https://github.com/iotaledger/trinity-wallet.git"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron main.js\"",
+    "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register main.js\"",
     "postinstall": "electron-builder install-app-deps",
-    "electron": "electron main.js",
     "devserver": "node server.js",
     "style:shots": "node scripts/puppeteer.js",
-    "webpack": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config",
-    "build": "rimraf dist && npm run webpack",
+    "build": "rimraf dist && concurrently \"npm run build-main\" \"npm run build-app\"",
+    "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
+    "build-app": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.app.js",
     "compile": "npm run build && npm run compile:linux && npm run compile:mac && npm run compile:win",
     "compile:linux": "./node_modules/.bin/electron-builder --linux --x64",
     "compile:mac": "./node_modules/.bin/cross-env electron-builder --mac --x64",
@@ -44,12 +44,11 @@
     "bugsnag-build-reporter": "^1.0.0",
     "bugsnag-sourcemaps": "^1.0.4",
     "concurrently": "^4.0.1",
-    "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "dart-sass": "^1.14.1",
-    "electron": "^3.0.3",
-    "electron-builder": "^20.28.4",
+    "electron": "^3.0.10",
+    "electron-builder": "^20.38",
     "electron-devtools-installer": "^2.2.4",
     "electron-screenshot": "^1.0.5",
     "express": "^4.16.3",
@@ -75,6 +74,11 @@
       "buildResources": "./assets",
       "output": "./out"
     },
+    "files": [
+      "dist/",
+      "assets/",
+      "package.json"
+    ],
     "appId": "org.iota.trinity",
     "asar": true,
     "protocols": [
@@ -131,6 +135,7 @@
     }
   },
   "dependencies": {
+    "@babel/register": "^7.0.0",
     "@ledgerhq/hw-transport-node-hid": "^4.24.0",
     "argon2": "rihardsgravis/node-argon2#prebuild-release",
     "authenticator": "^1.1.5",
@@ -138,7 +143,7 @@
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.6",
     "electron-settings": "^3.2.0",
-    "electron-updater": "3.0.4",
+    "electron-updater": "4.0.4",
     "entangled-node": "rihardsgravis/entangled-node",
     "hw-app-iota": "^0.5.1",
     "i18next": "^12.0.0",

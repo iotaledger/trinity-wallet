@@ -19,6 +19,7 @@
         "invalidResponse": "Chyba Nodu",
         "invalidResponseExplanation": "Node vrátil chybu. Zkus změniť Váš Node.",
         "invalidResponseFetchingAccount": "Node vrátil chybu při získávání informací o účtu. Zkuste změnit Váš Node.",
+        "invalidResponseFetchingAccountDesktop": "Při načítání informací o Vašem účtu došlo k chybě. Pokud problém přetrvává, zkuste změnit Node nebo zakázat proxy server v nastavení Trinity.",
         "nodeOutOfSync": "Váš Node není synchronizovaný",
         "nodeOutOfSyncExplanation": "Vámi zvolený Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
         "thisNodeOutOfSync": "Tento Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
@@ -55,8 +56,8 @@
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "Nerozpoznaný účet",
+        "unrecognisedAccountExplanation": "Účet s názvem {{accountName}} nebyl rozpoznán. Zvažte možnost resetování Vaší peněženky.",
         "emptyPasswordExplanation": "Musíte zadat heslo. Prosím zkuste znovu.",
         "capsLockIsOn": "Caps Lock je zapnutý",
         "syncInProgress": "Probíhá synchronizace",
@@ -143,10 +144,14 @@
         "tryingAgainWithLocalPoW": "Opakování pomocí místního režimu Proof of Work.",
         "tryingAgainWithDifferentNode": "Opakování s jiným Nodem.",
         "errorFetchingAccountInformation": "Při načítání informací o účtu došlo k chybě.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Chyba při synchronizaci informací adresy. Zkuste znovu s jiným Nodem.",
         "errorAccessingKeychain": "Chyba klíčenky",
         "errorAccessingKeychainExplanation": "Nelze získat přístup k úložišti klíčů.",
-        "mainWallet": "HLAVNÍ ÚČET"
+        "mainWallet": "HLAVNÍ ÚČET",
+        "shouldUpdate": "Nová aktualizace je k dispozici",
+        "shouldUpdateExplanation": "Byla vydána nová aktualizace. Doporučujeme aktualizovat na nejnovější verzi.",
+        "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
+        "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -277,15 +282,15 @@
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Vygenerovat adresu",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
         "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému.",
         "tag": "Značka",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Vygenerovat adresu",
+        "generateAnAddressTitle": "Vygenerovat adresu",
+        "generateAnAddressExplanation": "Prosím vygenerujte adresu před použitím této funkce."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -352,8 +357,8 @@
         "standard": "Výchozí",
         "advancedModeExplanation": "Pokročilý režim zobrazí podrobnější technické informace.",
         "modesExplanation": "Pokročilý režim povolte, pouze pokud jste zkušený uživatel IOTA. Jinak to pro Vás může být matoucí.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "Režim změněn",
+        "modeUpdatedExplanation": "Změnili jste na {{mode}} režimu"
     },
     "settings": {
         "transferSending": "Odesílání transakce",
@@ -540,9 +545,9 @@
         "enterPassword": "Pro zobrazení Vašeho Seedu zadejte heslo.",
         "viewSeed": "Zobrazit Seed",
         "hideSeed": "Skrýt Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailable": "Seed export není k dispozici pro typ účtu {{accountType}}",
+        "accountIndex": "Index účtu ve Vašem Ledgeru",
+        "accountPage": "Stránka účtu ve Vašem Ledgeru"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali jste si Váš Seed?",
@@ -596,27 +601,27 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportovat SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault je šifrovaný soubor pro bezpečné uložení Vašeho Seedu. Seed je šifrován heslem a není k dispozici bez jeho zadání.",
         "seedVaultWarning": "Ujistěte se, že si zálohujete soubor na více místech (například pevný disk, cloud, USB). Pokud ztratíte tento soubor a nebudete mít uložený Váš Seed jiným způsobem, ztratíte Vaše IOTA.",
         "exportFail": "Export SeedVault se nezdařil",
         "exportFailExplanation": "Během exportování Vašeho SeedVault nastal problém. Zkontrolujte zda máte oprávnění na zápis souboru a dostatek volného místa.",
         "exportSuccess": "SeedVault export dokončen",
         "exportSuccessExplanation": "Váš kryptovaný Seed soubor byl úspěšně exportován.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "Heslo souboru SeedVault není rozpoznáno",
+        "unrecognisedKeyExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
+        "emptyKey": "Nebylo zadáno žádné heslo souboru SeedVault",
+        "emptyKeyExplanation": "Musíte zadat heslo. Zkuste to prosím znovu.",
         "importSuccess": "Seed importován",
         "importSuccessExplanation": "Váš Seed byl úspěšně importován.",
         "saveToDownloadFolder": "Uložit do složky pro stahování",
         "importSeedVault": "Importovat SeedVault",
         "dropSeedVaultHere": "Přetáhněte SeedVault sem <1></1> nebo klepněte na tlačítko Procházet",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "enterKeyExplanation": "Zadejte Vaše heslo k otevření souboru SeedVault",
         "noSeedFound": "SeedVault neobsahuje platný Seed",
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Zadejte heslo k zašifrování souboru. Toto heslo budete potřebovat k obnovení Vašeho Seedu ze zálohy souboru SeedVault. Můžete použít stejné heslo, které používáte pro přihlášení do Trinity."
     },
     "chart": {
         "mcap": "MCAP",
@@ -678,8 +683,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
         "installUpdateExplanation": "Stahování bylo dokončeno, Trinity restartuje a nainstaluje aktualizaci.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Stahování aktualizace",
+        "downloadProgress": "Staženo {{transferred}} z {{total}}"
     },
     "notificationLog": {
         "errorLog": "Error log"
@@ -699,6 +704,10 @@
         "notLoggedIn": "Nejste přihlášen(a)",
         "setupIncomplete": "Nastavení peněženky je neúplné",
         "completeSetup": "Dokončit nastavení"
+    },
+    "proxy": {
+        "proxy": "Pomocí proxy serveru",
+        "proxyExplanation": "Rozpoznat a použít systémové nastavení proxy serveru. Po změně tohoto nastavení restartujte peněženku."
     },
     "notifications": {
         "notifications": "Oznámení",
@@ -724,35 +733,35 @@
         "sweepConfirmationTitle": "Potvrzení převodu"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "ready": "Zařízení Ledger je připojené a připravené k práci",
+        "notReady": "Pokud si přejete použít zařízení Ledger, připojte je nyní a odemkněte",
+        "indexInUse": "Tento index již používá účet {{account}}",
+        "indexInUseExplanation": "Váš zvolený index je již používán na jednom z Vašich účtů. Vyberte si prosím jiné číslo indexu.",
+        "proceedWithLedger": "Pokračovat v nastavení zařízení Ledger",
+        "accountIndex": "Index účtu",
+        "accountPage": "Stránka účtu",
+        "chooseAccountIndex": "Vyberte Index účtu ve Vašem Ledgeru",
+        "accountIndexExplanation": "Vaše zařízení Ledger může ukládat více Seedů. Každý Seed je označen jedinečným indexovým číslem. Nepoužitý index byl předem vybrán, ale můžete si zvolit vlastní. Ujistěte se, že jste si poznamenali zvolené číslo indexu.",
+        "accountPageExplanation": "Některé peněženky třetích stran vyžadují použití \"stron\".",
+        "connectionError": "Nelze se připojit k Vašemu Ledgeru",
+        "connectionErrorExplanation": "Zkontrolujte, zda je Váš Ledger připojen a odemknut.",
+        "connectionTitle": "Připojte Váš Ledger",
+        "connectionExplanation": "K provedení této funkce musí být připojeno zařízení Ledger.",
+        "transactionTitle": "Projděte a potvrďte transakci ve Vašem zařízení Ledger",
+        "transactionExplanation": "Pomocí zařízení Ledger schválíte odchozí transakci.",
+        "applicationTitle": "Spusťte aplikaci IOTA na Vašem zařízení Ledger",
+        "applicationExplanation": "Ve Vašem zařízení Ledger otevřete aplikaci IOTA, abyste mohli pokračovat v používání Trinity.",
+        "cannotSendZeroValueTitle": "Nelze odeslat transakce s nulovou hodnotou",
+        "cannotSendZeroValueExplanation": "Nelze odeslat transakce s nulovou hodnotou pomocí zařízení Ledger.",
+        "ledgerDisconnectedTitle": "Ledger zařízení odpojeno",
+        "ledgerDisconnectedExplanation": "Zařízení Ledger bylo odpojeno. Připojte ho a akci opakujte.",
+        "ledgerDeniedTitle": "Transakce byla zamítnuta",
+        "ledgerDeniedExplanation": "Transakce byla zamítnuta na zařízení Ledger.",
+        "ledgerIncorrectIndex": "Nekompatibilní zařízení Ledger",
+        "ledgerIncorrectIndexExplanation": "Připojené zařízení Ledger se neshoduje s tím které je s tímto účtem spárováno, nebo jeho heslo bylo změněno.",
+        "checkAddress": "Zkontrolujte adresu příjemce",
+        "checkAddressExplanation": "Zkontrolujte, zda adresa odpovídá adrese zobrazené na Vašem zařízení Ledger.",
+        "applicationNotInitialised": "Informační upozornění, nebylo přijato",
+        "applicationNotInitialisedExplanation": "Znovu otevřete aplikaci IOTA na Vašem zařízení Ledger, přijměte informační upozornění a zkuste to znovu."
     }
 }

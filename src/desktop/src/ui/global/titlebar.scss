@@ -7,21 +7,16 @@
     -webkit-app-region: drag;
     z-index: 99998;
 
-    &:before,
     &:after {
         display: block;
         content: '';
-        width: 6px;
+        width: 100vw;
         height: 6px;
         position: absolute;
         top: 0px;
         left: 0px;
         -webkit-app-region: no-drag;
         z-index: 2;
-    }
-    &:after {
-        left: auto;
-        right: 0px;
     }
 }
 

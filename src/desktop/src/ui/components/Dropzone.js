@@ -4,7 +4,7 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import { charToByte } from 'libs/helpers';
+import { charToByte } from 'libs/iota/converter';
 
 import Icon from 'ui/components/Icon';
 
