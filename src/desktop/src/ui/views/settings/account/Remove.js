@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 import { generateAlert } from 'actions/alerts';
 
 import SeedStore from 'libs/SeedStore';

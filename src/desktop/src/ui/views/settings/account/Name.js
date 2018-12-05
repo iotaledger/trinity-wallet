@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from 'selectors/accounts';
+import { getAccountNamesFromState } from 'selectors/accounts';
 
 import { MAX_ACC_LENGTH } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
@@ -79,7 +79,7 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        const seedStore = await new SeedStore[account.accountMeta.type](password, accountName, account.accountMeta);
+        const seedStore = await new SeedStore[account.accountMeta.type](password, account.accountName, account.accountMeta);
         await seedStore.renameAccount(newAccountName);
     }
 

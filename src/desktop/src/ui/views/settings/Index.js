@@ -37,6 +37,8 @@ class Settings extends React.PureComponent {
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
+        match: PropTypes.object,
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
