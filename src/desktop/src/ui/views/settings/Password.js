@@ -4,8 +4,6 @@ import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'libs/exports';
 
-import { getSelectedAccountMeta } from 'selectors/accounts';
-
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
