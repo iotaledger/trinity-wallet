@@ -100,7 +100,7 @@
     "react-native-udp": "^1.2.9",
     "react-native-vector-icons": "^6.1.0",
     "react-native-view-shot": "git+https://github.com/cvarley100/react-native-view-shot#master",
-    "react-redux": "^5.0.6",
+    "react-redux": "^6.0.0",
     "readable-stream": "^1.0.33",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
