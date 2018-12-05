@@ -159,7 +159,7 @@
     "react-lottie": "^1.2.3",
     "react-markdown": "^3.6.0",
     "react-qr-reader": "^2.1.1",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-tooltip": "^3.9.0",
     "react-transition-group": "^2.5.0",
