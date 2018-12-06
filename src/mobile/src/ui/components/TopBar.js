@@ -135,7 +135,7 @@ class TopBar extends Component {
         clearLog: PropTypes.func.isRequired,
         /** Top bar height */
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
-        /** Determines if on screen keyboard is active */
+        /** @ignore */
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
@@ -523,6 +523,7 @@ const mapStateToProps = (state) => ({
     notificationLog: state.alerts.notificationLog,
     isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,
+    isKeyboardActive: state.ui.isKeyboardActive,
 });
 
 const mapDispatchToProps = {

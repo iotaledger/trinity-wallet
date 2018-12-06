@@ -312,7 +312,7 @@ export class Send extends Component {
             this.interuptSendAnimation();
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-        this.openTransferConfirmationModal();
+        this.showModal('transferConfirmation');
     }
 
     onQRRead(data) {
@@ -459,16 +459,6 @@ export class Send extends Component {
     clearInteractions() {
         this.props.closeTopBar();
         Keyboard.dismiss();
-    }
-
-    openTransferConfirmationModal() {
-        const { isKeyboardActive } = this.props;
-        if (isKeyboardActive) {
-            this.blurTextFields();
-            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 2800);
-        } else {
-            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 2000);
-        }
     }
 
     /**
@@ -894,6 +884,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    isKeyboardActive: state.ui.isKeyboardActive,
 });
 
 const mapDispatchToProps = {

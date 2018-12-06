@@ -43,6 +43,7 @@ describe('Reducer: ui', () => {
                 modalProps: {},
                 currentRoute: 'login',
                 hadErrorGeneratingNewAddress: false,
+                isKeyboardActive: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
