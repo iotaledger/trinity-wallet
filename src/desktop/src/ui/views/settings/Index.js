@@ -66,43 +66,42 @@ class Settings extends React.PureComponent {
                         aria-current={!accountSettings ? 'true' : 'false'}
                         onClick={() => history.push('/settings/language')}
                     >
-                        Trinity settings
+                        {t('settings:generalSettings')}
+                        <Icon icon="chevronDown" size={12} />
                     </a>
-                    {!accountSettings && (
-                        <nav>
-                            <NavLink to="/settings/language">
-                                <Icon icon="language" size={16} /> <strong>{t('settings:language')}</strong>
-                            </NavLink>
-                            <NavLink to="/settings/node">
-                                <Icon icon="node" size={16} /> <strong>{t('node')}</strong>
-                            </NavLink>
-                            <NavLink to="/settings/theme">
-                                <Icon icon="theme" size={16} /> <strong>{t('settings:theme')}</strong>
-                            </NavLink>
-                            <NavLink to="/settings/currency">
-                                <Icon icon="currency" size={16} /> <strong>{t('settings:currency')}</strong>
-                            </NavLink>
-                            {wallet.ready && (
-                                <div>
-                                    <hr />
-                                    <NavLink to="/settings/password">
-                                        <Icon icon="password" size={16} />{' '}
-                                        <strong>{t('settings:changePassword')}</strong>
-                                    </NavLink>
-                                    <NavLink to="/settings/twoFa">
-                                        <Icon icon="twoFA" size={16} /> <strong>{t('settings:twoFA')}</strong>
-                                    </NavLink>
-                                    <hr />
-                                    <NavLink to="/settings/mode">
-                                        <Icon icon="mode" size={16} /> <strong>{t('settings:mode')}</strong>
-                                    </NavLink>
-                                </div>
-                            )}
-                            <NavLink to="/settings/advanced">
-                                <Icon icon="advanced" size={16} /> <strong>{t('settings:advanced')}</strong>
-                            </NavLink>
-                        </nav>
-                    )}
+
+                    <nav className={!accountSettings ? css.open : css.closed}>
+                        <NavLink to="/settings/language">
+                            <Icon icon="language" size={16} /> <strong>{t('settings:language')}</strong>
+                        </NavLink>
+                        <NavLink to="/settings/node">
+                            <Icon icon="node" size={16} /> <strong>{t('node')}</strong>
+                        </NavLink>
+                        <NavLink to="/settings/theme">
+                            <Icon icon="theme" size={16} /> <strong>{t('settings:theme')}</strong>
+                        </NavLink>
+                        <NavLink to="/settings/currency">
+                            <Icon icon="currency" size={16} /> <strong>{t('settings:currency')}</strong>
+                        </NavLink>
+                        {wallet.ready && (
+                            <React.Fragment>
+                                <hr />
+                                <NavLink to="/settings/password">
+                                    <Icon icon="password" size={16} /> <strong>{t('settings:changePassword')}</strong>
+                                </NavLink>
+                                <NavLink to="/settings/twoFa">
+                                    <Icon icon="twoFA" size={16} /> <strong>{t('settings:twoFA')}</strong>
+                                </NavLink>
+                                <hr />
+                                <NavLink to="/settings/mode">
+                                    <Icon icon="mode" size={16} /> <strong>{t('settings:mode')}</strong>
+                                </NavLink>
+                            </React.Fragment>
+                        )}
+                        <NavLink to="/settings/advanced">
+                            <Icon icon="advanced" size={16} /> <strong>{t('settings:advanced')}</strong>
+                        </NavLink>
+                    </nav>
                     {wallet.ready &&
                         accountNames.map((account, index) => {
                             return (
@@ -111,38 +110,37 @@ class Settings extends React.PureComponent {
                                         aria-current={accountIndex === String(index) ? 'true' : 'false'}
                                         onClick={() => history.push(`/settings/account/name/${index}`)}
                                     >
-                                        {shorten(account, 28)}
+                                        {shorten(account, 24)}
+                                        <Icon icon="chevronDown" size={12} />
                                     </a>
-                                    {accountIndex === String(index) && (
-                                        <nav>
-                                            <NavLink to={`/settings/account/name/${accountIndex}`}>
-                                                <Icon icon="user" size={16} />{' '}
-                                                <strong>{t('addAdditionalSeed:accountName')}</strong>
-                                            </NavLink>
-                                            <NavLink to={`/settings/account/seed/${accountIndex}`}>
-                                                <Icon icon="eye" size={16} />{' '}
-                                                <strong>{t('accountManagement:viewSeed')}</strong>
-                                            </NavLink>
-                                            <NavLink to={`/settings/account/addresses/${accountIndex}`}>
-                                                <Icon icon="bookmark" size={16} />{' '}
-                                                <strong>{t('accountManagement:viewAddresses')}</strong>
-                                            </NavLink>
-                                            <hr />
-                                            <NavLink to={`/settings/account/tools/${accountIndex}`}>
-                                                <Icon icon="settingsAlt" size={16} />{' '}
-                                                <strong>{t('accountManagement:tools')}</strong>
-                                            </NavLink>
-                                            {accountNames.length > 1 ? (
-                                                <React.Fragment>
-                                                    <hr />
-                                                    <NavLink to={`/settings/account/remove/${accountIndex}`}>
-                                                        <Icon icon="trash" size={16} />{' '}
-                                                        <strong>{t('accountManagement:deleteAccount')}</strong>
-                                                    </NavLink>
-                                                </React.Fragment>
-                                            ) : null}
-                                        </nav>
-                                    )}
+                                    <nav className={accountIndex === String(index) ? css.open : css.closed}>
+                                        <NavLink to={`/settings/account/name/${accountIndex}`}>
+                                            <Icon icon="user" size={16} />{' '}
+                                            <strong>{t('addAdditionalSeed:accountName')}</strong>
+                                        </NavLink>
+                                        <NavLink to={`/settings/account/seed/${accountIndex}`}>
+                                            <Icon icon="eye" size={16} />{' '}
+                                            <strong>{t('accountManagement:viewSeed')}</strong>
+                                        </NavLink>
+                                        <NavLink to={`/settings/account/addresses/${accountIndex}`}>
+                                            <Icon icon="bookmark" size={16} />{' '}
+                                            <strong>{t('accountManagement:viewAddresses')}</strong>
+                                        </NavLink>
+                                        <hr />
+                                        <NavLink to={`/settings/account/tools/${accountIndex}`}>
+                                            <Icon icon="settingsAlt" size={16} />{' '}
+                                            <strong>{t('accountManagement:tools')}</strong>
+                                        </NavLink>
+                                        {accountNames.length > 1 && (
+                                            <React.Fragment>
+                                                <hr />
+                                                <NavLink to={`/settings/account/remove/${accountIndex}`}>
+                                                    <Icon icon="trash" size={16} />{' '}
+                                                    <strong>{t('accountManagement:deleteAccount')}</strong>
+                                                </NavLink>
+                                            </React.Fragment>
+                                        )}
+                                    </nav>
                                 </React.Fragment>
                             );
                         })}

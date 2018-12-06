@@ -1,7 +1,7 @@
 export default {
     chart: { color: 'rgb(65, 220, 243)' },
     box: { bg: 'rgb(5, 33, 50)', alt: 'rgb(4, 52, 81)', body: 'rgb(240, 242, 246)' },
-    bar: { bg: 'rgb(20, 23, 37)', hover: 'rgb(25, 39, 51)', alt: 'rgb(20, 23, 37)', color: 'rgb(240, 242, 246)' },
+    bar: { bg: 'rgb(20, 23, 37)', hover: 'rgb(25, 39, 51)', alt: 'rgb(33, 51, 67)', color: 'rgb(240, 242, 246)' },
     label: { color: 'rgb(240, 242, 246)', hover: 'rgb(65, 220, 243)' },
     input: {
         bg: 'rgb(15, 62, 88)',

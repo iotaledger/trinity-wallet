@@ -296,17 +296,17 @@ const initMenu = (app, getWindowFunc) => {
                         submenu: [
                             {
                                 label: language.accountName,
-                                click: () => navigate('account/name'),
+                                click: () => navigate('settings/account/name'),
                                 enabled: state.enabled,
                             },
                             {
                                 label: language.viewSeed,
-                                click: () => navigate('account/seed'),
+                                click: () => navigate('settings/account/seed'),
                                 enabled: state.enabled,
                             },
                             {
                                 label: language.viewAddresses,
-                                click: () => navigate('account/addresses'),
+                                click: () => navigate('settings/account/addresses'),
                                 enabled: state.enabled,
                             },
                             {
@@ -314,7 +314,7 @@ const initMenu = (app, getWindowFunc) => {
                             },
                             {
                                 label: language.tools,
-                                click: () => navigate('account/tools'),
+                                click: () => navigate('settings/account/tools'),
                                 enabled: state.enabled,
                             },
                         ],

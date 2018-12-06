@@ -158,55 +158,57 @@ class Addresses extends PureComponent {
         return (
             <div className={css.scroll}>
                 <Scrollbar>
-                    <h3>{t('advancedSettings:snapshotTransition')}</h3>
-                    <p>
-                        {t('snapshotTransition:snapshotExplanation')} <br />
-                        {t('snapshotTransition:hasSnapshotTakenPlace')}
-                    </p>
-                    <Button
-                        className="small"
-                        onClick={this.startSnapshotTransition}
-                        loading={ui.isTransitioning || ui.isAttachingToTangle}
-                    >
-                        {t('snapshotTransition:transition')}
-                    </Button>
-                    <ModalConfirm
-                        isOpen={wallet.balanceCheckFlag}
-                        category="primary"
-                        onConfirm={this.transitionBalanceOk}
-                        onCancel={this.transitionBalanceWrong}
-                        content={{
-                            title: t('snapshotTransition:detectedBalance', {
-                                amount: round(formatValue(wallet.transitionBalance), 1),
-                                unit: formatUnit(wallet.transitionBalance),
-                            }),
-                            message: t('snapshotTransition:isThisCorrect'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
-                        }}
-                    />
-                    <hr />
+                    <article>
+                        <h3>{t('advancedSettings:snapshotTransition')}</h3>
+                        <p>
+                            {t('snapshotTransition:snapshotExplanation')} <br />
+                            {t('snapshotTransition:hasSnapshotTakenPlace')}
+                        </p>
+                        <Button
+                            className="small"
+                            onClick={this.startSnapshotTransition}
+                            loading={ui.isTransitioning || ui.isAttachingToTangle}
+                        >
+                            {t('snapshotTransition:transition')}
+                        </Button>
+                        <ModalConfirm
+                            isOpen={wallet.balanceCheckFlag}
+                            category="primary"
+                            onConfirm={this.transitionBalanceOk}
+                            onCancel={this.transitionBalanceWrong}
+                            content={{
+                                title: t('snapshotTransition:detectedBalance', {
+                                    amount: round(formatValue(wallet.transitionBalance), 1),
+                                    unit: formatUnit(wallet.transitionBalance),
+                                }),
+                                message: t('snapshotTransition:isThisCorrect'),
+                                confirm: t('global:yes'),
+                                cancel: t('global:no'),
+                            }}
+                        />
+                        <hr />
 
-                    <h3>{t('advancedSettings:manualSync')}</h3>
-                    {ui.isSyncing ? (
-                        <p>
-                            {t('manualSync:syncingYourAccount')} <br />
-                            {t('manualSync:thisMayTake')}
-                        </p>
-                    ) : (
-                        <p>
-                            {t('manualSync:outOfSync')} <br />
-                            {t('manualSync:pressToSync')}
-                        </p>
-                    )}
-                    <Button
-                        onClick={this.syncAccount}
-                        className="small"
-                        loading={ui.isSyncing}
-                        disabled={ui.isTransitioning || ui.isAttachingToTangle}
-                    >
-                        {t('manualSync:syncAccount')}
-                    </Button>
+                        <h3>{t('advancedSettings:manualSync')}</h3>
+                        {ui.isSyncing ? (
+                            <p>
+                                {t('manualSync:syncingYourAccount')} <br />
+                                {t('manualSync:thisMayTake')}
+                            </p>
+                        ) : (
+                            <p>
+                                {t('manualSync:outOfSync')} <br />
+                                {t('manualSync:pressToSync')}
+                            </p>
+                        )}
+                        <Button
+                            onClick={this.syncAccount}
+                            className="small"
+                            loading={ui.isSyncing}
+                            disabled={ui.isTransitioning || ui.isAttachingToTangle}
+                        >
+                            {t('manualSync:syncAccount')}
+                        </Button>
+                    </article>
                 </Scrollbar>
             </div>
         );
@@ -230,4 +232,7 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Addresses));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Addresses));

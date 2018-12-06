@@ -44,6 +44,8 @@ import css from './index.scss';
 class App extends React.Component {
     static propTypes = {
         /** @ignore */
+        seedIndex: PropTypes.number.isRequired,
+        /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
         isBusy: PropTypes.bool.isRequired,
@@ -249,7 +251,11 @@ class App extends React.Component {
                 this.props.history.push('/onboarding/login');
                 break;
             default:
-                this.props.history.push(`/${item}`);
+                if (item.indexOf('settings/account') === 0) {
+                    this.props.history.push(`/${item}/${this.props.seedIndex}`);
+                } else {
+                    this.props.history.push(`/${item}`);
+                }
                 break;
         }
     }
@@ -302,6 +308,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    seedIndex: state.wallet.seedIndex,
     accountNames: getAccountNamesFromState(state),
     addingAdditionalAccount: isSettingUpNewAccount(state),
     locale: state.settings.locale,
