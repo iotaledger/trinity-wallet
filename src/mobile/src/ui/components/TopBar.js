@@ -331,7 +331,7 @@ class TopBar extends Component {
                                             mode === 'Advanced' && (
                                                 <TouchableOpacity
                                                     onPress={() => this.showModal()}
-                                                    style={[styles.iconWrapper, { flex: 1 }]}
+                                                    style={[styles.iconWrapper, { flex: 1, alignItems: 'flex-end' }]}
                                                 >
                                                     <Icon name="notification" size={width / 18} color={bar.color} />
                                                 </TouchableOpacity>
@@ -370,7 +370,9 @@ class TopBar extends Component {
                                     </View>
                                 </Animated.View>
                                 <View style={styles.iconWrapper}>
-                                    <Animated.View style={[styles.iconWrapper, { height: topBarHeight }]}>
+                                    <Animated.View
+                                        style={[styles.iconWrapper, { height: topBarHeight, alignItems: 'flex-start' }]}
+                                    >
                                         {(hasMultipleSeeds && (
                                             <Icon
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
