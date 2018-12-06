@@ -325,7 +325,7 @@ export default class TransactionHistoryModal extends PureComponent {
                         styles.modalContainer,
                         {
                             height: isAndroid
-                                ? height - Styling.topbarHeight + StatusBar.currentHeight
+                                ? height - Styling.topbarHeight - StatusBar.currentHeight
                                 : height - Styling.topbarHeight,
                             backgroundColor: style.backgroundColor,
                         },

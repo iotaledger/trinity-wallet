@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width,
-        height: height - Styling.topbarHeight,
     },
     modalContent: {
         flex: 1,
@@ -77,7 +76,7 @@ export class ModalViewComponent extends PureComponent {
     getModalHeight() {
         if (this.props.displayTopBar) {
             if (isAndroid) {
-                return height - Styling.topbarHeight + StatusBar.currentHeight;
+                return height - Styling.topbarHeight - StatusBar.currentHeight;
             }
             return height - Styling.topbarHeight;
         }
