@@ -86,13 +86,21 @@ class Remove extends PureComponent {
         }
 
         return (
-            <div>
-                <Info>
-                    <p>{t('deleteAccount:yourSeedWillBeRemoved')}</p>
-                </Info>
-                <Button variant="negative" onClick={() => this.setState({ removeConfirm: !removeConfirm })}>
-                    {t('accountManagement:deleteAccount')}
-                </Button>
+            <form>
+                <fieldset>
+                    <Info>
+                        <p>{t('deleteAccount:yourSeedWillBeRemoved')}</p>
+                    </Info>
+                </fieldset>
+                <footer>
+                    <Button
+                        className="square"
+                        variant="negative"
+                        onClick={() => this.setState({ removeConfirm: !removeConfirm })}
+                    >
+                        {t('accountManagement:deleteAccount')}
+                    </Button>
+                </footer>
 
                 <Confirm
                     isOpen={removeConfirm}
@@ -106,7 +114,7 @@ class Remove extends PureComponent {
                     onCancel={() => this.setState({ removeConfirm: false })}
                     onConfirm={() => this.removeAccount()}
                 />
-            </div>
+            </form>
         );
     }
 }

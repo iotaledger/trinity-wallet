@@ -62,7 +62,12 @@ class Settings extends React.PureComponent {
         return (
             <main className={css.settings}>
                 <aside>
-                    <NavLink to="/settings/language">Trinity settings</NavLink>
+                    <a
+                        aria-current={!accountSettings ? 'true' : 'false'}
+                        onClick={() => history.push('/settings/language')}
+                    >
+                        Trinity settings
+                    </a>
                     {!accountSettings && (
                         <nav>
                             <NavLink to="/settings/language">
@@ -102,31 +107,36 @@ class Settings extends React.PureComponent {
                         accountNames.map((account, index) => {
                             return (
                                 <React.Fragment key={`account-${index}`}>
-                                    <NavLink to={`/settings/account/name/${index}`}>{shorten(account, 28)}</NavLink>
+                                    <a
+                                        aria-current={accountIndex === String(index) ? 'true' : 'false'}
+                                        onClick={() => history.push(`/settings/account/name/${index}`)}
+                                    >
+                                        {shorten(account, 28)}
+                                    </a>
                                     {accountIndex === String(index) && (
                                         <nav>
                                             <NavLink to={`/settings/account/name/${accountIndex}`}>
-                                                <Icon icon="user" size={20} />{' '}
+                                                <Icon icon="user" size={16} />{' '}
                                                 <strong>{t('addAdditionalSeed:accountName')}</strong>
                                             </NavLink>
                                             <NavLink to={`/settings/account/seed/${accountIndex}`}>
-                                                <Icon icon="eye" size={20} />{' '}
+                                                <Icon icon="eye" size={16} />{' '}
                                                 <strong>{t('accountManagement:viewSeed')}</strong>
                                             </NavLink>
                                             <NavLink to={`/settings/account/addresses/${accountIndex}`}>
-                                                <Icon icon="bookmark" size={20} />{' '}
+                                                <Icon icon="bookmark" size={16} />{' '}
                                                 <strong>{t('accountManagement:viewAddresses')}</strong>
                                             </NavLink>
                                             <hr />
                                             <NavLink to={`/settings/account/tools/${accountIndex}`}>
-                                                <Icon icon="settingsAlt" size={20} />{' '}
+                                                <Icon icon="settingsAlt" size={16} />{' '}
                                                 <strong>{t('accountManagement:tools')}</strong>
                                             </NavLink>
                                             {accountNames.length > 1 ? (
                                                 <React.Fragment>
                                                     <hr />
                                                     <NavLink to={`/settings/account/remove/${accountIndex}`}>
-                                                        <Icon icon="trash" size={20} />{' '}
+                                                        <Icon icon="trash" size={16} />{' '}
                                                         <strong>{t('accountManagement:deleteAccount')}</strong>
                                                     </NavLink>
                                                 </React.Fragment>
@@ -143,39 +153,37 @@ class Settings extends React.PureComponent {
                             <Icon icon="cross" size={24} />
                         </a>
                     </header>
-                    <div>
-                        <Switch location={location}>
-                            <Route path="/settings/language" component={Language} />
-                            <Route path="/settings/theme" component={Theme} />
-                            <Route path="/settings/node" component={SetNode} />
-                            <Route path="/settings/currency" component={Currency} />
-                            <Route path="/settings/password" component={Password} />
-                            <Route path="/settings/twoFa" component={TwoFA} />
-                            <Route path="/settings/mode" component={Mode} />
-                            <Route path="/settings/advanced" component={Advanced} />
-                            <Route
-                                path="/settings/account/name/:accountIndex"
-                                render={() => <AccountName account={account} />}
-                            />
-                            <Route
-                                path="/settings/account/seed/:accountIndex"
-                                render={() => <AccountSeed account={account} />}
-                            />
-                            <Route
-                                path="/settings/account/addresses/:accountIndex"
-                                render={() => <AccountAddresses account={account} />}
-                            />
-                            <Route
-                                path="/settings/account/tools/:accountIndex"
-                                render={() => <AccountTools account={account} />}
-                            />
-                            <Route
-                                path="/settings/account/remove/:accountIndex"
-                                render={() => <AccountRemove history={history} account={account} />}
-                            />
-                            <Redirect from="/settings/" to="/settings/language" />
-                        </Switch>
-                    </div>
+                    <Switch location={location}>
+                        <Route path="/settings/language" component={Language} />
+                        <Route path="/settings/theme" component={Theme} />
+                        <Route path="/settings/node" component={SetNode} />
+                        <Route path="/settings/currency" component={Currency} />
+                        <Route path="/settings/password" component={Password} />
+                        <Route path="/settings/twoFa" component={TwoFA} />
+                        <Route path="/settings/mode" component={Mode} />
+                        <Route path="/settings/advanced" component={Advanced} />
+                        <Route
+                            path="/settings/account/name/:accountIndex"
+                            render={() => <AccountName account={account} />}
+                        />
+                        <Route
+                            path="/settings/account/seed/:accountIndex"
+                            render={() => <AccountSeed account={account} />}
+                        />
+                        <Route
+                            path="/settings/account/addresses/:accountIndex"
+                            render={() => <AccountAddresses account={account} />}
+                        />
+                        <Route
+                            path="/settings/account/tools/:accountIndex"
+                            render={() => <AccountTools account={account} />}
+                        />
+                        <Route
+                            path="/settings/account/remove/:accountIndex"
+                            render={() => <AccountRemove history={history} account={account} />}
+                        />
+                        <Redirect from="/settings/" to="/settings/language" />
+                    </Switch>
                 </section>
             </main>
         );

@@ -79,7 +79,11 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        const seedStore = await new SeedStore[account.accountMeta.type](password, account.accountName, account.accountMeta);
+        const seedStore = await new SeedStore[account.accountMeta.type](
+            password,
+            account.accountName,
+            account.accountMeta,
+        );
         await seedStore.renameAccount(newAccountName);
     }
 
@@ -94,16 +98,22 @@ class AccountName extends PureComponent {
                     this.setAccountName();
                 }}
             >
-                <Text
-                    value={newAccountName}
-                    label={t('accountManagement:editAccountName')}
-                    onChange={(value) => this.setState({ newAccountName: value })}
-                />
                 <fieldset>
-                    <Button disabled={newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName} type="submit">
+                    <Text
+                        value={newAccountName}
+                        label={t('accountManagement:editAccountName')}
+                        onChange={(value) => this.setState({ newAccountName: value })}
+                    />
+                </fieldset>
+                <footer>
+                    <Button
+                        className="square"
+                        disabled={newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName}
+                        type="submit"
+                    >
                         {t('save')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }

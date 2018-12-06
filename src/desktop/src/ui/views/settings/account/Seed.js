@@ -104,31 +104,33 @@ class Seed extends PureComponent {
         return (
             <React.Fragment>
                 <form>
-                    <p className={css.seed}>
-                        <span>
-                            {seed && action === 'view'
-                                ? seed.map((byte, index) => {
-                                      if (index % 3 !== 0) {
-                                          return null;
-                                      }
-                                      const letter = byteToChar(byte);
-                                      return (
-                                          <React.Fragment key={`${index}${letter}`}>
-                                              {letter}
-                                              {byteToChar(seed[index + 1])}
-                                              {byteToChar(seed[index + 2])}{' '}
-                                          </React.Fragment>
-                                      );
-                                  })
-                                : new Array(MAX_SEED_LENGTH / 3).join('... ')}
-                        </span>
-                        {seed &&
-                            action === 'view' && (
-                                <small>
-                                    {t('checksum')}: <strong>{checksum}</strong>
-                                </small>
-                            )}
-                    </p>
+                    <fieldset>
+                        <p className={css.seed}>
+                            <span>
+                                {seed && action === 'view'
+                                    ? seed.map((byte, index) => {
+                                          if (index % 3 !== 0) {
+                                              return null;
+                                          }
+                                          const letter = byteToChar(byte);
+                                          return (
+                                              <React.Fragment key={`${index}${letter}`}>
+                                                  {letter}
+                                                  {byteToChar(seed[index + 1])}
+                                                  {byteToChar(seed[index + 2])}{' '}
+                                              </React.Fragment>
+                                          );
+                                      })
+                                    : new Array(MAX_SEED_LENGTH / 3).join('... ')}
+                            </span>
+                            {seed &&
+                                action === 'view' && (
+                                    <small>
+                                        {t('checksum')}: <strong>{checksum}</strong>
+                                    </small>
+                                )}
+                        </p>
+                    </fieldset>
                     <fieldset>
                         <Button
                             className="small"
@@ -153,11 +155,7 @@ class Seed extends PureComponent {
                     isOpen={seed && action === 'export'}
                     onClose={() => this.setState({ action: null })}
                 >
-                    <SeedExport
-                        seed={seed || []}
-                        title={accountName}
-                        onClose={() => this.setState({ action: null })}
-                    />
+                    <SeedExport seed={seed || []} title={accountName} onClose={() => this.setState({ action: null })} />
                 </Modal>
             </React.Fragment>
         );

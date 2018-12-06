@@ -1,6 +1,18 @@
 .settings {
     justify-content: flex-start;
 
+    a {
+        display: block;
+        font-size: 18px;
+        line-height: 56px;
+        padding: 0 20px;
+        color: var(--bar-body);
+
+        &[aria-current='true'] {
+            background: var(--bar-hover);
+        }
+    }
+
     aside {
         flex: 0 0 280px;
         background: var(--bar-bg);
@@ -10,18 +22,6 @@
             display: none;
         }
 
-        > a {
-            display: block;
-            font-size: 18px;
-            line-height: 56px;
-            padding: 0 20px;
-            color: var(--bar-body);
-
-            &[aria-current='page'] {
-                background: var(--bar-hover);
-            }
-        }
-
         nav {
             padding: 0px 20px 20px 40px;
             background: var(--bar-hover);
@@ -29,23 +29,24 @@
             a {
                 display: flex;
                 color: var(--body);
-                line-height: 32px;
                 font-size: 14px;
+                line-height: 18px;
                 text-decoration: none;
                 cursor: pointer;
+                padding: 8px 0;
                 &:hover,
                 &[aria-current='page'] {
                     color: var(--secondary);
                 }
 
                 > span {
-                    margin: 8px 14px 0 0;
+                    margin: 2px 14px 0 0;
                 }
             }
 
             hr {
                 margin: 12px 0;
-                border-top: 1px solid var(--bar-bg);
+                border: none;
             }
         }
     }
@@ -65,20 +66,9 @@
         }
     }
 
-    :global {
-        .ps {
-            margin-right: -10px;
-        }
-    }
-
     section {
         flex: 1;
         padding-top: 60px;
-        > div {
-            margin: 0 auto;
-            max-width: 560px;
-            padding: 20px;
-        }
 
         @media print {
             p,
@@ -110,10 +100,40 @@
     p + button {
         margin-top: -32px;
     }
+
+    hr {
+        border: none;
+        margin: 32px 0;
+        border-top: 1px solid var(--body-alt);
+    }
+
+    form {
+        height: calc(100vh - 120px);
+        position: relative;
+        fieldset {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0px;
+            height: 70px;
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            * {
+                flex: 1;
+            }
+        }
+    }
 }
 
 .scroll {
     height: calc(100vh - 120px);
+    max-width: 560px;
+    margin: 0 auto;
     > div:last-child {
         padding: 0 40px 60px 0;
     }
@@ -122,7 +142,7 @@
 .mockup {
     pointer-events: none;
     padding: 20px 20px 10px;
-    margin: 0 0 30px;
+    margin: 0 auto 30px;
     border-radius: 4px;
     border: 1px solid var(--body-alt);
     text-align: center;

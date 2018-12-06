@@ -24,33 +24,37 @@ class Addresses extends PureComponent {
         const isSpent = ({ spent: { local, remote } }) => local || remote;
 
         return (
-            <ul className={css.addresses}>
-                <Scrollbar>
-                    {Object.keys(account.addresses)
-                        .reverse()
-                        .map((item) => {
-                            const address = item + account.addresses[item].checksum;
-                            const text = address.match(/.{1,3}/g).join(' ');
-                            return (
-                                <li key={address}>
-                                    <p className={isSpent(account.addresses[item]) ? css.spent : null}>
-                                        <Clipboard
-                                            text={address}
-                                            title={t('receive:addressCopied')}
-                                            success={t('receive:addressCopiedExplanation')}
-                                        >
-                                            {text}
-                                        </Clipboard>
-                                    </p>
-                                    <strong>
-                                        {formatValue(account.addresses[item].balance)}
-                                        {formatUnit(account.addresses[item].balance)}
-                                    </strong>
-                                </li>
-                            );
-                        })}
-                </Scrollbar>
-            </ul>
+            <form>
+                <fieldset>
+                    <ul className={css.addresses}>
+                        <Scrollbar>
+                            {Object.keys(account.addresses)
+                                .reverse()
+                                .map((item) => {
+                                    const address = item + account.addresses[item].checksum;
+                                    const text = address.match(/.{1,3}/g).join(' ');
+                                    return (
+                                        <li key={address}>
+                                            <p className={isSpent(account.addresses[item]) ? css.spent : null}>
+                                                <Clipboard
+                                                    text={address}
+                                                    title={t('receive:addressCopied')}
+                                                    success={t('receive:addressCopiedExplanation')}
+                                                >
+                                                    {text}
+                                                </Clipboard>
+                                            </p>
+                                            <strong>
+                                                {formatValue(account.addresses[item].balance)}
+                                                {formatUnit(account.addresses[item].balance)}
+                                            </strong>
+                                        </li>
+                                    );
+                                })}
+                        </Scrollbar>
+                    </ul>
+                </fieldset>
+            </form>
         );
     }
 }

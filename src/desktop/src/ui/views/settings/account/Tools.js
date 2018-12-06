@@ -24,6 +24,8 @@ import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import ModalConfirm from 'ui/components/modal/Confirm';
 
+import css from '../index.scss';
+
 /**
  * Account tools component
  */
@@ -154,7 +156,7 @@ class Addresses extends PureComponent {
         }
 
         return (
-            <div>
+            <div className={css.scroll}>
                 <Scrollbar>
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
                     <p>
