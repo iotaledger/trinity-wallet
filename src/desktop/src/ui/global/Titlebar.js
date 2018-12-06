@@ -1,11 +1,13 @@
 /* global Electron */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import css from './titlebar.scss';
 
 /**
  * Windows platform wallet titlebar component
  */
-const Titlebar = (props) => {
+const Titlebar = ({ path }) => {
     const os = Electron.getOS();
 
     const sidebarViews = ['wallet'];
@@ -14,7 +16,7 @@ const Titlebar = (props) => {
         return (
             <nav className={css.windows}>
                 <a
-                    className={sidebarViews.indexOf(props.path) > -1 ? css.dark : css.light}
+                    className={sidebarViews.indexOf(path) > -1 ? css.dark : css.light}
                     onClick={() => Electron.showMenu()}
                 >
                     <svg width="15" height="15" viewBox="0 0 15 15">
@@ -43,6 +45,11 @@ const Titlebar = (props) => {
     };
 
     return <div className={css.titlebar}>{os === 'win32' ? windows() : null}</div>;
+};
+
+Titlebar.propTypes = {
+    /** Current main path */
+    path: PropTypes.string.isRequired,
 };
 
 export default Titlebar;
