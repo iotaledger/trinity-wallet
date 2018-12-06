@@ -705,7 +705,8 @@
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Broadcasting",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",

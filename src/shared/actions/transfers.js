@@ -696,7 +696,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             .then(({ newState }) => {
                 dispatch(updateAccountInfoAfterSpending(newState));
 
-                // Progressbar => (Progress summary)
+                // Progressbar => (Progress complete)
                 dispatch(setNextStepAsActive());
                 dispatch(generateTransactionSuccessAlert(isZeroValue));
 

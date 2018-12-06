@@ -387,18 +387,11 @@ export class Send extends Component {
         return 1;
     }
 
-    getProgress() {
-        if (size(this.props.activeSteps) > 0) {
-            return this.props.activeStepIndex / size(this.props.activeSteps);
-        }
-        return -1;
-    }
-
     getProgressBarText() {
-        const { activeStepIndex, activeSteps } = this.props;
+        const { t, activeStepIndex, activeSteps } = this.props;
         const totalSteps = size(activeSteps);
         if (activeStepIndex === totalSteps) {
-            return 'Transfer complete';
+            return t('progressSteps:transferComplete');
         }
         return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : '';
     }
@@ -472,9 +465,9 @@ export class Send extends Component {
         const { isKeyboardActive } = this.props;
         if (isKeyboardActive) {
             this.blurTextFields();
-            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 500);
+            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 2800);
         } else {
-            this.showModal('transferConfirmation');
+            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 2000);
         }
     }
 
@@ -834,8 +827,8 @@ export class Send extends Component {
                             }}
                         >
                             <ProgressBar
-                                progress={this.getProgress()}
-                                stepSize={size(this.props.activeSteps) > 0 ? 1 / size(this.props.activeSteps) : 0}
+                                activeStepIndex={this.props.activeStepIndex}
+                                totalSteps={size(this.props.activeSteps)}
                                 filledColor={input.bg}
                                 unfilledColor={dark.color}
                                 textColor={body.color}
