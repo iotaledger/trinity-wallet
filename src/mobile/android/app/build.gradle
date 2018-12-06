@@ -150,6 +150,11 @@ android {
     }
     productFlavors {
     }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
 }
 dependencies {
     implementation project(':react-native-qr-scanner')
@@ -206,5 +211,32 @@ project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
 ]
 
+configurations.all {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.name == 'android-jsc') {
+                details.useTarget group: details.requested.group, name: 'android-jsc-intl', version: 'r236355'
+            }
+        }
+    }
+}
+
+task extractSo(type: Copy) {
+    println 'Extracting *.so file(s)....'
+
+    from zipTree('${project.rootDir}/../../../node_modules/jsc-android/dist/org/webkit/android-jsc-intl/r236355/android-jsc-intl-r236355.aar')
+    into './src/main/jniLibs/'
+    include 'jni/**/*.so'
+
+    eachFile {
+        def segments = it.getRelativePath().getSegments() as List
+        println segments
+        it.setPath(segments.tail().join("/"))
+        return it
+    }
+    includeEmptyDirs = false
+}
+
+preBuild.dependsOn extractSo
 
 apply plugin: 'com.bugsnag.android.gradle'

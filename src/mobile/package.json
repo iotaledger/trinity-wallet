@@ -44,6 +44,7 @@
     "hoist-non-react-statics": "^2.3.1",
     "https-browserify": "0.0.1",
     "inherits": "^2.0.3",
+    "jsc-android": "236355.x.x",
     "lodash": "^4.17.10",
     "lottie-ios": "^2.5.0",
     "lottie-react-native": "^2.5.10",
