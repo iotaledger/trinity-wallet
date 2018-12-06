@@ -5,13 +5,18 @@ import css from './titlebar.scss';
 /**
  * Windows platform wallet titlebar component
  */
-const Titlebar = () => {
+const Titlebar = (props) => {
     const os = Electron.getOS();
+
+    const sidebarViews = ['wallet'];
 
     const windows = () => {
         return (
             <nav className={css.windows}>
-                <a onClick={() => Electron.showMenu()}>
+                <a
+                    className={sidebarViews.indexOf(props.path) > -1 ? css.dark : css.light}
+                    onClick={() => Electron.showMenu()}
+                >
                     <svg width="15" height="15" viewBox="0 0 15 15">
                         <path fill="#000" d="M0 1h15v1h-15z" />
                         <path fill="#000" d="M0 7h15v1h-15z" />
