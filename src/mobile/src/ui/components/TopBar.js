@@ -149,6 +149,8 @@ class TopBar extends Component {
         currentRoute: PropTypes.string.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** @ignore */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -251,13 +253,15 @@ class TopBar extends Component {
             isSyncing,
             isTransitioning,
             isFetchingLatestAccountInfo,
+            isModalActive,
         } = this.props;
         return (
             isGeneratingReceiveAddress ||
             isSendingTransfer ||
             isSyncing ||
             isTransitioning ||
-            isFetchingLatestAccountInfo
+            isFetchingLatestAccountInfo ||
+            isModalActive
         );
     }
 
@@ -524,6 +528,7 @@ const mapStateToProps = (state) => ({
     isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,
     isKeyboardActive: state.ui.isKeyboardActive,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
