@@ -437,6 +437,9 @@
                 font-family: 'SourceSansPro';
                 font-weight: 400;
             }
+            mark {
+                color: var(--primary);
+            }
         }
         > div {
             max-height: calc(100vh - 640px);
