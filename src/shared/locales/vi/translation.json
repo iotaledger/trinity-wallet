@@ -19,6 +19,7 @@
         "invalidResponse": "Lỗi nút mạng",
         "invalidResponseExplanation": "Nút mạng hiện lỗi. Hãy đổi nút mạng khác.",
         "invalidResponseFetchingAccount": "Nút mạng hiện lỗi khi lấy thông tin tài khoản của bạn. Hãy đổi nút mạng khác.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Nút mạng không đồng bộ",
         "nodeOutOfSyncExplanation": "Nút mạng bạn đang chọn không được đồng bộ. Hãy đổi nút mạng khác hoặc thử lại sau.",
         "thisNodeOutOfSync": "Nút mạng này không được đồng bộ. Hãy đổi nút mạng khác hoặc thử lại sau.",
@@ -146,7 +147,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "MAIN ACCOUNT",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -699,6 +704,10 @@
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifications",
