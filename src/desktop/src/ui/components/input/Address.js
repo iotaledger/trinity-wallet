@@ -1,11 +1,11 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
-import ReactTooltip from 'react-tooltip';
 import PropTypes from 'prop-types';
 import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
+import Checksum from 'ui/components/Checksum';
 import Icon from 'ui/components/Icon';
 import css from './input.scss';
 
@@ -32,7 +32,6 @@ export default class Address extends React.PureComponent {
 
     state = {
         showScanner: false,
-        inputFocused: false
     };
 
     componentDidMount() {
@@ -55,18 +54,6 @@ export default class Address extends React.PureComponent {
             const input = parseAddress(data);
             this.props.onChange(input.address, input.message, input.amount);
         }
-    };
-
-    handleFocus = () => {
-        this.setState(() => ({
-            inputFocused: true,
-        }));
-    };
-
-    handleBlur = () => {
-        this.setState(() => ({
-            inputFocused: false,
-        }));
     };
 
     closeScanner = () => {
@@ -94,7 +81,7 @@ export default class Address extends React.PureComponent {
 
     render() {
         const { address, label, closeLabel } = this.props;
-        const { showScanner, inputFocused } = this.state;
+        const { showScanner } = this.state;
 
         return (
             <div className={css.input}>
@@ -109,21 +96,23 @@ export default class Address extends React.PureComponent {
                         }}
                         value={address}
                         onChange={(e) => this.props.onChange(e.target.value)}
-                        onFocus={() => this.handleFocus()}
-                        onBlur={() => this.handleBlur()}
                         maxLength={ADDRESS_LENGTH}
                         data-tip={address}
                     />
+                    {this.isInputScrolling() && (
+                        <div className={css.tooltip}>
+                            <Checksum address={address} />
+                        </div>
+                    )}
                     <small>{label}</small>
-                    <p ref={(address) => {this.address = address;}} className={css.addressHidden}>
+                    <p
+                        ref={(address) => {
+                            this.address = address;
+                        }}
+                        className={css.addressHidden}
+                    >
                         {address}
                     </p>
-                    {!inputFocused && this.isInputScrolling() && (
-                        <ReactTooltip
-                            place="bottom"
-                            className={css.tooltip}
-                        />
-                    )}
                 </fieldset>
                 {showScanner && (
                     <Modal isOpen onClose={this.closeScanner}>
