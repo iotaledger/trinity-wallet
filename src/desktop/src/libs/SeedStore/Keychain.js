@@ -196,6 +196,40 @@ class Keychain {
     };
 
     /**
+     * Unique seed check
+     * @param {array} Seed - Seed to check
+     * @returns {boolean} If Seed is unique
+     */
+    isUniqueSeed = async (seed) => {
+        const vault = await Electron.listKeychain();
+        if (!vault) {
+            throw new Error('Local storage not available');
+        }
+        try {
+            const accounts = vault.filter((acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt`);
+
+            for (let i = 0; i < accounts.length; i++) {
+                const account = accounts[i];
+
+                const vaultSeed = await decrypt(account.password, this.key);
+
+                if (
+                    vaultSeed.length === seed.length &&
+                    seed.every((v, x) => {
+                        return v % 27 === vaultSeed[x] % 27;
+                    })
+                ) {
+                    return false;
+                }
+            }
+
+            return true;
+        } catch (err) {
+            throw err;
+        }
+    };
+
+    /**
      * Destroy the vault
      */
     destroy = () => {
