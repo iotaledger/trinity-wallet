@@ -1,5 +1,5 @@
-const { ipcRenderer: ipc } = require('electron');
-const Electron = require('./Electron');
+import { ipcRenderer as ipc } from 'electron';
+import Electron from './Electron';
 
 // Define environment mode as Development
 Electron.mode = 'dev';

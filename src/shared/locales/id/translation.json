@@ -19,6 +19,7 @@
         "invalidResponse": "Kesalahan pada Node",
         "invalidResponseExplanation": "Node mengembalikan kesalahan. Coba ganti node.",
         "invalidResponseFetchingAccount": "Node mengembalikan kesalahan ketika menarik informasi akun anda. Silahkan coba node yang lain.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node tidak sinkron",
         "nodeOutOfSyncExplanation": "Node yang anda pilih tidak sinkron. Silahkan ganti Node atau coba lagi.",
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silahkan ganti node atau coba lagi.",
@@ -146,7 +147,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "MAIN ACCOUNT",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -699,6 +704,10 @@
         "notLoggedIn": "Anda belum masuk",
         "setupIncomplete": "Persiapan dompet belum selesai",
         "completeSetup": "Persiapan selesai"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifikasi",

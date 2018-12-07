@@ -19,6 +19,7 @@
         "invalidResponse": "नोड त्रुटि",
         "invalidResponseExplanation": "नोड ने कोई त्रुटि लौटाई । नोड बदलने का प्रयास करें ।",
         "invalidResponseFetchingAccount": "आपके खाते की जानकारी लाते समय नोड ने एक अमान्य प्रतिक्रिया दिया । नोड बदलने का प्रयास करें ।",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "नोड सिंक से बाहर",
         "nodeOutOfSyncExplanation": "आपका वर्तमान में चयनित नोड सिंक से बाहर है । कृपया नोड बदलें या पुन: प्रयास करें ।",
         "thisNodeOutOfSync": "आपका वर्तमान में चयनित नोड सिंक से बाहर है । कृपया नोड बदलें या पुन: प्रयास करें ।",
@@ -146,7 +147,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "MAIN ACCOUNT",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -699,6 +704,10 @@
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifications",
