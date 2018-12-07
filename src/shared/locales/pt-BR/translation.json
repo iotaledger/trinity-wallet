@@ -758,10 +758,10 @@
         "ledgerDeniedTitle": "Transação recusada",
         "ledgerDeniedExplanation": "A transação foi recusada no dispositivo Ledger.",
         "ledgerIncorrectIndex": "Dispositivo Ledger incompatível",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "ledgerIncorrectIndexExplanation": "O Ledger conectado não consta com o Ledger registrado nessa conta, ou a frase de recuperação foi mudada.",
+        "checkAddress": "Verifique o endereço do destinatário",
+        "checkAddressExplanation": "Verifique se o endereço é igual ao endereço no dispositivo Ledger.",
+        "applicationNotInitialised": "Aviso não confirmado",
+        "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente."
     }
 }
