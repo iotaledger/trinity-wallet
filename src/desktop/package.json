@@ -45,7 +45,7 @@
     "bugsnag-sourcemaps": "^1.0.4",
     "concurrently": "^4.0.1",
     "cross-env": "^5.2.0",
-    "css-loader": "^1.0.0",
+    "css-loader": "^2.0.0",
     "dart-sass": "^1.14.1",
     "electron": "^3.0.10",
     "electron-builder": "^20.38",
