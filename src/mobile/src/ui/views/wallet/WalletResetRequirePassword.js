@@ -14,8 +14,7 @@ import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons';
-import { width, height } from 'libs/dimensions';
+import Header from 'ui/components/Header';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -26,13 +25,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 0.5,
+        flex: 0.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midWrapper: {
-        flex: 3.7,
+        flex: 4.6,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -186,7 +184,7 @@ class WalletResetRequirePassword extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
                             >
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                <Header textColor={theme.body.color} />
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midWrapper}>
@@ -220,7 +218,7 @@ class WalletResetRequirePassword extends Component {
                                     secureTextEntry
                                 />
                             </AnimatedComponent>
-                            <View style={{ flex: 0.2 }} />
+                            <View style={{ flex: 0.1 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>

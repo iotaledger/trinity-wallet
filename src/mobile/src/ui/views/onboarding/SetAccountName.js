@@ -14,10 +14,9 @@ import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
 import SeedStore from 'libs/SeedStore';
 import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -29,13 +28,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         justifyContent: 'flex-start',
         alignItems: 'center',
         width,
@@ -44,10 +42,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -212,19 +206,26 @@ export class SetAccountName extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
-                                style={styles.header}
                             >
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                <View style={{ flex: 0.7 }} />
                                 <Header textColor={theme.body.color}>{t('letsAddName')}</Header>
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={266}
+                            >
+                                <InfoBox>
+                                    <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
+                                </InfoBox>
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.3 }} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={133}
                             >
                                 <CustomTextInput
                                     label={t('addAdditionalSeed:accountName')}
@@ -238,18 +239,7 @@ export class SetAccountName extends Component {
                                     value={accountName}
                                 />
                             </AnimatedComponent>
-                            <View style={{ flex: 0.2 }} />
-                            <AnimatedComponent
-                                animationInType={['slideInRight', 'fadeIn']}
-                                animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={133}
-                            >
-                                <InfoBox>
-                                    <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
-                                    <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
-                                </InfoBox>
-                            </AnimatedComponent>
-                            <View style={{ flex: 0.5 }} />
+                            <View style={{ flex: 0.55 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>

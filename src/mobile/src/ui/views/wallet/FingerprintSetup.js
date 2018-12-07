@@ -12,6 +12,7 @@ import Fonts from 'ui/theme/fonts';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { isAndroid, isIPhoneX } from 'libs/device';
@@ -24,14 +25,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 0.3,
+        flex: 0.65,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
         width,
     },
     midWrapper: {
-        flex: 2,
+        flex: 3.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 10,
@@ -225,7 +225,7 @@ class FingerprintEnable extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        <Header textColor={theme.body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midWrapper}>

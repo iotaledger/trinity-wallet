@@ -22,7 +22,6 @@ import { width, height } from 'libs/dimensions';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
-import { Icon } from 'ui/theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -31,13 +30,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -46,10 +44,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -379,10 +373,7 @@ class SaveYourSeed extends Component {
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
-                        style={styles.header}
                     >
-                        <Icon name="iota" size={width / 8} color={body.color} />
-                        <View style={{ flex: 0.7 }} />
                         <Header textColor={body.color}>{t('saveYourSeed')}</Header>
                     </AnimatedComponent>
                 </View>

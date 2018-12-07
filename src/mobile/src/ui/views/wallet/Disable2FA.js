@@ -12,8 +12,8 @@ import Fonts from 'ui/theme/fonts';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
+import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -24,10 +24,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 1.6,
@@ -125,7 +124,7 @@ class Disable2FA extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
                             >
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                <Header textColor={theme.body.color} />
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midWrapper}>

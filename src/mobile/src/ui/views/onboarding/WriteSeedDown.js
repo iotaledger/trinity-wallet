@@ -13,9 +13,8 @@ import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
         flex: 3,
@@ -41,10 +39,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.5,
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     textContainer: {
         width: Styling.contentWidth5,
@@ -205,10 +199,7 @@ class WriteSeedDown extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
-                                style={styles.header}
                             >
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                <View style={{ flex: 0.7 }} />
                                 <Header textColor={theme.body.color}>{t('saveYourSeed:writeYourSeedDown')}</Header>
                             </AnimatedComponent>
                         </View>

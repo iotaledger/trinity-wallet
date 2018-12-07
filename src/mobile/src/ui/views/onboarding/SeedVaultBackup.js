@@ -4,10 +4,9 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingV
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
@@ -20,13 +19,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingBottom: height / 16,
@@ -34,10 +32,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.5,
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
 });
 
@@ -103,10 +97,7 @@ class SeedVaultBackup extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
-                                style={styles.header}
                             >
-                                <Icon name="iota" size={width / 8} color={body.color} />
-                                <View style={{ flex: 0.7 }} />
                                 <Header textColor={body.color}>{t('exportSeedVault')}</Header>
                             </AnimatedComponent>
                         </View>
