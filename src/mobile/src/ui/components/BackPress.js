@@ -6,17 +6,20 @@ import { navigator } from 'libs/navigation';
 import RNExitApp from 'react-native-exit-app';
 import i18next from 'shared-modules/libs/i18next.js';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { setLoginRoute } from 'shared-modules/actions/ui';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isAndroid } from 'libs/device';
 
 const mapDispatchToProps = {
     setSetting,
+    setLoginRoute,
 };
 
 const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     currentRoute: last(state.wallet.navStack),
+    loginRoute: state.ui.loginRoute,
 });
 
 /**
@@ -27,14 +30,18 @@ const mapStateToProps = (state) => ({
 export default function withBackPress(C) {
     class EnhancedComponent extends Component {
         static propTypes = {
+            /** Component ID */
+            componentId: PropTypes.string.isRequired,
             /** @ignore */
             setSetting: PropTypes.func.isRequired,
             /** @ignore */
             currentSetting: PropTypes.string.isRequired,
             /** @ignore */
             currentRoute: PropTypes.string.isRequired,
-            /** Component ID */
-            componentId: PropTypes.string.isRequired,
+            /** @ignore */
+            loginRoute: PropTypes.string.isRequired,
+            /** @ignore */
+            setLoginRoute: PropTypes.func.isRequired,
         };
         constructor(props) {
             super(props);
@@ -70,7 +77,6 @@ export default function withBackPress(C) {
          */
         withBackPressPopRoute() {
             navigator.pop(this.props.componentId);
-            return true;
         }
 
         /**
@@ -84,7 +90,6 @@ export default function withBackPress(C) {
             }
             this.lastBackPressed = Date.now();
             ToastAndroid.show(i18next.t('global:pressBackAgain'), ToastAndroid.SHORT);
-            return true;
         }
 
         /**
@@ -95,7 +100,8 @@ export default function withBackPress(C) {
         withBackPressNavigateSettings(currentSetting) {
             switch (currentSetting) {
                 case 'mainSettings':
-                    return this.withBackPressCloseApp();
+                    this.withBackPressCloseApp();
+                    break;
                 case 'modeSelection':
                 case 'themeCustomisation':
                 case 'currencySelection':
@@ -104,28 +110,48 @@ export default function withBackPress(C) {
                 case 'securitySettings':
                 case 'advancedSettings':
                 case 'about':
-                    return this.props.setSetting('mainSettings');
+                    this.props.setSetting('mainSettings');
+                    break;
                 case 'nodeSelection':
                 case 'addCustomNode':
                 case 'manualSync':
                 case 'snapshotTransition':
                 case 'pow':
                 case 'autoPromotion':
-                    return this.props.setSetting('advancedSettings');
+                    this.props.setSetting('advancedSettings');
+                    break;
                 case 'viewSeed':
                 case 'viewAddresses':
                 case 'editAccountName':
                 case 'deleteAccount':
                 case 'addNewAccount':
-                    return this.props.setSetting('accountManagement');
+                case 'exportSeedVault':
+                    this.props.setSetting('accountManagement');
+                    break;
                 case 'addExistingSeed':
-                    return this.props.setSetting('addNewAccount');
+                    this.props.setSetting('addNewAccount');
+                    break;
                 case 'changePassword':
-                    return this.props.setSetting('securitySettings');
+                    this.props.setSetting('securitySettings');
+                    break;
                 default:
                     break;
             }
-            return true;
+        }
+
+        withBackPressNavigateNodeOptions(loginRoute) {
+            switch (loginRoute) {
+                case 'complete2FA':
+                case 'nodeOptions':
+                    this.props.setLoginRoute('login');
+                    break;
+                case 'nodeSelection':
+                case 'customNode':
+                    this.props.setLoginRoute('nodeOptions');
+                    break;
+                default:
+                    break;
+            }
         }
 
         /**
@@ -134,17 +160,25 @@ export default function withBackPress(C) {
          * @method handleBackPress
          */
         handleBackPress = () => {
-            const { currentSetting, currentRoute } = this.props;
+            const { currentSetting, currentRoute, loginRoute } = this.props;
             switch (currentRoute) {
                 case 'home':
-                    return this.withBackPressNavigateSettings(currentSetting);
+                    this.withBackPressNavigateSettings(currentSetting);
+                    break;
                 case 'languageSetup':
                 case 'onboardingComplete':
                 case 'login':
-                    return this.withBackPressCloseApp();
+                    if (loginRoute !== 'login') {
+                        this.withBackPressNavigateNodeOptions(loginRoute);
+                        break;
+                    }
+                    this.withBackPressCloseApp();
+                    break;
                 default:
-                    return this.withBackPressPopRoute();
+                    this.withBackPressPopRoute();
+                    break;
             }
+            return true;
         };
 
         render() {
