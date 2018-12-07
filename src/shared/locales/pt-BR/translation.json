@@ -149,9 +149,9 @@
         "errorAccessingKeychainExplanation": "Não foi possível acessar o chaveiro necessário para armazenamento seguro.",
         "mainWallet": "CONTA PRINCIPAL",
         "shouldUpdate": "Uma atualização está disponível",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
+        "forceUpdate": "Atualize o aplicativo para continuar",
+        "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -282,15 +282,15 @@
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Gerar novo endereço",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR.",
         "tag": "Etiqueta",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Gerar novo endereço",
+        "generateAnAddressTitle": "Gerar novo endereço",
+        "generateAnAddressExplanation": "Por favor, gere um endereço antes de usar esta função."
     },
     "saveYourSeed": {
         "saveYourSeed": "Faça o backup de sua seed",
@@ -545,9 +545,9 @@
         "enterPassword": "Digite a senha para exibir sua seed.",
         "viewSeed": "Ver Seed",
         "hideSeed": "Esconder Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailable": "Exportação da Seed não está disponível para o tipo de conta {{accountType}}",
+        "accountIndex": "Seu índice de conta Ledger",
+        "accountPage": "Página de sua conta Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Você fez backup de sua seed?",
@@ -683,8 +683,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
         "installUpdate": "Instale a atualização e reinicie",
         "installUpdateExplanation": "Download completo, A Trinity será reiniciada agora para instalar a atualização.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Baixando atualizações",
+        "downloadProgress": "{{transferred}} de {{total}} baixado"
     },
     "notificationLog": {
         "errorLog": "Registros de erro"
@@ -706,8 +706,8 @@
         "completeSetup": "Configuração completa"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Usar proxy do sistema",
+        "proxyExplanation": "Detectar e usar as configurações de proxy do sistema. Feche e reabra a carteira depois de alterar essa configuração."
     },
     "notifications": {
         "notifications": "Notificações",
@@ -733,14 +733,14 @@
         "sweepConfirmationTitle": "Confirmação de varredura"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
+        "ready": "Dispositivo Ledger conectado e pronto",
+        "notReady": "Se você deseja usar um dispositivo de Ledger, conecte e desbloqueie agora",
+        "indexInUse": "Índice já em uso para conta {{account}}",
+        "indexInUseExplanation": "Índice escolhido já está em uso em uma das suas contas. Por favor escolha outro número de índice.",
+        "proceedWithLedger": "Continuar com a configuração de Ledger",
+        "accountIndex": "Índice de conta",
+        "accountPage": "Página da conta",
+        "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
         "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
         "accountPageExplanation": "Some third party wallets require pages.",
         "connectionError": "Cannot connect to Ledger",
