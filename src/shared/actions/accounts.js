@@ -425,10 +425,14 @@ export const getFullAccountInfo = (seedStore, accountName) => {
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
-                dispatch(setSeedIndex(existingAccountNames.length));
+                const seedIndex = existingAccountNames.length;
+
+                dispatch(setSeedIndex(seedIndex));
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
+                // Assign account meta
                 result.accountMeta = getAccountInfoDuringSetup(getState()).meta;
+                result.accountIndex = seedIndex;
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })

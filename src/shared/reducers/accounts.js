@@ -89,6 +89,8 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
+            // Set seed index
+            index: payload.accountIndex || get(state.accountInfo, `${payload.accountName}.index`),
             meta: payload.accountMeta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             balance: payload.balance,
             addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
@@ -261,6 +263,8 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        // Preserve the account index
+                        index: get(state.accountInfo, `${action.payload.accountName}.index`),
                         meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: mergeAddressData(
@@ -288,6 +292,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        index: get(state.accountInfo, `${action.payload.accountName}.index`),
                         meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: setAddressData(
