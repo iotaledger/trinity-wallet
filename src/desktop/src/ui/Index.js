@@ -278,7 +278,7 @@ class App extends React.Component {
 
         return (
             <div className={css.trintiy}>
-                <Titlebar />
+                <Titlebar path={currentKey} />
                 <About />
                 <ErrorLog />
                 <Idle />

@@ -19,6 +19,7 @@
         "invalidResponse": "Fel på nod",
         "invalidResponseExplanation": "Noden returnerade ett fel. Försök att ändra nod.",
         "invalidResponseFetchingAccount": "Noden returnerade ett fel vid hämtning av din kontoinformation. Försök att byta nod.",
+        "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
@@ -143,10 +144,14 @@
         "tryingAgainWithLocalPoW": "Försöker igen med lokal Proof-of-Work.",
         "tryingAgainWithDifferentNode": "Försöker igen med en annan nod.",
         "errorFetchingAccountInformation": "Fel vid hämtning av kontoinformation.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Fel vid synkronisering av adressinformation. Försöker igen med en annan nod.",
         "errorAccessingKeychain": "Nyckelringsfel",
         "errorAccessingKeychainExplanation": "Kan inte komma åt nyckelringen som krävs för säker lagring.",
-        "mainWallet": "HUVUDKONTO"
+        "mainWallet": "HUVUDKONTO",
+        "shouldUpdate": "En ny uppdatering finns tillgänglig",
+        "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
+        "forceUpdate": "Uppdatera appen att fortsätta",
+        "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -277,15 +282,15 @@
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Generera ny adress",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
         "missingPermission": "Åtkomst till filsystem krävs",
         "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder.",
         "tag": "Tagg",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Generera ny adress",
+        "generateAnAddressTitle": "Generera en adress",
+        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion."
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -700,6 +705,10 @@
         "setupIncomplete": "Plånboksinstallationen ofullständig",
         "completeSetup": "Installation fullständig"
     },
+    "proxy": {
+        "proxy": "Använd system-proxy",
+        "proxyExplanation": "Upptäcka och använda systembrett nätverksproxyinställningar. Starta om plånboken efter ändring av den här inställningen."
+    },
     "notifications": {
         "notifications": "Aviseringar",
         "notificationExplanation": "Ta emot skrivbordsaviseringar om nya transaktioner.",
@@ -751,7 +760,7 @@
         "ledgerIncorrectIndex": "Ledger-enheten matchade inte",
         "ledgerIncorrectIndexExplanation": "Ledger-enheten matchade inte enheten kopplat till detta konto, alternativt har återställningsfrasen ändrats.",
         "checkAddress": "Kontrollera mottagaradressen",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "Kontrollera att adressen matchar den som visas på din Ledger-enhet.",
         "applicationNotInitialised": "Varning obekräftad",
         "applicationNotInitialisedExplanation": "Stäng och öppna på nytt IOTA-appen på din Ledger-enhet, acceptera den informativa varningen och försök igen."
     }

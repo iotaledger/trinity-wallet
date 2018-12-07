@@ -1,6 +1,6 @@
-const argon2 = require('argon2');
-const kdbxweb = require('kdbxweb');
-const { byteToChar, charToByte } = require('../src/libs/helpers');
+import argon2 from 'argon2';
+import kdbxweb from 'kdbxweb';
+import { byteToChar, charToByte } from 'libs/iota/converter';
 
 /**
  * Bind kdbxweb and argon2
@@ -74,4 +74,4 @@ const kdbx = {
     importVault,
 };
 
-module.exports = kdbx;
+export default kdbx;
