@@ -29,8 +29,6 @@
 		601BFCF020C3677F0097D329 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFCEF20C3677E0097D329 /* Social.framework */; };
 		601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFCF120C3679D0097D329 /* MessageUI.framework */; };
 		601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFD6120C39A580097D329 /* libRNViewShot.a */; };
-		6020D31A21A5065300159E5A /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5562C207BA79E00BA0A7F /* Lottie.framework */; };
-		6020D31B21A5065300159E5A /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5562C207BA79E00BA0A7F /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6020D31E21A5077600159E5A /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC55639207BA79E00BA0A7F /* libRCTAnimation.a */; };
 		6020D31F21A507BC00159E5A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5565A207BA79E00BA0A7F /* libReact.a */; };
 		6020D32021A5080100159E5A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5565A207BA79E00BA0A7F /* libReact.a */; };
@@ -70,8 +68,10 @@
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
 		CBA5F52620CAAB2A00774D4B /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */; };
-		CBBD19A22177BCBB0076C9EC /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		CBC214EA20CE82EC005D8ACB /* libRNReactNativeHapticFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC214E920CE82DC005D8ACB /* libRNReactNativeHapticFeedback.a */; };
+		CBDE11BB21AEFFFE00CA1909 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5562C207BA79E00BA0A7F /* Lottie.framework */; };
+		CBDE11BC21AEFFFE00CA1909 /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5562C207BA79E00BA0A7F /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBDE11BF21AF008D00CA1909 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB5577D5219F221E00B698BF /* libLottieReactNative.a */; };
 		CBEA4C9421494823007DA583 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEA4C912149481F007DA583 /* libReactNativeNavigation.a */; };
 		CBEC7C012108D78900F0020D /* libRNFastCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEC7C002108D77100F0020D /* libRNFastCrypto.a */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
@@ -161,13 +161,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = BCF351C3D91067AA4B325E17903DAAA1;
 			remoteInfo = RCTWebSocket;
-		};
-		3431B8C171DBF136591372AA44E6F2F4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8B9BB680BF96F04B35C8CF2291F3DF7 /* Lottie.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 62CA59B71E3C173B002D7188;
-			remoteInfo = Lottie_iOS;
 		};
 		3574B82CD6B55B4ECA9A60938811F5E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -582,6 +575,13 @@
 			remoteGlobalIDString = 6456441F1EB8DA9100672408;
 			remoteInfo = "RNFS-tvOS";
 		};
+		CBDE11BD21AEFFFE00CA1909 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8B9BB680BF96F04B35C8CF2291F3DF7 /* Lottie.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 62CA59B71E3C173B002D7188;
+			remoteInfo = Lottie_iOS;
+		};
 		CBEA4C902149481F007DA583 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBEA4C8B2149481F007DA583 /* ReactNativeNavigation.xcodeproj */;
@@ -676,7 +676,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D1DC0968101C454F996F0262 /* NodeMobile.framework in Embed Frameworks */,
-				6020D31B21A5065300159E5A /* Lottie.framework in Embed Frameworks */,
+				CBDE11BC21AEFFFE00CA1909 /* Lottie.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -816,14 +816,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBDE11BF21AF008D00CA1909 /* libLottieReactNative.a in Frameworks */,
 				6020D31F21A507BC00159E5A /* libReact.a in Frameworks */,
 				6020D31E21A5077600159E5A /* libRCTAnimation.a in Frameworks */,
 				CBEA4C9421494823007DA583 /* libReactNativeNavigation.a in Frameworks */,
 				60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */,
 				CB305F0421185EF800657575 /* libRNFetchBlob.a in Frameworks */,
+				CBDE11BB21AEFFFE00CA1909 /* Lottie.framework in Frameworks */,
 				CBEC7C012108D78900F0020D /* libRNFastCrypto.a in Frameworks */,
 				601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */,
-				6020D31A21A5065300159E5A /* Lottie.framework in Frameworks */,
 				601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */,
 				601BFCF020C3677F0097D329 /* Social.framework in Frameworks */,
 				601BFCEE20C367660097D329 /* libRNShare.a in Frameworks */,
@@ -1506,8 +1507,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				BCF502FF716E49969EFEC3E7DA65262E /* PBXTargetDependency */,
 				6020D31D21A5065300159E5A /* PBXTargetDependency */,
+				CBDE11BE21AEFFFE00CA1909 /* PBXTargetDependency */,
 			);
 			name = iotaWallet;
 			productName = "Hello World";
@@ -2644,15 +2645,15 @@
 			name = Lottie_iOS;
 			targetProxy = 6020D31C21A5065300159E5A /* PBXContainerItemProxy */;
 		};
-		BCF502FF716E49969EFEC3E7DA65262E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Lottie_iOS;
-			targetProxy = 3431B8C171DBF136591372AA44E6F2F4 /* PBXContainerItemProxy */;
-		};
 		BE73D60DB7DADA792CE0511FEEF11D44 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4848851A00274CA2FFBE307BAEB5F278 /* iotaWallet */;
 			targetProxy = 569242DFF3FE79F261B75B97749FC745 /* PBXContainerItemProxy */;
+		};
+		CBDE11BE21AEFFFE00CA1909 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lottie_iOS;
+			targetProxy = CBDE11BD21AEFFFE00CA1909 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

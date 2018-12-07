@@ -18,7 +18,7 @@ import AnimatedComponent from 'ui/components/AnimatedComponent';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -261,26 +261,23 @@ class SeedReentry extends Component {
                                             isSeedInput
                                         />
                                     </AnimatedComponent>
-                                    {/* FIXME: Not clean */}
-                                    {!isIPhone11 && (
-                                        <AnimatedComponent
-                                            animationInType={['slideInRight', 'fadeIn']}
-                                            animationOutType={['slideOutLeft', 'fadeOut']}
-                                            delay={200}
-                                            style={styles.seedVaultImportContainer}
-                                        >
-                                            <SeedVaultImport
-                                                openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                                onSeedImport={(seed) => {
-                                                    this.setState({ seed });
-                                                    this.props.toggleModalActivity();
-                                                }}
-                                                onRef={(ref) => {
-                                                    this.SeedVaultImport = ref;
-                                                }}
-                                            />
-                                        </AnimatedComponent>
-                                    )}
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={200}
+                                        style={styles.seedVaultImportContainer}
+                                    >
+                                        <SeedVaultImport
+                                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                            onSeedImport={(seed) => {
+                                                this.setState({ seed });
+                                                this.props.toggleModalActivity();
+                                            }}
+                                            onRef={(ref) => {
+                                                this.SeedVaultImport = ref;
+                                            }}
+                                        />
+                                    </AnimatedComponent>
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}

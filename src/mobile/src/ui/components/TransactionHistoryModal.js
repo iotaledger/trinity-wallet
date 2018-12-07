@@ -1,11 +1,12 @@
 import assign from 'lodash/assign';
 import React, { PureComponent } from 'react';
+import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
 import { Clipboard, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'shared-modules/libs/date';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isAndroid, isIPhoneX, locale, timezone } from 'libs/device';
+import { isAndroid, locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
@@ -13,14 +14,14 @@ import SingleFooterButton from './SingleFooterButton';
 const contentWidth = width - width / 10;
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        width,
-        height,
+    container: {
         alignItems: 'center',
+        width,
         justifyContent: 'flex-end',
-        flex: isIPhoneX ? 0 : 1,
+        height,
+        flex: 1,
     },
-    modalContent: {
+    modalContainer: {
         justifyContent: 'space-between',
         alignItems: 'center',
         width,
@@ -318,8 +319,13 @@ export default class TransactionHistoryModal extends PureComponent {
         const isFailed = isFailedTransaction(bundle);
 
         return (
-            <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, { backgroundColor: style.backgroundColor }]}>
+            <View style={styles.container}>
+                <SafeAreaView
+                    style={[
+                        styles.modalContainer,
+                        { height: height - Styling.topbarHeight, backgroundColor: style.backgroundColor },
+                    ]}
+                >
                     <View style={{ flex: 1 }} />
                     <View style={styles.historyContent}>
                         <View style={styles.confirmationWrapper}>
@@ -415,7 +421,7 @@ export default class TransactionHistoryModal extends PureComponent {
                                     );
                                 },
                             })) || <SingleFooterButton onButtonPress={hideModal} buttonText={t('done')} />}
-                </View>
+                </SafeAreaView>
             </View>
         );
     }

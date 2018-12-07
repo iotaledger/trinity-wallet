@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 3,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         paddingBottom: height / 16,
     },
     bottomContainer: {
-        flex: 1,
+        flex: 0.5,
         justifyContent: 'flex-end',
     },
     header: {
@@ -111,6 +111,7 @@ class SeedVaultBackup extends Component {
                             </AnimatedComponent>
                         </View>
                         <KeyboardAvoidingView behavior="padding" style={styles.midContainer}>
+                            <View style={{ flex: 0.2 }} />
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}

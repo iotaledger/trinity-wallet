@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
+import timer from 'react-native-timer';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -48,6 +49,7 @@ export class RootDetectionModal extends PureComponent {
         this.state = {
             publicWifiConfirmed: false,
             publicPrinterConfirmed: false,
+            confirmationText: props.t('wifiConfirmation'),
         };
     }
 
@@ -55,8 +57,18 @@ export class RootDetectionModal extends PureComponent {
         leaveNavigationBreadcrumb('PrintModal');
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('delayTextChange');
+    }
+
     onSwipeSuccess() {
+        const { t } = this.props;
         if (!this.state.publicWifiConfirmed) {
+            timer.setTimeout(
+                'delayTextChange',
+                () => this.setState({ confirmationText: t('printerConfirmation') }),
+                1000,
+            );
             return this.setState({ publicWifiConfirmed: true });
         }
         this.setState({ publicPrinterConfirmed: true });
@@ -89,9 +101,7 @@ export class RootDetectionModal extends PureComponent {
                     </Text>
                 </InfoBox>
                 <View style={{ flex: 0.1 }} />
-                <Text style={[styles.infoTextBold, textColor]}>
-                    {this.state.publicWifiConfirmed ? t('printerConfirmation') : t('wifiConfirmation')}
-                </Text>
+                <Text style={[styles.infoTextBold, textColor]}>{this.state.confirmationText}</Text>
                 <View style={{ flex: 0.1 }} />
                 <Slider
                     filledColor={input.bg}
