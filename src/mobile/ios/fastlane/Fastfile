@@ -42,12 +42,12 @@ end
 
 lane :upload_dsyms do |options|
   if options[:path]
-    upload_symbols_to_bugsnag(dsym_path: options[:path])
+    upload_symbols_to_bugsnag(dsym_path: options[:path], api_key: options[:api_key])
   else
     clean_build_artifacts
     build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
     download_dsyms(build_number: build_number)
-    upload_symbols_to_bugsnag
+    upload_symbols_to_bugsnag(api_key: options[:api_key])
     clean_build_artifacts
   end
 end

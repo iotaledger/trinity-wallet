@@ -105,7 +105,11 @@ class List extends React.PureComponent {
                                         text={`${input.address}${input.checksum}`}
                                         title={t('history:addressCopied')}
                                         success={t('history:addressCopiedExplanation')}
-                                    />
+                                        address
+                                    >
+                                        {input.address}
+                                        <mark>{input.checksum}</mark>
+                                    </Clipboard>
                                 </span>
                                 <em>
                                     {round(formatValue(input.value), 1)}

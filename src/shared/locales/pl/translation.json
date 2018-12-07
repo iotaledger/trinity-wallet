@@ -19,6 +19,7 @@
         "invalidResponse": "Błąd serwera",
         "invalidResponseExplanation": "Serwer zwrócił błąd. Spróbuj zmienić serwer.",
         "invalidResponseFetchingAccount": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer.",
+        "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
@@ -51,7 +52,7 @@
         "enterSeed": "Proszę wpisz swój seed.",
         "yes": "Tak",
         "no": "Nie",
-        "okay": "Zgoda",
+        "okay": "Okej",
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
@@ -146,7 +147,11 @@
         "errorSyncingAddresses": "Błąd synchronizacji informacji adresowych. Trwa ponawianie próby z użyciem innego serwera.",
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
-        "mainWallet": "KONTO GŁÓWNE"
+        "mainWallet": "KONTO GŁÓWNE",
+        "shouldUpdate": "Dostępna jest nowa aktualizacja",
+        "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
+        "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -277,15 +282,15 @@
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
         "tag": "Tag",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Wygeneruj adres",
+        "generateAnAddressTitle": "Wygeneruj adres",
+        "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
@@ -591,7 +596,7 @@
         "twoFADisabled": "Wyłączono 2FA",
         "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
         "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod",
+        "code": "Kod 2FA",
         "twoFaToken": "Kod 2FA"
     },
     "seedVault": {
@@ -610,7 +615,7 @@
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
-        "dropSeedVaultHere": "Upuść plik SeedVault tutaj<1></1> lub kliknij, aby wyszukać ręcznie",
+        "dropSeedVaultHere": "Upuść plik SeedVault tutaj <1></1> lub kliknij, aby wyszukać ręcznie",
         "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
@@ -700,6 +705,10 @@
         "setupIncomplete": "Konfiguracja portfela niekompletna",
         "completeSetup": "Zakończ konfigurację"
     },
+    "proxy": {
+        "proxy": "Używaj systemowych ustawień proxy",
+        "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Zrestartuj portfel po zmianie tego ustawienia."
+    },
     "notifications": {
         "notifications": "Powiadomienia",
         "notificationExplanation": "Odbieraj powiadomienia systemowe o nowych transakcjach.",
@@ -751,7 +760,7 @@
         "ledgerIncorrectIndex": "Niezgodne urządzenie Ledger",
         "ledgerIncorrectIndexExplanation": "Podłączony portfel sprzętowy Ledger, nie pasuje do połączonego z tym kontem lub frazy odzyskiwania na urządzeniu, zostały zmienione.",
         "checkAddress": "Sprawdź adres odbioru",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "Sprawdź, czy adres jest zgodny z adresem wyświetlanym w Twoim urządzeniu Ledger.",
         "applicationNotInitialised": "Ostrzeżenie niezaakceptowane",
         "applicationNotInitialisedExplanation": "Ponownie otwórz aplikację IOTA w urządzeniu Ledger, zaakceptuj ostrzeżenie informacyjne i spróbuj ponownie."
     }

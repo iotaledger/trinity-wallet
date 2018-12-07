@@ -19,6 +19,7 @@
         "invalidResponse": "Erreur de serveur",
         "invalidResponseExplanation": "Le serveur a renvoyé une erreur. Essayez de changer de serveur.",
         "invalidResponseFetchingAccount": "Le serveur a renvoyé une erreur lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
@@ -146,7 +147,11 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
-        "mainWallet": "COMPTE PRINCIPAL"
+        "mainWallet": "COMPTE PRINCIPAL",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -699,6 +704,10 @@
         "notLoggedIn": "Vous n'êtes pas connecté",
         "setupIncomplete": "Paramétrage du portefeuille incomplet",
         "completeSetup": "Configuration terminée"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifications",

@@ -59,6 +59,11 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.4.3</h5>
+                            <ul>
+                                <li>- Add: System network proxy ignore setting</li>
+                                <li>- Update: Display update alerts and force critical updates</li>
+                            </ul>
                             <h5>0.4.2</h5>
                             <ul>
                                 <li>- Update: Require manual address generation</li>
