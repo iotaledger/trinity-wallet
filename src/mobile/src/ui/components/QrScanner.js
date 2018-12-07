@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, PermissionsAndroid } from 'react-native';
+import { Text, StyleSheet, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { height } from 'libs/dimensions';
 import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
@@ -13,11 +14,14 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         fontSize: Styling.fontSize4,
+        justifyContent: 'center',
     },
     textContainer: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'red',
+        height: height / 6,
+        paddingBottom: height / 12,
     },
 });
 
@@ -78,11 +82,13 @@ export class QRScanner extends Component {
                 onButtonPress={() => this.props.hideModal()}
                 buttonText={t('global:close')}
             >
-                <View style={styles.textContainer}>
-                    <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
-                </View>
-                <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
-                <View style={{ flex: 2.5 }} />
+                <QRCodeScanner
+                    containerStyle={{ flex: 1 }}
+                    topViewStyle={{ flex: 2, backgroundColor: body.bg, zIndex: 1000, justifyContent: 'center' }}
+                    bottomViewStyle={{ flex: 1, backgroundColor: body.bg }}
+                    topContent={<Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>}
+                    onRead={(data) => this.props.onQRRead(data.data)}
+                />
             </ModalView>
         );
     }
