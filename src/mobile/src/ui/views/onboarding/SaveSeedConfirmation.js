@@ -125,7 +125,11 @@ class SaveSeedConfirmation extends Component {
         const { t } = this.props;
         if (!this.state.hasAgreedToNotCopyPaste) {
             this.setState({ hasAgreedToNotCopyPaste: true });
-            timer.setTimeout('delayTextUpdate', () => this.setState({ confirmationText: t('iHaveBackedUp') }), 1000);
+            return timer.setTimeout(
+                'delayTextUpdate',
+                () => this.setState({ confirmationText: t('iHaveBackedUp') }),
+                1000,
+            );
         }
         this.setState({ hasConfirmedBackup: true });
     }
