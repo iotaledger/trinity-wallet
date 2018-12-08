@@ -925,6 +925,31 @@ describe('Reducer: accounts', () => {
         });
     });
 
+    describe('IOTA/ACCOUNTS/ASSIGN_ACCOUNT_INDEX', () => {
+        it('should assign "index" to each account in accountInfo state prop', () => {
+            const initialState = {
+                accountInfo: {
+                    foo: { addresses: { ['U'.repeat(81)]: {} }, transfers: {} },
+                    baz: { addresses: {}, transfers: {} },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/ASSIGN_ACCOUNT_INDEX',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                accountInfo: {
+                    foo: { index: 0, addresses: { ['U'.repeat(81)]: {} }, transfers: {} },
+                    baz: { index: 1, addresses: {}, transfers: {} },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
     [
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',

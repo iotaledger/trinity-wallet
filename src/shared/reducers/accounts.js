@@ -3,6 +3,7 @@ import has from 'lodash/has';
 import isBoolean from 'lodash/isBoolean';
 import isUndefined from 'lodash/isUndefined';
 import isEmpty from 'lodash/isEmpty';
+import keys from 'lodash/keys';
 import some from 'lodash/some';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
@@ -378,6 +379,17 @@ const account = (
                         action.payload.bundleHash,
                     ),
                 },
+            };
+        case ActionTypes.ASSIGN_ACCOUNT_INDEX:
+            return {
+                ...state,
+                accountInfo: transform(
+                    keys(state.accountInfo),
+                    (acc, name, index) => {
+                        acc[name] = { ...state.accountInfo[name], index };
+                    },
+                    {},
+                ),
             };
         default:
             return state;
