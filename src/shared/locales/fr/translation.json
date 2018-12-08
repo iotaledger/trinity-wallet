@@ -19,7 +19,7 @@
         "invalidResponse": "Erreur de serveur",
         "invalidResponseExplanation": "Le serveur a renvoyé une erreur. Essayez de changer de serveur.",
         "invalidResponseFetchingAccount": "Le serveur a renvoyé une erreur lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Le nœud a renvoyé une erreur en allant chercher les informations de votre compte. Si le problème persiste, essayez de changer nœud ou désactiver votre proxy dans les paramètres de la Trinity.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
@@ -144,14 +144,14 @@
         "tryingAgainWithLocalPoW": "Réessayez en choisissant la preuve de travail locale.",
         "tryingAgainWithDifferentNode": "Réessayez avec un autre nœud.",
         "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Une erreur a été rencontrée pendant la synchronisation des informations de vos adresses. Essayer de nouveau avec un autre nœud.",
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
         "mainWallet": "COMPTE PRINCIPAL",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "shouldUpdate": "Une mise à jour est disponible",
+        "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
+        "forceUpdate": "Mettez à jour l'application pour continuer",
+        "forceUpdateExplanation": "Une mise à jour critique est disponible. S’il vous plaît, mettez à jour l’application maintenant."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -282,15 +282,15 @@
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Générer une nouvelle adresse",
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR.",
         "tag": "Étiquette",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Générer une nouvelle adresse",
+        "generateAnAddressTitle": "Générer une nouvelle adresse",
+        "generateAnAddressExplanation": "S’il vous plaît, générez une adresse avant d’utiliser cette fonction."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -545,9 +545,9 @@
         "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
         "viewSeed": "Afficher la seed",
         "hideSeed": "Masquer la seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
+        "notAvailable": "L'exportation de la seed n’est pas disponible pour le compte {{accountType}}",
         "accountIndex": "Sommaire de votre compte général",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Numéro de page du compte de la Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Avez-vous enregistré votre seed ?",
@@ -615,8 +615,8 @@
         "importSuccessExplanation": "Votre seed a été importée avec succès.",
         "saveToDownloadFolder": "Enregistrer dans le dossier Téléchargements",
         "importSeedVault": "Importer un SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Déposez le fichier SeedVault ici <1></1> ou cliquez sur parcourir",
+        "dropActive": "Déposez le fichier SeedVault ou du texte ici",
         "enterKeyExplanation": "Entrez votre mot de passe pour ouvrir le SeedVault",
         "noSeedFound": "Le SeedVault ne contient pas de seed valide",
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
@@ -707,7 +707,7 @@
         "completeSetup": "Configuration terminée"
     },
     "proxy": {
-        "proxy": "Use system proxy",
+        "proxy": "Utiliser le proxy du système",
         "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
