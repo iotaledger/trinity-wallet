@@ -44,6 +44,14 @@
 
         &:first-child {
             margin: 0 auto 0 0;
+
+            &.dark svg path {
+                fill: var(--bar);
+            }
+
+            &.light svg path {
+                fill: var(--body);
+            }
         }
 
         svg {
