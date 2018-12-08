@@ -708,7 +708,7 @@
     },
     "proxy": {
         "proxy": "Utiliser le proxy du système",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "Détecter et utiliser les paramètres proxy du système réseau étendu. Fermez, puis ré ouvrez Trinity après avoir modifié ce paramètre."
     },
     "notifications": {
         "notifications": "Notifications",
@@ -734,17 +734,17 @@
         "sweepConfirmationTitle": "Confirmation de balayage"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "ready": "La Ledger est connectée et prête",
+        "notReady": "Si vous souhaitez utiliser une clé Ledger, connectez et débloquez la maintenant",
         "indexInUse": "Index en cours d'utilisation pour le compte {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
+        "indexInUseExplanation": "Votre index choisi est déjà utilisé sur l’un de vos comptes. Veuillez choisir un autre numéro d’index.",
+        "proceedWithLedger": "Continuer avec la Ledger",
+        "accountIndex": "Index du compte",
+        "accountPage": "Page du compte",
+        "chooseAccountIndex": "Choisissez l'index de le Ledger",
+        "accountIndexExplanation": "Votre clé Ledger peut stocker plusieurs seed. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de notez votre numéro d’index choisi.",
+        "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de page.",
+        "connectionError": "Impossible de se connecter à la Ledger",
         "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
         "connectionTitle": "Connect your Ledger",
         "connectionExplanation": "A Ledger device must be connected to perform this function.",
