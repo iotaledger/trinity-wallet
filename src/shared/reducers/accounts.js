@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isBoolean from 'lodash/isBoolean';
+import isUndefined from 'lodash/isUndefined';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
 import map from 'lodash/map';
@@ -90,7 +91,9 @@ const updateAccountInfo = (state, payload) => ({
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
             // Set seed index
-            index: payload.accountIndex || get(state.accountInfo, `${payload.accountName}.index`),
+            index: isUndefined(payload.accountIndex)
+                ? get(state.accountInfo, `${payload.accountName}.index`)
+                : payload.accountIndex,
             meta: payload.accountMeta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             balance: payload.balance,
             addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),

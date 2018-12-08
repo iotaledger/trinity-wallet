@@ -457,157 +457,6 @@ describe('Reducer: accounts', () => {
     });
 
     describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
-        it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
-            const initialState = {
-                unconfirmedBundleTails: { foo: {} },
-            };
-
-            const action = actions.fullAccountInfoFetchSuccess({ unconfirmedBundleTails: { baz: {} } });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                unconfirmedBundleTails: { baz: {}, foo: {} },
-            };
-
-            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
-        });
-
-        it('should merge addresses in payload to accountName in accountInfo', () => {
-            const initialState = {
-                accountInfo: {
-                    foo: {
-                        addresses: { foo: {} },
-                        transfers: {},
-                        balance: 0,
-                    },
-                },
-            };
-
-            const action = actions.fullAccountInfoFetchSuccess({
-                accountName: 'foo',
-                accountMeta: { type: 'bar' },
-                addresses: { foo: {}, baz: {} },
-                transfers: {},
-                balance: 100,
-                hashes: [],
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountInfo: {
-                    foo: {
-                        meta: { type: 'bar' },
-                        addresses: { foo: {}, baz: {} },
-                        transfers: {},
-                        balance: 100,
-                        hashes: [],
-                    },
-                },
-            };
-
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
-        });
-
-        it('should assign transfers and set balance in payload to accountName in accountInfo', () => {
-            const initialState = {
-                accountInfo: {
-                    foo: {
-                        meta: { type: 'bar' },
-                        addresses: { foo: {} },
-                        transfers: { foo: { value: 20 }, baz: { value: 0 } },
-                        balance: 0,
-                    },
-                },
-            };
-
-            const action = actions.fullAccountInfoFetchSuccess({
-                accountName: 'foo',
-                accountMeta: { type: 'bar' },
-                addresses: { foo: {}, baz: {} },
-                transfers: { foo: { value: 0 } },
-                balance: 100,
-                hashes: [],
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountInfo: {
-                    foo: {
-                        meta: { type: 'bar' },
-                        addresses: { foo: {}, baz: {} },
-                        transfers: { foo: { value: 0 }, baz: { value: 0 } },
-                        balance: 100,
-                        hashes: [],
-                    },
-                },
-            };
-
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
-        });
-
-        it('should set hashes in payload to accountName in accountInfo', () => {
-            const initialState = {
-                accountInfo: {
-                    foo: {
-                        meta: { type: 'bar' },
-                        balance: 0,
-                        transfers: {},
-                        addresses: {},
-                        hashes: ['baz'],
-                    },
-                },
-            };
-
-            const action = actions.fullAccountInfoFetchSuccess({
-                accountName: 'foo',
-                accountMeta: { type: 'bar' },
-                hashes: ['baz', 'bar'],
-                transfers: {},
-                balance: 0,
-                addresses: {},
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountInfo: {
-                    foo: {
-                        meta: { type: 'bar' },
-                        balance: 0,
-                        transfers: {},
-                        addresses: {},
-                        hashes: ['baz', 'bar'],
-                    },
-                },
-            };
-
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
-        });
-
-        it('should reset accountInfoDuringSetup to default state', () => {
-            const initialState = {
-                accountInfoDuringSetup: {
-                    name: 'foo',
-                    meta: { bar: {} },
-                    usedExistingSeed: true,
-                },
-            };
-
-            const action = actions.fullAccountInfoFetchSuccess({});
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountInfoDuringSetup: {
-                    name: '',
-                    meta: {},
-                    usedExistingSeed: false,
-                },
-            };
-
-            expect(newState.accountInfoDuringSetup).to.eql(expectedState.accountInfoDuringSetup);
-        });
-    });
-
-    describe('FULL_ACCOUNT_INFO_FETCH_SUCCESS', () => {
         it('should merge addresses in payload to accountName in accountInfo', () => {
             const initialState = {
                 accountInfo: {
@@ -622,6 +471,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountIndex: 0,
                 accountMeta: { type: 'bar' },
                 addresses: { foo: {}, baz: {} },
                 transfers: {},
@@ -634,6 +484,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         meta: { type: 'bar' },
+                        index: 0,
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         balance: 100,
@@ -659,6 +510,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountIndex: 0,
                 accountMeta: { type: 'bar' },
                 addresses: { foo: {}, baz: {} },
                 transfers: { foo: { value: 0 } },
@@ -671,6 +523,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         meta: { type: 'bar' },
+                        index: 0,
                         hashes: [],
                         addresses: { foo: {}, baz: {} },
                         transfers: { foo: { value: 0 }, baz: { value: 0 } },
@@ -696,6 +549,7 @@ describe('Reducer: accounts', () => {
 
             const action = actions.fullAccountInfoFetchSuccess({
                 accountName: 'foo',
+                accountIndex: 0,
                 accountMeta: { type: 'bar' },
                 hashes: ['baz', 'bar'],
                 transfers: {},
@@ -708,6 +562,7 @@ describe('Reducer: accounts', () => {
                 accountInfo: {
                     foo: {
                         meta: { type: 'bar' },
+                        index: 0,
                         balance: 0,
                         transfers: {},
                         addresses: {},
@@ -1083,6 +938,7 @@ describe('Reducer: accounts', () => {
                 const initialState = {
                     accountInfo: {
                         dummy: {
+                            index: 1,
                             meta: { type: 'bar' },
                             balance: 0,
                             addresses: { foo: {} },
@@ -1106,6 +962,7 @@ describe('Reducer: accounts', () => {
                 const expectedState = {
                     accountInfo: {
                         dummy: {
+                            index: 1,
                             meta: { type: 'bar' },
                             balance: 0,
                             addresses: { foo: {}, baz: {} },
