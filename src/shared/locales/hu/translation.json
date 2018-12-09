@@ -19,7 +19,7 @@
         "invalidResponse": "Csomóponti hiba",
         "invalidResponseExplanation": "A csomópont hibát jelzett. Kérjük, próbáljon egy másik csomópontot választani.",
         "invalidResponseFetchingAccount": "A csomópont hibát jelzett a számla adatainak lekérése közben. Próbáljon egy másik csomópontot választani.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "A csomópont hibát jelzett a számlaadatok betöltése közben. Ha a hiba továbbra is fennáll, próbáljon egy másik csomópontra váltani vagy kapcsolja ki a proxy szerver használatát a beállítások között.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
