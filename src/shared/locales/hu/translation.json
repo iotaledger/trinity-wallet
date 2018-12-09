@@ -478,7 +478,7 @@
         "pow": "Kiszabott munka elvégzése",
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
-        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a kiszabott munka távoli elvégzését."
+        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését."
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -615,8 +615,8 @@
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Húzza ide a SeedVault fájlt vagy a kijelölt mesterjelszót <1></1> vagy klikkeljen a tallózáshoz",
+        "dropActive": "Húzza ide a SeedVault fájlt vagy a kijelölt mester jelszót",
         "enterKeyExplanation": "Adja meg a SeedVault jelszavát",
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
@@ -707,8 +707,8 @@
         "completeSetup": "Beállítások befejezése"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Rendszer proxy használata",
+        "proxyExplanation": "Rendszer proxy automatikus felismerése és beállítása. Zárja be majd nyissa meg újra a tárcát, hogy a beállítás érvényre jusson."
     },
     "notifications": {
         "notifications": "Értesítések",
