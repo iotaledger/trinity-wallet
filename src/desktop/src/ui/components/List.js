@@ -229,7 +229,7 @@ class List extends React.PureComponent {
                                                 totals[item] === 0 ? css.disabled : filter === item ? css.active : null,
                                             )}
                                         >
-                                            {item === 'All' ? 'All' : t(item.toLowerCase())} ({totals[item]})
+                                            {item === 'All' ? t('global:all') : t(item.toLowerCase())} ({totals[item]})
                                         </a>
                                     );
                                 })}
@@ -298,12 +298,8 @@ class List extends React.PureComponent {
                                             </span>
                                             <span>
                                                 {!isConfirmed
-                                                    ? isReceived
-                                                        ? t('receiving')
-                                                        : t('sending')
-                                                    : isReceived
-                                                        ? t('received')
-                                                        : t('sent')}
+                                                    ? isReceived ? t('receiving') : t('sending')
+                                                    : isReceived ? t('received') : t('sent')}
                                             </span>
                                             <span>
                                                 {transfer.transferValue === 0 ? '' : isReceived ? '+' : '-'}
@@ -341,9 +337,7 @@ class List extends React.PureComponent {
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming
-                                                ? t('received')
-                                                : t('sent')}
+                                            : activeTransfer.incoming ? t('received') : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
