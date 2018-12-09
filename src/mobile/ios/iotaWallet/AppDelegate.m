@@ -8,7 +8,7 @@
  */
 
 #import "AppDelegate.h"
-#import "SplashScreen.h"
+#import "RNSplashScreen.h"
 #import <BugsnagReactNative/BugsnagReactNative.h>
 
 
@@ -42,7 +42,7 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [BugsnagReactNative start];
   [self excludeManifestFromBackup];
-  [SplashScreen show];
+  [RNSplashScreen show];
   return YES;
 }
 

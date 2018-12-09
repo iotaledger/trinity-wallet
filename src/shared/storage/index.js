@@ -3,11 +3,11 @@ import each from 'lodash/each';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
-import Realm from 'realm';
 import {
     TransactionSchema,
     AddressSchema,
@@ -22,9 +22,30 @@ import {
     WalletVersionsSchema,
     ErrorLogSchema,
 } from '../schema';
+import { __TEST__ } from '../config';
 
 const SCHEMA_VERSION = 0;
 const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
+
+/**
+ * Imports Realm dependency
+ *
+ * @method getRealm
+ * @returns {object}
+ */
+export const getRealm = () => {
+    const requireMethod = require;
+
+    // shared directory is used a node module in mobile/
+    // If path is hardcoded, jest would complain.
+    if (__TEST__ && !isUndefined(process.env.JEST_WORKER_ID)) {
+        return requireMethod('realm');
+    }
+
+    return require('../../mobile/node_modules/realm');
+};
+
+const Realm = getRealm();
 
 /**
  * Model for Account.
