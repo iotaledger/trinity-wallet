@@ -105,7 +105,11 @@ class List extends React.PureComponent {
                                         text={`${input.address}${input.checksum}`}
                                         title={t('history:addressCopied')}
                                         success={t('history:addressCopiedExplanation')}
-                                    />
+                                        address
+                                    >
+                                        {input.address}
+                                        <mark>{input.checksum}</mark>
+                                    </Clipboard>
                                 </span>
                                 <em>
                                     {round(formatValue(input.value), 1)}
@@ -294,8 +298,12 @@ class List extends React.PureComponent {
                                             </span>
                                             <span>
                                                 {!isConfirmed
-                                                    ? isReceived ? t('receiving') : t('sending')
-                                                    : isReceived ? t('received') : t('sent')}
+                                                    ? isReceived
+                                                        ? t('receiving')
+                                                        : t('sending')
+                                                    : isReceived
+                                                        ? t('received')
+                                                        : t('sent')}
                                             </span>
                                             <span>
                                                 {transfer.transferValue === 0 ? '' : isReceived ? '+' : '-'}
@@ -333,7 +341,9 @@ class List extends React.PureComponent {
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming ? t('received') : t('sent')}
+                                            : activeTransfer.incoming
+                                                ? t('received')
+                                                : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,
