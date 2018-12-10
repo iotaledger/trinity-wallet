@@ -8,7 +8,7 @@ import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { MAX_ACC_LENGTH } from 'libs/crypto';
-import { byteToChar, charToByte } from 'libs/helpers';
+import { byteToChar, charToByte } from 'libs/iota/converter';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -110,11 +110,12 @@ class SeedInput extends React.PureComponent {
     };
 
     onDrop = async (buffer) => {
+        const { t } = this.props;
         if (!buffer) {
             return this.props.generateAlert(
                 'error',
-                'Error opening keystore file',
-                'There was an error opening keystore file',
+                t('seedVault:seedFileError'),
+                t('seedVault:seedFileErrorExplanation'),
             );
         }
 

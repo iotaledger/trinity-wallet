@@ -50,7 +50,7 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
-    renderInitialScreen(initialScreen, state);
+    renderInitialScreen(initialScreen, state, store);
 };
 
 const onAppStart = () => {
@@ -58,7 +58,7 @@ const onAppStart = () => {
     return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
 };
 
-const renderInitialScreen = (initialScreen, state) => {
+const renderInitialScreen = (initialScreen, state, store) => {
     Navigation.setRoot({
         root: {
             stack: {
@@ -74,14 +74,14 @@ const renderInitialScreen = (initialScreen, state) => {
                                 },
                                 topBar: {
                                     visible: false,
-                                    drawBehind: true,
+                                    drawBehind: false,
                                     elevation: 0,
                                     background: {
                                         color: state.settings.theme.body.bg,
                                     },
                                 },
                                 statusBar: {
-                                    drawBehind: true,
+                                    drawBehind: false,
                                     backgroundColor: state.settings.theme.body.bg,
                                 },
                             },
@@ -91,6 +91,7 @@ const renderInitialScreen = (initialScreen, state) => {
             },
         },
     });
+    store.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**

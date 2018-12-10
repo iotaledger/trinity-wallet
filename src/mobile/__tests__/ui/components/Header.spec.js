@@ -21,7 +21,7 @@ describe('Testing Header component', () => {
         });
 
         it('should require a children string as a prop', () => {
-            expect(Header.propTypes.children).toEqual(PropTypes.string.isRequired);
+            expect(Header.propTypes.children).toEqual(PropTypes.string);
         });
     });
 

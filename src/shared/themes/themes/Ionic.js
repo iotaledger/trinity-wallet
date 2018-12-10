@@ -22,4 +22,5 @@ export default {
     },
     body: { bg: 'rgb(232, 235, 241)', color: 'rgb(0, 0, 0)', alt: 'rgba(0, 0, 0, 0.25)' },
     wave: { primary: 'rgba(140, 48, 164, 0.5)', secondary: 'rgba(0, 0, 0, 0.12)' },
+    isDark: false,
 };

@@ -278,7 +278,7 @@ class App extends React.Component {
 
         return (
             <div className={css.trintiy}>
-                <Titlebar />
+                <Titlebar path={currentKey} />
                 <About />
                 <ErrorLog />
                 <Idle />
@@ -329,9 +329,4 @@ const mapDispatchToProps = {
     forceUpdate,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(withI18n()(withAutoNodeSwitching(App))),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

@@ -22,7 +22,7 @@ const getProps = (overrides) =>
             accountNames: [],
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
-            t: noop,
+            t: () => '',
             accountCount: 0,
             seed: 'SEED',
             onboardingComplete: false,

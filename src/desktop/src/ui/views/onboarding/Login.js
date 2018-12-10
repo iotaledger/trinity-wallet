@@ -13,7 +13,7 @@ import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { getSelectedAccountName, getSelectedAccountMeta, isSettingUpNewAccount } from 'selectors/accounts';
 
-import { capitalize } from 'libs/helpers';
+import { capitalize } from 'libs/iota/converter';
 import { hash, authorize } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
 
@@ -278,7 +278,7 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,
-    forceUpdate: state.wallet.forceUpdate
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {

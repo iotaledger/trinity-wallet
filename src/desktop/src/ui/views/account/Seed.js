@@ -5,7 +5,7 @@ import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { byteToChar, capitalize } from 'libs/helpers';
+import { byteToChar, capitalize } from 'libs/iota/converter';
 import SeedStore from 'libs/SeedStore';
 
 import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
@@ -73,11 +73,11 @@ class Seed extends PureComponent {
                         </p>
                     )}
                     {typeof accountMeta.page === 'number' &&
-                    accountMeta.page > 0 && (
-                        <p>
-                            {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
-                        </p>
-                    )}
+                        accountMeta.page > 0 && (
+                            <p>
+                                {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
+                            </p>
+                        )}
                 </div>
             );
         }
