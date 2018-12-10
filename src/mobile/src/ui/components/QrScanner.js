@@ -4,11 +4,9 @@ import { View, Text, StyleSheet, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
-import { isAndroid, isIPhoneX } from 'libs/device';
-import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import SingleFooterButton from 'ui/components/SingleFooterButton';
-import DynamicStatusBar from './DynamicStatusBar';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
     qrInfoText: {
@@ -16,25 +14,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: Styling.fontSize4,
     },
-    closeButton: {
-        flexDirection: 'row',
-        borderRadius: Styling.borderRadius,
-        width: width / 2.5,
-        height: height / 14,
+    textContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
-        borderWidth: 1.2,
-    },
-    closeButtonText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    modalContent: {
-        alignItems: 'center',
-        justifyContent: 'center',
     },
 });
 
@@ -61,10 +44,13 @@ export class QRScanner extends Component {
         onMount: PropTypes.func,
         /** Unmount lifecycle method calback function  */
         onUnmount: PropTypes.func,
+        /** Determines whether to display top bar */
+        displayTopBar: PropTypes.bool,
     };
 
     static defaultProps = {
         ctaBorderColor: 'transparent',
+        displayTopBar: false,
     };
 
     componentDidMount() {
@@ -85,23 +71,19 @@ export class QRScanner extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const { t, theme: { body }, displayTopBar } = this.props;
         return (
-            <View style={styles.modalContent}>
-                <View style={{ alignItems: 'center', backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={body.bg} isModalActive />
-                    <View style={{ height: height / 12 }} />
+            <ModalView
+                displayTopBar={displayTopBar}
+                onButtonPress={() => this.props.hideModal()}
+                buttonText={t('global:close')}
+            >
+                <View style={styles.textContainer}>
                     <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
-                    <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
-                    <View style={{ paddingBottom: isIPhoneX ? 34 : 0 }}>
-                        <SingleFooterButton
-                            onButtonPress={() => this.props.hideModal()}
-                            testID="qrScanner-next"
-                            buttonText={t('global:close')}
-                        />
-                    </View>
                 </View>
-            </View>
+                <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
+                <View style={{ flex: 2.5 }} />
+            </ModalView>
         );
     }
 }

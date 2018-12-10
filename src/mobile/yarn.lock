@@ -5204,18 +5204,18 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-ios@^2.1.5, lottie-ios@^2.5.0:
+lottie-ios@^2.1.3, lottie-ios@^2.1.5:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-2.5.0.tgz#55c808e785d4a6933b0c10b395530b17098b05de"
   integrity sha1-VcgI54XUppM7DBCzlVMLFwmLBd4=
 
-lottie-react-native@^2.5.9:
-  version "2.5.9"
-  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-2.5.9.tgz#af23764b1b6b43230beeb5e62e1ce86cb879a242"
-  integrity sha512-HYYIeoW0v/KLbKEpQZGVyY0yakCgnNJZoOlXl+6NCWtEwrpetrwq5cqNNKarKhJHUlrbXs0ySEOPoPpHd5bo2g==
+lottie-react-native@2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-2.2.7.tgz#d89cf6e0a093693d5fed2999a986cbcb1a090955"
+  integrity sha1-2Jz24KCTaT1f7SmZqYbLyxoJCVU=
   dependencies:
     invariant "^2.2.2"
-    lottie-ios "^2.5.0"
+    lottie-ios "^2.1.3"
     prop-types "^15.5.10"
     react-native-safe-module "^1.1.0"
 
@@ -7002,10 +7002,10 @@ react-native-modal-translucent@^1.1.3:
   resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-1.1.6.tgz#faa72d8c1c8b902cc9252476036dadba93aa120c"
   integrity sha512-eEMarVkOUpkPoK5oIv0lxahI1UxTuTAUycUWpEv4MBH8mkjzuHxSxw4MKXd1C2Yt+tzDv3De0rMFTKnQjw2Fqw==
 
-react-native-modal@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-6.5.0.tgz#46220b2289a41597d344c1db17454611b426a758"
-  integrity sha512-ewchdETAGd32xLGLK93NETEGkRcePtN7ZwjmLSQnNW1Zd0SRUYE8NqftjamPyfKvK0i2DZjX4YAghGZTqaRUbA==
+react-native-modal@^7.0.0:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.1.tgz#120df1966f5da96e9d89bf384f22b79ab6ca97b1"
+  integrity sha512-I/BZ4ZkVLjD/wApvSjqp/w9+J100czFNGB+SNm3oYHKAfPfm5g1OoB9UQT6DvChmG4TiVX8kiDXTm8FNrbkWpQ==
   dependencies:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -11,6 +12,7 @@ import { toggleModalActivity } from 'shared-modules/actions/ui';
 import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -40,6 +42,10 @@ const styles = StyleSheet.create({
         flex: 0.5,
         justifyContent: 'flex-end',
     },
+    header: {
+        flex: 1,
+        alignItems: 'center',
+    },
     textContainer: {
         width: Styling.contentWidth5,
         alignItems: 'center',
@@ -50,6 +56,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
+        width: Styling.contentWidth,
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
@@ -117,7 +124,7 @@ class WriteSeedDown extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -198,44 +205,71 @@ class WriteSeedDown extends Component {
                 {!minimised && (
                     <View>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
-                            <View style={{ flex: 0.7 }} />
-                            <Header textColor={theme.body.color}>{t('saveYourSeed:writeYourSeedDown')}</Header>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                                style={styles.header}
+                            >
+                                <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                <View style={{ flex: 0.7 }} />
+                                <Header textColor={theme.body.color}>{t('saveYourSeed:writeYourSeedDown')}</Header>
+                            </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={styles.textContainer}>
-                                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                    <Trans i18nKey="writeDownYourSeed">
-                                        <Text style={styles.infoTextNormal}>
-                                            Write down your seed and checksum and{' '}
-                                        </Text>
-                                        <Text style={styles.infoTextBold}>triple check</Text>
-                                        <Text style={styles.infoTextNormal}> that they are correct.</Text>
-                                    </Trans>
-                                </Text>
-                            </View>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={300}
+                            >
+                                <View style={styles.textContainer}>
+                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                                        <Trans i18nKey="writeDownYourSeed">
+                                            <Text style={styles.infoTextNormal}>
+                                                Write down your seed and checksum and{' '}
+                                            </Text>
+                                            <Text style={styles.infoTextBold}>triple check</Text>
+                                            <Text style={styles.infoTextNormal}> that they are correct.</Text>
+                                        </Trans>
+                                    </Text>
+                                </View>
+                            </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
-                            <SeedPicker
-                                seed={seed}
-                                theme={theme}
-                                onValueChange={(index) => {
-                                    if (index === 8) {
-                                        this.setState({ isCopyComplete: true });
-                                    }
-                                }}
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={200}
+                            >
+                                <SeedPicker
+                                    seed={seed}
+                                    theme={theme}
+                                    onValueChange={(index) => {
+                                        if (index === 8) {
+                                            this.setState({ isCopyComplete: true });
+                                        }
+                                    }}
+                                />
+                            </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
-                            <ChecksumComponent seed={seed} theme={theme} showModal={this.openModal} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={100}
+                            >
+                                <ChecksumComponent seed={seed} theme={theme} showModal={this.openModal} />
+                            </AnimatedComponent>
                             <View style={{ flex: 0.25 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <DualFooterButtons
-                                onLeftButtonPress={() => this.onPrintPress()}
-                                onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
-                                leftButtonText={t('saveYourSeed:printBlankWallet')}
-                                rightButtonText={isCopyComplete ? t('global:done') : t('scrollToBottom')}
-                                rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
-                            />
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => this.onPrintPress()}
+                                    onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
+                                    leftButtonText={t('saveYourSeed:printBlankWallet')}
+                                    rightButtonText={isCopyComplete ? t('global:done') : t('scrollToBottom')}
+                                    rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
+                                />
+                            </AnimatedComponent>
                         </View>
                     </View>
                 )}

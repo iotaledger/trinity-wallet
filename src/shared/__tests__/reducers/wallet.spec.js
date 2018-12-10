@@ -16,6 +16,7 @@ describe('Reducer: wallet', () => {
                 deepLinkActive: false,
                 hasConnection: true,
                 isValidatingAddress: false,
+                navStack: [],
                 forceUpdate: false,
                 shouldUpdate: false,
             };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { setOnboardingComplete } from 'shared-modules/actions/accounts';
@@ -12,6 +12,7 @@ import SeedStore from 'libs/SeedStore';
 import { storeSaltInKeychain } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
@@ -46,16 +47,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
+    header: {
+        flex: 1,
+        alignItems: 'center',
+    },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
     },
@@ -144,37 +149,32 @@ class SetPassword extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     navigateToOnboardingComplete() {
         const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: 'onboardingComplete',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push('onboardingComplete', {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: true,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: true,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -193,44 +193,59 @@ class SetPassword extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
-                            <View style={{ flex: 0.7 }} />
-                            <Header textColor={body.color}>{t('choosePassword')}</Header>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                                style={styles.header}
+                            >
+                                <Icon name="iota" size={width / 8} color={body.color} />
+                                <View style={{ flex: 0.7 }} />
+                                <Header textColor={body.color}>{t('choosePassword')}</Header>
+                            </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <InfoBox
-                                body={body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, { color: body.color }]}>
-                                            {t('anEncryptedCopy')}
-                                        </Text>
-                                        <Text style={[styles.warningText, { color: body.color }]}>
-                                            {t('changePassword:ensureStrongPassword')}
-                                        </Text>
-                                    </View>
-                                }
-                            />
+                            <View style={{ flex: 0.1 }} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={266}
+                            >
+                                <InfoBox>
+                                    <Text style={[styles.infoText, { color: body.color }]}>{t('anEncryptedCopy')}</Text>
+                                    <Text style={[styles.warningText, { color: body.color }]}>
+                                        {t('changePassword:ensureStrongPassword')}
+                                    </Text>
+                                </InfoBox>
+                            </AnimatedComponent>
                             <View style={{ flex: 0.2 }} />
-                            <PasswordFields
-                                onRef={(ref) => {
-                                    this.passwordFields = ref;
-                                }}
-                                onAcceptPassword={() => this.onAcceptPassword()}
-                                password={password}
-                                reentry={reentry}
-                                setPassword={(password) => this.setState({ password })}
-                                setReentry={(reentry) => this.setState({ reentry })}
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={266}
+                            >
+                                <PasswordFields
+                                    onRef={(ref) => {
+                                        this.passwordFields = ref;
+                                    }}
+                                    onAcceptPassword={() => this.onAcceptPassword()}
+                                    password={password}
+                                    reentry={reentry}
+                                    setPassword={(password) => this.setState({ password })}
+                                    setReentry={(reentry) => this.setState({ reentry })}
+                                />
+                            </AnimatedComponent>
                             <View style={{ flex: 0.3 }} />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <DualFooterButtons
-                                onLeftButtonPress={() => this.onBackPress()}
-                                onRightButtonPress={() => this.onDonePress()}
-                                leftButtonText={t('global:goBack')}
-                                rightButtonText={t('global:done')}
-                            />
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
+                                    leftButtonText={t('global:goBack')}
+                                    rightButtonText={t('global:done')}
+                                />
+                            </AnimatedComponent>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

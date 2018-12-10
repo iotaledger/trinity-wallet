@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import FlagSecure from 'react-native-flag-secure-android';
@@ -14,10 +14,11 @@ import CustomTextInput from 'ui/components/CustomTextInput';
 import { Styling } from 'ui/theme/general';
 import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
-import { isAndroid, isIPhone11 } from 'libs/device';
+import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -43,16 +44,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
+    header: {
+        flex: 1,
+        alignItems: 'center',
+    },
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
         paddingTop: height / 60,
+        textAlign: 'center',
+    },
+    seedVaultImportContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: width / 18,
     },
 });
 
@@ -105,32 +117,27 @@ class SeedReentry extends Component {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            Navigation.push('appStack', {
-                component: {
-                    name: 'setAccountName',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
-                        },
+            navigator.push('setAccountName', {
+                animations: {
+                    push: {
+                        enable: false,
                     },
+                    pop: {
+                        enable: false,
+                    },
+                },
+                layout: {
+                    backgroundColor: body.bg,
+                    orientation: ['portrait'],
+                },
+                topBar: {
+                    visible: false,
+                    drawBehind: true,
+                    elevation: 0,
+                },
+                statusBar: {
+                    drawBehind: true,
+                    backgroundColor: body.bg,
                 },
             });
             this.setState({ seed: '' });
@@ -150,7 +157,7 @@ class SeedReentry extends Component {
      * @method onBackPress
      */
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -215,33 +222,51 @@ class SeedReentry extends Component {
                         <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                             <View>
                                 <View style={styles.topContainer}>
-                                    <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                    <View style={{ flex: 0.7 }} />
-                                    <Header textColor={theme.body.color}>{t('pleaseConfirmYourSeed')}</Header>
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={400}
+                                        style={styles.header}
+                                    >
+                                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                        <View style={{ flex: 0.7 }} />
+                                        <Header textColor={theme.body.color}>{t('pleaseConfirmYourSeed')}</Header>
+                                    </AnimatedComponent>
                                 </View>
                                 <View style={styles.midContainer}>
-                                    <View style={{ flex: 0.15 }} />
-                                    <CustomTextInput
-                                        label={t('global:seed')}
-                                        onChangeText={(text) => {
-                                            if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                                this.setState({ seed: text.toUpperCase() });
-                                            }
-                                        }}
-                                        containerStyle={{ width: Styling.contentWidth }}
-                                        maxLength={MAX_SEED_LENGTH}
-                                        autoCapitalize="characters"
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically
-                                        returnKeyType="done"
-                                        onSubmitEditing={() => this.onDonePress()}
-                                        theme={theme}
-                                        value={seed}
-                                        widget="qr"
-                                        onQRPress={() => this.onQRPress()}
-                                        seed={seed}
-                                    />
-                                    {!isIPhone11 && (
+                                    <View style={{ flex: 0.3 }} />
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={300}
+                                    >
+                                        <CustomTextInput
+                                            label={t('global:seed')}
+                                            onChangeText={(text) => {
+                                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                                    this.setState({ seed: text.toUpperCase() });
+                                                }
+                                            }}
+                                            maxLength={MAX_SEED_LENGTH}
+                                            autoCapitalize="characters"
+                                            autoCorrect={false}
+                                            enablesReturnKeyAutomatically
+                                            returnKeyType="done"
+                                            onSubmitEditing={() => this.onDonePress()}
+                                            theme={theme}
+                                            value={seed}
+                                            widget="qr"
+                                            onQRPress={() => this.onQRPress()}
+                                            seed={seed}
+                                            isSeedInput
+                                        />
+                                    </AnimatedComponent>
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={200}
+                                        style={styles.seedVaultImportContainer}
+                                    >
                                         <SeedVaultImport
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {
@@ -252,29 +277,36 @@ class SeedReentry extends Component {
                                                 this.SeedVaultImport = ref;
                                             }}
                                         />
-                                    )}
-                                    <InfoBox
-                                        body={theme.body}
-                                        text={
-                                            <View>
-                                                <Text style={[styles.infoTextBottom, textColor]}>
-                                                    {t('ifYouHaveNotSaved')}
-                                                </Text>
-                                                <Text style={[styles.warningText, textColor]}>
-                                                    {t('trinityWillNeverAskToReenter')}
-                                                </Text>
-                                            </View>
-                                        }
-                                    />
-                                    <View style={{ flex: 0.5 }} />
+                                    </AnimatedComponent>
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={100}
+                                    >
+                                        <InfoBox>
+                                            <Text style={[styles.infoTextBottom, textColor]}>
+                                                {t('ifYouHaveNotSaved')}
+                                            </Text>
+                                            <Text style={[styles.warningText, textColor]}>
+                                                {t('trinityWillNeverAskToReenter')}
+                                            </Text>
+                                        </InfoBox>
+                                    </AnimatedComponent>
+                                    <View style={{ flex: 0.7 }} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <DualFooterButtons
-                                        onLeftButtonPress={() => this.onBackPress()}
-                                        onRightButtonPress={() => this.onDonePress()}
-                                        leftButtonText={t(':goBack')}
-                                        rightButtonText={t('global:done')}
-                                    />
+                                    <AnimatedComponent
+                                        animationInType={['fadeIn']}
+                                        animationOutType={['fadeOut']}
+                                        delay={0}
+                                    >
+                                        <DualFooterButtons
+                                            onLeftButtonPress={() => this.onBackPress()}
+                                            onRightButtonPress={() => this.onDonePress()}
+                                            leftButtonText={t(':goBack')}
+                                            rightButtonText={t('global:done')}
+                                        />
+                                    </AnimatedComponent>
                                 </View>
                             </View>
                         </TouchableWithoutFeedback>

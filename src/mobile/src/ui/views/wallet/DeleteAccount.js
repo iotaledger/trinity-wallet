@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
     infoBoxText: {
         fontFamily: Fonts.secondary,
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
     },
     infoBoxTitleText: {
         fontFamily: Fonts.secondary,
         fontSize: Styling.fontSize4,
-        textAlign: 'left',
+        textAlign: 'center',
     },
     warningText: {
         fontFamily: Fonts.secondary,
@@ -207,22 +207,18 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <InfoBox
-                                    body={theme.body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoBoxTitleText, textColor]}>
-                                                {t('global:account')}: {selectedAccountName}
-                                            </Text>
-                                            <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 30 }]}>
-                                                {t('areYouSure')}
-                                            </Text>
-                                            <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 40 }]}>
-                                                {t('yourSeedWillBeRemoved')}
-                                            </Text>
-                                        </View>
-                                    }
-                                />
+                                <InfoBox>
+                                    <Text style={[styles.infoBoxTitleText, textColor]}>
+                                        {t('global:account')}: {selectedAccountName}
+                                    </Text>
+                                    <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 30 }]}>
+                                        {t('areYouSure')}
+                                    </Text>
+                                    <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 40 }]}>
+                                        {t('yourSeedWillBeRemoved')}
+                                    </Text>
+                                </InfoBox>
+                                ={' '}
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -234,7 +230,6 @@ class DeleteAccount extends Component {
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
-                                    containerStyle={{ width: Styling.contentWidth }}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically

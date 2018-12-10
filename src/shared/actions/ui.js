@@ -248,18 +248,3 @@ export const setLoginRoute = (payload) => {
         payload,
     };
 };
-
-/**
- * Dispatch to set active route
- *
- * @method setRoute
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setRoute = (payload) => {
-    return {
-        type: ActionTypes.SET_ROUTE,
-        payload,
-    };
-};

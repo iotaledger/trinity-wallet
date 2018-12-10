@@ -18,7 +18,7 @@ export const Styling = {
     topbarHeight: isAndroid ? height / 10 : height / 8.8,
 };
 
-export function getBackgroundColor(screen, theme, footerColour = false, inactive = false) {
+export function getBackgroundColor(screen, theme, inactive = false) {
     const { bar, body } = theme;
     const screenMap = {
         home: inactive ? body.bg : bar.alt,
@@ -41,8 +41,8 @@ export function getBackgroundColor(screen, theme, footerColour = false, inactive
         twoFactorSetupEnterToken: body.bg,
         disable2FA: body.bg,
         fingerprintSetup: body.bg,
-        termsAndConditions: footerColour ? 'white' : bar.bg,
-        privacyPolicy: footerColour ? 'white' : bar.bg,
+        termsAndConditions: bar.bg,
+        privacyPolicy: bar.bg,
         forceChangePassword: body.bg,
         seedVaultBackup: body.bg,
     };

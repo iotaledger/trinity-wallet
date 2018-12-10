@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     itemLeft: {
@@ -108,17 +108,10 @@ class AutoPromotion extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 2 }} />
-                        <InfoBox
-                            body={body}
-                            text={
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('autoPromotionExplanation')}</Text>
-                                    <Text style={[styles.infoText, textColor, infoTextPadding]}>
-                                        {t('autoPromotionPoW')}
-                                    </Text>
-                                </View>
-                            }
-                        />
+                        <InfoBox>
+                            <Text style={[styles.infoText, textColor]}>{t('autoPromotionExplanation')}</Text>
+                            <Text style={[styles.infoText, textColor, infoTextPadding]}>{t('autoPromotionPoW')}</Text>
+                        </InfoBox>
                         <View style={{ flex: 1.1 }} />
                         <TouchableWithoutFeedback
                             onPress={this.onChange}

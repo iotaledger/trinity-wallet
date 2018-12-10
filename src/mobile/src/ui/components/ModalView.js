@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         width,
         justifyContent: 'flex-end',
         height,
-        flex: isIPhoneX ? 0 : 1,
+        flex: 1,
     },
     modalContainer: {
         justifyContent: 'space-between',
@@ -51,6 +51,8 @@ export class ModalViewComponent extends PureComponent {
         buttonText: PropTypes.string,
         /** Triggered on button press for single footer button */
         onButtonPress: PropTypes.func,
+        /** Determines whether right footer button should be disabled */
+        disableRightButton: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -62,6 +64,7 @@ export class ModalViewComponent extends PureComponent {
         onRightButtonPress: () => {},
         onButtonPress: () => {},
         buttonText: '',
+        disableRightButton: false,
     };
 
     render() {
@@ -76,11 +79,12 @@ export class ModalViewComponent extends PureComponent {
             onRightButtonPress,
             buttonText,
             onButtonPress,
+            disableRightButton,
         } = this.props;
 
         return (
             <View style={styles.container}>
-                <View
+                <SafeAreaView
                     style={[
                         styles.modalContainer,
                         { backgroundColor: body.bg },
@@ -94,9 +98,10 @@ export class ModalViewComponent extends PureComponent {
                             onRightButtonPress={() => onRightButtonPress()}
                             leftButtonText={leftButtonText}
                             rightButtonText={rightButtonText}
+                            disableRightButton={disableRightButton}
                         />
                     )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
-                </View>
+                </SafeAreaView>
             </View>
         );
     }

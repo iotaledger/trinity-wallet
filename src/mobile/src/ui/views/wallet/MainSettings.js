@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import i18next from 'shared-modules/libs/i18next';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import timer from 'react-native-timer';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
@@ -80,29 +80,24 @@ export class MainSettings extends Component {
         timer.setTimeout(
             'delayLogout',
             () => {
-                Navigation.setStackRoot('appStack', {
-                    component: {
-                        name: 'login',
-                        options: {
-                            animations: {
-                                setStackRoot: {
-                                    enable: false,
-                                },
-                            },
-                            layout: {
-                                backgroundColor: body.bg,
-                                orientation: ['portrait'],
-                            },
-                            topBar: {
-                                visible: false,
-                                drawBehind: true,
-                                elevation: 0,
-                            },
-                            statusBar: {
-                                drawBehind: true,
-                                backgroundColor: body.bg,
-                            },
+                navigator.setStackRoot('login', {
+                    animations: {
+                        setStackRoot: {
+                            enable: false,
                         },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    topBar: {
+                        visible: false,
+                        drawBehind: true,
+                        elevation: 0,
+                    },
+                    statusBar: {
+                        drawBehind: true,
+                        backgroundColor: body.bg,
                     },
                 });
                 this.props.clearWalletData();

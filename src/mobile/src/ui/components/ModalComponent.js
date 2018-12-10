@@ -112,7 +112,7 @@ export default function withSafeAreaView(WrappedComponent) {
                         backdropTransitionInTiming={300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
-                        backdropOpacity={0.7}
+                        backdropOpacity={0}
                         style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { width, height } from 'libs/dimensions';
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 3.2,
         width,
         alignItems: 'center',
     },
@@ -60,10 +59,6 @@ export class EnterPasswordOnLogin extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('EnterPasswordOnLogin');
-        BackHandler.addEventListener('loginBackPress', () => {
-            RNExitApp.exitApp();
-            return true;
-        });
     }
 
     handleChangeText = (password) => this.props.setLoginPasswordField(password);

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -27,12 +28,16 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 3,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         paddingBottom: height / 16,
     },
     bottomContainer: {
-        flex: 1,
+        flex: 0.5,
         justifyContent: 'flex-end',
+    },
+    header: {
+        flex: 1,
+        alignItems: 'center',
     },
 });
 
@@ -82,7 +87,7 @@ class SeedVaultBackup extends Component {
      * @method goBack
      */
     goBack() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     render() {
@@ -94,34 +99,52 @@ class SeedVaultBackup extends Component {
                 <View style={[styles.container, { backgroundColor: body.bg }]}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
-                            <View style={{ flex: 0.7 }} />
-                            <Header textColor={body.color}>{t('exportSeedVault')}</Header>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                                style={styles.header}
+                            >
+                                <Icon name="iota" size={width / 8} color={body.color} />
+                                <View style={{ flex: 0.7 }} />
+                                <Header textColor={body.color}>{t('exportSeedVault')}</Header>
+                            </AnimatedComponent>
                         </View>
                         <KeyboardAvoidingView behavior="padding" style={styles.midContainer}>
-                            <SeedVaultExportComponent
-                                step={step}
-                                setProgressStep={(step) => this.setState({ step })}
-                                goBack={() => this.goBack()}
-                                onRef={(ref) => {
-                                    this.SeedVaultExportComponent = ref;
-                                }}
-                                isAuthenticated
-                                seed={seed}
-                                setSeed={(seed) => this.setState({ seed })}
-                            />
+                            <View style={{ flex: 0.2 }} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={200}
+                            >
+                                <SeedVaultExportComponent
+                                    step={step}
+                                    setProgressStep={(step) => this.setState({ step })}
+                                    goBack={() => this.goBack()}
+                                    onRef={(ref) => {
+                                        this.SeedVaultExportComponent = ref;
+                                    }}
+                                    isAuthenticated
+                                    seed={seed}
+                                    setSeed={(seed) => this.setState({ seed })}
+                                />
+                            </AnimatedComponent>
                         </KeyboardAvoidingView>
                         <View style={styles.bottomContainer}>
-                            <DualFooterButtons
-                                onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
-                                onRightButtonPress={() => this.onRightButtonPress()}
-                                leftButtonText={t('global:back')}
-                                rightButtonText={
-                                    step === 'isExporting' && !isAndroid
-                                        ? t('global:export')
-                                        : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')
-                                }
-                            />
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
+                                    onRightButtonPress={() => this.onRightButtonPress()}
+                                    leftButtonText={t('global:back')}
+                                    rightButtonText={
+                                        step === 'isExporting' && !isAndroid
+                                            ? t('global:export')
+                                            : step === 'isSelectingSaveMethodAndroid'
+                                                ? t('global:done')
+                                                : t('global:next')
+                                    }
+                                />
+                            </AnimatedComponent>
                         </View>
                     </View>
                 </View>

@@ -32,6 +32,7 @@ module.exports = {
     plusAlt: '➕',
     minus: '➖',
     cross: '╳',
+    attention: '⚡',
     bookmark: '📖',
     trash: '🗑',
     chart: '📊',
@@ -53,5 +54,4 @@ module.exports = {
     fingerprintDisabled: '👇',
     write: '✍️',
     search: '🔍',
-    warning: '⚠️',
 };
