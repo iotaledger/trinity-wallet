@@ -310,7 +310,7 @@
         "youCanHighlightCharacters": "Možete označiti 9 znakova odjednom",
         "printBlankWallet": "Ispišite prazni novčanik",
         "whatIsAChecksum": "Što je kontrolni zbroj?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Svaki seed ima pripadajući kontrolni zbroj od 3 znaka.",
         "iHavesavedMySeed": "Svoj seed imam spremljen",
         "checksumExplanation": "Svaki put kada dodajete seed u svoj novčanik, pobrinite se da je kontrolni zbroj generiran od strane novčanika isti kao onaj koji ste zapisali.",
         "mustSaveYourSeed": "<0><0>Morate napraviti sigurnosnu kopiju seed-a koristeći </0><1>barem jednu</1><2> od niže navedenih opcija.</2></0>"
@@ -454,7 +454,7 @@
         "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer",
         "promotingAnotherBundle": "Promocija drugog paketa",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Molimo pričekajte. Promocija drugog paketa je trenutno u tijeku."
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -513,14 +513,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Da li ste sigurni da se želite odjaviti?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Ovom radnjom ćete se odjaviti",
+        "areYouSure": "Jeste li sigurni da se želite odjaviti?"
     },
     "qrScanner": {
         "scan": "Skeniraj QR kod"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Sustav jedinica",
         "trillion": "Trilijun",
         "billion": "Milijarda",
         "million": "Milijun",
@@ -562,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Napravio sam sigurnosnu kopiju svojeg seed-a",
+        "reenterSeed": "U sljedećem koraku morat ćete ponovno unijeti svoj seed.",
         "reenterSeedWarning": "Ako niste napravili sigurnosnu kopiju svog seed-a, a vaš uređaj se pokvari, izgubit ćete svu svoju IOTA-u.",
         "pleaseConfirm": "Molimo potvrdite da ste spremili svoj seed na sigurno."
     },
@@ -583,18 +583,18 @@
         "status": "Stanje",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autorizaciju ili ista nije konfigurirana u postavkama uređaja.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Pritisnite donji gumb kako bi onemogućili autorizaciju putem otiska prsta",
         "buttonInstructionsEnable": "Pritisnite donji gumb kako bi omogućili autorizaciju putem otiska prsta.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Pritisnite donji gumb kako bi onemogućili Face ID",
+        "buttonInstructionsEnableIPhoneX": "Pritisnite donji gumb kako bi omogućili Face ID",
         "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslat ćete {{contents}} na adresu",
         "aMessage": "poruka",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
+        "fromAccount": "S {{selectedAccountName}}",
+        "toAddress": "Na adresu",
+        "sendingAMessage": "Šaljem poruku",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
