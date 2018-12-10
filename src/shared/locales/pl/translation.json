@@ -74,8 +74,8 @@
         "wallet": "Portfel",
         "all": "Wszystkie",
         "sent": "Wysłano",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Otrzymano",
+        "youSent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
         "receiving": "Odbieranie",
@@ -130,7 +130,7 @@
         "spentAddressExplanation": "UWAGA: Środki na zużytym adresie",
         "discordInformation": "Wysyłanie z tego samego adresu więcej niż jeden raz jest niebezpieczne. Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić.",
         "androidInsecureClipboardWarning": "System Android nie zapewnia bezpiecznego schowka.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Nigdy nie kopiuj/wklejaj swojego klucza na urządzeniu z systemem Android.",
         "willNotCopyPasteSeed": "Nie będę kopiował/wklejał mojego klucza",
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
         "deviceMayBecomeUnresponsive": "Twoje urządzenie może przestać odpowiadać przez pewien czas.",
@@ -150,7 +150,7 @@
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
         "mainWallet": "KONTO GŁÓWNE",
-        "confirm": "Confirm",
+        "confirm": "Potwierdź",
         "delete": "Usuń",
         "shouldUpdate": "Dostępna jest nowa aktualizacja",
         "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
@@ -209,7 +209,7 @@
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej {{minLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "To jest główne hasło do Twojego portfela. Będziesz go używać do logowania się.",
         "retypePassword": "Wpisz hasło ponownie"
     },
     "copyToClipboard": {
@@ -243,7 +243,7 @@
         "login": "Zaloguj",
         "setNode": "Serwer",
         "whyBiometricDisabled": "Dlaczego logowanie biometryczne jest niedostępne?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Autoryzacja odciskiem palca, przy pierwszym uruchomieniu aplikacji, została wyłączona, dla Twojego bezpieczeństwa.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -454,7 +454,7 @@
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
         "promotingAnotherBundle": "Promowanie innego pakietu",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet."
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -513,7 +513,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Za chwilę zostaniesz wylogowany",
         "areYouSure": "Czy jesteś pewny?"
     },
     "qrScanner": {
