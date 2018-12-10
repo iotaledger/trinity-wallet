@@ -155,7 +155,9 @@
         "shouldUpdate": "En ny uppdatering finns tillgänglig",
         "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
         "forceUpdate": "Uppdatera appen att fortsätta",
-        "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu."
+        "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generera ny adress",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
-        "missingPermission": "Åtkomst till filsystem krävs",
-        "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder.",
         "tag": "Tagg",
         "generateAnAddress": "Generera ny adress",
         "generateAnAddressTitle": "Generera en adress",
