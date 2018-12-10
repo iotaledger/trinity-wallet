@@ -156,8 +156,8 @@
         "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermission": "Wymagany dostęp do systemu plików",
+        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
