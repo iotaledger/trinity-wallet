@@ -54,7 +54,7 @@
     "shared-modules": "./src/shared/"
   },
   "dependencies": {
-    "snyk": "^1.96.0"
+    "snyk": "^1.116.2"
   },
   "snyk": true
 }
