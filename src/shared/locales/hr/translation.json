@@ -19,7 +19,7 @@
         "invalidResponse": "Pogreška na čvoru",
         "invalidResponseExplanation": "Čvor je poslao pogrešku. Probajte sa promjenom čvora.",
         "invalidResponseFetchingAccount": "Greška prilikom dohvata podataka o vašem računu. Pokušajte promijeniti node.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Greška prilikom dohvata podataka o vašem računu. U slučaju ponavljanja problema, pokušajte promijeniti node ili onemogućiti korištenje proxy postavka sustava u Trinity postavkama.",
         "nodeOutOfSync": "Vaš node nije sinkroniziran",
         "nodeOutOfSyncExplanation": "Vaš odabrani node nije sinkroniziran. Molimo vas promijenite node i pokušajte ponovno.",
         "thisNodeOutOfSync": "Ovaj node nije sinkroniziran. Molimo vas promijenite node ili pokušajte ponovno.",
@@ -74,6 +74,8 @@
         "wallet": "Novčanik",
         "all": "Sve",
         "sent": "Poslano",
+        "youReceived": "Primili ste",
+        "youSent": "Poslali ste",
         "received": "Primljeno",
         "sending": "Slanje",
         "receiving": "Primanje",
@@ -148,6 +150,8 @@
         "errorAccessingKeychain": "Keychain greška",
         "errorAccessingKeychainExplanation": "Nije moguće pristupiti keychain-u potrebnom za sigurnu pohranu.",
         "mainWallet": "GLAVNI RAČUN",
+        "confirm": "Potvrdi",
+        "delete": "Obriši",
         "shouldUpdate": "Dostupno je novo ažuriranje",
         "shouldUpdateExplanation": "Dostupna je nova verzija aplikacije. Preporučuje se ažuriranje aplikacije na najnoviju verziju.",
         "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
@@ -205,7 +209,7 @@
         "passwordTooShortExplanation": "Minimalni broj znakova koji vaša lozinka mora sadržavati je {{minLength}}. Trenutni broj znakova je {{currentLength}}. Molimo pokušajte ponovno.",
         "passwordMismatch": "Lozinke nisu iste",
         "passwordMismatchExplanation": "Lozinke koje ste unijeli nisu iste. Molimo pokušajte ponovo.",
-        "anEncryptedCopy": "Kodirana kopija vašeg seed-a biti će pohranjena na vašem uređaju. Ovu lozinku ćete koristiti za pristup novčaniku u budućnosti.",
+        "anEncryptedCopy": "Ovo je lozinka vašeg glavnog novčanika. Koristit ćete ju za prijavu.",
         "retypePassword": "Ponovo unesite lozinku"
     },
     "copyToClipboard": {
@@ -239,7 +243,8 @@
         "login": "Prijavi se",
         "setNode": "Postavi node",
         "whyBiometricDisabled": "Zašto je biometrijska autorizacija onemogućena?",
-        "whyBiometricDisabledExplanation": "Biometrijska prijava je onemogućena prilikom prvog pokretanja aplikacije radi vaše sigurnosti. Prilikom korištenja Trinity novčanika bit ćete odjavljeni nakon određenog perioda neaktivnosti. Tek tada se možete ponovno prijaviti koristeći biometrijsku autorizaciju."
+        "whyBiometricDisabledExplanationPart1": "Biometrijska autorizacija je onemogućena prilikom prvog pokretanja aplikacije radi vaše sigurnosti.",
+        "whyBiometricDisabledExplanationPart2": "Prilikom korištenja, Trinity će vas automatski odjaviti uslijed neaktivnosti. Nakon toga se slobodno možete ponovno prijaviti koristeći biometrijsku autorizaciju."
     },
     "loading": {
         "loadingFirstTime": "Prvotno učitavanje seed-a.",
@@ -254,10 +259,10 @@
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
-        "individualLetterCount": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
-        "individualLetterCount_plural": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
-        "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
-        "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
+        "individualLetterCount": "Preostali broj znakova koje treba učiniti nasumičnim: <1><0>{{count}}</0></1>.",
+        "individualLetterCount_plural": "Preostali broj znakova koje treba učiniti nasumičnim: <1><0>{{count}}</0></1>.",
+        "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka: <1>{{count}}</1>.",
+        "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka: <1>{{count}}</1>.",
         "whatIsASeed": "Što je seed?"
     },
     "onboardingComplete": {
@@ -268,12 +273,12 @@
     "paperWallet": {
         "neverShare": "Nikada nemojte podijeliti svoj seed s bilo kime.",
         "iotaLogo": "IOTA logo",
-        "print": "ISPIS",
+        "print": "Ispis",
         "paperConvenience": "Ispis vašeg seed-a na papir je pogodan način za njegovo spremanje.",
         "publicInsecure": "No ispis putem javno dostupnog wifi-a ili javno dostupnog pisača je nesigurno.",
-        "tapCheckboxes": "Molimo kliknite na kvadratiće ispod za potvrdu.",
-        "wifiCheckbox": "Neću ispisati seed putem javno dostupnog wifi-a",
-        "printerCheckbox": "Neću vršiti ispis na javnom pisaču"
+        "pleaseCheck": "Molimo provjerite i potvrdite prije ispisa",
+        "wifiConfirmation": "Moj uređaj nije spojen na javno dostupan wifi",
+        "printerConfirmation": "Ne vršim ispis na javno dostupnom pisaču"
     },
     "receive": {
         "yourAddress": "Vaša adresa",
@@ -304,7 +309,8 @@
         "letsWriteDownYourSeed": "Zapišimo vaš seed",
         "youCanHighlightCharacters": "Možete označiti 9 znakova odjednom",
         "printBlankWallet": "Ispišite prazni novčanik",
-        "whatIsChecksum": "Svaki seed ima pripadajući kontrolni zbroj od 3 znaka",
+        "whatIsAChecksum": "Što je kontrolni zbroj?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Svoj seed imam spremljen",
         "checksumExplanation": "Svaki put kada dodajete seed u svoj novčanik, pobrinite se da je kontrolni zbroj generiran od strane novčanika isti kao onaj koji ste zapisali.",
         "mustSaveYourSeed": "<0><0>Morate napraviti sigurnosnu kopiju seed-a koristeći </0><1>barem jednu</1><2> od niže navedenih opcija.</2></0>"
@@ -345,7 +351,8 @@
         "totalTime": "Ukupno vrijeme",
         "addressPasteDetected": "Detektirana kopija adrese u međuspremniku",
         "addressPasteExplanation": "Izgleda da ste zalijepili adresu. Provjerite da li je adresa istovjetna onoj na koju želite poslati.",
-        "invalid": "NEISPRAVNO"
+        "invalid": "NEISPRAVNO",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Dodajte naziv",
@@ -446,7 +453,8 @@
         "empty": "Prazno",
         "retrying": "Ponovni pokušaj u tijeku",
         "yesterday": "Jučer",
-        "promotingAnotherBundle": "Promocija drugog paketa"
+        "promotingAnotherBundle": "Promocija drugog paketa",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Prikaži seed",
@@ -504,18 +512,21 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Da li ste sigurni da se želite odjaviti?"
+        "logoutConfirmation": "Da li ste sigurni da se želite odjaviti?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Skeniraj QR kod"
     },
     "unitInfoModal": {
-        "unitSystem": "SUSTAV JEDINICA",
+        "unitSystem": "Unit System",
         "trillion": "Trilijun",
         "billion": "Milijarda",
         "million": "Milijun",
         "thousand": "Tisuću",
-        "one": "Jedna"
+        "one": "Jedna",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Zašto ne mogu potrošiti cijeli iznos?",
@@ -551,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
-        "alreadyHave": "Napravio sam sigurnosnu kopiju svojeg seed-a",
-        "reenterSeed": "U sljedećem koraku morat ćete ponovno unijeti svoj seed.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Ako niste napravili sigurnosnu kopiju svog seed-a, a vaš uređaj se pokvari, izgubit ćete svu svoju IOTA-u.",
         "pleaseConfirm": "Molimo potvrdite da ste spremili svoj seed na sigurno."
     },
@@ -572,15 +583,19 @@
         "status": "Stanje",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autorizaciju ili ista nije konfigurirana u postavkama uređaja.",
-        "buttonInstructionsDisable": "Pritisnite donji gumb kako bi onemogućili autorizaciju putem otiska prsta.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "Pritisnite donji gumb kako bi omogućili autorizaciju putem otiska prsta.",
-        "buttonInstructionsDisableIPhoneX": "Pritisnite donji gumb kako bi onemogućili Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Pritisnite donji gumb kako bi omogućili Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslat ćete {{contents}} na adresu",
-        "aMessage": "poruka"
+        "aMessage": "poruka",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Pogrešan kod",
@@ -601,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
-        "seedVaultExplanation": "SeedVault je kodirana datoteka namijenjena spremanju vašeg seed-a na siguran način. Seed je kodiran i zaštićen lozinkom, te mu se ne može pristupiti bez lozinke.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Pobrinite se da napravite sigurnosne kopije datoteke, te ih pohranite na više mjesta (npr. hard disk, oblak, USB). Ako izgubite ovu datoteku, a niste pohranili svoj seed na nekom drugom mjestu, izgubit ćete svoje IOTA-e.",
         "exportFail": "Izvoz SeedVault-a neuspješan",
         "exportFailExplanation": "Došlo je do greške prilikom izvoza SeedVault-a. Molimo provjerite da li imate sva potrebna ovlaštenja i dovoljno slobodnog prostora na disku.",
@@ -615,13 +630,15 @@
         "importSuccessExplanation": "Vaš seed je uspješno uvezen.",
         "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
-        "dropSeedVaultHere": "Ovdje ispustite SeedVault <1></1> ili kliknite da bi ga potražili na računalu",
+        "dropInstructions": "Ovdje dovucite te ispustite SeedVault <1></1> ili kliknite da bi ga potražili na uređaju.\nAlternativno možete označiti i dovući Seed iz tekst editora.",
+        "dropActive": "Ispustite SeedVault/Seed ovdje",
         "enterKeyExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u. Možete koristiti istu lozinku koju koristite za pristup Trinity novčaniku."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -655,7 +672,8 @@
         "preparingTransfers": "Priprema transakcija",
         "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
         "proofOfWork": "Završetak PoW-a",
-        "broadcasting": "Emitiranje"
+        "broadcasting": "Emitiranje",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nije bilo moguće izvršiti snapshot tranziciju",
@@ -706,8 +724,8 @@
         "completeSetup": "Završi postavljanje"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxy": "Korištenje proxy postavka sustava",
+        "proxyExplanation": "Detektiraj i koristi mrežne proxy postavke sustava. Zatvori te ponovno pokreni Trinity nakon promjene ove postavke."
     },
     "notifications": {
         "notifications": "Obavijesti",

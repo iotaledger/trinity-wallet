@@ -40,7 +40,7 @@ subprojects {
                 variantFilter { variant ->
                     def names = variant.flavors*.name
                     // To check for a certain build type, use variant.buildType.name == "<buildType>"
-                    if (names.contains("reactNative55") || names.contains("reactNative56")) {
+                    if (names.contains("reactNative51") || names.contains("reactNative55") || names.contains("reactNative56")) {
                         // Gradle ignores any variants that satisfy the conditions above.
                         setIgnore(true)
                     }

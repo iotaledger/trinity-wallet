@@ -39,7 +39,7 @@ project(':react-native-extra-dimensions-android').projectDir = new File(rootProj
 include ':react-native-keychain'
 project(':react-native-keychain').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-keychain/android')
 include ':lottie-react-native'
-project(':lottie-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/lottie-react-native/lib/android')
+project(':lottie-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/lottie-react-native/src/android')
 include ':react-native-exit-app', ':app'
 project(':react-native-exit-app').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-exit-app/android')
 include ':react-native-securerandom'

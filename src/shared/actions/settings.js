@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import { changeIotaNode } from '../libs/iota';
+import { changeIotaNode } from '../libs/iota/index';
 import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
