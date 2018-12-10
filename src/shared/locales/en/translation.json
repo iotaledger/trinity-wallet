@@ -579,7 +579,7 @@
         "syncingYourAccount": "Syncing your account."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Incorrect seed format",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
