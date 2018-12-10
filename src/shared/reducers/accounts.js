@@ -17,6 +17,30 @@ import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
 /**
+ * Removes account name from account info and reorders account indexes (Fill in missing gaps)
+ *
+ * @method removeAccountAndReorderIndexes
+ * @param {object} accountInfo
+ * @param {string} accountNameToDelete
+ *
+ * @returns {object}
+ */
+export const removeAccountAndReorderIndexes = (accountInfo, accountNameToDelete) => {
+    if (!has(accountInfo, accountNameToDelete)) {
+        return accountInfo;
+    }
+
+    const { index } = accountInfo[accountNameToDelete];
+
+    return mapValues(
+        // Remove account
+        omit(accountInfo, accountNameToDelete),
+        // Reorder (fill in missing) account indexes
+        (data) => ({ ...data, index: data.index > index ? data.index - 1 : data.index }),
+    );
+};
+
+/**
  * Stop overriding local spend status for a known address
  *
  * @method preserveAddressLocalSpendStatus
@@ -220,7 +244,7 @@ const account = (
         case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
-                accountInfo: omit(state.accountInfo, action.payload),
+                accountInfo: removeAccountAndReorderIndexes(state.accountInfo, action.payload),
                 failedBundleHashes: omit(state.failedBundleHashes, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
