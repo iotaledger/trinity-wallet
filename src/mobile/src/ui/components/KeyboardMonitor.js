@@ -1,8 +1,10 @@
+// Updates global state when keyboard opens/closes. Applies keyboard avoidance globally
+
 import React, { Component } from 'react';
 import { Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import timer from 'react-native-timer';
 import { setKeyboardActivity } from 'shared-modules/actions/ui';
 import { isAndroid } from 'libs/device';
 
@@ -14,6 +16,7 @@ const mapStateToProps = (state) => ({
     isKeyboardActive: state.ui.isKeyboardActive,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
+    isModalActive: state.ui.isModalActive,
 });
 
 /**
@@ -32,6 +35,8 @@ export default function withKeyboardMonitor(C) {
             inactive: PropTypes.bool.isRequired,
             /** @ignore */
             minimised: PropTypes.bool.isRequired,
+            /** @ignore */
+            isModalActive: PropTypes.bool.isRequired,
         };
 
         componentWillMount() {
@@ -47,7 +52,6 @@ export default function withKeyboardMonitor(C) {
         componentWillUnmount() {
             this.keyboardWillShowSub.remove();
             this.keyboardWillHideSub.remove();
-            timer.clearTimeout('iOSKeyboardTimeout');
         }
 
         keyboardWillShow = () => {
@@ -58,8 +62,8 @@ export default function withKeyboardMonitor(C) {
             this.props.setKeyboardActivity(true);
         };
 
-        keyboardWillHide = (event) => {
-            timer.setTimeout('iOSKeyboardTimeout', () => this.props.setKeyboardActivity(false), event.duration);
+        keyboardWillHide = () => {
+            this.props.setKeyboardActivity(false);
         };
 
         keyboardDidShow = () => {
@@ -75,7 +79,17 @@ export default function withKeyboardMonitor(C) {
         };
 
         render() {
-            return <C {...this.props} />;
+            return (
+                <KeyboardAwareScrollView
+                    resetScrollToCoords={{ x: 0, y: 0 }}
+                    scrollEnabled={false}
+                    enableAutomaticScroll={!this.props.isModalActive}
+                    extraHeight={0}
+                    contentContainerStyle={{ flex: 1 }}
+                >
+                    <C {...this.props} />
+                </KeyboardAwareScrollView>
+            );
         }
     }
 

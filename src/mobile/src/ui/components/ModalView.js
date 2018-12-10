@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, StatusBar } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
@@ -98,7 +99,12 @@ export class ModalViewComponent extends PureComponent {
         } = this.props;
 
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                scrollEnabled={false}
+                extraHeight={0}
+                contentContainerStyle={styles.container}
+            >
                 <SafeAreaView
                     style={[styles.modalContainer, { backgroundColor: body.bg }, { height: this.getModalHeight() }]}
                 >
@@ -113,7 +119,7 @@ export class ModalViewComponent extends PureComponent {
                         />
                     )) || <SingleFooterButton onButtonPress={() => onButtonPress()} buttonText={buttonText} />}
                 </SafeAreaView>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }

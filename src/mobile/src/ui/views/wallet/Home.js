@@ -117,7 +117,7 @@ class Home extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (!this.props.isKeyboardActive && newProps.isKeyboardActive) {
+        if (!this.props.isKeyboardActive && newProps.isKeyboardActive && !this.props.isModalActive) {
             this.handleCloseTopBar();
             if (isAndroid) {
                 this.topBarHeight = 20;
