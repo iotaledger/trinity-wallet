@@ -243,8 +243,8 @@
         "login": "Prijavi se",
         "setNode": "Postavi node",
         "whyBiometricDisabled": "Zašto je biometrijska autorizacija onemogućena?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometrijska autorizacija je onemogućena prilikom prvog pokretanja aplikacije radi vaše sigurnosti.",
+        "whyBiometricDisabledExplanationPart2": "Prilikom korištenja, Trinity će vas automatski odjaviti uslijed neaktivnosti. Nakon toga se slobodno možete ponovno prijaviti koristeći biometrijsku autorizaciju."
     },
     "loading": {
         "loadingFirstTime": "Prvotno učitavanje seed-a.",
@@ -273,12 +273,12 @@
     "paperWallet": {
         "neverShare": "Nikada nemojte podijeliti svoj seed s bilo kime.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Ispis",
         "paperConvenience": "Ispis vašeg seed-a na papir je pogodan način za njegovo spremanje.",
         "publicInsecure": "No ispis putem javno dostupnog wifi-a ili javno dostupnog pisača je nesigurno.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Molimo provjerite i potvrdite prije ispisa",
+        "wifiConfirmation": "Moj uređaj nije spojen na javno dostupan wifi",
+        "printerConfirmation": "Ne vršim ispis na javno dostupnom pisaču"
     },
     "receive": {
         "yourAddress": "Vaša adresa",
@@ -309,7 +309,7 @@
         "letsWriteDownYourSeed": "Zapišimo vaš seed",
         "youCanHighlightCharacters": "Možete označiti 9 znakova odjednom",
         "printBlankWallet": "Ispišite prazni novčanik",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Što je kontrolni zbroj?",
         "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Svoj seed imam spremljen",
         "checksumExplanation": "Svaki put kada dodajete seed u svoj novčanik, pobrinite se da je kontrolni zbroj generiran od strane novčanika isti kao onaj koji ste zapisali.",
