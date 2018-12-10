@@ -74,6 +74,8 @@
         "wallet": "کیف پول",
         "all": "All",
         "sent": "ارسال",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "دریافت شده",
         "sending": "در حال ارسال",
         "receiving": "در حال دریافت",
@@ -128,7 +130,7 @@
         "spentAddressExplanation": "اخطار: موجودی بر روی آدرس های از قبل ساخته شده",
         "discordInformation": "ارسال برای یک آدرس بیش از یک بار خطرناک است. برای حل این مسئله، به کانال #help در برنامه Discord مراجعه کنید.",
         "androidInsecureClipboardWarning": "اندروید کلیپ بورد امن را فراهم نمی کند.",
-        "androidCopyPasteWarning": "هرگز سید خود را بر روی یک دستگاه اندروید کپی و جایگذاری نکنید.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "من اجازه کپی و جایگذاری سید شما را ندارم",
         "mustBeStoredAppropriately": "این باید به صورت مناسب ذخیره شود.",
         "deviceMayBecomeUnresponsive": "دستگاه شما ممکن است برای مدتی پاسخگو باشد.",
@@ -148,6 +150,8 @@
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
         "mainWallet": "MAIN ACCOUNT",
+        "confirm": "Confirm",
+        "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
@@ -205,7 +209,7 @@
         "passwordTooShortExplanation": "گذرواژه شما باید حداقل {{minLength}} کاراکتر باشد. در حال حاضر {{currentLength}} کاراکتر میباشد. لطفا دوباره تلاش کنید.",
         "passwordMismatch": "گذرواژه‌ ها یکسان نیستند",
         "passwordMismatchExplanation": "گذرواژه هایی که وارد کرده اید، مطابقت ندارند. لطفا دوباره تلاش کنید.",
-        "anEncryptedCopy": "کپی رمز شده از سید شما بر روی دستگاه شما ذخیره می شود. از این گذرواژه برای دسترسی به کیف پول خود در آینده استفاده خواهید کرد.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "دوباره گذرواژه را وارد کنید"
     },
     "copyToClipboard": {
@@ -239,7 +243,8 @@
         "login": "ورود",
         "setNode": "تنظیم Node",
         "whyBiometricDisabled": "چرا احراز هویت بیومتریک غیرفعال است؟",
-        "whyBiometricDisabledExplanation": "ورود به سیستم بیومتریک بار اول برای امنیت شما غیر فعال است. هنگام استفاده از Trinity، برای غیرفعال شدن از سیستم خارج می شوید. سپس می توانید با احراز هویت بیومتریک وارد شوید."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "بارگذاری سید برای اولین بار.",
@@ -268,12 +273,12 @@
     "paperWallet": {
         "neverShare": "هرگز سید خود را با کسی شریک نکنید.",
         "iotaLogo": "لوگو آیوتا",
-        "print": "چاپ",
+        "print": "Print",
         "paperConvenience": "چاپ کپی کاغذی از سید شما یک راه مناسب برای ذخیره آن است.",
         "publicInsecure": "اما چاپ در وای فای عمومی یا چاپگر عمومی نا امن است.",
-        "tapCheckboxes": "لطفا برای تایید صحت تیک های زیر بزنید.",
-        "wifiCheckbox": "من در وای فای عمومی چاپ نمی کنم",
-        "printerCheckbox": "من بر روی چاپگر عمومی چاپ نمی کنم"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "آدرس شما",
@@ -304,7 +309,8 @@
         "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
-        "whatIsChecksum": "هر سید یک کد اعتبارسنجی 3 حرفی دارد",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "من سید خود را ذخیره کردم",
         "checksumExplanation": "هر گاه سید را به کیف پول خود اضافه می کنید، باید اطمینان حاصل کنید که کد اعتبارسنجی تولید شده از کیف پول مطابق با آنچه نوشته شده است.",
         "mustSaveYourSeed": "<0><0>شما باید از سید خود پشتیبان تهیه کنید با </0><1>حداقل یکی</1><2>از گزینه های ذکر شده در لیست زیر</2></0>"
@@ -345,7 +351,8 @@
         "totalTime": "کل زمان",
         "addressPasteDetected": "آدرس جایگذاری تشخیص داده شد",
         "addressPasteExplanation": "به نظر می رسد که یک آدرس را جاگذاری کرده اید. اطمینان حاصل کنید که آدرس جایگذاری شده با آدرسی که شما می خواهید به آن ارسال کنید یکسان باشد.",
-        "invalid": "نامعتبر"
+        "invalid": "نامعتبر",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "لطفا یک نام اضافه کنید",
@@ -446,7 +453,8 @@
         "empty": "خالی",
         "retrying": "درحال تلاش دوباره",
         "yesterday": "دیروز",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoting another bundle",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -504,18 +512,21 @@
         "currency": "واحد پول"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "آیا مطمئنید که می‌خواهید خارج شوید؟"
+        "logoutConfirmation": "آیا مطمئنید که می‌خواهید خارج شوید؟",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "اسکن کد QR شما"
     },
     "unitInfoModal": {
-        "unitSystem": "واحد سیستم",
+        "unitSystem": "Unit System",
         "trillion": "تریلیون",
         "billion": "بیلیون",
         "million": "میلیون",
         "thousand": "هزار",
-        "one": "یک"
+        "one": "یک",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "چرا من نمی توانم موجودی کامل خود را انتقال بدهم؟",
@@ -551,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "آیا از سید خود پشتیبانی گرفتید؟",
-        "alreadyHave": "من از سید خود پشتیبانی گرفتم",
-        "reenterSeed": "در مرحله بعد، از شما خواسته می شود تا سید خود را دوباره وارد کنید.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "اگر از سید خودتان پشتیبانی تهیه نکنید و دستگاه شما خراب بشود، شما تمام آیوتای خود را از دست خواهید داد.",
         "pleaseConfirm": "لطفا تایید کنید که سید خود را ایمن نگه داشته اید."
     },
@@ -572,15 +583,19 @@
         "status": "وضعیت",
         "fingerprintUnavailable": "احراز هویت بیومتریک در دسترس نیست",
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
-        "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
-        "buttonInstructionsDisableIPhoneX": "برای غیرفعال کردن Face ID، دکمه زیر را فشار دهید.",
-        "buttonInstructionsEnableIPhoneX": "برای فعال کردن Face ID، دکمه زیر را فشار دهید.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید"
     },
     "transferConfirmation": {
         "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
-        "aMessage": "یک پیام"
+        "aMessage": "یک پیام",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "کد اشتباه است",
@@ -601,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "اطمینان حاصل کنید که فایل را در چندین مکان (مانند هارد دیسک، فضای ابری، فلش) پشتیبان بگیرید. اگر این فایل را از دست بدهید و سید خود را در جایی ذخیره نکرده باشید، آیوتای خود را از دست خواهید داد.",
         "exportFail": "استخراج سید Vault ناموفق بود",
         "exportFailExplanation": "مشکل استخراج سید Vault وجود داشت. لطفا اطمینان حاصل کنید که مجوز های مناسب و فضای آزاد کافی دارید.",
@@ -622,7 +637,8 @@
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -656,7 +672,8 @@
         "preparingTransfers": "آماده سازی انتقال",
         "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
         "proofOfWork": "تکمیل اثبات کار",
-        "broadcasting": "در حال پخش"
+        "broadcasting": "در حال پخش",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "انتقال عکس فوری امکانپذیر نیست",
