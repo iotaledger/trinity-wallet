@@ -826,7 +826,7 @@ export class Send extends Component {
                                 postSwipeColor={primary.color}
                                 interupt={this.state.shouldInteruptSendAnimation}
                                 progressText={this.getProgressBarText()}
-                                staticText="Swipe to send"
+                                staticText={t('swipeToSend')}
                                 onSwipeSuccess={() => {
                                     this.onSendPress();
                                     if (address === '' && amount === '' && message && '') {
