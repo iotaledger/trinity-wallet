@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "無地址",
         "spent": "已支出",
-        "missingPermission": "需要檔案系統權限",
-        "missingPermissionExplanation": "分享 QR 碼必須要有訪問檔案系統的權限。",
         "tag": "標籤",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
