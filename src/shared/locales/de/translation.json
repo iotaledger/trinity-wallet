@@ -155,7 +155,9 @@
         "shouldUpdate": "Ein neues Update ist verfügbar",
         "shouldUpdateExplanation": "Ein neues Update wurde veröffentlicht. Es wird empfohlen, dass du die neueste Version installierst.",
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
-        "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt."
+        "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Neue Adresse generieren",
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
-        "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Um QR-Codes teilen zu konenn, muss der Zugriff auf das Dateisystem erlaubt werden.",
         "tag": "Tag",
         "generateAnAddress": "Neue Adresse generieren",
         "generateAnAddressTitle": "Eine neue Adresse generieren",
