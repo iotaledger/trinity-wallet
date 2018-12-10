@@ -96,7 +96,7 @@ class SeedSave extends PureComponent {
                         variant="primary"
                         className="square"
                     >
-                        {t('done')}
+                        {t('back')}
                     </Button>
                 </footer>
             </React.Fragment>
