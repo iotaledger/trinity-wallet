@@ -93,6 +93,8 @@ class Home extends Component {
         markTaskAsDone: PropTypes.func.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
+        /** @ignore */
+        currentRoute: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -180,16 +182,20 @@ class Home extends Component {
      * Changes home screen child route
      * @param {string} name
      */
-    onTabSwitch(name) {
+    onTabSwitch(nextRoute) {
         const { isSyncing, isTransitioning, isCheckingCustomNode } = this.props;
-
         this.userInactivity.setActiveFromComponent();
 
         if (isTransitioning) {
             return;
         }
-
-        this.props.changeHomeScreenRoute(name);
+        // Set tab animation in type according to relative position of next active tab
+        const routes = ['balance', 'send', 'receive', 'history', 'settings'];
+        this.tabAnimationInType =
+            routes.indexOf(nextRoute) < routes.indexOf(this.props.currentRoute)
+                ? ['slideInLeftSmall', 'fadeIn']
+                : ['slideInRightSmall', 'fadeIn'];
+        this.props.changeHomeScreenRoute(nextRoute);
 
         if (!isSyncing && !isCheckingCustomNode) {
             this.resetSettings();
@@ -415,6 +421,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     currentSetting: state.wallet.currentSetting,
     isTopBarActive: state.home.isTopBarActive,
+    currentRoute: state.home.childRoute,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isModalActive: state.ui.isModalActive,
     shouldTransitionForSnapshot: shouldTransitionForSnapshot(state),

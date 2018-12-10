@@ -219,7 +219,7 @@ export class Balance extends Component {
             <FlatList
                 scrollEnabled={false}
                 data={data}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <SimpleTransactionRow {...item} />}
                 contentContainerStyle={styles.listView}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}

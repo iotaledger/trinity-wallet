@@ -280,7 +280,7 @@ class History extends Component {
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={
                     <RefreshControl

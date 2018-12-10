@@ -25,6 +25,10 @@ class AnimatedComponent extends Component {
         navStack: PropTypes.array.isRequired,
         /** Style prop */
         style: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number]),
+        /** Trigger animation out on change */
+        animateOutTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+        /** Trigger animation in on change */
+        animateInTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     };
 
     static defaultProps = {
@@ -33,8 +37,10 @@ class AnimatedComponent extends Component {
         animationInType: ['fadeIn'],
         animationOutType: ['fadeOut'],
         duration: 300,
-        triggerAnimationIn: false,
-        triggerAnimationOut: false,
+        animateInTrigger: false,
+        animateOutTrigger: false,
+        isDashboard: false,
+        blockAnimation: false,
     };
 
     constructor(props) {
@@ -45,24 +51,35 @@ class AnimatedComponent extends Component {
         // Slide animations are reversed when popping from navigation stack
         this.reverseSlideIn = false;
         this.reverseSlideOut = false;
-        this.iniatialiseAnimations(props.animationInType);
+        if (props.animateOnMount) {
+            this.iniatialiseAnimations(props.animationInType);
+        }
         this.screen = last(props.navStack);
     }
 
     componentDidMount() {
-        // Animate in on mount
+        // Animate in on page mount
         if (this.props.animateOnMount) {
             this.animateIn(this.props.delay);
         }
     }
 
     componentWillReceiveProps(newProps) {
+        if (this.props.animateInTrigger !== newProps.animateInTrigger) {
+            return this.iniatialiseAnimations(newProps.animationInType);
+        }
+
+        if (this.props.animateOutTrigger !== newProps.animateOutTrigger) {
+            return this.iniatialiseAnimations(newProps.animationOutType);
+        }
+
         // Animate out if pushing from current screen
         if (this.props.navStack.length < newProps.navStack.length && this.screen === last(this.props.navStack)) {
             this.reverseSlideOut = false;
             this.iniatialiseAnimations(this.props.animationOutType);
             this.animateOut();
         }
+
         // Animate out if popping from current screen
         if (
             this.props.navStack.length > newProps.navStack.length &&
@@ -95,6 +112,16 @@ class AnimatedComponent extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.animateInTrigger !== this.props.animateInTrigger) {
+            return this.animateIn();
+        }
+
+        if (prevProps.animateOutTrigger !== this.props.animateOutTrigger) {
+            return this.animateOut();
+        }
+    }
+
     /**
      * Gets animated style object for single or multiple animations
      * @method getAnimatedStyle
@@ -106,15 +133,16 @@ class AnimatedComponent extends Component {
         animationType.map((type) => {
             switch (type) {
                 case 'fadeIn':
-                    animatedStyle = merge({}, animatedStyle, { opacity: this.fadeValue });
-                    break;
                 case 'fadeOut':
                     animatedStyle = merge({}, animatedStyle, { opacity: this.fadeValue });
                     break;
+                case 'slideInLeft':
                 case 'slideInRight':
-                    animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateX: this.slideValue }] });
-                    break;
                 case 'slideOutLeft':
+                case 'slideInLeftSmall':
+                case 'slideInRightSmall':
+                case 'slideOutLeftSmall':
+                case 'slideOutRightSmall':
                     animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateX: this.slideValue }] });
                     break;
             }
@@ -136,7 +164,17 @@ class AnimatedComponent extends Component {
                 return 1;
             case 'slideInRight':
                 return this.reverseSlideIn ? -width : width;
+            case 'slideInLeft':
+                return -width;
             case 'slideOutLeft':
+            case 'slideOutRight':
+                return 0;
+            case 'slideInLeftSmall':
+                return -width / 8;
+            case 'slideInRightSmall':
+                return width / 8;
+            case 'slideOutLeftSmall':
+            case 'slideOutRightSmall':
                 return 0;
         }
     }
@@ -152,11 +190,21 @@ class AnimatedComponent extends Component {
             case 'fadeIn':
                 return 1;
             case 'fadeOut':
-                return 0;
+            case 'slideInLeft':
             case 'slideInRight':
                 return 0;
             case 'slideOutLeft':
                 return this.reverseSlideOut ? width : -width;
+            case 'slideOutRight':
+                return width;
+            case 'slideInLeftSmall':
+                return 0;
+            case 'slideInRightSmall':
+                return 0;
+            case 'slideOutLeftSmall':
+                return this.reverseSlideOut ? width / 8 : -width / 8;
+            case 'slideOutRightSmall':
+                return width / 8;
         }
     }
 
@@ -169,12 +217,16 @@ class AnimatedComponent extends Component {
     getEasing(animationType) {
         switch (animationType) {
             case 'fadeIn':
-                return Easing.ease;
             case 'fadeOut':
-                return Easing.ease;
-            case 'slideOutLeft':
-                return Easing.bezier(0.25, 1, 0.25, 1);
+                return Easing.elastic();
+            case 'slideInLeft':
             case 'slideInRight':
+            case 'slideOutLeft':
+            case 'slideOutRight':
+            case 'slideInLeftSmall':
+            case 'slideInRightSmall':
+            case 'slideOutLeftSmall':
+            case 'slideOutRightSmall':
                 return Easing.bezier(0.25, 1, 0.25, 1);
         }
     }
@@ -188,12 +240,16 @@ class AnimatedComponent extends Component {
     getAnimationPointer(animationType) {
         switch (animationType) {
             case 'fadeIn':
-                return this.fadeValue;
             case 'fadeOut':
                 return this.fadeValue;
+            case 'slideInLeft':
             case 'slideInRight':
-                return this.slideValue;
             case 'slideOutLeft':
+            case 'slideOutRight':
+            case 'slideInLeftSmall':
+            case 'slideInRightSmall':
+            case 'slideOutLeftSmall':
+            case 'slideOutRightSmall':
                 return this.slideValue;
         }
     }
@@ -229,15 +285,17 @@ class AnimatedComponent extends Component {
         animationType.map((type) => {
             switch (type) {
                 case 'fadeIn':
-                    this.fadeValue = new Animated.Value(this.getStartingAnimatedValue(type));
-                    break;
                 case 'fadeOut':
                     this.fadeValue = new Animated.Value(this.getStartingAnimatedValue(type));
                     break;
+                case 'slideInLeft':
                 case 'slideInRight':
-                    this.slideValue = new Animated.Value(this.getStartingAnimatedValue(type));
-                    break;
                 case 'slideOutLeft':
+                case 'slideOutRight':
+                case 'slideInLeftSmall':
+                case 'slideInRightSmall':
+                case 'slideOutLeftSmall':
+                case 'slideOutRightSmall':
                     this.slideValue = new Animated.Value(this.getStartingAnimatedValue(type));
                     break;
             }

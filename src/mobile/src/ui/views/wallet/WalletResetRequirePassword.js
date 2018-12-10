@@ -6,13 +6,14 @@ import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { generateAlert } from 'shared-modules/actions/alerts';
-import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { Text, StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { persistConfig } from 'libs/store';
 import { purgeStoredState } from 'shared-modules/store';
 import { clearKeychain, hash } from 'libs/keychain';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import InfoBox from 'ui/components/InfoBox';
 import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
@@ -39,6 +40,12 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
+    },
+    infoText: {
+        fontSize: Styling.fontSize3,
+        fontFamily: 'SourceSansPro-Light',
+        textAlign: 'center',
+        backgroundColor: 'transparent',
     },
 });
 
@@ -186,7 +193,19 @@ class WalletResetRequirePassword extends Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={200}
+                                delay={300}
+                            >
+                                <InfoBox>
+                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                        {t('enterPassword')}
+                                    </Text>
+                                </InfoBox>
+                            </AnimatedComponent>
+                            <View style={{ flex: 0.1 }} />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={100}
                             >
                                 <CustomTextInput
                                     label={t('global:password')}
