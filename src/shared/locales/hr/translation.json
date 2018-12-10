@@ -155,7 +155,9 @@
         "shouldUpdate": "Dostupno je novo ažuriranje",
         "shouldUpdateExplanation": "Dostupna je nova verzija aplikacije. Preporučuje se ažuriranje aplikacije na najnoviju verziju.",
         "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
-        "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju."
+        "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generiraj adresu",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrijebljeno",
-        "missingPermission": "Potreban pristup datotečnom sustavu",
-        "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se QR kod mogao podijeliti.",
         "tag": "Etiketa",
         "generateAnAddress": "Generiraj adresu",
         "generateAnAddressTitle": "Generiraj adresu",
