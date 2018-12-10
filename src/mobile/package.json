@@ -112,7 +112,7 @@
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
     "text-encoding": "^0.6.4",
-    "timers-browserify": "^1.4.2",
+    "timers-browserify": "^2.0.10",
     "tinycolor2": "^1.4.1",
     "tty-browserify": "0.0.0",
     "tweetnacl": "^1.0.0",
