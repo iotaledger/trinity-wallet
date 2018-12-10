@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
-        "missingPermission": "파일 시스템 권한 필요",
-        "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다.",
         "tag": "태그",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
