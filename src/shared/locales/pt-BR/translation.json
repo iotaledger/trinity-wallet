@@ -155,7 +155,9 @@
         "shouldUpdate": "Uma atualização está disponível",
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
         "forceUpdate": "Atualize o aplicativo para continuar",
-        "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora."
+        "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Gerar novo endereço",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
-        "missingPermission": "Permissões do sistema de arquivo necessárias",
-        "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR.",
         "tag": "Etiqueta",
         "generateAnAddress": "Gerar novo endereço",
         "generateAnAddressTitle": "Gerar novo endereço",
