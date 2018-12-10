@@ -34,7 +34,7 @@ class StatefulDropdownAlert extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        navStack: PropTypes.array.isRequired,
+        navStack: PropTypes.array,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */

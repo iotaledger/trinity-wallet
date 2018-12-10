@@ -190,7 +190,6 @@ class AnimatedComponent extends Component {
             case 'fadeIn':
                 return 1;
             case 'fadeOut':
-                return 0;
             case 'slideInLeft':
             case 'slideInRight':
                 return 0;
