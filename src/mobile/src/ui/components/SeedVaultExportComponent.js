@@ -356,41 +356,43 @@ class SeedVaultExportComponent extends Component {
                     </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
-                    <Button
-                        onPress={() => {
-                            this.setState({ saveToDownloadFolder: true });
-                            this.onExportPress();
-                        }}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: theme.secondary.color,
-                            },
-                            children: { color: theme.primary.body },
-                        }}
-                    >
-                        {t('saveToDownloadFolder')}
-                    </Button>
-                    <View style={{ flex: 0.5 }} />
-                    <Button
-                        onPress={() => {
-                            this.setState({ saveToDownloadFolder: false });
-                            this.onExportPress();
-                        }}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: theme.secondary.color,
-                            },
-                            children: { color: theme.primary.body },
-                        }}
-                    >
-                        {t('global:share')}
-                    </Button>
+                    <View>
+                        <Button
+                            onPress={() => {
+                                this.setState({ saveToDownloadFolder: true });
+                                this.onExportPress();
+                            }}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: theme.secondary.color,
+                                    marginBottom: height / 20,
+                                },
+                                children: { color: theme.primary.body },
+                            }}
+                        >
+                            {t('saveToDownloadFolder')}
+                        </Button>
+                        <Button
+                            onPress={() => {
+                                this.setState({ saveToDownloadFolder: false });
+                                this.onExportPress();
+                            }}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: theme.secondary.color,
+                                },
+                                children: { color: theme.primary.body },
+                            }}
+                        >
+                            {t('global:share')}
+                        </Button>
+                    </View>
                 </View>
             </Animated.View>
         );
