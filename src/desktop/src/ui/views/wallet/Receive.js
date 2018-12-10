@@ -190,24 +190,33 @@ class Receive extends React.PureComponent {
                         <Clipboard
                             text={receiveAddress}
                             title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}>
+                            success={t('receive:addressCopiedExplanation')}
+                        >
                             <p>
-                                {receiveAddress.substring(0, 81).split('').map((char, index) => {
-                                    const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
-                                    return (
-                                        <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>
-                                    );
-                                })}
-                                <span>
-                                    {receiveAddress.substring(81, 90).split('').map((char, index) => {
-                                        const scrambleChar =
-                                            scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                {receiveAddress
+                                    .substring(0, 81)
+                                    .split('')
+                                    .map((char, index) => {
+                                        const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
                                         return (
                                             <React.Fragment key={`char-${index}`}>
                                                 {scrambleChar || char}
                                             </React.Fragment>
                                         );
                                     })}
+                                <span>
+                                    {receiveAddress
+                                        .substring(81, 90)
+                                        .split('')
+                                        .map((char, index) => {
+                                            const scrambleChar =
+                                                scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                            return (
+                                                <React.Fragment key={`char-${index}`}>
+                                                    {scrambleChar || char}
+                                                </React.Fragment>
+                                            );
+                                        })}
                                 </span>
                             </p>
                         </Clipboard>
@@ -233,7 +242,8 @@ class Receive extends React.PureComponent {
                         <Clipboard
                             text={receiveAddress}
                             title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}>
+                            success={t('receive:addressCopiedExplanation')}
+                        >
                             <Button className="small" onClick={() => {}}>
                                 {t('receive:copyAddress')}
                             </Button>

@@ -177,7 +177,8 @@ class Advanced extends PureComponent {
                             <Toggle
                                 checked={settings.notifications.general}
                                 onChange={() =>
-                                    setNotifications({ type: 'general', enabled: !settings.notifications.general })}
+                                    setNotifications({ type: 'general', enabled: !settings.notifications.general })
+                                }
                                 on={t('enabled')}
                                 off={t('disabled')}
                             />

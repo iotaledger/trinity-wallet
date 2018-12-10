@@ -6845,10 +6845,10 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-camera@^1.1.4:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.4.2.tgz#d4f90863f2e4cf4603d9cc4b9eac0341536afa63"
-  integrity sha512-R8CzoAeZU/tkLKuwpvTbW2uns7iWRhQotKuM3urtKGBB8zmLzCySsDtn043Bt8JUGbLYtfassKRI39RJRhiwzA==
+react-native-camera@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.5.1.tgz#c241cc0456e5dd31f1d05812bf3d0e86fb6931a3"
+  integrity sha512-qD3XTNU2Zh13vfiWZPCtXSFDFFBq8cKyDiaes+viMTCLP1VE81Uklbi21VdoOdTcTgrZe0OOCYUrZ3vj58RxWw==
   dependencies:
     lodash "^4.17.10"
     prop-types "^15.6.2"
@@ -7002,10 +7002,10 @@ react-native-modal-translucent@^1.1.3:
   resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-1.1.6.tgz#faa72d8c1c8b902cc9252476036dadba93aa120c"
   integrity sha512-eEMarVkOUpkPoK5oIv0lxahI1UxTuTAUycUWpEv4MBH8mkjzuHxSxw4MKXd1C2Yt+tzDv3De0rMFTKnQjw2Fqw==
 
-react-native-modal@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-6.5.0.tgz#46220b2289a41597d344c1db17454611b426a758"
-  integrity sha512-ewchdETAGd32xLGLK93NETEGkRcePtN7ZwjmLSQnNW1Zd0SRUYE8NqftjamPyfKvK0i2DZjX4YAghGZTqaRUbA==
+react-native-modal@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.1.tgz#120df1966f5da96e9d89bf384f22b79ab6ca97b1"
+  integrity sha512-I/BZ4ZkVLjD/wApvSjqp/w9+J100czFNGB+SNm3oYHKAfPfm5g1OoB9UQT6DvChmG4TiVX8kiDXTm8FNrbkWpQ==
   dependencies:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"

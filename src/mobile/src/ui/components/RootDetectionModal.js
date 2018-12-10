@@ -1,37 +1,39 @@
 import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import ModalButtons from './ModalButtons';
+import { Icon } from 'ui/theme/icons';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: Styling.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 30,
-        width: Styling.contentWidth,
-        paddingHorizontal: width / 50,
-    },
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize6,
         textAlign: 'center',
         color: 'red',
-        paddingVertical: height / 25,
+    },
+    icon: {
+        opacity: 0.8,
+        paddingVertical: height / 30,
+        backgroundColor: 'transparent',
+    },
+    infoTextBold: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: Styling.fontSize4,
+        textAlign: 'center',
+        width: width / 1.2,
     },
     infoText: {
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        paddingBottom: height / 35,
         textAlign: 'center',
-        width: width / 1.3,
+        width: width / 1.2,
     },
 });
 
@@ -43,14 +45,8 @@ export class RootDetectionModal extends PureComponent {
         hideModal: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Modal background color */
-        backgroundColor: PropTypes.string.isRequired,
-        /** Modal text color */
-        textColor: PropTypes.object.isRequired,
-        /** Modal border color */
-        borderColor: PropTypes.object.isRequired,
-        /** Modal warning text color */
-        warningColor: PropTypes.object.isRequired,
+        /** @ignore */
+        theme: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -58,26 +54,24 @@ export class RootDetectionModal extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, warningColor } = this.props;
+        const { t, theme: { body, negative } } = this.props;
+        const textColor = { color: body.color };
         return (
-            <View style={{ width: Styling.contentWidth, alignItems: 'center', backgroundColor: backgroundColor }}>
-                <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.warningText, warningColor]}>{t('warning')}</Text>
-                    <View style={{ marginBottom: height / 35 }}>
-                        <Text style={[styles.infoText, textColor]}>{t('appearsRooted')}</Text>
-                        <Text style={[styles.infoText, textColor]}>{t('securityRisk')}</Text>
-                        <Text style={[styles.infoText, textColor]}>{t('continueDepsiteRisk')}</Text>
-                    </View>
-                    <ModalButtons
-                        onLeftButtonPress={() => this.props.closeApp()}
-                        onRightButtonPress={() => this.props.hideModal()}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
-                        buttonWidth={{ width: width / 3.2 }}
-                        containerWidth={{ width: width / 1.4 }}
-                    />
-                </View>
-            </View>
+            <ModalView
+                dualButtons
+                onLeftButtonPress={() => this.props.closeApp()}
+                onRightButtonPress={() => this.props.hideModal()}
+                leftButtonText={t('no')}
+                rightButtonText={t('yes')}
+            >
+                <Text style={[styles.warningText, { color: negative.color }]}>{t('warning')}</Text>
+                <Icon name="attention" size={width / 6} color={body.color} style={styles.icon} />
+                <Text style={[styles.infoTextBold, textColor, { paddingBottom: height / 30 }]}>
+                    {t('appearsRooted')}
+                </Text>
+                <Text style={[styles.infoText, textColor, { paddingBottom: height / 40 }]}>{t('securityRisk')}</Text>
+                <Text style={[styles.infoText, textColor]}>{t('continueDepsiteRisk')}</Text>
+            </ModalView>
         );
     }
 }

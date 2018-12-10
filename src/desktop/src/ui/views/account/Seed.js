@@ -73,11 +73,11 @@ class Seed extends PureComponent {
                         </p>
                     )}
                     {typeof accountMeta.page === 'number' &&
-                    accountMeta.page > 0 && (
-                        <p>
-                            {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
-                        </p>
-                    )}
+                        accountMeta.page > 0 && (
+                            <p>
+                                {t('viewSeed:accountPage')}: <strong>{accountMeta.page}</strong>
+                            </p>
+                        )}
                 </div>
             );
         }
