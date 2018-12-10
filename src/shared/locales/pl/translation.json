@@ -155,7 +155,9 @@
         "shouldUpdate": "Dostępna jest nowa aktualizacja",
         "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
-        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
-        "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
         "tag": "Tag",
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
