@@ -6,7 +6,7 @@
         "noTransactions": "NEMA NEDAVNE POVIJESTI",
         "refresh": "Osvježi",
         "balanceError": "Nedostatak sredstva",
-        "balanceErrorMessage": "Nemate dovoljno IOTA kako biste nastavili s prijenosom.",
+        "balanceErrorMessage": "Nemate dovoljno sredstava da bi izvršili ovu transakciju.",
         "totalBalance": "Ukupno stanje",
         "transferError": "Pogreška prilikom prijenosa",
         "transferErrorMessage": "Greška prilikom slanja transakcije. Molimo pokušajte ponovno.",
@@ -119,7 +119,7 @@
         "nodeDuplicatedExplanation": "Prilagođeni node se već nalazi na listi.",
         "nodeAutoChanged": "Node automatski promijenjen",
         "nodeAutoChangedExplanation": "Promijenjeno na novi node {{- nodeAddress}} pošto je trenutno odabrani offline.",
-        "fingerprintOnSend": "Dodirnite čitač otiska prstiju kako bi odobrili transfer",
+        "fingerprintOnSend": "Dodirnite čitač otiska prstiju kako bi odobrili transakciju",
         "masterKey": "Vaš IOTA seed je master ključ za vaša sredstva.",
         "seedThief": "Ako netko drugi ima vaš seed, on može ukrasti vaše IOTA tokene.",
         "googlePlayServicesNotAvailable": "Google Play usluga nije dostupna",
@@ -139,7 +139,7 @@
         "headToAdvancedSettingsForTransition": "Otvorite Napredne Postavke i izvršite Snapshot tranziciju.",
         "usingTrinityWalletWithKeePass": "Korištenje Trinity novčanika s Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Došlo je do greške u vezi prilikom emitiranja vaše transakcije.",
-        "broadcastError": "Nije bilo moguće emitirati transfer",
+        "broadcastError": "Nije bilo moguće emitirati transakciju",
         "addressesAlreadySpentFrom": "Jedna ili više adresa je već upotrijebljeno.",
         "problemSendingYourTransaction": "Došlo je do greške prilikom slanja vaše transakcije.",
         "problemPerformingProofOfWork": "Došlo je do greške prilikom izvođenja PoW-a.",
@@ -333,7 +333,7 @@
         "invalidAddressExplanation3": "Adresa sadrži neispravan kontrolni zbroj.",
         "invalidAddressExplanationGeneric": "Ispravne adrese morale bi sadržavati 90 znakova i to samo znakove A-Z ili broj 9.",
         "notEnoughFunds": "Nedovoljno sredstava na računu",
-        "notEnoughFundsExplanation": "Nemate dovoljno IOTA kako biste nastavili s prijenosom.",
+        "notEnoughFundsExplanation": "Nemate dovoljno sredstava da bi izvršili ovu transakciju.",
         "recipientAddress": "Adresa primatelja",
         "amount": "Iznos",
         "max": "MAKSIMALNO",
@@ -595,7 +595,7 @@
         "fromAccount": "S {{selectedAccountName}}",
         "toAddress": "Na adresu",
         "sendingAMessage": "Šaljem poruku",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "sendingAnEmptyMessage": "Šaljem praznu poruku"
     },
     "twoFA": {
         "wrongCode": "Pogrešan kod",
@@ -616,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Izvezi SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault je kodirana datoteka namijenjena spremanju vašeg seed-a na siguran način. Seed je kodiran i zaštićen lozinkom, te mu se ne može pristupiti bez te lozinke.",
         "seedVaultWarning": "Pobrinite se da napravite sigurnosne kopije datoteke, te ih pohranite na više mjesta (npr. hard disk, oblak, USB). Ako izgubite ovu datoteku, a niste pohranili svoj seed na nekom drugom mjestu, izgubit ćete svoje IOTA-e.",
         "exportFail": "Izvoz SeedVault-a neuspješan",
         "exportFailExplanation": "Došlo je do greške prilikom izvoza SeedVault-a. Molimo provjerite da li imate sva potrebna ovlaštenja i dovoljno slobodnog prostora na disku.",
@@ -637,8 +637,8 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
+        "retypeKey": "Ponovno unesite lozinku"
     },
     "chart": {
         "mcap": "MCAP",
