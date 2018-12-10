@@ -8,7 +8,7 @@
         "balanceError": "Nedostatak sredstva",
         "balanceErrorMessage": "Nemate dovoljno sredstava da bi izvršili ovu transakciju.",
         "totalBalance": "Ukupno stanje",
-        "transferError": "Pogreška prilikom prijenosa",
+        "transferError": "Greška prilikom slanja transakcije",
         "transferErrorMessage": "Greška prilikom slanja transakcije. Molimo pokušajte ponovno.",
         "transferSent": "Prijenos izvršen",
         "transferSentMessage": "Vaša transakcija je poslana na Tangle.",
@@ -352,7 +352,7 @@
         "addressPasteDetected": "Detektirana kopija adrese u međuspremniku",
         "addressPasteExplanation": "Izgleda da ste zalijepili adresu. Provjerite da li je adresa istovjetna onoj na koju želite poslati.",
         "invalid": "NEISPRAVNO",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Kliznite po ekranu za slanje"
     },
     "setSeedName": {
         "letsAddName": "Dodajte naziv",
@@ -673,7 +673,7 @@
         "gettingTransactionsToApprove": "Dohvat transakcija za odobriti",
         "proofOfWork": "Završetak PoW-a",
         "broadcasting": "Emitiranje",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Transakcija dovršena"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nije bilo moguće izvršiti snapshot tranziciju",
