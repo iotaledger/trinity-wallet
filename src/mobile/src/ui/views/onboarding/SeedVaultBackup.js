@@ -84,11 +84,6 @@ class SeedVaultBackup extends Component {
         navigator.pop(this.props.componentId);
     }
 
-    _scrollToInput(reactNode: any) {
-        // Add a 'scroll' ref to your ScrollView
-        this.scroll.props.scrollToFocusedInput(reactNode);
-    }
-
     render() {
         const { t, theme: { body } } = this.props;
         const { step, seed } = this.state;
