@@ -16,7 +16,6 @@ import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
-import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -28,13 +27,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
-        paddingTop: height / 16,
+        flex: 1.4,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
         justifyContent: 'space-between',
         width,
@@ -43,10 +41,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
@@ -61,10 +55,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     seedVaultImportContainer: {
-        flex: 0.7,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: width / 18,
     },
 });
 
@@ -132,11 +125,11 @@ class SeedReentry extends Component {
                 },
                 topBar: {
                     visible: false,
-                    drawBehind: true,
+                    drawBehind: false,
                     elevation: 0,
                 },
                 statusBar: {
-                    drawBehind: true,
+                    drawBehind: false,
                     backgroundColor: body.bg,
                 },
             });
@@ -226,19 +219,30 @@ class SeedReentry extends Component {
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
                                         delay={400}
-                                        style={styles.header}
                                     >
-                                        <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                        <View style={{ flex: 0.7 }} />
                                         <Header textColor={theme.body.color}>{t('pleaseConfirmYourSeed')}</Header>
                                     </AnimatedComponent>
                                 </View>
                                 <View style={styles.midContainer}>
-                                    <View style={{ flex: 0.3 }} />
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
                                         delay={300}
+                                    >
+                                        <InfoBox>
+                                            <Text style={[styles.infoTextBottom, textColor]}>
+                                                {t('ifYouHaveNotSaved')}
+                                            </Text>
+                                            <Text style={[styles.warningText, textColor]}>
+                                                {t('trinityWillNeverAskToReenter')}
+                                            </Text>
+                                        </InfoBox>
+                                    </AnimatedComponent>
+                                    <View style={{ flex: 0.5 }} />
+                                    <AnimatedComponent
+                                        animationInType={['slideInRight', 'fadeIn']}
+                                        animationOutType={['slideOutLeft', 'fadeOut']}
+                                        delay={200}
                                     >
                                         <CustomTextInput
                                             label={t('global:seed')}
@@ -261,10 +265,11 @@ class SeedReentry extends Component {
                                             isSeedInput
                                         />
                                     </AnimatedComponent>
+                                    <View style={{ flex: 0.1 }} />
                                     <AnimatedComponent
                                         animationInType={['slideInRight', 'fadeIn']}
                                         animationOutType={['slideOutLeft', 'fadeOut']}
-                                        delay={200}
+                                        delay={100}
                                         style={styles.seedVaultImportContainer}
                                     >
                                         <SeedVaultImport
@@ -278,21 +283,7 @@ class SeedReentry extends Component {
                                             }}
                                         />
                                     </AnimatedComponent>
-                                    <AnimatedComponent
-                                        animationInType={['slideInRight', 'fadeIn']}
-                                        animationOutType={['slideOutLeft', 'fadeOut']}
-                                        delay={100}
-                                    >
-                                        <InfoBox>
-                                            <Text style={[styles.infoTextBottom, textColor]}>
-                                                {t('ifYouHaveNotSaved')}
-                                            </Text>
-                                            <Text style={[styles.warningText, textColor]}>
-                                                {t('trinityWillNeverAskToReenter')}
-                                            </Text>
-                                        </InfoBox>
-                                    </AnimatedComponent>
-                                    <View style={{ flex: 0.7 }} />
+                                    <View style={{ flex: 0.6 }} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <AnimatedComponent

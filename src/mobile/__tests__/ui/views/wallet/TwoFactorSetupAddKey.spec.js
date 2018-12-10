@@ -72,11 +72,11 @@ describe('Testing TwoFactorSetupAddKey component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should return six View components', () => {
+        it('should return five View components', () => {
             const props = getProps();
 
             const wrapper = shallow(<TwoFactorSetupAddKey {...props} />);
-            expect(wrapper.find('View').length).toEqual(6);
+            expect(wrapper.find('View').length).toEqual(5);
         });
 
         it('should return a QRCode component', () => {

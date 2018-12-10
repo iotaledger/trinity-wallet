@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { navigator } from 'libs/navigation';
-import { width, height } from 'libs/dimensions';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import InfoBox from 'ui/components/InfoBox';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -20,13 +19,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midWrapper: {
-        flex: 2.1,
+        flex: 1.8,
         alignItems: 'center',
         justifyContent: 'space-between',
     },
@@ -109,11 +107,11 @@ class WalletResetConfirmation extends Component {
             },
             topBar: {
                 visible: false,
-                drawBehind: true,
+                drawBehind: false,
                 elevation: 0,
             },
             statusBar: {
-                drawBehind: true,
+                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -141,11 +139,10 @@ class WalletResetConfirmation extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        <Header textColor={theme.body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midWrapper}>
-                    <View style={{ flex: 0.1 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
@@ -163,7 +160,7 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </AnimatedComponent>
-                    <View style={{ flex: 0.1 }} />
+                    <View style={{ flex: 0.35 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}

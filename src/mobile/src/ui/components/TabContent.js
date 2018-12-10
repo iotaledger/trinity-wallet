@@ -96,6 +96,7 @@ class TabContent extends PureComponent {
 const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
     inactive: state.ui.inactive,
+    isKeyboardActive: state.ui.isKeyboardActive,
 });
 
 TabContent.propTypes = {
@@ -107,7 +108,8 @@ TabContent.propTypes = {
     onTabSwitch: PropTypes.func.isRequired,
     /** Closes topbar */
     handleCloseTopBar: PropTypes.func.isRequired,
-    /** Determines whether keyboard is open on iOS */
+    /** @ignore */
+
     isKeyboardActive: PropTypes.bool.isRequired,
     /** @ignore */
     inactive: PropTypes.bool.isRequired,

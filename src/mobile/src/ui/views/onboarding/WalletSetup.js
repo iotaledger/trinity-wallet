@@ -12,7 +12,6 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
@@ -28,23 +27,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -118,11 +112,11 @@ class WalletSetup extends Component {
             },
             topBar: {
                 visible: false,
-                drawBehind: true,
+                drawBehind: false,
                 elevation: 0,
             },
             statusBar: {
-                drawBehind: true,
+                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -208,29 +202,16 @@ class WalletSetup extends Component {
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
-                        style={styles.header}
                     >
-                        <Icon name="iota" size={width / 8} color={body.color} />
-                        <View style={{ flex: 0.7 }} />
                         <Header textColor={body.color}>{t('welcome:thankYou')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.05 }} />
+                    <View style={{ flex: 0.2 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={266}
-                    >
-                        <View style={styles.greetingTextContainer}>
-                            <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
-                        </View>
-                    </AnimatedComponent>
-                    <View style={{ flex: 0.25 }} />
-                    <AnimatedComponent
-                        animationInType={['slideInRight', 'fadeIn']}
-                        animationOutType={['slideOutLeft', 'fadeOut']}
-                        delay={133}
                     >
                         <InfoBox>
                             <Text style={[styles.infoText, textColor]}>
@@ -248,6 +229,16 @@ class WalletSetup extends Component {
                                 {t('loseSeed')}
                             </Text>
                         </InfoBox>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.3 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={133}
+                    >
+                        <View style={styles.greetingTextContainer}>
+                            <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
+                        </View>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>

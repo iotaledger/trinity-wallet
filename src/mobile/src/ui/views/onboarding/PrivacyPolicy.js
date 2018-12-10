@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: Styling.fontSize4,
         textAlign: 'center',
-        paddingTop: height / 55,
     },
     titleContainer: {
         height: height / 8,
@@ -104,11 +103,11 @@ class PrivacyPolicy extends Component {
             },
             topBar: {
                 visible: false,
-                drawBehind: true,
+                drawBehind: false,
                 elevation: 0,
             },
             statusBar: {
-                drawBehind: true,
+                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });

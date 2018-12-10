@@ -15,7 +15,6 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { width, height } from 'libs/dimensions';
 import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import PasswordFields from 'ui/components/PasswordFields';
@@ -31,13 +30,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         justifyContent: 'space-around',
         alignItems: 'center',
         width,
@@ -46,10 +44,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -169,11 +163,11 @@ class SetPassword extends Component {
             },
             topBar: {
                 visible: false,
-                drawBehind: true,
+                drawBehind: false,
                 elevation: 0,
             },
             statusBar: {
-                drawBehind: true,
+                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -197,15 +191,11 @@ class SetPassword extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
-                                style={styles.header}
                             >
-                                <Icon name="iota" size={width / 8} color={body.color} />
-                                <View style={{ flex: 0.7 }} />
                                 <Header textColor={body.color}>{t('choosePassword')}</Header>
                             </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.1 }} />
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
@@ -235,7 +225,7 @@ class SetPassword extends Component {
                                     setReentry={(reentry) => this.setState({ reentry })}
                                 />
                             </AnimatedComponent>
-                            <View style={{ flex: 0.3 }} />
+                            <View style={{ flex: 0.35 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>

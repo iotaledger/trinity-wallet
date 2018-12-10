@@ -235,7 +235,7 @@ class Login extends Component {
                         elevation: 0,
                     },
                     statusBar: {
-                        drawBehind: true,
+                        drawBehind: false,
                         backgroundColor: body.bg,
                     },
                 });

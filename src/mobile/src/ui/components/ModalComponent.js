@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Easing } from 'react-native';
+import { View, StyleSheet, Easing, Keyboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
+import timer from 'react-native-timer';
 import StatefulDropdownAlert from 'ui/components/StatefulDropdownAlert';
 import RootDetection from 'ui/components/RootDetectionModal';
 import TransferConfirmation from 'ui/components/TransferConfirmationModal';
@@ -24,8 +25,7 @@ import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     modal: {
-        height,
-        width,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 0,
@@ -95,7 +95,33 @@ export default function withSafeAreaView(WrappedComponent) {
             theme: PropTypes.object.isRequired,
             /** @ignore */
             toggleModalActivity: PropTypes.func.isRequired,
+            /** @ignore */
+            isKeyboardActive: PropTypes.bool.isRequired,
         };
+
+        constructor(props) {
+            super(props);
+            this.state = {
+                isModalActive: props.isModalActive,
+            };
+        }
+
+        componentWillReceiveProps(newProps) {
+            if (!this.props.isModalActive && newProps.isModalActive) {
+                if (this.props.isKeyboardActive && !isAndroid) {
+                    Keyboard.dismiss();
+                    return timer.setTimeout('delayOpenModal', () => this.setState({ isModalActive: true }), 2800);
+                }
+                this.setState({ isModalActive: true });
+            }
+            if (this.props.isModalActive && !newProps.isModalActive) {
+                this.setState({ isModalActive: false });
+            }
+        }
+
+        componentWillUnmount() {
+            timer.clearTimeout('delayOpenModal');
+        }
 
         render() {
             const { modalProps, isModalActive, modalContent, theme: { body } } = this.props;
@@ -114,7 +140,9 @@ export default function withSafeAreaView(WrappedComponent) {
                         backdropColor={body.bg}
                         backdropOpacity={0}
                         style={styles.modal}
-                        isVisible={isModalActive}
+                        deviceHeight={height}
+                        deviceWidth={width}
+                        isVisible={this.state.isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         useNativeDriver={isAndroid}
                         hideModalContentWhileAnimating
@@ -132,6 +160,7 @@ export default function withSafeAreaView(WrappedComponent) {
         isModalActive: state.ui.isModalActive,
         modalContent: state.ui.modalContent,
         theme: state.settings.theme,
+        isKeyboardActive: state.ui.isKeyboardActive,
     });
 
     const mapDispatchToProps = {

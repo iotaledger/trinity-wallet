@@ -312,7 +312,7 @@ export class Send extends Component {
             this.interuptSendAnimation();
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-        this.openTransferConfirmationModal();
+        this.showModal('transferConfirmation');
     }
 
     onQRRead(data) {
@@ -387,18 +387,11 @@ export class Send extends Component {
         return 1;
     }
 
-    getProgress() {
-        if (size(this.props.activeSteps) > 0) {
-            return this.props.activeStepIndex / size(this.props.activeSteps);
-        }
-        return -1;
-    }
-
     getProgressBarText() {
-        const { activeStepIndex, activeSteps } = this.props;
+        const { t, activeStepIndex, activeSteps } = this.props;
         const totalSteps = size(activeSteps);
         if (activeStepIndex === totalSteps) {
-            return 'Transfer complete';
+            return t('progressSteps:transferComplete');
         }
         return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : '';
     }
@@ -466,16 +459,6 @@ export class Send extends Component {
     clearInteractions() {
         this.props.closeTopBar();
         Keyboard.dismiss();
-    }
-
-    openTransferConfirmationModal() {
-        const { isKeyboardActive } = this.props;
-        if (isKeyboardActive) {
-            this.blurTextFields();
-            timer.setTimeout('modalShow', () => this.showModal('transferConfirmation'), 500);
-        } else {
-            this.showModal('transferConfirmation');
-        }
     }
 
     /**
@@ -813,9 +796,9 @@ export class Send extends Component {
                             onChangeText={(text) => this.props.setSendMessageField(text)}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
-                            returnKeyType="send"
+                            returnKeyType="done"
                             blurOnSubmit
-                            onSubmitEditing={() => this.onSendPress()}
+                            onSubmitEditing={() => Keyboard.dismiss()}
                             theme={theme}
                             value={message}
                             editable={!isSending}
@@ -834,8 +817,8 @@ export class Send extends Component {
                             }}
                         >
                             <ProgressBar
-                                progress={this.getProgress()}
-                                stepSize={size(this.props.activeSteps) > 0 ? 1 / size(this.props.activeSteps) : 0}
+                                activeStepIndex={this.props.activeStepIndex}
+                                totalSteps={size(this.props.activeSteps)}
                                 filledColor={input.bg}
                                 unfilledColor={dark.color}
                                 textColor={body.color}
@@ -901,6 +884,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    isKeyboardActive: state.ui.isKeyboardActive,
 });
 
 const mapDispatchToProps = {

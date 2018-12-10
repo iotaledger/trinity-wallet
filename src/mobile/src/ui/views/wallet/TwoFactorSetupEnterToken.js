@@ -12,8 +12,8 @@ import Fonts from 'ui/theme/fonts';
 import { getTwoFactorAuthKeyFromKeychain } from 'libs/keychain';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import { height, width } from 'libs/dimensions';
+import Header from 'ui/components/Header';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -24,19 +24,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 0.3,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
         width,
     },
     midWrapper: {
-        flex: 2,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     bottomWrapper: {
-        flex: 0.3,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
@@ -45,6 +44,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
+        paddingBottom: height / 10,
     },
 });
 
@@ -112,11 +112,11 @@ class TwoFactorSetupEnterToken extends Component {
             },
             topBar: {
                 visible: false,
-                drawBehind: true,
+                drawBehind: false,
                 elevation: 0,
             },
             statusBar: {
-                drawBehind: true,
+                drawBehind: false,
                 backgroundColor: bar.alt,
             },
         });
@@ -165,11 +165,10 @@ class TwoFactorSetupEnterToken extends Component {
                             animationOutType={['slideOutLeft', 'fadeOut']}
                             delay={400}
                         >
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <Header textColor={theme.body.color} />
                         </AnimatedComponent>
                     </View>
                     <View style={styles.midWrapper}>
-                        <View style={{ flex: 0.25 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}
@@ -177,7 +176,6 @@ class TwoFactorSetupEnterToken extends Component {
                         >
                             <Text style={[styles.subHeaderText, textColor]}>{t('enterCode')}</Text>
                         </AnimatedComponent>
-                        <View style={{ flex: 0.15 }} />
                         <AnimatedComponent
                             animationInType={['slideInRight', 'fadeIn']}
                             animationOutType={['slideOutLeft', 'fadeOut']}

@@ -13,9 +13,8 @@ import SeedPicker from 'ui/components/SeedPicker';
 import WithUserActivity from 'ui/components/UserActivity';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
         flex: 3,
@@ -41,10 +39,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.5,
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     textContainer: {
         width: Styling.contentWidth5,
@@ -91,9 +85,6 @@ class WriteSeedDown extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            isCopyComplete: false,
-        };
         this.openModal = this.openModal.bind(this);
         Navigation.events().bindComponent(this);
     }
@@ -121,9 +112,9 @@ class WriteSeedDown extends Component {
 
     /**
      * Navigates back to the previous active screen in navigation stack
-     * @method onDonePress
+     * @method onBackPress
      */
-    onDonePress() {
+    onBackPress() {
         navigator.pop(this.props.componentId);
     }
 
@@ -197,7 +188,6 @@ class WriteSeedDown extends Component {
 
     render() {
         const { t, theme, seed, minimised } = this.props;
-        const { isCopyComplete } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
@@ -209,10 +199,7 @@ class WriteSeedDown extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
-                                style={styles.header}
                             >
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                <View style={{ flex: 0.7 }} />
                                 <Header textColor={theme.body.color}>{t('saveYourSeed:writeYourSeedDown')}</Header>
                             </AnimatedComponent>
                         </View>
@@ -239,16 +226,9 @@ class WriteSeedDown extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={200}
+                                style={{ flex: 1 }}
                             >
-                                <SeedPicker
-                                    seed={seed}
-                                    theme={theme}
-                                    onValueChange={(index) => {
-                                        if (index === 8) {
-                                            this.setState({ isCopyComplete: true });
-                                        }
-                                    }}
-                                />
+                                <SeedPicker seed={seed} theme={theme} />
                             </AnimatedComponent>
                             <View style={{ flex: 0.5 }} />
                             <AnimatedComponent
@@ -264,10 +244,9 @@ class WriteSeedDown extends Component {
                             <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                                 <DualFooterButtons
                                     onLeftButtonPress={() => this.onPrintPress()}
-                                    onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
+                                    onRightButtonPress={() => this.onBackPress()}
                                     leftButtonText={t('saveYourSeed:printBlankWallet')}
-                                    rightButtonText={isCopyComplete ? t('global:done') : t('scrollToBottom')}
-                                    rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
+                                    rightButtonText={t('global:back')}
                                 />
                             </AnimatedComponent>
                         </View>

@@ -15,8 +15,7 @@ import InfoBox from 'ui/components/InfoBox';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
@@ -31,13 +30,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
-        paddingTop: height / 16,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
         width,
         justifyContent: 'space-between',
@@ -46,10 +44,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -67,7 +61,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: width / 18,
     },
 });
 
@@ -149,11 +142,11 @@ class EnterSeed extends React.Component {
                 },
                 topBar: {
                     visible: false,
-                    drawBehind: true,
+                    drawBehind: false,
                     elevation: 0,
                 },
                 statusBar: {
-                    drawBehind: true,
+                    drawBehind: false,
                     backgroundColor: body.bg,
                 },
             });
@@ -233,19 +226,31 @@ class EnterSeed extends React.Component {
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={400}
-                                    style={styles.header}
                                 >
-                                    <Icon name="iota" size={width / 8} color={theme.body.color} />
-                                    <View style={{ flex: 0.7 }} />
                                     <Header textColor={theme.body.color}>{t('seedReentry:enterYourSeed')}</Header>
                                 </AnimatedComponent>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={{ flex: 0.3 }} />
                                 <AnimatedComponent
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
                                     delay={300}
+                                >
+                                    <InfoBox>
+                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                            {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                                        </Text>
+                                        <Text style={[styles.warningText, { color: theme.body.color }]}>
+                                            {'\n'}
+                                            {t('neverShare')}
+                                        </Text>
+                                    </InfoBox>
+                                </AnimatedComponent>
+                                <View style={{ flex: 0.5 }} />
+                                <AnimatedComponent
+                                    animationInType={['slideInRight', 'fadeIn']}
+                                    animationOutType={['slideOutLeft', 'fadeOut']}
+                                    delay={200}
                                 >
                                     <CustomTextInput
                                         label={t('global:seed')}
@@ -269,10 +274,11 @@ class EnterSeed extends React.Component {
                                         isSeedInput
                                     />
                                 </AnimatedComponent>
+                                <View style={{ flex: 0.1 }} />
                                 <AnimatedComponent
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={200}
+                                    delay={100}
                                     style={styles.seedVaultImportContainer}
                                 >
                                     <SeedVaultImport
@@ -286,22 +292,7 @@ class EnterSeed extends React.Component {
                                         }}
                                     />
                                 </AnimatedComponent>
-                                <AnimatedComponent
-                                    animationInType={['slideInRight', 'fadeIn']}
-                                    animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={100}
-                                >
-                                    <InfoBox>
-                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                            {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                        </Text>
-                                        <Text style={[styles.warningText, { color: theme.body.color }]}>
-                                            {'\n'}
-                                            {t('neverShare')}
-                                        </Text>
-                                    </InfoBox>
-                                </AnimatedComponent>
-                                <View style={{ flex: 0.7 }} />
+                                <View style={{ flex: 0.6 }} />
                             </View>
                             <View style={styles.bottomContainer}>
                                 <AnimatedComponent

@@ -17,6 +17,7 @@ export const ActionTypes = {
     SET_QR_DENOMINATION: 'IOTA/UI/SET_QR_DENOMINATION',
     SET_SELECTED_QR_TAB: 'IOTA/UI/SET_SELECTED_QR_TAB',
     SET_ROUTE: 'IOTA/UI/SET_ROUTE',
+    SET_KEYBOARD_ACTIVITY: 'IOTA/UI/SET_KEYBOARD_ACTIVITY',
 };
 
 /**
@@ -245,6 +246,21 @@ export const updateModalProps = (payload) => {
 export const setLoginRoute = (payload) => {
     return {
         type: ActionTypes.SET_LOGIN_ROUTE,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to set the keyboard as active (mobile only)
+ *
+ * @method setKeyboardActivity
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const setKeyboardActivity = (payload) => {
+    return {
+        type: ActionTypes.SET_KEYBOARD_ACTIVITY,
         payload,
     };
 };

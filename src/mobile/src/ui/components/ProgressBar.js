@@ -30,8 +30,10 @@ const styles = StyleSheet.create({
 
 class ProgressBar extends Component {
     static propTypes = {
-        /** Progress percentage number */
-        progress: PropTypes.number.isRequired,
+        /** Index of active progress step */
+        activeStepIndex: PropTypes.number.isRequired,
+        /** Total number of progress steps */
+        totalSteps: PropTypes.number,
         /** Filled bar color */
         filledColor: PropTypes.string,
         /** Unfilled bar color */
@@ -44,8 +46,6 @@ class ProgressBar extends Component {
         textColor: PropTypes.string,
         /** Progress bar text */
         progressText: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-        /** Total number of progress steps */
-        stepSize: PropTypes.number,
         /** Slider color before successful swipe */
         preSwipeColor: PropTypes.string,
         /** Slider color after successful swipe */
@@ -65,12 +65,11 @@ class ProgressBar extends Component {
 
     constructor(props) {
         super(props);
-        const isAlreadyInProgress = props.progress > -1 && props.progress < 1;
+        const isAlreadyInProgress = props.totalSteps > 0 && props.activeStepIndex !== props.totalSteps;
         const sliderEndPosition = props.channelWidth - props.channelHeight;
+        const progress = isAlreadyInProgress ? props.activeStepIndex / props.totalSteps : -1;
         this.state = {
-            progressPosition: new Animated.Value(isAlreadyInProgress ? props.progress : 0),
-            progressStep: props.progress,
-            progressIncrement: isAlreadyInProgress ? props.progress : 0,
+            animatedProgressValue: new Animated.Value(isAlreadyInProgress ? progress : 0),
             sliderPosition: new Animated.Value(isAlreadyInProgress ? sliderEndPosition : props.channelHeight * 0.1),
             thresholdDistance: sliderEndPosition,
             sliderColor: isAlreadyInProgress ? props.postSwipeColor : props.preSwipeColor,
@@ -81,10 +80,16 @@ class ProgressBar extends Component {
             sliderAnimation: sliderLoadingAnimation,
             sliderSize: new Animated.Value(isAlreadyInProgress ? props.channelHeight : props.channelHeight * 0.8),
         };
+        // Global progress
+        this.globalProgress = progress;
+        // Local progress (arbitrarily increments)
+        this.localProgressWithIncrement = progress;
+        // Total steps for most recent progress instance
+        this.latestTotalSteps = props.totalSteps;
     }
 
     componentWillMount() {
-        if (this.props.progress > -1 && this.props.progress < 1) {
+        if (this.props.totalSteps > 0 && this.props.activeStepIndex !== this.props.totalSteps) {
             this.animateProgressBar();
         }
         this._panResponder = PanResponder.create({
@@ -113,10 +118,10 @@ class ProgressBar extends Component {
                     return;
                 }
                 const releaseValue = gestureState.dx;
-                if (releaseValue >= this.state.thresholdDistance && this.props.progress === -1) {
+                if (releaseValue >= this.state.thresholdDistance && this.props.activeStepIndex < 0) {
                     this.onCompleteSwipe();
                 } else {
-                    this.onIncompleteSwipe();
+                    this.resetSlider();
                 }
             },
             onPanResponderTerminate: () => {},
@@ -125,34 +130,38 @@ class ProgressBar extends Component {
     }
 
     componentDidMount() {
-        if (this.props.progress > -1 && this.props.progress < 1 && this.sliderAnimation) {
+        if (this.props.totalSteps > 0 && this.props.activeStepIndex !== this.props.totalSteps) {
             this.sliderAnimation.play();
         }
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.progress !== newProps.progress) {
+        if (this.props.activeStepIndex !== newProps.activeStepIndex) {
             // On first progress change
-            if (this.props.progress < 0) {
+            if (this.props.activeStepIndex < 0) {
                 this.setState({ inProgress: true });
                 this.animateProgressBar();
                 this.sliderAnimation.play();
             }
             // On every progress change
-            this.setState({ progressStep: newProps.progress, progressIncrement: newProps.progress });
-            this.onProgressStepChange(newProps.progressText);
+            this.latestTotalSteps = newProps.totalSteps > 0 ? newProps.totalSteps : this.latestTotalSteps;
+            const progress = newProps.activeStepIndex / this.latestTotalSteps;
+            // Updates local and global progress, and ensures totalSteps > 0
+            this.globalProgress = progress;
+            this.localProgressWithIncrement = progress;
+            this.onActiveStepChange(newProps.progressText);
             // On last progress change
-            if (this.props.stepSize > 0 && newProps.progress === 1 - this.props.stepSize) {
+            if (this.props.totalSteps > 0 && newProps.activeStepIndex === this.props.totalSteps) {
                 this.onProgressComplete();
             }
         }
-        if (this.props.interupt !== newProps.interupt) {
+        if (this.props.interupt !== newProps.interupt && this.props.activeStepIndex !== this.props.totalSteps) {
             this.onInterupt();
         }
     }
 
     componentWillUnmount() {
-        timer.clearTimeout('delayProgressTextChange');
+        timer.clearTimeout('delayProgressTextChange' + this.props.activeStepIndex);
         timer.clearTimeout('delayProgressTextFadeOut');
         timer.clearTimeout('delaySliderReset');
         timer.clearTimeout('delaySuccessAnimation');
@@ -184,45 +193,25 @@ class ProgressBar extends Component {
             'delaySliderReset',
             () => {
                 this.sliderAnimation.reset();
+                this.globalProgress = -1;
                 this.setState({
-                    progressStep: -1,
+                    inProgress: false,
                     sliderAnimation: sliderLoadingAnimation,
                     shouldLoopSliderAnimation: true,
                 });
-                this.state.progressPosition.setValue(0);
+                this.state.animatedProgressValue.setValue(0);
                 this.resetSlider();
             },
-            4000,
+            5000,
         );
-    }
-
-    onIncompleteSwipe() {
-        const duration = 500;
-        Animated.parallel([
-            Animated.spring(this.state.sliderPosition, {
-                toValue: this.props.channelHeight * 0.1,
-                duration,
-            }),
-            Animated.timing(this.state.sliderOpacity, {
-                toValue: 1,
-                duration,
-            }),
-            Animated.timing(this.state.textOpacity, {
-                toValue: 1,
-                duration,
-            }),
-        ]).start();
-        Animated.timing(this.state.sliderSize, {
-            toValue: this.props.channelHeight * 0.8,
-            duration: 100,
-        }).start();
     }
 
     onInterupt() {
         this.sliderAnimation.reset();
-        this.setState({ progressStep: -1, inProgress: false });
-        Animated.timing(this.state.progressPosition).stop();
-        this.state.progressPosition.setValue(0);
+        this.globalProgress = -1;
+        this.setState({ inProgress: false });
+        Animated.timing(this.state.animatedProgressValue).stop();
+        this.state.animatedProgressValue.setValue(0);
         Animated.timing(this.state.sliderPosition).stop();
         this.resetSlider();
     }
@@ -236,32 +225,20 @@ class ProgressBar extends Component {
         this.props.onSwipeSuccess();
     }
 
-    onProgressStepChange(progressText) {
+    onActiveStepChange(progressText) {
         // On first step change
-        if (this.state.progressStep < 0) {
+        if (this.globalProgress === 0) {
             this.setState({ progressText });
             return Animated.timing(this.state.textOpacity, {
                 toValue: 1,
                 duration: 100,
             }).start();
         }
-        // On last step change
-        if (this.state.progressStep === 1) {
-            return timer.setTimeout(
-                'delayProgressTextFadeOut',
-                () => {
-                    Animated.timing(this.state.textOpacity, {
-                        toValue: 0,
-                        duration: 100,
-                    }).start();
-                },
-                5000,
-            );
-        }
-        // On any other step change
-        if (this.state.progressStep >= 0) {
-            return timer.setTimeout(
-                'delayProgressTextChange',
+
+        // On all but first step changes
+        if (this.globalProgress >= 0) {
+            timer.setTimeout(
+                'delayProgressTextChange' + this.props.activeStepIndex,
                 () => {
                     Animated.timing(this.state.textOpacity, {
                         toValue: 0,
@@ -277,21 +254,36 @@ class ProgressBar extends Component {
                 300,
             );
         }
+
+        // On last step change
+        if (this.globalProgress === 1) {
+            return timer.setTimeout(
+                'delayProgressTextFadeOut',
+                () => {
+                    Animated.timing(this.state.textOpacity, {
+                        toValue: 0,
+                        duration: 100,
+                    }).start();
+                },
+                5000,
+            );
+        }
     }
 
     animateProgressBar() {
-        const nextStep = this.state.progressStep + this.props.stepSize;
-        const increment = this.props.stepSize / 100;
-        const updatedIncrement = this.state.progressIncrement + increment;
-        if (this.state.progressIncrement < nextStep - this.props.stepSize / 5) {
-            this.setState({ progressIncrement: updatedIncrement });
+        const stepSize = 1 / this.latestTotalSteps;
+        const nextStep = this.globalProgress + stepSize;
+        const increment = stepSize / 100;
+        const updatedIncrement = this.localProgressWithIncrement + increment;
+        if (this.localProgressWithIncrement < nextStep - stepSize / 5) {
+            this.localProgressWithIncrement = updatedIncrement;
         }
-        Animated.timing(this.state.progressPosition, {
-            toValue: Math.max(this.state.progressStep, this.state.progressIncrement),
+        Animated.timing(this.state.animatedProgressValue, {
+            toValue: Math.max(this.globalProgress, this.localProgressWithIncrement),
             useNativeDriver: true,
             easing: Easing.ease,
         }).start(() => {
-            if (this.state.progressIncrement <= 1 && this.state.inProgress) {
+            if (this.localProgressWithIncrement <= 1 && this.state.inProgress) {
                 this.animateProgressBar();
             }
         });
@@ -304,23 +296,27 @@ class ProgressBar extends Component {
             Animated.spring(this.state.sliderPosition, {
                 toValue: this.props.channelHeight * 0.1,
                 duration,
-                easing: Easing.elastic(),
             }),
             Animated.timing(this.state.sliderOpacity, {
                 toValue: 1,
                 duration,
-                easing: Easing.ease,
             }),
             Animated.timing(this.state.textOpacity, {
                 toValue: 1,
                 duration,
-                easing: Easing.ease,
             }),
-        ]).start();
-        Animated.timing(this.state.sliderSize, {
-            toValue: this.props.channelHeight * 0.8,
-            duration: 100,
-        }).start();
+            Animated.timing(this.state.sliderSize, {
+                toValue: this.props.channelHeight * 0.8,
+                duration: 100,
+            }),
+        ]).start(() => {
+            this.setState({
+                sliderPosition: new Animated.Value(this.props.channelHeight * 0.1),
+                sliderOpacity: new Animated.Value(1),
+                textOpacity: new Animated.Value(1),
+                sliderSize: new Animated.Value(this.props.channelHeight * 0.8),
+            });
+        });
     }
 
     render() {
@@ -340,7 +336,7 @@ class ProgressBar extends Component {
                             width: channelWidth,
                             transform: [
                                 {
-                                    translateX: this.state.progressPosition.interpolate({
+                                    translateX: this.state.animatedProgressValue.interpolate({
                                         inputRange: [0, 1],
                                         outputRange: [-channelWidth, 0],
                                     }),

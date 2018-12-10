@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width,
-        height: height - Styling.topbarHeight,
     },
     modalContent: {
         flex: 1,
@@ -67,11 +67,26 @@ export class ModalViewComponent extends PureComponent {
         disableRightButton: false,
     };
 
+    /**
+     * Returns modal height depending on whether to display the topbar
+     * @method getModalHeight
+     *
+     * @returns {number}
+     */
+    getModalHeight() {
+        if (this.props.displayTopBar) {
+            if (isAndroid) {
+                return height - Styling.topbarHeight - StatusBar.currentHeight;
+            }
+            return height - Styling.topbarHeight;
+        }
+        return height;
+    }
+
     render() {
         const {
             theme: { body },
             children,
-            displayTopBar,
             dualButtons,
             leftButtonText,
             rightButtonText,
@@ -85,11 +100,7 @@ export class ModalViewComponent extends PureComponent {
         return (
             <View style={styles.container}>
                 <SafeAreaView
-                    style={[
-                        styles.modalContainer,
-                        { backgroundColor: body.bg },
-                        displayTopBar ? { height: height - Styling.topbarHeight } : { flex: 1 },
-                    ]}
+                    style={[styles.modalContainer, { backgroundColor: body.bg }, { height: this.getModalHeight() }]}
                 >
                     <View style={styles.modalContent}>{children}</View>
                     {(dualButtons && (

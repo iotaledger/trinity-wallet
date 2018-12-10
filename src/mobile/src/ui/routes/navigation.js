@@ -4,6 +4,7 @@ import withDropdownAlert from 'ui/components/WithDropdownAlert';
 import withModal from 'ui/components/ModalComponent';
 import withStatusBar from 'ui/components/WithStatusBar';
 import withBackPress from 'ui/components/BackPress';
+import withKeyboardMonitor from 'ui/components/KeyboardMonitor';
 import Home from 'ui/views/wallet/Home';
 import Loading from 'ui/views/wallet/Loading';
 import NewSeedSetup from 'ui/views/onboarding/NewSeedSetup';
@@ -31,7 +32,7 @@ import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
 import { isIPhoneX, isAndroid } from 'libs/device';
 
 function applyHOCs(screen) {
-    const withHOCs = (c) => withDropdownAlert(withStatusBar(withModal(c)));
+    const withHOCs = (c) => withKeyboardMonitor(withDropdownAlert(withStatusBar(withModal(c))));
     if (isIPhoneX) {
         return withHOCs(withSafeAreaView(screen));
     }

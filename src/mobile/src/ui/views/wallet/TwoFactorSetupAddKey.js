@@ -13,7 +13,7 @@ import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 0.3,
+        flex: 0.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
         width,
     },
     midWrapper: {
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
         fontSize: Styling.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        marginBottom: height / 20,
+        marginBottom: height / 15,
     },
     infoText: {
         fontSize: Styling.fontSize3,
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: Styling.borderRadiusLarge,
         padding: width / 30,
-        marginBottom: height / 20,
+        marginBottom: height / 15,
         alignItems: 'center',
     },
 });
@@ -141,11 +140,11 @@ export class TwoFactorSetupAddKey extends Component {
                     },
                     topBar: {
                         visible: false,
-                        drawBehind: true,
+                        drawBehind: false,
                         elevation: 0,
                     },
                     statusBar: {
-                        drawBehind: true,
+                        drawBehind: false,
                         backgroundColor: body.bg,
                     },
                 });
@@ -172,11 +171,10 @@ export class TwoFactorSetupAddKey extends Component {
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
                     >
-                        <Icon name="iota" size={width / 8} color={body.color} />
+                        <Header textColor={body.color} />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midWrapper}>
-                    <View style={{ flex: 0.4 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}

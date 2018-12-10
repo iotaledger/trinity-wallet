@@ -20,6 +20,7 @@ import { width, height } from 'libs/dimensions';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -29,23 +30,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.75,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 5.65,
+        flex: 5.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     bottomContainer: {
         flex: 0.6,
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     list: {
         justifyContent: 'center',
@@ -181,14 +177,14 @@ class NewSeedSetup extends Component {
                 },
                 topBar: {
                     visible: false,
-                    drawBehind: true,
+                    drawBehind: false,
                     elevation: 0,
                     title: {
                         color: body.color,
                     },
                 },
                 statusBar: {
-                    drawBehind: true,
+                    drawBehind: false,
                     backgroundColor: body.bg,
                 },
             });
@@ -246,10 +242,16 @@ class NewSeedSetup extends Component {
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={400}
-                                style={styles.header}
                             >
-                                <Icon name="iota" size={width / 8} color={body.color} />
-                                <View style={{ flex: 1 }} />
+                                <Header textColor={body.color} />
+                            </AnimatedComponent>
+                        </View>
+                        <View style={styles.midContainer}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={300}
+                            >
                                 <CtaButton
                                     ctaColor={secondary.color}
                                     ctaBorderColor={primary.hover}
@@ -262,8 +264,6 @@ class NewSeedSetup extends Component {
                                     testID="newSeedSetup-newSeed"
                                 />
                             </AnimatedComponent>
-                        </View>
-                        <View style={styles.midContainer}>
                             <TouchableOpacity
                                 onPress={() => this.openModal()}
                                 style={{ marginTop: height / 65, marginBottom: height / 80 }}
@@ -271,7 +271,7 @@ class NewSeedSetup extends Component {
                                 <AnimatedComponent
                                     animationInType={['slideInRight', 'fadeIn']}
                                     animationOutType={['slideOutLeft', 'fadeOut']}
-                                    delay={266}
+                                    delay={200}
                                     style={styles.info}
                                 >
                                     <Icon
@@ -286,7 +286,7 @@ class NewSeedSetup extends Component {
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
                                 animationOutType={['slideOutLeft', 'fadeOut']}
-                                delay={133}
+                                delay={100}
                             >
                                 <FlatList
                                     contentContainerStyle={[styles.list, { opacity: viewOpacity }]}

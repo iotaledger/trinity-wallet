@@ -11,10 +11,9 @@ import AnimatedComponent from 'ui/components/AnimatedComponent';
 import Header from 'ui/components/Header';
 import Slider from 'ui/components/Slider';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -23,23 +22,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    header: {
-        flex: 1,
-        alignItems: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -111,11 +106,11 @@ class SaveSeedConfirmation extends Component {
             },
             topBar: {
                 visible: false,
-                drawBehind: true,
+                drawBehind: false,
                 elevation: 0,
             },
             statusBar: {
-                drawBehind: true,
+                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -125,7 +120,11 @@ class SaveSeedConfirmation extends Component {
         const { t } = this.props;
         if (!this.state.hasAgreedToNotCopyPaste) {
             this.setState({ hasAgreedToNotCopyPaste: true });
-            timer.setTimeout('delayTextUpdate', () => this.setState({ confirmationText: t('iHaveBackedUp') }), 1000);
+            return timer.setTimeout(
+                'delayTextUpdate',
+                () => this.setState({ confirmationText: t('iHaveBackedUp') }),
+                1000,
+            );
         }
         this.setState({ hasConfirmedBackup: true });
     }
@@ -164,15 +163,11 @@ class SaveSeedConfirmation extends Component {
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
                         delay={400}
-                        style={styles.header}
                     >
-                        <Icon name="iota" size={width / 8} color={body.color} />
-                        <View style={{ flex: 0.7 }} />
                         <Header textColor={body.color}>{t('didSaveSeed')}</Header>
                     </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.15 }} />
                     <AnimatedComponent
                         animationInType={['slideInRight', 'fadeIn']}
                         animationOutType={['slideOutLeft', 'fadeOut']}
