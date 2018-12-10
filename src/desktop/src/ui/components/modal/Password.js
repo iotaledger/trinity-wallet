@@ -38,6 +38,9 @@ class ModalPassword extends PureComponent {
          * @param {object} SeedStore - SeedStore content
          */
         onSuccess: PropTypes.func,
+        /** On password entered event callback
+         */
+        onSubmit: PropTypes.func,
         /** Create a notification message
          * @param {string} type - notification type - success, error
          * @param {string} title - notification title
@@ -76,10 +79,14 @@ class ModalPassword extends PureComponent {
 
     handleSubmit = async (e) => {
         const { password, code, verifyTwoFA } = this.state;
-        const { skip2fa, onSuccess, generateAlert, t } = this.props;
+        const { skip2fa, onSuccess, onSubmit, generateAlert, t } = this.props;
 
         if (e) {
             e.preventDefault();
+        }
+
+        if (onSubmit) {
+            return onSubmit(password);
         }
 
         let authorised = false;
