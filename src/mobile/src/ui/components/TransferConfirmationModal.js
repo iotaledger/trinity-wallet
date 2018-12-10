@@ -204,7 +204,7 @@ class TransferConfirmationModal extends Component {
                         source={arrowAnimation}
                         style={{ width: width / 17, height: height / 18 }}
                         loop
-                        autoplay
+                        autoPlay
                         ref={(animation) => {
                             this.animation = animation;
                         }}

@@ -375,7 +375,8 @@
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation":
             "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID"
+        "invalid": "INVALID",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
@@ -627,7 +628,6 @@
         "aMessage": "a message",
         "fromAccount": "From {{selectedAccountName}}",
         "toAddress": "To address",
-        "view": "View",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
