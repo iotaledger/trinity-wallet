@@ -53,7 +53,7 @@ const initialState = {
      * Navigation stack
      */
     navStack: [],
-    /*
+    /**
      * Determines whether user should update
      */
     shouldUpdate: false,
