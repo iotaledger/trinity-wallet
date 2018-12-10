@@ -818,10 +818,6 @@
 			files = (
 				6020D31F21A507BC00159E5A /* libReact.a in Frameworks */,
 				6020D31E21A5077600159E5A /* libRCTAnimation.a in Frameworks */,
-=======
-				6020D31F21A507BC00159E5A /* libReact.a in Frameworks */,
-				6020D31E21A5077600159E5A /* libRCTAnimation.a in Frameworks */,
->>>>>>> feat/page-animations
 				CBEA4C9421494823007DA583 /* libReactNativeNavigation.a in Frameworks */,
 				60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */,
 				CB305F0421185EF800657575 /* libRNFetchBlob.a in Frameworks */,
