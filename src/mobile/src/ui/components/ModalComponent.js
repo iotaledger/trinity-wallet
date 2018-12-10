@@ -110,13 +110,17 @@ export default function withSafeAreaView(WrappedComponent) {
             if (!this.props.isModalActive && newProps.isModalActive) {
                 if (this.props.isKeyboardActive && !isAndroid) {
                     Keyboard.dismiss();
-                    return timer.setTimeout('test', () => this.setState({ isModalActive: true }), 2800);
+                    return timer.setTimeout('delayOpenModal', () => this.setState({ isModalActive: true }), 2800);
                 }
                 this.setState({ isModalActive: true });
             }
             if (this.props.isModalActive && !newProps.isModalActive) {
                 this.setState({ isModalActive: false });
             }
+        }
+
+        componentWillUnmount() {
+            timer.clearTimeout('delayOpenModal');
         }
 
         render() {

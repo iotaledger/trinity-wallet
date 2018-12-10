@@ -35,13 +35,12 @@ export default function withKeyboardMonitor(C) {
         };
 
         componentWillMount() {
-            if (!isAndroid) {
-                this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-                this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
-            }
             if (isAndroid) {
                 this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
                 this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+            } else {
+                this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+                this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
             }
         }
 
