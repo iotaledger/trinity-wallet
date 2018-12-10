@@ -615,7 +615,7 @@
         "importSuccessExplanation": "Vaš seed je uspješno uvezen.",
         "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropInstructions": "Ovdje dovucite te ispustite SeedVault <1></1> ili kliknite da bi ga potražili na uređaju.\nAlternativno možete označiti i dovući Seed iz tekst editora.",
         "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
