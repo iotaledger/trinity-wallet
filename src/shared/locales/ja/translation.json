@@ -155,7 +155,9 @@
         "shouldUpdate": "新しいアップデートがあります",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
-        "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。"
+        "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -290,8 +292,6 @@
         "generateNewAddress": "アドレスを生成",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
-        "missingPermission": "ファイルシステム権限が必要です。",
-        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
         "tag": "タグ",
         "generateAnAddress": "アドレスを生成",
         "generateAnAddressTitle": "アドレスを生成",
