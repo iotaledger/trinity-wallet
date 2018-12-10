@@ -254,10 +254,10 @@
         "pressForNewSeed": "Pritisnite za novi seed",
         "generateSuccess": "Seed uspješno generiran",
         "individualLetters": "Pritisnite individualna slova da bi ih učinili nasumičnim.",
-        "individualLetterCount": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
-        "individualLetterCount_plural": "Preostali broj znakova koje treba učiniti nasumičnim <1><0>{{count}}</0></1>.",
-        "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
-        "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka <1>{{count}}</1>.",
+        "individualLetterCount": "Preostali broj znakova koje treba učiniti nasumičnim: <1><0>{{count}}</0></1>.",
+        "individualLetterCount_plural": "Preostali broj znakova koje treba učiniti nasumičnim: <1><0>{{count}}</0></1>.",
+        "randomiseCharsToContinue": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka: <1>{{count}}</1>.",
+        "randomiseCharsToContinue_plural": "Preostali broj znakova koje treba učiniti nasumičnim prije nastavka: <1>{{count}}</1>.",
         "whatIsASeed": "Što je seed?"
     },
     "onboardingComplete": {
@@ -616,7 +616,7 @@
         "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
         "dropInstructions": "Ovdje dovucite te ispustite SeedVault <1></1> ili kliknite da bi ga potražili na uređaju.\nAlternativno možete označiti i dovući Seed iz tekst editora.",
-        "dropActive": "Drop SeedVault or text here",
+        "dropActive": "Ispustite SeedVault/Seed ovdje",
         "enterKeyExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
