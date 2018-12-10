@@ -526,7 +526,7 @@
         "million": "Milion",
         "thousand": "Tysiąc",
         "one": "Jeden",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "Tokeny IOTA są zazwyczaj nabywane w wielokrotnościach jednego miliona, ale mogą być też transferowane, jako pojedyncze IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
