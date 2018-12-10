@@ -244,7 +244,7 @@
         "setNode": "Serwer",
         "whyBiometricDisabled": "Dlaczego logowanie biometryczne jest niedostępne?",
         "whyBiometricDisabledExplanationPart1": "Autoryzacja odciskiem palca, przy pierwszym uruchomieniu aplikacji, została wyłączona, dla Twojego bezpieczeństwa.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Bezczynność w Trinity, będzie skutkowała automatycznym wylogowaniem z aplikacji. Później, będziesz mógł zalogować się, używając odcisku palca."
     },
     "loading": {
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
