@@ -155,7 +155,9 @@
         "shouldUpdate": "Yra naujų atnaujinimų",
         "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsinaujinti iki naujausios versijos.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
-        "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę."
+        "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Sukurti adresą",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
-        "missingPermission": "Reikalingas failų sistemos leidimas",
-        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
         "tag": "Etiketė",
         "generateAnAddress": "Sukurti adresą",
         "generateAnAddressTitle": "Sukurti adresą",
