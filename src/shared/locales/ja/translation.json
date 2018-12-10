@@ -74,6 +74,8 @@
         "wallet": "ウォレット",
         "all": "すべて",
         "sent": "送金完了",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "受取完了",
         "sending": "送金中",
         "receiving": "受取中",
@@ -128,7 +130,7 @@
         "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
         "discordInformation": "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。",
         "androidInsecureClipboardWarning": "Androidは安全なクリップボードを提供していません。",
-        "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
         "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答しなくなることがあります。",
@@ -148,6 +150,8 @@
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
         "mainWallet": "メインアカウント",
+        "confirm": "Confirm",
+        "delete": "Delete",
         "shouldUpdate": "新しいアップデートがあります",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
@@ -205,7 +209,7 @@
         "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直してください。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
-        "anEncryptedCopy": "暗号化されたシードのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "パスワードを再入力してください。"
     },
     "copyToClipboard": {
@@ -239,7 +243,8 @@
         "login": "ログイン",
         "setNode": "ノードの設定",
         "whyBiometricDisabled": "生体認証が無効になっている理由。",
-        "whyBiometricDisabledExplanation": "生体認証によるログインはセキュリティ上、最初のアプリの読み込み時には無効になっています。Trinityを使用中、非アクティブが続くとログアウトします。その時には、生体認証を使ってログインすることができます。"
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
@@ -268,12 +273,12 @@
     "paperWallet": {
         "neverShare": "シードは他の人に絶対に教えてはいけません。",
         "iotaLogo": "IOTAロゴ",
-        "print": "印刷",
+        "print": "Print",
         "paperConvenience": "シードのコピーを紙に印刷して保存することは便利な方法です。",
         "publicInsecure": "しかし、公共のWi-Fiや公共のプリンタでの印刷は安全ではないので行わないでください。",
-        "tapCheckboxes": "確認するには、下の２つのチェックボックスをタップしてください。",
-        "wifiCheckbox": "私は公共のWi-Fiで印刷しません。",
-        "printerCheckbox": "私は公共のプリンタで印刷しません。"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "あなたのアドレス",
@@ -304,7 +309,8 @@
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
-        "whatIsChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "バックアップ完了",
         "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
         "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
@@ -345,7 +351,8 @@
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
         "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
-        "invalid": "無効"
+        "invalid": "無効",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "アカウント名を追加してください。",
@@ -446,7 +453,8 @@
         "empty": "空",
         "retrying": "再試行中",
         "yesterday": "昨日",
-        "promotingAnotherBundle": "別のバンドルを促進中"
+        "promotingAnotherBundle": "別のバンドルを促進中",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -504,18 +512,21 @@
         "currency": "通貨"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "ログアウトしてもよろしいですか？"
+        "logoutConfirmation": "ログアウトしてもよろしいですか？",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "QRコード読み取り"
     },
     "unitInfoModal": {
-        "unitSystem": "単位系",
+        "unitSystem": "Unit System",
         "trillion": "一兆",
         "billion": "十億",
         "million": "百万",
         "thousand": "千",
-        "one": "一"
+        "one": "一",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "どうして全ての残高を使えないのか？",
@@ -551,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
-        "alreadyHave": "私はシードをバックアップしました。",
-        "reenterSeed": "次のステップで、シードを再入力するよう求められます。",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "もし、シードをバックアップせずにデバイスが故障した場合、そのシードにあるIOTAはすべて失われます。",
         "pleaseConfirm": "シードが安全に保管されていることを確認してください。"
     },
@@ -572,15 +583,19 @@
         "status": "ステータス",
         "fingerprintUnavailable": "生体認証が利用できません。",
         "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
-        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
-        "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください。",
-        "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください。",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "指紋リーダに触れてログインしてください。"
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
-        "aMessage": "メッセージ"
+        "aMessage": "メッセージ",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "コードが間違っています。",
@@ -601,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
-        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。シードはシード金庫鍵によって暗号化され、この鍵がなければアクセスできません。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
         "exportFail": "シード金庫の書き出しに失敗しました",
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
@@ -615,13 +630,15 @@
         "importSuccessExplanation": "シードは正常に読み込まれました。",
         "saveToDownloadFolder": "ダウンロードフォルダに保存",
         "importSeedVault": "シード金庫を読み込む",
-        "dropSeedVaultHere": "シード金庫ファイルがある場合、ここにドラッグ&ドロップするか、<1></1>ここをクリックしてください。",
+        "dropInstructions": "シード金庫やテキストがある場合、ここ<1></1>に移動させるか、クリックして参照してください",
+        "dropActive": "シード金庫やテキストをここに移動させてください",
         "enterKeyExplanation": "シード金庫を開くために、シード金庫鍵を入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのシード金庫鍵を選んでください。バックアップ用のシード金庫からシードを復元するには、このシード金庫鍵が必要です。シード金庫鍵はTrinityウォレットのパスワードと同じにできます。"
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "時価総額",
@@ -655,7 +672,8 @@
         "preparingTransfers": "送金を準備中",
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
-        "broadcasting": "ブロードキャスト中"
+        "broadcasting": "ブロードキャスト中",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "スナップショットの移行を完了できません。",
@@ -707,7 +725,7 @@
     },
     "proxy": {
         "proxy": "システムプロキシを使用",
-        "proxyExplanation": "システム全体のネットワークプロキシ設定を検出して使用します。この設定を変更した後は、Trinityを再起動してください。"
+        "proxyExplanation": "システム全体のネットワークプロキシ設定を検出して使用します。この設定を変更した時は、Trinityを一度閉じてから再起動を行ってください。"
     },
     "notifications": {
         "notifications": "通知設定",
