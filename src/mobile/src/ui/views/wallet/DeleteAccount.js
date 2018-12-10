@@ -142,7 +142,7 @@ class DeleteAccount extends Component {
     }
 
     /**
-     * Deleres account if user entered correct/valid password
+     * Deletes account if user entered correct/valid password
      * Otherwise generates an alert
      *
      * @method onContinuePress
