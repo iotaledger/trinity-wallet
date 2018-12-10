@@ -526,7 +526,7 @@
         "million": "Milijun",
         "thousand": "Tisuću",
         "one": "Jedna",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA se obično kupuje u jedinicama od 1Mi (jedne Miota-e odnosno jedan milijun iota-e), no može se slati koristeći najmanju jedinicu od 1i (jedne iota-e)."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Zašto ne mogu potrošiti cijeli iznos?",
