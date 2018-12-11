@@ -113,10 +113,10 @@ class SeedReentry extends Component {
             navigator.push('setAccountName', {
                 animations: {
                     push: {
-                        enabled: false,
+                        enable: false,
                     },
                     pop: {
-                        enabled: false,
+                        enable: false,
                     },
                 },
                 layout: {

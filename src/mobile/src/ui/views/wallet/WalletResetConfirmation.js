@@ -95,10 +95,10 @@ class WalletResetConfirmation extends Component {
         navigator.push('walletResetRequirePassword', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

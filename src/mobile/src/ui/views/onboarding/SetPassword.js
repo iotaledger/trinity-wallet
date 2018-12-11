@@ -149,10 +149,10 @@ class SetPassword extends Component {
         navigator.push('onboardingComplete', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

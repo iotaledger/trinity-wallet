@@ -96,10 +96,10 @@ class TermsAndConditions extends Component {
         navigator.push('privacyPolicy', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

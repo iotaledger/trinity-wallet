@@ -42,10 +42,10 @@ class SecuritySettings extends Component {
         navigator.push(is2FAEnabled ? 'disable2FA' : 'twoFactorSetupAddKey', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {
@@ -66,10 +66,10 @@ class SecuritySettings extends Component {
         navigator.push('fingerprintSetup', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

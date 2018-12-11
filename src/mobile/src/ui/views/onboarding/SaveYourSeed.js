@@ -114,10 +114,10 @@ class SaveYourSeed extends Component {
         navigator.push('saveSeedConfirmation', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {
@@ -146,10 +146,10 @@ class SaveYourSeed extends Component {
         navigator.push('writeSeedDown', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {
@@ -174,10 +174,10 @@ class SaveYourSeed extends Component {
         navigator.push('seedVaultBackup', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

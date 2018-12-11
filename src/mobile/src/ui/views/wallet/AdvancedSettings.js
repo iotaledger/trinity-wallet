@@ -101,10 +101,10 @@ export class AdvancedSettings extends PureComponent {
         navigator.push('walletResetConfirm', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

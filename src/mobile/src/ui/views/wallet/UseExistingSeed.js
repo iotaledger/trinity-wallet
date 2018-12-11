@@ -173,7 +173,7 @@ class UseExistingSeed extends Component {
         navigator.setStackRoot('loading', {
             animations: {
                 setStackRoot: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

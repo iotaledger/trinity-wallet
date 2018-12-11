@@ -50,10 +50,10 @@ class AddNewAccount extends Component {
         navigator.push('newSeedSetup', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

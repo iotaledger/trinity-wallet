@@ -130,10 +130,10 @@ class EnterSeed extends React.Component {
             navigator.push('setAccountName', {
                 animations: {
                     push: {
-                        enabled: false,
+                        enable: false,
                     },
                     pop: {
-                        enabled: false,
+                        enable: false,
                     },
                 },
                 layout: {

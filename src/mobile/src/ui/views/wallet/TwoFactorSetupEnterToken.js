@@ -103,7 +103,7 @@ class TwoFactorSetupEnterToken extends Component {
         navigator.setStackRoot('home', {
             animations: {
                 setStackRoot: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

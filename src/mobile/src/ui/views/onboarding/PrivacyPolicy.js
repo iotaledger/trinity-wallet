@@ -91,10 +91,10 @@ class PrivacyPolicy extends Component {
         navigator.push('walletSetup', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

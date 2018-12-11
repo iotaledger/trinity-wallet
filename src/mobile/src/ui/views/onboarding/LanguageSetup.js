@@ -87,10 +87,10 @@ class LanguageSetup extends Component {
         navigator.push(this.getNextRoute(), {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

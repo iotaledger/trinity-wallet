@@ -94,10 +94,10 @@ class SaveSeedConfirmation extends Component {
         navigator.push('seedReentry', {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

@@ -100,10 +100,10 @@ class WalletSetup extends Component {
         navigator.push(screen, {
             animations: {
                 push: {
-                    enabled: false,
+                    enable: false,
                 },
                 pop: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

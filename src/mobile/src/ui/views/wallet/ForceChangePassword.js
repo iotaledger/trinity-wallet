@@ -170,7 +170,7 @@ class ForceChangePassword extends Component {
         navigator.setStackRoot('login', {
             animations: {
                 setStackRoot: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

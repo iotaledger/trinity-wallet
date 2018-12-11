@@ -128,10 +128,10 @@ export class TwoFactorSetupAddKey extends Component {
                 navigator.push('twoFactorSetupEnterToken', {
                     animations: {
                         push: {
-                            enabled: false,
+                            enable: false,
                         },
                         pop: {
-                            enabled: false,
+                            enable: false,
                         },
                     },
                     layout: {

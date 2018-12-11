@@ -165,10 +165,10 @@ class NewSeedSetup extends Component {
             navigator.push('saveYourSeed', {
                 animations: {
                     push: {
-                        enabled: false,
+                        enable: false,
                     },
                     pop: {
-                        enabled: false,
+                        enable: false,
                     },
                 },
                 layout: {

@@ -118,7 +118,7 @@ class WalletResetRequirePassword extends Component {
         navigator.setStackRoot('languageSetup', {
             animations: {
                 setStackRoot: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {

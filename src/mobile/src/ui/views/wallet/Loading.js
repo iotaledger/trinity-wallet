@@ -288,7 +288,7 @@ class Loading extends Component {
         navigator.setStackRoot('login', {
             animations: {
                 setStackRoot: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {
@@ -310,7 +310,7 @@ class Loading extends Component {
         navigator.setStackRoot('home', {
             animations: {
                 setStackRoot: {
-                    enabled: false,
+                    enable: false,
                 },
             },
             layout: {
