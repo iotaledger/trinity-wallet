@@ -246,7 +246,7 @@
         "setNode": "ノードの設定",
         "whyBiometricDisabled": "生体認証が無効になっている理由。",
         "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になります。",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Trinityを使用していると、非アクティブのためにログアウトすることがあります。その時には、生体認証を使用して再度ログインすることができます。"
     },
     "loading": {
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
@@ -275,12 +275,12 @@
     "paperWallet": {
         "neverShare": "シードは他の人に絶対に教えてはいけません。",
         "iotaLogo": "IOTAロゴ",
-        "print": "Print",
+        "print": "印刷する",
         "paperConvenience": "シードのコピーを紙に印刷して保存することは便利な方法です。",
         "publicInsecure": "しかし、公共のWi-Fiや公共のプリンタでの印刷は安全ではないので行わないでください。",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "印刷する前にチェックと確定をお願いいたします",
+        "wifiConfirmation": "私は公共のWi-Fiを使用していません",
+        "printerConfirmation": "私は公共のプリンタで印刷していません"
     },
     "receive": {
         "yourAddress": "あなたのアドレス",
@@ -309,8 +309,8 @@
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "チェックサムとは何か？",
+        "everySeedHasAChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
         "iHavesavedMySeed": "バックアップ完了",
         "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
         "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
@@ -352,7 +352,7 @@
         "addressPasteDetected": "アドレスのペーストを検出",
         "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
         "invalid": "無効",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "スワイプして送金する"
     },
     "setSeedName": {
         "letsAddName": "アカウント名を追加してください。",
@@ -454,7 +454,7 @@
         "retrying": "再試行中",
         "yesterday": "昨日",
         "promotingAnotherBundle": "別のバンドルを促進中",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -513,8 +513,8 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "ログアウトしてもよろしいですか？",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "ログアウトしようとしています",
+        "areYouSure": "本当によろしいですか？"
     },
     "qrScanner": {
         "scan": "QRコード読み取り"
