@@ -28,6 +28,12 @@ jest.mock('libs/keychain', () => ({
     storeTwoFactorAuthKeyInKeychain: jest.fn(() => Promise.resolve({})),
 }));
 
+jest.mock('libs/navigation', () => ({
+    navigator: {
+        push: jest.fn(),
+    },
+}));
+
 const getProps = (overrides) =>
     assign(
         {},

@@ -164,7 +164,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -309,8 +311,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "NO ADDRESSES",
         "spent": "Spent",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
         "tag": "Tag",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -721,7 +721,8 @@
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Attaching addresses to Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autofill success",

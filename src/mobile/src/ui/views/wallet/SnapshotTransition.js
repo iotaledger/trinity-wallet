@@ -151,12 +151,12 @@ class SnapshotTransition extends Component {
         cancelSnapshotTransition: PropTypes.func.isRequired,
     };
 
-    static renderProgressBarChildren(activeStepIndex, sizeOfActiveSteps) {
+    static renderProgressBarChildren(activeStepIndex, sizeOfActiveSteps, t) {
         if (activeStepIndex === -1) {
             return null;
         }
 
-        return `Attaching address ${activeStepIndex + 1} / ${sizeOfActiveSteps}`;
+        return t('attachProgress', { currentAddress: activeStepIndex + 1, totalAddresses: sizeOfActiveSteps });
     }
 
     constructor() {
@@ -335,6 +335,7 @@ class SnapshotTransition extends Component {
                                         {SnapshotTransition.renderProgressBarChildren(
                                             activeStepIndex,
                                             sizeOfActiveSteps,
+                                            t,
                                         )}
                                     </ProgressBar>
                                 </View>

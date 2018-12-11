@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
 import sharedStore from 'shared-modules/store';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
+import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
@@ -37,6 +38,9 @@ const launch = (store) => {
         clearKeychain();
         store.dispatch(setCompletedForcedPasswordUpdate());
     }
+
+    // Assign accountIndex to every account in accountInfo if it is not assigned already
+    store.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
 
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));

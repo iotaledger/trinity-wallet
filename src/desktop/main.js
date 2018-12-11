@@ -5,7 +5,7 @@ import path from 'path';
 import URL from 'url';
 import fs from 'fs';
 
-import initMenu from './native/Menu.js';
+import { initMenu, contextMenu } from './native/Menu.js';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
@@ -210,40 +210,9 @@ function createWindow() {
      * Add right click context menu for input elements
      */
     windows.main.webContents.on('context-menu', (e, props) => {
-        const InputMenu = electron.Menu.buildFromTemplate([
-            {
-                label: 'Undo',
-                role: 'undo',
-            },
-            {
-                label: 'Redo',
-                role: 'redo',
-            },
-            {
-                type: 'separator',
-            },
-            {
-                label: 'Cut',
-                role: 'cut',
-            },
-            {
-                label: 'Copy',
-                role: 'copy',
-            },
-            {
-                label: 'Paste',
-                role: 'paste',
-            },
-            {
-                type: 'separator',
-            },
-            {
-                label: 'Select all',
-                role: 'selectall',
-            },
-        ]);
         const { isEditable } = props;
         if (isEditable) {
+            const InputMenu = contextMenu();
             InputMenu.popup(windows.main);
         }
     });
