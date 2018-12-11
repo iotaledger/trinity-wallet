@@ -165,26 +165,21 @@ class NewSeedSetup extends Component {
             navigator.push('saveYourSeed', {
                 animations: {
                     push: {
-                        enable: false,
+                        enabled: false,
                     },
                     pop: {
-                        enable: false,
+                        enabled: false,
                     },
                 },
                 layout: {
                     backgroundColor: body.bg,
-                    orientation: ['portrait'],
                 },
                 topBar: {
-                    visible: false,
-                    drawBehind: false,
-                    elevation: 0,
                     title: {
                         color: body.color,
                     },
                 },
                 statusBar: {
-                    drawBehind: false,
                     backgroundColor: body.bg,
                 },
             });

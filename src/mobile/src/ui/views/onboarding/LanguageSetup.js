@@ -87,23 +87,16 @@ class LanguageSetup extends Component {
         navigator.push(this.getNextRoute(), {
             animations: {
                 push: {
-                    enable: false,
+                    enabled: false,
                 },
                 pop: {
-                    enable: false,
+                    enabled: false,
                 },
             },
             layout: {
                 backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
             },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
             },
         });

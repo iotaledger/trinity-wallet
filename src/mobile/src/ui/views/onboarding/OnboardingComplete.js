@@ -75,20 +75,13 @@ class OnboardingComplete extends Component {
         navigator.setStackRoot('loading', {
             animations: {
                 setStackRoot: {
-                    enable: false,
+                    enabled: false,
                 },
             },
             layout: {
                 backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
             },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
