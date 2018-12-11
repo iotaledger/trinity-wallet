@@ -130,7 +130,7 @@
         "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
         "discordInformation": "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。",
         "androidInsecureClipboardWarning": "Androidは安全なクリップボードを提供していません。",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Androidデバイス上で、絶対にシードをコピー&ペーストしないでください。",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
         "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答しなくなることがあります。",
@@ -150,14 +150,14 @@
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
         "mainWallet": "メインアカウント",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "確定",
+        "delete": "削除",
         "shouldUpdate": "新しいアップデートがあります",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermission": "ファイルシステム権限が必要です",
+        "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -211,7 +211,7 @@
         "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直してください。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "これがメインウォレットのパスワードです。これを使ってログインします。",
         "retypePassword": "パスワードを再入力してください。"
     },
     "copyToClipboard": {
@@ -245,7 +245,7 @@
         "login": "ログイン",
         "setNode": "ノードの設定",
         "whyBiometricDisabled": "生体認証が無効になっている理由。",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になります。",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
