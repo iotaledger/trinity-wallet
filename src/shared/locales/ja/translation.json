@@ -687,7 +687,8 @@
         "transition": "移行",
         "transitioning": "スナップショットを移行しています。",
         "generatingAndDetecting": "アドレス生成と残高検出を行なっています。",
-        "attaching": "タングルにアドレスを添付しています。"
+        "attaching": "タングルにアドレスを添付しています。",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "自動入力成功",
