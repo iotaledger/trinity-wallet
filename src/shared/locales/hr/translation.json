@@ -687,7 +687,8 @@
         "transition": "Tranzicija",
         "transitioning": "Tranzicija snapshot-a u tijeku.",
         "generatingAndDetecting": "Generiranje adresa i detektiranje salda.",
-        "attaching": "Pridodavanje adresa na Tangle."
+        "attaching": "Pridodavanje adresa na Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
