@@ -245,7 +245,7 @@
         "login": "ログイン",
         "setNode": "ノードの設定",
         "whyBiometricDisabled": "生体認証が無効になっている理由。",
-        "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になります。",
+        "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になっています。",
         "whyBiometricDisabledExplanationPart2": "Trinityを使用していると、非アクティブのためにログアウトすることがあります。その時には、生体認証を使用して再度ログインすることができます。"
     },
     "loading": {
@@ -520,7 +520,7 @@
         "scan": "QRコード読み取り"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "単位",
         "trillion": "一兆",
         "billion": "十億",
         "million": "百万",
@@ -562,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "私はシードを安全にバックアップしました",
+        "reenterSeed": "次のステップで、シードを再入力する必要があります。",
         "reenterSeedWarning": "もし、シードをバックアップせずにデバイスが故障した場合、そのシードにあるIOTAはすべて失われます。",
         "pleaseConfirm": "シードが安全に保管されていることを確認してください。"
     },
@@ -583,10 +583,10 @@
         "status": "ステータス",
         "fingerprintUnavailable": "生体認証が利用できません。",
         "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください",
+        "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください",
         "instructionsLogin": "指紋リーダに触れてログインしてください。"
     },
     "transferConfirmation": {
