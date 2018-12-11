@@ -526,7 +526,7 @@
         "million": "百万",
         "thousand": "千",
         "one": "一",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAは通常100万（1Mi）の倍数で取得されますが、1i単位でも取引できます。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "どうして全ての残高を使えないのか？",
@@ -592,8 +592,8 @@
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
         "aMessage": "メッセージ",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "fromAccount": "{{selectedAccountName}}から",
+        "toAddress": "送信先アドレスへ",
         "sendingAMessage": "メッセージを送信中",
         "sendingAnEmptyMessage": "空のメッセージを送信中"
     },
