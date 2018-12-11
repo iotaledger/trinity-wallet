@@ -673,7 +673,7 @@
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
         "broadcasting": "ブロードキャスト中",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "送金完了"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "スナップショットの移行を完了できません。",
@@ -688,7 +688,7 @@
         "transitioning": "スナップショットを移行しています。",
         "generatingAndDetecting": "アドレス生成と残高検出を行なっています。",
         "attaching": "タングルにアドレスを添付しています。",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "{{totalAddresses}}のアドレス{{currentAddress}}を添付中"
     },
     "deepLink": {
         "autofill": "自動入力成功",
