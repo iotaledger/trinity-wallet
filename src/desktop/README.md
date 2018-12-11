@@ -24,6 +24,20 @@ Then, navigate to this directory:
 cd src/desktop
 ```
 
+On *Windows* platforms you'll need to install build tools to succesfully compile native modules:
+```
+npm install --global windows-build-tools
+```
+
+On *Linux* platforms you may need to additional packages to build native modules:
+```
+#
+sudo apt install build-essential libudev-dev libusb-1.0-0 libusb-1.0-0-dev
+sudo apt install gcc-4.8 g++-4.8 && export CXX=g++-4.8
+# Fedora only:
+yum install libusbx-devel
+```
+
 ### 2. Prepare Trinity desktop appplication
 
 When the npm install is done you can prepare the wallet application for compilation by running:
