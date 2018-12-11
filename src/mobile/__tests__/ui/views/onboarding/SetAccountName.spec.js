@@ -14,6 +14,12 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
+jest.mock('libs/navigation', () => ({
+    navigator: {
+        push: jest.fn(),
+    },
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
