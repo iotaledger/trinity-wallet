@@ -688,7 +688,7 @@
         "transitioning": "Trwa aktualizacja Twoich środków.",
         "generatingAndDetecting": "Generuję adresy oraz wykrywam saldo.",
         "attaching": "Dołączam adresy do sieci Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Dołączam adres {{currentAddress}} z {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autouzupełniono",
