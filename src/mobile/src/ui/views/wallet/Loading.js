@@ -155,7 +155,7 @@ class Loading extends Component {
             password,
             deepLinkActive,
         } = this.props;
-
+        this.props.setLoginRoute('login');
         leaveNavigationBreadcrumb('Loading');
         KeepAwake.activate();
         this.animation.play();

@@ -162,7 +162,6 @@ class Login extends Component {
             const verified = authenticator.verifyToken(key, token);
             if (verified) {
                 this.navigateToLoading();
-                this.props.setLoginRoute('login');
             } else {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
             }
