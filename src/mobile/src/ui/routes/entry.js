@@ -68,6 +68,7 @@ const renderInitialScreen = (initialScreen, state, store) => {
                         component: {
                             name: initialScreen,
                             options: {
+                                popGesture: false,
                                 layout: {
                                     backgroundColor: state.settings.theme.body.bg,
                                     orientation: ['portrait'],

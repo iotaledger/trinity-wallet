@@ -190,7 +190,6 @@ class SeedReentry extends Component {
             case 'qrScanner':
                 return this.props.toggleModalActivity(modalContent, {
                     theme,
-                    print: () => this.print(),
                     hideModal: () => this.props.toggleModalActivity(),
                     onQRRead: (data) => this.onQRRead(data),
                 });
