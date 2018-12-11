@@ -1037,6 +1037,7 @@ describe('libs: iota/transfers', () => {
 
     describe('#performPow', () => {
         let powFn;
+        let digestFn;
         let trunkTransaction;
         let branchTransaction;
 
@@ -1059,12 +1060,21 @@ describe('libs: iota/transfers', () => {
                 };
             };
 
+            digestFn = (trytes) => Promise.resolve(iota.utils.transactionObject(trytes).hash);
+
             trunkTransaction = 'LLJWVVZFXF9ZGFSBSHPCD9HOIFBCLXGRV9XWSQDTGOMSRGQQIVFVZKHLKTJJVFMXQTZVPNRNAQEPA9999';
             branchTransaction = 'GSHUHUWAUUGQHHNAPRDPDJRKZFJNIAPFNTVAHZPUNDJWRHZSZASOERZURXZVEHN9OJVS9QNRGSJE99999';
         });
 
         it('should sort transaction objects in ascending order by currentIndex', () => {
-            const fn = performPow(powFn(), trytes.value.slice().reverse(), trunkTransaction, branchTransaction, 14);
+            const fn = performPow(
+                powFn(),
+                digestFn,
+                trytes.value.slice().reverse(),
+                trunkTransaction,
+                branchTransaction,
+                14,
+            );
 
             return fn.then(({ transactionObjects }) => {
                 transactionObjects.map((tx, idx) => expect(tx.currentIndex).to.equal(idx));
@@ -1072,15 +1082,28 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should assign generated nonce', () => {
-            const fn = performPow(powFn(), trytes.value.slice().reverse(), trunkTransaction, branchTransaction, 14);
-
+            const fn = performPow(
+                powFn(),
+                digestFn,
+                trytes.value.slice().reverse(),
+                trunkTransaction,
+                branchTransaction,
+                14,
+            );
             return fn.then(({ transactionObjects }) => {
                 transactionObjects.map((tx, idx) => expect(tx.nonce).to.equal(nonces.slice().reverse()[idx]));
             });
         });
 
         it('should set correct bundle sequence', () => {
-            const fn = performPow(powFn(), trytes.value.slice().reverse(), trunkTransaction, branchTransaction, 14);
+            const fn = performPow(
+                powFn(),
+                digestFn,
+                trytes.value.slice().reverse(),
+                trunkTransaction,
+                branchTransaction,
+                14,
+            );
 
             return fn.then(({ transactionObjects }) => {
                 expect(transactionObjects[0].trunkTransaction).to.equal(transactionObjects[1].hash);
@@ -1437,19 +1460,30 @@ describe('libs: iota/transfers', () => {
 
     describe('#retryFailedTransaction', () => {
         let transactionObjects;
+        let seedStore;
 
         before(() => {
             transactionObjects = map(trytes.value, iota.utils.transactionObject);
+            seedStore = {
+                performPow: (trytes) =>
+                    Promise.resolve({
+                        trytes,
+                        transactionObjects: map(trytes, iota.utils.transactionObject),
+                    }),
+                getDigest: (trytes) => Promise.resolve(iota.utils.transactionObject(trytes).hash),
+            };
         });
 
         describe('when all transaction objects have valid hash', () => {
             it('should not perform proof of work', () => {
-                const powFn = sinon.stub();
+                sinon.stub(seedStore, 'performPow');
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
 
                 // Mock value trytes have a valid transaction hash
-                return retryFailedTransaction()(transactionObjects, powFn).then(() => {
-                    expect(powFn.callCount).to.equal(0);
+                return retryFailedTransaction()(transactionObjects, seedStore).then(() => {
+                    expect(seedStore.performPow.callCount).to.equal(0);
+
+                    seedStore.performPow.restore();
                     storeAndBroadcast.restore();
                 });
             });
@@ -1457,7 +1491,11 @@ describe('libs: iota/transfers', () => {
 
         describe('when any transaction object has an invalid hash', () => {
             it('should perform proof of work', () => {
-                const powFn = sinon.stub().resolves('R'.repeat(27));
+                sinon.stub(seedStore, 'performPow').resolves({
+                    trytes: trytes.value,
+                    transactionObjects: transactionObjects.slice().reverse(),
+                });
+
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction: 'R'.repeat(81),
@@ -1469,10 +1507,11 @@ describe('libs: iota/transfers', () => {
                         transactionObjects,
                         (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: 'U'.repeat(81) })),
                     ),
-                    powFn,
-                    false,
+                    seedStore,
                 ).then(() => {
-                    expect(powFn.callCount).to.equal(4);
+                    expect(seedStore.performPow.callCount).to.equal(1);
+
+                    seedStore.performPow.restore();
                     storeAndBroadcast.restore();
                     getTransactionToApprove.restore();
                 });
@@ -1481,7 +1520,11 @@ describe('libs: iota/transfers', () => {
 
         describe('when any transaction object has an empty hash', () => {
             it('should perform proof of work', () => {
-                const powFn = sinon.stub().resolves('R'.repeat(27));
+                sinon.stub(seedStore, 'performPow').resolves({
+                    trytes: trytes.value,
+                    transactionObjects: transactionObjects.slice().reverse(),
+                });
+
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction: 'R'.repeat(81),
@@ -1493,10 +1536,11 @@ describe('libs: iota/transfers', () => {
                         transactionObjects,
                         (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: EMPTY_HASH_TRYTES })),
                     ),
-                    powFn,
-                    false,
+                    seedStore,
                 ).then(() => {
-                    expect(powFn.callCount).to.equal(4);
+                    expect(seedStore.performPow.callCount).to.equal(1);
+
+                    seedStore.performPow.restore();
                     storeAndBroadcast.restore();
                     getTransactionToApprove.restore();
                 });

@@ -30,7 +30,6 @@ import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
 import ProgressBar from 'ui/components/ProgressBar';
-import { getPowFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -185,7 +184,7 @@ class SnapshotTransition extends Component {
         const { transitionAddresses, selectedAccountName, selectedAccountMeta, password } = this.props;
         setTimeout(() => {
             const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
-            this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses, getPowFn());
+            this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses);
         }, 300);
     }
 

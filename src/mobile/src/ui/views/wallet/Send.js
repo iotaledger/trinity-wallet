@@ -48,7 +48,6 @@ import CtaButton from 'ui/components/CtaButton';
 import { Icon } from 'ui/theme/icons';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
-import { getPowFn } from 'libs/nativeModules';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -648,9 +647,7 @@ export class Send extends Component {
             const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
             this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
-            const powFn = getPowFn();
-
-            return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
+            return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName);
         } catch (error) {
             this.props.getFromKeychainError('send', 'makeTransaction');
             this.props.generateTransferErrorAlert(error);
@@ -928,7 +925,6 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
-    remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,

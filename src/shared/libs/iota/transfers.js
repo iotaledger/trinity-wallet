@@ -35,7 +35,6 @@ import {
     BUNDLE_OUTPUTS_THRESHOLD,
 } from '../../config';
 import { iota } from './index';
-import nativeBindings from './nativeBindings';
 import { getBalancesSync, accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
@@ -856,6 +855,7 @@ export const filterInvalidPendingTransactions = (provider) => (transactions, add
  *
  *   @method performPow
  *   @param {function} powFn
+ *   @param {function} digestFn
  *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
@@ -864,6 +864,7 @@ export const filterInvalidPendingTransactions = (provider) => (transactions, add
  **/
 export const performPow = (
     powFn,
+    digestFn,
     trytes,
     trunkTransaction,
     branchTransaction,
@@ -909,10 +910,12 @@ export const performPow = (
 
                         result.trytes.unshift(trytesWithNonce);
 
-                        return nativeBindings.asyncTransactionObject(trytesWithNonce);
+                        return digestFn(trytesWithNonce).then((digest) =>
+                            iota.utils.transactionObject(trytesWithNonce, digest),
+                        );
                     })
-                    .then((tx) => {
-                        result.transactionObjects.unshift(tx);
+                    .then((transactionObject) => {
+                        result.transactionObjects.unshift(transactionObject);
 
                         return result;
                     });
@@ -1016,9 +1019,9 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
  *   @method retryFailedTransaction
  *   @param {string} [provider]
  *
- *   @returns {function(array, function): Promise<object>}
+ *   @returns {function(array, object): Promise<object>}
  **/
-export const retryFailedTransaction = (provider) => (transactionObjects, powFn) => {
+export const retryFailedTransaction = (provider) => (transactionObjects, seedStore) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
     const cached = {
@@ -1035,7 +1038,7 @@ export const retryFailedTransaction = (provider) => (transactionObjects, powFn) 
         // If proof of work failed, select new tips and retry
         return getTransactionsToApproveAsync(provider)()
             .then(({ trunkTransaction, branchTransaction }) => {
-                return attachToTangleAsync(provider, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+                return attachToTangleAsync(provider, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;

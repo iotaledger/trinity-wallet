@@ -35,11 +35,11 @@ import { accumulateBalance } from './addresses';
  *
  *   @method sweep
  *   @param {any} [provider]
- *   @param {function} [powFn]
+ *   @param {object} seedStore
  *
  *   @returns {function(string, object, object): Promise<object>}
  **/
-export const sweep = (provider, powFn) => (seed, input, transfer) => {
+export const sweep = (provider, seedStore) => (seed, input, transfer) => {
     if (!isValidInput(input)) {
         return Promise.reject(new Error(Errors.INVALID_INPUT));
     }
@@ -162,7 +162,7 @@ export const sweep = (provider, powFn) => (seed, input, transfer) => {
                                 filter(tailTransactions, (tx) => tx.bundle === bundleHash),
                             ),
                             (promise, txs) => {
-                                return promise.then(() => promoteTransactionTilConfirmed(provider, powFn)(txs));
+                                return promise.then(() => promoteTransactionTilConfirmed(provider, seedStore)(txs));
                             },
                             Promise.resolve({}),
                         ).then(() => checkSpendStatuses());
@@ -193,7 +193,7 @@ export const sweep = (provider, powFn) => (seed, input, transfer) => {
             throw new Error(Errors.INVALID_BUNDLE);
         })
         .then(({ trunkTransaction, branchTransaction }) => {
-            return attachToTangleAsync(provider, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+            return attachToTangleAsync(provider, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
         })
         .then(({ trytes, transactionObjects }) => {
             cached.trytes = trytes;

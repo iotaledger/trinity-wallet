@@ -30,8 +30,6 @@ import ModalConfirm from 'ui/components/modal/Confirm';
 class Addresses extends PureComponent {
     static propTypes = {
         /** @ignore */
-        settings: PropTypes.object.isRequired,
-        /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
         ui: PropTypes.object.isRequired,
@@ -101,13 +99,11 @@ class Addresses extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, accountMeta, settings } = this.props;
+        const { wallet, accountName, accountMeta } = this.props;
 
         const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
 
-        const powFn = !settings.remotePoW ? Electron.powFn : null;
-
-        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses, powFn);
+        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses);
     };
 
     /**
@@ -214,7 +210,6 @@ class Addresses extends PureComponent {
 const mapStateToProps = (state) => ({
     ui: state.ui,
     wallet: state.wallet,
-    settings: state.settings,
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),
     addresses: getAddressesForSelectedAccount(state),

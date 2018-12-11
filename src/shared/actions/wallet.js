@@ -1,3 +1,4 @@
+import extend from 'lodash/extend';
 import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
@@ -373,11 +374,10 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
- * @param {function} powFn
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses, powFn) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -421,11 +421,11 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 address,
                                 index,
                                 relevantBalances[index],
-                                seedStore,
+                                getRemotePoWFromState(getState())
+                                    ? extend({}, seedStore, { offloadPow: true })
+                                    : seedStore,
                                 map(existingAccountState.transfers, (tx) => tx),
                                 existingAccountState.addresses,
-                                // Pass proof of work function as null, if configuration is set to remote
-                                getRemotePoWFromState(getState()) ? null : powFn,
                             )
                                 .then(({ addressData, transfer }) => {
                                     const { newState } = syncAccountDuringSnapshotTransition(

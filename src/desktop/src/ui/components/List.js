@@ -1,5 +1,3 @@
-/* global Electron */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
@@ -8,6 +6,7 @@ import classNames from 'classnames';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
+import SeedStore from 'libs/SeedStore';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -27,8 +26,6 @@ class List extends React.PureComponent {
         isBusy: PropTypes.bool.isRequired,
         /** Wallet mode */
         mode: PropTypes.string.isRequired,
-        /** Is remote PoW enabled */
-        remotePoW: PropTypes.bool.isRequired,
         /** Is history updating */
         isLoading: PropTypes.bool.isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
@@ -47,12 +44,12 @@ class List extends React.PureComponent {
         failedHashes: PropTypes.object.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
-         * @param {func} powFn - local Proof of Work function
+         * @param {object} seedStore
          */
         promoteTransaction: PropTypes.func.isRequired,
         /** Retry failed bundle
          * @param {string} bundle - bundle hash
-         * @param {func} powFn - local Proof of Work function
+         * @param {object} seedStore
          */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** Set active history item
@@ -123,20 +120,22 @@ class List extends React.PureComponent {
         );
     }
 
-    promoteTransaction(e, bundle) {
+    async promoteTransaction(e, bundle) {
         e.stopPropagation();
 
-        const powFn = !this.props.remotePoW ? Electron.powFn : null;
+        const { accountMeta, password } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password);
 
-        this.props.promoteTransaction(bundle, powFn);
+        this.props.promoteTransaction(bundle, seedStore);
     }
 
-    retryFailedTransaction(e, bundle) {
+    async retryFailedTransaction(e, bundle) {
         e.stopPropagation();
 
-        const powFn = !this.props.remotePoW ? Electron.powFn : null;
+        const { accountMeta, password } = this.props;
+        const seedStore = await new SeedStore[accountMeta.type](password);
 
-        this.props.retryFailedTransaction(bundle, powFn);
+        this.props.retryFailedTransaction(bundle, seedStore);
     }
 
     render() {
@@ -298,12 +297,8 @@ class List extends React.PureComponent {
                                             </span>
                                             <span>
                                                 {!isConfirmed
-                                                    ? isReceived
-                                                        ? t('receiving')
-                                                        : t('sending')
-                                                    : isReceived
-                                                        ? t('received')
-                                                        : t('sent')}
+                                                    ? isReceived ? t('receiving') : t('sending')
+                                                    : isReceived ? t('received') : t('sent')}
                                             </span>
                                             <span>
                                                 {transfer.transferValue === 0 ? '' : isReceived ? '+' : '-'}
@@ -341,9 +336,7 @@ class List extends React.PureComponent {
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming
-                                                ? t('received')
-                                                : t('sent')}
+                                            : activeTransfer.incoming ? t('received') : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,

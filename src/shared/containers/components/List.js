@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
-import { getSelectedAccountName, getFailedBundleHashesForSelectedAccount } from '../../selectors/accounts';
+import {
+    getSelectedAccountName,
+    getFailedBundleHashesForSelectedAccount,
+    getSelectedAccountMeta,
+} from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -22,6 +26,7 @@ export default function withListData(ListComponent) {
             ui: PropTypes.object.isRequired,
             accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string,
+            accountMeta: PropTypes.object.isRequired,
             mode: PropTypes.string.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
@@ -35,17 +40,17 @@ export default function withListData(ListComponent) {
             hideEmptyTransactions: PropTypes.bool.isRequired,
             promoteTransaction: PropTypes.func.isRequired,
             retryFailedTransaction: PropTypes.func.isRequired,
-            remotePoW: PropTypes.bool.isRequired,
             generateAlert: PropTypes.func.isRequired,
             failedHashes: PropTypes.object.isRequired,
+            password: PropTypes.object.isRequired,
         };
 
-        promoteTransaction = (hash, powFn) => {
-            this.props.promoteTransaction(hash, this.props.accountName, powFn);
+        promoteTransaction = (hash, seedStore) => {
+            this.props.promoteTransaction(hash, this.props.accountName, seedStore);
         };
 
-        retryFailedTransaction = (bundle, powFn) => {
-            this.props.retryFailedTransaction(this.props.accountName, bundle, powFn);
+        retryFailedTransaction = (bundle, seedStore) => {
+            this.props.retryFailedTransaction(this.props.accountName, bundle, seedStore);
         };
 
         render() {
@@ -63,7 +68,6 @@ export default function withListData(ListComponent) {
                 toggleEmptyTransactions,
                 hideEmptyTransactions,
                 theme,
-                remotePoW,
                 generateAlert,
                 failedHashes,
                 ui,
@@ -98,7 +102,6 @@ export default function withListData(ListComponent) {
                 filter,
                 isBusy,
                 mode,
-                remotePoW,
                 isLoading: ui.isFetchingAccountInfo,
                 currentlyPromotingBundleHash: ui.currentlyPromotingBundleHash,
                 isRetryingFailedTransaction: ui.isRetryingFailedTransaction,
@@ -120,12 +123,13 @@ export default function withListData(ListComponent) {
         seedIndex: state.wallet.seedIndex,
         accounts: state.accounts,
         accountName: getSelectedAccountName(state),
+        accountMeta: getSelectedAccountMeta(state),
         failedHashes: getFailedBundleHashesForSelectedAccount(state),
         theme: state.settings.theme,
         mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,
-        remotePoW: state.settings.remotePoW,
+        password: state.wallet.password,
     });
 
     const mapDispatchToProps = {
