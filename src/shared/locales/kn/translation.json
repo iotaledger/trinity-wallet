@@ -548,7 +548,7 @@
         "syncingYourAccount": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ."
     },
     "useExistingSeed": {
-        "title": "ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ಖಾತೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸ್ವರೂಪ",
         "validSeedExplanation": "ಮಾನ್ಯವಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ 81 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು."
     },
