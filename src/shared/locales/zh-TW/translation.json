@@ -548,7 +548,7 @@
         "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "輸入種子碼和帳戶名稱。",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "種子碼格式不符",
         "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
