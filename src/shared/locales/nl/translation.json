@@ -548,7 +548,7 @@
         "syncingYourAccount": "Account wordt gesynchroniseerd."
     },
     "useExistingSeed": {
-        "title": "Voer een seed en accountnaam in.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Incorrecte seed opmaak",
         "validSeedExplanation": "Geldige seeds bestaan uit 81 karakters en bevatten alleen A-Z of 9."
     },
