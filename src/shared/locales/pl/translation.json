@@ -514,7 +514,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
         "aboutToLogOut": "Za chwilę zostaniesz wylogowany",
-        "areYouSure": "Czy jesteś pewny?"
+        "areYouSure": "Czy jesteś pewien?"
     },
     "qrScanner": {
         "scan": "Zeskanuj swój kod QR"
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz hasło ponownie"
     },
     "chart": {
