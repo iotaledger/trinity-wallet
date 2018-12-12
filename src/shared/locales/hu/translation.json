@@ -548,7 +548,7 @@
         "syncingYourAccount": "Számla szinkronizálása."
     },
     "useExistingSeed": {
-        "title": "Adjon meg egy mester jelszót és egy számlanevet.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Helytelen mester jelszó formátum",
         "validSeedExplanation": "A mester jelszónak pontosan 81 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat."
     },
