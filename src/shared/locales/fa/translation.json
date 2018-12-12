@@ -548,7 +548,7 @@
         "syncingYourAccount": "همگام سازی حساب شما."
     },
     "useExistingSeed": {
-        "title": "سید و نام حساب را وارد کنید.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "قالب سید اشتباه است",
         "validSeedExplanation": "سید های معتبر باید 81 کاراکتر باشد و فقط شامل حروف A-Z یا عدد تا 9 باشد."
     },
