@@ -152,8 +152,7 @@ android {
     }
 }
 dependencies {
-    compile project(':react-native-camera')
-    compile project(':react-native-qr-scanner')
+    implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
     implementation project(':nodejs-mobile-react-native')
