@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity vás už nikdy nebude vyzývať k opätovnému vloženiu tohto Seedu. Výnimkou je reset vašej peňaženky, prípadne celej aplikácie.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Vložte váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím, skúste to znova.",
         "ifYouHaveNotSaved": "Ak nemáte svoj Seed zálohovaný, vráťte sa, prosím, späť a urobte tak.",
         "enterSeedBelow": "Zadajte nižšie váš novovytvorený Seed pre potvrdenie, že ste si ho správne zazálohovali",
-        "clipboardWarning": "Váš Seed nie je možné kopírovať ani vkladať",
-        "clipboardWarningExplanation": "UPOZORNENIE: Kopírovanie a vkladanie je zakázané pre Vašu bezpečnosť."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "SeedVault je buď prázdny, alebo obsahuje seed v neplatnom formáte.",
         "seedFileError": "Otvorenie SeedVault zlyhalo",
         "seedFileErrorExplanation": "Počas otvárania SeedVault nastal problém. Ak Ste zvolili naozaj správny súbor, je možné, že je poškodený.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
