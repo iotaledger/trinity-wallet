@@ -19,6 +19,7 @@
         "invalidResponse": "Nodefeil",
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node eller forsøk igjen.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
@@ -73,6 +74,8 @@
         "wallet": "Lommebok",
         "all": "Alle",
         "sent": "Sendt",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Mottatt",
         "sending": "Sender",
         "receiving": "Mottar",
@@ -127,7 +130,7 @@
         "spentAddressExplanation": "ADVARSEL: Midler på en brukt adresse",
         "discordInformation": "Det er risikabelt å sende midler fra samme adresse flere ganger. Vennligst besøk kanalen #help på Discord for å finne ut hva du kan gjøre.",
         "androidInsecureClipboardWarning": "Android har ikke en sikker utklippstavle.",
-        "androidCopyPasteWarning": "Aldri klipp og lim hovednøkkelen på en Android enhet.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Jeg skal ikke klippe og lime hovednøkkelen",
         "mustBeStoredAppropriately": "Den må lagres på riktig måte.",
         "deviceMayBecomeUnresponsive": "Enheten kan slutte å svare en stund.",
@@ -146,7 +149,15 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Nøkkelring feil",
         "errorAccessingKeychainExplanation": "Ingen tilgang til nøkkelring nødvendig for sikker lagring.",
-        "mainWallet": "HOVEDKONTO"
+        "mainWallet": "HOVEDKONTO",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -200,7 +211,7 @@
         "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
-        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken i fremtiden.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "copyToClipboard": {
@@ -234,7 +245,8 @@
         "login": "Logg inn",
         "setNode": "Angi Node",
         "whyBiometricDisabled": "Hvorfor er biometrisk autentisering deaktivert?",
-        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter applikasjonen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk autentisering."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -263,12 +275,12 @@
     "paperWallet": {
         "neverShare": "Del aldri hovednøkkelen med noen.",
         "iotaLogo": "IOTA logo",
-        "print": "SKRIV UT",
+        "print": "Print",
         "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
         "publicInsecure": "Men å skrive den ut på et offentlig nettverk eller printer er usikkert.",
-        "tapCheckboxes": "Vennligst trykk på avkryssingsfeltet nedenfor for å bekrefte.",
-        "wifiCheckbox": "Jeg vil ikke skrive ut på et offentlig nettverk",
-        "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Din adresse",
@@ -280,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
-        "missingPermission": "Trenger tillatelse til filsystemet",
-        "missingPermissionExplanation": "Tilgang til filsystemet er nødvendig for å dele QR-koder.",
         "tag": "Etikett",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -299,7 +309,8 @@
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
-        "whatIsChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
         "checksumExplanation": "Når du legger til en hovednøkkel i lommeboken, bør du forsikre deg om at kontrollsummen samsvarer med den du har skrevet ned.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
@@ -340,7 +351,8 @@
         "totalTime": "Total tid",
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
         "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til.",
-        "invalid": "UGYLDIG"
+        "invalid": "UGYLDIG",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "La oss legge til et navn",
@@ -441,7 +453,8 @@
         "empty": "Tom",
         "retrying": "Prøver på nytt",
         "yesterday": "I går",
-        "promotingAnotherBundle": "Fremme en pakke til"
+        "promotingAnotherBundle": "Fremme en pakke til",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -499,18 +512,21 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Er du sikker på at du vil logge ut?"
+        "logoutConfirmation": "Er du sikker på at du vil logge ut?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Skann QR-kode"
     },
     "unitInfoModal": {
-        "unitSystem": "ENHETSSYSTEMET",
+        "unitSystem": "Unit System",
         "trillion": "Billioner",
         "billion": "Milliarder",
         "million": "Millioner",
         "thousand": "Tusen",
-        "one": "En"
+        "one": "En",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruke hele saldoen?",
@@ -532,7 +548,7 @@
         "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
-        "title": "Angi en hovednøkkel og et kontonavn.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Feil format på hovednøkkelen",
         "validSeedExplanation": "En gyldig hovednøkkel skal være 81 tegn bestående av bokstavene A-Z og tallet 9."
     },
@@ -546,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du lagret hovednøkkelen?",
-        "alreadyHave": "Jeg har lagret min hovednøkkel",
-        "reenterSeed": "På neste trinn vil du bli bedt om å skrive inn hovednøkkelen.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Hvis du ikke har lagret hovednøkkelen og enheten din blir ødelagt vil du miste tilgangen til dine IOTA.",
         "pleaseConfirm": "Vennligst bekreft at du har lagret hovednøkkelen."
     },
@@ -567,15 +583,19 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering er ikke tilgjengelig",
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
-        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
-        "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
-        "aMessage": "en melding"
+        "aMessage": "en melding",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Feil kode",
@@ -596,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksporter SeedVault",
-        "seedVaultExplanation": "SeedVault er en kryptert fil for å lagre din hovednøkkel sikkert. Hovednøkkelen er kryptert bak en SeedVault Nøkkel og kan ikke brukes uten nøkkelen.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Pass på å sikkerhetskopiere filen flere steder (f.eks harddisk, nettsky, USB). Hvis du mister denne filen og du ikke har hovednøkkelen din lagret et annet sted, mister du tilgangen til dine IOTA.",
         "exportFail": "SeedVault eksport mislyktes",
         "exportFailExplanation": "Det oppstod et problem med å eksportere SeedVault. Kontroller at du har riktige tillatelser og nok plass.",
@@ -610,13 +630,15 @@
         "importSuccessExplanation": "Din hovednøkkel ble importert.",
         "saveToDownloadFolder": "Lagre til nedlastingsmappen",
         "importSeedVault": "Importer SeedVault",
-        "dropSeedVaultHere": "Slipp SeedVault her <1></1> eller klikk for å bla igjennom",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Skriv inn din nøkkel for å åpne SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
         "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
-        "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil trenge denne nøkkelen for å gjenopprette din hovednøkkel fra SeedVault-sikkerhetskopien. Nøkkelen kan være den samme som passordet du bruker for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -650,7 +672,8 @@
         "preparingTransfers": "Forbereder transaksjoner",
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
-        "broadcasting": "Kringkasting"
+        "broadcasting": "Kringkasting",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
@@ -664,7 +687,8 @@
         "transition": "Overgang",
         "transitioning": "Overfører til ny snapshot.",
         "generatingAndDetecting": "Genererer adresser og laster inn saldo.",
-        "attaching": "Kobler adressene til Tangle."
+        "attaching": "Kobler adressene til Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatisk utfylling vellykket",
@@ -699,6 +723,10 @@
         "notLoggedIn": "Du er ikke innlogget",
         "setupIncomplete": "Lommebok-installasjonen er ufullstendig",
         "completeSetup": "Fullfør installasjon"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Varslinger",

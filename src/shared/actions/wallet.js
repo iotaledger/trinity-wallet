@@ -52,6 +52,9 @@ export const ActionTypes = {
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
+    PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
+    POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
+    RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
 
 /**
@@ -547,6 +550,49 @@ export const addressValidationRequest = () => ({
 export const addressValidationSuccess = () => ({
     type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
 });
+
+/**
+ * Dispatch to push to navigation stack
+ *
+ * @method pushRoute
+ * @param {string} payload
+ *
+ * @returns {{ type: {string}, payload: {string} }}
+ */
+export const pushRoute = (payload) => {
+    return {
+        type: ActionTypes.PUSH_ROUTE,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to pop from navigation stack
+ *
+ * @method popRoute
+ *
+ * @returns {{type: {string}}}
+ */
+export const popRoute = () => {
+    return {
+        type: ActionTypes.POP_ROUTE,
+    };
+};
+
+/**
+ * Dispatch to set navigation root
+ *
+ * @method resetRoute
+ * @param {string} payload
+ *
+ * @returns {{ type: {string}, payload: {string} }}
+ */
+export const resetRoute = (payload) => {
+    return {
+        type: ActionTypes.RESET_ROUTE,
+        payload,
+    };
+};
 
 /**
  * Dispatch to suggest that user should update

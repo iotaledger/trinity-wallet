@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withI18n } from 'react-i18next';
 
-import { byteToChar } from 'libs/helpers';
+import { byteToChar } from 'libs/iota/converter';
 
 import Button from 'ui/components/Button';
 import Tooltip from 'ui/components/Tooltip';
@@ -96,7 +96,7 @@ class SeedSave extends PureComponent {
                         variant="primary"
                         className="square"
                     >
-                        {t('done')}
+                        {t('back')}
                     </Button>
                 </footer>
             </React.Fragment>

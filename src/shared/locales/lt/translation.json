@@ -19,6 +19,7 @@
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -73,6 +74,8 @@
         "wallet": "Piniginė",
         "all": "Visi",
         "sent": "Išsiųsta",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Gauta",
         "sending": "Siunčiama",
         "receiving": "Gaunama",
@@ -127,7 +130,7 @@
         "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
         "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Apsilankykite #help kanale Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
-        "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas.",
@@ -144,9 +147,17 @@
         "tryingAgainWithDifferentNode": "Bandykite dar kartą su kitu serveriu.",
         "errorFetchingAccountInformation": "Klaida užkraunant paskyros duomenis.",
         "errorSyncingAddresses": "Klaida sinchronizuojant adreso informaciją. Bandykite dar kart pasirinkę kitą serverį.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "PAGRINDINĖ PASKYRA"
+        "errorAccessingKeychain": "Keychain klaida",
+        "errorAccessingKeychainExplanation": "Prieiga prie keychain nepasiekiama.",
+        "mainWallet": "PAGRINDINĖ PASKYRA",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "Yra naujų atnaujinimų",
+        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsinaujinti iki naujausios versijos.",
+        "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
+        "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -200,7 +211,7 @@
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
         "passwordMismatchExplanation": "Įvesti slaptažodžiai nesutampa. Bandykite dar kartą.",
-        "anEncryptedCopy": "Užšifruota jūsų užrakto kopija bus laikoma jūsų įrenginyje. Nuo šiol prisijungiant prie piniginės, naudokitės šiuo slaptažodžiu.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Pakartokite slaptažodį"
     },
     "copyToClipboard": {
@@ -234,7 +245,8 @@
         "login": "Prisijungti",
         "setNode": "Nustatyti serverį",
         "whyBiometricDisabled": "Kodėl biometrinis autentifikavimas išjungtas?",
-        "whyBiometricDisabledExplanation": "Pirmą kartą užkraunant programėlę, biometrinis prisijungimas yra išjungtas dėl jūsų saugumo. Trinity jus automatiškai atjungs jei tapsite neaktyviu. Tada vėl galėsite prisijungti su biometriniu prisijungimu."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
@@ -263,12 +275,12 @@
     "paperWallet": {
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
-        "print": "ATSPAUSDINTI",
+        "print": "Print",
         "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
         "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
-        "tapCheckboxes": "Sužymėkite varneles norėdami patvirtinti.",
-        "wifiCheckbox": "Nespausdinsiu naudodamas viešą wifi",
-        "printerCheckbox": "Nespausdinsiu naudodamas viešą spausdintuvą"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Jūsų adresas",
@@ -277,15 +289,13 @@
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Sukurti adresą",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
-        "missingPermission": "Reikalingas failų sistemos leidimas",
-        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
         "tag": "Etiketė",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Sukurti adresą",
+        "generateAnAddressTitle": "Sukurti adresą",
+        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją."
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -299,7 +309,8 @@
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
         "printBlankWallet": "Atspausdinti neužpildytą versiją",
-        "whatIsChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
         "mustSaveYourSeed": "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
@@ -340,7 +351,8 @@
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
         "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
-        "invalid": "KLAIDA"
+        "invalid": "KLAIDA",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
@@ -441,7 +453,8 @@
         "empty": "Tuščia",
         "retrying": "Kraunama",
         "yesterday": "Vakar",
-        "promotingAnotherBundle": "Iškeliamas kitas paketas"
+        "promotingAnotherBundle": "Iškeliamas kitas paketas",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -499,18 +512,21 @@
         "currency": "Valiuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Ar tikrai norite atsijungti?"
+        "logoutConfirmation": "Ar tikrai norite atsijungti?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Skenuoti QR kodą"
     },
     "unitInfoModal": {
-        "unitSystem": "VIENETŲ SISTEMA",
+        "unitSystem": "Unit System",
         "trillion": "Trilijonai",
         "billion": "Milijardai",
         "million": "Milijonai",
         "thousand": "Tūkstančiai",
-        "one": "Vienetai"
+        "one": "Vienetai",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Kodėl negaliu išleisti viso savo balanso?",
@@ -532,7 +548,7 @@
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
-        "title": "Įveskite užraktą ir paskyros vardą.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Neteisingas užrakto formatas",
         "validSeedExplanation": "Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9."
     },
@@ -540,14 +556,14 @@
         "enterPassword": "Įveskite slaptažodį, norėdami pamatyti užraktą.",
         "viewSeed": "Rodyti užraktą",
         "hideSeed": "Slėpti užraktą",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailable": "Užrakto iškėlimas yra negalimas {{accountType}} paskyros tipui",
+        "accountIndex": "Jūsų Ledger paskyros indeksas",
+        "accountPage": "Jūsų Ledger paskyros puslapis"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Ar išsisaugojote savo užraktą?",
-        "alreadyHave": "Užraktą išsisaugojau",
-        "reenterSeed": "Kitame žingsnyje, jums reikės pakartotinai įvesti užraktą.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Jei neišsisaugojote savo užrakto ir jūsų įrenginys suges, prarasite savo IOTA.",
         "pleaseConfirm": "Patvirtinkite, kad jūsų užraktas saugiai išsaugotas."
     },
@@ -567,15 +583,19 @@
         "status": "Būsena",
         "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
         "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
-        "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",
-        "buttonInstructionsDisableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami išjungti Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami įjungti Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti"
     },
     "transferConfirmation": {
         "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
-        "aMessage": "žinutę"
+        "aMessage": "žinutę",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
@@ -596,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
-        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas saugiai laikyti savo užraktą. Užraktas yra užšifruojamas SeedVault raktu ir negali būti atskleistas be to rakto.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
         "exportFail": "SeedVault iškėlimo klaida",
         "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
@@ -610,13 +630,15 @@
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
-        "dropSeedVaultHere": "Įkelti SeedVault čia <1></1> arba spauskite ieškoti failo",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Įveskite raktą norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite raktą norėdami užšifruoti failą. Šio rakto jums prireiks, norint susigrąžinti užraktą iš SeedVault failo. Raktas gali būti toks pat, kaip ir slaptažodis Trinity piniginei."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -650,7 +672,8 @@
         "preparingTransfers": "Ruošiami pavedimai",
         "gettingTransactionsToApprove": "Pavedimai ruošiami patvirtinimui",
         "proofOfWork": "Atliekami skaičiavimai",
-        "broadcasting": "Transliuojama"
+        "broadcasting": "Transliuojama",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nepavyksta perkelti tinklo duomenų",
@@ -664,7 +687,8 @@
         "transition": "Perkelti",
         "transitioning": "Perkeliami tinklo duomenys.",
         "generatingAndDetecting": "Kuriami adresai ir nustatinėjamas balansas.",
-        "attaching": "Adresai prijungiami prie Tangle."
+        "attaching": "Adresai prijungiami prie Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
@@ -700,6 +724,10 @@
         "setupIncomplete": "Piniginės nustatymai nebaigti",
         "completeSetup": "Baigti sąranką"
     },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+    },
     "notifications": {
         "notifications": "Pranešimai",
         "notificationExplanation": "Gauti pranešimus apie naujus pavedimus.",
@@ -726,33 +754,33 @@
     "ledger": {
         "ready": "Ledger įrenginys prijungtas",
         "notReady": "Jei norite pasinaudoti Ledger įrenginiu, prijunkite ir atrakinkite jį",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "indexInUse": "Šis indeksas jau priskirtas paskyrai: {{account}}",
+        "indexInUseExplanation": "Pasirinktas indeksas jau priskirtas vienai iš jūsų paskyrų. Pasirinkite kitą indekso numerį.",
+        "proceedWithLedger": "Tęskite su Ledger vedliu",
+        "accountIndex": "Paskyros indeksas",
+        "accountPage": "Paskyros puslapis",
+        "chooseAccountIndex": "Pasirinkite Ledger paskyros indeksą",
+        "accountIndexExplanation": "Jūsų Ledger gali talpinti daugybę užraktų. Kiekvienam užraktui priskiriamas unikalus indekso numeris. Jums priskirtas naujas indeksas, bet galite jį pakeisti į kitą. Nepamirškite išsisaugoti pasirinkto indekso numerio.",
+        "accountPageExplanation": "Kai kurioms trečiosios šalies piniginėms reikalingi puslapiai.",
+        "connectionError": "Nepavyksta prisijungti prie Ledger",
+        "connectionErrorExplanation": "Patikrinkite ar Ledger prijungtas ir atrakintas.",
+        "connectionTitle": "Prijungti Ledger",
+        "connectionExplanation": "Ledger įrenginys turi būti prijungtas norint atlikti šią funkciją.",
+        "transactionTitle": "Peržiūrėkite ir patvirtinkite pavedimą savo Ledger įrenginyje",
+        "transactionExplanation": "Savo Ledger įrenginyje patvirtinkite išeinantį pavedimą.",
+        "applicationTitle": "Atidaryti Ledger IOTA aplikaciją",
+        "applicationExplanation": "Savo Ledger įrenginyje atidarykite IOTA aplikaciją norėdami tęsti.",
+        "cannotSendZeroValueTitle": "Nulinės vertės pavedimų atlikti negalima",
+        "cannotSendZeroValueExplanation": "Su Ledger įrenginiu nulinės vertės pavedimų atlikti negalima.",
+        "ledgerDisconnectedTitle": "Ledger įrenginys atjungtas",
+        "ledgerDisconnectedExplanation": "Ledger įrenginys buvo atjungtas. Prašome prijungti iš naujo.",
+        "ledgerDeniedTitle": "Pavedimas atmestas",
+        "ledgerDeniedExplanation": "Ledger įrenginyje pavedimas buvo atmestas.",
+        "ledgerIncorrectIndex": "Ledger įrenginio neatitikimas",
+        "ledgerIncorrectIndexExplanation": "Prijungtas Ledger įrenginys neatitinka to, kuris yra susietas su šia paskyra, arba susigrąžinimo frazė buvo pakeista.",
+        "checkAddress": "Patikrinkite priėmimo adresą",
+        "checkAddressExplanation": "Patikrinkite ar adresas sutampa su rodomu adresu Ledger įrenginyje.",
+        "applicationNotInitialised": "Pranešimas nepatvirtintas",
+        "applicationNotInitialisedExplanation": "Iš naujo atidarykite IOTA aplikaciją Ledger įrenginyje, patvirtinkite informacinį pranešimą ir bandykite dar kartą."
     }
 }

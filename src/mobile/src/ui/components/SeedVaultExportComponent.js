@@ -1,8 +1,8 @@
-import map from 'lodash/map';
+import values from 'lodash/values';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
+import { Animated, Text, View, StyleSheet, Keyboard, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { generateAlert } from 'shared-modules/actions/alerts';
@@ -25,7 +25,6 @@ import PasswordFields from './PasswordFields';
 const steps = [
     'isValidatingWalletPassword',
     'isViewingGeneralInfo',
-    'isViewingPasswordInfo',
     'isSettingPassword',
     'isExporting',
     'isSelectingSaveMethodAndroid',
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
 });
@@ -69,7 +68,7 @@ class SeedVaultExportComponent extends Component {
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** Name for selected account */
-        selectedAccountName: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string,
         /** Type for selected account */
         selectedAccountMeta: PropTypes.object.isRequired,
         /** Returns to page before starting the Seed Vault Export process */
@@ -105,7 +104,7 @@ class SeedVaultExportComponent extends Component {
     componentWillMount() {
         const { isAuthenticated, onRef } = this.props;
         onRef(this);
-        this.animatedValue = new Animated.Value(isAuthenticated ? width * 1.5 : width * 2.5);
+        this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
@@ -145,13 +144,12 @@ class SeedVaultExportComponent extends Component {
                 .replace(/[-:]/g, '')
                 .replace('T', '-')}.kdbx`;
         this.setState({ path });
-        const vaultParsed = map(vault.split(','), (num) => parseInt(num));
         RNFetchBlob.fs.exists(path).then((fileExists) => {
             if (fileExists) {
                 RNFetchBlob.fs.unlink(path);
             }
             RNFetchBlob.fs
-                .createFile(path, vaultParsed, 'ascii')
+                .createFile(path, values(vault), 'ascii')
                 .then(() => {
                     if (this.state.saveToDownloadFolder) {
                         return this.onExportSuccess();
@@ -179,8 +177,6 @@ class SeedVaultExportComponent extends Component {
         if (step === 'isValidatingWalletPassword') {
             return this.validateWalletPassword();
         } else if (step === 'isViewingGeneralInfo') {
-            return this.navigateToStep('isViewingPasswordInfo');
-        } else if (step === 'isViewingPasswordInfo') {
             return this.navigateToStep('isSettingPassword');
         } else if (step === 'isExporting') {
             return this.navigateToStep('isSelectingSaveMethodAndroid');
@@ -238,10 +234,8 @@ class SeedVaultExportComponent extends Component {
      */
     onBackPress() {
         const { step } = this.props;
-        if (step === 'isViewingPasswordInfo') {
+        if (step === 'isSettingPassword') {
             return this.navigateToStep('isViewingGeneralInfo');
-        } else if (step === 'isSettingPassword') {
-            return this.navigateToStep('isViewingPasswordInfo');
         } else if (step === 'isExporting') {
             return this.navigateToStep('isSettingPassword');
         } else if (step === 'isSelectingSaveMethodAndroid') {
@@ -300,24 +294,23 @@ class SeedVaultExportComponent extends Component {
      */
     navigateToStep(nextStep) {
         const stepIndex = steps.indexOf(nextStep);
-        const animatedValue = [2.5, 1.5, 0.5, -0.5, -1.5, -2.5];
-        Animated.spring(this.animatedValue, {
+        const animatedValue = [2, 1, 0, -1, -2];
+        Animated.timing(this.animatedValue, {
             toValue: animatedValue[stepIndex] * width,
-            velocity: 3,
-            tension: 2,
-            friction: 8,
+            duration: 500,
+            easing: Easing.bezier(0.25, 1, 0.25, 1),
         }).start();
         this.props.setProgressStep(nextStep);
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, isAuthenticated } = this.props;
         const { password, reentry } = this.state;
         const textColor = { color: theme.body.color };
 
         return (
             <Animated.View style={[styles.container, { transform: [{ translateX: this.animatedValue }] }]}>
-                <View style={styles.viewContainer}>
+                <View style={[styles.viewContainer, isAuthenticated && { opacity: 0 }]}>
                     <Text style={[styles.infoText, textColor, { marginBottom: height / 15 }]}>
                         {t('login:enterPassword')}
                     </Text>
@@ -336,23 +329,21 @@ class SeedVaultExportComponent extends Component {
                     />
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox
-                        body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultExplanation')}</Text>}
-                    />
+                    <InfoBox>
+                        <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultExplanation')}</Text>
+                    </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox
-                        body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>}
-                    />
-                </View>
-                <View style={styles.viewContainer}>
+                    <InfoBox containerStyle={{ marginBottom: height / 30 }}>
+                        <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultKeyExplanation')}</Text>
+                    </InfoBox>
                     <PasswordFields
                         onRef={(ref) => {
                             this.passwordFields = ref;
                         }}
                         onAcceptPassword={() => this.navigateToStep('isExporting')}
+                        passwordLabel={t('twoFA:key')}
+                        reentryLabel={t('retypeKey')}
                         password={password}
                         reentry={reentry}
                         setPassword={(password) => this.setState({ password })}
@@ -360,47 +351,48 @@ class SeedVaultExportComponent extends Component {
                     />
                 </View>
                 <View style={styles.viewContainer}>
-                    <InfoBox
-                        body={theme.body}
-                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultWarning')}</Text>}
-                    />
+                    <InfoBox>
+                        <Text style={[styles.infoBoxText, textColor]}>{t('seedVaultWarning')}</Text>
+                    </InfoBox>
                 </View>
                 <View style={styles.viewContainer}>
-                    <Button
-                        onPress={() => {
-                            this.setState({ saveToDownloadFolder: true });
-                            this.onExportPress();
-                        }}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: theme.secondary.color,
-                            },
-                            children: { color: theme.primary.body },
-                        }}
-                    >
-                        {t('saveToDownloadFolder')}
-                    </Button>
-                    <View style={{ flex: 0.5 }} />
-                    <Button
-                        onPress={() => {
-                            this.setState({ saveToDownloadFolder: false });
-                            this.onExportPress();
-                        }}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: theme.secondary.color,
-                            },
-                            children: { color: theme.primary.body },
-                        }}
-                    >
-                        {t('global:share')}
-                    </Button>
+                    <View>
+                        <Button
+                            onPress={() => {
+                                this.setState({ saveToDownloadFolder: true });
+                                this.onExportPress();
+                            }}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: theme.secondary.color,
+                                    marginBottom: height / 20,
+                                },
+                                children: { color: theme.primary.body },
+                            }}
+                        >
+                            {t('saveToDownloadFolder')}
+                        </Button>
+                        <Button
+                            onPress={() => {
+                                this.setState({ saveToDownloadFolder: false });
+                                this.onExportPress();
+                            }}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: theme.secondary.color,
+                                },
+                                children: { color: theme.primary.body },
+                            }}
+                        >
+                            {t('global:share')}
+                        </Button>
+                    </View>
                 </View>
             </Animated.View>
         );

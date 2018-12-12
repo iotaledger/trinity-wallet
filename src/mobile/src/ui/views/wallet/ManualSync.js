@@ -50,14 +50,14 @@ const styles = StyleSheet.create({
         marginLeft: width / 20,
     },
     syncButtonContainer: {
-        flex: 1,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'center',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     activityIndicator: {
@@ -118,17 +118,12 @@ export class ManualSync extends Component {
                     <View style={{ flex: 0.8 }} />
                     {!isSyncing && (
                         <View style={styles.innerContainer}>
-                            <InfoBox
-                                body={body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, textColor]}>{t('manualSync:outOfSync')}</Text>
-                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                            {t('manualSync:pressToSync')}
-                                        </Text>
-                                    </View>
-                                }
-                            />
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>{t('manualSync:outOfSync')}</Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                    {t('manualSync:pressToSync')}
+                                </Text>
+                            </InfoBox>
                             <View style={styles.syncButtonContainer}>
                                 <CtaButton
                                     ctaColor={primary.color}
@@ -143,22 +138,15 @@ export class ManualSync extends Component {
                     )}
                     {isSyncing && (
                         <View style={styles.innerContainer}>
-                            <InfoBox
-                                body={body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            {t('manualSync:syncingYourAccount')}
-                                        </Text>
-                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                            {t('manualSync:thisMayTake')}
-                                        </Text>
-                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                            {t('manualSync:doNotClose')}
-                                        </Text>
-                                    </View>
-                                }
-                            />
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>{t('manualSync:syncingYourAccount')}</Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                    {t('manualSync:thisMayTake')}
+                                </Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                    {t('manualSync:doNotClose')}
+                                </Text>
+                            </InfoBox>
                             <ActivityIndicator
                                 animating={isSyncing}
                                 style={styles.activityIndicator}

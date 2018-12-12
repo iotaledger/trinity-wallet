@@ -89,7 +89,7 @@ class Idle extends React.Component {
         if (!this.state.locked) {
             return null;
         }
-        return <ModalPassword isOpen isForced content={{}} onSuccess={(password) => this.unlock(password)} />;
+        return <ModalPassword isOpen isForced skip2fa content={{}} onSuccess={(password) => this.unlock(password)} />;
     }
 }
 

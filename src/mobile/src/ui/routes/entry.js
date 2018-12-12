@@ -2,11 +2,12 @@ import get from 'lodash/get';
 import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { withNamespaces } from 'react-i18next';
-import { Text, TextInput, NetInfo } from 'react-native';
+import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
 import sharedStore from 'shared-modules/store';
 import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
+import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
 import { ActionTypes } from 'shared-modules/actions/wallet';
@@ -23,11 +24,12 @@ const launch = (store) => {
     SwitchingConfig.autoSwitch = false;
 
     // Disable accessibility fonts
+    Text.defaultProps = {};
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
     // Ignore specific warnings
-    console.ignoredYellowBox = ['Setting a timer', 'Breadcrumb']; // eslint-disable-line no-console
+    YellowBox.ignoreWarnings(['Setting a timer', 'Breadcrumb', 'main queue setup', 'Share was not exported']);
 
     const state = store.getState();
 
@@ -36,6 +38,9 @@ const launch = (store) => {
         clearKeychain();
         store.dispatch(setCompletedForcedPasswordUpdate());
     }
+
+    // Assign accountIndex to every account in accountInfo if it is not assigned already
+    store.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
 
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
@@ -49,7 +54,7 @@ const launch = (store) => {
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
-    renderInitialScreen(initialScreen, state);
+    renderInitialScreen(initialScreen, state, store);
 };
 
 const onAppStart = () => {
@@ -57,7 +62,25 @@ const onAppStart = () => {
     return new Promise((resolve) => Navigation.events().registerAppLaunchedListener(resolve));
 };
 
-const renderInitialScreen = (initialScreen, state) => {
+const renderInitialScreen = (initialScreen, state, store) => {
+    Navigation.setDefaultOptions({
+        layout: {
+            backgroundColor: state.settings.theme.body.bg,
+            orientation: ['portrait'],
+        },
+        topBar: {
+            visible: false,
+            drawBehind: false,
+            elevation: 0,
+            background: {
+                color: 'black',
+            },
+        },
+        statusBar: {
+            drawBehind: false,
+            backgroundColor: state.settings.theme.body.bg,
+        },
+    });
     Navigation.setRoot({
         root: {
             stack: {
@@ -66,30 +89,13 @@ const renderInitialScreen = (initialScreen, state) => {
                     {
                         component: {
                             name: initialScreen,
-                            options: {
-                                layout: {
-                                    backgroundColor: state.settings.theme.body.bg,
-                                    orientation: ['portrait'],
-                                },
-                                topBar: {
-                                    visible: false,
-                                    drawBehind: true,
-                                    elevation: 0,
-                                    background: {
-                                        color: state.settings.theme.body.bg,
-                                    },
-                                },
-                                statusBar: {
-                                    drawBehind: true,
-                                    backgroundColor: state.settings.theme.body.bg,
-                                },
-                            },
                         },
                     },
                 ],
             },
         },
     });
+    store.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**

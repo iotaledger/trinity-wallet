@@ -12,6 +12,7 @@ import {
     setLockScreenTimeout,
     setTray,
     setNotifications,
+    setProxy,
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
@@ -37,6 +38,8 @@ class Advanced extends PureComponent {
         wallet: PropTypes.object,
         /** @ignore */
         setTray: PropTypes.func.isRequired,
+        /** @ignore */
+        setProxy: PropTypes.func.isRequired,
         /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
@@ -123,6 +126,7 @@ class Advanced extends PureComponent {
             lockScreenTimeout,
             setTray,
             setNotifications,
+            setProxy,
             t,
         } = this.props;
 
@@ -203,6 +207,19 @@ class Advanced extends PureComponent {
                             <hr />
                         </React.Fragment>
                     ) : null}
+
+                    <React.Fragment>
+                        <h3>{t('proxy:proxy')}</h3>
+                        <Toggle
+                            checked={!settings.ignoreProxy}
+                            onChange={() => setProxy(!settings.ignoreProxy)}
+                            on={t('enabled')}
+                            off={t('disabled')}
+                        />
+                        <p>{t('proxy:proxyExplanation')}</p>
+                        <hr />
+                    </React.Fragment>
+
                     <h3>{t('settings:reset')}</h3>
                     <Trans i18nKey="walletResetConfirmation:warning">
                         <p>
@@ -282,6 +299,7 @@ const mapDispatchToProps = {
     setLockScreenTimeout,
     setTray,
     setNotifications,
+    setProxy,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));

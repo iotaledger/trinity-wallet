@@ -1,38 +1,31 @@
 import React, { PureComponent } from 'react';
-import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import InfoBox from './InfoBox';
+import { Icon } from 'ui/theme/icons';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
-    infoTextBold: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize4,
-        textAlign: 'left',
+    questionText: {
         backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize6,
+        width: width / 1.3,
+        textAlign: 'center',
     },
-    infoTextLight: {
+    infoText: {
+        backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    button: {
-        borderWidth: 1.2,
-        borderRadius: Styling.borderRadius,
-        height: height / 14,
-        width: width / 2.7,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    buttonText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
+        width: width / 1.3,
         textAlign: 'center',
+    },
+    icon: {
+        opacity: 0.6,
+        paddingVertical: height / 30,
+        backgroundColor: 'transparent',
     },
 });
 
@@ -51,41 +44,17 @@ export default class SnapshotTransitionInfoModal extends PureComponent {
     }
 
     render() {
-        const { theme, t, completeTransitionTask } = this.props;
-
-        const textColor = { color: theme.body.color };
-        const isBgLight = tinycolor(theme.body.bg).isLight();
-        const buttonTextColor = { color: isBgLight ? theme.primary.body : theme.primary.color };
-        const borderColor = { borderColor: isBgLight ? 'transparent' : theme.primary.color };
-        const backgroundColor = { backgroundColor: isBgLight ? theme.primary.color : 'transparent' };
-
+        const { theme: { body }, t, completeTransitionTask } = this.props;
+        const textColor = { color: body.color };
         return (
-            <View style={{ backgroundColor: theme.body.bg, marginTop: height / 30 }}>
-                <InfoBox
-                    body={theme.body}
-                    width={width / 1.1}
-                    text={
-                        <View>
-                            <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
-                                {t('global:isYourBalanceCorrect')}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                {t('global:ifYourBalanceIsNotCorrect')}
-                            </Text>
-                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                {t('global:headToAdvancedSettingsForTransition')}
-                            </Text>
-                            <View style={{ paddingTop: height / 18, alignItems: 'center' }}>
-                                <TouchableOpacity onPress={() => completeTransitionTask()}>
-                                    <View style={[styles.button, borderColor, backgroundColor]}>
-                                        <Text style={[styles.buttonText, buttonTextColor]}>{t('global:okay')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    }
-                />
-            </View>
+            <ModalView displayTopBar onButtonPress={() => completeTransitionTask()} buttonText={t('done')}>
+                <Text style={[styles.questionText, textColor]}>{t('global:isYourBalanceCorrect')}</Text>
+                <Icon name="wallet" size={width / 6} color={body.color} style={styles.icon} />
+                <Text style={[styles.infoText, textColor]}>{t('global:ifYourBalanceIsNotCorrect')}</Text>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                    {t('global:headToAdvancedSettingsForTransition')}
+                </Text>
+            </ModalView>
         );
     }
 }
