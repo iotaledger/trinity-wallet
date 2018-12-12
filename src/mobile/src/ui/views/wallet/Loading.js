@@ -155,7 +155,7 @@ class Loading extends Component {
             password,
             deepLinkActive,
         } = this.props;
-
+        this.props.setLoginRoute('login');
         leaveNavigationBreadcrumb('Loading');
         KeepAwake.activate();
         this.animation.play();
@@ -293,15 +293,8 @@ class Loading extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
             },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -322,15 +315,8 @@ class Loading extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
             },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: bar.alt,
             },
         });

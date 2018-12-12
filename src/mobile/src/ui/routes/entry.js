@@ -63,6 +63,24 @@ const onAppStart = () => {
 };
 
 const renderInitialScreen = (initialScreen, state, store) => {
+    Navigation.setDefaultOptions({
+        layout: {
+            backgroundColor: state.settings.theme.body.bg,
+            orientation: ['portrait'],
+        },
+        topBar: {
+            visible: false,
+            drawBehind: false,
+            elevation: 0,
+            background: {
+                color: 'black',
+            },
+        },
+        statusBar: {
+            drawBehind: false,
+            backgroundColor: state.settings.theme.body.bg,
+        },
+    });
     Navigation.setRoot({
         root: {
             stack: {
@@ -71,24 +89,6 @@ const renderInitialScreen = (initialScreen, state, store) => {
                     {
                         component: {
                             name: initialScreen,
-                            options: {
-                                layout: {
-                                    backgroundColor: state.settings.theme.body.bg,
-                                    orientation: ['portrait'],
-                                },
-                                topBar: {
-                                    visible: false,
-                                    drawBehind: false,
-                                    elevation: 0,
-                                    background: {
-                                        color: state.settings.theme.body.bg,
-                                    },
-                                },
-                                statusBar: {
-                                    drawBehind: false,
-                                    backgroundColor: state.settings.theme.body.bg,
-                                },
-                            },
                         },
                     },
                 ],

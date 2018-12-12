@@ -178,15 +178,8 @@ class UseExistingSeed extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
             },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -287,6 +280,22 @@ class UseExistingSeed extends Component {
                         </View>
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
+                            onRef={(c) => {
+                                this.accountNameField = c;
+                            }}
+                            label={t('addAdditionalSeed:accountName')}
+                            onChangeText={(value) => this.setState({ accountName: value })}
+                            containerStyle={{ width: Styling.contentWidth }}
+                            autoCapitalize="words"
+                            maxLength={MAX_SEED_LENGTH}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            theme={theme}
+                            value={accountName}
+                        />
+                        <View style={{ flex: 0.45 }} />
+                        <CustomTextInput
                             label={t('global:seed')}
                             onChangeText={(text) => {
                                 if (text.match(VALID_SEED_REGEX) || text.length === 0) {
@@ -320,22 +329,6 @@ class UseExistingSeed extends Component {
                             onRef={(ref) => {
                                 this.SeedVaultImport = ref;
                             }}
-                        />
-                        <View style={{ flex: 0.45 }} />
-                        <CustomTextInput
-                            onRef={(c) => {
-                                this.accountNameField = c;
-                            }}
-                            label={t('addAdditionalSeed:accountName')}
-                            onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: Styling.contentWidth }}
-                            autoCapitalize="words"
-                            maxLength={MAX_SEED_LENGTH}
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="done"
-                            theme={theme}
-                            value={accountName}
                         />
                         <View style={{ flex: 1.2 }} />
                     </View>

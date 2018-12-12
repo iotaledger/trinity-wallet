@@ -95,15 +95,8 @@ class LanguageSetup extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
-                orientation: ['portrait'],
-            },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
             },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
             },
         });
