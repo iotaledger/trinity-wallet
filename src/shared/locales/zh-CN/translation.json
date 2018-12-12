@@ -548,7 +548,7 @@
         "syncingYourAccount": "正在同步您的账号"
     },
     "useExistingSeed": {
-        "title": "输入种子和帐户名称。",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "种子格式不正确",
         "validSeedExplanation": "有效的种子应该是81个字符，并且只包含 A-Z 或9。"
     },
