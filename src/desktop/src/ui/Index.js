@@ -189,7 +189,7 @@ class App extends React.Component {
             await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
-                fatalError: true,
+                fatalError: err instanceof Error && typeof err.message === 'string' ? err.message : err.toString(),
             });
         }
     }
@@ -268,15 +268,16 @@ class App extends React.Component {
 
     render() {
         const { location, history } = this.props;
+        const { fatalError } = this.state;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
-        if (this.state.fatalError) {
+        if (fatalError) {
             return (
                 <div className={css.trintiy}>
                     <Theme history={history} />
-                    <Titlebar />
-                    <FatalError />
+                    <Titlebar path={currentKey} />
+                    <FatalError error={fatalError} />
                 </div>
             );
         }
