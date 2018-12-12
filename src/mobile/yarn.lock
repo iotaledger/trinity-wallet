@@ -7030,11 +7030,6 @@ react-native-optimized-flatlist@^1.0.4:
   version "1.1.0"
   resolved "git+https://github.com/laumair/react-native-os.git#527b0aef4e30041b5230f5b901767dd9f54903fe"
 
-react-native-permissions@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
-  integrity sha512-t0Ujm177bagjUOSzhpmkSz+LqFW04HnY9TeZFavDCmV521fQvFz82aD+POXqWsAdsJVOK3umJYBNNqCjC3g0hQ==
-
 react-native-print@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.5.0.tgz#f95301fe4979afeac6816d8019754ec7bdf7bfe6"
