@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
-        "title": "Ange din seed och ett kontonamn.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Felaktigt seed-format",
         "validSeedExplanation": "Giltig seed bör vara 81 tecken och innehålla A-Z eller 9."
     },
