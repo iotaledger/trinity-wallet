@@ -278,7 +278,7 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,
-    forceUpdate: state.wallet.forceUpdate
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {

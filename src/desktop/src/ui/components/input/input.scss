@@ -46,6 +46,13 @@
             }
         }
 
+        &:hover {
+            .tooltip {
+                opacity: 1;
+                transition: 0.2s ease-in;
+            }
+        }
+
         .editable {
             display: block;
             font-family: 'SourceCodePro';
@@ -542,18 +549,43 @@
 }
 
 .tooltip {
-    background: var(--bar-bg) !important;
-    color: var(--bar) !important;
-    width: 324px !important;
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    font-size: 14px;
+    background: var(--bar-bg);
+    color: var(--bar);
+    width: 342px;
+    border-radius: 4px;
     font-family: 'SourceCodePro';
     letter-spacing: 2px;
     word-wrap: break-word;
     line-height: 21px;
-    padding: 12px 14px 12px 16px !important;
+    padding: 12px 14px 12px 16px;
+    top: 48px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+
+    mark {
+        color: var(--primary);
+    }
 
     &:after {
-        border-bottom-color: var(--bar-bg) !important;
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: calc(50% - 6px);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 6px 6px 6px;
+        border-color: transparent transparent var(--bar-bg) transparent;
     }
+}
+
+input:focus + .tooltip {
+    display: none;
 }
 
 .addressHidden {

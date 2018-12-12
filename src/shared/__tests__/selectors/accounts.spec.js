@@ -157,8 +157,10 @@ describe('selectors: accounts', () => {
         });
 
         describe('when "accountInfo" prop is defined as a nested prop under "accounts" prop in argument', () => {
-            it('should return value for "accountNames" prop', () => {
-                expect(getAccountNamesFromState({ accounts: { accountInfo: { a: {}, b: [] } } })).to.eql(['a', 'b']);
+            it('should return sorted account names by indes', () => {
+                expect(
+                    getAccountNamesFromState({ accounts: { accountInfo: { a: { index: 1 }, b: { index: 0 } } } }),
+                ).to.eql(['b', 'a']);
             });
         });
     });

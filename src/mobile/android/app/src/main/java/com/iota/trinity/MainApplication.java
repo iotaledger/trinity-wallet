@@ -64,7 +64,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
     protected List<ReactPackage> getPackages() {
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
-        return Arrays.asList(
+        return Arrays.<ReactPackage>asList(
                 // eg. new VectorIconsPackage()
                 new SvgPackage(),
                 new MainReactPackage(),

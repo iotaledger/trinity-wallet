@@ -32,7 +32,6 @@ class Addresses extends PureComponent {
                                 .reverse()
                                 .map((item) => {
                                     const address = item + account.addresses[item].checksum;
-                                    const text = address.match(/.{1,3}/g).join(' ');
                                     return (
                                         <li key={address}>
                                             <p className={isSpent(account.addresses[item]) ? css.spent : null}>
@@ -41,7 +40,10 @@ class Addresses extends PureComponent {
                                                     title={t('receive:addressCopied')}
                                                     success={t('receive:addressCopiedExplanation')}
                                                 >
-                                                    {text}
+                                                    {item.match(/.{1,3}/g).join(' ')}{' '}
+                                                    <mark>
+                                                        {account.addresses[item].checksum.match(/.{1,3}/g).join(' ')}
+                                                    </mark>
                                                 </Clipboard>
                                             </p>
                                             <strong>

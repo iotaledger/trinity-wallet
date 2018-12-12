@@ -23,6 +23,7 @@ import Scrollbar from 'ui/components/Scrollbar';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import ModalConfirm from 'ui/components/modal/Confirm';
+import size from 'lodash/size';
 
 import css from '../index.scss';
 
@@ -51,7 +52,21 @@ class Addresses extends PureComponent {
         transitionForSnapshot: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        activeStepIndex: PropTypes.number.isRequired,
+        /** @ignore */
+        activeSteps: PropTypes.array.isRequired,
     };
+
+    static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
+        if (activeStepIndex === -1) {
+            return null;
+        }
+
+        return t('snapshotTransition:attachProgress', {
+            currentAddress: activeStepIndex + 1,
+            totalAddresses: sizeOfActiveSteps,
+        });
+    }
 
     componentDidUpdate(prevProps) {
         const { wallet, ui } = this.props;
@@ -128,7 +143,8 @@ class Addresses extends PureComponent {
     };
 
     render() {
-        const { ui, wallet, t } = this.props;
+        const { ui, wallet, t, activeStepIndex, activeSteps } = this.props;
+        const sizeOfActiveSteps = size(activeSteps);
 
         if ((ui.isTransitioning || ui.isAttachingToTangle) && !wallet.balanceCheckFlag) {
             return (
@@ -146,7 +162,8 @@ class Addresses extends PureComponent {
                             ) : (
                                 <div>
                                     {t('snapshotTransition:attaching')} <br />
-                                    {t('loading:thisMayTake')} {t('global:pleaseWaitEllipses')}
+                                    {t('loading:thisMayTake')} {t('global:pleaseWaitEllipses')} <br />
+                                    {Addresses.renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t)}
                                 </div>
                             )}
                         </React.Fragment>
@@ -222,6 +239,8 @@ const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),
     addresses: getAddressesForSelectedAccount(state),
+    activeStepIndex: state.progress.activeStepIndex,
+    activeSteps: state.progress.activeSteps,
 });
 
 const mapDispatchToProps = {

@@ -696,18 +696,18 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             .then(({ newState }) => {
                 dispatch(updateAccountInfoAfterSpending(newState));
 
-                // Progressbar => (Progress summary)
+                // Progressbar => (Progress complete)
                 dispatch(setNextStepAsActive());
                 dispatch(generateTransactionSuccessAlert(isZeroValue));
 
                 setTimeout(() => {
                     dispatch(completeTransfer());
                     dispatch(resetProgress());
-                }, 5000);
+                }, 3500);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-
+                dispatch(resetProgress());
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {

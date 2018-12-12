@@ -19,7 +19,7 @@
         "invalidResponse": "Errore di nodo",
         "invalidResponseExplanation": "Il nodo ha restituito un errore. Provare a cambiare il nodo.",
         "invalidResponseFetchingAccount": "Il nodo ha restituito un errore durante il recupero di informazioni del tuo conto. Prova a cambiare nodo.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Il nodo ha restituito un errore mentre si reperivano i dati del tuo conto. Se il problema persiste, prova a cambiare il nodo o a disabilitare l'uso del proxy nelle impostazioni di Trinity.",
         "nodeOutOfSync": "Nodo non sincronizzato",
         "nodeOutOfSyncExplanation": "Il nodo attualmente selezionato non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
         "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
@@ -74,6 +74,8 @@
         "wallet": "Portafoglio",
         "all": "Tutti",
         "sent": "Inviato",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Ricevuto",
         "sending": "Invio",
         "receiving": "Ricezione",
@@ -128,7 +130,7 @@
         "spentAddressExplanation": "AVVISO: Fondi su indirizzi spesi",
         "discordInformation": "È pericoloso inviare dallo stesso indirizzo più di una volta. Consulta il canale #help su Discord per scoprire cosa si può fare.",
         "androidInsecureClipboardWarning": "Android non fornisce una copia negli Appunti sicura.",
-        "androidCopyPasteWarning": "Mai copiare/incollare il vostro seme su un dispositivo Android.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Non farò copia/incolla del mio seme",
         "mustBeStoredAppropriately": "Deve essere memorizzato in modo appropriato.",
         "deviceMayBecomeUnresponsive": "Il dispositivo potrebbe non rispondere per un po'.",
@@ -148,10 +150,14 @@
         "errorAccessingKeychain": "Errore di portachiavi",
         "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
         "mainWallet": "CONTO PRINCIPALE",
+        "confirm": "Confirm",
+        "delete": "Delete",
         "shouldUpdate": "E' disponibile un nuovo aggiornamento",
         "shouldUpdateExplanation": "È stato rilasciato un nuovo aggiornamento. Si consiglia di aggiornare all'ultima versione.",
         "forceUpdate": "Aggiornare l'app per continuare",
-        "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora."
+        "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -205,7 +211,7 @@
         "passwordTooShortExplanation": "La password deve essere almeno {{minLength}} caratteri. Attualmente è {{currentLength}} caratteri. Si prega di riprovare.",
         "passwordMismatch": "Le password non corrispondono",
         "passwordMismatchExplanation": "Le password immesse non corrispondono. Si prega di riprovare.",
-        "anEncryptedCopy": "Una copia crittografata del tuo seme sarà memorizzata sul dispositivo. Userai questa password per accedere in futuro al tuo portafoglio.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Reinserisci la password"
     },
     "copyToClipboard": {
@@ -239,7 +245,8 @@
         "login": "Accedi",
         "setNode": "Seleziona nodo",
         "whyBiometricDisabled": "Perché è disattivata l'autenticazione biometrica?",
-        "whyBiometricDisabledExplanation": "L'accesso biometrico è disattivato al primo avvio dell'app per la tua sicurezza. Durante l'uso di Trinity, verrai disconnesso in caso di inattività. Allora ti sarà possibile accedere nuovamente con l'autenticazione biometrica."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
@@ -268,12 +275,12 @@
     "paperWallet": {
         "neverShare": "Non condividere mai il tuo seme con nessuno.",
         "iotaLogo": "Logo IOTA",
-        "print": "STAMPA",
+        "print": "Print",
         "paperConvenience": "Stampare una copia cartacea del tuo seme è un modo conveniente per memorizzarlo.",
         "publicInsecure": "Ma stampare attraverso Wi-Fi pubblico o su una stampante pubblica è insicuro.",
-        "tapCheckboxes": "Seleziona le caselle di controllo qui sotto per confermare.",
-        "wifiCheckbox": "Non stamperò su una connessione Wi-Fi pubblica",
-        "printerCheckbox": "Non stamperò su una stampante pubblica"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Il tuo indirizzo",
@@ -285,8 +292,6 @@
         "generateNewAddress": "Genera un indirizzo",
         "noAddresses": "NESSUN INDIRIZZO",
         "spent": "Speso",
-        "missingPermission": "È richiesto l'accesso al file system",
-        "missingPermissionExplanation": "L'accesso al file system è necessario al fine di condividere codici QR.",
         "tag": "Etichetta",
         "generateAnAddress": "Genera un indirizzo",
         "generateAnAddressTitle": "Genera un indirizzo",
@@ -304,7 +309,8 @@
         "letsWriteDownYourSeed": "Ti aiuto a scrivere il tuo seme",
         "youCanHighlightCharacters": "È possibile evidenziare 9 caratteri alla volta",
         "printBlankWallet": "Stampare un portafoglio vuoto",
-        "whatIsChecksum": "Ogni seme ha un corrispondente checksum di 3 caratteri",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "Ho salvato il mio seme",
         "checksumExplanation": "Ogni volta che aggiungi un seme al tuo portafoglio, devi assicurarti che il checksum generato dal portafoglio combacia con quello che avevi annotato.",
         "mustSaveYourSeed": "<0><0>È necessario che salvi il tuo seme con </0><1>almeno una</1><2> delle opzioni elencate di seguito</2></0>"
@@ -345,7 +351,8 @@
         "totalTime": "Tempo totale",
         "addressPasteDetected": "Rilevato indirizzo da incollare",
         "addressPasteExplanation": "Sembra che hai incollato un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale desideri inviare.",
-        "invalid": "NON VALIDO"
+        "invalid": "NON VALIDO",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Aggiungiamo un nome",
@@ -446,7 +453,8 @@
         "empty": "Vuota",
         "retrying": "Sto riprovando",
         "yesterday": "Ieri",
-        "promotingAnotherBundle": "Promozione di un altro pacchetto"
+        "promotingAnotherBundle": "Promozione di un altro pacchetto",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -504,18 +512,21 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Sei sicuro di volerti disconnettere?"
+        "logoutConfirmation": "Sei sicuro di volerti disconnettere?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Scansionare il proprio codice QR"
     },
     "unitInfoModal": {
-        "unitSystem": "SISTEMA DI UNITÀ",
+        "unitSystem": "Unit System",
         "trillion": "Mille miliardi",
         "billion": "Miliardi",
         "million": "Milioni",
         "thousand": "Migliaia",
-        "one": "Unità"
+        "one": "Unità",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Perché non posso spendere tutto il contenuto del portafoglio?",
@@ -537,7 +548,7 @@
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
     "useExistingSeed": {
-        "title": "Inserisci un seme e un nome di conto.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Formato di seme non corretto",
         "validSeedExplanation": "Un seme valido consta di 81 caratteri e contiene solo A-Z o 9."
     },
@@ -551,8 +562,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
-        "alreadyHave": "Ho salvato il mio seme",
-        "reenterSeed": "Nel passaggio successivo ti si richiederà di inserire nuovamente il tuo seme.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Se non hai eseguito il backup del tuo seme e il dispositivo si rompe, perderai tutti i tuoi IOTA.",
         "pleaseConfirm": "Si prega di confermare che hai memorizzato in modo sicuro il tuo seme."
     },
@@ -572,15 +583,19 @@
         "status": "Stato",
         "fingerprintUnavailable": "Autenticazione biometrica non disponibile",
         "fingerprintUnavailableExplanation": "Il tuo dispositivo non supporta l'autenticazione biometrica o non è stato configurato nelle impostazioni del dispositivo.",
-        "buttonInstructionsDisable": "Premi il pulsante sotto per disabilitare l'autenticazione tramite impronta digitale.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "Premi il pulsante sotto per abilitare l'autenticazione tramite impronta digitale.",
-        "buttonInstructionsDisableIPhoneX": "Premere il pulsante qui sotto per disabilitare Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Premere il pulsante qui sotto per attivare Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "Tocca il lettore di impronte digitali per accedere"
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
-        "aMessage": "un messaggio"
+        "aMessage": "un messaggio",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Codice errato",
@@ -601,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
-        "seedVaultExplanation": "Un SeedVault è un file crittografato per archiviare in modo sicuro il tuo seme. Il seme viene crittografato con la password del SeedVault e non è possibile accedere al seme senza la password.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Assicurarsi di eseguire un backup del file in più posizioni (per esempio hard disk, nel cloud, USB). Se perdi questo file e non hai archiviato il seme altrove, perderai i tuoi IOTA.",
         "exportFail": "Esportazione come SeedVault fallita",
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
@@ -615,13 +630,15 @@
         "importSuccessExplanation": "Il seme è stato importato con successo.",
         "saveToDownloadFolder": "Salva nella cartella Scaricamenti",
         "importSeedVault": "Importa un SeedVault",
-        "dropSeedVaultHere": "Trascinare il SeedVault qui <1></1> o fare clic per sfogliare",
+        "dropInstructions": "Trascinare un SeedVault o testo qui <1></1> o fare clic per sfogliare",
+        "dropActive": "Trascina qui un SeedVault o testo",
         "enterKeyExplanation": "Immetti la tua password per accedere il SeedVault",
         "noSeedFound": "Il SeedVault non contiene un seme valido",
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "seedVaultKeyExplanation": "In primo luogo abbiamo bisogno di mettere in sicurezza il tuo SeedVault. Si prega di scegliere una password per crittografare il file. Avrai bisogno di questa password per recuperare il tuo seme dal SeedVault di backup. Sentiti libero di usare la stessa password che usi per Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -655,7 +672,8 @@
         "preparingTransfers": "Preparo i trasferimenti",
         "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
         "proofOfWork": "Completo la prova di lavoro",
-        "broadcasting": "Trasmissione"
+        "broadcasting": "Trasmissione",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Non è possibile completare il passaggio allo snapshot",
@@ -669,7 +687,8 @@
         "transition": "Transizione",
         "transitioning": "Passaggio in corso allo snapshot.",
         "generatingAndDetecting": "Generazione di indirizzi e rilevamento del saldo.",
-        "attaching": "Attacco gli indirizzi al Tangle."
+        "attaching": "Attacco gli indirizzi al Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Riempimento automatico",
@@ -706,8 +725,8 @@
         "completeSetup": "Completa la configurazione"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxy": "Usa il proxy di rete del sistema",
+        "proxyExplanation": "Rileva e usa le impostazioni di sistema per il proxy di rete. Chiudere e riaprire il portafoglio dopo aver modificato questa impostazione."
     },
     "notifications": {
         "notifications": "Notifiche",
