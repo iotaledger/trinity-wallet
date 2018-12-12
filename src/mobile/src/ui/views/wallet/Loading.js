@@ -200,7 +200,11 @@ class Loading extends Component {
     }
 
     componentWillUpdate(newProps, newState) {
-        if (this.props.ready && newState.animationCycleComplete) {
+        if (
+            this.state.animationCycleComplete !== newState.animationCycleComplete &&
+            this.props.ready &&
+            newState.animationCycleComplete
+        ) {
             this.launchHomeScreen();
         }
     }

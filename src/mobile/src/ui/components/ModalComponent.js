@@ -107,6 +107,7 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         componentWillReceiveProps(newProps) {
+            console.log(newProps.isModalActive);
             if (!this.props.isModalActive && newProps.isModalActive) {
                 if (this.props.isKeyboardActive && !isAndroid) {
                     Keyboard.dismiss();
