@@ -15,13 +15,13 @@ class FatalError extends React.PureComponent {
     linuxContent = () => {
         const { error } = this.props;
 
-        if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > 0) {
+        if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > -1) {
             return (
                 <form className={css.tutorial}>
                     <h1>Cannot connect to Secret Service API</h1>
                     <p>
-                        Please check that you are not running Trinity as <pre>root</pre> user and the
-                        `gnome-keyring-daemon` process is running.
+                        Please check that you are not running Trinity as <strong>root</strong> user
+                        <br /> and the <strong>gnome-keyring-daemon</strong> process is running.
                     </p>
                 </form>
             );

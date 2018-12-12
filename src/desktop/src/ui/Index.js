@@ -271,7 +271,7 @@ class App extends React.Component {
             return (
                 <div className={css.trintiy}>
                     <Theme history={history} />
-                    <Titlebar />
+                    <Titlebar path={currentKey} />
                     <FatalError error={fatalError} />
                 </div>
             );
