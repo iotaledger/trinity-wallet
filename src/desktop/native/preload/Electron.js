@@ -13,6 +13,7 @@ const kdbx = require('../kdbx');
 const Entangled = require('../Entangled');
 const { byteToTrit, byteToChar, removeNonAlphaNumeric } = require('../../src/libs/helpers');
 const ledger = require('../hardware/Ledger');
+const Realm = require('../Realm');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -521,6 +522,14 @@ const Electron = {
             confirmedIn: t('notifications:confirmedIn', { account: '{{account}}', value: '{{value}}' }),
             confirmedOut: t('notifications:confirmedOut', { account: '{{account}}', value: '{{value}}' }),
         };
+    },
+
+    /**
+     * Return Realm instance
+     * @returns {Object} - Realm instance
+     */
+    getRealm: () => {
+        return Realm;
     },
 
     /**

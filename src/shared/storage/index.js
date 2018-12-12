@@ -1,3 +1,4 @@
+/* global Electron */
 import assign from 'lodash/assign';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
@@ -22,7 +23,7 @@ import {
     WalletVersionsSchema,
     ErrorLogSchema,
 } from '../schema';
-import { __TEST__ } from '../config';
+import { __MOBILE__, __TEST__ } from '../config';
 
 const SCHEMA_VERSION = 0;
 const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
@@ -34,15 +35,15 @@ const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
  * @returns {object}
  */
 export const getRealm = () => {
-    const requireMethod = require;
-
-    // shared directory is used a node module in mobile/
-    // If path is hardcoded, jest would complain.
-    if (__TEST__ && !isUndefined(process.env.JEST_WORKER_ID)) {
-        return requireMethod('realm');
+    if (__TEST__ || !isUndefined(process.env.JEST_WORKER_ID)) {
+        return require('../libs/originalRequire')('realm');
     }
 
-    return require('../../mobile/node_modules/realm');
+    if (__MOBILE__) {
+        return global.Realm;
+    }
+
+    return Electron.getRealm();
 };
 
 const Realm = getRealm();
