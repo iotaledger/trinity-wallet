@@ -156,8 +156,8 @@
         "shouldUpdateExplanation": "Dostupna je nova verzija aplikacije. Preporučuje se ažuriranje aplikacije na najnoviju verziju.",
         "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
         "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju.",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermission": "Potreban pristup datotečnom sustavu",
+        "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -317,13 +317,13 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Molimo potvrdite svoj seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity nikad neće tražiti da ponovno unesete ovaj seed osim u slučaju resetiranja novčanika ili brisanja aplikacije.",
         "enterYourSeed": "Unesite vaš seed",
         "incorrectSeed": "Neispravan seed",
         "incorrectSeedExplanation": "Seed koji ste unijeli je neispravan. Molimo pokušajte ponovno.",
         "ifYouHaveNotSaved": "Ukoliko niste napravili sigurnosnu kopiju vašeg seeda, molimo vratite se natrag i učinite to.",
         "enterSeedBelow": "Unesite svoj novo kreirani seed ispod kako bi potvrdili da ste uspješno izradili sigurnosnu kopiju istog",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "UPOZORENJE: Nije moguće zalijepiti seed",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
@@ -380,9 +380,9 @@
         "addNewSeed": "Dodaj novi seed",
         "twoFA": "Autorizacija s dva faktora",
         "changePassword": "Promjena lozinke",
-        "general": "General settings",
+        "general": "Opće postavke",
         "advanced": "Napredne postavke",
-        "account": "Account settings",
+        "account": "Postavke računa",
         "logout": "Odjavi se",
         "reset": "Resetiraj novčanik",
         "syncingComplete": "Sinkroniziranje završeno",
@@ -550,7 +550,7 @@
         "syncingYourAccount": "Sinkroniziranje računa u tijeku."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Unesite naziv računa i seed",
         "incorrectFormat": "Neispravan format seed-a",
         "validSeedExplanation": "Valjani seed bi se trebao sastojati od 81 znaka i sadržavati samo velika slova A-Z ili broj 9."
     },
@@ -639,7 +639,7 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspješno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "Prvo trebamo osigurati vaš SeedVault. Molimo odaberite lozinku za enkripciju vaše SeedVault datoteke. Ova lozinka bit će potrebna za ponovni pristup sigurnosnoj kopiji vašeg seed-a koja se nalazi u SeedVault-u.",
         "retypeKey": "Ponovno unesite lozinku"
     },
     "chart": {
@@ -690,7 +690,7 @@
         "transitioning": "Tranzicija snapshot-a u tijeku.",
         "generatingAndDetecting": "Generiranje adresa i detektiranje salda.",
         "attaching": "Pridodavanje adresa na Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Pridodavanje adrese {{currentAddress}} od {{totalAddresses}} u tijeku"
     },
     "deepLink": {
         "autofill": "Uspješno automatsko popunjavanje",
