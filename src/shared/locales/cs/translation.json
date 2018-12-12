@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Zadejte Seed a název účtu.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Nesprávný formát Seedu",
         "validSeedExplanation": "Platný Seed má 81 znaků a obsahuje pouze A-Z nebo 9."
     },
