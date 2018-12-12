@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Patvirtinkite savo užraktą",
-        "trinityWillNeverAskToReenter": "Trinity niekada jūsų neprašys pakartotinai įvesti savo užraktą, išskyrus, jeigu perkrausite savo piniginę ar programėlę.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Įveskite savo užraktą",
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
-        "clipboardWarning": "Kopijuoti/įklijuoti užraktą nerekomenduojama",
-        "clipboardWarningExplanation": "ĮSPĖJIMAS: kopijavimas/įklijavimas atjungtas dėl jūsų saugumo."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
