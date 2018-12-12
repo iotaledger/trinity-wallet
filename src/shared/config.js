@@ -1,5 +1,6 @@
 export const __DEV__ = process.env.NODE_ENV === 'development';
 export const __TEST__ = process.env.NODE_ENV === 'test';
+export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
 /** Default IRI node */
 export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';

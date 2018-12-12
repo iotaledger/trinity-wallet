@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import Realm from 'realm';
-import { realm, Node, config as realmConfig } from '../../storage';
+import { getRealm, realm, Node, config as realmConfig } from '../../storage';
+
+const Realm = getRealm();
 
 describe('storage: Node', () => {
     before(() => {

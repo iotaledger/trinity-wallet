@@ -5,6 +5,7 @@ import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { withNamespaces } from 'react-i18next';
+import Realm from 'realm';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
@@ -24,6 +25,9 @@ import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
 import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
+
+// Assign Realm to global RN variable
+global.Realm = Realm;
 
 const launch = () => {
     // Disable auto node switching.

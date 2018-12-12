@@ -1,6 +1,5 @@
 import map from 'lodash/map';
 import nock from 'nock';
-import Realm from 'realm';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { expect } from 'chai';
@@ -11,12 +10,14 @@ import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
 import { SwitchingConfig } from '../../libs/iota';
-import { realm, config as realmConfig, Account, Wallet } from '../../storage';
+import { realm, config as realmConfig, Account, Wallet, getRealm } from '../../storage';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
 import { newZeroValueTransactionTrytes, newValueTransactionTrytes } from '../__samples__/trytes';
 import transactions, { newZeroValueTransaction, newValueTransaction } from '../__samples__/transactions';
 import { IRI_API_VERSION } from '../../config';
+
+const Realm = getRealm();
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

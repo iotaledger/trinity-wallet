@@ -1,13 +1,14 @@
+/* global Electron */
 import assign from 'lodash/assign';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 import values from 'lodash/values';
 import size from 'lodash/size';
-import Realm from 'realm';
 import {
     TransactionSchema,
     AddressSchema,
@@ -22,9 +23,30 @@ import {
     WalletVersionsSchema,
     ErrorLogSchema,
 } from '../schema';
+import { __MOBILE__, __TEST__ } from '../config';
 
 const SCHEMA_VERSION = 0;
 const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
+
+/**
+ * Imports Realm dependency
+ *
+ * @method getRealm
+ * @returns {object}
+ */
+export const getRealm = () => {
+    if (__TEST__ || !isUndefined(process.env.JEST_WORKER_ID)) {
+        return require('../libs/originalRequire')('realm');
+    }
+
+    if (__MOBILE__) {
+        return global.Realm;
+    }
+
+    return Electron.getRealm();
+};
+
+const Realm = getRealm();
 
 /**
  * Model for Account.
