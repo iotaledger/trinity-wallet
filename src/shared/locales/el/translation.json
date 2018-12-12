@@ -548,7 +548,7 @@
         "syncingYourAccount": "Ο λογαριασμός σας συντονίζεται."
     },
     "useExistingSeed": {
-        "title": "Εισάγετε έναν σπόρο και όνομα λογαριασμού.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Incorrect seed format",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
