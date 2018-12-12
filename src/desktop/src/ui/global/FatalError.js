@@ -1,12 +1,30 @@
 /* global Electron */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import css from 'ui/views/onboarding/index.scss';
 
 /**
  * Linux missing dependencies tutorial
  */
 class FatalError extends React.PureComponent {
+    static propTypes = {
+        error: PropTypes.string,
+    };
+
     linuxContent = () => {
+        if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > 0) {
+            return (
+                <form className={css.tutorial}>
+                    <h1>Cannot connect to Secret Service API</h1>
+                    <p>
+                        Please check that you are not running Trinity as <pre>root</pre> user and the
+                        `gnome-keyring-daemon` process is running.
+                    </p>
+                </form>
+            );
+        }
+
         return (
             <form className={css.tutorial}>
                 <h1>Missing security dependencies</h1>
