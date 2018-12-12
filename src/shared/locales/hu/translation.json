@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Kérjük erősítse meg a mester jelszavát",
-        "trinityWillNeverAskToReenter": "A Trinity soha nem fogja újra kérni a mester jelszavát, kizárólag akkor, ha a tárcát gyári állapotra állította vissza.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Adja meg a mester jelszót",
         "incorrectSeed": "Helytelen mester jelszó",
         "incorrectSeedExplanation": "A megadott mester jelszó helytelen. Kérjük, próbálja újra.",
         "ifYouHaveNotSaved": "Ha nem készített biztonsági mentést a mester jelszaváról, kérjük lépjen vissza és készítsen.",
         "enterSeedBelow": "Adja meg alább az újonnan generált mester jelszavát, hogy megbizonyosodjon róla, valóban helyes biztonsági másolat készült róla",
-        "clipboardWarning": "Ne használjon másolás/beillesztés műveletet a mester jelszavának megadásakor",
-        "clipboardWarningExplanation": "FIGYELEM: a másolás/beillesztés a biztonsága érdekében nem engedélyezett."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Érvénytelen cím",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
