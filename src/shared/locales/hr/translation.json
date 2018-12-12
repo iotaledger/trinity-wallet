@@ -548,7 +548,7 @@
         "syncingYourAccount": "Sinkroniziranje računa u tijeku."
     },
     "useExistingSeed": {
-        "title": "Unesite seed i naziv računa.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Neispravan format seed-a",
         "validSeedExplanation": "Valjani seed bi se trebao sastojati od 81 znaka i sadržavati samo velika slova A-Z ili broj 9."
     },
