@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "無地址",
         "spent": "已支出",
-        "missingPermission": "需要檔案系統權限",
-        "missingPermissionExplanation": "分享 QR 碼必須要有訪問檔案系統的權限。",
         "tag": "標籤",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "輸入種子碼和帳戶名稱。",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "種子碼格式不符",
         "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
@@ -687,7 +687,8 @@
         "transition": "轉換",
         "transitioning": "進行快照轉換。",
         "generatingAndDetecting": "產生地址並檢測餘額。",
-        "attaching": "連接地址到 Tangle。"
+        "attaching": "連接地址到 Tangle。",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "自動填入成功",

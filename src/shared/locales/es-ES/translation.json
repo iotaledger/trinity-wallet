@@ -155,7 +155,9 @@
         "shouldUpdate": "Hay una nueva actualización disponible",
         "shouldUpdateExplanation": "Hay una nueva actualización disponible. Siempre es recomendado actualizar a la ultima version.",
         "forceUpdate": "Actualice la aplicacion para continuar",
-        "forceUpdateExplanation": "Una actualización crítica esta disponible. Por favor actualice inmediatamente."
+        "forceUpdateExplanation": "Una actualización crítica esta disponible. Por favor actualice inmediatamente.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generar dirección",
         "noAddresses": "SIN DIRECCIONES",
         "spent": "Gastado",
-        "missingPermission": "Permisos de sistema requeridos",
-        "missingPermissionExplanation": "El acceso a los archivos del sistema son requeridos para compartir los códigos QR.",
         "tag": "Etiqueta",
         "generateAnAddress": "Generar dirección",
         "generateAnAddressTitle": "Generar una dirección",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Sincronizando su cuenta."
     },
     "useExistingSeed": {
-        "title": "Introduzca una semilla y un nombre de cuenta.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Formato incorrecto de semilla",
         "validSeedExplanation": "Semillas válidas deben tener 81 caracteres y solo contener A-Z o 9."
     },
@@ -687,7 +687,8 @@
         "transition": "Transición",
         "transitioning": "Transicionando para el snapshot.",
         "generatingAndDetecting": "Generando direcciones y detectando balances.",
-        "attaching": "Vinculando direcciones en el Tangle."
+        "attaching": "Vinculando direcciones en el Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autocompletado exitoso",

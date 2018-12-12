@@ -155,7 +155,9 @@
         "shouldUpdate": "Nová aktualizace je k dispozici",
         "shouldUpdateExplanation": "Byla vydána nová aktualizace. Doporučujeme aktualizovat na nejnovější verzi.",
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
-        "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní."
+        "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Vygenerovat adresu",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
-        "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému.",
         "tag": "Značka",
         "generateAnAddress": "Vygenerovat adresu",
         "generateAnAddressTitle": "Vygenerovat adresu",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Zadejte Seed a název účtu.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Nesprávný formát Seedu",
         "validSeedExplanation": "Platný Seed má 81 znaků a obsahuje pouze A-Z nebo 9."
     },
@@ -687,7 +687,8 @@
         "transition": "Aktualizace",
         "transitioning": "Aktualizace údajů po Snapshotu.",
         "generatingAndDetecting": "Generuji adresy a zjišťuji zůstatek.",
-        "attaching": "Připojuji adresy do sítě Tangle."
+        "attaching": "Připojuji adresy do sítě Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
