@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor, confirme a sua seed",
-        "trinityWillNeverAskToReenter": "A Trinity nunca vai pedir que você redigite sua seed a menos que você redefina a sua carteira ou o aplicativo.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Digite sua seed",
         "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A seed informada está incorreta. Por favor, tente novamente.",
         "ifYouHaveNotSaved": "Se não fez backup da sua seed, por favor volte para a tela anterior e faça.",
         "enterSeedBelow": "Digite sua seed recém-criada abaixo para confirmar que fez o backup corretamente",
-        "clipboardWarning": "Não copie e cole sua seed",
-        "clipboardWarningExplanation": "Aviso: A função copiar e colar está desativada para sua segurança."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Endereço inválido",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
