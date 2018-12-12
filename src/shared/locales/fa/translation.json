@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "لطفا سید خود را تایید کنید",
-        "trinityWillNeverAskToReenter": "Trinity هرگز از شما نمی خواهد که سید خود را دوباره وارد کنید مگر اینکه شما کیف پول یا برنامه را بازنشانی کنید.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "سید خود را وارد کنید",
         "incorrectSeed": "سید نادرست",
         "incorrectSeedExplanation": "سید وارد شده نادرست است. لطفا دوباره تلاش کنید.",
         "ifYouHaveNotSaved": "اگر شما از سید خود پشتیبان تهیه نکرد اید، لطفا به عقب برگردید و این کار را انجام دهید.",
         "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "آدرس اشتباه است",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
