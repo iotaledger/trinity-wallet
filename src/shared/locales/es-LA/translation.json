@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
-        "trinityWillNeverAskToReenter": "Trinity nunca le solicitará que vuelva a introducir esta semilla a menos que restablezca la cartera o la aplicación.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Introduzca su semilla",
         "incorrectSeed": "Semilla incorrecta",
         "incorrectSeedExplanation": "La semilla que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
         "ifYouHaveNotSaved": "Si no has guardado tu semilla, por favor regresa y hazlo.",
         "enterSeedBelow": "Introduzca su semilla recientemente creada para confirmar que la guardado correctamente",
-        "clipboardWarning": "No copie y pegue su semilla",
-        "clipboardWarningExplanation": "ADVERTENCIA: Copiar y pegar está deshabilitado para su seguridad."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Dirección inválida",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
