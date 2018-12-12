@@ -101,14 +101,11 @@ const getTransactionsObjectsAsync = (provider) => (hashes) =>
  *
  * @method findTransactionObjectsAsync
  * @param {string} [provider]
- * @param {boolean} [withQuorum]
  *
  * @returns {function(object): Promise<any>}
  */
-const findTransactionObjectsAsync = (provider, withQuorum = false) => (args) =>
-    withQuorum
-        ? quorum.findTransactions(args)
-        : findTransactionsAsync(provider)(args).then((hashes) => getTransactionsObjectsAsync(provider)(hashes));
+const findTransactionObjectsAsync = (provider) => (args) =>
+    findTransactionsAsync(provider)(args).then((hashes) => getTransactionsObjectsAsync(provider)(hashes));
 
 /**
  * Promisified version of iota.api.findTransactions
@@ -497,22 +494,19 @@ const attachToTangleAsync = (provider, powFn) => (
  *
  * @method getTrytesAsync
  * @param {string} [provider]
- * @param {boolean} [withQuorum]
  *
  * @returns {function(array): Promise<array>}
  */
-const getTrytesAsync = (provider, withQuorum = false) => (hashes) =>
-    withQuorum
-        ? quorum.getTrytes(hashes)
-        : new Promise((resolve, reject) => {
-              getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
-                  if (err) {
-                      reject(err);
-                  } else {
-                      resolve(trytes);
-                  }
-              });
-          });
+const getTrytesAsync = (provider) => (hashes) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(trytes);
+            }
+        });
+    });
 
 /**
  * Checks if a node is synced

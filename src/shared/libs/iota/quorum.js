@@ -16,7 +16,7 @@ import {
     QUORUM_NODES_SYNC_CHECKS_INTERVAL,
     DEFAULT_BALANCES_THRESHOLD,
 } from '../../config';
-import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES } from './utils';
+import { EMPTY_HASH_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
 
@@ -74,7 +74,6 @@ const fallbackToSafeResult = (method) => {
         wereAddressesSpentFrom: true,
         getInclusionStates: false,
         getBalances: '0',
-        getTrytes: EMPTY_TRANSACTION_TRYTES,
         latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
     };
 
@@ -285,87 +284,6 @@ const getQuorumForGetBalances = (payload, threshold, tips, syncedNodes) => {
 };
 
 /**
- *   From a list of synced nodes, compute a quorum result for getTrytes iota api
- *
- *   @method getQuorumForGetTrytes
- *   @param {array} payload - hashes
- *   @param {array} syncedNodes
- *
- *   @returns {Promise}
- **/
-const getQuorumForGetTrytes = (payload, syncedNodes) => {
-    const requestPayloadSize = size(payload);
-
-    return rejectIfNotEnoughSyncedNodes(syncedNodes)
-        .then(() =>
-            Promise.all(
-                map(
-                    syncedNodes,
-                    (provider) =>
-                        new Promise((resolve) => {
-                            new IOTA({ provider }).api.getTrytes(
-                                payload,
-                                (err, trytes) => (err ? resolve(undefined) : resolve(trytes)),
-                            );
-                        }),
-                ),
-            ),
-        )
-        .then((results) => {
-            const validResults = filter(results, (result) => !isUndefined(result));
-
-            let idx = 0;
-            const quorumResult = [];
-
-            while (idx < requestPayloadSize) {
-                /* eslint-disable no-loop-func */
-                quorumResult.push(
-                    determineQuorumResult(map(validResults, (result) => result[idx]))('getTrytes', QUORUM_THRESHOLD),
-                );
-                /* eslint-enable no-loop-func */
-
-                idx += 1;
-            }
-
-            return quorumResult;
-        });
-};
-
-/**
- *   From a list of synced nodes, compute a quorum result for findTransactions iota api
- *
- *   @method getQuorumForFindTransactions
- *   @param {array} payload - hashes
- *   @param {array} syncedNodes
- *
- *   @returns {Promise}
- **/
-const getQuorumForFindTransactions = (payload, syncedNodes) => {
-    return rejectIfNotEnoughSyncedNodes(syncedNodes)
-        .then(() =>
-            Promise.all(
-                map(
-                    syncedNodes,
-                    (provider) =>
-                        new Promise((resolve) => {
-                            new IOTA({ provider }).api.findTransactions(
-                                payload,
-                                (err, trytes) => (err ? resolve(undefined) : resolve(trytes)),
-                            );
-                        }),
-                ),
-            ),
-        )
-        .then((results) => {
-            const validResults = filter(results, (result) => !isUndefined(result));
-
-            // Instead of going with the majority of the results for findTransactions
-            // Just return all unique transaction hashes.
-            return [...union(...validResults)];
-        });
-};
-
-/**
  *   For a list of synced nodes, compute a quorum result for latestSolidSubtangleMilestone
  *
  *   @method getQuorumForLatestSolidSubtangleMilestone
@@ -489,30 +407,6 @@ export default function Quorum(quorumNodes) {
                 getQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
                     getQuorumForGetBalances(addresses, threshold, [latestSolidSubtangleMilestone], newSyncedNodes),
                 ),
-            );
-        },
-        /**
-         * Performs a quorum for getTrytes api endpoint
-         *
-         * @method getTrytes
-         * @param {array} hashes
-         *
-         * @returns {Promise}
-         */
-        getTrytes(hashes) {
-            return findSyncedNodesIfNecessary().then((newSyncedNodes) => getQuorumForGetTrytes(hashes, newSyncedNodes));
-        },
-        /**
-         * Performs a quorum for findTransactions api endpoint
-         *
-         * @method findTransactions
-         * @param {object} payload
-         *
-         * @returns {Promise}
-         */
-        findTransactions(payload) {
-            return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorumForFindTransactions(payload, newSyncedNodes),
             );
         },
     };
