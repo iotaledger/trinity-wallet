@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
-        "title": "Angi en hovednøkkel og et kontonavn.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Feil format på hovednøkkelen",
         "validSeedExplanation": "En gyldig hovednøkkel skal være 81 tegn bestående av bokstavene A-Z og tallet 9."
     },
