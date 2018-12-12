@@ -548,7 +548,7 @@
         "syncingYourAccount": "アカウントを同期しています。"
     },
     "useExistingSeed": {
-        "title": "シードとアカウント名を入力してください。",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "不正確なシードの形式です。",
         "validSeedExplanation": "有効なシードは81文字で、A〜Zまたは9のみを含む必要があります。"
     },
