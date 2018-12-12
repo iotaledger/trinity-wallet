@@ -548,7 +548,7 @@
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
     "useExistingSeed": {
-        "title": "Введите ключ и название счёта.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Неверный формат ключа",
         "validSeedExplanation": "Корректный ключ должен содержать 81 символ и состоять только из A-Z и 9."
     },
