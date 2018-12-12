@@ -6,8 +6,6 @@ import { withI18n } from 'react-i18next';
 
 import { manuallySyncAccount } from 'actions/accounts';
 
-import { getAddressesForSelectedAccount, getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
-
 import {
     transitionForSnapshot,
     completeSnapshotTransition,
@@ -25,10 +23,12 @@ import Loading from 'ui/components/Loading';
 import ModalConfirm from 'ui/components/modal/Confirm';
 import size from 'lodash/size';
 
+import css from '../index.scss';
+
 /**
  * Account tools component
  */
-class Addresses extends PureComponent {
+class Tools extends PureComponent {
     static propTypes = {
         /** @ignore */
         settings: PropTypes.object.isRequired,
@@ -37,7 +37,7 @@ class Addresses extends PureComponent {
         /** @ignore */
         ui: PropTypes.object.isRequired,
         /** @ignore */
-        accountName: PropTypes.string.isRequired,
+        account: PropTypes.object.isRequired,
         /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
@@ -49,10 +49,11 @@ class Addresses extends PureComponent {
         /** @ignore */
         transitionForSnapshot: PropTypes.func.isRequired,
         /** @ignore */
-        t: PropTypes.func.isRequired,
         activeStepIndex: PropTypes.number.isRequired,
         /** @ignore */
         activeSteps: PropTypes.array.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     static renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t) {
@@ -91,9 +92,10 @@ class Addresses extends PureComponent {
      * @returns {Promise}
      */
     syncAccount = async () => {
-        const { wallet, accountName, accountMeta } = this.props;
+        const { wallet } = this.props;
+        const { accountName, meta } = this.props.account;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
         this.props.manuallySyncAccount(seedStore, accountName);
     };
@@ -103,9 +105,10 @@ class Addresses extends PureComponent {
      * @returns {Promise}
      */
     startSnapshotTransition = async () => {
-        const { wallet, addresses, accountName, accountMeta } = this.props;
+        const { wallet } = this.props;
+        const { accountName, meta, addresses } = this.props.account;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
         this.props.transitionForSnapshot(seedStore, addresses);
     };
@@ -116,9 +119,10 @@ class Addresses extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, accountMeta, settings } = this.props;
+        const { wallet, settings } = this.props;
+        const { accountName, meta } = this.props.account;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
@@ -131,9 +135,10 @@ class Addresses extends PureComponent {
      */
     transitionBalanceWrong = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, accountName, accountMeta } = this.props;
+        const { wallet } = this.props;
+        const { accountName, meta } = this.props.account;
 
-        const seedStore = await new SeedStore[accountMeta.type](wallet.password, accountName, accountMeta);
+        const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
         const currentIndex = wallet.transitionAddresses.length;
 
@@ -161,7 +166,7 @@ class Addresses extends PureComponent {
                                 <div>
                                     {t('snapshotTransition:attaching')} <br />
                                     {t('loading:thisMayTake')} {t('global:pleaseWaitEllipses')} <br />
-                                    {Addresses.renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t)}
+                                    {Tools.renderProgressChildren(activeStepIndex, sizeOfActiveSteps, t)}
                                 </div>
                             )}
                         </React.Fragment>
@@ -171,57 +176,59 @@ class Addresses extends PureComponent {
         }
 
         return (
-            <div>
+            <div className={css.scroll}>
                 <Scrollbar>
-                    <h3>{t('advancedSettings:snapshotTransition')}</h3>
-                    <p>
-                        {t('snapshotTransition:snapshotExplanation')} <br />
-                        {t('snapshotTransition:hasSnapshotTakenPlace')}
-                    </p>
-                    <Button
-                        className="small"
-                        onClick={this.startSnapshotTransition}
-                        loading={ui.isTransitioning || ui.isAttachingToTangle}
-                    >
-                        {t('snapshotTransition:transition')}
-                    </Button>
-                    <ModalConfirm
-                        isOpen={wallet.balanceCheckFlag}
-                        category="primary"
-                        onConfirm={this.transitionBalanceOk}
-                        onCancel={this.transitionBalanceWrong}
-                        content={{
-                            title: t('snapshotTransition:detectedBalance', {
-                                amount: round(formatValue(wallet.transitionBalance), 1),
-                                unit: formatUnit(wallet.transitionBalance),
-                            }),
-                            message: t('snapshotTransition:isThisCorrect'),
-                            confirm: t('global:yes'),
-                            cancel: t('global:no'),
-                        }}
-                    />
-                    <hr />
+                    <article>
+                        <h3>{t('advancedSettings:snapshotTransition')}</h3>
+                        <p>
+                            {t('snapshotTransition:snapshotExplanation')} <br />
+                            {t('snapshotTransition:hasSnapshotTakenPlace')}
+                        </p>
+                        <Button
+                            className="small"
+                            onClick={this.startSnapshotTransition}
+                            loading={ui.isTransitioning || ui.isAttachingToTangle}
+                        >
+                            {t('snapshotTransition:transition')}
+                        </Button>
+                        <ModalConfirm
+                            isOpen={wallet.balanceCheckFlag}
+                            category="primary"
+                            onConfirm={this.transitionBalanceOk}
+                            onCancel={this.transitionBalanceWrong}
+                            content={{
+                                title: t('snapshotTransition:detectedBalance', {
+                                    amount: round(formatValue(wallet.transitionBalance), 1),
+                                    unit: formatUnit(wallet.transitionBalance),
+                                }),
+                                message: t('snapshotTransition:isThisCorrect'),
+                                confirm: t('global:yes'),
+                                cancel: t('global:no'),
+                            }}
+                        />
+                        <hr />
 
-                    <h3>{t('advancedSettings:manualSync')}</h3>
-                    {ui.isSyncing ? (
-                        <p>
-                            {t('manualSync:syncingYourAccount')} <br />
-                            {t('manualSync:thisMayTake')}
-                        </p>
-                    ) : (
-                        <p>
-                            {t('manualSync:outOfSync')} <br />
-                            {t('manualSync:pressToSync')}
-                        </p>
-                    )}
-                    <Button
-                        onClick={this.syncAccount}
-                        className="small"
-                        loading={ui.isSyncing}
-                        disabled={ui.isTransitioning || ui.isAttachingToTangle}
-                    >
-                        {t('manualSync:syncAccount')}
-                    </Button>
+                        <h3>{t('advancedSettings:manualSync')}</h3>
+                        {ui.isSyncing ? (
+                            <p>
+                                {t('manualSync:syncingYourAccount')} <br />
+                                {t('manualSync:thisMayTake')}
+                            </p>
+                        ) : (
+                            <p>
+                                {t('manualSync:outOfSync')} <br />
+                                {t('manualSync:pressToSync')}
+                            </p>
+                        )}
+                        <Button
+                            onClick={this.syncAccount}
+                            className="small"
+                            loading={ui.isSyncing}
+                            disabled={ui.isTransitioning || ui.isAttachingToTangle}
+                        >
+                            {t('manualSync:syncAccount')}
+                        </Button>
+                    </article>
                 </Scrollbar>
             </div>
         );
@@ -232,9 +239,6 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     wallet: state.wallet,
     settings: state.settings,
-    accountName: getSelectedAccountName(state),
-    accountMeta: getSelectedAccountMeta(state),
-    addresses: getAddressesForSelectedAccount(state),
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
 });
@@ -247,4 +251,7 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Addresses));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Tools));
