@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "시드를 확인해 주세요",
-        "trinityWillNeverAskToReenter": "지갑이나 앱을 초기화하지 않았다면 트리니티는 절대로 시드 입력을 요구하지 않습니다.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "시드를 입력해 주세요",
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력하신 시드가 잘못되었습니다. 다시 시도해 주세요.",
         "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오.",
         "enterSeedBelow": "시드를 입력해서 정확하게 저장하였는지 확인해 주세요",
-        "clipboardWarning": "시드를 복사/붙여넣기하지 마세요",
-        "clipboardWarningExplanation": "경고: 보안을 위해 복사/붙여넣기가 비활성화되었습니다."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "SeedVault가 비어있거나 시드가 유효하지 않은 형식으로 저장되어 있습니다.",
         "seedFileError": "SeedVault 열기 실패함",
         "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
