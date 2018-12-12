@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potwierdź swój klucz seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel lub usuniesz aplikację.",
         "enterYourSeed": "Wprowadź swój seed",
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "OSTRZEŻENIE: Nie można wkleić klucza seed",
+        "clipboardWarningExplanation": "Możliwość wklejania, jest wyłączona dla Twojego bezpieczeństwa. Zamiast tego, możesz przeciągnąć i upuścić Twój seed, z pliku tekstowego."
     },
     "send": {
         "invalidAddress": "Błędny adres",
