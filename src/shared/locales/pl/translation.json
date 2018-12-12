@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Wprowadź nazwę konta oraz klucz seed",
         "incorrectFormat": "Nieprawidłowy format klucza",
         "validSeedExplanation": "Poprawny seed powinien składać się z 81 znaków i zawierać jedynie wielkie litery A-Z oraz cyfry 9."
     },
