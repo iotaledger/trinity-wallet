@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { PanResponder, Easing, Animated, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import sliderLoadingAnimation from 'shared-modules/animations/slider-loader.json';
 import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
 import timer from 'react-native-timer';
@@ -217,6 +218,7 @@ class ProgressBar extends Component {
     }
 
     onCompleteSwipe() {
+        ReactNativeHapticFeedback.trigger('impactLight', false);
         Animated.timing(this.state.sliderPosition, {
             toValue: this.props.channelWidth - this.props.channelHeight,
             duration: 50,
