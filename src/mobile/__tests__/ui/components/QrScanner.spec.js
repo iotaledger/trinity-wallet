@@ -55,7 +55,7 @@ describe('Testing QrScanner component', () => {
             const props = getProps();
 
             const wrapper = shallow(<QrScannerComponent {...props} />);
-            expect(wrapper.find('QRscanner').length).toEqual(1);
+            expect(wrapper.childAt(0).childAt(0).length).toEqual(1);
         });
 
         it('should call prop method onQRRead when onRead prop of QRscanner is triggered', () => {
@@ -68,7 +68,8 @@ describe('Testing QrScanner component', () => {
             expect(props.onQRRead).toHaveBeenCalledTimes(0);
 
             wrapper
-                .find('QRscanner')
+                .childAt(0)
+                .childAt(0)
                 .props()
                 .onRead({ data: 'foo' });
 
