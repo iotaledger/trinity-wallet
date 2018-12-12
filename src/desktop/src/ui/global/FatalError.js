@@ -13,6 +13,8 @@ class FatalError extends React.PureComponent {
     };
 
     linuxContent = () => {
+        const { error } = this.props;
+
         if (typeof error === 'string' && error.indexOf('Unknown or unsupported transport') > 0) {
             return (
                 <form className={css.tutorial}>

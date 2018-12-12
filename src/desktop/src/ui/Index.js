@@ -188,7 +188,7 @@ class App extends React.Component {
             await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
-                fatalError: err,
+                fatalError: err instanceof Error && typeof err.message === 'string' ? err.message : err.toString(),
             });
         }
     }
