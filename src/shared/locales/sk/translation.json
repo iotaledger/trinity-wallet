@@ -155,7 +155,9 @@
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
-        "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu."
+        "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generovať adresu",
         "noAddresses": "ŽIADNE ADRESY",
         "spent": "Utratené",
-        "missingPermission": "Je požadované povolenie súborového systému",
-        "missingPermissionExplanation": "Pre zdieľanie QR kódu je požadivaný prístup k súborovému systému.",
         "tag": "Značka",
         "generateAnAddress": "Generovať adresu",
         "generateAnAddressTitle": "Generovať adresu",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
     "useExistingSeed": {
-        "title": "Zadajte svoj Seed a názov účtu.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Nesprávny formát Seedu",
         "validSeedExplanation": "Platný Seed má 81 znakov a obsahuje iba znaky A-Z alebo 9."
     },
@@ -687,7 +687,8 @@
         "transition": "Aktualizovať",
         "transitioning": "Aktualizácia údajov po Snapshote.",
         "generatingAndDetecting": "Generujem adresy a zisťujem zostatok.",
-        "attaching": "Pripájam adresy do siete Tangle."
+        "attaching": "Pripájam adresy do siete Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",

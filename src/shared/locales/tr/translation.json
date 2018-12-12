@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "ADRESİ YOK",
         "spent": "Harcanan",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
         "tag": "Etiket",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Hesabınız eşitleniyor."
     },
     "useExistingSeed": {
-        "title": "Oluşum ve hesap adınızı girin.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Geçersiz oluşum formatı",
         "validSeedExplanation": "Geçerli oluşumlar 81 karakter uzunluğunda ve sadece A'dan Z'ye harfler veya 9 içermelidir."
     },
@@ -687,7 +687,8 @@
         "transition": "Transition",
         "transitioning": "Anlık görüntü için geçiş sağlanıyor.",
         "generatingAndDetecting": "Adresler yaratılıyor ve varlıklar algılanıyor.",
-        "attaching": "Tangle'a adresler ekleniyor."
+        "attaching": "Tangle'a adresler ekleniyor.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Otomatik doldurma başarılı",

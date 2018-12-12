@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "ವಿಳಾಸವಿಲ್ಲ",
         "spent": "ಖರ್ಚು ಮಾಡಿದ",
-        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
-        "missingPermissionExplanation": "QR ಸಂಕೇತಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಫೈಲ್ ವ್ಯವಸ್ಥೆಗೆ ಪ್ರವೇಶ ಅಗತ್ಯವಿರುತ್ತದೆ.",
         "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ."
     },
     "useExistingSeed": {
-        "title": "ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ಖಾತೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸ್ವರೂಪ",
         "validSeedExplanation": "ಮಾನ್ಯವಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ 81 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು."
     },
@@ -687,7 +687,8 @@
         "transition": "ಪರಿವರ್ತನೆ",
         "transitioning": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ಗಾಗಿ ಪರಿವರ್ತನೆ.",
         "generatingAndDetecting": "ವಿಳಾಸಗಳನ್ನು ಉತ್ಪಾದಿಸಲಾಗುತ್ತಿದೆ ಮತ್ತು ಖಾತೆಯ ಮೊತ್ತವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿದೆ.",
-        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ."
+        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "ಸ್ವಯಂತುಂಬುವಿಕೆ ಯಶಸ್ಸು",
