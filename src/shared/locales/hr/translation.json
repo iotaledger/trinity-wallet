@@ -324,7 +324,7 @@
         "ifYouHaveNotSaved": "Ukoliko niste napravili sigurnosnu kopiju vašeg seeda, molimo vratite se natrag i učinite to.",
         "enterSeedBelow": "Unesite svoj novo kreirani seed ispod kako bi potvrdili da ste uspješno izradili sigurnosnu kopiju istog",
         "clipboardWarning": "UPOZORENJE: Nije moguće zalijepiti seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "Kopiranje/lijepljenje seed-a je onemogućeno u ovoj aplikaciji radi vaše sigurnosti. Alternativno možete označiti i dovući svoj seed iz tekst editora."
     },
     "send": {
         "invalidAddress": "Neispravna adresa",
@@ -632,7 +632,7 @@
         "importSuccessExplanation": "Vaš seed je uspješno uvezen.",
         "saveToDownloadFolder": "Spremi u Download mapu",
         "importSeedVault": "Uvezi SeedVault",
-        "dropInstructions": "Ovdje dovucite te ispustite SeedVault <1></1> ili kliknite da bi ga potražili na uređaju.\nAlternativno možete označiti i dovući Seed iz tekst editora.",
+        "dropInstructions": "Ovdje dovucite te ispustite SeedVault <1></1> ili kliknite da bi ga potražili na uređaju.\nAlternativno možete označiti i dovući seed iz tekst editora.",
         "dropActive": "Ispustite SeedVault/Seed ovdje",
         "enterKeyExplanation": "Unesite SeedVault lozinku kako biste ga otvorili",
         "noSeedFound": "SeedVault ne sadrži valjani seed",
