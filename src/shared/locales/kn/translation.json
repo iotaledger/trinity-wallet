@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ದೃಢೀಕರಿಸಿ",
-        "trinityWillNeverAskToReenter": "ನಿಮ್ಮ ವಾಲೆಟ್ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಮರುಹೊಂದಿಸದ ಹೊರತು ಟ್ರಿನಿಟಿ ಈ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಮತ್ತೆ ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮನ್ನು ಎಂದಿಗೂ ಕೇಳಿಕೊಳ್ಳುವುದಿಲ್ಲ.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ",
         "incorrectSeed": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "incorrectSeedExplanation": "ನೀವು ನಮೂದಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "ifYouHaveNotSaved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕಪ್ ಮಾಡಿಲ್ಲದಿದ್ದರೆ, ದಯವಿಟ್ಟು ಹಿಂತಿರುಗಿ ಮತ್ತು ಬ್ಯಾಕಪ್ ಮಾಡಿ.",
         "enterSeedBelow": "ನೀವು ಹೊಸದಾಗಿ ರಚಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಅದನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಲು ಕೆಳಗೆ ನಮೂದಿಸಿ",
-        "clipboardWarning": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಅಂಟಿಸಬೇಡಿ",
-        "clipboardWarningExplanation": "ಎಚ್ಚರಿಕೆ: ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ನಕಲಿಸಿ ಪೇಸ್ಟ್ ಮಾಡುವುದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "ಅಮಾನ್ಯವಾದ ವಿಳಾಸ",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಖಾಲಿಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ವರೂಪದಲ್ಲಿ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "seedFileError": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
