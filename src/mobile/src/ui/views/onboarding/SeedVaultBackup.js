@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
-import { Icon } from 'ui/theme/icons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import Header from 'ui/components/Header';
-import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
+import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
@@ -20,19 +20,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         paddingBottom: height / 16,
     },
     bottomContainer: {
-        flex: 1,
+        flex: 0.5,
         justifyContent: 'flex-end',
     },
 });
@@ -83,7 +82,7 @@ class SeedVaultBackup extends Component {
      * @method goBack
      */
     goBack() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     render() {
@@ -92,14 +91,23 @@ class SeedVaultBackup extends Component {
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <View>
-                        <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
-                            <View style={{ flex: 0.7 }} />
+                <View style={styles.container}>
+                    <View style={styles.topContainer}>
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={400}
+                        >
                             <Header textColor={body.color}>{t('exportSeedVault')}</Header>
-                        </View>
-                        <KeyboardAvoidingView behavior="padding" style={styles.midContainer}>
+                        </AnimatedComponent>
+                    </View>
+                    <View style={styles.midContainer}>
+                        <View style={{ flex: 0.2 }} />
+                        <AnimatedComponent
+                            animationInType={['slideInRight', 'fadeIn']}
+                            animationOutType={['slideOutLeft', 'fadeOut']}
+                            delay={200}
+                        >
                             <SeedVaultExportComponent
                                 step={step}
                                 setProgressStep={(step) => this.setState({ step })}
@@ -111,8 +119,10 @@ class SeedVaultBackup extends Component {
                                 seed={seed}
                                 setSeed={(seed) => this.setState({ seed })}
                             />
-                        </KeyboardAvoidingView>
-                        <View style={styles.bottomContainer}>
+                        </AnimatedComponent>
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                             <DualFooterButtons
                                 onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
                                 onRightButtonPress={() => this.onRightButtonPress()}
@@ -123,7 +133,7 @@ class SeedVaultBackup extends Component {
                                         : step === 'isSelectingSaveMethodAndroid' ? t('global:done') : t('global:next')
                                 }
                             />
-                        </View>
+                        </AnimatedComponent>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

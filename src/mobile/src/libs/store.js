@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import last from 'lodash/last';
 import filter from 'lodash/filter';
@@ -9,7 +10,8 @@ import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { doesSaltExistInKeychain } from 'libs/keychain';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
-import { parse } from 'shared-modules/libs/utils';
+import { parse, fetchVersions } from 'shared-modules/libs/utils';
+import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate } from 'shared-modules/actions/wallet';
 
 /**
  * AsyncStorage adapter for manipulating state persisted by redux-persist (https://github.com/rt2zz/redux-persist)
@@ -90,6 +92,27 @@ export const reduxPersistStorageAdapter = {
             });
         });
     },
+};
+
+/**
+ * Checks if there is a newer version or if the current version is blacklisted
+ * @param {object} store
+ *
+ * @returns {Promise<object>}
+ *
+ */
+export const versionCheck = (store) => {
+    const currentBuildNumber = get(store.getState(), 'settings.versions.buildNumber');
+    return fetchVersions()
+        .then(({ mobileBlacklist, latestMobile }) => {
+            if (mobileBlacklist.includes(currentBuildNumber)) {
+                store.dispatch(triggerForceUpdate());
+            } else if (latestMobile > currentBuildNumber) {
+                store.dispatch(triggerShouldUpdate());
+            }
+            return store;
+        })
+        .catch(() => store);
 };
 
 /**

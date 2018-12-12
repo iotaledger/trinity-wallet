@@ -8,7 +8,7 @@ import { withI18n } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { MAX_ACC_LENGTH } from 'libs/crypto';
-import { byteToChar, charToByte } from 'libs/helpers';
+import { byteToChar, charToByte } from 'libs/iota/converter';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -106,15 +106,22 @@ class SeedInput extends React.PureComponent {
     };
 
     onPaste = (e) => {
+        const { t } = this.props;
+        this.props.generateAlert(
+            'info',
+            t('seedReentry:clipboardWarning'),
+            t('seedReentry:clipboardWarningExplanation'),
+        );
         e.preventDefault();
     };
 
     onDrop = async (buffer) => {
+        const { t } = this.props;
         if (!buffer) {
             return this.props.generateAlert(
                 'error',
-                'Error opening keystore file',
-                'There was an error opening keystore file',
+                t('seedVault:seedFileError'),
+                t('seedVault:seedFileErrorExplanation'),
             );
         }
 
@@ -260,10 +267,6 @@ class SeedInput extends React.PureComponent {
                     seed.splice(Math.min(...cursor), Math.abs(cursor[0] - cursor[1]), byte);
                 }
 
-                if (seed.length > MAX_SEED_LENGTH) {
-                    return;
-                }
-
                 this.setState({
                     cursor: seed.length ? cursorPos : 0,
                 });
@@ -277,7 +280,10 @@ class SeedInput extends React.PureComponent {
         const { seed, label, closeLabel, t } = this.props;
         const { importBuffer, accounts, accountIndex, showScanner, hidden } = this.state;
 
-        const checkSum = seed.length < MAX_SEED_LENGTH ? '< 81' : Electron.getChecksum(seed);
+        const checkSum =
+            seed.length < MAX_SEED_LENGTH
+                ? '< 81'
+                : seed.length > MAX_SEED_LENGTH ? '> 81' : Electron.getChecksum(seed);
 
         return (
             <div className={classNames(css.input, css.seed)}>

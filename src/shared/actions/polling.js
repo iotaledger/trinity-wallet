@@ -7,19 +7,21 @@ import some from 'lodash/some';
 import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { setNodeList, setRandomlySelectedNode, setAutoPromotion } from './settings';
+import { setNodeList, setRandomlySelectedNode, setAutoPromotion, changeNode } from './settings';
 import { getRandomNode, changeIotaNode } from '../libs/iota';
-import { fetchRemoteNodes } from '../libs/iota/utils';
+import { fetchRemoteNodes, withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import {
     nodes as defaultNodes,
     nodesWithPowEnabled as defaultNodesWithPowEnabled,
     nodesWithPowDisabled as defaultNodesWithPowDisabled,
+    DEFAULT_RETRIES,
 } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../libs/i18next';
@@ -448,12 +450,15 @@ export const getAccountInfo = (accountName, notificationFn) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+        const selectedNode = getSelectedNodeFromState(getState());
 
-        return syncAccount()(existingAccountState, undefined, notificationFn)
-            .then((newAccountData) => {
-                // Update storage (realm)
-                Account.update(accountName, newAccountData);
-                dispatch(accountInfoFetchSuccess(newAccountData));
+        withRetriesOnDifferentNodes([
+            selectedNode,
+            ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]),
+        ])(syncAccount)(existingAccountState, undefined, notificationFn)
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+                dispatch(accountInfoFetchSuccess(result));
             })
             .catch((err) => {
                 dispatch(accountInfoFetchError());

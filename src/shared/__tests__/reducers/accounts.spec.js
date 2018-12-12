@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import reducer from '../../reducers/accounts';
+import reducer, { removeAccountAndReorderIndexes } from '../../reducers/accounts';
 import { ActionTypes } from '../../actions/accounts';
 
 describe('Reducer: accounts', () => {
@@ -276,6 +276,38 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('#removeAccountAndReorderIndexes', () => {
+        describe('when accountName does not exist in accountInfo', () => {
+            it('should return existing accountInfo', () => {
+                const accountInfo = { foo: { index: 0 } };
+
+                expect(removeAccountAndReorderIndexes(accountInfo, 'baz')).to.eql(accountInfo);
+            });
+        });
+
+        describe('when accountName exists in accountInfo', () => {
+            it('should remove account from accountInfo', () => {
+                const accountInfo = { foo: { index: 0 }, baz: { index: 1 } };
+
+                expect(removeAccountAndReorderIndexes(accountInfo, 'baz')).to.eql({ foo: { index: 0 } });
+            });
+
+            it('should reorder account indexes (Fill missing indexes)', () => {
+                expect(
+                    removeAccountAndReorderIndexes({ foo: { index: 0 }, baz: { index: 1 }, bar: { index: 2 } }, 'baz'),
+                ).to.eql({ foo: { index: 0 }, bar: { index: 1 } });
+
+                expect(
+                    removeAccountAndReorderIndexes({ foo: { index: 0 }, baz: { index: 1 }, bar: { index: 2 } }, 'bar'),
+                ).to.eql({ foo: { index: 0 }, baz: { index: 1 } });
+
+                expect(
+                    removeAccountAndReorderIndexes({ foo: { index: 0 }, baz: { index: 1 }, bar: { index: 2 } }, 'foo'),
+                ).to.eql({ baz: { index: 0 }, bar: { index: 1 } });
+            });
         });
     });
 });

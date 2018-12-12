@@ -42,12 +42,12 @@ end
 
 lane :upload_dsyms do |options|
   if options[:path]
-    upload_symbols_to_bugsnag(dsym_path: options[:path])
+    upload_symbols_to_bugsnag(dsym_path: options[:path], api_key: options[:api_key])
   else
     clean_build_artifacts
     build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
     download_dsyms(build_number: build_number)
-    upload_symbols_to_bugsnag
+    upload_symbols_to_bugsnag(api_key: options[:api_key])
     clean_build_artifacts
   end
 end
@@ -74,4 +74,23 @@ end
 
 lane :localization do
   import_localizations(source_path: './localizations/*.xliff', project: 'iotaWallet.xcodeproj')
+end
+
+lane :clean_testers_dry_run do
+  UI.important "This may take about 20 minutes for 10,000 testers"
+  UI.important "Do not run this too often! You may be rate limited"
+  clean_testflight_testers(
+    app_identifier: "com.iota.trinity",
+    days_of_inactivity: 120,
+    dry_run: true,
+  )
+end
+
+lane :clean_testers do
+  UI.important "This may take about 20 minutes for 10,000 testers"
+  UI.important "Do not run this too often! You may be rate limited"
+  clean_testflight_testers(
+    app_identifier: "com.iota.trinity",
+    days_of_inactivity: 120,
+  )
 end

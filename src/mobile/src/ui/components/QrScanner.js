@@ -1,40 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, PermissionsAndroid } from 'react-native';
+import { Text, StyleSheet, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
-import { isAndroid, isIPhoneX } from 'libs/device';
-import { width, height } from 'libs/dimensions';
+import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import SingleFooterButton from 'ui/components/SingleFooterButton';
-import DynamicStatusBar from './DynamicStatusBar';
+import { height } from 'libs/dimensions';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
     qrInfoText: {
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         fontSize: Styling.fontSize4,
+        justifyContent: 'center',
     },
-    closeButton: {
-        flexDirection: 'row',
-        borderRadius: Styling.borderRadius,
-        width: width / 2.5,
-        height: height / 14,
+    textContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
-        borderWidth: 1.2,
-    },
-    closeButtonText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: Styling.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    modalContent: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: 'red',
+        height: height / 6,
+        paddingBottom: height / 12,
     },
 });
 
@@ -61,10 +48,13 @@ export class QRScanner extends Component {
         onMount: PropTypes.func,
         /** Unmount lifecycle method calback function  */
         onUnmount: PropTypes.func,
+        /** Determines whether to display top bar */
+        displayTopBar: PropTypes.bool,
     };
 
     static defaultProps = {
         ctaBorderColor: 'transparent',
+        displayTopBar: false,
     };
 
     componentDidMount() {
@@ -85,23 +75,21 @@ export class QRScanner extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const { t, theme: { body }, displayTopBar } = this.props;
         return (
-            <View style={styles.modalContent}>
-                <View style={{ alignItems: 'center', backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={body.bg} isModalActive />
-                    <View style={{ height: height / 12 }} />
-                    <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
-                    <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
-                    <View style={{ paddingBottom: isIPhoneX ? 34 : 0 }}>
-                        <SingleFooterButton
-                            onButtonPress={() => this.props.hideModal()}
-                            testID="qrScanner-next"
-                            buttonText={t('global:close')}
-                        />
-                    </View>
-                </View>
-            </View>
+            <ModalView
+                displayTopBar={displayTopBar}
+                onButtonPress={() => this.props.hideModal()}
+                buttonText={t('global:close')}
+            >
+                <QRCodeScanner
+                    containerStyle={{ flex: 1 }}
+                    topViewStyle={{ flex: 2, backgroundColor: body.bg, zIndex: 1000, justifyContent: 'center' }}
+                    bottomViewStyle={{ flex: 1, backgroundColor: body.bg }}
+                    topContent={<Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>}
+                    onRead={(data) => this.props.onQRRead(data.data)}
+                />
+            </ModalView>
         );
     }
 }

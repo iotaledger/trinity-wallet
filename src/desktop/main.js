@@ -1,10 +1,11 @@
-const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
-const electron = require('electron');
-const initMenu = require('./native/Menu.js');
-const path = require('path');
-const URL = require('url');
-const fs = require('fs');
-const electronSettings = require('electron-settings');
+import electron, { ipcMain as ipc, app, protocol, shell, Tray } from 'electron';
+import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
+import electronSettings from 'electron-settings';
+import path from 'path';
+import URL from 'url';
+import fs from 'fs';
+
+import { initMenu, contextMenu } from './native/Menu.js';
 
 /**
  * Expose Garbage Collector flag for manual trigger after seed usage
@@ -12,9 +13,12 @@ const electronSettings = require('electron-settings');
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 /**
- * Disable Remote Debugging Port on production build
+ * Terminate application if Node remote debugging detected
  */
-app.commandLine.appendSwitch('remote-debugging-port', '');
+const argv = process.argv.join();
+if (argv.includes('inspect') || argv.includes('remote') || typeof v8debug !== 'undefined') {
+    app.quit();
+}
 
 /**
  * Set AppUserModelID for Windows notifications functionallity
@@ -25,6 +29,11 @@ app.setAppUserModelId('org.iota.trinity');
  * Set environment mode
  */
 const devMode = process.env.NODE_ENV === 'development';
+
+const paths = {
+    assets: path.resolve(devMode ? __dirname : app.getAppPath(), 'assets'),
+    preload: path.resolve(devMode ? __dirname : app.getAppPath(), 'dist'),
+};
 
 /**
  * Define deep link state
@@ -53,7 +62,7 @@ if (!devMode) {
     app.setAsDefaultProtocolClient('iota');
 }
 
-let settings = null;
+let settings = {};
 
 let windowState = {
     width: 1280,
@@ -69,8 +78,17 @@ try {
     if (windowStateData) {
         windowState = windowStateData;
     }
-    settings = JSON.parse(data);
+    settings = JSON.parse(data) || {};
 } catch (error) {}
+
+/**
+ * Temporarily disable proxy if not overridden by settings
+ */
+
+if (settings.ignoreProxy) {
+    app.commandLine.appendSwitch('auto-detect', 'false');
+    app.commandLine.appendSwitch('no-proxy-server');
+}
 
 function createWindow() {
     /**
@@ -87,7 +105,7 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings && settings.theme.body.bg) || 'rgb(3, 41, 62)';
+    let bgColor = (settings.theme && settings.theme.body.bg) || 'rgb(3, 41, 62)';
 
     if (bgColor.indexOf('rgb') === 0) {
         bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
@@ -105,14 +123,13 @@ function createWindow() {
         minHeight: 720,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon:
-            process.platform === 'win32'
-                ? `${__dirname}/dist/icon.ico`
-                : process.platform === 'darwin' ? `${__dirname}/dist/icon.icns` : `${__dirname}/dist/icon.png`,
+        icon: `${paths.assets}icon.${
+            process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'
+        }`,
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(__dirname, `native/preload/${devMode ? 'development' : 'production'}.js`),
+            preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -130,7 +147,7 @@ function createWindow() {
             show: false,
             webPreferences: {
                 nodeIntegration: false,
-                preload: path.resolve(__dirname, 'native/preload/tray.js'),
+                preload: path.resolve(paths.preload, 'preloadTray.js'),
                 disableBlinkFeatures: 'Auxclick',
                 webviewTag: false,
             },
@@ -178,18 +195,12 @@ function createWindow() {
     /**
      * Enable React and Redux devtools in development mode
      */
+
     if (devMode) {
         windows.main.webContents.openDevTools({ mode: 'detach' });
-
         if (process.platform === 'darwin') {
             windows.tray.webContents.openDevTools({ mode: 'detach' });
         }
-
-        const {
-            default: installExtension,
-            REACT_DEVELOPER_TOOLS,
-            REDUX_DEVTOOLS,
-        } = require('electron-devtools-installer');
 
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);
@@ -199,40 +210,9 @@ function createWindow() {
      * Add right click context menu for input elements
      */
     windows.main.webContents.on('context-menu', (e, props) => {
-        const InputMenu = electron.Menu.buildFromTemplate([
-            {
-                label: 'Undo',
-                role: 'undo',
-            },
-            {
-                label: 'Redo',
-                role: 'redo',
-            },
-            {
-                type: 'separator',
-            },
-            {
-                label: 'Cut',
-                role: 'cut',
-            },
-            {
-                label: 'Copy',
-                role: 'copy',
-            },
-            {
-                label: 'Paste',
-                role: 'paste',
-            },
-            {
-                type: 'separator',
-            },
-            {
-                label: 'Select all',
-                role: 'selectall',
-            },
-        ]);
         const { isEditable } = props;
         if (isEditable) {
+            const InputMenu = contextMenu();
             InputMenu.popup(windows.main);
         }
     });
@@ -277,7 +257,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${__dirname}/dist/trayTemplate@2x.png`);
+    tray = new Tray(path.resolve(paths.assets, 'trayTemplate@2x.png'));
 
     tray.on('click', () => {
         toggleTray();

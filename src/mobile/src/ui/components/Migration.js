@@ -12,7 +12,6 @@ import { migrate } from 'shared-modules/actions/migrations';
 import { reduxPersistStorageAdapter } from 'libs/store';
 import ProgressSteps from 'libs/progressSteps';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import Header from 'ui/components/Header';
 import InfoBox from 'ui/components/InfoBox';
 import ProgressBar from 'ui/components/ProgressBar';
@@ -172,6 +171,4 @@ const mapDispatchToProps = {
     startTrackingProgress,
 };
 
-export default WithBackPressCloseApp()(
-    withNamespaces(['migration'])(connect(mapStateToProps, mapDispatchToProps)(Migration)),
-);
+export default withNamespaces(['migration'])(connect(mapStateToProps, mapDispatchToProps)(Migration));

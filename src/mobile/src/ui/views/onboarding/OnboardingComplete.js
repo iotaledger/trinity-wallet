@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import balloonsImagePath from 'shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import WithBackPressCloseApp from 'ui/components/BackPressCloseApp';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         width,
         height: width,
         position: 'absolute',
-        top: -height / 10,
+        top: height / 5,
     },
 });
 
@@ -73,29 +73,17 @@ class OnboardingComplete extends Component {
 
     onNextPress() {
         const { theme: { body } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'loading',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.setStackRoot('loading', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+            },
+            statusBar: {
+                backgroundColor: body.bg,
             },
         });
     }
@@ -105,24 +93,40 @@ class OnboardingComplete extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={400}>
+                        <Icon name="iota" size={width / 8} color={body.color} />
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={styles.infoTextContainer}>
+                    <AnimatedComponent
+                        animationInType={['fadeIn']}
+                        animationOutType={['fadeOut']}
+                        delay={200}
+                        style={styles.infoTextContainer}
+                    >
                         <Text style={[styles.infoText, { color: body.color }]}>{t('walletReady')}</Text>
-                    </View>
-                    <Image source={balloonsImagePath} style={styles.party} />
+                    </AnimatedComponent>
+                    <AnimatedComponent
+                        animationInType={['fadeIn']}
+                        animationOutType={['fadeOut']}
+                        delay={0}
+                        style={{ height, width }}
+                    >
+                        <Image source={balloonsImagePath} style={styles.party} />
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <SingleFooterButton
-                        onButtonPress={() => this.onNextPress()}
-                        testID="languageSetup-next"
-                        buttonStyle={{
-                            wrapper: { backgroundColor: primary.color },
-                            children: { color: primary.body },
-                        }}
-                        buttonText={t('openYourWallet')}
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <SingleFooterButton
+                            onButtonPress={() => this.onNextPress()}
+                            testID="languageSetup-next"
+                            buttonStyle={{
+                                wrapper: { backgroundColor: primary.color },
+                                children: { color: primary.body },
+                            }}
+                            buttonText={t('openYourWallet')}
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );
@@ -133,6 +137,4 @@ const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
 });
 
-export default WithBackPressCloseApp()(
-    withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete)),
-);
+export default withNamespaces(['onboardingComplete', 'global'])(connect(mapStateToProps)(OnboardingComplete));

@@ -159,7 +159,6 @@ export class EditAccountName extends Component {
                             <CustomTextInput
                                 label={t('accountName')}
                                 onChangeText={(accountName) => this.setState({ accountName })}
-                                containerStyle={{ width: Styling.contentWidth }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

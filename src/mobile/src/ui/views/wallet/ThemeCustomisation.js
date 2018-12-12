@@ -139,7 +139,7 @@ class ThemeCustomisation extends Component {
         this.state = {
             theme: props.theme,
             themeName: props.themeName,
-            themes: Object.keys(THEMES),
+            themes: Object.keys(THEMES).map((theme, index) => ({ theme, index })),
         };
     }
 
@@ -164,14 +164,20 @@ class ThemeCustomisation extends Component {
 
     getLocalizedThemes() {
         const localizedThemes = this.state.themes.map((item) => {
-            return this.getLocalizedThemeName(item);
+            return {
+                ...item,
+                theme: this.getLocalizedThemeName(item.theme),
+            };
         });
+
         return localizedThemes;
     }
 
     getThemeName(localizedThemeName) {
         const localizedThemes = this.getLocalizedThemes();
-        return this.state.themes[localizedThemes.indexOf(localizedThemeName)];
+        const { index } = localizedThemes.find(({ theme }) => theme === localizedThemeName);
+
+        return this.state.themes.find((value) => value.index === index).theme;
     }
 
     render() {
@@ -200,7 +206,7 @@ class ThemeCustomisation extends Component {
                                 background
                                 shadow
                                 defaultOption={this.getLocalizedThemeName(themeName)}
-                                options={this.getLocalizedThemes()}
+                                options={this.getLocalizedThemes().map(({ theme }) => theme)}
                                 saveSelection={(localizedSelection) => {
                                     const selection = this.getThemeName(localizedSelection);
                                     const newTHEMES = cloneDeep(THEMES);

@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
     },
     iotaBalance: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize6,
+        fontSize: Styling.fontSize7,
         backgroundColor: 'transparent',
     },
     iotaUnit: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize4,
         backgroundColor: 'transparent',
-        marginTop: height / 31,
+        marginTop: height / 36,
         paddingLeft: width / 40,
     },
     fiatBalance: {
@@ -218,7 +218,7 @@ export class Balance extends Component {
             <FlatList
                 scrollEnabled={false}
                 data={data}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <SimpleTransactionRow {...item} />}
                 contentContainerStyle={styles.listView}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}

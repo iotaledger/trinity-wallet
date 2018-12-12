@@ -1,12 +1,14 @@
 import get from 'lodash/get';
 import size from 'lodash/size';
 import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isString from 'lodash/isString';
 import keys from 'lodash/keys';
 import filter from 'lodash/filter';
 import validUrl from 'valid-url';
+import { VERSIONS_URL } from '../config';
 
 /**
  * Computes number rounded to precision
@@ -294,4 +296,24 @@ export const removeNonAlphaNumeric = (source, fallback = '') => {
         newStr = fallback.replace(/[^a-zA-Z0-9_-]/g, '');
     }
     return newStr;
+};
+
+/**
+ * Fetches latest and blacklisted versions
+ *
+ * @method fetchVersions
+ * @param {string} [url]
+ *
+ * @returns {Promise<*>}
+ */
+export const fetchVersions = (url = VERSIONS_URL) => {
+    return fetch(url)
+        .then((response) => response.json())
+        .then((response) => {
+            if (isObject(response)) {
+                return response;
+            }
+            return {};
+        })
+        .catch(() => Promise.resolve({}));
 };

@@ -10,7 +10,7 @@
         "Charlie Varley"
     ],
     "scripts": {
-        "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --exit --require @babel/register \"__tests__/**/*.spec.js\"",
+        "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --require @babel/register \"__tests__/**/*.spec.js\"",
         "test:watch": "yarn test --watch",
         "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
         "themes:sync": "node themes/sync.js"

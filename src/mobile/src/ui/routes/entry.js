@@ -10,7 +10,7 @@ import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'shared-modules/libs/iota';
 import reduxStore from 'shared-modules/store';
-import iotaNativeBindings, { overrideAsyncTransactionObject } from 'shared-modules/libs/iota/nativeBindings';
+import { assignAccountIndexIfNecessary } from 'shared-modules/actions/accounts';
 import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
@@ -20,7 +20,6 @@ import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
-import { getDigestFn } from 'libs/nativeModules';
 import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter } from 'libs/store';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
@@ -49,6 +48,9 @@ const launch = () => {
         reduxStore.dispatch(setCompletedForcedPasswordUpdate());
     }
 
+    // Assign accountIndex to every account in accountInfo if it is not assigned already
+    reduxStore.dispatch(assignAccountIndexIfNecessary(get(state, 'accounts.accountInfo')));
+
     // Set default language
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
@@ -74,6 +76,24 @@ const onAppStart = () => {
 const renderInitialScreen = (initialScreen, state) => {
     const theme = Themes[state.settings.themeName] || Themes.Default;
 
+    Navigation.setDefaultOptions({
+        layout: {
+            backgroundColor: theme.body.bg,
+            orientation: ['portrait'],
+        },
+        topBar: {
+            visible: false,
+            drawBehind: false,
+            elevation: 0,
+            background: {
+                color: 'black',
+            },
+        },
+        statusBar: {
+            drawBehind: false,
+            backgroundColor: theme.body.bg,
+        },
+    });
     Navigation.setRoot({
         root: {
             stack: {
@@ -82,30 +102,14 @@ const renderInitialScreen = (initialScreen, state) => {
                     {
                         component: {
                             name: initialScreen,
-                            options: {
-                                layout: {
-                                    backgroundColor: theme.body.bg,
-                                    orientation: ['portrait'],
-                                },
-                                topBar: {
-                                    visible: false,
-                                    drawBehind: true,
-                                    elevation: 0,
-                                    background: {
-                                        color: theme.body.bg,
-                                    },
-                                },
-                                statusBar: {
-                                    drawBehind: true,
-                                    backgroundColor: theme.body.bg,
-                                },
-                            },
                         },
                     },
                 ],
             },
         },
     });
+
+    reduxStore.dispatch({ type: ActionTypes.RESET_ROUTE, payload: initialScreen });
 };
 
 /**
@@ -215,8 +219,6 @@ onAppStart()
     .then(() => resetIfKeychainIsEmpty(reduxStore))
     // Launch application
     .then(() => {
-        overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
-
         const initialize = (isConnected) => {
             reduxStore.dispatch({
                 type: ActionTypes.CONNECTION_CHANGED,

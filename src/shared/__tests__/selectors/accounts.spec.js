@@ -103,6 +103,22 @@ describe('selectors: accounts', () => {
         });
     });
 
+    describe('#getAccountNamesFromState', () => {
+        describe('when "accountInfo" prop is not defined as a nested prop under "accounts" prop in argument', () => {
+            it('should return an empty array', () => {
+                expect(getAccountNamesFromState({ accounts: { notAccountInfo: [] } })).to.eql([]);
+            });
+        });
+
+        describe('when "accountInfo" prop is defined as a nested prop under "accounts" prop in argument', () => {
+            it('should return sorted account names by indes', () => {
+                expect(
+                    getAccountNamesFromState({ accounts: { accountInfo: { a: { index: 1 }, b: { index: 0 } } } }),
+                ).to.eql(['b', 'a']);
+            });
+        });
+    });
+
     describe('#selectLatestAddressFromAccountFactory', () => {
         let state;
 

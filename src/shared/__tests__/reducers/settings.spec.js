@@ -70,6 +70,7 @@ describe('Reducer: settings', () => {
                     messages: true,
                 },
                 completedMigration: false,
+                ignoreProxy: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -684,6 +685,26 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_PROXY', () => {
+        it('should set ignoreProxy to payload', () => {
+            const initialState = {
+                ignoreProxy: false,
+            };
+
+            const action = {
+                type: ActionTypes.SET_PROXY,
+                payload: true,
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                ignoreProxy: true,
             };
 
             expect(newState).to.eql(expectedState);

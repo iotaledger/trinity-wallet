@@ -45,6 +45,7 @@ export const ActionTypes = {
     SET_BYTETRIT_INFO: 'IOTA/SETTINGS/SET_BYTETRIT_INFO',
     SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
+    SET_PROXY: 'SET_PROXY',
 };
 
 /**
@@ -766,3 +767,16 @@ export const setNotifications = (payload) => {
         payload,
     };
 };
+
+/**
+ * Dispatch to update proxy settings
+ *
+ * @method setProxy
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setProxy = (payload) => ({
+    type: ActionTypes.SET_PROXY,
+    payload,
+});

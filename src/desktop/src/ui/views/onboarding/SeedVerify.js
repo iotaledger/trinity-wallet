@@ -37,13 +37,9 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
-        const { generateAlert, t } = this.props;
-
         if (Electron.getOnboardingSeed()) {
             Electron.garbageCollect();
         }
-
-        generateAlert('info', t('seedReentry:clipboardWarning'), t('seedReentry:clipboardWarningExplanation'));
     }
 
     onChange = (value) => {
@@ -68,18 +64,25 @@ class SeedVerify extends React.PureComponent {
         if (
             isGenerated &&
             (seed.length !== Electron.getOnboardingSeed().length ||
-                !Electron.getOnboardingSeed().every(
-                    (v, i) => v[0] === seed[i][0] && v[1] === seed[i][1] && v[2] === seed[i][2],
-                ))
+                !Electron.getOnboardingSeed().every((v, i) => v % 27 === seed[i] % 27))
         ) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
         }
 
-        if (seed.length < MAX_SEED_LENGTH) {
+        if (wallet.password.length) {
+            const seedStore = await new SeedStore.keychain(wallet.password);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+            if (!isUniqueSeed) {
+                generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
+                return;
+            }
+        }
+
+        if (seed.length !== MAX_SEED_LENGTH) {
             generateAlert(
                 'error',
-                t('enterSeed:seedTooShort'),
+                seed.length < MAX_SEED_LENGTH ? t('enterSeed:seedTooShort') : t('enterSeed:seedTooLong'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
             return;

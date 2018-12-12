@@ -9,11 +9,12 @@ import { withI18n } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
+import { fetchVersions } from 'libs/utils';
 
 import { getAccountNamesFromState, isSettingUpNewAccount } from 'selectors/accounts';
 
 import { setOnboardingComplete, setAccountInfoDuringSetup } from 'actions/accounts';
-import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex, shouldUpdate, forceUpdate } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
@@ -31,7 +32,6 @@ import Loading from 'ui/components/Loading';
 import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
-import Account from 'ui/views/account/Index';
 import Ledger from 'ui/global/seedStore/Ledger';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
@@ -43,6 +43,8 @@ import css from './index.scss';
  **/
 class App extends React.Component {
     static propTypes = {
+        /** @ignore */
+        seedIndex: PropTypes.number.isRequired,
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
@@ -78,6 +80,10 @@ class App extends React.Component {
         /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
         /** @ignore */
+        shouldUpdate: PropTypes.func.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.func.isRequired,
+        /** @ignore */
         setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -107,6 +113,7 @@ class App extends React.Component {
         Electron.requestDeepLink();
 
         this.checkVaultAvailability();
+        this.versionCheck();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -182,8 +189,19 @@ class App extends React.Component {
             await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
-                fatalError: true,
+                fatalError: err instanceof Error && typeof err.message === 'string' ? err.message : err.toString(),
             });
+        }
+    }
+
+    async versionCheck() {
+        const data = await fetchVersions();
+        const versionId = Electron.getVersion();
+
+        if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
+            this.props.forceUpdate();
+        } else if (data.latestDesktop && versionId !== data.latestDesktop) {
+            this.props.shouldUpdate();
         }
     }
 
@@ -233,7 +251,11 @@ class App extends React.Component {
                 this.props.history.push('/onboarding/login');
                 break;
             default:
-                this.props.history.push(`/${item}`);
+                if (item.indexOf('settings/account') === 0) {
+                    this.props.history.push(`/${item}/${this.props.seedIndex}`);
+                } else {
+                    this.props.history.push(`/${item}`);
+                }
                 break;
         }
     }
@@ -246,22 +268,23 @@ class App extends React.Component {
 
     render() {
         const { location, history } = this.props;
+        const { fatalError } = this.state;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
-        if (this.state.fatalError) {
+        if (fatalError) {
             return (
                 <div className={css.trintiy}>
                     <Theme history={history} />
-                    <Titlebar />
-                    <FatalError />
+                    <Titlebar path={currentKey} />
+                    <FatalError error={fatalError} />
                 </div>
             );
         }
 
         return (
             <div className={css.trintiy}>
-                <Titlebar />
+                <Titlebar path={currentKey} />
                 <About />
                 <ErrorLog />
                 <Idle />
@@ -272,8 +295,11 @@ class App extends React.Component {
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
                             <Switch location={location}>
-                                <Route exact path="/settings/:setting?" component={Settings} />
-                                <Route exact path="/account/:setting?" component={Account} />
+                                <Route
+                                    exact
+                                    path="/settings/:setting?/:subsetting?/:accountIndex?"
+                                    component={Settings}
+                                />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
                                 <Route exact path="/" loop={false} component={this.Init} />
@@ -287,6 +313,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    seedIndex: state.wallet.seedIndex,
     accountNames: getAccountNamesFromState(state),
     addingAdditionalAccount: isSettingUpNewAccount(state),
     locale: state.settings.locale,
@@ -308,6 +335,8 @@ const mapDispatchToProps = {
     updateTheme,
     setOnboardingComplete,
     setAccountInfoDuringSetup,
+    shouldUpdate,
+    forceUpdate,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withI18n()(withAutoNodeSwitching(App))));

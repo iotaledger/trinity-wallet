@@ -113,6 +113,10 @@ const initialState = {
      * Determines the status of AsyncStorage to realm migration
      */
     completedMigration: false,
+    /*
+     * Desktop: Use system proxy settings
+     */
+    ignoreProxy: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -263,6 +267,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 completedMigration: action.payload,
+            };
+        case ActionTypes.SET_PROXY:
+            return {
+                ...state,
+                ignoreProxy: action.payload,
             };
     }
 

@@ -14,12 +14,13 @@ import ui from './reducers/ui';
 import { ActionTypes } from './actions/settings';
 import { ActionTypes as WalletActionTypes } from './actions/wallet';
 import networkMiddleware from './middlewares/network';
+import versionMiddleware from './middlewares/version';
 import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
 import { __DEV__ } from './config';
 
-const developmentMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
-const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
+const developmentMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
+const productionMiddleware = [thunk, networkMiddleware, versionMiddleware, alertsMiddleware, modalMiddleware];
 
 const reducers = combineReducers({
     alerts,

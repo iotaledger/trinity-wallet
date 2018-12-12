@@ -1,5 +1,10 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import has from 'lodash/has';
+import isUndefined from 'lodash/isUndefined';
+import transform from 'lodash/transform';
+import keys from 'lodash/keys';
+import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 import { ActionTypes } from '../actions/accounts';
@@ -8,7 +13,31 @@ import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
 /**
- * Set latest address data
+ * Removes account name from account info and reorders account indexes (Fill in missing gaps)
+ *
+ * @method removeAccountAndReorderIndexes
+ * @param {object} accountInfo
+ * @param {string} accountNameToDelete
+ *
+ * @returns {object}
+ */
+export const removeAccountAndReorderIndexes = (accountInfo, accountNameToDelete) => {
+    if (!has(accountInfo, accountNameToDelete)) {
+        return accountInfo;
+    }
+
+    const { index } = accountInfo[accountNameToDelete];
+
+    return mapValues(
+        // Remove account
+        omit(accountInfo, accountNameToDelete),
+        // Reorder (fill in missing) account indexes
+        (data) => ({ ...data, index: data.index > index ? data.index - 1 : data.index }),
+    );
+};
+
+/**
+ * Merge latest address data into existing address data for an account
  *
  * @method setAddressData
  * @param {object} existingAddressData
@@ -38,7 +67,11 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
-            meta: payload.accountMeta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
+            // Set seed index
+            index: isUndefined(payload.index)
+                ? get(state.accountInfo, `${payload.accountName}.index`)
+                : payload.accountIndex,
+            meta: payload.meta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             addressData: setAddressData(
                 get(state.accountInfo, `${payload.accountName}.addressData`),
                 payload.addressData,
@@ -128,7 +161,7 @@ const account = (
         case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
-                accountInfo: omit(state.accountInfo, action.payload),
+                accountInfo: removeAccountAndReorderIndexes(state.accountInfo, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
             };
@@ -202,6 +235,17 @@ const account = (
                     meta: {},
                     usedExistingSeed: false,
                 },
+            };
+        case ActionTypes.ASSIGN_ACCOUNT_INDEX:
+            return {
+                ...state,
+                accountInfo: transform(
+                    keys(state.accountInfo),
+                    (acc, name, index) => {
+                        acc[name] = { ...state.accountInfo[name], index };
+                    },
+                    {},
+                ),
             };
         default:
             return state;

@@ -7,6 +7,7 @@ import { zxcvbn } from 'shared-modules/libs/exports';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { passwordReasons } from 'shared-modules/libs/password';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import i18next from 'shared-modules/libs/i18next.js';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import CustomTextInput from './CustomTextInput';
@@ -42,6 +43,15 @@ class PasswordFields extends Component {
         password: PropTypes.string.isRequired,
         /** @ignore */
         reentry: PropTypes.string.isRequired,
+        /** First text input label */
+        passwordLabel: PropTypes.string,
+        /** Second text input label */
+        reentryLabel: PropTypes.string,
+    };
+
+    static defaultProps = {
+        passwordLabel: i18next.t('global:password'),
+        reentryLabel: i18next.t('setPassword:retypePassword'),
     };
 
     componentDidMount() {
@@ -82,14 +92,14 @@ class PasswordFields extends Component {
     }
 
     render() {
-        const { t, theme, password, reentry } = this.props;
+        const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
         const score = zxcvbn(password);
         const isValid = score.score === 4;
 
         return (
             <View style={[styles.container]}>
                 <CustomTextInput
-                    label={t('global:password')}
+                    label={passwordLabel}
                     onChangeText={(password) => this.props.setPassword(password)}
                     containerStyle={{ width: Styling.contentWidth }}
                     autoCapitalize="none"
@@ -112,7 +122,7 @@ class PasswordFields extends Component {
                     onRef={(c) => {
                         this.reentry = c;
                     }}
-                    label={t('retypePassword')}
+                    label={reentryLabel}
                     onChangeText={(reentry) => this.props.setReentry(reentry)}
                     containerStyle={{ width: Styling.contentWidth, marginTop: height / 60 }}
                     widget="passwordReentry"
