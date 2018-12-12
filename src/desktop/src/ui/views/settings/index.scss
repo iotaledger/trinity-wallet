@@ -2,44 +2,62 @@
     justify-content: flex-start;
 
     aside {
+        position: relative;
         flex: 0 0 280px;
         background: var(--bar-bg);
-        padding: 60px 0;
+        height: 100vh;
+        width: 100%;
+
+        > div {
+            padding: 60px 0;
+
+            :global {
+                .ps__rail-y {
+                    display: none;
+                }
+            }
+        }
 
         @media print {
             display: none;
         }
 
-        > a {
+        h1 {
             display: block;
             position: relative;
-            font-size: 18px;
+            font-size: 21px;
             line-height: 62px;
+            padding: 0 20px;
+            color: var(--bar-body);
+            margin-bottom: 0px;
+            opacity: 0.6;
+            border-bottom: 1px solid var(--bar-hover);
+        }
+
+        > div > a {
+            display: block;
+            position: relative;
+            line-height: 52px;
+            font-size: 16px;
             padding: 0 20px;
             color: var(--bar-body);
             background: var(--bar-bg);
             transition: background 0.6s, padding 0.2s;
+            border-bottom: 1px solid var(--bar-hover);
 
             > span {
                 position: absolute;
-                top: 24px;
+                top: 20px;
                 right: 14px;
-                transform: translate(-4px, 0) rotate(-90deg);
-                transition: transform 0.2s;
+            }
+
+            &:hover {
+                transition: background 0.2s, padding 0.2s;
             }
 
             &:hover,
             &[aria-current='true'] {
-                > span {
-                    transform: translate(0, 0) rotate(-90deg);
-                }
-            }
-
-            &[aria-current='true'] {
                 background: var(--bar-hover);
-                > span {
-                    transform: translate(0, 0) rotate(0);
-                }
             }
         }
 
@@ -118,8 +136,31 @@
             }
         }
 
-        fieldset button {
-            margin: 0 20px 20px 0;
+        > form {
+            height: 100vh;
+            position: relative;
+            padding-top: 120px;
+            fieldset {
+                max-width: 520px;
+                margin: 0 auto;
+
+                button {
+                    margin: 0 20px 20px 0;
+                }
+            }
+
+            footer {
+                position: absolute;
+                bottom: 0px;
+                height: 70px;
+                width: 100%;
+                display: flex;
+                align-items: stretch;
+                overflow: hidden;
+                * {
+                    flex: 1;
+                }
+            }
         }
     }
 
@@ -146,29 +187,6 @@
         border: none;
         margin: 32px 0;
         border-top: 1px solid var(--body-alt);
-    }
-
-    form {
-        height: 100vh;
-        position: relative;
-        padding-top: 120px;
-        fieldset {
-            max-width: 520px;
-            margin: 0 auto;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 0px;
-            height: 70px;
-            width: 100%;
-            display: flex;
-            align-items: stretch;
-            overflow: hidden;
-            * {
-                flex: 1;
-            }
-        }
     }
 }
 

@@ -14,6 +14,7 @@ import SeedPrint from 'ui/components/SeedPrint';
 import SeedExport from 'ui/global/SeedExport';
 
 import css from './seed.scss';
+import cssIndex from '../index.scss';
 
 /**
  * Account Seed settings component
@@ -61,19 +62,21 @@ class Seed extends PureComponent {
 
         if (!SeedStore[meta.type].isSeedAvailable) {
             return (
-                <div>
-                    <h3>{t('viewSeed:notAvailable', { accountType: capitalize(meta.type) })}</h3>
-                    {typeof meta.index === 'number' && (
-                        <p>
-                            {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
-                        </p>
-                    )}
-                    {typeof meta.page === 'number' &&
-                        meta.page > 0 && (
+                <div className={cssIndex.scroll}>
+                    <article>
+                        <h3>{t('viewSeed:notAvailable', { accountType: capitalize(meta.type) })}</h3>
+                        {typeof meta.index === 'number' && (
                             <p>
-                                {t('viewSeed:accountPage')}: <strong>{meta.page}</strong>
+                                {t('viewSeed:accountIndex')}: <strong>{meta.index}</strong>
                             </p>
                         )}
+                        {typeof meta.page === 'number' &&
+                            meta.page > 0 && (
+                                <p>
+                                    {t('viewSeed:accountPage')}: <strong>{meta.page}</strong>
+                                </p>
+                            )}
+                    </article>
                 </div>
             );
         }
