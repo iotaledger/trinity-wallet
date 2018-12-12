@@ -548,7 +548,7 @@
         "syncingYourAccount": "अपना खाता सिंक्रनाइज़ कर रहा है ।"
     },
     "useExistingSeed": {
-        "title": "सीड और खाता नाम दर्ज करें ।",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "सीड का फॉर्मेट सही नहीं है",
         "validSeedExplanation": "वैध सीड 81 वर्ण होना चाहिए और केवल A-Z या 9 होते हैं ।"
     },
