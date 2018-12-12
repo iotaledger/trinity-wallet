@@ -548,7 +548,7 @@
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
-        "title": "Įveskite užraktą ir paskyros vardą.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Neteisingas užrakto formatas",
         "validSeedExplanation": "Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9."
     },
