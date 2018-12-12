@@ -548,7 +548,7 @@
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
     "useExistingSeed": {
-        "title": "Inserisci un seme e un nome di conto.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Formato di seme non corretto",
         "validSeedExplanation": "Un seme valido consta di 81 caratteri e contiene solo A-Z o 9."
     },
