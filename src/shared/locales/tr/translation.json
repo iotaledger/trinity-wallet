@@ -548,7 +548,7 @@
         "syncingYourAccount": "Hesabınız eşitleniyor."
     },
     "useExistingSeed": {
-        "title": "Oluşum ve hesap adınızı girin.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Geçersiz oluşum formatı",
         "validSeedExplanation": "Geçerli oluşumlar 81 karakter uzunluğunda ve sadece A'dan Z'ye harfler veya 9 içermelidir."
     },
