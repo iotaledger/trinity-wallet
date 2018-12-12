@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "НЕТ АДРЕСОВ",
         "spent": "Использованный адрес",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
         "tag": "Метка",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
     "useExistingSeed": {
-        "title": "Введите ключ и название счёта.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Неверный формат ключа",
         "validSeedExplanation": "Корректный ключ должен содержать 81 символ и состоять только из A-Z и 9."
     },
@@ -687,7 +687,8 @@
         "transition": "Переход",
         "transitioning": "Процесс актуализации после снимка сети.",
         "generatingAndDetecting": "Genererer adresser og registrerer balance.",
-        "attaching": "Привязка адресов к Tangle."
+        "attaching": "Привязка адресов к Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Автозаполнение прошло успешно",

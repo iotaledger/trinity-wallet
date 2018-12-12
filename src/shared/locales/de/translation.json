@@ -155,7 +155,9 @@
         "shouldUpdate": "Ein neues Update ist verfügbar",
         "shouldUpdateExplanation": "Ein neues Update wurde veröffentlicht. Es wird empfohlen, dass du die neueste Version installierst.",
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
-        "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt."
+        "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Neue Adresse generieren",
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
-        "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Um QR-Codes teilen zu konenn, muss der Zugriff auf das Dateisystem erlaubt werden.",
         "tag": "Tag",
         "generateAnAddress": "Neue Adresse generieren",
         "generateAnAddressTitle": "Eine neue Adresse generieren",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
-        "title": "Gib einen Seed und einen Kontonamen ein.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Ungültiges Format",
         "validSeedExplanation": "'Ein gültiger Seed sollte aus 81 Zeichen bestehen und die Buchstaben A-Z, sowie die Zahl 9 enthalten.'."
     },
@@ -687,7 +687,8 @@
         "transition": "Wiederherstellen",
         "transitioning": "Daten werden wiederhergestellt.",
         "generatingAndDetecting": "Adressen werden generiert und Kontostand wird erkannt.",
-        "attaching": "Adressen werden dem Tangle angehängt."
+        "attaching": "Adressen werden dem Tangle angehängt.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",

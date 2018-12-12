@@ -155,7 +155,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "TIDAK ADA ALAMAT",
         "spent": "Dihabiskan",
-        "missingPermission": "Izin akses File System dibutuhkan",
-        "missingPermissionExplanation": "Izin akses ke File System dibutuhkan untuk membagi QR codes.",
         "tag": "Label",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Sinkronkan akun Anda."
     },
     "useExistingSeed": {
-        "title": "Masukkan nama akun.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Salah format Seed",
         "validSeedExplanation": "Seed valid harus 81 karakter terdiri dari A-Z atau 9."
     },
@@ -687,7 +687,8 @@
         "transition": "Transisi",
         "transitioning": "Transisi untuk Snapshot.",
         "generatingAndDetecting": "Menghasilkan alamat dan mendeteksi saldo.",
-        "attaching": "Melampirkan alamat-alamat ke Tangle."
+        "attaching": "Melampirkan alamat-alamat ke Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Isi otomatis sukses",

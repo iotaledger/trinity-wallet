@@ -155,7 +155,9 @@
         "shouldUpdate": "Dostępna jest nowa aktualizacja",
         "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
-        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
+        "missingPermission": "Wymagany dostęp do systemu plików",
+        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -290,8 +292,6 @@
         "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
-        "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
         "tag": "Tag",
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
-        "title": "Wprowadź seed oraz nazwę konta.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Nieprawidłowy format klucza",
         "validSeedExplanation": "Poprawny seed powinien składać się z 81 znaków i zawierać jedynie wielkie litery A-Z oraz cyfry 9."
     },
@@ -687,7 +687,8 @@
         "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
         "generatingAndDetecting": "Generuję adresy oraz wykrywam saldo.",
-        "attaching": "Dołączam adresy do sieci Tangle."
+        "attaching": "Dołączam adresy do sieci Tangle.",
+        "attachProgress": "Dołączam adres {{currentAddress}} z {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autouzupełniono",
