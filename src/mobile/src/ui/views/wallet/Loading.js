@@ -4,10 +4,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
 import whiteLoadingAnimation from 'shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'shared-modules/animations/loading-black.json';
-import whiteWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-white.json';
-import whiteWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-white.json';
-import blackWelcomeAnimationPartOne from 'shared-modules/animations/welcome-part-one-black.json';
-import blackWelcomeAnimationPartTwo from 'shared-modules/animations/welcome-part-two-black.json';
 import { navigator } from 'libs/navigation';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -138,10 +134,10 @@ class Loading extends Component {
         super(props);
         this.state = {
             elipsis: '',
-            animationPartOneDone: false,
             displayNodeChangeOption: false,
+            animationCycleComplete: false,
+            addingAdditionalAccount: false,
         };
-        this.welcomeAnimationPath = props.isThemeDark ? whiteWelcomeAnimationPartOne : blackWelcomeAnimationPartOne;
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
 
@@ -155,17 +151,19 @@ class Loading extends Component {
             password,
             deepLinkActive,
         } = this.props;
-        this.props.setLoginRoute('login');
         leaveNavigationBreadcrumb('Loading');
+        this.props.setLoginRoute('login');
         KeepAwake.activate();
         this.animation.play();
+        // Ensures animation completes at least one cycle
+        timer.setTimeout('animationTimeout', () => this.setState({ animationCycleComplete: true }), 3000);
         if (addingAdditionalAccount) {
+            this.setState({ addingAdditionalAccount: true });
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 150000);
             if (!isAndroid) {
                 this.animateElipses(['.', '..', ''], 0);
             }
         } else {
-            this.setAnimationOneTimout();
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
         this.props.setSetting('mainSettings');
@@ -185,15 +183,9 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const {
-            ready,
-            addingAdditionalAccount,
-            hasErrorFetchingAccountInfo,
-            hasErrorFetchingFullAccountInfo,
-            accountNames,
-        } = this.props;
+        const { ready, hasErrorFetchingAccountInfo, hasErrorFetchingFullAccountInfo, accountNames } = this.props;
         const isReady = !ready && newProps.ready;
-        if ((isReady && this.state.animationPartOneDone) || (isReady && addingAdditionalAccount)) {
+        if (isReady && this.state.animationCycleComplete) {
             this.launchHomeScreen();
         }
         if (!hasErrorFetchingAccountInfo && newProps.hasErrorFetchingAccountInfo) {
@@ -209,7 +201,7 @@ class Loading extends Component {
     }
 
     componentWillUpdate(newProps, newState) {
-        if (this.props.ready && newState.animationPartOneDone) {
+        if (this.props.ready && newState.animationCycleComplete) {
             this.launchHomeScreen();
         }
     }
@@ -235,10 +227,6 @@ class Loading extends Component {
         this.props.getCurrencyData(currency);
     }
 
-    setAnimationOneTimout() {
-        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 1900);
-    }
-
     /**
      * Navigates to home screen
      *
@@ -248,17 +236,6 @@ class Loading extends Component {
         KeepAwake.deactivate();
         this.redirectToHome();
         this.clearTimeouts();
-        this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
-    }
-
-    playAnimationTwo() {
-        this.welcomeAnimationPath = this.props.isThemeDark
-            ? whiteWelcomeAnimationPartTwo
-            : blackWelcomeAnimationPartTwo;
-        this.setState({
-            animationPartOneDone: true,
-        });
-        this.animation.play();
     }
 
     clearTimeouts() {
@@ -327,82 +304,63 @@ class Loading extends Component {
         const textColor = { color: body.color };
         const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
-        if (addingAdditionalAccount) {
-            return (
-                <View style={[styles.container, { backgroundColor: body.bg }]}>
-                    <View style={styles.animationContainer}>
-                        <AnimatedComponent
-                            animationInType={['fadeIn']}
-                            animationOutType={['fadeOut']}
-                            delay={0}
-                            style={styles.loadingAnimationContainer}
-                        >
-                            <LottieView
-                                ref={(animation) => {
-                                    this.animation = animation;
-                                }}
-                                source={loadingAnimationPath}
-                                style={styles.animationNewSeed}
-                                loop
-                            />
-                        </AnimatedComponent>
-                    </View>
+        return (
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                <View style={styles.animationContainer}>
                     <AnimatedComponent
                         animationInType={['fadeIn']}
                         animationOutType={['fadeOut']}
                         delay={0}
-                        style={styles.bottomContainer}
+                        style={styles.loadingAnimationContainer}
                     >
-                        <View style={styles.infoTextContainer}>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
-                                <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
-                                    <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            {isAndroid ? '..' : this.state.elipsis}
-                                        </Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                    </AnimatedComponent>
-                </View>
-            );
-        }
-
-        return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <View style={styles.animationContainer}>
-                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
                         <LottieView
                             ref={(animation) => {
                                 this.animation = animation;
                             }}
-                            source={this.welcomeAnimationPath}
-                            style={styles.animationLoading}
+                            source={loadingAnimationPath}
+                            style={styles.animationNewSeed}
+                            loop
                         />
                     </AnimatedComponent>
-                    {this.state.displayNodeChangeOption && (
-                        <AnimatedComponent
-                            animationInType={['fadeIn']}
-                            animationOutType={['fadeOut']}
-                            delay={0}
-                            style={styles.bottomContainer}
-                        >
-                            <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
-                            <SingleFooterButton
-                                onButtonPress={this.onChangeNodePress}
-                                buttonStyle={{
-                                    wrapper: { backgroundColor: primary.color },
-                                    children: { color: primary.body },
-                                }}
-                                buttonText={t('global:changeNode')}
-                            />
-                        </AnimatedComponent>
-                    )}
                 </View>
+                <AnimatedComponent
+                    animationInType={['fadeIn']}
+                    animationOutType={['fadeOut']}
+                    delay={0}
+                    style={styles.bottomContainer}
+                >
+                    <View>
+                        {((addingAdditionalAccount || this.state.addingAdditionalAccount) && (
+                            <View style={styles.infoTextContainer}>
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('doNotMinimise')}</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                                        <View style={{ alignItems: 'flex-start', width: width / 30 }}>
+                                            <Text style={[styles.infoText, textColor]}>
+                                                {isAndroid ? '..' : this.state.elipsis}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                        )) ||
+                            (this.state.displayNodeChangeOption && (
+                                <View>
+                                    <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
+                                    <SingleFooterButton
+                                        onButtonPress={this.onChangeNodePress}
+                                        buttonStyle={{
+                                            wrapper: { backgroundColor: primary.color },
+                                            children: { color: primary.body },
+                                        }}
+                                        buttonText={t('global:changeNode')}
+                                    />
+                                </View>
+                            ))}
+                    </View>
+                </AnimatedComponent>
             </View>
         );
     }
