@@ -548,7 +548,7 @@
         "syncingYourAccount": "Synkronoidaan tiliä."
     },
     "useExistingSeed": {
-        "title": "Anna seed-luku ja tilin nimi.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Seed-luku on virheellinen",
         "validSeedExplanation": "Hyväksytyn seed-luvun on oltava 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9."
     },
