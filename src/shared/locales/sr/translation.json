@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potvrdite seed",
-        "trinityWillNeverAskToReenter": "Trinity nikada neće tražiti da ponovo unesete seed osim ako resetujete novčanik ili aplikaciju.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Unesite seed",
         "incorrectSeed": "Neispravan seed",
         "incorrectSeedExplanation": "Seed koji ste uneli je neispravan. Pokušajte ponovo.",
         "ifYouHaveNotSaved": "Ako niste napravili rezervnu kopiju svog seed-a, vratite se nazad i učinite to.",
         "enterSeedBelow": "Unesite svoj novi seed ispod kako biste potvrdili da ste uspešno kreirali rezervnu kopiju",
-        "clipboardWarning": "Nemojte kopirati i umetnuti svoj seed",
-        "clipboardWarningExplanation": "UPOZORENJE: Kopiranje/umetanje je onemoguće radi vaše sigurnosti."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Neispravna adresa",
@@ -637,7 +637,7 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspešno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
