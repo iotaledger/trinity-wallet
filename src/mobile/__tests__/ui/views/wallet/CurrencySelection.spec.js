@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { CurrencySelection } from 'ui/views/wallet/CurrencySelection';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -25,7 +26,7 @@ const getProps = (overrides) =>
             availableCurrencies: [],
             setSetting: noop,
             t: noop,
-            theme: { body: {}, primary: {} },
+            theme,
             getCurrencyData: noop,
             setQrDenomination: noop,
             setSendDenomination: noop,

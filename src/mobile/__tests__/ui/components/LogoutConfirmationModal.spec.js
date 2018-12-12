@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { LogoutConfirmationModal } from 'ui/components/LogoutConfirmationModal';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
@@ -12,7 +13,7 @@ const getProps = (overrides) =>
             t: () => '',
             hideModal: noop,
             logout: noop,
-            theme: { body: {} },
+            theme,
         },
         overrides,
     );

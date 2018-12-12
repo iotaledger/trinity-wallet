@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import CustomTextInput from 'ui/components/CustomTextInput';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
@@ -11,7 +12,7 @@ const getProps = (overrides) =>
         {
             onChangeText: noop,
             label: 'foo',
-            theme: { body: {}, input: {}, primary: {}, label: {} },
+            theme,
         },
         overrides,
     );

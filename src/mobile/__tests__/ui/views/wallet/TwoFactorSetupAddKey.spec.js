@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { TwoFactorSetupAddKey } from 'ui/views/wallet/TwoFactorSetupAddKey';
 import * as keychainUtils from 'libs/keychain';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -38,7 +39,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            theme: { body: { bg: '#ffffff' } },
+            theme,
             generateAlert: noop,
             componentId: 'foo',
             t: () => '',

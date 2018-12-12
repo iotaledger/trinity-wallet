@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 /** View Addresses component */
 export class ViewAddresses extends Component {
     static propTypes = {
-        /** Selected account. Contains transfers, addresses and balance  */
+        /** Selected account. Contains transactions, addresses and balance  */
         selectedAccount: PropTypes.object.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,

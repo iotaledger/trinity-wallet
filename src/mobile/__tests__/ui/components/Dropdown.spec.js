@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Dropdown } from 'ui/components/Dropdown';
+import theme from '../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -14,7 +15,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            theme: { body: {}, primary: {} },
+            theme,
             onRef: noop,
             options: [],
             disableWhen: false,

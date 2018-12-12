@@ -4,13 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Enter2FA } from 'ui/components/Enter2FA';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
         {},
         {
             verify: noop,
-            theme: { body: {} },
+            theme,
             cancel: noop,
             t: () => '',
         },

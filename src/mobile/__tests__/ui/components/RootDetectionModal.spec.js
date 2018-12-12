@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { RootDetectionModal as RootDetectionModalComponent } from 'ui/components/RootDetectionModal';
+import theme from '../../../__mocks__/theme';
 
 const getProps = (overrides) =>
     assign(
@@ -12,7 +13,7 @@ const getProps = (overrides) =>
             t: () => '',
             closeApp: noop,
             hideModal: noop,
-            theme: { body: {}, negative: {} },
+            theme,
         },
         overrides,
     );

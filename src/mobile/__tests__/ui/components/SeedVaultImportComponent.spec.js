@@ -4,6 +4,7 @@ import React from 'react';
 import { PermissionsAndroid } from 'react-native';
 import { shallow } from 'enzyme';
 import { SeedVaultImportComponent } from 'ui/components/SeedVaultImportComponent';
+import theme from '../../../__mocks__/theme';
 
 jest.mock('rn-fetch-blob', () => ({ DocumentDir: () => {} }));
 jest.mock('nodejs-mobile-react-native', () => ({
@@ -18,7 +19,7 @@ const getProps = (overrides) =>
     assign(
         {},
         {
-            theme: { input: {}, body: {}, primary: {} },
+            theme,
             t: () => '',
             generateAlert: noop,
             openPasswordValidationModal: noop,
