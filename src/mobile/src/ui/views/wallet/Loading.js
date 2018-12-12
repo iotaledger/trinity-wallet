@@ -136,7 +136,7 @@ class Loading extends Component {
             elipsis: '',
             displayNodeChangeOption: false,
             animationCycleComplete: false,
-            addingAdditionalAccount: false,
+            addingAdditionalAccount: props.addingAdditionalAccount,
         };
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
@@ -158,7 +158,6 @@ class Loading extends Component {
         // Ensures animation completes at least one cycle
         timer.setTimeout('animationTimeout', () => this.setState({ animationCycleComplete: true }), 3000);
         if (addingAdditionalAccount) {
-            this.setState({ addingAdditionalAccount: true });
             timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 150000);
             if (!isAndroid) {
                 this.animateElipses(['.', '..', ''], 0);
@@ -300,7 +299,7 @@ class Loading extends Component {
     }
 
     render() {
-        const { t, addingAdditionalAccount, theme: { body, primary }, isThemeDark } = this.props;
+        const { t, theme: { body, primary }, isThemeDark } = this.props;
         const textColor = { color: body.color };
         const loadingAnimationPath = isThemeDark ? whiteLoadingAnimation : blackLoadingAnimation;
 
@@ -330,7 +329,7 @@ class Loading extends Component {
                     style={styles.bottomContainer}
                 >
                     <View>
-                        {((addingAdditionalAccount || this.state.addingAdditionalAccount) && (
+                        {(this.state.addingAdditionalAccount && (
                             <View style={styles.infoTextContainer}>
                                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>

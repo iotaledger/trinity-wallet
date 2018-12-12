@@ -36,7 +36,7 @@ class Settings extends Component {
         /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
         /** @ignore */
-        navStack: PropTypes.array.isRequired
+        navStack: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -68,6 +68,10 @@ class Settings extends Component {
             );
         }
         if (this.props.navStack !== newProps.navStack) {
+            if (newProps.navStack.length === 1) {
+                this.animationOutType = ['fadeOut'];
+                return;
+            }
             this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
             this.animationInType = ['slideInLeftSmall', 'fadeIn'];
         }
