@@ -126,7 +126,7 @@ const mapStateToProps = (state) => ({
     acceptedPrivacy: state.settings.acceptedPrivacy,
     acceptedTerms: state.settings.acceptedTerms,
     language: state.settings.locale,
-    forceUpdate: state.wallet.forceUpdate
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {

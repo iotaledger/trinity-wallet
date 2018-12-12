@@ -67,7 +67,7 @@ class PasswordSettings extends PureComponent {
         try {
             const passwordNewHash = await hash(passwordNew);
             const passwordCurrentHash = await hash(passwordCurrent);
-            
+
             const accountTypes = Object.keys(accounts)
                 .map((accountName) => (accounts[accountName].meta ? accounts[accountName].meta.type : 'keychain'))
                 .filter((accountType, index, accountTypes) => accountTypes.indexOf(accountType) === index);

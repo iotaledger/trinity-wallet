@@ -136,7 +136,7 @@ class History extends Component {
             theme: { primary, secondary },
         } = this.props;
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
-        if (isModalActive && modalContent === 'historyContent') {
+        if (isModalActive && modalContent === 'transactionHistory') {
             const newBundleProps = newProps.transfers[modalProps.bundle];
             if (
                 isRetryingFailedTransaction !== newProps.isRetryingFailedTransaction ||
@@ -155,11 +155,8 @@ class History extends Component {
             if (modalProps.bundle in newProps.transfers && newBundleProps.persistence !== modalProps.persistence) {
                 this.props.updateModalProps({
                     persistence: newBundleProps.persistence,
-                    status: computeStatusText(
-                        newBundleProps.outputs,
-                        newBundleProps.persistence,
-                        newBundleProps.incoming,
-                    ),
+                    outputs: newBundleProps.outputs,
+                    incoming: newBundleProps.incoming,
                     style: { titleColor: modalProps.incoming ? primary.color : secondary.color },
                 });
             }
@@ -238,7 +235,7 @@ class History extends Component {
                         return;
                     }
                     this.props.toggleModalActivity(
-                        'historyContent',
+                        'transactionHistory',
                         merge({}, props, {
                             disableWhen: isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction,
                             isRetryingFailedTransaction,
@@ -290,7 +287,7 @@ class History extends Component {
                 data={data}
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={
                     <RefreshControl

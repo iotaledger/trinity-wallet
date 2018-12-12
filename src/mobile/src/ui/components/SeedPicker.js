@@ -79,9 +79,13 @@ export default class SeedPicker extends Component {
         /** @ignore */
         seed: PropTypes.string.isRequired,
         /** Callback for value change event */
-        onValueChange: PropTypes.func.isRequired,
+        onValueChange: PropTypes.func,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+    };
+
+    static defaultProps = {
+        onValueChange: () => {},
     };
 
     constructor(props, context) {

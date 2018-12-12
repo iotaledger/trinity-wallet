@@ -228,7 +228,7 @@ class List extends React.PureComponent {
                                                 totals[item] === 0 ? css.disabled : filter === item ? css.active : null,
                                             )}
                                         >
-                                            {item === 'All' ? 'All' : t(item.toLowerCase())} ({totals[item]})
+                                            {item === 'All' ? t('global:all') : t(item.toLowerCase())} ({totals[item]})
                                         </a>
                                     );
                                 })}

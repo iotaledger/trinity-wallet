@@ -138,23 +138,22 @@ export class ViewAddresses extends Component {
         const isSpent = spent.local || spent.remote;
 
         return (
-            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 25 }}>
+            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 19 }}>
                 <TouchableOpacity
                     onPress={() => this.copy(address.address)}
                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
                 >
-                    <View>
-                        <Text
-                            numberOfLines={2}
-                            style={[
-                                styles.addressText,
-                                { textDecorationLine: isSpent ? 'line-through' : 'none' },
-                                { color: isSpent ? '#B21C17' : theme.body.color },
-                            ]}
-                        >
-                            {address.address}
-                        </Text>
-                    </View>
+                    <Text
+                        style={[
+                            styles.addressText,
+                            { textDecorationLine: isSpent ? 'line-through' : 'none' },
+                            { color: isSpent ? '#B21C17' : theme.body.color },
+                        ]}
+                        ellipsizeMode="middle"
+                        numberOfLines={2}
+                    >
+                        {address.address}
+                    </Text>
                 </TouchableOpacity>
                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
                     <Text style={[styles.balanceText, { color: theme.body.color }]}>
@@ -175,7 +174,7 @@ export class ViewAddresses extends Component {
                 contentContainerStyle={noAddresses ? styles.flatList : null}
                 data={addresses}
                 initialNumToRender={10} // TODO: Should be dynamically computed.
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => this.renderAddress(item)}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={

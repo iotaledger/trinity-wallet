@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -18,7 +18,6 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isIPhone11 } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -171,29 +170,24 @@ class UseExistingSeed extends Component {
             usedExistingSeed: true,
         });
 
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'loading',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.setStackRoot('loading', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            topBar: {
+                visible: false,
+                drawBehind: false,
+                elevation: 0,
+            },
+            statusBar: {
+                drawBehind: false,
+                backgroundColor: body.bg,
             },
         });
     }
@@ -264,12 +258,14 @@ class UseExistingSeed extends Component {
                     hideModal: () => this.hideModal(),
                     onMount: () => this.props.setDoNotMinimise(true),
                     onUnmount: () => this.props.setDoNotMinimise(false),
+                    displayTopBar: true,
                 });
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {
                     theme,
                     validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
                     hideModal: () => this.hideModal(),
+                    isDashboard: true,
                 });
         }
     };
@@ -315,18 +311,16 @@ class UseExistingSeed extends Component {
                             seed={seed}
                         />
                         <View style={{ flex: 0.45 }} />
-                        {!isIPhone11 && (
-                            <SeedVaultImport
-                                openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                onSeedImport={(seed) => {
-                                    this.setState({ seed });
-                                    this.hideModal();
-                                }}
-                                onRef={(ref) => {
-                                    this.SeedVaultImport = ref;
-                                }}
-                            />
-                        )}
+                        <SeedVaultImport
+                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                            onSeedImport={(seed) => {
+                                this.setState({ seed });
+                                this.hideModal();
+                            }}
+                            onRef={(ref) => {
+                                this.SeedVaultImport = ref;
+                            }}
+                        />
                         <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {
