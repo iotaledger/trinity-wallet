@@ -5,6 +5,7 @@
         position: relative;
         flex: 0 0 280px;
         background: var(--bar-bg);
+        color: var(--bar);
         height: 100vh;
         width: 100%;
 
@@ -40,7 +41,7 @@
             line-height: 52px;
             font-size: 16px;
             padding: 0 20px;
-            color: var(--bar-body);
+            color: var(--bar);
             background: var(--bar-bg);
             transition: background 0.6s, padding 0.2s;
             border-bottom: 1px solid var(--bar-hover);
@@ -78,7 +79,7 @@
 
             a {
                 display: flex;
-                color: var(--body);
+                color: var(--bar);
                 font-size: 14px;
                 line-height: 18px;
                 text-decoration: none;
