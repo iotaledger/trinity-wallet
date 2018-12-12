@@ -548,7 +548,7 @@
         "syncingYourAccount": "계정을 동기화 중입니다."
     },
     "useExistingSeed": {
-        "title": "시드와 계정 이름을 입력하십시오.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "잘못된 시드 형식",
         "validSeedExplanation": "유효한 시드는 대문자 A-Z와 숫자 9만을 사용한 81자의 문자열 형태를 갖습니다."
     },
