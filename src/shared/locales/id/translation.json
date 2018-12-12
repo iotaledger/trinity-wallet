@@ -548,7 +548,7 @@
         "syncingYourAccount": "Sinkronkan akun Anda."
     },
     "useExistingSeed": {
-        "title": "Masukkan nama akun.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Salah format Seed",
         "validSeedExplanation": "Seed valid harus 81 karakter terdiri dari A-Z atau 9."
     },
