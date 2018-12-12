@@ -548,7 +548,7 @@
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Sisesta seeme ja konto nimi.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Vale seemne vorming",
         "validSeedExplanation": "Kehtivad seemned peaksid olema 81 tähemärki pikad ja sisaldama ainult A-Z või 9."
     },
