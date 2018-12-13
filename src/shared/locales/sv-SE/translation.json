@@ -640,7 +640,7 @@
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
         "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Skriv nyckeln igen"
     },
     "chart": {
         "mcap": "MCAP",
@@ -675,7 +675,7 @@
         "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Överföring slutförd"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan inte slutföra snapshot-övergången",
@@ -690,7 +690,7 @@
         "transitioning": "Övergång för snapshoten.",
         "generatingAndDetecting": "Genererar adresser och upptäcker saldo.",
         "attaching": "Fäster adresser till Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Fäster adress {{currentAddress}} av {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autofyll lyckat",
