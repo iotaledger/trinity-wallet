@@ -763,7 +763,7 @@
         "accountPage": "Kontoside",
         "chooseAccountIndex": "Velg din Ledger kontoindeks",
         "accountIndexExplanation": "Du kan lagre fler hovednøkkler. Hver hovednøkkel er identifisert med et unikt indeks-nummer. Et ubenyttet index-nummer er valgt for deg, men endre dette om du ønsker. Husk å skriv ned ditt valgte index-nummer.",
-        "accountPageExplanation": "Some third party wallets require pages.",
+        "accountPageExplanation": "Noen tredjeparts lommebøker krever pages.",
         "connectionError": "Kan ikke koble til Ledger",
         "connectionErrorExplanation": "Sjekk at din Ledger er koblet til og låst opp.",
         "connectionTitle": "Koble til din Ledger",
@@ -782,7 +782,7 @@
         "ledgerIncorrectIndexExplanation": "Tilkoblede Ledger samsvarer ikke med den knyttet til denne kontoen, eller gjenopprettingsfrasen er endret.",
         "checkAddress": "Kontroller mottaksadressen",
         "checkAddressExplanation": "Kontroller at adressen er lik den vises på din Ledger.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialised": "Informasjonsadvarsel ikke godkjent",
+        "applicationNotInitialisedExplanation": "Åpne IOTA programmet på din Ledger, godta informasjonen og prøv igjen."
     }
 }
