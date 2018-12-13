@@ -74,8 +74,8 @@
         "wallet": "Plånbok",
         "all": "Allt",
         "sent": "Skickat",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Du tog emot",
+        "youSent": "Du skickade",
         "received": "Mottaget",
         "sending": "Skickar",
         "receiving": "Tar emot",
@@ -130,7 +130,7 @@
         "spentAddressExplanation": "VARNING: Tillgångar på förbrukade adresser",
         "discordInformation": "Det är farligt att skicka från samma adress mer än en gång. Vänligen bege dig till #help på Discord för att ta reda på vad du kan göra.",
         "androidInsecureClipboardWarning": "Android tillhandahåller inte säkert urklipp.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Kopiera/klistra aldrig en seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
         "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag.",
@@ -150,14 +150,14 @@
         "errorAccessingKeychain": "Nyckelringsfel",
         "errorAccessingKeychainExplanation": "Kan inte komma åt nyckelringen som krävs för säker lagring.",
         "mainWallet": "HUVUDKONTO",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "Bekräfta",
+        "delete": "Ta bort",
         "shouldUpdate": "En ny uppdatering finns tillgänglig",
         "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermission": "Åtkomst till filsystem krävs",
+        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -211,7 +211,7 @@
         "passwordTooShortExplanation": "Ditt lösenord måste vara minst {{minLength}} tecken. Det är för närvarande {{currentLength}} tecken långt. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Detta är ditt huvudlösenord för plånboken. Du använder det för att logga in.",
         "retypePassword": "Skriv lösenordet igen"
     },
     "copyToClipboard": {
@@ -245,8 +245,8 @@
         "login": "Logga in",
         "setNode": "Ställ in nod",
         "whyBiometricDisabled": "Varför är biometrisk autentisering avaktiverad?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometrisk autentisering är inaktiverad vid första app-start för din säkerhet.",
+        "whyBiometricDisabledExplanationPart2": "När du använder Trinity kommer du att loggas ut vid inaktivitet. Du kan sedan logga in igen med biometrisk autentisering."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -275,10 +275,10 @@
     "paperWallet": {
         "neverShare": "Dela aldrig din seed med någon.",
         "iotaLogo": "IOTA logotyp",
-        "print": "Print",
+        "print": "Skriv ut",
         "paperConvenience": "Att skriva ut en papperskopia av din seed är ett lämpligt sätt att lagra den.",
         "publicInsecure": "Men utskrifter på öppet wifi eller en offentlig skrivare är osäkert.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Kontrollera och bekräfta innan du skriver ut",
         "wifiConfirmation": "I am not on on public wifi",
         "printerConfirmation": "I am not printing on a public printer"
     },
