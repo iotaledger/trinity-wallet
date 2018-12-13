@@ -309,22 +309,22 @@
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "Hva er en kontrollsum?",
+        "everySeedHasAChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum.",
         "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
         "checksumExplanation": "Når du legger til en hovednøkkel i lommeboken, bør du forsikre deg om at kontrollsummen samsvarer med den du har skrevet ned.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Vennligst bekreft din hovednøkkel",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity vil aldri be deg å skrive inn denne hovednøkkelen med mindre du tilbakestilling lommeboken eller sletter appen.",
         "enterYourSeed": "Angi din hovednøkkel",
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre.",
         "enterSeedBelow": "Angi din nyopprettede hovednøkkel nedenfor for å bekrefte at du har sikkerhetskopiert den riktig",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "Advarsel: Kan ikke lime inn hovednøkkel",
+        "clipboardWarningExplanation": "Lim inn er deaktivert av sikkerhetshensyn. Du kan dra og slippe inn din hovednøkkel fra en tekstfil i stedet."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -352,7 +352,7 @@
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
         "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til.",
         "invalid": "UGYLDIG",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Sveip for å sende"
     },
     "setSeedName": {
         "letsAddName": "La oss legge til et navn",
@@ -380,9 +380,9 @@
         "addNewSeed": "Legg til ny hovednøkkel",
         "twoFA": "To-faktor autentisering",
         "changePassword": "Endre passord",
-        "general": "General settings",
+        "general": "Generelle innstillinger",
         "advanced": "Avanserte innstillinger",
-        "account": "Account settings",
+        "account": "Kontoinnstillinger",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
         "syncingComplete": "Synkronisering fullført",
@@ -456,7 +456,7 @@
         "retrying": "Prøver på nytt",
         "yesterday": "I går",
         "promotingAnotherBundle": "Fremme en pakke til",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon."
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -515,20 +515,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Er du sikker på at du vil logge ut?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Du logger nå ut",
+        "areYouSure": "Er du sikker?"
     },
     "qrScanner": {
         "scan": "Skann QR-kode"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Enhetssystem",
         "trillion": "Billioner",
         "billion": "Milliarder",
         "million": "Millioner",
         "thousand": "Tusen",
         "one": "En",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAs er vanligvis håndtert i multipler av en million, men kan overføres som en enkelt IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruke hele saldoen?",
@@ -550,7 +550,7 @@
         "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Angi et kontonavn og en hovednøkkel",
         "incorrectFormat": "Feil format på hovednøkkelen",
         "validSeedExplanation": "En gyldig hovednøkkel skal være 81 tegn bestående av bokstavene A-Z og tallet 9."
     },
@@ -560,12 +560,12 @@
         "hideSeed": "Gjem hovednøkkel",
         "notAvailable": "Eksport av hovednøkkel er ikke tilgjengelig for {{accountType}} kontotype",
         "accountIndex": "Din Ledger konto indeks",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Din Ledger kontoside"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du lagret hovednøkkelen?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Jeg har sikkerhetskopiert min hovednøkkel",
+        "reenterSeed": "I neste trinn må du skrive inn din hovednøkkel på nytt.",
         "reenterSeedWarning": "Hvis du ikke har lagret hovednøkkelen og enheten din blir ødelagt vil du miste tilgangen til dine IOTA.",
         "pleaseConfirm": "Vennligst bekreft at du har lagret hovednøkkelen."
     },
@@ -585,19 +585,19 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering er ikke tilgjengelig",
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID",
+        "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID",
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
         "aMessage": "en melding",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Fra {{selectedAccountName}}",
+        "toAddress": "Til adresse",
+        "sendingAMessage": "Sender en melding",
+        "sendingAnEmptyMessage": "Sender en tom melding"
     },
     "twoFA": {
         "wrongCode": "Feil kode",
@@ -618,7 +618,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksporter SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault er en kryptert fil for å lagre din hovednøkkel sikkert. Hovednøkkelen er kryptert bak en SeedVault Nøkkel og kan ikke brukes uten nøkkelen.",
         "seedVaultWarning": "Pass på å sikkerhetskopiere filen flere steder (f.eks harddisk, nettsky, USB). Hvis du mister denne filen og du ikke har hovednøkkelen din lagret et annet sted, mister du tilgangen til dine IOTA.",
         "exportFail": "SeedVault eksport mislyktes",
         "exportFailExplanation": "Det oppstod et problem med å eksportere SeedVault. Kontroller at du har riktige tillatelser og nok plass.",
@@ -632,8 +632,8 @@
         "importSuccessExplanation": "Din hovednøkkel ble importert.",
         "saveToDownloadFolder": "Lagre til nedlastingsmappen",
         "importSeedVault": "Importer SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Slipp SeedVault eller tekst her <1></1> eller klikk for å bla igjennom",
+        "dropActive": "Slipp SeedVault eller tekst her",
         "enterKeyExplanation": "Skriv inn din nøkkel for å åpne SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
