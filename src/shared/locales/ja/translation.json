@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してシードの再入力を求めません。",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
         "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
-        "clipboardWarning": "シードをコピーアンドペーストしないでください。",
-        "clipboardWarningExplanation": "警告：コピーアンドペーストは使用できません！"
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -380,7 +380,9 @@
         "addNewSeed": "新しいシードを追加",
         "twoFA": "二要素認証",
         "changePassword": "パスワード変更",
+        "general": "General settings",
         "advanced": "詳細設定",
+        "account": "Account settings",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
         "syncingComplete": "同期が完了しました。",
@@ -548,7 +550,7 @@
         "syncingYourAccount": "アカウントを同期しています。"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "アカウント名とシードを入力してください",
         "incorrectFormat": "不正確なシードの形式です。",
         "validSeedExplanation": "有効なシードは81文字で、A〜Zまたは9のみを含む必要があります。"
     },
@@ -637,7 +639,7 @@
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのシード金庫鍵を選んでください。バックアップ用のシード金庫からシードを復元するには、このシード金庫鍵が必要です。",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "鍵を再入力してください"
     },
     "chart": {

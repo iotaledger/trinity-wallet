@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Vänligen bekräfta din seed",
-        "trinityWillNeverAskToReenter": "Trinity kommer aldrig be dig ange denna seed, såvida du inte återställer din plånbok eller appen.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Ange din seed",
         "incorrectSeed": "Felaktig seed",
         "incorrectSeedExplanation": "Den seed som du angav är felaktig. Vänligen försök igen.",
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
         "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
-        "clipboardWarning": "Kopiera/klistra inte in din seed",
-        "clipboardWarningExplanation": "Varning: Kopiera/klistra in är avaktiverad för din säkerhet."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
@@ -380,7 +380,9 @@
         "addNewSeed": "Lägg till ny seed",
         "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
+        "general": "General settings",
         "advanced": "Avancerade inställningar",
+        "account": "Account settings",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "syncingComplete": "Synkronisering genomförd",
@@ -637,7 +639,7 @@
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {

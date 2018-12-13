@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bekræft din hovednøgle",
-        "trinityWillNeverAskToReenter": "Trinity vil aldrig bede dig genindtaste din hovednøgle, medmindre du nulstiller din tegnebog eller app'en.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Angiv din hovednøgle",
         "incorrectSeed": "Forkert hovednøgle",
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "ifYouHaveNotSaved": "Gå tilbage og sikkerhedskopiér din hovednøgle, hvis du ikke allerede har gjort dette.",
         "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt",
-        "clipboardWarning": "Kopiér og indsæt ikke din hovednøgle",
-        "clipboardWarningExplanation": "ADVARSEL: Kopér/indsæt er deaktiveret af hensyn til din sikkerhed."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -380,7 +380,9 @@
         "addNewSeed": "Tilføj ny hovednøgle",
         "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
+        "general": "General settings",
         "advanced": "Avancerede indstillinger",
+        "account": "Account settings",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
         "syncingComplete": "Synkronisering fuldført",
@@ -637,7 +639,7 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
         "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
