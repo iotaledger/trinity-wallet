@@ -8250,8 +8250,7 @@
             "punycode": {
               "version": "1.4.1",
               "resolved": "https://registry.npmjs.org/punycode/-/punycode-1.4.1.tgz",
-              "integrity": "sha1-wNWmOycYgArY4esPpSachN1BhF4=",
-              "optional": true
+              "integrity": "sha1-wNWmOycYgArY4esPpSachN1BhF4="
             },
             "rc": {
               "version": "1.1.6",
@@ -8309,7 +8308,6 @@
                 "mime-types": "~2.1.7",
                 "oauth-sign": "~0.8.1",
                 "stringstream": "~0.0.4",
-                "tough-cookie": "~2.3.0",
                 "tunnel-agent": "~0.4.1",
                 "uuid": "^3.0.0"
               }
@@ -8472,15 +8470,6 @@
                 }
               }
             },
-            "tough-cookie": {
-              "version": "2.3.2",
-              "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz",
-              "integrity": "sha1-8IH3bkyFcg5sN6X6ztc3FQ2EByo=",
-              "optional": true,
-              "requires": {
-                "punycode": "^1.4.1"
-              }
-            },
             "tunnel-agent": {
               "version": "0.4.3",
               "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.4.3.tgz",
@@ -8532,7 +8521,8 @@
             "wrappy": {
               "version": "1.0.2",
               "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
-              "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
+              "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=",
+              "optional": true
             },
             "xtend": {
               "version": "4.0.1",
@@ -9529,7 +9519,6 @@
             "node-uuid": "~1.4.7",
             "oauth-sign": "~0.8.1",
             "stringstream": "~0.0.4",
-            "tough-cookie": "~2.3.0",
             "tunnel-agent": "~0.4.1"
           }
         },
@@ -9734,14 +9723,6 @@
           "version": "1.0.1",
           "resolved": "https://registry.npmjs.org/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz",
           "integrity": "sha1-fSKbH8xjfkZsoIEYCDanqr/4P0M="
-        },
-        "tough-cookie": {
-          "version": "2.3.2",
-          "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz",
-          "integrity": "sha1-8IH3bkyFcg5sN6X6ztc3FQ2EByo=",
-          "requires": {
-            "punycode": "^1.4.1"
-          }
         },
         "tty-browserify": {
           "version": "0.0.0",
