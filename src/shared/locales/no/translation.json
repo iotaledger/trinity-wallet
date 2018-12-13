@@ -19,7 +19,7 @@
         "invalidResponse": "Nodefeil",
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Noden returnerte en feil under henting av kontoinformasjonen. Hvis problemet vedvarer, kan du prøve å endre node eller deaktivere proxy i Trinitys innstillinger.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node eller forsøk igjen.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
@@ -74,8 +74,8 @@
         "wallet": "Lommebok",
         "all": "Alle",
         "sent": "Sendt",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Du har mottatt",
+        "youSent": "Du sendte",
         "received": "Mottatt",
         "sending": "Sender",
         "receiving": "Mottar",
@@ -130,7 +130,7 @@
         "spentAddressExplanation": "ADVARSEL: Midler på en brukt adresse",
         "discordInformation": "Det er risikabelt å sende midler fra samme adresse flere ganger. Vennligst besøk kanalen #help på Discord for å finne ut hva du kan gjøre.",
         "androidInsecureClipboardWarning": "Android har ikke en sikker utklippstavle.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Aldri klipp og lim hovednøkkelen på en Android enhet.",
         "willNotCopyPasteSeed": "Jeg skal ikke klippe og lime hovednøkkelen",
         "mustBeStoredAppropriately": "Den må lagres på riktig måte.",
         "deviceMayBecomeUnresponsive": "Enheten kan slutte å svare en stund.",
@@ -146,18 +146,18 @@
         "tryingAgainWithLocalPoW": "Prøver igjen med lokal PoW.",
         "tryingAgainWithDifferentNode": "Prøver igjen med en annen node.",
         "errorFetchingAccountInformation": "Feil ved henting av kontoinformasjon.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Feil ved synkronisering av adresseinformasjonen. Prøver igjen med en annen node.",
         "errorAccessingKeychain": "Nøkkelring feil",
         "errorAccessingKeychainExplanation": "Ingen tilgang til nøkkelring nødvendig for sikker lagring.",
         "mainWallet": "HOVEDKONTO",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "confirm": "Bekreft",
+        "delete": "Slett",
+        "shouldUpdate": "En ny versjon er tilgjengelig",
+        "shouldUpdateExplanation": "En ny versjon er lansert. Det anbefales at du oppdaterer til den nyeste versjonen.",
+        "forceUpdate": "Oppdater applikasjonen for å fortsette",
+        "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
+        "missingPermission": "Trenger tillatelse til filsystemet",
+        "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -211,7 +211,7 @@
         "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Dette er passordet til hovedlommeboken. Du vil bruke det for å logge på.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "copyToClipboard": {
@@ -245,8 +245,8 @@
         "login": "Logg inn",
         "setNode": "Angi Node",
         "whyBiometricDisabled": "Hvorfor er biometrisk autentisering deaktivert?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometriske godkjenning er deaktivert på første innlastning for din sikkerhet.",
+        "whyBiometricDisabledExplanationPart2": "Når du bruker Trinity vil du logges ut ved inaktivitet. Du kan logge inn igjen med biometrisk godkjenning."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -275,12 +275,12 @@
     "paperWallet": {
         "neverShare": "Del aldri hovednøkkelen med noen.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Skriv ut",
         "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
         "publicInsecure": "Men å skrive den ut på et offentlig nettverk eller printer er usikkert.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Sjekk og bekrefte før du skriver ut",
+        "wifiConfirmation": "Jeg er ikke på på et offentlig wifi",
+        "printerConfirmation": "Jeg skriver ikke ut på en offentlig skriver"
     },
     "receive": {
         "yourAddress": "Din adresse",
@@ -289,13 +289,13 @@
         "copyAddress": "Kopier adresse",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Generer adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
         "tag": "Etikett",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Generer adresse",
+        "generateAnAddressTitle": "Generere en adresse",
+        "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen."
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
