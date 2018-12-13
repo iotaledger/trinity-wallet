@@ -316,7 +316,6 @@ export default class TransactionHistoryModal extends PureComponent {
             bundleIsBeingPromoted,
         } = this.props;
         const { addressesScrollable, messagesScrollable } = this.state;
-        const isFailed = isFailedTransaction(bundle);
 
         return (
             <View style={styles.container}>
@@ -398,7 +397,7 @@ export default class TransactionHistoryModal extends PureComponent {
                     </View>
                     <View style={{ flex: 3 }} />
                     {(!persistence &&
-                        !isFailed &&
+                        !isFailedTransaction &&
                         this.renderButton({
                             onLeftButtonPress: () => {
                                 if (!disableWhen) {
@@ -413,7 +412,7 @@ export default class TransactionHistoryModal extends PureComponent {
                                 }
                             },
                         })) ||
-                        (isFailed &&
+                        (isFailedTransaction &&
                             this.renderButton({
                                 onLeftButtonPress: () => {
                                     if (!disableWhen) {

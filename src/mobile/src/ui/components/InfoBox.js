@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 
@@ -43,7 +44,7 @@ class InfoBox extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(InfoBox);

@@ -4,6 +4,7 @@ import electronSettings from 'electron-settings';
 import path from 'path';
 import URL from 'url';
 import fs from 'fs';
+import Themes from 'themes/themes';
 
 import { initMenu, contextMenu } from './native/Menu.js';
 
@@ -105,7 +106,7 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings.theme && settings.theme.body.bg) || 'rgb(3, 41, 62)';
+    let bgColor = (settings.themeName && Themes[settings.themeName].body.bg) || 'rgb(3, 41, 62)';
 
     if (bgColor.indexOf('rgb') === 0) {
         bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');

@@ -43,8 +43,6 @@ class List extends React.PureComponent {
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.array.isRequired,
-        /** @ignore */
-        failedHashes: PropTypes.object.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
          * @param {func} powFn - local Proof of Work function
@@ -150,7 +148,6 @@ class List extends React.PureComponent {
             toggleEmptyTransactions,
             updateAccount,
             transfers,
-            failedHashes,
             setItem,
             currentItem,
             t,
@@ -205,10 +202,8 @@ class List extends React.PureComponent {
             return filter === 'All';
         });
 
-        const failedBundles = Object.keys(failedHashes);
-
         const activeTransfer = currentItem ? historyTx.filter((tx) => tx.bundle === currentItem)[0] : null;
-        const isActiveFailed = activeTransfer && failedBundles.indexOf(activeTransfer.bundle) > -1;
+        const isActiveFailed = activeTransfer && activeTransfer.broadcasted === false;
 
         return (
             <React.Fragment>

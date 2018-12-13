@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
-import { getSelectedAccountName, getFailedBundleHashesForSelectedAccount } from '../../selectors/accounts';
+import { getSelectedAccountName } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -39,7 +39,6 @@ export default function withListData(ListComponent) {
             retryFailedTransaction: PropTypes.func.isRequired,
             remotePoW: PropTypes.bool.isRequired,
             generateAlert: PropTypes.func.isRequired,
-            failedHashes: PropTypes.object.isRequired,
         };
 
         promoteTransaction = (hash, powFn) => {
@@ -67,7 +66,6 @@ export default function withListData(ListComponent) {
                 theme,
                 remotePoW,
                 generateAlert,
-                failedHashes,
                 ui,
                 t,
             } = this.props;
@@ -93,7 +91,6 @@ export default function withListData(ListComponent) {
                 updateAccount,
                 setItem,
                 currentItem,
-                failedHashes,
                 compact,
                 theme,
                 limit,
@@ -122,7 +119,6 @@ export default function withListData(ListComponent) {
         seedIndex: state.wallet.seedIndex,
         accounts: state.accounts,
         accountName: getSelectedAccountName(state),
-        failedHashes: getFailedBundleHashesForSelectedAccount(state),
         theme: getThemeFromState(state),
         mode: state.settings.mode,
         ui: state.ui,

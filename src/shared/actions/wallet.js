@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
-import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
+import { updateAddressData, updateAccountAfterTransition } from '../actions/accounts';
 import {
     generateAlert,
     generateTransitionErrorAlert,
@@ -17,8 +17,8 @@ import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
 import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotSynced } from '../libs/iota/utils';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
-import { getSelectedNodeFromState, getNodesFromState } from '../selectors/global';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
 import { Account } from '../storage';
 import { DEFAULT_SECURITY, DEFAULT_RETRIES } from '../config';
 
@@ -343,7 +343,7 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 // Update address data in storage (realm)
                 Account.update(accountName, { addressData: result });
 
-                dispatch(updateAddresses(accountName, result));
+                dispatch(updateAddressData(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {

@@ -181,20 +181,6 @@ class AddressSpendStatus {
 }
 
 /**
- * Model for account information during setup
- */
-class AccountInfoDuringSetup {
-    static schema = AccountInfoDuringSetupSchema;
-}
-
-/**
- * Model for account meta
- */
-class AccountMeta {
-    static schema = AccountMetaSchema;
-}
-
-/**
  * Model for node.
  */
 class Node {
@@ -279,13 +265,6 @@ class Node {
             });
         }
     }
-}
-
-/**
- * Model for notification settings.
- */
-class NotificationsSettings {
-    static schema = NotificationsSettingsSchema;
 }
 
 /**
@@ -714,20 +693,6 @@ class Wallet {
 }
 
 /**
- * Model for wallet settings.
- */
-class WalletSettings {
-    static schema = WalletSettingsSchema;
-}
-
-/**
- * Model for wallet versions.
- */
-class WalletVersions {
-    static schema = WalletVersionsSchema;
-}
-
-/**
  * Model for error logs.
  */
 class ErrorLog {
@@ -740,18 +705,18 @@ class ErrorLog {
 export const config = {
     path: STORAGE_PATH,
     schema: [
-        Account,
-        Address,
-        AddressSpendStatus,
-        AccountInfoDuringSetup,
-        AccountMeta,
-        ErrorLog,
-        Node,
-        NotificationsSettings,
-        Transaction,
-        WalletSettings,
-        WalletVersions,
-        Wallet,
+        AccountSchema,
+        AddressSchema,
+        AddressSpendStatusSchema,
+        AccountInfoDuringSetupSchema,
+        AccountMetaSchema,
+        ErrorLogSchema,
+        NodeSchema,
+        NotificationsSettingsSchema,
+        TransactionSchema,
+        WalletSettingsSchema,
+        WalletVersionsSchema,
+        WalletSchema,
     ],
     schemaVersion: SCHEMA_VERSION,
 };
@@ -785,12 +750,22 @@ const purge = () =>
 const initialise = () =>
     new Promise((resolve, reject) => {
         try {
-            Wallet.createIfNotExists();
+            initialiseSync();
             resolve();
         } catch (error) {
             reject(error);
         }
     });
+
+/**
+ * Initialises storage.
+ *
+ * @method initialiseSync
+ * @returns {Promise}
+ */
+const initialiseSync = () => {
+    Wallet.createIfNotExists();
+};
 
 /**
  * Purges persisted data and reinitialises storage.
@@ -802,6 +777,7 @@ const reinitialise = () => purge().then(() => initialise());
 export {
     realm,
     initialise,
+    initialiseSync,
     reinitialise,
     purge,
     Account,

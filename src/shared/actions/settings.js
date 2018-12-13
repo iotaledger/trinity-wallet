@@ -6,7 +6,7 @@ import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/global';
-import { throwIfNodeNotSynced } from '../libs/utils';
+import { throwIfNodeNotSynced } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import { Wallet, Node } from '../storage';
 

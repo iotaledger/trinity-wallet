@@ -4,6 +4,7 @@ import { View, StyleSheet, StatusBar } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
@@ -125,7 +126,7 @@ export class ModalViewComponent extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default connect(mapStateToProps)(ModalViewComponent);
