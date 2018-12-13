@@ -211,7 +211,7 @@
         "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} Zeichen lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Dies ist dein Hauptkonto Passwort. Du verwendest es zum einloggen.",
         "retypePassword": "Passwort erneut eingeben"
     },
     "copyToClipboard": {
@@ -246,7 +246,7 @@
         "setNode": "Node wählen",
         "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
         "whyBiometricDisabledExplanationPart1": "Biometrische Authentifizierung ist beim ersten App-Start aus Sicherheitsgründen deaktiviert.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Bei der Verwendung von Trinity wirst du wegen Inaktivität abgemeldet. Du kannst dich mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
         "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
@@ -278,7 +278,7 @@
         "print": "Drucken",
         "paperConvenience": "Deinen Seed auszudrucken ist ein komfortabler Weg der Aufbewahrung.",
         "publicInsecure": "Doch beachte, dass Drucken in öffentlichen WLAN's oder über öffentliche Drucker unsicher ist.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Überprüfe und bestätige bevor du druckst",
         "wifiConfirmation": "Ich befinde mich nicht in einem öffentlichen WLAN",
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
     },
@@ -596,8 +596,8 @@
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
         "toAddress": "An Adresse",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "sendingAMessage": "Sende eine Nachricht",
+        "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },
     "twoFA": {
         "wrongCode": "Falscher Code",
@@ -618,7 +618,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportieren",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Ein SeedVault ist eine Möglichkeit deinen Seed sicher zu speichern. Dein Seed wird verschlüsselt in einer Datei gespeichert und kann ohne den dazugehörigen Schlüssel nicht eingesehen werden.",
         "seedVaultWarning": "Stelle sicher dass du die Datei an verschiedenen Orten ablegst (zum Beispiel auf einer externen Festplatte, einem Cloudspeicher, etc.). Falls du die Datei verlierst und dein Seed nicht an einem weiteren Ort gespeichert wurde, wirst du deine IOTA verlieren.",
         "exportFail": "SeedVault Export fehlgeschlagen",
         "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
@@ -639,8 +639,8 @@
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Zuerst müssen den SeedVault sichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
+        "retypeKey": "Schlüssel neu eingeben"
     },
     "chart": {
         "mcap": "MCAP",
@@ -675,7 +675,7 @@
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
         "broadcasting": "Übertrage",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Überweisung abgeschlossen"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden",
@@ -690,7 +690,7 @@
         "transitioning": "Daten werden wiederhergestellt.",
         "generatingAndDetecting": "Adressen werden generiert und Kontostand wird erkannt.",
         "attaching": "Adressen werden dem Tangle angehängt.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Hänge Adresse {{currentAddress}} von {{totalAddresses}} an"
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
