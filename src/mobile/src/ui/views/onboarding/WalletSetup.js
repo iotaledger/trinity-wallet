@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import RNExitApp from 'react-native-exit-app';
@@ -12,10 +12,10 @@ import { generateAlert } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
-import { Icon } from 'ui/theme/icons';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { doAttestationFromSafetyNet } from 'libs/safetynet';
 import { isAndroid } from 'libs/device';
@@ -27,13 +27,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
     },
     bottomContainer: {
@@ -44,8 +43,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
-        paddingTop: height / 60,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -94,73 +92,26 @@ class WalletSetup extends Component {
     }
 
     /**
-     * Navigates to enter seed screen
-     * @method redirectToEnterSeedScreen
+     * Navigates to chosen screen
+     * @method redirectToScreen
      */
-    redirectToEnterSeedScreen() {
+    redirectToScreen(screen) {
         const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: 'enterSeed',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.push(screen, {
+            animations: {
+                push: {
+                    enable: false,
+                },
+                pop: {
+                    enable: false,
                 },
             },
-        });
-    }
-
-    /**
-     * Navigates to new seed setup screen
-     * @method redirectToNewSeedSetupScreen
-     */
-    redirectToNewSeedSetupScreen() {
-        const { theme: { body } } = this.props;
-        Navigation.push('appStack', {
-            component: {
-                name: 'newSeedSetup',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
-                },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            statusBar: {
+                backgroundColor: body.bg,
             },
         });
     }
@@ -208,15 +159,12 @@ class WalletSetup extends Component {
     }
 
     showModal() {
-        const { theme: { negative, body } } = this.props;
+        const { theme } = this.props;
         this.props.toggleModalActivity('rootDetection', {
             style: { flex: 1 },
             hideModal: () => this.hideModal(),
             closeApp: () => this.closeApp(),
-            backgroundColor: body.bg,
-            warningColor: { color: negative.color },
-            textColor: { color: body.color },
-            borderColor: { borderColor: body.color },
+            theme,
         });
     }
 
@@ -244,47 +192,60 @@ class WalletSetup extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 0.7 }} />
-                    <Header textColor={body.color}>{t('welcome:thankYou')}</Header>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={400}
+                    >
+                        <Header textColor={body.color}>{t('welcome:thankYou')}</Header>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.05 }} />
-                    <View style={styles.greetingTextContainer}>
-                        <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
-                    </View>
-                    <View style={{ flex: 0.25 }} />
-                    <InfoBox
-                        body={body}
-                        text={
-                            <View>
-                                <Text style={[styles.infoText, textColor]}>
-                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                    <View style={{ flex: 0.2 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={266}
+                    >
+                        <InfoBox>
+                            <Text style={[styles.infoText, textColor]}>
+                                {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                            </Text>
+                            <Trans i18nKey="walletSetup:explanation">
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                                    <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
+                                    <Text style={styles.infoTextRegular}> any wallet</Text>
+                                    <Text style={styles.infoTextLight}>, on</Text>
+                                    <Text style={styles.infoTextRegular}> any device.</Text>
                                 </Text>
-                                <Trans i18nKey="walletSetup:explanation">
-                                    <Text style={[styles.infoText, textColor]}>
-                                        <Text style={styles.infoTextLight}>
-                                            You can use it to access your funds from
-                                        </Text>
-                                        <Text style={styles.infoTextRegular}> any wallet</Text>
-                                        <Text style={styles.infoTextLight}>, on</Text>
-                                        <Text style={styles.infoTextRegular}> any device.</Text>
-                                    </Text>
-                                </Trans>
-                                <Text style={[styles.infoText, textColor]}>{t('loseSeed')}</Text>
-                            </View>
-                        }
-                    />
+                            </Trans>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                                {t('loseSeed')}
+                            </Text>
+                        </InfoBox>
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.3 }} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={133}
+                    >
+                        <View style={styles.greetingTextContainer}>
+                            <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
+                        </View>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <DualFooterButtons
-                        onLeftButtonPress={() => this.redirectToEnterSeedScreen()}
-                        onRightButtonPress={() => this.redirectToNewSeedSetupScreen()}
-                        leftButtonText={t('noIHaveOne')}
-                        rightButtonText={t('yesINeedASeed')}
-                        leftButtonTestID="walletSetup-no"
-                        rightButtonTestID="walletSetup-yes"
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']}>
+                        <DualFooterButtons
+                            onLeftButtonPress={() => this.redirectToScreen('enterSeed')}
+                            onRightButtonPress={() => this.redirectToScreen('newSeedSetup')}
+                            leftButtonText={t('noIHaveOne')}
+                            rightButtonText={t('yesINeedASeed')}
+                            leftButtonTestID="walletSetup-no"
+                            rightButtonTestID="walletSetup-yes"
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );

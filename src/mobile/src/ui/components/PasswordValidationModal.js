@@ -1,25 +1,25 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableWithoutFeedback, View, Text, StyleSheet, Keyboard } from 'react-native';
+import { View, TouchableWithoutFeedback, Text, StyleSheet, Keyboard } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import InfoBox from './InfoBox';
+import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
 import CustomTextInput from './CustomTextInput';
-import ModalButtons from './ModalButtons';
+import ModalView from './ModalView';
 
 const styles = StyleSheet.create({
-    container: {
-        width,
-        height,
-        alignItems: 'center',
-        justifyContent: 'center',
+    questionText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize6,
+        textAlign: 'center',
     },
-    modalText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
-        textAlign: 'left',
+    icon: {
+        opacity: 0.6,
+        paddingTop: height / 20,
+        paddingBottom: height / 30,
         backgroundColor: 'transparent',
     },
 });
@@ -34,6 +34,12 @@ export class PasswordValidationModal extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** Validate password provided by user */
         validatePassword: PropTypes.func.isRequired,
+        /** Determines if modal is triggered from the wallet dashboard, in case the topbar should be displayed */
+        isDashboard: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        isDashboard: false,
     };
 
     constructor() {
@@ -44,58 +50,38 @@ export class PasswordValidationModal extends PureComponent {
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, isDashboard } = this.props;
         const { password } = this.state;
 
         return (
-            <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
-                <View>
-                    <View style={styles.container}>
-                        <View style={{ backgroundColor: theme.body.bg }}>
-                            <InfoBox
-                                body={theme.body}
-                                width={Styling.contentWidth}
-                                text={
-                                    <View>
-                                        <Text
-                                            style={[
-                                                styles.modalText,
-                                                { color: theme.body.color },
-                                                { paddingTop: height / 40 },
-                                            ]}
-                                        >
-                                            {t('seedVault:enterKeyExplanation')}
-                                        </Text>
-                                        <View style={{ paddingTop: height / 15, alignItems: 'center' }}>
-                                            <CustomTextInput
-                                                label={t('global:password')}
-                                                onChangeText={(password) => this.setState({ password })}
-                                                containerStyle={{ width: width / 1.3 }}
-                                                autoCapitalize="none"
-                                                autoCorrect={false}
-                                                enablesReturnKeyAutomatically
-                                                returnKeyType="done"
-                                                secureTextEntry
-                                                onSubmitEditing={() => this.props.validatePassword(password)}
-                                                theme={theme}
-                                                value={this.state.password}
-                                            />
-                                        </View>
-                                        <View style={{ paddingTop: height / 15, alignItems: 'center' }}>
-                                            <ModalButtons
-                                                onLeftButtonPress={() => this.props.hideModal()}
-                                                onRightButtonPress={() => this.props.validatePassword(password)}
-                                                leftText={t('global:back').toUpperCase()}
-                                                rightText={t('okay').toUpperCase()}
-                                                containerWidth={{ width: width / 1.3 }}
-                                                buttonWidth={{ width: width / 3 }}
-                                            />
-                                        </View>
-                                    </View>
-                                }
-                            />
-                        </View>
-                    </View>
+            <TouchableWithoutFeedback style={{ flex: 1, width, height }} onPress={Keyboard.dismiss}>
+                <View style={isAndroid ? { flex: 1, width, height } : null}>
+                    <ModalView
+                        displayTopBar={isDashboard}
+                        dualButtons
+                        onLeftButtonPress={() => this.props.hideModal()}
+                        onRightButtonPress={() => this.props.validatePassword(password)}
+                        leftButtonText={t('back')}
+                        rightButtonText={t('okay')}
+                    >
+                        <Text style={[styles.questionText, { color: theme.body.color }]}>
+                            {t('seedVault:enterKeyExplanation')}
+                        </Text>
+                        <Icon name="vault" size={width / 6} color={theme.body.color} style={styles.icon} />
+                        <CustomTextInput
+                            label={t('global:password')}
+                            onChangeText={(password) => this.setState({ password })}
+                            containerStyle={{ width: Styling.contentWidth }}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            secureTextEntry
+                            onSubmitEditing={() => this.props.validatePassword(password)}
+                            theme={theme}
+                            value={this.state.password}
+                        />
+                    </ModalView>
                 </View>
             </TouchableWithoutFeedback>
         );

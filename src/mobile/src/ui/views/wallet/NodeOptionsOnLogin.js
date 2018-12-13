@@ -52,7 +52,7 @@ class NodeOptionsOnLogin extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         setLoginRoute: PropTypes.func.isRequired,
-        /** @ignore */
+        /** Login route */
         loginRoute: PropTypes.string.isRequired,
     };
 
@@ -121,7 +121,6 @@ class NodeOptionsOnLogin extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    loginRoute: state.ui.loginRoute,
 });
 
 const mapDispatchToProps = {

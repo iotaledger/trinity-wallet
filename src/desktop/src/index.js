@@ -8,6 +8,7 @@ import { Provider as Redux } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router';
 import i18next from 'libs/i18next';
 import store, { persistStore } from 'store';
+import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
@@ -46,6 +47,9 @@ const persistor = persistStore(store, persistConfig, (err, restoredState) => {
     if (node) {
         changeIotaNode(node);
     }
+
+    // Assign accountIndex to every account in accountInfo if it is not assigned already
+    store.dispatch(assignAccountIndexIfNecessary(get(restoredState, 'accounts.accountInfo')));
 });
 
 if (Electron.mode === 'tray') {

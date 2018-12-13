@@ -1,3 +1,6 @@
+import some from 'lodash/some';
+import isEmpty from 'lodash/isEmpty';
+import isNumber from 'lodash/isNumber';
 import {
     selectedAccountStateFactory,
     getAccountNamesFromState,
@@ -48,6 +51,7 @@ export const ActionTypes = {
     MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
     SYNC_ACCOUNT_BEFORE_SWEEPING: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_SWEEPING',
     OVERRIDE_ACCOUNT_INFO: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+    ASSIGN_ACCOUNT_INDEX: 'IOTA/ACCOUNTS/ASSIGN_ACCOUNT_INDEX',
 };
 
 /**
@@ -402,6 +406,17 @@ export const overrideAccountInfo = (payload) => ({
 });
 
 /**
+ * Dispatch to (automatically) assign accountIndex to every account in state
+ *
+ * @method assignAccountIndex
+ *
+ * @returns {{type: {string} }}
+ */
+export const assignAccountIndex = () => ({
+    type: ActionTypes.ASSIGN_ACCOUNT_INDEX,
+});
+
+/**
  * Gets full account information for the first seed added to the wallet.
  *
  * @method getFullAccountInfo
@@ -425,10 +440,14 @@ export const getFullAccountInfo = (seedStore, accountName) => {
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
-                dispatch(setSeedIndex(existingAccountNames.length));
+                const seedIndex = existingAccountNames.length;
+
+                dispatch(setSeedIndex(seedIndex));
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
+                // Assign account meta
                 result.accountMeta = getAccountInfoDuringSetup(getState()).meta;
+                result.accountIndex = seedIndex;
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })
@@ -555,4 +574,18 @@ export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getSta
         // Resolve new account state
         return result;
     });
+};
+
+/**
+ * Assign account index to each account if not already assigned
+ *
+ * @method assignAccountIndexIfNecessary
+ * @param {object} accountInfo
+ *
+ * @returns {function(*)}
+ */
+export const assignAccountIndexIfNecessary = (accountInfo) => (dispatch) => {
+    if (!isEmpty(accountInfo) && some(accountInfo, ({ index }) => !isNumber(index))) {
+        dispatch(assignAccountIndex());
+    }
 };

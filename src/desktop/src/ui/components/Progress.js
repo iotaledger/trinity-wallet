@@ -15,7 +15,7 @@ export default class Progress extends React.PureComponent {
         /** Progress bar subtitle */
         subtitle: PropTypes.string,
         /** Progress bar style type */
-        type: PropTypes.oneOf([ 'large' ]),
+        type: PropTypes.oneOf(['large']),
     };
 
     render() {

@@ -106,15 +106,22 @@ class SeedInput extends React.PureComponent {
     };
 
     onPaste = (e) => {
+        const { t } = this.props;
+        this.props.generateAlert(
+            'info',
+            t('seedReentry:clipboardWarning'),
+            t('seedReentry:clipboardWarningExplanation'),
+        );
         e.preventDefault();
     };
 
     onDrop = async (buffer) => {
+        const { t } = this.props;
         if (!buffer) {
             return this.props.generateAlert(
                 'error',
-                'Error opening keystore file',
-                'There was an error opening keystore file',
+                t('seedVault:seedFileError'),
+                t('seedVault:seedFileErrorExplanation'),
             );
         }
 

@@ -184,35 +184,37 @@ class TwoFA extends React.Component {
 
         return (
             <form className={css.twoFa} onSubmit={(e) => this.verifyCode(e)}>
-                <h3>1. {t('twoFA:addKey')}</h3>
-                <svg width="160" height="160" viewBox={`0 0 ${cells.length} ${cells.length}`}>
-                    {cells.map((row, rowIndex) => {
-                        return row.map((cell, cellIndex) => (
-                            <rect
-                                height={1}
-                                key={cellIndex}
-                                style={{ fill: cell ? '#000000' : 'none' }}
-                                width={1}
-                                x={cellIndex}
-                                y={rowIndex}
-                            />
-                        ));
-                    })}
-                </svg>
-                <small>
-                    {t('twoFA:key')}:{' '}
-                    <Clipboard text={key} title={t('twoFA:keyCopied')} success={t('twoFA:keyCopiedExplanation')}>
-                        <strong>{key}</strong>
-                    </Clipboard>
-                </small>
-                <hr />
-                <h3>2. {t('twoFA:enterCode')}</h3>
-                <Text value={code} onChange={this.setCode} />
                 <fieldset>
-                    <Button type="submit" disabled={code.length < 6} variant="primary">
+                    <h3>1. {t('twoFA:addKey')}</h3>
+                    <svg width="160" height="160" viewBox={`0 0 ${cells.length} ${cells.length}`}>
+                        {cells.map((row, rowIndex) => {
+                            return row.map((cell, cellIndex) => (
+                                <rect
+                                    height={1}
+                                    key={cellIndex}
+                                    style={{ fill: cell ? '#000000' : 'none' }}
+                                    width={1}
+                                    x={cellIndex}
+                                    y={rowIndex}
+                                />
+                            ));
+                        })}
+                    </svg>
+                    <small>
+                        {t('twoFA:key')}:{' '}
+                        <Clipboard text={key} title={t('twoFA:keyCopied')} success={t('twoFA:keyCopiedExplanation')}>
+                            <strong>{key}</strong>
+                        </Clipboard>
+                    </small>
+                    <hr />
+                    <h3>2. {t('twoFA:enterCode')}</h3>
+                    <Text value={code} onChange={this.setCode} />
+                </fieldset>
+                <footer>
+                    <Button className="square" type="submit" disabled={code.length < 6} variant="primary">
                         {t('apply')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }
@@ -248,4 +250,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(TwoFA));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(TwoFA));
