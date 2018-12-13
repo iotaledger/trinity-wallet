@@ -102,6 +102,7 @@ class SaveSeedConfirmation extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
                 backgroundColor: body.bg,
