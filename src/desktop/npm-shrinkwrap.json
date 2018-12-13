@@ -8212,7 +8212,6 @@
                 "mime-types": "~2.1.7",
                 "oauth-sign": "~0.8.1",
                 "stringstream": "~0.0.4",
-                "tunnel-agent": "~0.4.1",
                 "uuid": "^3.0.0"
               }
             },
@@ -8372,12 +8371,6 @@
                   }
                 }
               }
-            },
-            "tunnel-agent": {
-              "version": "0.4.3",
-              "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.4.3.tgz",
-              "integrity": "sha1-Y3PbdpCf5XDgjXNYM2Xtgop07us=",
-              "optional": true
             },
             "tweetnacl": {
               "version": "0.14.5",
@@ -9399,8 +9392,7 @@
             "mime-types": "~2.1.7",
             "node-uuid": "~1.4.7",
             "oauth-sign": "~0.8.1",
-            "stringstream": "~0.0.4",
-            "tunnel-agent": "~0.4.1"
+            "stringstream": "~0.0.4"
           }
         },
         "resolve": {
@@ -9609,11 +9601,6 @@
           "version": "0.0.0",
           "resolved": "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.0.tgz",
           "integrity": "sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY="
-        },
-        "tunnel-agent": {
-          "version": "0.4.3",
-          "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.4.3.tgz",
-          "integrity": "sha1-Y3PbdpCf5XDgjXNYM2Xtgop07us="
         },
         "tweetnacl": {
           "version": "0.14.5",
