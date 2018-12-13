@@ -522,7 +522,7 @@
         "scan": "QRコード読み取り"
     },
     "unitInfoModal": {
-        "unitSystem": "単位",
+        "unitSystem": "単位システム",
         "trillion": "一兆",
         "billion": "十億",
         "million": "百万",
