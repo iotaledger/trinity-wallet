@@ -94,6 +94,7 @@ describe('Testing SetAccountName component', () => {
                     expect(props.setAccountInfoDuringSetup).toHaveBeenCalledWith({
                         name: 'foo',
                         meta: { type: 'keychain' },
+                        completed: true
                     });
                 });
 
