@@ -157,7 +157,7 @@
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -245,7 +245,7 @@
         "login": "Anmelden",
         "setNode": "Node wählen",
         "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart1": "Biometrische Authentifizierung ist beim ersten App-Start aus Sicherheitsgründen deaktiviert.",
         "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -275,12 +275,12 @@
     "paperWallet": {
         "neverShare": "Teile niemals deinen Seed.",
         "iotaLogo": "IOTA Logo",
-        "print": "Print",
+        "print": "Drucken",
         "paperConvenience": "Deinen Seed auszudrucken ist ein komfortabler Weg der Aufbewahrung.",
         "publicInsecure": "Doch beachte, dass Drucken in öffentlichen WLAN's oder über öffentliche Drucker unsicher ist.",
         "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "wifiConfirmation": "Ich befinde mich nicht in einem öffentlichen WLAN",
+        "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
     },
     "receive": {
         "yourAddress": "Deine Adresse",
@@ -309,22 +309,22 @@
         "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Leeres Paper-Wallet drucken",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "Was ist eine Prüfsumme?",
+        "everySeedHasAChecksum": "Jeder Seed hat eine dreistellige Prüfsumme.",
         "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
         "checksumExplanation": "Immer wenn du einen Seed eingibst, solltest du sicherstellen, dass die angezeigte Prüfsumme mit deiner aufgeschriebenen Prüfsumme übereinstimmt.",
         "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bitte bestätige deinen Seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity wird dich niemals darum bitten deinen Seed einzugeben, außer du möchtest dein Wallet zurücksetzen oder hast die App neu installiert.",
         "enterYourSeed": "Gib deinen Seed ein",
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn.",
         "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "Warnung: Seed kann nicht eingefügt werden",
+        "clipboardWarningExplanation": "Einfügen ist aus Sicherheitsgründen deaktiviert. Du kannst deinen Seed via Drag and Drop einfügen."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -352,7 +352,7 @@
         "addressPasteDetected": "Eingefügte Adresse erkannt",
         "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest.",
         "invalid": "UNGÜLTIG",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Wischen zum senden"
     },
     "setSeedName": {
         "letsAddName": "Füge einen Namen ein",
@@ -380,9 +380,9 @@
         "addNewSeed": "Neuen Seed hinzufügen",
         "twoFA": "2-Faktor-Authentifizierung",
         "changePassword": "Passwort ändern",
-        "general": "General settings",
+        "general": "Einstellungen",
         "advanced": "Erweiterte Einstellungen",
-        "account": "Account settings",
+        "account": "Kontoeinstellungen",
         "logout": "Abmelden",
         "reset": "Wallet zurücksetzen",
         "syncingComplete": "Synchronisierung abgeschlossen",
@@ -456,7 +456,7 @@
         "retrying": "Erneuter Versuch",
         "yesterday": "Gestern",
         "promotingAnotherBundle": "Promote anderes Bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Bitte warten. Trinity promotet ein anderes Bundle."
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -515,20 +515,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Bist du sicher, dass du dich ausloggen möchtest?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Du bist dabei, dich auszuloggen",
+        "areYouSure": "Bist du sicher?"
     },
     "qrScanner": {
         "scan": "QR-Code scannen"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Einheitensystem",
         "trillion": "Billionen",
         "billion": "Milliarden",
         "million": "Millionen",
         "thousand": "Tausend",
         "one": "Ein",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAs werden typischerweise in Vielfachen von einer Million erworben, können aber als ein einziges IOTA übertragen werden."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Warum kann ich nicht mein gesamtes Guthaben ausgeben?",
@@ -550,7 +550,7 @@
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Gebe einen Kontonamen und Seed ein",
         "incorrectFormat": "Ungültiges Format",
         "validSeedExplanation": "'Ein gültiger Seed sollte aus 81 Zeichen bestehen und die Buchstaben A-Z, sowie die Zahl 9 enthalten.'."
     },
@@ -564,8 +564,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hast du deinen Seed gespeichert?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Ich habe mein Seed gesichert",
+        "reenterSeed": "Im nächsten Schritt wirst du aufgefordert deinen Seed erneut einzugeben.",
         "reenterSeedWarning": "Falls dein Gerät nicht mehr funktioniert und du deinen Seed nicht gesichert hast, wirst du alle deine IOTA verlieren.",
         "pleaseConfirm": "Bestätige, dass du deinen Seed sicher gespeichert hast."
     },
@@ -585,17 +585,17 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrische Authentifizierung ist nicht verfügbar",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren",
         "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
+        "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
         "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
         "aMessage": "eine Nachricht",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "fromAccount": "Von {{selectedAccountName}}",
+        "toAddress": "An Adresse",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
