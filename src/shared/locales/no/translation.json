@@ -639,8 +639,8 @@
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
         "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil bruke denne nøkkelen hvis du må gjenopprette din hovednøkkel fra SeedVault sikkerhetskopi.",
+        "retypeKey": "Skriv nøkkel på nytt"
     },
     "chart": {
         "mcap": "MCAP",
@@ -675,7 +675,7 @@
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
         "broadcasting": "Kringkasting",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Transaksjon fullført"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
@@ -690,7 +690,7 @@
         "transitioning": "Overfører til ny snapshot.",
         "generatingAndDetecting": "Genererer adresser og laster inn saldo.",
         "attaching": "Kobler adressene til Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Legger til adresse {{currentAddress}} {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatisk utfylling vellykket",
@@ -727,8 +727,8 @@
         "completeSetup": "Fullfør installasjon"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Bruk system proxy",
+        "proxyExplanation": "Oppdage og bruke proxy-innstillinger. Lukk og åpne lommeboken etter endring av denne innstillingen."
     },
     "notifications": {
         "notifications": "Varslinger",
@@ -744,19 +744,19 @@
     "bytetrit": {
         "sweepSucceeded": "Midler er ulåst",
         "sweepSucceededExplanation": "Midlene er vellykket ulåst og flyttet til en ny adresse. Promoter transaksjonen for å hjelp den å bekreftes.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepError": "Feil ved henting av middler",
+        "sweepErrorExplanation": "Noe gikk galt med tilgangen til dine midler. Prøver på nytt.",
+        "warningTitle": "Advarsel: Låst midler oppdaget",
+        "explanation": "Trinity Desktop versjon 0.3.4 inneholdt en feil som kan midlertidig låse midler. Dette påvirker et lite antall brukere som utførte transaksjoner med 0.3.4.",
+        "explanationAccounts": "Låste midler er registrert på dine kontoer: {{accounts}}. Trinity vil nå automatisk gjenopprette tilgangen til midlene ved å flytte dem til en ny adresse.",
+        "proceed": "Videre til gjenoppretting",
+        "sweepConfirmation": "Du er ferd med å samle {{amount}} til adresse {{address}}. Konto: {{accountName}}, adresse indeks: {{index}}",
+        "sweepConfirmationTitle": "Samlebekreftelse"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
+        "ready": "Ledger tilkoblet og klar",
+        "notReady": "Ønsker du å benytte Ledger, koble til og lås den opp nå",
+        "indexInUse": "Indeks allerede benyttet på konto {{account}}",
         "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
         "proceedWithLedger": "Proceed with Ledger setup",
         "accountIndex": "Account index",
