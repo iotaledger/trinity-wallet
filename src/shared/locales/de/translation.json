@@ -211,7 +211,7 @@
         "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} Zeichen lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
-        "anEncryptedCopy": "Dies ist dein Hauptkonto Passwort. Du verwendest es zum einloggen.",
+        "anEncryptedCopy": "Dies ist das Passwort für dein Wallet. Du wirst es bei jedem Login verwenden.",
         "retypePassword": "Passwort erneut eingeben"
     },
     "copyToClipboard": {
@@ -246,7 +246,7 @@
         "setNode": "Node wählen",
         "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
         "whyBiometricDisabledExplanationPart1": "Biometrische Authentifizierung ist beim ersten App-Start aus Sicherheitsgründen deaktiviert.",
-        "whyBiometricDisabledExplanationPart2": "Bei der Verwendung von Trinity wirst du wegen Inaktivität abgemeldet. Du kannst dich mit biometrischer Authentifizierung erneut anmelden."
+        "whyBiometricDisabledExplanationPart2": "Trinity wird dich bei Inaktivität automatisch abmelden. Du kannst dich anschließend mit biometrischer Authentifizierung erneut anmelden."
     },
     "loading": {
         "loadingFirstTime": "Dein Seed wird das erste Mal geladen.",
@@ -278,7 +278,7 @@
         "print": "Drucken",
         "paperConvenience": "Deinen Seed auszudrucken ist ein komfortabler Weg der Aufbewahrung.",
         "publicInsecure": "Doch beachte, dass Drucken in öffentlichen WLAN's oder über öffentliche Drucker unsicher ist.",
-        "pleaseCheck": "Überprüfe und bestätige bevor du druckst",
+        "pleaseCheck": "Überprüfe und Bestätige bevor du druckst",
         "wifiConfirmation": "Ich befinde mich nicht in einem öffentlichen WLAN",
         "printerConfirmation": "Ich drucke nicht auf einem öffentlich zugänglichen Drucker"
     },
@@ -317,7 +317,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bitte bestätige deinen Seed",
-        "trinityWillNeverAskToReenter": "Trinity wird dich niemals darum bitten deinen Seed einzugeben, außer du möchtest dein Wallet zurücksetzen oder hast die App neu installiert.",
+        "trinityWillNeverAskToReenter": "Trinity wird dich niemals darum bitten deinen Seed einzugeben, außer du hast dein Wallet zurückgesetzt oder hast die App neu installiert.",
         "enterYourSeed": "Gib deinen Seed ein",
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
@@ -640,7 +640,7 @@
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
         "seedVaultKeyExplanation": "Zuerst müssen den SeedVault sichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
-        "retypeKey": "Schlüssel neu eingeben"
+        "retypeKey": "Schlüssel erneut eingeben"
     },
     "chart": {
         "mcap": "MCAP",
@@ -690,7 +690,7 @@
         "transitioning": "Daten werden wiederhergestellt.",
         "generatingAndDetecting": "Adressen werden generiert und Kontostand wird erkannt.",
         "attaching": "Adressen werden dem Tangle angehängt.",
-        "attachProgress": "Hänge Adresse {{currentAddress}} von {{totalAddresses}} an"
+        "attachProgress": "Adresse {{currentAddress}} von {{totalAddresses}} wird angehängt"
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
