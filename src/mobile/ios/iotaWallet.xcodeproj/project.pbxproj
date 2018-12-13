@@ -33,7 +33,6 @@
 		6020D31F21A507BC00159E5A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5565A207BA79E00BA0A7F /* libReact.a */; };
 		6020D32021A5080100159E5A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5565A207BA79E00BA0A7F /* libReact.a */; };
 		6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5420827D2F0006A2F3 /* libRNCamera.a */; };
-		6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */; };
 		6079ACDE2110BE6B005B21CB /* Argon2Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079ACDD2110BE6B005B21CB /* Argon2Core.swift */; };
 		6079ACE02110DD2C005B21CB /* Argon2IOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079ACDF2110DD2C005B21CB /* Argon2IOS.swift */; };
 		6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6079AD4D2110E752005B21CB /* Argon2IOS.m */; };
@@ -281,13 +280,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
 			remoteInfo = RNCamera;
-		};
-		6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
-			remoteInfo = ReactNativePermissions;
 		};
 		60F7E3B22125EAE7005355C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -727,7 +719,6 @@
 		601BFCF120C3679D0097D329 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		601BFD5C20C39A560097D329 /* RNViewShot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNViewShot.xcodeproj; path = "../node_modules/react-native-view-shot/ios/RNViewShot.xcodeproj"; sourceTree = "<group>"; };
 		6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
-		6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		6079ACDD2110BE6B005B21CB /* Argon2Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argon2Core.swift; sourceTree = "<group>"; };
 		6079ACDF2110DD2C005B21CB /* Argon2IOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argon2IOS.swift; sourceTree = "<group>"; };
 		6079AD4D2110E752005B21CB /* Argon2IOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Argon2IOS.m; sourceTree = "<group>"; };
@@ -842,7 +833,6 @@
 				CBC214EA20CE82EC005D8ACB /* libRNReactNativeHapticFeedback.a in Frameworks */,
 				CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */,
 				6014E911217E743000C88675 /* EntangledKit.framework in Frameworks */,
-				6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */,
 				6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */,
 				C2F42249DD5989B1962B809D5CCC00F3 /* libART.a in Frameworks */,
 				0C2504A17226DF5FFD3C2A54AD060E8A /* libBugsnagReactNative.a in Frameworks */,
@@ -1081,14 +1071,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6056CF5720827E2E0006A2F3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		60A097C62110BDE7008180C9 /* Argon2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,7 +1100,6 @@
 				601BFCE820C367300097D329 /* RNShare.xcodeproj */,
 				CBC214E420CE82DC005D8ACB /* RNReactNativeHapticFeedback.xcodeproj */,
 				CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */,
-				6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */,
 				6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */,
 				FFB7466768C43C0F61CFB10138358A32 /* ART.xcodeproj */,
 				5BC0CFE5E7DFF31220E78B818DA00C4B /* BugsnagReactNative.xcodeproj */,
@@ -1746,10 +1727,6 @@
 					ProjectRef = CBEA4C8B2149481F007DA583 /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
-					ProductGroup = 6056CF5720827E2E0006A2F3 /* Products */;
-					ProjectRef = 6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */;
-				},
-				{
 					ProductGroup = 6056CF5020827D2F0006A2F3 /* Products */;
 					ProjectRef = 6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */;
 				},
@@ -1972,13 +1949,6 @@
 			fileType = archive.ar;
 			path = libRNCamera.a;
 			remoteRef = 6056CF5320827D2F0006A2F3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativePermissions.a;
-			remoteRef = 6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60F7E3B32125EAE7005355C7 /* libRNDocumentPicker.a */ = {
