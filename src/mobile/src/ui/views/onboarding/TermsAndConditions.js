@@ -105,6 +105,7 @@ class TermsAndConditions extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
                 backgroundColor: bar.bg,

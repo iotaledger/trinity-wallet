@@ -174,6 +174,7 @@ class NewSeedSetup extends Component {
                 },
                 layout: {
                     backgroundColor: body.bg,
+                    orientation: ['portrait'],
                 },
                 topBar: {
                     title: {

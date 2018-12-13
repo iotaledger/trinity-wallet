@@ -35,6 +35,8 @@ class Settings extends Component {
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
         closeTopBar: PropTypes.func.isRequired,
+        /** @ignore */
+        navStack: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -64,6 +66,14 @@ class Settings extends Component {
                 },
                 150,
             );
+        }
+        if (this.props.navStack !== newProps.navStack) {
+            if (newProps.navStack.length === 1) {
+                this.animationOutType = ['fadeOut'];
+                return;
+            }
+            this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
+            this.animationInType = ['slideInLeftSmall', 'fadeIn'];
         }
     }
 
@@ -170,6 +180,7 @@ class Settings extends Component {
 const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     isSyncing: state.ui.isSyncing,
+    navStack: state.wallet.navStack,
 });
 
 const mapDispatchToProps = {

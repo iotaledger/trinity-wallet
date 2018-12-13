@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potwierdź swój klucz seed",
-        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel bądź dokonasz reinstalacji aplikacji.",
+        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel lub usuniesz aplikację.",
         "enterYourSeed": "Wprowadź swój seed",
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
-        "clipboardWarning": "Nie kopiuj swojego klucza",
-        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
+        "clipboardWarning": "OSTRZEŻENIE: Nie można wkleić klucza seed",
+        "clipboardWarningExplanation": "Możliwość wklejania, jest wyłączona dla Twojego bezpieczeństwa. Zamiast tego, możesz przeciągnąć i upuścić Twój seed, z pliku tekstowego."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -380,7 +380,9 @@
         "addNewSeed": "Dodaj nowy seed",
         "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
+        "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
+        "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
@@ -514,7 +516,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
         "aboutToLogOut": "Za chwilę zostaniesz wylogowany",
-        "areYouSure": "Czy jesteś pewny?"
+        "areYouSure": "Czy jesteś pewien?"
     },
     "qrScanner": {
         "scan": "Zeskanuj swój kod QR"
@@ -548,7 +550,7 @@
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Wprowadź nazwę konta oraz klucz seed",
         "incorrectFormat": "Nieprawidłowy format klucza",
         "validSeedExplanation": "Poprawny seed powinien składać się z 81 znaków i zawierać jedynie wielkie litery A-Z oraz cyfry 9."
     },
@@ -637,7 +639,7 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultKeyExplanation": "Najpierw musisz zabezpieczyć swój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz potrzebować tego hasła, aby przywrócić swój seed z kopii zapasowej pliku SeedVault.",
+        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz hasło ponownie"
     },
     "chart": {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
-import balloonsImagePath from 'shared-modules/images/balloons.png';
+import balloonsAnimation from 'shared-modules/animations/balloons-white.json';
+import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
@@ -49,13 +50,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: height / 30,
     },
-    party: {
-        justifyContent: 'center',
-        width,
-        height: width,
-        position: 'absolute',
-        top: height / 5,
-    },
 });
 
 /** Onboarding Complete screen componenet */
@@ -81,6 +75,7 @@ class OnboardingComplete extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
                 backgroundColor: body.bg,
@@ -110,9 +105,16 @@ class OnboardingComplete extends Component {
                         animationInType={['fadeIn']}
                         animationOutType={['fadeOut']}
                         delay={0}
-                        style={{ height, width }}
+                        style={{ height, width, opacity: 0.04 }}
                     >
-                        <Image source={balloonsImagePath} style={styles.party} />
+                        <LottieView
+                            ref={(animation) => {
+                                this.animation = animation;
+                            }}
+                            source={balloonsAnimation}
+                            loop={false}
+                            autoPlay
+                        />
                     </AnimatedComponent>
                 </View>
                 <View style={styles.bottomContainer}>

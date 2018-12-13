@@ -7,6 +7,7 @@ import { QRScanner as QrScannerComponent } from 'ui/components/QrScanner';
 import theme from '../../../__mocks__/theme';
 
 jest.mock('react-native-camera', () => ({}));
+jest.mock('react-native-qr-scanner', () => ({}));
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
@@ -51,14 +52,14 @@ describe('Testing QrScanner component', () => {
             expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
 
-        it('should return a QrCodeScanner component', () => {
+        it('should return a QRscanner component', () => {
             const props = getProps();
 
             const wrapper = shallow(<QrScannerComponent {...props} />);
-            expect(wrapper.find('QRCodeScanner').length).toEqual(1);
+            expect(wrapper.childAt(0).childAt(0).length).toEqual(1);
         });
 
-        it('should call prop method onQRRead when onRead prop of QRCodeScanner is triggered', () => {
+        it('should call prop method onQRRead when onRead prop of QRscanner is triggered', () => {
             const props = getProps({
                 onQRRead: jest.fn(),
             });
@@ -68,7 +69,8 @@ describe('Testing QrScanner component', () => {
             expect(props.onQRRead).toHaveBeenCalledTimes(0);
 
             wrapper
-                .find('QRCodeScanner')
+                .childAt(0)
+                .childAt(0)
                 .props()
                 .onRead({ data: 'foo' });
 

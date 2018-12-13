@@ -92,7 +92,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 29
+        versionCode 31
         versionName "0.6.0"
         minSdkVersion 21
         targetSdkVersion 26
@@ -152,6 +152,7 @@ android {
     }
 }
 dependencies {
+    implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
     implementation project(':nodejs-mobile-react-native')

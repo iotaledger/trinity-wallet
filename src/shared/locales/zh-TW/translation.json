@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "請確認您的種子碼",
-        "trinityWillNeverAskToReenter": "Trinity 絕不會要求重新輸入種子碼，除非您重置錢包或是應用程式。",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "輸入您的種子碼",
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
         "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
-        "clipboardWarning": "請不要複製貼上您的種子碼",
-        "clipboardWarningExplanation": "警告：為了您的安全複製貼上已停用。"
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -380,7 +380,9 @@
         "addNewSeed": "增加新的種子碼",
         "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
+        "general": "General settings",
         "advanced": "進階設定",
+        "account": "Account settings",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -637,7 +639,7 @@
         "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
         "seedFileError": "開啟 SeedVault 失敗",
         "seedFileErrorExplanation": "開啟 SeedVault 時遇到問題，如果您選擇的檔案是正確的，那麼它可能已損壞。",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {

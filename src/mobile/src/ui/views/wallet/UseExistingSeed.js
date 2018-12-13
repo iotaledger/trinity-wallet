@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 30,
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
@@ -178,6 +177,7 @@ class UseExistingSeed extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
                 backgroundColor: body.bg,
@@ -274,11 +274,11 @@ class UseExistingSeed extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.8 }} />
+                        <View style={{ flex: 0.5 }} />
                         <View style={styles.titleContainer}>
                             <Text style={[styles.title, textColor]}>{t('useExistingSeed:title')}</Text>
                         </View>
-                        <View style={{ flex: 0.4 }} />
+                        <View style={{ flex: 0.5 }} />
                         <CustomTextInput
                             onRef={(c) => {
                                 this.accountNameField = c;
@@ -294,7 +294,7 @@ class UseExistingSeed extends Component {
                             theme={theme}
                             value={accountName}
                         />
-                        <View style={{ flex: 0.45 }} />
+                        <View style={{ flex: 0.25 }} />
                         <CustomTextInput
                             label={t('global:seed')}
                             onChangeText={(text) => {
@@ -319,7 +319,7 @@ class UseExistingSeed extends Component {
                             onQRPress={() => this.onQRPress()}
                             seed={seed}
                         />
-                        <View style={{ flex: 0.45 }} />
+                        <View style={{ flex: 0.5 }} />
                         <SeedVaultImport
                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                             onSeedImport={(seed) => {
@@ -330,7 +330,7 @@ class UseExistingSeed extends Component {
                                 this.SeedVaultImport = ref;
                             }}
                         />
-                        <View style={{ flex: 1.2 }} />
+                        <View style={{ flex: 0.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
