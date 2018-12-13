@@ -494,7 +494,7 @@ class TopBar extends Component {
                         style={[
                             styles.container,
                             {
-                                backgroundColor: bar.alt,
+                                backgroundColor: bar.bg,
                             },
                         ]}
                     >
