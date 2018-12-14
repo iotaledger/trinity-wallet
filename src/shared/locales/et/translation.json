@@ -149,14 +149,14 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "PEAMINE KONTO",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +310,7 @@
         "youCanHighlightCharacters": "Korraga saate esile tõsta 9 tähemärki",
         "printBlankWallet": "Prindi tühi rahakott",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Igal seemnel on vastav 3-kohaline kontrollsumma.",
         "iHavesavedMySeed": "Ma olen oma seemne salvestanud",
         "checksumExplanation": "Kui lisate oma rahakotile seemne, peate veenduma, et rahakoti loodud kontrollsumma vastab sellele, mille olete endale üles kirjutanud.",
         "mustSaveYourSeed": "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
@@ -538,7 +538,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Seda tegevust ei saa tagasi võtta",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
     "manualSync": {
@@ -585,10 +585,10 @@
         "status": "Olek",
         "fingerprintUnavailable": "Biomeetriline autentimine pole saadaval",
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
+        "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
         "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat"
     },
     "transferConfirmation": {
