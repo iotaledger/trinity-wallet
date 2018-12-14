@@ -149,7 +149,7 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "CONTA PRINCIPAL",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
@@ -538,7 +538,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Esta ação não pode ser anulada",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
