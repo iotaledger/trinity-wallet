@@ -153,6 +153,9 @@ const initialState = {
      * Determines whether an error occurred during address generation
      */
     hadErrorGeneratingNewAddress: false,
+    /**
+     * Determines whether keyboard is active
+     */
     isKeyboardActive: false,
 };
 

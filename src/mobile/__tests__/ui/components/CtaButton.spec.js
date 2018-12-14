@@ -32,7 +32,7 @@ describe('Testing CtaButton component', () => {
         });
 
         it('should require a text string as a prop', () => {
-            expect(CtaButton.propTypes.text).toEqual(PropTypes.string.isRequired);
+            expect(CtaButton.propTypes.text).toEqual(PropTypes.string);
         });
 
         it('should accept a ctaWidth number as a prop', () => {

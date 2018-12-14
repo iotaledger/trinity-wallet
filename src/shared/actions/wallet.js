@@ -336,6 +336,14 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:somethingWentWrong'),
+                        i18next.t('global:somethingWentWrongTryAgain'),
+                        10000,
+                    ),
+                );
                 dispatch(generateNewAddressError());
             });
     };

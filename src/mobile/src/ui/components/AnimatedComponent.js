@@ -57,7 +57,7 @@ class AnimatedComponent extends Component {
         this.screen = last(props.navStack);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         // Animate in on page mount
         if (this.props.animateOnMount) {
             this.animateIn(this.props.delay);
@@ -145,6 +145,10 @@ class AnimatedComponent extends Component {
                 case 'slideOutRightSmall':
                     animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateX: this.slideValue }] });
                     break;
+                case 'slideInBottom':
+                case 'slideOutBottom':
+                    animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateY: this.slideValue }] });
+                    break;
             }
         });
         return animatedStyle;
@@ -175,7 +179,10 @@ class AnimatedComponent extends Component {
                 return width / 8;
             case 'slideOutLeftSmall':
             case 'slideOutRightSmall':
+            case 'slideOutBottom':
                 return 0;
+            case 'slideInBottom':
+                return 250;
         }
     }
 
@@ -198,13 +205,16 @@ class AnimatedComponent extends Component {
             case 'slideOutRight':
                 return width;
             case 'slideInLeftSmall':
-                return 0;
             case 'slideInRightSmall':
                 return 0;
             case 'slideOutLeftSmall':
                 return this.reverseSlideOut ? width / 8 : -width / 8;
             case 'slideOutRightSmall':
                 return width / 8;
+            case 'slideOutBottom':
+                return 250;
+            case 'slideInBottom':
+                return 0;
         }
     }
 
@@ -227,6 +237,8 @@ class AnimatedComponent extends Component {
             case 'slideInRightSmall':
             case 'slideOutLeftSmall':
             case 'slideOutRightSmall':
+            case 'slideInBottom':
+            case 'slideOutBottom':
                 return Easing.bezier(0.25, 1, 0.25, 1);
         }
     }
@@ -250,6 +262,8 @@ class AnimatedComponent extends Component {
             case 'slideInRightSmall':
             case 'slideOutLeftSmall':
             case 'slideOutRightSmall':
+            case 'slideInBottom':
+            case 'slideOutBottom':
                 return this.slideValue;
         }
     }
@@ -267,7 +281,7 @@ class AnimatedComponent extends Component {
             animations.push(
                 Animated.timing(this.getAnimationPointer(type), {
                     toValue: this.getFinalAnimatedValue(type),
-                    duration: type === 'fadeOut' ? 100 : this.props.duration,
+                    duration: this.props.duration,
                     delay,
                     easing: this.getEasing(type),
                 }),
@@ -296,6 +310,8 @@ class AnimatedComponent extends Component {
                 case 'slideInRightSmall':
                 case 'slideOutLeftSmall':
                 case 'slideOutRightSmall':
+                case 'slideInBottom':
+                case 'slideOutBottom':
                     this.slideValue = new Animated.Value(this.getStartingAnimatedValue(type));
                     break;
             }
