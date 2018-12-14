@@ -722,27 +722,27 @@
     "tray": {
         "trayApplication": "Bakke-app",
         "trayExplanation": "Giver et overblik over dine kontosaldi og seneste transaktionshistorik.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "notLoggedIn": "Du er ikke logget ind",
+        "setupIncomplete": "Tegnebogsopsætning ufuldstændig",
+        "completeSetup": "Færdiggør opsætning"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Benyt system-proxy",
+        "proxyExplanation": "Find og benyt systemets netværks-proxy indstillinger. Luk og genåbn tegnebogen efter ændring af denne indstilling."
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "Notifikationer",
+        "notificationExplanation": "Modtag systemnotifikationer om nye transaktioner.",
+        "typeConfirmations": "Advisér mig om bekræftelser",
+        "typeMessages": "Advicér mig on nulværditransaktioner",
+        "multipleTx": "Modtager flere transaktioner i {{account}}",
+        "valueTx": "Modtager {{value}} i {{account}}",
+        "messageTx": "Du modtog en besked i {{account}}",
+        "confirmedIn": "Indgående {{value}} i {{account}} er bekræftet",
+        "confirmedOut": "Udgående {{value}} fra {{account}} er bekræftet"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
+        "sweepSucceeded": "Finanser er oplåst",
         "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
         "sweepError": "Error unlocking funds",
         "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
@@ -770,8 +770,8 @@
         "connectionExplanation": "A Ledger device must be connected to perform this function.",
         "transactionTitle": "Scroll through and approve the transaction on your Ledger",
         "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
+        "applicationTitle": "Åbn Bogførings IOTA-app",
+        "applicationExplanation": "Gå til din Bogføring og åbn IOTA-app'en for at fortsætte med at benytte Trinity.",
         "cannotSendZeroValueTitle": "Cannot send zero value transfer",
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
         "ledgerDisconnectedTitle": "Ledger device disconnected",
