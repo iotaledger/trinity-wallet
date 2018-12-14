@@ -156,7 +156,7 @@
         "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Permissões do sistema de arquivo necessárias",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +310,7 @@
         "youCanHighlightCharacters": "Você pode marcar 9 caracteres por vez",
         "printBlankWallet": "Imprimir uma carteira em branco",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Toda Seed possui um Código de Verificação de 3 caracteres.",
         "iHavesavedMySeed": "Eu salvei a minha Seed",
         "checksumExplanation": "Sempre que você adicionar uma seed na sua carteira, você deve verificar que as somas de verificação geradas pela carteira são iguais às que você tem anotado.",
         "mustSaveYourSeed": "<0><0>Você deve salvar sua seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
@@ -585,10 +585,10 @@
         "status": "Situação",
         "fingerprintUnavailable": "Autenticação Biométrica indisponível",
         "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Pressione o botão abaixo para desabilitar a identificação do rosto",
+        "buttonInstructionsEnableIPhoneX": "Pressione o botão abaixo para permitir a identificação do rosto",
         "instructionsLogin": "Toque o leitor de impressão digital para entrar"
     },
     "transferConfirmation": {
