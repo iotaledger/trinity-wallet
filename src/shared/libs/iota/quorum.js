@@ -1,15 +1,17 @@
+import head from 'lodash/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
+import keys from 'lodash/keys';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import transform from 'lodash/transform';
 import size from 'lodash/size';
+import split from 'lodash/split';
 import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
-import IOTA from 'iota.lib.js';
-import { isNodeSynced } from './extendedApi';
+import { isNodeSynced, getIotaInstance } from './extendedApi';
 import {
     QUORUM_THRESHOLD,
     QUORUM_SIZE,
@@ -38,18 +40,35 @@ const rejectIfNotEnoughSyncedNodes = (nodes, quorumSize = QUORUM_SIZE) => {
 };
 
 /**
+ * Resolves only if provided milestone is not equal to empty hash trytes (999...999)
+ *
+ * @method rejectIfEmptyHashTrytes
+ *
+ * @param {string} latestSolidSubtangleMilestone
+ *
+ * @returns {Promise<string>}
+ */
+const rejectIfEmptyHashTrytes = (latestSolidSubtangleMilestone) => {
+    if (latestSolidSubtangleMilestone === EMPTY_HASH_TRYTES) {
+        return Promise.reject(new Error(Errors.COULD_NOT_GET_QUORUM_FOR_LATEST_SOLID_SUBTANGLE_MILESTONE));
+    }
+
+    return Promise.resolve(latestSolidSubtangleMilestone);
+};
+
+/**
  *   Determines quorum result for supported methods.
  *
  *   @method determineQuorumResult
  *   @param {array} validResults
- *   @param {number} faultyResultCount
+ *   @param {number} quorumSize
  *
- *   @returns {function}
+ *   @returns {function(string, [number]): {boolean | string}}
  **/
 const determineQuorumResult = (validResults, quorumSize = QUORUM_SIZE) => {
     const { frequency, mostFrequent } = findMostFrequent(validResults);
 
-    return (method, threshold) => {
+    return (method, threshold = QUORUM_THRESHOLD) => {
         // Include faulty result count while determining percentage
         const percentage = frequency[mostFrequent] / quorumSize * 100;
 
@@ -73,18 +92,23 @@ const fallbackToSafeResult = (method) => {
     const allowedMethodsMap = {
         wereAddressesSpentFrom: true,
         getInclusionStates: false,
-        getBalances: '0',
-        latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
+        'getBalances:balances': '0',
+        'getNodeInfo:latestSolidSubtangleMilestone': EMPTY_HASH_TRYTES,
     };
+
+    if (!includes(keys(allowedMethodsMap), method)) {
+        throw new Error(Errors.METHOD_NOT_SUPPORTED_FOR_QUORUM);
+    }
 
     return allowedMethodsMap[method];
 };
 
 /**
- *   For a list of nodes, find healthy nodes with size equals to minimum quorum nodes size
+ *   For a list of nodes, find healthy (synced) nodes with size equals to minimum quorum nodes size
  *
  *   @method findSyncedNodes
  *   @param {array} nodes
+ *   @param {number} quorumSize
  *   @param {array} [syncedNodes = []]
  *   @param {array} [blacklistedNodes = []]
  *
@@ -92,32 +116,46 @@ const fallbackToSafeResult = (method) => {
  **/
 const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes = []) => {
     const sizeOfSyncedNodes = size(syncedNodes);
+
+    // Get all nodes that are not synced & are not blacklisted (i.e., unsynced or unresponsive)
     const whitelistedNodes = filter(nodes, (node) => !includes(blacklistedNodes, node) && !includes(syncedNodes, node));
 
-    if (isEmpty(whitelistedNodes)) {
-        return Promise.reject(new Error(Errors.NOT_ENOUGH_HEALTHY_QUORUM_NODES));
+    if (
+        isEmpty(whitelistedNodes) &&
+        // If there are no nodes that are whitelisted
+        // And we still need more nodes to complete the (minimum) quorum size, then raise an exception
+        sizeOfSyncedNodes < quorumSize
+    ) {
+        return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
     }
 
     const selectedNodes =
-        sizeOfSyncedNodes === quorumSize ? syncedNodes : sampleSize(whitelistedNodes, quorumSize - sizeOfSyncedNodes);
+        // If we already have enough synced nodes, then just recheck if they are still synced
+        sizeOfSyncedNodes === quorumSize
+            ? syncedNodes
+            : // Otherwise, randomly choose the remaining nodes
+              sampleSize(whitelistedNodes, quorumSize - sizeOfSyncedNodes);
 
     return Promise.all(map(selectedNodes, (provider) => isNodeSynced(provider).catch(() => undefined))).then(
         (results) => {
+            // Categorise synced/unsynced nodes
             const { activeNodes, inactiveNodes } = transform(
                 selectedNodes,
                 (acc, node, idx) => (results[idx] ? acc.activeNodes.push(node) : acc.inactiveNodes.push(node)),
                 { activeNodes: [], inactiveNodes: [] },
             );
 
+            // If all selected nodes are synced, then return these nodes
             if (size(activeNodes) === size(selectedNodes)) {
-                return [...syncedNodes, ...activeNodes];
+                return union(syncedNodes, activeNodes);
             }
 
+            // Otherwise, restart this process
             return findSyncedNodes(
                 nodes,
                 quorumSize,
                 // Add active nodes to synced nodes
-                [...syncedNodes, ...activeNodes],
+                union(syncedNodes, activeNodes),
                 // Add inactive nodes to blacklisted nodes
                 [...blacklistedNodes, ...inactiveNodes],
             );
@@ -126,172 +164,105 @@ const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes =
 };
 
 /**
- *   From a list of synced nodes, compute a quorum result for wereAddressesSpentFrom iota api
+ * From a set of responses of quorum nodes, prepare a quorum result.
+ * wereAddressesSpentFrom: prepare a quorum result for spend status of each address
+ * getBalances:balances: prepare a quorum result for balance of each address
+ * getInclusionStates: prepare a quorum result for inclusion state of each tail transaction hash
+ * getNodeInfo:latestSolidSubtangleMilestone: prepare a quorum result for latestSolidSubtangleMilestone of each quorum node
  *
- *   @method getQuorumForWereAddressesSpentFrom
- *   @param {array} payload - Addresses
- *   @param {array} syncedNodes
+ * @method prepareQuorumResults
  *
- *   @returns {Promise}
- **/
-const getQuorumForWereAddressesSpentFrom = (payload, syncedNodes) => {
-    const requestPayloadSize = size(payload);
+ * @param {string} method
+ * @param  {...any} requestArgs
+ *
+ * @returns {function(array, number): {array | object | string}}
+ */
+const prepareQuorumResults = (method, ...requestArgs) => {
+    const prepare = (results, payloadSize) => {
+        const validResults = filter(results, (result) => !isUndefined(result));
 
-    return rejectIfNotEnoughSyncedNodes(syncedNodes)
-        .then(() =>
-            Promise.all(
-                map(
-                    syncedNodes,
-                    (provider) =>
-                        new Promise((resolve) => {
-                            new IOTA({ provider }).api.wereAddressesSpentFrom(
-                                payload,
-                                (err, spendStatuses) => (err ? resolve(undefined) : resolve(spendStatuses)),
-                            );
-                        }),
-                ),
-            ),
-        )
-        .then((results) => {
-            const validResults = filter(results, (result) => !isUndefined(result));
+        let idx = 0;
+        const quorumResult = [];
 
-            let idx = 0;
-            const quorumResult = [];
+        while (idx < payloadSize) {
+            /* eslint-disable no-loop-func */
+            quorumResult.push(determineQuorumResult(map(validResults, (result) => result[idx]))(method));
+            /* eslint-enable no-loop-func */
 
-            while (idx < requestPayloadSize) {
-                /* eslint-disable no-loop-func */
-                quorumResult.push(
-                    determineQuorumResult(map(validResults, (result) => result[idx]))(
-                        'wereAddressesSpentFrom',
-                        QUORUM_THRESHOLD,
-                    ),
+            idx += 1;
+        }
+
+        return quorumResult;
+    };
+
+    switch (method) {
+        case 'wereAddressesSpentFrom':
+        case 'getInclusionStates':
+            return prepare;
+        case 'getBalances:balances':
+            return (...args) => {
+                // Unlike responses from other methods, getBalances returns an object (https://iota.readme.io/reference#getbalances)
+                // However, we're only interested in preparing a quorum result for balances prop
+                // So, tranform the response into an array of balances -> [['0', '2'], ['0', '2'], ..., ['0', '2']]
+                const [results, ...restArgs] = args;
+
+                const balances = prepare(
+                    map(results, (result) => (isUndefined(result) ? undefined : result.balances)),
+                    ...restArgs,
                 );
-                /* eslint-enable no-loop-func */
 
-                idx += 1;
-            }
+                // Tips is the last argument for getBalances endpoint
+                const [tips] = requestArgs.slice(-1);
 
-            return quorumResult;
-        });
-};
-
-/**
- *   From a list of synced nodes, compute a quorum result for getLatestInclusion iota api
- *
- *   @method getQuorumForGetLatestInclusion
- *   @param {array} payload - Hashes
- *   @param {array} tips
- *   @param {array} syncedNodes
- *
- *   @returns {Promise}
- **/
-const getQuorumForGetLatestInclusion = (payload, tips, syncedNodes) => {
-    const requestPayloadSize = size(payload);
-
-    return rejectIfNotEnoughSyncedNodes(syncedNodes)
-        .then(() =>
-            Promise.all(
-                map(
-                    syncedNodes,
-                    (provider) =>
-                        new Promise((resolve) => {
-                            new IOTA({ provider }).api.getInclusionStates(
-                                payload,
-                                tips,
-                                (err, states) => (err ? resolve(undefined) : resolve(states)),
-                            );
-                        }),
-                ),
-            ),
-        )
-        .then((results) => {
-            const validResults = filter(results, (result) => !isUndefined(result));
-
-            let idx = 0;
-            const quorumResult = [];
-
-            while (idx < requestPayloadSize) {
-                /* eslint-disable no-loop-func */
-                quorumResult.push(
-                    determineQuorumResult(map(validResults, (result) => result[idx]))(
-                        'getInclusionStates',
-                        QUORUM_THRESHOLD,
-                    ),
-                );
-                /* eslint-enable no-loop-func */
-
-                idx += 1;
-            }
-
-            return quorumResult;
-        });
-};
-
-/**
- *   From a list of synced nodes, compute a quorum result for getBalances iota api
- *
- *   @method getQuorumForGetBalances
- *   @param {array} payload - Addresses
- *   @param {number} threshold
- *   @param {array} syncedNodes
- *
- *   @returns {Promise}
- **/
-const getQuorumForGetBalances = (payload, threshold, tips, syncedNodes) => {
-    const requestPayloadSize = size(payload);
-
-    return rejectIfNotEnoughSyncedNodes(syncedNodes)
-        .then(() =>
-            Promise.all(
-                map(
-                    syncedNodes,
-                    (provider) =>
-                        new Promise((resolve) => {
-                            new IOTA({ provider }).api.getBalances(
-                                payload,
-                                threshold,
-                                tips,
-                                (err, states) => (err ? resolve(undefined) : resolve(states)),
-                            );
-                        }),
-                ),
-            ),
-        )
-        .then((results) => {
-            const validResults = filter(results, (result) => !isUndefined(result));
-
-            let idx = 0;
-            const quorumResult = {
-                references: tips,
-                balances: [],
+                // Before returning the quorum results for getBalances,
+                // transform the quorum result into the original result structure
+                return { references: [tips], balances };
             };
+        case 'getNodeInfo:latestSolidSubtangleMilestone':
+            return (...args) => {
+                // Unlike responses from other methods, getNodeInfo returns an object (https://iota.readme.io/reference#getnodeinfo)
+                // However, we're only interested in preparing a quorum result for latestSolidSubtangleMilestone
+                // So, transform the response into an array of latestSolidSubtangleMilestone -> [['XYZ...999'], ['XYZ...999'], ['XYZ...999']]
+                const [results, ...restArgs] = args;
 
-            while (idx < requestPayloadSize) {
-                /* eslint-disable no-loop-func */
-                quorumResult.balances.push(
-                    determineQuorumResult(map(validResults, ({ balances }) => balances[idx]))(
-                        'getBalances',
-                        QUORUM_THRESHOLD,
+                const preparedResults = prepare(
+                    map(
+                        results,
+                        (result) => (isUndefined(result) ? undefined : [result.latestSolidSubtangleMilestone]),
                     ),
+                    // #prepare expects a requestPayloadSize argument
+                    // Since there is no payload for getNodeInfo endpoint and we're only interested in getting a quorum for latestSolidSubtangleMilestone
+                    // Pass requestPayloadSize -> size([latestSolidSubtanleMilestone]) which is basically 1
+                    // This will also ensure that the quorum result is of size 1
+                    ...map(restArgs, (arg, idx) => (idx === 0 ? idx + 1 : arg)),
                 );
-                /* eslint-enable no-loop-func */
 
-                idx += 1;
-            }
+                const [latestSolidSubtangleMilestone] = preparedResults;
 
-            return quorumResult;
-        });
+                return latestSolidSubtangleMilestone;
+            };
+        default:
+            return () => {
+                throw new Error(Errors.METHOD_NOT_SUPPORTED_FOR_QUORUM);
+            };
+    }
 };
 
 /**
- *   For a list of synced nodes, compute a quorum result for latestSolidSubtangleMilestone
+ * Gets quorum results for provided method.
  *
- *   @method getQuorumForLatestSolidSubtangleMilestone
- *   @param {array} syncedNodes
+ * @param {string} method
+ * @param {array} syncedNodes
+ * @param {array} [payload]
+ * @param  {...any} [args]
  *
- *   @returns {Promise}
- **/
-const getQuorumForLatestSolidSubtangleMilestone = (syncedNodes) => {
+ * @return {Promise<array | object | string>}
+ */
+const getQuorum = (method, syncedNodes, payload, ...args) => {
+    const requestArgs = [...(isEmpty(payload) ? [] : [payload]), ...(isEmpty(args) ? [] : args)];
+
+    const iotaApiMethod = head(split(method, ':'));
+
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
         .then(() =>
             Promise.all(
@@ -299,29 +270,17 @@ const getQuorumForLatestSolidSubtangleMilestone = (syncedNodes) => {
                     syncedNodes,
                     (provider) =>
                         new Promise((resolve) => {
-                            new IOTA({ provider }).api.getNodeInfo(
-                                (err, info) => (err ? resolve(undefined) : resolve(info)),
+                            getIotaInstance(provider).api[iotaApiMethod](
+                                ...[...requestArgs, (err, result) => (err ? resolve(undefined) : resolve(result))],
                             );
                         }),
                 ),
             ),
         )
         .then((results) => {
-            const validResults = filter(results, (result) => !isUndefined(result));
+            const requestPayloadSize = size(payload);
 
-            // Get quorum result for latest solid subtangle milestone
-            const latestSolidSubtangleMilestone = determineQuorumResult(
-                map(validResults, (nodeInfo) => nodeInfo.latestSolidSubtangleMilestone),
-            )('latestSolidSubtangleMilestone', QUORUM_THRESHOLD);
-
-            // If nodes cannot agree on the latestSolidSubtangleMilestone
-            // Then just throw an exception
-            if (latestSolidSubtangleMilestone === EMPTY_HASH_TRYTES) {
-                // TODO (laumair): Might need to replace the error message here.
-                throw new Error(Errors.NOT_ENOUGH_HEALTHY_QUORUM_NODES);
-            }
-
-            return latestSolidSubtangleMilestone;
+            return prepareQuorumResults(method, ...args)(results, requestPayloadSize);
         });
 };
 
@@ -336,7 +295,10 @@ const getQuorumForLatestSolidSubtangleMilestone = (syncedNodes) => {
 export default function Quorum(quorumNodes) {
     let nodes = uniq(quorumNodes);
 
-    // TODO validate min size of nodes
+    if (size(nodes) < QUORUM_SIZE) {
+        throw new Error(Errors.NOT_ENOUGH_QUORUM_NODES);
+    }
+
     let syncedNodes = [];
     let lastSyncedAt = new Date();
 
@@ -375,11 +337,13 @@ export default function Quorum(quorumNodes) {
          */
         wereAddressesSpentFrom(addresses) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorumForWereAddressesSpentFrom(addresses, newSyncedNodes),
+                getQuorum('wereAddressesSpentFrom', newSyncedNodes, addresses),
             );
         },
         /**
-         * Performs a quorum for getLatestInclusion api endpoint
+         * First performs a quorum for latestSolidSubtangleMilestone.
+         * If quorum (for latestSolidSubtangleMilestone) is achieved then performs a quorum for getLatestInclusion api endpoint
+         * Otherwise, raises an exception
          *
          * @method getLatestInclusion
          * @param {array} hashes
@@ -388,13 +352,19 @@ export default function Quorum(quorumNodes) {
          */
         getLatestInclusion(hashes) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
-                    getQuorumForGetLatestInclusion(hashes, [latestSolidSubtangleMilestone], newSyncedNodes),
-                ),
+                getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
+                    // If nodes cannot agree on the latestSolidSubtangleMilestone
+                    // No need to proceed further
+                    .then(rejectIfEmptyHashTrytes)
+                    .then((latestSolidSubtangleMilestone) =>
+                        getQuorum('getInclusionStates', newSyncedNodes, hashes, [latestSolidSubtangleMilestone]),
+                    ),
             );
         },
         /**
-         * Performs a quorum for getBalances api endpoint
+         * First performs a quorum for latestSolidSubtangleMilestone.
+         * If quorum (for latestSolidSubtangleMilestone) is achieved then performs a quorum for getBalances api endpoint
+         * Otherwise, raises an exception
          *
          * @method getBalances
          * @param {array} addresses
@@ -404,9 +374,15 @@ export default function Quorum(quorumNodes) {
          */
         getBalances(addresses, threshold = DEFAULT_BALANCES_THRESHOLD) {
             return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorumForLatestSolidSubtangleMilestone(newSyncedNodes).then((latestSolidSubtangleMilestone) =>
-                    getQuorumForGetBalances(addresses, threshold, [latestSolidSubtangleMilestone], newSyncedNodes),
-                ),
+                getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
+                    // If nodes cannot agree on the latestSolidSubtangleMilestone
+                    // No need to proceed further
+                    .then(rejectIfEmptyHashTrytes)
+                    .then((latestSolidSubtangleMilestone) =>
+                        getQuorum('getBalances:balances', newSyncedNodes, addresses, threshold, [
+                            latestSolidSubtangleMilestone,
+                        ]),
+                    ),
             );
         },
     };
