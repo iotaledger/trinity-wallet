@@ -742,15 +742,15 @@
         "confirmedOut": "Udgående {{value}} fra {{account}} er bekræftet"
     },
     "bytetrit": {
-        "sweepSucceeded": "Finanser er oplåst",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
+        "sweepSucceeded": "Midler er oplåst",
+        "sweepSucceededExplanation": "Dine midler er blevet oplåst og flyttet til en ny adresse. Promovér transaktionerne for at hjælpe dem med at bekræfte.",
+        "sweepError": "Fejl ved oplåsning af midler",
+        "sweepErrorExplanation": "Noget gik galt med oplåsningen af dine midler. Prøver igen.",
+        "warningTitle": "Advarsel: Låste midler fundet",
+        "explanation": "Trinity Desktop version 0.3.4 indeholdt en fejl, der midlertidigt kan låse midler. Dette påvirkede et lille antal brugere, som udførte transaktioner med 0.3.4.",
+        "explanationAccounts": "Låste midler er blevet fundet på dine konti: {{accounts}}. Trinity vil nu automatisk gendanne dine midler ved at flytte dem til en ny adresse.",
+        "proceed": "Fortsæt til Gendannelse",
+        "sweepConfirmation": "Du er ved at flytte {{amount}} til adressen {{address}}. Konto: {{accountName}}, adresseindeks: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "ledger": {
