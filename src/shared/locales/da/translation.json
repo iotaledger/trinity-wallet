@@ -245,8 +245,8 @@
         "login": "Log ind",
         "setNode": "Indstil node",
         "whyBiometricDisabled": "Hvorfor er biometrisk autentificering deaktiveret?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometrisk godkendelse er af sikkerhedshensyn deaktiveret ved første app-start.",
+        "whyBiometricDisabledExplanationPart2": "Når du benytter Trinity, bliver du logget ud ved inaktivitet. Du kan efterølgende logge ind igen med biometrisk godkendelse."
     },
     "loading": {
         "loadingFirstTime": "Indlæser hovednøgle for første gang.",
@@ -275,11 +275,11 @@
     "paperWallet": {
         "neverShare": "Del aldrig din hovednøgle med nogen.",
         "iotaLogo": "IOTA-logo",
-        "print": "Print",
+        "print": "Udskriv",
         "paperConvenience": "Udskrivning af en papirkopi af din hovednøgle er en praktisk måde at gemme den på.",
         "publicInsecure": "Men at udskrive på et offentligt wifi-netværk eller printer er usikkert.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
+        "pleaseCheck": "Tjek og bekræft, før du udskriver",
+        "wifiConfirmation": "Jeg er ikke på et offentligt Wi-Fi netværk",
         "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
