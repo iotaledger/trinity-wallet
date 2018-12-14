@@ -280,7 +280,7 @@
         "publicInsecure": "Men at udskrive på et offentligt wifi-netværk eller printer er usikkert.",
         "pleaseCheck": "Tjek og bekræft, før du udskriver",
         "wifiConfirmation": "Jeg er ikke på et offentligt Wi-Fi netværk",
-        "printerConfirmation": "I am not printing on a public printer"
+        "printerConfirmation": "Jeg udskriver ikke via en offentlig printer"
     },
     "receive": {
         "yourAddress": "Din adresse",
@@ -309,7 +309,7 @@
         "letsWriteDownYourSeed": "Lad os skrive din hovednøgle ned",
         "youCanHighlightCharacters": "Du kan markere 9 tegn ad gangen",
         "printBlankWallet": "Udskriv en tom tegnebog",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Hvad er en checksum?",
         "everySeedHasAChecksum": "Hver hovednøgle har en korresponderende 3-tegns kontrolsum.",
         "iHavesavedMySeed": "Jeg har gemt min hovednøgle",
         "checksumExplanation": "Når du tilføjer en hovednøgle i din tegnebog, skal du sikre dig, at den genererede kontrolsum matcher den, du har nedskrevet.",
@@ -317,14 +317,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bekræft din hovednøgle",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity vil aldrig bede dig genindtaste denne hovednøgle, medmindre du nulstiller din tegnebog eller sletter app'en.",
         "enterYourSeed": "Angiv din hovednøgle",
         "incorrectSeed": "Forkert hovednøgle",
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "ifYouHaveNotSaved": "Gå tilbage og sikkerhedskopiér din hovednøgle, hvis du ikke allerede har gjort dette.",
         "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "ADVARSEL: Kan ikke indsætte hovednøgle",
+        "clipboardWarningExplanation": "Indsæt er af dikkerhedsårsager deaktiveret. Du kan trække og slippe din hovednøgle fra en tekstfil i stedet."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -352,7 +352,7 @@
         "addressPasteDetected": "Adresseindsættelse registreret",
         "addressPasteExplanation": "Det ser ud til, at du har indsat en adresse. Kontrollér venligst, at adressen matcher den, du ønsker at sende til.",
         "invalid": "UGYLDIG",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Stryg for at sende"
     },
     "setSeedName": {
         "letsAddName": "Lad os tilføje et navn",
@@ -380,9 +380,9 @@
         "addNewSeed": "Tilføj ny hovednøgle",
         "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
-        "general": "General settings",
+        "general": "Generelle indstillinger",
         "advanced": "Avancerede indstillinger",
-        "account": "Account settings",
+        "account": "Kontoindstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
         "syncingComplete": "Synkronisering fuldført",
@@ -456,7 +456,7 @@
         "retrying": "Forsøger igen",
         "yesterday": "I går",
         "promotingAnotherBundle": "Promovering en anden pakke",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Vent venligst, Trinity promoverer en anden pakke."
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -515,20 +515,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Er du sikker på, at du vil logge ud?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Du er ved at logge ud",
+        "areYouSure": "Sikker?"
     },
     "qrScanner": {
         "scan": "Skan din QR-kode"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Enhedssystem",
         "trillion": "Trillion",
         "billion": "Milliard",
         "million": "Million",
         "thousand": "Tusind",
         "one": "En",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA'er erhverves typisk i bundter á en million, men kan overføres som én enkelt IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruge hele saldoen?",
@@ -550,7 +550,7 @@
         "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Angiv et kontonavn og hovednøgle",
         "incorrectFormat": "Forkert hovednøgleformat",
         "validSeedExplanation": "Gyldige hovednøgler skal være på 81 tegn og må kun indeholde A-Z eller 9."
     },
@@ -564,8 +564,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sikkerhedskopierede du din hovednøgle?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Jeg har sikkerhedskopieret min hovednøgle",
+        "reenterSeed": "På næste trin vil du skulle genindtaste din hovednøgle.",
         "reenterSeedWarning": "Har du ikke sikkerhedskopieret din hovednøgle, og fejler din enhed, mister du alle dine IOTA.",
         "pleaseConfirm": "Bekræft, at du har lagret din hovednøgle forsvarligt."
     },
@@ -594,10 +594,10 @@
     "transferConfirmation": {
         "youAreAbout": "Du er ved at sende {{contents}} til adressen",
         "aMessage": "en besked",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Fra {{selectedAccountName}}",
+        "toAddress": "Til adresse",
+        "sendingAMessage": "Sender en besked",
+        "sendingAnEmptyMessage": "Sender en tom besked"
     },
     "twoFA": {
         "wrongCode": "Forkert kode",
@@ -618,7 +618,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportere SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "En SeedVault er en krypteret fil til sikkerhedskopiering af din hovednøgle. Hovednøglen er krypteret med en SeedVault-nøgle og kan ikke tilgås uden denne nøgle.",
         "seedVaultWarning": "Sørg for, at du opretter flere sikkerhedskopier af filen (på f.eks. harddisk, Sky, USB-nøgle). Mister du denne fil, og har du ikke lagret din hovednøgle andetsteds, vil du miste dine IOTA.",
         "exportFail": "SeedVault-eksport mislykkedes",
         "exportFailExplanation": "Der opstod et problem ved eksport af SeedVault. Kontrollér at du har de nødvendige tilladelser og tilstrækkelig ledig lagerplads.",
@@ -632,7 +632,7 @@
         "importSuccessExplanation": "Din hovednøgle er importeret.",
         "saveToDownloadFolder": "Gem i Download-mappe",
         "importSeedVault": "Impotér SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropInstructions": "Slip SeedVault eller tekst hér <1></1> eller klik for at gennemse",
         "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Angiv din nøgle for at nulstille denne SeedVault",
         "noSeedFound": "SeedVault indeholder ikke en gyldig hovednøgle",
