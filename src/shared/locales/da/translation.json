@@ -156,7 +156,7 @@
         "shouldUpdateExplanation": "En ny opdatering er frigivet. Det anbefales at opdatere til den seneste version.",
         "forceUpdate": "Opdatér app'en for at fortsætte",
         "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Filsystemrettighed kræves",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +310,7 @@
         "youCanHighlightCharacters": "Du kan markere 9 tegn ad gangen",
         "printBlankWallet": "Udskriv en tom tegnebog",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Hver hovednøgle har en korresponderende 3-tegns kontrolsum.",
         "iHavesavedMySeed": "Jeg har gemt min hovednøgle",
         "checksumExplanation": "Når du tilføjer en hovednøgle i din tegnebog, skal du sikre dig, at den genererede kontrolsum matcher den, du har nedskrevet.",
         "mustSaveYourSeed": "<0><0>Du skal sikkerhedskopiere din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne nedenfor.</2></0>"
@@ -585,10 +585,10 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentificering utilgængelig",
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse",
+        "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse",
         "instructionsLogin": "Berør fingeraftrykslæseren for at logge ind"
     },
     "transferConfirmation": {
