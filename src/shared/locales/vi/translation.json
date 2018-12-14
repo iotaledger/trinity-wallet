@@ -149,7 +149,7 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "TÀI KHOẢN CHÍNH",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
@@ -538,7 +538,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Từ khóa và lịch sử của các giao dịch sẽ bị xóa.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Thao tác này không thể đảo ngược",
         "enterPassword": "Nhập mật khẩu để xóa tài khoản này."
     },
     "manualSync": {
@@ -585,7 +585,7 @@
         "status": "Tình Trạng",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Nhấn vào nút dưới đây để vô hiệu hóa xác thực vân tay",
         "buttonInstructionsEnable": "Nhấn vào nút dưới đây để kích hoạt xác thực vân tay.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
