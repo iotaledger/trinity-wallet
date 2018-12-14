@@ -632,15 +632,15 @@
         "importSuccessExplanation": "Din hovednøgle er importeret.",
         "saveToDownloadFolder": "Gem i Download-mappe",
         "importSeedVault": "Impotér SeedVault",
-        "dropInstructions": "Slip SeedVault eller tekst hér <1></1> eller klik for at gennemse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Slip SeedVault eller tekst hér <1></1> eller tryk for at gennemse",
+        "dropActive": "Slip SeedVault eller tekst hér",
         "enterKeyExplanation": "Angiv din nøgle for at nulstille denne SeedVault",
         "noSeedFound": "SeedVault indeholder ikke en gyldig hovednøgle",
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
         "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Først skal din SeedVault sikres. Vælg en nøgle til at kryptere filen. Du vil skulle benytte denne nøgle for at genoprette din hovednøgle fra SeedVault-sikkerhedskopien.",
+        "retypeKey": "Angiv nøgle igen"
     },
     "chart": {
         "mcap": "MCAP",
@@ -675,7 +675,7 @@
         "gettingTransactionsToApprove": "Modtager transaktion til godkendelse",
         "proofOfWork": "Fuldfører PoW",
         "broadcasting": "Sender transaktion til netværk",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Overførsel gennemført"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
@@ -690,7 +690,7 @@
         "transitioning": "Synkronisere til nyeste snapshot.",
         "generatingAndDetecting": "Genererer adresser og registrerer saldo.",
         "attaching": "Knytter adresse til Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Vedhæfter adresse {{currentAddress}} af {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autoudfyldning fuldendt",
@@ -713,15 +713,15 @@
     "terms": {
         "termsAndConditions": "Betingelser og Vilkår",
         "accept": "Jeg accepterer",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "Læs venligst hele teksten"
     },
     "privacyPolicy": {
         "privacyPolicy": "Fortrolighedspolitik",
         "agree": "Jeg accepterer"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayApplication": "Bakke-app",
+        "trayExplanation": "Giver et overblik over dine kontosaldi og seneste transaktionshistorik.",
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
