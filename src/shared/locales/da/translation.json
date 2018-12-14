@@ -19,7 +19,7 @@
         "invalidResponse": "Node-fejl",
         "invalidResponseExplanation": "Noden returnerede en fejl. Prøv at skifte node.",
         "invalidResponseFetchingAccount": "Noden returnerede en fejl under indhentning af dine kontooplysninger. Prøv at skifte node.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Noden returnerede en fejl under hentning af dine kontooplysninger. Hvis problemet vedvarer, kan du prøve at skifte node eller deaktivere din systemproxy i Trinity Indstillinger.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Din valgte node er ude af synkronisering. Skift node eller forsøg igen.",
         "thisNodeOutOfSync": "Denne node er ude af synkronisering. Skift node eller forsøg igen.",
@@ -74,8 +74,8 @@
         "wallet": "Tegnebog",
         "all": "Alle",
         "sent": "Sendt",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Du modtog",
+        "youSent": "Du sendte",
         "received": "Modtaget",
         "sending": "Sender",
         "receiving": "Modtager",
@@ -130,7 +130,7 @@
         "spentAddressExplanation": "ADVARSEL: Værdier på en brugt adresse",
         "discordInformation": "At sende fra samme adresse mere end én gang er risikabelt. Gå venligst til #help-kanalen på Discord for at finde ud af, hvad du kan gøre.",
         "androidInsecureClipboardWarning": "Android har ikke en sikker Udklipsholder.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Kopiér/indsæt aldrig en seed på en Android-enhed.",
         "willNotCopyPasteSeed": "Jeg vil ikke kopiere/indsætte min seed",
         "mustBeStoredAppropriately": "Det skal opbevares hensigtsmæssigt.",
         "deviceMayBecomeUnresponsive": "Din enhed kan ophøre med at reagere i et stykke tid.",
@@ -150,14 +150,14 @@
         "errorAccessingKeychain": "Nøgleringsfejl",
         "errorAccessingKeychainExplanation": "Kan ikke tilgå nødvendig nøglering til sikker lagring.",
         "mainWallet": "HOVEDKONTO",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "Bekræft",
+        "delete": "Slet",
         "shouldUpdate": "Ny opdateringer er tilgængelig",
         "shouldUpdateExplanation": "En ny opdatering er frigivet. Det anbefales at opdatere til den seneste version.",
         "forceUpdate": "Opdatér app'en for at fortsætte",
         "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu.",
         "missingPermission": "Filsystemrettighed kræves",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at udføre denne funktion."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -211,7 +211,7 @@
         "passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
         "passwordMismatch": "Adgangskoderne er ikke ens",
         "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Dette er din tegnebogs hovedadgangskode. Du skal benytte det indlogning.",
         "retypePassword": "Gentag adgangskode"
     },
     "copyToClipboard": {
@@ -455,7 +455,7 @@
         "empty": "Tom",
         "retrying": "Forsøger igen",
         "yesterday": "I går",
-        "promotingAnotherBundle": "Forfremmer et anden bundt",
+        "promotingAnotherBundle": "Promovering en anden pakke",
         "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
