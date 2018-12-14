@@ -156,7 +156,7 @@
         "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. S’il vous plaît, mettez à jour l’application maintenant.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +310,7 @@
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Chaque seed a une somme de contrôle de 3 caractères.",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
         "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
@@ -516,7 +516,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Êtes-vous sûr ?"
     },
     "qrScanner": {
         "scan": "Scannez votre QR code"
@@ -585,10 +585,10 @@
         "status": "Statut",
         "fingerprintUnavailable": "Authentification biométrique indisponible",
         "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas l'authentification biométrique, ou cette fonction n'a pas été configurée dans les paramètres de votre appareil.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale",
         "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Appuyez sur le bouton ci-dessous pour désactiver Face ID",
+        "buttonInstructionsEnableIPhoneX": "Appuyez sur le bouton ci-dessous pour activer Face ID",
         "instructionsLogin": "Touchez le lecteur d'empreintes pour vous connecter"
     },
     "transferConfirmation": {
