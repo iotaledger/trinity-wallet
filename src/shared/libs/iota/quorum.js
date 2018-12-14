@@ -260,7 +260,6 @@ const prepareQuorumResults = (method, ...requestArgs) => {
  */
 const getQuorum = (method, syncedNodes, payload, ...args) => {
     const requestArgs = [...(isEmpty(payload) ? [] : [payload]), ...(isEmpty(args) ? [] : args)];
-
     const iotaApiMethod = head(split(method, ':'));
 
     return rejectIfNotEnoughSyncedNodes(syncedNodes)
@@ -336,9 +335,11 @@ export default function Quorum(quorumNodes) {
          * @returns {Promise}
          */
         wereAddressesSpentFrom(addresses) {
-            return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorum('wereAddressesSpentFrom', newSyncedNodes, addresses),
-            );
+            return isEmpty(addresses)
+                ? Promise.resolve([])
+                : findSyncedNodesIfNecessary().then((newSyncedNodes) =>
+                      getQuorum('wereAddressesSpentFrom', newSyncedNodes, addresses),
+                  );
         },
         /**
          * First performs a quorum for latestSolidSubtangleMilestone.
@@ -351,15 +352,17 @@ export default function Quorum(quorumNodes) {
          * @returns {Promise}
          */
         getLatestInclusion(hashes) {
-            return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
-                    // If nodes cannot agree on the latestSolidSubtangleMilestone
-                    // No need to proceed further
-                    .then(rejectIfEmptyHashTrytes)
-                    .then((latestSolidSubtangleMilestone) =>
-                        getQuorum('getInclusionStates', newSyncedNodes, hashes, [latestSolidSubtangleMilestone]),
-                    ),
-            );
+            return isEmpty(hashes)
+                ? Promise.resolve([])
+                : findSyncedNodesIfNecessary().then((newSyncedNodes) =>
+                      getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
+                          // If nodes cannot agree on the latestSolidSubtangleMilestone
+                          // No need to proceed further
+                          .then(rejectIfEmptyHashTrytes)
+                          .then((latestSolidSubtangleMilestone) =>
+                              getQuorum('getInclusionStates', newSyncedNodes, hashes, [latestSolidSubtangleMilestone]),
+                          ),
+                  );
         },
         /**
          * First performs a quorum for latestSolidSubtangleMilestone.
@@ -373,17 +376,19 @@ export default function Quorum(quorumNodes) {
          * @returns {Promise}
          */
         getBalances(addresses, threshold = DEFAULT_BALANCES_THRESHOLD) {
-            return findSyncedNodesIfNecessary().then((newSyncedNodes) =>
-                getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
-                    // If nodes cannot agree on the latestSolidSubtangleMilestone
-                    // No need to proceed further
-                    .then(rejectIfEmptyHashTrytes)
-                    .then((latestSolidSubtangleMilestone) =>
-                        getQuorum('getBalances:balances', newSyncedNodes, addresses, threshold, [
-                            latestSolidSubtangleMilestone,
-                        ]),
-                    ),
-            );
+            return isEmpty(addresses)
+                ? Promise.resolve([])
+                : findSyncedNodesIfNecessary().then((newSyncedNodes) =>
+                      getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
+                          // If nodes cannot agree on the latestSolidSubtangleMilestone
+                          // No need to proceed further
+                          .then(rejectIfEmptyHashTrytes)
+                          .then((latestSolidSubtangleMilestone) =>
+                              getQuorum('getBalances:balances', newSyncedNodes, addresses, threshold, [
+                                  latestSolidSubtangleMilestone,
+                              ]),
+                          ),
+                  );
         },
     };
 }
