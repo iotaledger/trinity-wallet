@@ -156,7 +156,7 @@
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +310,7 @@
         "youCanHighlightCharacters": "Možete označiti 9 znakova odjednom",
         "printBlankWallet": "Odštampajte prazni novčanik",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Svaki seed ima odgovarajući kontrolni zbir od 3 znaka.",
         "iHavesavedMySeed": "Sačuvao sam seed",
         "checksumExplanation": "Svaki put kada dodajete seed u novčanik, treba da se uverite da je kontrolni zbir koji novčanik generiše identičan onom koji ste zapisali.",
         "mustSaveYourSeed": "<0><0>Morate napraviti rezervnu kopiju seed-a pomoću </0><1>najmanje jedne</1><2> od opcija koje su navedene u nastavku.</2></0>"
@@ -585,10 +585,10 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta",
         "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Pritisnite dugme u nastavku da biste onemogućili Face ID",
+        "buttonInstructionsEnableIPhoneX": "Pritisnite dugme u nastavku da biste omogućili Face ID",
         "instructionsLogin": "Dodirnite čitač otisaka prstiju za prijavu"
     },
     "transferConfirmation": {

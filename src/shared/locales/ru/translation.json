@@ -149,7 +149,7 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "ОСНОВНОЙ СЧЁТ",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
@@ -516,7 +516,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Вы уверены, что хотите выйти?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Вы уверены?"
     },
     "qrScanner": {
         "scan": "Сканировать QR-код"
@@ -538,7 +538,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Ваш ключ и история транзакций будут удалены.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Это действие нельзя будет отменить",
         "enterPassword": "Введите Ваш пароль для удаления данного счёта."
     },
     "manualSync": {
@@ -585,10 +585,10 @@
         "status": "Статус",
         "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Нажмите на кнопку ниже, чтобы отключить идентификатор лица",
+        "buttonInstructionsEnableIPhoneX": "Нажмите на кнопку ниже, чтобы включить идентификатор лица",
         "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа"
     },
     "transferConfirmation": {
