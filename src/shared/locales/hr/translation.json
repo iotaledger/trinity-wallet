@@ -26,7 +26,7 @@
         "seed": "Seed",
         "checksum": "Kontrolni zbroj",
         "back": "Natrag",
-        "goBack": "Vrati se",
+        "goBack": "Natrag",
         "goBackStep": "Natrag na prethodni korak",
         "done": "Izvršeno",
         "prev": "Natrag",
@@ -311,7 +311,7 @@
         "printBlankWallet": "Ispiši prazni novčanik",
         "whatIsAChecksum": "Što je kontrolni zbroj?",
         "everySeedHasAChecksum": "Svaki seed ima pripadajući kontrolni zbroj od 3 znaka.",
-        "iHavesavedMySeed": "Svoj seed imam spremljen",
+        "iHavesavedMySeed": "Napravio sam sigurnosnu kopiju svog seed-a",
         "checksumExplanation": "Svaki put kada dodajete seed u svoj novčanik, pobrinite se da je kontrolni zbroj generiran od strane novčanika isti kao onaj koji ste zapisali.",
         "mustSaveYourSeed": "<0><0>Morate napraviti sigurnosnu kopiju seed-a koristeći </0><1>barem jednu</1><2> od niže navedenih opcija.</2></0>"
     },
@@ -322,7 +322,7 @@
         "incorrectSeed": "Neispravan seed",
         "incorrectSeedExplanation": "Seed koji ste unijeli je neispravan. Molimo pokušajte ponovno.",
         "ifYouHaveNotSaved": "Ukoliko niste napravili sigurnosnu kopiju vašeg seeda, molimo vratite se natrag i učinite to.",
-        "enterSeedBelow": "Unesite svoj novo kreirani seed ispod kako bi potvrdili da ste uspješno izradili sigurnosnu kopiju istog",
+        "enterSeedBelow": "Unesite svoj novo kreirani seed ispod kako bi potvrdili da ste uspješno napravili sigurnosnu kopiju istog",
         "clipboardWarning": "UPOZORENJE: Nije moguće zalijepiti seed",
         "clipboardWarningExplanation": "Kopiranje/lijepljenje seed-a je onemogućeno u ovoj aplikaciji radi vaše sigurnosti. Alternativno možete označiti i dovući svoj seed iz tekst editora."
     },
@@ -566,7 +566,7 @@
         "didSaveSeed": "Da li ste napravili sigurnosnu kopiju vašeg seed-a?",
         "iHaveBackedUp": "Napravio sam sigurnosnu kopiju svojeg seed-a",
         "reenterSeed": "U sljedećem koraku morat ćete ponovno unijeti svoj seed.",
-        "reenterSeedWarning": "Ako niste napravili sigurnosnu kopiju svog seed-a, a vaš uređaj se pokvari, izgubit ćete svu svoju IOTA-u.",
+        "reenterSeedWarning": "Ako niste napravili sigurnosnu kopiju svog seed-a, a vaš uređaj se pokvari, izgubit ćete sve svoje IOTA-e.",
         "pleaseConfirm": "Molimo potvrdite da ste spremili svoj seed na sigurno."
     },
     "walletResetConfirmation": {
