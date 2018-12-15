@@ -21,7 +21,7 @@ export const Styling = {
 export function getBackgroundColor(screen, theme, inactive = false) {
     const { bar, body } = theme;
     const screenMap = {
-        home: inactive ? body.bg : bar.alt,
+        home: inactive ? body.bg : bar.bg,
         loading: body.bg,
         newSeedSetup: body.bg,
         walletSetup: body.bg,
