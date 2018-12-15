@@ -74,7 +74,7 @@
         "wallet": "Portfel",
         "all": "Wszystkie",
         "sent": "Wysłano",
-        "youReceived": "Otrzymałeś",
+        "youReceived": "Odebrano",
         "youSent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
@@ -594,7 +594,7 @@
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
         "aMessage": "wiadomość",
-        "fromAccount": "Z {{selectedAccountName}}",
+        "fromAccount": "Z konta {{selectedAccountName}}",
         "toAddress": "Na adres",
         "sendingAMessage": "Wysyłanie wiadomości",
         "sendingAnEmptyMessage": "Wysyłanie pustej wiadomości"
