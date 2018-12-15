@@ -462,9 +462,9 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                 dispatch(resetProgress());
             })
             .catch((error) => {
-                if (err.message === Errors.NODE_NOT_SYNCED) {
+                if (error.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                } else if (error.message === Errors.UNSUPPORTED_NODE) {
                     dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     dispatch(generateTransitionErrorAlert(error));

@@ -46,7 +46,7 @@ describe('libs: iota/extendedApi', () => {
         describe('when node runs an unsupported release', () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    appVersion: "0.0.0-RC2"
+                    appVersion: '0.0.0-RC2',
                 });
             });
 
@@ -58,7 +58,7 @@ describe('libs: iota/extendedApi', () => {
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    appVersion: "0.0.0",
+                    appVersion: '0.0.0',
                     latestMilestone: EMPTY_HASH_TRYTES,
                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                 });
@@ -72,7 +72,7 @@ describe('libs: iota/extendedApi', () => {
         describe(`when latestMilestone is ${EMPTY_HASH_TRYTES}`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    appVersion: "0.0.0",
+                    appVersion: '0.0.0',
                     latestMilestone: EMPTY_HASH_TRYTES,
                     latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
                 });
@@ -86,7 +86,7 @@ describe('libs: iota/extendedApi', () => {
         describe('when latestSolidSubtangleMilestoneIndex is 1 less than latestMilestoneIndex', () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    appVersion: "0.0.0",
+                    appVersion: '0.0.0',
                     latestMilestoneIndex: 426550,
                     latestSolidSubtangleMilestoneIndex: 426550 - 1,
                     latestMilestone: 'U'.repeat(81),
@@ -127,7 +127,7 @@ describe('libs: iota/extendedApi', () => {
         describe(`when latestMilestone is not ${EMPTY_HASH_TRYTES} and is equal to latestSolidSubtangleMilestone`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    appVersion: "0.0.0",
+                    appVersion: '0.0.0',
                     latestMilestone: 'U'.repeat(81),
                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                 });

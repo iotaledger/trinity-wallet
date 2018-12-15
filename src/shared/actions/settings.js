@@ -1,9 +1,8 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota/index';
-import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
-import { generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
+import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
