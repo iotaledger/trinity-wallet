@@ -149,7 +149,7 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "मुख्य अकाउंट",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",

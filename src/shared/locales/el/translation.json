@@ -149,7 +149,7 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "ΚΥΡΙΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
@@ -516,7 +516,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Είστε βέβαιοι;"
     },
     "qrScanner": {
         "scan": "Σάρωση QR κωδικού"
@@ -538,7 +538,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
     },
     "manualSync": {
@@ -585,7 +585,7 @@
         "status": "Κατάσταση",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων",
         "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
