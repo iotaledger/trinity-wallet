@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "노드가 동기화되지 않음",
         "nodeOutOfSyncExplanation": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
         "seed": "시드",
         "checksum": "체크섬",
