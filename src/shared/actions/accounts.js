@@ -16,6 +16,7 @@ import {
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
@@ -455,6 +456,8 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
+                    } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                        dispatch(generateUnsupportedNodeErrorAlert());
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
@@ -498,6 +501,8 @@ export const manuallySyncAccount = (seedStore, accountName) => {
             .catch((err) => {
                 if (err.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     dispatch(generateSyncingErrorAlert(err));
                 }
