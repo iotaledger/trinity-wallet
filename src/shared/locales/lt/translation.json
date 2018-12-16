@@ -634,15 +634,15 @@
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Įkelkite SeedVault arba įrašykite čia <1></1> arba spauskite naršyti",
+        "dropActive": "Įkelkite SeedVault arba įrašykite čia",
         "enterKeyExplanation": "Įveskite raktą norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
+        "retypeKey": "Pakartokite slaptažodį"
     },
     "chart": {
         "mcap": "MCAP",
@@ -677,7 +677,7 @@
         "gettingTransactionsToApprove": "Pavedimai ruošiami patvirtinimui",
         "proofOfWork": "Atliekami skaičiavimai",
         "broadcasting": "Transliuojama",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Pavedimas atliktas"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nepavyksta perkelti tinklo duomenų",
