@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Der Node hat einen Fehler gemeldet während deine Kontoinformationen abgerufen wurden. Verwende einen anderen Node oder deaktiviere die Verwendung der systemweiten Proxyeinstellungen falls das Problem weiterhin besteht.",
         "nodeOutOfSync": "Node nicht synchronisiert",
         "nodeOutOfSyncExplanation": "Dein gewählter Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "seed": "Seed",
         "checksum": "Prüfsumme",
