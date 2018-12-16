@@ -3,6 +3,7 @@ import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
+import { fetchNodeList } from '../actions/polling';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
@@ -44,6 +45,7 @@ export const ActionTypes = {
     SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
     SET_PROXY: 'SET_PROXY',
+    RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
 };
 
 /**
@@ -684,3 +686,29 @@ export const setProxy = (payload) => ({
     type: ActionTypes.SET_PROXY,
     payload,
 });
+
+/**
+ * Dispatch to reset nodes list
+ *
+ * @method resetNodesList
+ *
+ * @returns {{type: {string} }}
+ */
+export const resetNodesList = () => ({
+    type: ActionTypes.RESET_NODES_LIST,
+});
+
+/**
+ * Reinitialise (clear existing and fetch latest) nodes
+ *
+ * @method reinitialiseNodesList
+ *
+ * @returns {function} dispatch
+ */
+export const reinitialiseNodesList = () => (dispatch) => {
+    // First reset the existing nodes in the state
+    dispatch(resetNodesList());
+
+    // Fetch latest nodes
+    dispatch(fetchNodeList());
+};
