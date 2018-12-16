@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node خارج از همگام سازی",
         "nodeOutOfSyncExplanation": "Node در حال حاضر انتخاب شده شما از همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
         "seed": "سید",
         "checksum": "کد اعتبارسنجی",
