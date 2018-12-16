@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
+        "experimentalNode": "サポートされていないノードのバージョンです",
+        "experimentalNodeExplanation": "現在選択されているノードは、サポートされていない実験版を実行しています。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
@@ -152,7 +154,7 @@
         "mainWallet": "メインアカウント",
         "confirm": "確定",
         "delete": "削除",
-        "shouldUpdate": "新しいアップデートがあります",
+        "shouldUpdate": "新しいアップデートがあります！",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
@@ -705,7 +707,7 @@
         "installUpdate": "インストール、アップデート、リスタートを行う",
         "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
         "downloadingUpdate": "アップデートをダウンロード中",
-        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
+        "downloadProgress": "{{total}}中{{transferred}}がダウンロードされました。"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
