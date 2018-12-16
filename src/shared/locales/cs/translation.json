@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Při načítání informací o Vašem účtu došlo k chybě. Pokud problém přetrvává, zkuste změnit Node nebo zakázat proxy server v nastavení Trinity.",
         "nodeOutOfSync": "Váš Node není synchronizovaný",
         "nodeOutOfSyncExplanation": "Vámi zvolený Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Tento Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
         "seed": "Seed",
         "checksum": "Kontrolní součet",
