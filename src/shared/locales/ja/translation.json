@@ -154,7 +154,7 @@
         "mainWallet": "メインアカウント",
         "confirm": "確定",
         "delete": "削除",
-        "shouldUpdate": "新しいアップデートがあります",
+        "shouldUpdate": "新しいアップデートがあります！",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
@@ -707,7 +707,7 @@
         "installUpdate": "インストール、アップデート、リスタートを行う",
         "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
         "downloadingUpdate": "アップデートをダウンロード中",
-        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
+        "downloadProgress": "{{total}}中{{transferred}}がダウンロードされました。"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
