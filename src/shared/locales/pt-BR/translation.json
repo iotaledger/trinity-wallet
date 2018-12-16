@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "O servidor retornou um erro durante a busca de informações de sua conta. Se o problema persistir, tente alterar o servidor ou desative o proxy do sistema em configurações da Trinity.",
         "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
         "seed": "Seed",
         "checksum": "Dígitos de Verificação",
