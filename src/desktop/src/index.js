@@ -1,5 +1,6 @@
 /* global Electron */
 import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
 import bugsnag from 'bugsnag-js';
 import React from 'react';
 import { render } from 'react-dom';
@@ -9,6 +10,7 @@ import { MemoryRouter as Router } from 'react-router';
 import i18next from 'libs/i18next';
 import store, { persistStore } from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
+import { setAppVersions, reinitialiseNodesList } from 'actions/settings';
 import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
@@ -41,7 +43,10 @@ const persistConfig =
               blacklist: ['wallet', 'polling', 'ui'],
           };
 
-const persistor = persistStore(store, persistConfig, (err, restoredState) => {
+const persistor = persistStore(store, persistConfig, (_, restoredState) => {
+    // Set app versions in store
+    store.dispatch(setAppVersions({ version: settings.version }));
+
     const node = get(restoredState, 'settings.node');
 
     if (node) {
@@ -50,7 +55,29 @@ const persistor = persistStore(store, persistConfig, (err, restoredState) => {
 
     // Assign accountIndex to every account in accountInfo if it is not assigned already
     store.dispatch(assignAccountIndexIfNecessary(get(restoredState, 'accounts.accountInfo')));
+
+    const previousAppVersion = get(restoredState, 'settings.versions.version');
+
+    if (
+        // Versions < 0.4.5 do not store app versions in redux store
+        isUndefined(previousAppVersion) ||
+        Number(previousAppVersion) < Number(settings.version)
+    ) {
+        migrate(settings.version);
+    }
 });
+
+/**
+ * Migrates state
+ *
+ * @method migrate
+ * @param {string} latestVersion
+ */
+const migrate = (latestVersion) => {
+    if (latestVersion === '0.4.5') {
+        store.dispatch(reinitialiseNodesList());
+    }
+};
 
 if (Electron.mode === 'tray') {
     Electron.onEvent('storage.update', (payload) => {
