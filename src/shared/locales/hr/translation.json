@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Greška prilikom dohvata podataka o vašem računu. U slučaju ponavljanja problema, pokušajte promijeniti node ili onemogućiti korištenje proxy postavka sustava u Trinity postavkama.",
         "nodeOutOfSync": "Vaš node nije sinkroniziran",
         "nodeOutOfSyncExplanation": "Vaš odabrani node nije sinkroniziran. Molimo vas promijenite node i pokušajte ponovno.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ovaj node nije sinkroniziran. Molimo vas promijenite node ili pokušajte ponovno.",
         "seed": "Seed",
         "checksum": "Kontrolni zbroj",
