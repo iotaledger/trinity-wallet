@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota/index';
-import { generateAlert } from './alerts';
 import i18next from '../libs/i18next';
+import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
-import { throwIfNodeNotSynced } from '../libs/iota/utils';
+import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -432,7 +432,7 @@ export function setFullNode(node, addingCustomNode = false) {
     return (dispatch) => {
         dispatch(dispatcher.request());
 
-        throwIfNodeNotSynced(node)
+        throwIfNodeNotHealthy(node)
             .then(() => checkAttachToTangleAsync(node))
             .then((res) => {
                 // Change IOTA provider on the global iota instance
@@ -469,14 +469,9 @@ export function setFullNode(node, addingCustomNode = false) {
                 dispatch(dispatcher.error());
 
                 if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('settings:nodeChangeError'),
-                            i18next.t('settings:thisNodeOutOfSync'),
-                            7000,
-                        ),
-                    );
+                    dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }
