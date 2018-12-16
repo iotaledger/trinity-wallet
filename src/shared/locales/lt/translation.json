@@ -326,7 +326,7 @@
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
         "clipboardWarning": "ĮSPĖJIMAS: negalima įklijuoti užrakto",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarningExplanation": "Įklijavimas atjungtas dėl jūsų saugumo. Galite atitempti ir įkelti savo užraktą iš tekstinio failo."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
@@ -354,7 +354,7 @@
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
         "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
         "invalid": "KLAIDA",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Paslinkite norėdami siųsti"
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
@@ -382,9 +382,9 @@
         "addNewSeed": "Pridėti naują užraktą",
         "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
-        "general": "General settings",
+        "general": "Bendri nustatymai",
         "advanced": "Išplėstiniai parametrai",
-        "account": "Account settings",
+        "account": "Paskyros nustatymai",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
         "syncingComplete": "Sinchronizacija baigta",
@@ -458,7 +458,7 @@
         "retrying": "Kraunama",
         "yesterday": "Vakar",
         "promotingAnotherBundle": "Iškeliamas kitas paketas",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą."
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -517,20 +517,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Ar tikrai norite atsijungti?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Jūs norite atsijungti",
+        "areYouSure": "Ar tikrai?"
     },
     "qrScanner": {
         "scan": "Skenuoti QR kodą"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Vienetų sistema",
         "trillion": "Trilijonai",
         "billion": "Milijardai",
         "million": "Milijonai",
         "thousand": "Tūkstančiai",
         "one": "Vienetai",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA paprastai skaičiuojama milijonais, bet pavedimą galima atlikti ir su vienu IOTA vienetu."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Kodėl negaliu išleisti viso savo balanso?",
@@ -552,7 +552,7 @@
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Įveskite paskyros vardą ir užraktą",
         "incorrectFormat": "Neteisingas užrakto formatas",
         "validSeedExplanation": "Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9."
     },
@@ -566,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Ar išsisaugojote savo užraktą?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Aš išsisaugojau savo užraktą",
+        "reenterSeed": "Kitame žingsnyje turėsite pakartotinai įvesti savo užraktą.",
         "reenterSeedWarning": "Jei neišsisaugojote savo užrakto ir jūsų įrenginys suges, prarasite savo IOTA.",
         "pleaseConfirm": "Patvirtinkite, kad jūsų užraktas saugiai išsaugotas."
     },
@@ -596,8 +596,8 @@
     "transferConfirmation": {
         "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
         "aMessage": "žinutę",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "fromAccount": "Iš {{selectedAccountName}}",
+        "toAddress": "Į adresą",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
