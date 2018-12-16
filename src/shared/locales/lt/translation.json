@@ -247,8 +247,8 @@
         "login": "Prisijungti",
         "setNode": "Nustatyti serverį",
         "whyBiometricDisabled": "Kodėl biometrinis autentifikavimas išjungtas?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Dėl jūsų saugumo, biometrinis autentifikavimas yra atjungtas, pirmą kartą užkraunant programėlę.",
+        "whyBiometricDisabledExplanationPart2": "Jūs būsite atjungti iš Trinity, jei būsite neaktyvūs. Galėsite prisijungti iš naujo, pasinaudodami biometriniu autentifikavimu."
     },
     "loading": {
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
@@ -277,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
-        "print": "Print",
+        "print": "Spausdinti",
         "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
         "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Peržiūrėkite dar kartą prieš spausdindami",
+        "wifiConfirmation": "Nesinaudoju viešu wifi",
+        "printerConfirmation": "Nesinaudoju viešu spausdintuvu"
     },
     "receive": {
         "yourAddress": "Jūsų adresas",
@@ -311,7 +311,7 @@
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
         "printBlankWallet": "Atspausdinti neužpildytą versiją",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Kas yra Kontrolinė suma?",
         "everySeedHasAChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą.",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
@@ -319,13 +319,13 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Patvirtinkite savo užraktą",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity niekada jūsų neprašys pakartotinai įvesti savo užraktą, išskyrus, jeigu nustatysite piniginę iš naujo arba ištrinsite programėlę.",
         "enterYourSeed": "Įveskite savo užraktą",
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "ĮSPĖJIMAS: negalima įklijuoti užrakto",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
