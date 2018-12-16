@@ -23,7 +23,7 @@
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "experimentalNode": "Nod-versionen stöds inte",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNodeExplanation": "Din valda nod kör en experimentell version som inte stöds. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "seed": "Seed",
         "checksum": "Kontrollnummer",
