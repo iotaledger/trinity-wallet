@@ -598,8 +598,8 @@
         "aMessage": "žinutę",
         "fromAccount": "Iš {{selectedAccountName}}",
         "toAddress": "Į adresą",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "sendingAMessage": "Siunčiama žinutė",
+        "sendingAnEmptyMessage": "Siunčiama tuščia žinutė"
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
@@ -620,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas išsisaugoti savo užraktą. Užraktas yra užšifruojamas SeedVault raktu ir negali būti atskleistas be to rakto.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
         "exportFail": "SeedVault iškėlimo klaida",
         "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
