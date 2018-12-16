@@ -692,7 +692,7 @@
         "transitioning": "Perkeliami tinklo duomenys.",
         "generatingAndDetecting": "Kuriami adresai ir nustatinėjamas balansas.",
         "attaching": "Adresai prijungiami prie Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Prijungta adresų {{currentAddress}} iš {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
@@ -729,8 +729,8 @@
         "completeSetup": "Baigti sąranką"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Naudotis sistemos tarpiniu serveriu",
+        "proxyExplanation": "Aptikti ir naudotis sistemos tinklo tarpinio tinklo nustatymais. Uždaryti ir įjungti iš naujo piniginę atlikus šiuos pakeitimus."
     },
     "notifications": {
         "notifications": "Pranešimai",
