@@ -68,6 +68,13 @@ export const migrate = (store, restoredState) => {
 
     return purgeStoredState({ storage: persistConfig.storage }).then(() => {
         store.dispatch(resetWallet());
+        const propsToReset = [];
+
+        // FIXME: Temporarily needed for node list reset
+        if (restoredState.settings.versions.buildNumber < 32) {
+            propsToReset.push('settings.nodes');
+        }
+
         // Set the new app version
         store.dispatch(
             setAppVersions({
@@ -77,7 +84,7 @@ export const migrate = (store, restoredState) => {
         );
 
         const persistor = createPersistor(store, persistConfig);
-        const updatedState = updatePersistedState(store.getState(), restoredState);
+        const updatedState = updatePersistedState(store.getState(), restoredState, propsToReset);
         persistor.rehydrate(updatedState);
 
         return store;
