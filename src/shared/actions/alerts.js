@@ -90,6 +90,17 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
 };
 
 /**
+ * Generates an error alert if a network call is made to an unsupported node
+ *
+ * @method generateUnsupportedNodeErrorAlert
+ *
+ * @returns {function} dispatch
+ */
+export const generateUnsupportedNodeErrorAlert = () => (dispatch) => {
+    dispatch(generateAlert('error', i18next.t('global:experimentalNode'), i18next.t('global:experimentalNodeExplanation')));
+};
+
+/**
  * Generates an error alert if something goes wrong during snapshot transition
  *
  * @method generateTransitionErrorAlert
