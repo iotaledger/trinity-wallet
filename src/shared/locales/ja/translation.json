@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
