@@ -703,7 +703,7 @@
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
         "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
         "newVersionAvailable": "Uus versioon saadaval",
-        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Installi värskendus ja taaskäivita",
         "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks.",
         "downloadingUpdate": "Downloading update",
