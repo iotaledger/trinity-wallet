@@ -70,7 +70,7 @@ const determineQuorumResult = (validResults, quorumSize = QUORUM_SIZE) => {
 
     return (method, threshold = QUORUM_THRESHOLD) => {
         // Include faulty result count while determining percentage
-        const percentage = frequency[mostFrequent] / quorumSize * 100;
+        const percentage = (frequency[mostFrequent] / quorumSize) * 100;
 
         if (percentage > threshold) {
             return mostFrequent;
