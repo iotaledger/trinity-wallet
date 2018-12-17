@@ -400,13 +400,15 @@ ipc.on('menu.update', (e, payload) => {
 });
 
 /**
- * Proxy focus event from tray to main window
+ * Proxy main window focus
  */
 ipc.on('window.focus', (e, payload) => {
     if (windows.main) {
         windows.main.show();
         windows.main.focus();
-        windows.main.webContents.send('menu', payload);
+        if (payload) {
+            windows.main.webContents.send('menu', payload);
+        }
     }
 });
 
