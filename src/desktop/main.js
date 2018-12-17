@@ -105,12 +105,6 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings.theme && settings.theme.body.bg) || 'rgb(3, 41, 62)';
-
-    if (bgColor.indexOf('rgb') === 0) {
-        bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
-    }
-
     /**
      * Initialize the main wallet window
      */
@@ -121,12 +115,12 @@ function createWindow() {
         y: windowState.y,
         minWidth: 500,
         minHeight: 720,
+        show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${paths.assets}icon.${
             process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'
         }`,
-        backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
@@ -143,7 +137,6 @@ function createWindow() {
             fullscreenable: false,
             resizable: false,
             transparent: true,
-            backgroundColor: bgColor,
             show: false,
             webPreferences: {
                 nodeIntegration: false,

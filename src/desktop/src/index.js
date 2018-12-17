@@ -65,6 +65,9 @@ const persistor = persistStore(store, persistConfig, (_, restoredState) => {
     ) {
         migrate(settings.version);
     }
+
+    Electron.focus();
+
 });
 
 /**
