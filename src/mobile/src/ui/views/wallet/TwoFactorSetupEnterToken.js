@@ -108,9 +108,10 @@ class TwoFactorSetupEnterToken extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
-                backgroundColor: bar.alt,
+                backgroundColor: bar.bg,
             },
         });
     }

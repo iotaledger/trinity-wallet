@@ -53,11 +53,11 @@ class LanguageSelect extends React.PureComponent {
                         return { value: item, label: I18N_LOCALE_LABELS[index] };
                     })}
                 />
-                <fieldset>
-                    <Button type="submit" disabled={!selection || selection === locale}>
+                <footer>
+                    <Button className="square" type="submit" disabled={!selection || selection === locale}>
                         {t('save')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }

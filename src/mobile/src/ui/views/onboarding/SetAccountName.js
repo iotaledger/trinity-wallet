@@ -141,6 +141,7 @@ export class SetAccountName extends Component {
         this.props.setAccountInfoDuringSetup({
             name: accountName,
             meta: { type: 'keychain' },
+            completed: true,
         });
 
         if (!onboardingComplete) {
@@ -178,6 +179,7 @@ export class SetAccountName extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
                 backgroundColor: body.bg,

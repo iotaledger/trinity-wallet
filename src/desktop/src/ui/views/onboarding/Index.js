@@ -63,6 +63,7 @@ class Onboarding extends React.PureComponent {
             this.props.setAccountInfoDuringSetup({
                 name: '',
                 meta: {},
+                completed: false,
             });
 
             Electron.setOnboardingSeed(null);

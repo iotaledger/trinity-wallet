@@ -183,7 +183,7 @@ describe('libs: iota/quorum', () => {
                     const syncedNodes = nodes.slice(0, 7);
                     const blacklistedNodes = nodes.slice(7);
 
-                    const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+                    const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((nodes) => {
                         expect(nodes).to.eql(syncedNodes);
@@ -200,7 +200,7 @@ describe('libs: iota/quorum', () => {
                     const syncedNodes = nodes.slice(0, 7);
                     const blacklistedNodes = nodes.slice(8);
 
-                    const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+                    const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql(syncedNodes);
@@ -221,7 +221,7 @@ describe('libs: iota/quorum', () => {
                     const blacklistedNodes = nodes.slice(7);
                     const whitelistedNodes = nodes.slice(6, 7);
 
-                    const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+                    const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
                     return findSyncedNodes(nodes, 7, syncedNodes, blacklistedNodes).then((newSyncedNodes) => {
                         expect(newSyncedNodes).to.eql([...syncedNodes, ...whitelistedNodes]);

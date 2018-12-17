@@ -26,16 +26,18 @@ class Mode extends React.PureComponent {
 
         return (
             <form>
-                <h3>{t('settings:mode')}</h3>
-                <Toggle
-                    checked={targetMode === 'Standard'}
-                    onChange={() => setMode(targetMode)}
-                    on={t('modeSelection:advanced')}
-                    off={t('modeSelection:standard')}
-                />
-                <p>
-                    {t('modeSelection:advancedModeExplanation')} {t('modeSelection:modesExplanation')}
-                </p>
+                <fieldset>
+                    <h3>{t('settings:mode')}</h3>
+                    <Toggle
+                        checked={targetMode === 'Standard'}
+                        onChange={() => setMode(targetMode)}
+                        on={t('modeSelection:advanced')}
+                        off={t('modeSelection:standard')}
+                    />
+                    <p>
+                        {t('modeSelection:advancedModeExplanation')} {t('modeSelection:modesExplanation')}
+                    </p>
+                </fieldset>
             </form>
         );
     }

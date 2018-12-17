@@ -11,7 +11,7 @@ import split from 'lodash/split';
 import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
-import { isNodeSynced, getIotaInstance } from './extendedApi';
+import { isNodeHealthy, getIotaInstance } from './extendedApi';
 import {
     QUORUM_THRESHOLD,
     QUORUM_SIZE,
@@ -136,7 +136,7 @@ const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes =
             : // Otherwise, randomly choose the remaining nodes
               sampleSize(whitelistedNodes, quorumSize - sizeOfSyncedNodes);
 
-    return Promise.all(map(selectedNodes, (provider) => isNodeSynced(provider).catch(() => undefined))).then(
+    return Promise.all(map(selectedNodes, (provider) => isNodeHealthy(provider).catch(() => undefined))).then(
         (results) => {
             // Categorise synced/unsynced nodes
             const { activeNodes, inactiveNodes } = transform(

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from 'selectors/accounts';
+import { getAccountNamesFromState } from 'selectors/accounts';
 
 import { MAX_ACC_LENGTH } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
@@ -21,11 +21,9 @@ class AccountName extends PureComponent {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        accountMeta: PropTypes.object.isRequired,
+        account: PropTypes.object.isRequired,
         /** @ignore */
         password: PropTypes.object.isRequired,
-        /** @ignore */
-        accountName: PropTypes.string.isRequired,
         /** @ignore */
         changeAccountName: PropTypes.func.isRequired,
         /** @ignore */
@@ -35,15 +33,23 @@ class AccountName extends PureComponent {
     };
 
     state = {
-        newAccountName: this.props.accountName,
+        newAccountName: this.props.account.accountName,
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.account.accountName !== this.state.newAccountName) {
+            this.setState({
+                newAccountName: nextProps.account.accountName,
+            });
+        }
+    }
 
     /**
      * Check for unique account name and change account name in wallet state and in Seedstore object
      * @returns {undefined}
      **/
     async setAccountName() {
-        const { accountName, accountMeta, accountNames, password, changeAccountName, generateAlert, t } = this.props;
+        const { account, accountNames, password, changeAccountName, generateAlert, t } = this.props;
 
         const newAccountName = this.state.newAccountName.replace(/^\s+|\s+$/g, '');
 
@@ -69,16 +75,16 @@ class AccountName extends PureComponent {
         generateAlert('success', t('settings:nicknameChanged'), t('settings:nicknameChangedExplanation'));
 
         changeAccountName({
-            oldAccountName: accountName,
+            oldAccountName: account.accountName,
             newAccountName,
         });
 
-        const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+        const seedStore = await new SeedStore[account.meta.type](password, account.accountName, account.meta);
         await seedStore.renameAccount(newAccountName);
     }
 
     render() {
-        const { accountName, t } = this.props;
+        const { account, t } = this.props;
         const { newAccountName } = this.state;
 
         return (
@@ -88,16 +94,22 @@ class AccountName extends PureComponent {
                     this.setAccountName();
                 }}
             >
-                <Text
-                    value={newAccountName}
-                    label={t('accountManagement:editAccountName')}
-                    onChange={(value) => this.setState({ newAccountName: value })}
-                />
                 <fieldset>
-                    <Button disabled={newAccountName.replace(/^\s+|\s+$/g, '') === accountName} type="submit">
+                    <Text
+                        value={newAccountName}
+                        label={t('accountManagement:editAccountName')}
+                        onChange={(value) => this.setState({ newAccountName: value })}
+                    />
+                </fieldset>
+                <footer>
+                    <Button
+                        className="square"
+                        disabled={newAccountName.replace(/^\s+|\s+$/g, '') === account.accountName}
+                        type="submit"
+                    >
                         {t('save')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }
@@ -105,8 +117,6 @@ class AccountName extends PureComponent {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
-    accountName: getSelectedAccountName(state),
-    accountMeta: getSelectedAccountMeta(state),
     password: state.wallet.password,
 });
 
