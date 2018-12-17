@@ -12,6 +12,7 @@ import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
 import unset from 'lodash/unset';
+import set from 'lodash/set';
 import validUrl from 'valid-url';
 
 /**
@@ -154,7 +155,7 @@ export const rearrangeObjectKeys = (obj, prop) => {
     return obj;
 };
 
-export const updatePersistedState = (incomingState, restoredState) => {
+export const updatePersistedState = (incomingState, restoredState, propsToReset) => {
     const blacklistedStateProps = ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'];
 
     const incomingStateWithWhitelistedProps = omitBy(incomingState, (value, key) =>
@@ -163,6 +164,12 @@ export const updatePersistedState = (incomingState, restoredState) => {
 
     const { settings: { theme, versions } } = incomingStateWithWhitelistedProps;
     const restoredCopy = cloneDeep(restoredState);
+
+    if (propsToReset.length !== 0) {
+        propsToReset.forEach((prop) => {
+            set(restoredCopy, prop, get(incomingState, prop));
+        });
+    }
 
     if ('settings' in restoredCopy) {
         restoredCopy.settings.theme = theme;
