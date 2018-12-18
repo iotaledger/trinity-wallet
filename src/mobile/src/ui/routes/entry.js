@@ -63,7 +63,7 @@ const onAppStart = () => {
 };
 
 const renderInitialScreen = (initialScreen, state, store) => {
-    Navigation.setDefaultOptions({
+    const options = {
         layout: {
             backgroundColor: state.settings.theme.body.bg,
             orientation: ['portrait'],
@@ -80,7 +80,8 @@ const renderInitialScreen = (initialScreen, state, store) => {
             drawBehind: false,
             backgroundColor: state.settings.theme.body.bg,
         },
-    });
+    };
+    Navigation.setDefaultOptions(options);
     Navigation.setRoot({
         root: {
             stack: {
@@ -90,6 +91,7 @@ const renderInitialScreen = (initialScreen, state, store) => {
                         component: {
                             name: initialScreen,
                         },
+                        options,
                     },
                 ],
             },

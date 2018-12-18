@@ -166,6 +166,7 @@ class UseExistingSeed extends Component {
             name: accountName,
             meta: { type: 'keychain' },
             seed,
+            completed: true,
             usedExistingSeed: true,
         });
 
@@ -177,6 +178,7 @@ class UseExistingSeed extends Component {
             },
             layout: {
                 backgroundColor: body.bg,
+                orientation: ['portrait'],
             },
             statusBar: {
                 backgroundColor: body.bg,

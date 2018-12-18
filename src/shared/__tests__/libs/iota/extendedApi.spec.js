@@ -2,7 +2,7 @@ import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { getIotaInstance, isNodeSynced } from '../../../libs/iota/extendedApi';
+import { getIotaInstance, isNodeHealthy } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -32,7 +32,7 @@ describe('libs: iota/extendedApi', () => {
         });
     });
 
-    describe('#isNodeSynced', () => {
+    describe('#isNodeHealthy', () => {
         let sandbox;
 
         beforeEach(() => {
@@ -43,35 +43,50 @@ describe('libs: iota/extendedApi', () => {
             sandbox.restore();
         });
 
+        describe('when node runs an unsupported release', () => {
+            beforeEach(() => {
+                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
+                    appVersion: '0.0.0-RC2',
+                });
+            });
+
+            it('should throw with an error "Node version not supported"', () => {
+                return isNodeHealthy().catch((error) => expect(error.message).to.equal('Node version not supported'));
+            });
+        });
+
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
+                    appVersion: '0.0.0',
                     latestMilestone: EMPTY_HASH_TRYTES,
                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                 });
             });
 
             it('should throw with an error "Node not synced"', () => {
-                return isNodeSynced().catch((error) => expect(error.message).to.equal('Node not synced'));
+                return isNodeHealthy().catch((error) => expect(error.message).to.equal('Node not synced'));
             });
         });
 
         describe(`when latestMilestone is ${EMPTY_HASH_TRYTES}`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
+                    appVersion: '0.0.0',
                     latestMilestone: EMPTY_HASH_TRYTES,
                     latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
                 });
             });
 
             it('should throw with an error "Node not synced"', () => {
-                return isNodeSynced().catch((error) => expect(error.message).to.equal('Node not synced'));
+                return isNodeHealthy().catch((error) => expect(error.message).to.equal('Node not synced'));
             });
         });
 
         describe('when latestSolidSubtangleMilestoneIndex is 1 less than latestMilestoneIndex', () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
+                    appVersion: '0.0.0',
                     latestMilestoneIndex: 426550,
                     latestSolidSubtangleMilestoneIndex: 426550 - 1,
                     latestMilestone: 'U'.repeat(81),
@@ -82,7 +97,7 @@ describe('libs: iota/extendedApi', () => {
             it('should return false if "timestamp" on trytes is from five minutes ago', () => {
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytes.zeroValue);
 
-                return isNodeSynced().then((result) => {
+                return isNodeHealthy().then((result) => {
                     expect(result).to.equal(false);
                     getTrytes.restore();
                 });
@@ -102,7 +117,7 @@ describe('libs: iota/extendedApi', () => {
 
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytesWithLatestTimestamp);
 
-                return isNodeSynced().then((result) => {
+                return isNodeHealthy().then((result) => {
                     expect(result).to.equal(true);
                     getTrytes.restore();
                 });
@@ -112,6 +127,7 @@ describe('libs: iota/extendedApi', () => {
         describe(`when latestMilestone is not ${EMPTY_HASH_TRYTES} and is equal to latestSolidSubtangleMilestone`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
+                    appVersion: '0.0.0',
                     latestMilestone: 'U'.repeat(81),
                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                 });
@@ -120,7 +136,7 @@ describe('libs: iota/extendedApi', () => {
             it('should return false if "timestamp" on trytes is from five minutes ago', () => {
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytes.zeroValue);
 
-                return isNodeSynced().then((result) => {
+                return isNodeHealthy().then((result) => {
                     expect(result).to.equal(false);
                     getTrytes.restore();
                 });
@@ -140,7 +156,7 @@ describe('libs: iota/extendedApi', () => {
 
                 const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytesWithLatestTimestamp);
 
-                return isNodeSynced().then((result) => {
+                return isNodeHealthy().then((result) => {
                     expect(result).to.equal(true);
                     getTrytes.restore();
                 });
