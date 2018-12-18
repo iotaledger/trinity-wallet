@@ -246,7 +246,7 @@
         "enterPassword": "パスワードを入力してください。",
         "login": "ログイン",
         "setNode": "ノードの設定",
-        "whyBiometricDisabled": "生体認証が無効になっている理由。",
+        "whyBiometricDisabled": "生体認証が無効になっている理由",
         "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になっています。",
         "whyBiometricDisabledExplanationPart2": "Trinityを使用していると、非アクティブのためにログアウトすることがあります。その時には、生体認証を使用して再度ログインすることができます。"
     },
