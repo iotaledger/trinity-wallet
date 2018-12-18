@@ -282,6 +282,7 @@ class Receive extends Component {
         leaveNavigationBreadcrumb('Receive');
         timer.clearInterval('scramble');
         timer.clearTimeout('delayCardAnimation');
+        timer.clearTimeout('delayAddressInfoAnimation');
     }
 
     componentWillReceiveProps(newProps) {
@@ -289,15 +290,19 @@ class Receive extends Component {
             timer.clearInterval('scramble');
             if (!newProps.hadErrorGeneratingNewAddress) {
                 this.setState({ hasSuccessfullyGeneratedAddress: true, displayCard: true });
-                timer.setTimeout('delayCardAnimation', () => this.setState({ displayInfo: false }), 200);
+                timer.setTimeout('delayCardAnimation', () => this.setState({ displayInfo: false }), 300);
             }
         }
         if (!this.props.hadErrorGeneratingNewAddress && newProps.hadErrorGeneratingNewAddress) {
             this.setState({ hasSuccessfullyGeneratedAddress: false });
         }
         if (this.props.selectedAccountName !== newProps.selectedAccountName) {
-            this.setState({ hasSuccessfullyGeneratedAddress: false, displayInfo: true });
-            timer.setTimeout('delayCardAnimation', () => this.setState({ displayCard: false }), 200);
+            this.setState({ hasSuccessfullyGeneratedAddress: false });
+            timer.setTimeout(
+                'delayAddressInfoAnimation',
+                () => this.setState({ displayCard: false, displayInfo: true }),
+                300,
+            );
         }
     }
 
@@ -572,7 +577,8 @@ class Receive extends Component {
                     {displayCard && (
                         <AnimatedComponent
                             animationInType={['slideInBottom', 'fadeIn']}
-                            animationOutType={['slideOutBottom', 'fadeOut']}
+                            animationOutType={['fadeOut']}
+                            duration={400}
                             animateOutTrigger={hasSuccessfullyGeneratedAddress}
                         >
                             <Animated.View
