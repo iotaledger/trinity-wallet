@@ -705,7 +705,7 @@
         "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
-        "installUpdateExplanation": "Stahování bylo dokončeno, Trinity restartuje a nainstaluje aktualizaci.",
+        "installUpdateExplanation": "Stahování bylo dokončeno, Trinity se nyní restartuje a poté nainstaluje aktualizaci.",
         "downloadingUpdate": "Stahování aktualizace",
         "downloadProgress": "Staženo {{transferred}} z {{total}}"
     },
