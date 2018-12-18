@@ -37,7 +37,7 @@ import { generateAlert, generateTransferErrorAlert } from 'shared-modules/action
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import KeepAwake from 'react-native-keep-awake';
 import Toggle from 'ui/components/Toggle';
-import ProgressBar from 'ui/components/ProgressBar';
+import SendProgressBar from 'ui/components/SendProgressBar';
 import ProgressSteps from 'libs/progressSteps';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -816,7 +816,7 @@ export class Send extends Component {
                                 alignItems: 'center',
                             }}
                         >
-                            <ProgressBar
+                            <SendProgressBar
                                 activeStepIndex={this.props.activeStepIndex}
                                 totalSteps={size(this.props.activeSteps)}
                                 filledColor={input.bg}
