@@ -462,7 +462,7 @@
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
-        "viewAddresses": "Zobrazit adresu",
+        "viewAddresses": "Zobrazení adres",
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
         "addNewAccount": "Přidat nový účet",
