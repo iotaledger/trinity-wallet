@@ -89,9 +89,7 @@ const styles = StyleSheet.create({
     },
     disabled: {
         color: '#a9a9a9',
-    },
-    disabledImage: {
-        color: '#a9a9a9',
+        opacity: 0.5,
     },
     scrollViewContainer: {
         maxHeight: height,
@@ -399,7 +397,7 @@ class TopBar extends Component {
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
-                                                style={[shouldDisable ? styles.disabledImage : null]}
+                                                style={[shouldDisable && styles.disabled]}
                                             />
                                         )) || <View />}
                                     </Animated.View>
@@ -433,7 +431,7 @@ class TopBar extends Component {
                         style={[
                             styles.childView,
                             { backgroundColor: isSelected ? bar.hover : bar.bg },
-                            isSelected ? activeHighlight : null,
+                            isSelected && activeHighlight,
                         ]}
                     >
                         <Text
