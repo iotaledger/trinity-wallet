@@ -45,7 +45,7 @@ const getIotaInstance = (provider) => {
  *
  * @returns {function(array, number): Promise<object>}
  */
-const getBalancesAsync = (provider, withQuorum = false) => (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) =>
+const getBalancesAsync = (provider, withQuorum = true) => (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) =>
     withQuorum
         ? quorum.getBalances(addresses, threshold)
         : new Promise((resolve, reject) => {
@@ -135,7 +135,7 @@ const findTransactionsAsync = (provider) => (args) =>
  *
  * @returns {function(array): Promise<array>}
  */
-const getLatestInclusionAsync = (provider, withQuorum = false) => (hashes) =>
+const getLatestInclusionAsync = (provider, withQuorum = true) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
@@ -271,7 +271,7 @@ const getBundleAsync = (provider) => (tailTransactionHash) =>
  *
  * @returns {function(array): Promise<array>}
  */
-const wereAddressesSpentFromAsync = (provider, withQuorum = false) => (addresses) =>
+const wereAddressesSpentFromAsync = (provider, withQuorum = true) => (addresses) =>
     withQuorum
         ? quorum.wereAddressesSpentFrom(addresses)
         : new Promise((resolve, reject) => {
