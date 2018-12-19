@@ -283,13 +283,13 @@ export default class TransactionHistoryModal extends PureComponent {
         const { disableWhen, t, hideModal, bundleIsBeingPromoted, isRetryingFailedTransaction } = this.props;
         const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
         const defaultProps = {
-            onRightButtonPress: () => {
+            onLeftButtonPress: () => {
                 hideModal();
             },
-            leftButtonStyle: { children: opacity },
-            leftButtonText: t('global:retry'),
-            rightButtonText: t('global:done'),
-            isLeftButtonLoading: bundleIsBeingPromoted || isRetryingFailedTransaction,
+            rightButtonStyle: { children: opacity },
+            leftButtonText: t('global:close'),
+            rightButtonText: t('global:retry'),
+            isRightButtonLoading: bundleIsBeingPromoted || isRetryingFailedTransaction,
         };
         const props = assign({}, defaultProps, buttonProps);
         return <DualFooterButtons {...props} />;
@@ -400,7 +400,7 @@ export default class TransactionHistoryModal extends PureComponent {
                     {(!persistence &&
                         !isFailed &&
                         this.renderButton({
-                            onLeftButtonPress: () => {
+                            onRightButtonPress: () => {
                                 if (!disableWhen) {
                                     return promote(bundle);
                                 }
@@ -415,7 +415,7 @@ export default class TransactionHistoryModal extends PureComponent {
                         })) ||
                         (isFailed &&
                             this.renderButton({
-                                onLeftButtonPress: () => {
+                                onRightButtonPress: () => {
                                     if (!disableWhen) {
                                         return retryFailedTransaction(bundle);
                                     }
