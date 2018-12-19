@@ -102,14 +102,14 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
     mini_magick (4.5.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nanaimo (0.2.6)
     naturally (2.2.0)
-    nokogiri (1.8.4)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.9.1)
+      mini_portile2 (~> 2.4.0)
     os (1.0.0)
     plist (3.4.0)
     public_suffix (2.0.5)
@@ -164,4 +164,4 @@ DEPENDENCIES
   nokogiri
 
 BUNDLED WITH
-   1.16.4
+   1.17.2
