@@ -191,7 +191,7 @@ class StatefulDropdownAlert extends Component {
                     height: width / 15,
                     alignSelf: 'center',
                 }}
-                defaultContainer={isAndroid && isModalActive && { paddingTop: StatusBar.currentHeight }}
+                defaultContainer={isAndroid && isModalActive ? { paddingTop: StatusBar.currentHeight } : null}
                 inactiveStatusBarStyle={statusBarStyle}
                 inactiveStatusBarBackgroundColor={this.getStatusBarColor(last(navStack))}
                 onCancel={dismissAlert}

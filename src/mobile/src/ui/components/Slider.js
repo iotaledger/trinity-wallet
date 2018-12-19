@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { PanResponder, Easing, Animated, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
-import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
 import timer from 'react-native-timer';
+import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
+import i18next from 'shared-modules/libs/i18next';
 import { height as deviceHeight, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
@@ -67,8 +68,8 @@ class Slider extends Component {
         channelHeight: deviceHeight / 12,
         renderSwipeComplete: false,
         blockSwipe: false,
-        preSwipeText: 'Swipe to confirm',
-        postSwipeText: 'Confirmed',
+        preSwipeText: i18next.t('swipeToConfirm'),
+        postSwipeText: i18next.t('confirmed'),
         sliderReset: false,
         numberOfSliders: 1,
     };
