@@ -24,13 +24,14 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Animated,
+    StatusBar,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'shared-modules/actions/polling';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
-import { isIPhoneX } from 'libs/device';
+import { isIPhoneX, isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
@@ -233,6 +234,22 @@ class TopBar extends Component {
         }
     }
 
+    /**
+     * Returns padding styling dependent on device type
+     *
+     * @method getTopbarPadding
+     * @returns {object}
+     */
+    getTopbarPadding() {
+        if (isIPhoneX) {
+            return;
+        }
+        if (isAndroid) {
+            return { paddingBottom: StatusBar.currentHeight / 2 };
+        }
+        return { paddingTop: 10 };
+    }
+
     setScrollable(y) {
         if (y >= height - height / 8.8) {
             return this.setState({ scrollable: true });
@@ -315,7 +332,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
+            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }, this.getTopbarPadding()]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
