@@ -14,7 +14,7 @@ import uniq from 'lodash/uniq';
 import { isNodeHealthy, getIotaInstance } from './extendedApi';
 import {
     QUORUM_THRESHOLD,
-    QUORUM_SIZE,
+    QUORUM_NODES_SIZE,
     QUORUM_NODES_SYNC_CHECKS_INTERVAL,
     DEFAULT_BALANCES_THRESHOLD,
 } from '../../config';
@@ -31,7 +31,7 @@ import Errors from '../errors';
  * @param {number} quorumSize
  * @returns {Promise}
  */
-const rejectIfNotEnoughSyncedNodes = (nodes, quorumSize = QUORUM_SIZE) => {
+const rejectIfNotEnoughSyncedNodes = (nodes, quorumSize = QUORUM_NODES_SIZE) => {
     if (size(nodes) < quorumSize) {
         return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
     }
@@ -60,17 +60,17 @@ const rejectIfEmptyHashTrytes = (latestSolidSubtangleMilestone) => {
  *   Determines quorum result for supported methods.
  *
  *   @method determineQuorumResult
- *   @param {array} validResults
- *   @param {number} quorumSize
+ *   @param {array} validResults - Results from responsive nodes
+ *   @param {number} quorumSize - Size of quorum nodes
  *
  *   @returns {function(string, [number]): {boolean | string}}
  **/
-const determineQuorumResult = (validResults, quorumSize = QUORUM_SIZE) => {
+const determineQuorumResult = (validResults, quorumSize = QUORUM_NODES_SIZE) => {
     const { frequency, mostFrequent } = findMostFrequent(validResults);
 
     return (method, threshold = QUORUM_THRESHOLD) => {
-        // Include faulty result count while determining percentage
-        const percentage = (frequency[mostFrequent] / quorumSize) * 100;
+        // Always calculate percentage out of quorum size i.e., all (responsive + unresponsive) nodes.
+        const percentage = frequency[mostFrequent] / quorumSize * 100;
 
         if (percentage > threshold) {
             return mostFrequent;
@@ -104,7 +104,7 @@ const fallbackToSafeResult = (method) => {
 };
 
 /**
- *   For a list of nodes, find healthy (synced) nodes with size equals to minimum quorum nodes size
+ *   For a list of nodes, find healthy (synced) nodes N, where size(N) === QUORUM_NODES_SIZE
  *
  *   @method findSyncedNodes
  *   @param {array} nodes
@@ -164,11 +164,11 @@ const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes =
 };
 
 /**
- * From a set of responses of quorum nodes, prepare a quorum result.
- * wereAddressesSpentFrom: prepare a quorum result for spend status of each address
- * getBalances:balances: prepare a quorum result for balance of each address
- * getInclusionStates: prepare a quorum result for inclusion state of each tail transaction hash
- * getNodeInfo:latestSolidSubtangleMilestone: prepare a quorum result for latestSolidSubtangleMilestone of each quorum node
+ * From a set of responses from quorum nodes, prepare a quorum result.
+ * wereAddressesSpentFrom: prepare a quorum result for spend status of each address.
+ * getBalances:balances: prepare a quorum result for balance of each address.
+ * getInclusionStates: prepare a quorum result for inclusion state of each tail transaction hash.
+ * getNodeInfo:latestSolidSubtangleMilestone: prepare a quorum result for latestSolidSubtangleMilestone of each quorum node.
  *
  * @method prepareQuorumResults
  *
@@ -179,6 +179,8 @@ const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes =
  */
 const prepareQuorumResults = (method, ...requestArgs) => {
     const prepare = (results, payloadSize) => {
+        // Before determining the actual quorum result, filter results from unresponsive nodes.
+        // See #getQuorum where we explicitly resolve undefined as a result from unresponsive nodes.
         const validResults = filter(results, (result) => !isUndefined(result));
 
         let idx = 0;
@@ -215,7 +217,7 @@ const prepareQuorumResults = (method, ...requestArgs) => {
                 const [tips] = requestArgs.slice(-1);
 
                 // Before returning the quorum results for getBalances,
-                // transform the quorum result into the original result structure
+                // transform the quorum result into the original result format (https://iota.readme.io/reference#getbalances)
                 return { references: [tips], balances };
             };
         case 'getNodeInfo:latestSolidSubtangleMilestone':
@@ -234,7 +236,7 @@ const prepareQuorumResults = (method, ...requestArgs) => {
                     // Since there is no payload for getNodeInfo endpoint and we're only interested in getting a quorum for latestSolidSubtangleMilestone
                     // Pass requestPayloadSize -> size([latestSolidSubtanleMilestone]) which is basically 1
                     // This will also ensure that the quorum result is of size 1
-                    ...map(restArgs, (arg, idx) => (idx === 0 ? idx + 1 : arg)),
+                    ...map(restArgs, (arg, idx) => (idx === 0 ? 1 : arg)),
                 );
 
                 const [latestSolidSubtangleMilestone] = preparedResults;
@@ -270,7 +272,16 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
                     (provider) =>
                         new Promise((resolve) => {
                             getIotaInstance(provider).api[iotaApiMethod](
-                                ...[...requestArgs, (err, result) => (err ? resolve(undefined) : resolve(result))],
+                                ...[
+                                    ...requestArgs,
+                                    (err, result) =>
+                                        err
+                                            ? // In case there is an error (e.g: request timed out),
+                                              // Instead of raising an error, return undefined as result.
+                                              // Later (when quorum is result is determined), filter out these invalid results.
+                                              resolve(undefined)
+                                            : resolve(result),
+                                ],
                             );
                         }),
                 ),
@@ -294,7 +305,7 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
 export default function Quorum(quorumNodes) {
     let nodes = uniq(quorumNodes);
 
-    if (size(nodes) < QUORUM_SIZE) {
+    if (size(nodes) < QUORUM_NODES_SIZE) {
         throw new Error(Errors.NOT_ENOUGH_QUORUM_NODES);
     }
 
@@ -305,7 +316,7 @@ export default function Quorum(quorumNodes) {
         const timeElapsed = (new Date() - lastSyncedAt) / 1000;
 
         if (isEmpty(syncedNodes) || timeElapsed >= QUORUM_NODES_SYNC_CHECKS_INTERVAL) {
-            return findSyncedNodes(nodes, QUORUM_SIZE, syncedNodes).then((newSyncedNodes) => {
+            return findSyncedNodes(nodes, QUORUM_NODES_SIZE, syncedNodes).then((newSyncedNodes) => {
                 syncedNodes = newSyncedNodes;
                 lastSyncedAt = new Date();
 
@@ -318,7 +329,7 @@ export default function Quorum(quorumNodes) {
 
     return {
         /**
-         * Set quorum nodes
+         * Set quorum nodes.
          *
          * @method setNodes
          * @param {array} newNodes
@@ -327,7 +338,7 @@ export default function Quorum(quorumNodes) {
             nodes = union(nodes, uniq(newNodes));
         },
         /**
-         * Performs a quorum for wereAddressesSpentFrom api endpoint
+         * Performs a quorum for wereAddressesSpentFrom api endpoint.
          *
          * @method wereAddressesSpentFrom
          * @param {array} addresses
@@ -344,7 +355,7 @@ export default function Quorum(quorumNodes) {
         /**
          * First performs a quorum for latestSolidSubtangleMilestone.
          * If quorum (for latestSolidSubtangleMilestone) is achieved then performs a quorum for getLatestInclusion api endpoint
-         * Otherwise, raises an exception
+         * Otherwise, raises an exception.
          *
          * @method getLatestInclusion
          * @param {array} hashes
@@ -357,7 +368,7 @@ export default function Quorum(quorumNodes) {
                 : findSyncedNodesIfNecessary().then((newSyncedNodes) =>
                       getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
                           // If nodes cannot agree on the latestSolidSubtangleMilestone
-                          // No need to proceed further
+                          // No need to proceed further.
                           .then(rejectIfEmptyHashTrytes)
                           .then((latestSolidSubtangleMilestone) =>
                               getQuorum('getInclusionStates', newSyncedNodes, hashes, [latestSolidSubtangleMilestone]),
@@ -367,7 +378,7 @@ export default function Quorum(quorumNodes) {
         /**
          * First performs a quorum for latestSolidSubtangleMilestone.
          * If quorum (for latestSolidSubtangleMilestone) is achieved then performs a quorum for getBalances api endpoint
-         * Otherwise, raises an exception
+         * Otherwise, raises an exception.
          *
          * @method getBalances
          * @param {array} addresses
@@ -381,7 +392,7 @@ export default function Quorum(quorumNodes) {
                 : findSyncedNodesIfNecessary().then((newSyncedNodes) =>
                       getQuorum('getNodeInfo:latestSolidSubtangleMilestone', newSyncedNodes)
                           // If nodes cannot agree on the latestSolidSubtangleMilestone
-                          // No need to proceed further
+                          // No need to proceed further.
                           .then(rejectIfEmptyHashTrytes)
                           .then((latestSolidSubtangleMilestone) =>
                               getQuorum('getBalances:balances', newSyncedNodes, addresses, threshold, [
