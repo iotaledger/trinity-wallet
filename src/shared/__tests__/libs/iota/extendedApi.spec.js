@@ -3,7 +3,7 @@ import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import nock from 'nock';
-import { getIotaInstance, isNodeSynced } from '../../../libs/iota/extendedApi';
+import { getIotaInstance, isNodeHealthy } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import { newZeroValueTransactionTrytes } from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -34,7 +34,7 @@ describe('libs: iota/extendedApi', () => {
         });
     });
 
-    describe('#isNodeSynced', () => {
+    describe.skip('#isNodeHealthy', () => {
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 nock('http://localhost:14265', {
@@ -65,7 +65,7 @@ describe('libs: iota/extendedApi', () => {
             });
 
             it('should throw with an error "Node not synced"', () => {
-                return isNodeSynced()
+                return isNodeHealthy()
                     .then(() => {
                         throw new Error();
                     })
@@ -103,7 +103,7 @@ describe('libs: iota/extendedApi', () => {
             });
 
             it('should throw with an error "Node not synced"', () => {
-                return isNodeSynced()
+                return isNodeHealthy()
                     .then(() => {
                         throw new Error();
                     })
@@ -145,7 +145,7 @@ describe('libs: iota/extendedApi', () => {
                 });
 
                 it('should return false', () => {
-                    return isNodeSynced().then((result) => expect(result).to.equal(false));
+                    return isNodeHealthy().then((result) => expect(result).to.equal(false));
                 });
             });
 
@@ -196,7 +196,7 @@ describe('libs: iota/extendedApi', () => {
                 });
 
                 it('should return true if "timestamp" on trytes is within five minutes', () => {
-                    return isNodeSynced().then((result) => expect(result).to.equal(true));
+                    return isNodeHealthy().then((result) => expect(result).to.equal(true));
                 });
             });
         });
@@ -233,7 +233,7 @@ describe('libs: iota/extendedApi', () => {
                 });
 
                 it('should return false', () => {
-                    return isNodeSynced().then((result) => expect(result).to.equal(false));
+                    return isNodeHealthy().then((result) => expect(result).to.equal(false));
                 });
             });
 
@@ -282,7 +282,7 @@ describe('libs: iota/extendedApi', () => {
                 });
 
                 it('should return true', () => {
-                    return isNodeSynced().then((result) => expect(result).to.equal(true));
+                    return isNodeHealthy().then((result) => expect(result).to.equal(true));
                 });
             });
         });

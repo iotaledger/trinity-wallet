@@ -9,6 +9,7 @@ describe('Reducer: accounts', () => {
                 accountInfoDuringSetup: {
                     name: '',
                     meta: {},
+                    completed: false,
                     usedExistingSeed: false,
                 },
                 onboardingComplete: false,
@@ -36,6 +37,7 @@ describe('Reducer: accounts', () => {
                 payload: {
                     name: 'bar',
                     meta: { foo: '' },
+                    completed: true,
                     usedExistingSeed: true,
                 },
             };
@@ -45,6 +47,7 @@ describe('Reducer: accounts', () => {
                 accountInfoDuringSetup: {
                     name: 'bar',
                     meta: { foo: '' },
+                    completed: true,
                     usedExistingSeed: true,
                 },
             };

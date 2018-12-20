@@ -300,7 +300,7 @@ class Loading extends Component {
                 orientation: ['portrait'],
             },
             statusBar: {
-                backgroundColor: bar.alt,
+                backgroundColor: bar.bg,
             },
         });
     }

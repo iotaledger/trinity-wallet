@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import { findTransactionsAsync } from './extendedApi';
 import { syncTransactions, getTransactionsDiff } from './transfers';
-import { throwIfNodeNotSynced } from './utils';
+import { throwIfNodeNotHealthy } from './utils';
 import {
     mapLatestAddressData,
     getFullAddressHistory,
@@ -40,7 +40,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
     const existingTransactions = get(existingAccountState, 'transactions') || [];
     const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
 
-    return throwIfNodeNotSynced(provider)
+    return throwIfNodeNotHealthy(provider)
         .then(() => getFullAddressHistory(provider)(seedStore))
         .then((history) => {
             data = { ...data, ...history };
@@ -89,7 +89,7 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return throwIfNodeNotSynced(provider)
+    return throwIfNodeNotHealthy(provider)
         .then(
             () =>
                 rescanAddresses

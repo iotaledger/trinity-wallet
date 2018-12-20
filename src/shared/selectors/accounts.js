@@ -341,5 +341,8 @@ export const selectedAccountStateFactory = (accountName) => {
  **/
 export const isSettingUpNewAccount = createSelector(
     getAccountInfoDuringSetup,
-    (accountInfoDuringSetup) => !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
+    (accountInfoDuringSetup) =>
+        accountInfoDuringSetup.completed === true &&
+        !isEmpty(accountInfoDuringSetup.name) &&
+        !isEmpty(accountInfoDuringSetup.meta),
 );
