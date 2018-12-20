@@ -129,24 +129,24 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
         return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
     }
 
-    const nodesToCheckSync =
+    const nodesToCheckSyncFor =
         // If we already have enough synced nodes, then just recheck if they are still synced
         numberOfSelectedNodes === quorumSize
             ? selectedNodes
             : // Otherwise, randomly choose the remaining nodes
               sampleSize(whitelistedNodes, quorumSize - numberOfSelectedNodes);
 
-    return Promise.all(map(nodesToCheckSync, (provider) => isNodeHealthy(provider).catch(() => undefined))).then(
+    return Promise.all(map(nodesToCheckSyncFor, (provider) => isNodeHealthy(provider).catch(() => undefined))).then(
         (results) => {
             // Categorise synced/unsynced nodes
             const { syncedNodes, unsyncedNodes } = transform(
-                nodesToCheckSync,
+                nodesToCheckSyncFor,
                 (acc, node, idx) => (results[idx] ? acc.syncedNodes.push(node) : acc.unsyncedNodes.push(node)),
                 { syncedNodes: [], unsyncedNodes: [] },
             );
 
             // If all nodes are synced, then return these nodes
-            if (size(syncedNodes) === size(nodesToCheckSync)) {
+            if (size(syncedNodes) === size(nodesToCheckSyncFor)) {
                 return union(selectedNodes, syncedNodes);
             }
 
