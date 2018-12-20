@@ -185,7 +185,7 @@ const account = (
             /**
              * Determines if the account info is complete and account ready to be created and synced
              */
-            completed: false
+            completed: false,
         },
         /**
          * Determines if onboarding process is completed

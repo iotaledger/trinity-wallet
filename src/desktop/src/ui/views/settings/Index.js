@@ -5,6 +5,7 @@ import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { shorten } from 'libs/iota/converter';
+import { getAccountNamesFromState } from 'selectors/accounts';
 
 import Icon from 'ui/components/Icon';
 import Scrollbar from 'ui/components/Scrollbar';
@@ -33,6 +34,8 @@ class Settings extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         accounts: PropTypes.object,
+        /** Wallet account names */
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         wallet: PropTypes.object,
         /** @ignore */
@@ -48,13 +51,12 @@ class Settings extends React.PureComponent {
     };
 
     render() {
-        const { accounts, location, wallet, history, t } = this.props;
+        const { accounts, accountNames, location, wallet, history, t } = this.props;
         const { accountIndex } = this.props.match.params;
 
         const backRoute = wallet.ready ? '/wallet/' : '/onboarding/';
 
         const accountSettings = typeof accountIndex === 'string';
-        const accountNames = Object.keys(accounts);
 
         const account = accountSettings
             ? { ...accounts[accountNames[accountIndex]], ...{ accountName: accountNames[accountIndex], accountIndex } }
@@ -198,6 +200,7 @@ class Settings extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     accounts: state.accounts.accountInfo,
+    accountNames: getAccountNamesFromState(state),
     wallet: state.wallet,
 });
 

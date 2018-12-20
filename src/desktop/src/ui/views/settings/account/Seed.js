@@ -94,9 +94,7 @@ class Seed extends PureComponent {
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export'
-                                    ? t('seedVault:exportSeedVault')
-                                    : t('paperWallet'),
+                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
                     }}
                 />
             );

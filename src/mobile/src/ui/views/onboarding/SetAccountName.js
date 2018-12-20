@@ -141,7 +141,7 @@ export class SetAccountName extends Component {
         this.props.setAccountInfoDuringSetup({
             name: accountName,
             meta: { type: 'keychain' },
-            completed: true
+            completed: true,
         });
 
         if (!onboardingComplete) {
