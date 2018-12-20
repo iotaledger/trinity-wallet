@@ -804,7 +804,6 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,
     hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
-    ui: state.ui,
 });
 
 const mapDispatchToProps = {
