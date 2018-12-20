@@ -10,7 +10,12 @@ import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectK
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { findPromotableTail, isStillAValidTransaction } from '../libs/iota/transfers';
-import { selectedAccountStateFactory, getSelectedNodeFromState, getNodesFromState } from '../selectors/accounts';
+import {
+    selectedAccountStateFactory,
+    getSelectedNodeFromState,
+    getNodesFromState,
+    getCustomNodesFromState,
+} from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import { nodes, nodesWithPoWEnabled, DEFAULT_RETRIES } from '../config';
@@ -320,7 +325,7 @@ export const fetchPrice = () => {
  * @returns {function}
  */
 export const fetchNodeList = (chooseRandomNode = false) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
 
         const setRandomNode = (nodesList) => {
@@ -341,7 +346,7 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                     const unionNodes = union(nodes, remoteNodes.map((node) => node.node));
 
                     // Set quorum nodes
-                    quorum.setNodes(unionNodes);
+                    quorum.setNodes(union(unionNodes, getCustomNodesFromState(getState())));
 
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
