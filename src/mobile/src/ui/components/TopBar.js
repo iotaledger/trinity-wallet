@@ -236,7 +236,7 @@ class TopBar extends Component {
      * Returns padding styling dependent on device type
      *
      * @method getTopbarPadding
-     * @returns {object}
+     * @returns {any}
      */
     getTopbarPadding() {
         if (isIPhoneX) {

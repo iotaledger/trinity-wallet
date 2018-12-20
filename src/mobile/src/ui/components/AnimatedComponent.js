@@ -1,6 +1,7 @@
 import head from 'lodash/head';
 import last from 'lodash/last';
 import merge from 'lodash/merge';
+import forEach from 'lodash/forEach';
 import React, { Component } from 'react';
 import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
@@ -130,7 +131,7 @@ class AnimatedComponent extends Component {
      */
     getAnimatedStyle(animationType) {
         let animatedStyle = {};
-        animationType.map((type) => {
+        forEach(animationType, (type) => {
             switch (type) {
                 case 'fadeIn':
                 case 'fadeOut':
