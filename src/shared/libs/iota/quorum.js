@@ -114,40 +114,40 @@ const fallbackToSafeResult = (method) => {
  *
  *   @returns {Promise}
  **/
-const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes = []) => {
-    const sizeOfSyncedNodes = size(syncedNodes);
+const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes = []) => {
+    const numberOfSelectedNodes = size(selectedNodes);
 
-    // Get all nodes that are not synced & are not blacklisted (i.e., unsynced or unresponsive)
-    const whitelistedNodes = filter(nodes, (node) => !includes(blacklistedNodes, node) && !includes(syncedNodes, node));
+    // Get all nodes that are not blacklisted (i.e. unsynced or unresponsive) and are not already selected 
+    const whitelistedNodes = filter(nodes, (node) => !includes(blacklistedNodes, node) && !includes(selectedNodes, node));
 
     if (
         isEmpty(whitelistedNodes) &&
         // If there are no nodes that are whitelisted
         // And we still need more nodes to complete the (minimum) quorum size, then raise an exception
-        sizeOfSyncedNodes < quorumSize
+        numberOfSelectedNodes < quorumSize
     ) {
         return Promise.reject(new Error(Errors.NOT_ENOUGH_SYNCED_NODES));
     }
 
-    const selectedNodes =
+    const nodesToCheckSyncFor =
         // If we already have enough synced nodes, then just recheck if they are still synced
-        sizeOfSyncedNodes === quorumSize
-            ? syncedNodes
+        numberOfSelectedNodes === quorumSize
+            ? selectedNodes
             : // Otherwise, randomly choose the remaining nodes
-              sampleSize(whitelistedNodes, quorumSize - sizeOfSyncedNodes);
+              sampleSize(whitelistedNodes, quorumSize - numberOfSelectedNodes);
 
-    return Promise.all(map(selectedNodes, (provider) => isNodeHealthy(provider).catch(() => undefined))).then(
+    return Promise.all(map(nodesToCheckSyncFor, (provider) => isNodeHealthy(provider).catch(() => undefined))).then(
         (results) => {
             // Categorise synced/unsynced nodes
-            const { activeNodes, inactiveNodes } = transform(
-                selectedNodes,
-                (acc, node, idx) => (results[idx] ? acc.activeNodes.push(node) : acc.inactiveNodes.push(node)),
-                { activeNodes: [], inactiveNodes: [] },
+            const { syncedNodes, unsyncedNodes } = transform(
+                nodesToCheckSyncFor,
+                (acc, node, idx) => (results[idx] ? acc.syncedNodes.push(node) : acc.unsyncedNodes.push(node)),
+                { syncedNodes: [], unsyncedNodes: [] },
             );
 
-            // If all selected nodes are synced, then return these nodes
-            if (size(activeNodes) === size(selectedNodes)) {
-                return union(syncedNodes, activeNodes);
+            // If all nodes are synced, then return these nodes
+            if (size(syncedNodes) === size(nodesToCheckSyncFor)) {
+                return union(selectedNodes, syncedNodes);
             }
 
             // Otherwise, restart this process
@@ -155,9 +155,9 @@ const findSyncedNodes = (nodes, quorumSize, syncedNodes = [], blacklistedNodes =
                 nodes,
                 quorumSize,
                 // Add active nodes to synced nodes
-                union(syncedNodes, activeNodes),
+                union(selectedNodes, syncedNodes),
                 // Add inactive nodes to blacklisted nodes
-                [...blacklistedNodes, ...inactiveNodes],
+                [...blacklistedNodes, ...unsyncedNodes],
             );
         },
     );
