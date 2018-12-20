@@ -8,7 +8,7 @@ import {
     getUnspentInputs,
     isValidInput,
 } from '../../../libs/iota/inputs';
-import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { iota, SwitchingConfig, quorum } from '../../../libs/iota/index';
 
 describe('libs: iota/inputs', () => {
     before(() => {
@@ -247,8 +247,8 @@ describe('libs: iota/inputs', () => {
         describe('when all addresses are unspent', () => {
             it('should choose input addresses with enough balance', () => {
                 const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+                    .stub(quorum, 'wereAddressesSpentFrom')
+                    .resolves([false, false, false]);
 
                 return getUnspentInputs()(
                     merge({}, addressData, { ['B'.repeat(81)]: { spent: { local: false } } }),
@@ -287,8 +287,8 @@ describe('libs: iota/inputs', () => {
         describe('when address is marked spent locally', () => {
             it('should omit address from the final inputs', () => {
                 const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+                    .stub(quorum, 'wereAddressesSpentFrom')
+                    .resolves([false, false, false]);
 
                 return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
@@ -312,8 +312,8 @@ describe('libs: iota/inputs', () => {
 
             it('should keep the spent address in "spentAddresses"', () => {
                 const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+                    .stub(quorum, 'wereAddressesSpentFrom')
+                    .resolves([false, false, false]);
 
                 return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.spentAddresses).to.eql(['B'.repeat(81)]);
@@ -327,8 +327,8 @@ describe('libs: iota/inputs', () => {
             describe('when address is used as an input in local transactions history', () => {
                 it('should omit address from the final inputs', () => {
                     const wereAddressesSpentFrom = sinon
-                        .stub(iota.api, 'wereAddressesSpentFrom')
-                        .yields(null, [false, false, false]);
+                        .stub(quorum, 'wereAddressesSpentFrom')
+                        .resolves([false, false, false]);
 
                     return getUnspentInputs()(
                         merge({}, addressData, {
@@ -363,8 +363,8 @@ describe('libs: iota/inputs', () => {
 
                 it('should keep the spent address in "spentAddresses"', () => {
                     const wereAddressesSpentFrom = sinon
-                        .stub(iota.api, 'wereAddressesSpentFrom')
-                        .yields(null, [false, false, false]);
+                        .stub(quorum, 'wereAddressesSpentFrom')
+                        .resolves([false, false, false]);
 
                     return getUnspentInputs()(
                         merge({}, addressData, {
@@ -389,8 +389,8 @@ describe('libs: iota/inputs', () => {
                 describe('when wereAddressesSpentFrom resolves address as spent', () => {
                     it('should omit address from the final inputs', () => {
                         const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [true, true, true]);
+                            .stub(quorum, 'wereAddressesSpentFrom')
+                            .resolves([true, true, true]);
 
                         return getUnspentInputs()(
                             merge({}, addressData, {
@@ -412,8 +412,8 @@ describe('libs: iota/inputs', () => {
 
                     it('should keep the spent address in "spentAddresses"', () => {
                         const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [true, true, true]);
+                            .stub(quorum, 'wereAddressesSpentFrom')
+                            .resolves([true, true, true]);
 
                         return getUnspentInputs()(
                             merge({}, addressData, {
@@ -439,8 +439,8 @@ describe('libs: iota/inputs', () => {
         describe('when any of the address has pending transfers', () => {
             it('should omit address from the final inputs', () => {
                 const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+                    .stub(quorum, 'wereAddressesSpentFrom')
+                    .resolves([false, false, false]);
 
                 const pendingTransfers = [
                     {
@@ -482,8 +482,8 @@ describe('libs: iota/inputs', () => {
 
             it('should keep the address in "addressesWithIncomingTransfers"', () => {
                 const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
+                    .stub(quorum, 'wereAddressesSpentFrom')
+                    .resolves([false, false, false]);
                 const pendingTransfers = [
                     {
                         inputs: [{ address: 'E'.repeat(81), value: -5 }],

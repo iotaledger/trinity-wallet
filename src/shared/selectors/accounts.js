@@ -41,6 +41,16 @@ export const getRemotePoWFromState = createSelector(getSettingsFromState, (state
 export const getNodesFromState = createSelector(getSettingsFromState, (state) => state.nodes || []);
 
 /**
+ *   Selects custom nodes prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getCustomNodesFromState
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getCustomNodesFromState = createSelector(getSettingsFromState, (state) => state.customNodes || []);
+
+/**
  *   Selects selected IRI node prop from settings reducer state object.
  *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
  *
@@ -379,5 +389,8 @@ export const getFailedBundleHashesForSelectedAccount = createSelector(
  **/
 export const isSettingUpNewAccount = createSelector(
     getAccountInfoDuringSetup,
-    (accountInfoDuringSetup) => accountInfoDuringSetup.completed === true && !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
+    (accountInfoDuringSetup) =>
+        accountInfoDuringSetup.completed === true &&
+        !isEmpty(accountInfoDuringSetup.name) &&
+        !isEmpty(accountInfoDuringSetup.meta),
 );

@@ -23,6 +23,11 @@ export default {
     ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
     SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
     NO_NODE_TO_RETRY: 'No node to retry.',
+    NOT_ENOUGH_SYNCED_NODES: 'Not enough synced nodes for quorum.',
+    COULD_NOT_GET_QUORUM_FOR_LATEST_SOLID_SUBTANGLE_MILESTONE:
+        'Could not get quorum for latestSolidSubtangleMilestone.',
+    METHOD_NOT_SUPPORTED_FOR_QUORUM: 'Method not supported for quorum.',
+    NOT_ENOUGH_QUORUM_NODES: 'Not enough quorum nodes.',
     EMPTY_ADDRESS_DATA: 'Empty address data.',
     INVALID_INPUT: 'Invalid input.',
     INVALID_TRANSFER: 'Invalid transfer.',
