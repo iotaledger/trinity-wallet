@@ -11,7 +11,7 @@ import {
     DEFAULT_BALANCES_THRESHOLD,
     DEFAULT_DEPTH,
     DEFAULT_MIN_WEIGHT_MAGNITUDE,
-    NODE_REQUEST_TIMEOUT,
+    DEFAULT_NODE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
 import { performPow, sortTransactionTrytesArray } from './transfers';
@@ -25,10 +25,10 @@ import { EMPTY_HASH_TRYTES } from './utils';
  *
  * @returns {object} IOTA instance
  */
-const getIotaInstance = (provider) => {
+const getIotaInstance = (provider, requestTimeout = DEFAULT_NODE_REQUEST_TIMEOUT) => {
     if (provider) {
         const instance = new IOTA({ provider });
-        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
+        instance.api.setApiTimeout(requestTimeout);
 
         return instance;
     }

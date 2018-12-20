@@ -12,7 +12,14 @@ import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
 import { isNodeHealthy, getIotaInstance } from './extendedApi';
-import { QUORUM_THRESHOLD, QUORUM_SIZE, QUORUM_SYNC_CHECK_INTERVAL, DEFAULT_BALANCES_THRESHOLD } from '../../config';
+import {
+    QUORUM_THRESHOLD,
+    QUORUM_SIZE,
+    QUORUM_SYNC_CHECK_INTERVAL,
+    DEFAULT_BALANCES_THRESHOLD,
+    DEFAULT_NODE_REQUEST_TIMEOUT,
+    GET_NODE_INFO_REQUEST_TIMEOUT,
+} from '../../config';
 import { EMPTY_HASH_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
@@ -269,7 +276,12 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
                     syncedNodes,
                     (provider) =>
                         new Promise((resolve) => {
-                            getIotaInstance(provider).api[iotaApiMethod](
+                            getIotaInstance(
+                                provider,
+                                iotaApiMethod === 'getNodeInfo'
+                                    ? GET_NODE_INFO_REQUEST_TIMEOUT
+                                    : DEFAULT_NODE_REQUEST_TIMEOUT,
+                            ).api[iotaApiMethod](
                                 ...[
                                     ...requestArgs,
                                     (err, result) =>
