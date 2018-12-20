@@ -249,7 +249,7 @@ class TopBar extends Component {
     }
 
     setScrollable(y) {
-        if (y >= height - height / 8.8) {
+        if (y >= (isIPhoneX ? height - Styling.topbarHeight - 34 : height - Styling.topbarHeight)) {
             return this.setState({ scrollable: true });
         }
         this.setState({ scrollable: false });
@@ -480,7 +480,9 @@ class TopBar extends Component {
                     }}
                     onContentSizeChange={(x, y) => this.setScrollable(y)}
                     contentContainerView={{ height: height }}
-                    style={{ maxHeight: isIPhoneX ? height - height / 8.8 - 34 : height - height / 8.8 }}
+                    style={{
+                        maxHeight: isIPhoneX ? height - Styling.topbarHeight - 34 : height - Styling.topbarHeight,
+                    }}
                 >
                     {restContent}
                 </ScrollView>
