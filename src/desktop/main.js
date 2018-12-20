@@ -4,7 +4,6 @@ import electronSettings from 'electron-settings';
 import path from 'path';
 import URL from 'url';
 import fs from 'fs';
-import Themes from 'themes/themes';
 
 import { initMenu, contextMenu } from './native/Menu.js';
 
@@ -106,12 +105,6 @@ function createWindow() {
         });
     } catch (error) {}
 
-    let bgColor = (settings.themeName && Themes[settings.themeName].body.bg) || 'rgb(3, 41, 62)';
-
-    if (bgColor.indexOf('rgb') === 0) {
-        bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
-    }
-
     /**
      * Initialize the main wallet window
      */
@@ -122,12 +115,12 @@ function createWindow() {
         y: windowState.y,
         minWidth: 500,
         minHeight: 720,
+        show: false,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${paths.assets}icon.${
             process.platform === 'win32' ? 'ico' : process.platform === 'darwin' ? 'icns' : 'png'
         }`,
-        backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(paths.preload, devMode ? 'preloadDev.js' : 'preloadProd.js'),
@@ -144,7 +137,6 @@ function createWindow() {
             fullscreenable: false,
             resizable: false,
             transparent: true,
-            backgroundColor: bgColor,
             show: false,
             webPreferences: {
                 nodeIntegration: false,
@@ -408,13 +400,15 @@ ipc.on('menu.update', (e, payload) => {
 });
 
 /**
- * Proxy focus event from tray to main window
+ * Proxy main window focus
  */
 ipc.on('window.focus', (e, payload) => {
     if (windows.main) {
         windows.main.show();
         windows.main.focus();
-        windows.main.webContents.send('menu', payload);
+        if (payload) {
+            windows.main.webContents.send('menu', payload);
+        }
     }
 });
 
