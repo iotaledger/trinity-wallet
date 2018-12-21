@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     },
     disabled: {
         color: '#a9a9a9',
-        opacity: 0.5,
     },
     scrollViewContainer: {
         maxHeight: height,
@@ -310,6 +309,7 @@ class TopBar extends Component {
             mode,
             minimised,
             currentRoute,
+            isModalActive,
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -368,21 +368,23 @@ class TopBar extends Component {
                                                       { color: bar.color },
                                                   ])
                                                 : [styles.mainTitle, { color: bar.color }],
+                                            isModalActive && { opacity: 0.5 },
                                         ]}
                                     >
                                         {selectedTitle}
                                     </Text>
                                     <View style={{ opacity: balanceOpacity }}>
                                         <Text
-                                            style={
+                                            style={[
                                                 shouldDisable
                                                     ? StyleSheet.flatten([
                                                           styles.subtitle,
                                                           styles.disabled,
                                                           { color: subtitleColor },
                                                       ])
-                                                    : [styles.subtitle, { color: subtitleColor }]
-                                            }
+                                                    : [styles.subtitle, { color: subtitleColor }],
+                                                isModalActive && { opacity: 0.5 },
+                                            ]}
                                         >
                                             {selectedSubtitle}
                                         </Text>
@@ -397,7 +399,7 @@ class TopBar extends Component {
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
-                                                style={[shouldDisable && styles.disabled]}
+                                                style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
                                             />
                                         )) || <View />}
                                     </Animated.View>
