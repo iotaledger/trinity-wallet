@@ -22,6 +22,8 @@ export const setNextPollIfSuccessful = (state) => {
 export const setNextPollIfUnsuccessful = (state) => {
     const { allPollingServices, pollFor, retryCount } = state;
 
+    console.log('Retry count', retryCount);
+
     if (retryCount < 3) {
         return { retryCount: retryCount + 1 };
     }
@@ -44,7 +46,7 @@ const polling = (
         /**
          * Polling service names
          */
-        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
+        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountsInfo'],
         /**
          * Determines the service currently being run during the poll cycle
          */
@@ -149,18 +151,18 @@ const polling = (
                 isFetchingMarketData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+        case ActionTypes.ACCOUNTS_INFO_FETCH_REQUEST:
             return {
                 ...state,
                 isFetchingAccountInfo: true,
             };
-        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case ActionTypes.ACCOUNTS_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+        case ActionTypes.ACCOUNTS_INFO_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
