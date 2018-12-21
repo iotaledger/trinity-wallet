@@ -147,10 +147,25 @@ class Chart extends PureComponent {
          * @param {string} currency
          */
         getPriceForCurrency: PropTypes.func.isRequired,
+        /* @ignore */
+        animateChartOnMount: PropTypes.bool.isRequired,
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            animate: props.animateChartOnMount,
+        };
+    }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Chart');
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.chartData !== newProps.chartData) {
+            this.setState({ animate: true });
+        }
     }
 
     render() {
@@ -216,9 +231,12 @@ class Chart extends PureComponent {
                                     },
                                 }}
                                 interpolation="natural"
-                                animate={{
-                                    duration: 450,
-                                }}
+                                animate={
+                                    this.state.animate && {
+                                        duration: 450,
+                                        onExit: {},
+                                    }
+                                }
                             />
                             <VictoryAxis
                                 dependentAxis

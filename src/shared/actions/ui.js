@@ -18,6 +18,7 @@ export const ActionTypes = {
     SET_SELECTED_QR_TAB: 'IOTA/UI/SET_SELECTED_QR_TAB',
     SET_ROUTE: 'IOTA/UI/SET_ROUTE',
     SET_KEYBOARD_ACTIVITY: 'IOTA/UI/SET_KEYBOARD_ACTIVITY',
+    SET_ANIMATE_CHART_ON_MOUNT: 'IOTA/UI/SET_ANIMATE_CHART_ON_MOUNT',
 };
 
 /**
@@ -261,6 +262,21 @@ export const setLoginRoute = (payload) => {
 export const setKeyboardActivity = (payload) => {
     return {
         type: ActionTypes.SET_KEYBOARD_ACTIVITY,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to set whether the chart line should animate on mount
+ *
+ * @method setAnimateChartOnMount
+ * @param {bool} payload
+ *
+ * @returns {{type: {string}, payload: {bool} }}
+ */
+export const setAnimateChartOnMount = (payload) => {
+    return {
+        type: ActionTypes.SET_ANIMATE_CHART_ON_MOUNT,
         payload,
     };
 };

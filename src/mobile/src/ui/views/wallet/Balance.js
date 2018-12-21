@@ -16,6 +16,7 @@ import {
 import { connect } from 'react-redux';
 import { round, roundDown } from 'shared-modules/libs/utils';
 import { computeStatusText, formatRelevantRecentTransactions } from 'shared-modules/libs/iota/transfers';
+import { setAnimateChartOnMount } from 'shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import {
     getTransfersForSelectedAccount,
@@ -124,6 +125,10 @@ export class Balance extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
+        /** @ignore */
+        setAnimateChartOnMount: PropTypes.func.isRequired,
+        /** @ignore */
+        animateChartOnMount: PropTypes.bool.isRequired,
     };
 
     /**
@@ -152,6 +157,7 @@ export class Balance extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Balance');
+        this.props.setAnimateChartOnMount(false);
     }
 
     componentWillReceiveProps(newProps) {
@@ -231,7 +237,16 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, usdPrice, body, primary, isRefreshing } = this.props;
+        const {
+            balance,
+            conversionRate,
+            currency,
+            usdPrice,
+            body,
+            primary,
+            isRefreshing,
+            animateChartOnMount,
+        } = this.props;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
@@ -279,7 +294,7 @@ export class Balance extends Component {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.chartContainer}>
-                            <Chart />
+                            <Chart animateChartOnMount={animateChartOnMount} />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
@@ -299,6 +314,11 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
     secondary: state.settings.theme.secondary,
     body: state.settings.theme.body,
+    animateChartOnMount: state.ui.animateChartOnMount,
 });
 
-export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps)(Balance)));
+const mapDispatchToProps = {
+    setAnimateChartOnMount,
+};
+
+export default WithManualRefresh()(withNamespaces(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance)));
