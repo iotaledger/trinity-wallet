@@ -102,7 +102,6 @@ export class Poll extends Component {
             return;
         }
 
-        console.log('Which service', service);
         const dict = {
             promotion: this.promote,
             marketData: this.props.fetchMarketData,

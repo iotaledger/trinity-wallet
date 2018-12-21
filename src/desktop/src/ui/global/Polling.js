@@ -92,7 +92,6 @@ class Polling extends React.PureComponent {
 
         const service = this.props.pollFor;
 
-        console.log('Service', service);
         const dict = {
             promotion: this.promote,
             marketData: this.props.fetchMarketData,

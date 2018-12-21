@@ -22,8 +22,6 @@ export const setNextPollIfSuccessful = (state) => {
 export const setNextPollIfUnsuccessful = (state) => {
     const { allPollingServices, pollFor, retryCount } = state;
 
-    console.log('Retry count', retryCount);
-
     if (retryCount < 3) {
         return { retryCount: retryCount + 1 };
     }
