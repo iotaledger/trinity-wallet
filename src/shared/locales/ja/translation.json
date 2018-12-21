@@ -254,7 +254,7 @@
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
         "thisMayTake": "これには時間がかかることがあります。",
         "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
-        "takingAWhile": "これにはしばらく時間がかかりそうです。"
+        "takingAWhile": "少々お待ちください"
     },
     "newSeedSetup": {
         "generatedSeed": "生成されたシード",
