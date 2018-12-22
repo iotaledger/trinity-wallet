@@ -155,7 +155,7 @@
         "confirm": "Patvirtinti",
         "delete": "Ištrinti",
         "shouldUpdate": "Yra naujų atnaujinimų",
-        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsinaujinti iki naujausios versijos.",
+        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
