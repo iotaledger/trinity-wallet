@@ -703,7 +703,7 @@
         "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
         "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
