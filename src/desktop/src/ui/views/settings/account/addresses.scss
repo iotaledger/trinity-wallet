@@ -1,0 +1,33 @@
+.addresses {
+    position: relative;
+    height: calc(100vh - 160px);
+    margin: 0px;
+    padding: 0;
+
+    p {
+        font-family: 'SourceCodePro';
+        font-size: 12px;
+        word-break: break-word;
+
+        mark {
+            color: var(--primary);
+        }
+    }
+
+    li {
+        display: flex;
+        strong {
+            flex: 1 0 65px;
+            text-align: right;
+        }
+    }
+
+    .spent {
+        text-decoration: line-through;
+        color: var(--negative);
+
+        mark {
+            color: var(--negative);
+        }
+    }
+}

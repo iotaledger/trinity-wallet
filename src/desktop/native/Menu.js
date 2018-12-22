@@ -1,5 +1,5 @@
-const { app, Menu, ipcMain, dialog, shell } = require('electron');
-const { autoUpdater } = require('electron-updater');
+import { app, Menu, ipcMain, dialog, shell } from 'electron';
+import { autoUpdater } from 'electron-updater';
 
 const state = {
     authorised: false,
@@ -142,7 +142,7 @@ autoUpdater.on('download-progress', (progressObj) => {
  * @param {function} getWindow - Get Window instance helper
  * @returns {undefined}
  */
-const initMenu = (app, getWindowFunc) => {
+export const initMenu = (app, getWindowFunc) => {
     let mainMenu = null;
     getWindow = getWindowFunc;
 
@@ -296,17 +296,17 @@ const initMenu = (app, getWindowFunc) => {
                         submenu: [
                             {
                                 label: language.accountName,
-                                click: () => navigate('account/name'),
+                                click: () => navigate('settings/account/name'),
                                 enabled: state.enabled,
                             },
                             {
                                 label: language.viewSeed,
-                                click: () => navigate('account/seed'),
+                                click: () => navigate('settings/account/seed'),
                                 enabled: state.enabled,
                             },
                             {
                                 label: language.viewAddresses,
-                                click: () => navigate('account/addresses'),
+                                click: () => navigate('settings/account/addresses'),
                                 enabled: state.enabled,
                             },
                             {
@@ -314,7 +314,7 @@ const initMenu = (app, getWindowFunc) => {
                             },
                             {
                                 label: language.tools,
-                                click: () => navigate('account/tools'),
+                                click: () => navigate('settings/account/tools'),
                                 enabled: state.enabled,
                             },
                         ],
@@ -404,4 +404,41 @@ const initMenu = (app, getWindowFunc) => {
     });
 };
 
-module.exports = initMenu;
+/**
+ * Creates context menu
+ * @returns {Menu} Context menu
+ */
+export const contextMenu = () => {
+    return Menu.buildFromTemplate([
+        {
+            label: language.undo,
+            role: 'undo',
+        },
+        {
+            label: language.redo,
+            role: 'redo',
+        },
+        {
+            type: 'separator',
+        },
+        {
+            label: language.cut,
+            role: 'cut',
+        },
+        {
+            label: language.copy,
+            role: 'copy',
+        },
+        {
+            label: language.paste,
+            role: 'paste',
+        },
+        {
+            type: 'separator',
+        },
+        {
+            label: language.selectAll,
+            role: 'selectall',
+        },
+    ]);
+};

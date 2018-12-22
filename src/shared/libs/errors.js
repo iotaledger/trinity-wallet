@@ -14,6 +14,7 @@ export default {
     TRANSACTION_ALREADY_CONFIRMED: 'Transaction already confirmed.',
     INCOMING_TRANSFERS: 'Incoming transfers to all selected inputs',
     NODE_NOT_SYNCED: 'Node not synced',
+    UNSUPPORTED_NODE: 'Node version not supported',
     INVALID_BUNDLE: 'Invalid bundle',
     INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT: 'Invalid bundle constructed during reattachment.',
     INVALID_PARAMETERS: 'Invalid parameters',

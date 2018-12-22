@@ -4,8 +4,6 @@ import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'libs/exports';
 
-import { getSelectedAccountMeta } from 'selectors/accounts';
-
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
@@ -22,7 +20,7 @@ import Button from 'ui/components/Button';
 class PasswordSettings extends PureComponent {
     static propTypes = {
         /** @ignore */
-        accountMeta: PropTypes.object.isRequired,
+        accounts: PropTypes.object.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
@@ -45,7 +43,7 @@ class PasswordSettings extends PureComponent {
         event.preventDefault();
 
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
-        const { accountMeta, setPassword, generateAlert, t } = this.props;
+        const { accounts, setPassword, generateAlert, t } = this.props;
 
         if (passwordNew !== passwordConfirm) {
             generateAlert(
@@ -70,7 +68,13 @@ class PasswordSettings extends PureComponent {
             const passwordNewHash = await hash(passwordNew);
             const passwordCurrentHash = await hash(passwordCurrent);
 
-            await SeedStore[accountMeta.type].updatePassword(passwordCurrentHash, passwordNewHash);
+            const accountTypes = Object.keys(accounts)
+                .map((accountName) => (accounts[accountName].meta ? accounts[accountName].meta.type : 'keychain'))
+                .filter((accountType, index, accountTypes) => accountTypes.indexOf(accountType) === index);
+
+            for (let i = 0; i < accountTypes.length; i++) {
+                await SeedStore[accountTypes[i]].updatePassword(passwordCurrentHash, passwordNewHash);
+            }
 
             setPassword(passwordNewHash);
 
@@ -101,37 +105,40 @@ class PasswordSettings extends PureComponent {
 
         return (
             <form onSubmit={(e) => this.changePassword(e)}>
-                <Password
-                    value={passwordCurrent}
-                    label={t('changePassword:currentPassword')}
-                    onChange={(value) => this.setState({ passwordCurrent: value })}
-                />
-                <Password
-                    showScore
-                    value={passwordNew}
-                    label={t('changePassword:newPassword')}
-                    onChange={(value) => this.setState({ passwordNew: value })}
-                />
-                <Password
-                    value={passwordConfirm}
-                    label={t('changePassword:confirmPassword')}
-                    onChange={(value) => this.setState({ passwordConfirm: value })}
-                />
                 <fieldset>
+                    <Password
+                        value={passwordCurrent}
+                        label={t('changePassword:currentPassword')}
+                        onChange={(value) => this.setState({ passwordCurrent: value })}
+                    />
+                    <Password
+                        showScore
+                        value={passwordNew}
+                        label={t('changePassword:newPassword')}
+                        onChange={(value) => this.setState({ passwordNew: value })}
+                    />
+                    <Password
+                        value={passwordConfirm}
+                        label={t('changePassword:confirmPassword')}
+                        onChange={(value) => this.setState({ passwordConfirm: value })}
+                    />
+                </fieldset>
+                <footer>
                     <Button
+                        className="square"
                         type="submit"
                         disabled={!passwordCurrent.length || !passwordNew.length || !passwordConfirm.length}
                     >
                         {t('settings:changePassword')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    accountMeta: getSelectedAccountMeta(state),
+    accounts: state.accounts.accountInfo,
 });
 
 const mapDispatchToProps = {
@@ -139,4 +146,7 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(PasswordSettings));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(PasswordSettings));

@@ -29,7 +29,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
-import ProgressBar from 'ui/components/ProgressBar';
+import OldProgressBar from 'ui/components/OldProgressBar';
 import { getPowFn } from 'libs/nativeModules';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         marginLeft: width / 20,
     },
     transitionButtonContainer: {
-        flex: 1,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     buttonQuestionText: {
@@ -151,12 +151,12 @@ class SnapshotTransition extends Component {
         cancelSnapshotTransition: PropTypes.func.isRequired,
     };
 
-    static renderProgressBarChildren(activeStepIndex, sizeOfActiveSteps) {
+    static renderProgressBarChildren(activeStepIndex, sizeOfActiveSteps, t) {
         if (activeStepIndex === -1) {
             return null;
         }
 
-        return `Attaching address ${activeStepIndex + 1} / ${sizeOfActiveSteps}`;
+        return t('attachProgress', { currentAddress: activeStepIndex + 1, totalAddresses: sizeOfActiveSteps });
     }
 
     constructor() {
@@ -248,17 +248,12 @@ class SnapshotTransition extends Component {
                     <View style={{ flex: 0.8 }} />
                     {!isTransitioning && (
                         <View style={styles.innerContainer}>
-                            <InfoBox
-                                body={theme.body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, textColor]}>{t('snapshotExplanation')}</Text>
-                                        <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                            {t('hasSnapshotTakenPlace')}
-                                        </Text>
-                                    </View>
-                                }
-                            />
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>{t('snapshotExplanation')}</Text>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                    {t('hasSnapshotTakenPlace')}
+                                </Text>
+                            </InfoBox>
                             <View style={styles.transitionButtonContainer}>
                                 <CtaButton
                                     ctaColor={theme.primary.color}
@@ -275,33 +270,29 @@ class SnapshotTransition extends Component {
                         !isAttachingToTangle && (
                             <View style={styles.innerContainer}>
                                 {(balanceCheckFlag && (
-                                    <InfoBox
-                                        body={theme.body}
-                                        width={width / 1.1}
-                                        text={
-                                            <View style={styles.balanceCheckContainer}>
-                                                <View style={styles.textContainer}>
-                                                    <Text style={[styles.buttonInfoText, textColor]}>
-                                                        {t('detectedBalance', {
-                                                            amount: round(formatValue(transitionBalance), 1),
-                                                            unit: formatUnit(transitionBalance),
-                                                        })}
-                                                    </Text>
-                                                    <Text style={[styles.buttonQuestionText, textColor]}>
-                                                        {t('isThisCorrect')}
-                                                    </Text>
-                                                </View>
-                                                <ModalButtons
-                                                    onLeftButtonPress={() => this.onBalanceIncompletePress()}
-                                                    onRightButtonPress={() => this.onBalanceCompletePress()}
-                                                    leftText={t('global:no')}
-                                                    rightText={t('global:yes')}
-                                                    containerWidth={{ width: width / 1.25 }}
-                                                    buttonWidth={{ width: width / 2.85 }}
-                                                />
+                                    <InfoBox>
+                                        <View style={styles.balanceCheckContainer}>
+                                            <View style={styles.textContainer}>
+                                                <Text style={[styles.buttonInfoText, textColor]}>
+                                                    {t('detectedBalance', {
+                                                        amount: round(formatValue(transitionBalance), 1),
+                                                        unit: formatUnit(transitionBalance),
+                                                    })}
+                                                </Text>
+                                                <Text style={[styles.buttonQuestionText, textColor]}>
+                                                    {t('isThisCorrect')}
+                                                </Text>
                                             </View>
-                                        }
-                                    />
+                                            <ModalButtons
+                                                onLeftButtonPress={() => this.onBalanceIncompletePress()}
+                                                onRightButtonPress={() => this.onBalanceCompletePress()}
+                                                leftText={t('global:no')}
+                                                rightText={t('global:yes')}
+                                                containerWidth={{ width: width / 1.25 }}
+                                                buttonWidth={{ width: width / 2.85 }}
+                                            />
+                                        </View>
+                                    </InfoBox>
                                 )) || (
                                     <ActivityIndicator
                                         animating={isTransitioning}
@@ -316,20 +307,15 @@ class SnapshotTransition extends Component {
                     {isTransitioning &&
                         isAttachingToTangle && (
                             <View style={styles.innerContainer}>
-                                <InfoBox
-                                    body={theme.body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoText, textColor]}>{t('attaching')}</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                {t('loading:thisMayTake')}
-                                            </Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                {t('global:pleaseWaitEllipses')}
-                                            </Text>
-                                        </View>
-                                    }
-                                />
+                                <InfoBox>
+                                    <Text style={[styles.infoText, textColor]}>{t('attaching')}</Text>
+                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                        {t('loading:thisMayTake')}
+                                    </Text>
+                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                        {t('global:pleaseWaitEllipses')}
+                                    </Text>
+                                </InfoBox>
                                 <View
                                     style={{
                                         flex: 1,
@@ -337,7 +323,7 @@ class SnapshotTransition extends Component {
                                         alignItems: 'center',
                                     }}
                                 >
-                                    <ProgressBar
+                                    <OldProgressBar
                                         style={{
                                             textWrapper: { flex: 0.4 },
                                         }}
@@ -349,8 +335,9 @@ class SnapshotTransition extends Component {
                                         {SnapshotTransition.renderProgressBarChildren(
                                             activeStepIndex,
                                             sizeOfActiveSteps,
+                                            t,
                                         )}
-                                    </ProgressBar>
+                                    </OldProgressBar>
                                 </View>
                             </View>
                         )}

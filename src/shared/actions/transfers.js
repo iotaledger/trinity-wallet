@@ -29,7 +29,7 @@ import {
     withRetriesOnDifferentNodes,
     fetchRemoteNodes,
     getRandomNodes,
-    throwIfNodeNotSynced,
+    throwIfNodeNotHealthy,
 } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
@@ -66,6 +66,7 @@ import {
     generateTransferErrorAlert,
     generatePromotionErrorAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateUnsupportedNodeErrorAlert,
     generateTransactionSuccessAlert,
 } from './alerts';
 import i18next from '../libs/i18next.js';
@@ -696,18 +697,18 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
             .then(({ newState }) => {
                 dispatch(updateAccountInfoAfterSpending(newState));
 
-                // Progressbar => (Progress summary)
+                // Progressbar => (Progress complete)
                 dispatch(setNextStepAsActive());
                 dispatch(generateTransactionSuccessAlert(isZeroValue));
 
                 setTimeout(() => {
                     dispatch(completeTransfer());
                     dispatch(resetProgress());
-                }, 5000);
+                }, 3500);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-
+                dispatch(resetProgress());
                 // Only keep the failed trytes locally if the bundle was valid
                 // In case the bundle is invalid, discard the signing as it was never broadcast
                 if (hasSignedInputs && isValidBundle) {
@@ -745,6 +746,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                 if (message === Errors.NODE_NOT_SYNCED) {
                     return dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (message === Errors.UNSUPPORTED_NODE) {
+                    return dispatch(generateUnsupportedNodeErrorAlert());
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
@@ -855,7 +858,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
     dispatch(retryFailedTransactionRequest());
 
     return (
-        throwIfNodeNotSynced()
+        throwIfNodeNotHealthy()
             // First check spent statuses against transaction addresses
             .then(() =>
                 categoriseAddressesBySpentStatus()(

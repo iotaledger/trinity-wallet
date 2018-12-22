@@ -1,24 +1,27 @@
-import { width } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
+import { width, height } from 'libs/dimensions';
+import { isIPhoneX, isAndroid } from 'libs/device';
 
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
-    borderRadius: width / 60,
-    borderRadiusSmall: width / 90,
-    borderRadiusLarge: width / 40,
+    borderRadius: isIPhoneX ? width / 40 : width / 60,
+    borderRadiusSmall: parseInt(width / 90),
+    borderRadiusLarge: parseInt(width / 40),
+    borderRadiusExtraLarge: parseInt(width / 20),
     fontSize0: width / 37,
     fontSize1: width / 34,
     fontSize2: width / 31,
     fontSize3: width / 25,
     fontSize4: width / 22,
     fontSize5: width / 19,
-    fontSize6: width / 8,
+    fontSize6: width / 14,
+    fontSize7: width / 8,
+    topbarHeight: isAndroid ? height / 10 : height / 8.8,
 };
 
-export function getBackgroundColor(screen, theme, footerColour = false, inactive = false) {
+export function getBackgroundColor(screen, theme, inactive = false) {
     const { bar, body } = theme;
     const screenMap = {
-        home: inactive ? body.bg : bar.alt,
+        home: inactive ? body.bg : bar.bg,
         loading: body.bg,
         newSeedSetup: body.bg,
         walletSetup: body.bg,
@@ -38,8 +41,8 @@ export function getBackgroundColor(screen, theme, footerColour = false, inactive
         twoFactorSetupEnterToken: body.bg,
         disable2FA: body.bg,
         fingerprintSetup: body.bg,
-        termsAndConditions: footerColour ? 'white' : bar.bg,
-        privacyPolicy: footerColour ? 'white' : bar.bg,
+        termsAndConditions: bar.bg,
+        privacyPolicy: bar.bg,
         forceChangePassword: body.bg,
         seedVaultBackup: body.bg,
     };

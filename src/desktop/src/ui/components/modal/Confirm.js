@@ -15,7 +15,7 @@ export default class Confirm extends React.PureComponent {
         /** Should the confirmation option disabled for X seconds */
         countdown: PropTypes.number,
         /** Confirm window type */
-        category: PropTypes.oneOf([ 'primary', 'secondary', 'positive', 'negative' ]),
+        category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative']),
         /** Confirm window content */
         content: PropTypes.object.isRequired,
         /** Confirm window cancel function */
@@ -36,9 +36,10 @@ export default class Confirm extends React.PureComponent {
                         {content.cancel}
                     </Button>
                     <Button
-                        disabled={countdown && countdown > 0}
+                        disabled={countdown > 0}
                         onClick={this.props.onConfirm}
-                        variant={category ? category : 'primary'}>
+                        variant={category ? category : 'primary'}
+                    >
                         {countdown && countdown > 0 ? countdown : content.confirm}
                     </Button>
                 </footer>

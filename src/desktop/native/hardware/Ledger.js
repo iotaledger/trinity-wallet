@@ -1,7 +1,9 @@
-const Transport = require('@ledgerhq/hw-transport-node-hid').default;
-const Iota = require('hw-app-iota').default;
-const Wallet = require('electron').remote.getCurrentWindow().webContents;
-const { ipcRenderer: ipc } = require('electron');
+import 'babel-polyfill';
+import Transport from '@ledgerhq/hw-transport-node-hid';
+import Iota from 'hw-app-iota';
+import { ipcRenderer as ipc, remote } from 'electron';
+
+const Wallet = remote.getCurrentWindow().webContents;
 
 const connectionError = { message: 'Ledger connection error' };
 
@@ -175,4 +177,4 @@ class Ledger {
 
 const ledger = new Ledger();
 
-module.exports = ledger;
+export default ledger;
