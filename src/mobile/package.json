@@ -147,7 +147,8 @@
     "setupTestFrameworkScriptFile": "./testConfig.js",
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/shared/"
+      "/shared/",
+      "/e2e/"
     ],
     "transform": {
       "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
