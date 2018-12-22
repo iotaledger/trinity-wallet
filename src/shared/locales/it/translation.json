@@ -566,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Ho fatto un backup in modo sicuro del mio seme",
+        "reenterSeed": "Al prossimo passo devi reinserire il tuo seme.",
         "reenterSeedWarning": "Se non hai eseguito il backup del tuo seme e il dispositivo si rompe, perderai tutti i tuoi IOTA.",
         "pleaseConfirm": "Si prega di confermare che hai memorizzato in modo sicuro il tuo seme."
     },
@@ -596,7 +596,7 @@
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
         "aMessage": "un messaggio",
-        "fromAccount": "From {{selectedAccountName}}",
+        "fromAccount": "Da {{selectedAccountName}}",
         "toAddress": "A indirizzo",
         "sendingAMessage": "Invio di un messaggio",
         "sendingAnEmptyMessage": "Invio di un messaggio vuoto"
@@ -620,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Esporta come SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Una Cassaforte di Seme è un file crittografato per il backup dei propri semi. Il seme è crittografato con una chiave SeedVault e non è possibile accedervi senza quella chiave.",
         "seedVaultWarning": "Assicurarsi di eseguire un backup del file in più posizioni (per esempio hard disk, nel cloud, USB). Se perdi questo file e non hai archiviato il seme altrove, perderai i tuoi IOTA.",
         "exportFail": "Esportazione come SeedVault fallita",
         "exportFailExplanation": "Si è verificato un problema esportando il SeedVault. Assicurati di avere le autorizzazioni appropriate e spazio libero sufficiente.",
@@ -641,7 +641,7 @@
         "noSeedFoundExplanation": "Il SeedVault o è vuoto o contiene un seme in un formato non valido.",
         "seedFileError": "Impossibile accedere il SeedVault",
         "seedFileErrorExplanation": "Si è verificato un problema accedendo il SeedVault. Se è stato selezionato il file corretto questo potrebbe essere danneggiato.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "Per prima cosa dobbiamo proteggere la tua cassaforte di Seme. Si prega di scegliere una chiave per crittografare il file. Questa chiave verrà utilizzata se è necessario ripristinare il seme dal backup di SeedVault.",
         "retypeKey": "Riscrivi la chiave"
     },
     "chart": {
