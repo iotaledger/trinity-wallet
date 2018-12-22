@@ -76,7 +76,7 @@
         "wallet": "Portafoglio",
         "all": "Tutti",
         "sent": "Inviato",
-        "youReceived": "You received",
+        "youReceived": "Hai ricevuto",
         "youSent": "You sent",
         "received": "Ricevuto",
         "sending": "Invio",
@@ -152,8 +152,8 @@
         "errorAccessingKeychain": "Errore di portachiavi",
         "errorAccessingKeychainExplanation": "Non è stato possibile accedere al portachiavi per l'archiviazione sicura.",
         "mainWallet": "CONTO PRINCIPALE",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "Conferma",
+        "delete": "Elimina",
         "shouldUpdate": "E' disponibile un nuovo aggiornamento",
         "shouldUpdateExplanation": "È stato rilasciato un nuovo aggiornamento. Si consiglia di aggiornare all'ultima versione.",
         "forceUpdate": "Aggiornare l'app per continuare",
@@ -277,7 +277,7 @@
     "paperWallet": {
         "neverShare": "Non condividere mai il tuo seme con nessuno.",
         "iotaLogo": "Logo IOTA",
-        "print": "Print",
+        "print": "Stampa",
         "paperConvenience": "Stampare una copia cartacea del tuo seme è un modo conveniente per memorizzarlo.",
         "publicInsecure": "Ma stampare attraverso Wi-Fi pubblico o su una stampante pubblica è insicuro.",
         "pleaseCheck": "Please check and confirm before you print",
@@ -382,9 +382,9 @@
         "addNewSeed": "Aggiungi un nuovo seme",
         "twoFA": "Autenticazione a due fattori",
         "changePassword": "Cambia password",
-        "general": "General settings",
+        "general": "Impostazioni generali",
         "advanced": "Impostazioni avanzate",
-        "account": "Account settings",
+        "account": "Impostazioni account",
         "logout": "Esci",
         "reset": "Reimposta il portafoglio",
         "syncingComplete": "Sincronizzazione completata",
@@ -597,7 +597,7 @@
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
         "aMessage": "un messaggio",
         "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "toAddress": "A indirizzo",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
@@ -677,7 +677,7 @@
         "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
         "proofOfWork": "Completo la prova di lavoro",
         "broadcasting": "Trasmissione",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Trasferimento completato"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Non è possibile completare il passaggio allo snapshot",
