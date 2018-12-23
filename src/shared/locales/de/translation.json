@@ -771,7 +771,7 @@
         "connectionTitle": "Verbinde deinen Ledger",
         "connectionExplanation": "Um diese Funktion nutzen zu können muss ein Ledger verbunden sein.",
         "transactionTitle": "Blättere durch deinen Ledger und bestätige die Transaktion",
-        "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
+        "transactionExplanation": "Verwende deinen Ledger um die ausgehende Transaktion zu bestätigen.",
         "applicationTitle": "Öffne die Ledger IOTA App",
         "applicationExplanation": "Nimm deinen Ledger und öffne die IOTA App um fortzufahren.",
         "cannotSendZeroValueTitle": "Null-Wert Transaktionen können nicht gesendet werden",
