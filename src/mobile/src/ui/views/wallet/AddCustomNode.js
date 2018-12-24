@@ -1,3 +1,5 @@
+import endsWith from 'lodash/endsWith';
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -193,7 +195,16 @@ class AddCustomNode extends Component {
             return this.onAddHttpNodeError();
         }
 
-        if (!nodes.includes(customNode.replace(/ /g, ''))) {
+        const hasDefaultHttpsPort = endsWith(customNode, ':443');
+
+        if (hasDefaultHttpsPort) {
+            customNode = customNode.slice(0, -4);
+        }
+
+        if (
+            !nodes.includes(customNode) &&
+            !map(nodes, (node) => (endsWith(node, ':443') ? node.slice(0, -4) : node)).includes(customNode)
+        ) {
             this.props.setFullNode(customNode, true);
         } else {
             this.onDuplicateNodeError();
