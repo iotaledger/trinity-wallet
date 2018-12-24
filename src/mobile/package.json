@@ -123,6 +123,7 @@
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.2.3",
     "babel-jest": "23.4.2",
     "babel-plugin-jest-hoist": "^23.2.0",
     "babel-plugin-module-resolver": "^3.1.1",
