@@ -291,7 +291,7 @@
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
-        "generateNewAddress": "Neue Adresse generieren",
+        "generateNewAddress": "Adresse erstellen",
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "tag": "Tag",
@@ -547,7 +547,7 @@
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
         "pressToSync": "Drücke die folgende Schaltfläche, um dein Konto zu synchronisieren.",
         "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
-        "doNotClose": "Beim Minimieren der App wird die Synchronisierung abgebrochen.",
+        "doNotClose": "Minimieren der App wird die Synchronisierung abbrechen.",
         "syncAccount": "Konto synchronisieren",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
