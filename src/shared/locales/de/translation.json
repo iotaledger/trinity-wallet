@@ -598,7 +598,7 @@
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
         "toAddress": "An Adresse",
-        "sendingAMessage": "Sende eine Nachricht",
+        "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },
     "twoFA": {
