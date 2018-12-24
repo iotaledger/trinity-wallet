@@ -352,9 +352,9 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Gesamtzeit",
         "addressPasteDetected": "Eingefügte Adresse erkannt",
-        "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest.",
+        "addressPasteExplanation": "Scheinbar hast du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich die korrekte Adresse ist, an die du senden möchtest.",
         "invalid": "UNGÜLTIG",
-        "swipeToSend": "Wischen zum senden"
+        "swipeToSend": "Wischen um zu senden"
     },
     "setSeedName": {
         "letsAddName": "Vergib einen Kontonamen",
