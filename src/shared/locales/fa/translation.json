@@ -297,7 +297,7 @@
         "tag": "برچسب",
         "generateAnAddress": "تولید آدرس",
         "generateAnAddressTitle": "تولید یک آدرس",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید."
     },
     "saveYourSeed": {
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
@@ -631,12 +631,12 @@
         "emptyKey": "No SeedVault Key entered",
         "emptyKeyExplanation": "You must enter a key. Please try again.",
         "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "importSuccessExplanation": "سید شما با موفقیت درون‌ریزی شد.",
+        "saveToDownloadFolder": "ذخیره در پوشه دانلود",
         "importSeedVault": "وارد کردن سید Vault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "dropInstructions": "SeedVault یا متن را اینجا رها کنید <1></1> یا برای انتخاب از فهرست فایل‌ها کلیک کنید",
+        "dropActive": "SeedVault یا متن را اینجا رها کنید",
+        "enterKeyExplanation": "برای باز کردن SeedVault کلید خود را وارد کنید",
         "noSeedFound": "سید Vault حاوی سید معتبر نیست",
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
@@ -707,7 +707,7 @@
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
         "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadProgress": "{{transferred}} از {{total}} دانلود شده"
     },
     "notificationLog": {
         "errorLog": "Error log"
