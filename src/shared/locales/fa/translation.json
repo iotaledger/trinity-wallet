@@ -319,14 +319,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "لطفا سید خود را تایید کنید",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity هرگز از شما نمی‌خواهد که سید خود را دوباره وارد کنید مگر اینکه شما کیف پول را بازنشانی یا برنامه را حذف کنید.",
         "enterYourSeed": "سید خود را وارد کنید",
         "incorrectSeed": "سید نادرست",
         "incorrectSeedExplanation": "سید وارد شده نادرست است. لطفا دوباره تلاش کنید.",
         "ifYouHaveNotSaved": "اگر شما از سید خود پشتیبان تهیه نکرد اید، لطفا به عقب برگردید و این کار را انجام دهید.",
         "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "هشدار: نمی‌توان سید را جای‌گذاری کرد",
+        "clipboardWarningExplanation": "جای‌گذاری بنا به دلایل امنیتی غیر فعال شده است. شما در عوض می‌توانید سید خود را از یک فایل متنی به اینجا بکشید و رها کنید."
     },
     "send": {
         "invalidAddress": "آدرس اشتباه است",
@@ -364,9 +364,9 @@
     "modeSelection": {
         "advanced": "Advanced",
         "standard": "استاندارد",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
+        "advancedModeExplanation": "حالت پیشرفته اطلاعات فنی را با جزئیات بیشتری نمایش خواهد داد.",
+        "modesExplanation": "فقط در صورتی حالت پیشرفته را فعال کنید که تجربه کافی در استفاده از IOTA را دارید. در غیر این صورت ممکن است برایتان گمراه‌کننده باشد.",
+        "modeUpdated": "حالت به روز شد",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
