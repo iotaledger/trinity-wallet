@@ -502,35 +502,35 @@
     },
     "themes": {
         "classic": "کلاسیک",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "contemporary": "امروزی",
+        "dark": "تیره",
+        "default": "پیش‌فرض",
+        "electric": "الکتریک",
+        "ionic": "آیونیک",
+        "light": "روشن",
+        "lucky": "خوش شانس",
+        "mint": "نعناع",
+        "steelblue": "آبی فولادی"
     },
     "currencySelection": {
         "currency": "واحد پول"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "آیا مطمئنید که می‌خواهید خارج شوید؟",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "شما در حال خروج هستید",
+        "areYouSure": "آیا مطمئن هستید؟"
     },
     "qrScanner": {
         "scan": "اسکن کد QR شما"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "واحد سیستم",
         "trillion": "تریلیون",
         "billion": "بیلیون",
         "million": "میلیون",
         "thousand": "هزار",
         "one": "یک",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAها معمولا به صورت ضریبی از میلیون اندوخته می‌شوند ولی یک تک IOTA هم قابل انتقال هست."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "چرا من نمی توانم موجودی کامل خود را انتقال بدهم؟",
@@ -538,7 +538,7 @@
         "discordInformation": "برای پیدا کردن راه حل برای مسئله خود، به کانال #help در برنامه Discord مراجعه کنید."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "آیا از حذف حساب کاربری خود اطمینان دارید؟",
         "yourSeedWillBeRemoved": "سید شما و تاریخچه تراکنش های شما حذف خواهد شد.",
         "thisAction": "این عمل غیر قابل بازگشت است",
         "enterPassword": "گذرواژه خود را برای حذف این حساب وارد کنید."
@@ -552,7 +552,7 @@
         "syncingYourAccount": "همگام سازی حساب شما."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "یک نام برای حساب و سید را وارد کنید",
         "incorrectFormat": "قالب سید اشتباه است",
         "validSeedExplanation": "سید های معتبر باید 81 کاراکتر باشد و فقط شامل حروف A-Z یا عدد تا 9 باشد."
     },
@@ -560,8 +560,8 @@
         "enterPassword": "گذرواژه خود را برای مشاهده سید وارد کنید.",
         "viewSeed": "مشاهده سید",
         "hideSeed": "پنهان کردن سید",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
+        "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
+        "accountIndex": "اندیس حساب لدجر شما",
         "accountPage": "Your Ledger account page"
     },
     "saveSeedConfirmation": {
