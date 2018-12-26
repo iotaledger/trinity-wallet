@@ -7,7 +7,7 @@
         "refresh": "تازه کردن",
         "balanceError": "موجودی کافی نیست",
         "balanceErrorMessage": "شما آیوتا کافی برای تکمیل این انتقال ندارید.",
-        "totalBalance": "Total balance",
+        "totalBalance": "مجموع موجودی",
         "transferError": "خطای انتقال",
         "transferErrorMessage": "مشکلی در سفارش شما به وجود آمده است. لطفا دوباره تلاش کنید.",
         "transferSent": "انتقال فرستاده شد",
