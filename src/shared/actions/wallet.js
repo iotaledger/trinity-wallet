@@ -426,7 +426,13 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
                                 index,
                                 relevantBalances[index],
                                 getRemotePoWFromState(getState())
-                                    ? extend({}, seedStore, { offloadPow: true })
+                                    ? extend(
+                                          {
+                                              __proto__: seedStore.__proto__,
+                                          },
+                                          seedStore,
+                                          { offloadPow: true },
+                                      )
                                     : seedStore,
                                 map(existingAccountState.transfers, (tx) => tx),
                                 existingAccountState.addresses,

@@ -152,7 +152,13 @@ export const recover = (accountName, seedStore, inputs, dialogFn) => async (disp
                                         null,
                                         // See: extendedApi#attachToTangle
                                         getRemotePoWFromState(getState())
-                                            ? extend({}, seedStore, { offloadPow: true })
+                                            ? extend(
+                                                  {
+                                                      __proto__: seedStore.__proto__,
+                                                  },
+                                                  seedStore,
+                                                  { offloadPow: true },
+                                              )
                                             : seedStore,
                                     )(seedFromBytes.slice(0, 81), input, {
                                         address: receiveAddress,

@@ -264,7 +264,15 @@ export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispa
                     // Extend seedStore object with offloadPow
                     // This property will lead to perform network bound proof-of-work
                     // See: extendedApi#attachToTangle
-                    remotePoW ? extend({}, seedStore, { offloadPow: true }) : seedStore,
+                    remotePoW
+                        ? extend(
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
+                        : seedStore,
                 ),
             );
         })
@@ -598,11 +606,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 dispatch(setNextStepAsActive());
 
                 const performLocalPow = () =>
-                    attachToTangleAsync(
-                        null,
-                        // See: extendedApi#attachToTangle
-                        extend({}, seedStore, { offloadPow: true }),
-                    )(trunkTransaction, branchTransaction, cached.trytes);
+                    attachToTangleAsync(null, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
 
                 if (!shouldOffloadPow) {
                     return performLocalPow();
@@ -614,50 +618,69 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // 1) Find nodes with PoW enabled
                 // 2) Auto retry offloading PoW
                 // 3) If auto retry fails, perform proof of work locally
-                return attachToTangleAsync(null, seedStore)(trunkTransaction, branchTransaction, cached.trytes).catch(
-                    () => {
-                        dispatch(
-                            generateAlert(
-                                'info',
-                                i18next.t('global:pleaseWait'),
-                                `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
-                                    'global:tryingAgainWithDifferentNode',
-                                )}`,
-                                20000,
-                            ),
-                        );
+                return attachToTangleAsync(
+                    null,
+                    // See: extendedApi#attachToTangle
+                    extend(
+                        {
+                            __proto__: seedStore.__proto__,
+                        },
+                        seedStore,
+                        { offloadPow: true },
+                    ),
+                )(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
+                    dispatch(
+                        generateAlert(
+                            'info',
+                            i18next.t('global:pleaseWait'),
+                            `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
+                                'global:tryingAgainWithDifferentNode',
+                            )}`,
+                            20000,
+                        ),
+                    );
 
-                        // Find nodes with proof of work enabled
-                        return fetchRemoteNodes()
-                            .then((remoteNodes) => {
-                                const nodesWithPowEnabled = map(
-                                    filter(remoteNodes, (node) => node.pow),
-                                    (nodeWithPoWEnabled) => nodeWithPoWEnabled.node,
-                                );
+                    // Find nodes with proof of work enabled
+                    return fetchRemoteNodes()
+                        .then((remoteNodes) => {
+                            const nodesWithPowEnabled = map(
+                                filter(remoteNodes, (node) => node.pow),
+                                (nodeWithPoWEnabled) => nodeWithPoWEnabled.node,
+                            );
 
-                                return withRetriesOnDifferentNodes(
-                                    getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
-                                        getSelectedNodeFromState(getState()),
-                                    ]),
-                                )(attachToTangleAsync)(trunkTransaction, branchTransaction, cached.trytes);
-                            })
-                            .then(({ result }) => result)
-                            .catch(() => {
-                                // If outsourced proof of work fails on all nodes, fallback to local proof of work.
-                                dispatch(
-                                    generateAlert(
-                                        'info',
-                                        i18next.t('global:pleaseWait'),
-                                        `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
-                                            'global:tryingAgainWithLocalPoW',
-                                        )}`,
+                            return withRetriesOnDifferentNodes(
+                                getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
+                                    getSelectedNodeFromState(getState()),
+                                ]),
+                            )((provider) =>
+                                attachToTangleAsync(
+                                    provider,
+                                    extend(
+                                        {
+                                            __proto__: seedStore.__proto__,
+                                        },
+                                        seedStore,
+                                        { offloadPow: true },
                                     ),
-                                );
+                                ),
+                            )(trunkTransaction, branchTransaction, cached.trytes);
+                        })
+                        .then(({ result }) => result)
+                        .catch(() => {
+                            // If outsourced proof of work fails on all nodes, fallback to local proof of work.
+                            dispatch(
+                                generateAlert(
+                                    'info',
+                                    i18next.t('global:pleaseWait'),
+                                    `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
+                                        'global:tryingAgainWithLocalPoW',
+                                    )}`,
+                                ),
+                            );
 
-                                return performLocalPow();
-                            });
-                    },
-                );
+                            return performLocalPow();
+                        });
+                });
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
@@ -884,7 +907,15 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore) => (d
                     // Extend seedStore object with offloadPow
                     // This property will lead to perform network bound proof-of-work
                     // See: extendedApi#attachToTangle
-                    shouldOffloadPow ? extend({}, seedStore, { offloadPow: true }) : seedStore,
+                    shouldOffloadPow
+                        ? extend(
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
+                        : seedStore,
                 );
             })
             .then(({ transactionObjects }) => {
