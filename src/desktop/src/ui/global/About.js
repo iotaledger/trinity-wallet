@@ -59,6 +59,10 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.4.6</h5>
+                            <ul>
+                                <li>- Fix: Unexpected wallet behaviour with account names starting with a number</li>
+                            </ul>
                             <h5>0.4.5</h5>
                             <ul>
                                 <li>- Hotfix: Block requests to nodes running beta, alpha and release IRI releases</li>
