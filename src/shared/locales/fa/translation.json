@@ -155,11 +155,11 @@
         "confirm": "تایید",
         "delete": "حذف",
         "shouldUpdate": "به‌روزرسانی جدیدی موجود است",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "shouldUpdateExplanation": "به‌روزرسانی جدیدی منتشر شده است. توصیه می‌شود که به آخرین نسخه به‌روز‌رسانی کنید.",
+        "forceUpdate": "برای ادامه برنامه را به‌روز‌رسانی کنید",
+        "forceUpdateExplanation": "یک به‌روزرسانی بحرانی منتشر شده است. لطفا هم‌اکنون برنامه را به‌روزرسانی کنید.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -197,7 +197,7 @@
         "reasonPattern": "الگوهای کوتاه از کلید ها آسان است قابل حدس زدن میباشد.",
         "reasonNames": "نام و نام خانوادگی به راحتی قابل حدس زدن است.",
         "reasonRepeats": "تکرار حرف ها کنار یکدیگر مانند 'aaa' آسان میباشند و قابل حدس زدن است.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats2": "تکرارهایی مانند 'abcabcabc' فقط کمی سخت‌تر از حدس زدن 'abc' است.",
         "reasonSequence": "دنباله هایی مانند abc یا 54321 آسان است حدس بزنید.",
         "reasonYears": "استفاده از سال های گذشته آسان است قابل حدس زدن میباشد.",
         "reasonDates": "تاریخ ها اغلب آسان و قابل حدس زدن است.",
