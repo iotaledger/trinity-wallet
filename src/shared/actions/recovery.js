@@ -111,7 +111,6 @@ export const byteTritSweep = (SeedStore, dialogFn) => (dispatch, getState) => {
  * @param  {string} accountName
  * @param  {object} seedStore
  * @param  {object} inputs Inputs list [{ address, keyIndex, balance, security }]
- * @param  {object} seedStore
  * @param  {function} dialogFn
  *
  * @returns {function} dispatch

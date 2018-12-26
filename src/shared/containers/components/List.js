@@ -59,6 +59,8 @@ export default function withListData(ListComponent) {
         render() {
             const {
                 accountNames,
+                accountMeta,
+                password,
                 index,
                 seedIndex,
                 accounts,
@@ -95,6 +97,8 @@ export default function withListData(ListComponent) {
                       );
 
             const ListProps = {
+                accountMeta,
+                password,
                 transfers,
                 updateAccount,
                 setItem,

@@ -63,6 +63,10 @@ class List extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        accountMeta: PropTypes.object.isRequired,
+        /** @ignore */
+        password: PropTypes.object.isRequired,
     };
 
     state = {
