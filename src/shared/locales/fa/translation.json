@@ -466,7 +466,7 @@
         "editAccountName": "ویرایش نام حساب",
         "deleteAccount": "حذف حساب",
         "addNewAccount": "اضافه کردن حساب جدید",
-        "tools": "Tools"
+        "tools": "ابزارها"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
@@ -476,7 +476,7 @@
         "add": "اضافه کردن",
         "nodeFieldEmpty": "فیلد متن خالی است",
         "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "لطفا یک URL معتبر وارد کنید."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
@@ -501,7 +501,7 @@
         "mockup": "Mockup"
     },
     "themes": {
-        "classic": "Classic",
+        "classic": "کلاسیک",
         "contemporary": "Contemporary",
         "dark": "Dark",
         "default": "Default",
