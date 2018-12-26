@@ -263,10 +263,10 @@
         "pressForNewSeed": "برای ساخت سید جدید فشار بدهید",
         "generateSuccess": "سید با موفقیت تولید شد",
         "individualLetters": "نامه های فردی را به صورت تصادفی انتخاب کنید.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "<1><0>{{count}}</0></1> حرف بیشتر برای تصادفی کردن آن فشار دهید.",
+        "individualLetterCount_plural": "<1><0>{{count}}</0></1> حرف بیشتر برای تصادفی کردن آن‌ها فشار دهید.",
+        "randomiseCharsToContinue": "برای ادامه <1>{{count}}</1> کارکتر را تصادفی کنید.",
+        "randomiseCharsToContinue_plural": "برای ادامه <1>{{count}}</1> کارکتر را تصادفی کنید.",
         "whatIsASeed": "سید چیست؟"
     },
     "onboardingComplete": {
@@ -277,12 +277,12 @@
     "paperWallet": {
         "neverShare": "هرگز سید خود را با کسی شریک نکنید.",
         "iotaLogo": "لوگو آیوتا",
-        "print": "Print",
+        "print": "چاپ",
         "paperConvenience": "چاپ کپی کاغذی از سید شما یک راه مناسب برای ذخیره آن است.",
         "publicInsecure": "اما چاپ در وای فای عمومی یا چاپگر عمومی نا امن است.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "لطفا قبل از چاپ بررسی و تایید کنید",
+        "wifiConfirmation": "من از یک وای‌فای عمومی استفاده نمی‌کنم",
+        "printerConfirmation": "من از یک چاپگر عمومی استفاده نمی‌کنم"
     },
     "receive": {
         "yourAddress": "آدرس شما",
@@ -291,12 +291,12 @@
         "copyAddress": "کپی کردن آدرس",
         "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "آدرس شما در کلیپ بورد کپی شد.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "تولید آدرس",
         "noAddresses": "بدون آدرس",
         "spent": "از قبل ساخته شده",
         "tag": "برچسب",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddress": "تولید آدرس",
+        "generateAnAddressTitle": "تولید یک آدرس",
         "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
