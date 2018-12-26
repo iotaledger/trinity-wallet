@@ -311,7 +311,7 @@
         "letsWriteDownYourSeed": "بیایید سید شما را بنویسیم",
         "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "کد اعتبارسنجی چیست؟",
         "everySeedHasAChecksum": "هر سید یک کد اعتبارسنجی 3 حرفی دارد.",
         "iHavesavedMySeed": "من سید خود را ذخیره کردم",
         "checksumExplanation": "هر گاه سید را به کیف پول خود اضافه می کنید، باید اطمینان حاصل کنید که کد اعتبارسنجی تولید شده از کیف پول مطابق با آنچه نوشته شده است.",
@@ -782,7 +782,7 @@
         "ledgerDeniedExplanation": "تراکنش در دستگاه لدجر رد شده است.",
         "ledgerIncorrectIndex": "عدم تطابق دستگاه لدجر",
         "ledgerIncorrectIndexExplanation": "دستگاه لدجر متصل شده با لدجری که این حساب به آن لینک شده است مطابقت ندارد یا عبارت بازیابی آن تغییر کرده است.",
-        "checkAddress": "Check the receive address",
+        "checkAddress": "آدرس دریافت را بررسی کنید",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
