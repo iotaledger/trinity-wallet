@@ -213,7 +213,7 @@
         "passwordTooShortExplanation": "گذرواژه شما باید حداقل {{minLength}} کاراکتر باشد. در حال حاضر {{currentLength}} کاراکتر میباشد. لطفا دوباره تلاش کنید.",
         "passwordMismatch": "گذرواژه‌ ها یکسان نیستند",
         "passwordMismatchExplanation": "گذرواژه هایی که وارد کرده اید، مطابقت ندارند. لطفا دوباره تلاش کنید.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "این گذرواژه کیف پول اصلی شماست. شما از آن برای ورود استفاده خواهید کرد.",
         "retypePassword": "دوباره گذرواژه را وارد کنید"
     },
     "copyToClipboard": {
@@ -247,8 +247,8 @@
         "login": "ورود",
         "setNode": "تنظیم Node",
         "whyBiometricDisabled": "چرا احراز هویت بیومتریک غیرفعال است؟",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "به دلایل امنیتی احراز هویت بیومتریک در اولین اجرای برنامه غیرفعال شده است.",
+        "whyBiometricDisabledExplanationPart2": "به هنگام استفاده از Trinity به دلیل عدم فعالیت خارج خواهید شد. شما سپس می‌توانید با احراز هویت بیومتریک دوباره وارد شوید."
     },
     "loading": {
         "loadingFirstTime": "بارگذاری سید برای اولین بار.",
