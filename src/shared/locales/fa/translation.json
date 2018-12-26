@@ -598,8 +598,8 @@
         "aMessage": "یک پیام",
         "fromAccount": "از {{selectedAccountName}}",
         "toAddress": "به آدرس",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "sendingAMessage": "در حال ارسال یک پیام",
+        "sendingAnEmptyMessage": "در حال ارسال یک پیام خالی"
     },
     "twoFA": {
         "wrongCode": "کد اشتباه است",
@@ -620,17 +620,17 @@
     },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault یک فایل رمزنگاری شده برای پشتیبان‌گیری از سید شما است. سید با کلید SeedVault رمزنگاری می‌شود و بدون آن کلید قابل دسترسی نخواهد بود.",
         "seedVaultWarning": "اطمینان حاصل کنید که فایل را در چندین مکان (مانند هارد دیسک، فضای ابری، فلش) پشتیبان بگیرید. اگر این فایل را از دست بدهید و سید خود را در جایی ذخیره نکرده باشید، آیوتای خود را از دست خواهید داد.",
         "exportFail": "استخراج سید Vault ناموفق بود",
         "exportFailExplanation": "مشکل استخراج سید Vault وجود داشت. لطفا اطمینان حاصل کنید که مجوز های مناسب و فضای آزاد کافی دارید.",
         "exportSuccess": "سید Vault استخراج شد",
         "exportSuccessExplanation": "فایل سید رمزگذاری شده شما با موفقیت استخراج شد.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
-        "importSuccess": "Seed imported",
+        "unrecognisedKey": "کلید SeedVault شناسایی نشده",
+        "unrecognisedKeyExplanation": "کلید شناسایی نشد. لطفا دوباره تلاش کنید.",
+        "emptyKey": "هیچ کلید SeedVault وارد نشده",
+        "emptyKeyExplanation": "شما باید یک کلید وارد کنید. لطفا دوباره تلاش کنید.",
+        "importSuccess": "سید درون‌ریزی شد",
         "importSuccessExplanation": "سید شما با موفقیت درون‌ریزی شد.",
         "saveToDownloadFolder": "ذخیره در پوشه دانلود",
         "importSeedVault": "وارد کردن سید Vault",
@@ -642,7 +642,7 @@
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "کلید را دوباره وارد کنید"
     },
     "chart": {
         "mcap": "MCAP",
@@ -692,7 +692,7 @@
         "transitioning": "انتقال برای عکس فوری.",
         "generatingAndDetecting": "تولید آدرس ها و شناسایی موجودی.",
         "attaching": "پیوستن آدرس ها به Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "پیوست آدرس {{currentAddress}} از {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "موفقیت در تکمبل خودکار",
@@ -703,10 +703,10 @@
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "نسخه جدید موجود است",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
+        "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
+        "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",
+        "installUpdateExplanation": "دانلود کامل شد، Trinity الان برای نصب به‌روز‌رسانی مجددا راه‌اندازی خواهد شد.",
+        "downloadingUpdate": "درحال دانلود به‌روزرسانی",
         "downloadProgress": "{{transferred}} از {{total}} دانلود شده"
     },
     "notificationLog": {
