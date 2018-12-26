@@ -277,7 +277,7 @@
     "paperWallet": {
         "neverShare": "Svoj Seed nikdy nikomu neprezrádzajte.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Tlačiť",
         "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
         "pleaseCheck": "Please check and confirm before you print",
