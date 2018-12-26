@@ -562,12 +562,12 @@
         "hideSeed": "پنهان کردن سید",
         "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
         "accountIndex": "اندیس حساب لدجر شما",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "صفحه حساب لدجر شما"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "آیا از سید خود پشتیبانی گرفتید؟",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "من به طور امن از سید خودم پشتیبان‌گیری کرده‌ام",
+        "reenterSeed": "در مرحله بعد شما باید سید خود را دوباره وارد کنید.",
         "reenterSeedWarning": "اگر از سید خودتان پشتیبانی تهیه نکنید و دستگاه شما خراب بشود، شما تمام آیوتای خود را از دست خواهید داد.",
         "pleaseConfirm": "لطفا تایید کنید که سید خود را ایمن نگه داشته اید."
     },
@@ -596,8 +596,8 @@
     "transferConfirmation": {
         "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
         "aMessage": "یک پیام",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
+        "fromAccount": "از {{selectedAccountName}}",
+        "toAddress": "به آدرس",
         "sendingAMessage": "Sending a message",
         "sendingAnEmptyMessage": "Sending an empty message"
     },
