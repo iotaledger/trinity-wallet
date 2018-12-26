@@ -15,7 +15,7 @@ import {
     fetchNodeList,
     setPollFor,
     promoteTransfer,
-    getAccountsInfo,
+    getAccountInfoForAllAccounts,
 } from 'actions/polling';
 
 /**
@@ -30,7 +30,7 @@ class Polling extends React.PureComponent {
         /** @ignore */
         pollFor: PropTypes.string.isRequired,
         /** @ignore */
-        getAccountsInfo: PropTypes.func.isRequired,
+        getAccountInfoForAllAccounts: PropTypes.func.isRequired,
         /** @ignore */
         allPollingServices: PropTypes.array.isRequired,
         /** @ignore */
@@ -98,15 +98,15 @@ class Polling extends React.PureComponent {
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
             nodeList: this.props.fetchNodeList,
-            accountsInfo: this.fetchLatestAccountsInfo,
+            accountInfo: this.fetchLatestAccountInfo,
         };
 
         dict[service] ? dict[service]() : this.props.setPollFor(this.props.allPollingServices[0]);
     };
 
-    fetchLatestAccountsInfo = async () => {
+    fetchLatestAccountInfo = async () => {
         const { accountNames, selectedAccountName } = this.props;
-        this.props.getAccountsInfo(
+        this.props.getAccountInfoForAllAccounts(
             [selectedAccountName, ...filter(accountNames, (name) => name !== selectedAccountName)],
             Electron.notify,
         );
@@ -169,7 +169,7 @@ const mapDispatchToProps = {
     fetchNodeList,
     setPollFor,
     promoteTransfer,
-    getAccountsInfo,
+    getAccountInfoForAllAccounts,
     removeBundleFromUnconfirmedBundleTails,
 };
 

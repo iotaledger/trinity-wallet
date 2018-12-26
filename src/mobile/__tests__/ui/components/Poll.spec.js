@@ -35,7 +35,7 @@ const getProps = (overrides) =>
             fetchMarketData: noop,
             fetchPrice: noop,
             fetchChartData: noop,
-            getAccountsInfo: noop,
+            getAccountInfoForAllAccounts: noop,
             promoteTransfer: noop,
             removeBundleFromUnconfirmedBundleTails: noop,
             fetchNodeList: noop,
@@ -79,7 +79,7 @@ describe('Testing Poll component', () => {
                     marketData: { func: 'fetchMarketData', instance: false },
                     price: { func: 'fetchPrice', instance: false },
                     chartData: { func: 'fetchChartData', instance: false },
-                    accountsInfo: { func: 'fetchLatestAccountsInfo', instance: true },
+                    accountInfo: { func: 'fetchLatestAccountInfo', instance: true },
                     promotion: { func: 'promote', instance: true },
                 },
                 notAllowed: [null, undefined, 'dummy', 0],
@@ -126,21 +126,21 @@ describe('Testing Poll component', () => {
             });
         });
 
-        describe('#fetchLatestAccountsInfo', () => {
-            it('should always call prop method getAccountsInfo with an array with selectedAccountName as first element', () => {
+        describe('#fetchLatestAccountInfo', () => {
+            it('should always call prop method getAccountInfoForAllAccounts with an array with selectedAccountName as first element', () => {
                 const props = getProps({
-                    getAccountsInfo: jest.fn(),
+                    getAccountInfoForAllAccounts: jest.fn(),
                 });
 
                 const instance = shallow(<Poll {...props} />).instance();
 
-                instance.fetchLatestAccountsInfo();
+                instance.fetchLatestAccountInfo();
 
                 // First assert that selected account name is 'second account'
                 expect(instance.props.selectedAccountName).toEqual('second account');
 
                 const expectedArguments = ['second account', 'first account', 'third account'];
-                expect(props.getAccountsInfo).toHaveBeenCalledWith(expectedArguments);
+                expect(props.getAccountInfoForAllAccounts).toHaveBeenCalledWith(expectedArguments);
             });
         });
     });

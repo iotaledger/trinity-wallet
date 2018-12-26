@@ -6,7 +6,7 @@ import { ActionTypes } from '../../actions/polling';
 describe('Reducer: polling', () => {
     it('should have an initial state', () => {
         const initialState = {
-            allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountsInfo'],
+            allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
             pollFor: 'promotion',
             retryCount: 0,
             isFetchingPrice: false,
@@ -232,13 +232,13 @@ describe('Reducer: polling', () => {
         expect(newState.isFetchingMarketData).to.eql(expectedState.isFetchingMarketData);
     });
 
-    it('ACCOUNTS_INFO_FETCH_REQUEST should set isFetchingAccountInfo to true', () => {
+    it('ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST should set isFetchingAccountInfo to true', () => {
         const initialState = {
             isFetchingAccountInfo: false,
         };
 
         const action = {
-            type: ActionTypes.ACCOUNTS_INFO_FETCH_REQUEST,
+            type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
         };
 
         const newState = reducer(initialState, action);
@@ -249,14 +249,14 @@ describe('Reducer: polling', () => {
         expect(newState).to.eql(expectedState);
     });
 
-    it('ACCOUNTS_INFO_FETCH_SUCCESS should set isFetchingAccountInfo to false', () => {
+    it('ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS should set isFetchingAccountInfo to false', () => {
         const initialState = {
             isFetchingAccountInfo: true,
             allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.ACCOUNTS_INFO_FETCH_SUCCESS,
+            type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
         };
 
         const newState = reducer(initialState, action);
@@ -267,14 +267,14 @@ describe('Reducer: polling', () => {
         expect(newState.isFetchingAccountInfo).to.eql(expectedState.isFetchingAccountInfo);
     });
 
-    it('ACCOUNTS_INFO_FETCH_ERROR should set isFetchingAccountInfo to false', () => {
+    it('ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR should set isFetchingAccountInfo to false', () => {
         const initialState = {
             isFetchingAccountInfo: true,
             allPollingServices: [],
         };
 
         const action = {
-            type: ActionTypes.ACCOUNTS_INFO_FETCH_ERROR,
+            type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
         };
 
         const newState = reducer(initialState, action);

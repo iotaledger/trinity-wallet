@@ -32,14 +32,14 @@ export const ActionTypes = {
     FETCH_MARKET_DATA_REQUEST: 'IOTA/POLLING/FETCH_MARKET_DATA_REQUEST',
     FETCH_MARKET_DATA_SUCCESS: 'IOTA/POLLING/FETCH_MARKET_DATA_SUCCESS',
     FETCH_MARKET_DATA_ERROR: 'IOTA/POLLING/FETCH_MARKET_DATA_ERROR',
-    ACCOUNTS_INFO_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNTS_INFO_FETCH_REQUEST',
-    ACCOUNTS_INFO_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNTS_INFO_FETCH_SUCCESS',
-    ACCOUNTS_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNTS_INFO_FETCH_ERROR',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
-    SYNC_ACCOUNT_DURING_ACCOUNTS_INFO_POLL: 'IOTA/POLLING/SYNC_ACCOUNT_DURING_ACCOUNTS_INFO_POLL',
+    SYNC_ACCOUNT_WHILE_POLLING: 'IOTA/POLLING/SYNC_ACCOUNT_WHILE_POLLING',
 };
 
 /**
@@ -177,35 +177,35 @@ const fetchMarketDataError = () => ({
 /**
  * Dispatch when accounts information is about to be fetched during polling
  *
- * @method accountsInfoFetchRequest
+ * @method accountInfoForAllAccountsFetchRequest
  *
  * @returns {{type: {string} }}
  */
-const accountsInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNTS_INFO_FETCH_REQUEST,
+const accountInfoForAllAccountsFetchRequest = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
 });
 
 /**
  * Dispatch when accounts information is successfully fetched during polling
  *
- * @method accountsInfoFetchSuccess
+ * @method accountInfoForAllAccountsFetchSuccess
  * @param {object} payload
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-const accountsInfoFetchSuccess = () => ({
-    type: ActionTypes.ACCOUNTS_INFO_FETCH_SUCCESS,
+const accountInfoForAllAccountsFetchSuccess = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
 });
 
 /**
  * Dispatch when an error occurs during accounts sync
  *
- * @method accountInfoFetchError
+ * @method accountInfoForAllAccountsFetchError
  *
  * @returns {{type: {string} }}
  */
-const accountsInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNTS_INFO_FETCH_ERROR,
+const accountInfoForAllAccountsFetchError = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
 });
 
 /**
@@ -272,13 +272,13 @@ export const syncAccountBeforeAutoPromotion = (payload) => ({
 /**
  * Dispatch to update account state during accounts info polling operation
  *
- * @method syncAccountDuringAccountsInfoPoll
+ * @method syncAccountWhilePolling
  *
  * @param {object} payload
  * @returns {{type: {string}, payload: {object} }}
  */
-export const syncAccountDuringAccountsInfoPoll = (payload) => ({
-    type: ActionTypes.SYNC_ACCOUNT_DURING_ACCOUNTS_INFO_POLL,
+export const syncAccountWhilePolling = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_WHILE_POLLING,
     payload,
 });
 
@@ -434,14 +434,14 @@ export const fetchChartData = () => {
 /**
  *   Accepts account names and syncs local account state with ledger's.
  *
- *   @method getAccountsInfo
+ *   @method getAccountInfoForAllAccounts
  *   @param {array} accountNames
  *   @param {function} notificationFn - New transaction callback function
  *   @returns {function} dispatch
  **/
-export const getAccountsInfo = (accountNames, notificationFn) => {
+export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
     return (dispatch, getState) => {
-        dispatch(accountsInfoFetchRequest());
+        dispatch(accountInfoForAllAccountsFetchRequest());
 
         const selectedNode = getSelectedNodeFromState(getState());
         const randomNodes = getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]);
@@ -458,17 +458,17 @@ export const getAccountsInfo = (accountNames, notificationFn) => {
                         notificationFn,
                     ).then(({ node, result }) => {
                         dispatch(changeNode(node));
-                        dispatch(syncAccountDuringAccountsInfoPoll(result));
+                        dispatch(syncAccountWhilePolling(result));
                     });
                 });
             },
             Promise.resolve(),
         )
             .then(() => {
-                dispatch(accountsInfoFetchSuccess());
+                dispatch(accountInfoForAllAccountsFetchSuccess());
             })
             .catch((err) => {
-                dispatch(accountsInfoFetchError());
+                dispatch(accountInfoForAllAccountsFetchError());
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };

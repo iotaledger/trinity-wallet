@@ -44,7 +44,7 @@ const polling = (
         /**
          * Polling service names
          */
-        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountsInfo'],
+        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
         /**
          * Determines the service currently being run during the poll cycle
          */
@@ -149,18 +149,18 @@ const polling = (
                 isFetchingMarketData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.ACCOUNTS_INFO_FETCH_REQUEST:
+        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST:
             return {
                 ...state,
                 isFetchingAccountInfo: true,
             };
-        case ActionTypes.ACCOUNTS_INFO_FETCH_SUCCESS:
+        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.ACCOUNTS_INFO_FETCH_ERROR:
+        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingAccountInfo: false,

@@ -19,7 +19,7 @@ import {
     fetchPrice,
     fetchNodeList,
     setPollFor,
-    getAccountsInfo,
+    getAccountInfoForAllAccounts,
     promoteTransfer,
 } from 'shared-modules/actions/polling';
 
@@ -48,7 +48,7 @@ export class Poll extends Component {
         /** @ignore */
         fetchChartData: PropTypes.func.isRequired,
         /** @ignore */
-        getAccountsInfo: PropTypes.func.isRequired,
+        getAccountInfoForAllAccounts: PropTypes.func.isRequired,
         /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
     };
@@ -56,7 +56,7 @@ export class Poll extends Component {
     constructor() {
         super();
 
-        this.fetchLatestAccountsInfo = this.fetchLatestAccountsInfo.bind(this);
+        this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
         this.promote = this.promote.bind(this);
 
         this.state = {
@@ -108,17 +108,17 @@ export class Poll extends Component {
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
             nodeList: this.props.fetchNodeList,
-            accountsInfo: this.fetchLatestAccountsInfo,
+            accountInfo: this.fetchLatestAccountInfo,
         };
 
         // In case something messed up, reinitialize
         return dict[service] ? dict[service]() : this.props.setPollFor(this.props.allPollingServices[0]); // eslint-disable-line consistent-return
     }
 
-    fetchLatestAccountsInfo() {
+    fetchLatestAccountInfo() {
         const { selectedAccountName, accountNames } = this.props;
 
-        this.props.getAccountsInfo([
+        this.props.getAccountInfoForAllAccounts([
             selectedAccountName,
             ...filter(accountNames, (name) => name !== selectedAccountName),
         ]);
@@ -203,7 +203,7 @@ const mapDispatchToProps = {
     fetchPrice,
     fetchNodeList,
     setPollFor,
-    getAccountsInfo,
+    getAccountInfoForAllAccounts,
     promoteTransfer,
     removeBundleFromUnconfirmedBundleTails,
 };
