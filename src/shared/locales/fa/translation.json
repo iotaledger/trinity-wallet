@@ -734,7 +734,7 @@
     },
     "notifications": {
         "notifications": "اعلان‌ها",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
+        "notificationExplanation": "اعلانات سیستم گسترده درباره تراکنش‌های جدید را دریافت کنید.",
         "typeConfirmations": "مرا درباره تاییدها مطلع کن",
         "typeMessages": "مرا از تراکنش‌های با مقدار صفر مطلع کن",
         "multipleTx": "در حال دریافت چندین تراکنش به {{account}}",
