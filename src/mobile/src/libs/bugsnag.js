@@ -4,7 +4,7 @@ import packageJson from '../../package';
 const configuration = new Configuration();
 configuration.appVersion = packageJson.version;
 
-const bugsnag = new Client(configuration);
+export const bugsnag = new Client(configuration);
 
 /**
  * Leaves navigation breadcrumbs to help determine what screen an error occurred on
