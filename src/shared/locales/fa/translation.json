@@ -735,7 +735,7 @@
     "notifications": {
         "notifications": "اعلان‌ها",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
+        "typeConfirmations": "مرا درباره تاییدها مطلع کن",
         "typeMessages": "مرا از تراکنش‌های با مقدار صفر مطلع کن",
         "multipleTx": "در حال دریافت چندین تراکنش به {{account}}",
         "valueTx": "در حال دریافت {{value}} به {{account}}",
@@ -760,7 +760,7 @@
         "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
         "indexInUse": "اندیس در حال حاضر برای حساب {{account}} استفاده می‌شود",
         "indexInUseExplanation": "اندیس انتخابی شما در حال حاضر برای یکی از حساب‌های شما استفاده می‌شود. لطفا یک عدد اندیس دیگر انتخاب کنید.",
-        "proceedWithLedger": "Proceed with Ledger setup",
+        "proceedWithLedger": "ادامه با برپایی لدجر",
         "accountIndex": "اندیس حساب",
         "accountPage": "صفحه حساب",
         "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
@@ -770,8 +770,8 @@
         "connectionErrorExplanation": "بررسی کنید که لدجر شما متصل شده و قفل آن گشوده شده باشد.",
         "connectionTitle": "لدجر خود را متصل کنید",
         "connectionExplanation": "برای انجام این عمل باید یک دستگاه لدجر متصل شده باشد.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "transactionTitle": "پیمایش کرده و تراکنش را در لدجر خود قبول کنید",
+        "transactionExplanation": "برای قبول تراکنش خروجی از لدجر خود استفاده کنید.",
         "applicationTitle": "برنامه IOTA در لدجر را باز کنید",
         "applicationExplanation": "برای ادامه‌ی استفاده از Trinity به لدجر خود بروید و برنامه IOTA را باز کنید.",
         "cannotSendZeroValueTitle": "نمی‌توان انتقال با مقدار صفر ارسال کرد",
@@ -783,8 +783,8 @@
         "ledgerIncorrectIndex": "عدم تطابق دستگاه لدجر",
         "ledgerIncorrectIndexExplanation": "دستگاه لدجر متصل شده با لدجری که این حساب به آن لینک شده است مطابقت ندارد یا عبارت بازیابی آن تغییر کرده است.",
         "checkAddress": "آدرس دریافت را بررسی کنید",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "checkAddressExplanation": "بررسی کنید که آدرس با آنچه در دستگاه لدجر شما نشان داده می‌شود همخوانی دارد.",
+        "applicationNotInitialised": "هشدار تایید نشده",
+        "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید."
     }
 }
