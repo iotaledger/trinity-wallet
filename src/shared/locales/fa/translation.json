@@ -781,7 +781,7 @@
         "ledgerDeniedTitle": "رد شدن تراکنش",
         "ledgerDeniedExplanation": "تراکنش در دستگاه لدجر رد شده است.",
         "ledgerIncorrectIndex": "عدم تطابق دستگاه لدجر",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "ledgerIncorrectIndexExplanation": "دستگاه لدجر متصل شده با لدجری که این حساب به آن لینک شده است مطابقت ندارد یا عبارت بازیابی آن تغییر کرده است.",
         "checkAddress": "Check the receive address",
         "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
