@@ -15,10 +15,10 @@ export default {
         'progressSteps:broadcasting',
     ],
     migration: [
-        i18next.t('progressSteps:preparingData'),
-        i18next.t('progressSteps:migratingSettings'),
-        i18next.t('progressSteps:migratingAccounts'),
-        i18next.t('progressSteps:cleaningUpOldData'),
-        i18next.t('progressSteps:migrationComplete'),
+        'progressSteps:preparingData',
+        'progressSteps:migratingSettings',
+        'progressSteps:migratingAccounts',
+        'progressSteps:cleaningUpOldData',
+        'progressSteps:migrationComplete',
     ],
 };
