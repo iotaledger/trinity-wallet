@@ -362,7 +362,7 @@
         "youCanAdd": "می توانید سید های بیشتری را از منوی تنظیمات اضافه کنید."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "پیشرفته",
         "standard": "استاندارد",
         "advancedModeExplanation": "حالت پیشرفته اطلاعات فنی را با جزئیات بیشتری نمایش خواهد داد.",
         "modesExplanation": "فقط در صورتی حالت پیشرفته را فعال کنید که تجربه کافی در استفاده از IOTA را دارید. در غیر این صورت ممکن است برایتان گمراه‌کننده باشد.",
@@ -382,9 +382,9 @@
         "addNewSeed": "سید جدید را اضافه کنید",
         "twoFA": "احراز هویت دو مرحله ای",
         "changePassword": "تغییر گذرواژه",
-        "general": "General settings",
+        "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
-        "account": "Account settings",
+        "account": "تنظیمات حساب",
         "logout": "خروج",
         "reset": "بازنشانی کیف پول",
         "syncingComplete": "همگام سازی کامل شد",
@@ -424,7 +424,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "گذرواژه خود را برای بازنشانی کیف پول وارد کنید.",
-        "reset": "Reset"
+        "reset": "بازنشانی"
     },
     "walletSetup": {
         "okay": "باشه. بیایید کیف پول خود را تنظیم کنیم!",
