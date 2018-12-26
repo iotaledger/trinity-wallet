@@ -723,7 +723,7 @@
     },
     "tray": {
         "trayApplication": "برنامه‌ی سینی",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
+        "trayExplanation": "اطلاعات اجمالی از موجودی حساب‌های شما و تاریخچه تراکنش‌های اخیر فراهم می‌کند.",
         "notLoggedIn": "شما وارد نشده‌اید",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "تکمیل عملیات نصب"
@@ -736,18 +736,18 @@
         "notifications": "اعلان‌ها",
         "notificationExplanation": "Receive system-wide notifications about new transactions.",
         "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "typeMessages": "مرا از تراکنش‌های با مقدار صفر مطلع کن",
+        "multipleTx": "در حال دریافت چندین تراکنش به {{account}}",
+        "valueTx": "در حال دریافت {{value}} به {{account}}",
+        "messageTx": "شما یک پیام برای {{account}} دریافت کردید",
+        "confirmedIn": "ورودی {{value}} به {{account}} تایید شد",
+        "confirmedOut": "خروجی {{value}} از {{account}} تایید شد"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
+        "sweepSucceeded": "قفل وجوه با موفقیت گشوده شد",
+        "sweepSucceededExplanation": "قفل وجوه شما با موفقیت گشوده شده و به یک آدرس جدید انتقال داده شده است. برای کمک به تایید تراکنش‌ها آن‌ها را ارتقا دهید.",
+        "sweepError": "خطا در گشودن قفل وجوه",
+        "sweepErrorExplanation": "هنگام گشودن قفل وجوه مشکلی پیش آمد. در حال تلاش مجدد.",
         "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
