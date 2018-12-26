@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ",
         "nodeOutOfSyncExplanation": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಆಯ್ಕೆ ಮಾಡಿದ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "ಈ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "seed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "checksum": "ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ",
@@ -149,13 +151,15 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "ಮುಖ್ಯ ಖಾತೆ",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -290,8 +294,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "ವಿಳಾಸವಿಲ್ಲ",
         "spent": "ಖರ್ಚು ಮಾಡಿದ",
-        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
-        "missingPermissionExplanation": "QR ಸಂಕೇತಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಫೈಲ್ ವ್ಯವಸ್ಥೆಗೆ ಪ್ರವೇಶ ಅಗತ್ಯವಿರುತ್ತದೆ.",
         "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -317,14 +319,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ದೃಢೀಕರಿಸಿ",
-        "trinityWillNeverAskToReenter": "ನಿಮ್ಮ ವಾಲೆಟ್ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಮರುಹೊಂದಿಸದ ಹೊರತು ಟ್ರಿನಿಟಿ ಈ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಮತ್ತೆ ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮನ್ನು ಎಂದಿಗೂ ಕೇಳಿಕೊಳ್ಳುವುದಿಲ್ಲ.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ",
         "incorrectSeed": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "incorrectSeedExplanation": "ನೀವು ನಮೂದಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "ifYouHaveNotSaved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕಪ್ ಮಾಡಿಲ್ಲದಿದ್ದರೆ, ದಯವಿಟ್ಟು ಹಿಂತಿರುಗಿ ಮತ್ತು ಬ್ಯಾಕಪ್ ಮಾಡಿ.",
         "enterSeedBelow": "ನೀವು ಹೊಸದಾಗಿ ರಚಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಅದನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಲು ಕೆಳಗೆ ನಮೂದಿಸಿ",
-        "clipboardWarning": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಅಂಟಿಸಬೇಡಿ",
-        "clipboardWarningExplanation": "ಎಚ್ಚರಿಕೆ: ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ನಕಲಿಸಿ ಪೇಸ್ಟ್ ಮಾಡುವುದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "ಅಮಾನ್ಯವಾದ ವಿಳಾಸ",
@@ -380,7 +382,9 @@
         "addNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸೇರಿಸಿ",
         "twoFA": "ಎರಡು-ಅಂಶದ ದೃಢೀಕರಣ",
         "changePassword": "ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ",
+        "general": "General settings",
         "advanced": "ಮು೦ದುವರಿದ ಸೆಟ್ಟಿಂಗ್ಸ್",
+        "account": "Account settings",
         "logout": "ಲಾಗ್ ಔಟ್",
         "reset": "ವಾಲೆಟ್ ಅನ್ನು ಮರುಹೊಂದಿಸಿ",
         "syncingComplete": "ಒಡವಾಗುನಂಟು ಪೂರ್ಣಗೊಂಡಿದೆ",
@@ -536,7 +540,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ವ್ಯವಹಾರ ಇತಿಹಾಸವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ",
         "enterPassword": "ಈ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ."
     },
     "manualSync": {
@@ -548,7 +552,7 @@
         "syncingYourAccount": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ."
     },
     "useExistingSeed": {
-        "title": "ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ಖಾತೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸ್ವರೂಪ",
         "validSeedExplanation": "ಮಾನ್ಯವಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ 81 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು."
     },
@@ -637,7 +641,7 @@
         "noSeedFoundExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಖಾಲಿಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ವರೂಪದಲ್ಲಿ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "seedFileError": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
@@ -687,7 +691,8 @@
         "transition": "ಪರಿವರ್ತನೆ",
         "transitioning": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ಗಾಗಿ ಪರಿವರ್ತನೆ.",
         "generatingAndDetecting": "ವಿಳಾಸಗಳನ್ನು ಉತ್ಪಾದಿಸಲಾಗುತ್ತಿದೆ ಮತ್ತು ಖಾತೆಯ ಮೊತ್ತವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿದೆ.",
-        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ."
+        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "ಸ್ವಯಂತುಂಬುವಿಕೆ ಯಶಸ್ಸು",

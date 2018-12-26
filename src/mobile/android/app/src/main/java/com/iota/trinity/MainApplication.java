@@ -33,6 +33,7 @@ import me.listenzz.modal.TranslucentModalReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.janeasystems.rn_nodejs_mobile.RNNodeJsMobilePackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
+import com.lewin.qrcode.QRScanReaderPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
@@ -68,6 +69,8 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 // eg. new VectorIconsPackage()
                 new SvgPackage(),
                 new MainReactPackage(),
+                new RNCameraPackage(),
+                new QRScanReaderPackage(),
                 new ReactNativeDocumentPicker(),
                 new RNNodeJsMobilePackage(),
                 new RNFastCryptoPackage(),
@@ -77,7 +80,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new RNDeviceInfo(),
                 new RNOSModule(),
                 new RNPrintPackage(),
-                new RNCameraPackage(),
                 new ExtraDimensionsPackage(),
                 new KCKeepAwakePackage(),
                 new KeychainPackage(),

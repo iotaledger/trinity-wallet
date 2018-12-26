@@ -14,6 +14,12 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
+jest.mock('libs/navigation', () => ({
+    navigator: {
+        push: jest.fn(),
+    },
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -88,6 +94,7 @@ describe('Testing SetAccountName component', () => {
                     expect(props.setAccountInfoDuringSetup).toHaveBeenCalledWith({
                         name: 'foo',
                         meta: { type: 'keychain' },
+                        completed: true,
                     });
                 });
 

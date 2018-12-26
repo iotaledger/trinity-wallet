@@ -157,8 +157,10 @@ describe('selectors: accounts', () => {
         });
 
         describe('when "accountInfo" prop is defined as a nested prop under "accounts" prop in argument', () => {
-            it('should return value for "accountNames" prop', () => {
-                expect(getAccountNamesFromState({ accounts: { accountInfo: { a: {}, b: [] } } })).to.eql(['a', 'b']);
+            it('should return sorted account names by indes', () => {
+                expect(
+                    getAccountNamesFromState({ accounts: { accountInfo: { a: { index: 1 }, b: { index: 0 } } } }),
+                ).to.eql(['b', 'a']);
             });
         });
     });
@@ -733,51 +735,80 @@ describe('selectors: accounts', () => {
     describe('#isSettingUpNewAccount', () => {
         describe('when accountInfoDuringSetup.name is empty', () => {
             describe('when accountInfoDuringSetup.meta is not empty', () => {
-                it('should return false', () => {
-                    expect(
-                        isSettingUpNewAccount({
-                            accounts: {
-                                accountInfoDuringSetup: {
-                                    name: '',
-                                    meta: { foo: {} },
+                describe('when accountInfoDuringSetup.completed is false', () => {
+                    it('should return false', () => {
+                        expect(
+                            isSettingUpNewAccount({
+                                accounts: {
+                                    accountInfoDuringSetup: {
+                                        name: '',
+                                        meta: { foo: {} },
+                                        completed: false,
+                                    },
                                 },
-                            },
-                        }),
-                    ).to.equal(false);
+                            }),
+                        ).to.equal(false);
+                    });
                 });
             });
         });
 
         describe('when accountInfoDuringSetup.name is not empty', () => {
             describe('when accountInfoDuringSetup.meta is empty', () => {
-                it('should return false', () => {
-                    expect(
-                        isSettingUpNewAccount({
-                            accounts: {
-                                accountInfoDuringSetup: {
-                                    name: 'foo',
-                                    meta: {},
+                describe('when accountInfoDuringSetup.completed is true', () => {
+                    it('should return false', () => {
+                        expect(
+                            isSettingUpNewAccount({
+                                accounts: {
+                                    accountInfoDuringSetup: {
+                                        name: 'foo',
+                                        meta: {},
+                                        completed: true,
+                                    },
                                 },
-                            },
-                        }),
-                    ).to.equal(false);
+                            }),
+                        ).to.equal(false);
+                    });
                 });
             });
         });
 
         describe('when accountInfoDuringSetup.name is not empty', () => {
             describe('when accountInfoDuringSetup.meta is not empty', () => {
-                it('should return true', () => {
-                    expect(
-                        isSettingUpNewAccount({
-                            accounts: {
-                                accountInfoDuringSetup: {
-                                    name: 'foo',
-                                    meta: { baz: {} },
+                describe('when accountInfoDuringSetup.completed is false', () => {
+                    it('should return false', () => {
+                        expect(
+                            isSettingUpNewAccount({
+                                accounts: {
+                                    accountInfoDuringSetup: {
+                                        name: 'foo',
+                                        meta: { foo: {} },
+                                        completed: false,
+                                    },
                                 },
-                            },
-                        }),
-                    ).to.equal(true);
+                            }),
+                        ).to.equal(false);
+                    });
+                });
+            });
+        });
+
+        describe('when accountInfoDuringSetup.name is not empty', () => {
+            describe('when accountInfoDuringSetup.meta is not empty', () => {
+                describe('when accountInfoDuringSetup.completed is true', () => {
+                    it('should return true', () => {
+                        expect(
+                            isSettingUpNewAccount({
+                                accounts: {
+                                    accountInfoDuringSetup: {
+                                        name: 'foo',
+                                        meta: { baz: {} },
+                                        completed: true,
+                                    },
+                                },
+                            }),
+                        ).to.equal(true);
+                    });
                 });
             });
         });

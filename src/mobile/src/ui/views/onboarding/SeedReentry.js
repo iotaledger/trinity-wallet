@@ -123,13 +123,7 @@ class SeedReentry extends Component {
                     backgroundColor: body.bg,
                     orientation: ['portrait'],
                 },
-                topBar: {
-                    visible: false,
-                    drawBehind: false,
-                    elevation: 0,
-                },
                 statusBar: {
-                    drawBehind: false,
                     backgroundColor: body.bg,
                 },
             });
@@ -190,7 +184,6 @@ class SeedReentry extends Component {
             case 'qrScanner':
                 return this.props.toggleModalActivity(modalContent, {
                     theme,
-                    print: () => this.print(),
                     hideModal: () => this.props.toggleModalActivity(),
                     onQRRead: (data) => this.onQRRead(data),
                 });

@@ -376,7 +376,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(extendedApis, 'isNodeSynced').resolves(true);
+                sandbox.stub(extendedApis, 'isNodeHealthy').resolves(true);
                 sandbox.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction:
                         'PMEL9E9ZACLGEUPHNX9TSLEBDKTIGXDERNQSURABASAIGPWTFB9WUIXQVPKIFTHUQBRXEYQJANBDZ9999',

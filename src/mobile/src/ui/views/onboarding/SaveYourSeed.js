@@ -124,13 +124,7 @@ class SaveYourSeed extends Component {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
             },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
-            },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -163,13 +157,7 @@ class SaveYourSeed extends Component {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
             },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
-            },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });
@@ -198,13 +186,7 @@ class SaveYourSeed extends Component {
                 backgroundColor: body.bg,
                 orientation: ['portrait'],
             },
-            topBar: {
-                visible: false,
-                drawBehind: false,
-                elevation: 0,
-            },
             statusBar: {
-                drawBehind: false,
                 backgroundColor: body.bg,
             },
         });

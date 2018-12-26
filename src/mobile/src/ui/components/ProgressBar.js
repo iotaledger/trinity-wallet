@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { PanResponder, Easing, Animated, StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import sliderLoadingAnimation from 'shared-modules/animations/slider-loader.json';
 import sliderSuccessAnimation from 'shared-modules/animations/slider-success.json';
 import timer from 'react-native-timer';
@@ -56,6 +57,8 @@ class ProgressBar extends Component {
         onSwipeSuccess: PropTypes.func,
         /** Interupts the progress bar when changed */
         interupt: PropTypes.bool,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -217,6 +220,7 @@ class ProgressBar extends Component {
     }
 
     onCompleteSwipe() {
+        ReactNativeHapticFeedback.trigger('impactLight', false);
         Animated.timing(this.state.sliderPosition, {
             toValue: this.props.channelWidth - this.props.channelHeight,
             duration: 50,
@@ -320,7 +324,7 @@ class ProgressBar extends Component {
     }
 
     render() {
-        const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor } = this.props;
+        const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor, t } = this.props;
         return (
             <View style={[styles.container, { height: channelHeight }]}>
                 <View
@@ -346,7 +350,7 @@ class ProgressBar extends Component {
                     />
                     {(this.state.inProgress && (
                         <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
-                            {this.state.progressText}
+                            {t(this.state.progressText)}
                         </Animated.Text>
                     )) || (
                         <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>

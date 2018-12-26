@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
+        "experimentalNode": "Nieobsługiwana wersja serwera",
+        "experimentalNodeExplanation": "Twój aktualnie wybrany serwer, działa w wersji eksperymentalnej, która nie jest obsługiwana przez Trinity. Zmień serwer lub spróbuj ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "seed": "Seed",
         "checksum": "Suma kontrolna",
@@ -74,7 +76,7 @@
         "wallet": "Portfel",
         "all": "Wszystkie",
         "sent": "Wysłano",
-        "youReceived": "Otrzymano",
+        "youReceived": "Odebrano",
         "youSent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
@@ -153,9 +155,11 @@
         "confirm": "Potwierdź",
         "delete": "Usuń",
         "shouldUpdate": "Dostępna jest nowa aktualizacja",
-        "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
+        "shouldUpdateExplanation": "Nowa wersja Trinity jest gotowa do pobrania. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
-        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
+        "missingPermission": "Wymagany dostęp do systemu plików",
+        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -290,8 +294,6 @@
         "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
-        "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
         "tag": "Tag",
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
@@ -317,14 +319,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potwierdź swój klucz seed",
-        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel bądź dokonasz reinstalacji aplikacji.",
+        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel lub usuniesz aplikację.",
         "enterYourSeed": "Wprowadź swój seed",
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
-        "clipboardWarning": "Nie kopiuj swojego klucza",
-        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
+        "clipboardWarning": "OSTRZEŻENIE: Nie można wkleić klucza seed",
+        "clipboardWarningExplanation": "Możliwość wklejania, jest wyłączona dla Twojego bezpieczeństwa. Zamiast tego, możesz przeciągnąć i upuścić Twój seed, z pliku tekstowego."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -380,7 +382,9 @@
         "addNewSeed": "Dodaj nowy seed",
         "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
+        "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
+        "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
@@ -404,8 +408,8 @@
         "securitySettings": "Ustawienia zabezpieczeń",
         "fingerprint": "Autoryzacja biometryczna",
         "couldNotFetchRates": "Błąd pobierania kursów",
-        "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
-        "fetchedConversionRates": "Pobrano kursy przeliczeniowe",
+        "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursu przeliczeniowego dla waluty {{currency}}.",
+        "fetchedConversionRates": "Pobrano kurs przeliczeniowy",
         "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}.",
         "undo": "Cofnij",
         "redo": "Ponów",
@@ -514,7 +518,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
         "aboutToLogOut": "Za chwilę zostaniesz wylogowany",
-        "areYouSure": "Czy jesteś pewny?"
+        "areYouSure": "Czy jesteś pewien?"
     },
     "qrScanner": {
         "scan": "Zeskanuj swój kod QR"
@@ -548,7 +552,7 @@
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
-        "title": "Wprowadź seed oraz nazwę konta.",
+        "title": "Wprowadź nazwę konta oraz klucz seed",
         "incorrectFormat": "Nieprawidłowy format klucza",
         "validSeedExplanation": "Poprawny seed powinien składać się z 81 znaków i zawierać jedynie wielkie litery A-Z oraz cyfry 9."
     },
@@ -592,7 +596,7 @@
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
         "aMessage": "wiadomość",
-        "fromAccount": "Z {{selectedAccountName}}",
+        "fromAccount": "Z konta {{selectedAccountName}}",
         "toAddress": "Na adres",
         "sendingAMessage": "Wysyłanie wiadomości",
         "sendingAnEmptyMessage": "Wysyłanie pustej wiadomości"
@@ -637,7 +641,7 @@
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultKeyExplanation": "Najpierw musisz zabezpieczyć swój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz potrzebować tego hasła, aby przywrócić swój seed z kopii zapasowej pliku SeedVault.",
+        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
         "retypeKey": "Wpisz hasło ponownie"
     },
     "chart": {
@@ -687,7 +691,8 @@
         "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
         "generatingAndDetecting": "Generuję adresy oraz wykrywam saldo.",
-        "attaching": "Dołączam adresy do sieci Tangle."
+        "attaching": "Dołączam adresy do sieci Tangle.",
+        "attachProgress": "Dołączam adres {{currentAddress}} z {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autouzupełniono",

@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node nije sinhronizovan",
         "nodeOutOfSyncExplanation": "Trenutno izabrani node nije sinhronizovan. Promenite node ili pokušajte ponovo.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ovaj node nije sinhronizovan. Promenite node ili pokušajte ponovo.",
         "seed": "Seed",
         "checksum": "Kontrolni zbir",
@@ -155,7 +157,9 @@
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedozvoljene znakove",
@@ -290,8 +294,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "NEMA ADRESA",
         "spent": "Upotrebljeno",
-        "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
-        "missingPermissionExplanation": "Potreban je pristup sistemu datoteka radi deljenja QR kodova.",
         "tag": "Oznaka",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -310,21 +312,21 @@
         "youCanHighlightCharacters": "Možete označiti 9 znakova odjednom",
         "printBlankWallet": "Odštampajte prazni novčanik",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Svaki seed ima odgovarajući kontrolni zbir od 3 znaka.",
         "iHavesavedMySeed": "Sačuvao sam seed",
         "checksumExplanation": "Svaki put kada dodajete seed u novčanik, treba da se uverite da je kontrolni zbir koji novčanik generiše identičan onom koji ste zapisali.",
         "mustSaveYourSeed": "<0><0>Morate napraviti rezervnu kopiju seed-a pomoću </0><1>najmanje jedne</1><2> od opcija koje su navedene u nastavku.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potvrdite seed",
-        "trinityWillNeverAskToReenter": "Trinity nikada neće tražiti da ponovo unesete seed osim ako resetujete novčanik ili aplikaciju.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Unesite seed",
         "incorrectSeed": "Neispravan seed",
         "incorrectSeedExplanation": "Seed koji ste uneli je neispravan. Pokušajte ponovo.",
         "ifYouHaveNotSaved": "Ako niste napravili rezervnu kopiju svog seed-a, vratite se nazad i učinite to.",
         "enterSeedBelow": "Unesite svoj novi seed ispod kako biste potvrdili da ste uspešno kreirali rezervnu kopiju",
-        "clipboardWarning": "Nemojte kopirati i umetnuti svoj seed",
-        "clipboardWarningExplanation": "UPOZORENJE: Kopiranje/umetanje je onemoguće radi vaše sigurnosti."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Neispravna adresa",
@@ -380,7 +382,9 @@
         "addNewSeed": "Dodaj novi seed",
         "twoFA": "Dvofaktorska autentikacija",
         "changePassword": "Promena lozinke",
+        "general": "General settings",
         "advanced": "Napredne postavke",
+        "account": "Account settings",
         "logout": "Odjavi se",
         "reset": "Resetuj novčanik",
         "syncingComplete": "Sinhronizacija završena",
@@ -548,7 +552,7 @@
         "syncingYourAccount": "Sinhronizacija u toku."
     },
     "useExistingSeed": {
-        "title": "Unesite seed i naziv računa.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Neispravan format seed-a",
         "validSeedExplanation": "Važeći seed treba da se sastoji od 81 znaka i isključivo od slova A-Z ili broja 9."
     },
@@ -583,10 +587,10 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta",
         "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Pritisnite dugme u nastavku da biste onemogućili Face ID",
+        "buttonInstructionsEnableIPhoneX": "Pritisnite dugme u nastavku da biste omogućili Face ID",
         "instructionsLogin": "Dodirnite čitač otisaka prstiju za prijavu"
     },
     "transferConfirmation": {
@@ -637,7 +641,7 @@
         "noSeedFoundExplanation": "SeedVault je prazan ili sadrži seed u neispravnom formatu.",
         "seedFileError": "Neuspešno otvaranje SeedVault-a",
         "seedFileErrorExplanation": "Došlo je do greške prilikom otvaranja SeedVault-a. Ako ste odabrali ispravnu datoteku moguće je da je oštećena.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
@@ -687,7 +691,8 @@
         "transition": "Tranzicija",
         "transitioning": "Tranzija snapshot-a u toku.",
         "generatingAndDetecting": "Generisanje adresa i detektovanje salda.",
-        "attaching": "Dodavanje adresa u Tangle."
+        "attaching": "Dodavanje adresa u Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Uspešno automatsko popunjavanje",

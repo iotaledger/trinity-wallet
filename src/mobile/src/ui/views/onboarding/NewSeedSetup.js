@@ -176,15 +176,11 @@ class NewSeedSetup extends Component {
                     orientation: ['portrait'],
                 },
                 topBar: {
-                    visible: false,
-                    drawBehind: false,
-                    elevation: 0,
                     title: {
                         color: body.color,
                     },
                 },
                 statusBar: {
-                    drawBehind: false,
                     backgroundColor: body.bg,
                 },
             });

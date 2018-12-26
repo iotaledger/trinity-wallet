@@ -45,66 +45,74 @@ class Theme extends React.PureComponent {
                     }
                 }}
             >
-                <Select
-                    label={t('settings:theme')}
-                    value={themeName || this.props.themeName}
-                    valueLabel={t(`themes:${themeName ? themeName.toLowerCase() : this.props.themeName.toLowerCase()}`)}
-                    onChange={(value) => this.setState({ themeName: value })}
-                    options={Object.keys(themes).map((item) => {
-                        return {
-                            value: item,
-                            label: t(`themes:${item.toLowerCase()}`),
-                        };
-                    })}
-                />
-                <div className={css.mockup} style={{ background: theme.body.bg }}>
-                    <p style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</p>
-                    <div className={inputCSS.input} style={{ marginBottom: 10 }}>
-                        <fieldset>
-                            <a
-                                style={{
-                                    color: theme.input.alt,
-                                }}
-                                className={inputCSS.strike}
-                            >
-                                <Icon icon="eye" size={16} />
-                            </a>
-                            <input
-                                style={{
-                                    background: theme.input.bg,
-                                    color: theme.input.color,
-                                }}
-                                type="text"
-                                value={t('themeCustomisation:mockup')}
-                                onChange={() => {}}
-                            />
-                            <small style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</small>
-                        </fieldset>
-                    </div>
-                    <div>
-                        <Button
-                            style={{
-                                color: theme.dark.body,
-                                background: theme.dark.color,
-                            }}
-                        >
-                            {t('no')}
-                        </Button>
-                        <Button
-                            style={{
-                                color: theme.primary.body,
-                                background: theme.primary.color,
-                            }}
-                        >
-                            {t('yes')}
-                        </Button>
-                    </div>
-                </div>
                 <fieldset>
-                    <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>
+                    <Select
+                        label={t('settings:theme')}
+                        value={themeName || this.props.themeName}
+                        valueLabel={t(
+                            `themes:${themeName ? themeName.toLowerCase() : this.props.themeName.toLowerCase()}`,
+                        )}
+                        onChange={(value) => this.setState({ themeName: value })}
+                        options={Object.keys(themes).map((item) => {
+                            return {
+                                value: item,
+                                label: t(`themes:${item.toLowerCase()}`),
+                            };
+                        })}
+                    />
+                    <div className={css.mockup} style={{ background: theme.body.bg }}>
+                        <p style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</p>
+                        <div className={inputCSS.input} style={{ marginBottom: 10 }}>
+                            <fieldset>
+                                <a
+                                    style={{
+                                        color: theme.input.alt,
+                                    }}
+                                    className={inputCSS.strike}
+                                >
+                                    <Icon icon="eye" size={16} />
+                                </a>
+                                <input
+                                    style={{
+                                        background: theme.input.bg,
+                                        color: theme.input.color,
+                                    }}
+                                    type="text"
+                                    value={t('themeCustomisation:mockup')}
+                                    onChange={() => {}}
+                                />
+                                <small style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</small>
+                            </fieldset>
+                        </div>
+                        <div>
+                            <Button
+                                style={{
+                                    color: theme.dark.body,
+                                    background: theme.dark.color,
+                                }}
+                            >
+                                {t('no')}
+                            </Button>
+                            <Button
+                                style={{
+                                    color: theme.primary.body,
+                                    background: theme.primary.color,
+                                }}
+                            >
+                                {t('yes')}
+                            </Button>
+                        </div>
+                    </div>
+                </fieldset>
+                <footer>
+                    <Button
+                        className="square"
+                        type="submit"
+                        disabled={!themeName || themeName === this.props.themeName}
+                    >
                         {t('global:save')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }

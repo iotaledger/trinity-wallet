@@ -7,6 +7,7 @@ import { withI18n } from 'react-i18next';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 import SeedStore from 'libs/SeedStore';
 
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
@@ -17,6 +18,8 @@ import SeedInput from 'ui/components/input/Seed';
  */
 class SeedVerify extends React.PureComponent {
     static propTypes = {
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
@@ -37,13 +40,9 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
-        const { generateAlert, t } = this.props;
-
         if (Electron.getOnboardingSeed()) {
             Electron.garbageCollect();
         }
-
-        generateAlert('info', t('seedReentry:clipboardWarning'), t('seedReentry:clipboardWarningExplanation'));
     }
 
     onChange = (value) => {
@@ -62,7 +61,7 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { wallet, additionalAccountName, history, generateAlert, t } = this.props;
+        const { setAccountInfoDuringSetup, wallet, additionalAccountName, history, generateAlert, t } = this.props;
         const { seed, isGenerated } = this.state;
 
         if (
@@ -97,6 +96,10 @@ class SeedVerify extends React.PureComponent {
             history.push('/onboarding/account-name');
         } else {
             if (wallet.ready) {
+                setAccountInfoDuringSetup({
+                    completed: true,
+                });
+
                 const seedStore = await new SeedStore.keychain(wallet.password);
                 await seedStore.addAccount(additionalAccountName, Electron.getOnboardingSeed());
 
@@ -154,6 +157,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
+    setAccountInfoDuringSetup,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(SeedVerify));

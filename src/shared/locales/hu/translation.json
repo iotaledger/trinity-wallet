@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "A csomópont hibát jelzett a számlaadatok betöltése közben. Ha a hiba továbbra is fennáll, próbáljon egy másik csomópontra váltani vagy kapcsolja ki a proxy szerver használatát a beállítások között.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
         "seed": "Mester jelszó",
         "checksum": "Ellenőrző összeg",
@@ -155,7 +157,9 @@
         "shouldUpdate": "Új frissítés érhető el",
         "shouldUpdateExplanation": "Egy új szoftverfrissítés jelent meg. Ajánlott az alkalmazást a legújabb verzióra frissíteni.",
         "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
-        "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást."
+        "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást.",
+        "missingPermission": "Fájl hozzáférési engedély szükséges",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -290,8 +294,6 @@
         "generateNewAddress": "Új cím generálása",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
-        "missingPermission": "Fájl hozzáférési engedély szükséges",
-        "missingPermissionExplanation": "A QR kód megosztásához szükség van a fájlrendszerhez való hozzáféréshez.",
         "tag": "Címke",
         "generateAnAddress": "Új cím generálása",
         "generateAnAddressTitle": "Új cím generálása",
@@ -310,21 +312,21 @@
         "youCanHighlightCharacters": "9 karaktert emelhet ki egyszerre",
         "printBlankWallet": "Mester jelszó nyomtatvány minta nyomtatása",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Minden mester jelszóhoz tartozik egy 3 karakterből álló ellenőrző összeg.",
         "iHavesavedMySeed": "Elmentettem a mester jelszót",
         "checksumExplanation": "Amikor egy új mester jelszót ad hozzá a tárcához, mindig győződjön meg arról, hogy a tárca által generált ellenőrző összeg megegyezik a korábban feljegyzett ellenőrző összeggel.",
         "mustSaveYourSeed": "<0><0>A mester jelszaváról biztonsági másolatot kell készítenie</0><1>legalább egyféleképp</1><2>az alább felsorolt lehetőségek közül.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Kérjük erősítse meg a mester jelszavát",
-        "trinityWillNeverAskToReenter": "A Trinity soha nem fogja újra kérni a mester jelszavát, kizárólag akkor, ha a tárcát gyári állapotra állította vissza.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Adja meg a mester jelszót",
         "incorrectSeed": "Helytelen mester jelszó",
         "incorrectSeedExplanation": "A megadott mester jelszó helytelen. Kérjük, próbálja újra.",
         "ifYouHaveNotSaved": "Ha nem készített biztonsági mentést a mester jelszaváról, kérjük lépjen vissza és készítsen.",
         "enterSeedBelow": "Adja meg alább az újonnan generált mester jelszavát, hogy megbizonyosodjon róla, valóban helyes biztonsági másolat készült róla",
-        "clipboardWarning": "Ne használjon másolás/beillesztés műveletet a mester jelszavának megadásakor",
-        "clipboardWarningExplanation": "FIGYELEM: a másolás/beillesztés a biztonsága érdekében nem engedélyezett."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Érvénytelen cím",
@@ -380,7 +382,9 @@
         "addNewSeed": "Új mester jelszó hozzáadása",
         "twoFA": "Kétlépcsős hitelesítés",
         "changePassword": "Jelszó módosítása",
+        "general": "General settings",
         "advanced": "Haladó beállítások",
+        "account": "Account settings",
         "logout": "Kijelentkezés",
         "reset": "Tárca gyári állapotának visszaállítása",
         "syncingComplete": "Szinkronizáció befejezve",
@@ -548,7 +552,7 @@
         "syncingYourAccount": "Számla szinkronizálása."
     },
     "useExistingSeed": {
-        "title": "Adjon meg egy mester jelszót és egy számlanevet.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Helytelen mester jelszó formátum",
         "validSeedExplanation": "A mester jelszónak pontosan 81 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat."
     },
@@ -583,10 +587,10 @@
         "status": "Állapot",
         "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás letiltásához",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához",
+        "buttonInstructionsEnableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID engedélyezéséhez",
         "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez"
     },
     "transferConfirmation": {
@@ -637,7 +641,7 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
         "retypeKey": "Retype key"
     },
     "chart": {
@@ -687,7 +691,8 @@
         "transition": "Egyenlegátvezetés",
         "transitioning": "Egyenlegátvezetés pillanatkép készítése után.",
         "generatingAndDetecting": "Címek előállítása és az egyenleg átvezetése.",
-        "attaching": "Címek hozzácsatolása a Tangle-höz."
+        "attaching": "Címek hozzácsatolása a Tangle-höz.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",

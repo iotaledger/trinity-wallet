@@ -29,7 +29,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import CtaButton from 'ui/components/CtaButton';
 import InfoBox from 'ui/components/InfoBox';
-import ProgressBar from 'ui/components/ProgressBar';
+import OldProgressBar from 'ui/components/OldProgressBar';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -322,7 +322,7 @@ class SnapshotTransition extends Component {
                                         alignItems: 'center',
                                     }}
                                 >
-                                    <ProgressBar
+                                    <OldProgressBar
                                         style={{
                                             textWrapper: { flex: 0.4 },
                                         }}
@@ -336,7 +336,7 @@ class SnapshotTransition extends Component {
                                             sizeOfActiveSteps,
                                             t,
                                         )}
-                                    </ProgressBar>
+                                    </OldProgressBar>
                                 </View>
                             </View>
                         )}

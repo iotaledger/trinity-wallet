@@ -7,6 +7,7 @@ import {
     getSelectedAccountName,
     getFailedBundleHashesForSelectedAccount,
     getSelectedAccountMeta,
+    getAccountNamesFromState,
 } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
@@ -43,6 +44,8 @@ export default function withListData(ListComponent) {
             generateAlert: PropTypes.func.isRequired,
             failedHashes: PropTypes.object.isRequired,
             password: PropTypes.object.isRequired,
+            /** Wallet account names */
+            accountNames: PropTypes.array.isRequired,
         };
 
         promoteTransaction = (hash, seedStore) => {
@@ -55,6 +58,7 @@ export default function withListData(ListComponent) {
 
         render() {
             const {
+                accountNames,
                 index,
                 seedIndex,
                 accounts,
@@ -76,7 +80,7 @@ export default function withListData(ListComponent) {
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
-            const accountName = Object.keys(accounts.accountInfo)[typeof index === 'number' ? index : seedIndex];
+            const accountName = accountNames[typeof index === 'number' ? index : seedIndex];
 
             if (!accountName && index !== -1) {
                 return null;
@@ -125,6 +129,7 @@ export default function withListData(ListComponent) {
         accountName: getSelectedAccountName(state),
         accountMeta: getSelectedAccountMeta(state),
         failedHashes: getFailedBundleHashesForSelectedAccount(state),
+        accountNames: getAccountNamesFromState(state),
         theme: state.settings.theme,
         mode: state.settings.mode,
         ui: state.ui,
