@@ -386,10 +386,10 @@ export class Send extends Component {
     }
 
     getProgressBarText() {
-        const { t, activeStepIndex, activeSteps } = this.props;
+        const { activeStepIndex, activeSteps } = this.props;
         const totalSteps = size(activeSteps);
         if (activeStepIndex === totalSteps) {
-            return t('progressSteps:transferComplete');
+            return 'progressSteps:transferComplete';
         }
         return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : '';
     }
@@ -830,6 +830,7 @@ export class Send extends Component {
                                         this.blurTextFields();
                                     }
                                 }}
+                                t={t}
                             />
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

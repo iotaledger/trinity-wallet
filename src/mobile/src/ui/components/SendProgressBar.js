@@ -57,6 +57,8 @@ class SendProgressBar extends Component {
         onSwipeSuccess: PropTypes.func,
         /** Interupts the progress bar when changed */
         interupt: PropTypes.bool,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -322,7 +324,7 @@ class SendProgressBar extends Component {
     }
 
     render() {
-        const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor } = this.props;
+        const { channelHeight, channelWidth, textColor, staticText, unfilledColor, filledColor, t } = this.props;
         return (
             <View style={[styles.container, { height: channelHeight }]}>
                 <View
@@ -348,7 +350,7 @@ class SendProgressBar extends Component {
                     />
                     {(this.state.inProgress && (
                         <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>
-                            {this.state.progressText}
+                            {t(this.state.progressText)}
                         </Animated.Text>
                     )) || (
                         <Animated.Text style={[styles.text, { color: textColor, opacity: this.state.textOpacity }]}>

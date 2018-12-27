@@ -33,6 +33,7 @@ export default function withNodeData(NodeComponent) {
             const { nodes, node, setFullNode, generateAlert, t } = this.props;
 
             if (!nodeSelected) {
+                generateAlert('error', t('addCustomNode:nodeFieldEmpty'), t('addCustomNode:nodeFieldEmptyExplanation'));
                 return;
             }
 
