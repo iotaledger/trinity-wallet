@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { markTaskAsDone } from 'shared-modules/actions/accounts';
-import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
 import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
@@ -57,8 +57,6 @@ class Home extends Component {
         inactive: PropTypes.bool.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
-        /** Hash for wallet's password */
-        storedPasswordHash: PropTypes.object.isRequired,
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
         /** @ignore */
@@ -156,19 +154,15 @@ class Home extends Component {
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
-
         if (isSyncing !== newProps.isSyncing) {
             return false;
         }
-
         if (isSendingTransfer !== newProps.isSendingTransfer) {
             return false;
         }
-
         if (isTransitioning !== newProps.isTransitioning) {
             return false;
         }
-
         return true;
     }
 
@@ -179,6 +173,8 @@ class Home extends Component {
             this.props.toggleModalActivity();
         }
         timer.clearTimeout('iOSKeyboardTimeout');
+        global.passwordHash = null;
+        // gc
     }
 
     /**
@@ -187,12 +183,12 @@ class Home extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress(password) {
-        const { t, storedPasswordHash } = this.props;
+        const { t } = this.props;
         if (!password) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         }
         const passwordHash = await hash(password);
-        if (!isEqual(passwordHash, storedPasswordHash)) {
+        if (!isEqual(passwordHash, global.passwordHash)) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -385,7 +381,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    storedPasswordHash: state.wallet.password,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: state.settings.theme,
@@ -407,7 +402,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    setPassword,
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,

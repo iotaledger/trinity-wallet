@@ -83,8 +83,6 @@ class SeedVaultExportComponent extends Component {
         onRef: PropTypes.func.isRequired,
         /** Determines whether user needs to enter wallet password */
         isAuthenticated: PropTypes.bool.isRequired,
-        /** @ignore */
-        storedPasswordHash: PropTypes.object.isRequired,
         /** Triggered when user enters the correct wallet password */
         setAuthenticated: PropTypes.func,
         /** Sets seed variable in parent component following successful SeedVault import */
@@ -94,8 +92,8 @@ class SeedVaultExportComponent extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
-            reentry: '',
+            password: null,
+            reentry: null,
             path: '',
             saveToDownloadFolder: false,
         };
@@ -121,6 +119,8 @@ class SeedVaultExportComponent extends Component {
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
+        this.setState({ password: null, reentry: null });
+        // gc
     }
 
     /**
@@ -263,19 +263,19 @@ class SeedVaultExportComponent extends Component {
      * @method validateWalletPassword
      */
     async validateWalletPassword() {
-        const { t, storedPasswordHash, selectedAccountName, selectedAccountMeta } = this.props;
+        const { t, selectedAccountName, selectedAccountMeta } = this.props;
         const { password } = this.state;
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
             const enteredPasswordHash = await hash(password);
-            if (isEqual(enteredPasswordHash, storedPasswordHash)) {
+            if (isEqual(enteredPasswordHash, global.passwordHash)) {
                 const seedStore = new SeedStore[selectedAccountMeta.type](enteredPasswordHash, selectedAccountName);
-                const seed = await seedStore.getSeed();
-
+                let seed = await seedStore.getSeed();
                 this.props.setSeed(seed);
+                seed = null;
+                // gc
                 this.props.setAuthenticated(true);
-                this.setState({ password: '' });
                 return this.navigateToStep('isViewingGeneralInfo');
             }
             this.props.generateAlert(
@@ -404,7 +404,6 @@ const mapStateToProps = (state) => ({
     selectedAccountMeta: getSelectedAccountMeta(state),
     theme: state.settings.theme,
     minimised: state.ui.minimised,
-    storedPasswordHash: state.wallet.password,
 });
 
 const mapDispatchToProps = {

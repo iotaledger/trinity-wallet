@@ -8,7 +8,7 @@ import { navigator } from 'libs/navigation';
 import timer from 'react-native-timer';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
-import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
+import { setSetting, clearWalletData } from 'shared-modules/actions/wallet';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -36,8 +36,6 @@ export class MainSettings extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
     };
@@ -95,7 +93,8 @@ export class MainSettings extends Component {
                     },
                 });
                 this.props.clearWalletData();
-                this.props.setPassword({});
+                global.passwordHash = null;
+                // gc
             },
             500,
         );
@@ -158,7 +157,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setSetting,
     clearWalletData,
-    setPassword,
     toggleModalActivity,
 };
 

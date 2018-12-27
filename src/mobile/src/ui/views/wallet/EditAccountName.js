@@ -76,8 +76,6 @@ export class EditAccountName extends Component {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
@@ -114,7 +112,7 @@ export class EditAccountName extends Component {
      * @method save
      */
     save(accountName) {
-        const { accountNames, password, selectedAccountName, selectedAccountMeta, t } = this.props;
+        const { accountNames, selectedAccountName, selectedAccountMeta, t } = this.props;
 
         if (accountNames.includes(accountName)) {
             this.props.generateAlert(
@@ -123,7 +121,7 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 
             seedStore
                 .accountRename(accountName)
@@ -199,7 +197,6 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     accountNames: getAccountNamesFromState(state),
-    password: state.wallet.password,
     theme: state.settings.theme,
 });
 

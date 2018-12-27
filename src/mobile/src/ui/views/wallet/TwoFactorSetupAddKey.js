@@ -75,16 +75,12 @@ export class TwoFactorSetupAddKey extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
         super();
-
         this.goBack = this.goBack.bind(this);
         this.navigateToEnterToken = this.navigateToEnterToken.bind(this);
-
         this.state = {
             authKey: authenticator.generateKey(),
         };
@@ -92,6 +88,11 @@ export class TwoFactorSetupAddKey extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('TwoFactorSetupAddKey');
+    }
+
+    componentWillUnmount() {
+        this.setState({ authKey: null });
+        // gc
     }
 
     /**
@@ -122,8 +123,8 @@ export class TwoFactorSetupAddKey extends Component {
      */
     navigateToEnterToken() {
         Clipboard.setString(' ');
-        const { t, theme: { body }, password } = this.props;
-        return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
+        const { t, theme: { body } } = this.props;
+        return storeTwoFactorAuthKeyInKeychain(global.passwordHash, this.state.authKey)
             .then(() => {
                 navigator.push('twoFactorSetupEnterToken', {
                     animations: {
@@ -224,7 +225,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    password: state.wallet.password,
 });
 
 export default withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));

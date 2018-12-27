@@ -61,8 +61,6 @@ class TwoFactorSetupEnterToken extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -121,8 +119,8 @@ class TwoFactorSetupEnterToken extends Component {
      * @method check2FA
      */
     check2FA() {
-        const { t, password } = this.props;
-        getTwoFactorAuthKeyFromKeychain(password).then((key) => {
+        const { t } = this.props;
+        getTwoFactorAuthKeyFromKeychain(global.passwordHash).then((key) => {
             if (key === null) {
                 this.props.generateAlert(
                     'error',
@@ -131,11 +129,9 @@ class TwoFactorSetupEnterToken extends Component {
                 );
             }
             const verified = authenticator.verifyToken(key, this.state.code);
-
             if (verified) {
                 this.props.set2FAStatus(true);
                 this.navigateToHome();
-
                 this.timeout = setTimeout(() => {
                     this.props.generateAlert('success', t('twoFAEnabled'), t('twoFAEnabledExplanation'));
                 }, 300);
@@ -211,7 +207,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
-    password: state.wallet.password,
 });
 
 export default withNamespaces(['twoFA', 'global'])(

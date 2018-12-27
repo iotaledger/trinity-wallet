@@ -65,20 +65,15 @@ export class SetAccountName extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
-        /** @ignore */
         onboardingComplete: PropTypes.bool.isRequired,
         /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** Determines whether to prevent new account setup */
         shouldPreventAction: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
         super(props);
-
         this.state = {
             accountName: '',
         };
@@ -103,7 +98,7 @@ export class SetAccountName extends Component {
      * @method onDonePress
      */
     async onDonePress() {
-        const { t, onboardingComplete, accountNames, seed, password, shouldPreventAction } = this.props;
+        const { t, onboardingComplete, accountNames, shouldPreventAction } = this.props;
         const accountName = trim(this.state.accountName);
 
         if (shouldPreventAction) {
@@ -127,8 +122,8 @@ export class SetAccountName extends Component {
         }
 
         if (onboardingComplete) {
-            const seedStore = new SeedStore.keychain(password);
-            const isSeedUnique = await seedStore.isUniqueSeed(seed);
+            const seedStore = new SeedStore.keychain(global.passwordHash);
+            const isSeedUnique = await seedStore.isUniqueSeed(global.onboardingSeed);
             if (!isSeedUnique) {
                 return this.props.generateAlert(
                     'error',
@@ -144,12 +139,12 @@ export class SetAccountName extends Component {
             completed: true,
         });
 
-        if (!onboardingComplete) {
-            this.navigateTo('setPassword');
-        } else {
-            const seedStore = new SeedStore.keychain(password);
-            seedStore.addAccount(accountName, seed);
+        if (onboardingComplete) {
+            const seedStore = new SeedStore.keychain(global.passwordHash);
+            seedStore.addAccount(accountName, global.onboardingSeed);
             this.navigateTo('loading');
+        } else {
+            this.navigateTo('setPassword');
         }
     }
 
@@ -256,12 +251,10 @@ export class SetAccountName extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     accountNames: getAccountNamesFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
-    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

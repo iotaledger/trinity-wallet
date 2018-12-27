@@ -183,8 +183,6 @@ class Receive extends Component {
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -421,7 +419,7 @@ class Receive extends Component {
      *   @method generateAddress
      **/
     async generateAddress() {
-        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
+        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning } = this.props;
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -438,7 +436,10 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
 
         try {
-            const seedStore = new SeedStore[selectedAccountData.type || 'keychain'](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountData.type || 'keychain'](
+                global.passwordHash,
+                selectedAccountName,
+            );
             this.props.getFromKeychainSuccess('receive', 'addressGeneration');
             this.props.generateNewAddress(seedStore, selectedAccountName, selectedAccountData);
         } catch (err) {
@@ -795,7 +796,6 @@ const mapStateToProps = (state) => ({
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
     theme: state.settings.theme,
     isTransitioning: state.ui.isTransitioning,
-    password: state.wallet.password,
     qrMessage: state.ui.qrMessage,
     qrAmount: state.ui.qrAmount,
     qrTag: state.ui.qrTag,

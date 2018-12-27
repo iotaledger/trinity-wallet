@@ -2,7 +2,6 @@ import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
-import { ActionTypes as UiActionTypes } from '../actions/ui';
 
 const initialState = {
     /**
@@ -13,10 +12,6 @@ const initialState = {
      * Wallet password hash
      */
     password: {},
-    /**
-     * User's seed stored temporarily during account setup
-     */
-    seed: Array(82).join(' '),
     /**
      * Active account index from the list of added account names
      */
@@ -70,12 +65,6 @@ export default (state = initialState, action) => {
                 ...state,
                 seed: !isEmpty(action.payload.seed) ? action.payload.seed : state.seed,
             };
-        case UiActionTypes.SET_ONBOARDING_SEED:
-            return {
-                ...state,
-                seed: action.payload.seed,
-                usedExistingSeed: !action.payload.isGenerated,
-            };
         case ActionTypes.SET_PASSWORD:
             return {
                 ...state,
@@ -100,11 +89,6 @@ export default (state = initialState, action) => {
                 currentSetting: 'mainSettings',
                 deepLinkActive: false,
             };
-        case ActionTypes.CLEAR_SEED:
-            return {
-                ...state,
-                seed: action.payload,
-            };
         case ActionTypes.SET_SETTING:
             return {
                 ...state,
@@ -119,7 +103,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: true,
-                seed: Array(82).join(' '),
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
             return {

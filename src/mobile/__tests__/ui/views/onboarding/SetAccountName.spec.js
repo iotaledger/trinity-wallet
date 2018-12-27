@@ -30,10 +30,8 @@ const getProps = (overrides) =>
             setAdditionalAccountInfo: noop,
             t: () => '',
             accountCount: 0,
-            seed: 'SEED',
             onboardingComplete: false,
             theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
-            password: {},
             shouldPreventAction: false,
         },
         overrides,
@@ -57,20 +55,12 @@ describe('Testing SetAccountName component', () => {
             expect(SetAccountName.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a seed string as a prop', () => {
-            expect(SetAccountName.propTypes.seed).toEqual(PropTypes.string.isRequired);
-        });
-
         it('should require a onboardingComplete bool as a prop', () => {
             expect(SetAccountName.propTypes.onboardingComplete).toEqual(PropTypes.bool.isRequired);
         });
 
         it('should require a theme object as a prop', () => {
             expect(SetAccountName.propTypes.theme).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a password object as a prop', () => {
-            expect(SetAccountName.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a shouldPreventAction boolean as a prop', () => {

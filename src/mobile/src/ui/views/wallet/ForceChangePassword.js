@@ -8,7 +8,7 @@ import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { zxcvbn } from 'shared-modules/libs/exports';
-import { setPassword, setSetting } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { passwordReasons } from 'shared-modules/libs/password';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
@@ -78,10 +78,6 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** Hash for wallet's password */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
-        setPassword: PropTypes.func.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
@@ -98,9 +94,9 @@ class ForceChangePassword extends Component {
         super();
 
         this.state = {
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            currentPassword: null,
+            newPassword: null,
+            newPasswordReentry: null,
         };
     }
 
@@ -111,14 +107,23 @@ class ForceChangePassword extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.setState({
+            currentPassword: null,
+            newPassword: null,
+            newPasswordReentry: null,
+        });
+        // gc
+    }
+
     async onSavePress() {
-        const { setPassword, t } = this.props;
+        const { t } = this.props;
         const { newPassword, currentPassword } = this.state;
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
         oldPwdHash = hexToUint8(oldPwdHash);
-        const salt = await getSalt();
-        const newPwdHash = await generatePasswordHash(newPassword, salt);
+        let salt = await getSalt();
+        let newPwdHash = await generatePasswordHash(newPassword, salt);
 
         if (this.isNewPasswordValid()) {
             const throwError = (err) => {
@@ -134,7 +139,11 @@ class ForceChangePassword extends Component {
             return authorize(oldPwdHash)
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
-                        setPassword(newPwdHash);
+                        global.passwordHash = newPwdHash;
+                        salt = null;
+                        oldPwdHash = null;
+                        newPwdHash = null;
+                        // gc
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
                         timer.setTimeout(
@@ -334,7 +343,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setPassword,
     setSetting,
     generateAlert,
     setCompletedForcedPasswordUpdate,

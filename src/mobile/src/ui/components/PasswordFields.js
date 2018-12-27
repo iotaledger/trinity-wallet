@@ -39,11 +39,11 @@ class PasswordFields extends Component {
         /** @ignore */
         setReentry: PropTypes.func.isRequired,
         /** @ignore */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.any,
         /** @ignore */
-        reentry: PropTypes.string.isRequired,
+        reentry: PropTypes.any,
         /** First text input label */
-        passwordLabel: PropTypes.string,
+        passwordLabel: PropTypes.any,
         /** Second text input label */
         reentryLabel: PropTypes.string,
     };
@@ -69,12 +69,14 @@ class PasswordFields extends Component {
     checkPassword() {
         const { t, password, reentry } = this.props;
         const score = zxcvbn(password);
-        if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
-            this.props.onAcceptPassword();
+        if (password === null || reentry === null) {
+            return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
+        } else if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
+            return this.props.onAcceptPassword();
         } else if (!(password === reentry)) {
-            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
+            return this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {
-            this.props.generateAlert(
+            return this.props.generateAlert(
                 'error',
                 t('passwordTooShort'),
                 t('passwordTooShortExplanation', {
@@ -92,7 +94,7 @@ class PasswordFields extends Component {
 
     render() {
         const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const score = zxcvbn(password);
+        const score = zxcvbn(password ? password : '');
         const isValid = score.score === 4;
 
         return (
@@ -116,6 +118,7 @@ class PasswordFields extends Component {
                     secureTextEntry
                     testID="setPassword-passwordbox"
                     theme={theme}
+                    value={this.props.password}
                 />
                 <CustomTextInput
                     onRef={(c) => {
@@ -133,6 +136,7 @@ class PasswordFields extends Component {
                     secureTextEntry
                     testID="setPassword-reentrybox"
                     theme={theme}
+                    value={this.props.reentry}
                 />
             </View>
         );

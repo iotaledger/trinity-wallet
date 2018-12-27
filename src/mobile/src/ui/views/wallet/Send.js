@@ -152,8 +152,6 @@ export class Send extends Component {
         /** @ignore */
         activeSteps: PropTypes.array.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         generateTransferErrorAlert: PropTypes.func.isRequired,
         /** @ignore */
         deepLinkActive: PropTypes.bool.isRequired,
@@ -591,7 +589,6 @@ export class Send extends Component {
     sendTransfer() {
         const {
             t,
-            password,
             selectedAccountName,
             selectedAccountMeta,
             isSyncing,
@@ -627,7 +624,7 @@ export class Send extends Component {
             () => {
                 this.props.getFromKeychainRequest('send', 'makeTransaction');
                 try {
-                    const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+                    const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
                     this.props.getFromKeychainSuccess('send', 'makeTransaction');
                     const powFn = getPowFn();
                     return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
@@ -881,7 +878,6 @@ const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
     remotePoW: state.settings.remotePoW,
-    password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,

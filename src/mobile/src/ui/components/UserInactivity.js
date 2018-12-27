@@ -85,6 +85,8 @@ export default class UserInactivity extends Component {
         );
         timer.clearInterval('inactivityTimer');
         this.inactivityTimer = null;
+        global.passwordHash = null;
+        // gc
     };
 
     maybeStartWatchingForInactivity = () => {

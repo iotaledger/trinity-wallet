@@ -1,3 +1,4 @@
+import 'shared-modules/libs/global';
 import get from 'lodash/get';
 import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
@@ -53,7 +54,7 @@ const launch = (store) => {
     // Select initial screen
     const initialScreen = state.accounts.onboardingComplete
         ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
-        : 'languageSetup';
+        : 'walletSetup';
     renderInitialScreen(initialScreen, state, store);
 };
 

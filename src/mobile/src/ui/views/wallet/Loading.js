@@ -109,8 +109,6 @@ class Loading extends Component {
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -148,7 +146,6 @@ class Loading extends Component {
             additionalAccountMeta,
             selectedAccountName,
             selectedAccountMeta,
-            password,
             deepLinkActive,
         } = this.props;
         leaveNavigationBreadcrumb('Loading');
@@ -173,10 +170,10 @@ class Loading extends Component {
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
-            const seedStore = new SeedStore[additionalAccountMeta.type](password, additionalAccountName);
+            const seedStore = new SeedStore[additionalAccountMeta.type](global.passwordHash, additionalAccountName);
             this.props.getFullAccountInfo(seedStore, additionalAccountName);
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
     }
@@ -381,7 +378,6 @@ const mapStateToProps = (state) => ({
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
     ready: state.wallet.ready,
-    password: state.wallet.password,
     theme: state.settings.theme,
     isThemeDark: state.settings.theme.isDark,
     currency: state.settings.currency,

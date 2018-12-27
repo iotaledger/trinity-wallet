@@ -77,8 +77,6 @@ class UseExistingSeed extends Component {
     static propTypes = {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** Determines whether addition of new seed is allowed */
         shouldPreventAction: PropTypes.bool.isRequired,
         /** @ignore */
@@ -101,7 +99,7 @@ class UseExistingSeed extends Component {
         super(props);
 
         this.state = {
-            seed: '',
+            seed: null,
             accountName: '',
         };
     }
@@ -112,6 +110,8 @@ class UseExistingSeed extends Component {
 
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
+        this.setState({ seed: null });
+        // gc
     }
 
     /**
@@ -131,9 +131,8 @@ class UseExistingSeed extends Component {
      */
     onQRRead(data) {
         const { t } = this.props;
-        const dataString = data.toString();
         this.hideModal();
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (data.toString().length === 81 && data.toString().match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
@@ -157,9 +156,9 @@ class UseExistingSeed extends Component {
      * @method fetchAccountInfo
      */
     async fetchAccountInfo(seed, accountName) {
-        const { password, theme: { body } } = this.props;
+        const { theme: { body } } = this.props;
 
-        const seedStore = new SeedStore.keychain(password);
+        const seedStore = new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);
 
         this.props.setAccountInfoDuringSetup({
@@ -194,7 +193,7 @@ class UseExistingSeed extends Component {
      * @param {string} accountName
      */
     async addExistingSeed(seed, accountName) {
-        const { t, accountNames, password, shouldPreventAction } = this.props;
+        const { t, accountNames, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -227,7 +226,7 @@ class UseExistingSeed extends Component {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
 
-            const seedStore = new SeedStore.keychain(password);
+            const seedStore = new SeedStore.keychain(global.passwordHash);
             const isUniqueSeed = await seedStore.isUniqueSeed(seed);
 
             if (!isUniqueSeed) {
@@ -324,6 +323,7 @@ class UseExistingSeed extends Component {
                         <SeedVaultImport
                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                             onSeedImport={(seed) => {
+                                // gc?
                                 this.setState({ seed });
                                 this.hideModal();
                             }}
@@ -363,7 +363,6 @@ class UseExistingSeed extends Component {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
-    password: state.wallet.password,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
 });

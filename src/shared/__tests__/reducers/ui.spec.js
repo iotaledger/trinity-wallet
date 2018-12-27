@@ -23,10 +23,6 @@ describe('Reducer: ui', () => {
                 sendMessageFieldText: '',
                 loginPasswordFieldText: '',
                 sendDenomination: 'i',
-                onboarding: {
-                    seed: null,
-                    isGenerated: false,
-                },
                 doNotMinimise: false,
                 isModalActive: false,
                 isCheckingCustomNode: false,
@@ -896,34 +892,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isAttachingToTangle: false,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
-        it('should assign payload to "onboarding" state prop', () => {
-            const initialState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: false,
-                },
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { isGenerated: true },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: true,
-                },
             };
 
             expect(newState).to.eql(expectedState);

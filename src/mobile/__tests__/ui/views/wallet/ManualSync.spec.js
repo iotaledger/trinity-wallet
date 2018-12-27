@@ -33,7 +33,6 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             theme: { body: {}, primary: { color: '#862888', body: '#FFFFFF' } },
-            password: {},
             selectedAccountName: 'MAIN ACCOUNT',
             generateAlert: noop,
             manuallySyncAccount: noop,
@@ -62,10 +61,6 @@ describe('Testing ManualSync component', () => {
 
         it('should require a theme object as a prop', () => {
             expect(ManualSync.propTypes.theme).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a password object as a prop', () => {
-            expect(ManualSync.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a selectedAccountName string as a prop', () => {

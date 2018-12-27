@@ -80,13 +80,6 @@ const initialState = {
      */
     sendDenomination: 'i',
     /**
-     * Desktop onboarding meta data
-     */
-    onboarding: {
-        seed: null,
-        isGenerated: false,
-    },
-    /**
      * Keeps track if wallet is allowed to be minimised
      */
     doNotMinimise: false,
@@ -295,11 +288,6 @@ export default (state = initialState, action) => {
                 sendMessageFieldText: '',
                 loginPasswordFieldText: '',
                 sendDenomination: 'i',
-                onboarding: {
-                    name: '',
-                    seed: null,
-                    isGenerated: false,
-                },
                 doNotMinimise: false,
                 isModalActive: false,
                 qrMessage: '',
@@ -378,11 +366,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAttachingToTangle: false,
-            };
-        case UiActionTypes.SET_ONBOARDING_SEED:
-            return {
-                ...state,
-                onboarding: Object.assign({}, state.onboarding, action.payload),
             };
         case UiActionTypes.SET_DO_NOT_MINIMISE:
             return {
