@@ -74,6 +74,7 @@ class Login extends React.Component {
         verifyTwoFA: false,
         code: '',
         password: '',
+        canMigrate: false,
     };
 
     componentDidMount() {
@@ -157,7 +158,7 @@ class Login extends React.Component {
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setPassword, generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t, completedMigration } = this.props;
 
         let passwordHash = null;
         let authorised = false;
@@ -196,6 +197,12 @@ class Login extends React.Component {
                 verifyTwoFA: false,
             });
 
+            if (!completedMigration) {
+                this.setState({ canMigrate: true });
+                console.log(this.state.canMigrate);
+                return;
+            }
+
             try {
                 await this.setupAccount();
             } catch (err) {
@@ -210,7 +217,7 @@ class Login extends React.Component {
 
     render() {
         const { forceUpdate, t, addingAdditionalAccount, ui } = this.props;
-        const { verifyTwoFA, code } = this.state;
+        const { verifyTwoFA, code, canMigrate } = this.state;
 
         if (ui.isFetchingAccountInfo) {
             return (
@@ -220,6 +227,11 @@ class Login extends React.Component {
                     subtitle={addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
+        }
+
+        if (canMigrate) {
+            this.props.history.push('/wallet/migration');
+            return null;
         }
 
         return (
@@ -279,6 +291,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,
     forceUpdate: state.wallet.forceUpdate,
+    completedMigration: state.settings.completedMigration,
 });
 
 const mapDispatchToProps = {

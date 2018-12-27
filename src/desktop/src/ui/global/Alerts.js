@@ -50,8 +50,11 @@ class Alerts extends React.PureComponent {
     }
 
     render() {
+        //console.log(this.props);
         const { alerts, dismissAlert, forceUpdate, shouldUpdate, t } = this.props;
         const { dismissUpdate } = this.state;
+
+        //console.log(alerts);
 
         const os = Electron.getOS();
 
