@@ -87,7 +87,7 @@ export const migrate = (store, restoredState) => {
         const propsToReset = [];
 
         // FIXME: Temporarily needed for node list reset
-        if (restoredState.settings.versions.buildNumber < 32) {
+        if (get(restoredState, 'settings.versions.buildNumber') < 32) {
             propsToReset.push('settings.nodes');
         }
 
