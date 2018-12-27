@@ -68,6 +68,10 @@ class Login extends React.Component {
         getFullAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
     };
 
     state = {
