@@ -191,6 +191,10 @@ const Electron = {
         return data;
     },
 
+    /**
+     * Get all local storage item keys
+     * @returns {array} Storage item keys
+     */
     getAllStorageKeys() {
         const data = this.getAllStorage();
         const keys = Object.keys(data).filter((key) => key.indexOf('reduxPersist') === 0);
