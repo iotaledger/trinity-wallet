@@ -64,7 +64,7 @@ GEM
       xcodeproj (>= 1.6.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
-    fastlane-plugin-bugsnag (1.4.0)
+    fastlane-plugin-bugsnag (1.4.1)
       git
       xml-simple
     fastlane-plugin-clean_testflight_testers (0.2.0)
