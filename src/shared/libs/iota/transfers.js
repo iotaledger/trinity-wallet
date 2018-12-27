@@ -1214,7 +1214,10 @@ export const categoriseInclusionStatesByBundleHash = (transactions, inclusionSta
  *
  * @returns {function(array, [number]): Promise<object>}
  */
-export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransactions, promotionsAttemptsLimit = 50) => {
+export const promoteTransactionTilConfirmed = (provider, seedStore) => (
+    tailTransactions,
+    promotionsAttemptsLimit = 50,
+) => {
     let promotionAttempt = 0;
     const tailTransactionsClone = cloneDeep(tailTransactions);
 
@@ -1235,7 +1238,7 @@ export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransact
             const { hash, attachmentTimestamp } = tailTransaction;
 
             // Promote transaction
-            return promoteTransactionAsync(provider, powFn)(hash)
+            return promoteTransactionAsync(provider, seedStore)(hash)
                 .then(() => {
                     return _promote(tailTransaction);
                 })
@@ -1259,7 +1262,7 @@ export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransact
         const tailTransaction = head(tailTransactionsClone);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(provider, powFn)(hash).then((reattachment) => {
+        return replayBundleAsync(provider, seedStore)(hash).then((reattachment) => {
             const tailTransaction = find(reattachment, { currentIndex: 0 });
             // Add newly reattached transaction
             tailTransactionsClone.push(tailTransaction);
