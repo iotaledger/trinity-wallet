@@ -6,9 +6,9 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.JavaScriptContextHolder;
 
-public class GarbageCollector extends ReactContextBaseJavaModule {
+public class GarbageCollectorAndroid extends ReactContextBaseJavaModule {
     private final ReactContext mContext;
-    public GarbageCollector(ReactApplicationContext reactContext) {
+    public GarbageCollectorAndroid(ReactApplicationContext reactContext) {
         super(reactContext);
         mContext = reactContext;
     }

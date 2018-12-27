@@ -51,10 +51,22 @@ export const getDigestFn = () => {
     return isAndroid ? NativeModules.EntangledAndroid.getDigest : NativeModules.EntangledIOS.getDigest;
 };
 
+/**
+ * Gets Argon2 hash function
+ * @return {function} Hash function
+ */
 export const getHashFn = () => {
     if (isAndroid) {
         return NativeModules.Argon2Android.hash;
     } else if (isIOS) {
         return NativeModules.Argon2IOS.hash;
     }
+};
+
+/**
+ * Forces garbage collection
+ * @return {function} Garbage collector function
+ */
+export const forceGC = () => {
+    return isAndroid ? NativeModules.GarbageCollectorAndroid.forceGC : NativeModules.GarbageCollectorIOS.forceGC;
 };
