@@ -28,13 +28,14 @@ const getProps = (overrides) =>
             isFetchingLatestAccountInfoOnLogin: false,
             isAutoPromotionEnabled: false,
             seedIndex: 0,
-            selectedAccountName: 'foo account',
+            selectedAccountName: 'second account',
+            accountNames: ['first account', 'second account', 'third account'],
             unconfirmedBundleTails: {},
             setPollFor: noop,
             fetchMarketData: noop,
             fetchPrice: noop,
             fetchChartData: noop,
-            getAccountInfo: noop,
+            getAccountInfoForAllAccounts: noop,
             promoteTransfer: noop,
             removeBundleFromUnconfirmedBundleTails: noop,
             fetchNodeList: noop,
@@ -108,7 +109,7 @@ describe('Testing Poll component', () => {
                 });
             });
 
-            each(argsMap.notAllowed, (value, arg) => {
+            each(argsMap.notAllowed, (_, arg) => {
                 describe(`when argument is ${arg}`, () => {
                     it('should call prop method setPollFor with first item in allPollingServices array', () => {
                         const props = getProps({
@@ -122,6 +123,24 @@ describe('Testing Poll component', () => {
                         expect(props.setPollFor).toHaveBeenCalledWith('foo'); // top item
                     });
                 });
+            });
+        });
+
+        describe('#fetchLatestAccountInfo', () => {
+            it('should always call prop method getAccountInfoForAllAccounts with an array with selectedAccountName as first element', () => {
+                const props = getProps({
+                    getAccountInfoForAllAccounts: jest.fn(),
+                });
+
+                const instance = shallow(<Poll {...props} />).instance();
+
+                instance.fetchLatestAccountInfo();
+
+                // First assert that selected account name is 'second account'
+                expect(instance.props.selectedAccountName).toEqual('second account');
+
+                const expectedArguments = ['second account', 'first account', 'third account'];
+                expect(props.getAccountInfoForAllAccounts).toHaveBeenCalledWith(expectedArguments);
             });
         });
     });
