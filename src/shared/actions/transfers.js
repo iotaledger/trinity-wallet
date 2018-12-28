@@ -10,6 +10,7 @@ import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
+import uniq from 'lodash/uniq';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -647,6 +648,26 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                             return performLocalPow();
                         });
+                });
+            })
+            // Re-check spend statuses of all addresses in bundle
+            .then(({ trytes, transactionObjects }) => {
+                // Skip this check if it's a zero value transaction
+                if (isZeroValue) {
+                    return Promise.resolve({ trytes, transactionObjects });
+                }
+
+                // Progressbar step => (Validating transaction addresses)
+                dispatch(setNextStepAsActive());
+
+                const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
+
+                return isAnyAddressSpent()(addresses).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
+                    return { trytes, transactionObjects };
                 });
             })
             .then(({ trytes, transactionObjects }) => {
