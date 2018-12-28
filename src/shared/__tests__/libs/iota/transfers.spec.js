@@ -195,10 +195,20 @@ describe('libs: iota/transfers', () => {
         let addressData;
 
         before(() => {
-            addressData = {
-                ['X'.repeat(81)]: { index: 0, balance: 0, spent: { local: false, remote: false } },
-                ['Y'.repeat(81)]: { index: 1, balance: 0, spent: { local: false, remote: false } },
-            };
+            addressData = [
+                {
+                    address: 'X'.repeat(81),
+                    index: 0,
+                    balance: 0,
+                    spent: { local: false, remote: false },
+                },
+                {
+                    address: 'Y'.repeat(81),
+                    index: 1,
+                    balance: 0,
+                    spent: { local: false, remote: false },
+                },
+            ];
         });
 
         describe('when value is zero', () => {});
