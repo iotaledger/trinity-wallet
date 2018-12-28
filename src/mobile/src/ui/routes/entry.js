@@ -1,5 +1,5 @@
+/* global __DEV__ */
 import get from 'lodash/get';
-import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { withNamespaces } from 'react-i18next';
 import { Text, TextInput, NetInfo, YellowBox } from 'react-native';
@@ -15,6 +15,7 @@ import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { persistStoreAsync, migrate, versionCheck, resetIfKeychainIsEmpty } from 'libs/store';
+import { bugsnag } from 'libs/bugsnag';
 import registerScreens from 'ui/routes/navigation';
 
 const launch = (store) => {
@@ -186,4 +187,8 @@ onAppStart()
 
         hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
     })
-    .catch(noop);
+    .catch((error) => {
+        const fn = __DEV__ ? console.error : bugsnag.notify; // eslint-disable-line no-console
+
+        return fn(error);
+    });
