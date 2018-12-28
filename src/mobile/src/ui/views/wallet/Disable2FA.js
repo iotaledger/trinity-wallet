@@ -16,6 +16,7 @@ import Header from 'ui/components/Header';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import i18next from 'shared-modules/libs/i18next.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -89,12 +90,16 @@ class Disable2FA extends Component {
                     this.timeout = setTimeout(() => {
                         this.props.generateAlert(
                             'success',
-                            '2FA is now disabled',
-                            'You have successfully disabled Two Factor Authentication.',
+                            i18next.t('twoFA:twoFADisabled'),
+                            i18next.t('twoFA:twoFADisabledExplanation'),
                         );
                     }, 300);
                 } else {
-                    this.props.generateAlert('error', 'Wrong code', 'The code you entered is not correct.');
+                    this.props.generateAlert(
+                        'error',
+                        i18next.t('twoFA:wrongCode'),
+                        i18next.t('twoFA:wrongCodeExplanation'),
+                    );
                 }
             })
             .catch((err) => console.error(err)); // eslint-disable-line no-console
@@ -133,7 +138,7 @@ class Disable2FA extends Component {
                                 animationOutType={['slideOutLeft', 'fadeOut']}
                                 delay={266}
                             >
-                                <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
+                                <Text style={[styles.generalText, textColor]}>{t('twoFA:enterCode')}</Text>
                             </AnimatedComponent>
                             <AnimatedComponent
                                 animationInType={['slideInRight', 'fadeIn']}
