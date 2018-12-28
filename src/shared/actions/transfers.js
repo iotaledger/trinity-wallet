@@ -262,7 +262,7 @@ export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispa
                     true,
                     // If proof of work configuration is set to remote,
                     // Extend seedStore object with offloadPow
-                    // This property will lead to perform network bound proof-of-work
+                    // This property will lead to perform remote proof-of-work
                     // See: extendedApi#attachToTangle
                     remotePoW
                         ? extend(
@@ -905,7 +905,7 @@ export const retryFailedTransaction = (accountName, bundleHash, seedStore) => (d
                     existingFailedTransactionsForThisAccount[bundleHash],
                     // If proof of work configuration is set to remote,
                     // Extend seedStore object with offloadPow
-                    // This property will lead to perform network bound proof-of-work
+                    // This property will lead to perform remote proof-of-work
                     // See: extendedApi#attachToTangle
                     shouldOffloadPow
                         ? extend(
