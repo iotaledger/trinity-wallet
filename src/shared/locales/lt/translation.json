@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas. Jeigu ši klaida kartosis, patikrinkite ar jūsų įrenginio laikai teisingi.",
         "emptyCode": "Neįvestas kodas",
         "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
