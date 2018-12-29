@@ -16,7 +16,6 @@ import Header from 'ui/components/Header';
 import { height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import i18next from 'shared-modules/libs/i18next.js';
 
 const styles = StyleSheet.create({
     container: {
@@ -90,15 +89,15 @@ class Disable2FA extends Component {
                     this.timeout = setTimeout(() => {
                         this.props.generateAlert(
                             'success',
-                            i18next.t('twoFA:twoFADisabled'),
-                            i18next.t('twoFA:twoFADisabledExplanation'),
+                            this.props.t('twoFA:twoFADisabled'),
+                            this.props.t('twoFA:twoFADisabledExplanation'),
                         );
                     }, 300);
                 } else {
                     this.props.generateAlert(
                         'error',
-                        i18next.t('twoFA:wrongCode'),
-                        i18next.t('twoFA:wrongCodeExplanation'),
+                        this.props.t('twoFA:wrongCode'),
+                        this.props.t('twoFA:wrongCodeExplanation'),
                     );
                 }
             })
