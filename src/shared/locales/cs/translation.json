@@ -280,9 +280,9 @@
         "print": "Vytisknout",
         "paperConvenience": "Vytištění papírové kopie vašeho seedu je vhodný způsob, jak ho uchovat.",
         "publicInsecure": "Ale tisk na veřejné wifi síti, nebo na veřejné tiskárně není bezpečné.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Před tiskem zkontrolujte a potvrďte",
+        "wifiConfirmation": "Nejsem připojen k veřejné WiFi síti",
+        "printerConfirmation": "Netisknu na veřejné tiskárně"
     },
     "receive": {
         "yourAddress": "Vaše adresa",
@@ -311,7 +311,7 @@
         "letsWriteDownYourSeed": "Zapište si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
         "printBlankWallet": "Tisk prázdné peněženky",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Co je kontrolní součet?",
         "everySeedHasAChecksum": "Každý Seed má odpovídající 3-znakový kontrolní součet.",
         "iHavesavedMySeed": "Svůj Seed mám uložený",
         "checksumExplanation": "Vždy, když přidáte Seed do Vaší peněženky, byste se měli ujistit, že kontrolní součet vygenerovaný peněženkou odpovídá tomu, který jste si zapsali.",
@@ -325,8 +325,8 @@
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej.",
         "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "UPOZORNĚNÍ: Nelze vložit Seed",
+        "clipboardWarningExplanation": "Možnost vložení je vypnuta pro Vaši bezpečnost. Namísto toho můžete přetáhnout myší Seed z textového souboru."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
