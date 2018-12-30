@@ -155,7 +155,7 @@
         "confirm": "Patvirtinti",
         "delete": "Ištrinti",
         "shouldUpdate": "Yra naujų atnaujinimų",
-        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsinaujinti iki naujausios versijos.",
+        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
-        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas.",
+        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas. Jeigu ši klaida kartosis, patikrinkite ar jūsų įrenginio laikai teisingi.",
         "emptyCode": "Neįvestas kodas",
         "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
@@ -703,8 +703,8 @@
         "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
+        "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
+        "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
         "downloadProgress": "{{transferred}} iš {{total}} atsiųsta"

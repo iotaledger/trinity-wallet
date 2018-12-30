@@ -153,7 +153,7 @@
         "errorAccessingKeychainExplanation": "Nie je možné získať prístup k úložišti kľúčov.",
         "mainWallet": "HLAVNÝ ÚČET",
         "confirm": "Confirm",
-        "delete": "Delete",
+        "delete": "Odstrániť",
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
@@ -277,7 +277,7 @@
     "paperWallet": {
         "neverShare": "Svoj Seed nikdy nikomu neprezrádzajte.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Tlačiť",
         "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
         "pleaseCheck": "Please check and confirm before you print",
@@ -382,7 +382,7 @@
         "addNewSeed": "Pridať nový Seed",
         "twoFA": "Dvojfaktorové overenie (2FA)",
         "changePassword": "Zmeniť heslo",
-        "general": "General settings",
+        "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
         "account": "Account settings",
         "logout": "Odhlásiť",
@@ -518,7 +518,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Určite sa chcete odhlásiť?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Ste si istý?"
     },
     "qrScanner": {
         "scan": "Naskenujte QR kód"
@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Neplatný kód",
-        "wrongCodeExplanation": "Zadaný kód nie je správny.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Prázdny kód",
         "emptyCodeExplanation": "Prosím, zadajte kód a skúste to znova.",
         "keyCopied": "Kľúč skopírovaný do schránky",
