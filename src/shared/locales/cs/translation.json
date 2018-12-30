@@ -703,7 +703,7 @@
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozici je nová verze",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "K dispozici je nová verze Trinity. Chcete nyní aktualizovat?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
         "installUpdateExplanation": "Stahování bylo dokončeno, Trinity se nyní restartuje a poté nainstaluje aktualizaci.",
         "downloadingUpdate": "Stahování aktualizace",
