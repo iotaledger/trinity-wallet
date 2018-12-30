@@ -354,7 +354,7 @@
         "addressPasteDetected": "Zjištěno kopírování adresy",
         "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
         "invalid": "NEPLATNÉ",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Přejděte na položku Odeslat"
     },
     "setSeedName": {
         "letsAddName": "Přidejte jméno",
@@ -382,9 +382,9 @@
         "addNewSeed": "Přidat nový Seed",
         "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
-        "general": "General settings",
+        "general": "Obecná nastavení",
         "advanced": "Pokročilé nastavení",
-        "account": "Account settings",
+        "account": "Nastavení účtu",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
         "syncingComplete": "Synchronizace dokončena",
@@ -517,7 +517,7 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Opravdu se chcete odhlásit?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Rozhodli jste se odhlásit",
         "areYouSure": "Jste si jisti?"
     },
     "qrScanner": {
@@ -552,7 +552,7 @@
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Zadejte název účtu a Seed",
         "incorrectFormat": "Nesprávný formát Seedu",
         "validSeedExplanation": "Platný Seed má 81 znaků a obsahuje pouze A-Z nebo 9."
     },
@@ -596,10 +596,10 @@
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
         "aMessage": "zpráva",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Od {{selectedAccountName}}",
+        "toAddress": "Na adresu",
+        "sendingAMessage": "Odeslání zprávy",
+        "sendingAnEmptyMessage": "Odeslání prázdné zprávy"
     },
     "twoFA": {
         "wrongCode": "Nesprávný kód",
@@ -642,7 +642,7 @@
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Zadejte znovu heslo"
     },
     "chart": {
         "mcap": "MCAP",
@@ -677,7 +677,7 @@
         "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
         "proofOfWork": "Dokončení proof of work",
         "broadcasting": "Odesílání transakcí do sítě",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Přenos byl dokončen"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",
