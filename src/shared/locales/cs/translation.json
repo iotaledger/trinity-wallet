@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccountDesktop": "Při načítání informací o Vašem účtu došlo k chybě. Pokud problém přetrvává, zkuste změnit Node nebo zakázat proxy server v nastavení Trinity.",
         "nodeOutOfSync": "Váš Node není synchronizovaný",
         "nodeOutOfSyncExplanation": "Vámi zvolený Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
-        "experimentalNode": "Node version not supported",
+        "experimentalNode": "Nepodporovaná verze Nodu",
         "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Tento Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
         "seed": "Seed",
@@ -518,13 +518,13 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Opravdu se chcete odhlásit?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Jste si jisti?"
     },
     "qrScanner": {
         "scan": "Naskenujte Váš QR kód"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Jednotkový systém",
         "trillion": "Bilion",
         "billion": "Miliard",
         "million": "Milion",
