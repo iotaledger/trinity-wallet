@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
         "emptyCode": "Fehlender 2FA-Code",
         "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
