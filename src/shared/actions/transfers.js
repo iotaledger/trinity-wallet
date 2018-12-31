@@ -434,7 +434,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
         // Check the last trit for validity
-        if(isLastTritZero(address) === false){
+        if (isLastTritZero(address) === false){
           throw new Error(Errors.INVALID_LAST_TRIT);
         }
         // Make sure that the address a user is about to send to is not already used.
