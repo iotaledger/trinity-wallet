@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import find from 'lodash/find';
 import filter from 'lodash/filter';
@@ -38,8 +39,12 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
     };
 
     const existingAddressData = get(existingAccountState, 'addressData') || [];
+    const existingAddresses = map(existingAddressData, (addressObject) => addressObject.address);
     const existingTransactions = get(existingAccountState, 'transactions') || [];
-    const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
+    const existingTransactionsHashes = map(
+        filter(existingTransactions, (transaction) => includes(existingAddresses, transaction.address)),
+        (transaction) => transaction.hash,
+    );
 
     return throwIfNodeNotHealthy(provider)
         .then(() => getFullAddressHistory(provider)(seedStore, existingAccountState))
@@ -102,12 +107,22 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
                 addresses: map(thisStateCopy.addressData, (addressObject) => addressObject.address),
             });
         })
-        .then((newHashes) =>
-            syncTransactions(provider)(
-                getTransactionsDiff(map(thisStateCopy.transactions, (transaction) => transaction.hash), newHashes),
+        .then((newHashes) => {
+            const existingAddresses = map(thisStateCopy.addressData, (addressObject) => addressObject.address);
+
+            return syncTransactions(provider)(
+                getTransactionsDiff(
+                    map(
+                        filter(thisStateCopy.transactions, (transaction) =>
+                            includes(existingAddresses, transaction.address),
+                        ),
+                        (transaction) => transaction.hash,
+                    ),
+                    newHashes,
+                ),
                 thisStateCopy.transactions,
-            ),
-        )
+            );
+        })
         .then((transactions) => {
             // Trigger notification callback with new incoming transactions and confirmed value transactions
             // TODO: New incoming transactions & confirmed value transactions should be detected within selectors or component update lifecycle methods.

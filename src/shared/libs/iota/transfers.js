@@ -454,6 +454,10 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
             { confirmed: [], unconfirmed: [] },
         );
 
+        if (isEmpty(unconfirmed)) {
+            return [...flatMap(confirmed), ...flatMap(unconfirmed)];
+        }
+
         return assignInclusionStatesToBundles(provider)(unconfirmed).then((bundles) => [
             ...flatMap(confirmed),
             ...flatMap(bundles),
