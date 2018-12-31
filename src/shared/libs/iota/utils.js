@@ -192,6 +192,21 @@ export const isValidAddress = (address) => {
 };
 
 /**
+ * Checks if the last trit is 0
+ *
+ * @method isLastTritZero
+ * @param {string} address
+ *
+ * @returns {boolean}
+ */
+export const isLastTritZero = (address) => {
+    if (!/[E-V]/.test(address.slice(80)) {
+        return true;
+    }
+    return false;
+};
+
+/**
  * Checks if provided IOTA message is valid
  *
  * @method isValidMessage
