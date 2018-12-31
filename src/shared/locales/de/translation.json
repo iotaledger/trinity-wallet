@@ -645,9 +645,9 @@
         "retypeKey": "Schlüssel erneut eingeben"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "Börsenwert",
         "change": "Änderung (24 Std.)",
-        "volume": "Volumen (24h)",
+        "volume": "Volumen (24 Std.)",
         "error": "Fehler beim Abrufen der Diagrammdaten"
     },
     "rootDetection": {
