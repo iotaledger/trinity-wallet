@@ -3,8 +3,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import find from 'lodash/find';
+import filter from 'lodash/filter';
 import { findTransactionsAsync } from './extendedApi';
-import { syncTransactions, getTransactionsDiff } from './transfers';
+import { syncTransactions, getTransactionsDiff, mapNormalisedTransactions } from './transfers';
 import { throwIfNodeNotHealthy } from './utils';
 import {
     mapLatestAddressData,
@@ -41,7 +42,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
     const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
 
     return throwIfNodeNotHealthy(provider)
-        .then(() => getFullAddressHistory(provider)(seedStore))
+        .then(() => getFullAddressHistory(provider)(seedStore, existingAccountState))
         .then((history) => {
             data = { ...data, ...history };
 
@@ -83,9 +84,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
  *
  *   @returns {function(object, object, function): Promise<object>}
  **/
-/* eslint-disable no-unused-vars */
 export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
-    /* eslint-enable no-unused-vars */
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
@@ -110,21 +109,31 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
             ),
         )
         .then((transactions) => {
-            //Trigger notification callback with new incoming transactions and confirmed value transactions
-            // if (notificationFn) {
-            //     notificationFn(
-            //         thisStateCopy.accountName,
-            //         filter(transfers, (transfer) => transfer.incoming && !thisStateCopy.transfers[transfer.bundle]),
-            //         filter(
-            //             transfers,
-            //             (transfer) =>
-            //                 transfer.persistence &&
-            //                 transfer.transferValue > 0 &&
-            //                 thisStateCopy.transfers[transfer.bundle] &&
-            //                 !thisStateCopy.transfers[transfer.bundle].persistence,
-            //         ),
-            //     );
-            // }
+            // Trigger notification callback with new incoming transactions and confirmed value transactions
+            // TODO: New incoming transactions & confirmed value transactions should be detected within selectors or component update lifecycle methods.
+            const existingNormalisedTransactions = mapNormalisedTransactions(
+                thisStateCopy.transactions,
+                thisStateCopy.addressData,
+            );
+            const allNormalisedTransactions = mapNormalisedTransactions(transactions, thisStateCopy.addressData);
+
+            if (notificationFn) {
+                notificationFn(
+                    thisStateCopy.accountName,
+                    filter(
+                        allNormalisedTransactions,
+                        (transfer) => transfer.incoming && !existingNormalisedTransactions.transfers[transfer.bundle],
+                    ),
+                    filter(
+                        allNormalisedTransactions,
+                        (transfer) =>
+                            transfer.persistence &&
+                            transfer.transferValue > 0 &&
+                            existingNormalisedTransactions.transfers[transfer.bundle] &&
+                            !existingNormalisedTransactions.transfers[transfer.bundle].persistence,
+                    ),
+                );
+            }
 
             thisStateCopy.transactions = transactions;
 

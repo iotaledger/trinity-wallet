@@ -175,7 +175,7 @@ const addCustomNodeRequest = () => ({
  * @method addCustomNodeSuccess
  * @param {string} payload
  *
- * @returns {{type: {string}, url: {string}, remotePow: {string} }}
+ * @returns {{type: {string}, payload: {string} }}
  */
 const addCustomNodeSuccess = (url, remotePow) => {
     // Add custom node.
@@ -698,7 +698,7 @@ export const toggleEmptyTransactions = () => {
  * @returns {{type: {string}, payload: {boolean} }}
  */
 export const setFingerprintStatus = (payload) => {
-    Wallet.updateFingerPrintAuthenticationSetting(payload);
+    Wallet.updateFingerprintAuthenticationSetting(payload);
 
     return {
         type: ActionTypes.SET_FINGERPRINT_STATUS,

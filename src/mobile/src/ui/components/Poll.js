@@ -152,6 +152,7 @@ export class Poll extends Component {
                     autoPromoteSkips: autoPromoteSkips - 1,
                 });
             } else {
+                // TODO (laumair): Promote transactions in order of oldest to latest
                 const bundleHashes = keys(unconfirmedBundleTails);
                 const bundleHashToPromote = bundleHashes[random(size(bundleHashes) - 1)];
 

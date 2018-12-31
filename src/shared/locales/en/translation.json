@@ -769,8 +769,8 @@
     },
     "migration": {
         "dataMigration": "Data migration",
-        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity now uses a new database for storing your wallet settings and accounts data. Please wait while Trinity automatically migrates your wallet settings and account information.",
-        "problemMigratingYourData": "There was a probelm migrating your data. Please try again"
+        "dataMigrationExplanation": "Due to performance and storage limitations, Trinity is using a new database for storing settings and account data. Please wait while Trinity automatically migrates your existing data",
+        "problemMigratingYourData": "There was a problem migrating your data. Please try again"
     },
     "ledger": {
         "ready": "Ledger device connected and ready",

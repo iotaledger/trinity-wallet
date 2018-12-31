@@ -480,10 +480,10 @@ class Wallet {
     /**
      * Updates finger print authentication configuration.
      *
-     * @method updateFingerPrintAuthenticationSetting
+     * @method updateFingerprintAuthenticationSetting
      * @param {boolean} payload
      */
-    static updateFingerPrintAuthenticationSetting(payload) {
+    static updateFingerprintAuthenticationSetting(payload) {
         realm.write(() => {
             Wallet.latestSettings.isFingerprintEnabled = payload;
         });

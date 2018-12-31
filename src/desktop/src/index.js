@@ -38,15 +38,6 @@ initialiseStorage();
 
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
-if (Electron.mode === 'tray') {
-    Electron.onEvent('storage.update', (payload) => {
-        const data = JSON.parse(payload);
-        const statePartial = {};
-        statePartial[data.key.replace('reduxPersist:', '')] = data.item;
-        // persistor.rehydrate(statePartial, { serial: true });
-    });
-}
-
 /* eslint-disable no-new */
 new Promise((resolve, reject) => {
     /* eslint-enable no-new */

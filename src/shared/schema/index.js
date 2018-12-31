@@ -115,6 +115,7 @@ export const AccountSchema = {
     primaryKey: 'name',
     properties: {
         meta: 'AccountMeta',
+        index: 'int',
         name: 'string',
         addressData: 'Address[]',
         transactions: 'Transaction[]',
