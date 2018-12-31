@@ -149,18 +149,18 @@ const polling = (
                 isFetchingMarketData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST:
             return {
                 ...state,
                 isFetchingAccountInfo: true,
             };
-        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS:
             return {
                 ...state,
                 isFetchingAccountInfo: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+        case ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR:
             return {
                 ...state,
                 isFetchingAccountInfo: false,

@@ -1,7 +1,7 @@
+/* global __DEV__ */
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
-import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { withNamespaces } from 'react-i18next';
@@ -21,6 +21,7 @@ import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter } from 'libs/store';
+import { bugsnag } from 'libs/bugsnag';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
 import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
@@ -244,4 +245,8 @@ onAppStart()
 
         hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
     })
-    .catch(noop);
+    .catch((error) => {
+        const fn = __DEV__ ? console.error : bugsnag.notify; // eslint-disable-line no-console
+
+        return fn(error);
+    });

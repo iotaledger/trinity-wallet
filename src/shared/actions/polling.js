@@ -4,6 +4,7 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import some from 'lodash/some';
+import reduce from 'lodash/reduce';
 import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
@@ -41,13 +42,14 @@ export const ActionTypes = {
     FETCH_MARKET_DATA_REQUEST: 'IOTA/POLLING/FETCH_MARKET_DATA_REQUEST',
     FETCH_MARKET_DATA_SUCCESS: 'IOTA/POLLING/FETCH_MARKET_DATA_SUCCESS',
     FETCH_MARKET_DATA_ERROR: 'IOTA/POLLING/FETCH_MARKET_DATA_ERROR',
-    ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_REQUEST',
-    ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',
-    ACCOUNT_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_ERROR',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS',
+    ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
+    SYNC_ACCOUNT_WHILE_POLLING: 'IOTA/POLLING/SYNC_ACCOUNT_WHILE_POLLING',
 };
 
 /**
@@ -183,38 +185,37 @@ const fetchMarketDataError = () => ({
 });
 
 /**
- * Dispatch when account information is about to be fetched during polling
+ * Dispatch when accounts information is about to be fetched during polling
  *
- * @method accountInfoFetchRequest
+ * @method accountInfoForAllAccountsFetchRequest
  *
  * @returns {{type: {string} }}
  */
-const accountInfoFetchRequest = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
+const accountInfoForAllAccountsFetchRequest = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_REQUEST,
 });
 
 /**
- * Dispatch when account information is successfully fetched during polling
+ * Dispatch when accounts information is successfully fetched during polling
  *
- * @method accountInfoFetchSuccess
+ * @method accountInfoForAllAccountsFetchSuccess
  * @param {object} payload
  *
  * @returns {{type: {string}, payload: {object} }}
  */
-const accountInfoFetchSuccess = (payload) => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
-    payload,
+const accountInfoForAllAccountsFetchSuccess = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_SUCCESS,
 });
 
 /**
- * Dispatch when an error occurs during account sync
+ * Dispatch when an error occurs during accounts sync
  *
- * @method accountInfoFetchError
+ * @method accountInfoForAllAccountsFetchError
  *
  * @returns {{type: {string} }}
  */
-const accountInfoFetchError = () => ({
-    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+const accountInfoForAllAccountsFetchError = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FOR_ALL_ACCOUNTS_FETCH_ERROR,
 });
 
 /**
@@ -275,6 +276,19 @@ export const setPollFor = (payload) => ({
  */
 export const syncAccountBeforeAutoPromotion = (payload) => ({
     type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
+    payload,
+});
+
+/**
+ * Dispatch to update account state during accounts info polling operation
+ *
+ * @method syncAccountWhilePolling
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const syncAccountWhilePolling = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_WHILE_POLLING,
     payload,
 });
 
@@ -438,30 +452,43 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts account name and syncs local account state with ledger's.
+ *   Accepts account names and syncs local account state with ledger's.
  *
- *   @method getAccountInfo
- *   @param {string} accountName
+ *   @method getAccountInfoForAllAccounts
+ *   @param {array} accountNames
  *   @param {function} notificationFn - New transaction callback function
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (accountName, notificationFn) => {
+export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
     return (dispatch, getState) => {
-        dispatch(accountInfoFetchRequest());
+        dispatch(accountInfoForAllAccountsFetchRequest());
 
-        const existingAccountState = selectedAccountStateFactory(accountName)(getState());
         const selectedNode = getSelectedNodeFromState(getState());
+        const randomNodes = getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]);
 
-        withRetriesOnDifferentNodes([
-            selectedNode,
-            ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]),
-        ])(syncAccount)(existingAccountState, undefined, notificationFn)
-            .then(({ node, result }) => {
-                dispatch(changeNode(node));
-                dispatch(accountInfoFetchSuccess(result));
+        return reduce(
+            accountNames,
+            (promise, accountName) => {
+                return promise.then(() => {
+                    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+
+                    return withRetriesOnDifferentNodes([selectedNode, ...randomNodes])(syncAccount)(
+                        existingAccountState,
+                        undefined,
+                        notificationFn,
+                    ).then(({ node, result }) => {
+                        dispatch(changeNode(node));
+                        dispatch(syncAccountWhilePolling(result));
+                    });
+                });
+            },
+            Promise.resolve(),
+        )
+            .then(() => {
+                dispatch(accountInfoForAllAccountsFetchSuccess());
             })
             .catch((err) => {
-                dispatch(accountInfoFetchError());
+                dispatch(accountInfoForAllAccountsFetchError());
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };

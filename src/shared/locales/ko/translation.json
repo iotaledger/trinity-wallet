@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "잘못된 코드",
-        "wrongCodeExplanation": "입력한 코드가 옳지 않습니다.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "코드 미입력",
         "emptyCodeExplanation": "코드를 입력하고 다시 시도해 주세요.",
         "keyCopied": "키를 클립보드에 복사함",
