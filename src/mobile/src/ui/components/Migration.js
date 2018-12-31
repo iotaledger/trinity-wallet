@@ -7,15 +7,14 @@ import { withNamespaces } from 'react-i18next';
 import { startTrackingProgress } from 'shared-modules/actions/progress';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { migrate } from 'shared-modules/actions/migrations';
 import { reduxPersistStorageAdapter } from 'libs/store';
 import ProgressSteps from 'libs/progressSteps';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import Header from 'ui/components/Header';
 import InfoBox from 'ui/components/InfoBox';
-import ProgressBar from 'ui/components/ProgressBar';
-import { width, height } from 'libs/dimensions';
+import ProgressBar from 'ui/components/OldProgressBar';
+import { height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -24,13 +23,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
     },
     infoText: {
@@ -127,20 +126,14 @@ class Migration extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 0.3 }} />
                     <Header textColor={body.color}>{t('dataMigration')}</Header>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.3 }} />
-                    <InfoBox
-                        body={body}
-                        text={
-                            <View>
-                                <Text style={[styles.infoText, textColor]}>{t('dataMigrationExplanation')}</Text>
-                            </View>
-                        }
-                    />
+                    <InfoBox>
+                        <View>
+                            <Text style={[styles.infoText, textColor]}>{t('dataMigrationExplanation')}</Text>
+                        </View>
+                    </InfoBox>
                     <View style={{ flex: 0.4 }} />
                     <ProgressBar
                         style={{
