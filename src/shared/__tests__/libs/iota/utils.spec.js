@@ -19,7 +19,7 @@ describe('libs: iota/utils', () => {
         });
         describe('when the last trit is not 0', () => {
             it('should return false', () => {
-                expect(isLastTritZero('E'.repeat(81)).to.equal(false);
+                expect(isLastTritZero('E'.repeat(81))).to.equal(false);
             });
         });
     });
