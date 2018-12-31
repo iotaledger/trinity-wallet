@@ -10,6 +10,18 @@ import {
 } from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
+    describe('#isLastTritZero', () => {
+        describe('when the last trit is 0', () => {
+            it('when the last trit is 0', () => {
+                expect(isLastTritZero('D'.repeat(81)).to.equal(true);
+            });
+        });
+        describe('when the last trit is not 0', () => {
+            it('should return false', () => {
+                expect(isLastTritZero('E'.repeat(81)).to.equal(false);
+            });
+        });
+    });
     describe('#convertFromTrytes', () => {
         describe('when trytes passed as an argument contains all nines', () => {
             it('should return a string "Empty"', () => {
