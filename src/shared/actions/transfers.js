@@ -751,6 +751,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     return dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (message === Errors.UNSUPPORTED_NODE) {
                     return dispatch(generateUnsupportedNodeErrorAlert());
+                } else if (message === Errors.INVALID_LAST_TRIT) {
+                    return dispatch(
+                        generateAlert('error', i18next.t('send:invalidAddress'), i18next.t('send:invalidAddressExplanation4')),
+                    );
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
