@@ -14,7 +14,7 @@ describe('libs: iota/utils', () => {
     describe('#isLastTritZero', () => {
         describe('when the last trit is 0', () => {
             it('should return true', () => {
-                expect(isLastTritZero('D'.repeat(81)).to.equal(true);
+                expect(isLastTritZero('D'.repeat(81))).to.equal(true);
             });
         });
         describe('when the last trit is not 0', () => {
