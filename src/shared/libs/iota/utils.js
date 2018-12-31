@@ -200,7 +200,7 @@ export const isValidAddress = (address) => {
  * @returns {boolean}
  */
 export const isLastTritZero = (address) => {
-    if (!/[E-V]/.test(address.slice(80)) {
+    if (!/[E-V]/.test(address.slice(80,81)) {
         return true;
     }
     return false;
