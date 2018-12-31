@@ -433,7 +433,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
     const withPreTransactionSecurityChecks = () => {
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
-        //Check the last trit for validity
+        // Check the last trit for validity
         if(isLastTritZero(address) === false){
           throw new Error(Errors.INVALID_LAST_TRIT);
         }
