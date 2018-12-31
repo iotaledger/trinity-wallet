@@ -7,6 +7,7 @@ import {
     getRandomNodes,
     withRetriesOnDifferentNodes,
     throwIfNodeNotHealthy,
+    isLastTritZero,
 } from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
