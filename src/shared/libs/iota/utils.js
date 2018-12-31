@@ -207,6 +207,21 @@ export const isLastTritZero = (address) => {
 };
 
 /**
+ * Async version of isLastTritZero
+ *
+ * @method isLastTritZeroAsync
+ * @param  {string}  address
+ *
+ * @returns {boolean}
+ */
+export const isLastTritZeroAsync = (address) => {
+    if (isLastTritZero(address)) {
+        return Promise.resolve(true);
+    }
+    return Promise.resolve(false);
+};
+
+/**
  * Checks if provided IOTA message is valid
  *
  * @method isValidMessage
