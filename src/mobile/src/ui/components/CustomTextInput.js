@@ -337,6 +337,7 @@ class CustomTextInput extends Component {
             height,
             conversionText,
             currencyConversion,
+            innerPadding,
             fingerprintAuthentication,
             isPasswordValid,
             passwordStrength,
