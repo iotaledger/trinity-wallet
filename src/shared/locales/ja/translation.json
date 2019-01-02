@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",
         "validatingReceiveAddress": "受取用アドレスを検証中",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "アカウントを同期中",
         "preparingInputs": "入力部を準備中",
         "preparingTransfers": "送金を準備中",
