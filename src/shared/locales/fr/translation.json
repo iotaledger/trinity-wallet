@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
         "validatingReceiveAddress": "Validation de l'adresse de réception",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synchronisation du compte",
         "preparingInputs": "Préparation des entrées",
         "preparingTransfers": "Préparation des transferts",
