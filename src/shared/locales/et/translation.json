@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Sõlme tervise kontrollimine",
         "validatingReceiveAddress": "Saaja aadressi kontrollimine",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sünkroniseeri konto",
         "preparingInputs": "Sisendite ettevalmistamine",
         "preparingTransfers": "Ülekannete ettevalmistamine",
