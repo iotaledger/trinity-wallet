@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "नोड स्वास्थ्य जांच रहा है",
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "खाता सिंकिंग",
         "preparingInputs": "इनपुट की तैयारी",
         "preparingTransfers": "ट्रांसफर के लिए रेडी हो रहे है",
