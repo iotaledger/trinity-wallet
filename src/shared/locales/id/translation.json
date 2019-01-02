@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Mengcek kesehatan Node",
         "validatingReceiveAddress": "Mengesahkan alamat penerima",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sinkronisasi akun",
         "preparingInputs": "Mempersiapkan masukan",
         "preparingTransfers": "Menyiapkan transfer",
