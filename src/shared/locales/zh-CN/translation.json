@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "检查节点运行状况。",
         "validatingReceiveAddress": "验证接收地址",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
         "preparingTransfers": "准备转帐中",
