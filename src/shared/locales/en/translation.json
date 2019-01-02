@@ -639,7 +639,7 @@
     },
     "twoFA": {
         "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "Key copied to clipboard",
@@ -707,6 +707,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",

@@ -185,7 +185,7 @@ const account = (
             /**
              * Determines if the account info is complete and account ready to be created and synced
              */
-            completed: false
+            completed: false,
         },
         /**
          * Determines if onboarding process is completed
@@ -260,7 +260,7 @@ const account = (
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
         case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
-        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case PollingActionTypes.SYNC_ACCOUNT_WHILE_POLLING:
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:

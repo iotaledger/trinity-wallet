@@ -7,7 +7,7 @@
         "refresh": "تازه کردن",
         "balanceError": "موجودی کافی نیست",
         "balanceErrorMessage": "شما آیوتا کافی برای تکمیل این انتقال ندارید.",
-        "totalBalance": "Total balance",
+        "totalBalance": "مجموع موجودی",
         "transferError": "خطای انتقال",
         "transferErrorMessage": "مشکلی در سفارش شما به وجود آمده است. لطفا دوباره تلاش کنید.",
         "transferSent": "انتقال فرستاده شد",
@@ -19,11 +19,11 @@
         "invalidResponse": "خطای Node",
         "invalidResponseExplanation": "Node یک خطا را دریافت کرد. سعی کنید Node را تغییر دهید.",
         "invalidResponseFetchingAccount": "Node هنگام دریافت اطلاعات حساب شما، خطایی را دریافت کرد. سعی کنید Node را تغییر دهید.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "به هنگام دریافت اطلاعات حساب شما node با خطایی مواجه شد. اگر این مشکل همچنان ادامه دارد، تغییر دادن node یا غیر فعال کردن پروکسی سیستم خود در تنظیمات Trinity را امتحان کنید.",
         "nodeOutOfSync": "Node خارج از همگام سازی",
         "nodeOutOfSyncExplanation": "Node در حال حاضر انتخاب شده شما از همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNode": "نسخه node پشتیبانی نمی‌شود",
+        "experimentalNodeExplanation": "node انتخاب شده فعلی شما در حال اجرای یک نسخه آزمایشی است که پشتیبانی نمی‌شود. لطفا node خود را تغییر دهید یا دوباره تلاش کنید.",
         "thisNodeOutOfSync": "این Node همگام نیست. لطفا Node را تغییر دهید یا دوباره تلاش کنید.",
         "seed": "سید",
         "checksum": "کد اعتبارسنجی",
@@ -37,7 +37,7 @@
         "save": "ذخیره",
         "close": "بستن",
         "export": "استخراج",
-        "help": "Help",
+        "help": "راهنما",
         "import": "وارد کردن",
         "continue": "ادامه",
         "enable": "فعالسازی",
@@ -48,7 +48,7 @@
         "paperWallet": "چاپ نسخه کپی شده کاغذی",
         "addToPasswordManager": "اضافه کردن به مدیریت گذرواژه",
         "shareSeed": "اشتراک گذاری سید",
-        "share": "Share",
+        "share": "اشتراک گذاری",
         "proceed": "ادامه",
         "qr": "QR",
         "enterSeed": "لطفا سید خود را وارد کنید.",
@@ -58,10 +58,10 @@
         "password": "گذرواژه",
         "unrecognisedPassword": "گذرواژه غیر قابل شناسایی",
         "unrecognisedPasswordExplanation": "گذرواژه شناسایی نشد لطفا دوباره تلاش کنید.",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
-        "emptyPasswordExplanation": "You must enter a password. Please try again.",
-        "capsLockIsOn": "Caps Lock is on",
+        "unrecognisedAccount": "حساب غیر قابل شناسایی",
+        "unrecognisedAccountExplanation": "حساب با نام {{accountName}} شناسایی نشد. بازنشانی کیف پول خود را در نظر بگیرید.",
+        "emptyPasswordExplanation": "شما باید یک گذرواژه وارد کنید. لطفا دوباره تلاش کنید.",
+        "capsLockIsOn": "کلید caps lock روشن است",
         "syncInProgress": "در حال انجام همگام سازی",
         "syncInProgressExplanation": "لطفا صبر کنید تا همگام سازی کامل شود.",
         "somethingWentWrong": "مشکلی پیش آمد",
@@ -74,10 +74,10 @@
         "attachToTangleUnavailableExplanation": "اثبات کار از راه دور در Node انتخابی شما در دسترس نیست. هر دو Node را تغییر دهید یا اثبات کار را به محلی در تنظیمات پیشرفته تنظیم کنید.",
         "attachToTangleUnavailableExplanationShort": "اثبات کار از راه دور در Node انتخابی شما در دسترس نیست.",
         "wallet": "کیف پول",
-        "all": "All",
+        "all": "همه",
         "sent": "ارسال",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "شما دریافت کردید",
+        "youSent": "شما ارسال کردید",
         "received": "دریافت شده",
         "sending": "در حال ارسال",
         "receiving": "در حال دریافت",
@@ -102,8 +102,8 @@
         "noLongerValid": "بسته نرم افزاری که میخواهید ترویج کنید، دیگر معتبر نیست",
         "transactionAlreadyConfirmed": "معامله قبلا تایید شده است",
         "transactionAlreadyConfirmedExplanation": "معامله ای که شما در حال تلاش برای ترویج آن هستید قبلا تایید شده است.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "در حال ارسال به یک آدرس ورودی",
+        "cannotSendToOwnExplanation": "شما نمی‌توانید به آدرسی که به عنوان ورودی در یک تراکنش استفاده شده است ارسال کنید.",
         "pleaseWait": "لطفا منتظر بمانید",
         "pleaseWaitEllipses": "لطفا منتظر بمانید...",
         "pleaseWaitExplanation": "Trinity یک تابع دیگر را اجرا می کند. لطفا صبر کنید و دوباره تلاش کنید.",
@@ -126,13 +126,13 @@
         "seedThief": "اگر فرد دیگری سید شما را داشته باشد، می توانید آیوتای شما را به سرقت ببرد.",
         "googlePlayServicesNotAvailable": "خدمات گوگل پلی در دسترس نیست",
         "couldNotVerifyDeviceIntegrity": "نمی توان یکپارچگی دستگاه را تایید کرد زیرا سرویس های Google Play در دسترس نیستند.",
-        "clear": "Clear",
+        "clear": "پاک کردن",
         "noNetworkConnection": "اتصال شبکه اي وجود ندارد",
         "noNetworkConnectionExplanation": "به نظر می رسد که شما به اینترنت متصل نیستید و آفلاین هستید.",
         "spentAddressExplanation": "اخطار: موجودی بر روی آدرس های از قبل ساخته شده",
         "discordInformation": "ارسال برای یک آدرس بیش از یک بار خطرناک است. برای حل این مسئله، به کانال #help در برنامه Discord مراجعه کنید.",
         "androidInsecureClipboardWarning": "اندروید کلیپ بورد امن را فراهم نمی کند.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "هرگز یک سید را در یک دستگاه اندرویدی کپی و جایگذاری نکنید.",
         "willNotCopyPasteSeed": "من اجازه کپی و جایگذاری سید شما را ندارم",
         "mustBeStoredAppropriately": "این باید به صورت مناسب ذخیره شود.",
         "deviceMayBecomeUnresponsive": "دستگاه شما ممکن است برای مدتی پاسخگو باشد.",
@@ -141,25 +141,25 @@
         "headToAdvancedSettingsForTransition": "به تنظیمات پیشرفته بروید و یک انتقال عکس فوری بگیرید.",
         "usingTrinityWalletWithKeePass": "استفاده از کیف پول Trinity با Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "خطایی در شبکه هنگام پخش تراکنش شما وجود داشت.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "broadcastError": "عدم موفقیت در انتشار انتقال",
+        "addressesAlreadySpentFrom": "از یک یا چند آدرس پیش از این خرج شده است.",
+        "problemSendingYourTransaction": "مشکلی در ارسال تراکنش شما وجود داشت.",
+        "problemPerformingProofOfWork": "مشکلی برای اجرای اثبات انجام کار وجود داشت.",
+        "tryingAgainWithLocalPoW": "در حال تلاش دوباره با اثبات انجام کار محلی.",
+        "tryingAgainWithDifferentNode": "در حال تلاش دوباره با یک node متفاوت.",
+        "errorFetchingAccountInformation": "خطا در دریافت اطلاعات حساب.",
+        "errorSyncingAddresses": "خطا در همگام‌سازی اطلاعات آدرس. در حال تلاش دوباره با یک node متفاوت.",
+        "errorAccessingKeychain": "خطای keychain",
+        "errorAccessingKeychainExplanation": "نمی‌توان به keychain مورد نیاز برای ذخیره‌سازی امن دسترسی پیدا کرد.",
         "mainWallet": "حساب اصلی",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "confirm": "تایید",
+        "delete": "حذف",
+        "shouldUpdate": "به‌روزرسانی جدیدی موجود است",
+        "shouldUpdateExplanation": "به‌روزرسانی جدیدی منتشر شده است. توصیه می‌شود که به آخرین نسخه به‌روز‌رسانی کنید.",
+        "forceUpdate": "برای ادامه برنامه را به‌روز‌رسانی کنید",
+        "forceUpdateExplanation": "یک به‌روزرسانی بحرانی منتشر شده است. لطفا هم‌اکنون برنامه را به‌روزرسانی کنید.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -197,7 +197,7 @@
         "reasonPattern": "الگوهای کوتاه از کلید ها آسان است قابل حدس زدن میباشد.",
         "reasonNames": "نام و نام خانوادگی به راحتی قابل حدس زدن است.",
         "reasonRepeats": "تکرار حرف ها کنار یکدیگر مانند 'aaa' آسان میباشند و قابل حدس زدن است.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonRepeats2": "تکرارهایی مانند 'abcabcabc' فقط کمی سخت‌تر از حدس زدن 'abc' است.",
         "reasonSequence": "دنباله هایی مانند abc یا 54321 آسان است حدس بزنید.",
         "reasonYears": "استفاده از سال های گذشته آسان است قابل حدس زدن میباشد.",
         "reasonDates": "تاریخ ها اغلب آسان و قابل حدس زدن است.",
@@ -213,7 +213,7 @@
         "passwordTooShortExplanation": "گذرواژه شما باید حداقل {{minLength}} کاراکتر باشد. در حال حاضر {{currentLength}} کاراکتر میباشد. لطفا دوباره تلاش کنید.",
         "passwordMismatch": "گذرواژه‌ ها یکسان نیستند",
         "passwordMismatchExplanation": "گذرواژه هایی که وارد کرده اید، مطابقت ندارند. لطفا دوباره تلاش کنید.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "این گذرواژه کیف پول اصلی شماست. شما از آن برای ورود استفاده خواهید کرد.",
         "retypePassword": "دوباره گذرواژه را وارد کنید"
     },
     "copyToClipboard": {
@@ -247,8 +247,8 @@
         "login": "ورود",
         "setNode": "تنظیم Node",
         "whyBiometricDisabled": "چرا احراز هویت بیومتریک غیرفعال است؟",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "به دلایل امنیتی احراز هویت بیومتریک در اولین اجرای برنامه غیرفعال شده است.",
+        "whyBiometricDisabledExplanationPart2": "به هنگام استفاده از Trinity به دلیل عدم فعالیت خارج خواهید شد. شما سپس می‌توانید با احراز هویت بیومتریک دوباره وارد شوید."
     },
     "loading": {
         "loadingFirstTime": "بارگذاری سید برای اولین بار.",
@@ -263,10 +263,10 @@
         "pressForNewSeed": "برای ساخت سید جدید فشار بدهید",
         "generateSuccess": "سید با موفقیت تولید شد",
         "individualLetters": "نامه های فردی را به صورت تصادفی انتخاب کنید.",
-        "individualLetterCount": "Press <1><0>{{count}}</0></1> more letter to randomise it.",
-        "individualLetterCount_plural": "Press <1><0>{{count}}</0></1> more letters to randomise them.",
-        "randomiseCharsToContinue": "Randomise <1>{{count}}</1> character to continue.",
-        "randomiseCharsToContinue_plural": "Randomise <1>{{count}}</1> characters to continue.",
+        "individualLetterCount": "<1><0>{{count}}</0></1> حرف بیشتر برای تصادفی کردن آن فشار دهید.",
+        "individualLetterCount_plural": "<1><0>{{count}}</0></1> حرف بیشتر برای تصادفی کردن آن‌ها فشار دهید.",
+        "randomiseCharsToContinue": "برای ادامه <1>{{count}}</1> کارکتر را تصادفی کنید.",
+        "randomiseCharsToContinue_plural": "برای ادامه <1>{{count}}</1> کارکتر را تصادفی کنید.",
         "whatIsASeed": "سید چیست؟"
     },
     "onboardingComplete": {
@@ -277,12 +277,12 @@
     "paperWallet": {
         "neverShare": "هرگز سید خود را با کسی شریک نکنید.",
         "iotaLogo": "لوگو آیوتا",
-        "print": "Print",
+        "print": "چاپ",
         "paperConvenience": "چاپ کپی کاغذی از سید شما یک راه مناسب برای ذخیره آن است.",
         "publicInsecure": "اما چاپ در وای فای عمومی یا چاپگر عمومی نا امن است.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "لطفا قبل از چاپ بررسی و تایید کنید",
+        "wifiConfirmation": "من از یک وای‌فای عمومی استفاده نمی‌کنم",
+        "printerConfirmation": "من از یک چاپگر عمومی استفاده نمی‌کنم"
     },
     "receive": {
         "yourAddress": "آدرس شما",
@@ -291,27 +291,27 @@
         "copyAddress": "کپی کردن آدرس",
         "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "آدرس شما در کلیپ بورد کپی شد.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "تولید آدرس",
         "noAddresses": "بدون آدرس",
         "spent": "از قبل ساخته شده",
         "tag": "برچسب",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "تولید آدرس",
+        "generateAnAddressTitle": "تولید یک آدرس",
+        "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید."
     },
     "saveYourSeed": {
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
         "seedCleared": "سید پاک شد",
         "mostSecure": "امن ترین",
-        "recommended": "Recommended",
+        "recommended": "پیشنهاد شده",
         "leastSecure": "کمترین امنیت",
         "paperWallet": "کیف پول کاغذی",
         "writeYourSeedDown": "سید خود را بنویسید",
         "seedClearedExplanation": "سید برای امنیت شما از کلیپ بورد پاکسازی شده است.",
-        "letsWriteDownYourSeed": "Let's write down your seed",
+        "letsWriteDownYourSeed": "بیایید سید شما را بنویسیم",
         "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "کد اعتبارسنجی چیست؟",
         "everySeedHasAChecksum": "هر سید یک کد اعتبارسنجی 3 حرفی دارد.",
         "iHavesavedMySeed": "من سید خود را ذخیره کردم",
         "checksumExplanation": "هر گاه سید را به کیف پول خود اضافه می کنید، باید اطمینان حاصل کنید که کد اعتبارسنجی تولید شده از کیف پول مطابق با آنچه نوشته شده است.",
@@ -319,14 +319,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "لطفا سید خود را تایید کنید",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity هرگز از شما نمی‌خواهد که سید خود را دوباره وارد کنید مگر اینکه شما کیف پول را بازنشانی یا برنامه را حذف کنید.",
         "enterYourSeed": "سید خود را وارد کنید",
         "incorrectSeed": "سید نادرست",
         "incorrectSeedExplanation": "سید وارد شده نادرست است. لطفا دوباره تلاش کنید.",
         "ifYouHaveNotSaved": "اگر شما از سید خود پشتیبان تهیه نکرد اید، لطفا به عقب برگردید و این کار را انجام دهید.",
         "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "هشدار: نمی‌توان سید را جای‌گذاری کرد",
+        "clipboardWarningExplanation": "جای‌گذاری بنا به دلایل امنیتی غیر فعال شده است. شما در عوض می‌توانید سید خود را از یک فایل متنی به اینجا بکشید و رها کنید."
     },
     "send": {
         "invalidAddress": "آدرس اشتباه است",
@@ -354,7 +354,7 @@
         "addressPasteDetected": "آدرس جایگذاری تشخیص داده شد",
         "addressPasteExplanation": "به نظر می رسد که یک آدرس را جاگذاری کرده اید. اطمینان حاصل کنید که آدرس جایگذاری شده با آدرسی که شما می خواهید به آن ارسال کنید یکسان باشد.",
         "invalid": "نامعتبر",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "بکشید تا ارسال شود"
     },
     "setSeedName": {
         "letsAddName": "لطفا یک نام اضافه کنید",
@@ -362,12 +362,12 @@
         "youCanAdd": "می توانید سید های بیشتری را از منوی تنظیمات اضافه کنید."
     },
     "modeSelection": {
-        "advanced": "Advanced",
+        "advanced": "پیشرفته",
         "standard": "استاندارد",
-        "advancedModeExplanation": "Advanced mode will display more detailed technical information.",
-        "modesExplanation": "Only enable Advanced mode if you are experienced using IOTA. You may find it confusing otherwise.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "advancedModeExplanation": "حالت پیشرفته اطلاعات فنی را با جزئیات بیشتری نمایش خواهد داد.",
+        "modesExplanation": "فقط در صورتی حالت پیشرفته را فعال کنید که تجربه کافی در استفاده از IOTA را دارید. در غیر این صورت ممکن است برایتان گمراه‌کننده باشد.",
+        "modeUpdated": "حالت به روز شد",
+        "modeUpdatedExplanation": "شما برنامه را به حالت {{mode}} تغییر دادید"
     },
     "settings": {
         "transferSending": "انتقال فرستاده شد",
@@ -382,9 +382,9 @@
         "addNewSeed": "سید جدید را اضافه کنید",
         "twoFA": "احراز هویت دو مرحله ای",
         "changePassword": "تغییر گذرواژه",
-        "general": "General settings",
+        "general": "تنظیمات عمومی",
         "advanced": "تنظیمات پیشرفته",
-        "account": "Account settings",
+        "account": "تنظیمات حساب",
         "logout": "خروج",
         "reset": "بازنشانی کیف پول",
         "syncingComplete": "همگام سازی کامل شد",
@@ -424,7 +424,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "گذرواژه خود را برای بازنشانی کیف پول وارد کنید.",
-        "reset": "Reset"
+        "reset": "بازنشانی"
     },
     "walletSetup": {
         "okay": "باشه. بیایید کیف پول خود را تنظیم کنیم!",
@@ -457,8 +457,8 @@
         "empty": "خالی",
         "retrying": "درحال تلاش دوباره",
         "yesterday": "دیروز",
-        "promotingAnotherBundle": "Promoting another bundle",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "promotingAnotherBundle": "در حال ارتقای یک بسته تراکنش دیگر",
+        "pleaseWait": "لطفا صبر کنید، Trinity در حال ارتقای یک بسته تراکنش دیگر است."
     },
     "accountManagement": {
         "viewSeed": "مشاهده سید",
@@ -466,7 +466,7 @@
         "editAccountName": "ویرایش نام حساب",
         "deleteAccount": "حذف حساب",
         "addNewAccount": "اضافه کردن حساب جدید",
-        "tools": "Tools"
+        "tools": "ابزارها"
     },
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
@@ -476,7 +476,7 @@
         "add": "اضافه کردن",
         "nodeFieldEmpty": "فیلد متن خالی است",
         "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "لطفا یک URL معتبر وارد کنید."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
@@ -501,36 +501,36 @@
         "mockup": "Mockup"
     },
     "themes": {
-        "classic": "Classic",
-        "contemporary": "Contemporary",
-        "dark": "Dark",
-        "default": "Default",
-        "electric": "Electric",
-        "ionic": "Ionic",
-        "light": "Light",
-        "lucky": "Lucky",
-        "mint": "Mint",
-        "steelblue": "Steel Blue"
+        "classic": "کلاسیک",
+        "contemporary": "امروزی",
+        "dark": "تیره",
+        "default": "پیش‌فرض",
+        "electric": "الکتریک",
+        "ionic": "آیونیک",
+        "light": "روشن",
+        "lucky": "خوش شانس",
+        "mint": "نعناع",
+        "steelblue": "آبی فولادی"
     },
     "currencySelection": {
         "currency": "واحد پول"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "آیا مطمئنید که می‌خواهید خارج شوید؟",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "شما در حال خروج هستید",
+        "areYouSure": "آیا مطمئن هستید؟"
     },
     "qrScanner": {
         "scan": "اسکن کد QR شما"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "واحد سیستم",
         "trillion": "تریلیون",
         "billion": "بیلیون",
         "million": "میلیون",
         "thousand": "هزار",
         "one": "یک",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAها معمولا به صورت ضریبی از میلیون اندوخته می‌شوند ولی یک تک IOTA هم قابل انتقال هست."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "چرا من نمی توانم موجودی کامل خود را انتقال بدهم؟",
@@ -538,7 +538,7 @@
         "discordInformation": "برای پیدا کردن راه حل برای مسئله خود، به کانال #help در برنامه Discord مراجعه کنید."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "آیا از حذف حساب کاربری خود اطمینان دارید؟",
         "yourSeedWillBeRemoved": "سید شما و تاریخچه تراکنش های شما حذف خواهد شد.",
         "thisAction": "این عمل غیر قابل بازگشت است",
         "enterPassword": "گذرواژه خود را برای حذف این حساب وارد کنید."
@@ -552,7 +552,7 @@
         "syncingYourAccount": "همگام سازی حساب شما."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "یک نام برای حساب و سید را وارد کنید",
         "incorrectFormat": "قالب سید اشتباه است",
         "validSeedExplanation": "سید های معتبر باید 81 کاراکتر باشد و فقط شامل حروف A-Z یا عدد تا 9 باشد."
     },
@@ -560,14 +560,14 @@
         "enterPassword": "گذرواژه خود را برای مشاهده سید وارد کنید.",
         "viewSeed": "مشاهده سید",
         "hideSeed": "پنهان کردن سید",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailable": "برون‌ریزی سید برای نوع حساب {{accountType}} در دسترس نمی‌باشد",
+        "accountIndex": "اندیس حساب لدجر شما",
+        "accountPage": "صفحه حساب لدجر شما"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "آیا از سید خود پشتیبانی گرفتید؟",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "من به طور امن از سید خودم پشتیبان‌گیری کرده‌ام",
+        "reenterSeed": "در مرحله بعد شما باید سید خود را دوباره وارد کنید.",
         "reenterSeedWarning": "اگر از سید خودتان پشتیبانی تهیه نکنید و دستگاه شما خراب بشود، شما تمام آیوتای خود را از دست خواهید داد.",
         "pleaseConfirm": "لطفا تایید کنید که سید خود را ایمن نگه داشته اید."
     },
@@ -596,14 +596,14 @@
     "transferConfirmation": {
         "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
         "aMessage": "یک پیام",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "از {{selectedAccountName}}",
+        "toAddress": "به آدرس",
+        "sendingAMessage": "در حال ارسال یک پیام",
+        "sendingAnEmptyMessage": "در حال ارسال یک پیام خالی"
     },
     "twoFA": {
         "wrongCode": "کد اشتباه است",
-        "wrongCodeExplanation": "کدی که وارد کرده‌اید اشتباه است.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "کد خالی است",
         "emptyCodeExplanation": "لطفا یک کد وارد کنید و دوباره تلاش کنید.",
         "keyCopied": "کلید به کلیپ بورد کپی شد",
@@ -620,29 +620,29 @@
     },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault یک فایل رمزنگاری شده برای پشتیبان‌گیری از سید شما است. سید با کلید SeedVault رمزنگاری می‌شود و بدون آن کلید قابل دسترسی نخواهد بود.",
         "seedVaultWarning": "اطمینان حاصل کنید که فایل را در چندین مکان (مانند هارد دیسک، فضای ابری، فلش) پشتیبان بگیرید. اگر این فایل را از دست بدهید و سید خود را در جایی ذخیره نکرده باشید، آیوتای خود را از دست خواهید داد.",
         "exportFail": "استخراج سید Vault ناموفق بود",
         "exportFailExplanation": "مشکل استخراج سید Vault وجود داشت. لطفا اطمینان حاصل کنید که مجوز های مناسب و فضای آزاد کافی دارید.",
         "exportSuccess": "سید Vault استخراج شد",
         "exportSuccessExplanation": "فایل سید رمزگذاری شده شما با موفقیت استخراج شد.",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
-        "importSuccess": "Seed imported",
-        "importSuccessExplanation": "Your seed was imported successfully.",
-        "saveToDownloadFolder": "Save to Download Folder",
+        "unrecognisedKey": "کلید SeedVault شناسایی نشده",
+        "unrecognisedKeyExplanation": "کلید شناسایی نشد. لطفا دوباره تلاش کنید.",
+        "emptyKey": "هیچ کلید SeedVault وارد نشده",
+        "emptyKeyExplanation": "شما باید یک کلید وارد کنید. لطفا دوباره تلاش کنید.",
+        "importSuccess": "سید درون‌ریزی شد",
+        "importSuccessExplanation": "سید شما با موفقیت درون‌ریزی شد.",
+        "saveToDownloadFolder": "ذخیره در پوشه دانلود",
         "importSeedVault": "وارد کردن سید Vault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "dropInstructions": "SeedVault یا متن را اینجا رها کنید <1></1> یا برای انتخاب از فهرست فایل‌ها کلیک کنید",
+        "dropActive": "SeedVault یا متن را اینجا رها کنید",
+        "enterKeyExplanation": "برای باز کردن SeedVault کلید خود را وارد کنید",
         "noSeedFound": "سید Vault حاوی سید معتبر نیست",
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
         "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "ما ابتدا نیاز داریم که SeedVault شما را امن کنیم. لطفا یک کلید برای رمزنگاری فایل انتخاب کنید. شما زمانی که نیاز به بازیابی سید خود از پشتیبان‌گیری SeedVault داشته باشید، از این کلید استفاده خواهید کرد.",
+        "retypeKey": "کلید را دوباره وارد کنید"
     },
     "chart": {
         "mcap": "MCAP",
@@ -677,7 +677,7 @@
         "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
         "proofOfWork": "تکمیل اثبات کار",
         "broadcasting": "در حال پخش",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "انتقال کامل شد"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "انتقال عکس فوری امکانپذیر نیست",
@@ -692,7 +692,7 @@
         "transitioning": "انتقال برای عکس فوری.",
         "generatingAndDetecting": "تولید آدرس ها و شناسایی موجودی.",
         "attaching": "پیوستن آدرس ها به Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "پیوست آدرس {{currentAddress}} از {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "موفقیت در تکمبل خودکار",
@@ -703,88 +703,88 @@
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "نسخه جدید موجود است",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install update and restart",
-        "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "newVersionAvailableExplanation": "یک نسخه‌ی جدید از Trinity در دسترس است. آیا می‌خواهید الان به‌روز‌رسانی کنید؟",
+        "installUpdate": "نصب به‌روزرسانی و راه‌اندازی مجدد",
+        "installUpdateExplanation": "دانلود کامل شد، Trinity الان برای نصب به‌روز‌رسانی مجددا راه‌اندازی خواهد شد.",
+        "downloadingUpdate": "درحال دانلود به‌روزرسانی",
+        "downloadProgress": "{{transferred}} از {{total}} دانلود شده"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "سابقه‌ی خطا"
     },
     "terms": {
         "termsAndConditions": "شرایط و ضوابط",
         "accept": "قبول می‌کنم",
-        "readAllToContinue": "Please read the full text"
+        "readAllToContinue": "لطفا متن را کامل بخوانید"
     },
     "privacyPolicy": {
         "privacyPolicy": "سیاست حفظ حریم خصوصی",
         "agree": "می پذیرم"
     },
     "tray": {
-        "trayApplication": "Tray application",
-        "trayExplanation": "Provides an overview of your account balances and recent transaction history.",
-        "notLoggedIn": "You are not logged in",
-        "setupIncomplete": "Wallet setup incomplete",
-        "completeSetup": "Complete setup"
+        "trayApplication": "برنامه‌ی سینی",
+        "trayExplanation": "اطلاعات اجمالی از موجودی حساب‌های شما و تاریخچه تراکنش‌های اخیر فراهم می‌کند.",
+        "notLoggedIn": "شما وارد نشده‌اید",
+        "setupIncomplete": "برپایی ناتمام کیف پول",
+        "completeSetup": "تکمیل عملیات نصب"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "استفاده از پروکسی سیستم",
+        "proxyExplanation": "شناسایی و استفاده تنظیمات پروکسی شبکه سیستم گسترده. پس از تغییر این تنظیم کیف پول را ببندید و دومرتبه باز کنید."
     },
     "notifications": {
-        "notifications": "Notifications",
-        "notificationExplanation": "Receive system-wide notifications about new transactions.",
-        "typeConfirmations": "Notify me about confirmations",
-        "typeMessages": "Notify me about zero value transactions",
-        "multipleTx": "Receiving multiple transactions to {{account}}",
-        "valueTx": "Receiving {{value}} to {{account}}",
-        "messageTx": "You received a message to {{account}}",
-        "confirmedIn": "Incoming {{value}} to {{account}} has confirmed",
-        "confirmedOut": "Outgoing {{value}} from {{account}} has confirmed"
+        "notifications": "اعلان‌ها",
+        "notificationExplanation": "اعلانات سیستم گسترده درباره تراکنش‌های جدید را دریافت کنید.",
+        "typeConfirmations": "مرا درباره تاییدها مطلع کن",
+        "typeMessages": "مرا از تراکنش‌های با مقدار صفر مطلع کن",
+        "multipleTx": "در حال دریافت چندین تراکنش به {{account}}",
+        "valueTx": "در حال دریافت {{value}} به {{account}}",
+        "messageTx": "شما یک پیام برای {{account}} دریافت کردید",
+        "confirmedIn": "ورودی {{value}} به {{account}} تایید شد",
+        "confirmedOut": "خروجی {{value}} از {{account}} تایید شد"
     },
     "bytetrit": {
-        "sweepSucceeded": "Funds successfully unlocked",
-        "sweepSucceededExplanation": "Your funds have been successfully unlocked and moved to a new address. Promote the transactions to help them confirm.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepSucceeded": "قفل وجوه با موفقیت گشوده شد",
+        "sweepSucceededExplanation": "قفل وجوه شما با موفقیت گشوده شده و به یک آدرس جدید انتقال داده شده است. برای کمک به تایید تراکنش‌ها آن‌ها را ارتقا دهید.",
+        "sweepError": "خطا در گشودن قفل وجوه",
+        "sweepErrorExplanation": "هنگام گشودن قفل وجوه مشکلی پیش آمد. در حال تلاش مجدد.",
+        "warningTitle": "هشدار: وجود قفل شده شناسایی شدند",
+        "explanation": "نسخه 0.3.4 دسکتاپ Trinity اشکال نرم‌افزاری داشت که ممکن بود وجوه را به صورت موقت قفل کند. این موضوع تعداد اندکی از کابرانی که با نسخه 0.3.4 تراکنش‌هایی انجام داده بودند را تحت تاثیر قرار می‌دهد.",
+        "explanationAccounts": "وجوه قفل شده در حساب‌های شما شناسایی شد: {{accounts}}. هم‌اکنون Trinity به صورت خودکار شروع به بازیابی وجوه از طریق انتقال آن‌ها به یک آدرس جدید خواهد کرد.",
+        "proceed": "اقدام به بازیابی",
+        "sweepConfirmation": "شما در حال جارو (sweep) کردن {{amount}} به آدرس {{address}} هستید. حساب: {{accountName}}، اندیس آدرس: {{index}}",
+        "sweepConfirmationTitle": "تایید جارو کردن (sweep)"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "ready": "دستگاه لدجر متصل و آماده است",
+        "notReady": "اگر می‌خواهید از یک دستگاه لدجر استفاده کنید، هم‌اکنون آن را متصل و قفل‌گشایی کنید",
+        "indexInUse": "اندیس در حال حاضر برای حساب {{account}} استفاده می‌شود",
+        "indexInUseExplanation": "اندیس انتخابی شما در حال حاضر برای یکی از حساب‌های شما استفاده می‌شود. لطفا یک عدد اندیس دیگر انتخاب کنید.",
+        "proceedWithLedger": "ادامه با برپایی لدجر",
+        "accountIndex": "اندیس حساب",
+        "accountPage": "صفحه حساب",
+        "chooseAccountIndex": "اندیس حساب لدجر خود را انتخاب کنید",
+        "accountIndexExplanation": "لدجر شما می‌تواند چندین سید مختلف را نگه‌داری کند. هر سید با یک شماره اندیس منحصر به فرد معین می‌گردد. یک اندیس استفاده نشده برایتان انتخاب شده ولی در صورت تمایل می‌توانید از اندیس دلخواهتان استفاده کنید. از یادداشت کردن اندیسی که انتخاب کرده‌اید اطمینان حاصل کنید.",
+        "accountPageExplanation": "برخی از کیف پول‌های شخص ثالث نیاز به صفحات دارند.",
+        "connectionError": "نمی‌توان به لدجر متصل شد",
+        "connectionErrorExplanation": "بررسی کنید که لدجر شما متصل شده و قفل آن گشوده شده باشد.",
+        "connectionTitle": "لدجر خود را متصل کنید",
+        "connectionExplanation": "برای انجام این عمل باید یک دستگاه لدجر متصل شده باشد.",
+        "transactionTitle": "پیمایش کرده و تراکنش را در لدجر خود قبول کنید",
+        "transactionExplanation": "برای قبول تراکنش خروجی از لدجر خود استفاده کنید.",
+        "applicationTitle": "برنامه IOTA در لدجر را باز کنید",
+        "applicationExplanation": "برای ادامه‌ی استفاده از Trinity به لدجر خود بروید و برنامه IOTA را باز کنید.",
+        "cannotSendZeroValueTitle": "نمی‌توان انتقال با مقدار صفر ارسال کرد",
+        "cannotSendZeroValueExplanation": "نمی‌توان با یک دستگاه لدجر انتقال با مقدار صفر ارسال کرد.",
+        "ledgerDisconnectedTitle": "جدا شدن دستگاه لدجر",
+        "ledgerDisconnectedExplanation": "دستگاه لدجر جدا شده است. لطفا مجددا متصل کرده و دوباره تلاش کنید.",
+        "ledgerDeniedTitle": "رد شدن تراکنش",
+        "ledgerDeniedExplanation": "تراکنش در دستگاه لدجر رد شده است.",
+        "ledgerIncorrectIndex": "عدم تطابق دستگاه لدجر",
+        "ledgerIncorrectIndexExplanation": "دستگاه لدجر متصل شده با لدجری که این حساب به آن لینک شده است مطابقت ندارد یا عبارت بازیابی آن تغییر کرده است.",
+        "checkAddress": "آدرس دریافت را بررسی کنید",
+        "checkAddressExplanation": "بررسی کنید که آدرس با آنچه در دستگاه لدجر شما نشان داده می‌شود همخوانی دارد.",
+        "applicationNotInitialised": "هشدار تایید نشده",
+        "applicationNotInitialisedExplanation": "برنامه IOTA را در دستگاه لدجر خود مجددا باز کرده، هشدارهای اطلاعاتی را قبول و مجددا تلاش کنید."
     }
 }

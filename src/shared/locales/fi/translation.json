@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Väärä koodi",
-        "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tyhjennä tunnusluku",
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
