@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 import { shorten, capitalize } from 'libs/iota/converter';
 import { formatIota } from 'libs/iota/utils';
+import { accumulateBalance } from 'libs/iota/addresses';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
 import { getAccountNamesFromState } from 'selectors/accounts';
@@ -111,7 +112,15 @@ class Sidebar extends React.PureComponent {
                                             }}
                                         >
                                             <strong>{shorten(account, 16)}</strong>
-                                            <small>{formatIota(accounts.accountInfo[account].balance)}</small>
+                                            <small>
+                                                {formatIota(
+                                                    accumulateBalance(
+                                                        accounts.accountInfo[account].addressData.map(
+                                                            (addressData) => addressData.balance,
+                                                        ),
+                                                    ),
+                                                )}
+                                            </small>
                                             <div onClick={(e) => this.accountSettings(e, index)}>
                                                 <Icon icon="settingsAlt" size={16} />
                                             </div>
@@ -163,4 +172,7 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Sidebar));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Sidebar));

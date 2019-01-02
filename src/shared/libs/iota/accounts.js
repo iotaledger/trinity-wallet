@@ -89,7 +89,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
  *
  *   @returns {function(object, object, function): Promise<object>}
  **/
-export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
+export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn, settings) => {
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
@@ -137,16 +137,17 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
                     thisStateCopy.accountName,
                     filter(
                         allNormalisedTransactions,
-                        (transfer) => transfer.incoming && !existingNormalisedTransactions.transfers[transfer.bundle],
+                        (transfer) => transfer.incoming && !existingNormalisedTransactions[transfer.bundle],
                     ),
                     filter(
                         allNormalisedTransactions,
                         (transfer) =>
                             transfer.persistence &&
                             transfer.transferValue > 0 &&
-                            existingNormalisedTransactions.transfers[transfer.bundle] &&
-                            !existingNormalisedTransactions.transfers[transfer.bundle].persistence,
+                            existingNormalisedTransactions[transfer.bundle] &&
+                            !existingNormalisedTransactions[transfer.bundle].persistence,
                     ),
+                    settings
                 );
             }
 

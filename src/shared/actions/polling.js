@@ -466,6 +466,8 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
         const selectedNode = getSelectedNodeFromState(getState());
         const randomNodes = getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]);
 
+        const settings = getState().settings;
+
         return reduce(
             accountNames,
             (promise, accountName) => {
@@ -476,6 +478,7 @@ export const getAccountInfoForAllAccounts = (accountNames, notificationFn) => {
                         existingAccountState,
                         undefined,
                         notificationFn,
+                        settings,
                     ).then(({ node, result }) => {
                         dispatch(changeNode(node));
                         dispatch(syncAccountWhilePolling(result));
