@@ -29,7 +29,6 @@ class Addresses extends PureComponent {
                     <ul className={css.addresses}>
                         <Scrollbar>
                             {account.addressData
-                                .reverse()
                                 .map((addressData) => {
                                     const address = addressData.address + addressData.checksum;
                                     return (
