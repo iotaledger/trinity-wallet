@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Проверка состояния узла",
         "validatingReceiveAddress": "Проверка адреса для приема средств",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Синхронизация аккаунта",
         "preparingInputs": "Подготовка материалов",
         "preparingTransfers": "Подготовка трансфера",
