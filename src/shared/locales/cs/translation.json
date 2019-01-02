@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrola stavu nodu",
         "validatingReceiveAddress": "Ověřování přijímací adresy",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synchronizace účtu",
         "preparingInputs": "Příprava vstupních dat",
         "preparingTransfers": "Příprava transakce",
