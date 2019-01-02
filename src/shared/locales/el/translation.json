@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Επαληθεύοντας τη διεύθυνση λήψης",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Συγχρονισμός Λογαριασμού",
         "preparingInputs": "Προετοιμασία εισόδων",
         "preparingTransfers": "Ετοιμάζοντας τις μεταφορές",
