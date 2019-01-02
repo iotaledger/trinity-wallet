@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Hesap senkronize ediliyor",
         "preparingInputs": "Girişler hazırlanıyor",
         "preparingTransfers": "Transferler hazırlanıyor",
