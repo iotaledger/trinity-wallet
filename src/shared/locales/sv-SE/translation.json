@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",
