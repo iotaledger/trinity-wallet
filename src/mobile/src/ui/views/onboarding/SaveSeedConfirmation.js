@@ -1,23 +1,19 @@
-import map from 'lodash/map';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
-import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
-import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
-import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
-import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
-import tinycolor from 'tinycolor2';
+import timer from 'react-native-timer';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import Header from 'ui/components/Header';
+import Slider from 'ui/components/Slider';
 import { Styling } from 'ui/theme/general';
-import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-import { width, height } from 'libs/dimensions';
+import { height } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,56 +22,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3,
+        flex: 2.6,
         alignItems: 'center',
-    },
-    bottomMidContainer: {
-        flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    checkboxContainer: {
-        height: height / 15,
-        flexDirection: 'row',
-        paddingTop: height / 50,
-    },
-    checkbox: {
-        width: width / 20,
-        height: width / 20,
-    },
-    checkboxText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize4,
-        color: 'white',
-        backgroundColor: 'transparent',
-        marginLeft: width / 40,
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
-        textAlign: 'left',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
-        textAlign: 'left',
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
-        textAlign: 'left',
+        fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
     },
     infoBox: {
@@ -96,103 +70,57 @@ class SaveSeedConfirmation extends Component {
 
     constructor(props) {
         super(props);
-
-        const checkBoxImagePath = tinycolor(props.theme.body.bg).isDark()
-            ? whiteCheckboxUncheckedImagePath
-            : blackCheckboxUncheckedImagePath;
-
         this.state = {
-            checkBoxesDetails: [
-                {
-                    path: checkBoxImagePath,
-                    text: this.props.t('saveSeedConfirmation:alreadyHave'),
-                },
-                {
-                    path: checkBoxImagePath,
-                    text: this.props.t('global:willNotCopyPasteSeed'),
-                },
-            ],
-            hasSavedSeed: false,
+            hasConfirmedBackup: false,
             hasAgreedToNotCopyPaste: !isAndroid,
-            showCheckbox: false,
+            confirmationText: isAndroid ? props.t('willNotCopyPasteSeed') : props.t('iHaveBackedUp'),
         };
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SaveSeedConfirmation');
-        this.timeout = setTimeout(this.onTimerComplete.bind(this), 3000);
     }
 
-    onTimerComplete() {
-        this.setState({ showCheckbox: true });
+    componentWillUnmount() {
+        timer.clearTimeout('delayTextUpdate');
     }
 
     onBackPress() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     onNextPress() {
         const { theme: { body } } = this.props;
-        const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
-        if (hasSavedSeed && hasAgreedToNotCopyPaste) {
-            Navigation.push('appStack', {
-                component: {
-                    name: 'seedReentry',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
-                        },
-                    },
+        navigator.push('seedReentry', {
+            animations: {
+                push: {
+                    enable: false,
                 },
-            });
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            statusBar: {
+                backgroundColor: body.bg,
+            },
+        });
+    }
+
+    onSwipeSuccess() {
+        const { t } = this.props;
+        if (!this.state.hasAgreedToNotCopyPaste) {
+            this.setState({ hasAgreedToNotCopyPaste: true });
+            return timer.setTimeout(
+                'delayTextUpdate',
+                () => this.setState({ confirmationText: t('iHaveBackedUp') }),
+                1000,
+            );
         }
-    }
-
-    onCheckboxPress(checkboxIndex) {
-        const isFirstCheckbox = checkboxIndex === 0;
-        const setCheckboxImagePath = (checkBoxDetail, idx) => ({
-            ...checkBoxDetail,
-            path: idx === checkboxIndex ? this.getCheckboxImagePath(checkboxIndex) : checkBoxDetail.path,
-        });
-
-        this.setState({
-            checkBoxesDetails: map(this.state.checkBoxesDetails, setCheckboxImagePath),
-            ...(isFirstCheckbox
-                ? { hasSavedSeed: !this.state.hasSavedSeed }
-                : { hasAgreedToNotCopyPaste: !this.state.hasAgreedToNotCopyPaste }),
-        });
-    }
-
-    getCheckboxImagePath(checkboxIndex) {
-        const { theme: { body } } = this.props;
-        const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
-            ? whiteCheckboxUncheckedImagePath
-            : blackCheckboxUncheckedImagePath;
-        const checkboxCheckedImagePath = tinycolor(body.bg).isDark()
-            ? whiteCheckboxCheckedImagePath
-            : blackCheckboxCheckedImagePath;
-
-        return this.state.checkBoxesDetails[checkboxIndex].path === checkboxCheckedImagePath
-            ? checkboxUncheckedImagePath
-            : checkboxCheckedImagePath;
+        this.setState({ hasConfirmedBackup: true });
     }
 
     renderInfoBoxContent() {
@@ -201,74 +129,85 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <ScrollView style={styles.infoBox} scrollEnabled={isAndroid}>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 80 }]}>
+                <Text style={[styles.infoText, textColor]}>
                     <Text style={styles.infoTextBold}>{t('reenterSeed')}</Text>
                 </Text>
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                     <Text style={styles.infoTextNormal}>{t('reenterSeedWarning')}</Text>
                 </Text>
-                {isAndroid && (
-                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                        <Text style={styles.infoTextNormal}>{t('global:androidInsecureClipboardWarning')} </Text>
-                        <Text style={styles.infoTextBold}>{t('global:androidCopyPasteWarning')}</Text>
-                    </Text>
-                )}
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>{t('pleaseConfirm')}</Text>
+                {isAndroid && (
+                    <View style={{ paddingTop: height / 50, alignItems: 'center' }}>
+                        <Text style={[styles.infoTextNormal, textColor]}>
+                            {t('global:androidInsecureClipboardWarning')}{' '}
+                        </Text>
+                        <Text style={[styles.infoTextBold, textColor]}>{t('global:androidCopyPasteWarning')}</Text>
+                    </View>
+                )}
             </ScrollView>
         );
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
-        const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
-        const textColor = { color: body.color };
-        const opacity = hasSavedSeed && hasAgreedToNotCopyPaste ? 1 : 0.4;
-        const isSecondCheckbox = (idx) => idx === 1;
-
+        const { t, theme: { body, input, dark, primary, secondary } } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 0.7 }} />
-                    <Header textColor={body.color}>{t('didSaveSeed')}</Header>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={400}
+                    >
+                        <Header textColor={body.color}>{t('didSaveSeed')}</Header>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midContainer}>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={300}
+                    >
+                        <InfoBox>{this.renderInfoBoxContent()}</InfoBox>
+                    </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
-                    <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={200}
+                    >
+                        <Text style={[styles.infoTextBold, { color: body.color }]}>{this.state.confirmationText}</Text>
+                    </AnimatedComponent>
                     <View style={{ flex: 0.3 }} />
-                    <View style={styles.bottomMidContainer}>
-                        {this.state.showCheckbox ? (
-                            <View>
-                                {map(this.state.checkBoxesDetails, (detail, idx) => {
-                                    if (!isAndroid && isSecondCheckbox(idx)) {
-                                        return null;
-                                    }
-
-                                    return (
-                                        <TouchableOpacity
-                                            key={idx}
-                                            style={styles.checkboxContainer}
-                                            onPress={() => this.onCheckboxPress(idx)}
-                                        >
-                                            <Image source={detail.path} style={styles.checkbox} />
-                                            <Text style={[styles.checkboxText, textColor]}>{detail.text}</Text>
-                                        </TouchableOpacity>
-                                    );
-                                })}
-                            </View>
-                        ) : (
-                            <View style={{ flex: 1.2 }} />
-                        )}
-                    </View>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={100}
+                    >
+                        <Slider
+                            filledColor={input.bg}
+                            unfilledColor={dark.color}
+                            textColor={body.color}
+                            preSwipeColor={secondary.color}
+                            postSwipeColor={primary.color}
+                            onSwipeSuccess={() => {
+                                this.onSwipeSuccess();
+                            }}
+                            sliderReset={this.state.hasAgreedToNotCopyPaste}
+                            numberOfSliders={isAndroid ? 2 : 1}
+                        />
+                    </AnimatedComponent>
+                    <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <DualFooterButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftButtonText={t('global:goBack')}
-                        rightButtonText={t('global:continue')}
-                        rightButtonStyle={{ wrapper: { opacity } }}
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <DualFooterButtons
+                            onLeftButtonPress={() => this.onBackPress()}
+                            onRightButtonPress={() => this.onNextPress()}
+                            leftButtonText={t('global:goBack')}
+                            rightButtonText={t('global:continue')}
+                            disableRightButton={!this.state.hasConfirmedBackup}
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );

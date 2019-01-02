@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import Transport from '@ledgerhq/hw-transport-node-hid';
 import Iota from 'hw-app-iota';
 import { ipcRenderer as ipc, remote } from 'electron';

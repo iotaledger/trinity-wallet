@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import { setSetting } from 'shared-modules/actions/wallet';
@@ -18,7 +18,6 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import CustomTextInput from 'ui/components/CustomTextInput';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
-import { isIPhone11 } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -42,7 +41,6 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 30,
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
@@ -168,32 +166,22 @@ class UseExistingSeed extends Component {
             name: accountName,
             meta: { type: 'keychain' },
             seed,
+            completed: true,
             usedExistingSeed: true,
         });
 
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'loading',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.setStackRoot('loading', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            statusBar: {
+                backgroundColor: body.bg,
             },
         });
     }
@@ -264,12 +252,14 @@ class UseExistingSeed extends Component {
                     hideModal: () => this.hideModal(),
                     onMount: () => this.props.setDoNotMinimise(true),
                     onUnmount: () => this.props.setDoNotMinimise(false),
+                    displayTopBar: true,
                 });
             case 'passwordValidation':
                 return this.props.toggleModalActivity(modalContent, {
                     theme,
                     validatePassword: (password) => this.SeedVaultImport.validatePassword(password),
                     hideModal: () => this.hideModal(),
+                    isDashboard: true,
                 });
         }
     };
@@ -285,11 +275,27 @@ class UseExistingSeed extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.8 }} />
+                        <View style={{ flex: 0.5 }} />
                         <View style={styles.titleContainer}>
                             <Text style={[styles.title, textColor]}>{t('useExistingSeed:title')}</Text>
                         </View>
-                        <View style={{ flex: 0.4 }} />
+                        <View style={{ flex: 0.5 }} />
+                        <CustomTextInput
+                            onRef={(c) => {
+                                this.accountNameField = c;
+                            }}
+                            label={t('addAdditionalSeed:accountName')}
+                            onChangeText={(value) => this.setState({ accountName: value })}
+                            containerStyle={{ width: Styling.contentWidth }}
+                            autoCapitalize="words"
+                            maxLength={MAX_SEED_LENGTH}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            theme={theme}
+                            value={accountName}
+                        />
+                        <View style={{ flex: 0.25 }} />
                         <CustomTextInput
                             label={t('global:seed')}
                             onChangeText={(text) => {
@@ -314,36 +320,18 @@ class UseExistingSeed extends Component {
                             onQRPress={() => this.onQRPress()}
                             seed={seed}
                         />
-                        <View style={{ flex: 0.45 }} />
-                        {!isIPhone11 && (
-                            <SeedVaultImport
-                                openPasswordValidationModal={() => this.showModal('passwordValidation')}
-                                onSeedImport={(seed) => {
-                                    this.setState({ seed });
-                                    this.hideModal();
-                                }}
-                                onRef={(ref) => {
-                                    this.SeedVaultImport = ref;
-                                }}
-                            />
-                        )}
-                        <View style={{ flex: 0.45 }} />
-                        <CustomTextInput
-                            onRef={(c) => {
-                                this.accountNameField = c;
+                        <View style={{ flex: 0.5 }} />
+                        <SeedVaultImport
+                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                            onSeedImport={(seed) => {
+                                this.setState({ seed });
+                                this.hideModal();
                             }}
-                            label={t('addAdditionalSeed:accountName')}
-                            onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: Styling.contentWidth }}
-                            autoCapitalize="words"
-                            maxLength={MAX_SEED_LENGTH}
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="done"
-                            theme={theme}
-                            value={accountName}
+                            onRef={(ref) => {
+                                this.SeedVaultImport = ref;
+                            }}
                         />
-                        <View style={{ flex: 1.2 }} />
+                        <View style={{ flex: 0.5 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity

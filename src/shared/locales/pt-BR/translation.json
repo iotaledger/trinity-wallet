@@ -19,9 +19,11 @@
         "invalidResponse": "Erro no servidor",
         "invalidResponseExplanation": "O servidor retornou um erro. Tente mudar o servidor.",
         "invalidResponseFetchingAccount": "O servidor retornou uma resposta inválida ao transmitir informações da sua conta. Tente mudar de servidor.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "O servidor retornou um erro durante a busca de informações de sua conta. Se o problema persistir, tente alterar o servidor ou desative o proxy do sistema em configurações da Trinity.",
         "nodeOutOfSync": "Servidor não sincronizado",
         "nodeOutOfSyncExplanation": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "O servidor selecionado não está sincronizado. Por favor, altere o servidor e tente novamente.",
         "seed": "Seed",
         "checksum": "Dígitos de Verificação",
@@ -74,6 +76,8 @@
         "wallet": "Carteira",
         "all": "Todos",
         "sent": "Enviado",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Recebido",
         "sending": "Enviando",
         "receiving": "Recebendo",
@@ -128,7 +132,7 @@
         "spentAddressExplanation": "AVISO: Saldos em endereços já gasto",
         "discordInformation": "Enviar mais de uma vez no mesmo endereço é perigoso. Por favor, acesse o canal de #help no Discord para descobrir o que fazer.",
         "androidInsecureClipboardWarning": "O Android não oferece uma Área de Transferência segura.",
-        "androidCopyPasteWarning": "Nunca copiar/colar sua seed em um dispositivo Android.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Eu não vou copiar/colar minha seed",
         "mustBeStoredAppropriately": "Ela deve ser armazenada adequadamente.",
         "deviceMayBecomeUnresponsive": "Seu dispositivo pode ficar sem responder por um tempo.",
@@ -144,14 +148,18 @@
         "tryingAgainWithLocalPoW": "Tentando novamente com prova de trabalho local.",
         "tryingAgainWithDifferentNode": "Tentar novamente com um servidor diferente.",
         "errorFetchingAccountInformation": "Erro ao buscar informações da conta.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Erro ao sincronizar informações do endereço. Tente novamente com um servidor diferente.",
         "errorAccessingKeychain": "Erro de chaveiro",
         "errorAccessingKeychainExplanation": "Não foi possível acessar o chaveiro necessário para armazenamento seguro.",
         "mainWallet": "CONTA PRINCIPAL",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "Uma atualização está disponível",
+        "shouldUpdateExplanation": "Uma nova atualização foi lançada. É recomendável você atualizar para a versão mais recente.",
+        "forceUpdate": "Atualize o aplicativo para continuar",
+        "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
+        "missingPermission": "Permissões do sistema de arquivo necessárias",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "Sua senha deve ter pelo menos {{minLength}} caracteres. Atualmente ela possui {{currentLength}} caracteres. Por favor, tente novamente.",
         "passwordMismatch": "As senhas não conferem",
         "passwordMismatchExplanation": "As senhas digitadas são diferentes. Tente novamente.",
-        "anEncryptedCopy": "Um cópia criptografada da sua Seed será armazenada em seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Digite a Senha Novamente"
     },
     "copyToClipboard": {
@@ -239,7 +247,8 @@
         "login": "Iniciar Sessão",
         "setNode": "Selecionar Servidor",
         "whyBiometricDisabled": "Por que a Autenticação Biométrica está desabilitada?",
-        "whyBiometricDisabledExplanation": "Para sua segurança, a Autenticação Biométrica está desabilitada ao abrir o aplicativo pela primeira vez. Ao usar a Trinity você terá que fazer o login novamente, e então poderá usar a autenticação biométrica."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Carregando a seed pela primeira vez.",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Nunca revele sua seed a ninguém.",
         "iotaLogo": "Logotipo da IOTA",
-        "print": "IMPRIMIR",
+        "print": "Print",
         "paperConvenience": "Imprimir uma cópia de sua Seed é uma maneira conveniente para armazená-la.",
         "publicInsecure": "Mas imprimir em um wifi público ou uma impressora pública não é seguro.",
-        "tapCheckboxes": "Por favor, toque as caixas de seleção abaixo para confirmar.",
-        "wifiCheckbox": "Eu não vou imprimir em um rede publica",
-        "printerCheckbox": "Eu não vou imprimir em uma impressora publica"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Seu endereço",
@@ -282,15 +291,13 @@
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Gerar novo endereço",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
-        "missingPermission": "Permissões do sistema de arquivo necessárias",
-        "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR.",
         "tag": "Etiqueta",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Gerar novo endereço",
+        "generateAnAddressTitle": "Gerar novo endereço",
+        "generateAnAddressExplanation": "Por favor, gere um endereço antes de usar esta função."
     },
     "saveYourSeed": {
         "saveYourSeed": "Faça o backup de sua seed",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "Vamos salvar sua seed",
         "youCanHighlightCharacters": "Você pode marcar 9 caracteres por vez",
         "printBlankWallet": "Imprimir uma carteira em branco",
-        "whatIsChecksum": "Toda Seed possui um Código de Verificação de 3 caracteres",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Toda Seed possui um Código de Verificação de 3 caracteres.",
         "iHavesavedMySeed": "Eu salvei a minha Seed",
         "checksumExplanation": "Sempre que você adicionar uma seed na sua carteira, você deve verificar que as somas de verificação geradas pela carteira são iguais às que você tem anotado.",
         "mustSaveYourSeed": "<0><0>Você deve salvar sua seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor, confirme a sua seed",
-        "trinityWillNeverAskToReenter": "A Trinity nunca vai pedir que você redigite sua seed a menos que você redefina a sua carteira ou o aplicativo.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Digite sua seed",
         "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A seed informada está incorreta. Por favor, tente novamente.",
         "ifYouHaveNotSaved": "Se não fez backup da sua seed, por favor volte para a tela anterior e faça.",
         "enterSeedBelow": "Digite sua seed recém-criada abaixo para confirmar que fez o backup corretamente",
-        "clipboardWarning": "Não copie e cole sua seed",
-        "clipboardWarningExplanation": "Aviso: A função copiar e colar está desativada para sua segurança."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Endereço inválido",
@@ -345,7 +353,8 @@
         "totalTime": "Tempo total",
         "addressPasteDetected": "Colagem de endereço detectado",
         "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar.",
-        "invalid": "INVÁLIDO"
+        "invalid": "INVÁLIDO",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Vamos adicionar um nome",
@@ -373,7 +382,9 @@
         "addNewSeed": "Adicionar nova seed",
         "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
+        "general": "General settings",
         "advanced": "Configurações Avançadas",
+        "account": "Account settings",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
@@ -446,7 +457,8 @@
         "empty": "Vazio",
         "retrying": "Tentando de novo",
         "yesterday": "Ontem",
-        "promotingAnotherBundle": "Promover outro pacote"
+        "promotingAnotherBundle": "Promover outro pacote",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -504,18 +516,21 @@
         "currency": "Moeda"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Tem certeza que deseja sair?"
+        "logoutConfirmation": "Tem certeza que deseja sair?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Ler código QR"
     },
     "unitInfoModal": {
-        "unitSystem": "SISTEMA DE UNIDADES",
+        "unitSystem": "Unit System",
         "trillion": "Trilhão",
         "billion": "Bilhão",
         "million": "Milhão",
         "thousand": "Mil",
-        "one": "Um"
+        "one": "Um",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Por que eu não posso usar meu saldo integral?",
@@ -537,7 +552,7 @@
         "syncingYourAccount": "Sincronizando sua conta."
     },
     "useExistingSeed": {
-        "title": "Digite a seed e o nome da conta.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Formato de servidor incorreto",
         "validSeedExplanation": "Seeds válidas devem possuir 81 caracteres e conter apenas A-Z ou 9."
     },
@@ -545,14 +560,14 @@
         "enterPassword": "Digite a senha para exibir sua seed.",
         "viewSeed": "Ver Seed",
         "hideSeed": "Esconder Seed",
-        "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "notAvailable": "Exportação da Seed não está disponível para o tipo de conta {{accountType}}",
+        "accountIndex": "Seu índice de conta Ledger",
+        "accountPage": "Página de sua conta Ledger"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Você fez backup de sua seed?",
-        "alreadyHave": "Eu tenho minha Seed armazenada",
-        "reenterSeed": "No próximo passo você deverá re-digitar sua seed.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Se você não fez o backup de sua seed e seu dispositivo falhar, você perderá toda sua IOTA.",
         "pleaseConfirm": "Por favor, confirme que você tem armazenado sua seed de modo seguro."
     },
@@ -572,19 +587,23 @@
         "status": "Situação",
         "fingerprintUnavailable": "Autenticação Biométrica indisponível",
         "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
-        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica.",
+        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
-        "buttonInstructionsDisableIPhoneX": "Pressione o botão abaixo para desabilitar a identificação do rosto.",
-        "buttonInstructionsEnableIPhoneX": "Pressione o botão abaixo para permitir a identificação do rosto.",
+        "buttonInstructionsDisableIPhoneX": "Pressione o botão abaixo para desabilitar a identificação do rosto",
+        "buttonInstructionsEnableIPhoneX": "Pressione o botão abaixo para permitir a identificação do rosto",
         "instructionsLogin": "Toque o leitor de impressão digital para entrar"
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",
-        "aMessage": "uma mensagem"
+        "aMessage": "uma mensagem",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Código incorreto",
-        "wrongCodeExplanation": "O código inserido está incorreto.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Código vazio",
         "emptyCodeExplanation": "Por favor, introduza um código e tente novamente.",
         "keyCopied": "Chave copiada para a área de transferência",
@@ -601,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "O SeedVault é um arquivo criptografado para armazenar sua Seed com segurança. A Seed é criptografada por trás de uma chave SeedVault e não pode ser acessada sem a chave.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Certifique-se de fazer backup do arquivo em vários locais (por exemplo, disco rígido, nuvem, USB). Se você perde esse arquivo e não armazenou sua semente em outro lugar, você vai perder seus IOTAs.",
         "exportFail": "SeedVault exportação falhou",
         "exportFailExplanation": "Houve um problema ao exportar o SeedVault. Por favor, certifique-se de que você tem as permissões apropriadas e espaço livre suficiente.",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "Sua seed foi importada com sucesso.",
         "saveToDownloadFolder": "Salvar na pasta de download",
         "importSeedVault": "Importar SeedVault",
-        "dropSeedVaultHere": "Arraste sua SeedVault até aqui <1></1> ou clique para procurar",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Digite sua senha para abrir o SeedVault",
         "noSeedFound": "SeedVault não contém uma Seed válida",
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
         "seedFileError": "Falha ao abrir o SeedVault",
         "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido.",
-        "seedVaultKeyExplanation": "Primeiro temos que proteger seu SeedVault. Por favor, escolha uma senha para criptografar o arquivo. Você precisará desta senha para recuperar a seed do backup do SeedVault. Sinta-se livre para usar a mesma senha que você usa na Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -655,7 +676,8 @@
         "preparingTransfers": "Preparando as transferências",
         "gettingTransactionsToApprove": "Obtendo as transações para aprovação",
         "proofOfWork": "Completando a aprovação",
-        "broadcasting": "Transmitindo"
+        "broadcasting": "Transmitindo",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "A transição do registro instantâneo não pode ser concluída",
@@ -669,7 +691,8 @@
         "transition": "Transição",
         "transitioning": "Fazendo a transição para o Snapshot.",
         "generatingAndDetecting": "Gerando endereços e detectando saldo.",
-        "attaching": "Anexando endereços para o Tangle."
+        "attaching": "Anexando endereços para o Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Sucesso no preenchimento automático",
@@ -680,11 +703,11 @@
         "noUpdatesAvailable": "Nenhuma atualização disponível",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nova versão disponível",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instale a atualização e reinicie",
         "installUpdateExplanation": "Download completo, A Trinity será reiniciada agora para instalar a atualização.",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "Baixando atualizações",
+        "downloadProgress": "{{transferred}} de {{total}} baixado"
     },
     "notificationLog": {
         "errorLog": "Registros de erro"
@@ -706,8 +729,8 @@
         "completeSetup": "Configuração completa"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxy": "Usar proxy do sistema",
+        "proxyExplanation": "Detectar e usar as configurações de proxy do sistema. Feche e reabra a carteira depois de alterar essa configuração."
     },
     "notifications": {
         "notifications": "Notificações",
@@ -733,35 +756,35 @@
         "sweepConfirmationTitle": "Confirmação de varredura"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "ready": "Dispositivo Ledger conectado e pronto",
+        "notReady": "Se você deseja usar um dispositivo de Ledger, conecte e desbloqueie agora",
+        "indexInUse": "Índice já em uso para conta {{account}}",
+        "indexInUseExplanation": "Índice escolhido já está em uso em uma das suas contas. Por favor escolha outro número de índice.",
+        "proceedWithLedger": "Continuar com a configuração de Ledger",
+        "accountIndex": "Índice de conta",
+        "accountPage": "Página da conta",
+        "chooseAccountIndex": "Escolha o seu índice da conta Ledger",
+        "accountIndexExplanation": "Seu Ledger pode armazenar varias Seeds. Cada Seed é identificada por um número de índice único. Um índice ainda não usado foi pre-selecionado, mas sinta-se a vontade de escolher o seu próprio. Certifique-se de anotar o número do índice escolhido.",
+        "accountPageExplanation": "Algumas carteiras de terceiros exigem páginas.",
+        "connectionError": "Não foi possível conectar-se ao Ledger",
+        "connectionErrorExplanation": "Verifique se seu Ledger está conectado e desbloqueado.",
+        "connectionTitle": "Conecte seu Ledger",
+        "connectionExplanation": "Um dispositivo de Ledger deve estar conectado para executar esta função.",
+        "transactionTitle": "Use a barra de rolagem para aprovar a transação no seu Ledger",
+        "transactionExplanation": "Use seu dispositivo de Ledger para aprovar a transação de saída.",
+        "applicationTitle": "Abrir IOTA Ledger app",
+        "applicationExplanation": "Vá para seu Ledger e abra o aplicativo IOTA para continuar usando a Trinity.",
+        "cannotSendZeroValueTitle": "Não é possível enviar uma transferência sem valor",
+        "cannotSendZeroValueExplanation": "Não possível enviar transferências sem valor com um dispositivo de Ledger.",
+        "ledgerDisconnectedTitle": "Dispositivo Ledger desconectado",
+        "ledgerDisconnectedExplanation": "O dispositivo Ledger foi desconectado. Por favor, reconecte e tente novamente.",
+        "ledgerDeniedTitle": "Transação recusada",
+        "ledgerDeniedExplanation": "A transação foi recusada no dispositivo Ledger.",
+        "ledgerIncorrectIndex": "Dispositivo Ledger incompatível",
+        "ledgerIncorrectIndexExplanation": "O Ledger conectado não consta com o Ledger registrado nessa conta, ou a frase de recuperação foi mudada.",
+        "checkAddress": "Verifique o endereço do destinatário",
+        "checkAddressExplanation": "Verifique se o endereço é igual ao endereço no dispositivo Ledger.",
+        "applicationNotInitialised": "Aviso não confirmado",
+        "applicationNotInitialisedExplanation": "Reabra o aplicativo IOTA no seu dispositivo Ledger, aceite o aviso e tente novamente."
     }
 }

@@ -79,9 +79,9 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { addingAdditionalAccount } = this.props;
+        const { password, addingAdditionalAccount } = this.props;
 
-        if (addingAdditionalAccount) {
+        if (password.length && addingAdditionalAccount) {
             this.setupAccount();
         } else {
             this.props.clearWalletData();
@@ -278,7 +278,7 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,
-    forceUpdate: state.wallet.forceUpdate
+    forceUpdate: state.wallet.forceUpdate,
 });
 
 const mapDispatchToProps = {

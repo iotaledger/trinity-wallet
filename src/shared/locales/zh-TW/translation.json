@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "節點失去同步",
         "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "此節點並不同步，請變更節點或再試一次。",
         "seed": "種子碼",
         "checksum": "檢查碼",
@@ -74,6 +76,8 @@
         "wallet": "錢包",
         "all": "全部",
         "sent": "已支出",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "已接收",
         "sending": "轉帳中",
         "receiving": "收款中",
@@ -128,7 +132,7 @@
         "spentAddressExplanation": "警告：資金位於已支出的地址",
         "discordInformation": "用相同的地址重複轉帳是非常危險的，請前往 Discord #help 頻道尋求協助。",
         "androidInsecureClipboardWarning": "Android 提供的剪貼簿並不安全。",
-        "androidCopyPasteWarning": "請勿在 Android 裝置上複製/貼上您的種子碼。",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "我絕不會複製/貼上我的種子碼",
         "mustBeStoredAppropriately": "種子碼必須妥善保存。",
         "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應。",
@@ -148,10 +152,14 @@
         "errorAccessingKeychain": "鑰匙串錯誤",
         "errorAccessingKeychainExplanation": "無法訪問安全儲存所需的鑰匙串。",
         "mainWallet": "主帳戶",
+        "confirm": "Confirm",
+        "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "需要檔案系統權限",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
-        "anEncryptedCopy": "裝置上將會儲存一份您加密過的種子碼。未來您需要這份密碼來使用錢包。",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "重新輸入密碼"
     },
     "copyToClipboard": {
@@ -239,7 +247,8 @@
         "login": "登入",
         "setNode": "設置節點",
         "whyBiometricDisabled": "為何生物識別驗證是停用的？",
-        "whyBiometricDisabledExplanation": "考量到您的安全，生物識別驗證在應用程式一開啟時是停用的。在使用 Trinity 時，要是一段時間沒有動作的話會將您登出。這時候再登入回來時，是可以使用生物識別驗證的。"
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "千萬別和任何人分享您的種子碼。",
         "iotaLogo": "IOTA 標誌",
-        "print": "列印",
+        "print": "Print",
         "paperConvenience": "將您的種子碼列列印成紙本是最簡便的儲存方式。",
         "publicInsecure": "但請注意使用公共 wifi 或公共印表機列印的話可能會不安全。",
-        "tapCheckboxes": "請點擊以下方框來確認。",
-        "wifiCheckbox": "我不會使用公共 wifi 來列印",
-        "printerCheckbox": "我不會使用公共印表機來列印"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "您的地址",
@@ -285,8 +294,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "無地址",
         "spent": "已支出",
-        "missingPermission": "需要檔案系統權限",
-        "missingPermissionExplanation": "分享 QR 碼必須要有訪問檔案系統的權限。",
         "tag": "標籤",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
-        "whatIsChecksum": "每個種子碼會有相對應 3 字元的檢查碼",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "每個種子碼會有相對應 3 字元的檢查碼.",
         "iHavesavedMySeed": "我已儲存我的種子碼",
         "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "請確認您的種子碼",
-        "trinityWillNeverAskToReenter": "Trinity 絕不會要求重新輸入種子碼，除非您重置錢包或是應用程式。",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "輸入您的種子碼",
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
         "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
-        "clipboardWarning": "請不要複製貼上您的種子碼",
-        "clipboardWarningExplanation": "警告：為了您的安全複製貼上已停用。"
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -345,7 +353,8 @@
         "totalTime": "總計",
         "addressPasteDetected": "檢測到地址貼上",
         "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
-        "invalid": "無效"
+        "invalid": "無效",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "請輸入名稱",
@@ -373,7 +382,9 @@
         "addNewSeed": "增加新的種子碼",
         "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
+        "general": "General settings",
         "advanced": "進階設定",
+        "account": "Account settings",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -446,7 +457,8 @@
         "empty": "清空",
         "retrying": "重試中",
         "yesterday": "昨日",
-        "promotingAnotherBundle": "正在促進另一組交易中"
+        "promotingAnotherBundle": "正在促進另一組交易中",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -504,18 +516,21 @@
         "currency": "貨幣"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "您確定要登出？"
+        "logoutConfirmation": "您確定要登出？",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "是否確定？"
     },
     "qrScanner": {
         "scan": "掃描 QR 碼"
     },
     "unitInfoModal": {
-        "unitSystem": "單位系統",
+        "unitSystem": "Unit System",
         "trillion": "兆",
         "billion": "十億",
         "million": "百萬",
         "thousand": "千",
-        "one": "一"
+        "one": "一",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
@@ -537,7 +552,7 @@
         "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "輸入種子碼和帳戶名稱。",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "種子碼格式不符",
         "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
@@ -551,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您備份種子碼了嗎？",
-        "alreadyHave": "我已儲存我的種子碼",
-        "reenterSeed": "下一步您會需要重新輸入您的種子碼。",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "如果您尚未備份您的種子碼然後裝置停止的話，您將失去您所有的 IOTA。",
         "pleaseConfirm": "請確認您已安全地儲存了您的種子碼。"
     },
@@ -572,19 +587,23 @@
         "status": "狀態",
         "fingerprintUnavailable": "生物識別驗證無法使用",
         "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
-        "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
-        "buttonInstructionsDisableIPhoneX": "按下方按鈕停用 Face ID。",
-        "buttonInstructionsEnableIPhoneX": "按下方按鈕啟用 Face ID。",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "觸摸指紋辨識器來登入"
     },
     "transferConfirmation": {
         "youAreAbout": "您將轉帳{{contents}} 到地址",
-        "aMessage": "訊息"
+        "aMessage": "訊息",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "驗證碼錯誤",
-        "wrongCodeExplanation": "您輸入的驗證碼不正確。",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "驗證碼為空",
         "emptyCodeExplanation": "請輸入驗證碼並重試。",
         "keyCopied": "密鑰已複製到剪貼簿",
@@ -601,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "匯出 SeedVault",
-        "seedVaultExplanation": "SeedVault 是份能夠安全地保存種子碼的加密檔案。種子碼透過輸入的 SeedVault 金鑰加密，而沒有該金鑰的話也就無法取得。",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "您的種子碼已成功匯入。",
         "saveToDownloadFolder": "儲存至下載資料夾",
         "importSeedVault": "匯入 SeedVault",
-        "dropSeedVaultHere": "拖曳 SeedVault 至此 <1></1> 或者點擊瀏覽",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "請輸入您的金鑰來開啟 SeedVault",
         "noSeedFound": "SeedVault 裡沒儲存有效的種子碼",
         "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
         "seedFileError": "開啟 SeedVault 失敗",
         "seedFileErrorExplanation": "開啟 SeedVault 時遇到問題，如果您選擇的檔案是正確的，那麼它可能已損壞。",
-        "seedVaultKeyExplanation": "首先我們必須確保 SeedVault 的安全，請輸入金鑰來加密檔案。您將會需要此金鑰才能從 SeedVault 備份取回種子碼，金鑰也可以用和 Trinity 一樣的密碼。"
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "總市值",
@@ -655,7 +676,8 @@
         "preparingTransfers": "準備交易資訊",
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
-        "broadcasting": "廣播中"
+        "broadcasting": "廣播中",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "無法完成快照轉換",
@@ -669,7 +691,8 @@
         "transition": "轉換",
         "transitioning": "進行快照轉換。",
         "generatingAndDetecting": "產生地址並檢測餘額。",
-        "attaching": "連接地址到 Tangle。"
+        "attaching": "連接地址到 Tangle。",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "自動填入成功",
@@ -680,7 +703,7 @@
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "有新版本可用",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "安裝更新並重啟",
         "installUpdateExplanation": "下載完成，Trinity 將會重啟並安裝更新。",
         "downloadingUpdate": "下載更新中",
@@ -707,7 +730,7 @@
     },
     "proxy": {
         "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "通知",

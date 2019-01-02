@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Jeśli problem będzie się powtarzał, spróbuj zmienić serwer lub wyłącz użycie proxy w ustawieniach Trinity.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
+        "experimentalNode": "Nieobsługiwana wersja serwera",
+        "experimentalNodeExplanation": "Twój aktualnie wybrany serwer, działa w wersji eksperymentalnej, która nie jest obsługiwana przez Trinity. Zmień serwer lub spróbuj ponownie.",
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "seed": "Seed",
         "checksum": "Suma kontrolna",
@@ -74,6 +76,8 @@
         "wallet": "Portfel",
         "all": "Wszystkie",
         "sent": "Wysłano",
+        "youReceived": "Odebrano",
+        "youSent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
         "receiving": "Odbieranie",
@@ -148,10 +152,14 @@
         "errorAccessingKeychain": "Błąd magazynu kluczy",
         "errorAccessingKeychainExplanation": "Nie można uzyskać dostępu do magazynu kluczy, odpowiedzialnego za bezpieczną pamięć.",
         "mainWallet": "KONTO GŁÓWNE",
+        "confirm": "Potwierdź",
+        "delete": "Usuń",
         "shouldUpdate": "Dostępna jest nowa aktualizacja",
-        "shouldUpdateExplanation": "Dostępna jest nowa aktualizacja. Zaleca się aktualizację do najnowszej wersji.",
+        "shouldUpdateExplanation": "Nowa wersja Trinity jest gotowa do pobrania. Zaleca się aktualizację do najnowszej wersji.",
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
-        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz."
+        "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
+        "missingPermission": "Wymagany dostęp do systemu plików",
+        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej {{minLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Wpisane hasła różnią się. Spróbuj ponownie.",
-        "anEncryptedCopy": "Zaszyfrowana kopia Twojego klucza seed będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
+        "anEncryptedCopy": "To jest główne hasło do Twojego portfela. Będziesz go używać do logowania się.",
         "retypePassword": "Wpisz hasło ponownie"
     },
     "copyToClipboard": {
@@ -239,7 +247,8 @@
         "login": "Zaloguj",
         "setNode": "Serwer",
         "whyBiometricDisabled": "Dlaczego logowanie biometryczne jest niedostępne?",
-        "whyBiometricDisabledExplanation": "Dla Twojego bezpieczeństwa, logowanie odciskiem palca jest wyłączone przy pierwszym uruchomieniu aplikacji. Z tej metody logowania możesz skorzystać jedynie wtedy, gdy zostałeś wylogowany z Trinity ze względu na Twoją bezczynność w aplikacji."
+        "whyBiometricDisabledExplanationPart1": "Autoryzacja odciskiem palca, przy pierwszym uruchomieniu aplikacji, została wyłączona, dla Twojego bezpieczeństwa.",
+        "whyBiometricDisabledExplanationPart2": "Bezczynność w Trinity, będzie skutkowała automatycznym wylogowaniem z aplikacji. Później, będziesz mógł zalogować się, używając odcisku palca."
     },
     "loading": {
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Nie udostępniaj swojego klucza nikomu.",
         "iotaLogo": "Logo IOTA",
-        "print": "DRUKUJ",
+        "print": "Drukuj",
         "paperConvenience": "Wydruk papierowej kopii klucza seed jest wygodnym sposobem na jego przechowywanie.",
         "publicInsecure": "Jednak drukowanie na publicznej sieci WiFi lub publicznej drukarce jest niebezpieczne.",
-        "tapCheckboxes": "Zaznacz poniższe pola, aby potwierdzić.",
-        "wifiCheckbox": "Nie będę drukował na publicznym WiFi",
-        "printerCheckbox": "Nie będę drukował na publicznej drukarce"
+        "pleaseCheck": "Sprawdź i potwierdź przed wydrukowaniem",
+        "wifiConfirmation": "Nie jestem połączony z publicznym WiFi",
+        "printerConfirmation": "Nie drukuję na publicznej drukarce"
     },
     "receive": {
         "yourAddress": "Twój adres",
@@ -285,8 +294,6 @@
         "generateNewAddress": "Wygeneruj adres",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
-        "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
         "tag": "Tag",
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "Zapiszmy Twój seed",
         "youCanHighlightCharacters": "Możesz wyróżnić 9 znaków naraz",
         "printBlankWallet": "Drukuj pusty portfel",
-        "whatIsChecksum": "Każdy seed posiada swoją 3-znakową sumę kontrolną",
+        "whatIsAChecksum": "Czym jest suma kontrolna?",
+        "everySeedHasAChecksum": "Każdy seed posiada swoją 3-znakową sumę kontrolną.",
         "iHavesavedMySeed": "Zapisałem swój seed",
         "checksumExplanation": "Za każdym razem, gdy dodajesz seed do portfela, powinieneś upewnić się, że suma kontrolna generowana przez portfel jest zgodna z tą, którą zapisałeś.",
         "mustSaveYourSeed": "<0><0>Musisz zapisać swój seed, wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Potwierdź swój klucz seed",
-        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel bądź dokonasz reinstalacji aplikacji.",
+        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel lub usuniesz aplikację.",
         "enterYourSeed": "Wprowadź swój seed",
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
         "enterSeedBelow": "Wprowadź swój nowy klucz seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
-        "clipboardWarning": "Nie kopiuj swojego klucza",
-        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest nieaktywne dla Twojego bezpieczeństwa."
+        "clipboardWarning": "OSTRZEŻENIE: Nie można wkleić klucza seed",
+        "clipboardWarningExplanation": "Możliwość wklejania, jest wyłączona dla Twojego bezpieczeństwa. Zamiast tego, możesz przeciągnąć i upuścić Twój seed, z pliku tekstowego."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -345,7 +353,8 @@
         "totalTime": "Całkowity czas",
         "addressPasteDetected": "Wykryto wklejenie adresu",
         "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
-        "invalid": "BŁĄD"
+        "invalid": "BŁĄD",
+        "swipeToSend": "Przesuń palcem, aby wysłać"
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
@@ -373,7 +382,9 @@
         "addNewSeed": "Dodaj nowy seed",
         "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
+        "general": "Ustawienia ogólne",
         "advanced": "Ustawienia zaawansowane",
+        "account": "Ustawienia konta",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
@@ -397,8 +408,8 @@
         "securitySettings": "Ustawienia zabezpieczeń",
         "fingerprint": "Autoryzacja biometryczna",
         "couldNotFetchRates": "Błąd pobierania kursów",
-        "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
-        "fetchedConversionRates": "Pobrano kursy przeliczeniowe",
+        "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursu przeliczeniowego dla waluty {{currency}}.",
+        "fetchedConversionRates": "Pobrano kurs przeliczeniowy",
         "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}.",
         "undo": "Cofnij",
         "redo": "Ponów",
@@ -446,7 +457,8 @@
         "empty": "Brak",
         "retrying": "Ponawianie",
         "yesterday": "Wczoraj",
-        "promotingAnotherBundle": "Promowanie innego pakietu"
+        "promotingAnotherBundle": "Promowanie innego pakietu",
+        "pleaseWait": "Proszę czekać, Trinity promuje obecnie inny pakiet."
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -504,18 +516,21 @@
         "currency": "Waluta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Czy na pewno chcesz się wylogować?"
+        "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
+        "aboutToLogOut": "Za chwilę zostaniesz wylogowany",
+        "areYouSure": "Czy jesteś pewien?"
     },
     "qrScanner": {
         "scan": "Zeskanuj swój kod QR"
     },
     "unitInfoModal": {
-        "unitSystem": "JEDNOSTKI MIARY",
+        "unitSystem": "Jednostka miary",
         "trillion": "Bilion",
         "billion": "Miliard",
         "million": "Milion",
         "thousand": "Tysiąc",
-        "one": "Jeden"
+        "one": "Jeden",
+        "unitInfoExplanation": "Tokeny IOTA są zazwyczaj nabywane w wielokrotnościach jednego miliona, ale mogą być też transferowane, jako pojedyncze IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
@@ -537,7 +552,7 @@
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
-        "title": "Wprowadź seed oraz nazwę konta.",
+        "title": "Wprowadź nazwę konta oraz klucz seed",
         "incorrectFormat": "Nieprawidłowy format klucza",
         "validSeedExplanation": "Poprawny seed powinien składać się z 81 znaków i zawierać jedynie wielkie litery A-Z oraz cyfry 9."
     },
@@ -551,7 +566,7 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Czy zrobiłeś kopię swojego klucza?",
-        "alreadyHave": "Zapisałem swój seed",
+        "iHaveBackedUp": "Bezpiecznie zapisałem swój seed",
         "reenterSeed": "W następnym kroku zostaniesz poproszony o ponowne wprowadzenie swojego klucza seed.",
         "reenterSeedWarning": "Jeśli nie zapisałeś swojego klucza, a Twoje urządzenie ulegnie uszkodzeniu, stracisz swoje środki IOTA.",
         "pleaseConfirm": "Proszę potwierdzić, że bezpiecznie przechowujesz swój klucz seed."
@@ -572,19 +587,23 @@
         "status": "Status",
         "fingerprintUnavailable": "Autoryzacja odciskiem palca niedostępna",
         "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
-        "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć funkcję autoryzacji odciskiem palca.",
+        "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć funkcję autoryzacji odciskiem palca",
         "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć funkcję autoryzacji odciskiem palca.",
-        "buttonInstructionsDisableIPhoneX": "Naciśnij poniższy przycisk, aby wyłączyć Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Naciśnij poniższy przycisk, aby włączyć Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Naciśnij poniższy przycisk, aby wyłączyć Face ID",
+        "buttonInstructionsEnableIPhoneX": "Naciśnij poniższy przycisk, aby włączyć Face ID",
         "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
-        "aMessage": "wiadomość"
+        "aMessage": "wiadomość",
+        "fromAccount": "Z konta {{selectedAccountName}}",
+        "toAddress": "Na adres",
+        "sendingAMessage": "Wysyłanie wiadomości",
+        "sendingAnEmptyMessage": "Wysyłanie pustej wiadomości"
     },
     "twoFA": {
         "wrongCode": "Błędny kod",
-        "wrongCodeExplanation": "Podany kod jest nieprawidłowy.",
+        "wrongCodeExplanation": "Podany kod jest nieprawidłowy. Jeśli ten błąd będzie się powtarzał, sprawdź, czy masz prawidłowo ustawioną godzinę w swoim urządzeniu.",
         "emptyCode": "Kod pusty",
         "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
         "keyCopied": "Klucz skopiowany do schowka",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "Twój klucz seed został pomyślnie zaimportowany.",
         "saveToDownloadFolder": "Zapisz do folderu pobierania",
         "importSeedVault": "Importuj SeedVault",
-        "dropSeedVaultHere": "Upuść plik SeedVault tutaj <1></1> lub kliknij, aby wyszukać ręcznie",
+        "dropInstructions": "Upuść tutaj plik SeedVault lub tekst <1></1>\n(kliknij, aby wyszukać plik ręcznie)",
+        "dropActive": "Upuść tutaj plik SeedVault lub tekst",
         "enterKeyExplanation": "Wprowadź swoje hasło pliku SeedVault, aby go otworzyć",
         "noSeedFound": "SeedVault nie zawiera poprawnego klucza seed",
         "noSeedFoundExplanation": "Plik SeedVault jest pusty lub zawiera seed w nieprawidłowym formacie.",
         "seedFileError": "Nie można otworzyć SeedVault",
         "seedFileErrorExplanation": "Wystąpił problem podczas otwierania pliku SeedVault. Jeśli wybrano poprawny plik, to może być on uszkodzony.",
-        "seedVaultKeyExplanation": "Najpierw musisz zabezpieczyć swój SeedVault hasłem. Będziesz potrzebować tego hasła, aby przywrócić swój klucz seed z kopii zapasowej pliku SeedVault. Możesz użyć tego samego hasła, którego używasz do logowania w Trinity."
+        "seedVaultKeyExplanation": "Najpierw musimy zabezpieczyć Twój SeedVault. Wybierz hasło do zaszyfrowania pliku. Będziesz używać tego hasła, aby przywrócić swój seed z kopii zapasowej SeedVault.",
+        "retypeKey": "Wpisz hasło ponownie"
     },
     "chart": {
         "mcap": "Market",
@@ -655,7 +676,8 @@
         "preparingTransfers": "Przygotowywanie transferów",
         "gettingTransactionsToApprove": "Uzyskiwanie transakcji do potwierdzenia",
         "proofOfWork": "Finalizacja Proof of Work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Broadcasting",
+        "transferComplete": "Transfer zakończony"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nie można zakończyć aktualizacji środków",
@@ -669,7 +691,8 @@
         "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
         "generatingAndDetecting": "Generuję adresy oraz wykrywam saldo.",
-        "attaching": "Dołączam adresy do sieci Tangle."
+        "attaching": "Dołączam adresy do sieci Tangle.",
+        "attachProgress": "Dołączam adres {{currentAddress}} z {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autouzupełniono",
@@ -706,8 +729,8 @@
         "completeSetup": "Zakończ konfigurację"
     },
     "proxy": {
-        "proxy": "Używaj systemowych ustawień proxy",
-        "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Zrestartuj portfel po zmianie tego ustawienia."
+        "proxy": "Użycie ustawień proxy",
+        "proxyExplanation": "Wykryj i używaj ogólnosystemowych ustawień serwera proxy. Po zmianie tego ustawienia należy ponownie uruchomić aplikację."
     },
     "notifications": {
         "notifications": "Powiadomienia",

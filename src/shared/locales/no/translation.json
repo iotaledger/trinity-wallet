@@ -19,9 +19,11 @@
         "invalidResponse": "Nodefeil",
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Noden returnerte en feil under henting av kontoinformasjonen. Hvis problemet vedvarer, kan du prøve å endre node eller deaktivere proxy i Trinitys innstillinger.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node eller forsøk igjen.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
         "seed": "Hovednøkkel",
         "checksum": "Kontrolltegn",
@@ -74,6 +76,8 @@
         "wallet": "Lommebok",
         "all": "Alle",
         "sent": "Sendt",
+        "youReceived": "Du har mottatt",
+        "youSent": "Du sendte",
         "received": "Mottatt",
         "sending": "Sender",
         "receiving": "Mottar",
@@ -144,14 +148,18 @@
         "tryingAgainWithLocalPoW": "Prøver igjen med lokal PoW.",
         "tryingAgainWithDifferentNode": "Prøver igjen med en annen node.",
         "errorFetchingAccountInformation": "Feil ved henting av kontoinformasjon.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "Feil ved synkronisering av adresseinformasjonen. Prøver igjen med en annen node.",
         "errorAccessingKeychain": "Nøkkelring feil",
         "errorAccessingKeychainExplanation": "Ingen tilgang til nøkkelring nødvendig for sikker lagring.",
         "mainWallet": "HOVEDKONTO",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "confirm": "Bekreft",
+        "delete": "Slett",
+        "shouldUpdate": "En ny versjon er tilgjengelig",
+        "shouldUpdateExplanation": "En ny versjon er lansert. Det anbefales at du oppdaterer til den nyeste versjonen.",
+        "forceUpdate": "Oppdater applikasjonen for å fortsette",
+        "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
+        "missingPermission": "Trenger tillatelse til filsystemet",
+        "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
-        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken i fremtiden.",
+        "anEncryptedCopy": "Dette er passordet til hovedlommeboken. Du vil bruke det for å logge på.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "copyToClipboard": {
@@ -239,7 +247,8 @@
         "login": "Logg inn",
         "setNode": "Angi Node",
         "whyBiometricDisabled": "Hvorfor er biometrisk autentisering deaktivert?",
-        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter applikasjonen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk autentisering."
+        "whyBiometricDisabledExplanationPart1": "Biometriske godkjenning er deaktivert på første innlastning for din sikkerhet.",
+        "whyBiometricDisabledExplanationPart2": "Når du bruker Trinity vil du logges ut ved inaktivitet. Du kan logge inn igjen med biometrisk godkjenning."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Del aldri hovednøkkelen med noen.",
         "iotaLogo": "IOTA logo",
-        "print": "SKRIV UT",
+        "print": "Skriv ut",
         "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
         "publicInsecure": "Men å skrive den ut på et offentlig nettverk eller printer er usikkert.",
-        "tapCheckboxes": "Vennligst trykk på avkryssingsfeltet nedenfor for å bekrefte.",
-        "wifiCheckbox": "Jeg vil ikke skrive ut på et offentlig nettverk",
-        "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
+        "pleaseCheck": "Sjekk og bekrefte før du skriver ut",
+        "wifiConfirmation": "Jeg er ikke på på et offentlig wifi",
+        "printerConfirmation": "Jeg skriver ikke ut på en offentlig skriver"
     },
     "receive": {
         "yourAddress": "Din adresse",
@@ -282,15 +291,13 @@
         "copyAddress": "Kopier adresse",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "Generer adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
-        "missingPermission": "Trenger tillatelse til filsystemet",
-        "missingPermissionExplanation": "Tilgang til filsystemet er nødvendig for å dele QR-koder.",
         "tag": "Etikett",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddress": "Generer adresse",
+        "generateAnAddressTitle": "Generere en adresse",
+        "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen."
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
-        "whatIsChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum",
+        "whatIsAChecksum": "Hva er en kontrollsum?",
+        "everySeedHasAChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum.",
         "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
         "checksumExplanation": "Når du legger til en hovednøkkel i lommeboken, bør du forsikre deg om at kontrollsummen samsvarer med den du har skrevet ned.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Vennligst bekreft din hovednøkkel",
-        "trinityWillNeverAskToReenter": "Trinity vil aldri be deg å skrive inn hovednøkkelen hvis du ikke tilbakestiller lommeboken eller applikasjonen.",
+        "trinityWillNeverAskToReenter": "Trinity vil aldri be deg å skrive inn denne hovednøkkelen med mindre du tilbakestilling lommeboken eller sletter appen.",
         "enterYourSeed": "Angi din hovednøkkel",
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre.",
         "enterSeedBelow": "Angi din nyopprettede hovednøkkel nedenfor for å bekrefte at du har sikkerhetskopiert den riktig",
-        "clipboardWarning": "Ikke kopier lim din hovednøkkel",
-        "clipboardWarningExplanation": "ADVARSEL: Kopier lim er deaktivert for din sikkerhet."
+        "clipboardWarning": "Advarsel: Kan ikke lime inn hovednøkkel",
+        "clipboardWarningExplanation": "Lim inn er deaktivert av sikkerhetshensyn. Du kan dra og slippe inn din hovednøkkel fra en tekstfil i stedet."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -345,7 +353,8 @@
         "totalTime": "Total tid",
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
         "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til.",
-        "invalid": "UGYLDIG"
+        "invalid": "UGYLDIG",
+        "swipeToSend": "Sveip for å sende"
     },
     "setSeedName": {
         "letsAddName": "La oss legge til et navn",
@@ -373,7 +382,9 @@
         "addNewSeed": "Legg til ny hovednøkkel",
         "twoFA": "To-faktor autentisering",
         "changePassword": "Endre passord",
+        "general": "Generelle innstillinger",
         "advanced": "Avanserte innstillinger",
+        "account": "Kontoinnstillinger",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
         "syncingComplete": "Synkronisering fullført",
@@ -446,7 +457,8 @@
         "empty": "Tom",
         "retrying": "Prøver på nytt",
         "yesterday": "I går",
-        "promotingAnotherBundle": "Fremme en pakke til"
+        "promotingAnotherBundle": "Fremme en pakke til",
+        "pleaseWait": "Vennligst vent, Trinity promoterer en transaksjon."
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -504,18 +516,21 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Er du sikker på at du vil logge ut?"
+        "logoutConfirmation": "Er du sikker på at du vil logge ut?",
+        "aboutToLogOut": "Du logger nå ut",
+        "areYouSure": "Er du sikker?"
     },
     "qrScanner": {
         "scan": "Skann QR-kode"
     },
     "unitInfoModal": {
-        "unitSystem": "ENHETSSYSTEMET",
+        "unitSystem": "Enhetssystem",
         "trillion": "Billioner",
         "billion": "Milliarder",
         "million": "Millioner",
         "thousand": "Tusen",
-        "one": "En"
+        "one": "En",
+        "unitInfoExplanation": "IOTAs er vanligvis håndtert i multipler av en million, men kan overføres som en enkelt IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruke hele saldoen?",
@@ -537,7 +552,7 @@
         "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
-        "title": "Angi en hovednøkkel og et kontonavn.",
+        "title": "Angi et kontonavn og en hovednøkkel",
         "incorrectFormat": "Feil format på hovednøkkelen",
         "validSeedExplanation": "En gyldig hovednøkkel skal være 81 tegn bestående av bokstavene A-Z og tallet 9."
     },
@@ -547,12 +562,12 @@
         "hideSeed": "Gjem hovednøkkel",
         "notAvailable": "Eksport av hovednøkkel er ikke tilgjengelig for {{accountType}} kontotype",
         "accountIndex": "Din Ledger konto indeks",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Din Ledger kontoside"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du lagret hovednøkkelen?",
-        "alreadyHave": "Jeg har lagret min hovednøkkel",
-        "reenterSeed": "På neste trinn vil du bli bedt om å skrive inn hovednøkkelen.",
+        "iHaveBackedUp": "Jeg har sikkerhetskopiert min hovednøkkel",
+        "reenterSeed": "I neste trinn må du skrive inn din hovednøkkel på nytt.",
         "reenterSeedWarning": "Hvis du ikke har lagret hovednøkkelen og enheten din blir ødelagt vil du miste tilgangen til dine IOTA.",
         "pleaseConfirm": "Vennligst bekreft at du har lagret hovednøkkelen."
     },
@@ -572,19 +587,23 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering er ikke tilgjengelig",
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
-        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering.",
+        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
-        "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID",
+        "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID",
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er nå klar til å sende {{contents}} til adressen",
-        "aMessage": "en melding"
+        "aMessage": "en melding",
+        "fromAccount": "Fra {{selectedAccountName}}",
+        "toAddress": "Til adresse",
+        "sendingAMessage": "Sender en melding",
+        "sendingAnEmptyMessage": "Sender en tom melding"
     },
     "twoFA": {
         "wrongCode": "Feil kode",
-        "wrongCodeExplanation": "Koden du anga er feil.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Mangler kode",
         "emptyCodeExplanation": "Vennligst angi en kode og prøv igjen.",
         "keyCopied": "Kode kopiert til utklippstavlen",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "Din hovednøkkel ble importert.",
         "saveToDownloadFolder": "Lagre til nedlastingsmappen",
         "importSeedVault": "Importer SeedVault",
-        "dropSeedVaultHere": "Slipp SeedVault her <1></1> eller klikk for å bla igjennom",
+        "dropInstructions": "Slipp SeedVault eller tekst her <1></1> eller klikk for å bla igjennom",
+        "dropActive": "Slipp SeedVault eller tekst her",
         "enterKeyExplanation": "Skriv inn din nøkkel for å åpne SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
         "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet.",
-        "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil trenge denne nøkkelen for å gjenopprette din hovednøkkel fra SeedVault-sikkerhetskopien. Nøkkelen kan være den samme som passordet du bruker for Trinity."
+        "seedVaultKeyExplanation": "Først må vi å sikre din SeedVault. Velg en nøkkel for å kryptere filen. Du vil bruke denne nøkkelen hvis du må gjenopprette din hovednøkkel fra SeedVault sikkerhetskopi.",
+        "retypeKey": "Skriv nøkkel på nytt"
     },
     "chart": {
         "mcap": "MCAP",
@@ -655,7 +676,8 @@
         "preparingTransfers": "Forbereder transaksjoner",
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
-        "broadcasting": "Kringkasting"
+        "broadcasting": "Kringkasting",
+        "transferComplete": "Transaksjon fullført"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
@@ -669,7 +691,8 @@
         "transition": "Overgang",
         "transitioning": "Overfører til ny snapshot.",
         "generatingAndDetecting": "Genererer adresser og laster inn saldo.",
-        "attaching": "Kobler adressene til Tangle."
+        "attaching": "Kobler adressene til Tangle.",
+        "attachProgress": "Legger til adresse {{currentAddress}} {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatisk utfylling vellykket",
@@ -680,7 +703,7 @@
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny versjon tilgjengelig",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Installere oppdateringen og starte på nytt",
         "installUpdateExplanation": "Nedlastingen er fullført, Trinity startes nå på nytt for å installere oppdateringen.",
         "downloadingUpdate": "Laster ned oppdatering",
@@ -706,8 +729,8 @@
         "completeSetup": "Fullfør installasjon"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxy": "Bruk system proxy",
+        "proxyExplanation": "Oppdage og bruke proxy-innstillinger. Lukk og åpne lommeboken etter endring av denne innstillingen."
     },
     "notifications": {
         "notifications": "Varslinger",
@@ -723,32 +746,32 @@
     "bytetrit": {
         "sweepSucceeded": "Midler er ulåst",
         "sweepSucceededExplanation": "Midlene er vellykket ulåst og flyttet til en ny adresse. Promoter transaksjonen for å hjelp den å bekreftes.",
-        "sweepError": "Error unlocking funds",
-        "sweepErrorExplanation": "Something went wrong while unlocking your funds. Trying again.",
-        "warningTitle": "Warning: Locked funds detected",
-        "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
-        "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
-        "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
-        "sweepConfirmationTitle": "Sweep confirmation"
+        "sweepError": "Feil ved henting av middler",
+        "sweepErrorExplanation": "Noe gikk galt med tilgangen til dine midler. Prøver på nytt.",
+        "warningTitle": "Advarsel: Låst midler oppdaget",
+        "explanation": "Trinity Desktop versjon 0.3.4 inneholdt en feil som kan midlertidig låse midler. Dette påvirker et lite antall brukere som utførte transaksjoner med 0.3.4.",
+        "explanationAccounts": "Låste midler er registrert på dine kontoer: {{accounts}}. Trinity vil nå automatisk gjenopprette tilgangen til midlene ved å flytte dem til en ny adresse.",
+        "proceed": "Videre til gjenoppretting",
+        "sweepConfirmation": "Du er ferd med å samle {{amount}} til adresse {{address}}. Konto: {{accountName}}, adresse indeks: {{index}}",
+        "sweepConfirmationTitle": "Samlebekreftelse"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
-        "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
-        "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
+        "ready": "Ledger tilkoblet og klar",
+        "notReady": "Ønsker du å benytte Ledger, koble til og lås den opp nå",
+        "indexInUse": "Indeks allerede benyttet på konto {{account}}",
+        "indexInUseExplanation": "Din valgte indeks er allerede i bruk på en av dine kontoer. Vennligst benytt et annet indeks-nummer.",
+        "proceedWithLedger": "Fortsett med Ledger installasjonen",
+        "accountIndex": "Kontoindex",
+        "accountPage": "Kontoside",
+        "chooseAccountIndex": "Velg din Ledger kontoindeks",
+        "accountIndexExplanation": "Du kan lagre fler hovednøkkler. Hver hovednøkkel er identifisert med et unikt indeks-nummer. Et ubenyttet index-nummer er valgt for deg, men endre dette om du ønsker. Husk å skriv ned ditt valgte index-nummer.",
+        "accountPageExplanation": "Noen tredjeparts lommebøker krever pages.",
+        "connectionError": "Kan ikke koble til Ledger",
+        "connectionErrorExplanation": "Sjekk at din Ledger er koblet til og låst opp.",
+        "connectionTitle": "Koble til din Ledger",
+        "connectionExplanation": "Ledger må være tilkoblet for å utføre denne funksjonen.",
+        "transactionTitle": "Bla gjennom og godkjenn transaksjonen på din Ledger",
+        "transactionExplanation": "Godkjenn den utgående transaksjonen på din Ledger.",
         "applicationTitle": "Åpne IOTA Ledger app",
         "applicationExplanation": "Gå til din Ledger og åpne IOTA app for og fortsette å bruke Trinity.",
         "cannotSendZeroValueTitle": "Kan ikke sende null verdi-transaksjon",
@@ -760,8 +783,8 @@
         "ledgerIncorrectIndex": "Ledger-enhet feil",
         "ledgerIncorrectIndexExplanation": "Tilkoblede Ledger samsvarer ikke med den knyttet til denne kontoen, eller gjenopprettingsfrasen er endret.",
         "checkAddress": "Kontroller mottaksadressen",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "checkAddressExplanation": "Kontroller at adressen er lik den vises på din Ledger.",
+        "applicationNotInitialised": "Informasjonsadvarsel ikke godkjent",
+        "applicationNotInitialisedExplanation": "Åpne IOTA programmet på din Ledger, godta informasjonen og prøv igjen."
     }
 }

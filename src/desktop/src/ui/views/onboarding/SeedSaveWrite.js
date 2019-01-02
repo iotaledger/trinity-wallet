@@ -63,7 +63,7 @@ class SeedSave extends PureComponent {
                         </div>
                         <div>
                             <Tooltip
-                                title={t('saveYourSeed:whatIsChecksum')}
+                                title={t('saveYourSeed:whatIsAChecksum')}
                                 tip={t('saveYourSeed:checksumExplanation')}
                             />{' '}
                             {t('checksum')}: <strong>{checksum}</strong>
@@ -96,7 +96,7 @@ class SeedSave extends PureComponent {
                         variant="primary"
                         className="square"
                     >
-                        {t('done')}
+                        {t('back')}
                     </Button>
                 </footer>
             </React.Fragment>

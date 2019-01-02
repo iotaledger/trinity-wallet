@@ -430,4 +430,21 @@ describe('Reducer: settings', () => {
             expect(newState).to.eql(expectedState);
         });
     });
+
+    describe('IOTA/SETTINGS/RESET_NODES_LIST', () => {
+        it('should set nodes to an empty array', () => {
+            const initialState = {
+                nodes: ['http://localhost:14264', 'http://localhost:14265'],
+            };
+
+            const action = actions.resetNodesList();
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                nodes: [],
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
 });

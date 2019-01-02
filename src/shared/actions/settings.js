@@ -1,11 +1,12 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import { changeIotaNode } from '../libs/iota';
-import { generateAlert } from './alerts';
+import { changeIotaNode } from '../libs/iota/index';
 import i18next from '../libs/i18next';
+import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
+import { fetchNodeList } from '../actions/polling';
 import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/accounts';
-import { throwIfNodeNotSynced } from '../libs/iota/utils';
+import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -44,6 +45,7 @@ export const ActionTypes = {
     SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
     SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
     SET_PROXY: 'SET_PROXY',
+    RESET_NODES_LIST: 'IOTA/SETTINGS/RESET_NODES_LIST',
 };
 
 /**
@@ -432,7 +434,7 @@ export function setFullNode(node, addingCustomNode = false) {
     return (dispatch) => {
         dispatch(dispatcher.request());
 
-        throwIfNodeNotSynced(node)
+        throwIfNodeNotHealthy(node)
             .then(() => checkAttachToTangleAsync(node))
             .then((res) => {
                 // Change IOTA provider on the global iota instance
@@ -469,14 +471,9 @@ export function setFullNode(node, addingCustomNode = false) {
                 dispatch(dispatcher.error());
 
                 if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('settings:nodeChangeError'),
-                            i18next.t('settings:thisNodeOutOfSync'),
-                            7000,
-                        ),
-                    );
+                    dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     dispatch(dispatcher.alerts.defaultError(err));
                 }
@@ -689,3 +686,29 @@ export const setProxy = (payload) => ({
     type: ActionTypes.SET_PROXY,
     payload,
 });
+
+/**
+ * Dispatch to reset nodes list
+ *
+ * @method resetNodesList
+ *
+ * @returns {{type: {string} }}
+ */
+export const resetNodesList = () => ({
+    type: ActionTypes.RESET_NODES_LIST,
+});
+
+/**
+ * Reinitialise (clear existing and fetch latest) nodes
+ *
+ * @method reinitialiseNodesList
+ *
+ * @returns {function} dispatch
+ */
+export const reinitialiseNodesList = () => (dispatch) => {
+    // First reset the existing nodes in the state
+    dispatch(resetNodesList());
+
+    // Fetch latest nodes
+    dispatch(fetchNodeList());
+};

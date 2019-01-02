@@ -214,6 +214,7 @@ class Keychain {
                 const vaultSeed = await decrypt(account.password, this.key);
 
                 if (
+                    vaultSeed &&
                     vaultSeed.length === seed.length &&
                     seed.every((v, x) => {
                         return v % 27 === vaultSeed[x] % 27;

@@ -50,6 +50,10 @@ const initialState = {
      */
     isValidatingAddress: false,
     /**
+     * Navigation stack
+     */
+    navStack: [],
+    /**
      * Determines whether user should update
      */
     shouldUpdate: false,
@@ -186,6 +190,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isValidatingAddress: false,
+            };
+        case ActionTypes.PUSH_ROUTE:
+            return {
+                ...state,
+                navStack: state.navStack.slice().concat(action.payload),
+            };
+        case ActionTypes.POP_ROUTE:
+            return {
+                ...state,
+                navStack: state.navStack.slice(0, state.navStack.length - 1),
+            };
+        case ActionTypes.RESET_ROUTE:
+            return {
+                ...state,
+                navStack: [action.payload],
             };
         case ActionTypes.SHOULD_UPDATE:
             return {

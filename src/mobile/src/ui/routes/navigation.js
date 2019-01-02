@@ -2,8 +2,9 @@ import { Navigation } from 'react-native-navigation';
 import withSafeAreaView from 'ui/components/SafeAreaView';
 import withDropdownAlert from 'ui/components/WithDropdownAlert';
 import withModal from 'ui/components/ModalComponent';
-import withRouteMonitor from 'ui/components/RouteMonitor';
 import withStatusBar from 'ui/components/WithStatusBar';
+import withBackPress from 'ui/components/BackPress';
+import withKeyboardMonitor from 'ui/components/KeyboardMonitor';
 import Home from 'ui/views/wallet/Home';
 import Loading from 'ui/views/wallet/Loading';
 import NewSeedSetup from 'ui/views/onboarding/NewSeedSetup';
@@ -28,12 +29,15 @@ import TermsAndConditions from 'ui/views/onboarding/TermsAndConditions';
 import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
 import SeedVaultBackupComponent from 'ui/views/onboarding/SeedVaultBackup';
-import { isIPhoneX } from 'libs/device';
+import { isIPhoneX, isAndroid } from 'libs/device';
 
 function applyHOCs(screen) {
-    const withHOCs = (c) => withDropdownAlert(withStatusBar(withModal(withRouteMonitor(c))));
+    const withHOCs = (c) => withKeyboardMonitor(withDropdownAlert(withStatusBar(withModal(c))));
     if (isIPhoneX) {
         return withHOCs(withSafeAreaView(screen));
+    }
+    if (isAndroid) {
+        return withBackPress(withHOCs(screen));
     }
     return withHOCs(screen);
 }

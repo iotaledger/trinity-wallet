@@ -79,9 +79,13 @@ export default class SeedPicker extends Component {
         /** @ignore */
         seed: PropTypes.string.isRequired,
         /** Callback for value change event */
-        onValueChange: PropTypes.func.isRequired,
+        onValueChange: PropTypes.func,
         /** @ignore */
         theme: PropTypes.object.isRequired,
+    };
+
+    static defaultProps = {
+        onValueChange: () => {},
     };
 
     constructor(props, context) {
@@ -166,9 +170,14 @@ export default class SeedPicker extends Component {
             middleHeight % scaleMultiplier >= scaleMultiplier / 2
                 ? Math.ceil(middleHeight / scaleMultiplier)
                 : Math.floor(middleHeight / scaleMultiplier);
-        this.move(0);
-        this.setState({ selectedIndex: this.index });
-        this.props.onValueChange(this.index);
+
+        // Tapping seed rows (on Android) sometimes sets this.index to NaN and messes up the seed rows.
+        // https://github.com/iotaledger/trinity-wallet/issues/848
+        if (!isNaN(this.index)) {
+            this.move(0);
+            this.setState({ selectedIndex: this.index });
+            this.props.onValueChange(this.index);
+        }
     }
 
     renderRows(items) {

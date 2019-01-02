@@ -121,7 +121,7 @@ class Send extends React.PureComponent {
                 ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
                       settings.currency,
                   )}${(
-                      round(((fields.amount * settings.usdPrice) / 1000000) * settings.conversionRate * 100) / 100
+                      round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
                   ).toFixed(2)})`
                 : t('transferConfirmation:aMessage');
 

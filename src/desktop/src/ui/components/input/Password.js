@@ -108,7 +108,7 @@ class PasswordInput extends React.PureComponent {
                     />
                     <small>{label}</small>
                     <strong>
-                        <Icon icon="warning" size={14} />
+                        <Icon icon="attention" size={14} />
                         {t('capsLockIsOn')}
                     </strong>
                     {showScore ? (

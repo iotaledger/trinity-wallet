@@ -4,7 +4,8 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import i18next from 'shared-modules/libs/i18next';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
+import timer from 'react-native-timer';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
 import { setSetting, clearWalletData, setPassword } from 'shared-modules/actions/wallet';
@@ -51,19 +52,21 @@ export class MainSettings extends Component {
         leaveNavigationBreadcrumb('MainSettings');
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('delayLogout');
+    }
+
     /**
      * Opens or closes modal
      * @method openLogoutModal
      */
     openLogoutModal() {
-        const { theme: { body } } = this.props;
+        const { theme } = this.props;
         this.props.toggleModalActivity('logoutConfirmation', {
             style: { flex: 1 },
             hideModal: () => this.props.toggleModalActivity(),
             logout: this.logout,
-            backgroundColor: { backgroundColor: body.bg },
-            textColor: { color: body.color },
-            borderColor: { borderColor: body.color },
+            theme,
         });
     }
 
@@ -74,12 +77,10 @@ export class MainSettings extends Component {
     logout() {
         const { theme: { body } } = this.props;
         this.props.toggleModalActivity();
-        this.props.clearWalletData();
-        this.props.setPassword({});
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'login',
-                options: {
+        timer.setTimeout(
+            'delayLogout',
+            () => {
+                navigator.setStackRoot('login', {
                     animations: {
                         setStackRoot: {
                             enable: false,
@@ -89,18 +90,15 @@ export class MainSettings extends Component {
                         backgroundColor: body.bg,
                         orientation: ['portrait'],
                     },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
                     statusBar: {
-                        drawBehind: true,
                         backgroundColor: body.bg,
                     },
-                },
+                });
+                this.props.clearWalletData();
+                this.props.setPassword({});
             },
-        });
+            500,
+        );
     }
 
     renderSettingsContent() {

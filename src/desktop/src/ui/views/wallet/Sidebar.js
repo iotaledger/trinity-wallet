@@ -9,6 +9,7 @@ import { shorten, capitalize } from 'libs/iota/converter';
 import { formatIota } from 'libs/iota/utils';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
+import { getAccountNamesFromState } from 'selectors/accounts';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
@@ -22,6 +23,8 @@ import css from './index.scss';
  */
 class Sidebar extends React.PureComponent {
     static propTypes = {
+        /** Account names for wallet */
+        accountNames: PropTypes.array.isRequired,
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
@@ -62,9 +65,7 @@ class Sidebar extends React.PureComponent {
 
     accountSettings = (e, index) => {
         e.stopPropagation();
-
-        this.props.setSeedIndex(index);
-        this.props.history.push('/account/name');
+        this.props.history.push(`/settings/account/name/${index}`);
     };
 
     toggleLogout = () => {
@@ -82,7 +83,8 @@ class Sidebar extends React.PureComponent {
     };
 
     render() {
-        const { accounts, seedIndex, setSeedIndex, t, location, history, isBusy } = this.props;
+        // Use accountNames prop for displaying account names here because accountNames prop preserves the account index
+        const { accountNames, accounts, seedIndex, setSeedIndex, t, location, history, isBusy } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -98,7 +100,7 @@ class Sidebar extends React.PureComponent {
                         </a>
                         <ul>
                             <Scrollbar>
-                                {Object.keys(accounts.accountInfo).map((account, index) => {
+                                {accountNames.map((account, index) => {
                                     return (
                                         <a
                                             aria-current={index === seedIndex}
@@ -149,6 +151,7 @@ class Sidebar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+    accountNames: getAccountNamesFromState(state),
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
     isBusy:

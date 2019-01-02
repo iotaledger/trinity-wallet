@@ -153,6 +153,7 @@ const initialState = {
      * Determines whether an error occurred during address generation
      */
     hadErrorGeneratingNewAddress: false,
+    isKeyboardActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -294,7 +295,6 @@ export default (state = initialState, action) => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
-                modalProps: {},
                 qrMessage: '',
                 qrAmount: '',
                 qrTag: '',
@@ -469,6 +469,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currentRoute: action.payload,
+            };
+        case UiActionTypes.SET_KEYBOARD_ACTIVITY:
+            return {
+                ...state,
+                isKeyboardActive: action.payload,
             };
         default:
             return state;

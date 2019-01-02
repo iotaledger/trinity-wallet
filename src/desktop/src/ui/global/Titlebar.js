@@ -10,7 +10,7 @@ import css from './titlebar.scss';
 const Titlebar = ({ path }) => {
     const os = Electron.getOS();
 
-    const sidebarViews = ['wallet'];
+    const sidebarViews = ['wallet', 'settings'];
 
     const windows = () => {
         return (

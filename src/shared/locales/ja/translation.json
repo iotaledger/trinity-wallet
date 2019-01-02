@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
+        "experimentalNode": "サポートされていないノードのバージョンです",
+        "experimentalNodeExplanation": "現在選択されているノードは、サポートされていない実験版を実行しています。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
@@ -74,6 +76,8 @@
         "wallet": "ウォレット",
         "all": "すべて",
         "sent": "送金完了",
+        "youReceived": "受取完了",
+        "youSent": "送金完了",
         "received": "受取完了",
         "sending": "送金中",
         "receiving": "受取中",
@@ -128,7 +132,7 @@
         "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
         "discordInformation": "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。",
         "androidInsecureClipboardWarning": "Androidは安全なクリップボードを提供していません。",
-        "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
+        "androidCopyPasteWarning": "Androidデバイス上で、絶対にシードをコピー&ペーストしないでください。",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
         "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答しなくなることがあります。",
@@ -148,10 +152,14 @@
         "errorAccessingKeychain": "キーチェーンに関するエラー",
         "errorAccessingKeychainExplanation": "安全な保管に必要なキーチェーンにアクセスできません。",
         "mainWallet": "メインアカウント",
-        "shouldUpdate": "新しいアップデートがあります",
+        "confirm": "確定",
+        "delete": "削除",
+        "shouldUpdate": "新しいアップデートがあります！",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
-        "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。"
+        "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
+        "missingPermission": "ファイルシステム権限が必要です",
+        "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直してください。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
-        "anEncryptedCopy": "暗号化されたシードのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy": "これがメインウォレットのパスワードです。これを使ってログインします。",
         "retypePassword": "パスワードを再入力してください。"
     },
     "copyToClipboard": {
@@ -238,14 +246,15 @@
         "enterPassword": "パスワードを入力してください。",
         "login": "ログイン",
         "setNode": "ノードの設定",
-        "whyBiometricDisabled": "生体認証が無効になっている理由。",
-        "whyBiometricDisabledExplanation": "生体認証によるログインはセキュリティ上、最初のアプリの読み込み時には無効になっています。Trinityを使用中、非アクティブが続くとログアウトします。その時には、生体認証を使ってログインすることができます。"
+        "whyBiometricDisabled": "生体認証が無効になっている理由",
+        "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になっています。",
+        "whyBiometricDisabledExplanationPart2": "Trinityを使用していると、非アクティブのためにログアウトすることがあります。その時には、生体認証を使用して再度ログインすることができます。"
     },
     "loading": {
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
         "thisMayTake": "これには時間がかかることがあります。",
         "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
-        "takingAWhile": "これにはしばらく時間がかかりそうです。"
+        "takingAWhile": "少々お待ちください"
     },
     "newSeedSetup": {
         "generatedSeed": "生成されたシード",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "シードは他の人に絶対に教えてはいけません。",
         "iotaLogo": "IOTAロゴ",
-        "print": "印刷",
+        "print": "印刷する",
         "paperConvenience": "シードのコピーを紙に印刷して保存することは便利な方法です。",
         "publicInsecure": "しかし、公共のWi-Fiや公共のプリンタでの印刷は安全ではないので行わないでください。",
-        "tapCheckboxes": "確認するには、下の２つのチェックボックスをタップしてください。",
-        "wifiCheckbox": "私は公共のWi-Fiで印刷しません。",
-        "printerCheckbox": "私は公共のプリンタで印刷しません。"
+        "pleaseCheck": "印刷する前にチェックと確定をお願いいたします",
+        "wifiConfirmation": "私は公共のWi-Fiを使用していません",
+        "printerConfirmation": "私は公共のプリンタで印刷していません"
     },
     "receive": {
         "yourAddress": "あなたのアドレス",
@@ -285,8 +294,6 @@
         "generateNewAddress": "アドレスを生成",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
-        "missingPermission": "ファイルシステム権限が必要です。",
-        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
         "tag": "タグ",
         "generateAnAddress": "アドレスを生成",
         "generateAnAddressTitle": "アドレスを生成",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
-        "whatIsChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
+        "whatIsAChecksum": "チェックサムとは何か？",
+        "everySeedHasAChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
         "iHavesavedMySeed": "バックアップ完了",
         "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
         "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してシードの再入力を求めません。",
+        "trinityWillNeverAskToReenter": "Trinity ウォレットは、ウォレットのリセット、またはアプリの削除をしない限りは、決してシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
         "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
-        "clipboardWarning": "シードをコピーアンドペーストしないでください。",
-        "clipboardWarningExplanation": "警告：コピーアンドペーストは使用できません！"
+        "clipboardWarning": "警告：シードはペーストできません！",
+        "clipboardWarningExplanation": "安全性のためにシードのペーストはできません。その代わりに、テキストファイルからのドラッグ&ドロップは使用可能です。"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -345,7 +353,8 @@
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
         "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
-        "invalid": "無効"
+        "invalid": "無効",
+        "swipeToSend": "スワイプして送金する"
     },
     "setSeedName": {
         "letsAddName": "アカウント名を追加してください。",
@@ -373,7 +382,9 @@
         "addNewSeed": "新しいシードを追加",
         "twoFA": "二要素認証",
         "changePassword": "パスワード変更",
+        "general": "一般設定",
         "advanced": "詳細設定",
+        "account": "アカウント設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
         "syncingComplete": "同期が完了しました。",
@@ -446,7 +457,8 @@
         "empty": "空",
         "retrying": "再試行中",
         "yesterday": "昨日",
-        "promotingAnotherBundle": "別のバンドルを促進中"
+        "promotingAnotherBundle": "別のバンドルを促進中",
+        "pleaseWait": "少々お待ちください。Trinityは他のバンドルを促進しています。"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -504,18 +516,21 @@
         "currency": "通貨"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "ログアウトしてもよろしいですか？"
+        "logoutConfirmation": "ログアウトしてもよろしいですか？",
+        "aboutToLogOut": "ログアウトしようとしています",
+        "areYouSure": "本当によろしいですか？"
     },
     "qrScanner": {
         "scan": "QRコード読み取り"
     },
     "unitInfoModal": {
-        "unitSystem": "単位系",
+        "unitSystem": "単位システム",
         "trillion": "一兆",
         "billion": "十億",
         "million": "百万",
         "thousand": "千",
-        "one": "一"
+        "one": "一",
+        "unitInfoExplanation": "IOTAは通常100万（1Mi）の倍数で取得されますが、1i単位でも取引できます。"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "どうして全ての残高を使えないのか？",
@@ -537,7 +552,7 @@
         "syncingYourAccount": "アカウントを同期しています。"
     },
     "useExistingSeed": {
-        "title": "シードとアカウント名を入力してください。",
+        "title": "アカウント名とシードを入力してください",
         "incorrectFormat": "不正確なシードの形式です。",
         "validSeedExplanation": "有効なシードは81文字で、A〜Zまたは9のみを含む必要があります。"
     },
@@ -551,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
-        "alreadyHave": "私はシードをバックアップしました。",
-        "reenterSeed": "次のステップで、シードを再入力するよう求められます。",
+        "iHaveBackedUp": "私はシードを安全にバックアップしました",
+        "reenterSeed": "次のステップで、シードを再入力する必要があります。",
         "reenterSeedWarning": "もし、シードをバックアップせずにデバイスが故障した場合、そのシードにあるIOTAはすべて失われます。",
         "pleaseConfirm": "シードが安全に保管されていることを確認してください。"
     },
@@ -572,19 +587,23 @@
         "status": "ステータス",
         "fingerprintUnavailable": "生体認証が利用できません。",
         "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
-        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
+        "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
-        "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください。",
-        "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください。",
+        "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください",
+        "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください",
         "instructionsLogin": "指紋リーダに触れてログインしてください。"
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
-        "aMessage": "メッセージ"
+        "aMessage": "メッセージ",
+        "fromAccount": "{{selectedAccountName}}から",
+        "toAddress": "送信先アドレスへ",
+        "sendingAMessage": "メッセージを送信中",
+        "sendingAnEmptyMessage": "空のメッセージを送信中"
     },
     "twoFA": {
         "wrongCode": "コードが間違っています。",
-        "wrongCodeExplanation": "入力したコードが正しくありません。",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "コードが入力されていません。",
         "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
         "keyCopied": "キーをクリップボードにコピーしました。",
@@ -601,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "シード金庫へ書き出す",
-        "seedVaultExplanation": "シード金庫は、シードを安全に保管するための暗号化されたファイルです。シードはシード金庫鍵によって暗号化され、この鍵がなければアクセスできません。",
+        "seedVaultExplanation": "シード金庫は、シードをバックアップするための暗号化されたファイルです。シードはシード金庫鍵で暗号化されており、このシード金庫鍵なしではアクセスできません。",
         "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
         "exportFail": "シード金庫の書き出しに失敗しました",
         "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "シードは正常に読み込まれました。",
         "saveToDownloadFolder": "ダウンロードフォルダに保存",
         "importSeedVault": "シード金庫を読み込む",
-        "dropSeedVaultHere": "シード金庫ファイルがある場合、ここにドラッグ&ドロップするか、<1></1>ここをクリックしてください。",
+        "dropInstructions": "シード金庫やテキストがある場合、ここ<1></1>に移動させるか、クリックして参照してください",
+        "dropActive": "シード金庫やテキストをここに移動させてください",
         "enterKeyExplanation": "シード金庫を開くために、シード金庫鍵を入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するためのシード金庫鍵を選んでください。バックアップ用のシード金庫からシードを復元するには、このシード金庫鍵が必要です。シード金庫鍵はTrinityウォレットのパスワードと同じにできます。"
+        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
+        "retypeKey": "鍵を再入力してください"
     },
     "chart": {
         "mcap": "時価総額",
@@ -655,7 +676,8 @@
         "preparingTransfers": "送金を準備中",
         "gettingTransactionsToApprove": "承認する取引を取得中",
         "proofOfWork": "プルーフ・オブ・ワークを完了中",
-        "broadcasting": "ブロードキャスト中"
+        "broadcasting": "ブロードキャスト中",
+        "transferComplete": "送金完了"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "スナップショットの移行を完了できません。",
@@ -669,7 +691,8 @@
         "transition": "移行",
         "transitioning": "スナップショットを移行しています。",
         "generatingAndDetecting": "アドレス生成と残高検出を行なっています。",
-        "attaching": "タングルにアドレスを添付しています。"
+        "attaching": "タングルにアドレスを添付しています。",
+        "attachProgress": "{{totalAddresses}}のアドレス{{currentAddress}}を添付中"
     },
     "deepLink": {
         "autofill": "自動入力成功",
@@ -684,7 +707,7 @@
         "installUpdate": "インストール、アップデート、リスタートを行う",
         "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
         "downloadingUpdate": "アップデートをダウンロード中",
-        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
+        "downloadProgress": "{{total}}中{{transferred}}がダウンロードされました。"
     },
     "notificationLog": {
         "errorLog": "エラーログ"
@@ -707,7 +730,7 @@
     },
     "proxy": {
         "proxy": "システムプロキシを使用",
-        "proxyExplanation": "システム全体のネットワークプロキシ設定を検出して使用します。この設定を変更した後は、Trinityを再起動してください。"
+        "proxyExplanation": "システム全体のネットワークプロキシ設定を検出して使用します。この設定を変更した時は、Trinityを一度閉じてから再起動を行ってください。"
     },
     "notifications": {
         "notifications": "通知設定",

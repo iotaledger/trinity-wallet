@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
-import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import { width } from 'libs/dimensions';
+import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { Styling } from 'ui/theme/general';
 import CustomTextInput from './CustomTextInput';
@@ -14,13 +13,12 @@ import DualFooterButtons from './DualFooterButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 2.4,
+        flex: 2.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 3,
         width,
         alignItems: 'center',
     },
@@ -60,10 +58,6 @@ export class EnterPasswordOnLogin extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('EnterPasswordOnLogin');
-        BackHandler.addEventListener('loginBackPress', () => {
-            RNExitApp.exitApp();
-            return true;
-        });
     }
 
     handleChangeText = (password) => this.props.setLoginPasswordField(password);
@@ -98,7 +92,7 @@ export class EnterPasswordOnLogin extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        <Header textColor={theme.body.color} />
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput

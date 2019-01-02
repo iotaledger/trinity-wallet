@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import keys from 'lodash/keys';
+import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import findKey from 'lodash/findKey';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
@@ -139,10 +141,14 @@ export const selectFirstAddressFromAccountFactory = (accountName) => {
  *   @param {object} state
  *   @returns {array}
  **/
-export const getAccountNamesFromState = createSelector(
-    getAccountsFromState,
-    (state) => (state.accountInfo ? Object.keys(state.accountInfo) : []),
-);
+export const getAccountNamesFromState = createSelector(getAccountsFromState, (state) => {
+    // Get [{ index, name }] for all accounts
+    const accountNames = map(state.accountInfo, ({ index }, name) => ({ index, name }));
+
+    // Order them by (account) index
+    const getAccountName = ({ name }) => name;
+    return map(orderBy(accountNames, ['index']), getAccountName);
+});
 
 /**
  *   Selects seedIndex prop from wallet reducer state object.
@@ -373,5 +379,8 @@ export const getFailedBundleHashesForSelectedAccount = createSelector(
  **/
 export const isSettingUpNewAccount = createSelector(
     getAccountInfoDuringSetup,
-    (accountInfoDuringSetup) => !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
+    (accountInfoDuringSetup) =>
+        accountInfoDuringSetup.completed === true &&
+        !isEmpty(accountInfoDuringSetup.name) &&
+        !isEmpty(accountInfoDuringSetup.meta),
 );

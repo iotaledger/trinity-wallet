@@ -28,7 +28,7 @@ export default function withAlertsData(AlertsComponent) {
     const mapStateToProps = (state) => ({
         alerts: state.alerts,
         forceUpdate: state.wallet.forceUpdate,
-        shouldUpdate: state.wallet.shouldUpdate
+        shouldUpdate: state.wallet.shouldUpdate,
     });
 
     const mapDispatchToProps = {

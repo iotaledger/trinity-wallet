@@ -67,7 +67,7 @@ class PasswordSettings extends PureComponent {
         try {
             const passwordNewHash = await hash(passwordNew);
             const passwordCurrentHash = await hash(passwordCurrent);
-            
+
             const accountTypes = Object.keys(accounts)
                 .map((accountName) => (accounts[accountName].meta ? accounts[accountName].meta.type : 'keychain'))
                 .filter((accountType, index, accountTypes) => accountTypes.indexOf(accountType) === index);
@@ -105,30 +105,33 @@ class PasswordSettings extends PureComponent {
 
         return (
             <form onSubmit={(e) => this.changePassword(e)}>
-                <Password
-                    value={passwordCurrent}
-                    label={t('changePassword:currentPassword')}
-                    onChange={(value) => this.setState({ passwordCurrent: value })}
-                />
-                <Password
-                    showScore
-                    value={passwordNew}
-                    label={t('changePassword:newPassword')}
-                    onChange={(value) => this.setState({ passwordNew: value })}
-                />
-                <Password
-                    value={passwordConfirm}
-                    label={t('changePassword:confirmPassword')}
-                    onChange={(value) => this.setState({ passwordConfirm: value })}
-                />
                 <fieldset>
+                    <Password
+                        value={passwordCurrent}
+                        label={t('changePassword:currentPassword')}
+                        onChange={(value) => this.setState({ passwordCurrent: value })}
+                    />
+                    <Password
+                        showScore
+                        value={passwordNew}
+                        label={t('changePassword:newPassword')}
+                        onChange={(value) => this.setState({ passwordNew: value })}
+                    />
+                    <Password
+                        value={passwordConfirm}
+                        label={t('changePassword:confirmPassword')}
+                        onChange={(value) => this.setState({ passwordConfirm: value })}
+                    />
+                </fieldset>
+                <footer>
                     <Button
+                        className="square"
                         type="submit"
                         disabled={!passwordCurrent.length || !passwordNew.length || !passwordConfirm.length}
                     >
                         {t('settings:changePassword')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }

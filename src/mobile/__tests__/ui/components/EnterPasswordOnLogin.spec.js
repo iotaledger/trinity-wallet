@@ -21,6 +21,7 @@ const getProps = (overrides) =>
             setLoginPasswordField: noop,
             t: () => '',
             isFingerprintEnabled: false,
+            toggleModalActivity: noop,
         },
         overrides,
     );

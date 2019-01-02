@@ -86,7 +86,7 @@ const config = {
             title: 'Trinity',
             inject: false,
             template: __dirname + '/index.html',
-        })
+        }),
     ],
 };
 

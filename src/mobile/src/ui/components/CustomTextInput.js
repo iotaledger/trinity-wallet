@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
+import { isAndroid } from 'libs/device';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: Styling.borderRadiusSmall,
+        borderRadius: Styling.borderRadius,
         height: height / 14,
         borderWidth: 1,
     },
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     },
     passwordStrengthIndicator: {
         width: width / 15,
-        height: height / 120,
+        height: height / 160,
         marginLeft: width / 150,
     },
     labelContainer: {
@@ -87,11 +88,15 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: width / 60,
         position: 'absolute',
         right: width / 100,
-        bottom: -width / 19,
+        bottom: isAndroid ? -width / 19 : -width / 20,
     },
     checksumText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontsize1,
+    },
+    seedInput: {
+        height: height / 7.4,
+        justifyContent: 'flex-start',
     },
 });
 
@@ -142,13 +147,15 @@ class CustomTextInput extends Component {
         passwordStrength: PropTypes.number,
         /** Entered seed */
         seed: PropTypes.string,
+        /** Determines whether text input is for seeds */
+        isSeedInput: PropTypes.bool,
     };
 
     static defaultProps = {
         onFocus: () => {},
         onBlur: () => {},
         onFingerprintPress: () => {},
-        containerStyle: {},
+        containerStyle: { width: Styling.contentWidth },
         widget: 'empty',
         onDenominationPress: () => {},
         onQRPress: () => {},
@@ -335,12 +342,13 @@ class CustomTextInput extends Component {
             isPasswordValid,
             passwordStrength,
             seed,
+            isSeedInput,
             ...restProps
         } = this.props;
         const { isFocused } = this.state;
 
         return (
-            <View style={[styles.fieldContainer, containerStyle]}>
+            <View style={[styles.fieldContainer, containerStyle, isSeedInput && styles.seedInput]}>
                 {label && (
                     <View style={styles.labelContainer}>
                         <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>

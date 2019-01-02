@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isBoolean from 'lodash/isBoolean';
+import isUndefined from 'lodash/isUndefined';
 import isEmpty from 'lodash/isEmpty';
+import keys from 'lodash/keys';
 import some from 'lodash/some';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
@@ -13,6 +15,30 @@ import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
+
+/**
+ * Removes account name from account info and reorders account indexes (Fill in missing gaps)
+ *
+ * @method removeAccountAndReorderIndexes
+ * @param {object} accountInfo
+ * @param {string} accountNameToDelete
+ *
+ * @returns {object}
+ */
+export const removeAccountAndReorderIndexes = (accountInfo, accountNameToDelete) => {
+    if (!has(accountInfo, accountNameToDelete)) {
+        return accountInfo;
+    }
+
+    const { index } = accountInfo[accountNameToDelete];
+
+    return mapValues(
+        // Remove account
+        omit(accountInfo, accountNameToDelete),
+        // Reorder (fill in missing) account indexes
+        (data) => ({ ...data, index: data.index > index ? data.index - 1 : data.index }),
+    );
+};
 
 /**
  * Stop overriding local spend status for a known address
@@ -89,6 +115,10 @@ const updateAccountInfo = (state, payload) => ({
         ...state.accountInfo,
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
+            // Set seed index
+            index: isUndefined(payload.accountIndex)
+                ? get(state.accountInfo, `${payload.accountName}.index`)
+                : payload.accountIndex,
             meta: payload.accountMeta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             balance: payload.balance,
             addresses: mergeAddressData(get(state.accountInfo, `${payload.accountName}.addresses`), payload.addresses),
@@ -152,6 +182,10 @@ const account = (
              * Determines if a user used an existing seed during account setup
              */
             usedExistingSeed: false,
+            /**
+             * Determines if the account info is complete and account ready to be created and synced
+             */
+            completed: false,
         },
         /**
          * Determines if onboarding process is completed
@@ -214,7 +248,7 @@ const account = (
         case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
-                accountInfo: omit(state.accountInfo, action.payload),
+                accountInfo: removeAccountAndReorderIndexes(state.accountInfo, action.payload),
                 failedBundleHashes: omit(state.failedBundleHashes, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
@@ -226,7 +260,7 @@ const account = (
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
         case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
-        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case PollingActionTypes.SYNC_ACCOUNT_WHILE_POLLING:
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
@@ -261,6 +295,8 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        // Preserve the account index
+                        index: get(state.accountInfo, `${action.payload.accountName}.index`),
                         meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: mergeAddressData(
@@ -288,6 +324,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        index: get(state.accountInfo, `${action.payload.accountName}.index`),
                         meta: get(state.accountInfo, `${action.payload.accountName}.meta`) || { type: 'keychain' },
                         balance: action.payload.balance,
                         addresses: setAddressData(
@@ -317,6 +354,7 @@ const account = (
                 accountInfoDuringSetup: {
                     name: '',
                     meta: {},
+                    completed: false,
                     usedExistingSeed: false,
                 },
             };
@@ -370,6 +408,17 @@ const account = (
                         action.payload.bundleHash,
                     ),
                 },
+            };
+        case ActionTypes.ASSIGN_ACCOUNT_INDEX:
+            return {
+                ...state,
+                accountInfo: transform(
+                    keys(state.accountInfo),
+                    (acc, name, index) => {
+                        acc[name] = { ...state.accountInfo[name], index };
+                    },
+                    {},
+                ),
             };
         default:
             return state;

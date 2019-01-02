@@ -6,7 +6,7 @@
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
-        "balanceErrorMessage": "Nemáte dostatek IOTA k dokončení této transakce.",
+        "balanceErrorMessage": "Nemáte dostatek peněz na vytvoření této bedny.",
         "totalBalance": "Celkový zůstatek",
         "transferError": "Chyba transakce",
         "transferErrorMessage": "Došlo k chybě při odesílání transakce. Prosím zkuste to znovu.",
@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Při načítání informací o Vašem účtu došlo k chybě. Pokud problém přetrvává, zkuste změnit Node nebo zakázat proxy server v nastavení Trinity.",
         "nodeOutOfSync": "Váš Node není synchronizovaný",
         "nodeOutOfSyncExplanation": "Vámi zvolený Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Tento Node není synchronizovaný. Prosím změňte Node nebo akci opakujte.",
         "seed": "Seed",
         "checksum": "Kontrolní součet",
@@ -74,6 +76,8 @@
         "wallet": "Peněženka",
         "all": "Vše ",
         "sent": "Odesláno",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Přijato",
         "sending": "Odesílání",
         "receiving": "Příjem",
@@ -128,7 +132,7 @@
         "spentAddressExplanation": "VAROVÁNÍ: Zjištěny prostředky na již použitých adresách",
         "discordInformation": "Odesílání ze stejné adresy více než jednou je nebezpečné. Pro více informací je vám k dispozici kanál #help na službě Discord.",
         "androidInsecureClipboardWarning": "Schránka v systému Android není bezpečná.",
-        "androidCopyPasteWarning": "Nikdy nekopírujte/nevkládejte Váš Seed na Android zařízení.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Nebudu kopírovat/vkládat svůj seed",
         "mustBeStoredAppropriately": "Musí být uloženo odpovídajícím způsobem.",
         "deviceMayBecomeUnresponsive": "Vaše zařízení může na chvíli přestat reagovat.",
@@ -148,10 +152,14 @@
         "errorAccessingKeychain": "Chyba klíčenky",
         "errorAccessingKeychainExplanation": "Nelze získat přístup k úložišti klíčů.",
         "mainWallet": "HLAVNÍ ÚČET",
+        "confirm": "Confirm",
+        "delete": "Delete",
         "shouldUpdate": "Nová aktualizace je k dispozici",
         "shouldUpdateExplanation": "Byla vydána nová aktualizace. Doporučujeme aktualizovat na nejnovější verzi.",
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
-        "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní."
+        "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
+        "missingPermission": "Požadovaný přístup k souborovému systému",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
-        "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie Vašeho Seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Znovu zadejte heslo"
     },
     "copyToClipboard": {
@@ -239,7 +247,8 @@
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
         "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
-        "whyBiometricDisabledExplanation": "Biometrické přihlášení je zakázané při prvním načítání aplikace pro Vaší bezpečnost. Když budete při používání Trinity odhlášeni z důvodu nečinnosti, poté se můžete přihlásit zpět pomocí biometrického ověření."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
         "iotaLogo": "IOTA logo",
-        "print": "TISK",
+        "print": "Print",
         "paperConvenience": "Vytištění papírové kopie vašeho seedu je vhodný způsob, jak ho uchovat.",
         "publicInsecure": "Ale tisk na veřejné wifi síti, nebo na veřejné tiskárně není bezpečné.",
-        "tapCheckboxes": "Pro potvrzení, prosím, zaškrtněte políčka níže.",
-        "wifiCheckbox": "Nebudu tisknout na veřejné wifi síti",
-        "printerCheckbox": "Nebudu tisknout na veřejné tiskárně"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Vaše adresa",
@@ -285,8 +294,6 @@
         "generateNewAddress": "Vygenerovat adresu",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
-        "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému.",
         "tag": "Značka",
         "generateAnAddress": "Vygenerovat adresu",
         "generateAnAddressTitle": "Vygenerovat adresu",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "Zapište si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
         "printBlankWallet": "Tisk prázdné peněženky",
-        "whatIsChecksum": "Každý Seed má odpovídající 3-znakový kontrolní součet",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Každý Seed má odpovídající 3-znakový kontrolní součet.",
         "iHavesavedMySeed": "Svůj Seed mám uložený",
         "checksumExplanation": "Vždy, když přidáte Seed do Vaší peněženky, byste se měli ujistit, že kontrolní součet vygenerovaný peněženkou odpovídá tomu, který jste si zapsali.",
         "mustSaveYourSeed": "<0><0>Musíte uložit nejméně </0><1>jeden Seed</1><2>z níže uvedených možností.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte Váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity Vás nikdy nebude vyzývat ke znovu-vložení tohoto Seedu. Výjimkou je reset vaší peněženky, popřípadě aplikace.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Zadejte Váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej.",
         "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali",
-        "clipboardWarning": "Váš Seed nelze kopírovat ani vkládat",
-        "clipboardWarningExplanation": "UPOZORNĚNÍ: Kopírování a vkládání je zakázáno pro Vaši bezpečnost."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -345,7 +353,8 @@
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zjištěno kopírování adresy",
         "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
-        "invalid": "NEPLATNÉ"
+        "invalid": "NEPLATNÉ",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Přidejte jméno",
@@ -373,7 +382,9 @@
         "addNewSeed": "Přidat nový Seed",
         "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
+        "general": "General settings",
         "advanced": "Pokročilé nastavení",
+        "account": "Account settings",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
         "syncingComplete": "Synchronizace dokončena",
@@ -446,11 +457,12 @@
         "empty": "Prázdné",
         "retrying": "Opakování",
         "yesterday": "Včera",
-        "promotingAnotherBundle": "Podpora dalšího balíčku"
+        "promotingAnotherBundle": "Podpora dalšího balíčku",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
-        "viewAddresses": "Zobrazit adresu",
+        "viewAddresses": "Zobrazení adres",
         "editAccountName": "Upravit název účtu",
         "deleteAccount": "Smazat účet",
         "addNewAccount": "Přidat nový účet",
@@ -504,18 +516,21 @@
         "currency": "Měna"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Opravdu se chcete odhlásit?"
+        "logoutConfirmation": "Opravdu se chcete odhlásit?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Naskenujte Váš QR kód"
     },
     "unitInfoModal": {
-        "unitSystem": "JEDNOTKOVÝ SYSTÉM",
+        "unitSystem": "Unit System",
         "trillion": "Bilion",
         "billion": "Miliard",
         "million": "Milion",
         "thousand": "Tisíc",
-        "one": "Jedna"
+        "one": "Jedna",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Proč nemohu použít celý zůstatek mého účtu?",
@@ -537,7 +552,7 @@
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Zadejte Seed a název účtu.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Nesprávný formát Seedu",
         "validSeedExplanation": "Platný Seed má 81 znaků a obsahuje pouze A-Z nebo 9."
     },
@@ -551,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali jste si Váš Seed?",
-        "alreadyHave": "Svůj Seed mám uložený",
-        "reenterSeed": "V dalším kroku budete požádáni o znovu vložení Vašeho Seedu.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Pokud jste si nezálohovali Váš Seed a Vaše zařízení bude poškozeno, ztratíte všechny Vaše IOTY.",
         "pleaseConfirm": "Prosím potvrďte, že máte bezpečně uložen Váš Seed."
     },
@@ -572,19 +587,23 @@
         "status": "Stav",
         "fingerprintUnavailable": "Biometrická autentizace není k dispozici",
         "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje biometrickou autentizaci, nebo v nastavení zařízení nebylo povoleno její používání.",
-        "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů.",
+        "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
-        "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje.",
-        "buttonInstructionsEnableIPhoneX": "Stisknutím tlačítka níže zapnete ověření pomocí rozpoznávání obličeje.",
+        "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje",
+        "buttonInstructionsEnableIPhoneX": "Stisknutím tlačítka níže zapnete ověření pomocí rozpoznávání obličeje",
         "instructionsLogin": "Pro přihlášení přiložte prst na čtečku"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
-        "aMessage": "zpráva"
+        "aMessage": "zpráva",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Nesprávný kód",
-        "wrongCodeExplanation": "Zadaný kód je nesprávný.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Prázdný kód",
         "emptyCodeExplanation": "Prosím opakujte zadání kódu.",
         "keyCopied": "Klíč zkopírován do schránky",
@@ -601,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportovat SeedVault",
-        "seedVaultExplanation": "SeedVault je šifrovaný soubor pro bezpečné uložení Vašeho Seedu. Seed je šifrován heslem a není k dispozici bez jeho zadání.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Ujistěte se, že si zálohujete soubor na více místech (například pevný disk, cloud, USB). Pokud ztratíte tento soubor a nebudete mít uložený Váš Seed jiným způsobem, ztratíte Vaše IOTA.",
         "exportFail": "Export SeedVault se nezdařil",
         "exportFailExplanation": "Během exportování Vašeho SeedVault nastal problém. Zkontrolujte zda máte oprávnění na zápis souboru a dostatek volného místa.",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "Váš Seed byl úspěšně importován.",
         "saveToDownloadFolder": "Uložit do složky pro stahování",
         "importSeedVault": "Importovat SeedVault",
-        "dropSeedVaultHere": "Přetáhněte SeedVault sem <1></1> nebo klepněte na tlačítko Procházet",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Zadejte Vaše heslo k otevření souboru SeedVault",
         "noSeedFound": "SeedVault neobsahuje platný Seed",
         "noSeedFoundExplanation": "SeedVault je buď prázdný, nebo obsahuje Seed v neplatném formátu.",
         "seedFileError": "Otevření SeedVault se nezdařilo",
         "seedFileErrorExplanation": "Během otevírání SeedVault nastal problém. Jestliže jste zvolili správný soubor, je možné, že je poškozený.",
-        "seedVaultKeyExplanation": "Nejprve potřebujeme zabezpečit Váš SeedVault. Zadejte heslo k zašifrování souboru. Toto heslo budete potřebovat k obnovení Vašeho Seedu ze zálohy souboru SeedVault. Můžete použít stejné heslo, které používáte pro přihlášení do Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -655,7 +676,8 @@
         "preparingTransfers": "Příprava transakce",
         "gettingTransactionsToApprove": "Získávání transakcí ke schválení",
         "proofOfWork": "Dokončení proof of work",
-        "broadcasting": "Odesílání transakcí do sítě"
+        "broadcasting": "Odesílání transakcí do sítě",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",
@@ -669,7 +691,8 @@
         "transition": "Aktualizace",
         "transitioning": "Aktualizace údajů po Snapshotu.",
         "generatingAndDetecting": "Generuji adresy a zjišťuji zůstatek.",
-        "attaching": "Připojuji adresy do sítě Tangle."
+        "attaching": "Připojuji adresy do sítě Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
@@ -680,9 +703,9 @@
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozici je nová verze",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Nainstalujte aktualizaci a restartujte",
-        "installUpdateExplanation": "Stahování bylo dokončeno, Trinity restartuje a nainstaluje aktualizaci.",
+        "installUpdateExplanation": "Stahování bylo dokončeno, Trinity se nyní restartuje a poté nainstaluje aktualizaci.",
         "downloadingUpdate": "Stahování aktualizace",
         "downloadProgress": "Staženo {{transferred}} z {{total}}"
     },
@@ -707,7 +730,7 @@
     },
     "proxy": {
         "proxy": "Pomocí proxy serveru",
-        "proxyExplanation": "Rozpoznat a použít systémové nastavení proxy serveru. Po změně tohoto nastavení restartujte peněženku."
+        "proxyExplanation": "Rozpoznat a použít systémové nastavení proxy serveru. Po změně tohoto nastavení musí být peněženka restartována."
     },
     "notifications": {
         "notifications": "Oznámení",

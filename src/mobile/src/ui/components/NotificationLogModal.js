@@ -1,78 +1,49 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
+import { View, StyleSheet, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'shared-modules/libs/date';
 import { withNamespaces } from 'react-i18next';
-import { width, height } from 'libs/dimensions';
+import { height, width } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { locale, timezone } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import ModalView from './ModalView';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+const maxScrollViewHeight = height / 2;
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width,
-    },
-    modalContent: {
-        borderRadius: Styling.borderRadius,
-        borderWidth: 2,
-        paddingVertical: height / 30,
-        paddingHorizontal: width / 30,
-        width: Styling.contentWidth,
-        alignItems: 'center',
-        justifyContent: 'center',
-        maxHeight: height / 1.25,
-    },
     titleText: {
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize3,
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize6,
+        textAlign: 'center',
+        paddingBottom: height / 20,
     },
-    itemText: {
+    timeText: {
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: Styling.fontSize1,
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: Styling.fontSize3,
+        textAlign: 'center',
+        width: width / 1.2,
+        paddingBottom: height / 60,
     },
-    line: {
-        borderBottomWidth: height / 1000,
-        width: width / 1.3,
-        marginVertical: height / 30,
+    errorText: {
+        backgroundColor: 'transparent',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: Styling.fontSize3,
+        width: Styling.contentWidth,
+        textAlign: 'center',
     },
     separator: {
-        flex: 1,
-        height: height / 60,
-    },
-    clearButton: {
-        borderWidth: 1.5,
-        borderRadius: Styling.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        marginTop: height / 70,
-    },
-    clearText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: Styling.fontSize1,
-        backgroundColor: 'transparent',
+        height: height / 40,
     },
 });
 
 export class NotificationLogModal extends PureComponent {
     static propTypes = {
-        /** Content background color */
-        backgroundColor: PropTypes.string.isRequired,
-        /** Content border color */
-        borderColor: PropTypes.object.isRequired,
-        /** Content text color */
-        textColor: PropTypes.object.isRequired,
-        /** Bar color */
-        barColor: PropTypes.string.isRequired,
+        /** @ignore */
+        theme: PropTypes.object.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
         /** @ignore */
@@ -83,8 +54,22 @@ export class NotificationLogModal extends PureComponent {
         t: PropTypes.func.isRequired,
     };
 
+    constructor() {
+        super();
+        this.state = {
+            scrollable: false,
+        };
+    }
+
     componentDidMount() {
         leaveNavigationBreadcrumb('NotificationLog');
+    }
+
+    setScrollable(y) {
+        if (y >= maxScrollViewHeight) {
+            return this.setState({ scrollable: true });
+        }
+        this.setState({ scrollable: false });
     }
 
     clearNotificationLog() {
@@ -93,34 +78,42 @@ export class NotificationLogModal extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, barColor, notificationLog } = this.props;
-        const lineBorder = { borderBottomColor: barColor };
+        const { t, notificationLog, theme: { body } } = this.props;
         const trimmedLog = notificationLog.reverse().slice(0, 10);
+        const textColor = { color: body.color };
 
         return (
-            <View style={[styles.modalContent, { backgroundColor }, borderColor]}>
+            <ModalView
+                displayTopBar
+                dualButtons
+                onLeftButtonPress={() => this.clearNotificationLog()}
+                onRightButtonPress={() => this.props.hideModal()}
+                leftButtonText={t('clear')}
+                rightButtonText={t('done')}
+            >
+                <View style={{ flex: 2 }} />
                 <Text style={[styles.titleText, textColor]}>{t('notificationLog:errorLog')}</Text>
-                <View style={[styles.line, lineBorder]} />
                 <ListView
-                    dataSource={ds.cloneWithRows(trimmedLog)}
+                    dataSource={ds.cloneWithRows(trimmedLog.reverse())}
                     renderRow={(dataSource) => (
-                        <View>
-                            <Text style={[styles.itemText, textColor]}>
-                                {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, timezone, dataSource.time)} -{' '}
-                                {dataSource.error}
+                        <View style={{ alignItems: 'center' }}>
+                            <Text style={[styles.timeText, textColor]}>
+                                {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, timezone, dataSource.time)}
                             </Text>
+                            <Text style={[styles.errorText, textColor]}>{dataSource.error}</Text>
                         </View>
                     )}
-                    scrollEnabled
+                    scrollEnabled={this.state.scrollable}
                     renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     enableEmptySections
+                    style={{
+                        maxHeight: maxScrollViewHeight,
+                        width: Styling.contentWidth,
+                    }}
+                    onContentSizeChange={(x, y) => this.setScrollable(y)}
                 />
-                <TouchableOpacity onPress={() => this.clearNotificationLog()}>
-                    <View style={[styles.clearButton, borderColor]}>
-                        <Text style={[styles.clearText, textColor]}>{t('clear').toUpperCase()}</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                <View style={{ flex: 2 }} />
+            </ModalView>
         );
     }
 }

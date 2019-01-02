@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
-import { getSelectedAccountName, getFailedBundleHashesForSelectedAccount } from '../../selectors/accounts';
+import {
+    getSelectedAccountName,
+    getFailedBundleHashesForSelectedAccount,
+    getAccountNamesFromState,
+} from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -38,6 +42,8 @@ export default function withListData(ListComponent) {
             remotePoW: PropTypes.bool.isRequired,
             generateAlert: PropTypes.func.isRequired,
             failedHashes: PropTypes.object.isRequired,
+            /** Wallet account names */
+            accountNames: PropTypes.array.isRequired,
         };
 
         promoteTransaction = (hash, powFn) => {
@@ -50,6 +56,7 @@ export default function withListData(ListComponent) {
 
         render() {
             const {
+                accountNames,
                 index,
                 seedIndex,
                 accounts,
@@ -72,7 +79,7 @@ export default function withListData(ListComponent) {
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
-            const accountName = Object.keys(accounts.accountInfo)[typeof index === 'number' ? index : seedIndex];
+            const accountName = accountNames[typeof index === 'number' ? index : seedIndex];
 
             if (!accountName && index !== -1) {
                 return null;
@@ -121,6 +128,7 @@ export default function withListData(ListComponent) {
         accounts: state.accounts,
         accountName: getSelectedAccountName(state),
         failedHashes: getFailedBundleHashesForSelectedAccount(state),
+        accountNames: getAccountNamesFromState(state),
         theme: state.settings.theme,
         mode: state.settings.mode,
         ui: state.ui,

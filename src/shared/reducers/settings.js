@@ -306,6 +306,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 ignoreProxy: action.payload,
             };
+        case ActionTypes.RESET_NODES_LIST:
+            return {
+                ...state,
+                nodes: [],
+            };
     }
 
     return state;

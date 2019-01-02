@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { getSelectedAccountName, getSelectedAccountMeta } from 'selectors/accounts';
 import { generateAlert } from 'actions/alerts';
 
 import SeedStore from 'libs/SeedStore';
@@ -20,9 +19,7 @@ import Info from 'ui/components/Info';
 class Remove extends PureComponent {
     static propTypes = {
         /** @ignore */
-        accountName: PropTypes.string.isRequired,
-        /** @ignore */
-        accountMeta: PropTypes.object.isRequired,
+        account: PropTypes.object.isRequired,
         /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
         /** @ignore */
@@ -43,17 +40,17 @@ class Remove extends PureComponent {
      * @returns {undefined}
      */
     removeAccount = async (password) => {
-        const { accountName, accountMeta, history, t, generateAlert, deleteAccount } = this.props;
+        const { account, history, t, generateAlert, deleteAccount } = this.props;
 
         this.setState({
             removeConfirm: false,
         });
 
         try {
-            const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
+            const seedStore = await new SeedStore[account.meta.type](password, account.accountName, account.meta);
             seedStore.removeAccount();
 
-            deleteAccount(accountName);
+            deleteAccount(account.accountName);
 
             history.push('/wallet/');
 
@@ -69,7 +66,7 @@ class Remove extends PureComponent {
     };
 
     render() {
-        const { t, accountName } = this.props;
+        const { t, account } = this.props;
         const { removeConfirm } = this.state;
 
         if (removeConfirm) {
@@ -89,19 +86,27 @@ class Remove extends PureComponent {
         }
 
         return (
-            <div>
-                <Info>
-                    <p>{t('deleteAccount:yourSeedWillBeRemoved')}</p>
-                </Info>
-                <Button variant="negative" onClick={() => this.setState({ removeConfirm: !removeConfirm })}>
-                    {t('accountManagement:deleteAccount')}
-                </Button>
+            <form>
+                <fieldset>
+                    <Info>
+                        <p>{t('deleteAccount:yourSeedWillBeRemoved')}</p>
+                    </Info>
+                </fieldset>
+                <footer>
+                    <Button
+                        className="square"
+                        variant="negative"
+                        onClick={() => this.setState({ removeConfirm: !removeConfirm })}
+                    >
+                        {t('accountManagement:deleteAccount')}
+                    </Button>
+                </footer>
 
                 <Confirm
                     isOpen={removeConfirm}
                     category="negative"
                     content={{
-                        title: `Are you sure you want to delete ${accountName}?`, //FIXME
+                        title: `Are you sure you want to delete ${account.accountName}?`, //FIXME
                         message: t('deleteAccount:yourSeedWillBeRemoved'),
                         cancel: t('cancel'),
                         confirm: t('accountManagement:deleteAccount'),
@@ -109,19 +114,14 @@ class Remove extends PureComponent {
                     onCancel={() => this.setState({ removeConfirm: false })}
                     onConfirm={() => this.removeAccount()}
                 />
-            </div>
+            </form>
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    accountName: getSelectedAccountName(state),
-    accountMeta: getSelectedAccountMeta(state),
-});
 
 const mapDispatchToProps = {
     generateAlert,
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Remove));
+export default connect(null, mapDispatchToProps)(withI18n()(Remove));

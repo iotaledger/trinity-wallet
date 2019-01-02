@@ -40,7 +40,7 @@ class MultiTextInput extends Component {
         /** Text field label */
         label: PropTypes.string,
         /** CustomTextField component container style */
-        containerStyle: PropTypes.object.isRequired,
+        containerStyle: PropTypes.object,
         /** On submit editing event callback */
         onSubmitEditing: PropTypes.func,
         /** Determines if the text field is editable */

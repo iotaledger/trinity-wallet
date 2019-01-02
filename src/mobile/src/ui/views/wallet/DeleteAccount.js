@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
     infoBoxText: {
         fontFamily: Fonts.secondary,
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
     },
     infoBoxTitleText: {
         fontFamily: Fonts.secondary,
         fontSize: Styling.fontSize4,
-        textAlign: 'left',
+        textAlign: 'center',
     },
     warningText: {
         fontFamily: Fonts.secondary,
@@ -142,49 +142,28 @@ class DeleteAccount extends Component {
     }
 
     /**
-     * Displays a confirmation modal for account deletion if user entered password is correct/valid
+     * Deletes account if user entered correct/valid password
      * Otherwise generates an alert
      *
      * @method onContinuePress
      */
     async onContinuePress() {
-        const { password, t } = this.props;
+        const { password, t, isAutoPromoting } = this.props;
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
         const pwdHash = await hash(this.state.password);
-
         if (isEqual(password, pwdHash)) {
-            return this.showModal();
+            if (isAutoPromoting || this.props.shouldPreventAction) {
+                return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+            }
+            return this.delete();
         }
         return this.props.generateAlert(
             'error',
             t('global:unrecognisedPassword'),
             t('global:unrecognisedPasswordExplanation'),
         );
-    }
-
-    /**
-     * Deletes account
-     *
-     * @method onYesPress
-     */
-    onYesPress() {
-        const { t, isAutoPromoting } = this.props;
-        if (isAutoPromoting || this.props.shouldPreventAction) {
-            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
-        }
-        this.hideModal();
-        this.delete();
-    }
-
-    /**
-     * Hides account deletion confirmation modal
-     *
-     * @method onNoPress
-     */
-    onNoPress() {
-        this.hideModal();
     }
 
     /**
@@ -228,22 +207,17 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <InfoBox
-                                    body={theme.body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoBoxTitleText, textColor]}>
-                                                {t('global:account')}: {selectedAccountName}
-                                            </Text>
-                                            <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 30 }]}>
-                                                {t('areYouSure')}
-                                            </Text>
-                                            <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 40 }]}>
-                                                {t('yourSeedWillBeRemoved')}
-                                            </Text>
-                                        </View>
-                                    }
-                                />
+                                <InfoBox>
+                                    <Text style={[styles.infoBoxTitleText, textColor]}>
+                                        {t('global:account')}: {selectedAccountName}
+                                    </Text>
+                                    <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 30 }]}>
+                                        {t('areYouSure')}
+                                    </Text>
+                                    <Text style={[styles.infoBoxText, textColor, { paddingTop: height / 40 }]}>
+                                        {t('yourSeedWillBeRemoved')}
+                                    </Text>
+                                </InfoBox>
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -255,7 +229,6 @@ class DeleteAccount extends Component {
                                 <CustomTextInput
                                     label={t('global:password')}
                                     onChangeText={(password) => this.setState({ password })}
-                                    containerStyle={{ width: Styling.contentWidth }}
                                     autoCapitalize="none"
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -284,7 +257,9 @@ class DeleteAccount extends Component {
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:continue')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>
+                                    {this.state.pressedContinue ? t('delete') : t('global:continue')}
+                                </Text>
                                 <Icon name="tick" size={width / 28} color={bodyColor} />
                             </View>
                         </TouchableOpacity>

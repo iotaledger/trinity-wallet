@@ -59,6 +59,30 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.4.6</h5>
+                            <ul>
+                                <li>- Fix: Unexpected wallet behaviour with account names starting with a number</li>
+                            </ul>
+                            <h5>0.4.5</h5>
+                            <ul>
+                                <li>- Hotfix: Block requests to nodes running beta, alpha and release IRI releases</li>
+                                <li>- Fix: On unique seed check if target seed exists</li>
+                                <li>- Fix: Wallet crashes after succesfully sending transactions</li>
+                            </ul>
+                            <h5>0.4.4</h5>
+                            <ul>
+                                <li>- Update: Unified general and account settings view</li>
+                                <li>- Update: Require two-factor authentication on view seed and wallet reset</li>
+                                <li>- Update: Input field context menu localisation</li>
+                                <li>- Update: Highlight address checksum on all views</li>
+                                <li>- Update: Check for a unique seed for local accounts</li>
+                                <li>- Fix: Address generation above index 255 not working</li>
+                                <li>- Fix: Main menu not visible on light themes</li>
+                                <li>- Fix: Password not updated for all account types</li>
+                                <li>- Fix: Incomplete account addition freezes wallet</li>
+                                <li>- Fix: Linux: Incorrect Missing dependencies warnging</li>
+                                <li>- Fix: Windows: Allow wallet window resize on top edge</li>
+                            </ul>
                             <h5>0.4.3</h5>
                             <ul>
                                 <li>- Add: System network proxy ignore setting</li>

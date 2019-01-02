@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-markdown-renderer';
 import {
@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import i18next from 'shared-modules/libs/i18next';
@@ -21,15 +22,14 @@ import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        height,
+        flex: 1,
     },
     titleText: {
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: Styling.fontSize4,
         textAlign: 'center',
-        paddingTop: height / 55,
     },
     titleContainer: {
         height: height / 8,
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 20,
         paddingVertical: height / 75,
+        height: height,
     },
 });
 
@@ -90,34 +91,23 @@ class TermsAndConditions extends Component {
      * @method onNextPress
      */
     onNextPress() {
-        const { theme: { bar } } = this.props;
+        const { theme: { body, bar } } = this.props;
         this.props.acceptTerms();
-        Navigation.push('appStack', {
-            component: {
-                name: 'privacyPolicy',
-                options: {
-                    animations: {
-                        push: {
-                            enable: false,
-                        },
-                        pop: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: 'white',
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: bar.bg,
-                    },
+        navigator.push('privacyPolicy', {
+            animations: {
+                push: {
+                    enable: false,
                 },
+                pop: {
+                    enable: false,
+                },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            statusBar: {
+                backgroundColor: bar.bg,
             },
         });
     }
@@ -128,37 +118,51 @@ class TermsAndConditions extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
-                    <Text style={[styles.titleText, textColor]}>{t('termsAndConditions')}</Text>
-                </View>
-                <ScrollView
-                    onScroll={(e) => {
-                        let paddingToBottom = height / 35;
-                        paddingToBottom += e.nativeEvent.layoutMeasurement.height;
-
-                        if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
-                            if (!this.state.hasReadTerms) {
-                                this.setState({ hasReadTerms: true });
-                            }
-                        }
-                    }}
-                    scrollEventThrottle={400}
-                    style={styles.scrollView}
+                <AnimatedComponent
+                    animationInType={['slideInRight', 'fadeIn']}
+                    animationOutType={['slideOutLeft', 'fadeOut']}
+                    delay={400}
+                    style={[styles.titleContainer, { backgroundColor: bar.bg }]}
                 >
-                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
-                        {TermsAndConditions.getTermsAndConditions()}
-                    </Markdown>
-                </ScrollView>
+                    <Text style={[styles.titleText, textColor]}>{t('termsAndConditions')}</Text>
+                </AnimatedComponent>
+                <AnimatedComponent
+                    animationInType={['slideInRight', 'fadeIn']}
+                    animationOutType={['slideOutLeft', 'fadeOut']}
+                    delay={200}
+                >
+                    <ScrollView
+                        onScroll={(e) => {
+                            let paddingToBottom = height / 35;
+                            paddingToBottom += e.nativeEvent.layoutMeasurement.height;
+
+                            if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
+                                if (!this.state.hasReadTerms) {
+                                    this.setState({ hasReadTerms: true });
+                                }
+                            }
+                        }}
+                        scrollEventThrottle={400}
+                        style={styles.scrollView}
+                    >
+                        <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
+                            {TermsAndConditions.getTermsAndConditions()}
+                        </Markdown>
+                        <View style={{ height: height / 9 }} />
+                    </ScrollView>
+                </AnimatedComponent>
                 {this.state.hasReadTerms && (
                     <View style={{ position: 'absolute', bottom: 0 }}>
-                        <SingleFooterButton
-                            onButtonPress={() => this.onNextPress()}
-                            buttonStyle={{
-                                wrapper: { backgroundColor: primary.color },
-                                children: { color: primary.body },
-                            }}
-                            buttonText={t('accept')}
-                        />
+                        <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                            <SingleFooterButton
+                                onButtonPress={() => this.onNextPress()}
+                                buttonStyle={{
+                                    wrapper: { backgroundColor: primary.color },
+                                    children: { color: primary.body },
+                                }}
+                                buttonText={t('accept')}
+                            />
+                        </AnimatedComponent>
                     </View>
                 )}
             </View>

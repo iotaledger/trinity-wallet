@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
@@ -29,20 +30,28 @@ class SingleFooterButton extends PureComponent {
         onButtonPress: PropTypes.func.isRequired,
         /** Optional styles to override the default ones */
         buttonStyle: PropTypes.object,
+        /** Timeframe to debounce button presses */
+        debounceTime: PropTypes.number,
     };
 
     static defaultProps = {
         buttonStyle: {},
         rightButtonStyle: {},
+        debounceTime: 300,
     };
 
+    constructor(props) {
+        super(props);
+        this.debounce = debounce(props.onButtonPress, props.debounceTime, { leading: true, trailing: false });
+    }
+
     render() {
-        const { buttonText, onButtonPress, buttonTestID, buttonStyle, theme: { primary } } = this.props;
+        const { theme: { primary }, buttonText, buttonTestID, buttonStyle } = this.props;
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container]}>
                 <Button
-                    onPress={onButtonPress}
+                    onPress={() => this.debounce()}
                     style={merge(
                         {},
                         {
@@ -51,7 +60,7 @@ class SingleFooterButton extends PureComponent {
                                 width: isIPhoneX ? Styling.contentWidth : width,
                                 borderColor: primary.border,
                                 borderWidth: 1,
-                                borderRadius: isIPhoneX ? parseInt(width / 20) : 0,
+                                borderRadius: isIPhoneX ? Styling.borderRadiusExtraLarge : 0,
                             },
                             children: {
                                 color: primary.body,

@@ -106,6 +106,12 @@ class SeedInput extends React.PureComponent {
     };
 
     onPaste = (e) => {
+        const { t } = this.props;
+        this.props.generateAlert(
+            'info',
+            t('seedReentry:clipboardWarning'),
+            t('seedReentry:clipboardWarningExplanation'),
+        );
         e.preventDefault();
     };
 

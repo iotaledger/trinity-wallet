@@ -6,7 +6,7 @@ import {
     convertFromTrytes,
     getRandomNodes,
     withRetriesOnDifferentNodes,
-    throwIfNodeNotSynced,
+    throwIfNodeNotHealthy,
 } from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
@@ -137,12 +137,12 @@ describe('libs: iota/utils', () => {
         });
     });
 
-    describe('#throwIfNodeNotSynced', () => {
+    describe('#throwIfNodeNotHealthy', () => {
         describe('when node is synced', () => {
             it('should return true', () => {
-                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+                const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
-                return throwIfNodeNotSynced('foo').then((isSynced) => {
+                return throwIfNodeNotHealthy('foo').then((isSynced) => {
                     expect(isSynced).to.equal(true);
                     stub.restore();
                 });
@@ -151,9 +151,9 @@ describe('libs: iota/utils', () => {
 
         describe('when node is not synced', () => {
             it('should return throw an error with message "Node not synced"', () => {
-                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(false);
+                const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(false);
 
-                return throwIfNodeNotSynced('foo')
+                return throwIfNodeNotHealthy('foo')
                     .then(() => {
                         throw new Error();
                     })

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { zxcvbn } from 'shared-modules/libs/exports';
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     itemLeft: {
@@ -167,29 +167,18 @@ class ForceChangePassword extends Component {
 
     navigateToLogin() {
         const { theme: { body } } = this.props;
-        Navigation.setStackRoot('appStack', {
-            component: {
-                name: 'login',
-                options: {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    topBar: {
-                        visible: false,
-                        drawBehind: true,
-                        elevation: 0,
-                    },
-                    statusBar: {
-                        drawBehind: true,
-                        backgroundColor: body.bg,
-                    },
+        navigator.setStackRoot('login', {
+            animations: {
+                setStackRoot: {
+                    enable: false,
                 },
+            },
+            layout: {
+                backgroundColor: body.bg,
+                orientation: ['portrait'],
+            },
+            statusBar: {
+                backgroundColor: body.bg,
             },
         });
     }
@@ -259,18 +248,13 @@ class ForceChangePassword extends Component {
                     <View style={styles.container}>
                         <View style={{ flex: 1.5 }} />
                         <View style={styles.topContainer}>
-                            <InfoBox
-                                body={body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            With update 0.5.0, it is necessary to change your password before using
-                                            Trinity. If your current password fulfils the password strength requirements
-                                            then you may use your current password again.
-                                        </Text>
-                                    </View>
-                                }
-                            />
+                            <InfoBox>
+                                <Text style={[styles.infoText, textColor]}>
+                                    With update 0.5.0, it is necessary to change your password before using Trinity. If
+                                    your current password fulfils the password strength requirements then you may use
+                                    your current password again.
+                                </Text>
+                            </InfoBox>
                             <View style={{ flex: 0.2 }} />
                             {this.renderTextField(
                                 (c) => {

@@ -187,7 +187,7 @@ class MultiTextInput extends Component {
                     {selectedTab === 'amount' && (
                         <AmountTextInput
                             label={null}
-                            containerStyle={{ width: width / 1.25 }}
+                            containerStyle={{ flex: 1 }}
                             denomination={denomination}
                             amount={amount}
                             multiplier={multiplier}

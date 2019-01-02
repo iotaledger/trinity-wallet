@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Sõlm on sünkroonist väljas",
         "nodeOutOfSyncExplanation": "Teie valitud sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "See sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
         "seed": "Seeme",
         "checksum": "Kontrollsumma",
@@ -74,6 +76,8 @@
         "wallet": "Rahakott",
         "all": "Kõik",
         "sent": "Saadetud",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Laekunud",
         "sending": "Saatmine",
         "receiving": "Saamine",
@@ -128,7 +132,7 @@
         "spentAddressExplanation": "Hoiatus: Vahendid on kasutatud aadressil",
         "discordInformation": "Samalt aadressilt saatmine rohkem kui üks kord on ohtlik. Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha.",
         "androidInsecureClipboardWarning": "Android ei paku turvalist lõikepuhvrit.",
-        "androidCopyPasteWarning": "Ära mitte kunagi kopeeri/kleebi oma seemet Android seadmes.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Ma ei kopeeri/kleebi oma seemet",
         "mustBeStoredAppropriately": "Seda tuleb nõuetekohaselt varundada.",
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
@@ -147,11 +151,15 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "PEAMINE KONTO",
+        "confirm": "Confirm",
+        "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now."
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "Failisüsteemi luba on nõutud",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -205,7 +213,7 @@
         "passwordTooShortExplanation": "Teie parool peab olema vähemalt {{minLength}} tähemärki pikk. See on hetkel {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "passwordMismatch": "Paroolid ei kattu",
         "passwordMismatchExplanation": "Sisestatud paroolid ei kattu. Palun proovige uuesti.",
-        "anEncryptedCopy": "Seemne krüpteeritud koopia salvestatakse teie seadmesse. Seda parooli kasutate edaspidi oma rahakotti sisenemiseks.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Parool uuesti"
     },
     "copyToClipboard": {
@@ -239,7 +247,8 @@
         "login": "Logi sisse",
         "setNode": "Vali sõlm",
         "whyBiometricDisabled": "Miks on biomeetriline autentimine keelatud?",
-        "whyBiometricDisabledExplanation": "Teie turvalisuse huvides on rakenduse esmakordsel avamisel biomeetriline sisselogimine keelatud. Kui kasutate Trinityit, siis logitakse teid välja tegevusetuse tõttu. Seejärel saate sisse logida biomeetrilise autentimisega."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Laadin esimest korda seemet.",
@@ -268,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Ärge jagage oma seemet kunagi.",
         "iotaLogo": "IOTA logo",
-        "print": "PRINDI",
+        "print": "Print",
         "paperConvenience": "Teie seemne paberkoopia printimine on sovib viis selle varundamiseks.",
         "publicInsecure": "Kuid printimine avalikku WiFit või avalikku printerit kasutades on ohtlik.",
-        "tapCheckboxes": "Kinnitamiseks puudutage palun allpool olevaid märkeruute.",
-        "wifiCheckbox": "Ma ei prindi avalikku WiFit kasutades",
-        "printerCheckbox": "Ma ei prindi avalikku printerit kasutades"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Sinu aadress",
@@ -285,8 +294,6 @@
         "generateNewAddress": "Generate address",
         "noAddresses": "AADRESSE POLE",
         "spent": "Kulutatud",
-        "missingPermission": "Failisüsteemi luba on nõutud",
-        "missingPermissionExplanation": "QR-koodide jagamiseks on vaja failisüsteemi luba.",
         "tag": "Silt",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
@@ -304,21 +311,22 @@
         "letsWriteDownYourSeed": "Kirjutame teie seemne üles",
         "youCanHighlightCharacters": "Korraga saate esile tõsta 9 tähemärki",
         "printBlankWallet": "Prindi tühi rahakott",
-        "whatIsChecksum": "Igal seemnel on vastav 3-kohaline kontrollsumma",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Igal seemnel on vastav 3-kohaline kontrollsumma.",
         "iHavesavedMySeed": "Ma olen oma seemne salvestanud",
         "checksumExplanation": "Kui lisate oma rahakotile seemne, peate veenduma, et rahakoti loodud kontrollsumma vastab sellele, mille olete endale üles kirjutanud.",
         "mustSaveYourSeed": "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Palun kinnitage oma seeme",
-        "trinityWillNeverAskToReenter": "Trinity ei küsi kunagi selle seemne sisestamist, välja arvatud juhul kui lähtestate oma rahakoti või rakenduse.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Sisestage oma seeme",
         "incorrectSeed": "Vale seeme",
         "incorrectSeedExplanation": "Sisestatud seeme on vale. Palun proovige uuesti.",
         "ifYouHaveNotSaved": "Kui te pole oma seemet varundanud, siis palun minge tagasi ja tehke seda.",
         "enterSeedBelow": "Sisestage oma äsja loodud seeme allpool, et kinnitada, et olete selle õigesti varundanud",
-        "clipboardWarning": "Ärge kopeeri kleepige oma seemet",
-        "clipboardWarningExplanation": "HOIATUS. Kopeeri kleebi on teie turvalisuse huvides keelatud."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Vigane aadress",
@@ -345,7 +353,8 @@
         "totalTime": "Aeg kokku",
         "addressPasteDetected": "Aadressi lisamine tuvastatud",
         "addressPasteExplanation": "Tundub, et olete kleepinud aadressi. Veenduge, et aadress vastab sellele, millele soovite saata.",
-        "invalid": "SOBIMATU"
+        "invalid": "SOBIMATU",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Lisame nime",
@@ -373,7 +382,9 @@
         "addNewSeed": "Lisa uus seeme",
         "twoFA": "Kahefaktoriline autentimine",
         "changePassword": "Muuda parooli",
+        "general": "General settings",
         "advanced": "Täpsemad sätted",
+        "account": "Account settings",
         "logout": "Logi välja",
         "reset": "Lähtesta rahakott",
         "syncingComplete": "Sünkroniseeritud",
@@ -446,7 +457,8 @@
         "empty": "Tühi",
         "retrying": "Uuesti proovimine",
         "yesterday": "Eile",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoting another bundle",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -504,18 +516,21 @@
         "currency": "Valuuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Kas soovite kindlasti välja logida?"
+        "logoutConfirmation": "Kas soovite kindlasti välja logida?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Skännige oma QR-koodi"
     },
     "unitInfoModal": {
-        "unitSystem": "ÜHIKUSÜSTEEM",
+        "unitSystem": "Unit System",
         "trillion": "Triljon",
         "billion": "Miljard",
         "million": "Miljon",
         "thousand": "Tuhat",
-        "one": "Üks"
+        "one": "Üks",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miks ma ei saa oma täielikku kontojääki kulutada?",
@@ -525,7 +540,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Seda tegevust ei saa tagasi võtta",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
     "manualSync": {
@@ -537,7 +552,7 @@
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Sisesta seeme ja konto nimi.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Vale seemne vorming",
         "validSeedExplanation": "Kehtivad seemned peaksid olema 81 tähemärki pikad ja sisaldama ainult A-Z või 9."
     },
@@ -551,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Kas te varundasite oma seemne?",
-        "alreadyHave": "Ma olen oma seemne varundanud",
-        "reenterSeed": "Järgmisel sammul palutakse teil oma seemne uuesti sisestada.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Kui te ei ole varundanud oma seemet ja teie seade ebaõnnestub, kaotate kogu oma IOTA.",
         "pleaseConfirm": "Palun kinnitage, et olete oma seemne turvaliselt varundanud."
     },
@@ -572,19 +587,23 @@
         "status": "Olek",
         "fingerprintUnavailable": "Biomeetriline autentimine pole saadaval",
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
-        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu.",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
-        "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu.",
-        "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu.",
+        "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
+        "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
         "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat"
     },
     "transferConfirmation": {
         "youAreAbout": "Te olete saatmas {{contents}} aadressile",
-        "aMessage": "sõnum"
+        "aMessage": "sõnum",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Vale kood",
-        "wrongCodeExplanation": "Sisestatud kood on vale.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tühi kood",
         "emptyCodeExplanation": "Palun sisestage kood ja proovige uuesti.",
         "keyCopied": "Võti kopeeritud lõikelauale",
@@ -601,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Ekspordi seemnehoidla",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
@@ -615,13 +634,15 @@
         "importSuccessExplanation": "Teie seeme imporditi edukalt.",
         "saveToDownloadFolder": "Salvesta allalaadimiste kausta",
         "importSeedVault": "Importige seemnehoidla",
-        "dropSeedVaultHere": "Sisestage seemnehoidla siia <1></1> või vajutage sirvimiseks",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine nurjus",
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "TURUKAPITAL",
@@ -655,7 +676,8 @@
         "preparingTransfers": "Ülekannete ettevalmistamine",
         "gettingTransactionsToApprove": "Otsin tehinguid, mida heaks kiita",
         "proofOfWork": "Valmistan töötõendit",
-        "broadcasting": "Edastamine"
+        "broadcasting": "Edastamine",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Ei saa hetkvõtte üleminekut lõpetada",
@@ -669,7 +691,8 @@
         "transition": "Üleminek",
         "transitioning": "Hetkvõtte üleminek.",
         "generatingAndDetecting": "Aadresside genereerimine ja kontojäägi tuvastamine.",
-        "attaching": "Aadresside kinnitamine Tangle võrgustikku."
+        "attaching": "Aadresside kinnitamine Tangle võrgustikku.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automaatne täitmine õnnestus",
@@ -680,7 +703,7 @@
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
         "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
         "newVersionAvailable": "Uus versioon saadaval",
-        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Installi värskendus ja taaskäivita",
         "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks.",
         "downloadingUpdate": "Downloading update",
@@ -707,7 +730,7 @@
     },
     "proxy": {
         "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Restart the wallet after changing this setting."
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Teated",
