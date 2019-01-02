@@ -8,6 +8,7 @@ import {
     generateTransitionErrorAlert,
     generateAddressesSyncRetryAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateUnsupportedNodeErrorAlert,
 } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import { changeNode } from '../actions/settings';
@@ -15,7 +16,7 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotSynced } from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import {
     selectedAccountStateFactory,
@@ -30,14 +31,12 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
-    SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
     CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
-    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
     SNAPSHOT_TRANSITION_REQUEST: 'IOTA/WALLET/SNAPSHOT_TRANSITION_REQUEST',
     SNAPSHOT_TRANSITION_SUCCESS: 'IOTA/WALLET/SNAPSHOT_TRANSITION_SUCCESS',
     SNAPSHOT_TRANSITION_ERROR: 'IOTA/WALLET/SNAPSHOT_TRANSITION_ERROR',
@@ -48,10 +47,15 @@ export const ActionTypes = {
     SET_BALANCE_CHECK_FLAG: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
     CANCEL_SNAPSHOT_TRANSITION: 'IOTA/WALLET/CANCEL_SNAPSHOT_TRANSITION',
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
+    SHOULD_UPDATE: 'IOTA/APP/WALLET/SHOULD_UPDATE',
+    FORCE_UPDATE: 'IOTA/APP/WALLET/FORCE_UPDATE',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
     ADDRESS_VALIDATION_REQUEST: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_REQUEST',
     ADDRESS_VALIDATION_SUCCESS: 'IOTA/APP/WALLET/ADDRESS_VALIDATION_SUCCESS',
+    PUSH_ROUTE: 'IOTA/APP/WALLET/PUSH_ROUTE',
+    POP_ROUTE: 'IOTA/APP/WALLET/POP_ROUTE',
+    RESET_ROUTE: 'IOTA/APP/WALLET/RESET_ROUTE',
 };
 
 /**
@@ -85,19 +89,6 @@ export const generateNewAddressSuccess = () => ({
  */
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-/**
- * Dispatch to set new account name during mobile onboarding
- *
- * @method setAccountName
- * @param {string} payload
- *
- * @returns {{type: {string}, payload: {string} }}
- */
-export const setAccountName = (payload) => ({
-    type: ActionTypes.SET_ACCOUNT_NAME,
-    payload,
 });
 
 /**
@@ -171,19 +162,6 @@ export const clearSeed = () => ({
  */
 export const setSetting = (payload) => ({
     type: ActionTypes.SET_SETTING,
-    payload,
-});
-
-/**
- * Dispatch to temporarily store account information for additional seeds in state
- *
- * @method setAdditionalAccountInfo
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setAdditionalAccountInfo = (payload) => ({
-    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
@@ -341,7 +319,7 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
         dispatch(generateNewAddressRequest());
 
         const syncAddressesWithSyncedNode = (provider) => {
-            return (...args) => throwIfNodeNotSynced(provider).then(() => syncAddresses(provider)(...args));
+            return (...args) => throwIfNodeNotHealthy(provider).then(() => syncAddresses(provider)(...args));
         };
 
         const selectedNode = getSelectedNodeFromState(getState());
@@ -416,7 +394,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
         dispatch(snapshotAttachToTangleRequest());
 
         // Check node's health
-        throwIfNodeNotSynced()
+        throwIfNodeNotHealthy()
             .then(() => getBalancesAsync()(addresses))
             // Find balance on all addresses
             .then((balances) => {
@@ -486,6 +464,8 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
             .catch((error) => {
                 if (error.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (error.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     dispatch(generateTransitionErrorAlert(error));
                 }
@@ -572,4 +552,69 @@ export const addressValidationRequest = () => ({
  */
 export const addressValidationSuccess = () => ({
     type: ActionTypes.ADDRESS_VALIDATION_SUCCESS,
+});
+
+/**
+ * Dispatch to push to navigation stack
+ *
+ * @method pushRoute
+ * @param {string} payload
+ *
+ * @returns {{ type: {string}, payload: {string} }}
+ */
+export const pushRoute = (payload) => {
+    return {
+        type: ActionTypes.PUSH_ROUTE,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to pop from navigation stack
+ *
+ * @method popRoute
+ *
+ * @returns {{type: {string}}}
+ */
+export const popRoute = () => {
+    return {
+        type: ActionTypes.POP_ROUTE,
+    };
+};
+
+/**
+ * Dispatch to set navigation root
+ *
+ * @method resetRoute
+ * @param {string} payload
+ *
+ * @returns {{ type: {string}, payload: {string} }}
+ */
+export const resetRoute = (payload) => {
+    return {
+        type: ActionTypes.RESET_ROUTE,
+        payload,
+    };
+};
+
+/**
+ * Dispatch to suggest that user should update
+ *
+ * @method shouldUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const shouldUpdate = () => ({
+    type: ActionTypes.SHOULD_UPDATE,
+});
+
+/**
+ * Dispatch to force user to update
+ *
+ * @method forceUpdate
+ *
+ * @returns {{type: {string} }}
+ */
+export const forceUpdate = () => ({
+    type: ActionTypes.FORCE_UPDATE,
 });

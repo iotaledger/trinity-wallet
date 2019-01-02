@@ -146,6 +146,10 @@ const initialState = {
         confirmations: true,
         messages: true,
     },
+    /**
+     * Desktop: Use system proxy settings
+     */
+    ignoreProxy: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -296,6 +300,16 @@ const settingsReducer = (state = initialState, action) => {
                     ...state.notifications,
                     [action.payload.type]: action.payload.enabled,
                 },
+            };
+        case ActionTypes.SET_PROXY:
+            return {
+                ...state,
+                ignoreProxy: action.payload,
+            };
+        case ActionTypes.RESET_NODES_LIST:
+            return {
+                ...state,
+                nodes: [],
             };
     }
 

@@ -4,7 +4,7 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import { charToByte } from 'libs/helpers';
+import { charToByte } from 'libs/iota/converter';
 
 import Icon from 'ui/components/Icon';
 
@@ -157,15 +157,15 @@ class Dropzone extends React.Component {
                 <h5 onClick={this.open}>
                     <Icon icon="seedVault" size={48} />{' '}
                     <span>
-                        <Trans i18nKey="seedVault:dropSeedVaultHere">
-                            Drop SeedVault here <br /> or click to browse
+                        <Trans i18nKey="seedVault:dropInstructions">
+                            Drop SeedVault or text here <br /> or click to browse
                         </Trans>
                     </span>
                 </h5>
                 <input {...inputAttributes} />
                 <div className={classNames(css.dropzone, this.state.isDragActive && css.active)}>
                     <Icon icon="seedVault" size={160} />
-                    <h1>{t('seedVault:dropSeedVaultHere')}</h1>
+                    <h1>{t('seedVault:dropActive')}</h1>
                 </div>
             </React.Fragment>
         );

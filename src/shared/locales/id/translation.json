@@ -19,8 +19,11 @@
         "invalidResponse": "Kesalahan pada Node",
         "invalidResponseExplanation": "Node mengembalikan kesalahan. Coba ganti node.",
         "invalidResponseFetchingAccount": "Node mengembalikan kesalahan ketika menarik informasi akun anda. Silahkan coba node yang lain.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node tidak sinkron",
         "nodeOutOfSyncExplanation": "Node yang anda pilih tidak sinkron. Silahkan ganti Node atau coba lagi.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silahkan ganti node atau coba lagi.",
         "seed": "Benih",
         "checksum": "Checksum",
@@ -73,6 +76,8 @@
         "wallet": "Dompet",
         "all": "Semua",
         "sent": "Terkirim",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Diterima",
         "sending": "Mengirim",
         "receiving": "Menerima",
@@ -127,7 +132,7 @@
         "spentAddressExplanation": "PERINGATAN: Dana ada di alamat yang sudah digunakan",
         "discordInformation": "Mengirim dari alamat yang sama lebih dari sekali sangat berbahaya. Silahkan ke Channel #help di Discord untuk mengetahui lebih lanjut.",
         "androidInsecureClipboardWarning": "Android tidak menyediakan Papan Klip yang aman.",
-        "androidCopyPasteWarning": "Jangan pernah copy/paste Seed anda di perangkat Android.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Saya tidak akan copy/paste Seed saya",
         "mustBeStoredAppropriately": "Ini harus disimpan dengan sebaiknya.",
         "deviceMayBecomeUnresponsive": "Perangkat anda mungkin tidak responsif dalam beberapa saat.",
@@ -143,9 +148,18 @@
         "tryingAgainWithLocalPoW": "Mencoba lagi dengan lokal Proof of Work.",
         "tryingAgainWithDifferentNode": "Coba lagi dengan node yang berbeda.",
         "errorFetchingAccountInformation": "Error ketika mengambil informasi akun.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "AKUN UTAMA",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "Izin akses File System dibutuhkan",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -199,7 +213,7 @@
         "passwordTooShortExplanation": "Kata sandi harus setidaknya {{minLength}} karakter. Kata Sandi Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
         "passwordMismatch": "Kata sandi tidak sama",
         "passwordMismatchExplanation": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
-        "anEncryptedCopy": "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Ketik ulang kata sandi"
     },
     "copyToClipboard": {
@@ -233,7 +247,8 @@
         "login": "Masuk",
         "setNode": "Set Node",
         "whyBiometricDisabled": "Kenapa otentikasi sidik jari dimatikan?",
-        "whyBiometricDisabledExplanation": "Biometrik otentikasi dimatikan pertama kali untuk keamanan Anda. Trinity akan mengeluarkan anda bila tidak aktif. Anda dapat masuk kembali dengan otentikasi biometrik."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
@@ -262,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Jangan pernah memberitahukan Seed Anda dengan siapa pun.",
         "iotaLogo": "Logo IOTA",
-        "print": "CETAK",
+        "print": "Print",
         "paperConvenience": "Mencetak Seed ke kertas adalah cara yang mudah untuk menyimpan.",
         "publicInsecure": "Tetapi mencetak dengan Wifi atau printer publik tidak aman.",
-        "tapCheckboxes": "Silahkan tekan Checkbox dibawah ini untuk konfirmasi.",
-        "wifiCheckbox": "Saya tidak akan mencetak dari wifi publik",
-        "printerCheckbox": "Saya tidak akan mencetak dari printer publik"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Alamat Anda",
@@ -276,12 +291,13 @@
         "copyAddress": "Salin alamat",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "TIDAK ADA ALAMAT",
         "spent": "Dihabiskan",
-        "missingPermission": "Izin akses File System dibutuhkan",
-        "missingPermissionExplanation": "Izin akses ke File System dibutuhkan untuk membagi QR codes.",
-        "tag": "Label"
+        "tag": "Label",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Simpang Seed anda",
@@ -295,21 +311,22 @@
         "letsWriteDownYourSeed": "Mari tulis Seed Anda",
         "youCanHighlightCharacters": "Ada dapat menyoroti 9 karakter dalam satu waktu",
         "printBlankWallet": "Cetak dompet kosong",
-        "whatIsChecksum": "Setiap Seed terdiri dari 3 karakter Checksum",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Setiap Seed terdiri dari 3 karakter Checksum.",
         "iHavesavedMySeed": "Saya telah menyimpan Seed",
         "checksumExplanation": "Ketika menambah Seed ke dompet, pastikan checksum dari dompet sama dengan yang anda tulis.",
         "mustSaveYourSeed": "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Silahkan konfirmasi Seed Anda",
-        "trinityWillNeverAskToReenter": "Trinity tidak akan menanyakan untuk memasukkan Seed kembali, kecuali ada reset dompet atau aplikasi.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Masukan Seed Anda",
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
         "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda",
-        "clipboardWarning": "Jangan kopi dan salin Seed Anda",
-        "clipboardWarningExplanation": "Peringatan: Kopi. Salin dimatikan untuk keamanan Anda."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Alamat salah",
@@ -336,7 +353,8 @@
         "totalTime": "Waktu total",
         "addressPasteDetected": "Terdeteksi alamat hasil salinan",
         "addressPasteExplanation": "Sepertinya Anda telah menyalin alamat. Pastikan alamat sama dengan yang ingin Anda kirim.",
-        "invalid": "SALAH"
+        "invalid": "SALAH",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Mari tambahkan nama",
@@ -364,7 +382,9 @@
         "addNewSeed": "Tambahkan Seed baru",
         "twoFA": "Autentikasi dua faktor",
         "changePassword": "Ubah Kata Sandi",
+        "general": "General settings",
         "advanced": "Pengaturan Lanjutan",
+        "account": "Account settings",
         "logout": "Keluar",
         "reset": "Hapus dompet",
         "syncingComplete": "Sinkronisasi selesai",
@@ -437,7 +457,8 @@
         "empty": "Kosong",
         "retrying": "Mencoba lagi",
         "yesterday": "Kemarin",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoting another bundle",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
@@ -495,18 +516,21 @@
         "currency": "Mata Uang"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Yakin ingin keluar?"
+        "logoutConfirmation": "Yakin ingin keluar?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Memindai kode QR"
     },
     "unitInfoModal": {
-        "unitSystem": "Sistem Unit",
+        "unitSystem": "Unit System",
         "trillion": "Trilyun",
         "billion": "Miliar",
         "million": "Juta",
         "thousand": "Ribu",
-        "one": "Salah satu"
+        "one": "Salah satu",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Mengapa saya tidak bisa menghabiskan saldo saya?",
@@ -516,7 +540,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Riwayat transaksi dan benih akan dihapus.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Tindakan ini tidak dapat diulang",
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda."
     },
     "manualSync": {
@@ -528,7 +552,7 @@
         "syncingYourAccount": "Sinkronkan akun Anda."
     },
     "useExistingSeed": {
-        "title": "Masukkan nama akun.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Salah format Seed",
         "validSeedExplanation": "Seed valid harus 81 karakter terdiri dari A-Z atau 9."
     },
@@ -542,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Apa Anda telah menyimpan Seed?",
-        "alreadyHave": "Saya telah menyelamatkan saya benih",
-        "reenterSeed": "Langkah selanjutnya anda akan ditanya untuk memasukan Seed kembali.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Jika anda belum menyimpan Seed dan perangkat rusak, Anda akan kehilangan IOTA.",
         "pleaseConfirm": "Silahkan konfirmasi bahwa Seed sudah Anda simpan dengan aman."
     },
@@ -563,19 +587,23 @@
         "status": "Status",
         "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
-        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
+        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
-        "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
+        "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
         "instructionsLogin": "Tekan pemindai sidik jari untuk masuk"
     },
     "transferConfirmation": {
         "youAreAbout": "Anda akan mengirim {{contents}} ke alamat",
-        "aMessage": "pesan"
+        "aMessage": "pesan",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Kode salah",
-        "wrongCodeExplanation": "Kode yang Anda masukkan tidak benar.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Kode kosong",
         "emptyCodeExplanation": "Silakan masukkan kode dan coba lagi.",
         "keyCopied": "Kunci disalin ke papan klip",
@@ -592,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Ekspor SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Pastikan anda buat cadangan di beberapa lokasi (seperti: Hard disk, Cloud, USB). Jika anda kehilangan file dan tidak mempunyai cadangan. Anda akan kehilangan IOTA.",
         "exportFail": "Gagal ekspor SeedVault",
         "exportFailExplanation": "Terjadi kesalahan mengekspor SeedVault. Pastikan anda mempunyai izin yang valid dan cukup ruang.",
@@ -606,13 +634,15 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Impor SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault tidak mengandung Seed",
         "noSeedFoundExplanation": "SeedVault kosong atau tidak mempunyai format Seed yang valid.",
         "seedFileError": "Gagal membuka SeedVault",
         "seedFileErrorExplanation": "Gagal membuka SeedVault. Jika ini benar, file ini mungkin rusak.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MCAP",
@@ -646,7 +676,8 @@
         "preparingTransfers": "Menyiapkan transfer",
         "gettingTransactionsToApprove": "Menyiapkan transaksi untuk disetujui",
         "proofOfWork": "Menyelesaikan Proof of Work",
-        "broadcasting": "Menyiarkan"
+        "broadcasting": "Menyiarkan",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Tidak dapat menyelesaikan transisi snapshot",
@@ -660,7 +691,8 @@
         "transition": "Transisi",
         "transitioning": "Transisi untuk Snapshot.",
         "generatingAndDetecting": "Menghasilkan alamat dan mendeteksi saldo.",
-        "attaching": "Melampirkan alamat-alamat ke Tangle."
+        "attaching": "Melampirkan alamat-alamat ke Tangle.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Isi otomatis sukses",
@@ -671,7 +703,7 @@
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Versi baru tersedia",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instal pembaruan dan ulang kembali",
         "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan.",
         "downloadingUpdate": "Downloading update",
@@ -695,6 +727,10 @@
         "notLoggedIn": "Anda belum masuk",
         "setupIncomplete": "Persiapan dompet belum selesai",
         "completeSetup": "Persiapan selesai"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifikasi",
@@ -747,7 +783,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

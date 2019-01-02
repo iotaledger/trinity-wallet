@@ -19,8 +19,11 @@
         "invalidResponse": "Csomóponti hiba",
         "invalidResponseExplanation": "A csomópont hibát jelzett. Kérjük, próbáljon egy másik csomópontot választani.",
         "invalidResponseFetchingAccount": "A csomópont hibát jelzett a számla adatainak lekérése közben. Próbáljon egy másik csomópontot választani.",
+        "invalidResponseFetchingAccountDesktop": "A csomópont hibát jelzett a számlaadatok betöltése közben. Ha a hiba továbbra is fennáll, próbáljon egy másik csomópontra váltani vagy kapcsolja ki a proxy szerver használatát a beállítások között.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
         "seed": "Mester jelszó",
         "checksum": "Ellenőrző összeg",
@@ -73,9 +76,11 @@
         "wallet": "Tárca",
         "all": "Összes",
         "sent": "Elküldött",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Fogadott",
         "sending": "Küldés...",
-        "receiving": "Fogadás folyamatban",
+        "receiving": "Fogadás...",
         "confirmed": "Megerősítve",
         "pending": "Függőben lévő",
         "bundleHash": "Tranzakciós csomag hash",
@@ -127,7 +132,7 @@
         "spentAddressExplanation": "FIGYELEM: egyenleg található a már felhasznált címek egyikén",
         "discordInformation": "Egy címről többször tranzakciót indítani nagyon veszélyes. Kérjük mihamarabb látogasson el a #help csatornára az IOTA Discord-on, hogy segítséget kaphasson, mit tehet ilyen esetben.",
         "androidInsecureClipboardWarning": "Androidon a vágólap használata nem biztonságos.",
-        "androidCopyPasteWarning": "Soha ne kivágás/beillesztés műveletekkel adja meg mester jelszavát Android készüléken.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "Nem fogom kivágni/beilleszteni a mester jelszavam",
         "mustBeStoredAppropriately": "A mester jelszót megfelelő módon kell tárolni.",
         "deviceMayBecomeUnresponsive": "Előfordulhat, hogy a készüléke egy ideig nem reagál majd.",
@@ -143,9 +148,18 @@
         "tryingAgainWithLocalPoW": "Újrapróbálkozás a kiszabott munka helyi elvégzésével.",
         "tryingAgainWithDifferentNode": "Újrapróbálkozás másik csomópont használatával.",
         "errorFetchingAccountInformation": "Hiba a cím lekérdezése közben.",
+        "errorSyncingAddresses": "Hiba történt a címekhez tartozó adatok lekérése közben. Válasszon egy másik csomópontot és próbálja újra.",
         "errorAccessingKeychain": "Kulcstár-hiba",
         "errorAccessingKeychainExplanation": "A kulcstár nem hozzáférhető, így a jelszó nem tárolható biztonságosan.",
-        "mainWallet": "Elsődleges számla"
+        "mainWallet": "Elsődleges számla",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "Új frissítés érhető el",
+        "shouldUpdateExplanation": "Egy új szoftverfrissítés jelent meg. Ajánlott az alkalmazást a legújabb verzióra frissíteni.",
+        "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
+        "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást.",
+        "missingPermission": "Fájl hozzáférési engedély szükséges",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -199,7 +213,7 @@
         "passwordTooShortExplanation": "A jelszónak minimum {{minLength}} karakterből kell állnia. A jelenleg megadott jelszó {{currentLength}} karakter hosszú. Kérjük, próbálja újra.",
         "passwordMismatch": "A jelszavak nem egyeznek meg",
         "passwordMismatchExplanation": "A megadott jelszavak nem egyeznek meg. Kérjük, próbálja újra.",
-        "anEncryptedCopy": "A mester jelszavát titkosított formában fogjuk tárolni a készülékén. A jelenleg megadott jelszót fogja tudni használni a jövőben a tárca megnyitásához.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Jelszó újra"
     },
     "copyToClipboard": {
@@ -233,7 +247,8 @@
         "login": "Belépés",
         "setNode": "Csomópont beállítása",
         "whyBiometricDisabled": "Miért van a biometrikus azonosítás kikapcsolva?",
-        "whyBiometricDisabledExplanation": "A biometrikus azonosítás az alkalmazás indításakor az Ön biztonsága érdekében nem elérhető. Ha a Trinity esetleges tétlenség után automatikusan kijelentkeztette, akkor tudja használja a biometrikus azonosítást az ismételt bejelentkezéshez."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Mester jelszó betöltése első alkalommal.",
@@ -262,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Soha, senkivel ne ossza meg a mester jelszavát.",
         "iotaLogo": "IOTA logó",
-        "print": "Nyomtat",
+        "print": "Print",
         "paperConvenience": "A mester jelszó papírra nyomtatása egy kényelmes módja annak tárolására.",
         "publicInsecure": "De vegye figyelembe, hogy nyilvános nyomtató használata, különösen ha ingyenesen elérhető nyilvános WiFi-n keresztül nyomtatna, nem biztonságos.",
-        "tapCheckboxes": "Kérjük, az elfogadáshoz jelölje be az alábbi négyzeteket.",
-        "wifiCheckbox": "Nem fogok ingyenesen elérhető nyilvános WiFi-n keresztül nyomtatni",
-        "printerCheckbox": "Nem fogok nyilvánosan elérhető nyomtatón nyomtatni"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Ön címe",
@@ -275,13 +290,14 @@
         "shareQr": "QR kód megosztása",
         "copyAddress": "Cím másolása",
         "addressCopied": "Cím másolva",
-        "addressCopiedExplanation": "A címe a vágólapra lett másolva.",
-        "generateNewAddress": "Cím szinkronizálás",
+        "addressCopiedExplanation": "A cím a vágólapra lett másolva.",
+        "generateNewAddress": "Új cím generálása",
         "noAddresses": "Nincs cím",
         "spent": "Elköltve",
-        "missingPermission": "Fájl hozzáférési engedély szükséges",
-        "missingPermissionExplanation": "A QR kód megosztásához szükség van a fájlrendszerhez való hozzáféréshez.",
-        "tag": "Címke"
+        "tag": "Címke",
+        "generateAnAddress": "Új cím generálása",
+        "generateAnAddressTitle": "Új cím generálása",
+        "generateAnAddressExplanation": "Kérjük ennek a funkciónak a használata előtt generáljon egy új címet."
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
@@ -295,21 +311,22 @@
         "letsWriteDownYourSeed": "Írja le a mester jelszót",
         "youCanHighlightCharacters": "9 karaktert emelhet ki egyszerre",
         "printBlankWallet": "Mester jelszó nyomtatvány minta nyomtatása",
-        "whatIsChecksum": "Minden mester jelszóhoz tartozik egy 3 karakterből álló ellenőrző összeg",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Minden mester jelszóhoz tartozik egy 3 karakterből álló ellenőrző összeg.",
         "iHavesavedMySeed": "Elmentettem a mester jelszót",
         "checksumExplanation": "Amikor egy új mester jelszót ad hozzá a tárcához, mindig győződjön meg arról, hogy a tárca által generált ellenőrző összeg megegyezik a korábban feljegyzett ellenőrző összeggel.",
         "mustSaveYourSeed": "<0><0>A mester jelszaváról biztonsági másolatot kell készítenie</0><1>legalább egyféleképp</1><2>az alább felsorolt lehetőségek közül.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Kérjük erősítse meg a mester jelszavát",
-        "trinityWillNeverAskToReenter": "A Trinity soha nem fogja újra kérni a mester jelszavát, kizárólag akkor, ha a tárcát gyári állapotra állította vissza.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Adja meg a mester jelszót",
         "incorrectSeed": "Helytelen mester jelszó",
         "incorrectSeedExplanation": "A megadott mester jelszó helytelen. Kérjük, próbálja újra.",
         "ifYouHaveNotSaved": "Ha nem készített biztonsági mentést a mester jelszaváról, kérjük lépjen vissza és készítsen.",
         "enterSeedBelow": "Adja meg alább az újonnan generált mester jelszavát, hogy megbizonyosodjon róla, valóban helyes biztonsági másolat készült róla",
-        "clipboardWarning": "Ne használjon másolás/beillesztés műveletet a mester jelszavának megadásakor",
-        "clipboardWarningExplanation": "FIGYELEM: a másolás/beillesztés a biztonsága érdekében nem engedélyezett."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Érvénytelen cím",
@@ -336,7 +353,8 @@
         "totalTime": "Küldés időtartama",
         "addressPasteDetected": "Cím másolás érzékelve",
         "addressPasteExplanation": "Úgy tűnik bemásolt egy címet. Kérjük, győződjön meg arról, hogy valóban erre a címre kíván küldeni.",
-        "invalid": "Érvénytelen"
+        "invalid": "Érvénytelen",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Kérjük, adjon meg egy nevet",
@@ -364,7 +382,9 @@
         "addNewSeed": "Új mester jelszó hozzáadása",
         "twoFA": "Kétlépcsős hitelesítés",
         "changePassword": "Jelszó módosítása",
+        "general": "General settings",
         "advanced": "Haladó beállítások",
+        "account": "Account settings",
         "logout": "Kijelentkezés",
         "reset": "Tárca gyári állapotának visszaállítása",
         "syncingComplete": "Szinkronizáció befejezve",
@@ -412,7 +432,7 @@
         "seedExplanation": "Az IOTA mester jelszó a számlájához tartozó összes címen levő összeg eléréséhez szolgál. 81 karakter hosszú, és csak nagy A-Z betűkből, valamint a 9-es számjegyből állhat.",
         "noIHaveOne": "Nem, már van",
         "yesINeedASeed": "Igen, szükségem van egy mester jelszóra",
-        "explanation": "<0><0>A mester jelszavát az összes hozzá tartozó címen levő összeg eléréséhez használhatja</0><1>bármely tárcából</1><2>és</2><3>bármely eszközről.</3></0>",
+        "explanation": "<0><0>A mester jelszavát az összes hozzá tartozó címen levő összeg eléréséhez használhatja</0><1> bármely tárcából</1><2> és</2><3> bármely eszközről.</3></0>",
         "loseSeed": "De ha elveszíti a mester jelszavát, akkor elveszíti az összes IOTA-ját.",
         "keepSafe": "Kérjük, hogy a mester jelszavát mindig tartsa titokban."
     },
@@ -437,7 +457,8 @@
         "empty": "Üres",
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
-        "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése"
+        "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -469,7 +490,7 @@
         "pow": "Kiszabott munka elvégzése",
         "autoPromotion": "Auto-tranzakció előrehelyezés",
         "autoPromotionExplanation": "Az automatikus tranzakció előrehelyezés segítségével a tranzakciók hamarabb teljesülhetnek. Engedélyezze ezt a beállítást, ha a tranzakciói sokáig nem teljesülnek.",
-        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, melyek támogatják a kiszabott munka távoli elvégzését."
+        "autoPromotionPoW": "Az automatikus tranzakció előrehelyezés csak azon csomópontok esetén lehetséges, amelyek támogatják a kiszabott munka távoli elvégzését."
     },
     "advancedThemeCustomisation": {
         "background": "Háttér",
@@ -495,18 +516,21 @@
         "currency": "Pénznem"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Biztosan ki szeretne jelentkezni?"
+        "logoutConfirmation": "Biztosan ki szeretne jelentkezni?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "QR kód beolvasása"
     },
     "unitInfoModal": {
-        "unitSystem": "Mértékegységek",
+        "unitSystem": "Unit System",
         "trillion": "Trillió",
         "billion": "Milliárd",
         "million": "Millió",
         "thousand": "Ezer",
-        "one": "Egy"
+        "one": "Egy",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miért nem tudom a teljes egyenlegem elkölteni?",
@@ -528,7 +552,7 @@
         "syncingYourAccount": "Számla szinkronizálása."
     },
     "useExistingSeed": {
-        "title": "Adjon meg egy mester jelszót és egy számlanevet.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Helytelen mester jelszó formátum",
         "validSeedExplanation": "A mester jelszónak pontosan 81 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat."
     },
@@ -538,12 +562,12 @@
         "hideSeed": "Mester jelszó elrejtése",
         "notAvailable": "A mester jelszó {{accountType}} típusú számla esetén nem exportálható",
         "accountIndex": "Számlájának sorszáma",
-        "accountPage": "Your Ledger account page"
+        "accountPage": "Hardveres tárca számla oldala"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
-        "alreadyHave": "Készítettem biztonsági másolatot a mester jelszavamról",
-        "reenterSeed": "A következő lépésben a rendszer kérni fogja, hogy adja meg újra a mester jelszavát.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik, az összes IOTA-ját elveszíti.",
         "pleaseConfirm": "Kérjük, erősítse meg, hogy biztonságosan eltárolta a mester jelszavát."
     },
@@ -563,19 +587,23 @@
         "status": "Állapot",
         "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
-        "buttonInstructionsDisable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás letiltásához.",
+        "buttonInstructionsDisable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás letiltásához",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
-        "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához.",
-        "buttonInstructionsEnableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID engedélyezéséhez.",
+        "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához",
+        "buttonInstructionsEnableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID engedélyezéséhez",
         "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez"
     },
     "transferConfirmation": {
-        "youAreAbout": "A következő tartalmat készül elküldeni a címre {{contents}}",
-        "aMessage": "egy üzenet"
+        "youAreAbout": "Ön {{contents}} összeget készül elküldeni az alábbi címre",
+        "aMessage": "egy üzenet",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Hibás kód",
-        "wrongCodeExplanation": "A megadott kód hibás.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Nincs megadva kód",
         "emptyCodeExplanation": "Kérjük adja meg a kódot és próbálja újra.",
         "keyCopied": "Kulcs a vágólapra másolva",
@@ -592,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportálása",
-        "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és a jelszó nélkül a mester jelszó semmilyen módon nem visszafejthető.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
         "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
@@ -606,13 +634,15 @@
         "importSuccessExplanation": "A mester jelszavát biztonságosan tároltuk.",
         "saveToDownloadFolder": "Mentés a letöltések mappába",
         "importSeedVault": "SeedVault importálása",
-        "dropSeedVaultHere": "Húzza be ide <1></1> a SeedVault fájlt vagy klikkeljen a tallózáshoz",
+        "dropInstructions": "Húzza ide a SeedVault fájlt vagy a kijelölt mesterjelszót <1></1> vagy klikkeljen a tallózáshoz",
+        "dropActive": "Húzza ide a SeedVault fájlt vagy a kijelölt mester jelszót",
         "enterKeyExplanation": "Adja meg a SeedVault jelszavát",
         "noSeedFound": "Érvénytelen mester jelszó a SeedVault fájlban",
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultKeyExplanation": "A mester jelszavát egy jelszóval védett ún. SeedVault fájlban tároljuk. Kérjük, válasszon egy jelszót a fájl titkosításához. Erre a jelszóra akkor lesz szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből kívánja betölteni. Nyugodtan használhatja ugyanazt a jelszót, amelyet a Trinity tárcába való belépéshez is használ."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -646,7 +676,8 @@
         "preparingTransfers": "Tranzakciók előkészítése",
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
         "proofOfWork": "Kiszabott munka elvégzése",
-        "broadcasting": "Tranzakció elküldése"
+        "broadcasting": "Tranzakció elküldése",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Pillanatkép utáni egyenlegátvezetés sikertelen",
@@ -660,7 +691,8 @@
         "transition": "Egyenlegátvezetés",
         "transitioning": "Egyenlegátvezetés pillanatkép készítése után.",
         "generatingAndDetecting": "Címek előállítása és az egyenleg átvezetése.",
-        "attaching": "Címek hozzácsatolása a Tangle-höz."
+        "attaching": "Címek hozzácsatolása a Tangle-höz.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
@@ -695,6 +727,10 @@
         "notLoggedIn": "Nincs bejelentkezve",
         "setupIncomplete": "Tárca nem lett beállítva",
         "completeSetup": "Beállítások befejezése"
+    },
+    "proxy": {
+        "proxy": "Rendszer proxy használata",
+        "proxyExplanation": "Rendszer proxy automatikus felismerése és beállítása. Zárja be majd nyissa meg újra a tárcát, hogy a beállítás érvényre jusson."
     },
     "notifications": {
         "notifications": "Értesítések",
@@ -747,8 +783,8 @@
         "ledgerIncorrectIndex": "Hibás hardveres tárca számlasorszám",
         "ledgerIncorrectIndexExplanation": "A csatlakoztatott hardveres tárca korábban nem ehhez a számlához lett hozzárendelve.",
         "checkAddress": "Ellenőrizze a fogadási címet",
-        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik a hardveres tárcán megjelenő címmel. Nyomja meg a \"Cím szinkronizálás\" gombot, ha a kettő eltér.",
-        "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "checkAddressExplanation": "Kérjük ellenőrizze, hogy a cím megegyezik-e a hardveres tárcán megjelenő címmel.",
+        "applicationNotInitialised": "Jóváhagyásra váró figyelmeztetés",
+        "applicationNotInitialisedExplanation": "Nyissa meg újra az IOTA alkalmazást a hardveres tárcáján, hagyja jóvá a megjelenő figyelmeztetést, majd próbálja úra."
     }
 }

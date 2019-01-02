@@ -19,8 +19,11 @@
         "invalidResponse": "Palvelin virhe",
         "invalidResponseExplanation": "Palvelin antoi virheilmoituksen. Kokeile uudestaan vaihtamalla palvelinta.",
         "invalidResponseFetchingAccount": "Palvelin antoi virheilmoituksen haettaessa tilitietoja. Kokeile uudestaan vaihtamalla palvelinta.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Palvelin ei ole ajantasalla",
         "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen tai yritä uudestaan.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
         "seed": "Seed-luku",
         "checksum": "Tarkistussumma",
@@ -73,6 +76,8 @@
         "wallet": "Lompakko",
         "all": "Kaikki",
         "sent": "Lähetetty",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "Vastaanotettu",
         "sending": "Lähettää",
         "receiving": "Odottaa",
@@ -127,7 +132,7 @@
         "spentAddressExplanation": "VAROITUS: Varoja jo käytetyssä osoitteessa",
         "discordInformation": "Lähettäminen osoitteesta, josta on aikaisemmin lähetetty varoja on vaarallista. Saadaksesi apua tilanteeseen voit liittyä Iotan Discord palvelun #help kanavalle.",
         "androidInsecureClipboardWarning": "Leikepöydän käyttö Android-laitteella ei ole turvallista.",
-        "androidCopyPasteWarning": "Älä kopio tai liitä seed-lukua Android-laitteella.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "En kopio tai liitä seed-lukua android puhelimessa",
         "mustBeStoredAppropriately": "Se on tallennettava turvallisesti.",
         "deviceMayBecomeUnresponsive": "Laitteesi saattaa toimia hitaasti hetken aikaa.",
@@ -143,9 +148,18 @@
         "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "PÄÄTILI",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -199,7 +213,7 @@
         "passwordTooShortExplanation": "Salasanasi on oltava vähintään {{minLength}} merkkiä. Se on tällä hetkellä {{currentLength}} merkin pituinen. Yritä uudelleen.",
         "passwordMismatch": "Salasanat eivät täsmää",
         "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
-        "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "copyToClipboard": {
@@ -233,7 +247,8 @@
         "login": "Kirjaudu Sisään",
         "setNode": "Aseta Palvelin",
         "whyBiometricDisabled": "Miksi biometrinen tunnistus pois käytöstä?",
-        "whyBiometricDisabledExplanation": "Biometrinen tunnistus on pois käytöstä kun sovellus käynnistetään ensimmäistä kertaa. Ensimäisen käynnistyksen jälkeen biometristä tunnistusta voidaan käyttää. Tunnistus nollautuu, kun laite käynnistetään uudelleen, tämä johtuu sovelluksen tietoturvasta."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
@@ -262,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Älä koskaa jaa seed-lukua kenenkään ulkopuolisen kanssa.",
         "iotaLogo": "IOTA-logo",
-        "print": "TULOSTA",
+        "print": "Print",
         "paperConvenience": "Seed-luvun tulostaminen paperille on hyvä tapa tallentaa se laitteen ulkopuolelle.",
         "publicInsecure": "Tulostaminen julkisessa verkossa tai julkisella tulostimella ei kuitenkaan ole turvallista.",
-        "tapCheckboxes": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
-        "wifiCheckbox": "En tulosta julkisessa wifi-verkossa",
-        "printerCheckbox": "En tulosta julkisella tulostimella"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "Osoitteesi",
@@ -276,12 +291,13 @@
         "copyAddress": "Kopioi osoite",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty",
-        "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
-        "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan, jotta voit jakaa QR-koodeja.",
-        "tag": "Tunniste"
+        "tag": "Tunniste",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -295,21 +311,22 @@
         "letsWriteDownYourSeed": "Let's write down your seed",
         "youCanHighlightCharacters": "Voit korostaa 9 merkkiä kerrallaan",
         "printBlankWallet": "Tulosta tyhjä lompakko",
-        "whatIsChecksum": "Jokaisella seed-luvulla on kolmen merkin pituinen tarkistussumma",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Jokaisella seed-luvulla on kolmen merkin pituinen tarkistussumma.",
         "iHavesavedMySeed": "Seed-luku turvassa",
         "checksumExplanation": "Kun lisäät seed-luvun lompakkoon, varmista että kolmen merkin pituinen tarkistussumma vastaa alkuperäistä.",
         "mustSaveYourSeed": "<0><0>Tallenna seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Ole hyvä ja vahvista seed-lukusi",
-        "trinityWillNeverAskToReenter": "Trinity ei koskaan pyydä sinua antamaan seed-lukua uudelleen, jollet tyhjennä tai asenna sovellusta kokonaan uudelleen.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "Anna seed-lukusi",
         "incorrectSeed": "Virheellinen seed-luku",
         "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
         "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se.",
         "enterSeedBelow": "Anna seed-lukusi uudelleen, jotta voimme varmistaa että tallensit sen asianmukaisesti",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "VAROITUS: Kopioi & Liitä on poistettu sinun turvallisuuden takia."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "Virheellinen osoite",
@@ -336,7 +353,8 @@
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
         "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
-        "invalid": "VIRHEELLINEN"
+        "invalid": "VIRHEELLINEN",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "Annetaan seed-luvulle nimi",
@@ -364,7 +382,9 @@
         "addNewSeed": "Lisää uusi seed-luku",
         "twoFA": "Kaksivaiheinen tunnistautuminen (2FA)",
         "changePassword": "Vaihda salasana",
+        "general": "General settings",
         "advanced": "Lisäasetukset",
+        "account": "Account settings",
         "logout": "Kirjaudu ulos",
         "reset": "Tyhjennä lompakko",
         "syncingComplete": "Synkronointi valmis",
@@ -437,7 +457,8 @@
         "empty": "Tyhjä",
         "retrying": "Yritetään uudelleen",
         "yesterday": "Eilen",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoting another bundle",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -495,18 +516,21 @@
         "currency": "Valuutta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Haluatko varmasti kirjautua ulos?"
+        "logoutConfirmation": "Haluatko varmasti kirjautua ulos?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "Skannaa QR-koodi"
     },
     "unitInfoModal": {
-        "unitSystem": "YKSIKKÖJÄRJESTELMÄ",
+        "unitSystem": "Unit System",
         "trillion": "Biljoonaa",
         "billion": "Miljardia",
         "million": "Miljoonaa",
         "thousand": "Tuhatta",
-        "one": "Yksi"
+        "one": "Yksi",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miksi en voi käyttää koko tilin saldoa?",
@@ -516,7 +540,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Tätä toimintoa ei voi kumota",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
@@ -528,7 +552,7 @@
         "syncingYourAccount": "Synkronoidaan tiliä."
     },
     "useExistingSeed": {
-        "title": "Anna seed-luku ja tilin nimi.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "Seed-luku on virheellinen",
         "validSeedExplanation": "Hyväksytyn seed-luvun on oltava 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9."
     },
@@ -542,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Tallensitko seed-lukusi?",
-        "alreadyHave": "Seed-luku turvassa",
-        "reenterSeed": "Seuraavassa vaiheessa sinua pyydetään antamaan seed-lukusi uudelleen.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "Jos et ole tallentanut seed-lukuasi laitteen ulkopuolelle, saatat laitteen hajotessa menettää kaikki varasi.",
         "pleaseConfirm": "Varmista, että olet tallentanut seed-lukusi turvallisesti."
     },
@@ -563,19 +587,23 @@
         "status": "Tila",
         "fingerprintUnavailable": "Biometrinen tunnistus ei ole käytettävissä",
         "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
-        "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä.",
+        "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
-        "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen.",
-        "buttonInstructionsEnableIPhoneX": "Paina alla olevaa painiketta ottaaksesi kasvontunnistuksen käyttöön.",
+        "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen",
+        "buttonInstructionsEnableIPhoneX": "Paina alla olevaa painiketta ottaaksesi kasvontunnistuksen käyttöön",
         "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään"
     },
     "transferConfirmation": {
         "youAreAbout": "Olet lähettämässä {{contents}} osoitteeseen",
-        "aMessage": "viesti"
+        "aMessage": "viesti",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "Väärä koodi",
-        "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tyhjennä tunnusluku",
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
@@ -592,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Vie SeedVault-tiedosto",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "Varmista että tallennat tiedoston useaan eri paikkaan (kovalevy, pilvi, USB-tikku). Jos hävitä tiedoston, etkä ole tallentanut tiedostoa muualle, menetät pääsyn IOTA-varoihisi.",
         "exportFail": "SeedVault-tiedoston vienti epäonnistui",
         "exportFailExplanation": "SeedVault-tiedoston viennissä ilmeni ongelmia. Varmista että sinulla on riittävät oikeudet ja tarpeeksi tilaa levyllä.",
@@ -606,13 +634,15 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "Tuo Seedvault-tiedosto",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "SeedVault-tiedosto ei sisällä kelvolista seed-lukua",
         "noSeedFoundExplanation": "SeedVault-tiedosto on joko tyhjä tai sisältää seed-luvun virheellisessä muodossa.",
         "seedFileError": "SeedVault-tiedoston avaaminen epäonnistui",
         "seedFileErrorExplanation": "SeedVault-tiedoston avaamisessa ilmeni ongelmia. Varmista että sinulla on oikea tiedosto, eikä se ole korruptoitunut.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "MARVO",
@@ -646,7 +676,8 @@
         "preparingTransfers": "Alustetaan siirtoja",
         "gettingTransactionsToApprove": "Odotetaan siirtoja hyväksyttäväksi",
         "proofOfWork": "Viimeistellään laskentatyö (Proof of Work)",
-        "broadcasting": "Lähetetään"
+        "broadcasting": "Lähetetään",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-siirtymä ei onnistu",
@@ -660,7 +691,8 @@
         "transition": "Siirtymä",
         "transitioning": "Siirrytään uuteen snapshot -versioon.",
         "generatingAndDetecting": "Luodaan osoitteita ja haetaan saldoa.",
-        "attaching": "Yhdistetään osoitteita Tangle-verkkoon."
+        "attaching": "Yhdistetään osoitteita Tangle-verkkoon.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Tiedot haettu onnistuneesti",
@@ -671,7 +703,7 @@
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Uusi versio saatavilla",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Install update and restart",
         "installUpdateExplanation": "Download complete, Trinity will now restart to install the update.",
         "downloadingUpdate": "Downloading update",
@@ -695,6 +727,10 @@
         "notLoggedIn": "You are not logged in",
         "setupIncomplete": "Wallet setup incomplete",
         "completeSetup": "Complete setup"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "Notifications",
@@ -747,7 +783,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }

@@ -1,10 +1,14 @@
 {
-  "presets": ["react-native"],
-  "plugins": [
-      ["module-resolver", {
-          "cwd": "babelrc",
-          "root": [".", "src"],
-          "extensions": [".ios.js", ".android.js", ".js", ".json"]
-      }]
-  ]
+    "presets": ["module:metro-react-native-babel-preset"],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "cwd": "babelrc",
+                "root": [".", "src"],
+                "extensions": [".ios.js", ".android.js", ".js", ".json"]
+            }
+        ],
+        "jest-hoist"
+    ]
 }

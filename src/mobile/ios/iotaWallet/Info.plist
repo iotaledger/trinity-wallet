@@ -21,11 +21,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.5.1</string>
+	<string>0.6.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>27</string>
+	<string>31</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -66,6 +66,8 @@
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Trinity requires access to your photo library in order to save QR codes to the camera roll.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Trinity requires access to your microphone for camera functionality.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>

@@ -1,0 +1,23 @@
+patch-package
+--- a/node_modules/react-qr-reader/lib/index.js
++++ b/node_modules/react-qr-reader/lib/index.js
+@@ -208,7 +208,7 @@ module.exports = (_temp = _class = function (_Component) {
+       // Preview element hasn't been rendered so wait for it.
+ 
+       if (!preview) {
+-        setTimeout(this.handleVideo, 200, stream);
++        return setTimeout(this.handleVideo, 200, stream);
+       }
+ 
+       // Handle different browser implementations of MediaStreams as src
+--- a/node_modules/react-qr-reader/src/index.js
++++ b/node_modules/react-qr-reader/src/index.js
+@@ -167,7 +167,7 @@ module.exports = class Reader extends Component {
+ 
+     // Preview element hasn't been rendered so wait for it.
+     if (!preview) {
+-      setTimeout(this.handleVideo, 200, stream)
++      return setTimeout(this.handleVideo, 200, stream)
+     }
+ 
+     // Handle different browser implementations of MediaStreams as src

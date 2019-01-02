@@ -16,7 +16,6 @@ import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
 import { generateNewAddress } from 'shared-modules/actions/wallet';
-import { flipReceiveCard } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import {
     selectAccountInfo,
@@ -199,10 +198,6 @@ class Receive extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        isCardFlipped: PropTypes.bool.isRequired,
-        /** @ignore */
-        flipReceiveCard: PropTypes.func.isRequired,
-        /** @ignore */
         qrMessage: PropTypes.string.isRequired,
         /** @ignore */
         qrAmount: PropTypes.string.isRequired,
@@ -216,6 +211,8 @@ class Receive extends Component {
         usdPrice: PropTypes.number.isRequired,
         /** @ignore */
         conversionRate: PropTypes.number.isRequired,
+        /** @ignore */
+        hadErrorGeneratingNewAddress: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -223,6 +220,8 @@ class Receive extends Component {
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
             scramblingLetters: [],
+            hasPressedGenerateAddress: false,
+            isCardFlipped: false,
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -230,14 +229,11 @@ class Receive extends Component {
 
     componentWillMount() {
         this.scrambleLetters();
-
-        const value = this.props.isCardFlipped ? 1 : 0;
-
         this.rotateAnimatedValue = new Animated.Value(0);
-        this.flipAnimatedValue = new Animated.Value(value);
-        this.scaleAnimatedValueFront = new Animated.Value(value);
-        this.scaleAnimatedValueBack = new Animated.Value(value);
-        this.opacityAnimatedValue = new Animated.Value(value);
+        this.flipAnimatedValue = new Animated.Value(0);
+        this.scaleAnimatedValueFront = new Animated.Value(0);
+        this.scaleAnimatedValueBack = new Animated.Value(0);
+        this.opacityAnimatedValue = new Animated.Value(0);
 
         this.rotateInterpolate = this.rotateAnimatedValue.interpolate({
             inputRange: [0, 1],
@@ -278,6 +274,15 @@ class Receive extends Component {
         if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
             timer.clearInterval('scramble');
         }
+        if (!this.props.hadErrorGeneratingNewAddress && newProps.hadErrorGeneratingNewAddress) {
+            this.setState({ hasPressedGenerateAddress: false });
+        }
+        if (this.props.selectedAccountName !== newProps.selectedAccountName) {
+            this.setState({ hasPressedGenerateAddress: false });
+            if (this.state.isCardFlipped) {
+                this.flipCard();
+            }
+        }
     }
 
     shouldComponentUpdate(newProps) {
@@ -299,7 +304,10 @@ class Receive extends Component {
      *   @method onCopyAddressPress
      **/
     onCopyAddressPress() {
-        const { t, receiveAddress } = this.props;
+        const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
+        if (!this.state.hasPressedGenerateAddress || isGeneratingReceiveAddress) {
+            return this.props.generateAlert('error', t('generateAnAddressTitle'), t('generateAnAddressExplanation'));
+        }
         Clipboard.setString(receiveAddress);
         this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
@@ -396,6 +404,7 @@ class Receive extends Component {
      **/
     async generateAddress() {
         const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
+        this.setState({ hasPressedGenerateAddress: true });
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -455,8 +464,14 @@ class Receive extends Component {
      *   @method flipCard
      **/
     flipCard() {
-        const { isCardFlipped } = this.props;
+        const { t } = this.props;
+        const { isCardFlipped } = this.state;
         const toValue = isCardFlipped ? 0 : 1;
+
+        if (!this.state.hasPressedGenerateAddress || this.props.isGeneratingReceiveAddress) {
+            return this.props.generateAlert('error', t('generateAnAddressTitle'), t('generateAnAddressExplanation'));
+        }
+
         Animated.parallel([
             Animated.timing(isCardFlipped ? this.scaleAnimatedValueBack : this.scaleAnimatedValueFront, {
                 toValue,
@@ -484,20 +499,19 @@ class Receive extends Component {
                 delay: 200,
                 useNativeDriver: true,
             }),
-        ]).start(() => this.props.flipReceiveCard());
+        ]).start(() => this.setState({ isCardFlipped: !isCardFlipped }));
     }
 
     render() {
         const {
             t,
             theme: { primary, dark, positive },
-            receiveAddress,
             isGeneratingReceiveAddress,
-            isCardFlipped,
             qrMessage,
             qrTag,
+            receiveAddress,
         } = this.props;
-        const { scramblingLetters } = this.state;
+        const { scramblingLetters, hasPressedGenerateAddress, isCardFlipped } = this.state;
         const qrContent = JSON.stringify({
             address: receiveAddress,
             amount: this.getQrValue(),
@@ -525,7 +539,7 @@ class Receive extends Component {
                                     transform: [{ perspective: 1000 }, flipStyleFront, scaleStyleFront],
                                 },
                             ]}
-                            pointerEvents={this.props.isCardFlipped ? 'none' : 'auto'}
+                            pointerEvents={isCardFlipped ? 'none' : 'auto'}
                         >
                             {qrOptionsActive && (
                                 <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
@@ -548,12 +562,15 @@ class Receive extends Component {
                                     { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
                                 ]}
                             >
-                                <CustomQrCodeComponent
-                                    value={qrContent}
-                                    size={width / 3}
-                                    color="black"
-                                    backgroundColor="transparent"
-                                />
+                                {!isGeneratingReceiveAddress &&
+                                    hasPressedGenerateAddress && (
+                                        <CustomQrCodeComponent
+                                            value={qrContent}
+                                            size={width / 3}
+                                            color="black"
+                                            backgroundColor="transparent"
+                                        />
+                                    )}
                                 {/* FIXME: Overflow: 'visible' is not supported on Android */}
                                 {isAndroid && (
                                     <TouchableWithoutFeedback onPress={this.generateAddress}>
@@ -597,30 +614,34 @@ class Receive extends Component {
                                             />
                                         </Animated.View>
                                     </View>
-                                    <ScramblingText
-                                        scramble={isGeneratingReceiveAddress}
-                                        textStyle={[styles.addressText, { color: dark.body }]}
-                                        scramblingLetters={scramblingLetters}
-                                        rowIndex={0}
-                                    >
-                                        {receiveAddress.substring(0, 30)}
-                                    </ScramblingText>
-                                    <ScramblingText
-                                        scramble={isGeneratingReceiveAddress}
-                                        textStyle={[styles.addressText, { color: dark.body }]}
-                                        scramblingLetters={scramblingLetters}
-                                        rowIndex={1}
-                                    >
-                                        {receiveAddress.substring(30, 60)}
-                                    </ScramblingText>
-                                    <ScramblingText
-                                        scramble={isGeneratingReceiveAddress}
-                                        textStyle={[styles.addressText, { color: dark.body }]}
-                                        scramblingLetters={scramblingLetters}
-                                        rowIndex={2}
-                                    >
-                                        {receiveAddress.substring(60, 90)}
-                                    </ScramblingText>
+                                    {hasPressedGenerateAddress && (
+                                        <View>
+                                            <ScramblingText
+                                                scramble={isGeneratingReceiveAddress}
+                                                textStyle={[styles.addressText, { color: dark.body }]}
+                                                scramblingLetters={scramblingLetters}
+                                                rowIndex={0}
+                                            >
+                                                {receiveAddress.substring(0, 30)}
+                                            </ScramblingText>
+                                            <ScramblingText
+                                                scramble={isGeneratingReceiveAddress}
+                                                textStyle={[styles.addressText, { color: dark.body }]}
+                                                scramblingLetters={scramblingLetters}
+                                                rowIndex={1}
+                                            >
+                                                {receiveAddress.substring(30, 60)}
+                                            </ScramblingText>
+                                            <ScramblingText
+                                                scramble={isGeneratingReceiveAddress}
+                                                textStyle={[styles.addressText, { color: dark.body }]}
+                                                scramblingLetters={scramblingLetters}
+                                                rowIndex={2}
+                                            >
+                                                {receiveAddress.substring(60, 90)}
+                                            </ScramblingText>
+                                        </View>
+                                    )}
                                 </View>
                             </TouchableWithoutFeedback>
                             <View style={styles.footerButtonContainer}>
@@ -629,14 +650,18 @@ class Receive extends Component {
                                         styles.footerButton,
                                         { backgroundColor: primary.color, borderColor: primary.border },
                                     ]}
-                                    onPress={() => this.onCopyAddressPress()}
+                                    onPress={() =>
+                                        !hasPressedGenerateAddress ? this.generateAddress() : this.onCopyAddressPress()
+                                    }
                                 >
-                                    <Text style={[styles.buttonText, { color: primary.body }]}>{t('copyAddress')}</Text>
+                                    <Text style={[styles.buttonText, { color: primary.body }]}>
+                                        {!hasPressedGenerateAddress ? t('generateAnAddress') : t('copyAddress')}
+                                    </Text>
                                 </TouchableOpacity>
                             </View>
                         </Animated.View>
                         <Animated.View
-                            pointerEvents={this.props.isCardFlipped ? 'auto' : 'none'}
+                            pointerEvents={isCardFlipped ? 'auto' : 'none'}
                             style={[
                                 styles.flipCard,
                                 styles.flipCardBack,
@@ -715,7 +740,6 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isTransitioning: state.ui.isTransitioning,
     password: state.wallet.password,
-    isCardFlipped: state.ui.isReceiveCardFlipped,
     qrMessage: state.ui.qrMessage,
     qrAmount: state.ui.qrAmount,
     qrTag: state.ui.qrTag,
@@ -723,6 +747,7 @@ const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     usdPrice: state.marketData.usdPrice,
     conversionRate: state.settings.conversionRate,
+    hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
 });
 
 const mapDispatchToProps = {
@@ -731,7 +756,6 @@ const mapDispatchToProps = {
     getFromKeychainRequest,
     getFromKeychainSuccess,
     getFromKeychainError,
-    flipReceiveCard,
 };
 
 export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

@@ -101,7 +101,7 @@ describe('Testing Balance component', () => {
             const props = getProps();
 
             const wrapper = shallow(<Balance {...props} />);
-            expect(wrapper.name()).toEqual('ScrollViewMock');
+            expect(wrapper.name()).toEqual('ScrollView');
         });
     });
 

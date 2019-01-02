@@ -1,8 +1,8 @@
+import last from 'lodash/last';
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import { Navigation } from 'react-native-navigation';
 import { isAndroid } from 'libs/device';
 import { rgbToHex } from 'shared-modules/libs/utils';
 import timer from 'react-native-timer';
@@ -18,24 +18,18 @@ class DynamicStatusBar extends Component {
         /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
         /** @ignore */
-        currentRoute: PropTypes.string.isRequired,
+        navStack: PropTypes.array,
     };
 
-    componentWillMount() {
-        Navigation.events().registerComponentDidAppearListener(() => {
-            this.resetStatusBar(this.props.currentRoute);
-        });
-    }
-
     componentWillReceiveProps(newProps) {
-        const { isModalActive, currentRoute } = this.props;
+        const { isModalActive, navStack } = this.props;
         // Reset StatusBar on modal open/close. Prevents residual status bar colour change when an alert is open during modal activity toggle
         if (isModalActive !== newProps.isModalActive) {
-            this.resetStatusBar(currentRoute);
-            timer.setTimeout('resetStatusBarOnModalActivity', () => this.resetStatusBar(currentRoute), 400);
+            this.resetStatusBar(last(navStack));
+            timer.setTimeout('resetStatusBarOnModalActivity', () => this.resetStatusBar(last(navStack)), 400);
         }
-        if (currentRoute !== newProps.currentRoute) {
-            timer.setTimeout('resetStatusBarOnRouteChange', () => this.resetStatusBar(newProps.currentRoute), 400);
+        if (last(navStack) !== last(newProps.navStack)) {
+            timer.setTimeout('resetStatusBarOnRouteChange', () => this.resetStatusBar(last(newProps.navStack)), 400);
         }
     }
 
@@ -54,7 +48,7 @@ class DynamicStatusBar extends Component {
      */
     getStatusBarColor(currentRoute) {
         const { theme, inactive } = this.props;
-        const backgroundColor = getBackgroundColor(currentRoute, theme, false, inactive);
+        const backgroundColor = getBackgroundColor(currentRoute, theme, inactive);
         if (backgroundColor) {
             return rgbToHex(backgroundColor);
         }
@@ -89,13 +83,12 @@ class DynamicStatusBar extends Component {
     }
 
     render() {
-        const { currentRoute } = this.props;
-        const statusBarStyle = this.getStatusBarStyle(this.getStatusBarColor(currentRoute));
+        const { navStack } = this.props;
+        const statusBarStyle = this.getStatusBarStyle(this.getStatusBarColor(last(navStack)));
         return (
             <StatusBar
                 barStyle={statusBarStyle}
-                backgroundColor={this.getStatusBarColor(currentRoute)}
-                translucent
+                backgroundColor={this.getStatusBarColor(last(navStack))}
                 animated={false}
             />
         );
@@ -106,7 +99,7 @@ const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
     theme: state.settings.theme,
     isModalActive: state.ui.isModalActive,
-    currentRoute: state.ui.currentRoute,
+    navStack: state.wallet.navStack,
 });
 
 export default connect(mapStateToProps)(DynamicStatusBar);

@@ -3,6 +3,7 @@ import omitBy from 'lodash/omitBy';
 import each from 'lodash/each';
 import size from 'lodash/size';
 import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import includes from 'lodash/includes';
@@ -12,7 +13,9 @@ import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
 import unset from 'lodash/unset';
+import set from 'lodash/set';
 import validUrl from 'valid-url';
+import { VERSIONS_URL } from '../config';
 
 /**
  * Computes number rounded to precision
@@ -154,7 +157,7 @@ export const rearrangeObjectKeys = (obj, prop) => {
     return obj;
 };
 
-export const updatePersistedState = (incomingState, restoredState) => {
+export const updatePersistedState = (incomingState, restoredState, propsToReset) => {
     const blacklistedStateProps = ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'];
 
     const incomingStateWithWhitelistedProps = omitBy(incomingState, (value, key) =>
@@ -163,6 +166,12 @@ export const updatePersistedState = (incomingState, restoredState) => {
 
     const { settings: { theme, versions } } = incomingStateWithWhitelistedProps;
     const restoredCopy = cloneDeep(restoredState);
+
+    if (propsToReset.length !== 0) {
+        propsToReset.forEach((prop) => {
+            set(restoredCopy, prop, get(incomingState, prop));
+        });
+    }
 
     if ('settings' in restoredCopy) {
         restoredCopy.settings.theme = theme;
@@ -328,4 +337,24 @@ export const removeNonAlphaNumeric = (source, fallback = '') => {
         newStr = fallback.replace(/[^a-zA-Z0-9_-]/g, '');
     }
     return newStr;
+};
+
+/**
+ * Fetches latest and blacklisted versions
+ *
+ * @method fetchVersions
+ * @param {string} [url]
+ *
+ * @returns {Promise<*>}
+ */
+export const fetchVersions = (url = VERSIONS_URL) => {
+    return fetch(url)
+        .then((response) => response.json())
+        .then((response) => {
+            if (isObject(response)) {
+                return response;
+            }
+            return {};
+        })
+        .catch(() => Promise.resolve({}));
 };

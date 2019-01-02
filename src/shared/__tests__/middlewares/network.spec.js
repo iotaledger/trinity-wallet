@@ -56,7 +56,11 @@ describe('Middlewares: networkMiddleware', () => {
             it('should dispatch a connection change action', () => {
                 const middleware = [thunk, networkMiddleware];
                 const mockStore = configureStore(middleware);
-                const store = mockStore({});
+                const store = mockStore({
+                    wallet: {
+                        hasConnection: false,
+                    },
+                });
 
                 store.dispatch({
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
@@ -76,7 +80,11 @@ describe('Middlewares: networkMiddleware', () => {
             it('should dispatch an alerts actions', () => {
                 const middleware = [thunk, networkMiddleware];
                 const mockStore = configureStore(middleware);
-                const store = mockStore({});
+                const store = mockStore({
+                    wallet: {
+                        hasConnection: false,
+                    },
+                });
 
                 store.dispatch({
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',

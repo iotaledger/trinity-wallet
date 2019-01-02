@@ -114,13 +114,13 @@ We need your Personal Data to enable your use of the Trinity Wallet App and to p
 
 Any consent is provided freely. If you give your consent, you have the right to withdraw your consent at any time. The withdrawal of consent does not affect the lawfulness of processing based on consent before its withdrawal. After your withdrawal we will stop processing your Personal Data, including storage, unless further data processing is required and legally permitted. This paragraph is only relevant for processing that is entirely voluntary – it does not apply for processing that is necessary or obligatory in any way, as is for example the case with regard to Personal Data required for the installation and the operation of the Trinity Wallet App.
 
-To withdraw your consent, please send us an e-mail to [privacy@iota.org](mailto:privacy@iota.org)or a letter to IOTA Foundation, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
+To withdraw your consent, please send us an e-mail to [privacy@iota.org](mailto:privacy@iota.org) or a letter to IOTA Foundation, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
 
 ### **Legitimate Interest and Right to Object**
 
 You may object to the processing of your personal data based on legitimate interests of IOTA Foundation or third parties. Unless your objection is directed solely against direct marketing by IOTA Foundation, you have to explain your special situation, which makes the processing of your personal data based on legitimate interests unacceptable for you.
 
-To object, please send us an e-mail to  [privacy@iota.org](mailto:privacy@iota.org)  or a letter to IOTA Foundation, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
+To object, please send us an e-mail to  [privacy@iota.org](mailto:privacy@iota.org) or a letter to IOTA Foundation, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
 
 ### **When we erase your Personal Data**
 

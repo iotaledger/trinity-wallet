@@ -12,10 +12,7 @@ const getProps = (overrides) =>
             t: () => '',
             closeApp: noop,
             hideModal: noop,
-            backgroundColor: '#ffffff',
-            textColor: {},
-            borderColor: {},
-            warningColor: {},
+            theme: { body: {}, negative: {} },
         },
         overrides,
     );
@@ -39,16 +36,8 @@ describe('Testing RootDetectionModal component', () => {
             expect(RootDetectionModalComponent.propTypes.hideModal).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a backgroundColor string as a prop', () => {
-            expect(RootDetectionModalComponent.propTypes.backgroundColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a textColor object as a prop', () => {
-            expect(RootDetectionModalComponent.propTypes.textColor).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a borderColor object as a prop', () => {
-            expect(RootDetectionModalComponent.propTypes.borderColor).toEqual(PropTypes.object.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(RootDetectionModalComponent.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
     });
 
@@ -57,10 +46,10 @@ describe('Testing RootDetectionModal component', () => {
             const props = getProps();
 
             const wrapper = shallow(<RootDetectionModalComponent {...props} />);
-            expect(wrapper.name()).toEqual('View');
+            expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
 
-        it('should call prop method hideModal when onRightButtonPress prop of OnboardingButtons is triggered', () => {
+        it('should call prop method hideModal when onRightButtonPress prop of ModalView component is triggered', () => {
             const props = getProps({
                 hideModal: jest.fn(),
             });
@@ -69,18 +58,12 @@ describe('Testing RootDetectionModal component', () => {
 
             expect(props.hideModal).toHaveBeenCalledTimes(0);
 
-            wrapper
-                .children()
-                .at(0)
-                .children()
-                .last()
-                .props()
-                .onRightButtonPress();
+            wrapper.props().onRightButtonPress();
 
             expect(props.hideModal).toHaveBeenCalledTimes(1);
         });
 
-        it('should call prop method closeApp when onLeftButtonPress prop of OnboardingButtons is triggered', () => {
+        it('should call prop method closeApp when onLeftButtonPress prop of ModalView is triggered', () => {
             const props = getProps({
                 closeApp: jest.fn(),
             });
@@ -89,13 +72,7 @@ describe('Testing RootDetectionModal component', () => {
 
             expect(props.closeApp).toHaveBeenCalledTimes(0);
 
-            wrapper
-                .children()
-                .at(0)
-                .children()
-                .last()
-                .props()
-                .onLeftButtonPress();
+            wrapper.props().onLeftButtonPress();
 
             expect(props.closeApp).toHaveBeenCalledTimes(1);
         });

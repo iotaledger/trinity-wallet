@@ -92,8 +92,8 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 27
-        versionName "0.5.1"
+        versionCode 31
+        versionName "0.6.0"
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
@@ -104,7 +104,7 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative51"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -152,6 +152,7 @@ android {
     }
 }
 dependencies {
+    implementation project(':react-native-qr-scanner')
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
     implementation project(':nodejs-mobile-react-native')
@@ -171,7 +172,7 @@ dependencies {
     implementation project(':react-native-navigation')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation ('com.facebook.react:react-native:0.51.0') { force = true }
+    implementation ('com.facebook.react:react-native:+')
     implementation project(':react-native-svg')
     implementation project(':react-native-keychain')
     implementation 'com.android.support:multidex:1.0.1'

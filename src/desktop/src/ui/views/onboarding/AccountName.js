@@ -10,7 +10,7 @@ import { MAX_ACC_LENGTH } from 'libs/crypto';
 import SeedStore from 'libs/SeedStore';
 
 import { generateAlert } from 'actions/alerts';
-import { setAdditionalAccountInfo } from 'actions/wallet';
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 
 import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
@@ -25,7 +25,11 @@ class AccountName extends React.PureComponent {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        additionalAccountMeta: PropTypes.object.isRequired,
+        /** @ignore */
+        additionalAccountName: PropTypes.string.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
         /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
@@ -36,8 +40,8 @@ class AccountName extends React.PureComponent {
 
     state = {
         name:
-            this.props.wallet.additionalAccountName && this.props.wallet.additionalAccountName.length
-                ? this.props.wallet.additionalAccountName
+            this.props.additionalAccountName && this.props.additionalAccountName.length
+                ? this.props.additionalAccountName
                 : '',
     };
 
@@ -52,7 +56,7 @@ class AccountName extends React.PureComponent {
     setName = async (event) => {
         event.preventDefault();
 
-        const { wallet, setAdditionalAccountInfo, accountNames, history, generateAlert, t } = this.props;
+        const { wallet, accountNames, history, generateAlert, t } = this.props;
 
         const name = this.state.name.replace(/^\s+|\s+$/g, '');
 
@@ -75,10 +79,9 @@ class AccountName extends React.PureComponent {
             return;
         }
 
-        setAdditionalAccountInfo({
-            addingAdditionalAccount: true,
-            additionalAccountName: this.state.name,
-            additionalAccountType: 'keychain',
+        this.props.setAccountInfoDuringSetup({
+            name: this.state.name,
+            completed: !Electron.getOnboardingGenerated() && accountNames.length > 0
         });
 
         if (Electron.getOnboardingGenerated()) {
@@ -102,9 +105,9 @@ class AccountName extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, wallet } = this.props;
+        const { history, additionalAccountMeta } = this.props;
 
-        if (wallet.additionalAccountMeta.type === 'ledger') {
+        if (additionalAccountMeta.type === 'ledger') {
             return history.push('/onboarding/seed-ledger');
         }
 
@@ -146,12 +149,14 @@ class AccountName extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
+    additionalAccountMeta: state.accounts.accountInfoDuringSetup.meta,
+    additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     wallet: state.wallet,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountName));

@@ -27,6 +27,7 @@ const getProps = (overrides) =>
             generateAlert: noop,
             changeAccountName: noop,
             theme: { body: {} },
+            selectedAccountType: 'keychain',
         },
         overrides,
     );

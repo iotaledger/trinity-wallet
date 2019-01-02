@@ -37,6 +37,7 @@ const getProps = (overrides) =>
             selectedAccountName: 'MAIN ACCOUNT',
             generateAlert: noop,
             manuallySyncAccount: noop,
+            selectedAccountType: 'keychain',
         },
         overrides,
     );

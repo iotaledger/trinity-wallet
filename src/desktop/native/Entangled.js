@@ -1,7 +1,7 @@
-const { fork } = require('child_process');
-const path = require('path');
-const { powFunc, genFunc } = require('entangled-node');
-const { tritsToChars } = require('../src/libs/helpers');
+import { fork } from 'child_process';
+import path from 'path';
+import { powFunc, genFunc } from 'entangled-node';
+import { tritsToChars } from 'libs/iota/converter';
 
 let timeout = null;
 
@@ -57,4 +57,4 @@ const Entangled = {
     },
 };
 
-module.exports = Entangled;
+export default Entangled;

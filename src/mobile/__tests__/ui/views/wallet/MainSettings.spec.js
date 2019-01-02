@@ -20,6 +20,8 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
+jest.mock('react-native-share', () => {});
+
 const getProps = (overrides) =>
     assign(
         {},

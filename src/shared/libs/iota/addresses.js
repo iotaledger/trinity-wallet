@@ -278,7 +278,7 @@ export const removeUnusedAddresses = (provider) => (index, latestUnusedAddress, 
         if (
             size(hashes) === 0 &&
             some(balances, (balance) => balance === 0) &&
-            some(wereSpent, (status) => !status.remote || !status.local)
+            some(wereSpent, (status) => status.remote === false && status.local === false)
         ) {
             return removeUnusedAddresses(provider)(index - 1, finalAddresses[index], finalAddresses.slice(0, index));
         }
@@ -405,19 +405,17 @@ export const filterSpentAddresses = (provider) => (inputs, addressData, normalis
 };
 
 /**
- *   Communicates with ledger and checks if the addresses are spent from.
+ *   Communicates with ledger and checks if the any address is spent.
  *
- *   @method shouldAllowSendingToAddress
+ *   @method isAnyAddressSpent
  *   @param {string} [provider]
  *
  *   @returns {function(array): Promise<boolean>}
  **/
-export const shouldAllowSendingToAddress = (provider) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
-        const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
-
-        return !spentAddresses.length;
-    });
+export const isAnyAddressSpent = (provider) => (addresses) => {
+    return wereAddressesSpentFromAsync(provider)(addresses).then((spendStatuses) =>
+        some(spendStatuses, (spendStatus) => spendStatus === true),
+    );
 };
 
 /**

@@ -39,10 +39,11 @@ describe('Reducer: ui', () => {
                 qrMessage: '',
                 qrTag: '',
                 selectedQrTab: 'message',
-                isReceiveCardFlipped: false,
                 modalContent: 'snapshotTransitionInfo',
                 modalProps: {},
                 currentRoute: 'login',
+                hadErrorGeneratingNewAddress: false,
+                isKeyboardActive: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -446,6 +447,7 @@ describe('Reducer: ui', () => {
         it('should set "isGeneratingReceiveAddress" state prop to true', () => {
             const initialState = {
                 isGeneratingReceiveAddress: false,
+                hadErrorGeneratingNewAddress: false,
             };
 
             const action = {
@@ -455,6 +457,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isGeneratingReceiveAddress: true,
+                hadErrorGeneratingNewAddress: false,
             };
 
             expect(newState).to.eql(expectedState);
@@ -484,6 +487,7 @@ describe('Reducer: ui', () => {
         it('should set "isGeneratingReceiveAddress" state prop to true', () => {
             const initialState = {
                 isGeneratingReceiveAddress: true,
+                hadErrorGeneratingNewAddress: false,
             };
 
             const action = {
@@ -493,6 +497,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isGeneratingReceiveAddress: false,
+                hadErrorGeneratingNewAddress: true,
             };
 
             expect(newState).to.eql(expectedState);

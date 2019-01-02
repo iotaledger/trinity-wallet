@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getBackgroundColor } from 'ui/theme/general';
-import { isIPhoneFailingSafeAreaView } from 'libs/device';
+import { width, height } from 'libs/dimensions';
 
 export default function withSafeAreaView(WrappedComponent) {
     class EnhancedComponent extends Component {
@@ -15,6 +14,8 @@ export default function withSafeAreaView(WrappedComponent) {
             theme: PropTypes.object.isRequired,
             /** @ignore */
             inactive: PropTypes.bool.isRequired,
+            /** @ignore */
+            isModalActive: PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -36,22 +37,12 @@ export default function withSafeAreaView(WrappedComponent) {
             return (
                 <SafeAreaView
                     style={{
-                        flex: 1,
+                        height,
+                        width,
                         backgroundColor: inactive ? theme.body.bg : getBackgroundColor(currentScreen, theme, inactive),
                     }}
-                    forceInset={{ top: 'always' }}
                 >
                     <WrappedComponent {...this.props} />
-                    {isIPhoneFailingSafeAreaView && (
-                        <View
-                            style={{
-                                height: 34,
-                                backgroundColor: inactive
-                                    ? theme.body.bg
-                                    : getBackgroundColor(currentScreen, theme, true, inactive),
-                            }}
-                        />
-                    )}
                 </SafeAreaView>
             );
         }
@@ -60,6 +51,7 @@ export default function withSafeAreaView(WrappedComponent) {
     const mapStateToProps = (state) => ({
         theme: state.settings.theme,
         inactive: state.ui.inactive,
+        isModalActive: state.ui.isModalActive,
     });
 
     return hoistNonReactStatics(connect(mapStateToProps)(EnhancedComponent), WrappedComponent);

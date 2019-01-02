@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import { withI18n } from 'react-i18next';
 
-import { capitalize } from 'libs/helpers';
+import { capitalize } from 'libs/iota/converter';
 
 import Theme from 'ui/global/Theme';
 

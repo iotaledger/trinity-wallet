@@ -14,6 +14,7 @@ const getProps = (overrides) =>
             theme: { primary: {}, bar: {} },
             isActive: false,
             onPress: noop,
+            name: 'send',
         },
         overrides,
     );
@@ -49,7 +50,8 @@ describe('Testing Tab component', () => {
             const props = getProps();
 
             const wrapper = shallow(<Tab {...props} />);
-            const icon = wrapper.find('Icon');
+
+            const icon = wrapper.find('AnimatedIcon');
 
             expect(icon.props().name).toEqual('iota');
         });
@@ -58,7 +60,9 @@ describe('Testing Tab component', () => {
             const props = getProps();
 
             const wrapper = shallow(<Tab {...props} />);
-            const text = wrapper.find('Text');
+
+            // FIXME: We should wrap this component so we can name it ourselves
+            const text = wrapper.find('AnimatedComponent');
 
             expect(text.children().text()).toEqual('foo');
         });

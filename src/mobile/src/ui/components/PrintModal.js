@@ -1,51 +1,33 @@
 import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import tinycolor from 'tinycolor2';
-import whiteCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-white.png';
-import whiteCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-white.png';
-import blackCheckboxCheckedImagePath from 'shared-modules/images/checkbox-checked-black.png';
-import blackCheckboxUncheckedImagePath from 'shared-modules/images/checkbox-unchecked-black.png';
+import { View, Text, StyleSheet } from 'react-native';
+import timer from 'react-native-timer';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import ModalView from './ModalView';
 import InfoBox from './InfoBox';
-import ModalButtons from './ModalButtons';
+import Slider from './Slider';
 
 const styles = StyleSheet.create({
-    checkboxContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: height / 14,
-    },
-    checkboxText: {
+    infoTextLarge: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
-        paddingLeft: width / 20,
-        flex: 6,
-    },
-    checkbox: {
-        width: width / 20,
-        height: width / 20,
-    },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        fontSize: Styling.fontSize6,
+        textAlign: 'center',
         backgroundColor: 'transparent',
+        width: width / 1.3,
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
 });
@@ -65,8 +47,9 @@ export class RootDetectionModal extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            publicWifiChecked: false,
-            publicPrinterChecked: false,
+            publicWifiConfirmed: false,
+            publicPrinterConfirmed: false,
+            confirmationText: props.t('wifiConfirmation'),
         };
     }
 
@@ -74,85 +57,66 @@ export class RootDetectionModal extends PureComponent {
         leaveNavigationBreadcrumb('PrintModal');
     }
 
-    onPublicWifiCheckboxPress() {
-        this.setState({
-            publicWifiChecked: !this.state.publicWifiChecked,
-        });
+    componentWillUnmount() {
+        timer.clearTimeout('delayTextChange');
     }
 
-    onPublicPrinterCheckboxPress() {
-        this.setState({
-            publicPrinterChecked: !this.state.publicPrinterChecked,
-        });
+    onSwipeSuccess() {
+        const { t } = this.props;
+        if (!this.state.publicWifiConfirmed) {
+            timer.setTimeout(
+                'delayTextChange',
+                () => this.setState({ confirmationText: t('printerConfirmation') }),
+                1000,
+            );
+            return this.setState({ publicWifiConfirmed: true });
+        }
+        this.setState({ publicPrinterConfirmed: true });
     }
 
     onPrintPress() {
-        const { publicPrinterChecked, publicWifiChecked } = this.state;
-        if (publicWifiChecked && publicPrinterChecked) {
-            this.props.print();
-        }
-    }
-
-    getCheckbox(checkboxChecked) {
-        const { theme: { body } } = this.props;
-        const isBgDark = tinycolor(body.bg).isDark();
-        if (checkboxChecked) {
-            return isBgDark ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
-        }
-        return isBgDark ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
+        this.props.print();
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
-        const { publicPrinterChecked, publicWifiChecked } = this.state;
-        const opacity = publicWifiChecked && publicPrinterChecked ? 1 : 0.1;
+        const { t, theme: { body, input, dark, secondary, primary } } = this.props;
         const textColor = { color: body.color };
 
         return (
-            <View style={{ backgroundColor: body.bg, marginTop: height / 20 }}>
-                <InfoBox
-                    body={body}
-                    width={width / 1.1}
-                    text={
-                        <View>
-                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                <Text style={styles.infoTextNormal}>{t('paperConvenience')} </Text>
-                                <Text style={styles.infoTextBold}>{t('publicInsecure')}</Text>
-                            </Text>
-                            <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
-                                {t('tapCheckboxes')}
-                            </Text>
-                            <View>
-                                <TouchableOpacity
-                                    style={[styles.checkboxContainer, { paddingTop: height / 60 }]}
-                                    onPress={() => this.onPublicWifiCheckboxPress()}
-                                >
-                                    <Image source={this.getCheckbox(publicWifiChecked)} style={styles.checkbox} />
-                                    <Text style={[styles.checkboxText, textColor]}>{t('wifiCheckbox')}</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    style={styles.checkboxContainer}
-                                    onPress={() => this.onPublicPrinterCheckboxPress()}
-                                >
-                                    <Image source={this.getCheckbox(publicPrinterChecked)} style={styles.checkbox} />
-                                    <Text style={[styles.checkboxText, textColor]}>{t('printerCheckbox')}</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{ paddingTop: height / 18 }}>
-                                <ModalButtons
-                                    onLeftButtonPress={() => this.props.hideModal()}
-                                    onRightButtonPress={() => this.onPrintPress()}
-                                    leftText={t('global:back').toUpperCase()}
-                                    rightText={t('print')}
-                                    opacity={opacity}
-                                    containerWidth={{ width: width / 1.25 }}
-                                    buttonWidth={{ width: width / 2.85 }}
-                                />
-                            </View>
-                        </View>
-                    }
+            <ModalView
+                dualButtons
+                onLeftButtonPress={() => this.props.hideModal()}
+                onRightButtonPress={() => this.onPrintPress()}
+                leftButtonText={t('global:back')}
+                rightButtonText={t('print')}
+                disableRightButton={!this.state.publicPrinterConfirmed}
+            >
+                <View style={{ flex: 0.3 }} />
+                <Text style={[styles.infoTextLarge, textColor]}>{t('pleaseCheck')}</Text>
+                <View style={{ flex: 0.1 }} />
+                <InfoBox>
+                    <Text style={[styles.infoTextNormal, textColor]}>{t('paperConvenience')} </Text>
+                    <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 60 }]}>
+                        {t('publicInsecure')}
+                    </Text>
+                </InfoBox>
+                <View style={{ flex: 0.1 }} />
+                <Text style={[styles.infoTextBold, textColor]}>{this.state.confirmationText}</Text>
+                <View style={{ flex: 0.1 }} />
+                <Slider
+                    filledColor={input.bg}
+                    unfilledColor={dark.color}
+                    textColor={body.color}
+                    preSwipeColor={secondary.color}
+                    postSwipeColor={primary.color}
+                    onSwipeSuccess={() => {
+                        this.onSwipeSuccess();
+                    }}
+                    sliderReset={this.state.publicWifiConfirmed}
+                    numberOfSliders={2}
                 />
-            </View>
+                <View style={{ flex: 0.2 }} />
+            </ModalView>
         );
     }
 }

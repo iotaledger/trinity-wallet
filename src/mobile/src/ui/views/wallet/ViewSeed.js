@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     viewSeedButton: {
@@ -280,42 +280,27 @@ class ViewSeed extends Component {
                         {this.state.isConfirming &&
                             !this.state.showSeed && (
                                 <View>
-                                    <InfoBox
-                                        body={theme.body}
-                                        width={width / 1.1}
-                                        text={
-                                            <View style={{ alignItems: 'center' }}>
-                                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
-                                                    <Text style={styles.infoText}>{t('global:masterKey')} </Text>
-                                                    <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
-                                                    <Text style={styles.infoTextBold}>
-                                                        {t('walletSetup:keepSafe')}{' '}
+                                    <InfoBox>
+                                        <Text style={[styles.infoText, textColor]}>
+                                            <Text style={styles.infoText}>{t('global:masterKey')} </Text>
+                                            <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
+                                            <Text style={styles.infoTextBold}>{t('walletSetup:keepSafe')} </Text>
+                                        </Text>
+                                        <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
+                                            <TouchableOpacity onPress={() => this.setState({ isConfirming: false })}>
+                                                <View
+                                                    style={[
+                                                        styles.viewSeedButton,
+                                                        { borderColor: theme.primary.color },
+                                                    ]}
+                                                >
+                                                    <Text style={[styles.viewSeedText, { color: theme.primary.color }]}>
+                                                        {t('viewSeed:viewSeed').toUpperCase()}
                                                     </Text>
-                                                </Text>
-                                                <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
-                                                    <TouchableOpacity
-                                                        onPress={() => this.setState({ isConfirming: false })}
-                                                    >
-                                                        <View
-                                                            style={[
-                                                                styles.viewSeedButton,
-                                                                { borderColor: theme.primary.color },
-                                                            ]}
-                                                        >
-                                                            <Text
-                                                                style={[
-                                                                    styles.viewSeedText,
-                                                                    { color: theme.primary.color },
-                                                                ]}
-                                                            >
-                                                                {t('viewSeed:viewSeed').toUpperCase()}
-                                                            </Text>
-                                                        </View>
-                                                    </TouchableOpacity>
                                                 </View>
-                                            </View>
-                                        }
-                                    />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </InfoBox>
                                     <View style={{ flex: 0.1 }} />
                                 </View>
                             )}

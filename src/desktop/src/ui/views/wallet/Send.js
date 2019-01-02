@@ -14,6 +14,7 @@ import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
 import Progress from 'ui/components/Progress';
 import Balance from 'ui/components/Balance';
+import Checksum from 'ui/components/Checksum';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
@@ -137,7 +138,11 @@ class Send extends React.PureComponent {
                         onConfirm={() => this.confirmTransfer()}
                         content={{
                             title: t('transferConfirmation:youAreAbout', { contents: transferContents }),
-                            message: fields.address,
+                            message: (
+                                <span className={css.address}>
+                                    <Checksum address={fields.address} />
+                                </span>
+                            ),
                             confirm: t('send'),
                             cancel: t('cancel'),
                         }}

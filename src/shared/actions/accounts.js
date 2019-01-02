@@ -1,8 +1,12 @@
+import some from 'lodash/some';
+import isEmpty from 'lodash/isEmpty';
+import isNumber from 'lodash/isNumber';
 import {
     selectedAccountStateFactory,
     getAccountNamesFromState,
     getNodesFromState,
     getSelectedNodeFromState,
+    getAccountInfoDuringSetup,
 } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { setSeedIndex } from './wallet';
@@ -12,6 +16,7 @@ import {
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateUnsupportedNodeErrorAlert,
     generateAccountSyncRetryAlert,
 } from '../actions/alerts';
 import { changeNode } from '../actions/settings';
@@ -41,11 +46,13 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+    SET_ACCOUNT_INFO_DURING_SETUP: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
     MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
     MARK_BUNDLE_BROADCAST_STATUS_PENDING: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
     MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
     SYNC_ACCOUNT_BEFORE_SWEEPING: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_SWEEPING',
     OVERRIDE_ACCOUNT_INFO: 'IOTA/ACCOUNTS/OVERRIDE_ACCOUNT_INFO',
+    ASSIGN_ACCOUNT_INDEX: 'IOTA/ACCOUNTS/ASSIGN_ACCOUNT_INDEX',
 };
 
 /**
@@ -313,6 +320,19 @@ export const setBasicAccountInfo = (payload) => ({
 });
 
 /**
+ * Dispatch to store account information during setup
+ *
+ * @method setAccountInfoDuringSetup
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setAccountInfoDuringSetup = (payload) => ({
+    type: ActionTypes.SET_ACCOUNT_INFO_DURING_SETUP,
+    payload,
+});
+
+/**
  * Dispatch to mark a task as completed in state
  *
  * For example: to display a modal if the user's balance on initial login is zero
@@ -387,6 +407,17 @@ export const overrideAccountInfo = (payload) => ({
 });
 
 /**
+ * Dispatch to (automatically) assign accountIndex to every account in state
+ *
+ * @method assignAccountIndex
+ *
+ * @returns {{type: {string} }}
+ */
+export const assignAccountIndex = () => ({
+    type: ActionTypes.ASSIGN_ACCOUNT_INDEX,
+});
+
+/**
  * Gets full account information for the first seed added to the wallet.
  *
  * @method getFullAccountInfo
@@ -401,7 +432,7 @@ export const getFullAccountInfo = (seedStore, accountName) => {
 
         const selectedNode = getSelectedNodeFromState(getState());
         const existingAccountNames = getAccountNamesFromState(getState());
-        const usedExistingSeed = getState().wallet.usedExistingSeed;
+        const usedExistingSeed = getAccountInfoDuringSetup(getState()).usedExistingSeed;
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
@@ -410,10 +441,14 @@ export const getFullAccountInfo = (seedStore, accountName) => {
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
-                dispatch(setSeedIndex(existingAccountNames.length));
+                const seedIndex = existingAccountNames.length;
+
+                dispatch(setSeedIndex(seedIndex));
                 dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
 
-                result.accountMeta = getState().wallet.additionalAccountMeta;
+                // Assign account meta
+                result.accountMeta = getAccountInfoDuringSetup(getState()).meta;
+                result.accountIndex = seedIndex;
 
                 dispatch(fullAccountInfoFetchSuccess(result));
             })
@@ -421,6 +456,8 @@ export const getFullAccountInfo = (seedStore, accountName) => {
                 const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
+                    } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                        dispatch(generateUnsupportedNodeErrorAlert());
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
@@ -464,6 +501,8 @@ export const manuallySyncAccount = (seedStore, accountName) => {
             .catch((err) => {
                 if (err.message === Errors.NODE_NOT_SYNCED) {
                     dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (err.message === Errors.UNSUPPORTED_NODE) {
+                    dispatch(generateUnsupportedNodeErrorAlert());
                 } else {
                     dispatch(generateSyncingErrorAlert(err));
                 }
@@ -540,4 +579,18 @@ export const cleanUpAccountState = (seedStore, accountName) => (dispatch, getSta
         // Resolve new account state
         return result;
     });
+};
+
+/**
+ * Assign account index to each account if not already assigned
+ *
+ * @method assignAccountIndexIfNecessary
+ * @param {object} accountInfo
+ *
+ * @returns {function(*)}
+ */
+export const assignAccountIndexIfNecessary = (accountInfo) => (dispatch) => {
+    if (!isEmpty(accountInfo) && some(accountInfo, ({ index }) => !isNumber(index))) {
+        dispatch(assignAccountIndex());
+    }
 };

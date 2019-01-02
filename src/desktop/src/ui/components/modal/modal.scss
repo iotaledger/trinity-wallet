@@ -130,8 +130,9 @@ $footer: 70px;
             margin-bottom: 20px;
         }
 
-
-
+        mark {
+            color: var(--primary);
+        }
     }
 }
 

@@ -71,6 +71,7 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
+                ignoreProxy: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -407,6 +408,40 @@ describe('Reducer: settings', () => {
                     confirmations: true,
                     messages: true,
                 },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_PROXY', () => {
+        it('should set ignoreProxy to payload', () => {
+            const initialState = {
+                ignoreProxy: false,
+            };
+
+            const action = actions.setProxy(true);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                ignoreProxy: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/SETTINGS/RESET_NODES_LIST', () => {
+        it('should set nodes to an empty array', () => {
+            const initialState = {
+                nodes: ['http://localhost:14264', 'http://localhost:14265'],
+            };
+
+            const action = actions.resetNodesList();
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                nodes: [],
             };
 
             expect(newState).to.eql(expectedState);

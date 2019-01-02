@@ -4,7 +4,8 @@ import { AsyncStorage } from 'react-native';
 import { doesSaltExistInKeychain } from 'libs/keychain';
 import store, { persistStore, purgeStoredState, createPersistor } from '../../../shared/store';
 import { setAppVersions, resetWallet } from '../../../shared/actions/settings';
-import { updatePersistedState } from '../../../shared/libs/utils';
+import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate } from '../../../shared/actions/wallet';
+import { updatePersistedState, fetchVersions } from '../../../shared/libs/utils';
 
 export const persistConfig = {
     storage: AsyncStorage,
@@ -19,6 +20,27 @@ const shouldMigrate = (restoredState) => {
     const currentBuildNumber = getBuildNumber();
 
     return restoredVersion !== currentVersion || restoredBuildNumber !== currentBuildNumber;
+};
+
+/**
+ * Checks if there is a newer version or if the current version is blacklisted
+ * @param {object} store
+ *
+ * @returns {Promise<object>}
+ *
+ */
+export const versionCheck = (store) => {
+    const currentBuildNumber = get(store.getState(), 'settings.versions.buildNumber');
+    return fetchVersions()
+        .then(({ mobileBlacklist, latestMobile }) => {
+            if (mobileBlacklist.includes(currentBuildNumber)) {
+                store.dispatch(triggerForceUpdate());
+            } else if (latestMobile > currentBuildNumber) {
+                store.dispatch(triggerShouldUpdate());
+            }
+            return store;
+        })
+        .catch(() => store);
 };
 
 /**
@@ -41,18 +63,14 @@ export const resetIfKeychainIsEmpty = (store) => {
                         buildNumber: getBuildNumber(),
                     }),
                 );
-
                 return store;
             });
         }
-
         return store;
     });
 };
 
 export const migrate = (store, restoredState) => {
-    // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
-    // since this would be installed as a fresh application.
     const hasAnUpdate = shouldMigrate(restoredState);
 
     if (!hasAnUpdate) {
@@ -62,12 +80,17 @@ export const migrate = (store, restoredState) => {
                 buildNumber: getBuildNumber(),
             }),
         );
-
         return Promise.resolve(store);
     }
-
     return purgeStoredState({ storage: persistConfig.storage }).then(() => {
         store.dispatch(resetWallet());
+        const propsToReset = [];
+
+        // FIXME: Temporarily needed for node list reset
+        if (get(restoredState, 'settings.versions.buildNumber') < 32) {
+            propsToReset.push('settings.nodes');
+        }
+
         // Set the new app version
         store.dispatch(
             setAppVersions({
@@ -75,11 +98,9 @@ export const migrate = (store, restoredState) => {
                 buildNumber: getBuildNumber(),
             }),
         );
-
         const persistor = createPersistor(store, persistConfig);
-        const updatedState = updatePersistedState(store.getState(), restoredState);
+        const updatedState = updatePersistedState(store.getState(), restoredState, propsToReset);
         persistor.rehydrate(updatedState);
-
         return store;
     });
 };

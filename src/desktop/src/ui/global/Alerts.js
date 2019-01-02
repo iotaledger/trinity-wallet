@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -18,6 +19,16 @@ class Alerts extends React.PureComponent {
         dismissAlert: PropTypes.func.isRequired,
         /** @ignore */
         alerts: PropTypes.object.isRequired,
+        /** @ignore */
+        forceUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        shouldUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
+    };
+
+    state = {
+        dismissUpdate: false,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -39,20 +50,45 @@ class Alerts extends React.PureComponent {
     }
 
     render() {
-        const { alerts, dismissAlert } = this.props;
+        const { alerts, dismissAlert, forceUpdate, shouldUpdate, t } = this.props;
+        const { dismissUpdate } = this.state;
+
+        const os = Electron.getOS();
+
+        /**
+         * Temporarily override account fetch error by adding Proxy setting suggestion
+         */
+        const message =
+            alerts.message === t('invalidResponseFetchingAccount')
+                ? t('invalidResponseFetchingAccountDesktop')
+                : alerts.message;
 
         return (
             <div className={css.wrapper}>
-                <div
-                    onClick={() => dismissAlert()}
-                    className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
-                >
-                    <span>
-                        <Icon icon="cross" size={14} />
-                    </span>
-                    {alerts.title && <h2>{alerts.title}</h2>}
-                    {alerts.message && <p>{alerts.message}</p>}
-                </div>
+                {!dismissUpdate && (forceUpdate || shouldUpdate) ? (
+                    <section className={classNames(css.update, os === 'win32' ? css.win : null)}>
+                        <strong onClick={() => Electron.autoUpdate()}>
+                            {t(`global:${forceUpdate ? 'forceUpdate' : 'shouldUpdate'}`)}
+                        </strong>{' '}
+                        {t(`global:${forceUpdate ? 'forceUpdate' : 'shouldUpdate'}Explanation`)}
+                        {shouldUpdate && (
+                            <a onClick={() => this.setState({ dismissUpdate: true })}>
+                                <Icon icon="cross" size={16} />
+                            </a>
+                        )}
+                    </section>
+                ) : (
+                    <div
+                        onClick={() => dismissAlert()}
+                        className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
+                    >
+                        <span>
+                            <Icon icon="cross" size={14} />
+                        </span>
+                        {alerts.title && <h2>{alerts.title}</h2>}
+                        {message && <p>{message}</p>}
+                    </div>
+                )}
             </div>
         );
     }

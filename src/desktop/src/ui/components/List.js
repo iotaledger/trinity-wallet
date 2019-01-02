@@ -105,7 +105,11 @@ class List extends React.PureComponent {
                                         text={`${input.address}${input.checksum}`}
                                         title={t('history:addressCopied')}
                                         success={t('history:addressCopiedExplanation')}
-                                    />
+                                        address
+                                    >
+                                        {input.address}
+                                        <mark>{input.checksum}</mark>
+                                    </Clipboard>
                                 </span>
                                 <em>
                                     {round(formatValue(input.value), 1)}
@@ -225,7 +229,7 @@ class List extends React.PureComponent {
                                                 totals[item] === 0 ? css.disabled : filter === item ? css.active : null,
                                             )}
                                         >
-                                            {item === 'All' ? 'All' : t(item.toLowerCase())} ({totals[item]})
+                                            {item === 'All' ? t('global:all') : t(item.toLowerCase())} ({totals[item]})
                                         </a>
                                     );
                                 })}

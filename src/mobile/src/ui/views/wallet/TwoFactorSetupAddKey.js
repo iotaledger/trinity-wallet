@@ -4,16 +4,16 @@ import authenticator from 'authenticator';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
-import { Navigation } from 'react-native-navigation';
+import { navigator } from 'libs/navigation';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNamespaces } from 'react-i18next';
-import WithBackPressGoToHome from 'ui/components/BackPressGoToHome';
 import { storeTwoFactorAuthKeyInKeychain } from 'libs/keychain';
 import Fonts from 'ui/theme/fonts';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Styling } from 'ui/theme/general';
 import { width, height } from 'libs/dimensions';
-import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
 const styles = StyleSheet.create({
@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topWrapper: {
-        flex: 0.3,
+        flex: 0.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
         width,
     },
     midWrapper: {
@@ -49,7 +48,6 @@ const styles = StyleSheet.create({
     infoText: {
         fontSize: Styling.fontSize3,
         textAlign: 'center',
-        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -61,7 +59,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: Styling.borderRadiusLarge,
         padding: width / 30,
-        marginBottom: height / 25,
+        marginBottom: height / 15,
+        alignItems: 'center',
     },
 });
 
@@ -114,7 +113,7 @@ export class TwoFactorSetupAddKey extends Component {
      * @method goBack
      */
     goBack() {
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     /**
@@ -124,35 +123,23 @@ export class TwoFactorSetupAddKey extends Component {
     navigateToEnterToken() {
         Clipboard.setString(' ');
         const { t, theme: { body }, password } = this.props;
-
         return storeTwoFactorAuthKeyInKeychain(password, this.state.authKey)
             .then(() => {
-                Navigation.push('appStack', {
-                    component: {
-                        name: 'twoFactorSetupEnterToken',
-                        options: {
-                            animations: {
-                                push: {
-                                    enable: false,
-                                },
-                                pop: {
-                                    enable: false,
-                                },
-                            },
-                            layout: {
-                                backgroundColor: body.bg,
-                                orientation: ['portrait'],
-                            },
-                            topBar: {
-                                visible: false,
-                                drawBehind: true,
-                                elevation: 0,
-                            },
-                            statusBar: {
-                                drawBehind: true,
-                                backgroundColor: body.bg,
-                            },
+                navigator.push('twoFactorSetupEnterToken', {
+                    animations: {
+                        push: {
+                            enable: false,
                         },
+                        pop: {
+                            enable: false,
+                        },
+                    },
+                    layout: {
+                        backgroundColor: body.bg,
+                        orientation: ['portrait'],
+                    },
+                    statusBar: {
+                        backgroundColor: body.bg,
                     },
                 });
             })
@@ -173,34 +160,59 @@ export class TwoFactorSetupAddKey extends Component {
         return (
             <View style={[styles.container, backgroundColor]}>
                 <View style={styles.topWrapper}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={400}
+                    >
+                        <Header textColor={body.color} />
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.midWrapper}>
-                    <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, textColor]}>{t('addKey')}</Text>
-                    <View style={styles.qrContainer}>
-                        <QRCode
-                            value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
-                            size={height / 5}
-                            bgColor="#000"
-                            fgColor="#FFF"
-                        />
-                    </View>
-                    <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
-                        <Text style={[styles.infoText, textColor]}>
-                            <Text style={styles.infoText}>{t('key')}</Text>
-                            <Text style={styles.infoText}>: </Text>
-                            <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
-                        </Text>
-                    </TouchableOpacity>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={300}
+                    >
+                        <Text style={[styles.subHeaderText, textColor]}>{t('addKey')}</Text>
+                    </AnimatedComponent>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={200}
+                    >
+                        <View style={styles.qrContainer}>
+                            <QRCode
+                                value={authenticator.generateTotpUri(this.state.authKey, 'Trinity Wallet Mobile')}
+                                size={height / 5}
+                                bgColor="#000"
+                                fgColor="#FFF"
+                            />
+                        </View>
+                    </AnimatedComponent>
+                    <AnimatedComponent
+                        animationInType={['slideInRight', 'fadeIn']}
+                        animationOutType={['slideOutLeft', 'fadeOut']}
+                        delay={200}
+                    >
+                        <TouchableOpacity onPress={() => this.onKeyPress(this.state.authKey)}>
+                            <Text style={[styles.infoText, textColor]}>
+                                <Text style={styles.infoText}>{t('key')}</Text>
+                                <Text style={styles.infoText}>: </Text>
+                                <Text style={styles.infoTextLight}>{this.state.authKey}</Text>
+                            </Text>
+                        </TouchableOpacity>
+                    </AnimatedComponent>
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <DualFooterButtons
-                        onLeftButtonPress={this.goBack}
-                        onRightButtonPress={this.navigateToEnterToken}
-                        leftButtonText={t('global:goBack')}
-                        rightButtonText={t('global:next')}
-                    />
+                    <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                        <DualFooterButtons
+                            onLeftButtonPress={this.goBack}
+                            onRightButtonPress={this.navigateToEnterToken}
+                            leftButtonText={t('global:goBack')}
+                            rightButtonText={t('global:next')}
+                        />
+                    </AnimatedComponent>
                 </View>
             </View>
         );
@@ -215,6 +227,4 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
 });
 
-export default WithBackPressGoToHome()(
-    withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey)),
-);
+export default withNamespaces(['twoFA', 'global'])(connect(mapStateToProps, mapDispatchToProps)(TwoFactorSetupAddKey));

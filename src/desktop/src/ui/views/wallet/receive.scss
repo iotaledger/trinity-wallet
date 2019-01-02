@@ -64,7 +64,6 @@
 
         button {
             flex: 1;
-            padding-right: 20px;
         }
 
         p {
@@ -87,16 +86,8 @@
     }
 
     > div:nth-child(2) {
-        display: flex;
-        flex: 0 0 120px;
-
-        @media screen and (max-width: 860px) {
-            display: none;
-        }
-    }
-
-    > div:nth-child(3) {
         max-width: 520px;
+        margin-left: 40px;
     }
 
     svg {

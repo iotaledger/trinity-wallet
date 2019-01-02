@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import { setAdditionalAccountInfo } from 'actions/wallet';
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 
 import Icon from 'ui/components/Icon';
 import Waves from 'ui/components/Waves';
@@ -38,7 +38,7 @@ class Onboarding extends React.PureComponent {
         /** @ignore */
         history: PropTypes.object,
         /** @ignore */
-        setAdditionalAccountInfo: PropTypes.func.isRequired,
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     state = {
@@ -57,13 +57,13 @@ class Onboarding extends React.PureComponent {
      * Reset Onboarding data on close if user authorised
      */
     componentWillUnmount() {
-        const { isAuthorised, setAdditionalAccountInfo } = this.props;
+        const { isAuthorised } = this.props;
 
         if (isAuthorised) {
-            setAdditionalAccountInfo({
-                addingAdditionalAccount: false,
-                additionalAccountName: '',
-                additionalAccountMeta: {},
+            this.props.setAccountInfoDuringSetup({
+                name: '',
+                meta: {},
+                completed: false
             });
 
             Electron.setOnboardingSeed(null);
@@ -151,7 +151,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setAdditionalAccountInfo,
+    setAccountInfoDuringSetup,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Onboarding));

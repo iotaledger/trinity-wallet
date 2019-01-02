@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import timer from 'react-native-timer';
+import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
 import { clearSeed } from 'shared-modules/actions/wallet';
 import { setOnboardingSeed, toggleModalActivity } from 'shared-modules/actions/ui';
@@ -11,6 +12,7 @@ import { MAX_SEED_LENGTH } from 'shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'shared-modules/libs/crypto';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from 'ui/components/UserActivity';
 import CtaButton from 'ui/components/CtaButton';
@@ -18,6 +20,7 @@ import { width, height } from 'libs/dimensions';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
+import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -27,15 +30,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.75,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
     },
     midContainer: {
-        flex: 5.65,
+        flex: 5.9,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
         flex: 0.6,
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     info: {
-        height: height / 14,
+        height: height / 16,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -134,6 +136,7 @@ class NewSeedSetup extends Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
+        timer.clearTimeout('newSeedSetup');
     }
 
     async onGeneratePress() {
@@ -159,35 +162,26 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         if (this.state.randomised) {
-            Navigation.push('appStack', {
-                component: {
-                    name: 'saveYourSeed',
-                    options: {
-                        animations: {
-                            push: {
-                                enable: false,
-                            },
-                            pop: {
-                                enable: false,
-                            },
-                        },
-                        layout: {
-                            backgroundColor: body.bg,
-                            orientation: ['portrait'],
-                        },
-                        topBar: {
-                            visible: false,
-                            drawBehind: true,
-                            elevation: 0,
-                            title: {
-                                color: body.color,
-                            },
-                        },
-                        statusBar: {
-                            drawBehind: true,
-                            backgroundColor: body.bg,
-                        },
+            navigator.push('saveYourSeed', {
+                animations: {
+                    push: {
+                        enable: false,
                     },
+                    pop: {
+                        enable: false,
+                    },
+                },
+                layout: {
+                    backgroundColor: body.bg,
+                    orientation: ['portrait'],
+                },
+                topBar: {
+                    title: {
+                        color: body.color,
+                    },
+                },
+                statusBar: {
+                    backgroundColor: body.bg,
                 },
             });
         } else {
@@ -197,7 +191,7 @@ class NewSeedSetup extends Component {
 
     onBackPress() {
         this.props.clearSeed();
-        Navigation.pop(this.props.componentId);
+        navigator.pop(this.props.componentId);
     }
 
     openModal() {
@@ -240,26 +234,42 @@ class NewSeedSetup extends Component {
                 {!minimised && (
                     <View>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={body.color} />
-                            <View style={{ flex: 1 }} />
-                            <CtaButton
-                                ctaColor={secondary.color}
-                                ctaBorderColor={primary.hover}
-                                secondaryCtaColor={secondary.body}
-                                text={t('pressForNewSeed')}
-                                onPress={() => {
-                                    this.onGeneratePress();
-                                }}
-                                ctaWidth={width / 1.6}
-                                testID="newSeedSetup-newSeed"
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={400}
+                            >
+                                <Header textColor={body.color} />
+                            </AnimatedComponent>
                         </View>
                         <View style={styles.midContainer}>
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={300}
+                            >
+                                <CtaButton
+                                    ctaColor={secondary.color}
+                                    ctaBorderColor={primary.hover}
+                                    secondaryCtaColor={secondary.body}
+                                    text={t('pressForNewSeed')}
+                                    onPress={() => {
+                                        this.onGeneratePress();
+                                    }}
+                                    ctaWidth={width / 1.6}
+                                    testID="newSeedSetup-newSeed"
+                                />
+                            </AnimatedComponent>
                             <TouchableOpacity
                                 onPress={() => this.openModal()}
                                 style={{ marginTop: height / 65, marginBottom: height / 80 }}
                             >
-                                <View style={styles.info}>
+                                <AnimatedComponent
+                                    animationInType={['slideInRight', 'fadeIn']}
+                                    animationOutType={['slideOutLeft', 'fadeOut']}
+                                    delay={200}
+                                    style={styles.info}
+                                >
                                     <Icon
                                         name="info"
                                         size={width / 22}
@@ -267,27 +277,35 @@ class NewSeedSetup extends Component {
                                         style={{ marginRight: width / 60 }}
                                     />
                                     <Text style={[styles.infoText, textColor]}>{t('whatIsASeed')}</Text>
-                                </View>
+                                </AnimatedComponent>
                             </TouchableOpacity>
-                            <FlatList
-                                contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
-                                data={split(seed, '')}
-                                keyExtractor={(item, index) => index}
-                                renderItem={({ item, index }) => this.renderChequerboard(item, index)}
-                                initialNumToRender={MAX_SEED_LENGTH}
-                                scrollEnabled={false}
-                            />
+                            <AnimatedComponent
+                                animationInType={['slideInRight', 'fadeIn']}
+                                animationOutType={['slideOutLeft', 'fadeOut']}
+                                delay={100}
+                            >
+                                <FlatList
+                                    contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
+                                    data={split(seed, '')}
+                                    keyExtractor={(item, index) => index.toString()}
+                                    renderItem={({ item, index }) => this.renderChequerboard(item, index)}
+                                    initialNumToRender={MAX_SEED_LENGTH}
+                                    scrollEnabled={false}
+                                />
+                            </AnimatedComponent>
                         </View>
                         <View style={styles.bottomContainer}>
-                            <DualFooterButtons
-                                onLeftButtonPress={() => this.onBackPress()}
-                                onRightButtonPress={() => this.onNextPress()}
-                                leftButtonText={t('global:goBack')}
-                                rightButtonText={t('saveYourSeed:saveYourSeed')}
-                                leftButtonTestID="newSeedSetup-back"
-                                rightButtonTestID="newSeedSetup-next"
-                                rightButtonStyle={{ wrapper: { opacity } }}
-                            />
+                            <AnimatedComponent animationInType={['fadeIn']} animationOutType={['fadeOut']} delay={0}>
+                                <DualFooterButtons
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onNextPress()}
+                                    leftButtonText={t('global:goBack')}
+                                    rightButtonText={t('saveYourSeed:saveYourSeed')}
+                                    leftButtonTestID="newSeedSetup-back"
+                                    rightButtonTestID="newSeedSetup-next"
+                                    rightButtonStyle={{ wrapper: { opacity } }}
+                                />
+                            </AnimatedComponent>
                         </View>
                     </View>
                 )}

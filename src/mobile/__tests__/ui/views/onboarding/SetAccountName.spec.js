@@ -14,6 +14,12 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
+jest.mock('libs/navigation', () => ({
+    navigator: {
+        push: jest.fn(),
+    },
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
@@ -22,7 +28,7 @@ const getProps = (overrides) =>
             accountNames: [],
             generateAlert: noop,
             setAdditionalAccountInfo: noop,
-            t: noop,
+            t: () => '',
             accountCount: 0,
             seed: 'SEED',
             onboardingComplete: false,
@@ -43,8 +49,8 @@ describe('Testing SetAccountName component', () => {
             expect(SetAccountName.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a setAdditionalAccountInfo function as a prop', () => {
-            expect(SetAccountName.propTypes.setAdditionalAccountInfo).toEqual(PropTypes.func.isRequired);
+        it('should require a setAccountInfoDuringSetup function as a prop', () => {
+            expect(SetAccountName.propTypes.setAccountInfoDuringSetup).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a t function as a prop', () => {
@@ -75,9 +81,9 @@ describe('Testing SetAccountName component', () => {
     describe('instance methods', () => {
         describe('when called', () => {
             describe('onDonePress', () => {
-                it('should call setAdditionalAccountInfo prop method with trimmed accountName state prop', () => {
+                it('should call setAccountInfoDuringSetup prop method with trimmed accountName state prop', () => {
                     const props = getProps({
-                        setAdditionalAccountInfo: jest.fn(),
+                        setAccountInfoDuringSetup: jest.fn(),
                     });
 
                     const wrapper = shallow(<SetAccountName {...props} />);
@@ -85,11 +91,10 @@ describe('Testing SetAccountName component', () => {
                     const inst = wrapper.instance();
                     inst.onDonePress();
 
-                    expect(props.setAdditionalAccountInfo).toHaveBeenCalledWith({
-                        addingAdditionalAccount: true,
-                        additionalAccountName: 'foo',
-                        additionalAccountMeta: { type: 'keychain' },
-                        usedExistingSeed: false,
+                    expect(props.setAccountInfoDuringSetup).toHaveBeenCalledWith({
+                        name: 'foo',
+                        meta: { type: 'keychain' },
+                        completed: true
                     });
                 });
 

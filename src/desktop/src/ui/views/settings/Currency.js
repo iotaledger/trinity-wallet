@@ -38,22 +38,29 @@ class SetCurrency extends PureComponent {
                     setCurrency(this.state.selection);
                 }}
             >
-                <Select
-                    value={selection || currency}
-                    label={t('currencySelection:currency')}
-                    onChange={(value) => this.setState({ selection: value })}
-                    options={currencies
-                        .slice()
-                        .sort()
-                        .map((item) => {
-                            return { value: item, label: item };
-                        })}
-                />
                 <fieldset>
-                    <Button disabled={!selection || selection === currency} type="submit" loading={loading}>
+                    <Select
+                        value={selection || currency}
+                        label={t('currencySelection:currency')}
+                        onChange={(value) => this.setState({ selection: value })}
+                        options={currencies
+                            .slice()
+                            .sort()
+                            .map((item) => {
+                                return { value: item, label: item };
+                            })}
+                    />
+                </fieldset>
+                <footer>
+                    <Button
+                        className="square"
+                        disabled={!selection || selection === currency}
+                        type="submit"
+                        loading={loading}
+                    >
                         {t('save')}
                     </Button>
-                </fieldset>
+                </footer>
             </form>
         );
     }

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     itemLeft: {
@@ -141,15 +141,9 @@ class ChangePassword extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <InfoBox
-                            body={theme.body}
-                            text={
-                                <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
-                                </View>
-                            }
-                        />
-                        <View style={{ flex: 0.2 }} />
+                        <InfoBox>
+                            <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
+                        </InfoBox>
                         <CustomTextInput
                             onRef={(c) => {
                                 this.currentPassword = c;
@@ -160,7 +154,6 @@ class ChangePassword extends Component {
                             returnKeyType="next"
                             theme={theme}
                             widget="empty"
-                            containerStyle={{ width: Styling.contentWidth }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

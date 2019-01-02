@@ -16,7 +16,7 @@ import { generateNewAddress, addressValidationRequest, addressValidationSuccess 
 
 import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
-import { byteToChar } from 'libs/helpers';
+import { byteToChar } from 'libs/iota/converter';
 import Errors from 'libs/errors';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
@@ -46,6 +46,8 @@ class Receive extends React.PureComponent {
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
         /** @ignore */
+        hadErrorGeneratingNewAddress: PropTypes.bool.isRequired,
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
         /** @ignore */
         generateNewAddress: PropTypes.func.isRequired,
@@ -70,13 +72,8 @@ class Receive extends React.PureComponent {
     state = {
         message: '',
         scramble: new Array(ADDRESS_LENGTH).fill(0),
+        hasSyncedAddress: false,
     };
-
-    componentDidMount() {
-        if (!this.props.isGeneratingReceiveAddress && !this.props.isValidatingAddress) {
-            this.validateAdress();
-        }
-    }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isGeneratingReceiveAddress && !nextProps.isGeneratingReceiveAddress) {
@@ -84,6 +81,7 @@ class Receive extends React.PureComponent {
 
             this.setState({
                 scramble: randomBytes(ADDRESS_LENGTH),
+                hasSyncedAddress: true,
             });
 
             this.unscramble();
@@ -113,6 +111,10 @@ class Receive extends React.PureComponent {
         if (isSyncing || isTransitioning) {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
+
+        this.setState({
+            hasSyncedAddress: false,
+        });
 
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
@@ -177,50 +179,56 @@ class Receive extends React.PureComponent {
     }
 
     render() {
-        const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
-        const { message, scramble } = this.state;
+        const { t, receiveAddress, isGeneratingReceiveAddress, hadErrorGeneratingNewAddress } = this.props;
+        const { message, scramble, hasSyncedAddress } = this.state;
 
         return (
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
-                <div className={isGeneratingReceiveAddress ? css.loading : null}>
-                    <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
-                    <Clipboard
-                        text={receiveAddress}
-                        title={t('receive:addressCopied')}
-                        success={t('receive:addressCopiedExplanation')}
-                    >
-                        <p>
-                            {receiveAddress
-                                .substring(0, 81)
-                                .split('')
-                                .map((char, index) => {
-                                    const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
-                                    return (
-                                        <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>
-                                    );
-                                })}
-                            <span>
+                {!hadErrorGeneratingNewAddress && hasSyncedAddress ? (
+                    <div className={isGeneratingReceiveAddress ? css.loading : null}>
+                        <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
+                        <Clipboard
+                            text={receiveAddress}
+                            title={t('receive:addressCopied')}
+                            success={t('receive:addressCopiedExplanation')}
+                        >
+                            <p>
                                 {receiveAddress
-                                    .substring(81, 90)
+                                    .substring(0, 81)
                                     .split('')
                                     .map((char, index) => {
-                                        const scrambleChar = scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                        const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
                                         return (
                                             <React.Fragment key={`char-${index}`}>
                                                 {scrambleChar || char}
                                             </React.Fragment>
                                         );
                                     })}
-                            </span>
-                        </p>
-                    </Clipboard>
-                </div>
-                <div>
-                    <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>
-                        <Icon icon="sync" size={32} />
-                        {t('receive:generateNewAddress')}
-                    </Button>
-                </div>
+                                <span>
+                                    {receiveAddress
+                                        .substring(81, 90)
+                                        .split('')
+                                        .map((char, index) => {
+                                            const scrambleChar =
+                                                scramble[index + 81] > 0 ? byteToChar(scramble[index + 81]) : null;
+                                            return (
+                                                <React.Fragment key={`char-${index}`}>
+                                                    {scrambleChar || char}
+                                                </React.Fragment>
+                                            );
+                                        })}
+                                </span>
+                            </p>
+                        </Clipboard>
+                    </div>
+                ) : (
+                    <div>
+                        <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>
+                            <Icon icon="sync" size={32} />
+                            {t('receive:generateNewAddress')}
+                        </Button>
+                    </div>
+                )}
                 <div>
                     <Text
                         value={message}
@@ -252,6 +260,7 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSyncing: state.ui.isSyncing,
     isTransitioning: state.ui.isTransitioning,
+    hadErrorGeneratingNewAddress: state.ui.hadErrorGeneratingNewAddress,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
     accountMeta: getSelectedAccountMeta(state),

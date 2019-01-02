@@ -16,8 +16,8 @@ export const ActionTypes = {
     SET_QR_TAG: 'IOTA/UI/SET_QR_TAG',
     SET_QR_DENOMINATION: 'IOTA/UI/SET_QR_DENOMINATION',
     SET_SELECTED_QR_TAB: 'IOTA/UI/SET_SELECTED_QR_TAB',
-    FLIP_RECEIVE_CARD: 'IOTA/UI/FLIP_RECEIVE_CARD',
     SET_ROUTE: 'IOTA/UI/SET_ROUTE',
+    SET_KEYBOARD_ACTIVITY: 'IOTA/UI/SET_KEYBOARD_ACTIVITY',
 };
 
 /**
@@ -83,17 +83,6 @@ export const setQrDenomination = (payload) => ({
 export const setSelectedQrTab = (payload) => ({
     type: ActionTypes.SET_SELECTED_QR_TAB,
     payload,
-});
-
-/**
- * Dispatch to flip card on receive page (mobile)
- *
- * @method setSelectedQrTab
- *
- * @returns {{type: {string} }}
- */
-export const flipReceiveCard = () => ({
-    type: ActionTypes.FLIP_RECEIVE_CARD,
 });
 
 /**
@@ -262,16 +251,16 @@ export const setLoginRoute = (payload) => {
 };
 
 /**
- * Dispatch to set active route
+ * Dispatch to set the keyboard as active (mobile only)
  *
- * @method setRoute
+ * @method setKeyboardActivity
  * @param {string} payload
  *
  * @returns {{type: {string}, payload: {string} }}
  */
-export const setRoute = (payload) => {
+export const setKeyboardActivity = (payload) => {
     return {
-        type: ActionTypes.SET_ROUTE,
+        type: ActionTypes.SET_KEYBOARD_ACTIVITY,
         payload,
     };
 };

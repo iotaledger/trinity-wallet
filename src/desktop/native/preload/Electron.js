@@ -1,18 +1,19 @@
-const { ipcRenderer: ipc, clipboard } = require('electron');
-const { dialog } = require('electron').remote;
-const currentWindow = require('electron').remote.getCurrentWindow();
-const keytar = require('keytar');
-const fs = require('fs');
-const electronSettings = require('electron-settings');
-const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
-const Curl = require('iota.lib.js/lib/crypto/curl/curl');
-const Converter = require('iota.lib.js/lib/crypto/converter/converter');
-const argon2 = require('argon2');
-const machineUuid = require('machine-uuid-sync');
-const kdbx = require('../kdbx');
-const Entangled = require('../Entangled');
-const { byteToTrit, byteToChar, removeNonAlphaNumeric } = require('../../src/libs/helpers');
-const ledger = require('../hardware/Ledger');
+import { ipcRenderer as ipc, clipboard, remote } from 'electron';
+import keytar from 'keytar';
+import fs from 'fs';
+import electronSettings from 'electron-settings';
+import Kerl from 'iota.lib.js/lib/crypto/kerl/kerl';
+import Curl from 'iota.lib.js/lib/crypto/curl/curl';
+import Converter from 'iota.lib.js/lib/crypto/converter/converter';
+import argon2 from 'argon2';
+import machineUuid from 'machine-uuid-sync';
+import { byteToTrit, byteToChar } from 'libs/iota/converter';
+import { removeNonAlphaNumeric } from 'libs/utils';
+
+import kdbx from '../kdbx';
+import Entangled from '../Entangled';
+import ledger from '../hardware/Ledger';
+import { version } from '../../package.json';
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -46,7 +47,7 @@ let onboardingSeed = null;
 let onboardingGenerated = false;
 
 // Use a different keychain entry for development versions
-const KEYTAR_SERVICE = process.env.NODE_ENV === 'development' ? 'Trinity wallet (dev)' : 'Trinity wallet';
+const KEYTAR_SERVICE = remote.app.isPackaged ? 'Trinity wallet' : 'Trinity wallet (dev)';
 
 /**
  * Global Electron helper for native support
@@ -124,6 +125,14 @@ const Electron = {
             attribute: attribute,
             value: value,
         });
+    },
+
+    /**
+     * Trigger auto update
+     * @returns {undefined}
+     */
+    autoUpdate: () => {
+        ipc.send('updates.check');
     },
 
     /**
@@ -240,11 +249,19 @@ const Electron = {
     },
 
     /**
+     * Get currrent release number
+     * @returns {string}
+     */
+    getVersion: () => {
+        return version;
+    },
+
+    /**
      * Minimize Wallet window
      * @returns {undefined}
      */
     minimize: () => {
-        currentWindow.minimize();
+        remote.getCurrentWindow().minimize();
     },
 
     /**
@@ -252,10 +269,11 @@ const Electron = {
      * @returns {undefined}
      */
     maximize: () => {
-        if (currentWindow.isMaximized()) {
-            currentWindow.unmaximize();
+        const window = remote.getCurrentWindow();
+        if (window.isMaximized()) {
+            window.unmaximize();
         } else {
-            currentWindow.maximize();
+            window.maximize();
         }
     },
 
@@ -272,7 +290,7 @@ const Electron = {
      * @returns {undefined}
      */
     close: () => {
-        currentWindow.close();
+        remote.getCurrentWindow().close();
     },
 
     /**
@@ -349,7 +367,7 @@ const Electron = {
      * @returns {number} Returns 0 after dialog button press
      */
     dialog: async (message, buttonTitle, title) => {
-        return await dialog.showMessageBox(currentWindow, {
+        return await remote.dialog.showMessageBox(remote.getCurrentWindow(), {
             type: 'info',
             title,
             message,
@@ -363,7 +381,7 @@ const Electron = {
      * @param {any} payload - Message payload
      */
     send: (type, payload) => {
-        currentWindow.webContents.send(type, payload);
+        remote.getCurrentWindow().webContents.send(type, payload);
     },
 
     /**
@@ -380,7 +398,7 @@ const Electron = {
             if (seeds.length === 1) {
                 prefix = removeNonAlphaNumeric(seeds[0].title, 'SeedVault').trim();
             }
-            const path = await dialog.showSaveDialog(currentWindow, {
+            const path = await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
                 title: 'Export keyfile',
                 defaultPath: `${prefix}-${now
                     .toISOString()
@@ -453,7 +471,7 @@ const Electron = {
         });
 
         notification.onclick = () => {
-            currentWindow.webContents.send('account.switch', accountName);
+            remote.getCurrentWindow().webContents.send('account.switch', accountName);
         };
     },
 
@@ -562,4 +580,4 @@ const Electron = {
     ledger,
 };
 
-module.exports = Electron;
+export default Electron;

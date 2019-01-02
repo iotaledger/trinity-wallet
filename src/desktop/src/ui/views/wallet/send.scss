@@ -85,6 +85,16 @@
     }
 }
 
+.address {
+    display: inline-block;
+    font-family: 'SourceCodePro';
+    letter-spacing: 2px;
+    max-width: 390px;
+    word-break: break-word;
+    font-size: 18px;
+    line-height: 28px;
+}
+
 .units {
     position: absolute;
     top: 0px;

@@ -19,8 +19,11 @@
         "invalidResponse": "ನೋಡ್ ನಲ್ಲಿ ದೋಷ",
         "invalidResponseExplanation": "ನೋಡ್ ದೋಷವನ್ನು ಹಿಂತಿರುಗಿಸಿದೆ. ನೋಡ್ ಬದಲಿಸಲು ಪ್ರಯತ್ನಿಸಿ.",
         "invalidResponseFetchingAccount": "ನಿಮ್ಮ ಖಾತೆಯ ಮಾಹಿತಿಯನ್ನು ಪಡೆಯುವಾಗ ನೋಡ್ ದೋಷವನ್ನು ಹಿಂತಿರುಗಿಸಿದೆ. ನೋಡ್ ಬದಲಿಸಲು ಪ್ರಯತ್ನಿಸಿ.",
+        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ",
         "nodeOutOfSyncExplanation": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಆಯ್ಕೆ ಮಾಡಿದ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "ಈ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "seed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "checksum": "ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ",
@@ -73,6 +76,8 @@
         "wallet": "ವಾಲೆಟ್",
         "all": "ಎಲ್ಲಾ",
         "sent": "ಕಳುಹಿಸಲಾಗಿದೆ",
+        "youReceived": "You received",
+        "youSent": "You sent",
         "received": "ಸ್ವೀಕರಿಸಲಾಗಿದೆ",
         "sending": "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ",
         "receiving": "ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿದೆ",
@@ -127,7 +132,7 @@
         "spentAddressExplanation": "ಎಚ್ಚರಿಕೆ: ಖರ್ಚು ಮಾಡಿದ ವಿಳಾಸಗಳಲ್ಲಿ ಹಣ",
         "discordInformation": "ಅದೇ ವಿಳಾಸದಿಂದ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬಾರಿ ವ್ಯವಹರಿಸುವುದು ಅಪಾಯಕಾರಿ. ದಯವಿಟ್ಟು ನೀವು ಏನು ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಕಂಡುಹಿಡಿಯಲು IOTA ಡಿಸ್ಕೋರ್ಡ್ನಲ್ಲಿ #help ಚಾನಲ್ಗೆ ಹೋಗಿ.",
         "androidInsecureClipboardWarning": "ಆಂಡ್ರಾಯ್ಡ್ ಸುರಕ್ಷಿತ ಕ್ಲಿಪ್ಬೋರ್ಡ್ ಅನ್ನು ಒದಗಿಸುವುದಿಲ್ಲ.",
-        "androidCopyPasteWarning": "ಆಂಡ್ರಾಯ್ಡ್ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಕಲಿಸಿಬೇಡಿ ಹಾಗು ಅಂಟಿಸಬೇಡಿ.",
+        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
         "willNotCopyPasteSeed": "ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಾನು ನಕಲಿಸುವುದಿಲ್ಲ / ಅಂಟಿಸುವುದಿಲ್ಲ",
         "mustBeStoredAppropriately": "ಅದನ್ನು ಸೂಕ್ತವಾಗಿ ಸಂಗ್ರಹಿಸಬೇಕು.",
         "deviceMayBecomeUnresponsive": "ಸ್ವಲ್ಪ ಸಮಯದವರೆಗೆ ನಿಮ್ಮ ಸಾಧನ ಸ್ಪಂದಿಸದಿರಬಹುದು.",
@@ -143,9 +148,18 @@
         "tryingAgainWithLocalPoW": "ಸ್ಥಳೀಯ ಕೆಲಸದ ಪುರಾವೆಯೊಂದಿಗೆ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.",
         "tryingAgainWithDifferentNode": "ಬೇರೆ ನೋಡ್ ನೊಂದಿಗೆ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "errorFetchingAccountInformation": "ಖಾತೆ ಮಾಹಿತಿಯನ್ನು ಪಡೆದುಕೊಳ್ಳುವಲ್ಲಿ ದೋಷ.",
+        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT"
+        "mainWallet": "ಮುಖ್ಯ ಖಾತೆ",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "shouldUpdate": "A new update is available",
+        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
+        "forceUpdate": "Update the app to continue",
+        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -199,7 +213,7 @@
         "passwordTooShortExplanation": "ನಿಮ್ಮ ಗುಪ್ತಪದ ಕನಿಷ್ಠ {{minLength}} ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು. ಇದು ಪ್ರಸ್ತುತ {{currentLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "passwordMismatch": "ಗುಪ್ತಪದಗಳು ಹೊಂದುತ್ತಿಲ್ಲ",
         "passwordMismatchExplanation": "ನೀವು ನಮೂದಿಸಿದ ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
-        "anEncryptedCopy": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ನಕಲನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ. ಭವಿಷ್ಯದಲ್ಲಿ ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ಪ್ರವೇಶಿಸಲು ನೀವು ಈ ಗುಪ್ತಪದ ಅನ್ನು ಬಳಸುತ್ತೀರಿ.",
+        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
         "retypePassword": "ಗುಪ್ತಪದವನ್ನು ಮತ್ತೆ ನಮೂದಿಸಿ"
     },
     "copyToClipboard": {
@@ -233,7 +247,8 @@
         "login": "ಲಾಗ್ ಇನ್",
         "setNode": "ನೋಡ್ ಹೊಂದಿಸಿ",
         "whyBiometricDisabled": "ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಏಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ?",
-        "whyBiometricDisabledExplanation": "ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ಮೊದಲ ಅಪ್ಲಿಕೇಶನ್ ಲೋಡ್ನಲ್ಲಿ ಬಯೊಮೀಟ್ರಿಕ್ ಲಾಗಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಟ್ರಿನಿಟಿ ಬಳಸುವಾಗ, ನಿಷ್ಕ್ರಿಯತೆಗಾಗಿ ನೀವು ಲಾಗ್ ಔಟ್ ಆಗುತ್ತೀರಿ. ನಂತರ ನೀವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣದೊಂದಿಗೆ ಮತ್ತೆ ಪ್ರವೇಶಿಸಬಹುದು."
+        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
+        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "ಮೊದಲ ಬಾರಿಗೆ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ.",
@@ -262,12 +277,12 @@
     "paperWallet": {
         "neverShare": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.",
         "iotaLogo": "IOTA ಚಿಹ್ನೆ",
-        "print": "ಮುದ್ರಿಸಿ",
+        "print": "Print",
         "paperConvenience": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಕಾಗದದ ನಕಲನ್ನು ಮುದ್ರಿಸುವುದು ಅದನ್ನು ಶೇಖರಿಸಿಡಲು ಅನುಕೂಲಕರ ಮಾರ್ಗವಾಗಿದೆ.",
         "publicInsecure": "ಆದರೆ ಸಾರ್ವಜನಿಕ ವೈಫೈ ಅಥವಾ ಸಾರ್ವಜನಿಕ ಪ್ರಿಂಟರ್ನಲ್ಲಿ ಮುದ್ರಣ ಮಾಡುವುದು ಅಸುರಕ್ಷಿತವಾಗಿದೆ.",
-        "tapCheckboxes": "ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಲು ಕೆಳಗಿನ ಚೆಕ್ಬಾಕ್ಸ್ ಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.",
-        "wifiCheckbox": "ನಾನು ಸಾರ್ವಜನಿಕ ವೈಫೈನಲ್ಲಿ ಮುದ್ರಿಸುವುದಿಲ್ಲ",
-        "printerCheckbox": "ನಾನು ಸಾರ್ವಜನಿಕ ಮುದ್ರಕದಲ್ಲಿ ಮುದ್ರಿಸುವುದಿಲ್ಲ"
+        "pleaseCheck": "Please check and confirm before you print",
+        "wifiConfirmation": "I am not on on public wifi",
+        "printerConfirmation": "I am not printing on a public printer"
     },
     "receive": {
         "yourAddress": "ನಿಮ್ಮ ವಿಳಾಸ",
@@ -276,12 +291,13 @@
         "copyAddress": "ವಿಳಾಸವನ್ನು ನಕಲಿಸಿ",
         "addressCopied": "ವಿಳಾಸ ನಕಲಿಸಲಾಗಿದೆ",
         "addressCopiedExplanation": "ನಿಮ್ಮ ವಿಳಾಸವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲಿಸಲಾಗಿದೆ.",
-        "generateNewAddress": "Sync address",
+        "generateNewAddress": "Generate address",
         "noAddresses": "ವಿಳಾಸವಿಲ್ಲ",
         "spent": "ಖರ್ಚು ಮಾಡಿದ",
-        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
-        "missingPermissionExplanation": "QR ಸಂಕೇತಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಫೈಲ್ ವ್ಯವಸ್ಥೆಗೆ ಪ್ರವೇಶ ಅಗತ್ಯವಿರುತ್ತದೆ.",
-        "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ"
+        "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ",
+        "generateAnAddress": "Generate address",
+        "generateAnAddressTitle": "Generate an address",
+        "generateAnAddressExplanation": "Please generate an address before using this function."
     },
     "saveYourSeed": {
         "saveYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿಕೊಳ್ಳಿ",
@@ -295,21 +311,22 @@
         "letsWriteDownYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬರೆದಿಟ್ಟುಕೊಳ್ಳೋಣ",
         "youCanHighlightCharacters": "ನೀವು ಒಂದು ಸಮಯದಲ್ಲಿ 9 ಅಕ್ಷರಗಳನ್ನು ಹೈಲೈಟ್ ಮಾಡಬಹುದು",
         "printBlankWallet": "ಖಾಲಿ ವಾಲೆಟ್ ಅನ್ನು ಮುದ್ರಿಸಿ",
-        "whatIsChecksum": "ಪ್ರತಿಯೊಂದು ಬೀಜವು ಅನುಗುಣವಾದ 3-ಪಾತ್ರದ ಖಾತೆ ಪರಿಶೀಲನೆಯನ್ನು ಹೊಂದಿರುತ್ತದೆ",
+        "whatIsAChecksum": "What is a checksum?",
+        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
         "iHavesavedMySeed": "ನಾನು ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಉಳಿಸಿದೆ",
         "checksumExplanation": "ನಿಮ್ಮ ವ್ಯಾಲೆಟ್ಗೆ ನೀವು ಬೀಜವನ್ನು ಸೇರಿಸಿದಾಗಲೆಲ್ಲ, ನೀವು ಬರೆದಿರುವ ಒಂದು ವಾಲೆಟ್ ನಿಂದ ಉತ್ಪಾದಿಸಿದ ಖಾತೆ ಪರಿಶೀಲನೆಯ ಸಂಕೇತವನ್ನು ಹೋಲಿಸಿ ನೀವು ಖಾತ್ರಿಪಡಿಸಿಕೊಳ್ಳಬೇಕು.",
         "mustSaveYourSeed": "<0><0>ಕೆಳಗೆ ಪಟ್ಟಿ ಮಾಡಲಾದ ಆಯ್ಕೆಗಳಲ್ಲಿ ನಿಮ್ಮ ಬೀಜವನ್ನು</0><1>ಕನಿಷ್ಠ ಒಂದು</1><2>ನೊಂದಿಗೆ ಬ್ಯಾಕ್ಅಪ್ ಮಾಡಬೇಕು.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ದೃಢೀಕರಿಸಿ",
-        "trinityWillNeverAskToReenter": "ನಿಮ್ಮ ವಾಲೆಟ್ ಅಥವಾ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಮರುಹೊಂದಿಸದ ಹೊರತು ಟ್ರಿನಿಟಿ ಈ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಮತ್ತೆ ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮನ್ನು ಎಂದಿಗೂ ಕೇಳಿಕೊಳ್ಳುವುದಿಲ್ಲ.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
         "enterYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಿ",
         "incorrectSeed": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "incorrectSeedExplanation": "ನೀವು ನಮೂದಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.",
         "ifYouHaveNotSaved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕಪ್ ಮಾಡಿಲ್ಲದಿದ್ದರೆ, ದಯವಿಟ್ಟು ಹಿಂತಿರುಗಿ ಮತ್ತು ಬ್ಯಾಕಪ್ ಮಾಡಿ.",
         "enterSeedBelow": "ನೀವು ಹೊಸದಾಗಿ ರಚಿಸಿದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಅದನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಲು ಕೆಳಗೆ ನಮೂದಿಸಿ",
-        "clipboardWarning": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಅಂಟಿಸಬೇಡಿ",
-        "clipboardWarningExplanation": "ಎಚ್ಚರಿಕೆ: ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ ನಕಲಿಸಿ ಪೇಸ್ಟ್ ಮಾಡುವುದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
+        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
         "invalidAddress": "ಅಮಾನ್ಯವಾದ ವಿಳಾಸ",
@@ -336,7 +353,8 @@
         "totalTime": "ಒಟ್ಟು ಸಮಯ",
         "addressPasteDetected": "ವಿಳಾಸ ಅಂಟಿಯನ್ನು ಕಂಡುಹಿಡಿದಿದೆ",
         "addressPasteExplanation": "ನೀವು ವಿಳಾಸವನ್ನು ಅಂಟಿಸಲಾಗಿದೆ ಎಂದು ತೋರುತ್ತಿದೆ. ನೀವು ಕಳುಹಿಸಲು ಬಯಸುವ ವಿಳಾಸವನ್ನು ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
-        "invalid": "ಅಮಾನ್ಯವಾಗಿದೆ"
+        "invalid": "ಅಮಾನ್ಯವಾಗಿದೆ",
+        "swipeToSend": "Swipe to send"
     },
     "setSeedName": {
         "letsAddName": "ನಾವು ಒಂದು ಹೆಸರನ್ನು ಸೇರಿಸೋಣ",
@@ -364,7 +382,9 @@
         "addNewSeed": "ಹೊಸ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸೇರಿಸಿ",
         "twoFA": "ಎರಡು-ಅಂಶದ ದೃಢೀಕರಣ",
         "changePassword": "ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಿ",
+        "general": "General settings",
         "advanced": "ಮು೦ದುವರಿದ ಸೆಟ್ಟಿಂಗ್ಸ್",
+        "account": "Account settings",
         "logout": "ಲಾಗ್ ಔಟ್",
         "reset": "ವಾಲೆಟ್ ಅನ್ನು ಮರುಹೊಂದಿಸಿ",
         "syncingComplete": "ಒಡವಾಗುನಂಟು ಪೂರ್ಣಗೊಂಡಿದೆ",
@@ -437,7 +457,8 @@
         "empty": "ಖಾಲಿ",
         "retrying": "ಮರುಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ",
         "yesterday": "ನೆನ್ನೆ ದಿನ",
-        "promotingAnotherBundle": "Promoting another bundle"
+        "promotingAnotherBundle": "Promoting another bundle",
+        "pleaseWait": "Please wait, Trinity is promoting another bundle."
     },
     "accountManagement": {
         "viewSeed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ವೀಕ್ಷಿಸಿ",
@@ -495,18 +516,21 @@
         "currency": "ಚಲಾವಣೆಯ ನಾಣ್ಯ"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "ಲಾಗ್ ಔಟ್ ಮಾಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
+        "logoutConfirmation": "ಲಾಗ್ ಔಟ್ ಮಾಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?",
+        "aboutToLogOut": "You are about to log out",
+        "areYouSure": "Are you sure?"
     },
     "qrScanner": {
         "scan": "ನಿಮ್ಮ QR ಸಂಕೇತವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
     },
     "unitInfoModal": {
-        "unitSystem": "ಪ್ರಮಾಣ ವ್ಯವಸ್ಥೆ",
+        "unitSystem": "Unit System",
         "trillion": "ಟ್ರಿಲಿಯನ್",
         "billion": "ಶತಕೋಟಿ",
         "million": "ಹತ್ತುಲಕ್ಷ",
         "thousand": "ಸಾವಿರ",
-        "one": "ಒಂದು"
+        "one": "ಒಂದು",
+        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "ನನ್ನ ಸಂಪೂರ್ಣ ಖಾತೆಯ ಮೊತ್ತವನ್ನು ನಾನು ಏಕೆ ಕಳೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ?",
@@ -516,7 +540,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ವ್ಯವಹಾರ ಇತಿಹಾಸವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ",
         "enterPassword": "ಈ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ."
     },
     "manualSync": {
@@ -528,7 +552,7 @@
         "syncingYourAccount": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ."
     },
     "useExistingSeed": {
-        "title": "ಒಂದು ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ಖಾತೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.",
+        "title": "Enter an account name and seed",
         "incorrectFormat": "ತಪ್ಪಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಸ್ವರೂಪ",
         "validSeedExplanation": "ಮಾನ್ಯವಾದ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ 81 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು."
     },
@@ -542,8 +566,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿದ್ದೀರಾ?",
-        "alreadyHave": "ನನ್ನ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನಾನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿದ್ದೇನೆ",
-        "reenterSeed": "ಮುಂದಿನ ಹಂತದಲ್ಲಿ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಮರು ನಮೂದಿಸಲು ನಿಮ್ಮನ್ನು ಕೇಳಲಾಗುತ್ತದೆ.",
+        "iHaveBackedUp": "I have safely backed up my seed",
+        "reenterSeed": "At the next step you need to re-enter your seed.",
         "reenterSeedWarning": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ನೀವು ಬ್ಯಾಕಪ್ ಮಾಡಿಲ್ಲವಾದರೆ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನ ವಿಫಲವಾದಲ್ಲಿ, ನಿಮ್ಮ ಎಲ್ಲಾ IOTA ಅನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.",
         "pleaseConfirm": "ದಯವಿಟ್ಟು ನೀವು ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
     },
@@ -563,19 +587,23 @@
         "status": "ಸ್ಥಿತಿ",
         "fingerprintUnavailable": "ಬಯೊಮೀಟ್ರಿಕ್ ದೃಢೀಕರಣ ಲಭ್ಯವಿಲ್ಲ",
         "fingerprintUnavailableExplanation": "ನಿಮ್ಮ ಸಾಧನವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅಥವಾ ಸಾಧನ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ಇದನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿಲ್ಲ.",
-        "buttonInstructionsDisable": "ಬೆರಳಿನ ಗುರುತು ದೃಢೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "ಬೆರಳುಗುರುತು ದೃಢೀಕರಣ ಸಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
-        "buttonInstructionsDisableIPhoneX": "ಫೇಸ್ ಐಡಿ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
-        "buttonInstructionsEnableIPhoneX": "ಫೇಸ್ ಐಡಿ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
         "instructionsLogin": "ಲಾಗ್ ಇನ್ ಮಾಡಲು ಬೆರಳಿನ ಗುರುತು ರೀಡರ್ ಸ್ಪರ್ಶಿಸಿ"
     },
     "transferConfirmation": {
         "youAreAbout": "ನೀವು {{contents}} ಅನ್ನು ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಲಿದ್ದೀರಿ",
-        "aMessage": "ಒಂದು ಸಂದೇಶ"
+        "aMessage": "ಒಂದು ಸಂದೇಶ",
+        "fromAccount": "From {{selectedAccountName}}",
+        "toAddress": "To address",
+        "sendingAMessage": "Sending a message",
+        "sendingAnEmptyMessage": "Sending an empty message"
     },
     "twoFA": {
         "wrongCode": "ತಪ್ಪಾದ ಸಂಕೇತ",
-        "wrongCodeExplanation": "ನೀವು ನಮೂದಿಸಿದ ಸಂಕೇತ ತಪ್ಪಾಗಿದೆ.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "ಖಾಲಿ ಸಂಕೇತ",
         "emptyCodeExplanation": "ದಯವಿಟ್ಟು ಸಂಕೇತ ನಮೂದಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "keyCopied": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ಕೀಲಿ ನಕಲಿಸಲಾಗಿದೆ",
@@ -592,7 +620,7 @@
     },
     "seedVault": {
         "exportSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ಮಾಡಿ",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
         "seedVaultWarning": "ನೀವು ಬಹು ಸ್ಥಳಗಳಲ್ಲಿ ಫೈಲ್ ಅನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ (ಉದಾ. ಹಾರ್ಡ್ ಡ್ರೈವ್, ಕ್ಲೌಡ್, ಯುಎಸ್ಬಿ). ನೀವು ಈ ಫೈಲ್ ಅನ್ನು ಕಳೆದುಕೊಂಡರೆ ಮತ್ತು ಬೇರೆಲ್ಲಿಯಾದರೂ ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಸಂಗ್ರಹಿಸದಿದ್ದರೆ, ನಿಮ್ಮ IOTA ವನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.",
         "exportFail": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ವಿಫಲವಾಗಿದೆ",
         "exportFailExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ರಫ್ತು ಮಾಡುವಲ್ಲಿ ಸಮಸ್ಯೆ ಇದೆ. ನಿಮಗೆ ಸೂಕ್ತವಾದ ಅನುಮತಿಗಳು ಮತ್ತು ಸಾಕಷ್ಟು ಉಚಿತ ಸ್ಥಳಾವಕಾಶವಿದೆಯೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
@@ -606,13 +634,15 @@
         "importSuccessExplanation": "Your seed was imported successfully.",
         "saveToDownloadFolder": "Save to Download Folder",
         "importSeedVault": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ",
-        "dropSeedVaultHere": "Drop SeedVault here <1></1> or click to browse",
+        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
+        "dropActive": "Drop SeedVault or text here",
         "enterKeyExplanation": "Enter your key to open the SeedVault",
         "noSeedFound": "ಸೀಡ್ವಾಲ್ಟ್ ಮಾನ್ಯ ಬೀಜವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ",
         "noSeedFoundExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಖಾಲಿಯಾಗಿದೆ ಅಥವಾ ಅಮಾನ್ಯ ಸ್ವರೂಪದಲ್ಲಿ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "seedFileError": "ಸೀಡ್ವಾಲ್ಟ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
         "seedFileErrorExplanation": "ಸೀಡ್ವಾಲ್ಟ್ ಅನ್ನು ತೆರೆಯುವಲ್ಲಿ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ. ನೀವು ಸರಿಯಾದ ಫೈಲ್ ಅನ್ನು ಆರಿಸಿದರೆ ಅದು ದೋಷಪೂರಿತವಾಗಬಹುದು.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will need this key to restore your seed from the SeedVault back up. The key can be the same as the password you use for Trinity."
+        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "retypeKey": "Retype key"
     },
     "chart": {
         "mcap": "ಮಾರುಕಟ್ಟೆ ಬಂಡವಾಳ",
@@ -646,7 +676,8 @@
         "preparingTransfers": "ವರ್ಗಾವಣೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
         "gettingTransactionsToApprove": "ವ್ಯವಹಾರಗಳನ್ನು ಅಂಗೀಕರಿಸಲಾಗುತ್ತದೆ",
         "proofOfWork": "ಕೆಲಸದ ಪುರಾವೆ ಪೂರ್ಣಗಳಿಸಲಾಗುತ್ತಿದೆ",
-        "broadcasting": "ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ"
+        "broadcasting": "ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ",
+        "transferComplete": "Transfer complete"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ ಪರಿವರ್ತನೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ",
@@ -660,7 +691,8 @@
         "transition": "ಪರಿವರ್ತನೆ",
         "transitioning": "ಸ್ನ್ಯಾಪ್ಶಾಟ್ಗಾಗಿ ಪರಿವರ್ತನೆ.",
         "generatingAndDetecting": "ವಿಳಾಸಗಳನ್ನು ಉತ್ಪಾದಿಸಲಾಗುತ್ತಿದೆ ಮತ್ತು ಖಾತೆಯ ಮೊತ್ತವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿದೆ.",
-        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ."
+        "attaching": "ಟ್ಯಾಂಗಲ್ಗೆ ವಿಳಾಸಗಳನ್ನು ಲಗತ್ತಿಸಲಾಗುತ್ತಿದೆ.",
+        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "ಸ್ವಯಂತುಂಬುವಿಕೆ ಯಶಸ್ಸು",
@@ -695,6 +727,10 @@
         "notLoggedIn": "ನೀವು ಲಾಗಿನ್ ಆಗಿಲ್ಲ",
         "setupIncomplete": "ವಾಲೆಟ್ ಸೆಟಪ್ ಅಪೂರ್ಣವಾಗಿದೆ",
         "completeSetup": "ಸೆಟಪ್ ಪೂರ್ಣಗೊಳಿಸಿ"
+    },
+    "proxy": {
+        "proxy": "Use system proxy",
+        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
     },
     "notifications": {
         "notifications": "ಅಧಿಸೂಚನೆಗಳು",
@@ -747,7 +783,7 @@
         "ledgerIncorrectIndex": "Ledger device mismatch",
         "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
         "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device. Press \"Sync address\" if it does not.",
+        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
         "applicationNotInitialised": "Warning unconfirmed",
         "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
     }
