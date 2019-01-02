@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Account synchroniseren",
         "preparingInputs": "Invoer voorbereiden",
         "preparingTransfers": "Voorbereiding van transacties",
