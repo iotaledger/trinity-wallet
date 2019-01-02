@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Provjera zdravlja node-a",
         "validatingReceiveAddress": "Provjera valjanosti adrese primatelja",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sinkroniziranje računa",
         "preparingInputs": "Priprema inputa",
         "preparingTransfers": "Priprema transakcija",
