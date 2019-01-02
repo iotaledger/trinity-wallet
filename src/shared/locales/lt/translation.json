@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
         "validatingReceiveAddress": "Tikrinamas pavedimų priėmimo adresas",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Paskyra sinchronizuojama",
         "preparingInputs": "Įvesties duomenų paruošimas",
         "preparingTransfers": "Ruošiami pavedimai",
