@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "檢查節點運行狀況",
         "validatingReceiveAddress": "驗證收款地址",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
         "preparingTransfers": "準備交易資訊",
