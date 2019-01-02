@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "노드 상태 확인중",
         "validatingReceiveAddress": "받는 주소 확인 중",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "계정 동기화중",
         "preparingInputs": "출금 트랜잭션 준비중",
         "preparingTransfers": "전송 준비중",
