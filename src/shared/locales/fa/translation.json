@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "بررسی سلامت Node",
         "validatingReceiveAddress": "تایید آدرس دریافتی",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "همگام سازی حساب",
         "preparingInputs": "آماده سازی ورودی",
         "preparingTransfers": "آماده سازی انتقال",
