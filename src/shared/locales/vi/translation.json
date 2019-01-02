@@ -671,6 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Đang đồng bộ tài khoản",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Chuẩn bị chuyển khoản",
