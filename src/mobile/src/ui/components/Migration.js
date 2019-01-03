@@ -58,7 +58,7 @@ class Migration extends Component {
         /** @ignore */
         startTrackingProgress: PropTypes.func.isRequired,
         /** @ignore */
-        completedMigration: PropTypes.bool,
+        completedMigration: PropTypes.bool.isRequired,
     };
 
     componentDidMount() {

@@ -61,7 +61,7 @@ class Login extends Component {
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
-        completedMigration: PropTypes.bool,
+        completedMigration: PropTypes.bool.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
     };
@@ -247,6 +247,7 @@ class Login extends Component {
         const { theme, password, isFingerprintEnabled } = this.props;
         const { nextLoginRoute } = this.state;
         const body = theme.body;
+
         return (
             <AnimatedComponent
                 animateOnMount={false}

@@ -198,7 +198,8 @@ onAppStart()
 
         // Get persisted data in AsyncStorage
         return reduxPersistStorageAdapter.get().then((storedData) => {
-            const { settings: { versions, completedMigration } } = reduxStore.getState();
+            const reduxState = reduxStore.getState();
+            const { settings: { versions, completedMigration } } = reduxState;
 
             if (
                 versions.buildNumber < 32 &&
@@ -209,7 +210,16 @@ onAppStart()
             ) {
                 // If a user has stored data in AsyncStorage then map that data to redux store.
                 return reduxStore.dispatch(
-                    mapStorageToStateAction(merge({}, storedData, { settings: { versions: latestVersions } })),
+                    mapStorageToStateAction(
+                        merge({}, storedData, {
+                            settings: {
+                                versions: latestVersions,
+                                // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
+                                // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
+                                completedMigration,
+                            },
+                        }),
+                    ),
                 );
             }
 
