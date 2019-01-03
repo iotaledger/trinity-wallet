@@ -4,6 +4,7 @@ import find from 'lodash/find';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import shuffle from 'lodash/shuffle';
+import isEqual from 'lodash/isEqual';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import nock from 'nock';
@@ -846,11 +847,20 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    // FIXME: The following test fails occasionally
     describe('#sortTransactionTrytesArray', () => {
         it('should sort transaction trytes in ascending order', () => {
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default
-            const trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+            let shuffled = false;
+            let trytes = null;
+
+            // Ensures `trytes` never deeply equals `failedTrytesWithCorrectTransactionHashes`
+            // so that this test does not randomly fail
+            while (!shuffled) {
+                trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+                if (!isEqual(trytes, failedTrytesWithCorrectTransactionHashes)) {
+                    shuffled = true;
+                }
+            }
             const result = sortTransactionTrytesArray(trytes, 'currentIndex', 'asc');
 
             expect(result).to.not.eql(trytes);
@@ -859,7 +869,17 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should sort transaction trytes in descending order', () => {
-            const trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+            let shuffled = false;
+            let trytes = null;
+
+            // Ensures `trytes` never deeply equals `failedTrytesWithCorrectTransactionHashes`
+            // so that this test does not randomly fail
+            while (!shuffled) {
+                trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+                if (!isEqual(trytes, failedTrytesWithCorrectTransactionHashes)) {
+                    shuffled = true;
+                }
+            }
             const result = sortTransactionTrytesArray(trytes);
 
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default to assert with a reversed list
