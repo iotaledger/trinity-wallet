@@ -16,8 +16,9 @@ import { generateNewAddress, addressValidationRequest, addressValidationSuccess 
 
 import SeedStore from 'libs/SeedStore';
 import { randomBytes } from 'libs/crypto';
-import { byteToChar } from 'libs/iota/converter';
 import Errors from 'libs/errors';
+import { byteToChar } from 'libs/iota/converter';
+import { getLatestAddress } from 'libs/iota/addresses';
 import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
@@ -130,7 +131,7 @@ class Receive extends React.PureComponent {
                 generateAlert('info', t('ledger:checkAddress'), t('ledger:checkAddressExplanation'), 20000);
             }
             this.props.addressValidationRequest();
-            await seedStore.validateAddress(Object.keys(account.addresses).length - 1);
+            await seedStore.validateAddress(getLatestAddress(account.addressData));
             this.props.addressValidationSuccess();
         } catch (err) {
             this.props.addressValidationSuccess();

@@ -28,27 +28,26 @@ class Addresses extends PureComponent {
                 <fieldset>
                     <ul className={css.addresses}>
                         <Scrollbar>
-                            {Object.keys(account.addresses)
-                                .reverse()
-                                .map((item) => {
-                                    const address = item + account.addresses[item].checksum;
+                            {account.addressData
+                                .map((addressData) => {
+                                    const address = addressData.address + addressData.checksum;
                                     return (
                                         <li key={address}>
-                                            <p className={isSpent(account.addresses[item]) ? css.spent : null}>
+                                            <p className={isSpent(addressData) ? css.spent : null}>
                                                 <Clipboard
                                                     text={address}
                                                     title={t('receive:addressCopied')}
                                                     success={t('receive:addressCopiedExplanation')}
                                                 >
-                                                    {item.match(/.{1,3}/g).join(' ')}{' '}
+                                                    {addressData.address.match(/.{1,3}/g).join(' ')}{' '}
                                                     <mark>
-                                                        {account.addresses[item].checksum.match(/.{1,3}/g).join(' ')}
+                                                        {addressData.checksum.match(/.{1,3}/g).join(' ')}
                                                     </mark>
                                                 </Clipboard>
                                             </p>
                                             <strong>
-                                                {formatValue(account.addresses[item].balance)}
-                                                {formatUnit(account.addresses[item].balance)}
+                                                {formatValue(addressData.balance)}
+                                                {formatUnit(addressData.balance)}
                                             </strong>
                                         </li>
                                     );

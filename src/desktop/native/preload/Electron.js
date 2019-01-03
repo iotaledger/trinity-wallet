@@ -438,16 +438,14 @@ const Electron = {
      * @param {string} accountName - target account name
      * @param {array} transactions - new transactions
      * @param {array} confirmations - recently confirmed transactions
+     * @param {object} settings - wallet settings
      */
-    notify: (accountName, transactions, confirmations) => {
+    notify: (accountName, transactions, confirmations, settings) => {
         if (!transactions.length && !confirmations.length) {
             return;
         }
 
-        const data = electronSettings.get('reduxPersist:settings');
-        const settings = JSON.parse(data);
-
-        if (!settings.notifications.general) {
+        if (!settings.notifications || !settings.notifications.general) {
             return;
         }
 

@@ -488,10 +488,12 @@ export const getAccountInfo = (seedStore, accountName, notificationFn) => {
         const selectedNode = getSelectedNodeFromState(getState());
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
+        const settings = getState().settings;
+
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAccountSyncRetryAlert()),
-        )(syncAccount)(existingAccountState, seedStore, notificationFn)
+        )(syncAccount)(existingAccountState, seedStore, notificationFn, settings)
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
 
