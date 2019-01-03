@@ -14,7 +14,7 @@ import i18next from '../libs/i18next.js';
  * Migration action types
  */
 export const ActionTypes = {
-    SET_MIGRATION_STATUS: 'IOTA/SETTINGS/SET_MIGRATION_STATUS',
+    SET_REALM_MIGRATION_STATUS: 'IOTA/SETTINGS/SET_REALM_MIGRATION_STATUS',
 };
 
 /**
@@ -31,7 +31,7 @@ export const migrate = (oldStorageAdapter) => (dispatch) => {
         dispatch(mapStorageToStateAction(mapStorageToState()));
 
         // Mark migration as complete
-        dispatch(setMigrationStatus(true));
+        dispatch(setRealmMigrationStatus(true));
 
         // Reset progress bar
         dispatch(resetProgress());
@@ -111,16 +111,16 @@ export const migrate = (oldStorageAdapter) => (dispatch) => {
 /**
  * Dispatch to set migration (AsyncStorage to Realm) complete
  *
- * @method setMigrationStatus
+ * @method setRealmMigrationStatus
  * @param {bool} payload
  *  *
  * @returns {{type: {string}, payload: {bool} }}
  */
-export const setMigrationStatus = (payload) => {
-    Wallet.setMigrationStatus(payload);
+export const setRealmMigrationStatus = (payload) => {
+    Wallet.setRealmMigrationStatus(payload);
 
     return {
-        type: ActionTypes.SET_MIGRATION_STATUS,
+        type: ActionTypes.SET_REALM_MIGRATION_STATUS,
         payload,
     };
 };

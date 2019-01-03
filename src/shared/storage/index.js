@@ -554,10 +554,10 @@ class Wallet {
     /**
      * Sets migration (AsyncStorage to Realm) status.
      *
-     * @method setMigrationStatus
+     * @method setRealmMigrationStatus
      * @param {bool} payload
      */
-    static setMigrationStatus(payload) {
+    static setRealmMigrationStatus(payload) {
         realm.write(() => {
             Wallet.latestSettings.completedMigration = payload;
         });
@@ -675,7 +675,7 @@ class Wallet {
     }
 
     /**
-     * Updates latest wallet.
+     * Updates latest (most recent version) wallet data.
      *
      * @method updateLatest
      * @param {object} data

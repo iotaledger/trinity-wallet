@@ -263,7 +263,7 @@ const settingsReducer = (state = initialState, action) => {
                     [action.payload.type]: action.payload.enabled,
                 },
             };
-        case MigrationsActionTypes.SET_MIGRATION_STATUS:
+        case MigrationsActionTypes.SET_REALM_MIGRATION_STATUS:
             return {
                 ...state,
                 completedMigration: action.payload,

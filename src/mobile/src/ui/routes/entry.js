@@ -15,7 +15,7 @@ import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
 import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
-import { setMigrationStatus } from 'shared-modules/actions/migrations';
+import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
@@ -224,7 +224,7 @@ onAppStart()
             }
 
             // Mark migration as complete since we'll no longer need to migrate data after login
-            reduxStore.dispatch(setMigrationStatus(true));
+            reduxStore.dispatch(setRealmMigrationStatus(true));
 
             // Then just map the persisted data from Realm storage to redux store.
             return reduxStore.dispatch(mapStorageToStateAction(mapStorageToState()));
