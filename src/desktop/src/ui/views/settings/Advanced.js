@@ -68,6 +68,16 @@ class Advanced extends PureComponent {
     }
 
     /**
+     * Enable/disable Tray application
+     * @returns {undefined}
+     */
+    setTray = () => {
+        const enabled = !this.props.settings.isTrayEnabled;
+        Electron.setTray(enabled);
+        this.props.setTray(enabled);
+    };
+
+    /**
      * Hard reset wallet
      * @returns {undefined}
      */
@@ -124,7 +134,6 @@ class Advanced extends PureComponent {
             changePowSettings,
             changeAutoPromotionSettings,
             lockScreenTimeout,
-            setTray,
             setNotifications,
             setProxy,
             t,
@@ -165,7 +174,7 @@ class Advanced extends PureComponent {
                                         <h3>{t('tray:trayApplication')}</h3>
                                         <Toggle
                                             checked={settings.isTrayEnabled}
-                                            onChange={() => setTray(!settings.isTrayEnabled)}
+                                            onChange={this.setTray}
                                             on={t('enabled')}
                                             off={t('disabled')}
                                         />
@@ -304,4 +313,7 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Advanced));
