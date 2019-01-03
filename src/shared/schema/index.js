@@ -7,7 +7,6 @@ import { availableCurrencies } from '../libs/currency';
  */
 export const TransactionSchema = {
     name: 'Transaction',
-    primaryKey: 'hash', // Index and look up transactions by their hash
     properties: {
         hash: 'string',
         signatureMessageFragment: 'string',
