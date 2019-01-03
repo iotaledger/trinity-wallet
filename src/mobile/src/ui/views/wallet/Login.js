@@ -61,7 +61,7 @@ class Login extends Component {
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
-        completedMigration: PropTypes.bool.isRequired,
+        completedMigration: PropTypes.bool,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
     };
