@@ -144,7 +144,7 @@ class Migration extends Component {
                         color={primary.color}
                         textColor={body.color}
                     >
-                        {this.renderProgressBarChildren()}
+                        {t(this.renderProgressBarChildren())}
                     </ProgressBar>
                 </View>
             </View>
