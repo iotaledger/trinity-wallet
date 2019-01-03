@@ -430,7 +430,7 @@ describe('actions: transfers', () => {
                                     .getActions()
                                     .map((action) => action.type)
                                     .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                            ).to.equal(8);
+                            ).to.equal(9);
 
                             syncAccountAfterSpending.restore();
                             syncAccount.restore();

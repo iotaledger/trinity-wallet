@@ -10,6 +10,7 @@ import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
+import uniq from 'lodash/uniq';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -55,11 +56,7 @@ import {
     markBundleBroadcastStatusComplete,
     markBundleBroadcastStatusPending,
 } from './accounts';
-import {
-    shouldAllowSendingToAddress,
-    getAddressesUptoRemainder,
-    categoriseAddressesBySpentStatus,
-} from '../libs/iota/addresses';
+import { isAnyAddressSpent, getAddressesUptoRemainder, categoriseAddressesBySpentStatus } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
@@ -434,17 +431,17 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
-        // Make sure that the address a user is about to send to is not already used.
-        return shouldAllowSendingToAddress()([address])
-            .then((shouldAllowSending) => {
-                if (shouldAllowSending) {
-                    // Progressbar step => (Syncing account)
-                    dispatch(setNextStepAsActive());
-
-                    return syncAccount()(accountState, seedStore);
+        // Make sure that the address a user is about to send to is not already spent.
+        return isAnyAddressSpent()([address])
+            .then((isSpent) => {
+                if (isSpent) {
+                    throw new Error(Errors.KEY_REUSE);
                 }
 
-                throw new Error(Errors.KEY_REUSE);
+                // Progressbar step => (Syncing account)
+                dispatch(setNextStepAsActive());
+
+                return syncAccount()(accountState, seedStore);
             })
             .then((newState) => {
                 // Assign latest account but do not update the local store yet.
@@ -651,6 +648,26 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                             return performLocalPow();
                         });
+                });
+            })
+            // Re-check spend statuses of all addresses in bundle
+            .then(({ trytes, transactionObjects }) => {
+                // Skip this check if it's a zero value transaction
+                if (isZeroValue) {
+                    return Promise.resolve({ trytes, transactionObjects });
+                }
+
+                // Progressbar step => (Validating transaction addresses)
+                dispatch(setNextStepAsActive());
+
+                const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
+
+                return isAnyAddressSpent()(addresses).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
+                    return { trytes, transactionObjects };
                 });
             })
             .then(({ trytes, transactionObjects }) => {

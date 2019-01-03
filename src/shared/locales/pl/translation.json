@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Błędny kod",
-        "wrongCodeExplanation": "Podany kod jest nieprawidłowy.",
+        "wrongCodeExplanation": "Podany kod jest nieprawidłowy. Jeśli ten błąd będzie się powtarzał, sprawdź, czy masz prawidłowo ustawioną godzinę w swoim urządzeniu.",
         "emptyCode": "Kod pusty",
         "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
         "keyCopied": "Klucz skopiowany do schowka",

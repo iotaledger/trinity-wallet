@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Verkeerde code",
-        "wrongCodeExplanation": "De ingevoerde code is onjuist.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Lege code",
         "emptyCodeExplanation": "Voer een code in en probeer het opnieuw.",
         "keyCopied": "Sleutel naar het klembord gekopieerd",
