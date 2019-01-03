@@ -1,0 +1,16 @@
+patch-package
+--- a/node_modules/react-native-device-info/RNDeviceInfo/RNDeviceInfo.m
++++ b/node_modules/react-native-device-info/RNDeviceInfo/RNDeviceInfo.m
+@@ -163,12 +163,7 @@ RCT_EXPORT_MODULE()
+
+ - (NSString*) userAgent
+ {
+-#if TARGET_OS_TV
+     return @"not available";
+-#else
+-    UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+-    return [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+-#endif
+ }
+
+ - (NSString*) deviceLocale
