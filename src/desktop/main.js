@@ -62,8 +62,6 @@ if (!devMode) {
     app.setAsDefaultProtocolClient('iota');
 }
 
-let settings = {};
-
 let windowState = {
     width: 1280,
     height: 720,
@@ -73,22 +71,22 @@ let windowState = {
 };
 
 try {
-    const data = electronSettings.get('reduxPersist:settings');
     const windowStateData = electronSettings.get('window-state');
     if (windowStateData) {
         windowState = windowStateData;
     }
-    settings = JSON.parse(data) || {};
 } catch (error) {}
 
 /**
  * Temporarily disable proxy if not overridden by settings
  */
-
-if (settings.ignoreProxy) {
-    app.commandLine.appendSwitch('auto-detect', 'false');
-    app.commandLine.appendSwitch('no-proxy-server');
-}
+try {
+    const ignoreProxy = electronSettings.get('ignore-proxy');
+    if (ignoreProxy) {
+        app.commandLine.appendSwitch('auto-detect', 'false');
+        app.commandLine.appendSwitch('no-proxy-server');
+    }
+} catch (error) {}
 
 function createWindow() {
     /**
