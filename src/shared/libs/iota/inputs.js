@@ -3,6 +3,7 @@ import isObject from 'lodash/isObject';
 import differenceBy from 'lodash/differenceBy';
 import head from 'lodash/head';
 import each from 'lodash/each';
+import isEmpty from 'lodash/isEmpty';
 import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import filter from 'lodash/filter';
@@ -245,9 +246,12 @@ export const getInputs = (provider) => (addressData, transactions, threshold, ma
         return Promise.reject(new Error(Errors.INVALID_MAX_INPUTS_PROVIDED));
     }
 
+    const pendingTransactions = filter(transactions, (transaction) => transaction.persistence === false);
+
     // Filter pending transactions with non-funded inputs
-    return filterNonFundedBundles(provider)(
-        constructBundlesFromTransactions(filter(transactions, (transaction) => transaction.persistence === false)),
+    return (isEmpty(pendingTransactions)
+        ? Promise.resolve([])
+        : filterNonFundedBundles(provider)(constructBundlesFromTransactions(pendingTransactions))
     )
         .then((fundedBundles) => {
             // Remove addresses from addressData with (still funded) pending incoming transactions

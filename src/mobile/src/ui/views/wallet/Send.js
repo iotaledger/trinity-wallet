@@ -508,6 +508,7 @@ export class Send extends Component {
             case 'unitInfo':
                 return this.props.toggleModalActivity(modalContent, {
                     hideModal: () => this.hideModal(),
+                    theme,
                     textColor: { color: theme.bar.color },
                     lineColor: { borderLeftColor: theme.bar.color },
                     borderColor: { borderColor: theme.bar.color },

@@ -7,12 +7,12 @@ import { availableCurrencies } from '../libs/currency';
  */
 export const TransactionSchema = {
     name: 'Transaction',
-    primaryKey: 'hash', // Index and look up transactions by their hash
     properties: {
         hash: 'string',
         signatureMessageFragment: 'string',
         address: 'string',
         value: 'int',
+        obsoleteTag: 'string',
         timestamp: 'int',
         currentIndex: 'int',
         lastIndex: 'int',
@@ -20,6 +20,10 @@ export const TransactionSchema = {
         trunkTransaction: 'string',
         branchTransaction: 'string',
         bundle: 'string',
+        attachmentTimestamp: 'int',
+        attachmentTimestampLowerBound: 'int',
+        attachmentTimestampUpperBound: 'int',
+        nonce: 'string',
         persistence: 'bool',
         broadcasted: { type: 'bool', default: true },
     },
@@ -115,6 +119,7 @@ export const AccountSchema = {
     primaryKey: 'name',
     properties: {
         meta: 'AccountMeta',
+        index: 'int',
         name: 'string',
         addressData: 'Address[]',
         transactions: 'Transaction[]',

@@ -1,4 +1,5 @@
 /* global Electron */
+import filter from 'lodash/filter';
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
@@ -6,7 +7,12 @@ import random from 'lodash/random';
 import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAccountNamesFromState, isSettingUpNewAccount, getPromotableBundlesFromState } from 'selectors/accounts';
+import {
+    getAccountNamesFromState,
+    isSettingUpNewAccount,
+    getPromotableBundlesFromState,
+    getSelectedAccountName,
+} from 'selectors/accounts';
 import {
     fetchMarketData,
     fetchChartData,
@@ -14,7 +20,7 @@ import {
     fetchNodeList,
     setPollFor,
     promoteTransfer,
-    getAccountInfo,
+    getAccountInfoForAllAccounts,
 } from 'actions/polling';
 
 /**
@@ -24,10 +30,12 @@ class Polling extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
+        /** Name for selected account */
+        selectedAccountName: PropTypes.string.isRequired,
         /** @ignore */
         pollFor: PropTypes.string.isRequired,
         /** @ignore */
-        getAccountInfo: PropTypes.func.isRequired,
+        getAccountInfoForAllAccounts: PropTypes.func.isRequired,
         /** @ignore */
         allPollingServices: PropTypes.array.isRequired,
         /** @ignore */
@@ -49,7 +57,6 @@ class Polling extends React.PureComponent {
     };
 
     state = {
-        accountIndex: 0,
         autoPromoteSkips: 0,
     };
 
@@ -88,21 +95,7 @@ class Polling extends React.PureComponent {
             return;
         }
 
-        let service = this.props.pollFor;
-
-        //Loop all accounts before reseting poll service queue
-        if (this.state.accountIndex) {
-            if (this.state.accountIndex >= this.props.accountNames.length) {
-                this.props.setPollFor(this.props.allPollingServices[0]);
-                service = this.props.allPollingServices[0];
-                this.setState({
-                    accountIndex: 0,
-                });
-            } else {
-                this.fetchLatestAccountInfo();
-                return;
-            }
-        }
+        const service = this.props.pollFor;
 
         const dict = {
             promotion: this.promote,
@@ -117,12 +110,11 @@ class Polling extends React.PureComponent {
     };
 
     fetchLatestAccountInfo = async () => {
-        const { accountIndex } = this.state;
-        const { accountNames } = this.props;
-        this.props.getAccountInfo(accountNames[accountIndex], Electron.notify);
-        this.setState({
-            accountIndex: accountIndex + 1,
-        });
+        const { accountNames, selectedAccountName } = this.props;
+        this.props.getAccountInfoForAllAccounts(
+            [selectedAccountName, ...filter(accountNames, (name) => name !== selectedAccountName)],
+            Electron.notify,
+        );
     };
 
     promote = () => {
@@ -173,6 +165,7 @@ const mapStateToProps = (state) => ({
     autoPromotion: state.settings.autoPromotion,
     accountNames: getAccountNamesFromState(state),
     unconfirmedBundleTails: getPromotableBundlesFromState(state),
+    selectedAccountName: getSelectedAccountName(state),
     isTransitioning: state.ui.isTransitioning,
 });
 
@@ -183,7 +176,7 @@ const mapDispatchToProps = {
     fetchNodeList,
     setPollFor,
     promoteTransfer,
-    getAccountInfo,
+    getAccountInfoForAllAccounts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Polling);

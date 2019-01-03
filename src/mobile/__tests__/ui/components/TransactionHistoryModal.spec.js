@@ -58,7 +58,7 @@ const getProps = (overrides) =>
                 primaryBody: '#000000',
             },
             bundleIsBeingPromoted: false,
-            isFailedTransaction: noop,
+            isFailedTransaction: false,
             retryFailedTransaction: noop,
             isRetryingFailedTransaction: false,
         },

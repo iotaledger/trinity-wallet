@@ -68,9 +68,7 @@ const updateAccountInfo = (state, payload) => ({
         [payload.accountName]: {
             ...get(state.accountInfo, `${payload.accountName}`),
             // Set seed index
-            index: isUndefined(payload.index)
-                ? get(state.accountInfo, `${payload.accountName}.index`)
-                : payload.accountIndex,
+            index: isUndefined(payload.index) ? get(state.accountInfo, `${payload.accountName}.index`) : payload.index,
             meta: payload.meta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
             addressData: setAddressData(
                 get(state.accountInfo, `${payload.accountName}.addressData`),
@@ -219,7 +217,7 @@ const account = (
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
         case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
-        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case PollingActionTypes.SYNC_ACCOUNT_WHILE_POLLING:
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:

@@ -111,7 +111,8 @@ export const migrateAccounts = (accounts) => {
         accountNames,
         (promise, accountName) => {
             return promise.then(() => {
-                const { addresses } = accountInfo[accountName];
+                const thisAccountInfo = accountInfo[accountName];
+                const { addresses } = thisAccountInfo;
 
                 // In old storage, addresses is an object but has been changed to array in the updated Account schema.
                 const addressData = map(addresses, (data, address) => assign({}, data, { address }));
@@ -128,6 +129,8 @@ export const migrateAccounts = (accounts) => {
                     Account.createIfNotExists(
                         accountName,
                         assign({}, accountData, {
+                            meta: get(thisAccountInfo, 'meta'),
+                            index: get(thisAccountInfo, 'index'),
                             usedExistingSeed: get(setupInfo, `${accountName}.usedExistingSeed`) || false,
                             displayedSnapshotTransitionGuide:
                                 get(tasks, `${accountName}.hasDisplayedTransitionGuide`) || false,

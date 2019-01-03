@@ -61,7 +61,7 @@ class Wallet extends React.PureComponent {
     byteTritCheck = () => {
         const { accountData, password } = this.props;
         const accounts = Object.keys(accountData).map(async (accountName) => {
-            if (accountData[accountName].type !== 'keychain') {
+            if (accountData[accountName].meta.type !== 'keychain') {
                 return null;
             }
             try {

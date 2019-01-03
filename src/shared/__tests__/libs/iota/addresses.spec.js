@@ -11,20 +11,24 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import nock from 'nock';
 import * as addressesUtils from '../../../libs/iota/addresses';
-import * as extendedApis from '../../../libs/iota/extendedApi';
 import {
     addressData as mockAddressData,
     latestAddressWithoutChecksum,
     latestAddressWithChecksum,
     latestAddressObject,
     latestAddressIndex,
+    latestAddressBalance,
 } from '../../__samples__/addresses';
 import transactions, {
+    newZeroValueTransaction,
     confirmedZeroValueTransactions,
     unconfirmedValueTransactions,
 } from '../../__samples__/transactions';
+import { newZeroValueTransactionTrytes } from '../../__samples__/trytes';
+import mockAccounts from '../../__samples__/accounts';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import { IRI_API_VERSION } from '../../../config';
+import { EMPTY_TRANSACTION_TRYTES, EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
 
 describe('libs: iota/addresses', () => {
     before(() => {
@@ -1927,7 +1931,7 @@ describe('libs: iota/addresses', () => {
                                     'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX',
                                 balance: 0,
                                 index: 9,
-                                checksum: 'RHAFCPMZY',
+                                checksum: 'UAPBKXRAC',
                                 spent: { local: false, remote: false },
                             },
                         ];
@@ -1938,78 +1942,142 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe.skip('#attachAndFormatAddress', () => {
-        let address;
-        let addressIndex;
-        let addressData;
+    describe('#attachAndFormatAddress', () => {
+        let accountName;
         let seedStore;
 
-        let sandbox;
-
         before(() => {
-            address = 'U'.repeat(81);
+            accountName = 'TEST';
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
+                prepareTransfers: () => Promise.resolve([EMPTY_TRANSACTION_TRYTES]),
             };
-            addressIndex = 11;
-            addressData = { ['A'.repeat(81)]: { index: 0, balance: 0, spent: { local: false, remote: false } } };
-        });
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-            sandbox.stub(extendedApis, 'sendTransferAsync').returns(() => Promise.resolve([{}, {}]));
-        });
-
-        afterEach(() => {
-            sandbox.restore();
         });
 
         describe('when finds transaction hashes for specified address', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
+
+                            return { states: map(addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            const addresses = body.addresses;
+
+                            return { hashes: map(addresses, () => EMPTY_HASH_TRYTES) };
+                        } else if (body.command === 'getTransactionsToApprove') {
+                            return {
+                                trunkTransaction: EMPTY_HASH_TRYTES,
+                                branchTransaction: EMPTY_HASH_TRYTES,
+                            };
+                        } else if (body.command === 'attachToTangle') {
+                            return { trytes: newZeroValueTransactionTrytes };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
             it('should throw with an error "Address already attached."', () => {
-                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
+                const accountState = mockAccounts.accountInfo[accountName];
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, seedStore, [], addressData, null)
+                    .attachAndFormatAddress()(
+                        latestAddressWithoutChecksum,
+                        latestAddressIndex,
+                        latestAddressBalance,
+                        seedStore,
+                        accountState,
+                        null,
+                    )
+                    .then(() => {
+                        throw new Error();
+                    })
                     .catch((error) => {
                         expect(error.message).to.equal('Address already attached.');
-
-                        findTransactions.restore();
                     });
             });
         });
 
         describe('when does not find transaction hashes for specified address', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            const addresses = body.addresses;
+
+                            return { states: map(addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (body.command === 'getTransactionsToApprove') {
+                            return {
+                                trunkTransaction: EMPTY_HASH_TRYTES,
+                                branchTransaction: EMPTY_HASH_TRYTES,
+                            };
+                        } else if (body.command === 'attachToTangle') {
+                            return { trytes: newZeroValueTransactionTrytes };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
             it('should return an object with formatted address data', () => {
-                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+                const accountState = mockAccounts.accountInfo[accountName];
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, seedStore, [], addressData, null)
+                    .attachAndFormatAddress()(
+                        latestAddressWithoutChecksum,
+                        latestAddressIndex,
+                        latestAddressBalance,
+                        seedStore,
+                        accountState,
+                        null,
+                    )
                     .then((result) => {
-                        expect(result.addressData).to.eql({
-                            ['U'.repeat(81)]: {
-                                balance: 10,
-                                checksum: 'NXELTUENX',
-                                spent: {
-                                    local: false,
-                                    remote: false,
-                                },
-                                index: 11,
-                            },
-                        });
-                        findTransactions.restore();
+                        expect(result.attachedAddressObject).to.eql(latestAddressObject);
                     });
             });
 
             it('should return an object with newly attached transaction object', () => {
-                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+                const accountState = mockAccounts.accountInfo[accountName];
 
                 return addressesUtils
-                    .attachAndFormatAddress()(address, addressIndex, 10, seedStore, [], addressData, null)
+                    .attachAndFormatAddress()(
+                        latestAddressWithoutChecksum,
+                        latestAddressIndex,
+                        latestAddressBalance,
+                        seedStore,
+                        accountState,
+                        null,
+                    )
                     .then((result) => {
-                        expect(result.transfer).to.eql([{}, {}]);
-                        findTransactions.restore();
+                        expect(result.attachedTransactions).to.eql(newZeroValueTransaction);
                     });
             });
         });

@@ -40,7 +40,7 @@ describe('actions: transfers', () => {
         });
 
         beforeEach(() => {
-            Account.create({ name: 'TEST' });
+            Account.create({ name: 'TEST', index: 0 });
             Wallet.createIfNotExists();
         });
 
@@ -300,7 +300,7 @@ describe('actions: transfers', () => {
         });
 
         beforeEach(() => {
-            Account.create({ name: 'TEST' });
+            Account.create({ name: 'TEST', index: 0 });
             Wallet.createIfNotExists();
 
             nock('http://localhost:14265', {

@@ -129,7 +129,7 @@ class History extends Component {
         } = this.props;
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
         if (isModalActive && modalContent === 'transactionHistory') {
-            const newBundleProps = newProps.transfers[modalProps.bundle];
+            const newBundleProps = newProps.transactions[modalProps.bundle];
             if (
                 isRetryingFailedTransaction !== newProps.isRetryingFailedTransaction ||
                 isAutoPromoting !== newProps.isAutoPromoting ||

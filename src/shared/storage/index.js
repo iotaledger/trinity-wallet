@@ -220,6 +220,8 @@ class Node {
 
     /**
      * Adds a custom node
+     *
+     * @method addCustomNode
      * @param {string} url Node URL
      */
     static addCustomNode(url, pow) {
@@ -246,7 +248,7 @@ class Node {
 
     /**
      *
-     * @
+     * @method addNodes
      * @param {array} nodes
      */
     static addNodes(nodes) {
@@ -480,10 +482,10 @@ class Wallet {
     /**
      * Updates finger print authentication configuration.
      *
-     * @method updateFingerPrintAuthenticationSetting
+     * @method updateFingerprintAuthenticationSetting
      * @param {boolean} payload
      */
-    static updateFingerPrintAuthenticationSetting(payload) {
+    static updateFingerprintAuthenticationSetting(payload) {
         realm.write(() => {
             Wallet.latestSettings.isFingerprintEnabled = payload;
         });
@@ -552,10 +554,10 @@ class Wallet {
     /**
      * Sets migration (AsyncStorage to Realm) status.
      *
-     * @method setMigrationStatus
+     * @method setRealmMigrationStatus
      * @param {bool} payload
      */
-    static setMigrationStatus(payload) {
+    static setRealmMigrationStatus(payload) {
         realm.write(() => {
             Wallet.latestSettings.completedMigration = payload;
         });
@@ -673,7 +675,7 @@ class Wallet {
     }
 
     /**
-     * Updates latest wallet.
+     * Updates latest (most recent version) wallet data.
      *
      * @method updateLatest
      * @param {object} data

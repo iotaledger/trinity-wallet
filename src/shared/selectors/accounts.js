@@ -11,8 +11,7 @@ import transform from 'lodash/transform';
 import { createSelector } from 'reselect';
 import { getSeedIndexFromState } from './global';
 import { accumulateBalance, getLatestAddress } from '../libs/iota/addresses';
-import { categoriseInclusionStatesByBundleHash } from '../libs/iota/transfers';
-import { mapNormalisedTransactions } from '../libs/storageToStateMappers';
+import { categoriseInclusionStatesByBundleHash, mapNormalisedTransactions } from '../libs/iota/transfers';
 
 /**
  *   Selects accounts prop from state.

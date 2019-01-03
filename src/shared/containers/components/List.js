@@ -11,6 +11,8 @@ import { promoteTransaction, retryFailedTransaction } from '../../actions/transf
 
 import { getThemeFromState } from '../../selectors/global';
 
+import { mapNormalisedTransactions, formatRelevantTransactions } from '../../libs/iota/transfers';
+
 /**
  * List component container
  * @ignore
@@ -43,12 +45,18 @@ export default function withListData(ListComponent) {
             accountNames: PropTypes.array.isRequired,
         };
 
-        promoteTransaction = (hash, powFn) => {
-            this.props.promoteTransaction(hash, this.props.accountName, powFn);
+        getAccountTransactions = (accountData) => {
+            const addresses = map(accountData.addressData, (addressData) => addressData.address);
+            const transactions = mapNormalisedTransactions(accountData.transactions, accountData.addressData);
+            return formatRelevantTransactions(transactions, addresses);
         };
 
         retryFailedTransaction = (bundle, powFn) => {
             this.props.retryFailedTransaction(this.props.accountName, bundle, powFn);
+        };
+
+        promoteTransaction = (hash, powFn) => {
+            this.props.promoteTransaction(hash, this.props.accountName, powFn);
         };
 
         render() {
@@ -81,16 +89,16 @@ export default function withListData(ListComponent) {
                 return null;
             }
 
-            const transfers =
+            const transactions =
                 index !== -1
-                    ? map(accounts.accountInfo[accountName].transfers, (tx) => tx)
+                    ? this.getAccountTransactions(accounts.accountInfo[accountName])
                     : Object.entries(accounts.accountInfo).reduce(
-                          (list, account) => list.concat(map(account[1].transfers, (tx) => tx)),
+                          (transactions, [_accountName, accountData]) => transactions.concat(this.getAccountTransactions(accountData)),
                           [],
                       );
 
             const ListProps = {
-                transfers,
+                transactions,
                 updateAccount,
                 setItem,
                 currentItem,
@@ -137,5 +145,8 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(ListData));
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(withI18n()(ListData));
 }

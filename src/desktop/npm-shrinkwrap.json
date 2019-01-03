@@ -1,6 +1,6 @@
 {
     "name": "trinity-desktop",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "lockfileVersion": 1,
     "requires": true,
     "dependencies": {
@@ -3782,7 +3782,7 @@
         },
         "deepmerge": {
             "version": "2.1.0",
-            "resolved": "http://registry.npmjs.org/deepmerge/-/deepmerge-2.1.0.tgz",
+            "resolved": "https://registry.npmjs.org/deepmerge/-/deepmerge-2.1.0.tgz",
             "integrity":
                 "sha512-Q89Z26KAfA3lpPGhbF6XMfYAm3jIV3avViy6KOJ2JLzFbeWHOvPQUu5aSJIWXap3gDZC2y1eF5HXEPI2wGqgvw=="
         },
@@ -5343,7 +5343,7 @@
             "dependencies": {
                 "array-back": {
                     "version": "1.0.4",
-                    "resolved": "http://registry.npmjs.org/array-back/-/array-back-1.0.4.tgz",
+                    "resolved": "https://registry.npmjs.org/array-back/-/array-back-1.0.4.tgz",
                     "integrity": "sha1-ZEun8JX3/898Q7Xw3DnTwfA8Bjs=",
                     "requires": {
                         "typical": "^2.6.0"
@@ -5455,7 +5455,6 @@
             "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-4.0.3.tgz",
             "integrity":
                 "sha512-q6rbdDd1o2mAnQreO7YADIxf/Whx4AHBiRf6d+/cVT8h44ss+lHgxf1FemcqDnQt9X3ct4McHr+JMGlYSsK7Cg==",
-            "dev": true,
             "requires": {
                 "graceful-fs": "^4.1.2",
                 "jsonfile": "^4.0.0",
@@ -13232,10 +13231,10 @@
             }
         },
         "realm": {
-            "version": "2.21.0",
-            "resolved": "https://registry.npmjs.org/realm/-/realm-2.21.0.tgz",
+            "version": "2.21.1",
+            "resolved": "https://registry.npmjs.org/realm/-/realm-2.21.1.tgz",
             "integrity":
-                "sha512-2XxkVogKOObhwBUcP7NPvyA9kU/HIeopVbAGgKanJWYw5z09J+I+q1CN2gCVR5EC4+H55Ht4loEhjDud5+LEYQ==",
+                "sha512-8O+A2DG2RFUuE7noRuaDa45v5fwwr6/CU/HVdMbv1w/DJV+4RxPkSiwF9OhecZ34KkAsWUbUPYZVdj5JNq3Aag==",
             "requires": {
                 "command-line-args": "^4.0.6",
                 "decompress": "^4.2.0",
@@ -13252,37 +13251,6 @@
                 "stream-counter": "^1.0.0",
                 "sync-request": "^3.0.1",
                 "url-parse": "^1.2.0"
-            },
-            "dependencies": {
-                "fs-extra": {
-                    "version": "4.0.3",
-                    "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-4.0.3.tgz",
-                    "integrity":
-                        "sha512-q6rbdDd1o2mAnQreO7YADIxf/Whx4AHBiRf6d+/cVT8h44ss+lHgxf1FemcqDnQt9X3ct4McHr+JMGlYSsK7Cg==",
-                    "requires": {
-                        "graceful-fs": "^4.1.2",
-                        "jsonfile": "^4.0.0",
-                        "universalify": "^0.1.0"
-                    }
-                },
-                "node-pre-gyp": {
-                    "version": "0.11.0",
-                    "resolved": "https://registry.npmjs.org/node-pre-gyp/-/node-pre-gyp-0.11.0.tgz",
-                    "integrity":
-                        "sha512-TwWAOZb0j7e9eGaf9esRx3ZcLaE5tQ2lvYy1pb5IAaG1a2e2Kv5Lms1Y4hpj+ciXJRofIxxlt5haeQ/2ANeE0Q==",
-                    "requires": {
-                        "detect-libc": "^1.0.2",
-                        "mkdirp": "^0.5.1",
-                        "needle": "^2.2.1",
-                        "nopt": "^4.0.1",
-                        "npm-packlist": "^1.1.6",
-                        "npmlog": "^4.0.2",
-                        "rc": "^1.2.7",
-                        "rimraf": "^2.6.1",
-                        "semver": "^5.3.0",
-                        "tar": "^4"
-                    }
-                }
             }
         },
         "recharts": {
@@ -13867,7 +13835,7 @@
             "dependencies": {
                 "commander": {
                     "version": "2.8.1",
-                    "resolved": "http://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
+                    "resolved": "https://registry.npmjs.org/commander/-/commander-2.8.1.tgz",
                     "integrity": "sha1-Br42f+v9oMMwqh4qBy09yXYkJdQ=",
                     "requires": {
                         "graceful-readlink": ">= 1.0.0"
@@ -14832,7 +14800,7 @@
             "dependencies": {
                 "array-back": {
                     "version": "1.0.4",
-                    "resolved": "http://registry.npmjs.org/array-back/-/array-back-1.0.4.tgz",
+                    "resolved": "https://registry.npmjs.org/array-back/-/array-back-1.0.4.tgz",
                     "integrity": "sha1-ZEun8JX3/898Q7Xw3DnTwfA8Bjs=",
                     "requires": {
                         "typical": "^2.6.0"
@@ -15143,7 +15111,7 @@
                 },
                 "buffer": {
                     "version": "3.6.0",
-                    "resolved": "http://registry.npmjs.org/buffer/-/buffer-3.6.0.tgz",
+                    "resolved": "https://registry.npmjs.org/buffer/-/buffer-3.6.0.tgz",
                     "integrity": "sha1-pyyTb3e5a/UvX357RnGAYoVR3vs=",
                     "requires": {
                         "base64-js": "0.0.8",

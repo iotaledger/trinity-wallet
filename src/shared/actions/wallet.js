@@ -437,15 +437,14 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 index,
                                 relevantBalances[index],
                                 seedStore,
-                                existingAccountState.transactions,
-                                existingAccountState.addressData,
+                                existingAccountState,
                                 // Pass proof of work function as null, if configuration is set to remote
                                 getRemotePoWFromState(getState()) ? null : powFn,
                             )
-                                .then(({ latestAddressData, attachedTransaction }) => {
+                                .then(({ attachedAddressObject, attachedTransactions }) => {
                                     const newState = syncAccountDuringSnapshotTransition(
-                                        attachedTransaction,
-                                        latestAddressData,
+                                        attachedTransactions,
+                                        attachedAddressObject,
                                         existingAccountState,
                                     );
 
@@ -537,6 +536,7 @@ export const getBalanceForCheck = (addresses) => {
         getBalancesAsync()(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
+
                 dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(setBalanceCheckFlag(true));
             })

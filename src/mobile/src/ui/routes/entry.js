@@ -1,7 +1,7 @@
+/* global __DEV__ */
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
-import noop from 'lodash/noop';
 import { Navigation } from 'react-native-navigation';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { withNamespaces } from 'react-i18next';
@@ -15,12 +15,13 @@ import { fetchNodeList as fetchNodes } from 'shared-modules/actions/polling';
 import { setCompletedForcedPasswordUpdate, setAppVersions } from 'shared-modules/actions/settings';
 import Themes from 'shared-modules/themes/themes';
 import { ActionTypes, mapStorageToState as mapStorageToStateAction } from 'shared-modules/actions/wallet';
-import { setMigrationStatus } from 'shared-modules/actions/migrations';
+import { setRealmMigrationStatus } from 'shared-modules/actions/migrations';
 import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
-import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter } from 'libs/store';
+import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck } from 'libs/store';
+import { bugsnag } from 'libs/bugsnag';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
 import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
@@ -197,10 +198,11 @@ onAppStart()
 
         // Get persisted data in AsyncStorage
         return reduxPersistStorageAdapter.get().then((storedData) => {
-            const { settings: { versions, completedMigration } } = reduxStore.getState();
+            const reduxState = reduxStore.getState();
+            const { settings: { versions, completedMigration } } = reduxState;
 
             if (
-                versions.version === '0.5.2' &&
+                versions.buildNumber < 32 &&
                 completedMigration === false &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.
@@ -208,12 +210,21 @@ onAppStart()
             ) {
                 // If a user has stored data in AsyncStorage then map that data to redux store.
                 return reduxStore.dispatch(
-                    mapStorageToStateAction(merge({}, storedData, { settings: { versions: latestVersions } })),
+                    mapStorageToStateAction(
+                        merge({}, storedData, {
+                            settings: {
+                                versions: latestVersions,
+                                // completedMigration prop was added to keep track of AsyncStorage -> Realm migration
+                                // That is why it won't be present in storedData (Data directly fetched from AsyncStorage)
+                                completedMigration,
+                            },
+                        }),
+                    ),
                 );
             }
 
             // Mark migration as complete since we'll no longer need to migrate data after login
-            reduxStore.dispatch(setMigrationStatus(true));
+            reduxStore.dispatch(setRealmMigrationStatus(true));
 
             // Then just map the persisted data from Realm storage to redux store.
             return reduxStore.dispatch(mapStorageToStateAction(mapStorageToState()));
@@ -221,6 +232,7 @@ onAppStart()
     })
     // Reset persisted state if keychain has no entries
     .then(() => resetIfKeychainIsEmpty(reduxStore))
+    .then(() => versionCheck(reduxStore))
     // Launch application
     .then(() => {
         const initialize = (isConnected) => {
@@ -244,4 +256,8 @@ onAppStart()
 
         hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
     })
-    .catch(noop);
+    .catch((error) => {
+        const fn = __DEV__ ? console.error : bugsnag.notify; // eslint-disable-line no-console
+
+        return fn(error);
+    });

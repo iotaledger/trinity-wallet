@@ -1,10 +1,13 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import find from 'lodash/find';
+import filter from 'lodash/filter';
+import orderBy from 'lodash/orderBy';
 import { findTransactionsAsync } from './extendedApi';
-import { syncTransactions, getTransactionsDiff } from './transfers';
+import { syncTransactions, getTransactionsDiff, mapNormalisedTransactions } from './transfers';
 import { throwIfNodeNotHealthy } from './utils';
 import {
     mapLatestAddressData,
@@ -37,11 +40,15 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
     };
 
     const existingAddressData = get(existingAccountState, 'addressData') || [];
+    const existingAddresses = map(existingAddressData, (addressObject) => addressObject.address);
     const existingTransactions = get(existingAccountState, 'transactions') || [];
-    const existingTransactionsHashes = map(existingTransactions, (transaction) => transaction.hash);
+    const existingTransactionsHashes = map(
+        filter(existingTransactions, (transaction) => includes(existingAddresses, transaction.address)),
+        (transaction) => transaction.hash,
+    );
 
     return throwIfNodeNotHealthy(provider)
-        .then(() => getFullAddressHistory(provider)(seedStore))
+        .then(() => getFullAddressHistory(provider)(seedStore, existingAccountState))
         .then((history) => {
             data = { ...data, ...history };
 
@@ -83,9 +90,7 @@ export const getAccountData = (provider) => (seedStore, accountName, existingAcc
  *
  *   @returns {function(object, object, function): Promise<object>}
  **/
-/* eslint-disable no-unused-vars */
-export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn) => {
-    /* eslint-enable no-unused-vars */
+export const syncAccount = (provider) => (existingAccountState, seedStore, notificationFn, settings) => {
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
@@ -103,28 +108,49 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
                 addresses: map(thisStateCopy.addressData, (addressObject) => addressObject.address),
             });
         })
-        .then((newHashes) =>
-            syncTransactions(provider)(
-                getTransactionsDiff(map(thisStateCopy.transactions, (transaction) => transaction.hash), newHashes),
+        .then((newHashes) => {
+            const existingAddresses = map(thisStateCopy.addressData, (addressObject) => addressObject.address);
+
+            return syncTransactions(provider)(
+                getTransactionsDiff(
+                    map(
+                        filter(thisStateCopy.transactions, (transaction) =>
+                            includes(existingAddresses, transaction.address),
+                        ),
+                        (transaction) => transaction.hash,
+                    ),
+                    newHashes,
+                ),
                 thisStateCopy.transactions,
-            ),
-        )
+            );
+        })
         .then((transactions) => {
-            //Trigger notification callback with new incoming transactions and confirmed value transactions
-            // if (notificationFn) {
-            //     notificationFn(
-            //         thisStateCopy.accountName,
-            //         filter(transfers, (transfer) => transfer.incoming && !thisStateCopy.transfers[transfer.bundle]),
-            //         filter(
-            //             transfers,
-            //             (transfer) =>
-            //                 transfer.persistence &&
-            //                 transfer.transferValue > 0 &&
-            //                 thisStateCopy.transfers[transfer.bundle] &&
-            //                 !thisStateCopy.transfers[transfer.bundle].persistence,
-            //         ),
-            //     );
-            // }
+            // Trigger notification callback with new incoming transactions and confirmed value transactions
+            // TODO: New incoming transactions & confirmed value transactions should be detected within selectors or component update lifecycle methods.
+            const existingNormalisedTransactions = mapNormalisedTransactions(
+                thisStateCopy.transactions,
+                thisStateCopy.addressData,
+            );
+            const allNormalisedTransactions = mapNormalisedTransactions(transactions, thisStateCopy.addressData);
+
+            if (notificationFn) {
+                notificationFn(
+                    thisStateCopy.accountName,
+                    filter(
+                        allNormalisedTransactions,
+                        (transfer) => transfer.incoming && !existingNormalisedTransactions[transfer.bundle],
+                    ),
+                    filter(
+                        allNormalisedTransactions,
+                        (transfer) =>
+                            transfer.persistence &&
+                            transfer.transferValue > 0 &&
+                            existingNormalisedTransactions[transfer.bundle] &&
+                            !existingNormalisedTransactions[transfer.bundle].persistence,
+                    ),
+                    settings,
+                );
+            }
 
             thisStateCopy.transactions = transactions;
 
@@ -252,16 +278,36 @@ export const syncAccountOnSuccessfulRetryAttempt = (newTransactionObjects, accou
  *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
  *
  *   @method syncAccountOnValueTransactionFailure
- *   @param {array} newTransactionObjects
- *   @param {array} latestAddressData
+ *   @param {array} attachedTransactions
+ *   @param {object} attachedAddressObject
  *   @param {object} accountState
  *
  *   @returns {object}
  **/
-export const syncAccountDuringSnapshotTransition = (newTransactionObjects, latestAddressData, accountState) => {
+export const syncAccountDuringSnapshotTransition = (attachedTransactions, attachedAddressObject, accountState) => {
+    // Check if attached address is already part of existing address data
+    const existingAddressObject = find(accountState.addressData, { address: attachedAddressObject.address });
+
     return {
         ...accountState,
-        addressData: latestAddressData,
-        transactions: [...accountState.transactions, ...newTransactionObjects],
+        addressData: existingAddressObject
+            ? // If address is already part of existing address data, then simply replace the existing address object with the attached one
+              map(accountState.addressData, (addressObject) => {
+                  if (addressObject.address === attachedAddressObject.address) {
+                      return attachedAddressObject;
+                  }
+
+                  return addressObject;
+              })
+            : // If address is not part of existing address data, then add it to address data
+              orderBy([...accountState.addressData, attachedAddressObject], 'index', ['asc']),
+        transactions: [
+            ...accountState.transactions,
+            ...map(attachedTransactions, (transaction) => ({
+                ...transaction,
+                persistence: false,
+                broadcasted: true,
+            })),
+        ],
     };
 };
