@@ -220,6 +220,8 @@ class Node {
 
     /**
      * Adds a custom node
+     *
+     * @method addCustomNode
      * @param {string} url Node URL
      */
     static addCustomNode(url, pow) {
@@ -246,7 +248,7 @@ class Node {
 
     /**
      *
-     * @
+     * @method addNodes
      * @param {array} nodes
      */
     static addNodes(nodes) {
