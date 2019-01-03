@@ -5,6 +5,7 @@ import includes from 'lodash/includes';
 import map from 'lodash/map';
 import find from 'lodash/find';
 import filter from 'lodash/filter';
+import orderBy from 'lodash/orderBy';
 import { findTransactionsAsync } from './extendedApi';
 import { syncTransactions, getTransactionsDiff, mapNormalisedTransactions } from './transfers';
 import { throwIfNodeNotHealthy } from './utils';
@@ -277,19 +278,32 @@ export const syncAccountOnSuccessfulRetryAttempt = (newTransactionObjects, accou
  *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
  *
  *   @method syncAccountOnValueTransactionFailure
- *   @param {array} newTransactionObjects
- *   @param {array} latestAddressData
+ *   @param {array} attachedTransactions
+ *   @param {object} attachedAddressObject
  *   @param {object} accountState
  *
  *   @returns {object}
  **/
-export const syncAccountDuringSnapshotTransition = (newTransactionObjects, latestAddressData, accountState) => {
+export const syncAccountDuringSnapshotTransition = (attachedTransactions, attachedAddressObject, accountState) => {
+    // Check if attached address is already part of existing address data
+    const existingAddressObject = find(accountState.addressData, { address: attachedAddressObject.address });
+
     return {
         ...accountState,
-        addressData: latestAddressData,
+        addressData: existingAddressObject
+            ? // If address is already part of existing address data, then simply replace the existing address object with the attached one
+              map(accountState.addressData, (addressObject) => {
+                  if (addressObject.address === attachedAddressObject.address) {
+                      return attachedAddressObject;
+                  }
+
+                  return addressObject;
+              })
+            : // If address is not part of existing address data, then add it to address data
+              orderBy([...accountState.addressData, attachedAddressObject], 'index', ['asc']),
         transactions: [
             ...accountState.transactions,
-            ...map(newTransactionObjects, (transaction) => ({
+            ...map(attachedTransactions, (transaction) => ({
                 ...transaction,
                 persistence: false,
                 broadcasted: true,

@@ -1,5 +1,8 @@
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import { expect } from 'chai';
 import {
     syncAccountOnValueTransactionFailure,
@@ -7,6 +10,7 @@ import {
     syncAccountDuringSnapshotTransition,
 } from '../../../libs/iota/accounts';
 import mockAccounts from '../../__samples__/accounts';
+import { latestAddressObject, latestAddressIndex } from '../../__samples__/addresses';
 import { newValueTransaction as mockValueTransactionObjects } from '../../__samples__/transactions';
 
 describe('libs: iota/accounts', () => {
@@ -96,21 +100,55 @@ describe('libs: iota/accounts', () => {
             accountName = 'TEST';
         });
 
-        it('should assign latestAddressData param to addressData', () => {
-            const accountState = {
-                ...mockAccounts.accountInfo[accountName],
-                addressData: [],
-            };
+        describe('when address of attached address object already exists in existing address data', () => {
+            it('should replace latestAddressObject with existing address object', () => {
+                const accountState = mockAccounts.accountInfo[accountName];
 
-            const latestAddressData = mockAccounts.accountInfo[accountName].addressData;
+                const attachedAddressObject = assign({}, latestAddressObject, { balance: 1000 });
 
-            const result = syncAccountDuringSnapshotTransition(
-                mockValueTransactionObjects,
-                latestAddressData,
-                accountState,
-            );
+                const result = syncAccountDuringSnapshotTransition(
+                    mockValueTransactionObjects,
+                    attachedAddressObject,
+                    accountState,
+                );
 
-            expect(result.addressData).to.eql(latestAddressData);
+                expect(result.addressData).to.eql([
+                    ...filter(
+                        result.addressData,
+                        (addressObject) => addressObject.address !== latestAddressObject.address,
+                    ),
+                    attachedAddressObject,
+                ]);
+            });
+        });
+
+        describe('when address of attached address object does not exist in existing address data', () => {
+            it('should add attachedAddressObject to existing address data and sort addressData by index in ascending order', () => {
+                const accountState = {
+                    ...mockAccounts.accountInfo[accountName],
+                    addressData: orderBy(mockAccounts.accountInfo[accountName].addressData, 'index', ['desc']),
+                };
+
+                const attachedAddressObject = {
+                    address: 'U'.repeat(81),
+                    balance: 0,
+                    index: latestAddressIndex + 1,
+                    checksum: 'NXELTUENX',
+                    spent: { local: false, remote: false },
+                };
+
+                const result = syncAccountDuringSnapshotTransition(
+                    mockValueTransactionObjects,
+                    attachedAddressObject,
+                    accountState,
+                );
+
+                const expectedAddressData = orderBy([attachedAddressObject, ...accountState.addressData], 'index', [
+                    'asc',
+                ]);
+
+                expect(result.addressData).to.eql(expectedAddressData);
+            });
         });
 
         it('should add new transaction objects to transactions in state (with persistence property false & broadcasted property true)', () => {

@@ -720,17 +720,9 @@ export const filterAddressDataWithPendingIncomingTransactions = (addressData, tr
  *   @method attachAndFormatAddress
  *   @param {string} [provider]
  *
- *   @returns {function(string, number, number, object, array, array, function): Promise<object>}
+ *   @returns {function(string, number, number, object, object, function): Promise<object>}
  **/
-export const attachAndFormatAddress = (provider) => (
-    address,
-    index,
-    balance,
-    seedStore,
-    transactions,
-    addressData,
-    powFn,
-) => {
+export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState, powFn) => {
     let attachedTransactions = [];
 
     return findTransactionsAsync(provider)({ addresses: [address] })
@@ -739,7 +731,10 @@ export const attachAndFormatAddress = (provider) => (
                 throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
             }
 
-            return sendTransferAsync(provider, powFn)(seedStore, prepareTransferArray(address, 0, '', addressData));
+            return sendTransferAsync(provider, powFn)(
+                seedStore,
+                prepareTransferArray(address, 0, '', accountState.addressData),
+            );
         })
         .then((transactionObjects) => {
             attachedTransactions = transactionObjects;
@@ -747,20 +742,22 @@ export const attachAndFormatAddress = (provider) => (
             return wereAddressesSpentFromAsync(provider)([address]);
         })
         .then((wereSpent) => {
-            const spendStatuses = findSpendStatusesFromTransactions([address], transactions);
-            const addressData = createAddressData(
-                [address],
-                [balance],
-                map(wereSpent, (status, idx) => ({
-                    remote: status,
-                    // Do not override local spend status
-                    local: get(find(addressData, { address }), 'spent.local') || spendStatuses[idx],
-                })),
-                [index],
+            const spendStatuses = findSpendStatusesFromTransactions([address], accountState.transactions);
+            const attachedAddressObject = head(
+                createAddressData(
+                    [address],
+                    [balance],
+                    map(wereSpent, (status, idx) => ({
+                        remote: status,
+                        // Do not override local spend status
+                        local: get(find(accountState.addressData, { address }), 'spent.local') || spendStatuses[idx],
+                    })),
+                    [index],
+                ),
             );
 
             return {
-                latestAddressData: addressData,
+                attachedAddressObject,
                 attachedTransactions,
             };
         });
