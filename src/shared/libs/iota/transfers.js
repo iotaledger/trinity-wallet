@@ -903,16 +903,22 @@ export const assignInclusionStatesToBundles = (provider) => (bundles) => {
  */
 export const mapNormalisedTransactions = (transactions, addressData) => {
     const tailTransactions = filter(transactions, (tx) => tx.currentIndex === 0);
-    const inclusionStates = map(tailTransactions, (tx) => tx.persistence);
-
-    const bundles = constructBundlesFromTransactions(tailTransactions, transactions, inclusionStates);
+    const bundles = constructBundlesFromTransactions(transactions);
 
     return transform(
         bundles,
         (acc, bundle) => {
             const bundleHead = head(bundle);
+            const bundleHash = bundleHead.bundle;
 
-            acc[bundleHead.bundle] = normaliseBundle(bundle, addressData, tailTransactions, bundleHead.persistence);
+            // If we have already normalised bundle, then this is a reattached bundle
+            // The only thing we are interested in is persistence of the bundle
+            // Either the original transaction or a reattachment can be confirmed.
+            if (bundleHash in acc) {
+                acc[bundleHash].persistence = acc[bundleHash].persistence || bundleHead.persistence;
+            } else {
+                acc[bundleHash] = normaliseBundle(bundle, addressData, tailTransactions, bundleHead.persistence);
+            }
         },
         {},
     );

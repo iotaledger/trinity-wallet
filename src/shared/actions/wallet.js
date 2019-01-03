@@ -368,8 +368,6 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
  */
 export const transitionForSnapshot = (seedStore, addresses) => {
     return (dispatch) => {
-        console.log('In #transitionForSnapshot');
-        console.log('Addresses', addresses);
         dispatch(snapshotTransitionRequest());
         if (addresses.length > 0) {
             dispatch(getBalanceForCheck(addresses));
@@ -404,7 +402,6 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
             ),
         );
 
-        console.log('Inside #completeSnapshotTransition');
         dispatch(snapshotAttachToTangleRequest());
 
         // Check node's health
@@ -512,12 +509,9 @@ export const generateAddressesAndGetBalance = (seedStore, index) => {
             total: 20,
         };
 
-        console.log('Inside #generateAddressesAndGetBalance');
-        console.log('Index', index);
         seedStore
             .generateAddress(options)
             .then((addresses) => {
-                console.log('Generated addresses', addresses);
                 dispatch(updateTransitionAddresses(addresses));
                 dispatch(getBalanceForCheck(addresses));
             })
@@ -539,13 +533,10 @@ export const generateAddressesAndGetBalance = (seedStore, index) => {
  */
 export const getBalanceForCheck = (addresses) => {
     return (dispatch) => {
-        console.log('Inside #getBalanceForCheck');
         getBalancesAsync()(addresses)
             .then((balances) => {
-                console.log('Fetched balances', balances);
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
 
-                console.log('Balance on addresses', balanceOnAddresses);
                 dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(setBalanceCheckFlag(true));
             })

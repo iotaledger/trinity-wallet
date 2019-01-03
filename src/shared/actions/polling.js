@@ -535,14 +535,7 @@ export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState)
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            const tailTransactions = getTailTransactionsForThisBundleHash(accountState.transactions);
-            const inclusionStates = map(transactionsForThisBundleHash, (transaction) => transaction.persistence);
-
-            const bundles = constructBundlesFromTransactions(
-                tailTransactions,
-                accountState.transactions,
-                inclusionStates,
-            );
+            const bundles = constructBundlesFromTransactions(accountState.transactions);
 
             if (isEmpty(bundles)) {
                 throw new Error(Errors.NO_VALID_BUNDLES_CONSTRUCTED);
