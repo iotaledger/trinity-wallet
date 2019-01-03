@@ -2,7 +2,7 @@ const latestAddressObject = {
     address: 'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX',
     balance: 0,
     index: 9,
-    checksum: 'RHAFCPMZY',
+    checksum: 'UAPBKXRAC',
     spent: { local: false, remote: false },
 };
 
@@ -75,9 +75,10 @@ const addressData = [
 
 const latestAddressWithoutChecksum =
     'DMBXMBUXTNBMQBWKENUROZ9OFVFABPETLAQPZSWTPDAJABOLQGKIQQHP9VQSRQ9LTOTGCYUVGNIJIPYOX';
-const latestAddressChecksum = 'RHAFCPMZY';
+const latestAddressChecksum = 'UAPBKXRAC';
 const latestAddressWithChecksum = `${latestAddressWithoutChecksum}${latestAddressChecksum}`;
 const latestAddressIndex = 9;
+const latestAddressBalance = 0;
 
 const balance = 260;
 
@@ -89,6 +90,7 @@ export {
     latestAddressChecksum,
     latestAddressWithChecksum,
     latestAddressIndex,
+    latestAddressBalance,
     latestAddressObject,
     balance,
 };
