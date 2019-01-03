@@ -20,7 +20,7 @@ import i18next from 'shared-modules/libs/i18next';
 import axios from 'axios';
 import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
-import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter } from 'libs/store';
+import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck } from 'libs/store';
 import { bugsnag } from 'libs/bugsnag';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
@@ -232,6 +232,7 @@ onAppStart()
     })
     // Reset persisted state if keychain has no entries
     .then(() => resetIfKeychainIsEmpty(reduxStore))
+    .then(() => versionCheck(reduxStore))
     // Launch application
     .then(() => {
         const initialize = (isConnected) => {
