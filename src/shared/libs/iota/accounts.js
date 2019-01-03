@@ -147,7 +147,7 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
                             existingNormalisedTransactions[transfer.bundle] &&
                             !existingNormalisedTransactions[transfer.bundle].persistence,
                     ),
-                    settings
+                    settings,
                 );
             }
 
@@ -287,6 +287,13 @@ export const syncAccountDuringSnapshotTransition = (newTransactionObjects, lates
     return {
         ...accountState,
         addressData: latestAddressData,
-        transactions: [...accountState.transactions, ...newTransactionObjects],
+        transactions: [
+            ...accountState.transactions,
+            ...map(newTransactionObjects, (transaction) => ({
+                ...transaction,
+                persistence: false,
+                broadcasted: true,
+            })),
+        ],
     };
 };
