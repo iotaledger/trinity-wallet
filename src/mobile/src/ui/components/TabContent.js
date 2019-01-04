@@ -46,7 +46,7 @@ class TabContent extends PureComponent {
             this.animationInType = ['fadeIn'];
         }
 
-        // Adjusts navigation direction when pushing to nav stack from settings
+        // Adjusts animation direction when pushing to nav stack from settings
         if (this.props.navStack.length !== newProps.navStack.length) {
             this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
             this.animationInType = ['slideInLeftSmall', 'fadeIn'];

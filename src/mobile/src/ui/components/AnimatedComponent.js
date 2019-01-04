@@ -61,7 +61,7 @@ class AnimatedComponent extends Component {
         if (props.animateOnMount) {
             this.iniatialiseAnimations(props.animationInType);
         }
-        // screeName is set in case screen remounts and is not last in the nav stack e.g. after Biometric auth request
+        // screenName is set in case screen remounts and is not last in the nav stack e.g. after Biometric auth request
         this.screen = props.screenName ? props.screenName : last(props.navStack);
     }
 
@@ -70,12 +70,6 @@ class AnimatedComponent extends Component {
         if (this.props.animateOnMount) {
             this.animateIn(this.props.delay);
         }
-        this.slideValue.addListener(({ value }) => {
-            this._value = value;
-        });
-        this.fadeValue.addListener(({ value }) => {
-            this._value = value;
-        });
     }
 
     componentWillReceiveProps(newProps) {
