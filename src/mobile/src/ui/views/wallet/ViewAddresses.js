@@ -65,10 +65,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width,
     },
-    separator: {
-        flex: 1,
-        height: height / 60,
-    },
     noAddressesContainer: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -138,7 +134,7 @@ export class ViewAddresses extends Component {
         const isSpent = spent.local || spent.remote;
 
         return (
-            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 19 }}>
+            <View style={{ flexDirection: 'row', paddingHorizontal: width / 15, height: height / 14.5 }}>
                 <TouchableOpacity
                     onPress={() => this.copy(address.address)}
                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
@@ -176,7 +172,6 @@ export class ViewAddresses extends Component {
                 initialNumToRender={10} // TODO: Should be dynamically computed.
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => this.renderAddress(item)}
-                ItemSeparatorComponent={() => <View style={styles.separator} />}
                 ListEmptyComponent={
                     <View style={styles.noAddressesContainer}>
                         <Text style={[styles.noAddresses, { color: theme.body.color }]}>{t('noAddresses')}</Text>
