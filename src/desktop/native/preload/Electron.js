@@ -137,6 +137,15 @@ const Electron = {
     },
 
     /**
+     * Set Tray icon
+     * @param {boolean} enabled - Is the tray app enabled
+     * @returns {undefined}
+     */
+    setTray: (enabled) => {
+        ipc.send('tray.enable', enabled);
+    },
+
+    /**
      * Proxy deep link value to main process
      * @returns {undefined}
      */
@@ -160,7 +169,6 @@ const Electron = {
      * @returns {boolean} If item update is succesfull
      */
     setStorage(key, item) {
-        ipc.send('storage.update', JSON.stringify({ key, item }));
         return electronSettings.set(key, item);
     },
 
