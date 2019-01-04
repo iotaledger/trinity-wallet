@@ -199,12 +199,7 @@ export const isValidAddress = (address) => {
  *
  * @returns {boolean}
  */
-export const isLastTritZero = (address) => {
-    if (!/[E-V]/.test(address.slice(80, 81))) {
-        return true;
-    }
-    return false;
-};
+export const isLastTritZero = (address) => !/[E-V]/.test(address.slice(80, 81));
 
 /**
  * Async version of isLastTritZero
