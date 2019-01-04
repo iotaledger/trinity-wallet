@@ -281,7 +281,7 @@ export default class TransactionHistoryModal extends PureComponent {
 
     renderButton(buttonProps) {
         const { disableWhen, t, hideModal, bundleIsBeingPromoted, isRetryingFailedTransaction } = this.props;
-        const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
+        const opacity = { opacity: disableWhen ? 0.6 : 1 };
         const defaultProps = {
             onLeftButtonPress: () => {
                 hideModal();
