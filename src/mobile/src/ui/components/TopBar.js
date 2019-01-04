@@ -261,21 +261,13 @@ class TopBar extends Component {
      * @returns {boolean}
      */
     shouldDisable() {
-        const {
-            isGeneratingReceiveAddress,
-            isSendingTransfer,
-            isSyncing,
-            isTransitioning,
-            isFetchingLatestAccountInfo,
-            isModalActive,
-        } = this.props;
         return (
-            isGeneratingReceiveAddress ||
-            isSendingTransfer ||
-            isSyncing ||
-            isTransitioning ||
-            isFetchingLatestAccountInfo ||
-            isModalActive
+            this.props.isGeneratingReceiveAddress ||
+            this.props.isSendingTransfer ||
+            this.props.isSyncing ||
+            this.props.isTransitioning ||
+            this.props.isFetchingLatestAccountInfo ||
+            this.props.isModalActive
         );
     }
 
@@ -352,7 +344,12 @@ class TopBar extends Component {
                                                     onPress={() => this.showModal()}
                                                     style={[styles.iconWrapper, { flex: 1, alignItems: 'flex-end' }]}
                                                 >
-                                                    <Icon name="notification" size={width / 18} color={bar.color} />
+                                                    <Icon
+                                                        name="notification"
+                                                        size={width / 18}
+                                                        color={bar.color}
+                                                        style={isModalActive && styles.disabled && { opacity: 0.5 }}
+                                                    />
                                                 </TouchableOpacity>
                                             )) || <View />}
                                     </Animated.View>
