@@ -287,7 +287,6 @@ const mapStateToProps = (state) => ({
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     forceUpdate: state.wallet.forceUpdate,
-    navStack: state.wallet.navStack,
 });
 
 const mapDispatchToProps = {
