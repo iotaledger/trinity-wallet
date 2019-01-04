@@ -15,7 +15,7 @@ import { mapStorageToState } from 'libs/storageToStateMappers';
 import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import { parse } from 'libs/utils';
-import { initialiseSync as initialiseStorage } from 'storage';
+import { initialiseSync as initialiseStorage, realm } from 'storage';
 import createPlugin from 'bugsnag-react';
 
 import Index from 'ui/Index';
@@ -78,6 +78,18 @@ new Promise((resolve, reject) => {
 
         // Assign accountIndex to every account in accountInfo if it is not assigned already
         store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+
+        if (Electron.mode === 'tray') {
+            // Add Realm change listener to sync read-only Tray app with Main app
+            realm.addListener('change', () => {
+                const data = mapStorageToState();
+                store.dispatch(mapStorageToStateAction(data));
+            });
+        } else {
+            // Start Tray application if enabled in settings
+            const isTrayEnabled = get(data, 'settings.isTrayEnabled');
+            Electron.setTray(isTrayEnabled);
+        }
 
         render(
             <ErrorBoundary>

@@ -62,8 +62,6 @@ if (!devMode) {
     app.setAsDefaultProtocolClient('iota');
 }
 
-let settings = {};
-
 let windowState = {
     width: 1280,
     height: 720,
@@ -73,22 +71,22 @@ let windowState = {
 };
 
 try {
-    const data = electronSettings.get('reduxPersist:settings');
     const windowStateData = electronSettings.get('window-state');
     if (windowStateData) {
         windowState = windowStateData;
     }
-    settings = JSON.parse(data) || {};
 } catch (error) {}
 
 /**
  * Temporarily disable proxy if not overridden by settings
  */
-
-if (settings.ignoreProxy) {
-    app.commandLine.appendSwitch('auto-detect', 'false');
-    app.commandLine.appendSwitch('no-proxy-server');
-}
+try {
+    const ignoreProxy = electronSettings.get('ignore-proxy');
+    if (ignoreProxy) {
+        app.commandLine.appendSwitch('auto-detect', 'false');
+        app.commandLine.appendSwitch('no-proxy-server');
+    }
+} catch (error) {}
 
 function createWindow() {
     /**
@@ -227,18 +225,17 @@ function createWindow() {
             } catch (error) {}
         }
     });
-
-    if (process.platform === 'darwin') {
-        const enabled = settings ? settings.isTrayEnabled : true;
-        setupTray(enabled);
-    }
 }
 
 /**
  * Setup Tray icon
  * @param {boolean} enabled - determine if tray is enabled
  */
-const setupTray = (enabled) => {
+ipc.on('tray.enable', (e, enabled) => {
+    if (process.platform !== 'darwin') {
+        return;
+    }
+
     if (enabled === false) {
         if (tray && !tray.isDestroyed()) {
             tray.destroy();
@@ -255,7 +252,7 @@ const setupTray = (enabled) => {
     tray.on('click', () => {
         toggleTray();
     });
-};
+});
 
 const toggleTray = () => {
     if (windows.tray.isVisible()) {
@@ -367,27 +364,6 @@ ipc.on('request.deepLink', () => {
         windows.main.webContents.send('url-params', deeplinkingUrl);
         deeplinkingUrl = null;
     }
-});
-
-/**
- * Proxy storage update event to tray window
- */
-ipc.on('storage.update', (e, payload) => {
-    if (process.platform !== 'darwin') {
-        return;
-    }
-
-    if (windows.tray && !windows.tray.isDestroyed()) {
-        windows.tray.webContents.send('storage.update', payload);
-    }
-    try {
-        const data = JSON.parse(payload);
-        const items = JSON.parse(data.item);
-
-        if (data.key === 'reduxPersist:settings') {
-            setupTray(items.isTrayEnabled);
-        }
-    } catch (e) {}
 });
 
 /**
