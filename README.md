@@ -1,6 +1,7 @@
 # IOTA Trinity Wallet
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/iotaledger/trinity-wallet.svg)](https://greenkeeper.io/)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=iotaledger/trinity-wallet)](https://dependabot.com)
+
 
 This is the shared repository for the IOTA Trinity Mobile and Desktop wallets. The apps are based on React and built with React-Native (mobile) and Electron (desktop).
 
