@@ -12,6 +12,7 @@
     "scripts": {
         "test": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 5000 --require @babel/register \"__tests__/**/*.spec.js\"",
         "test:watch": "yarn test --watch",
+        "test:coverage": "nyc --check-coverage --lines 50 --statements 50 --functions 50 --branches 50 yarn test",
         "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
         "themes:sync": "node themes/sync.js"
     },
@@ -55,6 +56,7 @@
         "figma-parser": "^0.0.2",
         "mocha": "^5.0.3",
         "nock": "^10.0.1",
+        "nyc": "^13.1.0",
         "redux-mock-store": "^1.5.1",
         "sinon": "^7.1.1",
         "svg2ttf": "^4.1.0",
