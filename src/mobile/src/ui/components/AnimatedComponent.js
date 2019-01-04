@@ -30,10 +30,15 @@ class AnimatedComponent extends Component {
         animateOutTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
         /** Trigger animation in on change */
         animateInTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+        /** Determines whether to animate with changes to the navigation stack */
+        animateOnNavigation: PropTypes.bool,
+        /** Screen name */
+        screenName: PropTypes.string,
     };
 
     static defaultProps = {
         animateOnMount: true,
+        animateOnNavigation: true,
         delay: 0,
         animationInType: ['fadeIn'],
         animationOutType: ['fadeOut'],
@@ -42,6 +47,7 @@ class AnimatedComponent extends Component {
         animateOutTrigger: false,
         isDashboard: false,
         blockAnimation: false,
+        screenName: null,
     };
 
     constructor(props) {
@@ -55,7 +61,8 @@ class AnimatedComponent extends Component {
         if (props.animateOnMount) {
             this.iniatialiseAnimations(props.animationInType);
         }
-        this.screen = last(props.navStack);
+        // screeName is set in case screen remounts and is not last in the nav stack e.g. after Biometric auth request
+        this.screen = props.screenName ? props.screenName : last(props.navStack);
     }
 
     componentWillMount() {
@@ -63,6 +70,12 @@ class AnimatedComponent extends Component {
         if (this.props.animateOnMount) {
             this.animateIn(this.props.delay);
         }
+        this.slideValue.addListener(({ value }) => {
+            this._value = value;
+        });
+        this.fadeValue.addListener(({ value }) => {
+            this._value = value;
+        });
     }
 
     componentWillReceiveProps(newProps) {
@@ -72,6 +85,10 @@ class AnimatedComponent extends Component {
 
         if (this.props.animateOutTrigger !== newProps.animateOutTrigger) {
             return this.iniatialiseAnimations(newProps.animationOutType);
+        }
+
+        if (!this.props.animateOnNavigation) {
+            return;
         }
 
         // Animate out if pushing from current screen

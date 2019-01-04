@@ -42,7 +42,7 @@ class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nextSetting: 'mainSettings',
+            nextSetting: props.currentSetting,
         };
     }
 
@@ -72,8 +72,8 @@ class Settings extends Component {
                 this.animationOutType = ['fadeOut'];
                 return;
             }
-            this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
             this.animationInType = ['slideInLeftSmall', 'fadeIn'];
+            this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
         }
     }
 
@@ -160,7 +160,7 @@ class Settings extends Component {
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1 }} />
                     <AnimatedComponent
-                        animateOnMount={false}
+                        animateOnNavigation={false}
                         animationInType={this.animationInType}
                         animationOutType={this.animationOutType}
                         animateInTrigger={this.state.nextSetting}

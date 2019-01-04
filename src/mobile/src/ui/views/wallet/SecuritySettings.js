@@ -59,12 +59,12 @@ class SecuritySettings extends Component {
     }
 
     /**
-     * Navigates to fingerprint setup screen
-     * @method onFingerprintSetupPress
+     * Navigates to BiometricAuthentication screen
+     * @method onBiometricAuthenticationPress
      */
-    onFingerprintSetupPress() {
+    onBiometricAuthenticationPress() {
         const { theme: { body } } = this.props;
-        navigator.push('fingerprintSetup', {
+        navigator.push('biometricAuthentication', {
             animations: {
                 push: {
                     enable: false,
@@ -97,7 +97,7 @@ class SecuritySettings extends Component {
             {
                 name: t('fingerprint'),
                 icon: 'biometric',
-                function: () => this.onFingerprintSetupPress(),
+                function: () => this.onBiometricAuthenticationPress(),
                 currentSetting: isFingerprintEnabled ? t('enabled') : t('disabled'),
             },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
