@@ -1521,6 +1521,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1530,6 +1531,20 @@ describe('libs: iota/addresses', () => {
 
                         if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, () => false) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1554,6 +1569,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1563,6 +1579,20 @@ describe('libs: iota/addresses', () => {
 
                         if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, () => true) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1587,6 +1617,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1596,6 +1627,20 @@ describe('libs: iota/addresses', () => {
 
                         if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, (_, idx) => idx % 2 === 0) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
