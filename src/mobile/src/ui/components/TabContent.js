@@ -51,6 +51,11 @@ class TabContent extends PureComponent {
             this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
             this.animationInType = ['slideInLeftSmall', 'fadeIn'];
         }
+
+        // Fade out on log out
+        if (newProps.navStack.length === 1) {
+            this.animationOutType = ['fadeOut'];
+        }
     }
 
     componentWillUnmount() {
