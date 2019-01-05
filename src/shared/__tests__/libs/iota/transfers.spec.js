@@ -4,8 +4,8 @@ import find from 'lodash/find';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import shuffle from 'lodash/shuffle';
-import isEqual from 'lodash/isEqual';
 import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 import nock from 'nock';
 import {
@@ -850,38 +850,19 @@ describe('libs: iota/transfers', () => {
     describe('#sortTransactionTrytesArray', () => {
         it('should sort transaction trytes in ascending order', () => {
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default
-            let shuffled = false;
-            let trytes = null;
-
-            // Ensures `trytes` never deeply equals `failedTrytesWithCorrectTransactionHashes`
-            // so that this test does not randomly fail
-            while (!shuffled) {
-                trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
-                if (!isEqual(trytes, failedTrytesWithCorrectTransactionHashes)) {
-                    shuffled = true;
-                }
-            }
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes, 'currentIndex', 'asc');
 
-            expect(result).to.not.eql(trytes);
+            assert(result);
             expect(result).to.eql(failedTrytesWithCorrectTransactionHashes);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(0);
         });
 
         it('should sort transaction trytes in descending order', () => {
-            let shuffled = false;
-            let trytes = null;
-
-            // Ensures `trytes` never deeply equals `failedTrytesWithCorrectTransactionHashes`
-            // so that this test does not randomly fail
-            while (!shuffled) {
-                trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
-                if (!isEqual(trytes, failedTrytesWithCorrectTransactionHashes)) {
-                    shuffled = true;
-                }
-            }
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes);
 
+            assert(result);
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default to assert with a reversed list
             expect(result).to.eql(failedTrytesWithCorrectTransactionHashes.slice().reverse());
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(2);
