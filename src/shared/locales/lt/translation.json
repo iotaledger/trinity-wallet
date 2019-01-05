@@ -671,7 +671,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
         "validatingReceiveAddress": "Tikrinamas pavedimų priėmimo adresas",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Tikrinami pavedimų adresai",
         "syncingAccount": "Paskyra sinchronizuojama",
         "preparingInputs": "Įvesties duomenų paruošimas",
         "preparingTransfers": "Ruošiami pavedimai",
@@ -731,7 +731,7 @@
     },
     "proxy": {
         "proxy": "Naudotis sistemos tarpiniu serveriu",
-        "proxyExplanation": "Aptikti ir naudotis sistemos tinklo tarpinio tinklo nustatymais. Uždaryti ir įjungti iš naujo piniginę atlikus šiuos pakeitimus."
+        "proxyExplanation": "Aptikti ir naudotis sistemos tarpinio tinklo nustatymais. Uždaryti ir įjungti iš naujo piniginę atlikus šiuos pakeitimus."
     },
     "notifications": {
         "notifications": "Pranešimai",
