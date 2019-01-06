@@ -846,20 +846,18 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    // FIXME: The following test fails occasionally
     describe('#sortTransactionTrytesArray', () => {
         it('should sort transaction trytes in ascending order', () => {
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default
-            const trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes, 'currentIndex', 'asc');
 
-            expect(result).to.not.eql(trytes);
             expect(result).to.eql(failedTrytesWithCorrectTransactionHashes);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(0);
         });
 
         it('should sort transaction trytes in descending order', () => {
-            const trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes);
 
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default to assert with a reversed list
