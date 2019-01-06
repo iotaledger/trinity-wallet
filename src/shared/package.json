@@ -62,5 +62,8 @@
         "svg2ttf": "^4.1.0",
         "svgicons2svgfont": "^9.0.2",
         "timekeeper": "^2.0.0"
+    },
+    "resolutions": {
+      "mem": ">=4.0.0"
     }
 }
