@@ -433,7 +433,7 @@ const withPreTransactionSecurityChecks = () => {
     dispatch(setNextStepAsActive());
 
     // Check the last trit for validity
-    if (!lastTritIsZero(address)) {
+    if (!isLastTritZero(address)) {
         throw new Error(Errors.INVALID_LAST_TRIT);
     }
 
