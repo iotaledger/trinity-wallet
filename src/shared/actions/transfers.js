@@ -433,8 +433,9 @@ const withPreTransactionSecurityChecks = () => {
     dispatch(setNextStepAsActive());
 
     // Check the last trit for validity
-    if (!isLastTritZero(address)) {
-        throw new Error(Errors.INVALID_LAST_TRIT);
+    return Promise.resolve(isLastTritZero(address)).then((lastTritIsZero) => {
+        if(!lastTritIsZero) {
+            throw new Error(Errors.INVALID_LAST_TRIT);
     }
 
     // Make sure that the address a user is about to send to is not already used.
