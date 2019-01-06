@@ -5,7 +5,6 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 import shuffle from 'lodash/shuffle';
 import { expect } from 'chai';
-import assert from 'assert';
 import sinon from 'sinon';
 import nock from 'nock';
 import {
@@ -853,7 +852,6 @@ describe('libs: iota/transfers', () => {
             const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes, 'currentIndex', 'asc');
 
-            assert(result);
             expect(result).to.eql(failedTrytesWithCorrectTransactionHashes);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(0);
         });
@@ -862,7 +860,6 @@ describe('libs: iota/transfers', () => {
             const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes);
 
-            assert(result);
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default to assert with a reversed list
             expect(result).to.eql(failedTrytesWithCorrectTransactionHashes.slice().reverse());
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(2);
