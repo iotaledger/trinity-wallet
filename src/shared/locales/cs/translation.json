@@ -603,7 +603,7 @@
     },
     "twoFA": {
         "wrongCode": "Nesprávný kód",
-        "wrongCodeExplanation": "Zadaný kód je nesprávný.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Prázdný kód",
         "emptyCodeExplanation": "Prosím opakujte zadání kódu.",
         "keyCopied": "Klíč zkopírován do schránky",
