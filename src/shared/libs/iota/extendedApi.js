@@ -12,6 +12,7 @@ import {
     DEFAULT_DEPTH,
     DEFAULT_MIN_WEIGHT_MAGNITUDE,
     DEFAULT_NODE_REQUEST_TIMEOUT,
+    GET_NODE_INFO_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
 import { performPow, sortTransactionTrytesArray } from './transfers';
@@ -63,12 +64,13 @@ const getBalancesAsync = (provider, withQuorum = true) => (addresses, threshold 
  *
  * @method getNodeInfoAsync
  * @param {string} [provider]
+ * @param {number} [requestTimeout]
  *
  * @returns {function(): Promise<object>}
  */
-const getNodeInfoAsync = (provider) => () =>
+const getNodeInfoAsync = (provider, requestTimeout) => () =>
     new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.getNodeInfo((err, info) => {
+        getIotaInstance(provider, requestTimeout).api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
             } else {
@@ -494,12 +496,13 @@ const attachToTangleAsync = (provider, powFn) => (
  *
  * @method getTrytesAsync
  * @param {string} [provider]
+ * @param {number} [requestTimeout]
  *
  * @returns {function(array): Promise<array>}
  */
-const getTrytesAsync = (provider) => (hashes) =>
+const getTrytesAsync = (provider, requestTimeout) => (hashes) =>
     new Promise((resolve, reject) => {
-        getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
+        getIotaInstance(provider, requestTimeout).api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
             } else {
@@ -513,15 +516,16 @@ const getTrytesAsync = (provider) => (hashes) =>
  *
  * @method isNodeHealthy
  * @param {string} [provider]
+ * @param {number} [requestTimeout]
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (provider) => {
+const isNodeHealthy = (provider, requestTimeout = GET_NODE_INFO_REQUEST_TIMEOUT) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
 
-    return getNodeInfoAsync(provider)()
+    return getNodeInfoAsync(provider, requestTimeout)()
         .then(
             ({
                 appVersion,
@@ -540,7 +544,7 @@ const isNodeHealthy = (provider) => {
                         latestMilestoneIndex - 1 === latestSolidSubtangleMilestoneIndex) &&
                     cached.latestMilestone !== EMPTY_HASH_TRYTES
                 ) {
-                    return getTrytesAsync(provider)([cached.latestMilestone]);
+                    return getTrytesAsync(provider, requestTimeout)([cached.latestMilestone]);
                 }
 
                 throw new Error(Errors.NODE_NOT_SYNCED);
