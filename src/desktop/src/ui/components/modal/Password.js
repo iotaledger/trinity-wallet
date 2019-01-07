@@ -1,3 +1,4 @@
+/* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withI18n } from 'react-i18next';
@@ -67,6 +68,10 @@ class ModalPassword extends PureComponent {
                 password: '',
             });
         }
+    }
+
+    componentWillUnmount() {
+        setTimeout(() => Electron.garbageCollect(), 1000);
     }
 
     /**
@@ -188,4 +193,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(ModalPassword));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(withI18n()(ModalPassword));
