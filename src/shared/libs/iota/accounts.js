@@ -39,7 +39,7 @@ import {
     formatAddressData,
     findSpendStatusesFromTransactionObjects,
 } from './addresses';
-import { EMPTY_HASH_TRYTES, throwIfNodeNotHealthy } from './utils';
+import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
  *   Takes in account data fetched from ledger.
@@ -109,8 +109,7 @@ export const getAccountData = (provider) => (seedStore, accountName) => {
         hashes: [],
     };
 
-    return throwIfNodeNotHealthy(provider)
-        .then(() => getFullAddressHistory(provider)(seedStore))
+    return getFullAddressHistory(provider)(seedStore)
         .then((history) => {
             data = { ...data, ...history };
 
@@ -173,17 +172,10 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return throwIfNodeNotHealthy(provider)
-        .then(
-            () =>
-                rescanAddresses
-                    ? syncAddresses(provider)(
-                          seedStore,
-                          thisStateCopy.addresses,
-                          map(thisStateCopy.transfers, (tx) => tx),
-                      )
-                    : Promise.resolve(thisStateCopy.addresses),
-        )
+    return (rescanAddresses
+        ? syncAddresses(provider)(seedStore, thisStateCopy.addresses, map(thisStateCopy.transfers, (tx) => tx))
+        : Promise.resolve(thisStateCopy.addresses)
+    )
         .then((latestAddressData) => {
             thisStateCopy.addresses = latestAddressData;
 
