@@ -42,7 +42,7 @@ class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nextSetting: 'mainSettings',
+            nextSetting: props.currentSetting,
         };
     }
 
@@ -68,12 +68,12 @@ class Settings extends Component {
             );
         }
         if (this.props.navStack !== newProps.navStack) {
+            this.animationInType = ['slideInLeftSmall', 'fadeIn'];
             if (newProps.navStack.length === 1) {
                 this.animationOutType = ['fadeOut'];
                 return;
             }
             this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
-            this.animationInType = ['slideInLeftSmall', 'fadeIn'];
         }
     }
 
@@ -140,9 +140,9 @@ class Settings extends Component {
             if (indexedSettings[currentSetting] === indexedSettings[nextSetting]) {
                 return ['fadeIn'];
             } else if (indexedSettings[currentSetting] < indexedSettings[nextSetting]) {
-                return ['slideInLeftSmall', 'fadeIn'];
-            } else if (indexedSettings[currentSetting] > indexedSettings[nextSetting]) {
                 return ['slideInRightSmall', 'fadeIn'];
+            } else if (indexedSettings[currentSetting] > indexedSettings[nextSetting]) {
+                return ['slideInLeftSmall', 'fadeIn'];
             }
         }
         if (indexedSettings[currentSetting] < indexedSettings[nextSetting]) {
@@ -161,6 +161,7 @@ class Settings extends Component {
                     <View style={{ flex: 1 }} />
                     <AnimatedComponent
                         animateOnMount={false}
+                        animateOnNavigation={false}
                         animationInType={this.animationInType}
                         animationOutType={this.animationOutType}
                         animateInTrigger={this.state.nextSetting}

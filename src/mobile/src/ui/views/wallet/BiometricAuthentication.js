@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 });
 
 /** Fingerprint enable component */
-class FingerprintEnable extends Component {
+class BiometricAuthentication extends Component {
     static propTypes = {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
@@ -281,5 +281,5 @@ const mapDispatchToProps = {
 };
 
 export default withNamespaces(['fingerprintSetup', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(FingerprintEnable),
+    connect(mapStateToProps, mapDispatchToProps)(BiometricAuthentication),
 );
