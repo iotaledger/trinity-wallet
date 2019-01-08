@@ -23,6 +23,13 @@
             display: none;
         }
 
+        @media (max-width: 840px) {
+            position: fixed;
+            z-index: 2;
+            left: 0px;
+            width: 70px;
+        }
+
         h1 {
             display: block;
             position: relative;
@@ -33,6 +40,10 @@
             margin-bottom: 0px;
             opacity: 0.6;
             border-bottom: 1px solid var(--bar-hover);
+
+            @media (max-width: 840px) {
+                display: none;
+            }
         }
 
         > div > a {
@@ -59,6 +70,10 @@
             &:hover,
             &[aria-current='true'] {
                 background: var(--bar-hover);
+            }
+
+            @media (max-width: 840px) {
+                display: none;
             }
         }
 
@@ -100,11 +115,28 @@
                 &:last-of-type {
                     margin-bottom: 20px;
                 }
+
+                @media (max-width: 840px) {
+                    padding: 24px 20px;
+
+                    &:last-of-type {
+                        margin-bottom: 0px;
+                    }
+                    span {
+                        font-size: 24px !important;
+                    }
+                    strong {
+                        display: none;
+                    }
+                }
             }
 
             hr {
                 margin: 6px 0;
                 border: none;
+                @media (max-width: 840px) {
+                    display: none;
+                }
             }
         }
     }
@@ -137,10 +169,14 @@
             }
         }
 
+        @media (max-width: 840px) {
+            padding: 0 0 0 70px;
+        }
+
         > form {
             height: 100vh;
             position: relative;
-            padding-top: 120px;
+            padding: 120px 20px 0;
             fieldset {
                 max-width: 520px;
                 margin: 0 auto;
@@ -153,6 +189,7 @@
             footer {
                 position: absolute;
                 bottom: 0px;
+                left: 0px;
                 height: 70px;
                 width: 100%;
                 display: flex;
@@ -195,10 +232,11 @@
     height: 100vh;
     margin: 0 auto;
 
-    article {
+    article,
+    ul {
         margin: 0 auto;
         max-width: 560px;
-        padding: 120px 0;
+        padding: 120px 20px;
     }
 }
 
