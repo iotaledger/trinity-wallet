@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Din adress bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Giltiga adresser bör vara 90 tecken och innehålla endast A-Z eller 9.",
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
