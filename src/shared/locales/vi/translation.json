@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Địa chỉ phải có {{maxLength}} ký tự và phải có sự kiểm tra tổng.",
         "invalidAddressExplanation2": "Địa chỉ có chứa ký tự không hợp lệ.",
         "invalidAddressExplanation3": "Địa chỉ chứa kiểm tra tổng không hợp lệ.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Địa chỉ hợp lệ sẽ có 90 ký tự và chỉ chứa đựng chữ cái A-Z và số 9.",
         "notEnoughFunds": "Không đủ tiền",
         "notEnoughFundsExplanation": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
