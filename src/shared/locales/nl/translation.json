@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controlesom bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Geldige adressen zijn 90 tekens lang en bevatten alleen A-Z of 9.",
         "notEnoughFunds": "Onvoldoende saldo",
         "notEnoughFundsExplanation": "U heeft onvoldoende IOTA om deze transactie te voltooien.",
