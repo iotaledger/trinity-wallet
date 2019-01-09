@@ -137,7 +137,7 @@ const findTransactionsAsync = (provider) => (args) =>
  *
  * @returns {function(array): Promise<array>}
  */
-const getLatestInclusionAsync = (provider, withQuorum = true) => (hashes) =>
+const getLatestInclusionAsync = (provider, withQuorum = false) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
