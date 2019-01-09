@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sumę kontrolną.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Poprawny adres powinien składać się z 90 znaków i zawierać wielkie litery A-Z oraz cyfry 9.",
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
