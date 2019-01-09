@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Naslov mora biti {{maxLength}} znakov dolgo in mora biti preverjeno.",
         "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
         "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Premalo sredstev",
         "notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
