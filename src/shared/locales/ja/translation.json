@@ -333,7 +333,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "アドレスが正しく入力されていることを確認してください。",
         "invalidAddressExplanationGeneric": "有効なアドレスは90文字で、A〜Zまたは9のみを含む必要があります。",
         "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
