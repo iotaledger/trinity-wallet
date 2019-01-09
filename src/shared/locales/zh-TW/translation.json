@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "地址應該為 {{maxLength}} 個字元且應有一個檢查碼。",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "有效地址應為 90 個字元而且僅包含 A-Z 或 9。",
         "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "您沒有足夠的 IOTA 完成本次交易。",
