@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Gyldige adresser skal være på 90 tegn og må kun indeholde A-Z eller 9.",
         "notEnoughFunds": "Utilstrækkelig saldo",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
