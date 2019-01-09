@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Broj znakova adrese bi trebao biti {{maxLength}}, te bi ona trebala sadržavati kontrolni zbroj.",
         "invalidAddressExplanation2": "Adresa sadrži nedopuštene znakove.",
         "invalidAddressExplanation3": "Adresa sadrži neispravan kontrolni zbroj.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Ispravne adrese morale bi sadržavati 90 znakova i to samo znakove A-Z ili broj 9.",
         "notEnoughFunds": "Nedovoljno sredstava na računu",
         "notEnoughFundsExplanation": "Nemate dovoljno sredstava da bi izvršili ovu transakciju.",
