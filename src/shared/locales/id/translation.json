@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Alamat yang valid harus 90 karakter dan mengandung hanya A-Z atau 9.",
         "notEnoughFunds": "Dana tidak mencukupi",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
