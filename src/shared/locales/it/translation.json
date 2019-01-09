@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Un indirizzo valido consta di 90 caratteri e contiene solo A-Z o 9.",
         "notEnoughFunds": "Fondi insufficienti",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
