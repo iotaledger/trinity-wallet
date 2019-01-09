@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Gyldige adresser må være 90 tegn og kun inneholde bokstavene A til Z og tallet 9.",
         "notEnoughFunds": "Saldoen er for lav",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
