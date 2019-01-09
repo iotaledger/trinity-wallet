@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "ที่อยู่ควรมีความยาวอักขระ {{maxLength}} และควรมี Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่]",
         "invalidAddressExplanation2": "ที่อยู่ประกอบด้วยอักขระที่ไม่ถูกต้อง",
         "invalidAddressExplanation3": "ที่อยู่ประกอบด้วย Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่] ที่ไม่ถูกต้อง",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "ที่อยู่ที่ถูกต้องจะต้องมี 90 หลัก ประกอบไปด้วย A-Z หรือ 0-9 เท่านั้น",
         "notEnoughFunds": "ยอดคงเหลือไม่เพียงพอ",
         "notEnoughFundsExplanation": "คุณมียอด IOTA คงเหลือไม่เพียงพอสำหรับการโอน",
