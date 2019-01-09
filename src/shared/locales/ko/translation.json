@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "주소는 {{maxLength}}글자로 구성되어야 하며, 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "주소는 90글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함합니다.",
         "notEnoughFunds": "잔고 부족",
         "notEnoughFundsExplanation": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
