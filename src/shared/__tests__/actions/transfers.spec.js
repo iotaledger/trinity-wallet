@@ -417,7 +417,7 @@ describe('actions: transfers', () => {
                         .dispatch(
                             actions.makeTransaction(
                                 seedStore,
-                                'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                 2,
                                 'TEST MESSAGE',
                                 'TEST',
@@ -456,7 +456,7 @@ describe('actions: transfers', () => {
                             .dispatch(
                                 actions.makeTransaction(
                                     seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                     2,
                                     'TEST MESSAGE',
                                     'TEST',
@@ -500,7 +500,7 @@ describe('actions: transfers', () => {
                             .dispatch(
                                 actions.makeTransaction(
                                     seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                     200,
                                     'TEST MESSAGE',
                                     'TEST',
@@ -546,7 +546,7 @@ describe('actions: transfers', () => {
                             .dispatch(
                                 actions.makeTransaction(
                                     seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                     100,
                                     'TEST MESSAGE',
                                     'TEST',

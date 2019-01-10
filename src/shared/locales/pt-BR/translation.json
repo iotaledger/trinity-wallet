@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e deve conter o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um Código de Verificação incorreto.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Endereços válidos devem possuir 90 caracteres e conter apenas A-Z ou 9.",
         "notEnoughFunds": "Saldo insuficiente",
         "notEnoughFundsExplanation": "Você não possui IOTAs suficientes para realizar esta transferência.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Verificando a saúde do servidor",
         "validatingReceiveAddress": "Validando o endereço de recebimento",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sincronizando a conta",
         "preparingInputs": "Preparando entradas",
         "preparingTransfers": "Preparando as transferências",
