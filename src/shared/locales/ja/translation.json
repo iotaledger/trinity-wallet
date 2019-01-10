@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
+        "invalidAddressExplanation4": "アドレスが正しく入力されていることを確認してください。",
         "invalidAddressExplanationGeneric": "有効なアドレスは90文字で、A〜Zまたは9のみを含む必要があります。",
         "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
@@ -603,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "コードが間違っています。",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "入力したコードが正しくありません。このエラーが解決しない場合は、デバイスの時刻が正しいかどうか確認してください。",
         "emptyCode": "コードが入力されていません。",
         "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
         "keyCopied": "キーをクリップボードにコピーしました。",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",
         "validatingReceiveAddress": "受取用アドレスを検証中",
+        "validatingTransactionAddresses": "取引アドレスを検証中",
         "syncingAccount": "アカウントを同期中",
         "preparingInputs": "入力部を準備中",
         "preparingTransfers": "送金を準備中",

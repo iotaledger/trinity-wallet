@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Aadress peaks koosnema {{maxLength}} tähemärgist ja tal peaks olema kontrollsumma.",
         "invalidAddressExplanation2": "Aadress sisaldab sobimatuid tähemärke.",
         "invalidAddressExplanation3": "Aadress sisaldab vigast kontrollsummat.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Kehtivad aadressid peaksid koosnema 90 tähemärgist ja sisaldama ainult A-Z või 9.",
         "notEnoughFunds": "Ebapiisavad vahendid",
         "notEnoughFundsExplanation": "Teil ei ole selle ülekande tegemiseks piisavalt IOTAsid.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Sõlme tervise kontrollimine",
         "validatingReceiveAddress": "Saaja aadressi kontrollimine",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sünkroniseeri konto",
         "preparingInputs": "Sisendite ettevalmistamine",
         "preparingTransfers": "Ülekannete ettevalmistamine",

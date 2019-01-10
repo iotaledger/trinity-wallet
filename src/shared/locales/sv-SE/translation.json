@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Din adress bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Giltiga adresser bör vara 90 tecken och innehålla endast A-Z eller 9.",
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -603,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Fel kod",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Den kod du angett är felaktig. Om felet kvarstår, kontrollera att klockan på dina enheter är korrekt konfigurerade.",
         "emptyCode": "Tom kod",
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
+        "validatingTransactionAddresses": "Verifierar transaktionsadresser",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",

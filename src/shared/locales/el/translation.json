@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Έγκυρες διευθύνσεις θα πρέπει να αποτελούνται από  90 χαρακτήρες και να περιέχει μόνο A-Z ή 9.",
         "notEnoughFunds": "Ανεπαρκές χρηματικό υπόλοιπο",
         "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Επαληθεύοντας τη διεύθυνση λήψης",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Συγχρονισμός Λογαριασμού",
         "preparingInputs": "Προετοιμασία εισόδων",
         "preparingTransfers": "Ετοιμάζοντας τις μεταφορές",

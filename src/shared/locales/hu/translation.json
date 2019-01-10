@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "A cím legfeljebb {{maxLength}} karakterből állhat és rendelkeznie kell egy ellenőrző összeggel.",
         "invalidAddressExplanation2": "A cím érvénytelen karaktereket tartalmaz.",
         "invalidAddressExplanation3": "A cím érvénytelen ellenőrzőösszeget tartalmaz.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "A címnek pontosan 90 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat.",
         "notEnoughFunds": "Fedezethiány",
         "notEnoughFundsExplanation": "Nincs elegendő IOTA a számlán a tranzakció végrehajtásához.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
         "validatingReceiveAddress": "Címzett címének ellenőrzése",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Számla szinkronizálása",
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",
