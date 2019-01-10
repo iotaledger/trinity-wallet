@@ -280,7 +280,6 @@ const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: state.settings.theme,
     is2FAEnabled: state.settings.is2FAEnabled,
-    accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
     loginRoute: state.ui.loginRoute,

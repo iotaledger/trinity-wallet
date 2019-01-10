@@ -12,14 +12,7 @@ import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
 import { isNodeHealthy, getIotaInstance } from './extendedApi';
-import {
-    QUORUM_THRESHOLD,
-    QUORUM_SIZE,
-    QUORUM_SYNC_CHECK_INTERVAL,
-    DEFAULT_BALANCES_THRESHOLD,
-    DEFAULT_NODE_REQUEST_TIMEOUT,
-    GET_NODE_INFO_REQUEST_TIMEOUT,
-} from '../../config';
+import { QUORUM_THRESHOLD, QUORUM_SIZE, QUORUM_SYNC_CHECK_INTERVAL, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { EMPTY_HASH_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
@@ -276,12 +269,7 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
                     syncedNodes,
                     (provider) =>
                         new Promise((resolve) => {
-                            getIotaInstance(
-                                provider,
-                                iotaApiMethod === 'getNodeInfo'
-                                    ? GET_NODE_INFO_REQUEST_TIMEOUT
-                                    : DEFAULT_NODE_REQUEST_TIMEOUT,
-                            ).api[iotaApiMethod](
+                            getIotaInstance(provider, getTimeout(payload, iotaApiMethod)).api[iotaApiMethod](
                                 ...[
                                     ...requestArgs,
                                     (err, result) =>
@@ -413,5 +401,29 @@ export default function Quorum(quorumNodes) {
         },
     };
 }
+
+/**
+ * Returns timeouts for specific quorum requests
+ *
+ * @method getTimeout
+ * @param {array} payload
+ * @param {string} method
+ *
+ * @returns {Promise}
+ */
+const getTimeout = (payload, method) => {
+    let timeout = 0;
+    switch (method) {
+        case 'wereAddressesSpentFrom':
+            timeout = 4000;
+            break;
+        case 'getBalances':
+            timeout = 6000;
+            break;
+        case 'getNodeInfo':
+            timeout = 2500;
+    }
+    return timeout;
+};
 
 export { determineQuorumResult, fallbackToSafeResult, findSyncedNodes };
