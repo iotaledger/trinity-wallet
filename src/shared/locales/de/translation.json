@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Die Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Die Adresse enthält eine ungültige Prüfsumme.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -603,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
         "emptyCode": "Fehlender 2FA-Code",
         "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
@@ -645,9 +646,9 @@
         "retypeKey": "Schlüssel erneut eingeben"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "Börsenwert",
         "change": "Änderung (24 Std.)",
-        "volume": "Volumen (24h)",
+        "volume": "Volumen (24 Std.)",
         "error": "Fehler beim Abrufen der Diagrammdaten"
     },
     "rootDetection": {
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Überprüfe Zustand des Node",
         "validatingReceiveAddress": "Überprüfe Empfangsadresse",
+        "validatingTransactionAddresses": "Adressen der Transaktionen werden überprüft",
         "syncingAccount": "Konto synchronisieren",
         "preparingInputs": "Vorbereitung der Daten",
         "preparingTransfers": "Vorbereitung der Transaktion",
