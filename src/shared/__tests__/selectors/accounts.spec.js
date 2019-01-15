@@ -21,6 +21,7 @@ import {
     getFailedBundleHashesFromAccounts,
     getFailedBundleHashesForSelectedAccount,
     getNodesFromState,
+    getCustomNodesFromState,
     getSelectedNodeFromState,
     getAccountInfoDuringSetup,
     isSettingUpNewAccount,
@@ -704,6 +705,30 @@ describe('selectors: accounts', () => {
         describe('when "nodes" prop is undefined in settings reducer', () => {
             it('should return an empty array', () => {
                 expect(getNodesFromState({ settings: {} })).to.eql([]);
+            });
+        });
+    });
+
+    describe('#getCustomNodesFromState', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                settings: {
+                    customNodes: ['foo', 'baz'],
+                },
+            };
+        });
+
+        describe('when "customNodes" prop is defined in settings reducer', () => {
+            it('should return "customNodes" prop', () => {
+                expect(getCustomNodesFromState(state)).to.eql(['foo', 'baz']);
+            });
+        });
+
+        describe('when "customNodes" prop is undefined in settings reducer', () => {
+            it('should return an empty array', () => {
+                expect(getCustomNodesFromState({ settings: {} })).to.eql([]);
             });
         });
     });

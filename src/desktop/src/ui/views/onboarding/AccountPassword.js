@@ -95,7 +95,7 @@ class AccountPassword extends React.PureComponent {
         setPassword(passwordHash);
 
         this.props.setAccountInfoDuringSetup({
-            completed: true
+            completed: true,
         });
 
         const seedStore = await new SeedStore[additionalAccountMeta.type](passwordHash);

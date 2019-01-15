@@ -1,3 +1,4 @@
+import includes from 'lodash/includes';
 import merge from 'lodash/merge';
 import maxBy from 'lodash/maxBy';
 import map from 'lodash/map';
@@ -8,7 +9,15 @@ import nock from 'nock';
 import * as addressesUtils from '../../../libs/iota/addresses';
 import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
-import { iota, SwitchingConfig } from '../../../libs/iota';
+import {
+    LATEST_MILESTONE,
+    LATEST_MILESTONE_INDEX,
+    LATEST_SOLID_SUBTANGLE_MILESTONE,
+    LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+} from '../../__samples__/transactions';
+import mockTrytes from '../../__samples__/trytes';
+import { iota, quorum, SwitchingConfig } from '../../../libs/iota';
+import { EMPTY_TRANSACTION_TRYTES } from '../../../libs/iota/utils';
 import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/addresses', () => {
@@ -28,19 +37,36 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
                     .post('/', '*')
                     .reply(200, (_, body) => {
-                        const { addresses, command } = body;
+                        const { addresses, command, hashes } = body;
+
                         if (command === 'findTransactions') {
                             return { hashes: [] };
                         } else if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, () => false) };
                         } else if (command === 'getBalances') {
-                            return { balances: { balances: map(addresses, () => '0') } };
+                            return { balances: map(addresses, () => '0') };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
+
                         return {};
                     });
             });
@@ -110,12 +136,13 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
                     .post('/', '*')
                     .reply(200, (_, body) => {
-                        const { addresses, command } = body;
+                        const { addresses, hashes, command } = body;
                         if (command === 'findTransactions') {
                             return {
                                 hashes: reduce(
@@ -130,8 +157,23 @@ describe('libs: iota/addresses', () => {
                         } else if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, (address) => resultMap[address].spent) };
                         } else if (command === 'getBalances') {
-                            return { balances: { balances: map(addresses, (address) => resultMap[address].balance) } };
+                            return { balances: map(addresses, (address) => resultMap[address].balance) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
+
                         return {};
                     });
             });
@@ -347,8 +389,8 @@ describe('libs: iota/addresses', () => {
                     // So that the very first address that is generated
                     // is added as the remainder address
                     const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+                    const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
 
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
 
@@ -375,8 +417,8 @@ describe('libs: iota/addresses', () => {
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
 
                     const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+                    const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
 
                     return addressesUtils
                         .getAddressesUptoRemainder()(addressData, [], seedStore, [
@@ -410,8 +452,8 @@ describe('libs: iota/addresses', () => {
                     const addressGenFn = sinon.stub(seedStore, 'generateAddress');
 
                     const findTransactions = sinon.stub(iota.api, 'findTransactions');
-                    const getBalances = sinon.stub(iota.api, 'getBalances');
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom');
+                    const getBalances = sinon.stub(quorum, 'getBalances');
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom');
 
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
                     addressGenFn.onCall(1).resolves('R'.repeat(81));
@@ -426,15 +468,15 @@ describe('libs: iota/addresses', () => {
                     findTransactions.onCall(2).yields(null, ['9'.repeat(81)]);
                     findTransactions.onCall(3).yields(null, []);
 
-                    getBalances.onCall(0).yields(null, { balances: ['0'] });
-                    getBalances.onCall(1).yields(null, { balances: ['3'] });
-                    getBalances.onCall(2).yields(null, { balances: ['5'] });
-                    getBalances.onCall(3).yields(null, { balances: ['0'] });
+                    getBalances.onCall(0).resolves({ balances: ['0'] });
+                    getBalances.onCall(1).resolves({ balances: ['3'] });
+                    getBalances.onCall(2).resolves({ balances: ['5'] });
+                    getBalances.onCall(3).resolves({ balances: ['0'] });
 
-                    wereAddressesSpentFrom.onCall(0).yields(null, [false]);
-                    wereAddressesSpentFrom.onCall(1).yields(null, [false]);
-                    wereAddressesSpentFrom.onCall(2).yields(null, [false]);
-                    wereAddressesSpentFrom.onCall(3).yields(null, [false]);
+                    wereAddressesSpentFrom.onCall(0).resolves([false]);
+                    wereAddressesSpentFrom.onCall(1).resolves([false]);
+                    wereAddressesSpentFrom.onCall(2).resolves([false]);
+                    wereAddressesSpentFrom.onCall(3).resolves([false]);
 
                     return addressesUtils
                         .getAddressesUptoRemainder()(addressData, [], seedStore, [
@@ -517,7 +559,7 @@ describe('libs: iota/addresses', () => {
         beforeEach(() => {
             sandbox = sinon.sandbox.create();
 
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, false, true]);
+            sandbox.stub(quorum, 'wereAddressesSpentFrom').resolves([false, false, true]);
         });
 
         afterEach(() => {
@@ -584,7 +626,7 @@ describe('libs: iota/addresses', () => {
         beforeEach(() => {
             sandbox = sinon.sandbox.create();
 
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+            sandbox.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
             sandbox.stub(extendedApis, 'sendTransferAsync').returns(() => Promise.resolve([{}, {}]));
         });
 
@@ -894,7 +936,7 @@ describe('libs: iota/addresses', () => {
             describe('when the latest address in not spent', () => {
                 it('should return existing address data', () => {
                     const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
 
                     return addressesUtils
                         .syncAddresses()(seedStore, addressData, [])
@@ -910,12 +952,12 @@ describe('libs: iota/addresses', () => {
             describe('when the latest address is spent', () => {
                 it('should merge new address data in existing address data', () => {
                     const findTransactions = sinon.stub(iota.api, 'findTransactions');
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom');
-                    const getBalances = sinon.stub(iota.api, 'getBalances');
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom');
+                    const getBalances = sinon.stub(quorum, 'getBalances');
 
                     // Stub for first call that will be made to check if the latest
                     // address is spent. This yields true so new addresses will be generated
-                    wereAddressesSpentFrom.onCall(0).yields(null, [true]);
+                    wereAddressesSpentFrom.onCall(0).resolves([true]);
 
                     const addressGenFn = sinon.stub(seedStore, 'generateAddress');
 
@@ -934,7 +976,7 @@ describe('libs: iota/addresses', () => {
                     // Do index + 1 because the first call to wereAddressesSpentFrom would be for the
                     // latest known address
                     spentStatuses.forEach((status, index) =>
-                        wereAddressesSpentFrom.onCall(index + 1).yields(null, [status]),
+                        wereAddressesSpentFrom.onCall(index + 1).resolves([status]),
                     );
 
                     const hashes = [null, '9'.repeat(81), '9'.repeat(81), null];
@@ -948,9 +990,7 @@ describe('libs: iota/addresses', () => {
                     // Use unique balances to assert if newly generated addresses have correct balance assignment
                     const balances = ['30', '10', '20', '0'];
 
-                    balances.forEach((balance, index) =>
-                        getBalances.onCall(index).yields(null, { balances: [balance] }),
-                    );
+                    balances.forEach((balance, index) => getBalances.onCall(index).resolves({ balances: [balance] }));
 
                     return addressesUtils
                         .syncAddresses()(seedStore, addressData, [])
@@ -1018,8 +1058,8 @@ describe('libs: iota/addresses', () => {
             describe('when last address has associated balance', () => {
                 it('should return addresses with latest unused address', () => {
                     const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+                    const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['10'] });
 
                     const latestUnusedAddress = 'H'.repeat(81);
                     const lastAddressIndex = 6;
@@ -1040,8 +1080,8 @@ describe('libs: iota/addresses', () => {
                 it('should return addresses with latest unused address', () => {
                     // Return transaction hashes on this stub so that there is only iteration
                     const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+                    const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
 
                     const latestUnusedAddress = 'H'.repeat(81);
                     const lastAddressIndex = 6;
@@ -1062,8 +1102,8 @@ describe('libs: iota/addresses', () => {
                 it('should return addresses with latest unused address', () => {
                     // Return transaction hashes on this stub so that there is only iteration
                     const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [true]);
-                    const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([true]);
+                    const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
 
                     const latestUnusedAddress = 'H'.repeat(81);
                     const lastAddressIndex = 6;
@@ -1084,8 +1124,8 @@ describe('libs: iota/addresses', () => {
         describe('when no address has any associated meta data', () => {
             it('should return address at zeroth index as the latest unused address', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
 
                 const latestUnusedAddress = 'H'.repeat(81);
                 const lastAddressIndex = 6;
@@ -1105,29 +1145,29 @@ describe('libs: iota/addresses', () => {
         describe('when some addresses have associated meta data', () => {
             it('should return addresses till one unused', () => {
                 const findTransactions = sinon.stub(iota.api, 'findTransactions');
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom');
-                const getBalances = sinon.stub(iota.api, 'getBalances');
+                const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom');
+                const getBalances = sinon.stub(quorum, 'getBalances');
 
                 // Address GGG...GGG - index 6
                 findTransactions.onCall(0).yields(null, []);
-                wereAddressesSpentFrom.onCall(0).yields(null, [false]);
-                getBalances.onCall(0).yields(null, { balances: ['0'] });
+                wereAddressesSpentFrom.onCall(0).resolves([false]);
+                getBalances.onCall(0).resolves({ balances: ['0'] });
 
                 // Address FFF...FFF - index 5
                 findTransactions.onCall(1).yields(null, []);
-                wereAddressesSpentFrom.onCall(1).yields(null, [false]);
-                getBalances.onCall(1).yields(null, { balances: ['0'] });
+                wereAddressesSpentFrom.onCall(1).resolves([false]);
+                getBalances.onCall(1).resolves({ balances: ['0'] });
 
                 // Address EEE...EEE - index 4
                 findTransactions.onCall(2).yields(null, []);
-                wereAddressesSpentFrom.onCall(2).yields(null, [false]);
-                getBalances.onCall(2).yields(null, { balances: ['0'] });
+                wereAddressesSpentFrom.onCall(2).resolves([false]);
+                getBalances.onCall(2).resolves({ balances: ['0'] });
 
                 // Address DDD...DDD - index 3
                 // Return spend status as true for this address.
                 findTransactions.onCall(3).yields(null, []);
-                wereAddressesSpentFrom.onCall(3).yields(null, [true]);
-                getBalances.onCall(3).yields(null, { balances: ['0'] });
+                wereAddressesSpentFrom.onCall(3).resolves([true]);
+                getBalances.onCall(3).resolves({ balances: ['0'] });
 
                 const latestUnusedAddress = 'H'.repeat(81);
                 const lastAddressIndex = 6;
@@ -1178,10 +1218,10 @@ describe('libs: iota/addresses', () => {
             ];
             firstBatchOfBalances = Array(10)
                 .fill()
-                .map((v, i) => i.toString());
+                .map((_, i) => i.toString());
             firstBatchOfSpentStatuses = Array(10)
                 .fill()
-                .map((v, i) => i % 2 === 0);
+                .map((_, i) => i % 2 === 0);
         });
 
         beforeEach(() => {
@@ -1209,29 +1249,28 @@ describe('libs: iota/addresses', () => {
             // Return hashes for the third call i.e. call made for findTransactions with last address of first batch
             findTransactions.onCall(2).yields(null, ['U'.repeat(81)]);
 
-            getBalances = sandbox.stub(iota.api, 'getBalances');
+            getBalances = sandbox.stub(quorum, 'getBalances');
 
             // Return balances for the very first call i.e. getBalances with first batch of addresses
-            getBalances.onCall(0).yields(null, { balances: firstBatchOfBalances });
+            getBalances.onCall(0).resolves({ balances: firstBatchOfBalances });
 
             // Return 0 balances for the second call i.e. getBalances with second batch of addresses
-            getBalances.onCall(1).yields(null, {
+            getBalances.onCall(1).resolves({
                 balances: Array(10)
                     .fill()
                     .map(() => '0'),
             });
 
             // Return balances for the third call i.e. call made for getBalances with last address of first batch
-            getBalances.onCall(2).yields(null, { balances: ['0'] });
+            getBalances.onCall(2).resolves({ balances: ['0'] });
 
-            wereAddressesSpentFrom = sandbox.stub(iota.api, 'wereAddressesSpentFrom');
+            wereAddressesSpentFrom = sandbox.stub(quorum, 'wereAddressesSpentFrom');
 
             // Return spent statuses for the very first call i.e. wereAddressesSpentFrom with first batch of addresses
-            wereAddressesSpentFrom.onCall(0).yields(null, firstBatchOfSpentStatuses);
+            wereAddressesSpentFrom.onCall(0).resolves(firstBatchOfSpentStatuses);
 
             // Return spent statuses for the second call i.e. wereAddressesSpentFrom with second batch of addresses
-            wereAddressesSpentFrom.onCall(1).yields(
-                null,
+            wereAddressesSpentFrom.onCall(1).resolves(
                 Array(10)
                     .fill()
                     .map(() => false),
@@ -1239,7 +1278,7 @@ describe('libs: iota/addresses', () => {
 
             // Return spent statuses for the third call
             // i.e. call made for wereAddressesSpentFrom with last address of first batch
-            wereAddressesSpentFrom.onCall(2).yields(null, [false]);
+            wereAddressesSpentFrom.onCall(2).resolves([false]);
         });
 
         afterEach(() => {
@@ -1296,7 +1335,7 @@ describe('libs: iota/addresses', () => {
         beforeEach(() => {
             sandbox = sinon.sandbox.create();
 
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, true, false, true]);
+            sandbox.stub(quorum, 'wereAddressesSpentFrom').resolves([false, true, false, true]);
         });
 
         afterEach(() => {
@@ -1482,6 +1521,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1491,6 +1531,20 @@ describe('libs: iota/addresses', () => {
 
                         if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, () => false) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1515,6 +1569,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1524,6 +1579,20 @@ describe('libs: iota/addresses', () => {
 
                         if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, () => true) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1548,6 +1617,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1557,6 +1627,20 @@ describe('libs: iota/addresses', () => {
 
                         if (command === 'wereAddressesSpentFrom') {
                             return { states: map(addresses, (_, idx) => idx % 2 === 0) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};

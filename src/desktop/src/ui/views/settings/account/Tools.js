@@ -251,7 +251,4 @@ const mapDispatchToProps = {
     setBalanceCheckFlag,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Tools));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Tools));

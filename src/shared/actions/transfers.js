@@ -30,7 +30,6 @@ import {
     withRetriesOnDifferentNodes,
     fetchRemoteNodes,
     getRandomNodes,
-    throwIfNodeNotHealthy,
     isLastTritZero,
 } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
@@ -894,13 +893,10 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
     dispatch(retryFailedTransactionRequest());
 
     return (
-        throwIfNodeNotHealthy()
-            // First check spent statuses against transaction addresses
-            .then(() =>
-                categoriseAddressesBySpentStatus()(
-                    map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
-                ),
-            )
+        // First check spent statuses against transaction addresses
+        categoriseAddressesBySpentStatus()(
+            map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
+        )
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {

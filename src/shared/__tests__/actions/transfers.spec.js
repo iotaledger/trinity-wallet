@@ -8,7 +8,7 @@ import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as extendedApis from '../../libs/iota/extendedApi';
 import * as inputUtils from '../../libs/iota/inputs';
-import { iota, SwitchingConfig } from '../../libs/iota/index';
+import { iota, quorum, SwitchingConfig } from '../../libs/iota/index';
 import accounts from '../__samples__/accounts';
 import trytes from '../__samples__/trytes';
 import { IRI_API_VERSION } from '../../config';
@@ -288,8 +288,9 @@ describe('actions: transfers', () => {
                 });
                 sandbox.stub(iota.api, 'attachToTangle').yields(null, trytes.zeroValue);
                 sandbox.stub(iota.api, 'findTransactions').yields(null, []);
-                sandbox.stub(iota.api, 'getBalances').yields(null, []);
-                sandbox.stub(iota.api, 'getInclusionStates').yields(null, []);
+
+                sandbox.stub(quorum, 'getBalances').resolves([]);
+                sandbox.stub(quorum, 'getLatestInclusion').resolves([]);
             });
 
             afterEach(() => {
@@ -298,7 +299,8 @@ describe('actions: transfers', () => {
 
             it('should create five actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                 const store = mockStore({ accounts });
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
+                const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([]);
+
                 const syncAccountAfterSpending = sinon
                     .stub(accountsUtils, 'syncAccountAfterSpending')
                     .returns(() => Promise.resolve({}));
@@ -330,7 +332,8 @@ describe('actions: transfers', () => {
             it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING', () => {
                 const store = mockStore({ accounts });
 
-                const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
+                const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([]);
+
                 const syncAccountAfterSpending = sinon
                     .stub(accountsUtils, 'syncAccountAfterSpending')
                     .returns(() => Promise.resolve({}));
@@ -374,8 +377,9 @@ describe('actions: transfers', () => {
                 sandbox.stub(iota.api, 'attachToTangle').yields(null, trytes.zeroValue);
                 sandbox.stub(iota.api, 'storeAndBroadcast').yields(null);
                 sandbox.stub(iota.api, 'findTransactions').yields(null, []);
-                sandbox.stub(iota.api, 'getBalances').yields(null, []);
-                sandbox.stub(iota.api, 'getInclusionStates').yields(null, []);
+
+                sandbox.stub(quorum, 'getBalances').resolves([]);
+                sandbox.stub(quorum, 'getLatestInclusion').resolves([]);
             });
 
             afterEach(() => {
@@ -383,8 +387,9 @@ describe('actions: transfers', () => {
             });
 
             describe('when transaction is successful', () => {
-                it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
-                    const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+                it('should create eight actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+
                     const store = mockStore({ accounts });
 
                     const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
@@ -438,9 +443,8 @@ describe('actions: transfers', () => {
             describe('when transaction fails', () => {
                 describe('when recipient address is used', () => {
                     it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot send to an address that has already been spent from."', () => {
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [true]);
+                        const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([true]);
+
                         sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
                         sinon
                             .stub(accountsUtils, 'syncAccount')
@@ -475,9 +479,8 @@ describe('actions: transfers', () => {
                     it('should create action of type IOTA/ALERTS/SHOW with a message "You do not have enough IOTA to complete this transfer."', () => {
                         const store = mockStore({ accounts });
 
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [false]);
+                        const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+
                         sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
                             Promise.resolve({
                                 totalBalance: 110,
@@ -521,9 +524,7 @@ describe('actions: transfers', () => {
                     it('should create action of type IOTA/ALERTS/SHOW with a message "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."', () => {
                         const store = mockStore({ accounts });
 
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [false]);
+                        const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
                             Promise.resolve({
@@ -571,9 +572,7 @@ describe('actions: transfers', () => {
                     it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot send to an address that is being used as an input in the transaction."', () => {
                         const store = mockStore({ accounts });
 
-                        const wereAddressesSpentFrom = sinon
-                            .stub(iota.api, 'wereAddressesSpentFrom')
-                            .yields(null, [false]);
+                        const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
                             Promise.resolve({

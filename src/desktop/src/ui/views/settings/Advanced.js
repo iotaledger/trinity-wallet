@@ -304,7 +304,4 @@ const mapDispatchToProps = {
     setProxy,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));

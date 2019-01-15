@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class ProgressBar extends Component {
+class SendProgressBar extends Component {
     static propTypes = {
         /** Index of active progress step */
         activeStepIndex: PropTypes.number.isRequired,
@@ -407,4 +407,4 @@ class ProgressBar extends Component {
     }
 }
 
-export default ProgressBar;
+export default SendProgressBar;

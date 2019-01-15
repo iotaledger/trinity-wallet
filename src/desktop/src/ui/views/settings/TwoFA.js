@@ -250,7 +250,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(TwoFA));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(TwoFA));

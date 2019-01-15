@@ -4038,10 +4038,9 @@ invert-kv@^1.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
   integrity sha1-EEqOSqym09jNFXqO+L+rLXo//bY=
 
-iota.lib.js@^0.5.1:
+"iota.lib.js@git+https://git@github.com/iotaledger/iota.js#develop":
   version "0.5.1"
-  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.1.tgz#87d424e030308f0029ca6396c92e15d460e7c1b7"
-  integrity sha512-4DHieyh24o8TJGSj/j1aINrLtYO2Pj9NZa3kqY1lKT0kZcIOkFMJoOsPiLPqVFpAC0RRONoBxni+d48gRyH5SQ==
+  resolved "git+https://git@github.com/iotaledger/iota.js#f623581736ae15ba3267ee9a39bc900d1549d375"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -8075,7 +8074,7 @@ shared-modules@../shared/:
   dependencies:
     bignumber.js "^7.2.1"
     i18next "^12.0.0"
-    iota.lib.js "^0.5.1"
+    iota.lib.js "git+https://git@github.com/iotaledger/iota.js#develop"
     lodash "^4.17.10"
     moment "^2.22.2"
     moment-timezone "^0.5.21"
