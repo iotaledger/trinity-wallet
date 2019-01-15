@@ -2,10 +2,12 @@ import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { getIotaInstance, isNodeHealthy } from '../../../libs/iota/extendedApi';
+import nock from 'nock';
+import { getIotaInstance, isNodeHealthy, allowsRemotePow } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
+import { IRI_API_VERSION } from '../../../config';
 
 describe('libs: iota/extendedApi', () => {
     before(() => {
@@ -159,6 +161,76 @@ describe('libs: iota/extendedApi', () => {
                 return isNodeHealthy().then((result) => {
                     expect(result).to.equal(true);
                     getTrytes.restore();
+                });
+            });
+        });
+    });
+
+    describe('#allowsRemotePow', () => {
+        describe('when has updated IRI version (version that has "features" prop in nodeInfo)', () => {
+            describe('when has listed "RemotePOW" as a feature', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            if (command === 'getNodeInfo') {
+                                return {
+                                    features: ['RemotePOW', 'zeroMessageQueue'],
+                                };
+                            }
+
+                            return {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return allowsRemotePow('http://localhost:14265').then((res) => expect(res).to.equal(true));
+                });
+            });
+
+            describe('when has not listed "RemotePOW" as a feature', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            if (command === 'getNodeInfo') {
+                                return {
+                                    features: ['zeroMessageQueue'],
+                                };
+                            }
+
+                            return {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return false', () => {
+                    return allowsRemotePow('http://localhost:14265').then((res) => expect(res).to.equal(false));
                 });
             });
         });

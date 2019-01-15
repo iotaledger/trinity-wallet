@@ -1,4 +1,6 @@
+import has from 'lodash/has';
 import head from 'lodash/head';
+import includes from 'lodash/includes';
 import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -421,6 +423,28 @@ const checkAttachToTangleAsync = (node) => {
 };
 
 /**
+ * Checks if remote pow is allowed on the provided node
+ *
+ * @method allowsRemotePow
+ * @param {string} provider
+ *
+ * @returns {Promise<Boolean>}
+ */
+const allowsRemotePow = (provider) => {
+    return getNodeInfoAsync(provider)().then((info) => {
+        // Check if provided node has upgraded to IRI to a version, where it adds "features" prop in node info
+        if (has(info, 'features')) {
+            return includes(info.features, 'RemotePOW');
+        }
+
+        // Fallback to old way of checking remote pow
+        return checkAttachToTangleAsync(provider).then((response) =>
+            includes(response.error, Errors.INVALID_PARAMETERS),
+        );
+    });
+};
+
+/**
  * Promisified version of iota.api.attachToTangle
  *
  * @method attachToTangleAsync
@@ -585,6 +609,7 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
+    allowsRemotePow,
     isNodeHealthy,
     isPromotable,
 };
