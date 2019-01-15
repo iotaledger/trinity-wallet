@@ -114,7 +114,7 @@ describe('Testing TransactionHistoryModal component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionHistoryModal {...props} />);
-            expect(wrapper.name()).toEqual('View');
+            expect(wrapper.name()).toEqual('Connect(ModalViewComponent)');
         });
 
         it('should return a ScrollView component', () => {

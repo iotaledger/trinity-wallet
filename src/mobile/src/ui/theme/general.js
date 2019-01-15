@@ -15,7 +15,11 @@ export const Styling = {
     fontSize5: width / 19,
     fontSize6: width / 14,
     fontSize7: width / 8,
-    topbarHeight: isAndroid ? height / 10.5 : isIPhoneX ? height / 8.8 : height / 8,
+    topbarHeightRatio: isAndroid ? 1 / 10.5 : isIPhoneX ? 1 / 8.8 : 1 / 8,
+    get topbarHeight() {
+        return height * this.topbarHeightRatio;
+    },
+    iPhoneXBottomInsetHeight: 34,
 };
 
 export function getBackgroundColor(screen, theme, inactive = false) {
