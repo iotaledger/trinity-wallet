@@ -97,7 +97,9 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
  * @returns {function} dispatch
  */
 export const generateUnsupportedNodeErrorAlert = () => (dispatch) => {
-    dispatch(generateAlert('error', i18next.t('global:experimentalNode'), i18next.t('global:experimentalNodeExplanation')));
+    dispatch(
+        generateAlert('error', i18next.t('global:experimentalNode'), i18next.t('global:experimentalNodeExplanation')),
+    );
 };
 
 /**

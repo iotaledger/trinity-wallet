@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
         "invalidAddressExplanation2": "Adres geçersiz karakterler içeriyor.",
         "invalidAddressExplanation3": "Adres geçersiz bir sağlama toplamı içeryor.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Geçerli adresler 90 karakter uzunluğunda olup sadece A'dan Z'ye harf veya 9 içermelidir.",
         "notEnoughFunds": "Yetersiz bakiye",
         "notEnoughFundsExplanation": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Hesap senkronize ediliyor",
         "preparingInputs": "Girişler hazırlanıyor",
         "preparingTransfers": "Transferler hazırlanıyor",

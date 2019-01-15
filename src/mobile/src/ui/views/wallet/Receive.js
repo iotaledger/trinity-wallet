@@ -32,6 +32,9 @@ import MultiTextInput from 'ui/components/MultiTextInput';
 import CustomQrCodeComponent from 'ui/components/CustomQRCode';
 import { Icon } from 'ui/theme/icons';
 import ScramblingText from 'ui/components/ScramblingText';
+import CtaButton from 'ui/components/CtaButton';
+import AnimatedComponent from 'ui/components/AnimatedComponent';
+import InfoBox from 'ui/components/InfoBox';
 import { width, height } from 'libs/dimensions';
 import { isAndroid, getAndroidFileSystemPermissions } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
@@ -160,6 +163,14 @@ const styles = StyleSheet.create({
         right: width / 40,
         zIndex: 2,
     },
+    infoText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: Styling.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+        paddingHorizontal: width / 12,
+        paddingBottom: height / 25,
+    },
 });
 
 /** Receive screen component */
@@ -220,8 +231,10 @@ class Receive extends Component {
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
             scramblingLetters: [],
-            hasPressedGenerateAddress: false,
+            hasSuccessfullyGeneratedAddress: false,
             isCardFlipped: false,
+            displayInfo: true,
+            displayCard: false,
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -268,34 +281,39 @@ class Receive extends Component {
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
         timer.clearInterval('scramble');
+        timer.clearTimeout('delayCardAnimation');
+        timer.clearTimeout('delayAddressInfoAnimation');
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
             timer.clearInterval('scramble');
+            if (!newProps.hadErrorGeneratingNewAddress) {
+                this.setState({ hasSuccessfullyGeneratedAddress: true, displayCard: true });
+                timer.setTimeout('delayCardAnimation', () => this.setState({ displayInfo: false }), 300);
+            }
         }
         if (!this.props.hadErrorGeneratingNewAddress && newProps.hadErrorGeneratingNewAddress) {
-            this.setState({ hasPressedGenerateAddress: false });
+            this.setState({ hasSuccessfullyGeneratedAddress: false });
         }
         if (this.props.selectedAccountName !== newProps.selectedAccountName) {
-            this.setState({ hasPressedGenerateAddress: false });
-            if (this.state.isCardFlipped) {
-                this.flipCard();
-            }
+            this.setState({ hasSuccessfullyGeneratedAddress: false });
+            timer.setTimeout(
+                'delayAddressInfoAnimation',
+                () => this.setState({ displayCard: false, displayInfo: true }),
+                300,
+            );
         }
     }
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning } = this.props;
-
         if (isSyncing !== newProps.isSyncing) {
             return false;
         }
-
         if (isTransitioning !== newProps.isTransitioning) {
             return false;
         }
-
         return true;
     }
 
@@ -305,7 +323,7 @@ class Receive extends Component {
      **/
     onCopyAddressPress() {
         const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
-        if (!this.state.hasPressedGenerateAddress || isGeneratingReceiveAddress) {
+        if (!this.state.hasSuccessfullyGeneratedAddress || isGeneratingReceiveAddress) {
             return this.props.generateAlert('error', t('generateAnAddressTitle'), t('generateAnAddressExplanation'));
         }
         Clipboard.setString(receiveAddress);
@@ -404,7 +422,6 @@ class Receive extends Component {
      **/
     async generateAddress() {
         const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
-        this.setState({ hasPressedGenerateAddress: true });
         if (isSyncing || isTransitioning) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
@@ -464,13 +481,8 @@ class Receive extends Component {
      *   @method flipCard
      **/
     flipCard() {
-        const { t } = this.props;
         const { isCardFlipped } = this.state;
         const toValue = isCardFlipped ? 0 : 1;
-
-        if (!this.state.hasPressedGenerateAddress || this.props.isGeneratingReceiveAddress) {
-            return this.props.generateAlert('error', t('generateAnAddressTitle'), t('generateAnAddressExplanation'));
-        }
 
         Animated.parallel([
             Animated.timing(isCardFlipped ? this.scaleAnimatedValueBack : this.scaleAnimatedValueFront, {
@@ -505,13 +517,19 @@ class Receive extends Component {
     render() {
         const {
             t,
-            theme: { primary, dark, positive },
+            theme: { primary, dark, positive, body },
             isGeneratingReceiveAddress,
             qrMessage,
             qrTag,
             receiveAddress,
         } = this.props;
-        const { scramblingLetters, hasPressedGenerateAddress, isCardFlipped } = this.state;
+        const {
+            scramblingLetters,
+            hasSuccessfullyGeneratedAddress,
+            isCardFlipped,
+            displayCard,
+            displayInfo,
+        } = this.state;
         const qrContent = JSON.stringify({
             address: receiveAddress,
             amount: this.getQrValue(),
@@ -528,55 +546,114 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View>
-                        <Animated.View
-                            style={[
-                                styles.flipCard,
-                                { borderColor: primary.border },
-                                { zIndex: isCardFlipped ? 0 : 1 },
-                                { opacity: this.frontOpacity },
-                                {
-                                    transform: [{ perspective: 1000 }, flipStyleFront, scaleStyleFront],
-                                },
-                            ]}
-                            pointerEvents={isCardFlipped ? 'none' : 'auto'}
+                    {displayInfo && (
+                        <AnimatedComponent
+                            animationInType={['fadeIn']}
+                            animationOutType={['fadeOut']}
+                            animateOutTrigger={hasSuccessfullyGeneratedAddress}
+                            style={{ position: 'absolute' }}
                         >
-                            {qrOptionsActive && (
-                                <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
-                            )}
-                            <View style={styles.headerButtonsContainer}>
-                                <View style={[styles.leftHeaderButton, { backgroundColor: '#F2F2F2' }]}>
-                                    <Text style={[styles.buttonText, { color: 'black' }]}>{t('yourAddress')}</Text>
-                                </View>
-                                <TouchableWithoutFeedback onPress={this.flipCard}>
-                                    <View style={[styles.rightHeaderButton, { backgroundColor: primary.color }]}>
-                                        <Text style={[styles.buttonText, { color: primary.body }]}>
-                                            {t('qrOptions')}
-                                        </Text>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            </View>
-                            <View
+                            <InfoBox>
+                                <Text style={[styles.infoText, { color: body.color }]}>
+                                    {t('generateAddressInformation')}
+                                </Text>
+                                <CtaButton
+                                    ctaColor={primary.color}
+                                    ctaBorderColor={primary.color}
+                                    secondaryCtaColor={primary.body}
+                                    text="Generate address"
+                                    onPress={() => {
+                                        this.generateAddress();
+                                    }}
+                                    ctaWidth={width / 1.6}
+                                    ctaHeight={height / 12}
+                                    displayActivityIndicator={
+                                        isGeneratingReceiveAddress || hasSuccessfullyGeneratedAddress
+                                    }
+                                />
+                            </InfoBox>
+                        </AnimatedComponent>
+                    )}
+                    {displayCard && (
+                        <AnimatedComponent
+                            animationInType={['slideInBottom', 'fadeIn']}
+                            animationOutType={['fadeOut']}
+                            duration={400}
+                            animateOutTrigger={hasSuccessfullyGeneratedAddress}
+                        >
+                            <Animated.View
                                 style={[
-                                    styles.qrContainerFront,
-                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
+                                    styles.flipCard,
+                                    { borderColor: primary.border },
+                                    { zIndex: isCardFlipped ? 0 : 1 },
+                                    { opacity: this.frontOpacity },
+                                    {
+                                        transform: [{ perspective: 1000 }, flipStyleFront, scaleStyleFront],
+                                    },
                                 ]}
+                                pointerEvents={isCardFlipped ? 'none' : 'auto'}
                             >
-                                {!isGeneratingReceiveAddress &&
-                                    hasPressedGenerateAddress && (
-                                        <CustomQrCodeComponent
-                                            value={qrContent}
-                                            size={width / 3}
-                                            color="black"
-                                            backgroundColor="transparent"
-                                        />
+                                {qrOptionsActive && (
+                                    <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
+                                )}
+                                <View style={styles.headerButtonsContainer}>
+                                    <View style={[styles.leftHeaderButton, { backgroundColor: '#F2F2F2' }]}>
+                                        <Text style={[styles.buttonText, { color: 'black' }]}>{t('yourAddress')}</Text>
+                                    </View>
+                                    <TouchableWithoutFeedback onPress={this.flipCard}>
+                                        <View style={[styles.rightHeaderButton, { backgroundColor: primary.color }]}>
+                                            <Text style={[styles.buttonText, { color: primary.body }]}>
+                                                {t('qrOptions')}
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                                <View
+                                    style={[
+                                        styles.qrContainerFront,
+                                        { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
+                                    ]}
+                                >
+                                    {!isGeneratingReceiveAddress &&
+                                        hasSuccessfullyGeneratedAddress && (
+                                            <CustomQrCodeComponent
+                                                value={qrContent}
+                                                size={width / 3}
+                                                color="black"
+                                                backgroundColor="transparent"
+                                            />
+                                        )}
+                                    {/* FIXME: Overflow: 'visible' is not supported on Android*/}
+                                    {isAndroid && (
+                                        <TouchableWithoutFeedback onPress={this.generateAddress}>
+                                            <View
+                                                style={[
+                                                    styles.refreshIconBackgroundAndroid,
+                                                    { backgroundColor: dark.color, borderColor: primary.border },
+                                                ]}
+                                            >
+                                                <Animated.View style={{ transform: [rotateStyle] }}>
+                                                    <Icon
+                                                        name="sync"
+                                                        size={width / 12}
+                                                        color={dark.body}
+                                                        style={styles.refreshIcon}
+                                                    />
+                                                </Animated.View>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                     )}
-                                {/* FIXME: Overflow: 'visible' is not supported on Android */}
-                                {isAndroid && (
-                                    <TouchableWithoutFeedback onPress={this.generateAddress}>
+                                </View>
+                                <TouchableWithoutFeedback onPress={this.generateAddress}>
+                                    <View
+                                        style={[
+                                            styles.addressContainer,
+                                            { backgroundColor: dark.color, borderColor: primary.border },
+                                        ]}
+                                    >
                                         <View
                                             style={[
-                                                styles.refreshIconBackgroundAndroid,
+                                                styles.refreshIconBackground,
                                                 { backgroundColor: dark.color, borderColor: primary.border },
                                             ]}
                                         >
@@ -589,141 +666,120 @@ class Receive extends Component {
                                                 />
                                             </Animated.View>
                                         </View>
-                                    </TouchableWithoutFeedback>
-                                )}
-                            </View>
-                            <TouchableWithoutFeedback onPress={this.generateAddress}>
+                                        {hasSuccessfullyGeneratedAddress && (
+                                            <View>
+                                                <ScramblingText
+                                                    scramble={isGeneratingReceiveAddress}
+                                                    textStyle={[styles.addressText, { color: dark.body }]}
+                                                    scramblingLetters={scramblingLetters}
+                                                    rowIndex={0}
+                                                >
+                                                    {receiveAddress.substring(0, 30)}
+                                                </ScramblingText>
+                                                <ScramblingText
+                                                    scramble={isGeneratingReceiveAddress}
+                                                    textStyle={[styles.addressText, { color: dark.body }]}
+                                                    scramblingLetters={scramblingLetters}
+                                                    rowIndex={1}
+                                                >
+                                                    {receiveAddress.substring(30, 60)}
+                                                </ScramblingText>
+                                                <ScramblingText
+                                                    scramble={isGeneratingReceiveAddress}
+                                                    textStyle={[styles.addressText, { color: dark.body }]}
+                                                    scramblingLetters={scramblingLetters}
+                                                    rowIndex={2}
+                                                >
+                                                    {receiveAddress.substring(60, 90)}
+                                                </ScramblingText>
+                                            </View>
+                                        )}
+                                    </View>
+                                </TouchableWithoutFeedback>
                                 <View
                                     style={[
-                                        styles.addressContainer,
+                                        styles.footerButtonContainer,
+                                        { opacity: isGeneratingReceiveAddress ? 0.5 : 1 },
+                                    ]}
+                                >
+                                    <TouchableOpacity
+                                        style={[
+                                            styles.footerButton,
+                                            { backgroundColor: primary.color, borderColor: primary.border },
+                                        ]}
+                                        onPress={() => this.onCopyAddressPress()}
+                                    >
+                                        <Text style={[styles.buttonText, { color: primary.body }]}>
+                                            {t('copyAddress')}
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </Animated.View>
+                            <Animated.View
+                                pointerEvents={isCardFlipped ? 'auto' : 'none'}
+                                style={[
+                                    styles.flipCard,
+                                    styles.flipCardBack,
+                                    { borderColor: primary.border },
+                                    { zIndex: isCardFlipped ? 1 : 0 },
+                                    { opacity: this.backOpacity },
+                                    {
+                                        transform: [{ perspective: 1000 }, flipStyleBack, scaleStyleBack],
+                                    },
+                                ]}
+                            >
+                                {qrOptionsActive && (
+                                    <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
+                                )}
+                                <View style={styles.headerButtonsContainer}>
+                                    <TouchableWithoutFeedback onPress={this.flipCard}>
+                                        <View style={[styles.leftHeaderButton, { backgroundColor: primary.color }]}>
+                                            <Text style={[styles.buttonText, { color: primary.body }]}>
+                                                {t('yourAddress')}
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <View style={[styles.rightHeaderButton, { backgroundColor: '#F2F2F2' }]}>
+                                        <Text style={[styles.buttonText, { color: 'black' }]}>{t('qrOptions')}</Text>
+                                    </View>
+                                </View>
+                                <View style={[styles.qrContainerBack, { backgroundColor: '#F2F2F2' }]}>
+                                    <View
+                                        style={[styles.qrFrame, { backgroundColor: '#F2F2F2' }]}
+                                        ref={(c) => {
+                                            this.qr = c;
+                                        }}
+                                    >
+                                        <CustomQrCodeComponent
+                                            value={qrContent}
+                                            size={width / 3}
+                                            color="black"
+                                            backgroundColor="transparent"
+                                        />
+                                    </View>
+                                </View>
+                                <View
+                                    style={[
+                                        styles.multiInputContainer,
                                         { backgroundColor: dark.color, borderColor: primary.border },
                                     ]}
                                 >
-                                    <View
+                                    <MultiTextInput multiplier={this.getUnitMultiplier()} />
+                                </View>
+                                <View style={styles.footerButtonContainer}>
+                                    <TouchableOpacity
                                         style={[
-                                            styles.refreshIconBackground,
-                                            { backgroundColor: dark.color, borderColor: primary.border },
+                                            styles.footerButton,
+                                            { backgroundColor: primary.color, borderColor: primary.border },
                                         ]}
+                                        onPress={() => this.onShareQRCodePress()}
                                     >
-                                        <Animated.View style={{ transform: [rotateStyle] }}>
-                                            <Icon
-                                                name="sync"
-                                                size={width / 12}
-                                                color={dark.body}
-                                                style={styles.refreshIcon}
-                                            />
-                                        </Animated.View>
-                                    </View>
-                                    {hasPressedGenerateAddress && (
-                                        <View>
-                                            <ScramblingText
-                                                scramble={isGeneratingReceiveAddress}
-                                                textStyle={[styles.addressText, { color: dark.body }]}
-                                                scramblingLetters={scramblingLetters}
-                                                rowIndex={0}
-                                            >
-                                                {receiveAddress.substring(0, 30)}
-                                            </ScramblingText>
-                                            <ScramblingText
-                                                scramble={isGeneratingReceiveAddress}
-                                                textStyle={[styles.addressText, { color: dark.body }]}
-                                                scramblingLetters={scramblingLetters}
-                                                rowIndex={1}
-                                            >
-                                                {receiveAddress.substring(30, 60)}
-                                            </ScramblingText>
-                                            <ScramblingText
-                                                scramble={isGeneratingReceiveAddress}
-                                                textStyle={[styles.addressText, { color: dark.body }]}
-                                                scramblingLetters={scramblingLetters}
-                                                rowIndex={2}
-                                            >
-                                                {receiveAddress.substring(60, 90)}
-                                            </ScramblingText>
-                                        </View>
-                                    )}
+                                        <Text style={[styles.buttonText, { color: primary.body }]}>{t('shareQr')}</Text>
+                                    </TouchableOpacity>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <View style={styles.footerButtonContainer}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.footerButton,
-                                        { backgroundColor: primary.color, borderColor: primary.border },
-                                    ]}
-                                    onPress={() =>
-                                        !hasPressedGenerateAddress ? this.generateAddress() : this.onCopyAddressPress()
-                                    }
-                                >
-                                    <Text style={[styles.buttonText, { color: primary.body }]}>
-                                        {!hasPressedGenerateAddress ? t('generateAnAddress') : t('copyAddress')}
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </Animated.View>
-                        <Animated.View
-                            pointerEvents={isCardFlipped ? 'auto' : 'none'}
-                            style={[
-                                styles.flipCard,
-                                styles.flipCardBack,
-                                { borderColor: primary.border },
-                                { zIndex: isCardFlipped ? 1 : 0 },
-                                { opacity: this.backOpacity },
-                                {
-                                    transform: [{ perspective: 1000 }, flipStyleBack, scaleStyleBack],
-                                },
-                            ]}
-                        >
-                            {qrOptionsActive && (
-                                <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
-                            )}
-                            <View style={styles.headerButtonsContainer}>
-                                <TouchableWithoutFeedback onPress={this.flipCard}>
-                                    <View style={[styles.leftHeaderButton, { backgroundColor: primary.color }]}>
-                                        <Text style={[styles.buttonText, { color: primary.body }]}>
-                                            {t('yourAddress')}
-                                        </Text>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <View style={[styles.rightHeaderButton, { backgroundColor: '#F2F2F2' }]}>
-                                    <Text style={[styles.buttonText, { color: 'black' }]}>{t('qrOptions')}</Text>
-                                </View>
-                            </View>
-                            <View style={[styles.qrContainerBack, { backgroundColor: '#F2F2F2' }]}>
-                                <View
-                                    style={[styles.qrFrame, { backgroundColor: '#F2F2F2' }]}
-                                    ref={(c) => {
-                                        this.qr = c;
-                                    }}
-                                >
-                                    <CustomQrCodeComponent
-                                        value={qrContent}
-                                        size={width / 3}
-                                        color="black"
-                                        backgroundColor="transparent"
-                                    />
-                                </View>
-                            </View>
-                            <View
-                                style={[
-                                    styles.multiInputContainer,
-                                    { backgroundColor: dark.color, borderColor: primary.border },
-                                ]}
-                            >
-                                <MultiTextInput multiplier={this.getUnitMultiplier()} />
-                            </View>
-                            <View style={styles.footerButtonContainer}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.footerButton,
-                                        { backgroundColor: primary.color, borderColor: primary.border },
-                                    ]}
-                                    onPress={() => this.onShareQRCodePress()}
-                                >
-                                    <Text style={[styles.buttonText, { color: primary.body }]}>{t('shareQr')}</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </Animated.View>
-                    </View>
+                            </Animated.View>
+                        </AnimatedComponent>
+                    )}
                 </View>
             </TouchableWithoutFeedback>
         );

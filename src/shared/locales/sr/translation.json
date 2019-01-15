@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Adresa treba da sadrži {{maxLength}} znakova i kontrolni zbir.",
         "invalidAddressExplanation2": "Adresa sadrži nedozvoljene znakove.",
         "invalidAddressExplanation3": "Adresa sadrži neispravan kontrolni zbir.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Ispravne adrese treba da sadrže 90 karaktera i to samo znakove A-Z ili 9.",
         "notEnoughFunds": "Nedovoljno sredstava",
         "notEnoughFundsExplanation": "Nemate dovoljno IOTA za završetak prenosa.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Provjera zdravlja node-a",
         "validatingReceiveAddress": "Provera ispravnosti adrese primaoca",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sinhronizovanje računa",
         "preparingInputs": "Priprema inputa",
         "preparingTransfers": "Priprema transakcija",

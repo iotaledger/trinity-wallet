@@ -39,8 +39,13 @@ export const DEFAULT_BALANCES_THRESHOLD = 100;
 
 export const BUNDLE_OUTPUTS_THRESHOLD = 50;
 
-export const NODE_REQUEST_TIMEOUT = 6000 * 2;
+export const DEFAULT_NODE_REQUEST_TIMEOUT = 6000 * 2;
+export const GET_NODE_INFO_REQUEST_TIMEOUT = 2500;
 
 export const DEFAULT_RETRIES = 4;
 
 export const IRI_API_VERSION = '1';
+
+export const QUORUM_THRESHOLD = 67;
+export const QUORUM_SIZE = 7;
+export const QUORUM_SYNC_CHECK_INTERVAL = 120;

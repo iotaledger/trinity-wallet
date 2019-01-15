@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "ವಿಳಾಸವು {{maxLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿರಬೇಕು ಮತ್ತು ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ ಇರಬೇಕು.",
         "invalidAddressExplanation2": "ವಿಳಾಸವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ.",
         "invalidAddressExplanation3": "ವಿಳಾಸವು ಅಮಾನ್ಯ ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತಗಳನ್ನು ಹೊಂದಿದೆ.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "ಮಾನ್ಯವಾದ ವಿಳಾಸಗಳು 90 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು.",
         "notEnoughFunds": "ಸಾಕಷ್ಟಿಲ್ಲದ ಹಣ",
         "notEnoughFundsExplanation": "ಈ ವರ್ಗಾವಣೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ನಿಮ್ಮ ಖಾತೆಯಲ್ಲಿ ಸಾಕಷ್ಟು IOTA ಇಲ್ಲ.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "ನೋಡ್ ಆರೋಗ್ಯವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
         "validatingReceiveAddress": "ಸ್ವೀಕರಿಸುವ ವಿಳಾಸವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "ಖಾತೆ ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ",
         "preparingInputs": "ಒಳಹರಿವು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
         "preparingTransfers": "ವರ್ಗಾವಣೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",

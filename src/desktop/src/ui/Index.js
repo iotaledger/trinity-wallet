@@ -296,7 +296,11 @@ class App extends React.Component {
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
                             <Switch location={location}>
-                                <Route exact path="/settings/:setting?/:subsetting?/:accountIndex?" component={Settings} />
+                                <Route
+                                    exact
+                                    path="/settings/:setting?/:subsetting?/:accountIndex?"
+                                    component={Settings}
+                                />
                                 <Route path="/wallet" component={Wallet} />
                                 <Route path="/onboarding" component={Onboarding} />
                                 <Route exact path="/" loop={false} component={this.Init} />

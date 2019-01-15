@@ -37,7 +37,7 @@ import { generateAlert, generateTransferErrorAlert } from 'shared-modules/action
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import KeepAwake from 'react-native-keep-awake';
 import Toggle from 'ui/components/Toggle';
-import ProgressBar from 'ui/components/ProgressBar';
+import SendProgressBar from 'ui/components/SendProgressBar';
 import ProgressSteps from 'libs/progressSteps';
 import SeedStore from 'libs/SeedStore';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -493,7 +493,7 @@ export class Send extends Component {
                     amount,
                     conversionText: this.getConversionTextIOTA(),
                     address: address,
-                    sendTransfer: () => this.sendWithDelay(),
+                    sendTransfer: () => this.sendTransfer(),
                     cancel: () => {
                         this.interuptSendAnimation();
                         this.hideModal();
@@ -584,7 +584,7 @@ export class Send extends Component {
     }
 
     /**
-     * Gets seed from keychain and initiates transfer
+     * Gets seed from keychain and initiates transfer. Delay allow for the modal to close.
      *
      * @method sendTransfer
      */
@@ -615,7 +615,6 @@ export class Send extends Component {
 
             return;
         }
-
         // For sending a message
         const formattedAmount = amount === '' ? 0 : amount;
         const value = parseInt(parseFloat(formattedAmount) * this.getUnitMultiplier(), 10);
@@ -623,21 +622,22 @@ export class Send extends Component {
         // Start tracking progress for each transaction step
         this.startTrackingTransactionProgress(value === 0);
 
-        this.props.getFromKeychainRequest('send', 'makeTransaction');
-
-        try {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
-            this.props.getFromKeychainSuccess('send', 'makeTransaction');
-            const powFn = getPowFn();
-            return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
-        } catch (error) {
-            this.props.getFromKeychainError('send', 'makeTransaction');
-            this.props.generateTransferErrorAlert(error);
-        }
-    }
-
-    sendWithDelay() {
-        timer.setTimeout('delaySend', () => this.sendTransfer(), 200);
+        timer.setTimeout(
+            'delaySend',
+            () => {
+                this.props.getFromKeychainRequest('send', 'makeTransaction');
+                try {
+                    const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+                    this.props.getFromKeychainSuccess('send', 'makeTransaction');
+                    const powFn = getPowFn();
+                    return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
+                } catch (error) {
+                    this.props.getFromKeychainError('send', 'makeTransaction');
+                    this.props.generateTransferErrorAlert(error);
+                }
+            },
+            200,
+        );
     }
 
     /**
@@ -657,7 +657,7 @@ export class Send extends Component {
                 if (isAndroid) {
                     this.hideModal();
                 }
-                this.sendWithDelay();
+                this.sendTransfer();
             })
             .catch(() => {
                 if (isAndroid) {
@@ -816,7 +816,7 @@ export class Send extends Component {
                                 alignItems: 'center',
                             }}
                         >
-                            <ProgressBar
+                            <SendProgressBar
                                 activeStepIndex={this.props.activeStepIndex}
                                 totalSteps={size(this.props.activeSteps)}
                                 filledColor={input.bg}

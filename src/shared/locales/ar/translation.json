@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "السييد يحتوي على أحرف غير صالحة.",
         "invalidAddressExplanation3": "العنوان يحتوي مجموع اختباري غير صحيح.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "الرصيد غير كافي",
         "notEnoughFundsExplanation": "ليس لديك IOTA كافية لإتمام عملية التحويل.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",

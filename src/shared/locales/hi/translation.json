@@ -333,6 +333,7 @@
         "invalidAddressExplanation1": "पता {{maxLength}} वर्ण लंबा होना चाहिए और एक checksum होना चाहिए ।",
         "invalidAddressExplanation2": "एड्रेस में अवैध वर्ण हैं।",
         "invalidAddressExplanation3": "एड्रेस में अवैध checksum हैं।",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "सही पते 90 वर्णों का होना चाहिए और इनमें केवल A-Z या 9 होना चाहिए ।",
         "notEnoughFunds": "अपर्याप्त राशि",
         "notEnoughFundsExplanation": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
@@ -671,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "नोड स्वास्थ्य जांच रहा है",
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "खाता सिंकिंग",
         "preparingInputs": "इनपुट की तैयारी",
         "preparingTransfers": "ट्रांसफर के लिए रेडी हो रहे है",

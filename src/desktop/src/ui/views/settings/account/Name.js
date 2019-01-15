@@ -79,11 +79,7 @@ class AccountName extends PureComponent {
             newAccountName,
         });
 
-        const seedStore = await new SeedStore[account.meta.type](
-            password,
-            account.accountName,
-            account.meta,
-        );
+        const seedStore = await new SeedStore[account.meta.type](password, account.accountName, account.meta);
         await seedStore.renameAccount(newAccountName);
     }
 
@@ -129,7 +125,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(withI18n()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountName));

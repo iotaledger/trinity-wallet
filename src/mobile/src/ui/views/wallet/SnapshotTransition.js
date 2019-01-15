@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class SnapshotTransition extends Component {
+export class SnapshotTransition extends Component {
     static propTypes = {
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
@@ -166,6 +166,11 @@ class SnapshotTransition extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SnapshotTransition');
+
+        // Cancelling snapshot transition (i.e., navigating back to any other screen) while address generation is in progress
+        // will add transition addresses to redux store. Say a user swaps accounts and revist this screen, then it will mix transition addresses in redux store
+        // Hence, just reset transition addresses every time this screen is mounted
+        this.props.cancelSnapshotTransition();
     }
 
     componentWillReceiveProps(newProps) {
