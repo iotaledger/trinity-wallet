@@ -143,6 +143,19 @@
     "stream": "stream-browserify",
     "vm": "vm-browserify"
   },
+  "browser": {
+    "crypto": "react-native-crypto",
+    "http": "react-native-http",
+    "os": "react-native-os",
+    "path": "path-browserify",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify",
+    "vm": "vm-browserify"
+  },
   "rnpm": {
     "android": {
       "mainFilePath": "src/main/java/com/iota/trinity/MainApplication.java"
