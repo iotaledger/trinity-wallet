@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node gedesynchroniseerd",
         "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
         "seed": "Seed",
         "checksum": "Checksum",
@@ -156,7 +158,7 @@
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Toegang tot bestandsysteem vereist",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "U kan 9 karakters tegelijk markeren",
         "printBlankWallet": "Print een lege portemonnee",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Iedereen seed heeft een overeenkomende 3-karakter controlesleutel.",
         "iHavesavedMySeed": "Ik heb mijn seed opgeslagen",
         "checksumExplanation": "Wanneer u uw seed toevoegt aan uw portemonnee, moet u er zeker van zijn dat de gegenereerde controlesom hetzelfde is als degene die u heeft opgeschreven.",
         "mustSaveYourSeed": "<0><0>U moet uw seed opslaan met </0><1>tenminste één</1><2> van de onderstaande opties.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controlesom bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Geldige adressen zijn 90 tekens lang en bevatten alleen A-Z of 9.",
         "notEnoughFunds": "Onvoldoende saldo",
         "notEnoughFundsExplanation": "U heeft onvoldoende IOTA om deze transactie te voltooien.",
@@ -516,7 +519,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Weet u zeker dat u wilt uitloggen?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Weet u dit zeker?"
     },
     "qrScanner": {
         "scan": "QR-code scannen"
@@ -585,10 +588,10 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrische authenticatie onbeschikbaar",
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen biometrische authenticatie of het is niet ingesteld in de apparaatinstellingen.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen",
         "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Druk op de knop hieronder om Face ID uit te schakelen",
+        "buttonInstructionsEnableIPhoneX": "Druk op de knop hieronder om Face ID in te schakelen",
         "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Verkeerde code",
-        "wrongCodeExplanation": "De ingevoerde code is onjuist.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Lege code",
         "emptyCodeExplanation": "Voer een code in en probeer het opnieuw.",
         "keyCopied": "Sleutel naar het klembord gekopieerd",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Account synchroniseren",
         "preparingInputs": "Invoer voorbereiden",
         "preparingTransfers": "Voorbereiding van transacties",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "Geen updates beschikbaar",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nieuwe versie beschikbaar",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Update installeren en opnieuw starten",
         "installUpdateExplanation": "Download compleet. Trinity zal nu herstarten om de update te installeren.",
         "downloadingUpdate": "Downloading update",

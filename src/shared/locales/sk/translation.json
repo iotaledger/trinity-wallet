@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Pri načítavaní informácii o Vašom účte došlo ku chybe. Ak problém pretrváva, skúste zmeniť Node, alebo zakázať proxy server v nastaveniach Trinity.",
         "nodeOutOfSync": "Váš Node nie je synchronizovaný",
         "nodeOutOfSyncExplanation": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Vami zvolený Node nie je synchronizovaný. Prosím, zmeňte Node alebo to skúste znova.",
         "seed": "Seed",
         "checksum": "Kontrolný súčet",
@@ -151,12 +153,12 @@
         "errorAccessingKeychainExplanation": "Nie je možné získať prístup k úložišti kľúčov.",
         "mainWallet": "HLAVNÝ ÚČET",
         "confirm": "Confirm",
-        "delete": "Delete",
+        "delete": "Odstrániť",
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
         "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Je požadované povolenie súborového systému",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -275,7 +277,7 @@
     "paperWallet": {
         "neverShare": "Svoj Seed nikdy nikomu neprezrádzajte.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Tlačiť",
         "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
         "pleaseCheck": "Please check and confirm before you print",
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
         "printBlankWallet": "Tlač prázdnej šablóny",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet.",
         "iHavesavedMySeed": "Svoj Seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
         "mustSaveYourSeed": "<0><0>Je potrebné zálohovať váš Seed </0><1>aspoň jedným</1><2> z nižšie uvedených spôsobov.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "Adresa by mala byť dlhá {{maxLength}} znakov a mala by mať kontrolný súčet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má nesprávny kontrolný súčet.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Platné adresy by mali mať 90 znakov a môžu obsahovať len znaky A-Z alebo 9.",
         "notEnoughFunds": "Nedostatok prostriedkov",
         "notEnoughFundsExplanation": "Nemáte dostatok IOTA na dokončenie tejto transakcie.",
@@ -380,7 +383,7 @@
         "addNewSeed": "Pridať nový Seed",
         "twoFA": "Dvojfaktorové overenie (2FA)",
         "changePassword": "Zmeniť heslo",
-        "general": "General settings",
+        "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
         "account": "Account settings",
         "logout": "Odhlásiť",
@@ -516,7 +519,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Určite sa chcete odhlásiť?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Ste si istý?"
     },
     "qrScanner": {
         "scan": "Naskenujte QR kód"
@@ -585,10 +588,10 @@
         "status": "Stav",
         "fingerprintUnavailable": "Biometrické overenie nie je k dispozícii",
         "fingerprintUnavailableExplanation": "Vaše zariadenie nepodporuje biometrické overenie alebo nebolo povolené v nastaveniach vášho zariadenia.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Tlačidlom nižšie vypnete overovanie odtlačkom prsta",
         "buttonInstructionsEnable": "Tlačidlom nižšie zapnete overovanie odtlačkom prsta.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Stlačením tlačidla nižšie vypnete overenie pomocou rozpoznávania tváre",
+        "buttonInstructionsEnableIPhoneX": "Stlačením tlačidla nižšie zapnete overenie pomocou rozpoznávania tváre",
         "instructionsLogin": "Pre prihlásenie priložte prst na čítačku"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Neplatný kód",
-        "wrongCodeExplanation": "Zadaný kód nie je správny.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Prázdny kód",
         "emptyCodeExplanation": "Prosím, zadajte kód a skúste to znova.",
         "keyCopied": "Kľúč skopírovaný do schránky",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrola stavu Nodu",
         "validatingReceiveAddress": "Overovanie prijímacie adresy",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synchronizácia účtu",
         "preparingInputs": "Príprava vstupných dát",
         "preparingTransfers": "Príprava transakcie",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "K dispozícií je nová verzia",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Nainštalujte aktualizáciu a reštartujte",
         "installUpdateExplanation": "Stahovanie bolo dokončené, Trinity reštartuje a nainštaluje aktualizáciu.",
         "downloadingUpdate": "Sťahuje sa aktualizácia...",

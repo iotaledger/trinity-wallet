@@ -9,7 +9,7 @@ import size from 'lodash/size';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
-import { isNodeSynced } from './extendedApi';
+import { isNodeHealthy } from './extendedApi';
 import { NODELIST_URL } from '../../config';
 import Errors from '../errors';
 
@@ -190,6 +190,16 @@ export const isValidAddress = (address) => {
 
     return false;
 };
+
+/**
+ * Checks if the last trit is 0
+ *
+ * @method isLastTritZero
+ * @param {string} address
+ *
+ * @returns {boolean}
+ */
+export const isLastTritZero = (address) => !/[E-V]/.test(address.slice(80, 81));
 
 /**
  * Checks if provided IOTA message is valid
@@ -391,13 +401,13 @@ export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
 /**
  * Throws an error if a node is not synced.
  *
- * @method throwIfNodeNotSynced
+ * @method throwIfNodeNotHealthy
  * @param {string} provider
  *
  * @returns {Promise<boolean>}
  */
-export const throwIfNodeNotSynced = (provider) => {
-    return isNodeSynced(provider).then((isSynced) => {
+export const throwIfNodeNotHealthy = (provider) => {
+    return isNodeHealthy(provider).then((isSynced) => {
         if (!isSynced) {
             throw new Error(Errors.NODE_NOT_SYNCED);
         }

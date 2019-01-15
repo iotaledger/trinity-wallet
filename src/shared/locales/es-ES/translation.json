@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Error al intentar obtener información del nodo. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado esta desincronizado. Por favor cámbielo y pruebe devuelta.",
+        "experimentalNode": "Versión del nodo no soportada",
+        "experimentalNodeExplanation": "Su versión actual de nodo está ejecutando una versión experimental que no es soportada. Por favor cambie el nodo o reintente.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
         "seed": "Semilla",
         "checksum": "Checksum",
@@ -74,8 +76,8 @@
         "wallet": "Cartera",
         "all": "Todo",
         "sent": "Enviada",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Usted recibió",
+        "youSent": "Usted envío",
         "received": "Recibida",
         "sending": "Enviando",
         "receiving": "Recibiendo",
@@ -104,7 +106,7 @@
         "cannotSendToOwnExplanation": "Usted no puede enviar a una dirección que está siendo utilizada como ingreso en la transacción.",
         "pleaseWait": "Espere por favor",
         "pleaseWaitEllipses": "Por favor espere...",
-        "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por Favor espere un poco e intente devuelta.",
+        "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por favor espere un poco e intente devuelta.",
         "pleaseWaitTransferExplanation": "Su balance disponible está siendo usado en otra transferencia. Por favor espere a que dicha transferencia se confirme e intente devuelta.",
         "pleaseWaitIncomingTransferExplanation": "Tiene transacciones pendientes. Por favor espere que se confirmen antes de intentar devuelta.",
         "snapshotTransitionInProgress": "Transición de snapshot en progreso",
@@ -130,7 +132,7 @@
         "spentAddressExplanation": "ALERTA: Fondos en direcciones usadas",
         "discordInformation": "Enviar desde la misma dirección más de una vez es peligroso. Por favor diríjase al canal #help en Discord para averiguar qué puede hacer.",
         "androidInsecureClipboardWarning": "Android no ofrece un portapapeles seguro.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Nunca copié/pegue una semilla en un dispositivo Android.",
         "willNotCopyPasteSeed": "No copiaré/pegaré mi semilla",
         "mustBeStoredAppropriately": "Debe ser almacenado apropiadamente.",
         "deviceMayBecomeUnresponsive": "Su dispositivo puede estar sin responder por un rato.",
@@ -150,13 +152,13 @@
         "errorAccessingKeychain": "Error de keychain",
         "errorAccessingKeychainExplanation": "No se puede acceder a la keychain requerida para almacenamiento seguro.",
         "mainWallet": "CUENTA PRINCIPAL",
-        "confirm": "Confirm",
+        "confirm": "Confirmar",
         "delete": "Delete",
         "shouldUpdate": "Hay una nueva actualización disponible",
         "shouldUpdateExplanation": "Hay una nueva actualización disponible. Siempre es recomendado actualizar a la ultima version.",
         "forceUpdate": "Actualice la aplicacion para continuar",
         "forceUpdateExplanation": "Una actualización crítica esta disponible. Por favor actualice inmediatamente.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
         "mustSaveYourSeed": "<0><0>Debe guardar su semilla con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "La dirección debe ser de {{maxLength}} caracteres y debe tener un código de verificación.",
         "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
         "invalidAddressExplanation3": "La dirección contiene un código de verificación no válido.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Direcciones válidas deben tener 90 caracteres y solo contener A-Z o 9.",
         "notEnoughFunds": "Fondos insuficientes",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
@@ -516,7 +519,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "¿Estás seguro que quieres desconectarte?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "¿Estás seguro?"
     },
     "qrScanner": {
         "scan": "Escanee su código QR"
@@ -585,10 +588,10 @@
         "status": "Estado",
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
         "fingerprintUnavailableExplanation": "Su dispositivo no soporta autenticación biométrica o no está correctamente configurada.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huellas dactilares",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Presione el botón debajo para desactivar Face ID",
+        "buttonInstructionsEnableIPhoneX": "Presione el botón debajo para activar Face ID",
         "instructionsLogin": "Toque el lector de huellas para loguearse"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Código incorrecto",
-        "wrongCodeExplanation": "El código que has introducido es incorrecto.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Código vacío",
         "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
         "keyCopied": "Clave copiada al portapapeles",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Comprobando la salud del nodo",
         "validatingReceiveAddress": "Validando dirección de recepción",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparando entradas",
         "preparingTransfers": "Preparando transferencias",
@@ -699,7 +703,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
-        "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
+        "noUpdatesAvailableExplanation": "¡Tiene la última versión de Trinity!",
         "newVersionAvailable": "Nueva versión disponible",
         "newVersionAvailableExplanation": "Una nueva versión de Trinity está disponible. Quieres actualizar ahora?",
         "installUpdate": "Instalar actualización y reiniciar",
@@ -708,7 +712,7 @@
         "downloadProgress": "{{transferred}} de {{total}} descargado"
     },
     "notificationLog": {
-        "errorLog": "Error de log"
+        "errorLog": "Registro de errores"
     },
     "terms": {
         "termsAndConditions": "Términos y Condiciones",

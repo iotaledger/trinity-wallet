@@ -103,6 +103,7 @@
             text-decoration: underline;
             cursor: pointer;
             margin-right: 10px;
+            -webkit-app-region: no-drag;
 
             @media screen and (max-width: 860px) {
                 display: block;
@@ -112,6 +113,7 @@
 
         &.win {
             top: 40px;
+            -webkit-app-region: no-drag;
         }
 
         > a {

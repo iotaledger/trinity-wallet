@@ -1467,4 +1467,111 @@ describe('libs: iota/addresses', () => {
             expect(result).to.eql([true, false, false]);
         });
     });
+
+    describe('#isAnyAddressSpent', () => {
+        let addresses;
+
+        before(() => {
+            addresses = map(['U', 'A', 'S', '9'], (char) => char.repeat(81));
+        });
+
+        describe('when all addresses are unspent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => false) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return false', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(false));
+            });
+        });
+
+        describe('when all addresses are spent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => true) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return true', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(true));
+            });
+        });
+
+        describe('when some addresses are spent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, (_, idx) => idx % 2 === 0) };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return true', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(true));
+            });
+        });
+    });
 });

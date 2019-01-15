@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
 import { zxcvbn } from 'libs/exports';
 
+import { setAccountInfoDuringSetup } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
@@ -34,6 +35,8 @@ class AccountPassword extends React.PureComponent {
         additionalAccountName: PropTypes.string.isRequired,
         /** @ignore */
         additionalAccountMeta: PropTypes.object.isRequired,
+        /** @ignore */
+        setAccountInfoDuringSetup: PropTypes.func.isRequired,
     };
 
     state = {
@@ -90,6 +93,10 @@ class AccountPassword extends React.PureComponent {
 
         await setTwoFA(passwordHash, null);
         setPassword(passwordHash);
+
+        this.props.setAccountInfoDuringSetup({
+            completed: true
+        });
 
         const seedStore = await new SeedStore[additionalAccountMeta.type](passwordHash);
         await seedStore.addAccount(additionalAccountName, Electron.getOnboardingSeed());
@@ -161,6 +168,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setPassword,
     generateAlert,
+    setAccountInfoDuringSetup,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(AccountPassword));

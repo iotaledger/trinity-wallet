@@ -7,6 +7,10 @@ const initialState = {
      */
     lastStepInitializationTime: Date.now(),
     /**
+     * Keeps track of the time it has taken for each step to execute
+     */
+    timeTakenByEachStep: [],
+    /**
      * Index of the active step from the activeSteps list
      */
     activeStepIndex: -1,
@@ -28,11 +32,16 @@ export default (state = initialState, action) => {
                 ...state,
                 activeStepIndex: state.activeStepIndex + 1,
                 lastStepInitializationTime: Date.now(),
+                timeTakenByEachStep: [
+                    ...state.timeTakenByEachStep,
+                    ((Date.now() - state.lastStepInitializationTime) / 1000).toFixed(1),
+                ],
             };
         case ActionTypes.START_TRACKING_PROGRESS:
             return {
                 ...state,
                 activeStepIndex: -1,
+                timeTakenByEachStep: [],
                 lastStepInitializationTime: Date.now(),
                 activeSteps: action.payload,
             };

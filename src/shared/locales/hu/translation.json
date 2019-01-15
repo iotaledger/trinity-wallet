@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "A csomópont hibát jelzett a számlaadatok betöltése közben. Ha a hiba továbbra is fennáll, próbáljon egy másik csomópontra váltani vagy kapcsolja ki a proxy szerver használatát a beállítások között.",
         "nodeOutOfSync": "A csomópont nincs szinkronban",
         "nodeOutOfSyncExplanation": "A kiválasztott csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ez a csomópont nincs szinkronban. Próbálja újra vagy használjon másik csomópontot.",
         "seed": "Mester jelszó",
         "checksum": "Ellenőrző összeg",
@@ -156,7 +158,7 @@
         "shouldUpdateExplanation": "Egy új szoftverfrissítés jelent meg. Ajánlott az alkalmazást a legújabb verzióra frissíteni.",
         "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
         "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "9 karaktert emelhet ki egyszerre",
         "printBlankWallet": "Mester jelszó nyomtatvány minta nyomtatása",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Minden mester jelszóhoz tartozik egy 3 karakterből álló ellenőrző összeg.",
         "iHavesavedMySeed": "Elmentettem a mester jelszót",
         "checksumExplanation": "Amikor egy új mester jelszót ad hozzá a tárcához, mindig győződjön meg arról, hogy a tárca által generált ellenőrző összeg megegyezik a korábban feljegyzett ellenőrző összeggel.",
         "mustSaveYourSeed": "<0><0>A mester jelszaváról biztonsági másolatot kell készítenie</0><1>legalább egyféleképp</1><2>az alább felsorolt lehetőségek közül.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "A cím legfeljebb {{maxLength}} karakterből állhat és rendelkeznie kell egy ellenőrző összeggel.",
         "invalidAddressExplanation2": "A cím érvénytelen karaktereket tartalmaz.",
         "invalidAddressExplanation3": "A cím érvénytelen ellenőrzőösszeget tartalmaz.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "A címnek pontosan 90 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat.",
         "notEnoughFunds": "Fedezethiány",
         "notEnoughFundsExplanation": "Nincs elegendő IOTA a számlán a tranzakció végrehajtásához.",
@@ -585,10 +588,10 @@
         "status": "Állapot",
         "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás letiltásához",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához",
+        "buttonInstructionsEnableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID engedélyezéséhez",
         "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Hibás kód",
-        "wrongCodeExplanation": "A megadott kód hibás.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Nincs megadva kód",
         "emptyCodeExplanation": "Kérjük adja meg a kódot és próbálja újra.",
         "keyCopied": "Kulcs a vágólapra másolva",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
         "validatingReceiveAddress": "Címzett címének ellenőrzése",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Számla szinkronizálása",
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",

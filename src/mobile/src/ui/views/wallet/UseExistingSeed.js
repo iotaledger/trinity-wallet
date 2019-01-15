@@ -166,6 +166,7 @@ class UseExistingSeed extends Component {
             name: accountName,
             meta: { type: 'keychain' },
             seed,
+            completed: true,
             usedExistingSeed: true,
         });
 

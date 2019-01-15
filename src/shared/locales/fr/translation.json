@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Le nœud a renvoyé une erreur en allant chercher les informations de votre compte. Si le problème persiste, essayez de changer nœud ou désactiver votre proxy dans les paramètres de la Trinity.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
         "checksum": "Code de vérification",
@@ -74,8 +76,8 @@
         "wallet": "Portefeuille",
         "all": "Tout",
         "sent": "Envoyé",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Vous avez reçu",
+        "youSent": "Vous avez envoyé",
         "received": "Reçue",
         "sending": "Envoi en cours",
         "receiving": "Réception",
@@ -156,7 +158,7 @@
         "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. S’il vous plaît, mettez à jour l’application maintenant.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Chaque seed a une somme de contrôle de 3 caractères.",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
         "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Les adresses valides doit être composées de 90 caractères et contenir uniquement A-Z ou 9.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -516,7 +519,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Êtes-vous sûr ?"
     },
     "qrScanner": {
         "scan": "Scannez votre QR code"
@@ -585,10 +588,10 @@
         "status": "Statut",
         "fingerprintUnavailable": "Authentification biométrique indisponible",
         "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas l'authentification biométrique, ou cette fonction n'a pas été configurée dans les paramètres de votre appareil.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale",
         "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Appuyez sur le bouton ci-dessous pour désactiver Face ID",
+        "buttonInstructionsEnableIPhoneX": "Appuyez sur le bouton ci-dessous pour activer Face ID",
         "instructionsLogin": "Touchez le lecteur d'empreintes pour vous connecter"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Code incorrect",
-        "wrongCodeExplanation": "Le code saisi est incorrect.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Code vide",
         "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
         "keyCopied": "Clé copiée dans le presse-papier",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
         "validatingReceiveAddress": "Validation de l'adresse de réception",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synchronisation du compte",
         "preparingInputs": "Préparation des entrées",
         "preparingTransfers": "Préparation des transferts",

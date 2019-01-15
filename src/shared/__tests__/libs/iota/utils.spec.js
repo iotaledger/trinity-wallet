@@ -6,10 +6,23 @@ import {
     convertFromTrytes,
     getRandomNodes,
     withRetriesOnDifferentNodes,
-    throwIfNodeNotSynced,
+    throwIfNodeNotHealthy,
+    isLastTritZero,
 } from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
+    describe('#isLastTritZero', () => {
+        describe('when the last trit is 0', () => {
+            it('should return true', () => {
+                expect(isLastTritZero('D'.repeat(81))).to.equal(true);
+            });
+        });
+        describe('when the last trit is not 0', () => {
+            it('should return false', () => {
+                expect(isLastTritZero('E'.repeat(81))).to.equal(false);
+            });
+        });
+    });
     describe('#convertFromTrytes', () => {
         describe('when trytes passed as an argument contains all nines', () => {
             it('should return a string "Empty"', () => {
@@ -137,12 +150,12 @@ describe('libs: iota/utils', () => {
         });
     });
 
-    describe('#throwIfNodeNotSynced', () => {
+    describe('#throwIfNodeNotHealthy', () => {
         describe('when node is synced', () => {
             it('should return true', () => {
-                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(true);
+                const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(true);
 
-                return throwIfNodeNotSynced('foo').then((isSynced) => {
+                return throwIfNodeNotHealthy('foo').then((isSynced) => {
                     expect(isSynced).to.equal(true);
                     stub.restore();
                 });
@@ -151,9 +164,9 @@ describe('libs: iota/utils', () => {
 
         describe('when node is not synced', () => {
             it('should return throw an error with message "Node not synced"', () => {
-                const stub = sinon.stub(extendedApis, 'isNodeSynced').resolves(false);
+                const stub = sinon.stub(extendedApis, 'isNodeHealthy').resolves(false);
 
-                return throwIfNodeNotSynced('foo')
+                return throwIfNodeNotHealthy('foo')
                     .then(() => {
                         throw new Error();
                     })

@@ -9,6 +9,7 @@ describe('Reducer: accounts', () => {
                 accountInfoDuringSetup: {
                     name: '',
                     meta: {},
+                    completed: false,
                     usedExistingSeed: false,
                 },
                 onboardingComplete: false,
@@ -36,6 +37,7 @@ describe('Reducer: accounts', () => {
             const action = actions.setAccountInfoDuringSetup({
                 name: 'bar',
                 meta: { foo: '' },
+                completed: true,
                 usedExistingSeed: true,
             });
 
@@ -44,6 +46,7 @@ describe('Reducer: accounts', () => {
                 accountInfoDuringSetup: {
                     name: 'bar',
                     meta: { foo: '' },
+                    completed: true,
                     usedExistingSeed: true,
                 },
             };
@@ -955,14 +958,14 @@ describe('Reducer: accounts', () => {
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
         'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
-        'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',
+        'IOTA/POLLING/SYNC_ACCOUNT_WHILE_POLLING',
         'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
     ].forEach((actionType) => {
         describe(actionType, () => {
             it('should merge addresses in payload to accountName in accountInfo', () => {
                 const initialState = {
                     accountInfo: {
-                        dummy: {
+                        'foo[bar]': {
                             index: 1,
                             meta: { type: 'bar' },
                             balance: 0,
@@ -976,7 +979,7 @@ describe('Reducer: accounts', () => {
                     type: actionType,
                     payload: {
                         balance: 0,
-                        accountName: 'dummy',
+                        accountName: 'foo[bar]',
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         hashes: [],
@@ -986,7 +989,7 @@ describe('Reducer: accounts', () => {
                 const newState = reducer(initialState, action);
                 const expectedState = {
                     accountInfo: {
-                        dummy: {
+                        'foo[bar]': {
                             index: 1,
                             meta: { type: 'bar' },
                             balance: 0,

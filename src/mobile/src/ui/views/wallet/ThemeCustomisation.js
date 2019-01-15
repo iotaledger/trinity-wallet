@@ -240,7 +240,7 @@ class ThemeCustomisation extends Component {
                                     {t('themeCustomisation:mockup').toUpperCase()}
                                 </Text>
                             </View>
-                            <View style={[styles.frameBar, { backgroundColor: bar.alt }]}>
+                            <View style={[styles.frameBar, { backgroundColor: bar.bg }]}>
                                 <Text style={[styles.frameBarTitle, { color: bar.color }]}>
                                     {t('global:mainWallet').toUpperCase()}
                                 </Text>

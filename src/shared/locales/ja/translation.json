@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "アカウント情報を取得中にノードがエラーを返しました。問題が解決しない場合は、Trinityの設定でノードを変更するか、システムプロキシを無効にしてみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
+        "experimentalNode": "サポートされていないノードのバージョンです",
+        "experimentalNodeExplanation": "現在選択されているノードは、サポートされていない実験版を実行しています。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
@@ -152,7 +154,7 @@
         "mainWallet": "メインアカウント",
         "confirm": "確定",
         "delete": "削除",
-        "shouldUpdate": "新しいアップデートがあります",
+        "shouldUpdate": "新しいアップデートがあります！",
         "shouldUpdateExplanation": "新しいアップデートがリリースされています。最新バージョンに更新することをお勧めします。",
         "forceUpdate": "続けるにはアプリをアップデートしてください",
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
@@ -244,7 +246,7 @@
         "enterPassword": "パスワードを入力してください。",
         "login": "ログイン",
         "setNode": "ノードの設定",
-        "whyBiometricDisabled": "生体認証が無効になっている理由。",
+        "whyBiometricDisabled": "生体認証が無効になっている理由",
         "whyBiometricDisabledExplanationPart1": "安全性のため、初回のアプリ起動時には生体認証が無効になっています。",
         "whyBiometricDisabledExplanationPart2": "Trinityを使用していると、非アクティブのためにログアウトすることがあります。その時には、生体認証を使用して再度ログインすることができます。"
     },
@@ -252,7 +254,7 @@
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
         "thisMayTake": "これには時間がかかることがあります。",
         "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
-        "takingAWhile": "これにはしばらく時間がかかりそうです。"
+        "takingAWhile": "少々お待ちください"
     },
     "newSeedSetup": {
         "generatedSeed": "生成されたシード",
@@ -317,20 +319,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity ウォレットは、ウォレットのリセット、またはアプリの削除をしない限りは、決してシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
         "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "警告：シードはペーストできません！",
+        "clipboardWarningExplanation": "安全性のためにシードのペーストはできません。その代わりに、テキストファイルからのドラッグ&ドロップは使用可能です。"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字、また、チェックサムを含む必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
+        "invalidAddressExplanation4": "アドレスが正しく入力されていることを確認してください。",
         "invalidAddressExplanationGeneric": "有効なアドレスは90文字で、A〜Zまたは9のみを含む必要があります。",
         "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
@@ -380,9 +383,9 @@
         "addNewSeed": "新しいシードを追加",
         "twoFA": "二要素認証",
         "changePassword": "パスワード変更",
-        "general": "General settings",
+        "general": "一般設定",
         "advanced": "詳細設定",
-        "account": "Account settings",
+        "account": "アカウント設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
         "syncingComplete": "同期が完了しました。",
@@ -522,7 +525,7 @@
         "scan": "QRコード読み取り"
     },
     "unitInfoModal": {
-        "unitSystem": "単位",
+        "unitSystem": "単位システム",
         "trillion": "一兆",
         "billion": "十億",
         "million": "百万",
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "コードが間違っています。",
-        "wrongCodeExplanation": "入力したコードが正しくありません。",
+        "wrongCodeExplanation": "入力したコードが正しくありません。このエラーが解決しない場合は、デバイスの時刻が正しいかどうか確認してください。",
         "emptyCode": "コードが入力されていません。",
         "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
         "keyCopied": "キーをクリップボードにコピーしました。",
@@ -639,7 +642,7 @@
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
         "seedFileError": "イオタ金庫を開けませんでした",
         "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "最初にシード金庫を保護する必要があります。シード金庫を暗号化するための鍵を選んでください。シード金庫からシードを復元する時に、この鍵が必要です。",
         "retypeKey": "鍵を再入力してください"
     },
     "chart": {
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",
         "validatingReceiveAddress": "受取用アドレスを検証中",
+        "validatingTransactionAddresses": "取引アドレスを検証中",
         "syncingAccount": "アカウントを同期中",
         "preparingInputs": "入力部を準備中",
         "preparingTransfers": "送金を準備中",
@@ -705,7 +709,7 @@
         "installUpdate": "インストール、アップデート、リスタートを行う",
         "installUpdateExplanation": "ダウンロードが完了しました。アップデートの為に再起動します。",
         "downloadingUpdate": "アップデートをダウンロード中",
-        "downloadProgress": "{{total}}の{{transferred}}がダウンロードされました"
+        "downloadProgress": "{{total}}中{{transferred}}がダウンロードされました。"
     },
     "notificationLog": {
         "errorLog": "エラーログ"

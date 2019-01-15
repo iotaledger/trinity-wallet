@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerade ett fel när den hämtade din kontoinformation. Om problemet kvarstår, prova att ändra nod eller inaktivera din system-proxy i Trinity inställningar.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
+        "experimentalNode": "Nod-versionen stöds inte",
+        "experimentalNodeExplanation": "Din valda nod kör en experimentell version som inte stöds. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "seed": "Seed",
         "checksum": "Kontrollnummer",
@@ -74,8 +76,8 @@
         "wallet": "Plånbok",
         "all": "Allt",
         "sent": "Skickat",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Du tog emot",
+        "youSent": "Du skickade",
         "received": "Mottaget",
         "sending": "Skickar",
         "receiving": "Tar emot",
@@ -130,7 +132,7 @@
         "spentAddressExplanation": "VARNING: Tillgångar på förbrukade adresser",
         "discordInformation": "Det är farligt att skicka från samma adress mer än en gång. Vänligen bege dig till #help på Discord för att ta reda på vad du kan göra.",
         "androidInsecureClipboardWarning": "Android tillhandahåller inte säkert urklipp.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Kopiera/klistra aldrig en seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
         "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag.",
@@ -150,14 +152,14 @@
         "errorAccessingKeychain": "Nyckelringsfel",
         "errorAccessingKeychainExplanation": "Kan inte komma åt nyckelringen som krävs för säker lagring.",
         "mainWallet": "HUVUDKONTO",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "Bekräfta",
+        "delete": "Ta bort",
         "shouldUpdate": "En ny uppdatering finns tillgänglig",
         "shouldUpdateExplanation": "En ny uppdatering har släppts. Det rekommenderas att du uppdaterar till den senaste versionen.",
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermission": "Åtkomst till filsystem krävs",
+        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -211,7 +213,7 @@
         "passwordTooShortExplanation": "Ditt lösenord måste vara minst {{minLength}} tecken. Det är för närvarande {{currentLength}} tecken långt. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Detta är ditt huvudlösenord för plånboken. Du använder det för att logga in.",
         "retypePassword": "Skriv lösenordet igen"
     },
     "copyToClipboard": {
@@ -245,8 +247,8 @@
         "login": "Logga in",
         "setNode": "Ställ in nod",
         "whyBiometricDisabled": "Varför är biometrisk autentisering avaktiverad?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Biometrisk autentisering är inaktiverad vid första app-start för din säkerhet.",
+        "whyBiometricDisabledExplanationPart2": "När du använder Trinity kommer du att loggas ut vid inaktivitet. Du kan sedan logga in igen med biometrisk autentisering."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -275,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Dela aldrig din seed med någon.",
         "iotaLogo": "IOTA logotyp",
-        "print": "Print",
+        "print": "Skriv ut",
         "paperConvenience": "Att skriva ut en papperskopia av din seed är ett lämpligt sätt att lagra den.",
         "publicInsecure": "Men utskrifter på öppet wifi eller en offentlig skrivare är osäkert.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Kontrollera och bekräfta innan du skriver ut",
+        "wifiConfirmation": "Jag är inte på offentligt wifi",
+        "printerConfirmation": "Jag kommer inte att skriva ut på en offentlig skrivare"
     },
     "receive": {
         "yourAddress": "Din adress",
@@ -309,28 +311,29 @@
         "letsWriteDownYourSeed": "Skriv ner din seed",
         "youCanHighlightCharacters": "Du kan markera 9 tecken i taget",
         "printBlankWallet": "Skriv ut en tom plånbok",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "Vad är en kontrollsumma?",
+        "everySeedHasAChecksum": "Varje seed har en tillhörande 3-teckens kontrollsumma.",
         "iHavesavedMySeed": "Jag har sparat min seed",
         "checksumExplanation": "När du lägger till en seed i din plånbok, bör du kontrollera att den plånboksgenererade kontrollsumman matchar den du har skrivit ned.",
         "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Vänligen bekräfta din seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity kommer aldrig be dig ange denna seed, såvida du inte återställer din plånbok eller avinstallerar appen.",
         "enterYourSeed": "Ange din seed",
         "incorrectSeed": "Felaktig seed",
         "incorrectSeedExplanation": "Den seed som du angav är felaktig. Vänligen försök igen.",
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
         "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "VARNING: Kan inte klistra in seed",
+        "clipboardWarningExplanation": "Klistra in-funktionen är inaktiverad för din säkerhet. Du kan dra och släppa din seed från en textfil istället."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
         "invalidAddressExplanation1": "Din adress bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Giltiga adresser bör vara 90 tecken och innehålla endast A-Z eller 9.",
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -352,7 +355,7 @@
         "addressPasteDetected": "Kopierad adress upptäckt",
         "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till.",
         "invalid": "OGILTIG",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Svep för att skicka"
     },
     "setSeedName": {
         "letsAddName": "Låt oss lägga till ett namn",
@@ -380,9 +383,9 @@
         "addNewSeed": "Lägg till ny seed",
         "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
-        "general": "General settings",
+        "general": "Allmänna inställningar",
         "advanced": "Avancerade inställningar",
-        "account": "Account settings",
+        "account": "Kontoinställningar",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "syncingComplete": "Synkronisering genomförd",
@@ -456,7 +459,7 @@
         "retrying": "Försöker igen",
         "yesterday": "Igår",
         "promotingAnotherBundle": "Främjar en annan transaktionsbunt",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Vänta vänligen, Trinity är upptagen med att befordra en annan transaktionsbunt."
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -515,20 +518,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Är du säker på att du vill logga ut?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Du är på väg att logga ut",
+        "areYouSure": "Är du säker?"
     },
     "qrScanner": {
         "scan": "Skanna din QR-kod"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Enhetssystem",
         "trillion": "Biljon",
         "billion": "Miljard",
         "million": "Miljon",
         "thousand": "Tusen",
         "one": "Ett",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTAs förvärvas vanligtvis i multipler av en miljon (Mi), men kan överföras som en enda IOTA (i)."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Varför kan jag inte spendera hela mitt saldo?",
@@ -550,7 +553,7 @@
         "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Ange ett kontonamn och seed",
         "incorrectFormat": "Felaktigt seed-format",
         "validSeedExplanation": "Giltig seed bör vara 81 tecken och innehålla A-Z eller 9."
     },
@@ -564,8 +567,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sparade du din seed?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Jag har sparat min seed på ett säkert sätt",
+        "reenterSeed": "Vid nästa steg kommer du bli ombedd att fylla i din seed igen.",
         "reenterSeedWarning": "Om du inte har sparat din seed och din enhet kraschar, kommer du förlora all din IOTA.",
         "pleaseConfirm": "Vänligen bekräfta att du har säkert lagrat din seed."
     },
@@ -585,23 +588,23 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering otillgänglig",
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Tryck på knappen nedan för att avaktivera Face ID",
+        "buttonInstructionsEnableIPhoneX": "Tryck på knappen nedan för att aktivera Face ID",
         "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in"
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",
         "aMessage": "ett meddelande",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Från {{selectedAccountName}}",
+        "toAddress": "Till adress",
+        "sendingAMessage": "Skickar ett meddelande",
+        "sendingAnEmptyMessage": "Skickar ett tomt meddelande"
     },
     "twoFA": {
         "wrongCode": "Fel kod",
-        "wrongCodeExplanation": "Koden du angett är inkorrekt.",
+        "wrongCodeExplanation": "Den kod du angett är felaktig. Om felet kvarstår, kontrollera att klockan på dina enheter är korrekt konfigurerade.",
         "emptyCode": "Tom kod",
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
@@ -618,7 +621,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportera SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "En SeedVault är en krypterad fil för att lagra din seed på ett säkert sätt. Din seed är krypterad bakom en SeedVault-nyckel och kan inte nås utan den nyckeln.",
         "seedVaultWarning": "Kontrollera att du säkerhetskopierar filen på flera platser (t.ex. hårddisk, molnet, USB). Om du förlorar denna fil och inte har lagrat din seed på annat håll, kommer du att förlora dina IOTA.",
         "exportFail": "SeedVault export misslyckades",
         "exportFailExplanation": "Ett problem uppstod vid export av SeedVault. Vänligen se till att du har rätt behörigheter och tillräckligt med ledigt utrymme.",
@@ -632,15 +635,15 @@
         "importSuccessExplanation": "Din seed importerades framgångsrikt.",
         "saveToDownloadFolder": "Spara till Hämtade Filer",
         "importSeedVault": "Importera SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Släpp SeedVault eller text här <1></1> eller klicka för att bläddra",
+        "dropActive": "Släpp SeedVault eller text här",
         "enterKeyExplanation": "Ange ditt lösenord för att öppna SeedVault",
         "noSeedFound": "SeedVault innehåller inte en giltig seed",
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
         "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Först måste vi säkra din SeedVault. Vänligen välj en nyckel för att kryptera filen. Du kommer att använda denna nyckel om du behöver återställa din seed från din SeedVault-säkerhetskopia.",
+        "retypeKey": "Skriv nyckeln igen"
     },
     "chart": {
         "mcap": "MCAP",
@@ -669,13 +672,14 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
+        "validatingTransactionAddresses": "Verifierar transaktionsadresser",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",
         "gettingTransactionsToApprove": "Godkänner transaktioner",
         "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Överföring slutförd"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan inte slutföra snapshot-övergången",
@@ -690,7 +694,7 @@
         "transitioning": "Övergång för snapshoten.",
         "generatingAndDetecting": "Genererar adresser och upptäcker saldo.",
         "attaching": "Fäster adresser till Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Fäster adress {{currentAddress}} av {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autofyll lyckat",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
         "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity.",
         "newVersionAvailable": "Ny version tillgänglig",
-        "newVersionAvailableExplanation": "Nya versionen <strong>Trinity</strong><strong>{{version}}</strong> är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
+        "newVersionAvailableExplanation": "Det finns en ny Trinity-version. Vill du uppdatera nu?",
         "installUpdate": "Installera uppdateringen och starta om",
         "installUpdateExplanation": "Nedladdningen färdig, Trinity startas om för att installera uppdateringen.",
         "downloadingUpdate": "Hämtar uppdatering",

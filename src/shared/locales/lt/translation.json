@@ -19,9 +19,11 @@
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Jei problema neišsispręs, bandykite pakeisti serverį arba atjunkite savo sistemos tarpinį serverį Trinity nustatymuose.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
+        "experimentalNode": "Serverio versija nepalaikoma",
+        "experimentalNodeExplanation": "Jūsų pasirinktas serveris veikia su eksperimentine versija, kuri yra nepalaikoma. Prašome pakeisti serverį ir bandyti dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "seed": "Užraktas",
         "checksum": "Kontrolinė suma",
@@ -74,8 +76,8 @@
         "wallet": "Piniginė",
         "all": "Visi",
         "sent": "Išsiųsta",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Jūs gavote",
+        "youSent": "Jūs išsiuntėte",
         "received": "Gauta",
         "sending": "Siunčiama",
         "receiving": "Gaunama",
@@ -130,7 +132,7 @@
         "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
         "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Apsilankykite #help kanale Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas.",
@@ -150,14 +152,14 @@
         "errorAccessingKeychain": "Keychain klaida",
         "errorAccessingKeychainExplanation": "Prieiga prie keychain nepasiekiama.",
         "mainWallet": "PAGRINDINĖ PASKYRA",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "Patvirtinti",
+        "delete": "Ištrinti",
         "shouldUpdate": "Yra naujų atnaujinimų",
-        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsinaujinti iki naujausios versijos.",
+        "shouldUpdateExplanation": "Išleistas naujas atnaujinimas. Rekomenduojama atsisiųsti naujausius atnaujinimus.",
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermission": "Reikalingas failų sistemos leidimas",
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -211,7 +213,7 @@
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
         "passwordMismatchExplanation": "Įvesti slaptažodžiai nesutampa. Bandykite dar kartą.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Tai jūsų pagrindinis piniginės slaptažodis. Jį naudosite norėdami prisijungti.",
         "retypePassword": "Pakartokite slaptažodį"
     },
     "copyToClipboard": {
@@ -245,8 +247,8 @@
         "login": "Prisijungti",
         "setNode": "Nustatyti serverį",
         "whyBiometricDisabled": "Kodėl biometrinis autentifikavimas išjungtas?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "Dėl jūsų saugumo, biometrinis autentifikavimas yra atjungtas, pirmą kartą užkraunant programėlę.",
+        "whyBiometricDisabledExplanationPart2": "Jūs būsite atjungti iš Trinity, jei būsite neaktyvūs. Galėsite prisijungti iš naujo, pasinaudodami biometriniu autentifikavimu."
     },
     "loading": {
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
@@ -275,12 +277,12 @@
     "paperWallet": {
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
-        "print": "Print",
+        "print": "Spausdinti",
         "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
         "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Peržiūrėkite dar kartą prieš spausdindami",
+        "wifiConfirmation": "Nesinaudoju viešu wifi",
+        "printerConfirmation": "Nesinaudoju viešu spausdintuvu"
     },
     "receive": {
         "yourAddress": "Jūsų adresas",
@@ -309,28 +311,29 @@
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
         "printBlankWallet": "Atspausdinti neužpildytą versiją",
-        "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "whatIsAChecksum": "Kas yra Kontrolinė suma?",
+        "everySeedHasAChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą.",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
         "mustSaveYourSeed": "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Patvirtinkite savo užraktą",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity niekada jūsų neprašys pakartotinai įvesti savo užraktą, išskyrus, jeigu nustatysite piniginę iš naujo arba ištrinsite programėlę.",
         "enterYourSeed": "Įveskite savo užraktą",
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
         "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "ĮSPĖJIMAS: negalima įklijuoti užrakto",
+        "clipboardWarningExplanation": "Įklijavimas atjungtas dėl jūsų saugumo. Galite atitempti ir įkelti savo užraktą iš tekstinio failo."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
         "invalidAddressExplanation1": "Adresas turi būti sudarytas iš {{maxLength}} simbolių ir turi turėti kontrolinę sumą.",
         "invalidAddressExplanation2": "Adrese yra neleistinų simbolių.",
         "invalidAddressExplanation3": "Adresas turi neteisingą kontrolinė sumą.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Adresai turi būti sudaryti iš 90 simbolių, galimos raidės A-Z arba skaičius 9.",
         "notEnoughFunds": "Nepakanka lėšų",
         "notEnoughFundsExplanation": "Pavedimo atlikti negalima, nes nepakankamas jūsų IOTA likutis.",
@@ -352,7 +355,7 @@
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
         "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
         "invalid": "KLAIDA",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Paslinkite norėdami siųsti"
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
@@ -380,9 +383,9 @@
         "addNewSeed": "Pridėti naują užraktą",
         "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
-        "general": "General settings",
+        "general": "Bendri nustatymai",
         "advanced": "Išplėstiniai parametrai",
-        "account": "Account settings",
+        "account": "Paskyros nustatymai",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
         "syncingComplete": "Sinchronizacija baigta",
@@ -456,7 +459,7 @@
         "retrying": "Kraunama",
         "yesterday": "Vakar",
         "promotingAnotherBundle": "Iškeliamas kitas paketas",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Prašome palaukti, Trinity iškelia kitą paketą."
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -515,20 +518,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Ar tikrai norite atsijungti?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": "Jūs norite atsijungti",
+        "areYouSure": "Ar tikrai?"
     },
     "qrScanner": {
         "scan": "Skenuoti QR kodą"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Vienetų sistema",
         "trillion": "Trilijonai",
         "billion": "Milijardai",
         "million": "Milijonai",
         "thousand": "Tūkstančiai",
         "one": "Vienetai",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "IOTA paprastai skaičiuojama milijonais, bet pavedimą galima atlikti ir su vienu IOTA vienetu."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Kodėl negaliu išleisti viso savo balanso?",
@@ -550,7 +553,7 @@
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Įveskite paskyros vardą ir užraktą",
         "incorrectFormat": "Neteisingas užrakto formatas",
         "validSeedExplanation": "Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9."
     },
@@ -564,8 +567,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Ar išsisaugojote savo užraktą?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Aš išsisaugojau savo užraktą",
+        "reenterSeed": "Kitame žingsnyje turėsite pakartotinai įvesti savo užraktą.",
         "reenterSeedWarning": "Jei neišsisaugojote savo užrakto ir jūsų įrenginys suges, prarasite savo IOTA.",
         "pleaseConfirm": "Patvirtinkite, kad jūsų užraktas saugiai išsaugotas."
     },
@@ -585,23 +588,23 @@
         "status": "Būsena",
         "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
         "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą",
         "buttonInstructionsEnable": "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami išjungti Face ID",
+        "buttonInstructionsEnableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami įjungti Face ID",
         "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti"
     },
     "transferConfirmation": {
         "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
         "aMessage": "žinutę",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Iš {{selectedAccountName}}",
+        "toAddress": "Į adresą",
+        "sendingAMessage": "Siunčiama žinutė",
+        "sendingAnEmptyMessage": "Siunčiama tuščia žinutė"
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
-        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas.",
+        "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas. Jeigu ši klaida kartosis, patikrinkite ar jūsų įrenginio laikai teisingi.",
         "emptyCode": "Neįvestas kodas",
         "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
@@ -618,7 +621,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Iškelti SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas išsisaugoti savo užraktą. Užraktas yra užšifruojamas SeedVault raktu ir negali būti atskleistas be to rakto.",
         "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
         "exportFail": "SeedVault iškėlimo klaida",
         "exportFailExplanation": "Įvyko klaida iškeliant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
@@ -632,15 +635,15 @@
         "importSuccessExplanation": "Jūsų užraktas sėkmingai įkeltas.",
         "saveToDownloadFolder": "Išsaugoti į atsisiuntimų failą",
         "importSeedVault": "Įkelti SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Įkelkite SeedVault arba įrašykite čia <1></1> arba spauskite naršyti",
+        "dropActive": "Įkelkite SeedVault arba įrašykite čia",
         "enterKeyExplanation": "Įveskite raktą norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault neturi tinkamo užrakto",
         "noSeedFoundExplanation": "SeedVault yra tuščias arba turi netinkamo formato užraktą.",
         "seedFileError": "Atidaryti SeedVault nepavyko",
         "seedFileErrorExplanation": "Įvyko klaida atidarant SeedVault. Jeigu pasirinkote teisingą failą, gali būti, kad jis yra pažeistas.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Pirmiausia, jums reikia apsaugoti SeedVault. Sukurkite slaptažodį norėdami užšifruoti failą. Šio slaptažodžio jums prireiks, norint atkurti užraktą iš SeedVault failo.",
+        "retypeKey": "Pakartokite slaptažodį"
     },
     "chart": {
         "mcap": "MCAP",
@@ -669,13 +672,14 @@
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
         "validatingReceiveAddress": "Tikrinamas pavedimų priėmimo adresas",
+        "validatingTransactionAddresses": "Tikrinami pavedimų adresai",
         "syncingAccount": "Paskyra sinchronizuojama",
         "preparingInputs": "Įvesties duomenų paruošimas",
         "preparingTransfers": "Ruošiami pavedimai",
         "gettingTransactionsToApprove": "Pavedimai ruošiami patvirtinimui",
         "proofOfWork": "Atliekami skaičiavimai",
         "broadcasting": "Transliuojama",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Pavedimas atliktas"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nepavyksta perkelti tinklo duomenų",
@@ -690,7 +694,7 @@
         "transitioning": "Perkeliami tinklo duomenys.",
         "generatingAndDetecting": "Kuriami adresai ir nustatinėjamas balansas.",
         "attaching": "Adresai prijungiami prie Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Prijungta adresų {{currentAddress}} iš {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
@@ -701,8 +705,8 @@
         "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
-        "installUpdate": "Įdiegti atnaujinimus ir paleisti iš naujo",
+        "newVersionAvailableExplanation": "Galima nauja Trinity versija. Ar norite atlikti atnaujinimus?",
+        "installUpdate": "Atnaujinimų įdiegimas ir paleidimas iš naujo",
         "installUpdateExplanation": "Atsisiuntimas baigtas, Trinity persikraus ir įdiegs atnaujinimus.",
         "downloadingUpdate": "Siunčiami atnaujinimai",
         "downloadProgress": "{{transferred}} iš {{total}} atsiųsta"
@@ -727,8 +731,8 @@
         "completeSetup": "Baigti sąranką"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "Naudotis sistemos tarpiniu serveriu",
+        "proxyExplanation": "Aptikti ir naudotis sistemos tarpinio tinklo nustatymais. Uždaryti ir įjungti iš naujo piniginę atlikus šiuos pakeitimus."
     },
     "notifications": {
         "notifications": "Pranešimai",

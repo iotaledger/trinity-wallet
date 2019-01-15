@@ -364,7 +364,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(extendedApis, 'isNodeSynced').resolves(true);
+                sandbox.stub(extendedApis, 'isNodeHealthy').resolves(true);
                 sandbox.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction:
                         'PMEL9E9ZACLGEUPHNX9TSLEBDKTIGXDERNQSURABASAIGPWTFB9WUIXQVPKIFTHUQBRXEYQJANBDZ9999',
@@ -383,7 +383,7 @@ describe('actions: transfers', () => {
             });
 
             describe('when transaction is successful', () => {
-                it('should create eight actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
+                it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
                     const store = mockStore({ accounts });
 
@@ -412,7 +412,7 @@ describe('actions: transfers', () => {
                         .dispatch(
                             actions.makeTransaction(
                                 seedStore,
-                                'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                 2,
                                 'TEST MESSAGE',
                                 'TEST',
@@ -425,7 +425,7 @@ describe('actions: transfers', () => {
                                     .getActions()
                                     .map((action) => action.type)
                                     .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                            ).to.equal(8);
+                            ).to.equal(9);
 
                             syncAccountAfterSpending.restore();
                             syncAccount.restore();
@@ -452,7 +452,7 @@ describe('actions: transfers', () => {
                             .dispatch(
                                 actions.makeTransaction(
                                     seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                     2,
                                     'TEST MESSAGE',
                                     'TEST',
@@ -497,7 +497,7 @@ describe('actions: transfers', () => {
                             .dispatch(
                                 actions.makeTransaction(
                                     seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                     200,
                                     'TEST MESSAGE',
                                     'TEST',
@@ -545,7 +545,7 @@ describe('actions: transfers', () => {
                             .dispatch(
                                 actions.makeTransaction(
                                     seedStore,
-                                    'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUNXELTUENX',
+                                    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYLFHUOJUY',
                                     100,
                                     'TEST MESSAGE',
                                     'TEST',

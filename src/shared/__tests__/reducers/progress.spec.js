@@ -46,6 +46,38 @@ describe('Reducer: progress', () => {
 
             expect(newState.activeStepIndex).to.eql(expectedState.activeStepIndex);
         });
+
+        it('should set current time to "lastStepInitializationTime" prop in state', () => {
+            const initialState = {
+                lastStepInitializationTime: 1520808410000,
+                timeTakenByEachStep: [],
+            };
+
+            const action = actions.setNextStepAsActive();
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                lastStepInitializationTime: Date.now(),
+            };
+
+            expect(newState.lastStepInitializationTime).to.eql(expectedState.lastStepInitializationTime);
+        });
+
+        it('should always convert time to seconds before adding it to "timeTakenByEachStep" prop in state', () => {
+            const initialState = {
+                lastStepInitializationTime: 1520808410000,
+                timeTakenByEachStep: ['1s'],
+            };
+
+            const action = actions.setNextStepAsActive();
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                timeTakenByEachStep: ['1s', '10.0'],
+            };
+
+            expect(newState.timeTakenByEachStep).to.eql(expectedState.timeTakenByEachStep);
+        });
     });
 
     describe('START_TRACKING_PROGRESS ', () => {
@@ -62,6 +94,36 @@ describe('Reducer: progress', () => {
             };
 
             expect(newState.activeStepIndex).to.eql(expectedState.activeStepIndex);
+        });
+
+        it('should set "timeTakenByEachStep" prop in state to an empty array', () => {
+            const initialState = {
+                timeTakenByEachStep: ['1s', '2s'],
+            };
+
+            const action = actions.startTrackingProgress([{}]);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                timeTakenByEachStep: [],
+            };
+
+            expect(newState.timeTakenByEachStep).to.eql(expectedState.timeTakenByEachStep);
+        });
+
+        it('should set "lastStepInitializationTime" prop in state to current time', () => {
+            const initialState = {
+                lastStepInitializationTime: 1520808410000,
+            };
+
+            const action = actions.startTrackingProgress([{}]);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                lastStepInitializationTime: Date.now(),
+            };
+
+            expect(newState.lastStepInitializationTime).to.eql(expectedState.lastStepInitializationTime);
         });
 
         it('should set "activeSteps" prop in state to "payload" prop in action', () => {

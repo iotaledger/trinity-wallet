@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado está desincronizado. Por favor cámbielo e intente de nuevo.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
         "seed": "Semilla",
         "checksum": "Código de Verificación",
@@ -149,14 +151,14 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "CUENTA PRINCIPAL",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Permisos de sistema de archivos requeridos",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una billetera en blanco",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
         "mustSaveYourSeed": "<0><0>Debes guardar tu seed con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "La dirección debe ser de {{maxLength}} caracteres y debe tener un checksum.",
         "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
         "invalidAddressExplanation3": "La dirección contiene un checksum no válido.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Direcciones validas deben ser de 90 caracteres y contener solo A-Z o 9.",
         "notEnoughFunds": "Fondos insuficientes",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
@@ -538,7 +541,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Tu semilla y tu historial de transacciones serán eliminados.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Esta acción no se puede deshacer",
         "enterPassword": "Escribe tu contraseña para eliminar la cuenta."
     },
     "manualSync": {
@@ -585,10 +588,10 @@
         "status": "Estado",
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
         "fingerprintUnavailableExplanation": "Tu dispositivo no soporta autenticación biométrica o no está configurada en los ajustes del equipo.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huella dactilar",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huella dactilar.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Presione el botón de abajo para desactivar el ID de cara",
+        "buttonInstructionsEnableIPhoneX": "Presione el botón de abajo para activar ID de cara",
         "instructionsLogin": "Toque el lector de huella dactilar para iniciar sesión"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Código incorrecto",
-        "wrongCodeExplanation": "El código que has introducido es incorrecto.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Código vacío",
         "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
         "keyCopied": "Clave copiada al portapapeles",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Comprobando la salud del nodo",
         "validatingReceiveAddress": "Validando direccion de recepcion",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparando inputs",
         "preparingTransfers": "Preparando transferencias",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Nueva versión disponible",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "Una nueva versión de Trinity está disponible. Quieres actualizar ahora?",
         "installUpdate": "Instalar actualización y reiniciar",
         "installUpdateExplanation": "Descarga completa, Trinity ahora se reiniciará para instalar la actualización.",
         "downloadingUpdate": "Downloading update",

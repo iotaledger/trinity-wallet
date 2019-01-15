@@ -47,7 +47,7 @@ class Remove extends PureComponent {
         });
 
         try {
-            const seedStore = await new SeedStore[account.meta.type](password, account.meta, account.accountMeta);
+            const seedStore = await new SeedStore[account.meta.type](password, account.accountName, account.meta);
             seedStore.removeAccount();
 
             deleteAccount(account.accountName);

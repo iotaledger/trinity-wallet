@@ -39,7 +39,7 @@ import {
     formatAddressData,
     findSpendStatusesFromTransactionObjects,
 } from './addresses';
-import { EMPTY_HASH_TRYTES, throwIfNodeNotSynced } from './utils';
+import { EMPTY_HASH_TRYTES, throwIfNodeNotHealthy } from './utils';
 
 /**
  *   Takes in account data fetched from ledger.
@@ -109,7 +109,7 @@ export const getAccountData = (provider) => (seedStore, accountName) => {
         hashes: [],
     };
 
-    return throwIfNodeNotSynced(provider)
+    return throwIfNodeNotHealthy(provider)
         .then(() => getFullAddressHistory(provider)(seedStore))
         .then((history) => {
             data = { ...data, ...history };
@@ -173,7 +173,7 @@ export const syncAccount = (provider) => (existingAccountState, seedStore, notif
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = typeof seedStore === 'object';
 
-    return throwIfNodeNotSynced(provider)
+    return throwIfNodeNotHealthy(provider)
         .then(
             () =>
                 rescanAddresses

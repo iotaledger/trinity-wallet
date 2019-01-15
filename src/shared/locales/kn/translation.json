@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ",
         "nodeOutOfSyncExplanation": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಆಯ್ಕೆ ಮಾಡಿದ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "ಈ ನೋಡ್ ಒಡವಾಗುನಂಟುವಿನಿಂದ ಹೊರಗಿದೆ. ನೋಡ್ ಅನ್ನು ಬದಲಿಸಿ ಅಥವಾ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "seed": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ",
         "checksum": "ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ",
@@ -149,14 +151,14 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "ಮುಖ್ಯ ಖಾತೆ",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "ವಿಳಾಸವು {{maxLength}} ಅಕ್ಷರಗಳ ಉದ್ದವಾಗಿರಬೇಕು ಮತ್ತು ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತ ಇರಬೇಕು.",
         "invalidAddressExplanation2": "ವಿಳಾಸವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ.",
         "invalidAddressExplanation3": "ವಿಳಾಸವು ಅಮಾನ್ಯ ಖಾತೆ ಪರಿಶೀಲನೆ ಸಂಕೇತಗಳನ್ನು ಹೊಂದಿದೆ.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "ಮಾನ್ಯವಾದ ವಿಳಾಸಗಳು 90 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು ಮತ್ತು A-Z ಅಥವಾ 9 ಅನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬೇಕು.",
         "notEnoughFunds": "ಸಾಕಷ್ಟಿಲ್ಲದ ಹಣ",
         "notEnoughFundsExplanation": "ಈ ವರ್ಗಾವಣೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ನಿಮ್ಮ ಖಾತೆಯಲ್ಲಿ ಸಾಕಷ್ಟು IOTA ಇಲ್ಲ.",
@@ -538,7 +541,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತ ಮತ್ತು ವ್ಯವಹಾರ ಇತಿಹಾಸವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ",
         "enterPassword": "ಈ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ."
     },
     "manualSync": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "ತಪ್ಪಾದ ಸಂಕೇತ",
-        "wrongCodeExplanation": "ನೀವು ನಮೂದಿಸಿದ ಸಂಕೇತ ತಪ್ಪಾಗಿದೆ.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "ಖಾಲಿ ಸಂಕೇತ",
         "emptyCodeExplanation": "ದಯವಿಟ್ಟು ಸಂಕೇತ ನಮೂದಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
         "keyCopied": "ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ಕೀಲಿ ನಕಲಿಸಲಾಗಿದೆ",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "ನೋಡ್ ಆರೋಗ್ಯವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
         "validatingReceiveAddress": "ಸ್ವೀಕರಿಸುವ ವಿಳಾಸವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "ಖಾತೆ ಒಡವಾಗುನಂಟು ಮಾಡಲಾಗುತ್ತಿದೆ",
         "preparingInputs": "ಒಳಹರಿವು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",
         "preparingTransfers": "ವರ್ಗಾವಣೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ",

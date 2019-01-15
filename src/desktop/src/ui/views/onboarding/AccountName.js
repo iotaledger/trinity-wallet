@@ -81,6 +81,7 @@ class AccountName extends React.PureComponent {
 
         this.props.setAccountInfoDuringSetup({
             name: this.state.name,
+            completed: !Electron.getOnboardingGenerated() && accountNames.length > 0
         });
 
         if (Electron.getOnboardingGenerated()) {

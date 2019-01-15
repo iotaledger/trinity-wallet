@@ -1,4 +1,6 @@
+import has from 'lodash/has';
 import head from 'lodash/head';
+import includes from 'lodash/includes';
 import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -410,6 +412,28 @@ const checkAttachToTangleAsync = (node) => {
 };
 
 /**
+ * Checks if remote pow is allowed on the provided node
+ *
+ * @method allowsRemotePow
+ * @param {string} provider
+ *
+ * @returns {Promise<Boolean>}
+ */
+const allowsRemotePow = (provider) => {
+    return getNodeInfoAsync(provider)().then((info) => {
+        // Check if provided node has upgraded to IRI to a version, where it adds "features" prop in node info
+        if (has(info, 'features')) {
+            return includes(info.features, 'RemotePOW');
+        }
+
+        // Fallback to old way of checking remote pow
+        return checkAttachToTangleAsync(provider).then((response) =>
+            includes(response.error, Errors.INVALID_PARAMETERS),
+        );
+    });
+};
+
+/**
  * Promisified version of iota.api.attachToTangle
  *
  * @method attachToTangleAsync
@@ -500,14 +524,14 @@ const getTrytesAsync = (provider) => (hashes) =>
     });
 
 /**
- * Checks if a node is synced
+ * Checks if a node is synced and runs a stable IRI release
  *
- * @method isNodeSynced
+ * @method isNodeHealthy
  * @param {string} [provider]
  *
  * @returns {Promise}
  */
-const isNodeSynced = (provider) => {
+const isNodeHealthy = (provider) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
@@ -515,11 +539,16 @@ const isNodeSynced = (provider) => {
     return getNodeInfoAsync(provider)()
         .then(
             ({
+                appVersion,
                 latestMilestone,
                 latestMilestoneIndex,
                 latestSolidSubtangleMilestone,
                 latestSolidSubtangleMilestoneIndex,
             }) => {
+                if (['rc', 'beta', 'alpha'].some((el) => appVersion.toLowerCase().indexOf(el) > -1)) {
+                    throw new Error(Errors.UNSUPPORTED_NODE);
+                }
+
                 cached.latestMilestone = latestMilestone;
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
@@ -567,6 +596,7 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
-    isNodeSynced,
+    allowsRemotePow,
+    isNodeHealthy,
     isPromotable,
 };

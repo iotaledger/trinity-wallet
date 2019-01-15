@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Sõlm on sünkroonist väljas",
         "nodeOutOfSyncExplanation": "Teie valitud sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "See sõlm on sünkroonist väljas. Muutke sõlme või proovige uuesti.",
         "seed": "Seeme",
         "checksum": "Kontrollsumma",
@@ -149,14 +151,14 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "PEAMINE KONTO",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Failisüsteemi luba on nõutud",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "Korraga saate esile tõsta 9 tähemärki",
         "printBlankWallet": "Prindi tühi rahakott",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Igal seemnel on vastav 3-kohaline kontrollsumma.",
         "iHavesavedMySeed": "Ma olen oma seemne salvestanud",
         "checksumExplanation": "Kui lisate oma rahakotile seemne, peate veenduma, et rahakoti loodud kontrollsumma vastab sellele, mille olete endale üles kirjutanud.",
         "mustSaveYourSeed": "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "Aadress peaks koosnema {{maxLength}} tähemärgist ja tal peaks olema kontrollsumma.",
         "invalidAddressExplanation2": "Aadress sisaldab sobimatuid tähemärke.",
         "invalidAddressExplanation3": "Aadress sisaldab vigast kontrollsummat.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Kehtivad aadressid peaksid koosnema 90 tähemärgist ja sisaldama ainult A-Z või 9.",
         "notEnoughFunds": "Ebapiisavad vahendid",
         "notEnoughFundsExplanation": "Teil ei ole selle ülekande tegemiseks piisavalt IOTAsid.",
@@ -538,7 +541,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Seda tegevust ei saa tagasi võtta",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
     },
     "manualSync": {
@@ -585,10 +588,10 @@
         "status": "Olek",
         "fingerprintUnavailable": "Biomeetriline autentimine pole saadaval",
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
+        "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
         "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Vale kood",
-        "wrongCodeExplanation": "Sisestatud kood on vale.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tühi kood",
         "emptyCodeExplanation": "Palun sisestage kood ja proovige uuesti.",
         "keyCopied": "Võti kopeeritud lõikelauale",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Sõlme tervise kontrollimine",
         "validatingReceiveAddress": "Saaja aadressi kontrollimine",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sünkroniseeri konto",
         "preparingInputs": "Sisendite ettevalmistamine",
         "preparingTransfers": "Ülekannete ettevalmistamine",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
         "noUpdatesAvailableExplanation": "Teil on Trinity Desktopi viimane versioon.",
         "newVersionAvailable": "Uus versioon saadaval",
-        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> <strong>{{version}}</strong> versioon on saadaval. Lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Installi värskendus ja taaskäivita",
         "installUpdateExplanation": "Allalaadimine lõpetatud, Trinity taaskäivitub värskenduse installimiseks.",
         "downloadingUpdate": "Downloading update",

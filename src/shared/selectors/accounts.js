@@ -379,5 +379,5 @@ export const getFailedBundleHashesForSelectedAccount = createSelector(
  **/
 export const isSettingUpNewAccount = createSelector(
     getAccountInfoDuringSetup,
-    (accountInfoDuringSetup) => !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
+    (accountInfoDuringSetup) => accountInfoDuringSetup.completed === true && !isEmpty(accountInfoDuringSetup.name) && !isEmpty(accountInfoDuringSetup.meta),
 );

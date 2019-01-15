@@ -70,7 +70,7 @@ class Tabs extends Component {
         );
         return (
             <View style={styles.container}>
-                <View style={[styles.tabBarBackground, { backgroundColor: bar.alt }]} />
+                <View style={[styles.tabBarBackground, { backgroundColor: bar.bg }]} />
                 <Animated.View
                     style={[
                         styles.activeTab,

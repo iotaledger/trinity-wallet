@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "节点不同步",
         "nodeOutOfSyncExplanation": "当前选定的节点不同步，请更换节点或重试。",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
         "seed": "种子",
         "checksum": "校验和",
@@ -149,14 +151,14 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "主账户",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "需要文件系统权限",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "每个种子都有相应的3字符校验和.",
         "iHavesavedMySeed": "我已经保存好了种子",
         "checksumExplanation": "每当您向钱包添加种子时，您应确保钱包生成的校验和与您写下来的校验和相匹配。",
         "mustSaveYourSeed": "<0><0>您必须使用下列选项中的 </0><1>其中一项</1><2> 来备份您的种子。</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "地址应该是 {{maxLength}} 个字符并且应该有一个校验和。",
         "invalidAddressExplanation2": "地址包含无效字符。",
         "invalidAddressExplanation3": "地址包含无效校验和。",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "有效地址应为 90 个字符并且仅包含 A-Z 或 9。",
         "notEnoughFunds": "资金不足",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
@@ -516,7 +519,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "您确定要登出吗？",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "确定？"
     },
     "qrScanner": {
         "scan": "扫描您的二维码"
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "验证码错误",
-        "wrongCodeExplanation": "您输入的验证码不正确。",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "验证码为空",
         "emptyCodeExplanation": "请输入验证码并重试。",
         "keyCopied": "密钥已复制到剪贴板",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "检查节点运行状况。",
         "validatingReceiveAddress": "验证接收地址",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
         "preparingTransfers": "准备转帐中",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "没有可用的更新",
         "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",
-        "newVersionAvailableExplanation": "检测到可用的新版本 <strong>Trinity</strong> <strong>{{version}}</strong> 。在更新之前请仔细阅读发行说明并验证下载源：",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "安装更新并重启",
         "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。",
         "downloadingUpdate": "Downloading update",

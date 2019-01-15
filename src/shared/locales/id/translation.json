@@ -22,6 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "Node tidak sinkron",
         "nodeOutOfSyncExplanation": "Node yang anda pilih tidak sinkron. Silahkan ganti Node atau coba lagi.",
+        "experimentalNode": "Node version not supported",
+        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silahkan ganti node atau coba lagi.",
         "seed": "Benih",
         "checksum": "Checksum",
@@ -149,14 +151,14 @@
         "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
         "errorAccessingKeychain": "Keychain error",
         "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
-        "mainWallet": "MAIN ACCOUNT",
+        "mainWallet": "AKUN UTAMA",
         "confirm": "Confirm",
         "delete": "Delete",
         "shouldUpdate": "A new update is available",
         "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Izin akses File System dibutuhkan",
         "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
     },
     "addAdditionalSeed": {
@@ -310,7 +312,7 @@
         "youCanHighlightCharacters": "Ada dapat menyoroti 9 karakter dalam satu waktu",
         "printBlankWallet": "Cetak dompet kosong",
         "whatIsAChecksum": "What is a checksum?",
-        "everySeedHasAChecksum": "Every seed has a corresponding 3-character checksum.",
+        "everySeedHasAChecksum": "Setiap Seed terdiri dari 3 karakter Checksum.",
         "iHavesavedMySeed": "Saya telah menyimpan Seed",
         "checksumExplanation": "Ketika menambah Seed ke dompet, pastikan checksum dari dompet sama dengan yang anda tulis.",
         "mustSaveYourSeed": "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
@@ -331,6 +333,7 @@
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Alamat yang valid harus 90 karakter dan mengandung hanya A-Z atau 9.",
         "notEnoughFunds": "Dana tidak mencukupi",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
@@ -538,7 +541,7 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete your account?",
         "yourSeedWillBeRemoved": "Riwayat transaksi dan benih akan dihapus.",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "Tindakan ini tidak dapat diulang",
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda."
     },
     "manualSync": {
@@ -585,10 +588,10 @@
         "status": "Status",
         "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
+        "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
+        "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
         "instructionsLogin": "Tekan pemindai sidik jari untuk masuk"
     },
     "transferConfirmation": {
@@ -601,7 +604,7 @@
     },
     "twoFA": {
         "wrongCode": "Kode salah",
-        "wrongCodeExplanation": "Kode yang Anda masukkan tidak benar.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Kode kosong",
         "emptyCodeExplanation": "Silakan masukkan kode dan coba lagi.",
         "keyCopied": "Kunci disalin ke papan klip",
@@ -669,6 +672,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Mengcek kesehatan Node",
         "validatingReceiveAddress": "Mengesahkan alamat penerima",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sinkronisasi akun",
         "preparingInputs": "Mempersiapkan masukan",
         "preparingTransfers": "Menyiapkan transfer",
@@ -701,7 +705,7 @@
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Versi baru tersedia",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Carefully read the release notes and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
         "installUpdate": "Instal pembaruan dan ulang kembali",
         "installUpdateExplanation": "Unduh selesai, Trinity akan mengulang kembali untuk menginstal pembaruan.",
         "downloadingUpdate": "Downloading update",
