@@ -159,7 +159,8 @@
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
         "missingPermission": "Åtkomst till filsystem krävs",
-        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion."
+        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -297,7 +298,8 @@
         "tag": "Tagg",
         "generateAnAddress": "Generera ny adress",
         "generateAnAddressTitle": "Generera en adress",
-        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion."
+        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
