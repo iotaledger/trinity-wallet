@@ -152,8 +152,12 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
             return findSyncedNodes(
                 nodes,
                 quorumSize,
-                // Add active nodes to synced nodes
-                union(selectedNodes, syncedNodes),
+                // Update selected nodes
+                union(
+                    // Filter selected nodes that are unsynced
+                    filter(selectedNodes, (node) => !includes(unsyncedNodes, node)),
+                    syncedNodes,
+                ),
                 // Add inactive nodes to blacklisted nodes
                 [...blacklistedNodes, ...unsyncedNodes],
             );
