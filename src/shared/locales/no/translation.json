@@ -159,7 +159,8 @@
         "forceUpdate": "Oppdater applikasjonen for å fortsette",
         "forceUpdateExplanation": "En kritisk oppdatering er lansert. Oppdater applikasjonen nå.",
         "missingPermission": "Trenger tillatelse til filsystemet",
-        "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen."
+        "missingPermissionExplanation": "Tilgang til filsystemet kreves for å utføre denne funksjonen.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -297,7 +298,8 @@
         "tag": "Etikett",
         "generateAnAddress": "Generer adresse",
         "generateAnAddressTitle": "Generere en adresse",
-        "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen."
+        "generateAnAddressExplanation": "Vennligst generer en adresse før du bruker denne funksjonen.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
