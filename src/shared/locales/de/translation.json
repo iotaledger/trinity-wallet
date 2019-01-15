@@ -540,7 +540,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
-        "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
+        "yourSeedWillBeRemoved": "Dein Seed und der dazugehörige Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
