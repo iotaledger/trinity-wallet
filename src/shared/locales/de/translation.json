@@ -159,7 +159,8 @@
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen."
+        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -297,7 +298,8 @@
         "tag": "Tag",
         "generateAnAddress": "Neue Adresse generieren",
         "generateAnAddressTitle": "Eine neue Adresse generieren",
-        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest."
+        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
