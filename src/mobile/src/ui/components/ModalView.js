@@ -75,7 +75,7 @@ export class ModalViewComponent extends PureComponent {
      *
      *  @method getModalContentStyling
      *
-     *  @returns {object}
+     * @returns {object}
      */
     getModalContentStyling() {
         const { displayTopBar } = this.props;
