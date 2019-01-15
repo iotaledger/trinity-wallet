@@ -159,7 +159,8 @@
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. S’il vous plaît, mettez à jour l’application maintenant.",
         "missingPermission": "Autorisation de système de fichiers requise",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -297,7 +298,8 @@
         "tag": "Étiquette",
         "generateAnAddress": "Générer une nouvelle adresse",
         "generateAnAddressTitle": "Générer une nouvelle adresse",
-        "generateAnAddressExplanation": "S’il vous plaît, générez une adresse avant d’utiliser cette fonction."
+        "generateAnAddressExplanation": "S’il vous plaît, générez une adresse avant d’utiliser cette fonction.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
