@@ -159,7 +159,8 @@
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
-        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją."
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -297,7 +298,8 @@
         "tag": "Etiketė",
         "generateAnAddress": "Sukurti adresą",
         "generateAnAddressTitle": "Sukurti adresą",
-        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją."
+        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
