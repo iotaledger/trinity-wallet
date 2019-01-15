@@ -159,7 +159,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "ಫೈಲ್ ವ್ಯವಸ್ಥೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವು ಅಮಾನ್ಯ ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿದೆ",
@@ -297,7 +298,8 @@
         "tag": "೨೭ ಅಕ್ಷರಗಳ ಕಿರು ಸಂದೇಶ",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "ನಿಮ್ಮ ರಹಸ್ಯ ಪ್ರವೇಶ ಸಂಕೇತವನ್ನು ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿಕೊಳ್ಳಿ",
