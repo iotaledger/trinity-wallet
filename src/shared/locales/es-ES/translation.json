@@ -159,7 +159,8 @@
         "forceUpdate": "Actualice la aplicacion para continuar",
         "forceUpdateExplanation": "Una actualización crítica esta disponible. Por favor actualice inmediatamente.",
         "missingPermission": "Permisos de sistema de archivos requeridos",
-        "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función."
+        "missingPermissionExplanation": "Se requiere acceso al sistema de archivos para realizar esta función.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -297,7 +298,8 @@
         "tag": "Etiqueta",
         "generateAnAddress": "Generar dirección",
         "generateAnAddressTitle": "Generar una dirección",
-        "generateAnAddressExplanation": "Por favor genere una dirección antes de usar esta función."
+        "generateAnAddressExplanation": "Por favor genere una dirección antes de usar esta función.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga una copia de respaldo de su semilla",

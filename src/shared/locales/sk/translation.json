@@ -159,7 +159,8 @@
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
         "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu.",
         "missingPermission": "Je požadované povolenie súborového systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -297,7 +298,8 @@
         "tag": "Značka",
         "generateAnAddress": "Generovať adresu",
         "generateAnAddressTitle": "Generovať adresu",
-        "generateAnAddressExplanation": "Prosím vygenerujte adresu pred použitím tejto funkcie."
+        "generateAnAddressExplanation": "Prosím vygenerujte adresu pred použitím tejto funkcie.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",

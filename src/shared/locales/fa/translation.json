@@ -159,7 +159,8 @@
         "forceUpdate": "برای ادامه برنامه را به‌روز‌رسانی کنید",
         "forceUpdateExplanation": "یک به‌روزرسانی بحرانی منتشر شده است. لطفا هم‌اکنون برنامه را به‌روزرسانی کنید.",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
-        "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است."
+        "missingPermissionExplanation": "به منظور انجام این عمل دسترسی به فایل‌های سیستمی مورد نیاز است.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -297,7 +298,8 @@
         "tag": "برچسب",
         "generateAnAddress": "تولید آدرس",
         "generateAnAddressTitle": "تولید یک آدرس",
-        "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید."
+        "generateAnAddressExplanation": "لطفا پیش از استفاده از این عمل یک آدرس تولید کنید.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "از سید خود پشتیبان بگیرید",
