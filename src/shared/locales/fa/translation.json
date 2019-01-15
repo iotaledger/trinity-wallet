@@ -333,7 +333,7 @@
         "invalidAddressExplanation1": "آدرس باید از {{maxLength}} طولانی تر باشد و باید یک کد اعتبارسنجی به همراه داشته باشد.",
         "invalidAddressExplanation2": "آدرس شامل کاراکتر های نامعتبر است.",
         "invalidAddressExplanation3": "آدرس شامل یک کد اعتبارسنجی نامعتبر است.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "لطفا بررسی کنید که آدرس را به درستی وارد کرده‌اید.",
         "invalidAddressExplanationGeneric": "آدرس های معتبر باید 90 کاراکتر باشد و فقط شامل A-Z یا عدد تا 9 باشد.",
         "notEnoughFunds": "موجودی ناکافی است",
         "notEnoughFundsExplanation": "شما آیوتا کافی برای تکمیل این انتقال ندارید.",

@@ -333,7 +333,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Die Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Die Adresse enthält eine ungültige Prüfsumme.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Bitte stelle sicher, dass du die Adresse korrekt eingegeben hast.",
         "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -540,7 +540,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
-        "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
+        "yourSeedWillBeRemoved": "Dein Seed und der dazugehörige Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
