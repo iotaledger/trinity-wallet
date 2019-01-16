@@ -53,7 +53,7 @@ const launch = (store) => {
 
     // Select initial screen
     const initialScreen = state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'home'
+        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
         : 'languageSetup';
     renderInitialScreen(initialScreen, state, store);
 };
