@@ -160,7 +160,7 @@
         "forceUpdateExplanation": "重要なアップデートがリリースされています。今すぐアプリを更新してください。",
         "missingPermission": "ファイルシステム権限が必要です",
         "missingPermissionExplanation": "この機能を実行するには、ファイルシステムへのアクセス権限が必要です。",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "スワイプして確認する"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -299,7 +299,7 @@
         "generateAnAddress": "アドレスを生成",
         "generateAnAddressTitle": "アドレスを生成",
         "generateAnAddressExplanation": "この機能を使用する前にアドレスを生成してください。",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "IOTAを受取るたびに新しい受取用アドレスを生成してください"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
