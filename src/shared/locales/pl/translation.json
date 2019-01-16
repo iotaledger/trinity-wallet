@@ -160,7 +160,7 @@
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
         "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Przesuń palcem, aby potwierdzić"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -299,7 +299,7 @@
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
         "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Wygeneruj nowy adres odbioru, za każdym razem, gdy chcesz otrzymać środki IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
