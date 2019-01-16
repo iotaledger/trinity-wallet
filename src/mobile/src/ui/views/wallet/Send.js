@@ -494,7 +494,7 @@ export class Send extends Component {
                     conversionText: this.getConversionTextIOTA(),
                     address: address,
                     sendTransfer: () => this.sendTransfer(),
-                    cancel: () => {
+                    onBackButtonPress: () => {
                         this.interuptSendAnimation();
                         this.hideModal();
                     },
