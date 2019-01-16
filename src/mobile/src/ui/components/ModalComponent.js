@@ -151,7 +151,12 @@ export default function withSafeAreaView(WrappedComponent) {
                         deviceHeight={height}
                         deviceWidth={width}
                         isVisible={this.state.isModalActive}
-                        onBackButtonPress={() => this.props.toggleModalActivity()}
+                        onBackButtonPress={() => {
+                            if (modalProps.onBackButtonPress) {
+                                return modalProps.onBackButtonPress();
+                            }
+                            this.props.toggleModalActivity();
+                        }}
                         useNativeDriver={isAndroid}
                         hideModalContentWhileAnimating
                     >
