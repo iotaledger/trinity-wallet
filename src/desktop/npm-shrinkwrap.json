@@ -1101,9 +1101,9 @@
             }
         },
         "@types/node": {
-            "version": "8.10.38",
-            "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.38.tgz",
-            "integrity": "sha512-EibsnbJerd0hBFaDjJStFrVbVBAtOy4dgL8zZFw0uOvPqzBAX59Ci8cgjg3+RgJIWhsB5A4c+pi+D4P9tQQh/A==",
+            "version": "10.12.18",
+            "resolved": "https://registry.npmjs.org/@types/node/-/node-10.12.18.tgz",
+            "integrity": "sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==",
             "dev": true
         },
         "@webassemblyjs/ast": {
@@ -3681,12 +3681,12 @@
             "dev": true
         },
         "electron": {
-            "version": "3.0.11",
-            "resolved": "https://registry.npmjs.org/electron/-/electron-3.0.11.tgz",
-            "integrity": "sha512-galllxAMT3HLbHNR6i5WXrUXzsxzz0D1X6vu3uFMhofU9Wdbxv2w7BAD/BcYTT4c1bu4nZEgXO6AvHXjq0Sksw==",
+            "version": "4.0.1",
+            "resolved": "https://registry.npmjs.org/electron/-/electron-4.0.1.tgz",
+            "integrity": "sha512-kBWDLn1Vq8Tm6+/HpQc8gkjX7wJyQI8v/lf2kAirfi0Q4cXh6vBjozFvV1U/9gGCbyKnIDM+m8/wpyJIjg4w7g==",
             "dev": true,
             "requires": {
-                "@types/node": "^8.0.24",
+                "@types/node": "^10.12.18",
                 "electron-download": "^4.1.0",
                 "extract-zip": "^1.0.3"
             }
@@ -10976,13 +10976,6 @@
                 "request": "^2.45.0",
                 "single-line-log": "^1.1.2",
                 "throttleit": "0.0.2"
-            },
-            "dependencies": {
-                "ms": {
-                    "version": "2.0.0",
-                    "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
-                    "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
-                }
             }
         },
         "number-is-nan": {
@@ -13701,13 +13694,6 @@
             "dev": true,
             "requires": {
                 "debug": "^2.2.0"
-            },
-            "dependencies": {
-                "ms": {
-                    "version": "2.0.0",
-                    "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
-                    "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
-                }
             }
         },
         "supports-color": {
