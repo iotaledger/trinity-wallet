@@ -116,6 +116,10 @@ class FingerprintModal extends Component {
             FingerprintScannerNotEnrolled: t('fingerprintSetup:fingerprintUnavailableExplanation'),
             FingerprintScannerNotSupported: t('fingerprintSetup:fingerprintUnavailableExplanation'),
             DeviceLocked: t('fingerprintSetup:deviceLocked'),
+            UserCancel: t('fingerprintSetup:fingerprintAuthFailed'),
+            UserFallback: t('fingerprintSetup:fingerprintAuthFailed'),
+            SystemCancel: t('fingerprintSetup:fingerprintAuthFailed'),
+            PasscodeNotSet: t('fingerprintSetup:fingerprintUnavailableExplanation'),
         };
         return (
             <View style={styles.container}>
