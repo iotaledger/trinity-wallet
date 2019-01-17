@@ -386,7 +386,7 @@
         "addNewSeed": "Ajouter une nouvelle seed",
         "twoFA": "Authentification à deux facteurs",
         "changePassword": "Modifier le mot de passe",
-        "general": "General settings",
+        "general": "Réglages généraux",
         "advanced": "Réglages avancés",
         "account": "Account settings",
         "logout": "Déconnexion",
@@ -462,7 +462,7 @@
         "retrying": "Nouvelle tentative",
         "yesterday": "Hier",
         "promotingAnotherBundle": "Promotion d'un autre bundle en cours",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Veuillez patienter, Trinity est en train de promouvoir un autre bundle."
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -521,14 +521,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Vous êtes sur le point de fermer la session",
         "areYouSure": "Êtes-vous sûr ?"
     },
     "qrScanner": {
         "scan": "Scannez votre QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Système d'unités",
         "trillion": "Billion",
         "billion": "Milliard",
         "million": "Million",
