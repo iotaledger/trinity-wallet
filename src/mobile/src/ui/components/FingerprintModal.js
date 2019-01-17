@@ -112,7 +112,6 @@ class FingerprintModal extends Component {
         const errors = {
             AuthenticationNotMatch: t('fingerprintSetup:fingerprintAuthFailed'),
             AuthenticationFailed: t('fingerprintSetup:fingerprintAuthFailed'),
-            PasscodeNotSet: 'Authentication could not start because the passcode is not set on the device.',
             FingerprintScannerNotAvailable: t('fingerprintSetup:fingerprintUnavailable'),
             FingerprintScannerNotEnrolled: t('fingerprintSetup:fingerprintUnavailableExplanation'),
             FingerprintScannerNotSupported: t('fingerprintSetup:fingerprintUnavailableExplanation'),
