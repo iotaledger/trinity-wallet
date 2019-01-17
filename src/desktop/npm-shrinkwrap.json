@@ -2233,9 +2233,9 @@
             "integrity": "sha512-u+aodYDZwlmPMj0kCC+nZiO0Rhw4LaJ8ve1cYzEb5gcToPjuIkOfFIQO4T7QhR96V2Uy6UdVw7e04OEPR4/0wg=="
         },
         "bugsnag-sourcemaps": {
-            "version": "1.0.5",
-            "resolved": "https://registry.npmjs.org/bugsnag-sourcemaps/-/bugsnag-sourcemaps-1.0.5.tgz",
-            "integrity": "sha512-9MV4c7y4xFXzK9rl8MSB9k0nNXUDnpt3VcrKZhHscXShfWZ6eY18JQ2QNIU+UZGHe2e9n23u+OonxxEmrAVE3Q==",
+            "version": "1.0.7",
+            "resolved": "https://registry.npmjs.org/bugsnag-sourcemaps/-/bugsnag-sourcemaps-1.0.7.tgz",
+            "integrity": "sha512-krf7A2pz1Jr5k9TAwl9sLNX0KCc+ermC4wDshh+45ADzZzHEYCjYjx+QF1hQxAB19HBcfDTIEJ1O5dgmHgVJmQ==",
             "dev": true,
             "requires": {
                 "graceful-fs": "^4.1.11",
