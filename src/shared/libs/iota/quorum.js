@@ -11,7 +11,7 @@ import split from 'lodash/split';
 import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
-import { isNodeHealthy, getIotaInstance } from './extendedApi';
+import { isNodeHealthy, getIotaInstance, getApiTimeout } from './extendedApi';
 import { QUORUM_THRESHOLD, QUORUM_SIZE, QUORUM_SYNC_CHECK_INTERVAL, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { EMPTY_HASH_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
@@ -273,7 +273,7 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
                     syncedNodes,
                     (provider) =>
                         new Promise((resolve) => {
-                            getIotaInstance(provider, getTimeout(payload, iotaApiMethod)).api[iotaApiMethod](
+                            getIotaInstance(provider, getApiTimeout(iotaApiMethod, payload)).api[iotaApiMethod](
                                 ...[
                                     ...requestArgs,
                                     (err, result) =>
@@ -405,29 +405,5 @@ export default function Quorum(quorumNodes) {
         },
     };
 }
-
-/**
- * Returns timeouts for specific quorum requests
- *
- * @method getTimeout
- * @param {array} payload
- * @param {string} method
- *
- * @returns {Promise}
- */
-const getTimeout = (payload, method) => {
-    let timeout = 0;
-    switch (method) {
-        case 'wereAddressesSpentFrom':
-            timeout = 4000;
-            break;
-        case 'getBalances':
-            timeout = 6000;
-            break;
-        case 'getNodeInfo':
-            timeout = 2500;
-    }
-    return timeout;
-};
 
 export { determineQuorumResult, fallbackToSafeResult, findSyncedNodes };
