@@ -1,6 +1,7 @@
 import last from 'lodash/last';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { dismissAlert } from 'shared-modules/actions/alerts';
 import { connect } from 'react-redux';
@@ -9,6 +10,7 @@ import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from 'libs/dimensions';
 import { Styling, getBackgroundColor } from 'ui/theme/general';
 import { rgbToHex } from 'shared-modules/libs/utils';
+import { isAndroid } from 'libs/device';
 
 const errorIcon = require('shared-modules/images/error.png');
 const successIcon = require('shared-modules/images/successIcon.png');
@@ -39,6 +41,8 @@ class StatefulDropdownAlert extends Component {
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
         shouldUpdate: PropTypes.bool.isRequired,
+        /** @ignore */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -146,7 +150,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { onRef, theme: { positive, negative }, navStack, dismissAlert, forceUpdate } = this.props;
+        const { onRef, theme: { positive, negative }, navStack, dismissAlert, forceUpdate, isModalActive } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -187,6 +191,7 @@ class StatefulDropdownAlert extends Component {
                     height: width / 15,
                     alignSelf: 'center',
                 }}
+                defaultContainer={isAndroid && isModalActive ? { paddingTop: StatusBar.currentHeight } : null}
                 inactiveStatusBarStyle={statusBarStyle}
                 inactiveStatusBarBackgroundColor={this.getStatusBarColor(last(navStack))}
                 onCancel={dismissAlert}
@@ -205,6 +210,7 @@ const mapStateToProps = (state) => ({
     forceUpdate: state.wallet.forceUpdate,
     theme: state.settings.theme,
     navStack: state.wallet.navStack,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = { dismissAlert };

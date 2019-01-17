@@ -76,8 +76,8 @@
         "wallet": "Portefeuille",
         "all": "Tout",
         "sent": "Envoyé",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "Vous avez reçu",
+        "youSent": "Vous avez envoyé",
         "received": "Reçue",
         "sending": "Envoi en cours",
         "receiving": "Réception",
@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Le serveur personnalisé est déjà répertorié.",
         "nodeAutoChanged": "Changement automatique de serveur",
         "nodeAutoChangedExplanation": "Passage au nouveau serveur {{- nodeAddress}} car le serveur sélectionné est hors ligne.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Touchez le lecteur d'empreintes digitales pour autoriser le transfert",
         "masterKey": "Votre seed IOTA est la clé principale de vos fonds.",
         "seedThief": "Si quelqu'un d'autre détient votre seed, il pourra voler vos IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. S’il vous plaît, mettez à jour l’application maintenant.",
         "missingPermission": "Autorisation de système de fichiers requise",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -297,7 +299,8 @@
         "tag": "Étiquette",
         "generateAnAddress": "Générer une nouvelle adresse",
         "generateAnAddressTitle": "Générer une nouvelle adresse",
-        "generateAnAddressExplanation": "S’il vous plaît, générez une adresse avant d’utiliser cette fonction."
+        "generateAnAddressExplanation": "S’il vous plaît, générez une adresse avant d’utiliser cette fonction.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Les adresses valides doit être composées de 90 caractères et contenir uniquement A-Z ou 9.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Échec de l'authentification par empreinte digitale. Veuillez réessayer.",
         "status": "Statut",
         "fingerprintUnavailable": "Authentification biométrique indisponible",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas l'authentification biométrique, ou cette fonction n'a pas été configurée dans les paramètres de votre appareil.",
         "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale",
         "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Code incorrect",
-        "wrongCodeExplanation": "Le code saisi est incorrect.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Code vide",
         "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
         "keyCopied": "Clé copiée dans le presse-papier",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
         "validatingReceiveAddress": "Validation de l'adresse de réception",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synchronisation du compte",
         "preparingInputs": "Préparation des entrées",
         "preparingTransfers": "Préparation des transferts",

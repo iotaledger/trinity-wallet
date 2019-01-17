@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "A csomópont már szerepel a választható csomópontok között.",
         "nodeAutoChanged": "Csomópont automatikusan újraválasztva",
         "nodeAutoChangedExplanation": "A választott csomópont nem elérhető, ezért a {{- nodeAddress}} csomópont lett kiválasztva.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Érintse meg az ujjlenyomat leolvasót a tranzakció engedélyezéséhez",
         "masterKey": "Az IOTA mester jelszó a számlájához korlátlan hozzáférést biztosít.",
         "seedThief": "Bárki ellophatja a teljes egyenlegét, aki hozzáfér az IOTA mester jelszavához.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Frissítse az alkalmazást a folytatáshoz",
         "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást.",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -297,7 +299,8 @@
         "tag": "Címke",
         "generateAnAddress": "Új cím generálása",
         "generateAnAddressTitle": "Új cím generálása",
-        "generateAnAddressExplanation": "Kérjük ennek a funkciónak a használata előtt generáljon egy új címet."
+        "generateAnAddressExplanation": "Kérjük ennek a funkciónak a használata előtt generáljon egy új címet.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "A cím legfeljebb {{maxLength}} karakterből állhat és rendelkeznie kell egy ellenőrző összeggel.",
         "invalidAddressExplanation2": "A cím érvénytelen karaktereket tartalmaz.",
         "invalidAddressExplanation3": "A cím érvénytelen ellenőrzőösszeget tartalmaz.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "A címnek pontosan 90 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat.",
         "notEnoughFunds": "Fedezethiány",
         "notEnoughFundsExplanation": "Nincs elegendő IOTA a számlán a tranzakció végrehajtásához.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Az ujjlenyomat alapú azonosítás nem sikerült. Kérjük, próbálja újra.",
         "status": "Állapot",
         "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
         "buttonInstructionsDisable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás letiltásához",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Hibás kód",
-        "wrongCodeExplanation": "A megadott kód hibás.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Nincs megadva kód",
         "emptyCodeExplanation": "Kérjük adja meg a kódot és próbálja újra.",
         "keyCopied": "Kulcs a vágólapra másolva",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
         "validatingReceiveAddress": "Címzett címének ellenőrzése",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Számla szinkronizálása",
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",

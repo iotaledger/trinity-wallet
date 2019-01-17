@@ -4,14 +4,19 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
+import { quorum, getRandomNode, changeIotaNode } from '../libs/iota';
 import { setNodeList, setRandomlySelectedNode, setAutoPromotion, changeNode } from './settings';
-import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { fetchRemoteNodes, withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { findPromotableTail, isStillAValidTransaction } from '../libs/iota/transfers';
-import { selectedAccountStateFactory, getSelectedNodeFromState, getNodesFromState } from '../selectors/accounts';
+import {
+    selectedAccountStateFactory,
+    getSelectedNodeFromState,
+    getNodesFromState,
+    getCustomNodesFromState,
+} from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import { nodes, nodesWithPoWEnabled, DEFAULT_RETRIES } from '../config';
@@ -334,7 +339,7 @@ export const fetchPrice = () => {
  * @returns {function}
  */
 export const fetchNodeList = (chooseRandomNode = false) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
 
         const setRandomNode = (nodesList) => {
@@ -353,6 +358,9 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                         .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
 
                     const unionNodes = union(nodes, remoteNodes.map((node) => node.node));
+
+                    // Set quorum nodes
+                    quorum.setNodes(union(unionNodes, getCustomNodesFromState(getState())));
 
                     // A temporary addition
                     // Only choose a random node with PoW enabled.

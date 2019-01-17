@@ -153,7 +153,14 @@ const initialState = {
      * Determines whether an error occurred during address generation
      */
     hadErrorGeneratingNewAddress: false,
+    /**
+     * Determines whether keyboard is active
+     */
     isKeyboardActive: false,
+    /**
+     * Determines whether to animate the chart line on mount
+     */
+    animateChartOnMount: true,
 };
 
 export default (state = initialState, action) => {
@@ -474,6 +481,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isKeyboardActive: action.payload,
+            };
+        case UiActionTypes.SET_ANIMATE_CHART_ON_MOUNT:
+            return {
+                ...state,
+                animateChartOnMount: action.payload,
             };
         default:
             return state;

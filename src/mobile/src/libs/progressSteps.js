@@ -6,6 +6,7 @@ export default {
         'progressSteps:preparingTransfers',
         'progressSteps:gettingTransactionsToApprove',
         'progressSteps:proofOfWork',
+        'progressSteps:validatingTransactionAddresses',
         'progressSteps:broadcasting',
     ],
     zeroValueTransaction: [

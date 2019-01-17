@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Prilagođeni node se već nalazi na listi.",
         "nodeAutoChanged": "Node automatski promijenjen",
         "nodeAutoChangedExplanation": "Promijenjeno na novi node {{- nodeAddress}} pošto je trenutno odabrani offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Dodirnite čitač otiska prstiju kako bi odobrili transakciju",
         "masterKey": "Vaš IOTA seed je master ključ za vaša sredstva.",
         "seedThief": "Ako netko drugi ima vaš seed, on može ukrasti vaše IOTA tokene.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Ažurirajte aplikaciju kako bi mogli nastaviti dalje",
         "forceUpdateExplanation": "Kritično ažuriranje je dostupno. Molimo ažurirajte aplikaciju.",
         "missingPermission": "Potreban pristup datotečnom sustavu",
-        "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija."
+        "missingPermissionExplanation": "Potreban je pristup datotečnom sustavu da bi se izvršila ova funkcija.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedopuštene znakove",
@@ -297,7 +299,8 @@
         "tag": "Etiketa",
         "generateAnAddress": "Generiraj adresu",
         "generateAnAddressTitle": "Generiraj adresu",
-        "generateAnAddressExplanation": "Molimo generirajte adresu prije upotrebe ove funkcije."
+        "generateAnAddressExplanation": "Molimo generirajte adresu prije upotrebe ove funkcije.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Napravite sigurnosnu kopiju vašeg seed-a",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Broj znakova adrese bi trebao biti {{maxLength}}, te bi ona trebala sadržavati kontrolni zbroj.",
         "invalidAddressExplanation2": "Adresa sadrži nedopuštene znakove.",
         "invalidAddressExplanation3": "Adresa sadrži neispravan kontrolni zbroj.",
+        "invalidAddressExplanation4": "Molimo provjerite da li ste ispravno unijeli adresu.",
         "invalidAddressExplanationGeneric": "Ispravne adrese morale bi sadržavati 90 znakova i to samo znakove A-Z ili broj 9.",
         "notEnoughFunds": "Nedovoljno sredstava na računu",
         "notEnoughFundsExplanation": "Nemate dovoljno sredstava da bi izvršili ovu transakciju.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Došlo je do greške prilikom biometrijske autorizacije. Molimo pokušajte ponovno.",
         "status": "Stanje",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autorizaciju ili ista nije konfigurirana u postavkama uređaja.",
         "buttonInstructionsDisable": "Pritisnite donji gumb kako bi onemogućili autorizaciju putem otiska prsta",
         "buttonInstructionsEnable": "Pritisnite donji gumb kako bi omogućili autorizaciju putem otiska prsta.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Pogrešan kod",
-        "wrongCodeExplanation": "Kod koji ste unijeli je pogrešan.",
+        "wrongCodeExplanation": "Kod koji ste unijeli je neispravan. Ukoliko se greška ponovi, molimo provjerite da li je vrijeme na vašim uređajima ispravno (sinkronizirano).",
         "emptyCode": "Prazan kôd",
         "emptyCodeExplanation": "Molimo unesite kôd i pokušajte ponovno.",
         "keyCopied": "Kopirano u međuspremnik",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Provjera zdravlja node-a",
         "validatingReceiveAddress": "Provjera valjanosti adrese primatelja",
+        "validatingTransactionAddresses": "Provjera valjanosti adresa transakcije",
         "syncingAccount": "Sinkroniziranje računa",
         "preparingInputs": "Priprema inputa",
         "preparingTransfers": "Priprema transakcija",

@@ -965,7 +965,7 @@ describe('Reducer: accounts', () => {
             it('should merge addresses in payload to accountName in accountInfo', () => {
                 const initialState = {
                     accountInfo: {
-                        dummy: {
+                        'foo[bar]': {
                             index: 1,
                             meta: { type: 'bar' },
                             balance: 0,
@@ -979,7 +979,7 @@ describe('Reducer: accounts', () => {
                     type: actionType,
                     payload: {
                         balance: 0,
-                        accountName: 'dummy',
+                        accountName: 'foo[bar]',
                         addresses: { foo: {}, baz: {} },
                         transfers: {},
                         hashes: [],
@@ -989,7 +989,7 @@ describe('Reducer: accounts', () => {
                 const newState = reducer(initialState, action);
                 const expectedState = {
                     accountInfo: {
-                        dummy: {
+                        'foo[bar]': {
                             index: 1,
                             meta: { type: 'bar' },
                             balance: 0,

@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
+import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
@@ -33,7 +34,7 @@ import {
     isFundedBundle,
     categoriseInclusionStatesByBundleHash,
 } from '../../../libs/iota/transfers';
-import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { iota, SwitchingConfig, quorum } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import * as mockTransactions from '../../__samples__/transactions';
 import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
@@ -1148,7 +1149,7 @@ describe('libs: iota/transfers', () => {
 
         describe('when there are incoming pending transfers', () => {
             it('should filter transaction if input addresses do not have enough balance', () => {
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: false },
@@ -1170,7 +1171,7 @@ describe('libs: iota/transfers', () => {
             });
 
             it('should not filter transaction if input addresses still have enough balance', () => {
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['10'] });
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: false },
@@ -1194,7 +1195,7 @@ describe('libs: iota/transfers', () => {
 
         describe('when there are outgoing pending transfers', () => {
             it('should filter transaction if input addresses do not have enough balance', () => {
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: false },
@@ -1216,7 +1217,7 @@ describe('libs: iota/transfers', () => {
             });
 
             it('should not filter transaction if input addresses still have enough balance', () => {
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['10'] });
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: false },
@@ -1327,7 +1328,7 @@ describe('libs: iota/transfers', () => {
         describe('when there are valid pending transfers', () => {
             it('should transform transfers by bundle', () => {
                 const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['100'] });
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['100'] });
 
                 return prepareForAutoPromotion()(
                     transactions,
@@ -1356,7 +1357,7 @@ describe('libs: iota/transfers', () => {
         describe('when there are invalid pending transfers', () => {
             it('should not include them in transformed bundles', () => {
                 const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
-                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const getBalances = sinon.stub(quorum, 'getBalances').resolves({ balances: ['0'] });
 
                 return prepareForAutoPromotion()(
                     transactions,
@@ -1629,17 +1630,38 @@ describe('libs: iota/transfers', () => {
 
             describe('when total balance of bundle inputs is greater than latest balance on input addresses', () => {
                 beforeEach(() => {
+                    const {
+                        LATEST_MILESTONE,
+                        LATEST_SOLID_SUBTANGLE_MILESTONE,
+                        LATEST_MILESTONE_INDEX,
+                        LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                    } = mockTransactions;
+
                     nock('http://localhost:14265', {
                         reqheaders: {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['3'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? [trytes.milestone]
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -1659,17 +1681,38 @@ describe('libs: iota/transfers', () => {
 
             describe('when total balance of bundle inputs is equal to latest balance on input addresses', () => {
                 beforeEach(() => {
+                    const {
+                        LATEST_MILESTONE,
+                        LATEST_SOLID_SUBTANGLE_MILESTONE,
+                        LATEST_MILESTONE_INDEX,
+                        LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                    } = mockTransactions;
+
                     nock('http://localhost:14265', {
                         reqheaders: {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['10'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? [trytes.milestone]
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -1689,17 +1732,38 @@ describe('libs: iota/transfers', () => {
 
             describe('when total balance of bundle inputs is less than latest balance on input addresses', () => {
                 beforeEach(() => {
+                    const {
+                        LATEST_MILESTONE,
+                        LATEST_SOLID_SUBTANGLE_MILESTONE,
+                        LATEST_MILESTONE_INDEX,
+                        LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                    } = mockTransactions;
+
                     nock('http://localhost:14265', {
                         reqheaders: {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['20'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? [trytes.milestone]
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};

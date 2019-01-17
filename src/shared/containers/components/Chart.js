@@ -25,7 +25,7 @@ export default function withChartData(ChartComponent) {
         };
 
         currencies = ['USD', 'EUR', 'BTC', 'ETH']; // eslint-disable-line react/sort-comp
-        timeframes = ['1h', '24h', '7d', '1m', '1h'];
+        timeframes = ['24h', '7d', '1m', '1h'];
 
         changeCurrency = () => {
             const { marketData, setCurrency } = this.props;

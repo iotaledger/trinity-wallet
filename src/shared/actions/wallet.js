@@ -17,7 +17,7 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotHealthy } from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import {
     selectedAccountStateFactory,
@@ -319,25 +319,25 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
     return (dispatch, getState) => {
         dispatch(generateNewAddressRequest());
 
-        const syncAddressesWithSyncedNode = (provider) => {
-            return (...args) => throwIfNodeNotHealthy(provider).then(() => syncAddresses(provider)(...args));
-        };
-
         const selectedNode = getSelectedNodeFromState(getState());
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddressesWithSyncedNode)(
-            seedStore,
-            existingAccountData.addresses,
-            map(existingAccountData.transfers, (tx) => tx),
-        )
+        )(syncAddresses)(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(updateAddresses(accountName, result));
                 dispatch(generateNewAddressSuccess());
             })
             .catch(() => {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:somethingWentWrong'),
+                        i18next.t('global:somethingWentWrongTryAgain'),
+                        10000,
+                    ),
+                );
                 dispatch(generateNewAddressError());
             });
     };
@@ -393,9 +393,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses) =>
 
         dispatch(snapshotAttachToTangleRequest());
 
-        // Check node's health
-        throwIfNodeNotHealthy()
-            .then(() => getBalancesAsync()(addresses))
+        getBalancesAsync()(addresses)
             // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);

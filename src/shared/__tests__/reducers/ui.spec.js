@@ -44,6 +44,7 @@ describe('Reducer: ui', () => {
                 currentRoute: 'login',
                 hadErrorGeneratingNewAddress: false,
                 isKeyboardActive: false,
+                animateChartOnMount: true,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
