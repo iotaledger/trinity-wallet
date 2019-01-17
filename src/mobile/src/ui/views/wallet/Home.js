@@ -311,7 +311,7 @@ class Home extends Component {
                 ref={(c) => {
                     this.userInactivity = c;
                 }}
-                timeForInactivity={300000}
+                timeForInactivity={5000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
