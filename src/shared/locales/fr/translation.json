@@ -282,7 +282,7 @@
         "print": "Imprimer",
         "paperConvenience": "Imprimer une copie papier de votre seed est un moyen pratique de la stocker.",
         "publicInsecure": "Mais l’impression avec un wifi public ou une imprimante publique n’est pas sécurisée.",
-        "pleaseCheck": "Please check and confirm before you print",
+        "pleaseCheck": "Veuillez vérifier et confirmer avant d’imprimer",
         "wifiConfirmation": "Je n'imprimerai pas avec un wifi publique",
         "printerConfirmation": "Je ne l'imprimerai pas sur une imprimante publique"
     },
@@ -300,7 +300,7 @@
         "generateAnAddress": "Générer une nouvelle adresse",
         "generateAnAddressTitle": "Générer une nouvelle adresse",
         "generateAnAddressExplanation": "S’il vous plaît, générez une adresse avant d’utiliser cette fonction.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Générez une nouvelle adresse de dépôt à chaque fois que vous souhaitez recevoir des IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "Écrivez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Qu'est-ce qu'une somme de contrôle?",
         "everySeedHasAChecksum": "Chaque seed a une somme de contrôle de 3 caractères.",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
         "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
@@ -388,7 +388,7 @@
         "changePassword": "Modifier le mot de passe",
         "general": "Réglages généraux",
         "advanced": "Réglages avancés",
-        "account": "Account settings",
+        "account": "Paramètres du compte",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le portefeuille",
         "syncingComplete": "Synchronisation terminée",
@@ -556,7 +556,7 @@
         "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Veuillez saisir un nom de compte et une seed",
         "incorrectFormat": "Format de seed incorrect",
         "validSeedExplanation": "Les seeds valides doivent être composées de 81 caractères et contenir uniquement A-Z ou 9."
     },
