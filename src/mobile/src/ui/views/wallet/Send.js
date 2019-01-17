@@ -524,13 +524,17 @@ export class Send extends Component {
                 });
             case 'fingerprint':
                 return this.props.toggleModalActivity(modalContent, {
-                    hideModal: this.hideModal,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
-                    backgroundColor: { backgroundColor: body.bg },
+                    onBackButtonPress: () => {
+                        this.interuptSendAnimation();
+                        this.hideModal();
+                    },
                     instance: 'send',
                     theme,
-                    isFingerprintEnabled,
+                    onSuccess: () => {
+                        this.setSendingTransferFlag();
+                        this.hideModal();
+                        this.sendTransfer();
+                    },
                 });
             default:
                 break;
@@ -649,20 +653,14 @@ export class Send extends Component {
         const { t } = this.props;
         if (isAndroid) {
             this.props.toggleModalActivity();
-            this.showModal('fingerprint');
+            return timer.setTimeout('displayFingerPrintModal', () => this.showModal('fingerprint'), 300);
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
                 this.setSendingTransferFlag();
-                if (isAndroid) {
-                    this.hideModal();
-                }
                 this.sendTransfer();
             })
             .catch(() => {
-                if (isAndroid) {
-                    this.hideModal();
-                }
                 this.props.generateAlert(
                     'error',
                     t('fingerprintSetup:fingerprintAuthFailed'),
