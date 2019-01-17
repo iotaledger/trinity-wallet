@@ -22,8 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Le nœud a renvoyé une erreur en allant chercher les informations de votre compte. Si le problème persiste, essayez de changer nœud ou désactiver votre proxy dans les paramètres de la Trinity.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNode": "Version d'application non prise en charge",
+        "experimentalNodeExplanation": "Le serveur sélectionné utilise une version expérimentale qui n'est pas supportée. Veuillez changer de serveur ou essayer encore.",
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
         "checksum": "Code de vérification",
@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "Le serveur personnalisé est déjà répertorié.",
         "nodeAutoChanged": "Changement automatique de serveur",
         "nodeAutoChangedExplanation": "Passage au nouveau serveur {{- nodeAddress}} car le serveur sélectionné est hors ligne.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Veuillez toucher le capteur d'empreinte digitale",
         "fingerprintOnSend": "Touchez le lecteur d'empreintes digitales pour autoriser le transfert",
         "masterKey": "Votre seed IOTA est la clé principale de vos fonds.",
         "seedThief": "Si quelqu'un d'autre détient votre seed, il pourra voler vos IOTA.",
@@ -133,7 +133,7 @@
         "spentAddressExplanation": "ATTENTION : Fonds sur des adresses déjà utilisées",
         "discordInformation": "Envoyer des fonds depuis une adresse déjà utilisée est dangereux. Merci de prendre contact avec le canal #help sur Discord pour savoir ce qu'il est possible de faire.",
         "androidInsecureClipboardWarning": "Android ne fournit pas de presse-papier sécurisé.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
         "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps.",
@@ -153,15 +153,15 @@
         "errorAccessingKeychain": "Erreur de Porte-clés",
         "errorAccessingKeychainExplanation": "Impossible d'accéder au porte-clés nécessaire au stockage sécurisé.",
         "mainWallet": "COMPTE PRINCIPAL",
-        "confirm": "Confirm",
-        "delete": "Delete",
+        "confirm": "Confirmer",
+        "delete": "Effacer",
         "shouldUpdate": "Une mise à jour est disponible",
         "shouldUpdateExplanation": "Une nouvelle mise à jour a été publiée. Il est recommandé que vous mettiez à jour vers la dernière version.",
         "forceUpdate": "Mettez à jour l'application pour continuer",
         "forceUpdateExplanation": "Une mise à jour critique est disponible. S’il vous plaît, mettez à jour l’application maintenant.",
         "missingPermission": "Autorisation de système de fichiers requise",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR.",
+        "swipeToConfirm": "Glisser pour confirmer"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "Ne communiquez votre seed à personne.",
         "iotaLogo": "Logo IOTA",
-        "print": "Print",
+        "print": "Imprimer",
         "paperConvenience": "Imprimer une copie papier de votre seed est un moyen pratique de la stocker.",
         "publicInsecure": "Mais l’impression avec un wifi public ou une imprimante publique n’est pas sécurisée.",
         "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "wifiConfirmation": "Je n'imprimerai pas avec un wifi publique",
+        "printerConfirmation": "Je ne l'imprimerai pas sur une imprimante publique"
     },
     "receive": {
         "yourAddress": "Votre adresse",
@@ -328,7 +328,7 @@
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire.",
         "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardée correctement",
-        "clipboardWarning": "WARNING: Cannot paste seed",
+        "clipboardWarning": "AVERTISSEMENT : Impossible de coller la seed",
         "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
     },
     "send": {
@@ -358,7 +358,7 @@
         "addressPasteDetected": "Adresse collée détectée",
         "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser.",
         "invalid": "INVALIDE",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Glisser pour envoyer"
     },
     "setSeedName": {
         "letsAddName": "Veuillez ajouter un nom",
@@ -571,7 +571,7 @@
     "saveSeedConfirmation": {
         "didSaveSeed": "Avez-vous enregistré votre seed ?",
         "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "reenterSeed": "À l’étape suivante, on vous demandera d’entrer de nouveau votre seed.",
         "reenterSeedWarning": "Si vous n’avez pas sauvegardé votre seed et que votre appareil tombe en panne, vous perdrez tous vos IOTA.",
         "pleaseConfirm": "Veuillez confirmer que vous avez stocké votre seed en toute sécurité."
     },
@@ -590,7 +590,7 @@
         "fingerprintAuthFailedExplanation": "Échec de l'authentification par empreinte digitale. Veuillez réessayer.",
         "status": "Statut",
         "fingerprintUnavailable": "Authentification biométrique indisponible",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Identification désactivée pendant 30 secondes",
         "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas l'authentification biométrique, ou cette fonction n'a pas été configurée dans les paramètres de votre appareil.",
         "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale",
         "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
@@ -601,14 +601,14 @@
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
         "aMessage": "un message",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "De {{selectedAccountName}}",
+        "toAddress": "À l'adresse",
+        "sendingAMessage": "Envoi d'un message",
+        "sendingAnEmptyMessage": "Envoi d'un message vide"
     },
     "twoFA": {
         "wrongCode": "Code incorrect",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "Le code que vous avez entré est incorrect. Si l'erreur persiste, vérifiez que le réglage de l'heure est correct sur votre appareil.",
         "emptyCode": "Code vide",
         "emptyCodeExplanation": "Veuillez entrer un code et réessayer.",
         "keyCopied": "Clé copiée dans le presse-papier",
@@ -647,7 +647,7 @@
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Veuillez retaper la clé"
     },
     "chart": {
         "mcap": "MCAP",
@@ -676,14 +676,14 @@
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
         "validatingReceiveAddress": "Validation de l'adresse de réception",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Validation des adresses de transaction",
         "syncingAccount": "Synchronisation du compte",
         "preparingInputs": "Préparation des entrées",
         "preparingTransfers": "Préparation des transferts",
         "gettingTransactionsToApprove": "Réception des transactions à valider",
         "proofOfWork": "Finalisation de la preuve de travail",
         "broadcasting": "Diffusion en cours",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Transfert terminé"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Impossible de terminer la transition du snapshot",
@@ -698,7 +698,7 @@
         "transitioning": "En cours de transition pour le snapshot.",
         "generatingAndDetecting": "Génération des adresses et détection du solde.",
         "attaching": "Attachement des adresses au Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Attachement de l'adresse {{currentAddress}} sur {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Succès du remplissage automatique",
