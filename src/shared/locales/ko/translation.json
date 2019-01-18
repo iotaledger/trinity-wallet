@@ -371,7 +371,7 @@
         "advancedModeExplanation": "고급 모드에서는 기술적 정보가 더 자세하게 표시됩니다.",
         "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다.",
         "modeUpdated": "모드 변경됨",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdatedExplanation": "모드가 {{mode}} 모드로 변경되었습니다."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -386,9 +386,9 @@
         "addNewSeed": "새 시드 추가",
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경",
-        "general": "General settings",
+        "general": "일반 설정",
         "advanced": "고급 설정",
-        "account": "Account settings",
+        "account": "계정 설정",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
         "syncingComplete": "동기화 완료",
@@ -528,7 +528,7 @@
         "scan": "QR 코드 스캔"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "단위 체계",
         "trillion": "조",
         "billion": "십억",
         "million": "백만",
