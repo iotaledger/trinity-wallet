@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "Votre mot de passe doit comporter au moins {{minLength}} caractères. Il comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "passwordMismatch": "Les mots de passe ne correspondent pas",
         "passwordMismatchExplanation": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Ceci est le mot de passe principal de votre portefeuille. Vous l’utiliserez pour vous connecter.",
         "retypePassword": "Confirmer le mot de passe"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "Connexion",
         "setNode": "Choisir un serveur",
         "whyBiometricDisabled": "Pourquoi l'authentification biométrique est-elle désactivée?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "L'authentification biométrique est désactivée lors du premier chargement de l'application pour votre sécurité.",
+        "whyBiometricDisabledExplanationPart2": "Lorsque vous utilisez Trinity, vous serez déconnecté en cas d'inactivité. Vous pourrez alors vous reconnecter en utilisant l'authentification biométrique."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -534,7 +534,7 @@
         "million": "Million",
         "thousand": "Mille",
         "one": "Un",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "Les IOTAs sont en général achetés en multiple de un million, mais peuvent également être transférés à l'unité."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Pourquoi ne puis-je pas dépenser l'intégralité de mon solde ?",
