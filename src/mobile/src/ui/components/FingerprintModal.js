@@ -65,6 +65,7 @@ class FingerprintModal extends Component {
         FingerprintScanner.authenticate({ onAttempt: this.handleAuthenticationAttempted })
             .then(() => {
                 this.props.onSuccess();
+                FingerprintScanner.release();
             })
             .catch((error) => {
                 this.setState({ error: error.name });
@@ -74,6 +75,7 @@ class FingerprintModal extends Component {
     componentWillReceiveProps(newProps) {
         if (this.props.minimised && !newProps.minimised) {
             this.props.onBackButtonPress();
+            FingerprintScanner.release();
         }
     }
 
@@ -110,16 +112,16 @@ class FingerprintModal extends Component {
         const { error } = this.state;
         const { t, onBackButtonPress } = this.props;
         const errors = {
-            AuthenticationNotMatch: t('fingerprintSetup:fingerprintAuthFailed'),
+            AuthenticationNotMatch: t('fingerprintSetup:fingerprintAuthFailedExplanation'),
             AuthenticationFailed: t('fingerprintSetup:fingerprintAuthFailed'),
             FingerprintScannerNotAvailable: t('fingerprintSetup:fingerprintUnavailable'),
-            FingerprintScannerNotEnrolled: t('fingerprintSetup:fingerprintUnavailableExplanation'),
-            FingerprintScannerNotSupported: t('fingerprintSetup:fingerprintUnavailableExplanation'),
+            FingerprintScannerNotEnrolled: t('fingerprintSetup:notConfigured'),
+            FingerprintScannerNotSupported: t('fingerprintSetup:notSupported'),
             DeviceLocked: t('fingerprintSetup:deviceLocked'),
-            UserCancel: t('fingerprintSetup:fingerprintAuthFailed'),
-            UserFallback: t('fingerprintSetup:fingerprintAuthFailed'),
-            SystemCancel: t('fingerprintSetup:fingerprintAuthFailed'),
-            PasscodeNotSet: t('fingerprintSetup:fingerprintUnavailableExplanation'),
+            UserCancel: t('fingerprintSetup:userCancelledAuth'),
+            UserFallback: t('fingerprintSetup:passwordFallback'),
+            SystemCancel: t('fingerprintSetup:systemCancelledAuth'),
+            PasscodeNotSet: t('fingerprintSetup:noPassword'),
         };
         return (
             <View style={styles.container}>
