@@ -48,6 +48,8 @@ class FingerprintModal extends Component {
         instance: PropTypes.string.isRequired,
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool,
+        /** Triggered on fingerprint success */
+        onSuccess: PropTypes.func.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
     };
@@ -57,6 +59,16 @@ class FingerprintModal extends Component {
         leaveNavigationBreadcrumb('FingerprintModal');
         this.props.onBackButtonPress = this.props.onBackButtonPress.bind(this);
         this.state = { error: undefined };
+    }
+
+    componentDidMount() {
+        FingerprintScanner.authenticate({ onAttempt: this.handleAuthenticationAttempted })
+            .then(() => {
+                this.props.onSuccess();
+            })
+            .catch((error) => {
+                this.setState({ error: error.name });
+            });
     }
 
     componentWillReceiveProps(newProps) {
