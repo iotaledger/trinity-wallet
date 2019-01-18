@@ -15,10 +15,36 @@ import {
     DEFAULT_MIN_WEIGHT_MAGNITUDE,
     DEFAULT_NODE_REQUEST_TIMEOUT,
     GET_NODE_INFO_REQUEST_TIMEOUT,
+    WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT,
+    GET_BALANCES_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
 import { performPow, sortTransactionTrytesArray } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
+
+/**
+ * Returns timeouts for specific quorum requests
+ *
+ * @method getApiTimeout
+ * @param {string} method
+ * @param {array} [payload]
+
+ * @returns {number}
+ */
+/* eslint-disable no-unused-vars */
+const getApiTimeout = (method, payload) => {
+    /* eslint-enable no-unused-vars */
+    switch (method) {
+        case 'wereAddressesSpentFrom':
+            return WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT;
+        case 'getBalances':
+            return GET_BALANCES_REQUEST_TIMEOUT;
+        case 'getNodeInfo':
+            return GET_NODE_INFO_REQUEST_TIMEOUT;
+        default:
+            return DEFAULT_NODE_REQUEST_TIMEOUT;
+    }
+};
 
 /**
  * Returns a new IOTA instance if provider is passed, otherwise returns the global instance
@@ -36,6 +62,8 @@ const getIotaInstance = (provider, requestTimeout = DEFAULT_NODE_REQUEST_TIMEOUT
         return instance;
     }
 
+    iota.api.setApiTimeout(requestTimeout);
+
     return iota;
 };
 
@@ -52,13 +80,17 @@ const getBalancesAsync = (provider, withQuorum = true) => (addresses, threshold 
     withQuorum
         ? quorum.getBalances(addresses, threshold)
         : new Promise((resolve, reject) => {
-              getIotaInstance(provider).api.getBalances(addresses, threshold, (err, balances) => {
-                  if (err) {
-                      reject(err);
-                  } else {
-                      resolve(balances);
-                  }
-              });
+              getIotaInstance(provider, getApiTimeout('getBalances')).api.getBalances(
+                  addresses,
+                  threshold,
+                  (err, balances) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(balances);
+                      }
+                  },
+              );
           });
 
 /**
@@ -66,13 +98,12 @@ const getBalancesAsync = (provider, withQuorum = true) => (addresses, threshold 
  *
  * @method getNodeInfoAsync
  * @param {string} [provider]
- * @param {number} [requestTimeout]
  *
  * @returns {function(): Promise<object>}
  */
-const getNodeInfoAsync = (provider, requestTimeout) => () =>
+const getNodeInfoAsync = (provider) => () =>
     new Promise((resolve, reject) => {
-        getIotaInstance(provider, requestTimeout).api.getNodeInfo((err, info) => {
+        getIotaInstance(provider, getApiTimeout('getNodeInfo')).api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
             } else {
@@ -143,13 +174,16 @@ const getLatestInclusionAsync = (provider, withQuorum = false) => (hashes) =>
     withQuorum
         ? quorum.getLatestInclusion(hashes)
         : new Promise((resolve, reject) => {
-              getIotaInstance(provider).api.getLatestInclusion(hashes, (err, states) => {
-                  if (err) {
-                      reject(err);
-                  } else {
-                      resolve(states);
-                  }
-              });
+              getIotaInstance(provider, getApiTimeout('getInclusionStates')).api.getLatestInclusion(
+                  hashes,
+                  (err, states) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(states);
+                      }
+                  },
+              );
           });
 
 /**
@@ -279,13 +313,16 @@ const wereAddressesSpentFromAsync = (provider, withQuorum = true) => (addresses)
     withQuorum
         ? quorum.wereAddressesSpentFrom(addresses)
         : new Promise((resolve, reject) => {
-              getIotaInstance(provider).api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
-                  if (err) {
-                      reject(err);
-                  } else {
-                      resolve(wereSpent);
-                  }
-              });
+              getIotaInstance(provider, getApiTimeout('wereAddressesSpentFrom')).api.wereAddressesSpentFrom(
+                  addresses,
+                  (err, wereSpent) => {
+                      if (err) {
+                          reject(err);
+                      } else {
+                          resolve(wereSpent);
+                      }
+                  },
+              );
           });
 
 /**
@@ -520,13 +557,12 @@ const attachToTangleAsync = (provider, powFn) => (
  *
  * @method getTrytesAsync
  * @param {string} [provider]
- * @param {number} [requestTimeout]
  *
  * @returns {function(array): Promise<array>}
  */
-const getTrytesAsync = (provider, requestTimeout) => (hashes) =>
+const getTrytesAsync = (provider) => (hashes) =>
     new Promise((resolve, reject) => {
-        getIotaInstance(provider, requestTimeout).api.getTrytes(hashes, (err, trytes) => {
+        getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
             } else {
@@ -540,16 +576,15 @@ const getTrytesAsync = (provider, requestTimeout) => (hashes) =>
  *
  * @method isNodeHealthy
  * @param {string} [provider]
- * @param {number} [requestTimeout]
  *
  * @returns {Promise}
  */
-const isNodeHealthy = (provider, requestTimeout = GET_NODE_INFO_REQUEST_TIMEOUT) => {
+const isNodeHealthy = (provider) => {
     const cached = {
         latestMilestone: EMPTY_HASH_TRYTES,
     };
 
-    return getNodeInfoAsync(provider, requestTimeout)()
+    return getNodeInfoAsync(provider)()
         .then(
             ({
                 appVersion,
@@ -568,7 +603,7 @@ const isNodeHealthy = (provider, requestTimeout = GET_NODE_INFO_REQUEST_TIMEOUT)
                         latestMilestoneIndex - 1 === latestSolidSubtangleMilestoneIndex) &&
                     cached.latestMilestone !== EMPTY_HASH_TRYTES
                 ) {
-                    return getTrytesAsync(provider, requestTimeout)([cached.latestMilestone]);
+                    return getTrytesAsync(provider)([cached.latestMilestone]);
                 }
 
                 throw new Error(Errors.NODE_NOT_SYNCED);
@@ -594,6 +629,7 @@ const isPromotable = (provider) => (tailTransactionHash, options = {}) =>
 
 export {
     getIotaInstance,
+    getApiTimeout,
     getBalancesAsync,
     getNodeInfoAsync,
     getTransactionsObjectsAsync,
