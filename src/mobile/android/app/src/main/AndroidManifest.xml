@@ -12,8 +12,6 @@
 
 
     <uses-sdk
-        android:minSdkVersion="21"
-        android:targetSdkVersion="26"
         tools:overrideLibrary="com.rnprint.RNPrint"/>
 
     <application
