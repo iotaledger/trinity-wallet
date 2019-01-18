@@ -167,7 +167,7 @@ dependencies {
     implementation(project(':react-native-camera')) {
         exclude group: "com.google.android.gms:+"
     }
-    implementation('com.google.android.gms:play-services-vision:10.2.0') {
+    implementation('com.google.android.gms:play-services-vision:17.0.2') {
         force = true
     }
     implementation project(':react-native-print')
