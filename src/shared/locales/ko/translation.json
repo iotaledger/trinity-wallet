@@ -322,21 +322,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "시드를 확인해 주세요",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "지갑을 초기화하거나 앱을 다시 설치하지 않았다면 트리니티는 절대로 시드를 입력할 것을 요구하지 않습니다.",
         "enterYourSeed": "시드를 입력해 주세요",
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력하신 시드가 잘못되었습니다. 다시 시도해 주세요.",
         "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오.",
         "enterSeedBelow": "시드를 입력해서 정확하게 저장하였는지 확인해 주세요",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "경고: 시드 붙여넣기 비활성화됨",
+        "clipboardWarningExplanation": "보안을 위해 붙여넣기 기능이 비활성화되었습니다. 시드가 담긴 텍스트 파일을 끌어다 놓을 수는 있습니다."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
         "invalidAddressExplanation1": "주소는 {{maxLength}}글자로 구성되어야 하며, 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "주소를 올바르게 입력했는지 확인해 주세요.",
         "invalidAddressExplanationGeneric": "주소는 90글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함합니다.",
         "notEnoughFunds": "잔고 부족",
         "notEnoughFundsExplanation": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
@@ -358,7 +358,7 @@
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
         "invalid": "유효하지 않음",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "밀어서 보내기"
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",
@@ -370,7 +370,7 @@
         "standard": "기본",
         "advancedModeExplanation": "고급 모드에서는 기술적 정보가 더 자세하게 표시됩니다.",
         "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다.",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "모드 변경됨",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
