@@ -157,11 +157,11 @@
         "delete": "삭제",
         "shouldUpdate": "새 업데이트 사용 가능",
         "shouldUpdateExplanation": "새로운 업데이트가 공개되었습니다. 최신 버전으로 업데이트 하는 것을 권장합니다.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "forceUpdate": "계속하기 전에 앱 업데이트 필요",
+        "forceUpdateExplanation": "중요한 업데이트가 공개되었습니다. 지금 바로 앱을 업데이트해 주세요.",
         "missingPermission": "파일 시스템 권한 필요",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
+        "swipeToConfirm": "밀어서 확인"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "비밀번호는 최소 {{minLength}}글자로 구성되어야 합니다. 입력하신 비밀번호는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않음",
         "passwordMismatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "이 비밀번호가 지갑의 주 비밀번호입니다. 이 비밀번호가 로그인에 사용됩니다.",
         "retypePassword": "비밀번호 다시 입력"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "로그인",
         "setNode": "노드 선택",
         "whyBiometricDisabled": "왜 생체 인증이 비활성화되어 있나요?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "보안을 위해 생체 인증은 앱의 첫 실행 시 비활성화됩니다.",
+        "whyBiometricDisabledExplanationPart2": "트리니티를 사용 중 앱이 비활성화되어 로그아웃하였을 경우, 생체 인증을 사용하여 다시 로그인할 수 있습니다."
     },
     "loading": {
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "절대로 다른 사람에게 시드를 알려줘서는 안 됩니다.",
         "iotaLogo": "IOTA 로고",
-        "print": "Print",
+        "print": "인쇄",
         "paperConvenience": "시드를 종이에 인쇄해 놓으면 편리하게 보관할 수 있습니다.",
         "publicInsecure": "하지만 공용 와이파이를 통해 인쇄하거나 공용 프린터를 사용해 인쇄하는 것은 위험합니다.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "인쇄하기 전에 아래 사항을 확인하세요",
+        "wifiConfirmation": "공용 와이파이를 사용 중이 아닙니다",
+        "printerConfirmation": "공용 프린터를 사용 중이 아닙니다"
     },
     "receive": {
         "yourAddress": "주소",
@@ -293,14 +293,14 @@
         "copyAddress": "주소 복사",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "주소 생성",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
         "tag": "태그",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "주소 생성",
+        "generateAnAddressTitle": "주소 생성 필요",
+        "generateAnAddressExplanation": "이 기능을 사용하려면 먼저 주소를 생성해야 합니다.",
+        "generateAddressInformation": "IOTA를 받고자 할 때마다 입금 주소를 새로 생성해 주세요"
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
         "youCanHighlightCharacters": "9글자 단위로 강조해서 볼 수 있습니다",
         "printBlankWallet": "빈 지갑 인쇄하기",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "체크섬이란?",
         "everySeedHasAChecksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다.",
         "iHavesavedMySeed": "시드를 저장하였습니다",
         "checksumExplanation": "지갑에 시드를 추가할 때 보여지는 체크섬이 기록한 체크섬과 일치하는지를 확인해 주세요",
