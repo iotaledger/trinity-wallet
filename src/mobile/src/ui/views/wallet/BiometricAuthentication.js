@@ -65,10 +65,16 @@ const styles = StyleSheet.create({
 });
 
 /** Fingerprint enable component */
-class BiometricAuthentication extends Component {
+export class BiometricAuthentication extends Component {
     static propTypes = {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
+        /** @ignore */
+        isModalActive: PropTypes.bool.isRequired,
+        /** @ignore */
+        /* eslint-disable react/no-unused-prop-types */
+        modalContent: PropTypes.string.isRequired,
+        /* eslint-enable react/no-unused-prop-types */
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -97,6 +103,18 @@ class BiometricAuthentication extends Component {
         leaveNavigationBreadcrumb('FingerprintEnable');
     }
 
+    componentWillReceiveProps(newProps) {
+        // Activate/Deactivate fingerprint scanner on android when the modal component is properly rendered
+        if (
+            !this.props.isModalActive &&
+            newProps.isModalActive &&
+            newProps.modalContent === 'fingerprint' &&
+            isAndroid
+        ) {
+            this.props.isFingerprintEnabled ? this.deactivateFingerprintScanner() : this.activateFingerprintScanner();
+        }
+    }
+
     /**
      * Wrapper method for activation/deactivation of fingerprint
      */
@@ -105,11 +123,12 @@ class BiometricAuthentication extends Component {
         if (isAndroid) {
             return this.openModal();
         }
+
         if (isFingerprintEnabled) {
-            this.deactivateFingerprintScanner();
-        } else {
-            this.activateFingerprintScanner();
+            return this.deactivateFingerprintScanner();
         }
+
+        return this.activateFingerprintScanner();
     }
 
     onSuccess() {
@@ -154,7 +173,6 @@ class BiometricAuthentication extends Component {
             theme,
             isFingerprintEnabled,
             instance: 'setup',
-            onSuccess: this.onSuccess,
         });
     }
 
@@ -268,6 +286,8 @@ class BiometricAuthentication extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    isModalActive: state.ui.isModalActive,
+    modalContent: state.ui.modalContent,
 });
 
 const mapDispatchToProps = {
