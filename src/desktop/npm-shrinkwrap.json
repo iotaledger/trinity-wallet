@@ -12370,9 +12370,9 @@
             }
         },
         "react-qr-reader": {
-            "version": "2.1.1",
-            "resolved": "https://registry.npmjs.org/react-qr-reader/-/react-qr-reader-2.1.1.tgz",
-            "integrity": "sha512-Xid7aBPZMMl9Xh4mdz9w8HZZsbL1BVbRLuoE2ixs5zwtgF0IGarWZ5cbJVaxCydus6vzEL4FQf4gpItC/jz8hg==",
+            "version": "2.1.2",
+            "resolved": "https://registry.npmjs.org/react-qr-reader/-/react-qr-reader-2.1.2.tgz",
+            "integrity": "sha512-SyRrRRRS7XcIyX8x6tb+mgcMqYZw6Admf4vlnUO/Z21nJklf6WILmP4jstd1W5tNlonvuC/S8R8/doIuZBgVjA==",
             "requires": {
                 "jsqr": "^1.1.1",
                 "prop-types": "^15.5.8",
@@ -12903,9 +12903,9 @@
             }
         },
         "rtcpeerconnection-shim": {
-            "version": "1.2.14",
-            "resolved": "https://registry.npmjs.org/rtcpeerconnection-shim/-/rtcpeerconnection-shim-1.2.14.tgz",
-            "integrity": "sha512-/sl1vgarkFPU2rbXy+EMmytMQIzCKNbIm3fChjPnsdytKAROgoivB0KLE7PQRjKx/d/nr/Yx+6qu0/eCpoxn/A==",
+            "version": "1.2.15",
+            "resolved": "https://registry.npmjs.org/rtcpeerconnection-shim/-/rtcpeerconnection-shim-1.2.15.tgz",
+            "integrity": "sha512-C6DxhXt7bssQ1nHb154lqeL0SXz5Dx4RczXZu2Aa/L1NJFnEVDxFwCBo3fqtuljhHIGceg5JKBV4XJ0gW5JKyw==",
             "requires": {
                 "sdp": "^2.6.0"
             }
@@ -14743,9 +14743,9 @@
             }
         },
         "webrtc-adapter": {
-            "version": "6.4.3",
-            "resolved": "https://registry.npmjs.org/webrtc-adapter/-/webrtc-adapter-6.4.3.tgz",
-            "integrity": "sha512-hWbIPXnCLsDP9QHtIM6LF8wjQ73FmgZxkCNS7poAAwRi2lGZfiu8FJq7Su5SO7fbzufaQ7flmQzGdepxerzJvQ==",
+            "version": "6.4.8",
+            "resolved": "https://registry.npmjs.org/webrtc-adapter/-/webrtc-adapter-6.4.8.tgz",
+            "integrity": "sha512-YM8yl545c/JhYcjGHgaCoA7jRK/KZuMwEDFeP2AcP0Auv5awEd+gZE0hXy9z7Ed3p9HvAXp8jdbe+4ESb1zxAw==",
             "requires": {
                 "rtcpeerconnection-shim": "^1.2.14",
                 "sdp": "^2.9.0"
