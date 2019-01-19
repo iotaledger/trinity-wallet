@@ -250,7 +250,7 @@
         "setNode": "Seleccionar nodo",
         "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
         "whyBiometricDisabledExplanationPart1": "La autenticación biométrica está desactivada en la primera carga de la aplicación por seguridad.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart2": "Cuando uses Trinity serás deslogueado por inactividad. Puedes entrar nuevamente con la autenticación biométrica."
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "Nunca comparta su semilla con nadie.",
         "iotaLogo": "Logo IOTA",
-        "print": "Print",
+        "print": "Imprimir",
         "paperConvenience": "Imprimir una copia en papel de su semilla es una buena manera de guardarla.",
         "publicInsecure": "Pero imprimir en un WiFi público o una impresora publica es inseguro.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Por favor revisa y confirma antes de imprimir",
+        "wifiConfirmation": "No estoy usando wifi público",
+        "printerConfirmation": "No estoy imprimiendo en una impresora publica"
     },
     "receive": {
         "yourAddress": "Su dirección",
@@ -300,7 +300,7 @@
         "generateAnAddress": "Generar dirección",
         "generateAnAddressTitle": "Generar una dirección",
         "generateAnAddressExplanation": "Por favor genere una dirección antes de usar esta función.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Genere una nueva dirección de depósito cada vez que desee recibir fondos"
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga una copia de respaldo de su semilla",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Que es un checksum?",
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
@@ -322,21 +322,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity nunca le pedira reingresar está semilla salvo que reinicie la billetera o borre la aplicación.",
         "enterYourSeed": "Introduzca su semilla",
         "incorrectSeed": "Semilla incorrecta",
         "incorrectSeedExplanation": "La semilla que ingreso es incorrecta. Por favor vuelva a intentarlo.",
         "ifYouHaveNotSaved": "Si no ha guardado su semilla, por favor regrese y hágalo.",
         "enterSeedBelow": "Introduzca su recién creada semilla para confirmar que la guardado correctamente",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "ADVERTENCIA: No se puede copiar la semilla",
+        "clipboardWarningExplanation": "Copiar esta desactivado por su seguridad. Usted puede arrastrar y soltar su semilla desde un archivo de texto."
     },
     "send": {
         "invalidAddress": "Dirección inválida",
         "invalidAddressExplanation1": "La dirección debe ser de {{maxLength}} caracteres y debe tener un código de verificación.",
         "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
         "invalidAddressExplanation3": "La dirección contiene un código de verificación no válido.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Por favor revise que ha ingresado la dirección correcta.",
         "invalidAddressExplanationGeneric": "Direcciones válidas deben tener 90 caracteres y solo contener A-Z o 9.",
         "notEnoughFunds": "Fondos insuficientes",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
@@ -358,7 +358,7 @@
         "addressPasteDetected": "Se ha detectado una dirección pegada",
         "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar.",
         "invalid": "INVALIDO",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "Deslice para enviar"
     },
     "setSeedName": {
         "letsAddName": "Vamos a añadir un nombre",
@@ -386,9 +386,9 @@
         "addNewSeed": "Añadir nueva semilla",
         "twoFA": "Autenticación de dos factores",
         "changePassword": "Cambiar contraseña",
-        "general": "General settings",
+        "general": "Configuración general",
         "advanced": "Opciones avanzadas",
-        "account": "Account settings",
+        "account": "Configuración de cuenta",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
         "syncingComplete": "Sincronización completada",
@@ -462,7 +462,7 @@
         "retrying": "Reintentar",
         "yesterday": "Ayer",
         "promotingAnotherBundle": "Promoviendo otro paquete",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Por favor espere, Trinity está promoviendo otro paquete."
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -521,20 +521,20 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "¿Estás seguro que quieres desconectarte?",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "Está a punto de desloguear",
         "areYouSure": "¿Estás seguro?"
     },
     "qrScanner": {
         "scan": "Escanee su código QR"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Sistema de unidades",
         "trillion": "Billón",
         "billion": "Mil millones",
         "million": "Millón",
         "thousand": "Mil",
         "one": "Unidad",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "Los IOTAs son típicamente adquiridos en múltiplos de un millon, pero pueden ser transferidos en una unidad."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
