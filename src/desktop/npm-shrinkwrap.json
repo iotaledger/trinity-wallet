@@ -6026,9 +6026,9 @@
             }
         },
         "i18next": {
-            "version": "12.1.0",
-            "resolved": "https://registry.npmjs.org/i18next/-/i18next-12.1.0.tgz",
-            "integrity": "sha512-AexmwGkKxwKfo5fGeXTWEY4xqzRPigQ1S/0InOUUVziGO54cd4fKyYK8ED1Thx9fd+WA3fRSZ+1iekvFQMbsFw=="
+            "version": "13.1.4",
+            "resolved": "https://registry.npmjs.org/i18next/-/i18next-13.1.4.tgz",
+            "integrity": "sha512-qPmjdQrUQ4AGzKBGBpPLC7XiJoqbV/dGmDW/xmwbzAk60eavTkZ+s5FqoSAP2YeurPF8XpNWQaDvXNSWzT0ZYw=="
         },
         "iconv-lite": {
             "version": "0.4.24",
