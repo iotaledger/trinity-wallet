@@ -1,7 +1,6 @@
 package com.iota.trinity;
 
 import android.content.Context;
-import android.support.multidex.MultiDex;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
@@ -48,8 +47,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
         super.attachBaseContext(base);
 
         System.loadLibrary("dummy");
-
-        MultiDex.install(this);
     }
 
     @Override

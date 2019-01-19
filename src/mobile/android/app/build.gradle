@@ -97,7 +97,6 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
-        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -175,7 +174,6 @@ dependencies {
     implementation ('com.facebook.react:react-native:+')
     implementation project(':react-native-svg')
     implementation project(':react-native-keychain')
-    implementation 'com.android.support:multidex:1.0.1'
     implementation project(':lottie-react-native')
     implementation project(':react-native-exit-app')
     implementation project(':react-native-securerandom')
