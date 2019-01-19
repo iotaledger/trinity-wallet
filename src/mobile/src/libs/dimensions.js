@@ -1,16 +1,15 @@
-import { NativeModules, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
+import DetectNavbar from 'react-native-detect-navbar-android-sync';
 import { isAndroid, isIPhoneX } from 'libs/device';
 
-export const DetectNavbar = {
-    hasSoftKeys() {
-        return isAndroid ? NativeModules.RNDetectNavbarAndroid.hasSoftKeys() : false;
-    },
-};
+global.height = Dimensions.get('window').height;
 
-global.height = DetectNavbar.hasSoftKeys()
-    ? (Dimensions.get('window').height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'))
-    : Dimensions.get('window').height;
+if (isAndroid) {
+    if (DetectNavbar.hasSoftKeys()) {
+        global.height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT');
+    }
+}
 
 // StatusBar area where we avoid drawing
 const iPhoneXTop = 44;
