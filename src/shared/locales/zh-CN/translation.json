@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "该自定义节点已经存在于内置节点列表中。",
         "nodeAutoChanged": "自动切换节点",
         "nodeAutoChangedExplanation": "当选定的节点离线时切换到新节点{{- nodeAddress}}",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "请触摸指纹阅读器以授权转账",
         "masterKey": "IOTA种子是您的资金的主密钥。",
         "seedThief": "如果别人拿到了你的种子，那么他们就可以偷走你的IOTA。",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "需要文件系统权限",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -297,7 +299,8 @@
         "tag": "标签",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "指纹验证失败，请重试。",
         "status": "状态",
         "fingerprintUnavailable": "生物识别认证不可用",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "您的设备不支持生物识别认证或者尚未在设备设置中对此功能进行配置。",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "按下方按钮启用指纹认证。",

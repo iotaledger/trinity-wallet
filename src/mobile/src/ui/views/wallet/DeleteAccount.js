@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         flex: 2.5,
+        alignItems: 'center',
         justifyContent: 'space-around',
     },
     itemLeft: {

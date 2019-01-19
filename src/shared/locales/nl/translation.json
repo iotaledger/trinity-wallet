@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "De aangepaste node wordt al vermeld.",
         "nodeAutoChanged": "Automatisch van node gewisseld",
         "nodeAutoChangedExplanation": "Gewisseld naar node {{- nodeAddress}} omdat de geselecteerde node offline is.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Raak vingerafdruklezer aan om transactie te autoriseren",
         "masterKey": "Uw IOTA seed is de meester sleutel naar al uw geld.",
         "seedThief": "Als iemand anders uw seed heeft, kan diegene uw IOTA stelen.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Toegang tot bestandsysteem vereist",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -297,7 +299,8 @@
         "tag": "Label",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back uw seed up",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Vingerafdruk-verificatie is mislukt. Probeer het opnieuw.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrische authenticatie onbeschikbaar",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen biometrische authenticatie of het is niet ingesteld in de apparaatinstellingen.",
         "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen",
         "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",

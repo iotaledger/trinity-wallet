@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -297,7 +299,8 @@
         "tag": "Ετικέτα",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
         "status": "Κατάσταση",
         "fingerprintUnavailable": "Biometric authentication unavailable",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων",
         "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",

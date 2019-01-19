@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Prilagođeni node je već na listi.",
         "nodeAutoChanged": "Automatski promenjen node",
         "nodeAutoChangedExplanation": "Prebacivanje na novi node {{- nodeAddress}} jer je izabrani node van mreže.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Dodirnite čitač otisaka prstiju da biste odobrili prenos",
         "masterKey": "Vaš IOTA seed je master ključ za vaša sredstva.",
         "seedThief": "Ako neko drugi zna vaš seed, on može ukrasti vaše IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Potrebna dozvola za pristup sistemu datoteka",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed sadrži nedozvoljene znakove",
@@ -297,7 +299,8 @@
         "tag": "Oznaka",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Napravite rezervnu kopiju svog seed-a",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Došlo je do greške prilikom biometrijske autorizacije. Pokušajte ponovo.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autentikaciji ili nije konfigurisan u postavkama uređaja.",
         "buttonInstructionsDisable": "Pritisnite dugme u nastavku da biste onemogućili autorizaciju pomoću otiska prsta",
         "buttonInstructionsEnable": "Pritisnite dugme u nastavku da biste omogućii autentikaciji pomoću otiska prsta.",

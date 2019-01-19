@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą",
         "masterKey": "Jūsų IOTA užraktas yra pagrindinis raktas į jūsų lėšas.",
         "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Atnaujinkite programėlę norėdami tęsti",
         "forceUpdateExplanation": "Išleistas svarbus atnaujinimas. Prašome nedelsiant atsinaujinti programėlę.",
         "missingPermission": "Reikalingas failų sistemos leidimas",
-        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją."
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norėdami atlikti šią funkciją.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -297,7 +299,8 @@
         "tag": "Etiketė",
         "generateAnAddress": "Sukurti adresą",
         "generateAnAddressTitle": "Sukurti adresą",
-        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją."
+        "generateAnAddressExplanation": "Prašome sukurti adresą, norėdami panaudoti šią funkciją.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Piršto antspaudo autentifikavimas nesuveikė. Bandykite dar kartą.",
         "status": "Būsena",
         "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
         "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą",
         "buttonInstructionsEnable": "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",

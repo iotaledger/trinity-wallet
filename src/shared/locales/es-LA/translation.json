@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Este nodo ya se encuentra en la lista.",
         "nodeAutoChanged": "Cambiar de nodo automáticamente",
         "nodeAutoChangedExplanation": "El nuevo nodo {{- nodeAddress}} seleccionado está fuera de línea.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Toque el lector de huella dactilar para autorizar la transferencia",
         "masterKey": "Su semilla de IOTA es la llave maestra a sus fondos.",
         "seedThief": "Si alguien posee su semilla puede robar sus IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Permisos de sistema de archivos requeridos",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -297,7 +299,8 @@
         "tag": "Etiqueta",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga un respaldo de su semilla",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
         "status": "Estado",
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Tu dispositivo no soporta autenticación biométrica o no está configurada en los ajustes del equipo.",
         "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huella dactilar",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huella dactilar.",

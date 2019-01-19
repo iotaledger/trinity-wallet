@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen."
+        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -297,7 +299,8 @@
         "tag": "Tag",
         "generateAnAddress": "Neue Adresse generieren",
         "generateAnAddressTitle": "Eine neue Adresse generieren",
-        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest."
+        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrische Authentifizierung ist nicht verfügbar",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren",
         "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",

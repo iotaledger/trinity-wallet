@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Ten serwer znajduje się już na liście.",
         "nodeAutoChanged": "Autom. zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
         "masterKey": "Seed IOTA jest głównym kluczem do Twoich funduszy.",
         "seedThief": "Jeśli ktoś inny zdobędzie ten klucz, będzie mógł on wykraść Twoje środki IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
         "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików."
+        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
+        "swipeToConfirm": "Przesuń palcem, aby potwierdzić"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -297,7 +299,8 @@
         "tag": "Tag",
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
-        "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji."
+        "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji.",
+        "generateAddressInformation": "Wygeneruj nowy adres odbioru, za każdym razem, gdy chcesz otrzymać środki IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Nie rozpoznano odcisku palca. Spróbuj ponownie.",
         "status": "Status",
         "fingerprintUnavailable": "Autoryzacja odciskiem palca niedostępna",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
         "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć funkcję autoryzacji odciskiem palca",
         "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć funkcję autoryzacji odciskiem palca.",

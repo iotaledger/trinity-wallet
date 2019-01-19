@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "해당 노드는 이미 등록되어 있습니다.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결합니다.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "지문을 인식하여 전송 승인",
         "masterKey": "IOTA 시드는 지갑에 있어 마스터키와 같은 역할을 합니다.",
         "seedThief": "만일 다른 사람이 시드를 손에 넣게 된다면 IOTA를 훔칠 수 있습니다.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "파일 시스템 권한 필요",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -297,7 +299,8 @@
         "tag": "태그",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주세요.",
         "status": "상태",
         "fingerprintUnavailable": "생체 인증을 사용할 수 없음",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",

@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Tento vlastní Node je již v seznamu.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
         "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Pro ověření přenosu přiložte prst na čtečku",
         "masterKey": "Váš IOTA seed je hlavním klíčem k vašim IOTA financím.",
         "seedThief": "Kdo získá Váš Seed, ten by mohl ukrást vaše IOTA finance.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Chcete-li pokračovat, aktualizujte aplikaci",
         "forceUpdateExplanation": "Byla vydána kritická aktualizace. Aktualizujte aplikaci nyní.",
         "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -297,7 +299,8 @@
         "tag": "Značka",
         "generateAnAddress": "Vygenerovat adresu",
         "generateAnAddressTitle": "Vygenerovat adresu",
-        "generateAnAddressExplanation": "Prosím vygenerujte adresu před použitím této funkce."
+        "generateAnAddressExplanation": "Prosím vygenerujte adresu před použitím této funkce.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -587,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
         "fingerprintUnavailable": "Biometrická autentizace není k dispozici",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje biometrickou autentizaci, nebo v nastavení zařízení nebylo povoleno její používání.",
         "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",

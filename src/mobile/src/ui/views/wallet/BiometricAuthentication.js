@@ -90,16 +90,11 @@ class BiometricAuthentication extends Component {
         this.navigateToHome = this.navigateToHome.bind(this);
         this.onFingerprintPress = this.onFingerprintPress.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.onSuccess = this.onSuccess.bind(this);
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('FingerprintEnable');
-    }
-
-    componentWillUnmount() {
-        if (isAndroid) {
-            FingerprintScanner.release();
-        }
     }
 
     /**
@@ -107,11 +102,41 @@ class BiometricAuthentication extends Component {
      */
     onFingerprintPress() {
         const { isFingerprintEnabled } = this.props;
+        if (isAndroid) {
+            return this.openModal();
+        }
         if (isFingerprintEnabled) {
             this.deactivateFingerprintScanner();
         } else {
             this.activateFingerprintScanner();
         }
+    }
+
+    onSuccess() {
+        const { t, isFingerprintEnabled } = this.props;
+        if (isAndroid) {
+            this.hideModal();
+        }
+        if (isFingerprintEnabled) {
+            this.props.setFingerprintStatus(false);
+            this.timeout = setTimeout(() => {
+                this.props.generateAlert(
+                    'success',
+                    t('fingerprintAuthDisabled'),
+                    t('fingerprintAuthDisabledExplanation'),
+                );
+            }, 300);
+            return;
+        }
+        this.props.setFingerprintStatus(true);
+        this.timeout = setTimeout(() => {
+            this.props.generateAlert('success', t('fingerprintAuthEnabled'), t('fingerprintAuthEnabledExplanation'));
+        }, 300);
+    }
+
+    onFailure() {
+        const { t } = this.props;
+        this.props.generateAlert('error', t('fingerprintAuthFailed'), t('fingerprintAuthFailedExplanation'));
     }
 
     getButtonInstructions() {
@@ -125,10 +150,11 @@ class BiometricAuthentication extends Component {
     openModal() {
         const { theme, isFingerprintEnabled } = this.props;
         this.props.toggleModalActivity('fingerprint', {
-            hideModal: this.hideModal,
+            onBackButtonPress: this.hideModal,
             theme,
             isFingerprintEnabled,
             instance: 'setup',
+            onSuccess: this.onSuccess,
         });
     }
 
@@ -137,32 +163,15 @@ class BiometricAuthentication extends Component {
 
         FingerprintScanner.isSensorAvailable()
             .then(() => {
-                if (isAndroid) {
-                    this.openModal();
-                }
                 FingerprintScanner.authenticate({
                     description: t('instructionsEnable'),
                     onAttempt: this.handleAuthenticationAttempted,
                 })
                     .then(() => {
-                        if (isAndroid) {
-                            this.hideModal();
-                        }
-                        this.props.setFingerprintStatus(true);
-                        this.timeout = setTimeout(() => {
-                            this.props.generateAlert(
-                                'success',
-                                t('fingerprintAuthEnabled'),
-                                t('fingerprintAuthEnabledExplanation'),
-                            );
-                        }, 300);
+                        this.onSuccess();
                     })
                     .catch(() => {
-                        this.props.generateAlert(
-                            'error',
-                            t('fingerprintAuthFailed'),
-                            t('fingerprintAuthFailedExplanation'),
-                        );
+                        this.onFailure();
                     });
             })
             .catch(() => {
@@ -172,28 +181,15 @@ class BiometricAuthentication extends Component {
 
     deactivateFingerprintScanner() {
         const { t } = this.props;
-        if (isAndroid) {
-            this.openModal();
-        }
         FingerprintScanner.authenticate({
             description: t('instructionsDisable'),
             onAttempt: this.handleAuthenticationAttempted,
         })
             .then(() => {
-                if (isAndroid) {
-                    this.hideModal();
-                }
-                this.props.setFingerprintStatus(false);
-                this.timeout = setTimeout(() => {
-                    this.props.generateAlert(
-                        'success',
-                        t('fingerprintAuthDisabled'),
-                        t('fingerprintAuthDisabledExplanation'),
-                    );
-                }, 300);
+                this.onSuccess();
             })
             .catch(() => {
-                this.props.generateAlert('error', t('fingerprintAuthFailed'), t('fingerprintAuthFailedExplanation'));
+                this.onFailure();
             });
     }
 

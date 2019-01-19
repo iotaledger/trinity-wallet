@@ -7,24 +7,18 @@ import { width, height } from 'libs/dimensions';
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        marginBottom: height / 30,
-    },
-    textWrapper: {
-        flex: 1,
     },
     text: {
         color: 'white',
-        marginBottom: height / 40,
         fontFamily: 'SourceSansPro-Light',
+        marginBottom: height / 40,
     },
 });
 
 const OldProgressBar = (props) => {
     return (
         <View style={styles.container}>
-            <View style={[styles.textWrapper, props.style.textWrapper]}>
-                <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
-            </View>
+            <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
             <Progress.Bar
                 indeterminate={props.indeterminate}
                 useNativeDriver={true} // eslint-disable-line react/jsx-boolean-value
@@ -56,8 +50,6 @@ OldProgressBar.propTypes = {
     height: PropTypes.number,
     /** Progress bar text color */
     textColor: PropTypes.string,
-    /** Default style object */
-    style: PropTypes.object,
 };
 
 OldProgressBar.defaultProps = {
@@ -67,9 +59,6 @@ OldProgressBar.defaultProps = {
     indeterminate: false,
     color: 'rgba(247, 208, 2, 0.75)',
     textColor: 'rgba(247, 208, 2, 0.75)',
-    style: {
-        textWrapper: {},
-    },
 };
 
 export default OldProgressBar;
