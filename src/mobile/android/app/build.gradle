@@ -155,6 +155,7 @@ dependencies {
     implementation 'com.github.laumair:argon2jni:jitpack-SNAPSHOT'
     implementation project(':react-native-document-picker')
     implementation project(':nodejs-mobile-react-native')
+    implementation project(':react-native-detect-navbar-android')
     implementation project(':react-native-fingerprint-scanner')
     implementation project(':react-native-keep-awake')
     implementation project(':react-native-device-info')

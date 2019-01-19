@@ -22,6 +22,7 @@ import my.fin.RNIsDeviceRootedPackage;
 import com.bugsnag.BugsnagReactNative;
 import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
+import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import cl.json.RNSharePackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
@@ -67,6 +68,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
                 new ReactNativeDocumentPicker(),
                 new RNNodeJsMobilePackage(),
                 new FlagSecurePackage(),
+                new RNDetectNavbarAndroidPackage(),
                 new RNDeviceInfo(),
                 new RNOSModule(),
                 new RNPrintPackage(),
