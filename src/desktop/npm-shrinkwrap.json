@@ -12513,9 +12513,9 @@
             }
         },
         "recharts": {
-            "version": "1.4.1",
-            "resolved": "https://registry.npmjs.org/recharts/-/recharts-1.4.1.tgz",
-            "integrity": "sha512-HtI3B4xGPn591kNDU5MaCcJeUtlSqOH3cOBtHuhXGxDU2MDkS6abaQtgZD1J4mQiUCUZT3LCziTz5+wD7k+pvw==",
+            "version": "1.4.2",
+            "resolved": "https://registry.npmjs.org/recharts/-/recharts-1.4.2.tgz",
+            "integrity": "sha512-HHsy7tB591T/2cOeQEXAbRpc+YMLikTX/s9GTGW1n7kRUljFBDu2oNecrPaTKodrMikFxa9qavDE6wSEFaY48Q==",
             "requires": {
                 "classnames": "~2.2.5",
                 "core-js": "~2.5.1",
