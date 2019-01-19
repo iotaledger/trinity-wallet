@@ -556,7 +556,7 @@
         "syncingYourAccount": "Sincronizando su cuenta."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Ingresé un nombre de cuenta y una semilla",
         "incorrectFormat": "Formato incorrecto de semilla",
         "validSeedExplanation": "Semillas válidas deben tener 81 caracteres y solo contener A-Z o 9."
     },
@@ -570,8 +570,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "¿Hizo una copia de seguridad de la semilla?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Respalde correctamente mi semilla",
+        "reenterSeed": "En el siguiente paso debe reingresar su semilla.",
         "reenterSeedWarning": "Si no ha guardado su semilla y su dispositivo falla, usted perderá todas sus IOTA.",
         "pleaseConfirm": "Por favor confirme que ha almacenado seguramente su semilla."
     },
@@ -590,7 +590,7 @@
         "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
         "status": "Estado",
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Autentificación desactivada por 30 segundos",
         "fingerprintUnavailableExplanation": "Su dispositivo no soporta autenticación biométrica o no está correctamente configurada.",
         "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huellas dactilares",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
@@ -601,14 +601,14 @@
     "transferConfirmation": {
         "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
         "aMessage": "un mensaje",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "Desde {{selectedAccountName}}",
+        "toAddress": "A dirección",
+        "sendingAMessage": "Enviando un mensaje",
+        "sendingAnEmptyMessage": "Enviando un mensaje vacío"
     },
     "twoFA": {
         "wrongCode": "Código incorrecto",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "El código que ingreso es incorrecto. Si este error persiste, revise que el horario en su dispositivo es correcto.",
         "emptyCode": "Código vacío",
         "emptyCodeExplanation": "Por favor, introduce el código e inténtalo de nuevo.",
         "keyCopied": "Clave copiada al portapapeles",
@@ -625,7 +625,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Exportar SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "Una SeedVault es un archivo encriptado para respaldar su semilla. La semilla es encriptada con una clave y no puede ser desencriptada sin esta.",
         "seedVaultWarning": "Asegúrese de copiar el archivo en varios lugares (ej. disco duro, nube, USB). Si pierde este archivo y no ha almacena su semilla en otro lugar, perderá sus IOTA.",
         "exportFail": "Fallo en la exportación de SeedVault",
         "exportFailExplanation": "Hubo un problema al exportar el SeedVault. Por favor asegúrese de que tiene los servicios apropiados y suficiente espacio libre.",
@@ -639,15 +639,15 @@
         "importSuccessExplanation": "Su semilla fue importada con éxito.",
         "saveToDownloadFolder": "Guardar para descargar la carpeta",
         "importSeedVault": "Importar SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
+        "dropInstructions": "Suelte SeedVault <1></1> o haga click en buscar",
+        "dropActive": "Suelte SeedVault aquí",
         "enterKeyExplanation": "Ingrese su clave para abrir el SeedVault",
         "noSeedFound": "SeedVault no contiene un semilla válida",
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
         "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "Primero necesitamos asegurar su SeedVault. Por favor elija una clave para encriptar el archivo. Debe usar esta clave si necesita restaurar su semilla desde SeedVault.",
+        "retypeKey": "Reingrese la clave"
     },
     "chart": {
         "mcap": "MCAP",
@@ -676,14 +676,14 @@
     "progressSteps": {
         "checkingNodeHealth": "Comprobando la salud del nodo",
         "validatingReceiveAddress": "Validando dirección de recepción",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Validando direcciónes de transacción",
         "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparando entradas",
         "preparingTransfers": "Preparando transferencias",
         "gettingTransactionsToApprove": "Obteniendo transacciones para aprobar",
         "proofOfWork": "Completando PoW",
         "broadcasting": "Transmitiendo",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Transferencia completa"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "No se puede completar la transición de snapshot",
