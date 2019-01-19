@@ -698,7 +698,7 @@
         "transitioning": "Transicionando para el snapshot.",
         "generatingAndDetecting": "Generando direcciones y detectando balances.",
         "attaching": "Vinculando direcciones en el Tangle.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Vinculando dirección {{currentAddress}} de {{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Autocompletado exitoso",
@@ -736,7 +736,7 @@
     },
     "proxy": {
         "proxy": "Usar proxy del sistema",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "Detectar y usar configuración de proxy de red de sistema. Cerrar y abrir nuevamente la billetera después de cambiar esta configuración."
     },
     "notifications": {
         "notifications": "Notificaciones",
