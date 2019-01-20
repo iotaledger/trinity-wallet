@@ -95,7 +95,7 @@
         "rebroadcastError": "Impossible de retransmettre la transaction",
         "promoted": "Transaction promue avec succès",
         "promotedExplanation": "Transaction avec le hash {{hash}} promue",
-        "autopromotionError": "Impossible de promouvoir la transaction",
+        "autopromotionError": "Impossible de promouvoir automatiquement la transaction",
         "autopromotionErrorExplanation": "Preuve de travail à distance non disponible sur le nœud sélectionné. Merci de changer de nœud.",
         "promotionError": "Impossible de promouvoir la transaction",
         "promotionErrorExplanation": "Une erreur est survenue pendant la promotion de votre transaction. Veuillez réessayer.",
