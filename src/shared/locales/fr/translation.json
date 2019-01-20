@@ -494,7 +494,7 @@
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
         "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
-        "autoPromotionPoW": "La promotion automatique n’est possible sur les serveurs qui prennent en charge la preuve de travail à distance."
+        "autoPromotionPoW": "La promotion automatique n’est possible que sur les serveurs qui prennent en charge la preuve de travail à distance."
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -646,7 +646,7 @@
         "noSeedFoundExplanation": "Le SeedVault est vide ou contient une seed dans un format non valide.",
         "seedFileError": "Échec de l'ouverture du SeedVaulet",
         "seedFileErrorExplanation": "Il y a eu un problème lors de l'ouverture du SeedVault. Si vous avez sélectionné le bon fichier, il est peut-être endommagé.",
-        "seedVaultKeyExplanation": "Tout d’abord, nous avons devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
+        "seedVaultKeyExplanation": "Tout d’abord, nous devons sécuriser votre SeedVault. Veuillez choisir une clé pour chiffrer le fichier. Vous utiliserez cette clé si vous devez restaurer votre seed à partir du fichier SeedVault.",
         "retypeKey": "Veuillez retaper la clé"
     },
     "chart": {
