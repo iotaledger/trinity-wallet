@@ -32,7 +32,7 @@ subprojects {
         if (project.hasProperty("android")) {
             android {
                 compileSdkVersion 27
-                buildToolsVersion '27.0.3'
+                buildToolsVersion '28.0.3'
             }
         }
         if ((project.plugins.hasPlugin('android') || project.plugins.hasPlugin('android-library'))) {
@@ -52,7 +52,7 @@ subprojects {
             buildscript {
                 repositories {
                 maven { url "https://dl.bintray.com/android/android-tools/"  }
-            }    
+            }
         }
     }
     project.configurations.all {
