@@ -8,10 +8,7 @@ export const nodesWithPoWEnabled = [
     'https://pow1.iota.community:443',
     'https://pow2.iota.community:443',
     'https://pow3.iota.community:443',
-    'https://pow4.iota.community:443',
     'https://pow5.iota.community:443',
-    'https://pow6.iota.community:443',
-    'https://nodes.iota.fm:443',
     'https://iotanode.us:443',
 ];
 
@@ -20,7 +17,6 @@ const nodesWithPoWDisabled = [
     'https://potato.iotasalad.org:14265',
     'https://tuna.iotasalad.org:14265',
     'https://durian.iotasalad.org:14265',
-    'https://nodes.iota.cafe:443',
     'https://nodes.thetangle.org:443',
 ];
 
