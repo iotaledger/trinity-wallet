@@ -1,6 +1,7 @@
 import head from 'lodash/head';
 import last from 'lodash/last';
 import merge from 'lodash/merge';
+import forEach from 'lodash/forEach';
 import React, { Component } from 'react';
 import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
@@ -29,10 +30,15 @@ class AnimatedComponent extends Component {
         animateOutTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
         /** Trigger animation in on change */
         animateInTrigger: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+        /** Determines whether to animate with changes to the navigation stack */
+        animateOnNavigation: PropTypes.bool,
+        /** Screen name */
+        screenName: PropTypes.string,
     };
 
     static defaultProps = {
         animateOnMount: true,
+        animateOnNavigation: true,
         delay: 0,
         animationInType: ['fadeIn'],
         animationOutType: ['fadeOut'],
@@ -41,6 +47,7 @@ class AnimatedComponent extends Component {
         animateOutTrigger: false,
         isDashboard: false,
         blockAnimation: false,
+        screenName: null,
     };
 
     constructor(props) {
@@ -54,10 +61,11 @@ class AnimatedComponent extends Component {
         if (props.animateOnMount) {
             this.iniatialiseAnimations(props.animationInType);
         }
-        this.screen = last(props.navStack);
+        // screenName is set in case screen remounts and is not last in the nav stack e.g. after Biometric auth request
+        this.screen = props.screenName ? props.screenName : last(props.navStack);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         // Animate in on page mount
         if (this.props.animateOnMount) {
             this.animateIn(this.props.delay);
@@ -71,6 +79,10 @@ class AnimatedComponent extends Component {
 
         if (this.props.animateOutTrigger !== newProps.animateOutTrigger) {
             return this.iniatialiseAnimations(newProps.animationOutType);
+        }
+
+        if (!this.props.animateOnNavigation) {
+            return;
         }
 
         // Animate out if pushing from current screen
@@ -130,7 +142,7 @@ class AnimatedComponent extends Component {
      */
     getAnimatedStyle(animationType) {
         let animatedStyle = {};
-        animationType.map((type) => {
+        forEach(animationType, (type) => {
             switch (type) {
                 case 'fadeIn':
                 case 'fadeOut':
@@ -144,6 +156,10 @@ class AnimatedComponent extends Component {
                 case 'slideOutLeftSmall':
                 case 'slideOutRightSmall':
                     animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateX: this.slideValue }] });
+                    break;
+                case 'slideInBottom':
+                case 'slideOutBottom':
+                    animatedStyle = merge({}, animatedStyle, { width, transform: [{ translateY: this.slideValue }] });
                     break;
             }
         });
@@ -175,7 +191,10 @@ class AnimatedComponent extends Component {
                 return width / 8;
             case 'slideOutLeftSmall':
             case 'slideOutRightSmall':
+            case 'slideOutBottom':
                 return 0;
+            case 'slideInBottom':
+                return 250;
         }
     }
 
@@ -198,13 +217,16 @@ class AnimatedComponent extends Component {
             case 'slideOutRight':
                 return width;
             case 'slideInLeftSmall':
-                return 0;
             case 'slideInRightSmall':
                 return 0;
             case 'slideOutLeftSmall':
                 return this.reverseSlideOut ? width / 8 : -width / 8;
             case 'slideOutRightSmall':
                 return width / 8;
+            case 'slideOutBottom':
+                return 250;
+            case 'slideInBottom':
+                return 0;
         }
     }
 
@@ -227,6 +249,8 @@ class AnimatedComponent extends Component {
             case 'slideInRightSmall':
             case 'slideOutLeftSmall':
             case 'slideOutRightSmall':
+            case 'slideInBottom':
+            case 'slideOutBottom':
                 return Easing.bezier(0.25, 1, 0.25, 1);
         }
     }
@@ -250,6 +274,8 @@ class AnimatedComponent extends Component {
             case 'slideInRightSmall':
             case 'slideOutLeftSmall':
             case 'slideOutRightSmall':
+            case 'slideInBottom':
+            case 'slideOutBottom':
                 return this.slideValue;
         }
     }
@@ -267,7 +293,7 @@ class AnimatedComponent extends Component {
             animations.push(
                 Animated.timing(this.getAnimationPointer(type), {
                     toValue: this.getFinalAnimatedValue(type),
-                    duration: type === 'fadeOut' ? 100 : this.props.duration,
+                    duration: this.props.duration,
                     delay,
                     easing: this.getEasing(type),
                 }),
@@ -296,6 +322,8 @@ class AnimatedComponent extends Component {
                 case 'slideInRightSmall':
                 case 'slideOutLeftSmall':
                 case 'slideOutRightSmall':
+                case 'slideInBottom':
+                case 'slideOutBottom':
                     this.slideValue = new Animated.Value(this.getStartingAnimatedValue(type));
                     break;
             }

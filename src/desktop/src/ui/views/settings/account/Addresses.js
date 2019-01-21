@@ -7,6 +7,7 @@ import Scrollbar from 'ui/components/Scrollbar';
 import Clipboard from 'ui/components/Clipboard';
 
 import css from './addresses.scss';
+import settingsCSS from '../index.scss';
 
 /**
  * Account addresses component
@@ -23,39 +24,42 @@ class Addresses extends PureComponent {
         const { account, t } = this.props;
         const isSpent = ({ spent: { local, remote } }) => local || remote;
 
+        const addressData = account
+            .addressData()
+            .slice()
+            .sort((a, b) => b.index - a.index);
+
         return (
-            <form>
-                <fieldset>
+            <div className={settingsCSS.scroll}>
+                <Scrollbar>
                     <ul className={css.addresses}>
                         <Scrollbar>
-                            {account.addressData
-                                .map((addressData) => {
-                                    const address = addressData.address + addressData.checksum;
-                                    return (
-                                        <li key={address}>
-                                            <p className={isSpent(addressData) ? css.spent : null}>
-                                                <Clipboard
-                                                    text={address}
-                                                    title={t('receive:addressCopied')}
-                                                    success={t('receive:addressCopiedExplanation')}
-                                                >
-                                                    {addressData.address.match(/.{1,3}/g).join(' ')}{' '}
-                                                    <mark>
-                                                        {addressData.checksum.match(/.{1,3}/g).join(' ')}
-                                                    </mark>
-                                                </Clipboard>
-                                            </p>
-                                            <strong>
-                                                {formatValue(addressData.balance)}
-                                                {formatUnit(addressData.balance)}
-                                            </strong>
-                                        </li>
-                                    );
-                                })}
+                            {addressData.map((addressObject) => {
+                                const address = addressObject.address + addressObject.checksum;
+
+                                return (
+                                    <li key={address}>
+                                        <p className={isSpent(addressObject) ? css.spent : null}>
+                                            <Clipboard
+                                                text={address}
+                                                title={t('receive:addressCopied')}
+                                                success={t('receive:addressCopiedExplanation')}
+                                            >
+                                                {addressObject.address.match(/.{1,3}/g).join(' ')}{' '}
+                                                <mark>{addressObject.checksum.match(/.{1,3}/g).join(' ')}</mark>
+                                            </Clipboard>
+                                        </p>
+                                        <strong>
+                                            {formatValue(addressObject.balance)}
+                                            {formatUnit(addressObject.balance)}
+                                        </strong>
+                                    </li>
+                                );
+                            })}
                         </Scrollbar>
                     </ul>
-                </fieldset>
-            </form>
+                </Scrollbar>
+            </div>
         );
     }
 }

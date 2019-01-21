@@ -14,7 +14,7 @@ import mockTransactions from '../../__samples__/transactions';
 import { SwitchingConfig } from '../../../libs/iota';
 import { IRI_API_VERSION } from '../../../config';
 
-describe('libs: iota/inputs', () => {
+describe.skip('libs: iota/inputs', () => {
     before(() => {
         SwitchingConfig.autoSwitch = false;
     });

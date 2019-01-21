@@ -119,6 +119,7 @@ class Login extends Component {
         if (!hasConnection || forceUpdate) {
             return;
         }
+        this.animationOutType = ['fadeOut'];
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
@@ -220,7 +221,6 @@ class Login extends Component {
      */
     navigateTo(name) {
         const { theme: { body } } = this.props;
-        this.animationOutType = ['fadeOut'];
         timer.setTimeout(
             'delayNavigation',
             () => {

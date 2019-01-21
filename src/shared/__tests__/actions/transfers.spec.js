@@ -9,7 +9,7 @@ import * as addressesUtils from '../../libs/iota/addresses';
 import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
-import { SwitchingConfig } from '../../libs/iota';
+import { quorum, SwitchingConfig } from '../../libs/iota';
 import { realm, config as realmConfig, Account, Wallet, getRealm } from '../../storage';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
@@ -374,6 +374,8 @@ describe('actions: transfers', () => {
                     }),
                 );
 
+                const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([]);
+
                 return store
                     .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 0, 'foo', 'TEST', powFn))
                     .then(() => {
@@ -392,6 +394,7 @@ describe('actions: transfers', () => {
 
                         expect(expectedAction).to.eql(actualAction);
                         accountsUtils.syncAccountAfterSpending.restore();
+                        wereAddressesSpentFrom.restore();
                     });
             });
         });
@@ -400,12 +403,10 @@ describe('actions: transfers', () => {
             describe('when receive address is used', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "You cannot send to an address that has already been spent from."', () => {
                     const store = mockStore({ accounts });
-                    const shouldAllowSendingToAddress = sinon
-                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
-                        .returns(() => Promise.resolve(false));
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([true]);
 
                     return store
-                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .dispatch(actions.makeTransaction(seedStore, 'A'.repeat(81), 10, 'foo', 'TEST', powFn))
                         .then(() => {
                             const expectedAction = {
                                 category: 'error',
@@ -425,7 +426,7 @@ describe('actions: transfers', () => {
                                 );
 
                             expect(expectedAction).to.eql(actualAction);
-                            shouldAllowSendingToAddress.restore();
+                            wereAddressesSpentFrom.restore();
                         });
                 });
             });
@@ -442,10 +443,7 @@ describe('actions: transfers', () => {
                         }),
                     );
 
-                    // Stub shouldAllowSendingToAddress implementation and allow sending to the receive address
-                    const shouldAllowSendingToAddress = sinon
-                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
-                        .returns(() => Promise.resolve(true));
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
 
                     // Stub getInputs implementation and return receive address (UUU...UUU)
                     // as one of the input addresses
@@ -454,7 +452,7 @@ describe('actions: transfers', () => {
                             inputs: [
                                 {
                                     // Receive address
-                                    address: 'U'.repeat(81),
+                                    address: 'A'.repeat(81),
                                     balance: 5,
                                     keyIndex: 11,
                                     security: 2,
@@ -470,7 +468,7 @@ describe('actions: transfers', () => {
                     );
 
                     return store
-                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .dispatch(actions.makeTransaction(seedStore, 'A'.repeat(81), 10, 'foo', 'TEST', powFn))
                         .then(() => {
                             const expectedAction = {
                                 category: 'error',
@@ -494,7 +492,7 @@ describe('actions: transfers', () => {
 
                             // Restore stubs
                             syncAccount.restore();
-                            shouldAllowSendingToAddress.restore();
+                            wereAddressesSpentFrom.restore();
                             getInputs.restore();
                         });
                 });
@@ -503,6 +501,7 @@ describe('actions: transfers', () => {
             describe('when constructs invalid bundle', () => {
                 it('should create an action of type IOTA/ALERTS/SHOW with message "Something went wrong while sending your transfer. Please try again."', () => {
                     const store = mockStore({ accounts });
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
 
                     // Stub prepareTransfers implementation and return invalid trytes.
                     // Invalid trytes should lead to invalid bundle construction
@@ -533,11 +532,6 @@ describe('actions: transfers', () => {
                             }),
                         );
 
-                    // Stub shouldAllowSendingToAddress implementation and allow sending to the receive address
-                    const shouldAllowSendingToAddress = sinon
-                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
-                        .returns(() => Promise.resolve(true));
-
                     // Stub getInputs implementation and return receive address (UUU...UUU)
                     // as one of the input addresses
                     const getInputs = sinon.stub(inputUtils, 'getInputs').returns(() =>
@@ -555,7 +549,7 @@ describe('actions: transfers', () => {
                     );
 
                     return store
-                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .dispatch(actions.makeTransaction(seedStore, 'A'.repeat(81), 10, 'foo', 'TEST', powFn))
                         .then(() => {
                             const expectedAction = {
                                 category: 'error',
@@ -580,8 +574,8 @@ describe('actions: transfers', () => {
                             prepareTransfers.restore();
                             syncAccount.restore();
                             getAddressDataUptoRemainder.restore();
-                            shouldAllowSendingToAddress.restore();
                             getInputs.restore();
+                            wereAddressesSpentFrom.restore();
                         });
                 });
             });
@@ -614,6 +608,8 @@ describe('actions: transfers', () => {
                         }),
                     );
 
+                    const wereAddressesSpentFrom = sinon.stub(quorum, 'wereAddressesSpentFrom').resolves([false]);
+
                     const getAddressDataUptoRemainder = sinon
                         .stub(addressesUtils, 'getAddressDataUptoRemainder')
                         .returns(() =>
@@ -623,11 +619,6 @@ describe('actions: transfers', () => {
                                 keyIndex: latestAddressObject.index,
                             }),
                         );
-
-                    // Stub shouldAllowSendingToAddress implementation and allow sending to the receive address
-                    const shouldAllowSendingToAddress = sinon
-                        .stub(addressesUtils, 'shouldAllowSendingToAddress')
-                        .returns(() => Promise.resolve(true));
 
                     // Stub getInputs implementation and return receive address (UUU...UUU)
                     // as one of the input addresses
@@ -646,7 +637,7 @@ describe('actions: transfers', () => {
                     );
 
                     return store
-                        .dispatch(actions.makeTransaction(seedStore, 'U'.repeat(81), 10, 'foo', 'TEST', powFn))
+                        .dispatch(actions.makeTransaction(seedStore, 'A'.repeat(81), 10, 'foo', 'TEST', powFn))
                         .then(() => {
                             const expectedAction = {
                                 type: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -667,8 +658,8 @@ describe('actions: transfers', () => {
                             syncAccountAfterSpending.restore();
                             syncAccount.restore();
                             getAddressDataUptoRemainder.restore();
-                            shouldAllowSendingToAddress.restore();
                             getInputs.restore();
+                            wereAddressesSpentFrom.restore();
                         });
                 });
             });

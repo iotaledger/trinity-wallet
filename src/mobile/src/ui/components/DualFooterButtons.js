@@ -147,7 +147,7 @@ class DualFooterButtons extends PureComponent {
                                 color: theme.primary.body,
                             },
                             loading: {
-                                color: theme.primary.color,
+                                color: theme.primary.body,
                             },
                         },
                         rightButtonStyle,

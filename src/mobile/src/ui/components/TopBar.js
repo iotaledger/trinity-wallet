@@ -24,6 +24,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Animated,
+    StatusBar,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'shared-modules/actions/polling';
@@ -32,7 +33,7 @@ import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
-import { isIPhoneX } from 'libs/device';
+import { isIPhoneX, isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
@@ -89,9 +90,6 @@ const styles = StyleSheet.create({
         width: width / 9,
     },
     disabled: {
-        color: '#a9a9a9',
-    },
-    disabledImage: {
         color: '#a9a9a9',
     },
     scrollViewContainer: {
@@ -235,8 +233,29 @@ class TopBar extends Component {
         }
     }
 
+    /**
+     * Returns padding styling dependent on device type
+     *
+     * @method getTopbarPadding
+     * @returns {any}
+     */
+    getTopbarPadding() {
+        if (isIPhoneX) {
+            return;
+        }
+        if (isAndroid) {
+            return { paddingBottom: StatusBar.currentHeight / 2 };
+        }
+        return { paddingTop: 10 };
+    }
+
     setScrollable(y) {
-        if (y >= height - height / 8.8) {
+        if (
+            y >=
+            (isIPhoneX
+                ? height - Styling.topbarHeight - Styling.iPhoneXBottomInsetHeight
+                : height - Styling.topbarHeight)
+        ) {
             return this.setState({ scrollable: true });
         }
         this.setState({ scrollable: false });
@@ -249,21 +268,13 @@ class TopBar extends Component {
      * @returns {boolean}
      */
     shouldDisable() {
-        const {
-            isGeneratingReceiveAddress,
-            isSendingTransfer,
-            isSyncing,
-            isTransitioning,
-            isFetchingLatestAccountInfo,
-            isModalActive,
-        } = this.props;
         return (
-            isGeneratingReceiveAddress ||
-            isSendingTransfer ||
-            isSyncing ||
-            isTransitioning ||
-            isFetchingLatestAccountInfo ||
-            isModalActive
+            this.props.isGeneratingReceiveAddress ||
+            this.props.isSendingTransfer ||
+            this.props.isSyncing ||
+            this.props.isTransitioning ||
+            this.props.isFetchingLatestAccountInfo ||
+            this.props.isModalActive
         );
     }
 
@@ -297,6 +308,7 @@ class TopBar extends Component {
             mode,
             minimised,
             currentRoute,
+            isModalActive,
         } = this.props;
 
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
@@ -321,7 +333,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
+            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }, this.getTopbarPadding()]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
@@ -343,7 +355,12 @@ class TopBar extends Component {
                                                     onPress={() => this.showModal()}
                                                     style={[styles.iconWrapper, { flex: 1, alignItems: 'flex-end' }]}
                                                 >
-                                                    <Icon name="notification" size={width / 18} color={bar.color} />
+                                                    <Icon
+                                                        name="notification"
+                                                        size={width / 18}
+                                                        color={bar.color}
+                                                        style={isModalActive && styles.disabled && { opacity: 0.5 }}
+                                                    />
                                                 </TouchableOpacity>
                                             )) || <View />}
                                     </Animated.View>
@@ -359,21 +376,23 @@ class TopBar extends Component {
                                                       { color: bar.color },
                                                   ])
                                                 : [styles.mainTitle, { color: bar.color }],
+                                            isModalActive && { opacity: 0.5 },
                                         ]}
                                     >
                                         {selectedTitle}
                                     </Text>
                                     <View style={{ opacity: balanceOpacity }}>
                                         <Text
-                                            style={
+                                            style={[
                                                 shouldDisable
                                                     ? StyleSheet.flatten([
                                                           styles.subtitle,
                                                           styles.disabled,
                                                           { color: subtitleColor },
                                                       ])
-                                                    : [styles.subtitle, { color: subtitleColor }]
-                                            }
+                                                    : [styles.subtitle, { color: subtitleColor }],
+                                                isModalActive && { opacity: 0.5 },
+                                            ]}
                                         >
                                             {selectedSubtitle}
                                         </Text>
@@ -388,7 +407,7 @@ class TopBar extends Component {
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
-                                                style={[shouldDisable ? styles.disabledImage : null]}
+                                                style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
                                             />
                                         )) || <View />}
                                     </Animated.View>
@@ -422,7 +441,7 @@ class TopBar extends Component {
                         style={[
                             styles.childView,
                             { backgroundColor: isSelected ? bar.hover : bar.bg },
-                            isSelected ? activeHighlight : null,
+                            isSelected && activeHighlight,
                         ]}
                     >
                         <Text
@@ -471,7 +490,11 @@ class TopBar extends Component {
                     }}
                     onContentSizeChange={(x, y) => this.setScrollable(y)}
                     contentContainerView={{ height: height }}
-                    style={{ maxHeight: isIPhoneX ? height - height / 8.8 - 34 : height - height / 8.8 }}
+                    style={{
+                        maxHeight: isIPhoneX
+                            ? height - Styling.topbarHeight - Styling.iPhoneXBottomInsetHeight
+                            : height - Styling.topbarHeight,
+                    }}
                 >
                     {restContent}
                 </ScrollView>

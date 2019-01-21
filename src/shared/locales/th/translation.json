@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -297,7 +299,8 @@
         "tag": "Tag",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "ที่อยู่ควรมีความยาวอักขระ {{maxLength}} และควรมี Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่]",
         "invalidAddressExplanation2": "ที่อยู่ประกอบด้วยอักขระที่ไม่ถูกต้อง",
         "invalidAddressExplanation3": "ที่อยู่ประกอบด้วย Checksum [ตัวเลือกที่อณุญาตให้ผู้ใช้งาน และระบบทำการตรวจสอบความถูกต้องของ Seed(เลขที่บัญชี) และที่อยู่] ที่ไม่ถูกต้อง",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "ที่อยู่ที่ถูกต้องจะต้องมี 90 หลัก ประกอบไปด้วย A-Z หรือ 0-9 เท่านั้น",
         "notEnoughFunds": "ยอดคงเหลือไม่เพียงพอ",
         "notEnoughFundsExplanation": "คุณมียอด IOTA คงเหลือไม่เพียงพอสำหรับการโอน",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "การตรวจสอบลายนิ้วมือล้มเหลว กรุณาลองใหม่อีกครั้ง",
         "status": "สถานะ",
         "fingerprintUnavailable": "Biometric authentication unavailable",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",

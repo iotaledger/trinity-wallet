@@ -20,16 +20,24 @@ import QrScanner from 'ui/components/QrScanner';
 import Print from 'ui/components/PrintModal';
 import BiometricInfo from 'ui/components/BiometricInfoModal';
 import NotificationLog from 'ui/components/NotificationLogModal';
-import { isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import { Styling } from 'ui/theme/general';
+import SafeAreaView from 'react-native-safe-area-view';
 import { height, width } from 'libs/dimensions';
 
 const styles = StyleSheet.create({
     modal: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
         margin: 0,
+    },
+    iPhoneXBottomInset: {
+        position: 'absolute',
+        bottom: 0,
+        width,
+        height: Styling.iPhoneXBottomInsetHeight,
     },
 });
 
@@ -144,12 +152,20 @@ export default function withSafeAreaView(WrappedComponent) {
                         deviceHeight={height}
                         deviceWidth={width}
                         isVisible={this.state.isModalActive}
-                        onBackButtonPress={() => this.props.toggleModalActivity()}
+                        onBackButtonPress={() => {
+                            if (modalProps.onBackButtonPress) {
+                                return modalProps.onBackButtonPress();
+                            }
+                            this.props.toggleModalActivity();
+                        }}
                         useNativeDriver={isAndroid}
                         hideModalContentWhileAnimating
                     >
-                        <ModalContent {...modalProps} />
-                        {isModalActive && <StatefulDropdownAlert textColor="white" />}
+                        <SafeAreaView style={{ flex: 1 }}>
+                            <ModalContent {...modalProps} />
+                            {isModalActive && <StatefulDropdownAlert textColor="white" />}
+                        </SafeAreaView>
+                        {isIPhoneX && <View style={[styles.iPhoneXBottomInset, { backgroundColor: body.bg }]} />}
                     </Modal>
                 </View>
             );

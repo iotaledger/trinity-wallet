@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Servidor personalizado já existe.",
         "nodeAutoChanged": "Troca automática de servidor",
         "nodeAutoChangedExplanation": "Substituição para o novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Toque o leitor digital para autorizar a transferência",
         "masterKey": "Sua Seed IOTA é a chave principal para seu saldo.",
         "seedThief": "Se alguém obtiver sua seed, o mesmo pode roubar suas IOTAs.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Atualize o aplicativo para continuar",
         "forceUpdateExplanation": "Foi lançada uma atualização importante. Por favor, atualize o aplicativo agora.",
         "missingPermission": "Permissões do sistema de arquivo necessárias",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -297,7 +299,8 @@
         "tag": "Etiqueta",
         "generateAnAddress": "Gerar novo endereço",
         "generateAnAddressTitle": "Gerar novo endereço",
-        "generateAnAddressExplanation": "Por favor, gere um endereço antes de usar esta função."
+        "generateAnAddressExplanation": "Por favor, gere um endereço antes de usar esta função.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Faça o backup de sua seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e deve conter o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um Código de Verificação incorreto.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Endereços válidos devem possuir 90 caracteres e conter apenas A-Z ou 9.",
         "notEnoughFunds": "Saldo insuficiente",
         "notEnoughFundsExplanation": "Você não possui IOTAs suficientes para realizar esta transferência.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Falha na autenticação biométrica. Por favor, tente novamente.",
         "status": "Situação",
         "fingerprintUnavailable": "Autenticação Biométrica indisponível",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
         "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Verificando a saúde do servidor",
         "validatingReceiveAddress": "Validando o endereço de recebimento",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sincronizando a conta",
         "preparingInputs": "Preparando entradas",
         "preparingTransfers": "Preparando as transferências",

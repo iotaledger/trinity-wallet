@@ -512,19 +512,17 @@ export const filterSpentAddressData = (provider) => (addressData, transactions) 
 };
 
 /**
- *   Communicates with ledger and checks if the addresses are spent from.
+ *   Communicates with ledger and checks if the any address is spent.
  *
- *   @method shouldAllowSendingToAddress
+ *   @method isAnyAddressSpent
  *   @param {string} [provider]
  *
  *   @returns {function(array): Promise<boolean>}
  **/
-export const shouldAllowSendingToAddress = (provider) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
-        const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
-
-        return !spentAddresses.length;
-    });
+export const isAnyAddressSpent = (provider) => (addresses) => {
+    return wereAddressesSpentFromAsync(provider)(addresses).then((spendStatuses) =>
+        some(spendStatuses, (spendStatus) => spendStatus === true),
+    );
 };
 
 /**

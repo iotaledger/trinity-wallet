@@ -80,7 +80,7 @@ class TransferConfirmationModal extends Component {
         /** Activates fingerprint scanner */
         activateFingerprintScanner: PropTypes.func.isRequired,
         /** Cancels send and closes modal */
-        cancel: PropTypes.func.isRequired,
+        onBackButtonPress: PropTypes.func.isRequired,
         /** Transaction message */
         message: PropTypes.string,
     };
@@ -141,7 +141,7 @@ class TransferConfirmationModal extends Component {
             <ModalView
                 dualButtons
                 displayTopBar
-                onLeftButtonPress={() => this.props.cancel()}
+                onLeftButtonPress={() => this.props.onBackButtonPress()}
                 onRightButtonPress={() => this.onSendPress()}
                 leftButtonText={t('global:cancel')}
                 rightButtonText={t('global:confirm')}

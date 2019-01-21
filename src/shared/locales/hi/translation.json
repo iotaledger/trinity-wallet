@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "कस्टम नोड पहले से ही सूचीबद्ध है ।",
         "nodeAutoChanged": "स्वत:-स्विच नोड",
         "nodeAutoChangedExplanation": "नए नोड चुने, {{- nodeAddress}} चयनित नोड ऑफ़लाइन है ।",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "ट्रांसफर को प्रमाणित करने के लिए फ़िंगरप्रिंट रीडर स्पर्श करें",
         "masterKey": "अपके IOTA सीड अपने फण्ड के लिए मुख्य कुंजी है ।",
         "seedThief": "अगर किसी और के पास आपका सीड है तो वे आपकी IOTA चुरा सकते हैं ।",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -297,7 +299,8 @@
         "tag": "टैग",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "अपने सीड का बैक अप लें",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "पता {{maxLength}} वर्ण लंबा होना चाहिए और एक checksum होना चाहिए ।",
         "invalidAddressExplanation2": "एड्रेस में अवैध वर्ण हैं।",
         "invalidAddressExplanation3": "एड्रेस में अवैध checksum हैं।",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "सही पते 90 वर्णों का होना चाहिए और इनमें केवल A-Z या 9 होना चाहिए ।",
         "notEnoughFunds": "अपर्याप्त राशि",
         "notEnoughFundsExplanation": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "फ़िंगरप्रिंट प्रमाणन विफल हुआ । कृपया पुन: प्रयास करें ।",
         "status": "स्टेटस",
         "fingerprintUnavailable": "बायोमेट्रिक प्रमाणीकरण अनुपलब्ध",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "आपका डिवाइस बायोमेट्रिक प्रमाणीकरण का समर्थन नहीं करता है या यह डिवाइस सेटिंग्स में कॉंफ़िगर नहीं किया गया है ।",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
         "buttonInstructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण को चालू करने के लिए नीचे बटन दबाएँ.",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "नोड स्वास्थ्य जांच रहा है",
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "खाता सिंकिंग",
         "preparingInputs": "इनपुट की तैयारी",
         "preparingTransfers": "ट्रांसफर के लिए रेडी हो रहे है",

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     innerContainer: {
-        flex: 4,
+        flex: 3,
         justifyContent: 'center',
     },
     item: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    transitionButtonContainer: {
+    innerBottomContainer: {
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'center',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class SnapshotTransition extends Component {
+export class SnapshotTransition extends Component {
     static propTypes = {
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
@@ -166,6 +166,11 @@ class SnapshotTransition extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('SnapshotTransition');
+
+        // Cancelling snapshot transition (i.e., navigating back to any other screen) while address generation is in progress
+        // will add transition addresses to redux store. Say a user swaps accounts and revist this screen, then it will mix transition addresses in redux store
+        // Hence, just reset transition addresses every time this screen is mounted
+        this.props.cancelSnapshotTransition();
     }
 
     componentWillReceiveProps(newProps) {
@@ -229,17 +234,16 @@ class SnapshotTransition extends Component {
 
     render() {
         const {
-            isTransitioning,
             theme,
             t,
+            balanceCheckFlag,
+            activeSteps,
+            isTransitioning,
             isAttachingToTangle,
             activeStepIndex,
-            activeSteps,
-            balanceCheckFlag,
             transitionBalance,
         } = this.props;
         const textColor = { color: theme.body.color };
-
         const sizeOfActiveSteps = size(activeSteps);
 
         return (
@@ -254,7 +258,7 @@ class SnapshotTransition extends Component {
                                     {t('hasSnapshotTakenPlace')}
                                 </Text>
                             </InfoBox>
-                            <View style={styles.transitionButtonContainer}>
+                            <View style={styles.innerBottomContainer}>
                                 <CtaButton
                                     ctaColor={theme.primary.color}
                                     secondaryCtaColor={theme.primary.body}
@@ -316,17 +320,8 @@ class SnapshotTransition extends Component {
                                         {t('global:pleaseWaitEllipses')}
                                     </Text>
                                 </InfoBox>
-                                <View
-                                    style={{
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
+                                <View style={styles.innerBottomContainer}>
                                     <OldProgressBar
-                                        style={{
-                                            textWrapper: { flex: 0.4 },
-                                        }}
                                         indeterminate={activeStepIndex === -1}
                                         progress={activeStepIndex / sizeOfActiveSteps}
                                         color={theme.primary.color}

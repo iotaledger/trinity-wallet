@@ -84,6 +84,7 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:preparingTransfers'),
                       t('progressSteps:gettingTransactionsToApprove'),
                       t('progressSteps:proofOfWork'),
+                      t('progressSteps:validatingTransactionAddresses'),
                       t('progressSteps:broadcasting'),
                   ];
 

@@ -5,7 +5,7 @@ import { changeIotaNode } from '../libs/iota/index';
 import i18next from '../libs/i18next';
 import { generateAlert, generateNodeOutOfSyncErrorAlert, generateUnsupportedNodeErrorAlert } from '../actions/alerts';
 import { fetchNodeList } from '../actions/polling';
-import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import { allowsRemotePow } from '../libs/iota/extendedApi';
 import { getSelectedNodeFromState } from '../selectors/global';
 import { throwIfNodeNotHealthy } from '../libs/iota/utils';
 import Errors from '../libs/errors';
@@ -498,17 +498,18 @@ export function setFullNode(node, addingCustomNode = false) {
         dispatch(dispatcher.request());
 
         throwIfNodeNotHealthy(node)
-            .then(() => checkAttachToTangleAsync(node))
-            .then((res) => {
-                const isAttachToTangleAvailable = res.error.includes(Errors.INVALID_PARAMETERS);
+            .then(() => allowsRemotePow(node))
+            .then((hasRemotePow) => {
+                // Change IOTA provider on the global iota instance
+                changeIotaNode(node);
 
                 // Update node in redux store
-                dispatch(dispatcher.success(node, isAttachToTangleAvailable));
+                dispatch(dispatcher.success(node, hasRemotePow));
 
                 // Change IOTA provider on the global iota instance
                 changeIotaNode(node);
 
-                if (isAttachToTangleAvailable) {
+                if (hasRemotePow) {
                     dispatch(
                         generateAlert(
                             'success',
@@ -578,8 +579,8 @@ export function changePowSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
         if (!settings.remotePoW) {
-            checkAttachToTangleAsync(settings.node).then((res) => {
-                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+            allowsRemotePow(settings.node).then((hasRemotePow) => {
+                if (!hasRemotePow) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -611,8 +612,8 @@ export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
         if (!settings.autoPromotion) {
-            checkAttachToTangleAsync(settings.node).then((res) => {
-                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+            allowsRemotePow(settings.node).then((hasRemotePow) => {
+                if (!hasRemotePow) {
                     return dispatch(
                         generateAlert(
                             'error',

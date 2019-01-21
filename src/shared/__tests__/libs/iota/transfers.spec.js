@@ -2,6 +2,7 @@ import assign from 'lodash/assign';
 import each from 'lodash/each';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import shuffle from 'lodash/shuffle';
 import { expect } from 'chai';
@@ -26,12 +27,16 @@ import {
 } from '../../../libs/iota/transfers';
 import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
 import { iota, SwitchingConfig } from '../../../libs/iota';
-import { failedTrytesWithCorrectTransactionHashes } from '../../__samples__/trytes';
+import { failedTrytesWithCorrectTransactionHashes, milestoneTrytes } from '../../__samples__/trytes';
 import {
     confirmedValueTransactions,
     unconfirmedValueTransactions,
     failedTransactionsWithCorrectTransactionHashes,
     failedTransactionsWithIncorrectTransactionHashes,
+    LATEST_MILESTONE,
+    LATEST_SOLID_SUBTANGLE_MILESTONE,
+    LATEST_MILESTONE_INDEX,
+    LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
 import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
 import { IRI_API_VERSION } from '../../../config';
@@ -936,12 +941,26 @@ describe('libs: iota/transfers', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['3'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -966,12 +985,26 @@ describe('libs: iota/transfers', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['10'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -996,12 +1029,26 @@ describe('libs: iota/transfers', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['20'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};

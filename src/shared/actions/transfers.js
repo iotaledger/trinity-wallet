@@ -11,6 +11,7 @@ import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
+import uniq from 'lodash/uniq';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -21,12 +22,7 @@ import {
 } from '../libs/iota/extendedApi';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { getSelectedNodeFromState, getNodesFromState, getRemotePoWFromState } from '../selectors/global';
-import {
-    withRetriesOnDifferentNodes,
-    fetchRemoteNodes,
-    getRandomNodes,
-    throwIfNodeNotHealthy,
-} from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes, isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -49,7 +45,7 @@ import {
     syncAccountBeforeManualPromotion,
 } from './accounts';
 import {
-    shouldAllowSendingToAddress,
+    isAnyAddressSpent,
     getAddressDataUptoRemainder,
     categoriseAddressesBySpentStatus,
 } from '../libs/iota/addresses';
@@ -443,17 +439,24 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
-        // Make sure that the address a user is about to send to is not already used.
-        return shouldAllowSendingToAddress()([address])
-            .then((shouldAllowSending) => {
-                if (shouldAllowSending) {
+        // Check the last trit for validity
+        return Promise.resolve(isLastTritZero(address))
+            .then((lastTritIsZero) => {
+                if (!lastTritIsZero) {
+                    throw new Error(Errors.INVALID_LAST_TRIT);
+                }
+
+                // Make sure that the address a user is about to send to is not already used.
+                return isAnyAddressSpent()([address]).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
                     return syncAccount()(accountState, seedStore);
-                }
-
-                throw new Error(Errors.KEY_REUSE);
+                });
             })
             .then((newState) => {
                 // Assign latest account but do not update the local store yet.
@@ -476,9 +479,8 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                // Check if input count does not exceed maximum supported by the SeedStore type
-                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
-                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                if (isSendingToAnyInputAddress) {
+                    throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
                 return getAddressDataUptoRemainder()(accountState.addressData, accountState.transactions, seedStore, [
@@ -606,6 +608,26 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         });
                 });
             })
+            // Re-check spend statuses of all addresses in bundle
+            .then(({ trytes, transactionObjects }) => {
+                // Skip this check if it's a zero value transaction
+                if (isZeroValue) {
+                    return Promise.resolve({ trytes, transactionObjects });
+                }
+
+                // Progressbar step => (Validating transaction addresses)
+                dispatch(setNextStepAsActive());
+
+                const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
+
+                return isAnyAddressSpent()(addresses).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
+                    return { trytes, transactionObjects };
+                });
+            })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
                 cached.transactionObjects = transactionObjects;
@@ -691,6 +713,14 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     return dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (message === Errors.UNSUPPORTED_NODE) {
                     return dispatch(generateUnsupportedNodeErrorAlert());
+                } else if (message === Errors.INVALID_LAST_TRIT) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('send:invalidAddress'),
+                            i18next.t('send:invalidAddressExplanation4'),
+                        ),
+                    );
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
@@ -804,11 +834,8 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
     dispatch(retryFailedTransactionRequest());
 
     return (
-        throwIfNodeNotHealthy()
-            // First check spent statuses against transaction addresses
-            .then(() =>
-                categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address)),
-            )
+        // First check spent statuses against transaction addresses
+        categoriseAddressesBySpentStatus()(map(failedTransactionsForThisBundleHash, (tx) => tx.address))
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {

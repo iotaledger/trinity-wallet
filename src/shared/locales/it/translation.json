@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Il nodo personalizzato è già elencato.",
         "nodeAutoChanged": "Nodo cambiato automaticamente",
         "nodeAutoChangedExplanation": "Passati al nuovo nodo {{- nodeAddress}} siccome il nodo selezionato non è in linea.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Toccare il lettore di impronte digitali per autorizzare il trasferimento",
         "masterKey": "Il tuo seme IOTA è la chiave di accesso ai tuoi fondi.",
         "seedThief": "Se qualcun altro ha il tuo seme può rubare i tuoi IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Aggiornare l'app per continuare",
         "forceUpdateExplanation": "È stato rilasciato un aggiornamento critico. Si prega di aggiornare l'app ora.",
         "missingPermission": "È richiesto l'accesso al file system",
-        "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione."
+        "missingPermissionExplanation": "L'accesso al file system è necessario per eseguire questa funzione.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -297,7 +299,8 @@
         "tag": "Etichetta",
         "generateAnAddress": "Genera un indirizzo",
         "generateAnAddressTitle": "Genera un indirizzo",
-        "generateAnAddressExplanation": "Si prega di generare un indirizzo prima di utilizzare questa funzione."
+        "generateAnAddressExplanation": "Si prega di generare un indirizzo prima di utilizzare questa funzione.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Esegui il backup del tuo seme",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Un indirizzo valido consta di 90 caratteri e contiene solo A-Z o 9.",
         "notEnoughFunds": "Fondi insufficienti",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Autenticazione tramite impronta digitale fallita. Riprova.",
         "status": "Stato",
         "fingerprintUnavailable": "Autenticazione biometrica non disponibile",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Il tuo dispositivo non supporta l'autenticazione biometrica o non è stato configurato nelle impostazioni del dispositivo.",
         "buttonInstructionsDisable": "Premi il pulsante sotto per disabilitare l'autenticazione tramite impronta digitale",
         "buttonInstructionsEnable": "Premi il pulsante sotto per abilitare l'autenticazione tramite impronta digitale.",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Verifica dello stato del nodo",
         "validatingReceiveAddress": "Convalido l'indirizzo ricevente",
+        "validatingTransactionAddresses": "Convalida degli indirizzi delle transazioni",
         "syncingAccount": "Sincronizzo il conto",
         "preparingInputs": "Preparo i fondi",
         "preparingTransfers": "Preparo i trasferimenti",

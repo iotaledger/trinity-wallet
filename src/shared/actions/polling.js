@@ -8,14 +8,14 @@ import reduce from 'lodash/reduce';
 import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import { setPrice, setChartData, setMarketData } from './marketData';
+import { quorum, getRandomNode, changeIotaNode } from '../libs/iota';
 import { setNodeList, setRandomlySelectedNode, setAutoPromotion, changeNode } from './settings';
-import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { fetchRemoteNodes, withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { constructBundlesFromTransactions, findPromotableTail, isFundedBundle } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
-import { getSelectedNodeFromState, getNodesFromState } from '../selectors/global';
+import { getSelectedNodeFromState, getNodesFromState, getCustomNodesFromState } from '../selectors/global';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import {
@@ -344,7 +344,7 @@ export const fetchPrice = () => {
  * @returns {function}
  */
 export const fetchNodeList = (chooseRandomNode = false) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(fetchNodeListRequest());
 
         const setRandomNode = (nodesList) => {
@@ -376,6 +376,9 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                         map(remoteNodes, (node) => ({ url: node.node, pow: node.pow })),
                         'url',
                     );
+
+                    // Set quorum nodes
+                    quorum.setNodes(union(unionNodes, getCustomNodesFromState(getState())));
 
                     dispatch(setNodeList(unionNodes));
                 }

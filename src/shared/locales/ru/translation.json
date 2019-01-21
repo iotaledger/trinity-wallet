@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Пользовательский узел уже указан.",
         "nodeAutoChanged": "Авто-переключаемый узел",
         "nodeAutoChangedExplanation": "Подключено к новому узлу {{- nodeAddress}}, так как выбранный Вами узел сейчас оффлайн.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Прикоснитесь к датчику отпечатка для подтверждения перевода",
         "masterKey": "Ваш ключ IOTA (seed) - это главный ключ к Вашим средствам.",
         "seedThief": "Если кто-то еще знает Ваш ключ, он может украсть Ваши IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -297,7 +299,8 @@
         "tag": "Метка",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Адрес должен быть длиной в {{maxLength}} символ и содержать контрольную сумму.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Действительные адреса должны быть 90 символов и содержать только A-Z или 9.",
         "notEnoughFunds": "Недостаточно средств",
         "notEnoughFundsExplanation": "У вас недостаточно IOTA для данной операции.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Ошибка аутентификации на основе отпечатков пальцев. Пожалуйста, попробуйте еще раз.",
         "status": "Статус",
         "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Проверка состояния узла",
         "validatingReceiveAddress": "Проверка адреса для приема средств",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Синхронизация аккаунта",
         "preparingInputs": "Подготовка материалов",
         "preparingTransfers": "Подготовка трансфера",

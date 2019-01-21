@@ -44,6 +44,8 @@ const getProps = (overrides) =>
             conversionRate: 1,
             isRefreshing: false,
             onRefresh: noop,
+            animateChartOnMount: true,
+            setAnimateChartOnMount: noop,
         },
         overrides,
     );
@@ -80,6 +82,14 @@ describe('Testing Balance component', () => {
 
         it('should require an onRefresh function as a prop', () => {
             expect(Balance.propTypes.onRefresh).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require an setAnimateChartOnMount function as a prop', () => {
+            expect(Balance.propTypes.setAnimateChartOnMount).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require an animateChartOnMount bool as a prop', () => {
+            expect(Balance.propTypes.animateChartOnMount).toEqual(PropTypes.bool.isRequired);
         });
     });
 

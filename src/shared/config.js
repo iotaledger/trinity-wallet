@@ -9,10 +9,7 @@ export const nodesWithPowEnabled = [
     'https://pow1.iota.community:443',
     'https://pow2.iota.community:443',
     'https://pow3.iota.community:443',
-    'https://pow4.iota.community:443',
     'https://pow5.iota.community:443',
-    'https://pow6.iota.community:443',
-    'https://nodes.iota.fm:443',
     'https://iotanode.us:443',
 ];
 
@@ -21,7 +18,6 @@ export const nodesWithPowDisabled = [
     'https://potato.iotasalad.org:14265',
     'https://tuna.iotasalad.org:14265',
     'https://durian.iotasalad.org:14265',
-    'https://nodes.iota.cafe:443',
     'https://nodes.thetangle.org:443',
 ];
 
@@ -40,8 +36,15 @@ export const DEFAULT_BALANCES_THRESHOLD = 100;
 
 export const BUNDLE_OUTPUTS_THRESHOLD = 50;
 
-export const NODE_REQUEST_TIMEOUT = 6000 * 2;
+export const DEFAULT_NODE_REQUEST_TIMEOUT = 6000 * 2;
+export const GET_NODE_INFO_REQUEST_TIMEOUT = 2500;
+export const GET_BALANCES_REQUEST_TIMEOUT = 6000;
+export const WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT = 4000;
 
 export const DEFAULT_RETRIES = 4;
 
 export const IRI_API_VERSION = '1';
+
+export const QUORUM_THRESHOLD = 67;
+export const QUORUM_SIZE = 7;
+export const QUORUM_SYNC_CHECK_INTERVAL = 120;
