@@ -161,7 +161,7 @@
         "forceUpdateExplanation": "Une mise à jour critique est disponible. Veuillez mettre à jour l’application maintenant.",
         "missingPermission": "Autorisation de système de fichiers requise",
         "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de réaliser cette action.",
-        "swipeToConfirm": "Glisser pour confirmer"
+        "swipeToConfirm": "Balayer pour confirmer"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -766,12 +766,12 @@
         "notReady": "Si vous souhaitez utiliser une clé Ledger, connectez la et déverrouillez la maintenant",
         "indexInUse": "Index en cours d'utilisation pour le compte {{account}}",
         "indexInUseExplanation": "Votre index choisi est déjà utilisé sur l’un de vos comptes. Veuillez choisir un autre numéro d’index.",
-        "proceedWithLedger": "Continuer avec le paramétrage de la Ledger",
+        "proceedWithLedger": "Paramétrer le Ledger",
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
-        "chooseAccountIndex": "Choisissez l'index de la Ledger",
+        "chooseAccountIndex": "Choisissez l'index du compte Ledger",
         "accountIndexExplanation": "Votre clé Ledger peut stocker plusieurs seed. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de notez votre numéro d’index choisi.",
-        "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de page.",
+        "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",
         "connectionError": "Impossible de se connecter à la Ledger",
         "connectionErrorExplanation": "Vérifiez que votre Ledger est connectée et déverrouillée.",
         "connectionTitle": "Connectez votre Ledger",
