@@ -37,8 +37,6 @@
 		6079ACE02110DD2C005B21CB /* Argon2IOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079ACDF2110DD2C005B21CB /* Argon2IOS.swift */; };
 		6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6079AD4D2110E752005B21CB /* Argon2IOS.m */; };
 		6079C42420D95F18006B252E /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079C42320D95F17006B252E /* Empty.swift */; };
-		60CC550E21B859230083A2B3 /* JSCGarbageCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CC550D21B859230083A2B3 /* JSCGarbageCollector.swift */; };
-		60CC55FC21B879930083A2B3 /* JSCGarbageCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CC55FB21B879930083A2B3 /* JSCGarbageCollector.m */; };
 		60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F7E3B32125EAE7005355C7 /* libRNDocumentPicker.a */; };
 		653C5DB7CF56434CA39B6922 /* libRNNodeJsMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8482B7D9E05463F9505DCB4 /* libRNNodeJsMobile.a */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -726,8 +724,6 @@
 		6079AD4D2110E752005B21CB /* Argon2IOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Argon2IOS.m; sourceTree = "<group>"; };
 		6079C42320D95F17006B252E /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = iotaWallet/Empty.swift; sourceTree = "<group>"; };
 		6079C42520D95F85006B252E /* iotaWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iotaWallet-Bridging-Header.h"; path = "iotaWallet/iotaWallet-Bridging-Header.h"; sourceTree = "<group>"; };
-		60CC550D21B859230083A2B3 /* JSCGarbageCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCGarbageCollector.swift; sourceTree = "<group>"; };
-		60CC55FB21B879930083A2B3 /* JSCGarbageCollector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCGarbageCollector.m; sourceTree = "<group>"; };
 		60F7E3AE2125EAE7005355C7 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		66A2C53DEF25AEDEB72FDC924EBABB8D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -974,7 +970,6 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
-				60CC54C121B858FC0083A2B3 /* JSCGarbageCollector */,
 				60A097C62110BDE7008180C9 /* Argon2 */,
 				CB63E7A4218B544E0084CBFD /* Icons.ttf */,
 				CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */,
@@ -1084,15 +1079,6 @@
 				6079AD4D2110E752005B21CB /* Argon2IOS.m */,
 			);
 			path = Argon2;
-			sourceTree = "<group>";
-		};
-		60CC54C121B858FC0083A2B3 /* JSCGarbageCollector */ = {
-			isa = PBXGroup;
-			children = (
-				60CC550D21B859230083A2B3 /* JSCGarbageCollector.swift */,
-				60CC55FB21B879930083A2B3 /* JSCGarbageCollector.m */,
-			);
-			path = JSCGarbageCollector;
 			sourceTree = "<group>";
 		};
 		60F7E3AF2125EAE7005355C7 /* Products */ = {
@@ -2625,10 +2611,8 @@
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				6079C42420D95F18006B252E /* Empty.swift in Sources */,
 				CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */,
-				60CC550E21B859230083A2B3 /* JSCGarbageCollector.swift in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 				6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */,
-				60CC55FC21B879930083A2B3 /* JSCGarbageCollector.m in Sources */,
 				6079ACDE2110BE6B005B21CB /* Argon2Core.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2857,7 +2841,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 38;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
@@ -3247,7 +3231,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (

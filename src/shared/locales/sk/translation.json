@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Tento vlastný Node je už v zozname.",
         "nodeAutoChanged": "Automatické prepnutie Nodu",
         "nodeAutoChangedExplanation": "Prepnuté na nový Node {{- nodeAddress}} keďže predtým vybraný je offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Pre overenie prenosu priložte prst na čítačku",
         "masterKey": "Váš IOTA Seed je hlavným prístupovým kľúčom k vašim prostriedkom.",
         "seedThief": "Ak získa niekto iný váš Seed, môže ukradnúť vaše IOTA.",
@@ -153,13 +154,14 @@
         "errorAccessingKeychainExplanation": "Nie je možné získať prístup k úložišti kľúčov.",
         "mainWallet": "HLAVNÝ ÚČET",
         "confirm": "Confirm",
-        "delete": "Delete",
+        "delete": "Odstrániť",
         "shouldUpdate": "Je k dispozicii nová aktualizácia",
         "shouldUpdateExplanation": "Bola vydaná nová aktualizácia. Doporučujeme aktualizovať na najnovšiu verziu.",
         "forceUpdate": "Ak chcete pokračovať, aktualizujte aplikáciu",
         "forceUpdateExplanation": "Bola vydaná kritická aktualizácia. Ihneď aktualizujte aplikáciu.",
         "missingPermission": "Je požadované povolenie súborového systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -277,7 +279,7 @@
     "paperWallet": {
         "neverShare": "Svoj Seed nikdy nikomu neprezrádzajte.",
         "iotaLogo": "IOTA logo",
-        "print": "Print",
+        "print": "Tlačiť",
         "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
         "pleaseCheck": "Please check and confirm before you print",
@@ -297,7 +299,8 @@
         "tag": "Značka",
         "generateAnAddress": "Generovať adresu",
         "generateAnAddressTitle": "Generovať adresu",
-        "generateAnAddressExplanation": "Prosím vygenerujte adresu pred použitím tejto funkcie."
+        "generateAnAddressExplanation": "Prosím vygenerujte adresu pred použitím tejto funkcie.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adresa by mala byť dlhá {{maxLength}} znakov a mala by mať kontrolný súčet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má nesprávny kontrolný súčet.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Platné adresy by mali mať 90 znakov a môžu obsahovať len znaky A-Z alebo 9.",
         "notEnoughFunds": "Nedostatok prostriedkov",
         "notEnoughFundsExplanation": "Nemáte dostatok IOTA na dokončenie tejto transakcie.",
@@ -382,7 +386,7 @@
         "addNewSeed": "Pridať nový Seed",
         "twoFA": "Dvojfaktorové overenie (2FA)",
         "changePassword": "Zmeniť heslo",
-        "general": "General settings",
+        "general": "Všeobecné nastavenia",
         "advanced": "Pokročilé nastavenia",
         "account": "Account settings",
         "logout": "Odhlásiť",
@@ -518,7 +522,7 @@
     "logoutConfirmationModal": {
         "logoutConfirmation": "Určite sa chcete odhlásiť?",
         "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "areYouSure": "Ste si istý?"
     },
     "qrScanner": {
         "scan": "Naskenujte QR kód"
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Overenie odtlačkom prsta zlyhalo. Prosím, skúste to znova.",
         "status": "Stav",
         "fingerprintUnavailable": "Biometrické overenie nie je k dispozícii",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaše zariadenie nepodporuje biometrické overenie alebo nebolo povolené v nastaveniach vášho zariadenia.",
         "buttonInstructionsDisable": "Tlačidlom nižšie vypnete overovanie odtlačkom prsta",
         "buttonInstructionsEnable": "Tlačidlom nižšie zapnete overovanie odtlačkom prsta.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Neplatný kód",
-        "wrongCodeExplanation": "Zadaný kód nie je správny.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Prázdny kód",
         "emptyCodeExplanation": "Prosím, zadajte kód a skúste to znova.",
         "keyCopied": "Kľúč skopírovaný do schránky",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrola stavu Nodu",
         "validatingReceiveAddress": "Overovanie prijímacie adresy",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synchronizácia účtu",
         "preparingInputs": "Príprava vstupných dát",
         "preparingTransfers": "Príprava transakcie",

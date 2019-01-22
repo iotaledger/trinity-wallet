@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Omavalintainen palvelin on jo lisätty.",
         "nodeAutoChanged": "Palvelinta vaihdettu automaattisesti",
         "nodeAutoChangedExplanation": "Yhteys siirretty palvelimeen {{- nodeAddress}} koska alkuperäinen palvelin ei vastaa.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Jos hyväksyt siirron kosketa sormenjälkilukijaa",
         "masterKey": "Seed-luku on varojesi pääavain ja näinollen erityisin tärkeä.",
         "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA: si voidaan varastaa.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -297,7 +299,8 @@
         "tag": "Tunniste",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Osoitteen on oltava 90 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "notEnoughFunds": "Varoja ei riittävästi",
         "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi saldoa siirron loppuun suorittamiseksi.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
         "status": "Tila",
         "fingerprintUnavailable": "Biometrinen tunnistus ei ole käytettävissä",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
         "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Väärä koodi",
-        "wrongCodeExplanation": "Kirjoittamasi tunnusluku on virheellinen.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tyhjennä tunnusluku",
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Varmistetaan palvelin tila",
         "validatingReceiveAddress": "Varmistetaan vastaanottajan osoite",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synkronoidaan tiliä",
         "preparingInputs": "Alustetaan sisältöä",
         "preparingTransfers": "Alustetaan siirtoja",

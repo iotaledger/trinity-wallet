@@ -22,8 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "Noden returnerede en fejl under hentning af dine kontooplysninger. Hvis problemet vedvarer, kan du prøve at skifte node eller deaktivere din systemproxy i Trinity Indstillinger.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Din valgte node er ude af synkronisering. Skift node eller forsøg igen.",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNode": "Node-version uunderstøttet",
+        "experimentalNodeExplanation": "Din aktuelt valgte node kører en eksperimentel version, som ikke understøttes. Skift derfor node eller forsøg igen.",
         "thisNodeOutOfSync": "Denne node er ude af synkronisering. Skift node eller forsøg igen.",
         "seed": "Hovednøgle",
         "checksum": "Kontrolsum",
@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Den tilpassede node er allerede opført.",
         "nodeAutoChanged": "Auto-skiftet node",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Rør fingeraftrykssensoren for at godkende overførslen",
         "masterKey": "Dit IOTA-seed er hovedadgangsnøglen til dine midler.",
         "seedThief": "Har en andre dit seed, kan de stjæle dine IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Opdatér app'en for at fortsætte",
         "forceUpdateExplanation": "En kritisk opdatering er frigivet. Opdatér venligst app'en nu.",
         "missingPermission": "Filsystemrettighed kræves",
-        "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at udføre denne funktion."
+        "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at udføre denne funktion.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -297,7 +299,8 @@
         "tag": "Tag",
         "generateAnAddress": "Generér adresse",
         "generateAnAddressTitle": "Generér en adresse",
-        "generateAnAddressExplanation": "Generér en adresse inden du benytter denne funktion."
+        "generateAnAddressExplanation": "Generér en adresse inden du benytter denne funktion.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sikkerhedskopiere din hovednøgle",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Gyldige adresser skal være på 90 tegn og må kun indeholde A-Z eller 9.",
         "notEnoughFunds": "Utilstrækkelig saldo",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Godkendelse med fingeraftryk fejlede. Prøv venligst igen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentificering utilgængelig",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Forkert kode",
-        "wrongCodeExplanation": "Den indtastede adgangskode er forkert.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Tom kode",
         "emptyCodeExplanation": "Indtast venligst en kode og prøv igen.",
         "keyCopied": "Nøgle kopieret til udklipsholder",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Undersøger nodestatus",
         "validatingReceiveAddress": "Validerer modtageradresse",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Synkroniserer konto",
         "preparingInputs": "Forbereder input",
         "preparingTransfers": "Forbererder transaktioner",
@@ -703,7 +709,7 @@
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
         "noUpdatesAvailableExplanation": "You have the latest version of Trinity Desktop.",
         "newVersionAvailable": "Ny version tilgængelig",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "En ny Trinity-version er tilgængelig. Vil du opdatere nu?",
         "installUpdate": "Installér opdatering og genstart",
         "installUpdateExplanation": "Download fuldført, Trinity genstarter nu for at installere opdateringen.",
         "downloadingUpdate": "Downloader opdatering",

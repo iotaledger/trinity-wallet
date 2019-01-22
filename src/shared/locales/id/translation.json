@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Node kustom sudah terdaftar.",
         "nodeAutoChanged": "Node beralih otomatis",
         "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Sentuh pemindai sidik jari untuk mensyahkan transfer",
         "masterKey": "IOTA Seed anda adalah kunci utama ke dana anda.",
         "seedThief": "Jika orang lain mempunyai Seed Anda, mereka bisa mencuri IOTA Anda.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Izin akses File System dibutuhkan",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -297,7 +299,8 @@
         "tag": "Label",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Simpang Seed anda",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Alamat yang valid harus 90 karakter dan mengandung hanya A-Z atau 9.",
         "notEnoughFunds": "Dana tidak mencukupi",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Otentikasi sidik jari gagal. Silahkan coba lagi.",
         "status": "Status",
         "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
         "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Kode salah",
-        "wrongCodeExplanation": "Kode yang Anda masukkan tidak benar.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Kode kosong",
         "emptyCodeExplanation": "Silakan masukkan kode dan coba lagi.",
         "keyCopied": "Kunci disalin ke papan klip",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Mengcek kesehatan Node",
         "validatingReceiveAddress": "Mengesahkan alamat penerima",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Sinkronisasi akun",
         "preparingInputs": "Mempersiapkan masukan",
         "preparingTransfers": "Menyiapkan transfer",

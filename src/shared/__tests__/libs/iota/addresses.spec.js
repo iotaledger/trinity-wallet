@@ -1506,4 +1506,156 @@ describe('libs: iota/addresses', () => {
             expect(result).to.eql([true, false, false]);
         });
     });
+
+    describe('#isAnyAddressSpent', () => {
+        let addresses;
+
+        before(() => {
+            addresses = map(['U', 'A', 'S', '9'], (char) => char.repeat(81));
+        });
+
+        describe('when all addresses are unspent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => false) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return false', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(false));
+            });
+        });
+
+        describe('when all addresses are spent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => true) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return true', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(true));
+            });
+        });
+
+        describe('when some addresses are spent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, (_, idx) => idx % 2 === 0) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? [mockTrytes.milestone]
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return true', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(true));
+            });
+        });
+    });
 });

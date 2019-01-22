@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -297,7 +299,8 @@
         "tag": "Ετικέτα",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Έγκυρες διευθύνσεις θα πρέπει να αποτελούνται από  90 χαρακτήρες και να περιέχει μόνο A-Z ή 9.",
         "notEnoughFunds": "Ανεπαρκές χρηματικό υπόλοιπο",
         "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
         "status": "Κατάσταση",
         "fingerprintUnavailable": "Biometric authentication unavailable",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων",
         "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Λανθασμένος κωδικός",
-        "wrongCodeExplanation": "Ο κωδικός που εισάγατε είναι λάθος.",
+        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
         "emptyCode": "Κενός κωδικός",
         "emptyCodeExplanation": "Παρακαλώ εισάγετε έναν κωδικό και προσπαθήστε ξανά.",
         "keyCopied": "Το κλειδί αντιγράφτηκε στο πρόχειρο",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Επαληθεύοντας τη διεύθυνση λήψης",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Συγχρονισμός Λογαριασμού",
         "preparingInputs": "Προετοιμασία εισόδων",
         "preparingTransfers": "Ετοιμάζοντας τις μεταφορές",

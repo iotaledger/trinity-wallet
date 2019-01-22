@@ -82,6 +82,7 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:preparingTransfers'),
                       t('progressSteps:gettingTransactionsToApprove'),
                       t('progressSteps:proofOfWork'),
+                      t('progressSteps:validatingTransactionAddresses'),
                       t('progressSteps:broadcasting'),
                   ];
 
@@ -151,7 +152,7 @@ export default function withSendData(SendComponent) {
             return true;
         };
 
-        sendTransfer = (seedStore, address, value, message, powFn) => {
+        sendTransfer = (seedStore, address, value, message) => {
             const { ui, accountName, generateAlert, t } = this.props;
 
             if (ui.isSyncing) {
@@ -166,7 +167,7 @@ export default function withSendData(SendComponent) {
 
             this.setProgressSteps(value === 0);
 
-            this.props.makeTransaction(seedStore, address, value, message, accountName, powFn);
+            this.props.makeTransaction(seedStore, address, value, message, accountName);
         };
 
         render() {

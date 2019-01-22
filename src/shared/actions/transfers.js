@@ -1,3 +1,4 @@
+import extend from 'lodash/extend';
 import has from 'lodash/has';
 import head from 'lodash/head';
 import find from 'lodash/find';
@@ -10,6 +11,7 @@ import some from 'lodash/some';
 import size from 'lodash/size';
 import every from 'lodash/every';
 import includes from 'lodash/includes';
+import uniq from 'lodash/uniq';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -25,12 +27,7 @@ import {
     getNodesFromState,
     getSelectedNodeFromState,
 } from '../selectors/accounts';
-import {
-    withRetriesOnDifferentNodes,
-    fetchRemoteNodes,
-    getRandomNodes,
-    throwIfNodeNotHealthy,
-} from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes, isLastTritZero } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -55,11 +52,7 @@ import {
     markBundleBroadcastStatusComplete,
     markBundleBroadcastStatusPending,
 } from './accounts';
-import {
-    shouldAllowSendingToAddress,
-    getAddressesUptoRemainder,
-    categoriseAddressesBySpentStatus,
-} from '../libs/iota/addresses';
+import { isAnyAddressSpent, getAddressesUptoRemainder, categoriseAddressesBySpentStatus } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import {
     generateAlert,
@@ -208,11 +201,11 @@ export const completeTransfer = () => {
  *   @method promoteTransaction
  *   @param {string} bundleHash
  *   @param {string} accountName
- *   @param {function} powFn
+ *   @param {object} seedStore
  *
  *   @returns {function} dispatch
  **/
-export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
+export const promoteTransaction = (bundleHash, accountName, seedStore) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     const remotePoW = getRemotePoWFromState(getState());
@@ -259,8 +252,19 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
                     consistentTail,
                     accountState.transfers[bundleHash].tailTransactions,
                     true,
-                    // If proof of work configuration is set to remote, pass proof of work function as null
-                    remotePoW ? null : powFn,
+                    // If proof of work configuration is set to remote,
+                    // Extend seedStore object with offloadPow
+                    // This property will lead to perform remote proof-of-work
+                    // See: extendedApi#attachToTangle
+                    remotePoW
+                        ? extend(
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
+                        : seedStore,
                 ),
             );
         })
@@ -311,7 +315,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *   @param {boolean | object} consistentTail
  *   @param {array} tailTransactionHashes
  *   @param {boolean} shouldGenerateAlert
- *   @param {function} powFn
+ *   @param {object} seedStore
  *   @param {number} maxReplays - Maximum number of reattachments if promotion fails because of transaction inconsistency
  *   @param {number} maxPromotionAttempts - Maximum number of promotion retry attempts
  *
@@ -322,7 +326,7 @@ export const forceTransactionPromotion = (
     consistentTail,
     tailTransactionHashes,
     shouldGenerateAlert,
-    powFn = null,
+    seedStore,
     maxReplays = 1,
     maxPromotionAttempts = 2,
 ) => (dispatch, getState) => {
@@ -334,7 +338,7 @@ export const forceTransactionPromotion = (
 
         promotionAttempt += 1;
 
-        return promoteTransactionAsync(null, powFn)(hash).catch((error) => {
+        return promoteTransactionAsync(null, seedStore)(hash).catch((error) => {
             const isTransactionInconsistent = includes(error.message, Errors.TRANSACTION_IS_INCONSISTENT);
 
             if (
@@ -369,7 +373,7 @@ export const forceTransactionPromotion = (
         const tailTransaction = head(tailTransactionHashes);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(null, powFn)(hash).then((reattachment) => {
+        return replayBundleAsync(null, seedStore)(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -407,14 +411,10 @@ export const forceTransactionPromotion = (
  * @param  {number} value
  * @param  {string} message
  * @param  {string} accountName
- * @param  {function} powFn
  *
  * @returns {function} dispatch
  */
-export const makeTransaction = (seedStore, receiveAddress, value, message, accountName, powFn) => (
-    dispatch,
-    getState,
-) => {
+export const makeTransaction = (seedStore, receiveAddress, value, message, accountName) => (dispatch, getState) => {
     dispatch(sendTransferRequest());
 
     const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
@@ -434,119 +434,129 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
         // Progressbar step => (Validating receive address)
         dispatch(setNextStepAsActive());
 
-        // Make sure that the address a user is about to send to is not already used.
-        return shouldAllowSendingToAddress()([address])
-            .then((shouldAllowSending) => {
-                if (shouldAllowSending) {
+        // Check the last trit for validity
+        return Promise.resolve(isLastTritZero(address)).then((lastTritIsZero) => {
+            if (!lastTritIsZero) {
+                throw new Error(Errors.INVALID_LAST_TRIT);
+            }
+
+            // Make sure that the address a user is about to send to is not already used.
+            return isAnyAddressSpent()([address])
+                .then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
                     // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
                     return syncAccount()(accountState, seedStore);
-                }
+                })
+                .then((newState) => {
+                    // Assign latest account but do not update the local store yet.
+                    // Only update the local store with updated account information after this transaction is successfully completed.
+                    accountState = newState;
 
-                throw new Error(Errors.KEY_REUSE);
-            })
-            .then((newState) => {
-                // Assign latest account but do not update the local store yet.
-                // Only update the local store with updated account information after this transaction is successfully completed.
-                accountState = newState;
+                    const valueTransfers = filter(
+                        map(accountState.transfers, (tx) => tx),
+                        (tx) => tx.transferValue !== 0,
+                    );
 
-                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
+                    return filterInvalidPendingTransactions()(valueTransfers, accountState.addresses);
+                })
+                .then((filteredTransfers) => {
+                    const { addresses, transfers } = accountState;
+                    const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
 
-                return filterInvalidPendingTransactions()(valueTransfers, accountState.addresses);
-            })
-            .then((filteredTransfers) => {
-                const { addresses, transfers } = accountState;
-                const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
+                    // Progressbar step => (Preparing inputs)
+                    dispatch(setNextStepAsActive());
 
-                // Progressbar step => (Preparing inputs)
-                dispatch(setNextStepAsActive());
+                    // Prepare inputs.
+                    return getUnspentInputs()(
+                        // Latest address data
+                        addresses,
+                        // Normalised transactions list
+                        map(transfers, (tx) => tx),
+                        // Pending value transactions
+                        filteredTransfers,
+                        // Start index for address (for input selection)
+                        startIndex,
+                        // Transfer value
+                        value,
+                        // Inputs
+                        null,
+                    );
+                })
+                .then((inputs) => {
+                    // Input selection prepares inputs sequentially starting from the first address with balance
+                    // If total balance is less than transfer value, do not allow transaction.
+                    if (get(inputs, 'totalBalance') < value) {
+                        throw new Error(Errors.NOT_ENOUGH_BALANCE);
 
-                // Prepare inputs.
-                return getUnspentInputs()(
-                    // Latest address data
-                    addresses,
-                    // Normalised transactions list
-                    map(transfers, (tx) => tx),
-                    // Pending value transactions
-                    filteredTransfers,
-                    // Start index for address (for input selection)
-                    startIndex,
-                    // Transfer value
-                    value,
-                    // Inputs
-                    null,
-                );
-            })
-            .then((inputs) => {
-                // Input selection prepares inputs sequentially starting from the first address with balance
-                // If total balance is less than transfer value, do not allow transaction.
-                if (get(inputs, 'totalBalance') < value) {
-                    throw new Error(Errors.NOT_ENOUGH_BALANCE);
+                        // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
+                        // Contains only spendable balance
+                        // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
+                    } else if (get(inputs, 'availableBalance') < value) {
+                        const addresses = accountState.addresses;
+                        const transfers = accountState.transfers;
+                        const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
 
-                    // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
-                    // Contains only spendable balance
-                    // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-                } else if (get(inputs, 'availableBalance') < value) {
-                    const addresses = accountState.addresses;
-                    const transfers = accountState.transfers;
-                    const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
+                        if (size(pendingOutgoingTransfers)) {
+                            throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
+                        } else {
+                            if (size(get(inputs, 'spentAddresses'))) {
+                                throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                            } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
+                                throw new Error(Errors.INCOMING_TRANSFERS);
+                            }
 
-                    if (size(pendingOutgoingTransfers)) {
-                        throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    } else {
-                        if (size(get(inputs, 'spentAddresses'))) {
-                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
-                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
-                            throw new Error(Errors.INCOMING_TRANSFERS);
+                            throw new Error(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
                         }
-
-                        throw new Error(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
                     }
-                }
 
-                // Do not allow receiving address to be one of the user's own input addresses.
-                const isSendingToAnyInputAddress = some(
-                    get(inputs, 'inputs'),
-                    (input) => input.address === iota.utils.noChecksum(address),
-                );
+                    // Do not allow receiving address to be one of the user's own input addresses.
+                    const isSendingToAnyInputAddress = some(
+                        get(inputs, 'inputs'),
+                        (input) => input.address === iota.utils.noChecksum(address),
+                    );
 
-                if (isSendingToAnyInputAddress) {
-                    throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
-                }
+                    if (isSendingToAnyInputAddress) {
+                        throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
+                    }
 
-                // Check if input count does not exceed maximum supported by the SeedStore type
-                if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
-                    throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
-                }
+                    // Check if input count does not exceed maximum supported by the SeedStore type
+                    if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
+                        throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                    }
 
-                transferInputs = get(inputs, 'inputs');
+                    transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder()(
-                    accountState.addresses,
-                    map(accountState.transfers, (tx) => tx),
-                    seedStore,
-                    [
-                        // Make sure inputs are blacklisted
-                        ...map(transferInputs, (input) => input.address),
-                        // Make sure receive address is blacklisted
-                        iota.utils.noChecksum(receiveAddress),
-                    ],
-                );
-            })
-            .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
-                // getAddressesUptoRemainder returns the latest unused address as the remainder address
-                // Also returns updated address data including new address data for the intermediate addresses.
-                // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
-                // at index 53 it would include address data for 51, 52 and 53.
-                accountState.addresses = addressDataUptoRemainder;
+                    return getAddressesUptoRemainder()(
+                        accountState.addresses,
+                        map(accountState.transfers, (tx) => tx),
+                        seedStore,
+                        [
+                            // Make sure inputs are blacklisted
+                            ...map(transferInputs, (input) => input.address),
+                            // Make sure receive address is blacklisted
+                            iota.utils.noChecksum(receiveAddress),
+                        ],
+                    );
+                })
+                .then(({ remainderAddress, remainderIndex, addressDataUptoRemainder }) => {
+                    // getAddressesUptoRemainder returns the latest unused address as the remainder address
+                    // Also returns updated address data including new address data for the intermediate addresses.
+                    // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
+                    // at index 53 it would include address data for 51, 52 and 53.
+                    accountState.addresses = addressDataUptoRemainder;
 
-                return {
-                    inputs: transferInputs,
-                    address: remainderAddress,
-                    keyIndex: remainderIndex,
-                };
-            });
+                    return {
+                        inputs: transferInputs,
+                        address: remainderAddress,
+                        keyIndex: remainderIndex,
+                    };
+                });
+        });
     };
 
     const isZeroValue = value === 0;
@@ -598,7 +608,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 dispatch(setNextStepAsActive());
 
                 const performLocalPow = () =>
-                    attachToTangleAsync(null, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+                    attachToTangleAsync(null, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
 
                 if (!shouldOffloadPow) {
                     return performLocalPow();
@@ -610,7 +620,17 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 // 1) Find nodes with PoW enabled
                 // 2) Auto retry offloading PoW
                 // 3) If auto retry fails, perform proof of work locally
-                return attachToTangleAsync()(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
+                return attachToTangleAsync(
+                    null,
+                    // See: extendedApi#attachToTangle
+                    extend(
+                        {
+                            __proto__: seedStore.__proto__,
+                        },
+                        seedStore,
+                        { offloadPow: true },
+                    ),
+                )(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
                     dispatch(
                         generateAlert(
                             'info',
@@ -634,7 +654,18 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                                 getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
                                     getSelectedNodeFromState(getState()),
                                 ]),
-                            )(attachToTangleAsync)(trunkTransaction, branchTransaction, cached.trytes);
+                            )((provider) =>
+                                attachToTangleAsync(
+                                    provider,
+                                    extend(
+                                        {
+                                            __proto__: seedStore.__proto__,
+                                        },
+                                        seedStore,
+                                        { offloadPow: true },
+                                    ),
+                                ),
+                            )(trunkTransaction, branchTransaction, cached.trytes);
                         })
                         .then(({ result }) => result)
                         .catch(() => {
@@ -651,6 +682,26 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                             return performLocalPow();
                         });
+                });
+            })
+            // Re-check spend statuses of all addresses in bundle
+            .then(({ trytes, transactionObjects }) => {
+                // Skip this check if it's a zero value transaction
+                if (isZeroValue) {
+                    return Promise.resolve({ trytes, transactionObjects });
+                }
+
+                // Progressbar step => (Validating transaction addresses)
+                dispatch(setNextStepAsActive());
+
+                const addresses = uniq(map(transactionObjects, (transaction) => transaction.address));
+
+                return isAnyAddressSpent()(addresses).then((isSpent) => {
+                    if (isSpent) {
+                        throw new Error(Errors.KEY_REUSE);
+                    }
+
+                    return { trytes, transactionObjects };
                 });
             })
             .then(({ trytes, transactionObjects }) => {
@@ -748,6 +799,14 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                     return dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (message === Errors.UNSUPPORTED_NODE) {
                     return dispatch(generateUnsupportedNodeErrorAlert());
+                } else if (message === Errors.INVALID_LAST_TRIT) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('send:invalidAddress'),
+                            i18next.t('send:invalidAddressExplanation4'),
+                        ),
+                    );
                 } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
@@ -846,11 +905,11 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
  *
  * @param  {string} accountName
  * @param  {string} bundleHash
- * @param  {function} powFn
+ * @param  {object} seedStore
  *
  * @returns {function} dispatch
  */
-export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
+export const retryFailedTransaction = (accountName, bundleHash, seedStore) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
@@ -858,13 +917,10 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
     dispatch(retryFailedTransactionRequest());
 
     return (
-        throwIfNodeNotHealthy()
-            // First check spent statuses against transaction addresses
-            .then(() =>
-                categoriseAddressesBySpentStatus()(
-                    map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
-                ),
-            )
+        // First check spent statuses against transaction addresses
+        categoriseAddressesBySpentStatus()(
+            map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
+        )
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
@@ -874,8 +930,19 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
                 // If all addresses are still unspent, retry
                 return retry()(
                     existingFailedTransactionsForThisAccount[bundleHash],
-                    // If proof of work is set to remote, pass in null as the proof of work function
-                    shouldOffloadPow ? null : powFn,
+                    // If proof of work configuration is set to remote,
+                    // Extend seedStore object with offloadPow
+                    // This property will lead to perform remote proof-of-work
+                    // See: extendedApi#attachToTangle
+                    shouldOffloadPow
+                        ? extend(
+                              {
+                                  __proto__: seedStore.__proto__,
+                              },
+                              seedStore,
+                              { offloadPow: true },
+                          )
+                        : seedStore,
                 );
             })
             .then(({ transactionObjects }) => {

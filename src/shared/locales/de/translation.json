@@ -107,7 +107,7 @@
         "pleaseWait": "Bitte warten",
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
-        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind, und versuche es erneut.",
+        "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind und versuche es erneut.",
         "pleaseWaitIncomingTransferExplanation": "Du hast eingehende Transaktionen. Bitte warte auf die Bestätigung vor einem erneuten Versuch.",
         "snapshotTransitionInProgress": "Snapshot-Wiederherstellung wird ausgeführt.",
         "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Wiederherstellung abgeschlossen ist.",
@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
+        "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Aktualisiere Trinity um fortzufahren",
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
-        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen."
+        "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
+        "swipeToConfirm": "Wischen zum bestätigen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -226,7 +228,7 @@
         "seedTooShort": "Der Seed ist zu kurz",
         "seedTooLong": "Seed zu lang",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
-        "seedExplanation": "Seeds sollten {{maxLength}} Zeichen lang sein und aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als {{maxLength}} Zeichen ist.",
+        "seedExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein und aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Du kannst keinen Seed verwenden, der länger oder kürzer als {{maxLength}} Zeichen ist.",
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
     },
     "home": {
@@ -291,13 +293,14 @@
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
-        "generateNewAddress": "Neue Adresse generieren",
+        "generateNewAddress": "Adresse erstellen",
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "tag": "Tag",
         "generateAnAddress": "Neue Adresse generieren",
         "generateAnAddressTitle": "Eine neue Adresse generieren",
-        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest."
+        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest.",
+        "generateAddressInformation": "Erzeuge eine neue Einzahlungsadresse jedes Mal, wenn du IOTA erhalten möchtest"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Die Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Die Adresse enthält eine ungültige Prüfsumme.",
+        "invalidAddressExplanation4": "Bitte stelle sicher, dass du die Adresse korrekt eingegeben hast.",
         "invalidAddressExplanationGeneric": "Zulässige Adressen sollten aus 90 Zeichen bestehen und nur die Zeichen A-Z oder 9 enthalten.",
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
@@ -352,12 +356,12 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Gesamtzeit",
         "addressPasteDetected": "Eingefügte Adresse erkannt",
-        "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest.",
+        "addressPasteExplanation": "Scheinbar hast du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich die korrekte Adresse ist, an die du senden möchtest.",
         "invalid": "UNGÜLTIG",
-        "swipeToSend": "Wischen zum senden"
+        "swipeToSend": "Wischen um zu senden"
     },
     "setSeedName": {
-        "letsAddName": "Füge einen Namen ein",
+        "letsAddName": "Vergib einen Kontonamen",
         "canUseMultipleSeeds": "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
         "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
@@ -539,7 +543,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Willst du dieses Konto wirklich löschen?",
-        "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
+        "yourSeedWillBeRemoved": "Dein Seed und der dazugehörige Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden",
         "enterPassword": "Bitte gib dein Passwort ein, um dieses Konto zu löschen."
     },
@@ -547,12 +551,12 @@
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
         "pressToSync": "Drücke die folgende Schaltfläche, um dein Konto zu synchronisieren.",
         "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
-        "doNotClose": "Beim Minimieren der App wird die Synchronisierung abgebrochen.",
+        "doNotClose": "Minimieren der App wird die Synchronisierung abbrechen.",
         "syncAccount": "Konto synchronisieren",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
-        "title": "Gebe einen Kontonamen und Seed ein",
+        "title": "Gib einen Kontonamen und Seed ein",
         "incorrectFormat": "Ungültiges Format",
         "validSeedExplanation": "'Ein gültiger Seed sollte aus 81 Zeichen bestehen und die Buchstaben A-Z, sowie die Zahl 9 enthalten.'."
     },
@@ -573,7 +577,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
-        "warning": "<0><0>Alle Daten deines Wallets, inklusive deiner </0><1>Seeds, Passwörter</1><2> und </2><3>anderer Konto-Informationen</3><4>, werden verloren gehen.</4></0>"
+        "warning": "<0><0>Alle Daten deines Wallets, inklusive deiner </0><1>Seeds, Passwörter</1><2> und </2><3>anderer Konto-Informationen</3><4>, werden gelöscht.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrische Authentifizierung ist nicht verfügbar",
+        "deviceLocked": "Authentifizierung für 30 Sekunden deaktiviert",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren",
         "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
@@ -598,12 +603,12 @@
         "aMessage": "eine Nachricht",
         "fromAccount": "Von {{selectedAccountName}}",
         "toAddress": "An Adresse",
-        "sendingAMessage": "Sende eine Nachricht",
+        "sendingAMessage": "Sende die Nachricht",
         "sendingAnEmptyMessage": "Sende eine leere Nachricht"
     },
     "twoFA": {
         "wrongCode": "Falscher Code",
-        "wrongCodeExplanation": "Der von dir eingegebene Code ist falsch.",
+        "wrongCodeExplanation": "Der eingegebene Code ist nicht korrekt. Stelle sicher, dass die Uhrzeit auf deinem Gerät stimmt, falls der Fehler erneut auftritt.",
         "emptyCode": "Fehlender 2FA-Code",
         "emptyCodeExplanation": "Bitte gib einen Code ein und versuche es erneut.",
         "keyCopied": "Schlüssel in die Zwischenablage kopiert",
@@ -636,18 +641,18 @@
         "importSeedVault": "SeedVault importieren",
         "dropInstructions": "SeedVault hierher ziehen <1></1> oder hier klicken um Datei zu wählen",
         "dropActive": "SeedVault oder Text hier ablegen",
-        "enterKeyExplanation": "Gib deinen Schlüssel ein um den SeedVault zu öffnen",
+        "enterKeyExplanation": "Gib deinen Schlüssel ein, um den SeedVault zu öffnen",
         "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
         "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
         "seedFileError": "Fehler beim Öffnen",
         "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist.",
-        "seedVaultKeyExplanation": "Zuerst müssen den SeedVault sichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
+        "seedVaultKeyExplanation": "Zuerst müssen den SeedVault absichern. Bitte wähle einen Schlüssel, um die Datei zu verschlüsseln. Du wirst diesen Schlüssel verwenden, wenn du deinen Seed aus dem SeedVault Backup wiederherstellen musst.",
         "retypeKey": "Schlüssel erneut eingeben"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "Börsenwert",
         "change": "Änderung (24 Std.)",
-        "volume": "Volumen (24h)",
+        "volume": "Volumen (24 Std.)",
         "error": "Fehler beim Abrufen der Diagrammdaten"
     },
     "rootDetection": {
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Überprüfe Zustand des Node",
         "validatingReceiveAddress": "Überprüfe Empfangsadresse",
+        "validatingTransactionAddresses": "Adressen der Transaktionen werden überprüft",
         "syncingAccount": "Konto synchronisieren",
         "preparingInputs": "Vorbereitung der Daten",
         "preparingTransfers": "Vorbereitung der Transaktion",
@@ -771,7 +777,7 @@
         "connectionTitle": "Verbinde deinen Ledger",
         "connectionExplanation": "Um diese Funktion nutzen zu können muss ein Ledger verbunden sein.",
         "transactionTitle": "Blättere durch deinen Ledger und bestätige die Transaktion",
-        "transactionExplanation": "Benutze deinen Ledger und bestätige die ausgehende Transaktion.",
+        "transactionExplanation": "Verwende deinen Ledger um die ausgehende Transaktion zu bestätigen.",
         "applicationTitle": "Öffne die Ledger IOTA App",
         "applicationExplanation": "Nimm deinen Ledger und öffne die IOTA App um fortzufahren.",
         "cannotSendZeroValueTitle": "Null-Wert Transaktionen können nicht gesendet werden",

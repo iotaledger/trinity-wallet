@@ -45,7 +45,6 @@ import AmountTextInput from 'ui/components/AmountTextInput';
 import { Icon } from 'ui/theme/icons';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
-import { getPowFn } from 'libs/nativeModules';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -492,7 +491,7 @@ export class Send extends Component {
                     conversionText: this.getConversionTextIOTA(),
                     address: address,
                     sendTransfer: () => this.sendTransfer(),
-                    cancel: () => {
+                    onBackButtonPress: () => {
                         this.interuptSendAnimation();
                         this.hideModal();
                     },
@@ -522,13 +521,17 @@ export class Send extends Component {
                 });
             case 'fingerprint':
                 return this.props.toggleModalActivity(modalContent, {
-                    hideModal: this.hideModal,
-                    borderColor: { borderColor: body.color },
-                    textColor: { color: body.color },
-                    backgroundColor: { backgroundColor: body.bg },
+                    onBackButtonPress: () => {
+                        this.interuptSendAnimation();
+                        this.hideModal();
+                    },
                     instance: 'send',
                     theme,
-                    isFingerprintEnabled,
+                    onSuccess: () => {
+                        this.setSendingTransferFlag();
+                        this.hideModal();
+                        this.sendTransfer();
+                    },
                 });
             default:
                 break;
@@ -626,8 +629,8 @@ export class Send extends Component {
                 try {
                     const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
                     this.props.getFromKeychainSuccess('send', 'makeTransaction');
-                    const powFn = getPowFn();
-                    return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
+
+                    return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName);
                 } catch (error) {
                     this.props.getFromKeychainError('send', 'makeTransaction');
                     this.props.generateTransferErrorAlert(error);
@@ -646,20 +649,14 @@ export class Send extends Component {
         const { t } = this.props;
         if (isAndroid) {
             this.props.toggleModalActivity();
-            this.showModal('fingerprint');
+            return timer.setTimeout('displayFingerPrintModal', () => this.showModal('fingerprint'), 300);
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
                 this.setSendingTransferFlag();
-                if (isAndroid) {
-                    this.hideModal();
-                }
                 this.sendTransfer();
             })
             .catch(() => {
-                if (isAndroid) {
-                    this.hideModal();
-                }
                 this.props.generateAlert(
                     'error',
                     t('fingerprintSetup:fingerprintAuthFailed'),
@@ -878,7 +875,6 @@ const mapStateToProps = (state) => ({
     denomination: state.ui.sendDenomination,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
-    remotePoW: state.settings.remotePoW,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,

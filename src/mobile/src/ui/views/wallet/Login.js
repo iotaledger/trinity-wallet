@@ -112,6 +112,7 @@ class Login extends Component {
         if (!hasConnection || forceUpdate) {
             return;
         }
+        this.animationOutType = ['fadeOut'];
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
@@ -212,7 +213,6 @@ class Login extends Component {
      */
     navigateToLoading() {
         const { theme: { body } } = this.props;
-        this.animationOutType = ['fadeOut'];
         timer.setTimeout(
             'delayNavigation',
             () => {
@@ -278,7 +278,6 @@ const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: state.settings.theme,
     is2FAEnabled: state.settings.is2FAEnabled,
-    accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,

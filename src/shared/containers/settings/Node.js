@@ -1,3 +1,4 @@
+import endsWith from 'lodash/endsWith';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -52,8 +53,18 @@ export default function withNodeData(NodeComponent) {
                 return;
             }
 
+            const hasDefaultHttpsPort = endsWith(nodeSelected, ':443');
+
+            if (hasDefaultHttpsPort) {
+                nodeSelected = nodeSelected.slice(0, -4);
+            }
+
             // Check whether the node was already added to the list
-            if (customNode && nodes.includes(nodeSelected)) {
+            if (
+                customNode &&
+                (nodes.includes(nodeSelected) ||
+                    nodes.map((node) => (endsWith(node, ':443') ? node.slice(0, -4) : node)).includes(nodeSelected))
+            ) {
                 generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
                 return;
             }

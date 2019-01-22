@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
+        "touchSensor": "Håll fingret på fingeravtrycksläsaren",
         "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen",
         "masterKey": "Din IOTA-seed är huvudnyckeln till dina pengar.",
         "seedThief": "Om någon annan har din seed kan de stjäla dina IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Uppdatera appen att fortsätta",
         "forceUpdateExplanation": "En viktig uppdatering har släppts. Vänligen uppdatera appen nu.",
         "missingPermission": "Åtkomst till filsystem krävs",
-        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion."
+        "missingPermissionExplanation": "Åtkomst till filsystemet krävs för att utföra denna funktion.",
+        "swipeToConfirm": "Dra för att bekräfta"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -297,7 +299,8 @@
         "tag": "Tagg",
         "generateAnAddress": "Generera ny adress",
         "generateAnAddressTitle": "Generera en adress",
-        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion."
+        "generateAnAddressExplanation": "Vänligen generera en adress innan du använder denna funktion.",
+        "generateAddressInformation": "Generera en ny mottagaradress varje gång du vill ta emot IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Din adress bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
+        "invalidAddressExplanation4": "Kontrollera att du har angett adressen korrekt.",
         "invalidAddressExplanationGeneric": "Giltiga adresser bör vara 90 tecken och innehålla endast A-Z eller 9.",
         "notEnoughFunds": "Otillräckliga tillgångar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
@@ -586,6 +590,7 @@
         "fingerprintAuthFailedExplanation": "Fingeravtrycksautentisering misslyckades. Var god försök igen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering otillgänglig",
+        "deviceLocked": "Autentisering inaktiverad i 30 sekunder",
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
         "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
@@ -603,7 +608,7 @@
     },
     "twoFA": {
         "wrongCode": "Fel kod",
-        "wrongCodeExplanation": "Koden du angett är inkorrekt.",
+        "wrongCodeExplanation": "Den kod du angett är felaktig. Om felet kvarstår, kontrollera att klockan på dina enheter är korrekt konfigurerade.",
         "emptyCode": "Tom kod",
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
@@ -671,6 +676,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
+        "validatingTransactionAddresses": "Verifierar transaktionsadresser",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",

@@ -1,3 +1,4 @@
+import extend from 'lodash/extend';
 import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
@@ -16,7 +17,7 @@ import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../lib
 import i18next from '../libs/i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
-import { withRetriesOnDifferentNodes, getRandomNodes, throwIfNodeNotHealthy } from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import Errors from '../libs/errors';
 import {
     selectedAccountStateFactory,
@@ -305,19 +306,11 @@ export const generateNewAddress = (seedStore, accountName, existingAccountData) 
     return (dispatch, getState) => {
         dispatch(generateNewAddressRequest());
 
-        const syncAddressesWithSyncedNode = (provider) => {
-            return (...args) => throwIfNodeNotHealthy(provider).then(() => syncAddresses(provider)(...args));
-        };
-
         const selectedNode = getSelectedNodeFromState(getState());
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
             () => dispatch(generateAddressesSyncRetryAlert()),
-        )(syncAddressesWithSyncedNode)(
-            seedStore,
-            existingAccountData.addresses,
-            map(existingAccountData.transfers, (tx) => tx),
-        )
+        )(syncAddresses)(seedStore, existingAccountData.addresses, map(existingAccountData.transfers, (tx) => tx))
             .then(({ node, result }) => {
                 dispatch(changeNode(node));
                 dispatch(updateAddresses(accountName, result));
@@ -372,11 +365,10 @@ export const transitionForSnapshot = (seedStore, addresses) => {
  * @param {object} seedStore - SeedStore class object
  * @param {string} accountName
  * @param {array} addresses
- * @param {function} powFn
  *
  * @returns {function}
  */
-export const completeSnapshotTransition = (seedStore, accountName, addresses, powFn) => {
+export const completeSnapshotTransition = (seedStore, accountName, addresses) => {
     return (dispatch, getState) => {
         dispatch(
             generateAlert(
@@ -388,9 +380,7 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
 
         dispatch(snapshotAttachToTangleRequest());
 
-        // Check node's health
-        throwIfNodeNotHealthy()
-            .then(() => getBalancesAsync()(addresses))
+        getBalancesAsync()(addresses)
             // Find balance on all addresses
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
@@ -420,11 +410,17 @@ export const completeSnapshotTransition = (seedStore, accountName, addresses, po
                                 address,
                                 index,
                                 relevantBalances[index],
-                                seedStore,
+                                getRemotePoWFromState(getState())
+                                    ? extend(
+                                          {
+                                              __proto__: seedStore.__proto__,
+                                          },
+                                          seedStore,
+                                          { offloadPow: true },
+                                      )
+                                    : seedStore,
                                 map(existingAccountState.transfers, (tx) => tx),
                                 existingAccountState.addresses,
-                                // Pass proof of work function as null, if configuration is set to remote
-                                getRemotePoWFromState(getState()) ? null : powFn,
                             )
                                 .then(({ addressData, transfer }) => {
                                     const { newState } = syncAccountDuringSnapshotTransition(

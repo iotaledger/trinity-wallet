@@ -68,12 +68,6 @@ class EnterPassword extends Component {
         }
     }
 
-    componentWillUnmount() {
-        if (isAndroid) {
-            FingerprintScanner.release();
-        }
-    }
-
     /**
      * Wrapper method for onLoginPress prop method
      *
@@ -93,13 +87,10 @@ class EnterPassword extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
-            this.showModal();
+            return this.showModal();
         }
         FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
-                if (isAndroid) {
-                    this.hideModal();
-                }
                 this.props.setUserActive();
             })
             .catch(() => {
@@ -118,9 +109,13 @@ class EnterPassword extends Component {
     showModal() {
         const { theme } = this.props;
         this.props.toggleModalActivity('fingerprint', {
-            hideModal: () => this.props.toggleModalActivity(),
+            onBackButtonPress: () => this.props.toggleModalActivity(),
             theme,
             instance: 'login',
+            onSuccess: () => {
+                this.hideModal();
+                this.props.setUserActive();
+            },
         });
     }
 

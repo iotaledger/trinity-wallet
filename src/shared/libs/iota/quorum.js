@@ -11,15 +11,8 @@ import split from 'lodash/split';
 import sampleSize from 'lodash/sampleSize';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
-import { isNodeHealthy, getIotaInstance } from './extendedApi';
-import {
-    QUORUM_THRESHOLD,
-    QUORUM_SIZE,
-    QUORUM_SYNC_CHECK_INTERVAL,
-    DEFAULT_BALANCES_THRESHOLD,
-    DEFAULT_NODE_REQUEST_TIMEOUT,
-    GET_NODE_INFO_REQUEST_TIMEOUT,
-} from '../../config';
+import { isNodeHealthy, getIotaInstance, getApiTimeout } from './extendedApi';
+import { QUORUM_THRESHOLD, QUORUM_SIZE, QUORUM_SYNC_CHECK_INTERVAL, DEFAULT_BALANCES_THRESHOLD } from '../../config';
 import { EMPTY_HASH_TRYTES } from './utils';
 import { findMostFrequent } from '../utils';
 import Errors from '../errors';
@@ -159,8 +152,12 @@ const findSyncedNodes = (nodes, quorumSize, selectedNodes = [], blacklistedNodes
             return findSyncedNodes(
                 nodes,
                 quorumSize,
-                // Add active nodes to synced nodes
-                union(selectedNodes, syncedNodes),
+                // Update selected nodes
+                union(
+                    // Filter selected nodes that are unsynced
+                    filter(selectedNodes, (node) => !includes(unsyncedNodes, node)),
+                    syncedNodes,
+                ),
                 // Add inactive nodes to blacklisted nodes
                 [...blacklistedNodes, ...unsyncedNodes],
             );
@@ -276,12 +273,7 @@ const getQuorum = (method, syncedNodes, payload, ...args) => {
                     syncedNodes,
                     (provider) =>
                         new Promise((resolve) => {
-                            getIotaInstance(
-                                provider,
-                                iotaApiMethod === 'getNodeInfo'
-                                    ? GET_NODE_INFO_REQUEST_TIMEOUT
-                                    : DEFAULT_NODE_REQUEST_TIMEOUT,
-                            ).api[iotaApiMethod](
+                            getIotaInstance(provider, getApiTimeout(iotaApiMethod, payload)).api[iotaApiMethod](
                                 ...[
                                     ...requestArgs,
                                     (err, result) =>
