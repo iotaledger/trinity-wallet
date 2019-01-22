@@ -770,7 +770,7 @@
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
         "chooseAccountIndex": "Choisissez l'index du compte Ledger",
-        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de notez le numéro d’index que vous avez choisi.",
+        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de noter le numéro d’index que vous avez choisi.",
         "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",
         "connectionError": "Impossible de se connecter au Ledger",
         "connectionErrorExplanation": "Vérifiez que votre Ledger est connecté et déverrouillé.",
