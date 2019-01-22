@@ -119,7 +119,7 @@ class SetPassword extends Component {
         }
 
         await seedStore.addAccount(accountName, global.onboardingSeed);
-        global.onboardingSeed = null;
+        delete global.onboardingSeed;
         // gc
         this.props.clearWalletData();
         this.props.setOnboardingComplete(true);

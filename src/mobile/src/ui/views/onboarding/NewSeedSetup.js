@@ -184,7 +184,7 @@ class NewSeedSetup extends Component {
 
     onBackPress() {
         this.setState({ seed: null });
-        global.onboardingSeed = null;
+        delete global.onboardingSeed;
         // gc
         navigator.pop(this.props.componentId);
     }
