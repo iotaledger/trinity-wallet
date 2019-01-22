@@ -3,16 +3,20 @@ import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
 import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
+import SeedStoreCore from './SeedStoreCore';
+
 // Prefix for seed account titles stored in Keychain
 const ACC_PREFIX = 'account';
 
-class Keychain {
+class Keychain extends SeedStoreCore {
     /**
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
+        super();
+
         return (async () => {
             this.key = key.slice(0);
             if (accountId) {
