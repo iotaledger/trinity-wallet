@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Parmak izi doğrulamayı aktifleştirmek için aşağıdaki tuşa basın.",
         "buttonInstructionsDisableIPhoneX": "Face ID'yi devre dışış bırakmak için aşağıdaki tuşa basın",
         "buttonInstructionsEnableIPhoneX": "Face ID'yi aktifleştirmek için aşağıdaki tuşa basın",
-        "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun"
+        "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Adrese {{contents}} göndermek üzeresiniz",
