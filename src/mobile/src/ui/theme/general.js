@@ -1,5 +1,5 @@
 import { width, height } from 'libs/dimensions';
-import { isIPhoneX, isAndroid } from 'libs/device';
+import { isIPhoneX } from 'libs/device';
 
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
@@ -15,7 +15,7 @@ export const Styling = {
     fontSize5: width / 19,
     fontSize6: width / 14,
     fontSize7: width / 8,
-    topbarHeightRatio: isAndroid ? 1 / 10.5 : isIPhoneX ? 1 / 8.8 : 1 / 8,
+    topbarHeightRatio: isIPhoneX ? 1 / 8.8 : 1 / 8,
     get topbarHeight() {
         return height * this.topbarHeightRatio;
     },
