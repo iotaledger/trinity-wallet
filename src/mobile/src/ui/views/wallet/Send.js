@@ -167,8 +167,6 @@ export class Send extends Component {
         isKeyboardActive: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -549,9 +547,7 @@ export class Send extends Component {
      * @method hideModal
      */
     hideModal = () => {
-        if (this.props.isModalActive) {
-            this.props.toggleModalActivity();
-        }
+        this.props.toggleModalActivity();
     };
 
     /**
@@ -887,7 +883,6 @@ const mapStateToProps = (state) => ({
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isKeyboardActive: state.ui.isKeyboardActive,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

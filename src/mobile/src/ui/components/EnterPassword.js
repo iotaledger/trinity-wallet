@@ -50,8 +50,6 @@ class EnterPassword extends Component {
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -105,9 +103,7 @@ class EnterPassword extends Component {
     }
 
     hideModal() {
-        if (this.props.isModalActive) {
-            this.props.toggleModalActivity();
-        }
+        this.props.toggleModalActivity();
     }
 
     showModal() {
@@ -161,7 +157,6 @@ class EnterPassword extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
-    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
