@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "احراز هویت بیومتریک در دسترس نیست",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
-        "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsDisableIPhoneX": "برای غیرفعال کردن Face ID، دکمه زیر را فشار دهید",
         "buttonInstructionsEnableIPhoneX": "برای فعال کردن Face ID، دکمه زیر را فشار دهید",
-        "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید"
+        "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
