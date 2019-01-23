@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
+        marginLeft: 5,
+        flex: 1,
+        textAlign: 'right',
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
