@@ -147,7 +147,7 @@
         "problemSendingYourTransaction": "Während dem Senden der Transaktion ist ein Fehler aufgetreten.",
         "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
-        "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
+        "tryingAgainWithDifferentNode": "Es wird mit einem anderen Node erneut versucht.",
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
         "errorSyncingAddresses": "Deine Adressinformationen konnten nicht synchronisiert werden. Es wird mit einem anderen Node erneut versucht.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
@@ -161,7 +161,7 @@
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
-        "swipeToConfirm": "Wischen zum bestätigen"
+        "swipeToConfirm": "Wischen um zu bestätigen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -297,10 +297,10 @@
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "tag": "Tag",
-        "generateAnAddress": "Neue Adresse generieren",
-        "generateAnAddressTitle": "Eine neue Adresse generieren",
-        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest.",
-        "generateAddressInformation": "Generiere für jede Einzahlung eine neue Adresse"
+        "generateAnAddress": "Adresse erstellen",
+        "generateAnAddressTitle": "Eine neue Adresse erstellen",
+        "generateAnAddressExplanation": "Bitte erstelle eine neue Adresse bevor du diese Funktion verwendest.",
+        "generateAddressInformation": "Erstelle für jede Einzahlung eine neue Adresse"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
