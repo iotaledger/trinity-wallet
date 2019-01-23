@@ -16,7 +16,7 @@ export const Styling = {
     fontSize5: width / 19,
     fontSize6: width / 14,
     fontSize7: width / 8,
-    topbarHeightRatio: isIPhoneX ? 1 / 8.8 : 1 / 8,
+    topbarHeightRatio: isIPhoneX ? 1 / 6 : 1 / 8,
     get topbarHeight() {
         return height * this.topbarHeightRatio;
     },

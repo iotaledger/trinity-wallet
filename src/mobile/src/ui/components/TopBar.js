@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     titleWrapper: {
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         width,
     },
     mainTitle: {
@@ -232,16 +232,17 @@ class TopBar extends Component {
     }
 
     /**
-     * Returns padding styling dependent on device type
+     * Returns styling dependent on device type
      *
      * @method getTopbarPadding
      * @returns {any}
      */
-    getTopbarPadding() {
+    getTopbarStyling() {
+        const { topBarHeight } = this.props;
         if (isIPhoneX) {
-            return;
+            return { height: topBarHeight - 20 };
         }
-        return { paddingTop: Styling.statusBarHeight };
+        return { height: topBarHeight - Styling.statusBarHeight, marginTop: Styling.statusBarHeight };
     }
 
     setScrollable(y) {
@@ -297,7 +298,6 @@ class TopBar extends Component {
             accountInfo,
             seedIndex,
             theme: { bar, primary },
-            topBarHeight,
             isKeyboardActive,
             notificationLog,
             mode,
@@ -324,7 +324,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }, this.getTopbarPadding()]}>
+            <Animated.View style={[styles.titleWrapper, this.getTopbarStyling()]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
@@ -344,7 +344,7 @@ class TopBar extends Component {
                                             mode === 'Advanced' && (
                                                 <TouchableOpacity
                                                     onPress={() => this.showModal()}
-                                                    style={[styles.iconWrapper, { flex: 1, alignItems: 'flex-end' }]}
+                                                    style={[styles.iconWrapper, { alignItems: 'flex-end' }]}
                                                 >
                                                     <Icon
                                                         name="notification"
