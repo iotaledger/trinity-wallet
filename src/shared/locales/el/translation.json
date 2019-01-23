@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
-        "instructionsLogin": "Αγγίξτε τη συσκευή ανάγνωσης δακτυλικών αποτυπωμάτων για να συνδεθείτε"
+        "instructionsLogin": "Αγγίξτε τη συσκευή ανάγνωσης δακτυλικών αποτυπωμάτων για να συνδεθείτε",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Είστε έτοιμοι να στείλετε {{contents}} στη διεύθυνση",

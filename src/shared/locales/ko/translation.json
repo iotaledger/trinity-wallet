@@ -19,11 +19,11 @@
         "invalidResponse": "노드 오류",
         "invalidResponseExplanation": "노드가 오류를 보냈습니다. 노드를 변경해 보세요.",
         "invalidResponseFetchingAccount": "계정 정보를 불러오는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
-        "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
+        "invalidResponseFetchingAccountDesktop": "계정 정보를 가져오는 중에 노드에서 오류가 발생했습니다. 문제가 계속 발생할 경우, 노드를 변경하던가 시스템 프록시 설정을 해제하시고 시도해 보세요.",
         "nodeOutOfSync": "노드가 동기화되지 않음",
         "nodeOutOfSyncExplanation": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNode": "지원되지 않는 노드 버전",
+        "experimentalNodeExplanation": "현재 선택한 노드는 지원되지 않는 실험 버전의 소프트웨어를 사용하고 있습니다. 다른 노드를 선택하거나 다시 시도해 주세요.",
         "thisNodeOutOfSync": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
         "seed": "시드",
         "checksum": "체크섬",
@@ -76,8 +76,8 @@
         "wallet": "지갑",
         "all": "전부",
         "sent": "보냄",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "받음",
+        "youSent": "보냄",
         "received": "받음",
         "sending": "보내는 중",
         "receiving": "받는 중",
@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "해당 노드는 이미 등록되어 있습니다.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결합니다.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "지문 센서에 손가락을 올려 주세요",
         "fingerprintOnSend": "지문을 인식하여 전송 승인",
         "masterKey": "IOTA 시드는 지갑에 있어 마스터키와 같은 역할을 합니다.",
         "seedThief": "만일 다른 사람이 시드를 손에 넣게 된다면 IOTA를 훔칠 수 있습니다.",
@@ -133,7 +133,7 @@
         "spentAddressExplanation": "경고: 이미 사용한 주소에 잔고가 있습니다",
         "discordInformation": "동일한 주소에서 한 번 이상 전송하는 행위는 위험합니다. 디스코드 #help 채널로 오셔서 대처 방안에 대해 알아보세요.",
         "androidInsecureClipboardWarning": "안드로이드는 클립보드의 보안성이 떨어집니다.",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "안드로이드 기기에서는 시드를 클립보드에 복사하지 말아주세요.",
         "willNotCopyPasteSeed": "시드를 클립보드에 복사하지 않겠습니다",
         "mustBeStoredAppropriately": "안전하게 보관해 주세요.",
         "deviceMayBecomeUnresponsive": "기기가 잠시 느려질 수 있습니다.",
@@ -149,19 +149,19 @@
         "tryingAgainWithLocalPoW": "기기에서 다시 작업증명을 시도합니다.",
         "tryingAgainWithDifferentNode": "다른 노드로 다시 시도합니다.",
         "errorFetchingAccountInformation": "계정 정보를 받아오는 도중 오류가 발생하였습니다.",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
+        "errorSyncingAddresses": "주소 정보를 동기화하는 중 오류가 발생하였습니다. 다른 노드로 다시 시도해 보세요.",
         "errorAccessingKeychain": "키체인 오류",
         "errorAccessingKeychainExplanation": "보안 저장에 필요한 키체인에 접근할 수 없습니다.",
         "mainWallet": "주 계정",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "confirm": "확인",
+        "delete": "삭제",
+        "shouldUpdate": "새 업데이트 사용 가능",
+        "shouldUpdateExplanation": "새로운 업데이트가 공개되었습니다. 최신 버전으로 업데이트 하는 것을 권장합니다.",
+        "forceUpdate": "계속하기 전에 앱 업데이트 필요",
+        "forceUpdateExplanation": "중요한 업데이트가 공개되었습니다. 지금 바로 앱을 업데이트해 주세요.",
         "missingPermission": "파일 시스템 권한 필요",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "이 기능을 사용하기 위해 파일 시스템 권한이 필요합니다.",
+        "swipeToConfirm": "밀어서 확인"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "비밀번호는 최소 {{minLength}}글자로 구성되어야 합니다. 입력하신 비밀번호는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않음",
         "passwordMismatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "이 비밀번호가 지갑의 주 비밀번호입니다. 이 비밀번호가 로그인에 사용됩니다.",
         "retypePassword": "비밀번호 다시 입력"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "로그인",
         "setNode": "노드 선택",
         "whyBiometricDisabled": "왜 생체 인증이 비활성화되어 있나요?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "보안을 위해 생체 인증은 앱의 첫 실행 시 비활성화됩니다.",
+        "whyBiometricDisabledExplanationPart2": "트리니티를 사용 중 앱이 비활성화되어 로그아웃하였을 경우, 생체 인증을 사용하여 다시 로그인할 수 있습니다."
     },
     "loading": {
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "절대로 다른 사람에게 시드를 알려줘서는 안 됩니다.",
         "iotaLogo": "IOTA 로고",
-        "print": "Print",
+        "print": "인쇄",
         "paperConvenience": "시드를 종이에 인쇄해 놓으면 편리하게 보관할 수 있습니다.",
         "publicInsecure": "하지만 공용 와이파이를 통해 인쇄하거나 공용 프린터를 사용해 인쇄하는 것은 위험합니다.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "인쇄하기 전에 아래 사항을 확인하세요",
+        "wifiConfirmation": "공용 와이파이를 사용 중이 아닙니다",
+        "printerConfirmation": "공용 프린터를 사용 중이 아닙니다"
     },
     "receive": {
         "yourAddress": "주소",
@@ -293,14 +293,14 @@
         "copyAddress": "주소 복사",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "주소 생성",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
         "tag": "태그",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "주소 생성",
+        "generateAnAddressTitle": "주소 생성 필요",
+        "generateAnAddressExplanation": "이 기능을 사용하려면 먼저 주소를 생성해야 합니다.",
+        "generateAddressInformation": "IOTA를 받고자 할 때마다 입금 주소를 새로 생성해 주세요"
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
         "youCanHighlightCharacters": "9글자 단위로 강조해서 볼 수 있습니다",
         "printBlankWallet": "빈 지갑 인쇄하기",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "체크섬이란?",
         "everySeedHasAChecksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다.",
         "iHavesavedMySeed": "시드를 저장하였습니다",
         "checksumExplanation": "지갑에 시드를 추가할 때 보여지는 체크섬이 기록한 체크섬과 일치하는지를 확인해 주세요",
@@ -322,21 +322,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "시드를 확인해 주세요",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "지갑을 초기화하거나 앱을 다시 설치하지 않았다면 트리니티는 절대로 시드를 입력할 것을 요구하지 않습니다.",
         "enterYourSeed": "시드를 입력해 주세요",
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력하신 시드가 잘못되었습니다. 다시 시도해 주세요.",
         "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오.",
         "enterSeedBelow": "시드를 입력해서 정확하게 저장하였는지 확인해 주세요",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "경고: 시드 붙여넣기 비활성화됨",
+        "clipboardWarningExplanation": "보안을 위해 붙여넣기 기능이 비활성화되었습니다. 시드가 담긴 텍스트 파일을 끌어다 놓을 수는 있습니다."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
         "invalidAddressExplanation1": "주소는 {{maxLength}}글자로 구성되어야 하며, 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "주소를 올바르게 입력했는지 확인해 주세요.",
         "invalidAddressExplanationGeneric": "주소는 90글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함합니다.",
         "notEnoughFunds": "잔고 부족",
         "notEnoughFundsExplanation": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
@@ -358,7 +358,7 @@
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
         "invalid": "유효하지 않음",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "밀어서 보내기"
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",
@@ -370,8 +370,8 @@
         "standard": "기본",
         "advancedModeExplanation": "고급 모드에서는 기술적 정보가 더 자세하게 표시됩니다.",
         "modesExplanation": "고급 모드는 아이오타 사용 경험이 있는 경우에만 추천합니다.",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "모드 변경됨",
+        "modeUpdatedExplanation": "모드가 {{mode}} 모드로 변경되었습니다."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -386,9 +386,9 @@
         "addNewSeed": "새 시드 추가",
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경",
-        "general": "General settings",
+        "general": "일반 설정",
         "advanced": "고급 설정",
-        "account": "Account settings",
+        "account": "계정 설정",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
         "syncingComplete": "동기화 완료",
@@ -528,7 +528,7 @@
         "scan": "QR 코드 스캔"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "단위 체계",
         "trillion": "조",
         "billion": "십억",
         "million": "백만",
@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "생체 인증을 사용할 수 없음",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
-        "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
         "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성화할 수 있습니다",
         "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성화할 수 있습니다",
-        "instructionsLogin": "로그인하려면 손가락을 지문 센서 위에 올리세요"
+        "instructionsLogin": "로그인하려면 손가락을 지문 센서 위에 올리세요",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",

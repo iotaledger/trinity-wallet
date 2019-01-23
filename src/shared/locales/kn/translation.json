@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "ಬಯೊಮೀಟ್ರಿಕ್ ದೃಢೀಕರಣ ಲಭ್ಯವಿಲ್ಲ",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "ನಿಮ್ಮ ಸಾಧನವು ಬಯೋಮೆಟ್ರಿಕ್ ದೃಢೀಕರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅಥವಾ ಸಾಧನ ಸೆಟ್ಟಿಂಗ್ಗಳಲ್ಲಿ ಇದನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿಲ್ಲ.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "ಬೆರಳುಗುರುತು ದೃಢೀಕರಣ ಸಕ್ರಿಯಗೊಳಿಸಲು ಕೆಳಗಿನ ಬಟನ್ ಒತ್ತಿರಿ.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
-        "instructionsLogin": "ಲಾಗ್ ಇನ್ ಮಾಡಲು ಬೆರಳಿನ ಗುರುತು ರೀಡರ್ ಸ್ಪರ್ಶಿಸಿ"
+        "instructionsLogin": "ಲಾಗ್ ಇನ್ ಮಾಡಲು ಬೆರಳಿನ ಗುರುತು ರೀಡರ್ ಸ್ಪರ್ಶಿಸಿ",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "ನೀವು {{contents}} ಅನ್ನು ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಲಿದ್ದೀರಿ",

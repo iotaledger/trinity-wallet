@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
-        "buttonInstructionsDisable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás letiltásához",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
         "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához",
         "buttonInstructionsEnableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID engedélyezéséhez",
-        "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez"
+        "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Ön {{contents}} összeget készül elküldeni az alábbi címre",

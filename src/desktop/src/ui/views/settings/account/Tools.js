@@ -31,8 +31,6 @@ import css from '../index.scss';
 class Tools extends PureComponent {
     static propTypes = {
         /** @ignore */
-        settings: PropTypes.object.isRequired,
-        /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
         ui: PropTypes.object.isRequired,
@@ -119,14 +117,11 @@ class Tools extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, settings } = this.props;
-        const { accountName, meta } = this.props.account;
+        const { wallet, accountName, meta } = this.props;
 
         const seedStore = await new SeedStore[meta.type](wallet.password, accountName, meta);
 
-        const powFn = !settings.remotePoW ? Electron.powFn : null;
-
-        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses, powFn);
+        this.props.completeSnapshotTransition(seedStore, accountName, wallet.transitionAddresses);
     };
 
     /**

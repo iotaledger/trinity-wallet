@@ -90,6 +90,7 @@ class DynamicStatusBar extends Component {
                 barStyle={statusBarStyle}
                 backgroundColor={this.getStatusBarColor(last(navStack))}
                 animated={false}
+                translucent
             />
         );
     }

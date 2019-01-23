@@ -108,7 +108,7 @@
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
         "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind und versuche es erneut.",
-        "pleaseWaitIncomingTransferExplanation": "Du hast eingehende Transaktionen. Bitte warte auf die Bestätigung vor einem erneuten Versuch.",
+        "pleaseWaitIncomingTransferExplanation": "Du hast eingehende Transaktionen. Bitte warte bis diese Transaktionen bestätigt wurden und versuche es dann erneut.",
         "snapshotTransitionInProgress": "Snapshot-Wiederherstellung wird ausgeführt.",
         "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Wiederherstellung abgeschlossen ist.",
         "checkForUpdates": "Suche nach Updates",
@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
         "nodeAutoChanged": "Node automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf Node {{- nodeAddress}} gewechselt, da der ausgewählte Node offline ist.",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "Berühre den Fingerabdrucksensor",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
         "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
@@ -147,7 +147,7 @@
         "problemSendingYourTransaction": "Während dem Senden der Transaktion ist ein Fehler aufgetreten.",
         "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
         "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
-        "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
+        "tryingAgainWithDifferentNode": "Es wird mit einem anderen Node erneut versucht.",
         "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen.",
         "errorSyncingAddresses": "Deine Adressinformationen konnten nicht synchronisiert werden. Es wird mit einem anderen Node erneut versucht.",
         "errorAccessingKeychain": "Schlüsselbund-Fehler",
@@ -161,7 +161,7 @@
         "forceUpdateExplanation": "Ein kritisches Update wurde veröffentlicht. Bitte aktualisiere Trinity jetzt.",
         "missingPermission": "Berechtigung für Dateisystem erforderlich",
         "missingPermissionExplanation": "Zugriff auf das Dateisystem ist erforderlich, um diese Funktion ausführen.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "Wischen um zu bestätigen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -297,10 +297,10 @@
         "noAddresses": "KEINE ADRESSEN",
         "spent": "Ausgegeben",
         "tag": "Tag",
-        "generateAnAddress": "Neue Adresse generieren",
-        "generateAnAddressTitle": "Eine neue Adresse generieren",
-        "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "Adresse erstellen",
+        "generateAnAddressTitle": "Eine neue Adresse erstellen",
+        "generateAnAddressExplanation": "Bitte erstelle eine neue Adresse bevor du diese Funktion verwendest.",
+        "generateAddressInformation": "Erstelle für jede Einzahlung eine neue Adresse"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -424,7 +424,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Beim Wechseln des Nodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
+        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuche es nochmal."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -590,13 +590,19 @@
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrische Authentifizierung ist nicht verfügbar",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Authentifizierung für 30 Sekunden deaktiviert",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren",
+        "notSupported": "Die biometrische Authentifizierung wird von deinem Gerät nicht unterstützt",
+        "notConfigured": "Die biometrische Authentifizierung wurde noch nicht in deinen Geräteeinstellungen konfiguriert",
+        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
         "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
-        "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren"
+        "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren",
+        "systemCancelledAuth": "Authentifizierung wurde vom Gerät abgebrochen",
+        "userCancelledAuth": "Authentifizierung abgebrochen",
+        "passwordFallback": "Stattdessen Passwort-Authentifizierung verwenden",
+        "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
@@ -753,7 +759,7 @@
         "sweepSucceeded": "Guthaben erfolgreich entsperrt",
         "sweepSucceededExplanation": "Dein Guthaben wurde erfolgreich entsperrt und auf eine neue Adresse verschoben. Promote die Transaktion um sie bei der Bestätigung zu unterstützen.",
         "sweepError": "Fehler beim Entsperren des Guthabens",
-        "sweepErrorExplanation": "Etwas ist beim Entsperren deines Guthabens schief gelaufen. Versuche es erneut.",
+        "sweepErrorExplanation": "Beim Entsperren deines Guthabens ist ein Fehler aufgetreten. Es wird erneut versucht.",
         "warningTitle": "Warnung: Gesperrtes Guthaben erkannt",
         "explanation": "Trinity Desktop Version 0.3.4 enthielt einen Fehler, der Guthaben vorübergehend sperrte. Dies wirkt sich auf eine kleine Anzahl von Benutzern aus, welche Transaktionen mit 0.3.4 durchgeführt haben.",
         "explanationAccounts": "Gesperrtes Guthaben wurde auf deinen Konten gefunden: {{accounts}}. Trinity wird jetzt automatisch dein Guthaben wiederherstellen, indem es dieses auf eine neue Adresse verschiebt.",

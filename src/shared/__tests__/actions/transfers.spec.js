@@ -1,3 +1,4 @@
+import map from 'lodash/map';
 import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -27,10 +28,17 @@ describe('actions: transfers', () => {
     });
 
     describe('#promoteTransaction', () => {
-        let powFn;
+        let seedStore;
 
         before(() => {
-            powFn = () => Promise.resolve('9'.repeat(27));
+            seedStore = {
+                performPow: () =>
+                    Promise.resolve({
+                        trytes: trytes.zeroValue.slice().reverse(),
+                        transactionObjects: map(trytes.zeroValue, iota.utils.transactionObject).reverse(),
+                    }),
+                getDigest: () => Promise.resolve('9'.repeat(81)),
+            };
         });
 
         describe('when bundle is invalid', () => {
@@ -65,7 +73,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
-                            powFn,
+                            seedStore,
                         ),
                     )
                     .then(() => {
@@ -131,7 +139,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
-                            powFn,
+                            seedStore,
                         ),
                     )
                     .then(() => {
@@ -147,7 +155,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
-                            powFn,
+                            seedStore,
                         ),
                     )
                     .then(() => {
@@ -216,6 +224,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
+                            seedStore,
                         ),
                     )
                     .then(() => {
@@ -232,6 +241,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
+                            seedStore,
                         ),
                     )
                     .then(() => {
@@ -245,14 +255,18 @@ describe('actions: transfers', () => {
     });
 
     describe('#makeTransaction', () => {
-        let powFn;
         let seedStore;
 
         before(() => {
-            powFn = () => Promise.resolve('9'.repeat(27));
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
                 prepareTransfers: () => Promise.resolve(trytes.zeroValue),
+                performPow: (trytes) =>
+                    Promise.resolve({
+                        trytes,
+                        transactionObjects: map(trytes, iota.utils.transactionObject),
+                    }),
+                getDigest: () => Promise.resolve('9'.repeat(81)),
             };
         });
 
@@ -313,7 +327,6 @@ describe('actions: transfers', () => {
                             0,
                             'TEST MESSAGE',
                             'TEST',
-                            powFn,
                         ),
                     )
                     .then(() => {
@@ -346,7 +359,6 @@ describe('actions: transfers', () => {
                             0,
                             'TEST MESSAGE',
                             'TEST',
-                            powFn,
                         ),
                     )
                     .then(() => {
@@ -421,7 +433,6 @@ describe('actions: transfers', () => {
                                 2,
                                 'TEST MESSAGE',
                                 'TEST',
-                                powFn,
                             ),
                         )
                         .then(() => {
@@ -460,7 +471,6 @@ describe('actions: transfers', () => {
                                     2,
                                     'TEST MESSAGE',
                                     'TEST',
-                                    powFn,
                                 ),
                             )
                             .then(() => {
@@ -504,7 +514,6 @@ describe('actions: transfers', () => {
                                     200,
                                     'TEST MESSAGE',
                                     'TEST',
-                                    powFn,
                                 ),
                             )
                             .then(() => {
@@ -550,7 +559,6 @@ describe('actions: transfers', () => {
                                     100,
                                     'TEST MESSAGE',
                                     'TEST',
-                                    powFn,
                                 ),
                             )
                             .then(() => {
@@ -601,7 +609,6 @@ describe('actions: transfers', () => {
                                     2,
                                     'TEST MESSAGE',
                                     'TEST',
-                                    powFn,
                                 ),
                             )
                             .then(() => {
