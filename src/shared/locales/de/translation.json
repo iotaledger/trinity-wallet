@@ -300,7 +300,7 @@
         "generateAnAddress": "Neue Adresse generieren",
         "generateAnAddressTitle": "Eine neue Adresse generieren",
         "generateAnAddressExplanation": "Bitte generiere eine neue Adresse bevor du diese Funktion verwendest.",
-        "generateAddressInformation": "Erzeuge eine neue Einzahlungsadresse jedes Mal, wenn du IOTA erhalten möchtest"
+        "generateAddressInformation": "Generiere für jede Einzahlung eine neue Adresse"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -592,17 +592,17 @@
         "fingerprintUnavailable": "Biometrische Authentifizierung ist nicht verfügbar",
         "deviceLocked": "Authentifizierung für 30 Sekunden deaktiviert",
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Die biometrische Authentifizierung wird von deinem Gerät nicht unterstützt",
+        "notConfigured": "Die biometrische Authentifizierung wurde noch nicht in deinen Geräteeinstellungen konfiguriert",
+        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den Button unten um Face ID zu deaktivieren",
         "buttonInstructionsEnableIPhoneX": "Drücke den Button unten um Face ID zu aktivieren",
         "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "Authentifizierung wurde vom Gerät abgebrochen",
+        "userCancelledAuth": "Authentifizierung abgebrochen",
+        "passwordFallback": "Stattdessen Passwort-Authentifizierung verwenden",
+        "noPassword": "Auf diesem Gerät wurde kein Passwort eingerichtet"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
