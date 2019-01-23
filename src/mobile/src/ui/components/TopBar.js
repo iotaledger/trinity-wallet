@@ -24,14 +24,13 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Animated,
-    StatusBar,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'shared-modules/actions/polling';
 import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { Icon } from 'ui/theme/icons';
-import { isIPhoneX, isAndroid } from 'libs/device';
+import { isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
@@ -240,9 +239,6 @@ class TopBar extends Component {
     getTopbarPadding() {
         if (isIPhoneX) {
             return;
-        }
-        if (isAndroid) {
-            return { paddingBottom: StatusBar.currentHeight / 2 };
         }
         return { paddingTop: 10 };
     }
