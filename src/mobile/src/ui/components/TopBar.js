@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
     container: {
         width,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flex: 1,
     },
     titleWrapper: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         width,
     },
     mainTitle: {
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: width - width / 4.5,
+        height: Styling.topbarHeight - Styling.statusBarHeight,
     },
     iconWrapper: {
         justifyContent: 'center',
@@ -240,7 +241,7 @@ class TopBar extends Component {
         if (isIPhoneX) {
             return;
         }
-        return { paddingTop: 10 };
+        return { paddingTop: Styling.statusBarHeight };
     }
 
     setScrollable(y) {
@@ -337,7 +338,7 @@ class TopBar extends Component {
                         !minimised && (
                             <View style={styles.barWrapper}>
                                 <View style={styles.iconWrapper}>
-                                    <Animated.View style={[styles.iconWrapper, { height: topBarHeight }]}>
+                                    <Animated.View style={styles.iconWrapper}>
                                         {(hasNotifications &&
                                             !isKeyboardActive &&
                                             mode === 'Advanced' && (
@@ -355,7 +356,7 @@ class TopBar extends Component {
                                             )) || <View />}
                                     </Animated.View>
                                 </View>
-                                <Animated.View style={[styles.balanceWrapper, { height: topBarHeight }]}>
+                                <Animated.View style={styles.balanceWrapper}>
                                     <Text
                                         numberOfLines={1}
                                         style={[
@@ -389,9 +390,7 @@ class TopBar extends Component {
                                     </View>
                                 </Animated.View>
                                 <View style={styles.iconWrapper}>
-                                    <Animated.View
-                                        style={[styles.iconWrapper, { height: topBarHeight, alignItems: 'flex-start' }]}
-                                    >
+                                    <Animated.View style={[styles.iconWrapper, { alignItems: 'flex-start' }]}>
                                         {(hasMultipleSeeds && (
                                             <Icon
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}

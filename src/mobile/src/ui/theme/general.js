@@ -1,5 +1,6 @@
 import { width, height } from 'libs/dimensions';
-import { isIPhoneX } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 export const Styling = {
     contentWidth: isIPhoneX ? width / 1.08 : width / 1.15,
@@ -20,6 +21,7 @@ export const Styling = {
         return height * this.topbarHeightRatio;
     },
     iPhoneXBottomInsetHeight: 34,
+    statusBarHeight: isAndroid ? ExtraDimensions.get('STATUS_BAR_HEIGHT') : isIPhoneX ? 44 : 20,
 };
 
 export function getBackgroundColor(screen, theme, inactive = false) {

@@ -1,11 +1,9 @@
 import { Dimensions } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
-import { isIPhoneX, isAndroid } from 'libs/device';
+import { isAndroid, isIPhoneX } from 'libs/device';
 
 global.height = isAndroid
-    ? ExtraDimensions.get('REAL_WINDOW_HEIGHT') -
-      ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT') -
-      ExtraDimensions.get('SMART_BAR_HEIGHT')
+    ? ExtraDimensions.get('REAL_WINDOW_HEIGHT') - ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT')
     : Dimensions.get('window').height;
 
 // StatusBar area where we avoid drawing

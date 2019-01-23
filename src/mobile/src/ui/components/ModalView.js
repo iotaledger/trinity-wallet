@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import { Styling } from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
+import { width } from 'libs/dimensions';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -85,11 +85,12 @@ export class ModalViewComponent extends PureComponent {
                 extraHeight={0}
                 contentContainerStyle={styles.container}
             >
+                {displayTopBar && <View style={{ flex: Styling.topbarHeightRatio }} />}
                 <View
                     style={[
                         styles.modalContent,
                         { backgroundColor: body.bg },
-                        { height: displayTopBar ? height - Styling.topbarHeight : height },
+                        { flex: displayTopBar ? 1 - Styling.topbarHeightRatio : 1 },
                     ]}
                 >
                     {children}
