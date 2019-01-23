@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: Styling.fontSize3,
         backgroundColor: 'transparent',
+        marginLeft: 5,
+        flex: 1,
+        textAlign: 'right',
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -113,7 +116,6 @@ export const renderSettingsRows = (rows, theme) => {
     const textColor = { color: theme.body.color };
     const bodyColor = theme.body.color;
     const borderBottomColor = { borderBottomColor: theme.body.color };
-    const marginLeft = { marginLeft: 5 };
     return (
         <View style={{ flex: 1 }}>
             {map(rows, (row, index) => {
@@ -135,7 +137,7 @@ export const renderSettingsRows = (rows, theme) => {
                                     <View style={styles.content}>
                                         <Text style={[styles.titleText, textColor]}>{row.name}</Text>
                                         {row.currentSetting && (
-                                            <Text numberOfLines={1} style={[styles.settingText, textColor, marginLeft]}>
+                                            <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                                 {row.currentSetting}
                                             </Text>
                                         )}
