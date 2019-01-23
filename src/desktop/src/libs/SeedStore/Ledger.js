@@ -2,7 +2,9 @@
 import Errors from 'libs/errors';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
-class Ledger {
+import SeedStoreCore from './SeedStoreCore';
+
+class Ledger extends SeedStoreCore {
     /**
      * Init the vault
      * @param {array} key - Account decryption key (unused)
@@ -10,6 +12,8 @@ class Ledger {
      * @param {object} accountMeta -  Account meta data
      */
     constructor(key, accountId, accountMeta) {
+        super();
+
         if (accountMeta && typeof accountMeta.index === 'number') {
             this.index = accountMeta.index;
             this.page = typeof accountMeta.page === 'number' ? accountMeta.page : 0;
