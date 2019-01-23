@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
-        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
         "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID",
         "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID",
-        "instructionsLogin": "Tekan pemindai sidik jari untuk masuk"
+        "instructionsLogin": "Tekan pemindai sidik jari untuk masuk",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Anda akan mengirim {{contents}} ke alamat",

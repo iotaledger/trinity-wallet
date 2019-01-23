@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Authentification biométrique indisponible",
         "deviceLocked": "Authentification désactivée pendant 30 secondes",
         "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas l'authentification biométrique, ou cette fonction n'a pas été configurée dans les paramètres de votre appareil.",
-        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
         "buttonInstructionsDisableIPhoneX": "Appuyez sur le bouton ci-dessous pour désactiver Face ID",
         "buttonInstructionsEnableIPhoneX": "Appuyez sur le bouton ci-dessous pour activer Face ID",
-        "instructionsLogin": "Touchez le lecteur d'empreintes pour vous connecter"
+        "instructionsLogin": "Touchez le lecteur d'empreintes pour vous connecter",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
@@ -770,7 +776,7 @@
         "accountIndex": "Index du compte",
         "accountPage": "Page du compte",
         "chooseAccountIndex": "Choisissez l'index du compte Ledger",
-        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de notez le numéro d’index que vous avez choisi.",
+        "accountIndexExplanation": "Votre Ledger peut stocker plusieurs seeds. Chaque seed est identifiée par un numéro d’index unique. Un index inutilisé a été présélectionné, mais n’hésitez pas à choisir par vous même. Assurez-vous de noter le numéro d’index que vous avez choisi.",
         "accountPageExplanation": "Certains portefeuilles tiers nécessitent l'utilisation de pages.",
         "connectionError": "Impossible de se connecter au Ledger",
         "connectionErrorExplanation": "Vérifiez que votre Ledger est connecté et déverrouillé.",

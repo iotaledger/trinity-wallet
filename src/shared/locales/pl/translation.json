@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Autoryzacja odciskiem palca niedostępna",
         "deviceLocked": "Logowanie wyłączone na 30 sekund",
         "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
-        "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć funkcję autoryzacji odciskiem palca",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć funkcję autoryzacji odciskiem palca.",
         "buttonInstructionsDisableIPhoneX": "Naciśnij poniższy przycisk, aby wyłączyć Face ID",
         "buttonInstructionsEnableIPhoneX": "Naciśnij poniższy przycisk, aby włączyć Face ID",
-        "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować"
+        "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
