@@ -370,7 +370,7 @@
         "standard": "标准",
         "advancedModeExplanation": "高级模式会显示更详细的技术信息。",
         "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。",
-        "modeUpdated": "Mode updated",
+        "modeUpdated": "模式已更新",
         "modeUpdatedExplanation": "You have changed to {{mode}} mode"
     },
     "settings": {
