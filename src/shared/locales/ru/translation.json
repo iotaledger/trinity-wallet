@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
-        "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsDisableIPhoneX": "Нажмите на кнопку ниже, чтобы отключить идентификатор лица",
         "buttonInstructionsEnableIPhoneX": "Нажмите на кнопку ниже, чтобы включить идентификатор лица",
-        "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа"
+        "instructionsLogin": "Приложите палец к сенсору чтения отпечатков пальцев для входа",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",

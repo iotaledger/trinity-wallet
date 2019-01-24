@@ -561,7 +561,7 @@ export const promoteTransfer = (bundleHash, accountName) => (dispatch, getState)
                     getTailTransactionsForThisBundleHash(accountState.transactions),
                     false,
                     // Auto promote does not support local proof of work
-                    // Pass in null in replacement of proof of work function
+                    // Pass in null in replacement of seedStore object
                     null,
                 ),
             ),

@@ -1,3 +1,4 @@
+import extend from 'lodash/extend';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
@@ -66,9 +67,12 @@ export const byteTritCheck = (accounts, genFn) => async (dispatch, getState) => 
 
 /**
  * Do byte-trit sweep
+ *
+ * @method byteTritSweep
  * @param {function} dialogFn - Confirmation dialog functions
+ * @param {function} dialogFn
  */
-export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState) => {
+export const byteTritSweep = (SeedStore, dialogFn) => (dispatch, getState) => {
     const accounts = getState().settings.byteTritInfo;
     const password = getState().wallet.password;
 
@@ -76,7 +80,7 @@ export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState
         const seedStore = await new SeedStore(password, account.accountName);
         await dispatch(cleanUpAccountState(seedStore, account.accountName));
 
-        let result = await dispatch(recover(account.accountName, seedStore, account.inputs, powFn, dialogFn));
+        let result = await dispatch(recover(account.accountName, seedStore, account.inputs, dialogFn));
 
         while (result.failedInputs.length) {
             dispatch(
@@ -87,7 +91,7 @@ export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState
                     10000,
                 ),
             );
-            result = await dispatch(recover(account.accountName, seedStore, result.failedInputs, powFn, dialogFn));
+            result = await dispatch(recover(account.accountName, seedStore, result.failedInputs, dialogFn));
         }
     });
 
@@ -112,12 +116,11 @@ export const byteTritSweep = (SeedStore, powFn, dialogFn) => (dispatch, getState
  * @param  {string} accountName
  * @param  {object} seedStore
  * @param  {object} inputs Inputs list [{ address, keyIndex, balance, security }]
- * @param  {function} powFn
  * @param  {function} dialogFn
  *
  * @returns {function} dispatch
  */
-export const recover = (accountName, seedStore, inputs, powFn, dialogFn) => async (dispatch, getState) => {
+export const recover = (accountName, seedStore, inputs, dialogFn) => async (dispatch, getState) => {
     const seed = await seedStore.getSeed(true);
     const seedFromBytes = map(seed, (byte) => byteToChar(byte)).join('');
 
@@ -154,9 +157,16 @@ export const recover = (accountName, seedStore, inputs, powFn, dialogFn) => asyn
                                 .then(() =>
                                     sweep(
                                         null,
-                                        // If remote proof of work is enabled in settings
-                                        // Pass in null for PoWFn
-                                        getRemotePoWFromState(getState()) ? null : powFn,
+                                        // See: extendedApi#attachToTangle
+                                        getRemotePoWFromState(getState())
+                                            ? extend(
+                                                  {
+                                                      __proto__: seedStore.__proto__,
+                                                  },
+                                                  seedStore,
+                                                  { offloadPow: true },
+                                              )
+                                            : seedStore,
                                     )(seedFromBytes.slice(0, 81), input, {
                                         address: receiveAddress,
                                         value: input.balance,

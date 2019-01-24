@@ -718,9 +718,9 @@ export const filterAddressDataWithPendingIncomingTransactions = (addressData, tr
  *   @method attachAndFormatAddress
  *   @param {string} [provider]
  *
- *   @returns {function(string, number, number, object, object, function): Promise<object>}
+ *   @returns {function(string, number, number, object, object): Promise<object>}
  **/
-export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState, powFn) => {
+export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState) => {
     let attachedTransactions = [];
 
     return findTransactionsAsync(provider)({ addresses: [address] })
@@ -729,7 +729,7 @@ export const attachAndFormatAddress = (provider) => (address, index, balance, se
                 throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
             }
 
-            return sendTransferAsync(provider, powFn)(
+            return sendTransferAsync(provider)(
                 seedStore,
                 prepareTransferArray(address, 0, '', accountState.addressData),
             );

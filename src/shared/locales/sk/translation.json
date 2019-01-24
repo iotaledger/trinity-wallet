@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometrické overenie nie je k dispozícii",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaše zariadenie nepodporuje biometrické overenie alebo nebolo povolené v nastaveniach vášho zariadenia.",
-        "buttonInstructionsDisable": "Tlačidlom nižšie vypnete overovanie odtlačkom prsta",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Tlačidlom nižšie zapnete overovanie odtlačkom prsta.",
         "buttonInstructionsDisableIPhoneX": "Stlačením tlačidla nižšie vypnete overenie pomocou rozpoznávania tváre",
         "buttonInstructionsEnableIPhoneX": "Stlačením tlačidla nižšie zapnete overenie pomocou rozpoznávania tváre",
-        "instructionsLogin": "Pre prihlásenie priložte prst na čítačku"
+        "instructionsLogin": "Pre prihlásenie priložte prst na čítačku",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odoslať {{contents}} na adresu",

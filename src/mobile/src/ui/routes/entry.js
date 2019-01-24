@@ -91,7 +91,7 @@ const renderInitialScreen = (initialScreen, state) => {
             },
         },
         statusBar: {
-            drawBehind: false,
+            drawBehind: true,
             backgroundColor: theme.body.bg,
         },
     };

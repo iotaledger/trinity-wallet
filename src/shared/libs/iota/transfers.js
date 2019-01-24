@@ -25,7 +25,6 @@ import orderBy from 'lodash/orderBy';
 import xor from 'lodash/xor';
 import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD } from '../../config';
 import { iota } from './index';
-import nativeBindings from './nativeBindings';
 import { accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
@@ -483,6 +482,7 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  *
  *   @method performPow
  *   @param {function} powFn
+ *   @param {function} digestFn
  *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
@@ -491,6 +491,7 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  **/
 export const performPow = (
     powFn,
+    digestFn,
     trytes,
     trunkTransaction,
     branchTransaction,
@@ -536,10 +537,12 @@ export const performPow = (
 
                         result.trytes.unshift(trytesWithNonce);
 
-                        return nativeBindings.asyncTransactionObject(trytesWithNonce);
+                        return digestFn(trytesWithNonce).then((digest) =>
+                            iota.utils.transactionObject(trytesWithNonce, digest),
+                        );
                     })
-                    .then((tx) => {
-                        result.transactionObjects.unshift(tx);
+                    .then((transactionObject) => {
+                        result.transactionObjects.unshift(transactionObject);
 
                         return result;
                     });
@@ -555,9 +558,9 @@ export const performPow = (
  *   @method retryFailedTransaction
  *   @param {string} [provider]
  *
- *   @returns {function(array, function): Promise<object>}
+ *   @returns {function(array, object): Promise<object>}
  **/
-export const retryFailedTransaction = (provider) => (transactionObjects, powFn) => {
+export const retryFailedTransaction = (provider) => (transactionObjects, seedStore) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
     const cached = {
@@ -574,7 +577,7 @@ export const retryFailedTransaction = (provider) => (transactionObjects, powFn) 
         // If proof of work failed, select new tips and retry
         return getTransactionsToApproveAsync(provider)()
             .then(({ trunkTransaction, branchTransaction }) => {
-                return attachToTangleAsync(provider, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+                return attachToTangleAsync(provider, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
@@ -797,7 +800,10 @@ export const categoriseInclusionStatesByBundleHash = (tailTransactions, inclusio
  *
  * @returns {function(array, [number]): Promise<object>}
  */
-export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransactions, promotionsAttemptsLimit = 50) => {
+export const promoteTransactionTilConfirmed = (provider, seedStore) => (
+    tailTransactions,
+    promotionsAttemptsLimit = 50,
+) => {
     let promotionAttempt = 0;
     const tailTransactionsClone = cloneDeep(tailTransactions);
 
@@ -818,7 +824,7 @@ export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransact
             const { hash, attachmentTimestamp } = tailTransaction;
 
             // Promote transaction
-            return promoteTransactionAsync(provider, powFn)(hash)
+            return promoteTransactionAsync(provider, seedStore)(hash)
                 .then(() => {
                     return _promote(tailTransaction);
                 })
@@ -842,7 +848,7 @@ export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransact
         const tailTransaction = head(tailTransactionsClone);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(provider, powFn)(hash).then((reattachment) => {
+        return replayBundleAsync(provider, seedStore)(hash).then((reattachment) => {
             const tailTransaction = find(reattachment, { currentIndex: 0 });
             // Add newly reattached transaction
             tailTransactionsClone.push(tailTransaction);

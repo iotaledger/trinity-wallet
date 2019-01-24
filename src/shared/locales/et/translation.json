@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biomeetriline autentimine pole saadaval",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
-        "buttonInstructionsDisable": "Sõrmejäljega autentimise keelamiseks vajutage allpool olevat nuppu",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Sõrmejäljega autentimise lubamiseks vajutage allolevat nuppu.",
         "buttonInstructionsDisableIPhoneX": "Face ID keelamiseks vajutage allolevat nuppu",
         "buttonInstructionsEnableIPhoneX": "Face ID lubamiseks vajutage allolevat nuppu",
-        "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat"
+        "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Te olete saatmas {{contents}} aadressile",

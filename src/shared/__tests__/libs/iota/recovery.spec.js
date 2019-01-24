@@ -16,7 +16,7 @@ import mockTrytes from '../../__samples__/trytes';
 import * as transferUtils from '../../../libs/iota/transfers';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
-import { SwitchingConfig } from '../../../libs/iota';
+import { iota, SwitchingConfig } from '../../../libs/iota';
 
 const validSignedTrytes = [
     'JUO9QBYDDFVAMCMTSYPQVYONDGJ9VDMKNTVSWOAXOSG9UANCDOWEMCAFCELZCQIBUKQEPUVFJOGBXYRODBZWZYVYSUVVBCZFKSTWTNJRNLIXVPDLSWSYAKO99LGCNEIMPCSMTOLSTFYXD9LOMXRQKKOTDSCJJ9CVT9VXMKAU9AUXERTMIPGAD9JWDGJPWIU9ZMPLYGOUT9XHZJQQMOMZDAVHYZERKL9UNKCXSTCVQF9JDETGGAWVEVLGEVAO9DXUXHMRM9INDUMDKCUYLGHEZLRT9QSHJLZDOPUEN99DIXHPNKERXFCUWLQAAADPPYBXUJY9OFMFOBYPBKKARZ9NSAZHWNFXYKFDVWZRFHMGUBATBCKRPIQOXONFMDGRMOZCJUUY9GCWLWFSQQPKBIHMXUJJYNNPKCYBIYGTXIJJHSHNFGRTNLG9TGDNLTYAIKMCOSTSFYWBRQAWRYEVYLBPDESUX9YHFHPLYYYUKYQICRACVSMQSOEQQBCNKRYFDBDO9ZJZYGGKTRAXVKXQRIJHUBRTHUNSRYDFFELXDJNKDYJUWRARGKTPGX9KJFKJCBZAOSFCZZPHNJGGWONLQBTMPFEQOSDXALWTVPY9LBALPLNZCBYP9MWYGJ9NVCGZDXTYLCUTSYWDNONOBNIUVMMFYEXWFLMSMZENZTJQQZBMEQNLTSXGONLZEJSPEXMXQZGWOZLQE9RDXNPAPQKRNJ9NVROLADGW9ETEDBUCHZUZCGGCIPOPHRWPDMMOLLTLIVJOOLCGFERNMFJUUXBNL9EMCMDAOLXCCVFMCAQAMGOYK9UQ9AMTIAH9ZWYHFDDISFSCPIU9VSJJRAHAMCITLYEBHJQVQCPQZEPUXI9USEOQGGLFAU9G9GPRUSILOCDGLGRAUREJOPTVUVSMNNF9HMMIHYUZKTTGCAWQHOXDCEKAIBBJTN9GQUAOOFDFQEIVMZXFPFTSKUQOJB9XI9AURJSVDBYHYABIUZLNTCPCJSDKMFPULMCZQWQUCRGCZYWENNZQONAFYCBBBPEZVHRFFZHBXUNIMXG9WBRFM9TEAHXXTGUVISO9EKVYYFUSSTTCVNGFKPVAGTMVSVAOKDMEPWZZAN9KNPBZEMSRFIVPBNSBLJCMPZD9XVJEFF9DTZTDWEENTWDRXJDJYOSWAUIBCVJXWTCZ9BVDDAYQECMPYFCCUBQLNEGXNMOWSPWLWWTZXQASJWQXGUH9LXJXGYOCGFMUNKX9VZVHBQLG9TEFDX9QTLUXSCJEKCHFQUOHQMYBCJNCGWXXCEJYPCO9999BFMX9ZYYANVKADZCRJ9HEYBBQZM9OIIFZNWHDDSZONCRHV9VXXSQRDFXVZNVQBRCCZNSXLLONHTHKZLRODDFMT9NADOQDJJXSNQBJKDDZRKZKIBCSBMCCBKM9ADNNVDMMPIARAVAKVCKXREJHRHVQYWZQWNNCGRWLICODCEGVMVIXOAHZZBQMVPXZVJPGUOZYABUJMREHEPNNPCZNCAVIYEWPWNUWMYIGZMURPN9FUNSTBAEDVVBICJWQCGLKAKTXKNPIUPSDXDM9KVGSBIRQHXJAAKGKMPXN99TIBZSCLJWATMNWLKMSVSIRLEQR99ZYHVDAJDCRKLBRCZFDVYXPEGHOLMNBFDZBECLIMZZGVCEQQXOOZXXVNASRECAE9RUJVYFGITYSVVEJ9CNEIWEPBPJVYSSZSSNYGKUQDCOLLSGULHAEDKBERGADZLPMDIJIZFOQZILKYP9RYYZISNNCLIXSBTJERCGU9SGOBYGDOGNCRWYBJCZYDZIQXQRVKQIRTWZTKOSURSYTKHWXERVXVLFXTVPXI9DAWPNRIKTJSUXWDHYXQFQLHVZIAPNBBAISLHLNUMQTCIXEYSGDPAROWGYOAEZAAHEGKWUEHEZJPTBDWKGRCCVVEDXQKBNLBKFBYHKGGOH9VQA9WFDYHWQLTIFLBETXSBUSQAHNFRCZGX9JTKYVMEPYFDNDVPDBMKVDBLRVLIKHQEMAAFAZWAJKVPYGCQORHLMSPUCHLYADOPIWFSMF9EQGR9BRELDXHULZXZNWQZSAATKADPPDJVHOJKIZGXBL9GMDVFSPMGSULXGLCSMSQMGFJSDMCX9DXFOHWVSWNOYYIXOUNFCEATAZJTYLLRDWTRPDKBNFAYOO9MFBEKLKMNYQZTHRMG9YZSUSUCDILRSSMSBQDQDIDV9UNGGZJKFBPJMKXPHKSFKEKZPKMBMMFJXYDA9STE9WINZWFSYQFBSYIGJB999999999999999999999999999999999999999999999999999999QHUVEZD99B99999999B99999999TCOZJBUTFDSGGBYVHBCCNGCAEUZHKZCBNNXZUOIQKCUZWLTEKQKJOBOGCTOFEGJCKVGXILKAO9PLHHBSW999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999',
@@ -82,6 +82,7 @@ describe.skip('libs: iota/recovery', () => {
         let seed;
         let validInput;
         let validTransfer;
+        let seedStore;
 
         before(() => {
             seed = 'U'.repeat(81);
@@ -98,6 +99,17 @@ describe.skip('libs: iota/recovery', () => {
                 message: '',
                 tag: '',
             };
+
+            seedStore = {
+                // Pass in extended nativeModule
+                offloadPow: true,
+                performPow: () =>
+                    Promise.resolve({
+                        trytes: attachedTrytes,
+                        transactionObject: map(attachedTrytes, iota.utils.transactionObject),
+                    }),
+                getDigest: (trytes) => Promise.resolve(iota.utils.transactionObject(trytes).hash),
+            };
         });
 
         describe('when input is invalid', () => {
@@ -110,7 +122,7 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Invalid input."', () => {
-                return sweep()(seed, assign({}, validInput, { address: undefined }), validTransfer)
+                return sweep(null, seedStore)(seed, assign({}, validInput, { address: undefined }), validTransfer)
                     .then(() => {
                         throw new Error();
                     })
@@ -130,7 +142,7 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Invalid transfer."', () => {
-                return sweep()(seed, validInput, assign({}, validTransfer, { value: null }))
+                return sweep(null, seedStore)(seed, validInput, assign({}, validTransfer, { value: null }))
                     .then(() => {
                         throw new Error();
                     })
@@ -150,7 +162,7 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Cannot sweep to same address."', () => {
-                return sweep()(
+                return sweep(null, seedStore)(
                     seed,
                     assign({}, validInput, { address: 'U'.repeat(81) }),
                     assign({}, validTransfer, { address: 'U'.repeat(81) }),
@@ -174,7 +186,7 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Balance mismatch."', () => {
-                return sweep()(seed, validInput, validTransfer)
+                return sweep(null, seedStore)(seed, validInput, validTransfer)
                     .then(() => {
                         throw new Error();
                     })
@@ -242,7 +254,7 @@ describe.skip('libs: iota/recovery', () => {
                             .returns(() => Promise.resolve({}));
 
                         return (
-                            sweep()(seed, validInput, validTransfer)
+                            sweep(null, seedStore)(seed, validInput, validTransfer)
                                 // Because provided seed is incorrect, it will lead to incorrect signatures and will throw
                                 .catch((err) => {
                                     expect(err.message).to.equal('Invalid bundle');
@@ -317,7 +329,7 @@ describe.skip('libs: iota/recovery', () => {
                         const stub = sinon.stub(transferUtils, 'promoteTransactionTilConfirmed');
 
                         return (
-                            sweep()(seed, validInput, validTransfer)
+                            sweep(null, seedStore)(seed, validInput, validTransfer)
                                 // Because provided seed is incorrect, it will lead to incorrect signatures and will throw
                                 .catch((err) => {
                                     expect(err.message).to.equal('Invalid bundle');
@@ -329,7 +341,7 @@ describe.skip('libs: iota/recovery', () => {
                     });
 
                     it('should not block sweeps from input address', () => {
-                        return sweep()(
+                        return sweep(null, seedStore)(
                             'A99A9A9AA999AAAA999A999A9AAAAA999A9A999AAA9999AA99AAA9AAAA9A9AAA99A9AAA99AAAAA9AA',
                             validInput,
                             validTransfer,
@@ -395,7 +407,7 @@ describe.skip('libs: iota/recovery', () => {
                 });
 
                 it('should not block input address from spending', () => {
-                    return sweep()(
+                    return sweep(null, seedStore)(
                         'A99A9A9AA999AAAA999A999A9AAAAA999A9A999AAA9999AA99AAA9AAAA9A9AAA99A9AAA99AAAAA9AA',
                         validInput,
                         validTransfer,
@@ -446,7 +458,7 @@ describe.skip('libs: iota/recovery', () => {
                 });
 
                 it('should throw with an error "Already spent from addresses"', () => {
-                    return sweep()(seed, validInput, validTransfer).catch((err) => {
+                    return sweep(null, seedStore)(seed, validInput, validTransfer).catch((err) => {
                         expect(err.message).to.equal('Already spent from addresses');
                     });
                 });
@@ -493,7 +505,7 @@ describe.skip('libs: iota/recovery', () => {
                 });
 
                 it('should not block input address from spending', () => {
-                    return sweep()(
+                    return sweep(null, seedStore)(
                         // Pass in correct seed
                         'A99A9A9AA999AAAA999A999A9AAAAA999A9A999AAA9999AA99AAA9AAAA9A9AAA99A9AAA99AAAAA9AA',
                         validInput,
@@ -531,7 +543,7 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Already spent from addresses"', () => {
-                return sweep()(seed, validInput, validTransfer).catch((err) => {
+                return sweep(null, seedStore)(seed, validInput, validTransfer).catch((err) => {
                     expect(err.message).to.equal('Already spent from addresses');
                 });
             });
@@ -548,7 +560,7 @@ describe.skip('libs: iota/recovery', () => {
 
             it('should throw with an error "Invalid bundle"', () => {
                 // Seed is fake, so if all checks pass and it prepares transfers the signatures will be invalid
-                return sweep()(seed, validInput, validTransfer).catch((err) => {
+                return sweep(null, seedStore)(seed, validInput, validTransfer).catch((err) => {
                     expect(err.message).to.equal('Invalid bundle');
                 });
             });
@@ -564,7 +576,7 @@ describe.skip('libs: iota/recovery', () => {
             });
 
             it('should return correct transaction trytes', () => {
-                return sweep()(
+                return sweep(null, seedStore)(
                     // Pass in correct seed
                     'A99A9A9AA999AAAA999A999A9AAAAA999A9A999AAA9999AA99AAA9AAAA9A9AAA99A9AAA99AAAAA9AA',
                     validInput,

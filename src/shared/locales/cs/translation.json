@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometrická autentizace není k dispozici",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje biometrickou autentizaci, nebo v nastavení zařízení nebylo povoleno její používání.",
-        "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
         "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje",
         "buttonInstructionsEnableIPhoneX": "Stisknutím tlačítka níže zapnete ověření pomocí rozpoznávání obličeje",
-        "instructionsLogin": "Pro přihlášení přiložte prst na čtečku"
+        "instructionsLogin": "Pro přihlášení přiložte prst na čtečku",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",

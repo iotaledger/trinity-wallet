@@ -5,8 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { connect } from 'react-redux';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { Styling } from 'ui/theme/general';
-import { width, height } from 'libs/dimensions';
-import { isAndroid } from 'libs/device';
+import { width } from 'libs/dimensions';
 import DualFooterButtons from './DualFooterButtons';
 import SingleFooterButton from './SingleFooterButton';
 
@@ -15,13 +14,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width,
         justifyContent: 'flex-end',
-        flex: 1,
-    },
-    modalContainer: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width,
-        height,
         flex: 1,
     },
     modalContent: {
@@ -71,21 +63,6 @@ export class ModalViewComponent extends PureComponent {
         disableRightButton: false,
     };
 
-    /**
-     *  Gets modal content layout styling, depending on Android/iOS and whether topBar should be displayed
-     *
-     *  @method getModalContentStyling
-     *
-     * @returns {object}
-     */
-    getModalContentStyling() {
-        const { displayTopBar } = this.props;
-        if (isAndroid) {
-            return { flex: displayTopBar ? 1 - Styling.topbarHeightRatio : 1 };
-        }
-        return { height: displayTopBar ? height - Styling.topbarHeight : height };
-    }
-
     render() {
         const {
             theme: { body },
@@ -109,10 +86,14 @@ export class ModalViewComponent extends PureComponent {
                 extraHeight={0}
                 contentContainerStyle={styles.container}
             >
-                {displayTopBar && (
-                    <View style={isAndroid ? { flex: Styling.topbarHeightRatio } : { height: Styling.topbarHeight }} />
-                )}
-                <View style={[styles.modalContent, { backgroundColor: body.bg }, this.getModalContentStyling()]}>
+                {displayTopBar && <View style={{ flex: Styling.topbarHeightRatio }} />}
+                <View
+                    style={[
+                        styles.modalContent,
+                        { backgroundColor: body.bg },
+                        { flex: displayTopBar ? 1 - Styling.topbarHeightRatio : 1 },
+                    ]}
+                >
                     {children}
                 </View>
                 <View style={{ position: 'absolute', bottom: 0 }}>

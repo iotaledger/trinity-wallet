@@ -24,7 +24,6 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Animated,
-    StatusBar,
 } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { setPollFor } from 'shared-modules/actions/polling';
@@ -33,7 +32,7 @@ import { roundDown } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
-import { isIPhoneX, isAndroid } from 'libs/device';
+import { isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 
 const { height, width } = Dimensions.get('window');
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         width,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flex: 1,
     },
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: width - width / 4.5,
+        height: Styling.topbarHeight - Styling.statusBarHeight,
     },
     iconWrapper: {
         justifyContent: 'center',
@@ -234,19 +234,17 @@ class TopBar extends Component {
     }
 
     /**
-     * Returns padding styling dependent on device type
+     * Returns styling dependent on device type
      *
      * @method getTopbarPadding
      * @returns {any}
      */
-    getTopbarPadding() {
+    getTopbarStyling() {
+        const { topBarHeight } = this.props;
         if (isIPhoneX) {
-            return;
+            return { height: topBarHeight - 20 };
         }
-        if (isAndroid) {
-            return { paddingBottom: StatusBar.currentHeight / 2 };
-        }
-        return { paddingTop: 10 };
+        return { height: topBarHeight - Styling.statusBarHeight, marginTop: Styling.statusBarHeight };
     }
 
     setScrollable(y) {
@@ -302,7 +300,6 @@ class TopBar extends Component {
             accountInfo,
             seedIndex,
             theme: { bar, primary },
-            topBarHeight,
             isKeyboardActive,
             notificationLog,
             mode,
@@ -333,7 +330,7 @@ class TopBar extends Component {
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
-            <Animated.View style={[styles.titleWrapper, { height: topBarHeight }, this.getTopbarPadding()]}>
+            <Animated.View style={[styles.titleWrapper, this.getTopbarStyling()]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!shouldDisable) {
@@ -347,13 +344,13 @@ class TopBar extends Component {
                         !minimised && (
                             <View style={styles.barWrapper}>
                                 <View style={styles.iconWrapper}>
-                                    <Animated.View style={[styles.iconWrapper, { height: topBarHeight }]}>
+                                    <Animated.View style={styles.iconWrapper}>
                                         {(hasNotifications &&
                                             !isKeyboardActive &&
                                             mode === 'Advanced' && (
                                                 <TouchableOpacity
                                                     onPress={() => this.showModal()}
-                                                    style={[styles.iconWrapper, { flex: 1, alignItems: 'flex-end' }]}
+                                                    style={[styles.iconWrapper, { alignItems: 'flex-end' }]}
                                                 >
                                                     <Icon
                                                         name="notification"
@@ -365,7 +362,7 @@ class TopBar extends Component {
                                             )) || <View />}
                                     </Animated.View>
                                 </View>
-                                <Animated.View style={[styles.balanceWrapper, { height: topBarHeight }]}>
+                                <Animated.View style={styles.balanceWrapper}>
                                     <Text
                                         numberOfLines={1}
                                         style={[
@@ -399,9 +396,7 @@ class TopBar extends Component {
                                     </View>
                                 </Animated.View>
                                 <View style={styles.iconWrapper}>
-                                    <Animated.View
-                                        style={[styles.iconWrapper, { height: topBarHeight, alignItems: 'flex-start' }]}
-                                    >
+                                    <Animated.View style={[styles.iconWrapper, { alignItems: 'flex-start' }]}>
                                         {(hasMultipleSeeds && (
                                             <Icon
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}

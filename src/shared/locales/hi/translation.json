@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "बायोमेट्रिक प्रमाणीकरण अनुपलब्ध",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "आपका डिवाइस बायोमेट्रिक प्रमाणीकरण का समर्थन नहीं करता है या यह डिवाइस सेटिंग्स में कॉंफ़िगर नहीं किया गया है ।",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण को चालू करने के लिए नीचे बटन दबाएँ.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID",
-        "instructionsLogin": "लॉग इन करने के लिए फ़िंगरप्रिंट रीडर स्पर्श करें ।"
+        "instructionsLogin": "लॉग इन करने के लिए फ़िंगरप्रिंट रीडर स्पर्श करें ।",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "आप पते पर {{contents}} भेजने वाले है",

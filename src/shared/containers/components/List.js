@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
-import { getSelectedAccountName, getAccountNamesFromState } from '../../selectors/accounts';
+import {
+    getSelectedAccountName,
+    getFailedBundleHashesForSelectedAccount,
+    getSelectedAccountMeta,
+    getAccountNamesFromState,
+} from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -26,6 +31,7 @@ export default function withListData(ListComponent) {
             ui: PropTypes.object.isRequired,
             accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string,
+            accountMeta: PropTypes.object.isRequired,
             mode: PropTypes.string.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
@@ -39,8 +45,9 @@ export default function withListData(ListComponent) {
             hideEmptyTransactions: PropTypes.bool.isRequired,
             promoteTransaction: PropTypes.func.isRequired,
             retryFailedTransaction: PropTypes.func.isRequired,
-            remotePoW: PropTypes.bool.isRequired,
             generateAlert: PropTypes.func.isRequired,
+            failedHashes: PropTypes.object.isRequired,
+            password: PropTypes.object.isRequired,
             /** Wallet account names */
             accountNames: PropTypes.array.isRequired,
         };
@@ -51,17 +58,19 @@ export default function withListData(ListComponent) {
             return formatRelevantTransactions(transactions, addresses);
         };
 
-        retryFailedTransaction = (bundle, powFn) => {
-            this.props.retryFailedTransaction(this.props.accountName, bundle, powFn);
+        promoteTransaction = (hash, seedStore) => {
+            this.props.promoteTransaction(hash, this.props.accountName, seedStore);
         };
 
-        promoteTransaction = (hash, powFn) => {
-            this.props.promoteTransaction(hash, this.props.accountName, powFn);
+        retryFailedTransaction = (bundle, seedStore) => {
+            this.props.retryFailedTransaction(this.props.accountName, bundle, seedStore);
         };
 
         render() {
             const {
                 accountNames,
+                accountMeta,
+                password,
                 index,
                 seedIndex,
                 accounts,
@@ -75,7 +84,6 @@ export default function withListData(ListComponent) {
                 toggleEmptyTransactions,
                 hideEmptyTransactions,
                 theme,
-                remotePoW,
                 generateAlert,
                 ui,
                 t,
@@ -93,12 +101,15 @@ export default function withListData(ListComponent) {
                 index !== -1
                     ? this.getAccountTransactions(accounts.accountInfo[accountName])
                     : Object.entries(accounts.accountInfo).reduce(
-                          (transactions, [_accountName, accountData]) => transactions.concat(this.getAccountTransactions(accountData)),
+                          (transactions, [_accountName, accountData]) =>
+                              transactions.concat(this.getAccountTransactions(accountData)),
                           [],
                       );
 
             const ListProps = {
                 transactions,
+                accountMeta,
+                password,
                 updateAccount,
                 setItem,
                 currentItem,
@@ -108,7 +119,6 @@ export default function withListData(ListComponent) {
                 filter,
                 isBusy,
                 mode,
-                remotePoW,
                 isLoading: ui.isFetchingAccountInfo,
                 currentlyPromotingBundleHash: ui.currentlyPromotingBundleHash,
                 isRetryingFailedTransaction: ui.isRetryingFailedTransaction,
@@ -131,11 +141,13 @@ export default function withListData(ListComponent) {
         accounts: state.accounts,
         accountName: getSelectedAccountName(state),
         theme: getThemeFromState(state),
+        accountMeta: getSelectedAccountMeta(state),
+        failedHashes: getFailedBundleHashesForSelectedAccount(state),
         accountNames: getAccountNamesFromState(state),
         mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,
-        remotePoW: state.settings.remotePoW,
+        password: state.wallet.password,
     });
 
     const mapDispatchToProps = {
@@ -145,8 +157,5 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(withI18n()(ListData));
+    return connect(mapStateToProps, mapDispatchToProps)(withI18n()(ListData));
 }

@@ -199,6 +199,7 @@ class StatefulDropdownAlert extends Component {
                 onClose={dismissAlert}
                 closeInterval={closeAfter}
                 tapToCloseEnabled={this.props.hasConnection && forceUpdate === false}
+                translucent
             />
         );
     }

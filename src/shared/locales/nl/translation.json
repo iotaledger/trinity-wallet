@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometrische authenticatie onbeschikbaar",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen biometrische authenticatie of het is niet ingesteld in de apparaatinstellingen.",
-        "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
         "buttonInstructionsDisableIPhoneX": "Druk op de knop hieronder om Face ID uit te schakelen",
         "buttonInstructionsEnableIPhoneX": "Druk op de knop hieronder om Face ID in te schakelen",
-        "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen"
+        "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",

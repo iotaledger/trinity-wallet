@@ -46,7 +46,6 @@ import AmountTextInput from 'ui/components/AmountTextInput';
 import { Icon } from 'ui/theme/icons';
 import { width } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
-import { getPowFn } from 'libs/nativeModules';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -620,7 +619,6 @@ export class Send extends Component {
                 t('snapshotTransitionInProgress'),
                 t('snapshotTransitionInProgressExplanation'),
             );
-
             return;
         }
         // For sending a message
@@ -637,8 +635,8 @@ export class Send extends Component {
                 try {
                     const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
                     this.props.getFromKeychainSuccess('send', 'makeTransaction');
-                    const powFn = getPowFn();
-                    return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName, powFn);
+
+                    return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName);
                 } catch (error) {
                     this.props.getFromKeychainError('send', 'makeTransaction');
                     this.props.generateTransferErrorAlert(error);
@@ -873,7 +871,6 @@ const mapStateToProps = (state) => ({
     denomination: state.ui.sendDenomination,
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
-    remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
