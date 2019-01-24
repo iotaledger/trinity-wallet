@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "永远不要与任何人分享您的种子。",
         "iotaLogo": "IOTA标志",
-        "print": "Print",
+        "print": "打印",
         "paperConvenience": "为您的种子打印一份纸质副本是一种方便的存储方式。",
         "publicInsecure": "但是在公共Wifi或者公共打印机上打印是不安全的。",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "打印前请检查并确认",
+        "wifiConfirmation": "我没有使用公共WIFI",
+        "printerConfirmation": "我没有在公共打印机上打印"
     },
     "receive": {
         "yourAddress": "您的地址",
@@ -293,13 +293,13 @@
         "copyAddress": "复制地址",
         "addressCopied": "地址已复制",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "生成地址",
         "noAddresses": "无地址",
         "spent": "使用过",
         "tag": "标签",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAnAddress": "生成地址",
+        "generateAnAddressTitle": "生成地址",
+        "generateAnAddressExplanation": "请在使用此功能之前生成一个地址。",
         "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "让我们写下您的种子",
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "什么是校验和？",
         "everySeedHasAChecksum": "每个种子都有相应的3字符校验和.",
         "iHavesavedMySeed": "我已经保存好了种子",
         "checksumExplanation": "每当您向钱包添加种子时，您应确保钱包生成的校验和与您写下来的校验和相匹配。",
@@ -322,14 +322,14 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "请确认您的种子",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity不会要求您重新输入种子，除非您重置了钱包或者卸载了应用。",
         "enterYourSeed": "输入您的种子",
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
         "ifYouHaveNotSaved": "如果您尚未保存您的种子，请返回保存。",
         "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "警告: 无法粘贴种子",
+        "clipboardWarningExplanation": "为您的安全起见, 粘贴被禁用。您可以从文本文件中拖放种子。"
     },
     "send": {
         "invalidAddress": "无效地址",
