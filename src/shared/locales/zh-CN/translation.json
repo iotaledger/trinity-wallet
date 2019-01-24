@@ -521,14 +521,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "您确定要登出吗？",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "您即将注销",
         "areYouSure": "确定？"
     },
     "qrScanner": {
         "scan": "扫描您的二维码"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "单位系统",
         "trillion": "万亿",
         "billion": "十亿",
         "million": "百万",
@@ -542,9 +542,9 @@
         "discordInformation": "请前往Discord的#help频道寻求帮助。"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "确定要删除您的账户吗？",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "本操作无法撤销",
         "enterPassword": "请输入密码以删除该帐户。"
     },
     "manualSync": {
@@ -556,7 +556,7 @@
         "syncingYourAccount": "正在同步您的账号"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "输入帐户名和种子",
         "incorrectFormat": "种子格式不正确",
         "validSeedExplanation": "有效的种子应该是81个字符，并且只包含 A-Z 或9。"
     },
