@@ -297,7 +297,7 @@
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "tag": "Étiquette",
-        "generateAnAddress": "Générer une nouvelle adresse",
+        "generateAnAddress": "Générer une adresse",
         "generateAnAddressTitle": "Générer une adresse",
         "generateAnAddressExplanation": "Veuillez générer une adresse avant d’utiliser cette fonction.",
         "generateAddressInformation": "Générez une nouvelle adresse de dépôt à chaque fois que vous souhaitez recevoir des IOTA"
@@ -592,17 +592,17 @@
         "fingerprintUnavailable": "Authentification biométrique indisponible",
         "deviceLocked": "Authentification désactivée pendant 30 secondes",
         "fingerprintUnavailableExplanation": "Votre appareil ne supporte pas l'authentification biométrique, ou cette fonction n'a pas été configurée dans les paramètres de votre appareil.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "Cet appareil ne permet pas l'authentification biométrique",
+        "notConfigured": "L'authentification biométrique n'a pas été configurée dans les paramètres de l'appareil",
+        "buttonInstructionsDisable": "Appuyez sur le bouton ci-dessous pour désactiver l’authentification par empreinte digitale.",
         "buttonInstructionsEnable": "Appuyez sur le bouton ci-dessous pour activer l’authentification par empreinte digitale.",
         "buttonInstructionsDisableIPhoneX": "Appuyez sur le bouton ci-dessous pour désactiver Face ID",
         "buttonInstructionsEnableIPhoneX": "Appuyez sur le bouton ci-dessous pour activer Face ID",
         "instructionsLogin": "Touchez le lecteur d'empreintes pour vous connecter",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "L'authentification a été annulée par votre appareil",
+        "userCancelledAuth": "Demande d'authentification annulée",
+        "passwordFallback": "Retour à l'authentification par mot de passe",
+        "noPassword": "Le mot de passe n'est pas défini sur l'appareil"
     },
     "transferConfirmation": {
         "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
