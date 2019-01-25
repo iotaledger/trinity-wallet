@@ -166,7 +166,6 @@ class UseExistingSeed extends Component {
         this.props.setAccountInfoDuringSetup({
             name: accountName,
             meta: { type: 'keychain' },
-            seed,
             completed: true,
             usedExistingSeed: true,
         });
