@@ -72,10 +72,6 @@ const initialState = {
      */
     sendMessageFieldText: '',
     /**
-     * Password text field data on login
-     */
-    loginPasswordFieldText: '',
-    /**
      * Active denomination on send screen
      */
     sendDenomination: 'i',
@@ -174,11 +170,6 @@ export default (state = initialState, action) => {
                 ...state,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: true,
-            };
-        case UiActionTypes.SET_LOGIN_PASSWORD_FIELD:
-            return {
-                ...state,
-                loginPasswordFieldText: action.payload,
             };
         case UiActionTypes.SET_SEND_ADDRESS_FIELD:
             return {
@@ -286,7 +277,6 @@ export default (state = initialState, action) => {
                 sendAddressFieldText: '',
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
-                loginPasswordFieldText: '',
                 sendDenomination: 'i',
                 doNotMinimise: false,
                 isModalActive: false,

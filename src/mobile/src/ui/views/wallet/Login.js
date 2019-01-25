@@ -11,7 +11,7 @@ import timer from 'react-native-timer';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
-import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'shared-modules/actions/ui';
+import { setUserActivity, setLoginRoute } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
@@ -39,10 +39,6 @@ class Login extends Component {
         is2FAEnabled: PropTypes.bool.isRequired,
         /** @ignore */
         setUserActivity: PropTypes.func.isRequired,
-        /** @ignore */
-        setLoginPasswordField: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.any,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -97,7 +93,7 @@ class Login extends Component {
         Linking.removeEventListener('url');
         timer.clearTimeout('delayRouteChange' + this.props.loginRoute);
         timer.clearTimeout('delayNavigation');
-        this.props.setLoginPasswordField(null);
+        delete this.state.password;
         // gc
     }
 
@@ -108,12 +104,13 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const { t, is2FAEnabled, hasConnection, password, forceUpdate } = this.props;
+        const { t, is2FAEnabled, hasConnection, forceUpdate } = this.props;
+        const { password } = this.state;
         if (!hasConnection || forceUpdate) {
             return;
         }
         this.animationOutType = ['fadeOut'];
-        if (!password) {
+        if (this.state.password.length === 0) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             let pwdHash = await hash(password);
@@ -121,8 +118,8 @@ class Login extends Component {
                 await authorize(pwdHash);
                 global.passwordHash = pwdHash;
                 pwdHash = null;
+                delete this.state.password;
                 // gc
-                this.props.setLoginPasswordField(null);
                 if (!is2FAEnabled) {
                     this.navigateToLoading();
                 } else {
@@ -236,8 +233,8 @@ class Login extends Component {
     }
 
     render() {
-        const { theme, password, isFingerprintEnabled } = this.props;
-        const { nextLoginRoute } = this.state;
+        const { theme, isFingerprintEnabled } = this.props;
+        const { nextLoginRoute, password } = this.state;
         const body = theme.body;
         return (
             <AnimatedComponent
@@ -254,7 +251,7 @@ class Login extends Component {
                         theme={theme}
                         onLoginPress={this.onLoginPress}
                         navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
-                        setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
+                        setLoginPasswordField={(password) => this.setState({ password })}
                         password={password}
                         isFingerprintEnabled={isFingerprintEnabled}
                     />
@@ -278,7 +275,6 @@ const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: state.settings.theme,
     is2FAEnabled: state.settings.is2FAEnabled,
-    password: state.ui.loginPasswordFieldText,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
@@ -290,7 +286,6 @@ const mapDispatchToProps = {
     setFullNode,
     setSetting,
     setUserActivity,
-    setLoginPasswordField,
     setDeepLink,
     setLoginRoute,
 };

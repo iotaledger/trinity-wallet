@@ -21,7 +21,6 @@ describe('Reducer: ui', () => {
                 sendAddressFieldText: '',
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
-                loginPasswordFieldText: '',
                 sendDenomination: 'i',
                 doNotMinimise: false,
                 isModalActive: false,
@@ -135,26 +134,6 @@ describe('Reducer: ui', () => {
             };
 
             expect(newState.hasErrorFetchingCurrencyData).to.eql(expectedState.hasErrorFetchingCurrencyData);
-        });
-    });
-
-    describe('IOTA/UI/SET_LOGIN_PASSWORD_FIELD', () => {
-        it('should set "loginPasswordFieldText" state prop to "payload"', () => {
-            const initialState = {
-                loginPasswordFieldText: '',
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_LOGIN_PASSWORD_FIELD',
-                payload: 'baz',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                loginPasswordFieldText: 'baz',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 
