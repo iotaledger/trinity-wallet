@@ -39,9 +39,9 @@ class PasswordFields extends Component {
         /** @ignore */
         setReentry: PropTypes.func.isRequired,
         /** @ignore */
-        password: PropTypes.any,
+        password: PropTypes.string,
         /** @ignore */
-        reentry: PropTypes.any,
+        reentry: PropTypes.string,
         /** First text input label */
         passwordLabel: PropTypes.any,
         /** Second text input label */
@@ -69,7 +69,7 @@ class PasswordFields extends Component {
     checkPassword() {
         const { t, password, reentry } = this.props;
         const score = zxcvbn(password);
-        if (password === null || reentry === null) {
+        if (password.length === 0) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('emptyPasswordExplanation'));
         } else if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
             return this.props.onAcceptPassword();
@@ -94,7 +94,7 @@ class PasswordFields extends Component {
 
     render() {
         const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const score = zxcvbn(password ? password : '');
+        const score = zxcvbn(password);
         const isValid = score.score === 4;
 
         return (

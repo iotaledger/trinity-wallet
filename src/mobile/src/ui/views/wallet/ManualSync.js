@@ -95,11 +95,11 @@ export class ManualSync extends Component {
         leaveNavigationBreadcrumb('ManualSync');
     }
 
-    sync() {
+    async sync() {
         const { selectedAccountName, selectedAccountMeta, t, shouldPreventAction } = this.props;
 
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.manuallySyncAccount(seedStore, selectedAccountName);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));

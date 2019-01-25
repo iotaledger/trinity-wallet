@@ -186,8 +186,8 @@ export class SnapshotTransition extends Component {
      */
     onBalanceCompletePress() {
         const { transitionAddresses, selectedAccountName, selectedAccountMeta } = this.props;
-        setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+        setTimeout(async () => {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses);
         }, 300);
     }
@@ -200,8 +200,8 @@ export class SnapshotTransition extends Component {
         const { transitionAddresses, selectedAccountName, selectedAccountMeta } = this.props;
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
-        setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+        setTimeout(async () => {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
         }, 300);
     }
@@ -211,10 +211,10 @@ export class SnapshotTransition extends Component {
      * Finds balance for those addresses and displays a modal asking the user to confirm the balance
      * @method onSnapshotTransitionPress
      */
-    onSnapshotTransitionPress() {
+    async onSnapshotTransitionPress() {
         const { addresses, shouldPreventAction, selectedAccountName, selectedAccountMeta, t } = this.props;
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));

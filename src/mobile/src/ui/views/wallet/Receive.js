@@ -436,7 +436,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
 
         try {
-            const seedStore = new SeedStore[selectedAccountData.type || 'keychain'](
+            const seedStore = await new SeedStore[selectedAccountData.type || 'keychain'](
                 global.passwordHash,
                 selectedAccountName,
             );

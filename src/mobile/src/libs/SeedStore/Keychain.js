@@ -3,6 +3,7 @@ import values from 'lodash/values';
 import omit from 'lodash/omit';
 import cloneDeep from 'lodash/cloneDeep';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
+import { sha256, UInt8ToString } from 'libs/crypto';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
 import SeedStoreCore from './SeedStoreCore';
@@ -15,9 +16,13 @@ class Keychain extends SeedStoreCore {
      */
     constructor(key, accountId) {
         super();
-
-        this.key = cloneDeep(key);
-        this.accountId = accountId;
+        return (async () => {
+            this.key = cloneDeep(key);
+            if (accountId) {
+                this.accountId = await sha256(accountId);
+            }
+            return this;
+        })();
     }
 
     /**
@@ -27,8 +32,7 @@ class Keychain extends SeedStoreCore {
      * @returns {promise} - Resolves to a success boolean
      */
     addAccount = async (accountId, seed) => {
-        this.accountId = accountId;
-
+        this.accountId = await sha256(accountId);
         const existingInfo = await keychain.get(ALIAS_SEEDS);
         const info = { [this.accountId]: seed };
 
@@ -49,15 +53,15 @@ class Keychain extends SeedStoreCore {
      */
     accountRename = async (accountId) => {
         const seedInfo = await this.getSeeds();
-
+        const newAccountId = await sha256(accountId);
         let newSeedInfo = {};
 
-        if (this.accountId !== accountId) {
-            newSeedInfo = Object.assign({}, seedInfo, { [accountId]: seedInfo[this.accountId] });
+        if (this.accountId !== newAccountId) {
+            newSeedInfo = Object.assign({}, seedInfo, { [newAccountId]: seedInfo[this.accountId] });
             delete newSeedInfo[this.accountId];
         }
 
-        this.accountId = accountId;
+        this.accountId = newAccountId;
 
         return await createAndStoreBoxInKeychain(this.key, newSeedInfo, ALIAS_SEEDS);
     };
@@ -84,7 +88,6 @@ class Keychain extends SeedStoreCore {
      */
     generateAddress = async (options) => {
         const seed = await this.getSeed();
-
         if (options.total && options.total > 1) {
             const genFn = getMultiAddressGenFn();
             return await genFn(seed, options.index, options.security, options.total);
@@ -108,7 +111,7 @@ class Keychain extends SeedStoreCore {
      */
     getSeed = async () => {
         const seeds = await this.getSeeds();
-        return seeds[this.accountId];
+        return UInt8ToString(Uint8Array.from(Object.values(seeds[this.accountId])));
     };
 
     /**

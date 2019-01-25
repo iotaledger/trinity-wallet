@@ -70,10 +70,10 @@ export default () => (C) => {
         /**
          *  Updates account with latest data
          */
-        updateAccountData() {
+        async updateAccountData() {
             const { selectedAccountName, selectedAccountMeta } = this.props;
 
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
 

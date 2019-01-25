@@ -21,6 +21,8 @@ import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
+import { stringToUInt8 } from 'libs/crypto'; //temp
+
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
@@ -86,7 +88,7 @@ class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seed: null,
+            seed: '',
         };
     }
 
@@ -101,7 +103,7 @@ class EnterSeed extends React.Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
-        this.setState({ seed: null });
+        delete this.state.seed;
         // gc
     }
 
@@ -111,19 +113,19 @@ class EnterSeed extends React.Component {
     onDonePress() {
         const { t, theme: { body } } = this.props;
         const { seed } = this.state;
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
-        } else if (seed.length !== MAX_SEED_LENGTH) {
+        if (seed === null || seed.length !== MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
-                seed.length > MAX_SEED_LENGTH ? t('seedTooLong') : t('seedTooShort'),
-                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
+                seed && seed.length > MAX_SEED_LENGTH ? t('seedTooLong') : t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed ? seed.length : 0 }),
             );
+        } else if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
+            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            global.onboardingSeed = seed;
+            global.onboardingSeed = stringToUInt8(seed);
             // gc
             // Since this seed was not generated in Trinity, mark "usedExistingSeed" as true.
             this.props.setAccountInfoDuringSetup({ usedExistingSeed: true });
@@ -153,7 +155,7 @@ class EnterSeed extends React.Component {
      */
     onBackPress() {
         navigator.pop(this.props.componentId);
-        this.setState({ seed: null });
+        delete this.state.seed;
         // gc
     }
 

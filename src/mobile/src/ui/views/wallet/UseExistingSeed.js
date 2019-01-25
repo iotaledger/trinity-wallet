@@ -21,6 +21,8 @@ import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
+import { stringToUInt8 } from 'libs/crypto'; //temp
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -99,7 +101,7 @@ class UseExistingSeed extends Component {
         super(props);
 
         this.state = {
-            seed: null,
+            seed: '',
             accountName: '',
         };
     }
@@ -110,7 +112,7 @@ class UseExistingSeed extends Component {
 
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
-        this.setState({ seed: null });
+        delete this.state.seed;
         // gc
     }
 
@@ -158,7 +160,7 @@ class UseExistingSeed extends Component {
     async fetchAccountInfo(seed, accountName) {
         const { theme: { body } } = this.props;
 
-        const seedStore = new SeedStore.keychain(global.passwordHash);
+        const seedStore = await new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);
 
         this.props.setAccountInfoDuringSetup({
@@ -225,9 +227,10 @@ class UseExistingSeed extends Component {
             if (shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
 
-            const seedStore = new SeedStore.keychain(global.passwordHash);
-            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+            const seedUInt8 = stringToUInt8(seed);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seedUInt8);
 
             if (!isUniqueSeed) {
                 return this.props.generateAlert(
@@ -237,7 +240,7 @@ class UseExistingSeed extends Component {
                 );
             }
 
-            return this.fetchAccountInfo(seed, accountName);
+            return this.fetchAccountInfo(seedUInt8, accountName);
         }
     }
 
@@ -318,6 +321,7 @@ class UseExistingSeed extends Component {
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
                             seed={seed}
+                            isSeedInput
                         />
                         <View style={{ flex: 0.5 }} />
                         <SeedVaultImport

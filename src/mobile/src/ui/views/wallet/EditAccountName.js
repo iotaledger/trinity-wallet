@@ -111,7 +111,7 @@ export class EditAccountName extends Component {
      *
      * @method save
      */
-    save(accountName) {
+    async save(accountName) {
         const { accountNames, selectedAccountName, selectedAccountMeta, t } = this.props;
 
         if (accountNames.includes(accountName)) {
@@ -121,7 +121,7 @@ export class EditAccountName extends Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
 
             seedStore
                 .accountRename(accountName)

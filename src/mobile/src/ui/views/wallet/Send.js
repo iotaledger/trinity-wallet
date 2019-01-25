@@ -624,10 +624,13 @@ export class Send extends Component {
 
         timer.setTimeout(
             'delaySend',
-            () => {
+            async () => {
                 this.props.getFromKeychainRequest('send', 'makeTransaction');
                 try {
-                    const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+                    const seedStore = await new SeedStore[selectedAccountMeta.type](
+                        global.passwordHash,
+                        selectedAccountName,
+                    );
                     this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
                     return this.props.makeTransaction(seedStore, address, value, message, selectedAccountName);

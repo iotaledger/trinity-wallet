@@ -93,7 +93,7 @@ export class MainSettings extends Component {
                     },
                 });
                 this.props.clearWalletData();
-                global.passwordHash = null;
+                delete global.passwordHash;
                 // gc
             },
             500,

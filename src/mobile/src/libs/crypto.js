@@ -12,9 +12,13 @@ const NONCE_LENGTH = 24;
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
 export const getOldPasswordHash = (password) => {
+    return sha256(password);
+};
+
+export const sha256 = (input) => {
     return cryptoImport
         .createHash('sha256')
-        .update(password)
+        .update(input)
         .digest('hex');
 };
 

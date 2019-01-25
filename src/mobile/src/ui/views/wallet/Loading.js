@@ -139,7 +139,7 @@ class Loading extends Component {
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const {
             addingAdditionalAccount,
             additionalAccountName,
@@ -170,10 +170,13 @@ class Loading extends Component {
             this.props.changeHomeScreenRoute('balance');
         }
         if (addingAdditionalAccount) {
-            const seedStore = new SeedStore[additionalAccountMeta.type](global.passwordHash, additionalAccountName);
+            const seedStore = await new SeedStore[additionalAccountMeta.type](
+                global.passwordHash,
+                additionalAccountName,
+            );
             this.props.getFullAccountInfo(seedStore, additionalAccountName);
         } else {
-            const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.getAccountInfo(seedStore, selectedAccountName);
         }
     }

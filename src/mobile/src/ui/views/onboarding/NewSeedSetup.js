@@ -23,6 +23,8 @@ import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
+import { stringToUInt8 } from 'libs/crypto'; //temp
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -105,7 +107,7 @@ class NewSeedSetup extends Component {
         console.disableYellowBox = true; // eslint-disable-line no-console
         this.state = {
             hasGeneratedSeed: false,
-            seed: null,
+            seed: '',
         };
     }
 
@@ -131,7 +133,7 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         timer.clearTimeout('newSeedSetup');
-        this.setState({ seed: null });
+        delete this.state.seed;
         // gc
     }
 
@@ -154,7 +156,7 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         if (this.state.hasGeneratedSeed) {
-            global.onboardingSeed = this.state.seed;
+            global.onboardingSeed = stringToUInt8(this.state.seed);
             navigator.push('saveYourSeed', {
                 animations: {
                     push: {
@@ -183,7 +185,7 @@ class NewSeedSetup extends Component {
     }
 
     onBackPress() {
-        this.setState({ seed: null });
+        delete this.state.seed;
         delete global.onboardingSeed;
         // gc
         navigator.pop(this.props.componentId);

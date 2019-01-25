@@ -130,9 +130,9 @@ class ViewSeed extends Component {
         super();
 
         this.state = {
-            password: null,
+            password: '',
             showSeed: false,
-            seed: null,
+            seed: '',
             appState: AppState.currentState, // eslint-disable-line react/no-unused-state
             isConfirming: true,
         };
@@ -158,7 +158,8 @@ class ViewSeed extends Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
-        this.setState({ seed: null, password: null });
+        delete this.state.seed;
+        delete this.state.password;
         // gc
     }
 
@@ -173,7 +174,7 @@ class ViewSeed extends Component {
         const pwdHash = await hash(this.state.password);
 
         if (isEqual(global.passwordHash, pwdHash)) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
             if (isAndroid) {
                 FlagSecure.activate();
             }
@@ -208,9 +209,9 @@ class ViewSeed extends Component {
      */
     hideSeed() {
         this.setState({
-            seed: null,
+            seed: '',
             showSeed: false,
-            password: null,
+            password: '',
         });
     }
 
@@ -315,7 +316,7 @@ class ViewSeed extends Component {
                                     />
                                 </View>
                             )}
-                        {this.state.password.length === 0 && <View style={styles.viewButtonContainer} />}
+                        {!this.state.password.length > 0 && <View style={styles.viewButtonContainer} />}
                         <View style={{ flex: 1 }} />
                     </View>
                     <View style={styles.bottomContainer}>

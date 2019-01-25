@@ -69,7 +69,7 @@ class WalletResetRequirePassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: null,
+            password: '',
         };
         this.goBack = this.goBack.bind(this);
         this.resetWallet = this.resetWallet.bind(this);
@@ -85,7 +85,7 @@ class WalletResetRequirePassword extends Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress');
-        this.setState({ password: null });
+        delete this.state.password;
         // gc
     }
 

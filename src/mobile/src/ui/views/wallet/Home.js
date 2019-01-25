@@ -173,8 +173,6 @@ class Home extends Component {
             this.props.toggleModalActivity();
         }
         timer.clearTimeout('iOSKeyboardTimeout');
-        delete global.passwordHash;
-        // gc
     }
 
     /**

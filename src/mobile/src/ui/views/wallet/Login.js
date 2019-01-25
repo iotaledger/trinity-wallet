@@ -42,7 +42,7 @@ class Login extends Component {
         /** @ignore */
         setLoginPasswordField: PropTypes.func.isRequired,
         /** @ignore */
-        password: PropTypes.any.isRequired,
+        password: PropTypes.any,
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
@@ -116,11 +116,10 @@ class Login extends Component {
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            let pwdHash = await hash(password);
+            const pwdHash = await hash(password);
             try {
                 await authorize(pwdHash);
                 global.passwordHash = pwdHash;
-                pwdHash = null;
                 // gc
                 this.props.setLoginPasswordField(null);
                 if (!is2FAEnabled) {

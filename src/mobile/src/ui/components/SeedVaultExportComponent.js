@@ -85,17 +85,16 @@ class SeedVaultExportComponent extends Component {
         isAuthenticated: PropTypes.bool.isRequired,
         /** Triggered when user enters the correct wallet password */
         setAuthenticated: PropTypes.func,
-        /** Sets seed variable in parent component following successful SeedVault import */
-        setSeed: PropTypes.func.isRequired,
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            password: null,
-            reentry: null,
+            password: '',
+            reentry: '',
             path: '',
             saveToDownloadFolder: false,
+            seed: props.seed,
         };
     }
 
@@ -119,7 +118,9 @@ class SeedVaultExportComponent extends Component {
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
-        this.setState({ password: null, reentry: null });
+        delete this.state.password;
+        delete this.state.reentry;
+        delete this.state.seed;
         // gc
     }
 
@@ -224,7 +225,7 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        return nodejs.channel.send('export:' + this.state.seed + ':' + this.state.password);
     }
 
     /**
@@ -270,10 +271,12 @@ class SeedVaultExportComponent extends Component {
         } else {
             const enteredPasswordHash = await hash(password);
             if (isEqual(enteredPasswordHash, global.passwordHash)) {
-                const seedStore = new SeedStore[selectedAccountMeta.type](enteredPasswordHash, selectedAccountName);
-                let seed = await seedStore.getSeed();
-                this.props.setSeed(seed);
-                seed = null;
+                const seedStore = await new SeedStore[selectedAccountMeta.type](
+                    enteredPasswordHash,
+                    selectedAccountName,
+                );
+                this.setState({ seed: await seedStore.getSeed() });
+                delete this.state.seed;
                 // gc
                 this.props.setAuthenticated(true);
                 return this.navigateToStep('isViewingGeneralInfo');

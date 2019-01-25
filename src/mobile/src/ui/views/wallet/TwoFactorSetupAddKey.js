@@ -91,7 +91,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     componentWillUnmount() {
-        this.setState({ authKey: null });
+        delete this.state.authKey;
         // gc
     }
 

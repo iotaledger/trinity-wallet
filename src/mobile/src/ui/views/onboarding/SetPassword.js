@@ -80,8 +80,8 @@ class SetPassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: null,
-            reentry: null,
+            password: '',
+            reentry: '',
         };
     }
 
@@ -90,7 +90,8 @@ class SetPassword extends Component {
     }
 
     componentWillUnmount() {
-        this.setState({ password: null, reentry: null });
+        delete this.state.password;
+        delete this.state.reentry;
         // gc
     }
 
@@ -104,11 +105,10 @@ class SetPassword extends Component {
 
         const salt = await getSalt();
         global.passwordHash = await generatePasswordHash(this.state.password, salt);
-        this.setState({ password: null });
+        delete this.state.password;
         await storeSaltInKeychain(salt);
 
-        const seedStore = new SeedStore.keychain(global.passwordHash);
-
+        const seedStore = await new SeedStore.keychain(global.passwordHash);
         const isUniqueSeed = await seedStore.isUniqueSeed(global.onboardingSeed);
         if (!isUniqueSeed) {
             return this.props.generateAlert(

@@ -118,7 +118,7 @@ class DeleteAccount extends Component {
         super();
         this.state = {
             pressedContinue: false,
-            password: null,
+            password: '',
         };
     }
 
@@ -127,7 +127,7 @@ class DeleteAccount extends Component {
     }
 
     componentWillUnmount() {
-        this.setState({ password: null });
+        delete this.state.password;
         // gc
     }
 
@@ -175,7 +175,7 @@ class DeleteAccount extends Component {
      */
     async delete() {
         const { selectedAccountName, selectedAccountMeta } = this.props;
-        const seedStore = new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
         await seedStore.removeAccount();
         this.props.deleteAccount(selectedAccountName);
     }

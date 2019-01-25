@@ -122,7 +122,7 @@ export class SetAccountName extends Component {
         }
 
         if (onboardingComplete) {
-            const seedStore = new SeedStore.keychain(global.passwordHash);
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
             const isSeedUnique = await seedStore.isUniqueSeed(global.onboardingSeed);
             if (!isSeedUnique) {
                 return this.props.generateAlert(
@@ -140,7 +140,7 @@ export class SetAccountName extends Component {
         });
 
         if (onboardingComplete) {
-            const seedStore = new SeedStore.keychain(global.passwordHash);
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
             seedStore.addAccount(accountName, global.onboardingSeed);
             this.navigateTo('loading');
         } else {

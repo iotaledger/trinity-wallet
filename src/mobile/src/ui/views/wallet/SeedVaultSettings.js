@@ -76,7 +76,6 @@ class SeedVaultSettings extends Component {
         this.state = {
             step: 'isValidatingWalletPassword',
             isAuthenticated: false,
-            seed: '',
         };
     }
 
@@ -101,7 +100,7 @@ class SeedVaultSettings extends Component {
 
     render() {
         const { t, theme } = this.props;
-        const { step, isAuthenticated, seed } = this.state;
+        const { step, isAuthenticated } = this.state;
         const textColor = { color: theme.body.color };
         const bodyColor = theme.body.color;
 
@@ -118,8 +117,6 @@ class SeedVaultSettings extends Component {
                             }}
                             isAuthenticated={isAuthenticated}
                             setAuthenticated={() => this.setState({ isAuthenticated: true })}
-                            seed={seed}
-                            setSeed={(seed) => this.setState({ seed })}
                         />
                         <View style={{ flex: 0.2 }} />
                     </View>

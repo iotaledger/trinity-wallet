@@ -94,9 +94,9 @@ class ForceChangePassword extends Component {
         super();
 
         this.state = {
-            currentPassword: null,
-            newPassword: null,
-            newPasswordReentry: null,
+            currentPassword: '',
+            newPassword: '',
+            newPasswordReentry: '',
         };
     }
 
@@ -108,11 +108,9 @@ class ForceChangePassword extends Component {
     }
 
     componentWillUnmount() {
-        this.setState({
-            currentPassword: null,
-            newPassword: null,
-            newPasswordReentry: null,
-        });
+        delete this.state.currentPassword;
+        delete this.state.newPassword;
+        delete this.state.newPasswordReentry;
         // gc
     }
 
