@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometrijska autorizacija nedostupna",
         "deviceLocked": "Autorizaciju onemogućena sljedećih 30 sekundi",
         "fingerprintUnavailableExplanation": "Vaš uređaj ne podržava biometrijsku autorizaciju ili ista nije konfigurirana u postavkama uređaja.",
-        "buttonInstructionsDisable": "Pritisnite donji gumb kako bi onemogućili autorizaciju putem otiska prsta",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Pritisnite donji gumb kako bi omogućili autorizaciju putem otiska prsta.",
         "buttonInstructionsDisableIPhoneX": "Pritisnite donji gumb kako bi onemogućili Face ID",
         "buttonInstructionsEnableIPhoneX": "Pritisnite donji gumb kako bi omogućili Face ID",
-        "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu"
+        "instructionsLogin": "Dodirnite čitač otiska prstiju za prijavu",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Poslat ćete {{contents}} na adresu",

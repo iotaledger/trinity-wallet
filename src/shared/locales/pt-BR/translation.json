@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Autenticação Biométrica indisponível",
         "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
-        "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
         "buttonInstructionsDisableIPhoneX": "Pressione o botão abaixo para desabilitar a identificação do rosto",
         "buttonInstructionsEnableIPhoneX": "Pressione o botão abaixo para permitir a identificação do rosto",
-        "instructionsLogin": "Toque o leitor de impressão digital para entrar"
+        "instructionsLogin": "Toque o leitor de impressão digital para entrar",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Você está prestes a enviar {{contents}} para o endereço",

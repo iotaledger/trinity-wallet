@@ -592,11 +592,17 @@
         "fingerprintUnavailable": "Biometrisk autentisering otillgänglig",
         "deviceLocked": "Autentisering inaktiverad i 30 sekunder",
         "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
-        "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
         "buttonInstructionsDisableIPhoneX": "Tryck på knappen nedan för att avaktivera Face ID",
         "buttonInstructionsEnableIPhoneX": "Tryck på knappen nedan för att aktivera Face ID",
-        "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in"
+        "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "Du kommer att skicka {{contents}} till adressen",

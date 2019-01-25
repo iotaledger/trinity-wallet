@@ -1,3 +1,4 @@
+import last from 'lodash/last';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Easing, Keyboard } from 'react-native';
@@ -105,6 +106,8 @@ export default function withSafeAreaView(WrappedComponent) {
             toggleModalActivity: PropTypes.func.isRequired,
             /** @ignore */
             isKeyboardActive: PropTypes.bool.isRequired,
+            /** @ignore */
+            navStack: PropTypes.array.isRequired,
         };
 
         constructor(props) {
@@ -112,6 +115,7 @@ export default function withSafeAreaView(WrappedComponent) {
             this.state = {
                 isModalActive: props.isModalActive,
             };
+            this.screen = last(props.navStack);
         }
 
         componentWillReceiveProps(newProps) {
@@ -132,7 +136,7 @@ export default function withSafeAreaView(WrappedComponent) {
         }
 
         render() {
-            const { modalProps, isModalActive, modalContent, theme: { body } } = this.props;
+            const { modalProps, isModalActive, modalContent, theme: { body }, navStack } = this.props;
             const ModalContent = MODAL_CONTENT[modalContent];
 
             return (
@@ -150,7 +154,7 @@ export default function withSafeAreaView(WrappedComponent) {
                         style={styles.modal}
                         deviceHeight={height}
                         deviceWidth={width}
-                        isVisible={this.state.isModalActive}
+                        isVisible={this.state.isModalActive && this.screen === last(navStack)}
                         onBackButtonPress={() => {
                             if (modalProps.onBackButtonPress) {
                                 return modalProps.onBackButtonPress();
@@ -177,6 +181,7 @@ export default function withSafeAreaView(WrappedComponent) {
         modalContent: state.ui.modalContent,
         theme: state.settings.theme,
         isKeyboardActive: state.ui.isKeyboardActive,
+        navStack: state.wallet.navStack,
     });
 
     const mapDispatchToProps = {

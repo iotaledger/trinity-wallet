@@ -612,7 +612,6 @@ export class Send extends Component {
                 t('snapshotTransitionInProgress'),
                 t('snapshotTransitionInProgressExplanation'),
             );
-
             return;
         }
         // For sending a message
