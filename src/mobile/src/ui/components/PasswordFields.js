@@ -94,7 +94,7 @@ class PasswordFields extends Component {
 
     render() {
         const { theme, password, reentry, passwordLabel, reentryLabel } = this.props;
-        const score = zxcvbn(password);
+        const score = zxcvbn(password ? password : '');
         const isValid = score.score === 4;
 
         return (
