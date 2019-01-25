@@ -1,4 +1,3 @@
-import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -16,7 +15,7 @@ import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui'
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { hash } from 'libs/keychain';
+import { authorize, hash } from 'libs/keychain';
 import UserInactivity from 'ui/components/UserInactivity';
 import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
@@ -185,16 +184,19 @@ class Home extends Component {
         if (!password) {
             return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         }
-        const passwordHash = await hash(password);
-        if (!isEqual(passwordHash, global.passwordHash)) {
+        let pwdHash = await hash(password);
+        try {
+            await authorize(pwdHash);
+            global.passwordHash = pwdHash;
+            pwdHash = null;
+            this.props.setUserActivity({ inactive: false });
+            // gc
+        } catch (error) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
                 t('global:unrecognisedPasswordExplanation'),
             );
-        } else {
-            this.props.setUserActivity({ inactive: false });
-            this.userInactivity.setActiveFromComponent();
         }
     }
 

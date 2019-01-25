@@ -116,10 +116,11 @@ class Login extends Component {
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            const pwdHash = await hash(password);
+            let pwdHash = await hash(password);
             try {
                 await authorize(pwdHash);
                 global.passwordHash = pwdHash;
+                pwdHash = null;
                 // gc
                 this.props.setLoginPasswordField(null);
                 if (!is2FAEnabled) {
