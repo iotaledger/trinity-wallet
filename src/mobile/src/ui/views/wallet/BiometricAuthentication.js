@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { navigator } from 'libs/navigation';
 import { setFingerprintStatus } from 'shared-modules/actions/settings';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
@@ -86,7 +86,6 @@ class BiometricAuthentication extends Component {
     constructor(props) {
         super(props);
         this.navigateToHome = this.navigateToHome.bind(this);
-        this.handleAuthenticationAttempted = this.handleAuthenticationAttempted.bind(this);
         this.navigateToHome = this.navigateToHome.bind(this);
         this.onFingerprintPress = this.onFingerprintPress.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -161,11 +160,10 @@ class BiometricAuthentication extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
 
-        FingerprintScanner.isSensorAvailable()
+        return FingerprintScanner.isSensorAvailable()
             .then(() => {
                 FingerprintScanner.authenticate({
                     description: t('instructionsEnable'),
-                    onAttempt: this.handleAuthenticationAttempted,
                 })
                     .then(() => {
                         this.onSuccess();
@@ -183,7 +181,6 @@ class BiometricAuthentication extends Component {
         const { t } = this.props;
         FingerprintScanner.authenticate({
             description: t('instructionsDisable'),
-            onAttempt: this.handleAuthenticationAttempted,
         })
             .then(() => {
                 this.onSuccess();
@@ -191,11 +188,6 @@ class BiometricAuthentication extends Component {
             .catch(() => {
                 this.onFailure();
             });
-    }
-
-    handleAuthenticationAttempted() {
-        const { t } = this.props;
-        Alert.alert(t('fingerprintAuthFailed'), t('fingerprintAuthFailedExplanation'));
     }
 
     navigateToHome() {

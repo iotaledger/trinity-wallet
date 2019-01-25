@@ -1,12 +1,11 @@
-import has from 'lodash/has';
+import get from 'lodash/get';
 import head from 'lodash/head';
+import has from 'lodash/has';
 import includes from 'lodash/includes';
-import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import IOTA from 'iota.lib.js';
 import { iota, quorum } from './index';
-import nativeBindings from './nativeBindings';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
 import {
@@ -19,7 +18,7 @@ import {
     GET_BALANCES_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
-import { performPow, sortTransactionTrytesArray } from './transfers';
+import { sortTransactionTrytesArray } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -191,11 +190,11 @@ const getLatestInclusionAsync = (provider, withQuorum = false) => (hashes) =>
  *
  * @method promoteTransactionAsync
  * @param {*} [provider]
- * @param {function} [powFn]
+ * @param {object} seedStore
  *
  * @returns {function(string, number, number, object): Promise<string>}
  */
-const promoteTransactionAsync = (provider, powFn) => (
+const promoteTransactionAsync = (provider, seedStore) => (
     hash,
     depth = DEFAULT_DEPTH,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
@@ -221,7 +220,7 @@ const promoteTransactionAsync = (provider, powFn) => (
                 );
             })
             .then(({ trunkTransaction, branchTransaction }) =>
-                attachToTangleAsync(provider, powFn)(
+                attachToTangleAsync(provider, seedStore)(
                     trunkTransaction,
                     branchTransaction,
                     cached.trytes,
@@ -242,11 +241,11 @@ const promoteTransactionAsync = (provider, powFn) => (
  *
  * @method replayBundleAsync
  * @param {*} [provider]
- * @param {function} [powFn]
+ * @param {object} seedStore
  *
  * @returns {function(string, function, number, number): Promise<array>}
  */
-const replayBundleAsync = (provider, powFn) => (
+const replayBundleAsync = (provider, seedStore) => (
     hash,
     depth = DEFAULT_DEPTH,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
@@ -265,7 +264,7 @@ const replayBundleAsync = (provider, powFn) => (
             return getTransactionsToApproveAsync(provider)({}, depth);
         })
         .then(({ trunkTransaction, branchTransaction }) =>
-            attachToTangleAsync(provider, powFn)(
+            attachToTangleAsync(provider, seedStore)(
                 trunkTransaction,
                 branchTransaction,
                 cached.trytes,
@@ -330,11 +329,10 @@ const wereAddressesSpentFromAsync = (provider, withQuorum = true) => (addresses)
  *
  * @method sendTransferAsync
  * @param {*} [provider]
- * @param {function} [powFn]
  *
  * @returns {function(object, array, function, *, number, number): Promise<array>}
  */
-const sendTransferAsync = (provider, powFn) => (
+const sendTransferAsync = (provider) => (
     seedStore,
     transfers,
     options = null,
@@ -354,7 +352,7 @@ const sendTransferAsync = (provider, powFn) => (
             return getTransactionsToApproveAsync(provider)({}, depth);
         })
         .then(({ trunkTransaction, branchTransaction }) =>
-            attachToTangleAsync(provider, powFn)(
+            attachToTangleAsync(provider, seedStore)(
                 trunkTransaction,
                 branchTransaction,
                 cached.trytes,
@@ -486,17 +484,17 @@ const allowsRemotePow = (provider) => {
  *
  * @method attachToTangleAsync
  * @param {*} [provider]
- * @param {function} [powFn]
+ * @param {object} seedStore
  *
  * @returns {function(string, string, array, number): Promise<object>}
  */
-const attachToTangleAsync = (provider, powFn) => (
+const attachToTangleAsync = (provider, seedStore) => (
     trunkTransaction,
     branchTransaction,
     trytes,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
-    const shouldOffloadPow = !isFunction(powFn);
+    const shouldOffloadPow = get(seedStore, 'offloadPow') === true;
 
     if (shouldOffloadPow) {
         return new Promise((resolve, reject) => {
@@ -515,8 +513,10 @@ const attachToTangleAsync = (provider, powFn) => (
                                 attachedTrytes,
                                 (promise, tryteString) => {
                                     return promise.then((result) => {
-                                        return nativeBindings.asyncTransactionObject(tryteString).then((tx) => {
-                                            result.push(tx);
+                                        return seedStore.getDigest(tryteString).then((digest) => {
+                                            const transactionObject = iota.utils.transactionObject(tryteString, digest);
+
+                                            result.push(transactionObject);
 
                                             return result;
                                         });
@@ -543,7 +543,7 @@ const attachToTangleAsync = (provider, powFn) => (
         });
     }
 
-    return performPow(powFn, trytes, trunkTransaction, branchTransaction, minWeightMagnitude).then((result) => {
+    return seedStore.performPow(trytes, trunkTransaction, branchTransaction, minWeightMagnitude).then((result) => {
         if (!iota.utils.isBundle(result.transactionObjects)) {
             throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT);
         }
