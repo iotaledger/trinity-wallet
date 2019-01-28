@@ -11,10 +11,10 @@ const props = {
     accounts: {
         accountInfo: {
             foo: {
-                balance: 500,
+                balance: 5000000,
             },
             bar: {
-                balance: 100,
+                balance: 4000000,
             },
         },
     },
@@ -38,6 +38,51 @@ describe('Balance component', () => {
 
     test('Balance account name', () => {
         const wrapper = shallow(<Balance {...props} />);
+
         expect(wrapper.find('h3').text()).toEqual('foo');
+    });
+
+    test('Balance account iotas value', () => {
+        const wrapper = shallow(<Balance {...props} />);
+
+        expect(wrapper.find('h1').text()).toEqual('5Mi');
+    });
+
+    test('Balance account monetary value', () => {
+        const wrapper = shallow(<Balance {...props} />);
+
+        expect(wrapper.find('h2').text()).toEqual('$ 50000.00');
+    });
+
+    test('Summary account name', () => {
+        const mockProps = Object.assign(props, { summary: true, index: -1 });
+        const wrapper = shallow(<Balance {...mockProps} />);
+
+        expect(wrapper.find('h3').text()).toEqual('totalBalance');
+    });
+
+    test('Summary iota value', () => {
+        const mockProps = Object.assign(props, { summary: true, index: -1 });
+        const wrapper = shallow(<Balance {...mockProps} />);
+
+        expect(wrapper.find('h1').text()).toEqual('9Mi');
+    });
+
+    test('Summary monetary value', () => {
+        const mockProps = Object.assign(props, { summary: true, index: -1 });
+        const wrapper = shallow(<Balance {...mockProps} />);
+
+        expect(wrapper.find('h2').text()).toEqual('$ 90000.00');
+    });
+
+    test('Summary account switch', () => {
+        const mockProps = Object.assign(props, { summary: true, index: -1 });
+        const wrapper = shallow(<Balance {...mockProps} />);
+
+        wrapper
+            .find('a')
+            .first()
+            .simulate('click');
+        expect(mockProps.switchAccount).toHaveBeenCalledTimes(1);
     });
 });

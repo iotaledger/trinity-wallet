@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon component Render the component 1`] = `
+<span
+  className="icon iota"
+  style={
+    Object {
+      "color": "#ff0000",
+      "fontSize": 32,
+      "lineHeight": "32px",
+    }
+  }
+>
+  💥
+</span>
+`;

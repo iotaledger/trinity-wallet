@@ -10,7 +10,7 @@ import css from './clipboard.scss';
 /**
  * Copy to clipboard wrapper component
  */
-class Clipboard extends React.PureComponent {
+export class Clipboard extends React.PureComponent {
     static timeout = null;
 
     static propTypes = {
@@ -28,8 +28,10 @@ class Clipboard extends React.PureComponent {
         generateAlert: PropTypes.func.isRequired,
     };
 
-    copy(e) {
-        e.stopPropagation();
+    copy = (e) => {
+        if (e) {
+            e.stopPropagation();
+        }
 
         const { text, generateAlert, title, success, timeout } = this.props;
 
@@ -44,13 +46,13 @@ class Clipboard extends React.PureComponent {
                 Electron.clipboard('');
             }, timeout * 1000);
         }
-    }
+    };
 
     render() {
         const { children, text } = this.props;
 
         return (
-            <span className={css.clipboard} onClick={(e) => this.copy(e)}>
+            <span className={css.clipboard} onClick={this.copy}>
                 {children || text}
             </span>
         );
@@ -61,4 +63,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(Clipboard);
+export default connect(
+    null,
+    mapDispatchToProps,
+)(Clipboard);

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 
-import { formatValue, formatUnit } from 'libs/iota/utils';
-import { round } from 'libs/utils';
+import { formatIotas } from 'libs/iota/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate, detectedTimezone } from 'libs/date';
 import SeedStore from 'libs/SeedStore';
 
@@ -20,7 +19,7 @@ import css from './list.scss';
 /**
  * Transaction history list component
  */
-class List extends React.PureComponent {
+export class List extends React.PureComponent {
     static propTypes = {
         /** Can history be updated */
         isBusy: PropTypes.bool.isRequired,
@@ -112,10 +111,7 @@ class List extends React.PureComponent {
                                         <mark>{input.checksum}</mark>
                                     </Clipboard>
                                 </span>
-                                <em>
-                                    {round(formatValue(input.value), 1)}
-                                    {formatUnit(input.value)}
-                                </em>
+                                <em>{formatIotas(input.value, true, true)}</em>
                             </p>
                         );
                     })}
@@ -256,23 +252,17 @@ class List extends React.PureComponent {
                         />
                         <Icon icon="search" size={20} />
                     </div>
-                    {updateAccount && (
-                        <a
-                            onClick={() => updateAccount()}
-                            className={classNames(
-                                css.refresh,
-                                isBusy ? css.busy : null,
-                                isLoading ? css.loading : null,
-                            )}
-                        >
-                            <Icon icon="sync" size={24} />
-                        </a>
-                    )}
+                    <a
+                        onClick={() => updateAccount()}
+                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
+                    >
+                        <Icon icon="sync" size={24} />
+                    </a>
                 </nav>
                 <hr />
                 <div className={css.list}>
                     <Scrollbar>
-                        {historyTx && historyTx.length ? (
+                        {historyTx.length ? (
                             historyTx.map((transfer, key) => {
                                 const isReceived = transfer.incoming;
                                 const isConfirmed = transfer.persistence;
@@ -301,13 +291,16 @@ class List extends React.PureComponent {
                                             </span>
                                             <span>
                                                 {!isConfirmed
-                                                    ? isReceived ? t('receiving') : t('sending')
-                                                    : isReceived ? t('received') : t('sent')}
+                                                    ? isReceived
+                                                        ? t('receiving')
+                                                        : t('sending')
+                                                    : isReceived
+                                                        ? t('received')
+                                                        : t('sent')}
                                             </span>
                                             <span>
                                                 {transfer.transferValue === 0 ? '' : isReceived ? '+' : '-'}
-                                                {round(formatValue(transfer.transferValue), 1)}{' '}
-                                                {formatUnit(transfer.transferValue)}
+                                                {formatIotas(transfer.transferValue, true, true)}
                                             </span>
                                         </div>
                                     </a>
@@ -333,14 +326,15 @@ class List extends React.PureComponent {
                                     <strong>
                                         {activeTransfer.incoming ? t('history:receive') : t('history:send')}{' '}
                                         <span>
-                                            {round(formatValue(activeTransfer.transferValue), 1)}{' '}
-                                            {formatUnit(activeTransfer.transferValue)}
+                                            {formatIotas(activeTransfer.transferValue, false, true)}
                                         </span>
                                     </strong>
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming ? t('received') : t('sent')}
+                                            : activeTransfer.incoming
+                                                ? t('received')
+                                                : t('sent')}
                                         <em>
                                             {formatModalTime(
                                                 navigator.language,

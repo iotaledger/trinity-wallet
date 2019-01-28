@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatValue, formatUnit } from 'libs/iota/utils';
-import { getCurrencySymbol } from 'libs/currency';
-import { round } from 'libs/utils';
+
+import { formatIotas } from 'libs/iota/utils';
+import { formatMonetaryValue } from 'libs/currency';
 
 import SeedStore from 'libs/SeedStore';
 
@@ -115,11 +115,11 @@ class Send extends React.PureComponent {
 
         const transferContents =
             parseInt(fields.amount) > 0
-                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)} (${getCurrencySymbol(
+                ? `${formatIotas(fields.amount, false, true)} (${formatMonetaryValue(
+                      fields.amount,
+                      settings.usdPrice * settings.conversionRate,
                       settings.currency,
-                  )}${(
-                      round(fields.amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
-                  ).toFixed(2)})`
+                  )})`
                 : t('transferConfirmation:aMessage');
 
         const isMessageAvailable = SeedStore[accountMeta.type].isMessageAvailable;

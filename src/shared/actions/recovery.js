@@ -6,7 +6,7 @@ import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors
 import { syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import { cleanUpAccountState, updateAccountInfoAfterSpending, syncAccountBeforeSweeping } from './accounts';
 import { sweep } from '../libs/iota/recovery';
-import { formatIota } from '../libs/iota/utils';
+import { formatIotas } from '../libs/iota/utils';
 import { byteToChar, bytesToTrits } from '../libs/iota/converter';
 import { getLatestAddress } from '../libs/iota/addresses';
 import { DEFAULT_SECURITY } from '../config';
@@ -137,7 +137,7 @@ export const recover = (accountName, seedStore, inputs, dialogFn) => async (disp
                         return (
                             dialogFn(
                                 i18next.t('bytetrit:sweepConfirmation', {
-                                    amount: formatIota(input.balance),
+                                    amount: formatIotas(input.balance, false, true),
                                     address: receiveAddress,
                                     index: input.keyIndex,
                                     accountName,

@@ -1,3 +1,5 @@
+import { formatValue, formatUnit } from 'libs/iota/utils';
+
 export const getCurrencySymbol = (currency) => {
     switch (currency) {
         case 'USD':
@@ -102,4 +104,15 @@ export const getIOTAUnitMultiplier = (denomination) => {
             break;
     }
     return multiplier;
+};
+
+/**
+ * Format iotas to monetary value
+ * @param {*} iotas - Input value in iotas
+ * @param {*} unitPrice - One iota price
+ * @param {string} currency - Target currency code
+ */
+export const formatMonetaryValue = (iotas, unitPrice, currency) => {
+    const value = (Math.round((iotas * unitPrice) / 10000) * 100).toFixed(2);
+    return `${currency ? getCurrencySymbol(currency) + ' ' : ''}${value}`;
 };
