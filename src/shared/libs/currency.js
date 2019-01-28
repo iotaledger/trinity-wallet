@@ -1,5 +1,3 @@
-import { formatValue, formatUnit } from 'libs/iota/utils';
-
 export const getCurrencySymbol = (currency) => {
     switch (currency) {
         case 'USD':
