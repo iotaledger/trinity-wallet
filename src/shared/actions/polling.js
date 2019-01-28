@@ -378,7 +378,7 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                     );
 
                     // Set quorum nodes
-                    quorum.setNodes(union(unionNodes, getCustomNodesFromState(getState())));
+                    quorum.setNodes(union(map(unionNodes, (node) => node.url), getCustomNodesFromState(getState())));
 
                     dispatch(setNodeList(unionNodes));
                 }
