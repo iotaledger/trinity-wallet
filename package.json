@@ -19,7 +19,7 @@
     "lint:desktop": "./node_modules/.bin/eslint src/desktop/",
     "format": "prettier --write \"**/*.{js,json,css}\"",
     "precommit": "lint-staged && yarn lint && yarn test:all",
-    "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
+    "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../desktop/ && yarn test && cd ../",
     "deps:shared": "cd src/shared && yarn && cd ../..",
     "deps:mobile": "cd src/mobile && yarn && cd ../..",
     "deps:desktop": "cd src/desktop && npm install && cd ../..",

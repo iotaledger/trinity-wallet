@@ -141,13 +141,9 @@
   },
   "jest": {
     "preset": "react-native",
-    "roots": [
-      "../"
-    ],
     "setupTestFrameworkScriptFile": "./testConfig.js",
     "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/shared/"
+      "/node_modules/"
     ],
     "transform": {
       "^.+\\.js$": "./node_modules/react-native/jest/preprocessor.js"
