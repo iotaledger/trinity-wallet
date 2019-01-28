@@ -16,7 +16,7 @@ import css from './balance.scss';
 /**
  * Current account total balance display component
  */
-class Balance extends React.PureComponent {
+export class Balance extends React.PureComponent {
     static propTypes = {
         /** Should component show overall balance by default */
         summary: PropTypes.bool,

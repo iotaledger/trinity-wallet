@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withI18n, Trans } from 'react-i18next';
-import { createRandomSeed, randomBytes } from 'libs/crypto';
+import { randomBytes } from 'libs/crypto';
 import { capitalize, byteToChar } from 'libs/iota/converter';
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
@@ -25,7 +25,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: Electron.getOnboardingSeed() || createRandomSeed(),
+        seed: Electron.getOnboardingSeed() || randomBytes(MAX_SEED_LENGTH, 27),
         scramble: Electron.getOnboardingSeed() ? new Array(MAX_SEED_LENGTH).fill(0) : randomBytes(MAX_SEED_LENGTH, 27),
         existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
@@ -76,7 +76,7 @@ class GenerateSeed extends React.PureComponent {
         const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
 
         const newSeed = seed.slice(0);
-        newSeed[position] = createRandomSeed(1)[0];
+        newSeed[position] = randomBytes(1, 27)[0];
 
         scramble[position] = 64;
 
@@ -94,7 +94,7 @@ class GenerateSeed extends React.PureComponent {
      * @returns {undefined}
      */
     generateNewSeed = () => {
-        const newSeed = createRandomSeed();
+        const newSeed = randomBytes(MAX_SEED_LENGTH, 27);
         Electron.setOnboardingSeed(null);
 
         this.setState(() => ({

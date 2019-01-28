@@ -30,15 +30,6 @@ export const randomBytes = (size, max) => {
 };
 
 /**
- * Create random seed
- * @param {number} length - Random seed length
- * @returns {array} Random byte array seed
- */
-export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return randomBytes(length, 27);
-};
-
-/**
  * Encrypt plain text
  * @param {any} contentPlain - Content to encrypt
  * @param {buffer} hash - Argon2 hash for encryption

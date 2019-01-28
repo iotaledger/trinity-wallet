@@ -32,7 +32,8 @@
     "compile:win": "./node_modules/.bin/electron-builder --win --x64",
     "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
     "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
-    "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
+    "release": "./node_modules/.bin/cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
@@ -40,6 +41,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.5",
     "bugsnag-build-reporter": "^1.0.1",
     "bugsnag-sourcemaps": "^1.0.7",
@@ -51,13 +54,17 @@
     "electron-builder": "^20.38",
     "electron-devtools-installer": "^2.2.4",
     "electron-screenshot": "^1.0.5",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-to-json": "^3.3.5",
     "express": "^4.16.3",
-    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.5.0",
     "patch-package": "^5.1.1",
     "puppeteer": "^1.11.0",
     "react-dev-utils": "^6.1.1",
+    "regenerator-runtime": "^0.13.1",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
@@ -166,5 +173,19 @@
     "react-transition-group": "^2.5.1",
     "recharts": "^1.4.2",
     "redux": "^4.0.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>scripts/setupEnzyme.js",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "modulePaths": [
+      "src",
+      "../shared"
+    ],
+    "moduleNameMapper": {
+      "\\.(scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   }
 }
