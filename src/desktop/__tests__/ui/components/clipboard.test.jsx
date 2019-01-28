@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Clipboard } from 'ui/components/Clipboard';
+import { ClipboardComponent as Clipboard } from 'ui/components/Clipboard';
 
 const props = {
     text: 'Lorem ipsum',

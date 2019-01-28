@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import QR from 'ui/components/Qr';
+import QR from 'ui/components/QR';
 
 const props = {
     data: 'IOTA',

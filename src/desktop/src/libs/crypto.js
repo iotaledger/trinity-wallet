@@ -1,6 +1,4 @@
 /* global Electron */
-import { MAX_SEED_LENGTH } from 'libs/iota/utils';
-
 export const ACC_MAIN = 'Trinity';
 // Maximum allowed account title
 export const MAX_ACC_LENGTH = 250;

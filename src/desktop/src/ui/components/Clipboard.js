@@ -10,7 +10,7 @@ import css from './clipboard.scss';
 /**
  * Copy to clipboard wrapper component
  */
-export class Clipboard extends React.PureComponent {
+export class ClipboardComponent extends React.PureComponent {
     static timeout = null;
 
     static propTypes = {
@@ -66,4 +66,4 @@ const mapDispatchToProps = {
 export default connect(
     null,
     mapDispatchToProps,
-)(Clipboard);
+)(ClipboardComponent);

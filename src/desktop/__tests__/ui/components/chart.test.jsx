@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { LineChart } from 'recharts';
 
-import { Chart } from 'ui/components/Chart';
+import { ChartComponent as Chart } from 'ui/components/Chart';
 import defaultTheme from 'themes/themes/Default';
 
 const props = {

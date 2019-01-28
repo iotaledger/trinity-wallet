@@ -12,7 +12,7 @@ import css from './chart.scss';
 /**
  * Chart component to display historical IOTA price charts
  */
-export class Chart extends PureComponent {
+export class ChartComponent extends PureComponent {
     static propTypes = {
         /** Current price data for selected currency */
         priceData: PropTypes.shape({
@@ -144,4 +144,4 @@ export class Chart extends PureComponent {
     }
 }
 
-export default withChartData(Chart);
+export default withChartData(ChartComponent);

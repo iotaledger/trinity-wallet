@@ -19,7 +19,7 @@ import css from './list.scss';
 /**
  * Transaction history list component
  */
-export class List extends React.PureComponent {
+export class ListComponent extends React.PureComponent {
     static propTypes = {
         /** Can history be updated */
         isBusy: PropTypes.bool.isRequired,
@@ -394,4 +394,4 @@ export class List extends React.PureComponent {
     }
 }
 
-export default withListData(List);
+export default withListData(ListComponent);

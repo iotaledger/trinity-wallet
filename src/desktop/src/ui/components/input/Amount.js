@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatIotas, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 import { round } from 'libs/utils';
-import { formatMonetaryValue } from 'libs/currency';
+import { getCurrencySymbol, formatMonetaryValue } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';

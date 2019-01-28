@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { List } from 'ui/components/List';
+import { ListComponent as List } from 'ui/components/List';
 
 const props = {
     isBusy: false,
