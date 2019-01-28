@@ -202,7 +202,7 @@ onAppStart()
             const { settings: { versions, completedMigration } } = reduxState;
 
             if (
-                versions.buildNumber < 32 &&
+                versions.buildNumber < 39 &&
                 completedMigration === false &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.
