@@ -51,16 +51,6 @@ class Sidebar extends React.PureComponent {
 
     componentDidMount() {
         Electron.updateMenu('enabled', !this.props.isBusy);
-        Electron.garbageCollect();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.isBusy !== nextProps.isBusy) {
-            Electron.updateMenu('enabled', !nextProps.isBusy);
-            if (!nextProps.isBusy) {
-                Electron.garbageCollect();
-            }
-        }
     }
 
     accountSettings = (e, index) => {
