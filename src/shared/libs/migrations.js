@@ -130,7 +130,7 @@ export const migrateAccounts = (accounts) => {
                         accountName,
                         assign({}, accountData, {
                             meta: get(thisAccountInfo, 'meta'),
-                            index: get(thisAccountInfo, 'index'),
+                            index: get(thisAccountInfo, 'index') || get(thisAccountInfo, 'accountIndex'),
                             usedExistingSeed: get(setupInfo, `${accountName}.usedExistingSeed`) || false,
                             displayedSnapshotTransitionGuide:
                                 get(tasks, `${accountName}.hasDisplayedTransitionGuide`) || false,
