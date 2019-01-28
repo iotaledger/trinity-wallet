@@ -27,7 +27,7 @@
         "proxy-polyfill": "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7",
         "react": "16.2.0",
         "react-i18next": "^8.0.7",
-        "react-redux": "^5.0.6",
+        "react-redux": "^6.0.0",
         "redux": "^4.0.1",
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
