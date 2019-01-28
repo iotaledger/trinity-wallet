@@ -20,7 +20,7 @@ import {
     latestAddressBalance,
 } from '../../__samples__/addresses';
 import transactions, {
-    newZeroValueTransaction,
+    newZeroValueAttachedTransaction,
     confirmedZeroValueTransactions,
     unconfirmedValueTransactions,
     LATEST_MILESTONE,
@@ -28,13 +28,17 @@ import transactions, {
     LATEST_SOLID_SUBTANGLE_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
-import { newZeroValueTransactionTrytes, milestoneTrytes } from '../../__samples__/trytes';
+import {
+    newZeroValueTransactionTrytes,
+    milestoneTrytes,
+    newZeroValueAttachedTransactionTrytes,
+} from '../../__samples__/trytes';
 import mockAccounts from '../../__samples__/accounts';
 import { iota, quorum, SwitchingConfig } from '../../../libs/iota/index';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_TRANSACTION_TRYTES, EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
 
-describe.skip('libs: iota/addresses', () => {
+describe('libs: iota/addresses', () => {
     before(() => {
         SwitchingConfig.autoSwitch = false;
     });
@@ -567,6 +571,7 @@ describe.skip('libs: iota/addresses', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
                         .persist()
@@ -576,6 +581,20 @@ describe.skip('libs: iota/addresses', () => {
                                 const addresses = body.addresses;
 
                                 return { states: map(addresses, () => true) };
+                            } else if (body.command === 'getNodeInfo') {
+                                return {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                };
+                            } else if (body.command === 'getTrytes') {
+                                return {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                };
                             }
 
                             return {};
@@ -591,22 +610,6 @@ describe.skip('libs: iota/addresses', () => {
                         .isAddressUsedAsync()(addressObject)
                         .then((isUsed) => expect(isUsed).to.equal(true));
                 });
-
-                describe('when address is marked unspent locally', () => {
-                    it('should return false', () => {
-                        const addressObject = {
-                            address: 'U'.repeat(81),
-                            balance: 0,
-                            index: 0,
-                            checksum: 'NXELTUENX',
-                            spent: { local: false, remote: true },
-                        };
-
-                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
-
-                        expect(isUsed).to.equal(false);
-                    });
-                });
             });
 
             describe('when address is not spent from (wereAddressesSpentFron)', () => {
@@ -617,6 +620,7 @@ describe.skip('libs: iota/addresses', () => {
                                 'Content-Type': 'application/json',
                                 'X-IOTA-API-Version': IRI_API_VERSION,
                             },
+                            filteringScope: () => true,
                         })
                             .filteringRequestBody(() => '*')
                             .persist()
@@ -628,6 +632,20 @@ describe.skip('libs: iota/addresses', () => {
                                     return { states: map(addresses, () => false) };
                                 } else if (body.command === 'findTransactions') {
                                     return { hashes: ['9'.repeat(81)] };
+                                } else if (body.command === 'getNodeInfo') {
+                                    return {
+                                        appVersion: '1',
+                                        latestMilestone: LATEST_MILESTONE,
+                                        latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                        latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                        latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                    };
+                                } else if (body.command === 'getTrytes') {
+                                    return {
+                                        trytes: includes(body.hashes, LATEST_MILESTONE)
+                                            ? milestoneTrytes
+                                            : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                    };
                                 }
 
                                 return {};
@@ -653,6 +671,7 @@ describe.skip('libs: iota/addresses', () => {
                                     'Content-Type': 'application/json',
                                     'X-IOTA-API-Version': IRI_API_VERSION,
                                 },
+                                filteringScope: () => true,
                             })
                                 .filteringRequestBody(() => '*')
                                 .persist()
@@ -665,7 +684,21 @@ describe.skip('libs: iota/addresses', () => {
                                     } else if (body.command === 'findTransactions') {
                                         return { hashes: [] };
                                     } else if (body.command === 'getBalances') {
-                                        return { balances: { balances: map(body.addresses, () => '10') } };
+                                        return { balances: map(body.addresses, () => '10') };
+                                    } else if (body.command === 'getNodeInfo') {
+                                        return {
+                                            appVersion: '1',
+                                            latestMilestone: LATEST_MILESTONE,
+                                            latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                            latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                            latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                        };
+                                    } else if (body.command === 'getTrytes') {
+                                        return {
+                                            trytes: includes(body.hashes, LATEST_MILESTONE)
+                                                ? milestoneTrytes
+                                                : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                        };
                                     }
 
                                     return {};
@@ -690,6 +723,7 @@ describe.skip('libs: iota/addresses', () => {
                                     'Content-Type': 'application/json',
                                     'X-IOTA-API-Version': IRI_API_VERSION,
                                 },
+                                filteringScope: () => true,
                             })
                                 .filteringRequestBody(() => '*')
                                 .persist()
@@ -702,7 +736,21 @@ describe.skip('libs: iota/addresses', () => {
                                     } else if (body.command === 'findTransactions') {
                                         return { hashes: [] };
                                     } else if (body.command === 'getBalances') {
-                                        return { balances: { balances: map(body.addresses, () => '0') } };
+                                        return { balances: map(body.addresses, () => '0') };
+                                    } else if (body.command === 'getNodeInfo') {
+                                        return {
+                                            appVersion: '1',
+                                            latestMilestone: LATEST_MILESTONE,
+                                            latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                            latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                            latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                        };
+                                    } else if (body.command === 'getTrytes') {
+                                        return {
+                                            trytes: includes(body.hashes, LATEST_MILESTONE)
+                                                ? milestoneTrytes
+                                                : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                        };
                                     }
 
                                     return {};
@@ -745,6 +793,20 @@ describe.skip('libs: iota/addresses', () => {
                             return { states: map(addresses, () => false) };
                         } else if (command === 'getBalances') {
                             return { balances: map(addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -818,6 +880,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -839,6 +902,20 @@ describe.skip('libs: iota/addresses', () => {
                             return { states: map(addresses, (address) => resultMap[address].spent) };
                         } else if (command === 'getBalances') {
                             return { balances: map(addresses, (address) => resultMap[address].balance) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -932,6 +1009,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -943,6 +1021,20 @@ describe.skip('libs: iota/addresses', () => {
                             return { states: map(addresses, (address) => resultMap[address].spent) };
                         } else if (command === 'getBalances') {
                             return { balances: map(addresses, (address) => resultMap[address].balance) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1020,7 +1112,7 @@ describe.skip('libs: iota/addresses', () => {
         });
     });
 
-    describe('#getFullAddressHistory', () => {
+    describe.skip('#getFullAddressHistory', () => {
         let firstBatchOfAddresses;
         let firstBatchOfBalances;
         let firstBatchOfSpentStatuses;
@@ -1180,6 +1272,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1192,7 +1285,21 @@ describe.skip('libs: iota/addresses', () => {
                         } else if (body.command === 'findTransactions') {
                             return { hashes: ['9'.repeat(81)] };
                         } else if (body.command === 'getBalances') {
-                            return { balances: { balances: map(body.addresses, () => '0') } };
+                            return { balances: map(body.addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1235,7 +1342,21 @@ describe.skip('libs: iota/addresses', () => {
                         } else if (body.command === 'findTransactions') {
                             return { hashes: [] };
                         } else if (body.command === 'getBalances') {
-                            return { balances: { balances: map(body.addresses, () => '0') } };
+                            return { balances: map(body.addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1265,6 +1386,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1339,17 +1461,29 @@ describe.skip('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'getBalances') {
                             return {
-                                balances: {
-                                    balances: reduce(
-                                        addresses,
-                                        (acc, address) => {
-                                            acc.push(resultMap[address].balance);
+                                balances: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc.push(resultMap[address].balance);
 
-                                            return acc;
-                                        },
-                                        [],
-                                    ),
-                                },
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                             };
                         }
 
@@ -1721,6 +1855,7 @@ describe.skip('libs: iota/addresses', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
                         .persist()
@@ -1732,6 +1867,18 @@ describe.skip('libs: iota/addresses', () => {
                                 getBalances: { balances: map(addresses, () => '0') },
                                 findTransactions: { hashes: [] },
                                 wereAddressesSpentFrom: { states: map(addresses, () => false) },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -1874,6 +2021,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1893,6 +2041,20 @@ describe.skip('libs: iota/addresses', () => {
                             );
 
                             return { states: map(addresses, (address) => resultMap[address]) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1957,6 +2119,11 @@ describe.skip('libs: iota/addresses', () => {
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
                 prepareTransfers: () => Promise.resolve([EMPTY_TRANSACTION_TRYTES]),
+                performPow: () =>
+                    Promise.resolve({
+                        trytes: newZeroValueAttachedTransactionTrytes,
+                        transactionObjects: newZeroValueAttachedTransaction,
+                    }),
             };
         });
 
@@ -1967,6 +2134,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1987,6 +2155,20 @@ describe.skip('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'attachToTangle') {
                             return { trytes: newZeroValueTransactionTrytes };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -2025,6 +2207,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -2043,6 +2226,20 @@ describe.skip('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'attachToTangle') {
                             return { trytes: newZeroValueTransactionTrytes };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -2083,7 +2280,7 @@ describe.skip('libs: iota/addresses', () => {
                         null,
                     )
                     .then((result) => {
-                        expect(result.attachedTransactions).to.eql(newZeroValueTransaction);
+                        expect(result.attachedTransactions).to.eql(newZeroValueAttachedTransaction);
                     });
             });
         });
@@ -2113,6 +2310,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -2126,6 +2324,20 @@ describe.skip('libs: iota/addresses', () => {
                             return { hashes: [] };
                         } else if (body.command === 'getBalances') {
                             return { balances: { balances: map(body.addresses, () => '0') } };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -2152,6 +2364,7 @@ describe.skip('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -2210,17 +2423,29 @@ describe.skip('libs: iota/addresses', () => {
                             };
                         } else if (command === 'getBalances') {
                             return {
-                                balances: {
-                                    balances: reduce(
-                                        addresses,
-                                        (acc, address) => {
-                                            acc.push(resultMap[address].balance);
+                                balances: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc.push(resultMap[address].balance);
 
-                                            return acc;
-                                        },
-                                        [],
-                                    ),
-                                },
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                             };
                         }
 

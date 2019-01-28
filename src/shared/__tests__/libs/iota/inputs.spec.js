@@ -10,11 +10,18 @@ import { expect } from 'chai';
 import nock from 'nock';
 import { prepareInputs, getInputs, isValidInput } from '../../../libs/iota/inputs';
 import { addressData as mockAddressData, balance as totalBalanceOfMockAddressData } from '../../__samples__/addresses';
-import mockTransactions from '../../__samples__/transactions';
+import mockTransactions, {
+    LATEST_MILESTONE,
+    LATEST_MILESTONE_INDEX,
+    LATEST_SOLID_SUBTANGLE_MILESTONE,
+    LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+} from '../../__samples__/transactions';
+import { milestoneTrytes } from '../../__samples__/trytes';
 import { SwitchingConfig } from '../../../libs/iota';
 import { IRI_API_VERSION } from '../../../config';
+import { EMPTY_TRANSACTION_TRYTES } from '../../../libs/iota/utils';
 
-describe.skip('libs: iota/inputs', () => {
+describe('libs: iota/inputs', () => {
     before(() => {
         SwitchingConfig.autoSwitch = false;
     });
@@ -160,6 +167,7 @@ describe.skip('libs: iota/inputs', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -196,6 +204,20 @@ describe.skip('libs: iota/inputs', () => {
                             const addresses = body.addresses;
 
                             return { states: map(addresses, () => false) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -259,6 +281,7 @@ describe.skip('libs: iota/inputs', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -295,6 +318,20 @@ describe.skip('libs: iota/inputs', () => {
                             const addresses = body.addresses;
 
                             return { states: map(addresses, () => false) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -367,6 +404,7 @@ describe.skip('libs: iota/inputs', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -411,6 +449,20 @@ describe.skip('libs: iota/inputs', () => {
                             );
 
                             return { states: map(addresses, (address) => resultMap[address]) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};

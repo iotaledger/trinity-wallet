@@ -12,7 +12,7 @@ import {
     LATEST_SOLID_SUBTANGLE_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
-import mockTrytes from '../../__samples__/trytes';
+import { milestoneTrytes } from '../../__samples__/trytes';
 import * as transferUtils from '../../../libs/iota/transfers';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -38,7 +38,7 @@ const defaultResultMap = {
         branchTransaction: EMPTY_HASH_TRYTES,
     },
     findTransactions: { hashes: ['A'.repeat(81)] },
-    getTrytes: { trytes: [mockTrytes.milestone] },
+    getTrytes: { trytes: milestoneTrytes },
     wereAddressesSpentFrom: { states: [false, false] },
     getNodeInfo: {
         appVersion: '1',
@@ -69,7 +69,7 @@ const setupNock = (resultMap = defaultResultMap) => {
 
 const destroyNock = () => nock.cleanAll();
 
-describe.skip('libs: iota/recovery', () => {
+describe('libs: iota/recovery', () => {
     before(() => {
         SwitchingConfig.autoSwitch = false;
     });
@@ -237,7 +237,9 @@ describe.skip('libs: iota/recovery', () => {
                                         LATEST_MILESTONE,
                                     )
                                 ) {
-                                    return { trytes: [mockTrytes.milestone] };
+                                    return { trytes: milestoneTrytes };
+                                } else if (body.command === 'getInclusionStates') {
+                                    return { states: [false] };
                                 }
 
                                 return resultMap[body.command] || {};
@@ -314,7 +316,7 @@ describe.skip('libs: iota/recovery', () => {
                                         LATEST_MILESTONE,
                                     )
                                 ) {
-                                    return { trytes: [mockTrytes.milestone] };
+                                    return { trytes: milestoneTrytes };
                                 }
 
                                 return resultMap[body.command] || {};
@@ -395,7 +397,7 @@ describe.skip('libs: iota/recovery', () => {
                                     LATEST_MILESTONE,
                                 )
                             ) {
-                                return { trytes: [mockTrytes.milestone] };
+                                return { trytes: milestoneTrytes };
                             }
 
                             return resultMap[body.command] || {};
@@ -446,7 +448,7 @@ describe.skip('libs: iota/recovery', () => {
                                     LATEST_MILESTONE,
                                 )
                             ) {
-                                return { trytes: [mockTrytes.milestone] };
+                                return { trytes: milestoneTrytes };
                             }
 
                             return resultMap[body.command] || {};
@@ -493,7 +495,7 @@ describe.skip('libs: iota/recovery', () => {
                                     LATEST_MILESTONE,
                                 )
                             ) {
-                                return { trytes: [mockTrytes.milestone] };
+                                return { trytes: milestoneTrytes };
                             }
 
                             return resultMap[body.command] || {};
