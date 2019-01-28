@@ -57,7 +57,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "patch-package": "^5.1.1",
     "puppeteer": "^1.11.0",
-    "react-dev-utils": "^6.1.1",
+    "react-dev-utils": "^7.0.1",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
