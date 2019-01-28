@@ -34,7 +34,44 @@ describe('libs: iota/extendedApi', () => {
         });
     });
 
-    describe.skip('#isNodeHealthy', () => {
+    describe('#isNodeHealthy', () => {
+        describe('when node runs an unsupported release', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { command } = body;
+
+                        const resultMap = {
+                            getNodeInfo: {
+                                appVersion: '0.0.0-RC2',
+                            },
+                        };
+
+                        return resultMap[command] || {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should throw with an error "Node version not supported"', () => {
+                return isNodeHealthy()
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Node version not supported'));
+            });
+        });
+
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 nock('http://localhost:14265', {
@@ -51,6 +88,7 @@ describe('libs: iota/extendedApi', () => {
 
                         const resultMap = {
                             getNodeInfo: {
+                                appVersion: '0.0.0',
                                 latestMilestone: EMPTY_HASH_TRYTES,
                                 latestSolidSubtangleMilestone: 'U'.repeat(81),
                             },
@@ -89,6 +127,7 @@ describe('libs: iota/extendedApi', () => {
 
                         const resultMap = {
                             getNodeInfo: {
+                                appVersion: '0.0.0',
                                 latestMilestone: EMPTY_HASH_TRYTES,
                                 latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
                             },
@@ -128,6 +167,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestoneIndex: 426550,
                                     latestSolidSubtangleMilestoneIndex: 426550 - 1,
                                     latestMilestone: 'U'.repeat(81),
@@ -165,6 +205,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestoneIndex: 426550,
                                     latestSolidSubtangleMilestoneIndex: 426550 - 1,
                                     latestMilestone: 'U'.repeat(81),
@@ -218,6 +259,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestone: 'U'.repeat(81),
                                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                                 },
@@ -253,6 +295,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestone: 'U'.repeat(81),
                                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                                 },
