@@ -159,7 +159,7 @@
     "react-dom": "^16.6.3",
     "react-i18next": "^9.0.3",
     "react-lottie": "^1.2.3",
-    "react-markdown": "^3.6.0",
+    "react-markdown": "^4.0.6",
     "react-qr-reader": "^2.1.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
