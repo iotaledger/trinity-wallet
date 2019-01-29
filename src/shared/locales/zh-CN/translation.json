@@ -645,15 +645,15 @@
         "importSuccessExplanation": "您的种子已成功导入。",
         "saveToDownloadFolder": "保存到下载文件夹",
         "importSeedVault": "导入SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "dropInstructions": "拖入SeedVault或在此键入<1></1>或者点击浏览",
+        "dropActive": "拖入SeedVault或在此键入",
+        "enterKeyExplanation": "输入密钥以打开SeedVault",
         "noSeedFound": "SeedVault 不包含有效种子",
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
         "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "retypeKey": "重新输入密钥"
     },
     "chart": {
         "mcap": "市值",
@@ -682,14 +682,14 @@
     "progressSteps": {
         "checkingNodeHealth": "检查节点运行状况。",
         "validatingReceiveAddress": "验证接收地址",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "正在验证交易地址",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
         "preparingTransfers": "准备转帐中",
         "gettingTransactionsToApprove": "获取交易批准",
         "proofOfWork": "完成工作量证明",
         "broadcasting": "广播中",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "转账完毕"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "无法完成快照转换",
@@ -715,10 +715,10 @@
         "noUpdatesAvailable": "没有可用的更新",
         "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "有新版本的Trinity。是否立刻更新？",
         "installUpdate": "安装更新并重启",
         "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。",
-        "downloadingUpdate": "Downloading update",
+        "downloadingUpdate": "正在下载更新",
         "downloadProgress": "{{transferred}} of {{total}} downloaded"
     },
     "notificationLog": {
