@@ -601,8 +601,8 @@
         "instructionsLogin": "Toque el lector de huellas para loguearse",
         "systemCancelledAuth": "La autentificación fue cancelada por su dispositivo",
         "userCancelledAuth": "Solicitud de autentificación cancelada",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Retroceda para la autentificación de la contraseña",
+        "noPassword": "El dispositivo no tiene contraseña"
     },
     "transferConfirmation": {
         "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
