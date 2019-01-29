@@ -84,11 +84,9 @@ export const NotificationsSettingsSchema = {
 
 /**
  * Schema to define the structure of an Address
- * Addresses are indexed and looked up by address
  */
 export const AddressSchema = {
     name: 'Address',
-    primaryKey: 'address',
     properties: {
         address: 'string',
         index: 'int',
