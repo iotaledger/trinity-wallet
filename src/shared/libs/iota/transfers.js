@@ -909,7 +909,17 @@ export const assignInclusionStatesToBundles = (provider) => (bundles) => {
  */
 export const mapNormalisedTransactions = (transactions, addressData) => {
     const tailTransactions = filter(transactions, (tx) => tx.currentIndex === 0);
-    const bundles = constructBundlesFromTransactions(transactions);
+
+    const bundles = [
+        ...constructBundlesFromTransactions(filter(transactions, (transaction) => transaction.broadcasted === true)),
+        // Bundles for failed transactions cannot be properly constructed because trunk/branch hashes aren't properly set.
+        // Manually construct bundles for failed transactions based on bundleHash.
+        ...map(
+            filter(transactions, (transaction) => transaction.broadcasted === false && transaction.currentIndex === 0),
+            (failedTailTransaction) =>
+                filter(transactions, (transaction) => transaction.bundle === failedTailTransaction.bundle),
+        ),
+    ];
 
     return transform(
         bundles,

@@ -814,7 +814,16 @@ const normalisedTransactions = {
         timestamp: 1539991308,
         attachmentTimestamp: 1539991311255,
         broadcasted: false,
-        inputs: [],
+        inputs: [
+            {
+                address: 'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                checksum: 'FDPMAF9UD',
+                currentIndex: 1,
+                hash: 'OA9XIZCOTXWORJWFUVPFAWPCHZUMWQHUI9OEJXABFGOCXHETWXUU9YUHQ9QBJKPOCPXSWOJWYXUMNLFKO',
+                lastIndex: 2,
+                value: -2,
+            },
+        ],
         outputs: [
             {
                 address: 'ETMNPSYWCRTODOE9EHSCABKRFQBBYVENDHMZRPLXKOJOMMAUE9PAAOGVRWLB9G9UPMLSPZJXZPPJ9UTAC',
@@ -824,10 +833,18 @@ const normalisedTransactions = {
                 lastIndex: 2,
                 checksum: 'E9SMAQIJC',
             },
+            {
+                address: 'OXCGKSXOVOFR9UMWGZMYHPWGVSSDZOTQAIKVMHVEHJBFPUNEZZKTISCKVVOVUGDHXLSVFIEWMMXGVYHOD',
+                checksum: 'FDPMAF9UD',
+                currentIndex: 2,
+                hash: 'EEQUTO9HOJB9NBEYUFMSENPKZJZRJRU9BIMX9UPFFRNUJNGSPYNCRNWYWE9YHUMIZCDDJGRIKUV9VSHJW',
+                lastIndex: 2,
+                value: 0,
+            },
         ],
         persistence: false,
-        incoming: true,
-        transferValue: 0,
+        incoming: false,
+        transferValue: 2,
         message: 'Trinity test transaction eight (failed)',
         tailTransactions: [
             {

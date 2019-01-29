@@ -59,13 +59,14 @@ export const isValidAddressObject = (addressObject) => {
 export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
     map(newAddressData, (addressObject) => {
         const seenAddress = find(existingAddressData, { address: addressObject.address });
+        const existingLocalSpendStatus = get(seenAddress, 'spent.local');
 
-        if (seenAddress && isBoolean(get(seenAddress, 'spent.local'))) {
-            const { spent: { local } } = seenAddress;
+        if (seenAddress && isBoolean(existingLocalSpendStatus)) {
+            const newLocalSpendStatus = addressObject.spent.local;
 
             return {
                 ...addressObject,
-                spent: { ...addressObject.spent, local: local || get(seenAddress, 'spent.local') },
+                spent: { ...addressObject.spent, local: existingLocalSpendStatus || newLocalSpendStatus },
             };
         }
 
