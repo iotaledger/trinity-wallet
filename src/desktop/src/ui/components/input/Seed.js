@@ -25,7 +25,7 @@ import css from './input.scss';
 /**
  * Seed input component
  */
-class SeedInput extends React.PureComponent {
+export class SeedComponent extends React.PureComponent {
     static propTypes = {
         /** Current seed value */
         seed: PropTypes.array.isRequired,
@@ -145,6 +145,9 @@ class SeedInput extends React.PureComponent {
     };
 
     getCursor = (element) => {
+        if (!document.getSelection) {
+            return [this.props.seed.length, this.props.seed.length];
+        }
         const range = document.getSelection().getRangeAt(0);
 
         const preCaretRange = range.cloneRange();
@@ -286,7 +289,9 @@ class SeedInput extends React.PureComponent {
         const checkSum =
             seed.length < MAX_SEED_LENGTH
                 ? '< 81'
-                : seed.length > MAX_SEED_LENGTH ? '> 81' : Electron.getChecksum(seed);
+                : seed.length > MAX_SEED_LENGTH
+                    ? '> 81'
+                    : Electron.getChecksum(seed);
 
         return (
             <div className={classNames(css.input, css.seed)}>
@@ -387,4 +392,7 @@ const mapDispatchToProps = {
     setAccountInfoDuringSetup,
 };
 
-export default connect(null, mapDispatchToProps)(withI18n()(SeedInput));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(withI18n()(SeedComponent));

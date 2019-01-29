@@ -10,13 +10,13 @@ exports[`Balance component Render the component 1`] = `
   <h1
     onClick={[Function]}
   >
-    5
+    5.5
     <small>
       Mi
     </small>
   </h1>
   <h2>
-    $ 50000.00
+    $ 5.50
   </h2>
 </div>
 `;

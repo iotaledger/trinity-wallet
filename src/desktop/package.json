@@ -143,11 +143,11 @@
     }
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@babel/register": "^7.0.0",
     "@ledgerhq/hw-transport-node-hid": "^4.35.0",
     "argon2": "rihardsgravis/node-argon2#prebuild-release",
     "authenticator": "^1.1.5",
-    "babel-polyfill": "^6.26.0",
     "bugsnag-js": "^4.7.3",
     "bugsnag-react": "^1.1.1",
     "classnames": "^2.2.6",

@@ -19,7 +19,6 @@ describe('Tooltip component', () => {
         const wrapper = shallow(<Tooltip {...props} />);
         const titleEl = wrapper.find('em');
 
-        expect(titleEl).toHaveLength(1);
         expect(titleEl.text()).toEqual(props.tip);
     });
 
@@ -27,7 +26,6 @@ describe('Tooltip component', () => {
         const wrapper = shallow(<Tooltip {...props} />);
         const titleEl = wrapper.find('strong');
 
-        expect(titleEl).toHaveLength(1);
         expect(titleEl.text()).toEqual(props.title);
     });
 

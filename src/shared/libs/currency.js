@@ -111,6 +111,6 @@ export const getIOTAUnitMultiplier = (denomination) => {
  * @param {string} currency - Target currency code
  */
 export const formatMonetaryValue = (iotas, unitPrice, currency) => {
-    const value = (Math.round((iotas * unitPrice) / 10000) * 100).toFixed(2);
+    const value = (Math.round((iotas * unitPrice) / 10000) / 100).toFixed(2);
     return `${currency ? getCurrencySymbol(currency) + ' ' : ''}${value}`;
 };

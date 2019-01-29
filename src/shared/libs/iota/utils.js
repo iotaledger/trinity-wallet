@@ -155,7 +155,7 @@ export const formatIotas = (iotas, showShort, showUnit) => {
     const formattedValue = formatValue(iotas);
     const outputValue = !showShort
         ? formattedValue
-        : roundDown(formattedValue, 1) + (iotas < 1000 || formattedValue % 1 === 0 ? '' : '+');
+        : roundDown(formattedValue, 1) + (iotas < 1000 || (iotas / formattedValue) % 10 === 0 ? '' : '+');
 
     return `${outputValue}${showUnit ? ' ' + formatUnit(iotas) : ''}`;
 };
