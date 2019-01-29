@@ -600,7 +600,7 @@
         "buttonInstructionsEnableIPhoneX": "Presione el botón debajo para activar Face ID",
         "instructionsLogin": "Toque el lector de huellas para loguearse",
         "systemCancelledAuth": "La autentificación fue cancelada por su dispositivo",
-        "userCancelledAuth": "Authentication request cancelled",
+        "userCancelledAuth": "Solicitud de autentificación cancelada",
         "passwordFallback": "Fall back to password authentication",
         "noPassword": "Password is not set on device"
     },
