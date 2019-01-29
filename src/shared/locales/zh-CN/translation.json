@@ -76,8 +76,8 @@
         "wallet": "钱包",
         "all": "全部",
         "sent": "已发送",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "您已收入",
+        "youSent": "您已支出",
         "received": "已收到",
         "sending": "发送",
         "receiving": "接收",
@@ -565,8 +565,8 @@
         "viewSeed": "查看种子",
         "hideSeed": "隐藏种子",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountIndex": "您的Ledger账户索引",
+        "accountPage": "您的Ledger账户页面"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您备份过种子了吗？",
