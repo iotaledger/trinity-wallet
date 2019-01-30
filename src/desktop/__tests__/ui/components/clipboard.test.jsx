@@ -28,7 +28,7 @@ describe('Clipboard component', () => {
     });
 
     test('Custom content', () => {
-        const mockProps = Object.assign(props, { children: 'Fizz Buzz' });
+        const mockProps = Object.assign({}, props, { children: 'Fizz Buzz' });
         const wrapper = shallow(<Clipboard {...mockProps} />);
 
         expect(wrapper.text()).toEqual('Fizz Buzz');

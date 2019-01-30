@@ -36,7 +36,7 @@ describe('Text component', () => {
     });
 
     test('Input disabled state', () => {
-        const mockProps = Object.assign(props, { disabled: true });
+        const mockProps = Object.assign({}, props, { disabled: true });
         const wrapper = shallow(<Text {...mockProps} />);
 
         expect(wrapper.hasClass('disabled')).toBeTruthy();

@@ -23,7 +23,7 @@ describe('Checkbox component', () => {
     });
 
     test('Checked state', () => {
-        const mockProps = Object.assign(props, { checked: true });
+        const mockProps = Object.assign({}, props, { checked: true });
         const wrapper = shallow(<Checkbox {...mockProps} />);
 
         expect(wrapper.hasClass('on')).toBeTruthy();
@@ -43,7 +43,7 @@ describe('Checkbox component', () => {
     });
 
     test('Disabled state', () => {
-        const mockProps = Object.assign(props, { disabled: true });
+        const mockProps = Object.assign({}, props, { disabled: true });
         const wrapper = shallow(<Checkbox {...mockProps} />);
 
         expect(wrapper.hasClass('disabled')).toBeTruthy();

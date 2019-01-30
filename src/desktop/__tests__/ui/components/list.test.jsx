@@ -135,7 +135,7 @@ describe('List component', () => {
     });
 
     test('Display single transaction', () => {
-        const mockProps = Object.assign(props, {
+        const mockProps = Object.assign({}, props, {
             currentItem: 'ABCDEFGHIJKLMONPRSTUVXYZABCDEFGHIJKLMONPRSTUVXYZABCDEFGHIJKLMONPRSTUVXYZABCDEFGHI',
         });
         const wrapper = shallow(<List {...mockProps} />);

@@ -37,7 +37,7 @@ describe('Progress component', () => {
     });
 
     test('Without title', () => {
-        const mockProps = Object.assign(props, { title: null });
+        const mockProps = Object.assign({}, props, { title: null });
         const wrapper = shallow(<Progress {...mockProps} />);
 
         expect(wrapper.find('p')).toHaveLength(0);
@@ -52,7 +52,7 @@ describe('Progress component', () => {
     });
 
     test('Without subtitle', () => {
-        const mockProps = Object.assign(props, { subtitle: null });
+        const mockProps = Object.assign({}, props, { subtitle: null });
         const wrapper = shallow(<Progress {...mockProps} />);
 
         expect(wrapper.find('small')).toHaveLength(0);

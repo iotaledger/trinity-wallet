@@ -15,7 +15,7 @@ import css from './about.scss';
 /**
  * About window component
  */
-class About extends React.PureComponent {
+export class AboutComponent extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -337,4 +337,4 @@ class About extends React.PureComponent {
     }
 }
 
-export default withI18n()(About);
+export default withI18n()(AboutComponent);

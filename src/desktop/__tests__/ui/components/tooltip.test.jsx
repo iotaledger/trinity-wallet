@@ -30,7 +30,7 @@ describe('Tooltip component', () => {
     });
 
     test('Render without title', () => {
-        const mockProps = Object.assign(props, { title: null });
+        const mockProps = Object.assign({}, props, { title: null });
         const wrapper = shallow(<Tooltip {...mockProps} />);
 
         expect(wrapper.find('strong')).toHaveLength(0);

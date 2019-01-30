@@ -23,7 +23,7 @@ describe('SeedPrint component', () => {
     });
 
     test('Filled template', () => {
-        const mockProps = Object.assign(props, { filled: true });
+        const mockProps = Object.assign({}, props, { filled: true });
         const wrapper = shallow(<SeedPrint {...mockProps} />);
 
         expect(wrapper.find('path')).toHaveLength(mockProps.seed.length + mockProps.checksum.length);

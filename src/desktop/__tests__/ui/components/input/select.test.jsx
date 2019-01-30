@@ -4,11 +4,8 @@ import { shallow } from 'enzyme';
 import Select from 'ui/components/input/Select';
 
 const props = {
-    /** Current selected value */
     value: 'Foo',
-    /** Selected value label */
     valueLabel: 'Foo Bar',
-    /** Select dropdown options */
     options: [
         {
             value: 'Foo',
@@ -50,7 +47,7 @@ describe('Select component', () => {
     });
 
     test('Input disabled state', () => {
-        const mockProps = Object.assign(props, { disabled: true });
+        const mockProps = Object.assign({}, props, { disabled: true });
         const wrapper = shallow(<Select {...mockProps} />);
 
         expect(wrapper.hasClass('disabled')).toBeTruthy();

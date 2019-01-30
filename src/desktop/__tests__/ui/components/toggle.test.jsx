@@ -24,7 +24,7 @@ describe('Toggle component', () => {
     });
 
     test('On state', () => {
-        const mockProps = Object.assign(props, { checked: true });
+        const mockProps = Object.assign({}, props, { checked: true });
         const wrapper = shallow(<Toggle {...mockProps} />);
 
         expect(wrapper.hasClass('on')).toBeTruthy();

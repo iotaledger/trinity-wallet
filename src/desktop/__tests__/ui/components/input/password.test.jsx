@@ -83,7 +83,7 @@ describe('Password component', () => {
     });
 
     test('Input disabled state', () => {
-        const mockProps = Object.assign(props, { disabled: true });
+        const mockProps = Object.assign({}, props, { disabled: true });
         const wrapper = shallow(<Password {...mockProps} />);
 
         expect(wrapper.hasClass('disabled')).toBeTruthy();
