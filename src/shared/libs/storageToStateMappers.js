@@ -27,11 +27,13 @@ export const mapStorageToState = () => {
                         usedExistingSeed,
                         displayedSnapshotTransitionGuide,
                         meta,
+                        index,
                         addressData,
                         transactions,
                     } = data;
 
                     acc.accountInfo[name] = {
+                        index,
                         meta,
                         addressData,
                         transactions,
