@@ -24,6 +24,7 @@ import {
     ErrorLogSchema,
 } from '../schema';
 import { __MOBILE__, __TEST__ } from '../config';
+import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
 const SCHEMA_VERSION = 0;
 const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
@@ -130,6 +131,7 @@ class Account {
             const updatedData = assign({}, existingData, {
                 ...data,
                 name,
+                addressData: preserveAddressLocalSpendStatus(values(existingData.addressData), data.addressData),
             });
 
             realm.create('Account', updatedData, true);
