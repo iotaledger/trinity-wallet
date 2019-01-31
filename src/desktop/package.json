@@ -156,7 +156,7 @@
     "qr.js": "^0.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-i18next": "^9.0.9",
+    "react-i18next": "^9.0.10",
     "react-lottie": "^1.2.3",
     "react-markdown": "^4.0.6",
     "react-qr-reader": "^2.1.2",
