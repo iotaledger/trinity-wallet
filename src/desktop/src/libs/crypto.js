@@ -208,7 +208,7 @@ const bufferToHex = (buffer) => {
     const view = new Uint8Array(buffer);
     let result = '';
 
-    for (var i = 0; i < view.length; i++) {
+    for (let i = 0; i < view.length; i++) {
         const value = view[i].toString(16);
         result += value.length === 1 ? '0' + value : value;
     }
