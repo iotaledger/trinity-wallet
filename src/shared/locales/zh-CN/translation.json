@@ -788,15 +788,15 @@
         "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
         "cannotSendZeroValueTitle": "Cannot send zero value transfer",
         "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
+        "ledgerDisconnectedTitle": "Ledger设备已断开",
+        "ledgerDisconnectedExplanation": "Ledger设备已断开连接。请重新连上后再试一遍。",
         "ledgerDeniedTitle": "交易被拒绝",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
+        "ledgerDeniedExplanation": "交易被Ledger设备拒绝。",
+        "ledgerIncorrectIndex": "Ledger设备不匹配",
+        "ledgerIncorrectIndexExplanation": "连接的Ledger设备与链接到此帐户的Ledger设备不匹配，或者恢复短语已更改。",
         "checkAddress": "检查接收地址",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。"
     }
 }
