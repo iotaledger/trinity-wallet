@@ -600,9 +600,9 @@
         "buttonInstructionsEnableIPhoneX": "顔認証を有効にするには、下のボタンを押してください",
         "instructionsLogin": "指紋リーダに触れてログインしてください。",
         "systemCancelledAuth": "認証が端末によってキャンセルされました",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "userCancelledAuth": "認証要求はキャンセルされました",
+        "passwordFallback": "パスワード認証に戻る",
+        "noPassword": "パスワードが設定されていません"
     },
     "transferConfirmation": {
         "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
