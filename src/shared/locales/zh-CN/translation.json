@@ -607,14 +607,14 @@
     "transferConfirmation": {
         "youAreAbout": "您将发送 {{内容}} 到地址",
         "aMessage": "一条消息",
-        "fromAccount": "From {{selectedAccountName}}",
+        "fromAccount": "来自{{selectedAccountName}}",
         "toAddress": "接受付款地址",
         "sendingAMessage": "发送消息",
         "sendingAnEmptyMessage": "发送空消息"
     },
     "twoFA": {
         "wrongCode": "验证码错误",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "您输入的代码不正确。如果此错误仍然存在, 请检查您的设备时间是否正确。",
         "emptyCode": "验证码为空",
         "emptyCodeExplanation": "请输入验证码并重试。",
         "keyCopied": "密钥已复制到剪贴板",
@@ -742,7 +742,7 @@
     },
     "proxy": {
         "proxy": "使用系统代理",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxyExplanation": "检测并使用系统网络代理设置。 更改此设置后需要关闭并重新打开钱包。"
     },
     "notifications": {
         "notifications": "通知",
@@ -768,8 +768,8 @@
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
+        "ready": "Ledger设备已连接并准备完毕",
+        "notReady": "如果您希望使用Ledger设备，请连上并解锁。",
         "indexInUse": "账户 {{account}} 已经使用该索引",
         "indexInUseExplanation": "您所选的索引已经在您其中一个帐户使用过了，请选择其他索引号码。",
         "proceedWithLedger": "进行Ledger设置",
@@ -785,9 +785,9 @@
         "transactionTitle": "Scroll through and approve the transaction on your Ledger",
         "transactionExplanation": "使用您的Ledger设备来确认转账交易。",
         "applicationTitle": "打开Ledger IOTA应用",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
+        "applicationExplanation": "在Ledger设备上打开IOTA应用，然后继续使用Trinity。",
+        "cannotSendZeroValueTitle": "转账金额不能为零",
+        "cannotSendZeroValueExplanation": "使用Ledger设备时转账金额不能为零。",
         "ledgerDisconnectedTitle": "Ledger设备已断开",
         "ledgerDisconnectedExplanation": "Ledger设备已断开连接。请重新连上后再试一遍。",
         "ledgerDeniedTitle": "交易被拒绝",
