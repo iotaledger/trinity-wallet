@@ -87,7 +87,7 @@ const Electron = {
 
     /**
      * Generate address
-     * @param {string | array} seed - Input seed
+     * @param {array} seed - Input seed
      * @param {number} index - Address index
      * @param {number} security - Address generation security level
      * @param {total} total - Amount of addresses to generate
@@ -230,7 +230,7 @@ const Electron = {
     /**
      * Hash input using argon2
      * @param {Uint8Array} input - Input data
-     * @param {Uint8Array} salt - Salt used fro hashing
+     * @param {Uint8Array} salt - Salt used for hashing
      * @returns {Uint8Array} Raw Argon2 hash
      */
     argon2: (input, salt) => {

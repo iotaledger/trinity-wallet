@@ -1,9 +1,62 @@
-import { fork } from 'child_process';
-import path from 'path';
-import { powFunc, genFunc } from 'entangled-node';
-import { tritsToChars } from 'libs/iota/converter';
+const fork = require('child_process').fork;
+const path = require('path');
+const EntangledNode = require('entangled-node');
 
 let timeout = null;
+
+/**
+ * Tryte trit mapping
+ */
+const trytesTrits = [
+    [0, 0, 0],
+    [1, 0, 0],
+    [-1, 1, 0],
+    [0, 1, 0],
+    [1, 1, 0],
+    [-1, -1, 1],
+    [0, -1, 1],
+    [1, -1, 1],
+    [-1, 0, 1],
+    [0, 0, 1],
+    [1, 0, 1],
+    [-1, 1, 1],
+    [0, 1, 1],
+    [1, 1, 1],
+    [-1, -1, -1],
+    [0, -1, -1],
+    [1, -1, -1],
+    [-1, 0, -1],
+    [0, 0, -1],
+    [1, 0, -1],
+    [-1, 1, -1],
+    [0, 1, -1],
+    [1, 1, -1],
+    [-1, -1, 0],
+    [0, -1, 0],
+    [1, -1, 0],
+    [-1, 0, 0],
+];
+
+const tritStrings = trytesTrits.map((trit) => trit.toString());
+
+
+/**
+ * Convert trit array to string
+ * @param {array} trits - Input trit array
+ * @returns {string} Output string
+ */
+const tritsToChars = (trits) => {
+    let seed = '';
+    for (let i = 0; i < trits.length; i += 3) {
+        const trit = trits.slice(i, i + 3).toString();
+        for (let x = 0; x < tritStrings.length; x++) {
+            if (tritStrings[x] === trit) {
+                seed += '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(x);
+            }
+        }
+    }
+    return seed;
+};
 
 /**
  * Spawn a child process and return result in async
@@ -37,13 +90,13 @@ process.on('message', async (data) => {
     const payload = JSON.parse(data);
 
     if (payload.job === 'pow') {
-        const pow = await powFunc(payload.trytes, payload.mwm);
+        const pow = await EntangledNode.powFunc(payload.trytes, payload.mwm);
         process.send(pow);
     }
 
     if (payload.job === 'gen') {
         const seedString = tritsToChars(payload.seed);
-        const address = await genFunc(seedString, payload.index, payload.security);
+        const address = await EntangledNode.genFunc(seedString, payload.index, payload.security);
         process.send(address);
     }
 });
@@ -57,4 +110,4 @@ const Entangled = {
     },
 };
 
-export default Entangled;
+module.exports = Entangled;
