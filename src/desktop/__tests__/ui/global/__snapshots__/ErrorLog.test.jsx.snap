@@ -21,7 +21,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-0"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -30,7 +30,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-1"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -39,7 +39,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-2"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -48,7 +48,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-3"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -57,7 +57,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-4"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -66,7 +66,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-5"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -75,7 +75,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-6"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -84,7 +84,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-7"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -93,7 +93,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-8"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo
@@ -102,7 +102,7 @@ exports[`ErrorLog component Render the component 1`] = `
             key="log-9"
           >
             <strong>
-              01/19/1970 1:14 AM
+              19/01/1970 01:14
             </strong>
              
             Foo

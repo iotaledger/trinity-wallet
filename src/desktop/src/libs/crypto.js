@@ -19,7 +19,7 @@ export const randomBytes = (size, max) => {
     const bytes = global.crypto.getRandomValues(rawBytes);
 
     for (let i = 0; i < bytes.length; i++) {
-        while (bytes[i] >= 256 - 256 % max) {
+        while (bytes[i] >= 256 - (256 % max)) {
             bytes[i] = randomBytes(1, max)[0];
         }
     }
@@ -85,7 +85,7 @@ export const decrypt = async (cipherText, hash) => {
 
 /**
  * Set Two-Factor authentication key
- * @param {string} Password - Plain text password for decryption
+ * @param {array} Password - Account decryption key
  * @param {string} Key - Two-factor authentication key
  * @returns {boolean} Two-Factor key set success state
  */
@@ -205,15 +205,13 @@ export const hash = async (inputPlain) => {
  * @returns {string} Output string
  */
 const bufferToHex = (buffer) => {
-    const hexCodes = [];
-    const view = new DataView(buffer);
-    for (let i = 0; i < view.byteLength; i += 4) {
-        const value = view.getUint32(i);
-        const stringValue = value.toString(16);
-        const padding = '00000000';
-        const paddedValue = (padding + stringValue).slice(-padding.length);
-        hexCodes.push(paddedValue);
+    const view = new Uint8Array(buffer);
+    let result = '';
+
+    for (var i = 0; i < view.length; i++) {
+        const value = view[i].toString(16);
+        result += value.length === 1 ? '0' + value : value;
     }
 
-    return hexCodes.join('');
+    return result;
 };

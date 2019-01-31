@@ -145,10 +145,13 @@ export class SeedComponent extends React.PureComponent {
     };
 
     getCursor = (element) => {
-        if (!document.getSelection) {
+        const selection = document.getSelection();
+
+        if (!selection || selection.rangeCount < 1) {
             return [this.props.seed.length, this.props.seed.length];
         }
-        const range = document.getSelection().getRangeAt(0);
+
+        const range = selection.getRangeAt(0);
 
         const preCaretRange = range.cloneRange();
         preCaretRange.selectNodeContents(element);
