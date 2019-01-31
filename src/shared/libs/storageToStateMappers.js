@@ -38,6 +38,7 @@ export const mapStorageToState = () => {
                         addressData,
                         transactions,
                     };
+
                     acc.setupInfo[name] = { usedExistingSeed };
                     acc.tasks[name] = { displayedSnapshotTransitionGuide };
                 },

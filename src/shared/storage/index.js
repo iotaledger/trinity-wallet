@@ -131,7 +131,9 @@ class Account {
             const updatedData = assign({}, existingData, {
                 ...data,
                 name,
-                addressData: preserveAddressLocalSpendStatus(values(existingData.addressData), data.addressData),
+                addressData: isEmpty(data.addressData)
+                    ? existingData.addressData
+                    : preserveAddressLocalSpendStatus(values(existingData.addressData), data.addressData),
             });
 
             realm.create('Account', updatedData, true);
