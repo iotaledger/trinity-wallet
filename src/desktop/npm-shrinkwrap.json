@@ -1473,7 +1473,6 @@
       "version": "0.2.4",
       "resolved": "https://registry.npmjs.org/asn1/-/asn1-0.2.4.tgz",
       "integrity": "sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==",
-      "dev": true,
       "requires": {
         "safer-buffer": "~2.1.0"
       }
@@ -1518,8 +1517,7 @@
     "assert-plus": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz",
-      "integrity": "sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU=",
-      "dev": true
+      "integrity": "sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU="
     },
     "assign-symbols": {
       "version": "1.0.0",
@@ -1777,7 +1775,6 @@
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz",
       "integrity": "sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=",
-      "dev": true,
       "requires": {
         "tweetnacl": "^0.14.3"
       }
@@ -3597,7 +3594,6 @@
       "version": "1.14.1",
       "resolved": "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz",
       "integrity": "sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=",
-      "dev": true,
       "requires": {
         "assert-plus": "^1.0.0"
       }
@@ -3920,7 +3916,6 @@
       "version": "0.1.2",
       "resolved": "https://registry.npmjs.org/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz",
       "integrity": "sha1-OoOpBOVDUyh4dMVkt1SThoSamMk=",
-      "dev": true,
       "requires": {
         "jsbn": "~0.1.0",
         "safer-buffer": "^2.1.0"
@@ -5680,7 +5675,6 @@
       "version": "0.1.7",
       "resolved": "https://registry.npmjs.org/getpass/-/getpass-0.1.7.tgz",
       "integrity": "sha1-Xv+OPmhNVprkyysSgmBOi6YhSfo=",
-      "dev": true,
       "requires": {
         "assert-plus": "^1.0.0"
       }
@@ -6860,8 +6854,7 @@
     "jsbn": {
       "version": "0.1.1",
       "resolved": "https://registry.npmjs.org/jsbn/-/jsbn-0.1.1.tgz",
-      "integrity": "sha1-peZUwuWi3rXyAdls77yoDA7y9RM=",
-      "dev": true
+      "integrity": "sha1-peZUwuWi3rXyAdls77yoDA7y9RM="
     },
     "jsesc": {
       "version": "2.5.2",
@@ -7097,7 +7090,6 @@
           "version": "1.0.0",
           "resolved": "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.0.tgz",
           "integrity": "sha1-PKdrhSQccXC/fZcD57mqdGMAQNQ=",
-          "optional": true,
           "requires": {
             "tweetnacl": "^0.14.3"
           }
@@ -7458,7 +7450,6 @@
           "version": "0.1.1",
           "resolved": "https://registry.npmjs.org/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz",
           "integrity": "sha1-D8c6ntXw1Tw4GTOYUj735UN3dQU=",
-          "optional": true,
           "requires": {
             "jsbn": "~0.1.0"
           }
@@ -8020,7 +8011,6 @@
           "version": "1.0.2",
           "resolved": "https://registry.npmjs.org/jodid25519/-/jodid25519-1.0.2.tgz",
           "integrity": "sha1-BtSRIlUJNBlHfUJWM2BuDpB4KWc=",
-          "optional": true,
           "requires": {
             "jsbn": "~0.1.0"
           }
@@ -8739,29 +8729,6 @@
           "version": "1.0.3",
           "resolved": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz",
           "integrity": "sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw="
-        },
-        "sshpk": {
-          "version": "1.10.2",
-          "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.10.2.tgz",
-          "integrity": "sha1-1agEziJpVRVjjnmNviMnPeBwpfo=",
-          "requires": {
-            "asn1": "~0.2.3",
-            "assert-plus": "^1.0.0",
-            "bcrypt-pbkdf": "^1.0.0",
-            "dashdash": "^1.12.0",
-            "ecc-jsbn": "~0.1.1",
-            "getpass": "^0.1.1",
-            "jodid25519": "^1.0.0",
-            "jsbn": "~0.1.0",
-            "tweetnacl": "~0.14.0"
-          },
-          "dependencies": {
-            "assert-plus": {
-              "version": "1.0.0",
-              "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz",
-              "integrity": "sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU="
-            }
-          }
         },
         "stats-webpack-plugin": {
           "version": "0.4.3",
@@ -12694,7 +12661,6 @@
       "version": "1.16.1",
       "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.16.1.tgz",
       "integrity": "sha512-HXXqVUq7+pcKeLqqZj6mHFUMvXtOJt1uoUx09pFW6011inTMxqI8BA8PM95myrIyyKwdnzjdFjLiE6KBPVtJIg==",
-      "dev": true,
       "requires": {
         "asn1": "~0.2.3",
         "assert-plus": "^1.0.0",
@@ -13294,8 +13260,7 @@
     "tweetnacl": {
       "version": "0.14.5",
       "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.5.tgz",
-      "integrity": "sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=",
-      "dev": true
+      "integrity": "sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q="
     },
     "type-is": {
       "version": "1.6.16",
