@@ -961,6 +961,36 @@
         "safe-buffer": "^5.1.2"
       }
     },
+    "@shiftkey/prebuild-install": {
+      "version": "5.2.2",
+      "resolved": "https://registry.npmjs.org/@shiftkey/prebuild-install/-/prebuild-install-5.2.2.tgz",
+      "integrity": "sha512-anP6PTWYX6ecAkRwILO6WO/uOhufDqQgCw9XRx7InzPQG6fYA5b2uhRzl7ClTxUUP5GzcighXNBHry9ZhbiC+w==",
+      "requires": {
+        "detect-libc": "^1.0.3",
+        "expand-template": "^2.0.3",
+        "github-from-package": "0.0.0",
+        "minimist": "^1.2.0",
+        "mkdirp": "^0.5.1",
+        "napi-build-utils": "^1.0.1",
+        "node-abi": "^2.2.0",
+        "noop-logger": "^0.1.1",
+        "npmlog": "^4.0.1",
+        "os-homedir": "^1.0.1",
+        "pump": "^2.0.1",
+        "rc": "^1.2.7",
+        "simple-get": "^2.7.0",
+        "tar-fs": "^1.13.0",
+        "tunnel-agent": "^0.6.0",
+        "which-pm-runs": "^1.0.0"
+      },
+      "dependencies": {
+        "minimist": {
+          "version": "1.2.0",
+          "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz",
+          "integrity": "sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ="
+        }
+      }
+    },
     "@types/node": {
       "version": "8.10.39",
       "resolved": "https://registry.npmjs.org/@types/node/-/node-8.10.39.tgz",
@@ -9070,12 +9100,12 @@
       }
     },
     "keytar": {
-      "version": "4.3.1",
-      "resolved": "https://registry.npmjs.org/keytar/-/keytar-4.3.1.tgz",
-      "integrity": "sha512-PNdFVbvkqcNmqR8xtEe9uWtnMtPMUlhMPwJiGO5ub+2rBmZEu/kkS/wsN72qtaLUNUdOiH3NQ6joDdfnO3BPjA==",
+      "version": "4.3.2",
+      "resolved": "https://registry.npmjs.org/keytar/-/keytar-4.3.2.tgz",
+      "integrity": "sha512-jc6vTMqijSrqehBmNnwA9LEzmC598yVCugX7WJCmd4eKuN0xEI9RvHGFd3fZZS1GkQJjgDAz+UHbM1IpRedvlA==",
       "requires": {
-        "nan": "2.8.0",
-        "prebuild-install": "^5.0.0"
+        "@shiftkey/prebuild-install": "5.2.2",
+        "nan": "2.8.0"
       },
       "dependencies": {
         "nan": {
