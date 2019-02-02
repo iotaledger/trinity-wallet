@@ -11131,9 +11131,9 @@
       "dev": true
     },
     "puppeteer": {
-      "version": "1.11.0",
-      "resolved": "https://registry.npmjs.org/puppeteer/-/puppeteer-1.11.0.tgz",
-      "integrity": "sha512-iG4iMOHixc2EpzqRV+pv7o3GgmU2dNYEMkvKwSaQO/vMZURakwSOn/EYJ6OIRFYOque1qorzIBvrytPIQB3YzQ==",
+      "version": "1.12.1",
+      "resolved": "https://registry.npmjs.org/puppeteer/-/puppeteer-1.12.1.tgz",
+      "integrity": "sha512-FlMLdgAnURMMtwb2S6XtkBRw+kh1V+gGt09pCJF9mB1eOnF9+JhtvTxFeu1Rm5X1pKMXq5xrosrhBTgmdwzPeA==",
       "dev": true,
       "requires": {
         "debug": "^4.1.0",
