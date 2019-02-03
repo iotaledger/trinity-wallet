@@ -144,7 +144,9 @@
     "roots": [
       "../"
     ],
-    "setupTestFrameworkScriptFile": "./testConfig.js",
+    "setupFilesAfterEnv": [
+      "./testConfig.js"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/shared/"
