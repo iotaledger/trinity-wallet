@@ -6,7 +6,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import { Provider as Redux } from 'react-redux';
-import { MemoryRouter as Router } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import store, { persistStore } from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';

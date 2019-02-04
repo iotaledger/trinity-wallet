@@ -28,7 +28,7 @@ export class ChartComponent extends PureComponent {
             data: PropTypes.array.isRequired,
             timeframe: PropTypes.string.isRequired,
             yAxis: PropTypes.shape({
-                ticks: PropTypes.array.isRequired,
+                ticks: PropTypes.array,
             }),
         }).isRequired,
         /** Change chart currency */

@@ -69,7 +69,7 @@ export class BalanceComponent extends React.PureComponent {
         const accountBalance =
             summary && index === -1
                 ? Object.entries(accounts.accountInfo).reduce((total, account) => total + account[1].balance, 0)
-                : accounts.accountInfo[accountName].balance;
+                : accountName ? accounts.accountInfo[accountName].balance : 0;
 
         const fiatBalance = formatMonetaryValue(
             accountBalance,

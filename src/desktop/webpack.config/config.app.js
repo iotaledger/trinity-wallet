@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 const config = {
-    entry: ['./src/index.js'],
+    entry: [path.join(__dirname, '../src/index.js')],
     mode: devMode ? 'development' : 'production',
     output: {
         path: path.join(__dirname, '..', 'dist'),

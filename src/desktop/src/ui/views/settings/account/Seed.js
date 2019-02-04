@@ -72,7 +72,7 @@ class Seed extends PureComponent {
         const { meta, accountName } = this.props.account;
         const { seed, action } = this.state;
 
-        if (!SeedStore[meta.type].isSeedAvailable) {
+        if (meta && !SeedStore[meta.type].isSeedAvailable) {
             return (
                 <div className={cssIndex.scroll}>
                     <article>
@@ -168,7 +168,11 @@ class Seed extends PureComponent {
                     isOpen={seed && action === 'export'}
                     onClose={() => this.setState({ action: null })}
                 >
-                    <SeedExport seed={this.seed || []} title={accountName} onClose={() => this.setState({ action: null })} />
+                    <SeedExport
+                        seed={this.seed || []}
+                        title={accountName}
+                        onClose={() => this.setState({ action: null })}
+                    />
                 </Modal>
             </React.Fragment>
         );

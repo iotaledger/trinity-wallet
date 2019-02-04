@@ -21,8 +21,8 @@
   "scripts": {
     "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron -r @babel/register main.js\"",
     "postinstall": "electron-builder install-app-deps",
-    "devserver": "node server.js",
-    "style:shots": "node scripts/puppeteer.js",
+    "devserver": "node scripts/devServer.js",
+    "build:screenshots": "node scripts/screenshots.js",
     "build": "rimraf dist && concurrently \"npm run build-main\" \"npm run build-app\"",
     "build-main": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.main.js",
     "build-app": "./node_modules/.bin/cross-env NODE_ENV=production webpack --env=production --config webpack.config/config.app.js",

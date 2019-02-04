@@ -24,9 +24,11 @@ class Addresses extends PureComponent {
         const { account, t } = this.props;
         const isSpent = ({ spent: { local, remote } }) => local || remote;
 
-        const addresses = Object.keys(account.addresses)
-            .map((address) => Object.assign({ address }, account.addresses[address]))
-            .sort((a, b) => b.index - a.index);
+        const addresses = account.addresses
+            ? Object.keys(account.addresses)
+                  .map((address) => Object.assign({ address }, account.addresses[address]))
+                  .sort((a, b) => b.index - a.index)
+            : [];
 
         return (
             <div className={settingsCSS.scroll}>

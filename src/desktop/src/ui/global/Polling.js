@@ -26,7 +26,7 @@ class Polling extends React.PureComponent {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** Name for selected account */
-        selectedAccountName: PropTypes.string.isRequired,
+        selectedAccountName: PropTypes.string,
         /** @ignore */
         pollFor: PropTypes.string.isRequired,
         /** @ignore */
@@ -56,6 +56,10 @@ class Polling extends React.PureComponent {
     };
 
     componentDidMount() {
+        if (Electron.mode === 'cli') {
+            return;
+        }
+
         this.onPollTick = this.fetch.bind(this);
         this.interval = setInterval(this.onPollTick, 8000);
     }

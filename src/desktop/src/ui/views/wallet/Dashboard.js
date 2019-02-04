@@ -31,9 +31,9 @@ class Dashboard extends React.PureComponent {
         /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
-        accountName: PropTypes.string.isRequired,
+        accountName: PropTypes.string,
         /** @ignore */
-        accountMeta: PropTypes.object.isRequired,
+        accountMeta: PropTypes.object,
         /** @ignore */
         password: PropTypes.object,
         /** @ignore */
