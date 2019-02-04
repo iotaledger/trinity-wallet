@@ -775,8 +775,11 @@ const initialiseSync = () => {
  * Purges persisted data and reinitialises storage.
  *
  * @method reinitialise
+ * @param {Promise<function>}
+ *
+ * @returns {Promise}
  */
-const reinitialise = () => purge().then(() => initialise());
+const reinitialise = (getEncryptionKeyPromise) => purge().then(() => initialise(getEncryptionKeyPromise));
 
 export {
     realm,
