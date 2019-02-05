@@ -601,20 +601,20 @@
         "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez",
         "systemCancelledAuth": "Az azonosítást a készüléke megszakította",
         "userCancelledAuth": "Az azonosítást megszakította",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "passwordFallback": "Visszatérés jelszó alapú azonosításhoz",
+        "noPassword": "Nincs jelszó beállítva a készüléken"
     },
     "transferConfirmation": {
         "youAreAbout": "Ön {{contents}} összeget készül elküldeni az alábbi címre",
         "aMessage": "egy üzenet",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "{{selectedAccountName}}-tól",
+        "toAddress": "Célszámla címe",
+        "sendingAMessage": "Üzenet küldése",
+        "sendingAnEmptyMessage": "Üres üzenet küldése"
     },
     "twoFA": {
         "wrongCode": "Hibás kód",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "A megadott kód helytelen. Ha a hiba továbbra is fenáll, ellenőrizze, hogy a készülékén megfelelően van-e beállítva a dátum és az idő.",
         "emptyCode": "Nincs megadva kód",
         "emptyCodeExplanation": "Kérjük adja meg a kódot és próbálja újra.",
         "keyCopied": "Kulcs a vágólapra másolva",
@@ -631,7 +631,7 @@
     },
     "seedVault": {
         "exportSeedVault": "SeedVault exportálása",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "A SeedVault egy titkosított fájl a mester jelszavának biztonságos tárolásához. A mester jelszavát egy SeedVault fájlhoz megadott jelszóval titkosítjuk és e jelszó nélkül a titkosított mester jelszó semmilyen módon nem hozzáférhető.",
         "seedVaultWarning": "Kérjük, készítsen biztonsági másolatot a SeedVault fájlról több helyre is (pl. merevlemez, felhő tárhely, pendrive). Ha elveszíti ezt a fájlt, és nem tárolta el máshol a mester jelszavát, elveszíti az összes IOTA-ját.",
         "exportFail": "SeedVault exportálása sikertelen",
         "exportFailExplanation": "Nem sikerült a SeedVault fájl exportálása. Kérjük, győződjön meg arról, hogy van joga a megadott helyre írni és van elegendő tárhelye.",
@@ -652,7 +652,7 @@
         "noSeedFoundExplanation": "A SeedVault fájl üres vagy érvénytelen formátumú mester jelszót tartalmaz.",
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
+        "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
         "retypeKey": "Retype key"
     },
     "chart": {
