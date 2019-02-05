@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -123,14 +123,14 @@
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
-    "babel-jest": "23.4.2",
+    "babel-jest": "24.0.0",
     "babel-plugin-jest-hoist": "^23.2.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-stage-0": "^7.0.0-beta",
     "cross-env": "^5.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "jest": "23.5.0",
+    "jest": "24.0.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.45.0",
     "patch-package": "^5.1.1",
@@ -141,7 +141,9 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupTestFrameworkScriptFile": "./testConfig.js",
+    "setupFilesAfterEnv": [
+      "./testConfig.js"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
