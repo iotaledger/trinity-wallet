@@ -462,7 +462,7 @@
         "retrying": "Újrapróbálkozás",
         "yesterday": "Tegnap",
         "promotingAnotherBundle": "Újabb tranzakciós csomag előrehelyezése",
-        "pleaseWait": "Please wait, Trinity is promoting another bundle."
+        "pleaseWait": "Kérjük várjon. Jelenleg egy másik tranzakciós csomag előbbre helyezése van folyamatban."
     },
     "accountManagement": {
         "viewSeed": "Mester jelszó megtekintése",
@@ -521,14 +521,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Biztosan ki szeretne jelentkezni?",
-        "aboutToLogOut": "You are about to log out",
-        "areYouSure": "Are you sure?"
+        "aboutToLogOut": " ",
+        "areYouSure": "Biztosan ki szeretne jelentkezni?"
     },
     "qrScanner": {
         "scan": "QR kód beolvasása"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "Mértékegység-rendszer",
         "trillion": "Trillió",
         "billion": "Milliárd",
         "million": "Millió",
