@@ -39,10 +39,13 @@ class PuppeteerEnvironment extends ElectronEnvironment {
             deviceScaleFactor: 2,
         });
 
-        this.global.__screenshot = async (route, authorisedRoute) => {
+        this.global.__screenshot = async (route, authorisedRoute, timeout) => {
             page.evaluateOnNewDocument(electronMock, settings, authorisedRoute ? stateMock : {});
 
             await page.goto(`http://localhost:1074/${route}`);
+
+            await new Promise((resolve) => setTimeout(resolve, timeout || 400));
+
             const screenshot = await page.screenshot();
             return screenshot;
         };

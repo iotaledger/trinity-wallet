@@ -417,5 +417,20 @@
 	  "timeTakenByEachStep": [],
 	  "activeStepIndex": -1,
 	  "activeSteps": []
+	},
+	"wallet": {
+		"ready": true,
+		"password": {"0": 0},
+		"seedIndex": 0,
+		"transitionBalance": 0,
+		"transitionAddresses": [],
+		"balanceCheckFlag": false,
+		"deepLinkActive": false,
+		"hasConnection": true,
+		"isValidatingAddress": false,
+		"navStack": [],
+		"shouldUpdate": false,
+		"forceUpdate": false,
+		"isGeneratingReceiveAddress": false
 	}
  }

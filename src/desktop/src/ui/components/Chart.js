@@ -89,7 +89,7 @@ export class ChartComponent extends PureComponent {
                                     dataKey="y"
                                     stroke={theme.chart.color}
                                     dot={false}
-                                    animationDuration={750}
+                                    isAnimationActive={false}
                                 />
                                 <YAxis
                                     strokeWidth={0}

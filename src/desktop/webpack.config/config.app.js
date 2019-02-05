@@ -36,7 +36,7 @@ const config = {
                         : {
                               loader: MiniCssExtractPlugin.loader,
                               options: {
-                                  publicPath: '../',
+                                  publicPath: '/',
                               },
                           },
                     {
@@ -66,7 +66,7 @@ const config = {
                         options: {
                             limit: 8192,
                             name: 'images/[hash:8].[ext]',
-                            publicPath: '../',
+                            publicPath: '/',
                         },
                     },
                 ],

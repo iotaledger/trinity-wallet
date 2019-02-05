@@ -38,10 +38,15 @@ const persistConfig =
               storage: persistElectronStorage,
               whitelist: [],
           }
-        : {
-              storage: persistElectronStorage,
-              blacklist: ['wallet', 'polling', 'ui'],
-          };
+        : Electron.mode === 'cli'
+            ? {
+                  storage: persistElectronStorage,
+                  blacklist: ['polling', 'ui'],
+              }
+            : {
+                  storage: persistElectronStorage,
+                  blacklist: ['wallet', 'polling', 'ui'],
+              };
 
 const persistor = persistStore(store, persistConfig, (_, restoredState) => {
     // Set app versions in store

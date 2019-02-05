@@ -34,6 +34,7 @@ module.exports = ({ version }, stateMock) => {
             return keys;
         },
         getStorage: (key) => JSON.stringify(window.__STATE_MOCK__[key.replace('reduxPersist:', '')]),
+        getOnboardingGenerated: () => new Array(81).fill(0),
     };
 
     window.__STATE_MOCK__ = stateMock;

@@ -89,8 +89,12 @@ class Wallet extends React.PureComponent {
     };
 
     render() {
-        const { completedByteTritSweep, byteTritInfo, location, history, t } = this.props;
+        const { password, completedByteTritSweep, byteTritInfo, location, history, t } = this.props;
         const { isSweeping } = this.state;
+
+        if (Object.entries(password).length === 0) {
+            return null;
+        }
 
         if (byteTritInfo) {
             const accounts = byteTritInfo.map((account) => account.accountName).join(', ');
