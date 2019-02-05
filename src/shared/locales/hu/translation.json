@@ -161,7 +161,7 @@
         "forceUpdateExplanation": "Egy kritikus hibát javító frissítés jelent meg. Kérjük, frissítse most az alkalmazást.",
         "missingPermission": "Fájl hozzáférési engedély szükséges",
         "missingPermissionExplanation": "A művelet végrehajtásához a fájlrendszerhez való hozzáférési jogosultág szükséges.",
-        "swipeToConfirm": "Swipe to confirm"
+        "swipeToConfirm": "A megerősítéshez húzza el a csúszkát"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A mester jelszó érvénytelen karaktereket tartalmaz",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "A jelszónak minimum {{minLength}} karakterből kell állnia. A jelenleg megadott jelszó {{currentLength}} karakter hosszú. Kérjük, próbálja újra.",
         "passwordMismatch": "A jelszavak nem egyeznek meg",
         "passwordMismatchExplanation": "A megadott jelszavak nem egyeznek meg. Kérjük, próbálja újra.",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "Ez a tárcába való belépéshez szükséges jelszó.",
         "retypePassword": "Jelszó újra"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "Belépés",
         "setNode": "Csomópont beállítása",
         "whyBiometricDisabled": "Miért van a biometrikus azonosítás kikapcsolva?",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "A biometrikus azonosítás a biztonsága érdekében az applikáció első megnyitásakor nem lehetséges.",
+        "whyBiometricDisabledExplanationPart2": "Ha hosszabb ideig nem használja a tárcát, az automatikusan kijelentkezik. Az ismételt bejelentkezéshez tudja használni a biometrikus azonosítást."
     },
     "loading": {
         "loadingFirstTime": "Mester jelszó betöltése első alkalommal.",
@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "Soha, senkivel ne ossza meg a mester jelszavát.",
         "iotaLogo": "IOTA logó",
-        "print": "Print",
+        "print": "Nyomtat",
         "paperConvenience": "A mester jelszó papírra nyomtatása egy kényelmes módja annak tárolására.",
         "publicInsecure": "De vegye figyelembe, hogy nyilvános nyomtató használata, különösen ha ingyenesen elérhető nyilvános WiFi-n keresztül nyomtatna, nem biztonságos.",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "Kérjük elenőrizze az alábbiakat a nyomtatás megkezdése előtt",
+        "wifiConfirmation": "Nem használok mindenki által hozzáférhető WiFi hálózatot",
+        "printerConfirmation": "Nem használok mindenki által hozzáférhető nyomtatót"
     },
     "receive": {
         "yourAddress": "Ön címe",
@@ -300,7 +300,7 @@
         "generateAnAddress": "Új cím generálása",
         "generateAnAddressTitle": "Új cím generálása",
         "generateAnAddressExplanation": "Kérjük ennek a funkciónak a használata előtt generáljon egy új címet.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAddressInformation": "Mindig hozzon létre új címet, ha IOTA-t szeretne fogadni"
     },
     "saveYourSeed": {
         "saveYourSeed": "Készítsen biztonsági másolatot a mester jelszóról",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "Írja le a mester jelszót",
         "youCanHighlightCharacters": "9 karaktert emelhet ki egyszerre",
         "printBlankWallet": "Mester jelszó nyomtatvány minta nyomtatása",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "Mi az az ellenőrzőösszeg?",
         "everySeedHasAChecksum": "Minden mester jelszóhoz tartozik egy 3 karakterből álló ellenőrző összeg.",
         "iHavesavedMySeed": "Elmentettem a mester jelszót",
         "checksumExplanation": "Amikor egy új mester jelszót ad hozzá a tárcához, mindig győződjön meg arról, hogy a tárca által generált ellenőrző összeg megegyezik a korábban feljegyzett ellenőrző összeggel.",
