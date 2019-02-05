@@ -1,11 +1,12 @@
 import { expect } from 'chai';
-import { getRealm, realm, Node, config as realmConfig } from '../../storage';
+import { getRealm, realm, Node, config as realmConfig, initialise } from '../../storage';
 
 const Realm = getRealm();
 
 describe('storage: Node', () => {
     before(() => {
         Realm.deleteFile(realmConfig);
+        initialise(() => Promise.resolve(new Int8Array(64)));
     });
 
     beforeEach(() => {
