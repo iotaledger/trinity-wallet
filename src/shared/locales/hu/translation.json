@@ -534,7 +534,7 @@
         "million": "Millió",
         "thousand": "Ezer",
         "one": "Egy",
-        "unitInfoExplanation": "IOTAs are typically acquired in multiples of one million, but can be transferred as a single IOTA."
+        "unitInfoExplanation": "Egy millió IOTA (mIOTA) az általánosan elterjedt mértékegység, de akár egyetlen IOTA is utalható."
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miért nem tudom a teljes egyenlegem elkölteni?",
@@ -556,7 +556,7 @@
         "syncingYourAccount": "Számla szinkronizálása."
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "Adja meg egy számla nevet és a mester jelszót",
         "incorrectFormat": "Helytelen mester jelszó formátum",
         "validSeedExplanation": "A mester jelszónak pontosan 81 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat."
     },
@@ -570,8 +570,8 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Készített biztonsági másolatot a mester jelszaváról?",
-        "iHaveBackedUp": "I have safely backed up my seed",
-        "reenterSeed": "At the next step you need to re-enter your seed.",
+        "iHaveBackedUp": "Készítettem biztonsági másolatot a mester jelszavamról",
+        "reenterSeed": "A következő lépésben a tárca kérni fogja, hogy adja meg újra a mester jelszavát.",
         "reenterSeedWarning": "Ha nem rendelkezik biztonsági másolattal a mester jelszaváról, és a készüléke meghibásodik, az összes IOTA-ját elveszíti.",
         "pleaseConfirm": "Kérjük, erősítse meg, hogy biztonságosan eltárolta a mester jelszavát."
     },
@@ -590,17 +590,17 @@
         "fingerprintAuthFailedExplanation": "Az ujjlenyomat alapú azonosítás nem sikerült. Kérjük, próbálja újra.",
         "status": "Állapot",
         "fingerprintUnavailable": "Biometrikus azonosítás nem elérhető",
-        "deviceLocked": "Authentication disabled for 30 seconds",
+        "deviceLocked": "Azonosítás letiltva 30 másodpercre",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "A készülék nem támogatja a biometrikus azonosítást",
+        "notConfigured": "A biometrikus azonosítás nem lett beállítva a készülék saját beállításai között",
+        "buttonInstructionsDisable": "Nyomja meg az alábbi gombot az ujjlenyomat alapú azonosítás kikapcsolásához.",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
         "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához",
         "buttonInstructionsEnableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID engedélyezéséhez",
         "instructionsLogin": "Érintse meg az ujjlenyomat leolvasót a bejelentkezéshez",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
+        "systemCancelledAuth": "Az azonosítást a készüléke megszakította",
+        "userCancelledAuth": "Az azonosítást megszakította",
         "passwordFallback": "Fall back to password authentication",
         "noPassword": "Password is not set on device"
     },
