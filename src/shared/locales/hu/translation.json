@@ -593,7 +593,7 @@
         "deviceLocked": "Azonosítás letiltva 30 másodpercre",
         "fingerprintUnavailableExplanation": "A készüléke nem támogatja a biometrikus azonosítást, vagy a készülék beállításai között nem lett engedélyezve.",
         "notSupported": "A készülék nem támogatja a biometrikus azonosítást",
-        "notConfigured": "A biometrikus azonosítás nem lett beállítva a készülék saját beállításai között",
+        "notConfigured": "A biometrikus azonosítás nem lett engedélyezve a készülék beállításai között",
         "buttonInstructionsDisable": "Nyomja meg az alábbi gombot az ujjlenyomat alapú azonosítás kikapcsolásához.",
         "buttonInstructionsEnable": "Kérjük, nyomja meg az alábbi gombot az ujjlenyomat-azonosítás engedélyezéséhez.",
         "buttonInstructionsDisableIPhoneX": "Kérjük, nyomja meg az alábbi gombot a Face ID letiltásához",
@@ -653,7 +653,7 @@
         "seedFileError": "SeedVault fájl megnyitás sikertelen",
         "seedFileErrorExplanation": "Nem sikerült megnyitni a SeedVault fájlt. Ha biztosan jó fájlt adott meg, lehetséges, hogy a fájl megsérült.",
         "seedVaultKeyExplanation": "A SeedVault fájl biztonságos tárolásához kérjük válasszon egy titkosító kulcsot. A titkosító kulcsra akkor lehet szüksége, ha a mester jelszavát a titkosított SeedVault biztonsági mentésből szeretné később egy másik, vagy egy újratelepített tárcába betölteni.",
-        "retypeKey": "Retype key"
+        "retypeKey": "Titkosító kulcs még egyszer"
     },
     "chart": {
         "mcap": "Piaci kapitalizáció",
@@ -682,14 +682,14 @@
     "progressSteps": {
         "checkingNodeHealth": "Csomópont működésének ellenőrzése",
         "validatingReceiveAddress": "Címzett címének ellenőrzése",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "Címek ellenőrzése",
         "syncingAccount": "Számla szinkronizálása",
         "preparingInputs": "Küldő címek összeállítása",
         "preparingTransfers": "Tranzakciók előkészítése",
         "gettingTransactionsToApprove": "Ellenőrizendő tranzakciók lekérése",
         "proofOfWork": "Kiszabott munka elvégzése",
         "broadcasting": "Tranzakció elküldése",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "Utalás végrehajtva"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Pillanatkép utáni egyenlegátvezetés sikertelen",
@@ -704,7 +704,7 @@
         "transitioning": "Egyenlegátvezetés pillanatkép készítése után.",
         "generatingAndDetecting": "Címek előállítása és az egyenleg átvezetése.",
         "attaching": "Címek hozzácsatolása a Tangle-höz.",
-        "attachProgress": "Attaching address {{currentAddress}} of {{totalAddresses}}"
+        "attachProgress": "Újracsatolt címek: {{currentAddress}}/{{totalAddresses}}"
     },
     "deepLink": {
         "autofill": "Automatikus kitöltés sikeres",
