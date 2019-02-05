@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 1074;
 
+const useHotReload = process.argv.indexOf('hot') > -1;
+
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
@@ -18,10 +20,14 @@ const webpackDev = webpackDevMiddleware(compiler, {
         colors: true,
     },
 });
+
 app.use(webpackDev);
 
 const webpackHot = webpackHotMiddleware(compiler);
-app.use(webpackHot);
+
+if (useHotReload) {
+    app.use(webpackHot);
+}
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -39,8 +45,11 @@ const instance = app.listen(PORT, (error) => {
 
 const close = () => {
     webpackDev.close();
-    webpackHot.close();
     instance.close();
+
+    if (useHotReload) {
+        webpackHot.close();
+    }
 };
 
 module.exports = { close, PORT, webpackDev };

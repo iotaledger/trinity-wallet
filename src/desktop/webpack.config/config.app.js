@@ -46,7 +46,6 @@ const config = {
                             modules: true,
                             importLoaders: 1,
                             localIdentName: '[name]__[local]',
-                            sourceMap: true,
                         },
                     },
                     {
@@ -84,8 +83,6 @@ const config = {
         }),
         new HtmlWebpackPlugin({
             title: 'Trinity',
-            inject: false,
-            template: __dirname + '/index.html',
         }),
     ],
 };

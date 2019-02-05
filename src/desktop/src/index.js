@@ -88,6 +88,14 @@ if (Electron.mode === 'tray') {
     });
 }
 
+const rootEl = document.createElement('div');
+rootEl.id = 'root';
+document.body.appendChild(rootEl);
+
+const modalEl = document.createElement('div');
+modalEl.id = 'modal';
+document.body.appendChild(modalEl);
+
 render(
     <ErrorBoundary>
         <Redux store={store}>
@@ -105,5 +113,5 @@ render(
             </I18nextProvider>
         </Redux>
     </ErrorBoundary>,
-    document.getElementById('root'),
+    rootEl,
 );
