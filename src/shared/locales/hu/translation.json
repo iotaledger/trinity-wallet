@@ -322,21 +322,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Kérjük erősítse meg a mester jelszavát",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "A Trinity soha nem fogja újra kérni a mester jelszavát, kizárólag a tárca gyári állapotba való visszaállítása vagy újratelepítése után.",
         "enterYourSeed": "Adja meg a mester jelszót",
         "incorrectSeed": "Helytelen mester jelszó",
         "incorrectSeedExplanation": "A megadott mester jelszó helytelen. Kérjük, próbálja újra.",
         "ifYouHaveNotSaved": "Ha nem készített biztonsági mentést a mester jelszaváról, kérjük lépjen vissza és készítsen.",
         "enterSeedBelow": "Adja meg alább az újonnan generált mester jelszavát, hogy megbizonyosodjon róla, valóban helyes biztonsági másolat készült róla",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "FIGYELMEZTETÉS: mester jelszó nem másolható",
+        "clipboardWarningExplanation": "A vágólapról való beillesztés a biztonsága érdekében nem megengedett. A kijelölt mester jelszót azonban pl. egy szövegfájlból áthúzhatja a tárcába."
     },
     "send": {
         "invalidAddress": "Érvénytelen cím",
         "invalidAddressExplanation1": "A cím legfeljebb {{maxLength}} karakterből állhat és rendelkeznie kell egy ellenőrző összeggel.",
         "invalidAddressExplanation2": "A cím érvénytelen karaktereket tartalmaz.",
         "invalidAddressExplanation3": "A cím érvénytelen ellenőrzőösszeget tartalmaz.",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "Kérjük ellenőrizze, hogy a címet helyesen adta-e meg.",
         "invalidAddressExplanationGeneric": "A címnek pontosan 90 karakter hosszúnak kell lennie, valamint csak nagy A-Z betűkből és a 9-es számjegyből állhat.",
         "notEnoughFunds": "Fedezethiány",
         "notEnoughFundsExplanation": "Nincs elegendő IOTA a számlán a tranzakció végrehajtásához.",
@@ -358,7 +358,7 @@
         "addressPasteDetected": "Cím másolás érzékelve",
         "addressPasteExplanation": "Úgy tűnik bemásolt egy címet. Kérjük, győződjön meg arról, hogy valóban erre a címre kíván küldeni.",
         "invalid": "Érvénytelen",
-        "swipeToSend": "Swipe to send"
+        "swipeToSend": "A küldéshez húzza el a csúszkát"
     },
     "setSeedName": {
         "letsAddName": "Kérjük, adjon meg egy nevet",
@@ -386,9 +386,9 @@
         "addNewSeed": "Új mester jelszó hozzáadása",
         "twoFA": "Kétlépcsős hitelesítés",
         "changePassword": "Jelszó módosítása",
-        "general": "General settings",
+        "general": "Általános beállítások",
         "advanced": "Haladó beállítások",
-        "account": "Account settings",
+        "account": "Fiók beállításai",
         "logout": "Kijelentkezés",
         "reset": "Tárca gyári állapotának visszaállítása",
         "syncingComplete": "Szinkronizáció befejezve",
