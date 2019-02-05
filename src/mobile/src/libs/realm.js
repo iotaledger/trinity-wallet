@@ -1,4 +1,6 @@
-import { getRandomBytes } from './crypto';
+import isNull from 'lodash/isNull';
+import { getRandomBytes } from 'libs/crypto';
+import { getRealmEncryptionKeyFromKeychain, setRealmEncryptionKeyInKeychain } from 'libs/keychain';
 
 /**
  * Gets encryption key for realm.
@@ -10,5 +12,14 @@ import { getRandomBytes } from './crypto';
  * @returns {Promise}
  */
 export const getEncryptionKey = () => {
-    return getRandomBytes(64);
+    // Access keychain and check if there is an encryption key stored for realm
+    return getRealmEncryptionKeyFromKeychain().then((key) => {
+        // If there is no encryption key stored, generate a new one.
+        if (isNull(key)) {
+            return getRandomBytes(64).then((bytes) => setRealmEncryptionKeyInKeychain(bytes).then(() => bytes));
+        }
+
+        // If there is an encryption key stored for realm, return the key.
+        return key;
+    });
 };
