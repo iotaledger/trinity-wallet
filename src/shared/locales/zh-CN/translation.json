@@ -22,8 +22,8 @@
         "invalidResponseFetchingAccountDesktop": "The node returned an error while fetching your account information. If your problem persists, try changing node or disabling your system proxy in Trinity Settings.",
         "nodeOutOfSync": "节点不同步",
         "nodeOutOfSyncExplanation": "当前选定的节点不同步，请更换节点或重试。",
-        "experimentalNode": "Node version not supported",
-        "experimentalNodeExplanation": "Your currently selected node is running an experimental version which is not supported. Please change node or try again.",
+        "experimentalNode": "不支持的节点版本",
+        "experimentalNodeExplanation": "您当前选定的节点正在运行不受支持的实验性版本。请更改节点或重试。",
         "thisNodeOutOfSync": "此节点不同步，请更换节点或重试。",
         "seed": "种子",
         "checksum": "校验和",
@@ -58,8 +58,8 @@
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不正确，请重试。",
-        "unrecognisedAccount": "Unrecognised account",
-        "unrecognisedAccountExplanation": "Account named {{accountName}} was not recognised. Consider resetting your wallet.",
+        "unrecognisedAccount": "无法识别的帐户",
+        "unrecognisedAccountExplanation": "帐户名 {{accountName}} 无法识别。请考虑重置您的钱包。",
         "emptyPasswordExplanation": "您必须输入密码。请重试。",
         "capsLockIsOn": "大写锁定键已开启",
         "syncInProgress": "正在同步中",
@@ -76,8 +76,8 @@
         "wallet": "钱包",
         "all": "全部",
         "sent": "已发送",
-        "youReceived": "You received",
-        "youSent": "You sent",
+        "youReceived": "您已收入",
+        "youSent": "您已支出",
         "received": "已收到",
         "sending": "发送",
         "receiving": "接收",
@@ -121,7 +121,7 @@
         "nodeDuplicatedExplanation": "该自定义节点已经存在于内置节点列表中。",
         "nodeAutoChanged": "自动切换节点",
         "nodeAutoChangedExplanation": "当选定的节点离线时切换到新节点{{- nodeAddress}}",
-        "touchSensor": "Touch the fingerprint sensor",
+        "touchSensor": "触摸指纹传感器",
         "fingerprintOnSend": "请触摸指纹阅读器以授权转账",
         "masterKey": "IOTA种子是您的资金的主密钥。",
         "seedThief": "如果别人拿到了你的种子，那么他们就可以偷走你的IOTA。",
@@ -133,7 +133,7 @@
         "spentAddressExplanation": "警告：资金位于已用地址上。",
         "discordInformation": "从同一地址多次发送是危险的。请到Discord的 #help 频道寻找帮助。",
         "androidInsecureClipboardWarning": "安卓系统不能提供安全的剪贴板。",
-        "androidCopyPasteWarning": "Never copy/paste a seed on an Android device.",
+        "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴种子。",
         "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
         "mustBeStoredAppropriately": "必须恰当地存储种子。",
         "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内失去响应。",
@@ -149,19 +149,19 @@
         "tryingAgainWithLocalPoW": "重新发起本地工作量证明。",
         "tryingAgainWithDifferentNode": "更换到其它节点重试中。",
         "errorFetchingAccountInformation": "获取帐户信息时出错。",
-        "errorSyncingAddresses": "Error syncing address information. Trying again with a different node.",
-        "errorAccessingKeychain": "Keychain error",
-        "errorAccessingKeychainExplanation": "Cannot access keychain required for secure storage.",
+        "errorSyncingAddresses": "同步地址信息时出错。请使用其他节点再次尝试。",
+        "errorAccessingKeychain": "钥匙串错误",
+        "errorAccessingKeychainExplanation": "无法访问安全存储所需的钥匙串。",
         "mainWallet": "主账户",
-        "confirm": "Confirm",
-        "delete": "Delete",
-        "shouldUpdate": "A new update is available",
-        "shouldUpdateExplanation": "A new update has been released. It is recommended that you update to the latest version.",
-        "forceUpdate": "Update the app to continue",
-        "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
+        "confirm": "确认",
+        "delete": "删除",
+        "shouldUpdate": "有新的更新可用",
+        "shouldUpdateExplanation": "新的更新已发布。建议您更新到最新版本。",
+        "forceUpdate": "更新应用以继续",
+        "forceUpdateExplanation": "已发布关键更新。请立即更新应用程序。",
         "missingPermission": "需要文件系统权限",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
-        "swipeToConfirm": "Swipe to confirm"
+        "missingPermissionExplanation": "本功能需要具备文件系统访问权限。",
+        "swipeToConfirm": "滑动以确认"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -215,7 +215,7 @@
         "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}}个字符 。当前为{{currentLength}}个字符，请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配，请再试一次。",
-        "anEncryptedCopy": "This is your main wallet password. You will use it to log in.",
+        "anEncryptedCopy": "这是您的主钱包密码。您将使用它登录。",
         "retypePassword": "请重新输入密码"
     },
     "copyToClipboard": {
@@ -249,8 +249,8 @@
         "login": "登录",
         "setNode": "设置节点",
         "whyBiometricDisabled": "为什么生物识别认证被停用？",
-        "whyBiometricDisabledExplanationPart1": "Biometric authentication is disabled on first app load for your security.",
-        "whyBiometricDisabledExplanationPart2": "When using Trinity you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanationPart1": "为了您的安全, 在第一次加载应用程序时禁用生物识别身份验证。",
+        "whyBiometricDisabledExplanationPart2": "使用Trinity时, 您将因不活动而注销。您可以使用生物识别身份验证重新登录。"
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -279,12 +279,12 @@
     "paperWallet": {
         "neverShare": "永远不要与任何人分享您的种子。",
         "iotaLogo": "IOTA标志",
-        "print": "Print",
+        "print": "打印",
         "paperConvenience": "为您的种子打印一份纸质副本是一种方便的存储方式。",
         "publicInsecure": "但是在公共Wifi或者公共打印机上打印是不安全的。",
-        "pleaseCheck": "Please check and confirm before you print",
-        "wifiConfirmation": "I am not on on public wifi",
-        "printerConfirmation": "I am not printing on a public printer"
+        "pleaseCheck": "打印前请检查并确认",
+        "wifiConfirmation": "我没有使用公共WIFI",
+        "printerConfirmation": "我没有在公共打印机上打印"
     },
     "receive": {
         "yourAddress": "您的地址",
@@ -293,14 +293,14 @@
         "copyAddress": "复制地址",
         "addressCopied": "地址已复制",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "Generate address",
+        "generateNewAddress": "生成地址",
         "noAddresses": "无地址",
         "spent": "使用过",
         "tag": "标签",
-        "generateAnAddress": "Generate address",
-        "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function.",
-        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
+        "generateAnAddress": "生成地址",
+        "generateAnAddressTitle": "生成地址",
+        "generateAnAddressExplanation": "请在使用此功能之前生成一个地址。",
+        "generateAddressInformation": "每次您要接收IOTA时，都要生成新的存款地址"
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "让我们写下您的种子",
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
-        "whatIsAChecksum": "What is a checksum?",
+        "whatIsAChecksum": "什么是校验和？",
         "everySeedHasAChecksum": "每个种子都有相应的3字符校验和.",
         "iHavesavedMySeed": "我已经保存好了种子",
         "checksumExplanation": "每当您向钱包添加种子时，您应确保钱包生成的校验和与您写下来的校验和相匹配。",
@@ -322,21 +322,21 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "请确认您的种子",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or delete the app.",
+        "trinityWillNeverAskToReenter": "Trinity不会要求您重新输入种子，除非您重置了钱包或者卸载了应用。",
         "enterYourSeed": "输入您的种子",
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
         "ifYouHaveNotSaved": "如果您尚未保存您的种子，请返回保存。",
         "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。",
-        "clipboardWarning": "WARNING: Cannot paste seed",
-        "clipboardWarningExplanation": "Paste is disabled for your security. You can drag and drop your seed from a text file instead."
+        "clipboardWarning": "警告: 无法粘贴种子",
+        "clipboardWarningExplanation": "为您的安全起见, 粘贴被禁用。您可以从文本文件中拖放种子。"
     },
     "send": {
         "invalidAddress": "无效地址",
         "invalidAddressExplanation1": "地址应该是 {{maxLength}} 个字符并且应该有一个校验和。",
         "invalidAddressExplanation2": "地址包含无效字符。",
         "invalidAddressExplanation3": "地址包含无效校验和。",
-        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
+        "invalidAddressExplanation4": "请检查您输入的地址是否正确。",
         "invalidAddressExplanationGeneric": "有效地址应为 90 个字符并且仅包含 A-Z 或 9。",
         "notEnoughFunds": "资金不足",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
@@ -370,8 +370,8 @@
         "standard": "标准",
         "advancedModeExplanation": "高级模式会显示更详细的技术信息。",
         "modesExplanation": "仅建议有经验的IOTA用户开启高级模式，否则您可能会感到困惑。",
-        "modeUpdated": "Mode updated",
-        "modeUpdatedExplanation": "You have changed to {{mode}} mode"
+        "modeUpdated": "模式已更新",
+        "modeUpdatedExplanation": "您已更改为 {{mode}} 模式"
     },
     "settings": {
         "transferSending": "正在发送交易",
@@ -386,9 +386,9 @@
         "addNewSeed": "添加新种子",
         "twoFA": "双重认证",
         "changePassword": "更改密码",
-        "general": "General settings",
+        "general": "常用设置",
         "advanced": "高级设置",
-        "account": "Account settings",
+        "account": "帐户设置",
         "logout": "登出",
         "reset": "重置钱包",
         "syncingComplete": "同步完成",
@@ -521,14 +521,14 @@
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "您确定要登出吗？",
-        "aboutToLogOut": "You are about to log out",
+        "aboutToLogOut": "您即将注销",
         "areYouSure": "确定？"
     },
     "qrScanner": {
         "scan": "扫描您的二维码"
     },
     "unitInfoModal": {
-        "unitSystem": "Unit System",
+        "unitSystem": "单位系统",
         "trillion": "万亿",
         "billion": "十亿",
         "million": "百万",
@@ -542,9 +542,9 @@
         "discordInformation": "请前往Discord的#help频道寻求帮助。"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete your account?",
+        "areYouSure": "确定要删除您的账户吗？",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
-        "thisAction": "This action cannot be undone",
+        "thisAction": "本操作无法撤销",
         "enterPassword": "请输入密码以删除该帐户。"
     },
     "manualSync": {
@@ -556,7 +556,7 @@
         "syncingYourAccount": "正在同步您的账号"
     },
     "useExistingSeed": {
-        "title": "Enter an account name and seed",
+        "title": "输入帐户名和种子",
         "incorrectFormat": "种子格式不正确",
         "validSeedExplanation": "有效的种子应该是81个字符，并且只包含 A-Z 或9。"
     },
@@ -565,8 +565,8 @@
         "viewSeed": "查看种子",
         "hideSeed": "隐藏种子",
         "notAvailable": "Seed export is not available for {{accountType}} account type",
-        "accountIndex": "Your Ledger account index",
-        "accountPage": "Your Ledger account page"
+        "accountIndex": "您的Ledger账户索引",
+        "accountPage": "您的Ledger账户页面"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "您备份过种子了吗？",
@@ -607,14 +607,14 @@
     "transferConfirmation": {
         "youAreAbout": "您将发送 {{内容}} 到地址",
         "aMessage": "一条消息",
-        "fromAccount": "From {{selectedAccountName}}",
-        "toAddress": "To address",
-        "sendingAMessage": "Sending a message",
-        "sendingAnEmptyMessage": "Sending an empty message"
+        "fromAccount": "来自{{selectedAccountName}}",
+        "toAddress": "接受付款地址",
+        "sendingAMessage": "发送消息",
+        "sendingAnEmptyMessage": "发送空消息"
     },
     "twoFA": {
         "wrongCode": "验证码错误",
-        "wrongCodeExplanation": "The code you entered is incorrect. If this error persists, check that your device times are correct.",
+        "wrongCodeExplanation": "您输入的代码不正确。如果此错误仍然存在, 请检查您的设备时间是否正确。",
         "emptyCode": "验证码为空",
         "emptyCodeExplanation": "请输入验证码并重试。",
         "keyCopied": "密钥已复制到剪贴板",
@@ -631,29 +631,29 @@
     },
     "seedVault": {
         "exportSeedVault": "导出SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for backing up your seed. The seed is encrypted with a SeedVault Key and cannot be accessed without that key.",
+        "seedVaultExplanation": "SeedVault是一个用于备份您的种子的加密文件。种子由一个SeedVault密钥加密，在没有该密钥时无法访问。",
         "seedVaultWarning": "请确保您在多个位置备份了该文件（例如硬盘、云端、USB）。如果您遗失了该文件并且没有在其他地方储存您的种子，那么您将失去您的IOTA。",
         "exportFail": "SeedVault 导出失败",
         "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
         "exportSuccess": "SeedVault 已导出",
         "exportSuccessExplanation": "已成功导出加密的种子文件。",
-        "unrecognisedKey": "Unrecognised SeedVault Key",
-        "unrecognisedKeyExplanation": "The key was not recognised. Please try again.",
-        "emptyKey": "No SeedVault Key entered",
-        "emptyKeyExplanation": "You must enter a key. Please try again.",
+        "unrecognisedKey": "无法识别的SeedVault密钥",
+        "unrecognisedKeyExplanation": "密钥无法识别。请再试一次。",
+        "emptyKey": "未输入SeedVault密钥",
+        "emptyKeyExplanation": "您必须输入密钥。请再试一次。",
         "importSuccess": "种子已导入",
         "importSuccessExplanation": "您的种子已成功导入。",
         "saveToDownloadFolder": "保存到下载文件夹",
         "importSeedVault": "导入SeedVault",
-        "dropInstructions": "Drop SeedVault or text here <1></1> or click to browse",
-        "dropActive": "Drop SeedVault or text here",
-        "enterKeyExplanation": "Enter your key to open the SeedVault",
+        "dropInstructions": "拖入SeedVault或在此键入<1></1>或者点击浏览",
+        "dropActive": "拖入SeedVault或在此键入",
+        "enterKeyExplanation": "输入密钥以打开SeedVault",
         "noSeedFound": "SeedVault 不包含有效种子",
         "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
         "seedFileError": "打开SeedVault失败",
         "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。",
-        "seedVaultKeyExplanation": "First we need to secure your SeedVault. Please choose a key to encrypt the file. You will use this key if you need to restore your seed from the SeedVault back up.",
-        "retypeKey": "Retype key"
+        "seedVaultKeyExplanation": "首先，我们需要加密你的种子库。请选择加密文件的密钥。如果需要从SeedVault备份中恢复种子，您将使用此密钥。",
+        "retypeKey": "重新输入密钥"
     },
     "chart": {
         "mcap": "市值",
@@ -682,14 +682,14 @@
     "progressSteps": {
         "checkingNodeHealth": "检查节点运行状况。",
         "validatingReceiveAddress": "验证接收地址",
-        "validatingTransactionAddresses": "Validating transaction addresses",
+        "validatingTransactionAddresses": "正在验证交易地址",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
         "preparingTransfers": "准备转帐中",
         "gettingTransactionsToApprove": "获取交易批准",
         "proofOfWork": "完成工作量证明",
         "broadcasting": "广播中",
-        "transferComplete": "Transfer complete"
+        "transferComplete": "转账完毕"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "无法完成快照转换",
@@ -715,11 +715,11 @@
         "noUpdatesAvailable": "没有可用的更新",
         "noUpdatesAvailableExplanation": "您正在使用最新版本的 Trinity 钱包。",
         "newVersionAvailable": "新版本可用",
-        "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
+        "newVersionAvailableExplanation": "有新版本的Trinity。是否立刻更新？",
         "installUpdate": "安装更新并重启",
         "installUpdateExplanation": "下载完成，Trinity将重新启动以安装更新。",
-        "downloadingUpdate": "Downloading update",
-        "downloadProgress": "{{transferred}} of {{total}} downloaded"
+        "downloadingUpdate": "正在下载更新",
+        "downloadProgress": "已下载{{transferred}}，总共{{total}}"
     },
     "notificationLog": {
         "errorLog": "错误日志"
@@ -741,8 +741,8 @@
         "completeSetup": "完成设置"
     },
     "proxy": {
-        "proxy": "Use system proxy",
-        "proxyExplanation": "Detect and use system wide network proxy settings. Close and reopen the wallet after changing this setting."
+        "proxy": "使用系统代理",
+        "proxyExplanation": "检测并使用系统网络代理设置。 更改此设置后需要关闭并重新打开钱包。"
     },
     "notifications": {
         "notifications": "通知",
@@ -763,40 +763,40 @@
         "warningTitle": "Warning: Locked funds detected",
         "explanation": "Trinity Desktop version 0.3.4 contained a bug that can temporarily lock funds. This affects a small number of users that performed transactions with 0.3.4.",
         "explanationAccounts": "Locked funds have been detected on your accounts: {{accounts}}. Trinity will now automatically recover your funds, by moving them to a new address.",
-        "proceed": "Proceed to Recovery",
+        "proceed": "进行恢复",
         "sweepConfirmation": "You are about to sweep {{amount}} to the address {{address}}. Account: {{accountName}}, address index: {{index}}",
         "sweepConfirmationTitle": "Sweep confirmation"
     },
     "ledger": {
-        "ready": "Ledger device connected and ready",
-        "notReady": "If you wish to use a Ledger device, connect and unlock it now",
-        "indexInUse": "Index already in use for account {{account}}",
-        "indexInUseExplanation": "Your chosen index is already in use on one of your accounts. Please choose another index number.",
-        "proceedWithLedger": "Proceed with Ledger setup",
-        "accountIndex": "Account index",
-        "accountPage": "Account page",
-        "chooseAccountIndex": "Choose your Ledger account index",
-        "accountIndexExplanation": "Your Ledger can store multiple seeds. Each seed is identified by a unique index number. An unused index has been pre-selected, but feel free to choose your own. Make sure you note down your chosen index number.",
+        "ready": "Ledger设备已连接并准备完毕",
+        "notReady": "如果您希望使用Ledger设备，请连上并解锁。",
+        "indexInUse": "账户 {{account}} 已经使用该索引",
+        "indexInUseExplanation": "您所选的索引已经在您其中一个帐户使用过了，请选择其他索引号码。",
+        "proceedWithLedger": "进行Ledger设置",
+        "accountIndex": "账户索引",
+        "accountPage": "账户页面",
+        "chooseAccountIndex": "选择您的Ledger账户索引",
+        "accountIndexExplanation": "您的Ledger可以存储多个种子。每个种子都由一个唯一的索引号码。系统已经预先选择未使用的索引，但您也可以随意选择自己的索引。请务必记下您选择的索引号码。",
         "accountPageExplanation": "Some third party wallets require pages.",
-        "connectionError": "Cannot connect to Ledger",
-        "connectionErrorExplanation": "Check that your Ledger is connected and unlocked.",
-        "connectionTitle": "Connect your Ledger",
-        "connectionExplanation": "A Ledger device must be connected to perform this function.",
+        "connectionError": "无法连接至Ledger",
+        "connectionErrorExplanation": "检查您的Ledger是否已连接并解锁。",
+        "connectionTitle": "连接您的Ledger",
+        "connectionExplanation": "必须连接Ledger设备才能执行此功能。",
         "transactionTitle": "Scroll through and approve the transaction on your Ledger",
-        "transactionExplanation": "Use your Ledger device to approve the outgoing transaction.",
-        "applicationTitle": "Open Ledger IOTA app",
-        "applicationExplanation": "Go to your Ledger and open the IOTA app to continue using Trinity.",
-        "cannotSendZeroValueTitle": "Cannot send zero value transfer",
-        "cannotSendZeroValueExplanation": "Cannot send zero value transfers with a Ledger device.",
-        "ledgerDisconnectedTitle": "Ledger device disconnected",
-        "ledgerDisconnectedExplanation": "The Ledger device was disconnected. Please reconnect and try again.",
-        "ledgerDeniedTitle": "Transaction denied",
-        "ledgerDeniedExplanation": "The transaction was denied on the Ledger device.",
-        "ledgerIncorrectIndex": "Ledger device mismatch",
-        "ledgerIncorrectIndexExplanation": "The connected Ledger device does not match the one linked to this account, or the recovery phrase has been changed.",
-        "checkAddress": "Check the receive address",
-        "checkAddressExplanation": "Check that the address matches the one displayed on your Ledger device.",
+        "transactionExplanation": "使用您的Ledger设备来确认转账交易。",
+        "applicationTitle": "打开Ledger IOTA应用",
+        "applicationExplanation": "在Ledger设备上打开IOTA应用，然后继续使用Trinity。",
+        "cannotSendZeroValueTitle": "转账金额不能为零",
+        "cannotSendZeroValueExplanation": "使用Ledger设备时转账金额不能为零。",
+        "ledgerDisconnectedTitle": "Ledger设备已断开",
+        "ledgerDisconnectedExplanation": "Ledger设备已断开连接。请重新连上后再试一遍。",
+        "ledgerDeniedTitle": "交易被拒绝",
+        "ledgerDeniedExplanation": "交易被Ledger设备拒绝。",
+        "ledgerIncorrectIndex": "Ledger设备不匹配",
+        "ledgerIncorrectIndexExplanation": "连接的Ledger设备与链接到此帐户的Ledger设备不匹配，或者恢复短语已更改。",
+        "checkAddress": "检查接收地址",
+        "checkAddressExplanation": "检查地址是否与Ledger设备上显示的地址匹配。",
         "applicationNotInitialised": "Warning unconfirmed",
-        "applicationNotInitialisedExplanation": "Reopen the IOTA app on your Ledger device, accept the informational warning and try again."
+        "applicationNotInitialisedExplanation": "重新打开Ledger设备上的IOTA应用，选择接受警告信息，然后重试。"
     }
 }
