@@ -1,5 +1,6 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
+import { ALIAS_REALM } from 'libs/realm';
 import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
@@ -129,7 +130,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ACC_MAIN}-salt`) {
+            if (account.account === `${ACC_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
