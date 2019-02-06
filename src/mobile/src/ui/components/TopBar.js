@@ -77,17 +77,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        height: Styling.topbarHeight - Styling.statusBarHeight,
     },
     balanceWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
         width: width - width / 4.5,
-        height: Styling.topbarHeight - Styling.statusBarHeight,
     },
     iconWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
         width: width / 9,
+        flex: 1,
     },
     disabled: {
         color: '#a9a9a9',
@@ -343,25 +344,23 @@ class TopBar extends Component {
                     {(!isKeyboardActive &&
                         !minimised && (
                             <View style={styles.barWrapper}>
-                                <View style={styles.iconWrapper}>
-                                    <Animated.View style={styles.iconWrapper}>
-                                        {(hasNotifications &&
-                                            !isKeyboardActive &&
-                                            mode === 'Advanced' && (
-                                                <TouchableOpacity
-                                                    onPress={() => this.showModal()}
-                                                    style={[styles.iconWrapper, { alignItems: 'flex-end' }]}
-                                                >
-                                                    <Icon
-                                                        name="notification"
-                                                        size={width / 18}
-                                                        color={bar.color}
-                                                        style={isModalActive && styles.disabled && { opacity: 0.5 }}
-                                                    />
-                                                </TouchableOpacity>
-                                            )) || <View />}
-                                    </Animated.View>
-                                </View>
+                                <Animated.View style={styles.iconWrapper}>
+                                    {(hasNotifications &&
+                                        !isKeyboardActive &&
+                                        mode === 'Advanced' && (
+                                            <TouchableOpacity
+                                                onPress={() => this.showModal()}
+                                                style={styles.iconWrapper}
+                                            >
+                                                <Icon
+                                                    name="notification"
+                                                    size={width / 18}
+                                                    color={bar.color}
+                                                    style={isModalActive && styles.disabled && { opacity: 0.5 }}
+                                                />
+                                            </TouchableOpacity>
+                                        )) || <View />}
+                                </Animated.View>
                                 <Animated.View style={styles.balanceWrapper}>
                                     <Text
                                         numberOfLines={1}
@@ -395,18 +394,16 @@ class TopBar extends Component {
                                         </Text>
                                     </View>
                                 </Animated.View>
-                                <View style={styles.iconWrapper}>
-                                    <Animated.View style={[styles.iconWrapper, { alignItems: 'flex-start' }]}>
-                                        {(hasMultipleSeeds && (
-                                            <Icon
-                                                name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                                size={width / 22}
-                                                color={bar.color}
-                                                style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
-                                            />
-                                        )) || <View />}
-                                    </Animated.View>
-                                </View>
+                                <Animated.View style={styles.iconWrapper}>
+                                    {(hasMultipleSeeds && (
+                                        <Icon
+                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                            size={width / 22}
+                                            color={bar.color}
+                                            style={[shouldDisable && styles.disabled && { opacity: 0.5 }]}
+                                        />
+                                    )) || <View />}
+                                </Animated.View>
                             </View>
                         )) || <View />}
                 </TouchableWithoutFeedback>
