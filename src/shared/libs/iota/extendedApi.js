@@ -16,6 +16,7 @@ import {
     GET_NODE_INFO_REQUEST_TIMEOUT,
     WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT,
     GET_BALANCES_REQUEST_TIMEOUT,
+    ATTACH_TO_TANGLE_REQUEST_TIMEOUT,
     IRI_API_VERSION,
 } from '../../config';
 import { sortTransactionTrytesArray } from './transfers';
@@ -40,6 +41,8 @@ const getApiTimeout = (method, payload) => {
             return GET_BALANCES_REQUEST_TIMEOUT;
         case 'getNodeInfo':
             return GET_NODE_INFO_REQUEST_TIMEOUT;
+        case 'attachToTangle':
+            return ATTACH_TO_TANGLE_REQUEST_TIMEOUT;
         default:
             return DEFAULT_NODE_REQUEST_TIMEOUT;
     }
@@ -498,7 +501,7 @@ const attachToTangleAsync = (provider, seedStore) => (
 
     if (shouldOffloadPow) {
         return new Promise((resolve, reject) => {
-            getIotaInstance(provider).api.attachToTangle(
+            getIotaInstance(provider, getApiTimeout('attachToTangle')).api.attachToTangle(
                 trunkTransaction,
                 branchTransaction,
                 minWeightMagnitude,

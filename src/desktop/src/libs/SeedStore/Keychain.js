@@ -157,6 +157,8 @@ class Keychain extends SeedStoreCore {
             seed[i % seed.length] = 0;
         }
 
+        Electron.garbageCollect();
+
         return addresses;
     };
 
@@ -173,7 +175,15 @@ class Keychain extends SeedStoreCore {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed(true);
-        return prepareTransfersAsync()(seed, transfers, options);
+        const transfer = await prepareTransfersAsync()(seed, transfers, options);
+
+        for (let i = 0; i < seed.length * 3; i++) {
+            seed[i % seed.length] = 0;
+        }
+
+        Electron.garbageCollect();
+
+        return transfer;
     };
 
     /**

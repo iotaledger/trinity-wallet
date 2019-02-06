@@ -39,12 +39,6 @@ class SeedVerify extends React.PureComponent {
         isGenerated: Electron.getOnboardingGenerated(),
     };
 
-    componentDidMount() {
-        if (Electron.getOnboardingSeed()) {
-            Electron.garbageCollect();
-        }
-    }
-
     onChange = (value) => {
         this.setState(() => ({
             seed: value,
