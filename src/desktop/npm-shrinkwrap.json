@@ -962,9 +962,9 @@
       }
     },
     "@shiftkey/prebuild-install": {
-      "version": "5.2.2",
-      "resolved": "https://registry.npmjs.org/@shiftkey/prebuild-install/-/prebuild-install-5.2.2.tgz",
-      "integrity": "sha512-anP6PTWYX6ecAkRwILO6WO/uOhufDqQgCw9XRx7InzPQG6fYA5b2uhRzl7ClTxUUP5GzcighXNBHry9ZhbiC+w==",
+      "version": "5.2.4",
+      "resolved": "https://registry.npmjs.org/@shiftkey/prebuild-install/-/prebuild-install-5.2.4.tgz",
+      "integrity": "sha512-42L/pSGD/+diCg8SwhZaXjDlkAWV10u42UozyG7rqDdyPW7HDp2/j/RYRZ3x0sXFf7hAUtLYvI9HdACWdjyfVw==",
       "requires": {
         "detect-libc": "^1.0.3",
         "expand-template": "^2.0.3",
@@ -9107,11 +9107,11 @@
       }
     },
     "keytar": {
-      "version": "4.3.2",
-      "resolved": "https://registry.npmjs.org/keytar/-/keytar-4.3.2.tgz",
-      "integrity": "sha512-jc6vTMqijSrqehBmNnwA9LEzmC598yVCugX7WJCmd4eKuN0xEI9RvHGFd3fZZS1GkQJjgDAz+UHbM1IpRedvlA==",
+      "version": "4.3.3",
+      "resolved": "https://registry.npmjs.org/keytar/-/keytar-4.3.3.tgz",
+      "integrity": "sha512-APwPDLgaTQBslvIuVfFGpL2ljrxBXTAmO8T1f5erttDF9/olIG8UW9l6w4SpcQrg6oxT1dn1TVvXegNqlqKDsA==",
       "requires": {
-        "@shiftkey/prebuild-install": "5.2.2",
+        "@shiftkey/prebuild-install": "5.2.4",
         "nan": "2.8.0"
       },
       "dependencies": {
