@@ -27,9 +27,11 @@ import { __MOBILE__, __TEST__, __DEV__ } from '../config';
 import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
 const SCHEMA_VERSION = 0;
-const STORAGE_PATH = __MOBILE__
-    ? `trinity-${SCHEMA_VERSION}.realm`
-    : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${SCHEMA_VERSION}.realm`;
+
+const STORAGE_PATH =
+    __MOBILE__ || __TEST__
+        ? `trinity-${SCHEMA_VERSION}.realm`
+        : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${SCHEMA_VERSION}.realm`;
 
 /**
  * Imports Realm dependency
