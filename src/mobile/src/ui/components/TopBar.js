@@ -237,7 +237,7 @@ class TopBar extends Component {
     /**
      * Returns styling dependent on device type
      *
-     * @method getTopbarPadding
+     * @method getTopbarStyling
      * @returns {any}
      */
     getTopbarStyling() {
