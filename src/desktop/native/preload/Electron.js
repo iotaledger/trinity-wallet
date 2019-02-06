@@ -110,6 +110,14 @@ const Electron = {
     },
 
     /**
+     * Returns per-user application data directory
+     * @returns {string} - Full app data path
+     */
+    getUserDataPath: () => {
+        return remote.app.getPath('userData');
+    },
+
+    /**
      * Gets machine UUID
      * @return {string}
      */
