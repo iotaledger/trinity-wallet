@@ -1,5 +1,4 @@
 /* global Electron */
-import base64 from 'base64-js';
 import { randomBytes } from './crypto';
 
 const ALIAS_REALM = 'realm_enc_key';
@@ -15,13 +14,13 @@ const ALIAS_REALM = 'realm_enc_key';
 export const getEncryptionKey = () => {
     return Electron.readKeychain(ALIAS_REALM).then((encryptionKey) => {
         if (encryptionKey === null) {
-            return Promise.resolve(randomBytes(64)).then((bytes) =>
-                Electron.setKeychain(ALIAS_REALM, base64.fromByteArray(encryptionKey)).then(
-                    () => new Uint8Array(bytes),
-                ),
-            );
+            return Promise.resolve(randomBytes(64)).then((bytes) => {
+                const key = Uint8Array.from(bytes);
+
+                return Electron.setKeychain(ALIAS_REALM, key.toString()).then(() => key);
+            });
         }
 
-        return base64.toByteArray(encryptionKey);
+        return Uint8Array.from(encryptionKey.split(','));
     });
 };
