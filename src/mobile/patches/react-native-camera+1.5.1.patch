@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-camera/ios/RN/RNCamera.m b/node_modules/react-native-camera/ios/RN/RNCamera.m
+index 603849a..5f6d631 100644
+--- a/node_modules/react-native-camera/ios/RN/RNCamera.m
++++ b/node_modules/react-native-camera/ios/RN/RNCamera.m
+@@ -295,7 +295,7 @@ - (void)updateZoom {
+         return;
+     }
+
+-    device.videoZoomFactor = (device.activeFormat.videoMaxZoomFactor - 1.0) * self.zoom + 1.0;
++    device.videoZoomFactor = MIN(MAX(self.zoom, 1), device.activeFormat.videoMaxZoomFactor);
+
+     [device unlockForConfiguration];
+ }
