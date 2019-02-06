@@ -337,9 +337,7 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
  *   Construct bundles, validates, assign confirmation states and Normalises them.
  *
  *   @method constructBundlesFromTransactions
- *   @param {array} tailTransactions
- *   @param {array} transactionObjects
- *   @param {array} inclusionStates
+ *   @param {array} transactions
  *
  *   @returns {array}
  **/
@@ -352,9 +350,29 @@ export const constructBundlesFromTransactions = (transactions) => {
         return [];
     }
 
-    return map(filter(transactions, (transaction) => transaction.currentIndex === 0), (tailTransaction) =>
-        constructBundle(tailTransaction, transactions),
+    const { broadcastedTailTransactions, failedTailTransactions } = transform(
+        transactions,
+        (acc, transaction) => {
+            if (transaction.currentIndex === 0) {
+                if (transaction.broadcasted === true) {
+                    acc.broadcastedTailTransactions.push(transaction);
+                } else {
+                    acc.failedTailTransactions.push(transaction);
+                }
+            }
+        },
+        { broadcastedTailTransactions: [], failedTailTransactions: [] },
     );
+
+    return [
+        ...map(broadcastedTailTransactions, (tailTransaction) => constructBundle(tailTransaction, transactions)),
+        // Bundles for failed transactions cannot be properly constructed because trunk/branch hashes aren't properly set.
+        // Manually construct bundles for failed transactions based on bundleHash.
+        // Note: Failed bundles only have a single (local) instance.
+        ...map(failedTailTransactions, (failedTailTransaction) =>
+            filter(transactions, (transaction) => transaction.bundle === failedTailTransaction.bundle),
+        ),
+    ];
 };
 
 /**
@@ -424,22 +442,25 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
                 return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
             })
             .then((transactionObjects) => {
-                return flatMap(filterInvalidBundles(constructBundlesFromTransactions(transactionObjects)));
+                return flatMap(
+                    filterInvalidBundles(
+                        constructBundlesFromTransactions(
+                            map(transactionObjects, (transaction) => ({
+                                ...transaction,
+                                // Assign broadcasted as true as all these transactions were pulled in from the ledger
+                                broadcasted: true,
+                                // Temporarily assign persistence false
+                                // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
+                                persistence: false,
+                            })),
+                        ),
+                    ),
+                );
             });
     };
 
     return (size(diff) ? pullNewTransactions(diff) : Promise.resolve([])).then((newTransactions) => {
-        const transactions = [
-            ...existingTransactions,
-            // Temporarily assign persistence false
-            // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
-            ...map(newTransactions, (transaction) => ({
-                ...transaction,
-                persistence: false,
-                // Also assign broadcasted as true as all these transactions were pulled in from the ledger
-                broadcasted: true,
-            })),
-        ];
+        const transactions = [...existingTransactions, ...newTransactions];
 
         const { confirmed, unconfirmed } = transform(
             constructBundlesFromTransactions(transactions),
@@ -910,16 +931,7 @@ export const assignInclusionStatesToBundles = (provider) => (bundles) => {
 export const mapNormalisedTransactions = (transactions, addressData) => {
     const tailTransactions = filter(transactions, (tx) => tx.currentIndex === 0);
 
-    const bundles = [
-        ...constructBundlesFromTransactions(filter(transactions, (transaction) => transaction.broadcasted === true)),
-        // Bundles for failed transactions cannot be properly constructed because trunk/branch hashes aren't properly set.
-        // Manually construct bundles for failed transactions based on bundleHash.
-        ...map(
-            filter(transactions, (transaction) => transaction.broadcasted === false && transaction.currentIndex === 0),
-            (failedTailTransaction) =>
-                filter(transactions, (transaction) => transaction.bundle === failedTailTransaction.bundle),
-        ),
-    ];
+    const bundles = constructBundlesFromTransactions(transactions);
 
     return transform(
         bundles,

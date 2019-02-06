@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
-import {
-    getSelectedAccountName,
-    getFailedBundleHashesForSelectedAccount,
-    getSelectedAccountMeta,
-    getAccountNamesFromState,
-} from '../../selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
@@ -46,7 +41,6 @@ export default function withListData(ListComponent) {
             promoteTransaction: PropTypes.func.isRequired,
             retryFailedTransaction: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
-            failedHashes: PropTypes.object.isRequired,
             password: PropTypes.object.isRequired,
             /** Wallet account names */
             accountNames: PropTypes.array.isRequired,
@@ -142,7 +136,6 @@ export default function withListData(ListComponent) {
         accountName: getSelectedAccountName(state),
         theme: getThemeFromState(state),
         accountMeta: getSelectedAccountMeta(state),
-        failedHashes: getFailedBundleHashesForSelectedAccount(state),
         accountNames: getAccountNamesFromState(state),
         mode: state.settings.mode,
         ui: state.ui,

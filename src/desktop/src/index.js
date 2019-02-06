@@ -13,9 +13,10 @@ import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import persistElectronStorage from 'libs/storage';
+import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
 import { parse } from 'libs/utils';
-import { initialiseSync as initialiseStorage, realm } from 'storage';
+import { initialise as initialiseStorage, realm } from 'storage';
 import createPlugin from 'bugsnag-react';
 
 import Index from 'ui/Index';
@@ -33,16 +34,14 @@ export const bugsnagClient = bugsnag({
     user: { id: Electron.getUuid() },
 });
 
-// Initialise (Realm) storage
-initialiseStorage();
-
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
-/* eslint-disable no-new */
-new Promise((resolve, reject) => {
-    /* eslint-enable no-new */
-    persistElectronStorage.getAllKeys((err, keys) => (err ? reject(err) : resolve(keys)));
-})
+initialiseStorage(getEncryptionKey)
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            persistElectronStorage.getAllKeys((err, keys) => (err ? reject(err) : resolve(keys)));
+        });
+    })
     .then((keys) => {
         const getItemAsync = (key) =>
             new Promise((resolve, reject) => {
