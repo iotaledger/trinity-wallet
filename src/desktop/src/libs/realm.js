@@ -1,7 +1,7 @@
 /* global Electron */
 import { randomBytes } from './crypto';
 
-const ALIAS_REALM = 'realm_enc_key';
+export const ALIAS_REALM = 'realm_enc_key';
 /**
  * Gets encryption key for realm.
  * - Checks keychain if there is already an encryption key stored for realm data.
@@ -14,11 +14,9 @@ const ALIAS_REALM = 'realm_enc_key';
 export const getEncryptionKey = () => {
     return Electron.readKeychain(ALIAS_REALM).then((encryptionKey) => {
         if (encryptionKey === null) {
-            return Promise.resolve(randomBytes(64)).then((bytes) => {
-                const key = Uint8Array.from(bytes);
+            const key = Uint8Array.from(randomBytes(64));
 
-                return Electron.setKeychain(ALIAS_REALM, key.toString()).then(() => key);
-            });
+            return Electron.setKeychain(ALIAS_REALM, key.toString()).then(() => key);
         }
 
         return Uint8Array.from(encryptionKey.split(','));
