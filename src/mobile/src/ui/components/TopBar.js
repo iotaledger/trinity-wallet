@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { setSeedIndex } from 'shared-modules/actions/wallet';
-import { clearLog } from 'shared-modules/actions/alerts';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import {
     getBalanceForSelectedAccount,
@@ -34,6 +33,7 @@ import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
 import { isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
+import { NotificationButton } from './NotificationButton';
 
 const { height, width } = Dimensions.get('window');
 
@@ -130,10 +130,6 @@ class TopBar extends Component {
         theme: PropTypes.object.isRequired,
         /** @ignore */
         setPollFor: PropTypes.func.isRequired,
-        /** @ignore */
-        notificationLog: PropTypes.array.isRequired,
-        /** @ignore */
-        clearLog: PropTypes.func.isRequired,
         /** Top bar height */
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
         /** @ignore */
@@ -277,18 +273,6 @@ class TopBar extends Component {
         );
     }
 
-    showModal() {
-        const { isTransitioning, theme, notificationLog } = this.props;
-        if (!isTransitioning) {
-            this.props.toggleModalActivity('notificationLog', {
-                hideModal: () => this.hideModal(),
-                theme,
-                notificationLog,
-                clearLog: this.props.clearLog,
-            });
-        }
-    }
-
     hideModal() {
         this.props.toggleModalActivity();
     }
@@ -302,7 +286,6 @@ class TopBar extends Component {
             seedIndex,
             theme: { bar, primary },
             isKeyboardActive,
-            notificationLog,
             mode,
             minimised,
             currentRoute,
@@ -327,7 +310,6 @@ class TopBar extends Component {
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
         const titles = map(accountNames, withSubtitles);
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
-        const hasNotifications = size(notificationLog) && notificationLog.length > 0;
         const shouldDisable = this.shouldDisable();
 
         const baseContent = (
@@ -345,21 +327,7 @@ class TopBar extends Component {
                         !minimised && (
                             <View style={styles.barWrapper}>
                                 <Animated.View style={styles.iconWrapper}>
-                                    {(hasNotifications &&
-                                        !isKeyboardActive &&
-                                        mode === 'Advanced' && (
-                                            <TouchableOpacity
-                                                onPress={() => this.showModal()}
-                                                style={styles.iconWrapper}
-                                            >
-                                                <Icon
-                                                    name="notification"
-                                                    size={width / 18}
-                                                    color={bar.color}
-                                                    style={isModalActive && styles.disabled && { opacity: 0.5 }}
-                                                />
-                                            </TouchableOpacity>
-                                        )) || <View />}
+                                    {(!isKeyboardActive && mode === 'Advanced' && <NotificationButton />) || <View />}
                                 </Animated.View>
                                 <Animated.View style={styles.balanceWrapper}>
                                     <Text
@@ -545,7 +513,6 @@ const mapStateToProps = (state) => ({
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: selectAccountInfo(state),
     theme: getThemeFromState(state),
-    notificationLog: state.alerts.notificationLog,
     isFetchingLatestAccountInfo: state.ui.isFetchingAccountInfo,
     currentRoute: state.home.childRoute,
     isKeyboardActive: state.ui.isKeyboardActive,
@@ -557,7 +524,6 @@ const mapDispatchToProps = {
     toggleModalActivity,
     setSeedIndex,
     setPollFor,
-    clearLog,
 };
 
 export default withNamespaces('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
