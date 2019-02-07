@@ -319,6 +319,15 @@ const Electron = {
     },
 
     /**
+     * Proxy store updates to Tray application
+     * @param {string} payload - Store state
+     * @returns {undefined}
+     */
+    storeUpdate: (payload) => {
+        ipc.send('store.update', payload);
+    },
+
+    /**
      * Set onboarding seed variable to bypass Redux
      * @param {array} Seed - Target seed byte array
      * @param {boolean} isGenerated - Is the seed generated using Trinity

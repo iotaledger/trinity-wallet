@@ -1,5 +1,6 @@
 /* global Electron */
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { ALIAS_REALM } from 'libs/realm';
 
 export const ACC_MAIN = 'Trinity';
 // Maximum allowed account title
@@ -125,7 +126,7 @@ export const setTwoFA = async (password, key) => {
  * Set and store random salt to keychain
  */
 export const initKeychain = async () => {
-    await clearVault();
+    await clearVault([ALIAS_REALM]);
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const saltHex = salt.toString();
     await Electron.setKeychain(`${ACC_MAIN}-salt`, saltHex);
@@ -154,14 +155,17 @@ export const authorize = async (key) => {
 
 /**
  * Clear the vault
+ * @param {array} keepAccounts - Account names that should not be cleared
  * @returns {boolean} True if vault cleared
  */
-export const clearVault = async () => {
+export const clearVault = async (keepAccounts = []) => {
     const vault = await Electron.listKeychain();
     const accounts = Object.keys(vault);
 
     for (let i = 0; i < accounts.length; i++) {
-        await Electron.removeKeychain(vault[i].account);
+        if (keepAccounts.indexOf(vault[i].account) < 0) {
+            await Electron.removeKeychain(vault[i].account);
+        }
     }
 
     return true;
