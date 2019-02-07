@@ -18,7 +18,7 @@
         "keyReuseError": "No puede enviar a una dirección que ya se ha usado.",
         "invalidResponse": "Error de nodo",
         "invalidResponseExplanation": "El nodo devolvió un error. Pruebe cambiando de nodo.",
-        "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intenta cambiar el nodo.",
+        "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intente cambiar el nodo.",
         "invalidResponseFetchingAccountDesktop": "Error al intentar obtener información del nodo. Si el problema persiste intente cambiar el nodo o deshabilite el proxy en la configuración.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado esta desincronizado. Por favor cámbielo y pruebe devuelta.",
@@ -254,7 +254,7 @@
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
-        "thisMayTake": "Esto puede tardar un rato.",
+        "thisMayTake": "Esto puede tomar unos segundos.",
         "doNotMinimise": "No minimizar ni cerrar la aplicación.",
         "takingAWhile": "Esto tomará un rato"
     },
@@ -318,7 +318,7 @@
         "everySeedHasAChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres.",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
-        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
+        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
@@ -592,17 +592,17 @@
         "fingerprintUnavailable": "Autenticación biométrica no disponible",
         "deviceLocked": "Autentificación desactivada por 30 segundos",
         "fingerprintUnavailableExplanation": "Su dispositivo no soporta autenticación biométrica o no está correctamente configurada.",
-        "notSupported": "Device does not support biometric authentication",
-        "notConfigured": "Biometric authentication has not been configured in device settings",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
+        "notSupported": "El dispositivo no soporta autenticación biométrica",
+        "notConfigured": "La autenticación biométrica no fue configurada en la configuración del dispositivo",
+        "buttonInstructionsDisable": "Presione el botón debajo para desactivar la autentificación por huella dactilar.",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
         "buttonInstructionsDisableIPhoneX": "Presione el botón debajo para desactivar Face ID",
         "buttonInstructionsEnableIPhoneX": "Presione el botón debajo para activar Face ID",
         "instructionsLogin": "Toque el lector de huellas para loguearse",
-        "systemCancelledAuth": "Authentication was cancelled by your device",
-        "userCancelledAuth": "Authentication request cancelled",
-        "passwordFallback": "Fall back to password authentication",
-        "noPassword": "Password is not set on device"
+        "systemCancelledAuth": "La autentificación fue cancelada por su dispositivo",
+        "userCancelledAuth": "Solicitud de autentificación cancelada",
+        "passwordFallback": "Retroceda para la autentificación de la contraseña",
+        "noPassword": "El dispositivo no tiene contraseña"
     },
     "transferConfirmation": {
         "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
