@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { withI18n } from 'react-i18next';
-import {
-    getSelectedAccountName,
-    getSelectedAccountMeta,
-    getAccountNamesFromState,
-} from '../../selectors/accounts';
+import { getSelectedAccountName, getSelectedAccountMeta, getAccountNamesFromState } from '../../selectors/accounts';
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';

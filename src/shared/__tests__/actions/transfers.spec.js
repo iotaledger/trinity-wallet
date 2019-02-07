@@ -10,7 +10,7 @@ import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
 import * as inputUtils from '../../libs/iota/inputs';
 import { iota, quorum, SwitchingConfig } from '../../libs/iota';
-import { realm, config as realmConfig, Account, Wallet, getRealm } from '../../storage';
+import { realm, config as realmConfig, Account, Wallet, getRealm, initialise } from '../../storage';
 import accounts from '../__samples__/accounts';
 import { addressData, latestAddressObject } from '../__samples__/addresses';
 import { newZeroValueTransactionTrytes, newValueTransactionTrytes } from '../__samples__/trytes';
@@ -36,6 +36,7 @@ describe('actions: transfers', () => {
 
         before(() => {
             Realm.deleteFile(realmConfig);
+            initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 performPow: () =>
                     Promise.resolve({
@@ -294,6 +295,7 @@ describe('actions: transfers', () => {
 
         before(() => {
             Realm.deleteFile(realmConfig);
+            initialise(() => Promise.resolve(new Int8Array(64)));
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
                 prepareTransfers: () => Promise.resolve(newZeroValueTransactionTrytes),

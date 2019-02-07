@@ -33,6 +33,9 @@ const STORAGE_PATH =
         ? `trinity-${SCHEMA_VERSION}.realm`
         : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${SCHEMA_VERSION}.realm`;
 
+// Initialise realm instance
+let realm = {}; // eslint-disable-line import/no-mutable-exports
+
 /**
  * Imports Realm dependency
  *
@@ -731,9 +734,6 @@ export const config = {
     schemaVersion: SCHEMA_VERSION,
 };
 
-// Initialise realm instance
-const realm = new Realm(config);
-
 /**
  * Deletes all objects in storage and deletes storage file for provided config
  *
@@ -755,16 +755,14 @@ const purge = () =>
  * Initialises storage.
  *
  * @method initialise
+ * @param {Promise} getEncryptionKeyPromise
+ *
  * @returns {Promise}
  */
-const initialise = () =>
-    new Promise((resolve, reject) => {
-        try {
-            initialiseSync();
-            resolve();
-        } catch (error) {
-            reject(error);
-        }
+const initialise = (getEncryptionKeyPromise) =>
+    getEncryptionKeyPromise().then((encryptionKey) => {
+        realm = new Realm(assign({}, config, { encryptionKey }));
+        initialiseSync();
     });
 
 /**
@@ -781,8 +779,11 @@ const initialiseSync = () => {
  * Purges persisted data and reinitialises storage.
  *
  * @method reinitialise
+ * @param {Promise<function>}
+ *
+ * @returns {Promise}
  */
-const reinitialise = () => purge().then(() => initialise());
+const reinitialise = (getEncryptionKeyPromise) => purge().then(() => initialise(getEncryptionKeyPromise));
 
 export {
     realm,

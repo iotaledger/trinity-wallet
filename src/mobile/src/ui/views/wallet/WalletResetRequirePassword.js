@@ -8,6 +8,7 @@ import { resetWallet, setCompletedForcedPasswordUpdate } from 'shared-modules/ac
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
+import { getEncryptionKey } from 'libs/realm';
 import { Text, StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
@@ -140,7 +141,7 @@ class WalletResetRequirePassword extends Component {
         if (await this.isAuthenticated()) {
             this.redirectToInitialScreen();
 
-            reinitialiseStorage()
+            reinitialiseStorage(getEncryptionKey)
                 .then(() => clearKeychain())
                 .then(() => {
                     // resetWallet action creator resets the whole state object to default values

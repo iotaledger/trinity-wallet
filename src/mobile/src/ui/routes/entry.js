@@ -22,6 +22,7 @@ import { getLocaleFromLabel } from 'shared-modules/libs/i18n';
 import { clearKeychain } from 'libs/keychain';
 import { resetIfKeychainIsEmpty, reduxPersistStorageAdapter, versionCheck } from 'libs/store';
 import { bugsnag } from 'libs/bugsnag';
+import { getEncryptionKey } from 'libs/realm';
 import registerScreens from 'ui/routes/navigation';
 import { initialise as initialiseStorage } from 'shared-modules/storage';
 import { mapStorageToState } from 'shared-modules/libs/storageToStateMappers';
@@ -185,7 +186,7 @@ const hasConnection = (
 // Initialise application.
 onAppStart()
     //  Initialise persistent storage
-    .then(() => initialiseStorage())
+    .then(() => initialiseStorage(getEncryptionKey))
     // Restore persistent storage (Map to redux store)
     .then(() => {
         const latestVersions = {
@@ -202,7 +203,7 @@ onAppStart()
             const { settings: { versions, completedMigration } } = reduxState;
 
             if (
-                versions.buildNumber < 40 &&
+                versions.buildNumber < 42 &&
                 completedMigration === false &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.
