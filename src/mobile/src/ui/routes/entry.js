@@ -95,6 +95,7 @@ const renderInitialScreen = (initialScreen, state) => {
             drawBehind: true,
             backgroundColor: theme.body.bg,
         },
+        popGesture: false,
     };
 
     Navigation.setDefaultOptions(options);
