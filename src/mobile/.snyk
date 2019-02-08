@@ -3,6 +3,3 @@ version: v1.12.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
-  'npm:semver:20150403':
-    - react-native-level-fs > levelup > semver:
-        patched: '2018-10-25T17:15:53.839Z'

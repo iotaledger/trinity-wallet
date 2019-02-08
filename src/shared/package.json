@@ -32,7 +32,6 @@
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
         "reselect": "^4.0.0",
-        "tinycolor2": "^1.4.1",
         "url-parse": "^1.4.3",
         "valid-url": "^1.0.9",
         "zxcvbn": "^4.4.2"
