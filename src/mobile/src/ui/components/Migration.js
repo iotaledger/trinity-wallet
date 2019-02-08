@@ -101,7 +101,7 @@ class Migration extends Component {
         if (!this.props.completedMigration && newProps.completedMigration) {
             this.navigateToLoadingScreen();
         }
-        if (this.props.notificationLog !== newProps.notificationLog) {
+        if (size(this.props.notificationLog) !== size(newProps.notificationLog)) {
             this.setState({ hasFailedMigration: true });
         }
     }
@@ -146,7 +146,7 @@ class Migration extends Component {
      * @method changeNode
      */
     changeNode() {
-        this.props.setFullNode(...sample(this.props.nodes, 1));
+        this.props.setFullNode(...sample(this.props.nodes));
     }
 
     /**
