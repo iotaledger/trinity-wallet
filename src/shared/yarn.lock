@@ -2590,11 +2590,6 @@ timekeeper@^2.0.0:
   resolved "https://registry.yarnpkg.com/timekeeper/-/timekeeper-2.0.0.tgz#eaf7a0dcfdc95d4658b9cc3d21107206cc4e2eed"
   integrity sha512-DVH+iEKcVwU3JkZK0Z86qFx8osIG05U1H/F6lAE+iPfvElioM9HPVd2ZKmoI4zS0AWsDogOXl/BuKWXNadI/fw==
 
-tinycolor2@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
-  integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
-
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
