@@ -33,7 +33,7 @@ import { accumulateBalance } from 'shared-modules/libs/iota/addresses';
 import { Icon } from 'ui/theme/icons';
 import { isIPhoneX } from 'libs/device';
 import { Styling } from 'ui/theme/general';
-import { NotificationButton } from './NotificationButton';
+import NotificationButtonComponent from 'ui/components/NotificationButton';
 
 const { height, width } = Dimensions.get('window');
 
@@ -326,8 +326,10 @@ class TopBar extends Component {
                     {(!isKeyboardActive &&
                         !minimised && (
                             <View style={styles.barWrapper}>
-                                <Animated.View style={styles.iconWrapper}>
-                                    {(!isKeyboardActive && mode === 'Advanced' && <NotificationButton />) || <View />}
+                                <Animated.View style={[styles.iconWrapper, { paddingLeft: width / 18 }]}>
+                                    {(!isKeyboardActive && mode === 'Advanced' && <NotificationButtonComponent />) || (
+                                        <View />
+                                    )}
                                 </Animated.View>
                                 <Animated.View style={styles.balanceWrapper}>
                                     <Text
@@ -362,7 +364,7 @@ class TopBar extends Component {
                                         </Text>
                                     </View>
                                 </Animated.View>
-                                <Animated.View style={styles.iconWrapper}>
+                                <Animated.View style={[styles.iconWrapper, { paddingRight: width / 18 }]}>
                                     {(hasMultipleSeeds && (
                                         <Icon
                                             name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
