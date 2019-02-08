@@ -12,6 +12,7 @@ import { setSetting } from 'shared-modules/actions/wallet';
 import { passwordReasons } from 'shared-modules/libs/password';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setCompletedForcedPasswordUpdate } from 'shared-modules/actions/settings';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, authorize } from 'libs/keychain';
@@ -337,7 +338,7 @@ class ForceChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

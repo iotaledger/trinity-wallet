@@ -12,6 +12,7 @@ import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { setFullNode } from 'shared-modules/actions/settings';
 import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
 import { setUserActivity, setLoginRoute } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import NodeOptionsOnLogin from 'ui/views/wallet/NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from 'ui/components/EnterPasswordOnLogin';
@@ -50,6 +51,8 @@ class Login extends Component {
         /** @ignore */
         isFingerprintEnabled: PropTypes.bool.isRequired,
         /** @ignore */
+        completedMigration: PropTypes.bool.isRequired,
+        /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
     };
 
@@ -57,6 +60,7 @@ class Login extends Component {
         super(props);
         this.state = {
             nextLoginRoute: props.loginRoute,
+            password: null,
         };
         this.onComplete2FA = this.onComplete2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
@@ -104,8 +108,7 @@ class Login extends Component {
      * @returns {Promise<void>}
      */
     async onLoginPress() {
-        const { t, is2FAEnabled, hasConnection, forceUpdate } = this.props;
-        const { password } = this.state;
+        const { t, is2FAEnabled, hasConnection, forceUpdate, completedMigration } = this.props;
         if (!hasConnection || forceUpdate) {
             return;
         }
@@ -113,7 +116,7 @@ class Login extends Component {
         if (this.state.password.length === 0) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            let pwdHash = await hash(password);
+            let pwdHash = await hash(this.state.password);
             try {
                 await authorize(pwdHash);
                 global.passwordHash = pwdHash;
@@ -121,7 +124,7 @@ class Login extends Component {
                 delete this.state.password;
                 // gc
                 if (!is2FAEnabled) {
-                    this.navigateToLoading();
+                    this.navigateTo(completedMigration ? 'loading' : 'migration');
                 } else {
                     this.props.setLoginRoute('complete2FA');
                 }
@@ -140,7 +143,7 @@ class Login extends Component {
      * @method onComplete2FA
      */
     async onComplete2FA(token) {
-        const { t, hasConnection } = this.props;
+        const { t, hasConnection, completedMigration } = this.props;
         if (!hasConnection) {
             return;
         }
@@ -155,7 +158,8 @@ class Login extends Component {
             }
             const verified = authenticator.verifyToken(key, token);
             if (verified) {
-                this.navigateToLoading();
+                this.navigateTo(completedMigration ? 'loading' : 'migration');
+                this.props.setLoginRoute('login');
                 key = null;
                 // gc
             } else {
@@ -205,15 +209,17 @@ class Login extends Component {
     }
 
     /**
-     * Navigates to loading screen
-     * @method navigateToLoading
+     * Navigates to provided screen
+     * @method navigateTo
+     *
+     * @param {string} name
      */
-    navigateToLoading() {
+    navigateTo(name) {
         const { theme: { body } } = this.props;
         timer.setTimeout(
             'delayNavigation',
             () => {
-                navigator.setStackRoot('loading', {
+                navigator.setStackRoot(name, {
                     animations: {
                         setStackRoot: {
                             enable: false,
@@ -234,8 +240,9 @@ class Login extends Component {
 
     render() {
         const { theme, isFingerprintEnabled } = this.props;
-        const { nextLoginRoute, password } = this.state;
+        const { nextLoginRoute } = this.state;
         const body = theme.body;
+
         return (
             <AnimatedComponent
                 animateOnMount={false}
@@ -252,7 +259,7 @@ class Login extends Component {
                         onLoginPress={this.onLoginPress}
                         navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
                         setLoginPasswordField={(password) => this.setState({ password })}
-                        password={password}
+                        password={this.state.password}
                         isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
@@ -273,11 +280,12 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     is2FAEnabled: state.settings.is2FAEnabled,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    completedMigration: state.settings.completedMigration,
     forceUpdate: state.wallet.forceUpdate,
 });
 

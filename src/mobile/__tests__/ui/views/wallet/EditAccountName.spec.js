@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { EditAccountName } from 'ui/views/wallet/EditAccountName';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-device-info');
 jest.mock('react-native-is-device-rooted', () => ({
@@ -20,12 +21,13 @@ const getProps = (overrides) =>
         {},
         {
             selectedAccountName: 'Main',
+            selectedAccountMeta: { type: 'keychain' },
             accountNames: ['Main'],
             t: () => 'foo',
             setSetting: noop,
             generateAlert: noop,
             changeAccountName: noop,
-            theme: { body: {} },
+            theme,
             selectedAccountType: 'keychain',
         },
         overrides,
@@ -39,6 +41,10 @@ describe('Testing EditAccountName component', () => {
 
         it('should require a selectedAccountName string as a prop', () => {
             expect(EditAccountName.propTypes.selectedAccountName).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a selectedAccountMeta object as a prop', () => {
+            expect(EditAccountName.propTypes.selectedAccountMeta).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require an accountNames array as a prop', () => {

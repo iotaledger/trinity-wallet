@@ -1,10 +1,11 @@
 export const __DEV__ = process.env.NODE_ENV === 'development';
 export const __TEST__ = process.env.NODE_ENV === 'test';
+export const __MOBILE__ = typeof navigator !== 'undefined' && navigator.product === 'ReactNative';
 
 /** Default IRI node */
 export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://nodes.iota.fm:443';
 
-export const nodesWithPoWEnabled = [
+export const nodesWithPowEnabled = [
     'https://pow1.iota.community:443',
     'https://pow2.iota.community:443',
     'https://pow3.iota.community:443',
@@ -12,7 +13,7 @@ export const nodesWithPoWEnabled = [
     'https://iotanode.us:443',
 ];
 
-const nodesWithPoWDisabled = [
+export const nodesWithPowDisabled = [
     'https://peanut.iotasalad.org:14265',
     'https://potato.iotasalad.org:14265',
     'https://tuna.iotasalad.org:14265',
@@ -20,7 +21,7 @@ const nodesWithPoWDisabled = [
     'https://nodes.thetangle.org:443',
 ];
 
-export const nodes = [...nodesWithPoWEnabled, ...nodesWithPoWDisabled];
+export const nodes = [...nodesWithPowEnabled, ...nodesWithPowDisabled];
 
 export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 
@@ -39,6 +40,7 @@ export const DEFAULT_NODE_REQUEST_TIMEOUT = 6000 * 2;
 export const GET_NODE_INFO_REQUEST_TIMEOUT = 2500;
 export const GET_BALANCES_REQUEST_TIMEOUT = 6000;
 export const WERE_ADDRESSES_SPENT_FROM_REQUEST_TIMEOUT = 4000;
+export const ATTACH_TO_TANGLE_REQUEST_TIMEOUT = 25000;
 
 export const DEFAULT_RETRIES = 4;
 

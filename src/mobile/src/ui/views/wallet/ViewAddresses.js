@@ -10,6 +10,7 @@ import { selectAccountInfo } from 'shared-modules/selectors/accounts';
 import { round } from 'shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
 /** View Addresses component */
 export class ViewAddresses extends Component {
     static propTypes = {
-        /** Selected account. Contains transfers, addresses and balance  */
+        /** Selected account. Contains transactions, addresses and balance  */
         selectedAccount: PropTypes.object.isRequired,
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
@@ -104,16 +105,17 @@ export class ViewAddresses extends Component {
      * Converts address data (object) to an array and orders it by key index
      *
      * @method prepAddresses
-     * @returns {Array}
+     * @returns {array}
      */
     prepAddresses() {
-        const { addresses } = this.props.selectedAccount;
-        const preparedAddresses = map(addresses, (data, address) => ({
-            ...data,
-            balance: round(formatValue(data.balance), 1),
-            unit: formatUnit(data.balance),
-            address: `${address}${data.checksum}`,
+        const { addressData } = this.props.selectedAccount;
+        const preparedAddresses = map(addressData, (addressObject) => ({
+            ...addressObject,
+            balance: round(formatValue(addressObject.balance), 1),
+            unit: formatUnit(addressObject.balance),
+            address: `${addressObject.address}${addressObject.checksum}`,
         }));
+
         return orderBy(preparedAddresses, 'index', ['desc']);
     }
 
@@ -223,7 +225,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
     selectedAccount: selectAccountInfo(state),
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ViewAddresses));

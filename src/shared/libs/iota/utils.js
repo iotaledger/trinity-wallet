@@ -15,7 +15,11 @@ import Errors from '../errors';
 
 export const MAX_SEED_LENGTH = 81;
 
+export const ADDRESS_LENGTH_WITHOUT_CHECKSUM = MAX_SEED_LENGTH;
+
 export const ADDRESS_LENGTH = 90;
+
+export const CHECKSUM_LENGTH = ADDRESS_LENGTH - ADDRESS_LENGTH_WITHOUT_CHECKSUM;
 
 export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 

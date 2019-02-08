@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { acceptTerms } from 'shared-modules/actions/settings';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SingleFooterButton from 'ui/components/SingleFooterButton';
 import AnimatedComponent from 'ui/components/AnimatedComponent';
 import { Styling } from 'ui/theme/general';
@@ -172,7 +173,7 @@ class TermsAndConditions extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

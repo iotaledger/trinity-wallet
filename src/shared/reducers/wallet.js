@@ -104,11 +104,6 @@ export default (state = initialState, action) => {
                 ...state,
                 ready: true,
             };
-        case AccountsActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
-            return {
-                ...state,
-                ready: true,
-            };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,

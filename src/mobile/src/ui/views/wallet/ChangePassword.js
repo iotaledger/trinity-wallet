@@ -6,6 +6,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Key
 import { connect } from 'react-redux';
 import { setSetting } from 'shared-modules/actions/wallet';
 import { generateAlert } from 'shared-modules/actions/alerts';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { changePassword, hash } from 'libs/keychain';
 import { generatePasswordHash, getSalt } from 'libs/crypto';
 import { width, height } from 'libs/dimensions';
@@ -205,7 +206,7 @@ class ChangePassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

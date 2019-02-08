@@ -1,5 +1,6 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
+import { ALIAS_REALM } from 'libs/realm';
 import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
 
@@ -22,6 +23,7 @@ class Keychain extends SeedStoreCore {
             if (accountId) {
                 this.accountId = await sha256(`${ACC_PREFIX}-${accountId}`);
             }
+
             return this;
         })();
     }
@@ -128,7 +130,7 @@ class Keychain extends SeedStoreCore {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ACC_MAIN}-salt`) {
+            if (account.account === `${ACC_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
@@ -157,6 +159,8 @@ class Keychain extends SeedStoreCore {
             seed[i % seed.length] = 0;
         }
 
+        Electron.garbageCollect();
+
         return addresses;
     };
 
@@ -173,7 +177,15 @@ class Keychain extends SeedStoreCore {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed(true);
-        return prepareTransfersAsync()(seed, transfers, options);
+        const transfer = await prepareTransfersAsync()(seed, transfers, options);
+
+        for (let i = 0; i < seed.length * 3; i++) {
+            seed[i % seed.length] = 0;
+        }
+
+        Electron.garbageCollect();
+
+        return transfer;
     };
 
     /**

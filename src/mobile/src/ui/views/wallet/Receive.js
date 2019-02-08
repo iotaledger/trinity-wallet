@@ -25,6 +25,7 @@ import {
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'shared-modules/libs/currency';
 import { getFromKeychainRequest, getFromKeychainSuccess, getFromKeychainError } from 'shared-modules/actions/keychain';
 import { isValidAmount } from 'shared-modules/libs/iota/utils';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import SeedStore from 'libs/SeedStore';
 import { Styling } from 'ui/theme/general';
@@ -791,10 +792,10 @@ const mapStateToProps = (state) => ({
     selectedAccountData: selectAccountInfo(state),
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
-    receiveAddress: selectLatestAddressFromAccountFactory(state),
+    receiveAddress: selectLatestAddressFromAccountFactory()(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isTransitioning: state.ui.isTransitioning,
     qrMessage: state.ui.qrMessage,
     qrAmount: state.ui.qrAmount,

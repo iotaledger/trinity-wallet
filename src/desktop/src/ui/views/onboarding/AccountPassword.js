@@ -45,6 +45,10 @@ class AccountPassword extends React.PureComponent {
         loading: false,
     };
 
+    componentWillUnmount() {
+        setTimeout(() => Electron.garbageCollect(), 1000);
+    }
+
     /**
      * Check for valid password, create new account, reset onboarding state
      * @returns {undefined}

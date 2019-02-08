@@ -80,7 +80,10 @@ class Alerts extends React.PureComponent {
                 ) : (
                     <div
                         onClick={() => dismissAlert()}
-                        className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
+                        className={classNames(
+                            alerts.category && alerts.category.length ? css.visible : null,
+                            css[`${alerts.category}`],
+                        )}
                     >
                         <span>
                             <Icon icon="cross" size={14} />

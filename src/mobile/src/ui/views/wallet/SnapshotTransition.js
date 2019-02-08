@@ -20,7 +20,7 @@ import {
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'shared-modules/libs/iota/utils';
 import ModalButtons from 'ui/components/ModalButtons';
 import { Styling } from 'ui/theme/general';
@@ -358,7 +358,7 @@ export class SnapshotTransition extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     transitionBalance: state.wallet.transitionBalance,
     balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,

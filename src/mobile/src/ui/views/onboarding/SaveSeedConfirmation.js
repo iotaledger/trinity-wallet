@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { navigator } from 'libs/navigation';
 import { connect } from 'react-redux';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
 import DualFooterButtons from 'ui/components/DualFooterButtons';
 import InfoBox from 'ui/components/InfoBox';
@@ -215,7 +216,7 @@ class SaveSeedConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 export default withNamespaces(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

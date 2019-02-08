@@ -68,6 +68,26 @@ class Advanced extends PureComponent {
     }
 
     /**
+     * Enable/disable global system proxy bypass
+     * @returns {undefined}
+     */
+    setProxy = () => {
+        const enabled = !this.props.settings.ignoreProxy;
+        Electron.setStorage('ignore-proxy', enabled);
+        this.props.setProxy(enabled);
+    };
+
+    /**
+     * Enable/disable Tray application
+     * @returns {undefined}
+     */
+    setTray = () => {
+        const enabled = !this.props.settings.isTrayEnabled;
+        Electron.setTray(enabled);
+        this.props.setTray(enabled);
+    };
+
+    /**
      * Hard reset wallet
      * @returns {undefined}
      */
@@ -124,9 +144,7 @@ class Advanced extends PureComponent {
             changePowSettings,
             changeAutoPromotionSettings,
             lockScreenTimeout,
-            setTray,
             setNotifications,
-            setProxy,
             t,
         } = this.props;
 
@@ -165,7 +183,7 @@ class Advanced extends PureComponent {
                                         <h3>{t('tray:trayApplication')}</h3>
                                         <Toggle
                                             checked={settings.isTrayEnabled}
-                                            onChange={() => setTray(!settings.isTrayEnabled)}
+                                            onChange={this.setTray}
                                             on={t('enabled')}
                                             off={t('disabled')}
                                         />
@@ -213,7 +231,7 @@ class Advanced extends PureComponent {
                             <h3>{t('proxy:proxy')}</h3>
                             <Toggle
                                 checked={!settings.ignoreProxy}
-                                onChange={() => setProxy(!settings.ignoreProxy)}
+                                onChange={this.setProxy}
                                 on={t('enabled')}
                                 off={t('disabled')}
                             />

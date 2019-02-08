@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Keyboard } from 'react-native';
 import { withNamespaces } from 'react-i18next';
 import { setSetting } from 'shared-modules/actions/wallet';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import SeedVaultExportComponent from 'ui/components/SeedVaultExportComponent';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
@@ -151,7 +152,7 @@ class SeedVaultSettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
 });
 
 const mapDispatchToProps = {

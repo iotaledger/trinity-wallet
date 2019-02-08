@@ -8,7 +8,7 @@ import { navigator } from 'libs/navigation';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { setAccountInfoDuringSetup } from 'shared-modules/actions/accounts';
 import { connect } from 'react-redux';
-import { shouldPreventAction } from 'shared-modules/selectors/global';
+import { shouldPreventAction, getThemeFromState } from 'shared-modules/selectors/global';
 import { getAccountNamesFromState } from 'shared-modules/selectors/accounts';
 import { VALID_SEED_REGEX } from 'shared-modules/libs/iota/utils';
 import CustomTextInput from 'ui/components/CustomTextInput';
@@ -253,7 +253,7 @@ export class SetAccountName extends Component {
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
     onboardingComplete: state.accounts.onboardingComplete,
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
 });
 

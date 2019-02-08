@@ -12,7 +12,7 @@ import {
     LATEST_SOLID_SUBTANGLE_MILESTONE,
     LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
-import mockTrytes from '../../__samples__/trytes';
+import { milestoneTrytes } from '../../__samples__/trytes';
 import * as transferUtils from '../../../libs/iota/transfers';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -38,7 +38,7 @@ const defaultResultMap = {
         branchTransaction: EMPTY_HASH_TRYTES,
     },
     findTransactions: { hashes: ['A'.repeat(81)] },
-    getTrytes: { trytes: [mockTrytes.milestone] },
+    getTrytes: { trytes: milestoneTrytes },
     wereAddressesSpentFrom: { states: [false, false] },
     getNodeInfo: {
         appVersion: '1',
@@ -122,13 +122,13 @@ describe('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Invalid input."', () => {
-                return sweep(null, seedStore)(
-                    seed,
-                    assign({}, validInput, { address: undefined }),
-                    validTransfer,
-                ).catch((err) => {
-                    expect(err.message).to.equal('Invalid input.');
-                });
+                return sweep(null, seedStore)(seed, assign({}, validInput, { address: undefined }), validTransfer)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Invalid input.');
+                    });
             });
         });
 
@@ -142,11 +142,13 @@ describe('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Invalid transfer."', () => {
-                return sweep(null, seedStore)(seed, validInput, assign({}, validTransfer, { value: null })).catch(
-                    (err) => {
+                return sweep(null, seedStore)(seed, validInput, assign({}, validTransfer, { value: null }))
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
                         expect(err.message).to.equal('Invalid transfer.');
-                    },
-                );
+                    });
             });
         });
 
@@ -164,9 +166,13 @@ describe('libs: iota/recovery', () => {
                     seed,
                     assign({}, validInput, { address: 'U'.repeat(81) }),
                     assign({}, validTransfer, { address: 'U'.repeat(81) }),
-                ).catch((err) => {
-                    expect(err.message).to.equal('Cannot sweep to same address.');
-                });
+                )
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Cannot sweep to same address.');
+                    });
             });
         });
 
@@ -180,9 +186,13 @@ describe('libs: iota/recovery', () => {
             });
 
             it('should throw with an error "Balance mismatch."', () => {
-                return sweep(null, seedStore)(seed, validInput, validTransfer).catch((err) => {
-                    expect(err.message).to.equal('Balance mismatch.');
-                });
+                return sweep(null, seedStore)(seed, validInput, validTransfer)
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((err) => {
+                        expect(err.message).to.equal('Balance mismatch.');
+                    });
             });
         });
 
@@ -227,7 +237,9 @@ describe('libs: iota/recovery', () => {
                                         LATEST_MILESTONE,
                                     )
                                 ) {
-                                    return { trytes: [mockTrytes.milestone] };
+                                    return { trytes: milestoneTrytes };
+                                } else if (body.command === 'getInclusionStates') {
+                                    return { states: [false] };
                                 }
 
                                 return resultMap[body.command] || {};
@@ -304,7 +316,7 @@ describe('libs: iota/recovery', () => {
                                         LATEST_MILESTONE,
                                     )
                                 ) {
-                                    return { trytes: [mockTrytes.milestone] };
+                                    return { trytes: milestoneTrytes };
                                 }
 
                                 return resultMap[body.command] || {};
@@ -385,7 +397,7 @@ describe('libs: iota/recovery', () => {
                                     LATEST_MILESTONE,
                                 )
                             ) {
-                                return { trytes: [mockTrytes.milestone] };
+                                return { trytes: milestoneTrytes };
                             }
 
                             return resultMap[body.command] || {};
@@ -436,7 +448,7 @@ describe('libs: iota/recovery', () => {
                                     LATEST_MILESTONE,
                                 )
                             ) {
-                                return { trytes: [mockTrytes.milestone] };
+                                return { trytes: milestoneTrytes };
                             }
 
                             return resultMap[body.command] || {};
@@ -483,7 +495,7 @@ describe('libs: iota/recovery', () => {
                                     LATEST_MILESTONE,
                                 )
                             ) {
-                                return { trytes: [mockTrytes.milestone] };
+                                return { trytes: milestoneTrytes };
                             }
 
                             return resultMap[body.command] || {};

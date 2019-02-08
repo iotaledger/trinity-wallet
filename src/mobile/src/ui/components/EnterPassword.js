@@ -4,6 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
+import { getThemeFromState } from 'shared-modules/selectors/global';
 import { connect } from 'react-redux';
 import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
@@ -156,7 +157,7 @@ class EnterPassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    theme: state.settings.theme,
+    theme: getThemeFromState(state),
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 

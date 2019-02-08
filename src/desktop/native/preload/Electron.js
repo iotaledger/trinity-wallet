@@ -13,6 +13,7 @@ import { removeNonAlphaNumeric } from 'libs/utils';
 import kdbx from '../kdbx';
 import Entangled from '../Entangled';
 import ledger from '../hardware/Ledger';
+import Realm from '../Realm';
 import { version } from '../../package.json';
 
 const capitalize = (string) => {
@@ -136,6 +137,15 @@ const Electron = {
     },
 
     /**
+     * Set Tray icon
+     * @param {boolean} enabled - Is the tray app enabled
+     * @returns {undefined}
+     */
+    setTray: (enabled) => {
+        ipc.send('tray.enable', enabled);
+    },
+
+    /**
      * Proxy deep link value to main process
      * @returns {undefined}
      */
@@ -159,7 +169,6 @@ const Electron = {
      * @returns {boolean} If item update is succesfull
      */
     setStorage(key, item) {
-        ipc.send('storage.update', JSON.stringify({ key, item }));
         return electronSettings.set(key, item);
     },
 
@@ -437,16 +446,14 @@ const Electron = {
      * @param {string} accountName - target account name
      * @param {array} transactions - new transactions
      * @param {array} confirmations - recently confirmed transactions
+     * @param {object} settings - wallet settings
      */
-    notify: (accountName, transactions, confirmations) => {
+    notify: (accountName, transactions, confirmations, settings) => {
         if (!transactions.length && !confirmations.length) {
             return;
         }
 
-        const data = electronSettings.get('reduxPersist:settings');
-        const settings = JSON.parse(data);
-
-        if (!settings.notifications.general) {
+        if (!settings.notifications || !settings.notifications.general) {
             return;
         }
 
@@ -539,6 +546,14 @@ const Electron = {
             confirmedIn: t('notifications:confirmedIn', { account: '{{account}}', value: '{{value}}' }),
             confirmedOut: t('notifications:confirmedOut', { account: '{{account}}', value: '{{value}}' }),
         };
+    },
+
+    /**
+     * Return Realm instance
+     * @returns {Object} - Realm instance
+     */
+    getRealm: () => {
+        return Realm;
     },
 
     /**

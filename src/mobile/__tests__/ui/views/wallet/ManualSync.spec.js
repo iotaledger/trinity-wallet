@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { ManualSync } from 'ui/views/wallet/ManualSync';
+import theme from '../../../../__mocks__/theme';
 
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
@@ -32,8 +33,9 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            theme: { body: {}, primary: { color: '#862888', body: '#FFFFFF' } },
+            theme,
             selectedAccountName: 'MAIN ACCOUNT',
+            selectedAccountMeta: { type: 'keychain' },
             generateAlert: noop,
             manuallySyncAccount: noop,
             selectedAccountType: 'keychain',
@@ -65,6 +67,10 @@ describe('Testing ManualSync component', () => {
 
         it('should require a selectedAccountName string as a prop', () => {
             expect(ManualSync.propTypes.selectedAccountName).toEqual(PropTypes.string.isRequired);
+        });
+
+        it('should require a selectedAccountMeta object as a prop', () => {
+            expect(ManualSync.propTypes.selectedAccountMeta).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {
