@@ -95,6 +95,7 @@ export const migrate = (oldStorageAdapter) => (dispatch) => {
                 // If there is not data to migrate, just mark migration as complete
                 onComplete();
             } else {
+                dispatch(resetProgress());
                 dispatch(
                     generateAlert(
                         'error',
