@@ -71,7 +71,7 @@ class Migration extends React.Component {
         const { t, activeSteps, activeStepIndex } = this.props;
 
         return (
-            <Modal variant="global" onClose={() => {}}>
+            <Modal variant="global" isOpen isForced onClose={() => {}}>
                 <form>
                     <h1>{t('migration:dataMigration')}</h1>
                     <article>

@@ -12,10 +12,8 @@ import store from 'store';
 import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
-import persistElectronStorage from 'libs/storage';
 import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
-import { parse } from 'libs/utils';
 import { initialise as initialiseStorage, realm } from 'storage';
 import createPlugin from 'bugsnag-react';
 
@@ -42,61 +40,43 @@ if (Electron.mode === 'tray') {
         store.dispatch(mapStorageToStateAction(data));
     });
 } else {
-    initialiseStorage(getEncryptionKey)
-        .then(() => {
-            return new Promise((resolve, reject) => {
-                persistElectronStorage.getAllKeys((err, keys) => (err ? reject(err) : resolve(keys)));
+    initialiseStorage(getEncryptionKey).then(() => {
+        const oldPersistedData = Electron.getAllStorage();
+        const hasDataToMigrate = !isEmpty(oldPersistedData);
+
+        if (hasDataToMigrate) {
+            Object.assign(oldPersistedData.settings, {
+                completedMigration: false,
             });
-        })
-        .then((keys) => {
-            const getItemAsync = (key) =>
-                new Promise((resolve, reject) => {
-                    persistElectronStorage.getItem(key, (err, item) => (err ? reject(err) : resolve(item)));
-                });
+        }
 
-            return keys.reduce(
-                (promise, key) =>
-                    promise.then((result) =>
-                        getItemAsync(key).then((item) => {
-                            result[key.split(':')[1]] = parse(item);
+        // Get persisted data from Realm storage
+        const persistedDataFromRealm = mapStorageToState();
+        const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
 
-                            return result;
-                        }),
-                    ),
-                Promise.resolve({}),
-            );
-        })
-        .then((oldPersistedData) => {
-            // TODO: Also check version & completedMigration state prop
-            const hasDataToMigrate = !isEmpty(oldPersistedData);
+        // Change provider on global iota instance
+        const node = get(data, 'settings.node');
+        changeIotaNode(node);
 
-            // Get persisted data from Realm storage
-            const persistedDataFromRealm = mapStorageToState();
-            const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+        // Update store with persisted state
+        store.dispatch(mapStorageToStateAction(data));
 
-            // Change provider on global iota instance
-            const node = get(data, 'settings.node');
-            changeIotaNode(node);
+        // Assign accountIndex to every account in accountInfo if it is not assigned already
+        store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
 
-            // Update store with persisted state
-            store.dispatch(mapStorageToStateAction(data));
-
-            // Assign accountIndex to every account in accountInfo if it is not assigned already
-            store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
-
-            // Proxy realm changes to Tray application
-            realm.addListener('change', () => {
-                const data = mapStorageToState();
-                Electron.storeUpdate(JSON.stringify(data));
-            });
-
-            // Start Tray application if enabled in settings
-            const isTrayEnabled = get(data, 'settings.isTrayEnabled');
-            Electron.setTray(isTrayEnabled);
-
-            // Show Wallet window after inital store update
-            Electron.focus();
+        // Proxy realm changes to Tray application
+        realm.addListener('change', () => {
+            const data = mapStorageToState();
+            Electron.storeUpdate(JSON.stringify(data));
         });
+
+        // Start Tray application if enabled in settings
+        const isTrayEnabled = get(data, 'settings.isTrayEnabled');
+        Electron.setTray(isTrayEnabled);
+
+        // Show Wallet window after inital store update
+        Electron.focus();
+    });
 }
 
 render(

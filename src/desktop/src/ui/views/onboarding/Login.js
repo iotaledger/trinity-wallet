@@ -72,10 +72,6 @@ class Login extends React.Component {
         getFullAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-        }).isRequired,
     };
 
     state = {
@@ -98,15 +94,14 @@ class Login extends React.Component {
         }
     }
 
-    componentWillUnmount() {
-        setTimeout(() => Electron.garbageCollect(), 1000);
-    }
-
     componentDidUpdate(prevProps) {
         if (!prevProps.completedMigration && this.props.completedMigration) {
             this.setupAccount();
-            Electron.clearStorage();
         }
+    }
+
+    componentWillUnmount() {
+        setTimeout(() => Electron.garbageCollect(), 1000);
     }
 
     /**

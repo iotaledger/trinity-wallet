@@ -203,7 +203,13 @@ const Electron = {
      * @returns {object} Storage items
      */
     getAllStorage() {
-        const data = electronSettings.getAll();
+        const storage = electronSettings.getAll();
+        const data = {};
+
+        Object.entries(storage).forEach(
+            ([key, value]) =>
+                key.indexOf('reduxPersist') === 0 && Object.assign(data, { [key.split(':')[1]]: JSON.parse(value) }),
+        );
         return data;
     },
 
@@ -213,8 +219,7 @@ const Electron = {
      */
     getAllStorageKeys() {
         const data = this.getAllStorage();
-        const keys = Object.keys(data).filter((key) => key.indexOf('reduxPersist') === 0);
-        return keys;
+        return Object.keys(data);
     },
 
     /**
