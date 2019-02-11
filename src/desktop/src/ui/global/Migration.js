@@ -41,8 +41,6 @@ class Migration extends React.Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        history: PropTypes.object.isRequired,
-        /** @ignore */
         activeStepIndex: PropTypes.number.isRequired,
         /** @ignore */
         activeSteps: PropTypes.array.isRequired,
@@ -50,19 +48,11 @@ class Migration extends React.Component {
         migrate: PropTypes.func.isRequired,
         /** @ignore */
         startTrackingProgress: PropTypes.func.isRequired,
-        /** @ignore */
-        completedMigration: PropTypes.bool,
     };
 
     componentDidMount() {
         this.props.startTrackingProgress(this.progressSteps());
         this.props.migrate(electronStorage);
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (!this.props.completedMigration && newProps.completedMigration) {
-            this.props.history.push('/wallet');
-        }
     }
 
     progressSteps() {
@@ -100,7 +90,6 @@ class Migration extends React.Component {
 const mapStateToProps = (state) => ({
     activeStepIndex: state.progress.activeStepIndex,
     activeSteps: state.progress.activeSteps,
-    completedMigration: state.settings.completedMigration,
 });
 
 const mapDispatchToProps = {

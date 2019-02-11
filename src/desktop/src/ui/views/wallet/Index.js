@@ -10,7 +10,6 @@ import SeedStore from 'libs/SeedStore';
 
 import Sidebar from 'ui/views/wallet/Sidebar';
 import Dashboard from 'ui/views/wallet/Dashboard';
-import Migration from 'ui/views/wallet/Migration';
 import Polling from 'ui/global/Polling';
 
 import Modal from 'ui/components/modal/Modal';
@@ -44,8 +43,6 @@ class Wallet extends React.PureComponent {
         }).isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-        /** @ignore */
-        completedMigration: PropTypes.bool,
     };
 
     state = {
@@ -92,7 +89,7 @@ class Wallet extends React.PureComponent {
     };
 
     render() {
-        const { completedByteTritSweep, byteTritInfo, location, history, t, completedMigration } = this.props;
+        const { completedByteTritSweep, byteTritInfo, location, history, t } = this.props;
         const { isSweeping } = this.state;
 
         if (byteTritInfo) {
@@ -121,10 +118,6 @@ class Wallet extends React.PureComponent {
             return <Loading loop />;
         }
 
-        if (!completedMigration && completedByteTritSweep) {
-            return <Migration history={history} />;
-        }
-
         return (
             <main className={css.wallet}>
                 <Polling />
@@ -140,7 +133,6 @@ const mapStateToProps = (state) => ({
     completedByteTritSweep: state.settings.completedByteTritSweep,
     byteTritInfo: state.settings.byteTritInfo,
     password: state.wallet.password,
-    completedMigration: state.settings.completedMigration,
 });
 
 const mapDispatchToProps = {

@@ -23,6 +23,8 @@ import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import Modal from 'ui/components/modal/Modal';
 
+import Migration from 'ui/global/Migration';
+
 import css from './index.scss';
 
 /**
@@ -44,6 +46,8 @@ class Login extends React.Component {
         additionalAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         additionalAccountName: PropTypes.string.isRequired,
+        /** @ignore */
+        completedMigration: PropTypes.bool.isRequired,
         /** @ignore */
         forceUpdate: PropTypes.bool.isRequired,
         /** @ignore */
@@ -78,7 +82,7 @@ class Login extends React.Component {
         verifyTwoFA: false,
         code: '',
         password: '',
-        canMigrate: false,
+        shouldMigrate: false,
     };
 
     componentDidMount() {
@@ -96,6 +100,13 @@ class Login extends React.Component {
 
     componentWillUnmount() {
         setTimeout(() => Electron.garbageCollect(), 1000);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.completedMigration && this.props.completedMigration) {
+            this.setupAccount();
+            Electron.clearStorage();
+        }
     }
 
     /**
@@ -206,8 +217,7 @@ class Login extends React.Component {
             });
 
             if (!completedMigration) {
-                this.setState({ canMigrate: true });
-                console.log(this.state.canMigrate);
+                this.setState({ shouldMigrate: true });
                 return;
             }
 
@@ -225,7 +235,7 @@ class Login extends React.Component {
 
     render() {
         const { forceUpdate, t, addingAdditionalAccount, ui } = this.props;
-        const { verifyTwoFA, code, canMigrate } = this.state;
+        const { verifyTwoFA, code, shouldMigrate } = this.state;
 
         if (ui.isFetchingAccountInfo) {
             return (
@@ -237,9 +247,8 @@ class Login extends React.Component {
             );
         }
 
-        if (canMigrate) {
-            this.props.history.push('/wallet/migration');
-            return null;
+        if (shouldMigrate) {
+            return <Migration />;
         }
 
         return (
