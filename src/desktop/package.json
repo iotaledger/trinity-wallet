@@ -150,7 +150,7 @@
     "i18next": "^14.1.1",
     "iota.lib.js": "^0.5.1",
     "kdbxweb": "^1.2.6",
-    "keytar": "^4.3.2",
+    "keytar": "^4.4.0",
     "machine-uuid-sync": "https://github.com/rajivshah3/machine-uuid-sync",
     "perfect-scrollbar": "^1.4.0",
     "qr.js": "^0.0.0",
