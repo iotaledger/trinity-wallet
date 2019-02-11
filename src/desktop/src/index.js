@@ -93,6 +93,9 @@ if (Electron.mode === 'tray') {
             // Start Tray application if enabled in settings
             const isTrayEnabled = get(data, 'settings.isTrayEnabled');
             Electron.setTray(isTrayEnabled);
+
+            // Show Wallet window after inital store update
+            Electron.focus();
         });
 }
 
