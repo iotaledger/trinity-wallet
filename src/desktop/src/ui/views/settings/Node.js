@@ -97,7 +97,7 @@ class SetNode extends PureComponent {
                     </Button>
                     {selection !== node &&
                         customNodes.indexOf(selection) > -1 && (
-                            <Button onClick={this.removeNode} variant="negative">
+                            <Button className="square" onClick={this.removeNode} variant="negative">
                                 {t('addCustomNode:removeCustomNode')}
                             </Button>
                         )}

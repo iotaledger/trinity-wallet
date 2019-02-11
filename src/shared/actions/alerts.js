@@ -236,7 +236,7 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
 export const generateAccountSyncRetryAlert = () => (dispatch) =>
     dispatch(
         generateAlert(
-            'error',
+            'info',
             i18next.t('global:pleaseWait'),
             `${i18next.t('global:errorFetchingAccountInformation')} ${i18next.t(
                 'global:tryingAgainWithDifferentNode',

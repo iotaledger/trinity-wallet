@@ -5,6 +5,7 @@ import {
     getSeedIndexFromState,
     getThemeNameFromState,
     getThemeFromState,
+    getCustomNodesFromState,
 } from '../../selectors/global';
 import Themes from '../../themes/themes';
 import { defaultNode as DEFAULT_NODE } from '../../config';
@@ -92,6 +93,30 @@ describe('selectors: global', () => {
                 const theme = getThemeFromState({ settings: { themeName: 'invalid-theme' } });
 
                 expect(theme).to.eql(Themes.Default);
+            });
+        });
+    });
+
+    describe('#getCustomNodesFromState', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                settings: {
+                    customNodes: ['foo', 'baz'],
+                },
+            };
+        });
+
+        describe('when "customNodes" prop is defined in settings reducer', () => {
+            it('should return "customNodes" prop', () => {
+                expect(getCustomNodesFromState(state)).to.eql(['foo', 'baz']);
+            });
+        });
+
+        describe('when "customNodes" prop is undefined in settings reducer', () => {
+            it('should return an empty array', () => {
+                expect(getCustomNodesFromState({ settings: {} })).to.eql([]);
             });
         });
     });

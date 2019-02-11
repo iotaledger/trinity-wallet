@@ -2,8 +2,8 @@ import assign from 'lodash/assign';
 import each from 'lodash/each';
 import find from 'lodash/find';
 import keys from 'lodash/keys';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
-import shuffle from 'lodash/shuffle';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import nock from 'nock';
@@ -26,12 +26,21 @@ import {
 } from '../../../libs/iota/transfers';
 import { confirmedValueBundles, unconfirmedValueBundles, confirmedZeroValueBundles } from '../../__samples__/bundles';
 import { iota, SwitchingConfig } from '../../../libs/iota';
-import { failedTrytesWithCorrectTransactionHashes } from '../../__samples__/trytes';
+import {
+    newValueTransactionTrytes,
+    failedTrytesWithCorrectTransactionHashes,
+    failedTrytesWithIncorrectTransactionHashes,
+    milestoneTrytes,
+} from '../../__samples__/trytes';
 import {
     confirmedValueTransactions,
     unconfirmedValueTransactions,
     failedTransactionsWithCorrectTransactionHashes,
     failedTransactionsWithIncorrectTransactionHashes,
+    LATEST_MILESTONE,
+    LATEST_SOLID_SUBTANGLE_MILESTONE,
+    LATEST_MILESTONE_INDEX,
+    LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
 import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES, EMPTY_TRANSACTION_MESSAGE } from '../../../libs/iota/utils';
 import { IRI_API_VERSION } from '../../../config';
@@ -698,6 +707,7 @@ describe('libs: iota/transfers', () => {
 
     describe('#performPow', () => {
         let powFn;
+        let digestFn;
         let trunkTransaction;
         let branchTransaction;
 
@@ -715,6 +725,8 @@ describe('libs: iota/transfers', () => {
                 };
             };
 
+            digestFn = (trytes) => Promise.resolve(iota.utils.transactionObject(trytes).hash);
+
             trunkTransaction = 'LLJWVVZFXF9ZGFSBSHPCD9HOIFBCLXGRV9XWSQDTGOMSRGQQIVFVZKHLKTJJVFMXQTZVPNRNAQEPA9999';
             branchTransaction = 'GSHUHUWAUUGQHHNAPRDPDJRKZFJNIAPFNTVAHZPUNDJWRHZSZASOERZURXZVEHN9OJVS9QNRGSJE99999';
         });
@@ -722,7 +734,8 @@ describe('libs: iota/transfers', () => {
         it('should sort transaction objects in ascending order by currentIndex', () => {
             const fn = performPow(
                 powFn(),
-                shuffle(failedTrytesWithCorrectTransactionHashes),
+                digestFn,
+                newValueTransactionTrytes.slice().reverse(),
                 trunkTransaction,
                 branchTransaction,
                 14,
@@ -736,12 +749,12 @@ describe('libs: iota/transfers', () => {
         it('should assign generated nonce', () => {
             const fn = performPow(
                 powFn(),
-                failedTrytesWithCorrectTransactionHashes,
+                digestFn,
+                newValueTransactionTrytes.slice().reverse(),
                 trunkTransaction,
                 branchTransaction,
                 14,
             );
-
             return fn.then(({ transactionObjects }) => {
                 transactionObjects.map((tx, idx) => expect(tx.nonce).to.equal(nonces.slice().reverse()[idx]));
             });
@@ -750,7 +763,8 @@ describe('libs: iota/transfers', () => {
         it('should set correct bundle sequence', () => {
             const fn = performPow(
                 powFn(),
-                failedTrytesWithCorrectTransactionHashes,
+                digestFn,
+                newValueTransactionTrytes.slice().reverse(),
                 trunkTransaction,
                 branchTransaction,
                 14,
@@ -790,13 +804,32 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#retryFailedTransaction', () => {
+        let seedStore;
+
+        before(() => {
+            seedStore = {
+                performPow: (trytes) =>
+                    Promise.resolve({
+                        trytes,
+                        transactionObjects: map(trytes, iota.utils.transactionObject),
+                    }),
+                getDigest: (trytes) => Promise.resolve(iota.utils.transactionObject(trytes).hash),
+            };
+        });
+
         describe('when all transaction objects have valid hash', () => {
             it('should not perform proof of work', () => {
-                const powFn = sinon.stub();
+                sinon.stub(seedStore, 'performPow').resolves({
+                    trytes: failedTrytesWithCorrectTransactionHashes,
+                    transactionObjects: failedTransactionsWithCorrectTransactionHashes,
+                });
+
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
 
-                return retryFailedTransaction()(failedTransactionsWithCorrectTransactionHashes, powFn).then(() => {
-                    expect(powFn.callCount).to.equal(0);
+                return retryFailedTransaction()(failedTransactionsWithCorrectTransactionHashes, seedStore).then(() => {
+                    expect(seedStore.performPow.callCount).to.equal(0);
+
+                    seedStore.performPow.restore();
                     storeAndBroadcast.restore();
                 });
             });
@@ -804,16 +837,22 @@ describe('libs: iota/transfers', () => {
 
         describe('when any transaction object has an invalid hash', () => {
             it('should perform proof of work', () => {
-                const powFn = sinon.stub().resolves('R'.repeat(27));
+                sinon.stub(seedStore, 'performPow').resolves({
+                    trytes: failedTrytesWithIncorrectTransactionHashes,
+                    transactionObjects: failedTransactionsWithIncorrectTransactionHashes,
+                });
+
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction: 'R'.repeat(81),
                     branchTransaction: 'A'.repeat(81),
                 });
 
-                return retryFailedTransaction()(failedTransactionsWithIncorrectTransactionHashes, powFn, false).then(
+                return retryFailedTransaction()(failedTransactionsWithIncorrectTransactionHashes, seedStore).then(
                     () => {
-                        expect(powFn.callCount).to.equal(failedTransactionsWithIncorrectTransactionHashes.length);
+                        expect(seedStore.performPow.callCount).to.equal(1);
+
+                        seedStore.performPow.restore();
                         storeAndBroadcast.restore();
                         getTransactionToApprove.restore();
                     },
@@ -823,7 +862,11 @@ describe('libs: iota/transfers', () => {
 
         describe('when any transaction object has an empty hash', () => {
             it('should perform proof of work', () => {
-                const powFn = sinon.stub().resolves('R'.repeat(27));
+                sinon.stub(seedStore, 'performPow').resolves({
+                    trytes: failedTrytesWithIncorrectTransactionHashes,
+                    transactionObjects: failedTransactionsWithIncorrectTransactionHashes,
+                });
+
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
                 const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction: 'R'.repeat(81),
@@ -835,10 +878,11 @@ describe('libs: iota/transfers', () => {
                         failedTransactionsWithCorrectTransactionHashes,
                         (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: EMPTY_HASH_TRYTES })),
                     ),
-                    powFn,
-                    false,
+                    seedStore,
                 ).then(() => {
-                    expect(powFn.callCount).to.equal(failedTransactionsWithCorrectTransactionHashes.length);
+                    expect(seedStore.performPow.callCount).to.equal(1);
+
+                    seedStore.performPow.restore();
                     storeAndBroadcast.restore();
                     getTransactionToApprove.restore();
                 });
@@ -846,20 +890,18 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    // FIXME: The following test fails occasionally
     describe('#sortTransactionTrytesArray', () => {
         it('should sort transaction trytes in ascending order', () => {
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default
-            const trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes, 'currentIndex', 'asc');
 
-            expect(result).to.not.eql(trytes);
             expect(result).to.eql(failedTrytesWithCorrectTransactionHashes);
             expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(0);
         });
 
         it('should sort transaction trytes in descending order', () => {
-            const trytes = shuffle(failedTrytesWithCorrectTransactionHashes);
+            const trytes = failedTrytesWithCorrectTransactionHashes.slice().reverse();
             const result = sortTransactionTrytesArray(trytes);
 
             // failedTrytesWithCorrectTransactionHashes is in ascending order by default to assert with a reversed list
@@ -936,12 +978,26 @@ describe('libs: iota/transfers', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['3'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -966,12 +1022,26 @@ describe('libs: iota/transfers', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['10'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -996,12 +1066,26 @@ describe('libs: iota/transfers', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
+                        .persist()
                         .post('/', '*')
                         .reply(200, (_, body) => {
                             const resultMap = {
                                 getBalances: { balances: ['20'] },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};

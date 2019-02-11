@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "De aangepaste node wordt al vermeld.",
         "nodeAutoChanged": "Automatisch van node gewisseld",
         "nodeAutoChangedExplanation": "Gewisseld naar node {{- nodeAddress}} omdat de geselecteerde node offline is.",
+        "touchSensor": "Touch the fingerprint sensor",
         "fingerprintOnSend": "Raak vingerafdruklezer aan om transactie te autoriseren",
         "masterKey": "Uw IOTA seed is de meester sleutel naar al uw geld.",
         "seedThief": "Als iemand anders uw seed heeft, kan diegene uw IOTA stelen.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Update the app to continue",
         "forceUpdateExplanation": "A critical update has been released. Please update the app now.",
         "missingPermission": "Toegang tot bestandsysteem vereist",
-        "missingPermissionExplanation": "Access to the file system is required in order to perform this function."
+        "missingPermissionExplanation": "Access to the file system is required in order to perform this function.",
+        "swipeToConfirm": "Swipe to confirm"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -297,7 +299,8 @@
         "tag": "Label",
         "generateAnAddress": "Generate address",
         "generateAnAddressTitle": "Generate an address",
-        "generateAnAddressExplanation": "Please generate an address before using this function."
+        "generateAnAddressExplanation": "Please generate an address before using this function.",
+        "generateAddressInformation": "Generate a new deposit address every time you wish to receive IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back uw seed up",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controlesom bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
+        "invalidAddressExplanation4": "Please check that you have entered the address correctly.",
         "invalidAddressExplanationGeneric": "Geldige adressen zijn 90 tekens lang en bevatten alleen A-Z of 9.",
         "notEnoughFunds": "Onvoldoende saldo",
         "notEnoughFundsExplanation": "U heeft onvoldoende IOTA om deze transactie te voltooien.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Vingerafdruk-verificatie is mislukt. Probeer het opnieuw.",
         "status": "Status",
         "fingerprintUnavailable": "Biometrische authenticatie onbeschikbaar",
+        "deviceLocked": "Authentication disabled for 30 seconds",
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen biometrische authenticatie of het is niet ingesteld in de apparaatinstellingen.",
-        "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen",
+        "notSupported": "Device does not support biometric authentication",
+        "notConfigured": "Biometric authentication has not been configured in device settings",
+        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
         "buttonInstructionsDisableIPhoneX": "Druk op de knop hieronder om Face ID uit te schakelen",
         "buttonInstructionsEnableIPhoneX": "Druk op de knop hieronder om Face ID in te schakelen",
-        "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen"
+        "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen",
+        "systemCancelledAuth": "Authentication was cancelled by your device",
+        "userCancelledAuth": "Authentication request cancelled",
+        "passwordFallback": "Fall back to password authentication",
+        "noPassword": "Password is not set on device"
     },
     "transferConfirmation": {
         "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
@@ -671,6 +682,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
+        "validatingTransactionAddresses": "Validating transaction addresses",
         "syncingAccount": "Account synchroniseren",
         "preparingInputs": "Invoer voorbereiden",
         "preparingTransfers": "Voorbereiding van transacties",

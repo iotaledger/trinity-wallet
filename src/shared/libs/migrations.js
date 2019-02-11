@@ -4,6 +4,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
 import includes from 'lodash/includes';
+import isUndefined from 'lodash/isUndefined';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
@@ -116,6 +117,7 @@ export const migrateAccounts = (accounts) => {
 
                 // In old storage, addresses is an object but has been changed to array in the updated Account schema.
                 const addressData = map(addresses, (data, address) => assign({}, data, { address }));
+                const index = get(thisAccountInfo, 'index');
 
                 return syncAccount()({
                     addressData,
@@ -130,7 +132,7 @@ export const migrateAccounts = (accounts) => {
                         accountName,
                         assign({}, accountData, {
                             meta: get(thisAccountInfo, 'meta'),
-                            index: get(thisAccountInfo, 'index'),
+                            index: !isUndefined(index) ? index : get(thisAccountInfo, 'accountIndex'),
                             usedExistingSeed: get(setupInfo, `${accountName}.usedExistingSeed`) || false,
                             displayedSnapshotTransitionGuide:
                                 get(tasks, `${accountName}.hasDisplayedTransitionGuide`) || false,

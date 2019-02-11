@@ -23,10 +23,18 @@ import {
     WalletVersionsSchema,
     ErrorLogSchema,
 } from '../schema';
-import { __MOBILE__, __TEST__ } from '../config';
+import { __MOBILE__, __TEST__, __DEV__ } from '../config';
+import { preserveAddressLocalSpendStatus } from '../libs/iota/addresses';
 
 const SCHEMA_VERSION = 0;
-const STORAGE_PATH = `trinity-${SCHEMA_VERSION}.realm`;
+
+const STORAGE_PATH =
+    __MOBILE__ || __TEST__
+        ? `trinity-${SCHEMA_VERSION}.realm`
+        : `${Electron.getUserDataPath()}/trinity${__DEV__ ? '-dev' : ''}-${SCHEMA_VERSION}.realm`;
+
+// Initialise realm instance
+let realm = {}; // eslint-disable-line import/no-mutable-exports
 
 /**
  * Imports Realm dependency
@@ -130,6 +138,9 @@ class Account {
             const updatedData = assign({}, existingData, {
                 ...data,
                 name,
+                addressData: isEmpty(data.addressData)
+                    ? existingData.addressData
+                    : preserveAddressLocalSpendStatus(values(existingData.addressData), data.addressData),
             });
 
             realm.create('Account', updatedData, true);
@@ -723,9 +734,6 @@ export const config = {
     schemaVersion: SCHEMA_VERSION,
 };
 
-// Initialise realm instance
-const realm = new Realm(config);
-
 /**
  * Deletes all objects in storage and deletes storage file for provided config
  *
@@ -747,16 +755,14 @@ const purge = () =>
  * Initialises storage.
  *
  * @method initialise
+ * @param {Promise} getEncryptionKeyPromise
+ *
  * @returns {Promise}
  */
-const initialise = () =>
-    new Promise((resolve, reject) => {
-        try {
-            initialiseSync();
-            resolve();
-        } catch (error) {
-            reject(error);
-        }
+const initialise = (getEncryptionKeyPromise) =>
+    getEncryptionKeyPromise().then((encryptionKey) => {
+        realm = new Realm(assign({}, config, { encryptionKey }));
+        initialiseSync();
     });
 
 /**
@@ -773,8 +779,11 @@ const initialiseSync = () => {
  * Purges persisted data and reinitialises storage.
  *
  * @method reinitialise
+ * @param {Promise<function>}
+ *
+ * @returns {Promise}
  */
-const reinitialise = () => purge().then(() => initialise());
+const reinitialise = (getEncryptionKeyPromise) => purge().then(() => initialise(getEncryptionKeyPromise));
 
 export {
     realm,

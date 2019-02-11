@@ -9,6 +9,7 @@ import { AsyncStorage } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { doesSaltExistInKeychain } from 'libs/keychain';
 import { reinitialise as reinitialiseStorage } from 'shared-modules/storage';
+import { getEncryptionKey } from 'libs/realm';
 import { setAppVersions, resetWallet } from 'shared-modules/actions/settings';
 import { parse, fetchVersions } from 'shared-modules/libs/utils';
 import { shouldUpdate as triggerShouldUpdate, forceUpdate as triggerForceUpdate } from 'shared-modules/actions/wallet';
@@ -127,7 +128,7 @@ export const resetIfKeychainIsEmpty = (store) => {
     return doesSaltExistInKeychain().then((exists) => {
         if (!exists) {
             // Purge and reinitialise persistent storage
-            return reinitialiseStorage().then(() => {
+            return reinitialiseStorage(getEncryptionKey).then(() => {
                 store.dispatch(resetWallet());
                 // Set the new app version
                 store.dispatch(

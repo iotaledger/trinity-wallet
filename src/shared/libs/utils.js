@@ -7,6 +7,7 @@ import reduce from 'lodash/reduce';
 import isString from 'lodash/isString';
 import keys from 'lodash/keys';
 import filter from 'lodash/filter';
+import transform from 'lodash/transform';
 import validUrl from 'valid-url';
 import { VERSIONS_URL } from '../config';
 
@@ -254,7 +255,27 @@ export const isValidHttpsUrl = (url) => {
 };
 
 /**
- * Gets random nodes.
+ *   Find most frequently occurring element in a list.
+ *   NOTE: Only supports booleans, strings
+ *
+ *   @method findMostFrequent
+ *   @param {array} list
+ *   @returns {object} - Frequency and most frequent element
+ **/
+export const findMostFrequent = (list) =>
+    transform(
+        list,
+        (acc, value) => {
+            acc.frequency[value] = (acc.frequency[value] || 0) + 1;
+
+            if (!acc.frequency[acc.mostFrequent] || acc.frequency[value] > acc.frequency[acc.mostFrequent]) {
+                acc.mostFrequent = value;
+            }
+        },
+        { frequency: {}, mostFrequent: '' },
+    );
+
+/* Converts RGB to Hex.
  *
  * @method rgbToHex
  * @param {string} Rgb as string

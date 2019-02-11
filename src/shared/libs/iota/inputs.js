@@ -5,11 +5,7 @@ import head from 'lodash/head';
 import each from 'lodash/each';
 import isEmpty from 'lodash/isEmpty';
 import isNumber from 'lodash/isNumber';
-import includes from 'lodash/includes';
 import filter from 'lodash/filter';
-import minBy from 'lodash/minBy';
-import uniqBy from 'lodash/uniqBy';
-import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import {
@@ -54,84 +50,35 @@ export const prepareInputs = (addressData, threshold, maxInputs = 2, security = 
         _throw(Errors.INVALID_MAX_INPUTS_PROVIDED);
     }
 
-    const inputs = filter(
+    const availableInputs = filter(
         transformAddressDataToInputs(addressData, security),
         // Also filter addresses with zero balance
         (input) => input.balance > 0,
     );
 
     // First try to select inputs by optimal value i.e., select less inputs as possible
-    const selectedInputsByOptimalValue = [];
+    const selectedInputs = [];
     let availableBalance = 0;
 
     while (availableBalance < threshold) {
         const sortedInputs = sortInputsByOptimalValue(
-            differenceBy(inputs, selectedInputsByOptimalValue, 'address'),
+            differenceBy(availableInputs, selectedInputs, 'address'),
             threshold - availableBalance,
         );
 
         const input = head(sortedInputs);
 
-        selectedInputsByOptimalValue.push(input);
+        selectedInputs.push(input);
 
         availableBalance += input.balance;
     }
 
-    // If there is a limit applied on the number of selected inputs and
-    // and if the selected inputs (by optimal value) exceed the limit
-
-    // Then try to find inputs where size(inputs) <= maxInputs & sum(inputs) >= threshold
-    // If sum exceeds threshold, try to select inputs with minimum size
-    if (maxInputs > 0 && size(selectedInputsByOptimalValue) > maxInputs) {
-        const inputsWithUniqueBalances = uniqBy(inputs, 'balance');
-
-        const { exactMatches, exceeded } = subsetSumWithLimit(maxInputs)(
-            map(
-                // Find subset sum with unique balances
-                inputsWithUniqueBalances,
-                (input) => input.balance,
-            ),
-            threshold,
-        );
-
-        // If there exists some inputs that satisfy sum(inputs) === threshold
-        // Then choose those inputs as it won't require any remainder
-        if (size(exactMatches)) {
-            const match = head(exactMatches);
-            const inputsWithExactMatch = filter(inputsWithUniqueBalances, (input) => includes(match, input.balance));
-            const balance = reduce(inputsWithExactMatch, (acc, input) => acc + input.balance, 0);
-
-            // Verify total balance === threshold
-            if (balance !== threshold) {
-                _throw(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
-            }
-
-            return {
-                inputs: inputsWithExactMatch,
-                balance,
-            };
-        }
-
-        const findSetWithMinSize = () => {
-            const inputsWithMinSize = minBy(exceeded, size);
-            const finalInputs = filter(inputsWithUniqueBalances, (input) => includes(inputsWithMinSize, input.balance));
-            const balance = reduce(finalInputs, (acc, input) => acc + input.balance, 0);
-
-            if (balance <= threshold || size(inputsWithMinSize) > maxInputs) {
-                _throw(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
-            }
-
-            return {
-                inputs: finalInputs,
-                balance,
-            };
-        };
-
-        return size(exceeded) ? findSetWithMinSize() : _throw(Errors.CANNOT_FIND_INPUTS_WITH_PROVIDED_LIMIT);
+    if (maxInputs > 0 && size(selectedInputs) > maxInputs) {
+        _throw(Errors.CANNOT_FIND_INPUTS_WITH_PROVIDED_LIMIT);
     }
 
     return {
-        inputs: selectedInputsByOptimalValue,
+        inputs: selectedInputs,
         balance: availableBalance,
     };
 };

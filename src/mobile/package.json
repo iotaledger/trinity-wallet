@@ -1,6 +1,6 @@
 {
   "name": "trinity-mobile",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
@@ -19,9 +19,9 @@
     "android:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/react-native run-android",
     "ios": "./node_modules/.bin/react-native run-ios",
     "ios:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
-    "test": "REALM_DISABLE_ANALYTICS=true NODE_ENV=test ./node_modules/.bin/jest --detectOpenHandles --forceExit",
+    "test": "REALM_DISABLE_ANALYTICS=true NODE_ENV=test ./node_modules/.bin/jest --forceExit --detectOpenHandles --maxWorkers=10",
     "nodejs-deps": "yarn --cwd nodejs-assets/nodejs-project",
-    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && yarn nodejs-deps",
+    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && yarn nodejs-deps && patch-package",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "auditjs": "./../../node_modules/.bin/auditjs -nl error -w whitelist.json",
     "snyk-protect": "snyk protect",
@@ -124,16 +124,17 @@
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
-    "babel-jest": "23.4.2",
+    "babel-jest": "24.0.0",
     "babel-plugin-jest-hoist": "^23.2.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-stage-0": "^7.0.0-beta",
     "cross-env": "^5.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "jest": "23.5.0",
+    "jest": "24.0.0",
     "jest-serializer-enzyme": "^1.0.0",
     "metro-react-native-babel-preset": "^0.45.0",
+    "patch-package": "^6.0.2",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-test-renderer": "16.6.1",
@@ -144,7 +145,9 @@
     "roots": [
       "../"
     ],
-    "setupTestFrameworkScriptFile": "./testConfig.js",
+    "setupFilesAfterEnv": [
+      "./testConfig.js"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/shared/"

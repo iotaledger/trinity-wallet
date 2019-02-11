@@ -5,14 +5,17 @@ import cloneDeep from 'lodash/cloneDeep';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
+import SeedStoreCore from './SeedStoreCore';
 
-class Keychain {
+class Keychain extends SeedStoreCore {
     /**
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
+        super();
+
         this.key = cloneDeep(key);
         this.accountId = accountId;
     }

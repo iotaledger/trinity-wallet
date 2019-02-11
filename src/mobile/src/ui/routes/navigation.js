@@ -24,7 +24,7 @@ import SeedReentry from 'ui/views/onboarding/SeedReentry';
 import TwoFactorSetupAddKeyComponent from 'ui/views/wallet/TwoFactorSetupAddKey';
 import TwoFactorSetupEnterToken from 'ui/views/wallet/TwoFactorSetupEnterToken';
 import Disable2FA from 'ui/views/wallet/Disable2FA';
-import FingerprintSetup from 'ui/views/wallet/FingerprintSetup';
+import BiometricAuthentication from 'ui/views/wallet/BiometricAuthentication';
 import TermsAndConditions from 'ui/views/onboarding/TermsAndConditions';
 import PrivacyPolicy from 'ui/views/onboarding/PrivacyPolicy';
 import ForceChangePassword from 'ui/views/wallet/ForceChangePassword';
@@ -89,7 +89,12 @@ export default function registerScreens(store, Provider) {
         store,
     );
     Navigation.registerComponentWithRedux('disable2FA', () => applyHOCs(Disable2FA), Provider, store);
-    Navigation.registerComponentWithRedux('fingerprintSetup', () => applyHOCs(FingerprintSetup), Provider, store);
+    Navigation.registerComponentWithRedux(
+        'biometricAuthentication',
+        () => applyHOCs(BiometricAuthentication),
+        Provider,
+        store,
+    );
     Navigation.registerComponentWithRedux('termsAndConditions', () => applyHOCs(TermsAndConditions), Provider, store);
     Navigation.registerComponentWithRedux('privacyPolicy', () => applyHOCs(PrivacyPolicy), Provider, store);
     Navigation.registerComponentWithRedux('forceChangePassword', () => applyHOCs(ForceChangePassword), Provider, store);

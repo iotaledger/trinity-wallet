@@ -1,4 +1,3 @@
-/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
@@ -94,7 +93,7 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, accountName, accountMeta, sendTransfer, settings } = this.props;
+        const { fields, password, accountName, accountMeta, sendTransfer } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -102,14 +101,12 @@ class Send extends React.PureComponent {
 
         const seedStore = await new SeedStore[accountMeta.type](password, accountName, accountMeta);
 
-        const powFn = !settings.remotePoW ? Electron.powFn : null;
-
         const message =
             SeedStore[accountMeta.type].isMessageAvailable || parseInt(fields.amount || '0') === 0
                 ? fields.message
                 : '';
 
-        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message, powFn);
+        sendTransfer(seedStore, fields.address, parseInt(fields.amount) || 0, message);
     };
 
     render() {

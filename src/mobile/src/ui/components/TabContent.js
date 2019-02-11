@@ -1,3 +1,4 @@
+import last from 'lodash/last';
 import React, { PureComponent } from 'react';
 import timer from 'react-native-timer';
 import PropTypes from 'prop-types';
@@ -23,6 +24,11 @@ class TabContent extends PureComponent {
         this.state = {
             nextRoute: props.currentRoute,
         };
+        // Resets animation in case home screen remounts and is not last in the nav stack e.g. after Biometric auth request
+        if (last(props.navStack) !== 'home') {
+            this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
+            this.animationInType = ['slideInLeftSmall', 'fadeIn'];
+        }
     }
 
     componentWillReceiveProps(newProps) {
@@ -38,6 +44,17 @@ class TabContent extends PureComponent {
 
         if (this.props.inactive && newProps.inactive) {
             this.animationInType = ['fadeIn'];
+        }
+
+        // Adjusts animation direction when pushing to nav stack from settings
+        if (this.props.navStack.length !== newProps.navStack.length) {
+            this.animationOutType = ['slideOutLeftSmall', 'fadeOut'];
+            this.animationInType = ['slideInLeftSmall', 'fadeIn'];
+        }
+
+        // Fade out on log out
+        if (newProps.navStack.length === 1) {
+            this.animationOutType = ['fadeOut'];
         }
     }
 
@@ -81,6 +98,7 @@ class TabContent extends PureComponent {
                 animateOutTrigger={this.props.currentRoute}
                 duration={150}
                 style={{ flex: 1 }}
+                screenName="home"
             >
                 <Content
                     type={nextRoute}
@@ -97,6 +115,7 @@ const mapStateToProps = (state) => ({
     currentRoute: state.home.childRoute,
     inactive: state.ui.inactive,
     isKeyboardActive: state.ui.isKeyboardActive,
+    navStack: state.wallet.navStack,
 });
 
 TabContent.propTypes = {
@@ -113,6 +132,8 @@ TabContent.propTypes = {
     isKeyboardActive: PropTypes.bool.isRequired,
     /** @ignore */
     inactive: PropTypes.bool.isRequired,
+    /** @ignore */
+    navStack: PropTypes.array.isRequired,
 };
 
 TabContent.defaultProps = {

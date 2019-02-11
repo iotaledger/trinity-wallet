@@ -66,12 +66,12 @@ const updateAccountInfo = (state, payload) => ({
     accountInfo: {
         ...state.accountInfo,
         [payload.accountName]: {
-            ...get(state.accountInfo, `${payload.accountName}`),
+            ...get(state.accountInfo, [payload.accountName]),
             // Set seed index
-            index: isUndefined(payload.index) ? get(state.accountInfo, `${payload.accountName}.index`) : payload.index,
-            meta: payload.meta || get(state.accountInfo, `${payload.accountName}.meta`) || { type: 'keychain' },
+            index: isUndefined(payload.index) ? get(state.accountInfo, [payload.accountName, 'index']) : payload.index,
+            meta: payload.meta || get(state.accountInfo, [payload.accountName, 'meta']) || { type: 'keychain' },
             addressData: setAddressData(
-                get(state.accountInfo, `${payload.accountName}.addressData`),
+                get(state.accountInfo, [payload.accountName, 'addressData']),
                 payload.addressData,
             ),
             transactions: payload.transactions,
@@ -194,7 +194,7 @@ const account = (
                 tasks: {
                     ...state.tasks,
                     [action.payload.accountName]: {
-                        ...get(state.tasks, `${action.payload.accountName}`),
+                        ...get(state.tasks, [action.payload.accountName]),
                         [action.payload.task]: true,
                     },
                 },
@@ -207,7 +207,7 @@ const account = (
                     [action.accountName]: {
                         ...state.accountInfo[action.accountName],
                         addressData: setAddressData(
-                            get(state.accountInfo, `${action.accountName}.addressData`),
+                            get(state.accountInfo, [action.accountName, 'addressData']),
                             action.addressData,
                         ),
                     },

@@ -25,7 +25,6 @@ import orderBy from 'lodash/orderBy';
 import xor from 'lodash/xor';
 import { DEFAULT_TAG, DEFAULT_MIN_WEIGHT_MAGNITUDE, BUNDLE_OUTPUTS_THRESHOLD } from '../../config';
 import { iota } from './index';
-import nativeBindings from './nativeBindings';
 import { accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
@@ -338,9 +337,7 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
  *   Construct bundles, validates, assign confirmation states and Normalises them.
  *
  *   @method constructBundlesFromTransactions
- *   @param {array} tailTransactions
- *   @param {array} transactionObjects
- *   @param {array} inclusionStates
+ *   @param {array} transactions
  *
  *   @returns {array}
  **/
@@ -353,9 +350,29 @@ export const constructBundlesFromTransactions = (transactions) => {
         return [];
     }
 
-    return map(filter(transactions, (transaction) => transaction.currentIndex === 0), (tailTransaction) =>
-        constructBundle(tailTransaction, transactions),
+    const { broadcastedTailTransactions, failedTailTransactions } = transform(
+        transactions,
+        (acc, transaction) => {
+            if (transaction.currentIndex === 0) {
+                if (transaction.broadcasted === true) {
+                    acc.broadcastedTailTransactions.push(transaction);
+                } else {
+                    acc.failedTailTransactions.push(transaction);
+                }
+            }
+        },
+        { broadcastedTailTransactions: [], failedTailTransactions: [] },
     );
+
+    return [
+        ...map(broadcastedTailTransactions, (tailTransaction) => constructBundle(tailTransaction, transactions)),
+        // Bundles for failed transactions cannot be properly constructed because trunk/branch hashes aren't properly set.
+        // Manually construct bundles for failed transactions based on bundleHash.
+        // Note: Failed bundles only have a single (local) instance.
+        ...map(failedTailTransactions, (failedTailTransaction) =>
+            filter(transactions, (transaction) => transaction.bundle === failedTailTransaction.bundle),
+        ),
+    ];
 };
 
 /**
@@ -425,22 +442,25 @@ export const syncTransactions = (provider) => (diff, existingTransactions) => {
                 return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
             })
             .then((transactionObjects) => {
-                return flatMap(filterInvalidBundles(constructBundlesFromTransactions(transactionObjects)));
+                return flatMap(
+                    filterInvalidBundles(
+                        constructBundlesFromTransactions(
+                            map(transactionObjects, (transaction) => ({
+                                ...transaction,
+                                // Assign broadcasted as true as all these transactions were pulled in from the ledger
+                                broadcasted: true,
+                                // Temporarily assign persistence false
+                                // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
+                                persistence: false,
+                            })),
+                        ),
+                    ),
+                );
             });
     };
 
     return (size(diff) ? pullNewTransactions(diff) : Promise.resolve([])).then((newTransactions) => {
-        const transactions = [
-            ...existingTransactions,
-            // Temporarily assign persistence false
-            // In the next step, communicate with the ledger to get correct inclusion state (persistence) and assign those
-            ...map(newTransactions, (transaction) => ({
-                ...transaction,
-                persistence: false,
-                // Also assign broadcasted as true as all these transactions were pulled in from the ledger
-                broadcasted: true,
-            })),
-        ];
+        const transactions = [...existingTransactions, ...newTransactions];
 
         const { confirmed, unconfirmed } = transform(
             constructBundlesFromTransactions(transactions),
@@ -483,6 +503,7 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  *
  *   @method performPow
  *   @param {function} powFn
+ *   @param {function} digestFn
  *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
@@ -491,6 +512,7 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  **/
 export const performPow = (
     powFn,
+    digestFn,
     trytes,
     trunkTransaction,
     branchTransaction,
@@ -536,10 +558,12 @@ export const performPow = (
 
                         result.trytes.unshift(trytesWithNonce);
 
-                        return nativeBindings.asyncTransactionObject(trytesWithNonce);
+                        return digestFn(trytesWithNonce).then((digest) =>
+                            iota.utils.transactionObject(trytesWithNonce, digest),
+                        );
                     })
-                    .then((tx) => {
-                        result.transactionObjects.unshift(tx);
+                    .then((transactionObject) => {
+                        result.transactionObjects.unshift(transactionObject);
 
                         return result;
                     });
@@ -555,9 +579,9 @@ export const performPow = (
  *   @method retryFailedTransaction
  *   @param {string} [provider]
  *
- *   @returns {function(array, function): Promise<object>}
+ *   @returns {function(array, object): Promise<object>}
  **/
-export const retryFailedTransaction = (provider) => (transactionObjects, powFn) => {
+export const retryFailedTransaction = (provider) => (transactionObjects, seedStore) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
     const cached = {
@@ -574,7 +598,7 @@ export const retryFailedTransaction = (provider) => (transactionObjects, powFn) 
         // If proof of work failed, select new tips and retry
         return getTransactionsToApproveAsync(provider)()
             .then(({ trunkTransaction, branchTransaction }) => {
-                return attachToTangleAsync(provider, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+                return attachToTangleAsync(provider, seedStore)(trunkTransaction, branchTransaction, cached.trytes);
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
@@ -797,7 +821,10 @@ export const categoriseInclusionStatesByBundleHash = (tailTransactions, inclusio
  *
  * @returns {function(array, [number]): Promise<object>}
  */
-export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransactions, promotionsAttemptsLimit = 50) => {
+export const promoteTransactionTilConfirmed = (provider, seedStore) => (
+    tailTransactions,
+    promotionsAttemptsLimit = 50,
+) => {
     let promotionAttempt = 0;
     const tailTransactionsClone = cloneDeep(tailTransactions);
 
@@ -818,7 +845,7 @@ export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransact
             const { hash, attachmentTimestamp } = tailTransaction;
 
             // Promote transaction
-            return promoteTransactionAsync(provider, powFn)(hash)
+            return promoteTransactionAsync(provider, seedStore)(hash)
                 .then(() => {
                     return _promote(tailTransaction);
                 })
@@ -842,7 +869,7 @@ export const promoteTransactionTilConfirmed = (provider, powFn) => (tailTransact
         const tailTransaction = head(tailTransactionsClone);
         const hash = tailTransaction.hash;
 
-        return replayBundleAsync(provider, powFn)(hash).then((reattachment) => {
+        return replayBundleAsync(provider, seedStore)(hash).then((reattachment) => {
             const tailTransaction = find(reattachment, { currentIndex: 0 });
             // Add newly reattached transaction
             tailTransactionsClone.push(tailTransaction);
@@ -903,6 +930,7 @@ export const assignInclusionStatesToBundles = (provider) => (bundles) => {
  */
 export const mapNormalisedTransactions = (transactions, addressData) => {
     const tailTransactions = filter(transactions, (tx) => tx.currentIndex === 0);
+
     const bundles = constructBundlesFromTransactions(transactions);
 
     return transform(

@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import * as Keychain from 'react-native-keychain';
+import { getVersion } from 'react-native-device-info';
 import { serialise } from 'shared-modules/libs/utils';
 import {
     getNonce,
@@ -16,6 +17,7 @@ import {
 export const ALIAS_SEEDS = 'seeds';
 const ALIAS_AUTH = 'authKey';
 const ALIAS_SALT = 'salt';
+export const ALIAS_REALM = 'realm_enc_key';
 
 export const keychain = {
     get: (alias) => {
@@ -119,7 +121,41 @@ export const deleteTwoFactorAuthKeyFromKeychain = async () => {
 export const clearKeychain = async () => {
     await keychain.clear(ALIAS_SEEDS);
     await keychain.clear(ALIAS_AUTH);
+
     return await keychain.clear(ALIAS_SALT);
+};
+
+/**
+ * Gets realm encryption key.
+ *
+ * @method getRealmEncryptionKeyFromKeychain
+ * @returns {Promise}
+ */
+export const getRealmEncryptionKeyFromKeychain = () => {
+    return keychain.get(ALIAS_REALM).then((data) => {
+        const nonce = get(data, 'nonce');
+        const item = get(data, 'item');
+
+        if (nonce && item) {
+            return decodeBase64(item);
+        }
+
+        return null;
+    });
+};
+
+/**
+ * Sets realm encryption key.
+ *
+ * @method setRealmEncryptionKeyInKeychain
+ * @param {array} encryptionKey
+ *
+ * @returns {Promise}
+ */
+export const setRealmEncryptionKeyInKeychain = (encryptionKey) => {
+    return encodeBase64(encryptionKey).then((encodedEncryptionKey) =>
+        keychain.set(ALIAS_REALM, `Trinity-${getVersion()}`, encodedEncryptionKey),
+    );
 };
 
 export const changePassword = async (oldPwdHash, newPwdHash, salt) => {

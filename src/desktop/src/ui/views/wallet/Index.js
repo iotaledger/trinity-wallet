@@ -88,7 +88,7 @@ class Wallet extends React.PureComponent {
         this.setState({
             isSweeping: true,
         });
-        return this.props.byteTritSweep(SeedStore.keychain, Electron.powFn, Electron.dialog);
+        return this.props.byteTritSweep(SeedStore.keychain, Electron.dialog);
     };
 
     render() {

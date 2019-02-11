@@ -1,18 +1,23 @@
 /* global Electron */
 import { ACC_MAIN, sha256, encrypt, decrypt } from 'libs/crypto';
+import { ALIAS_REALM } from 'libs/realm';
 import { byteToTrit } from 'libs/iota/converter';
 import { prepareTransfersAsync } from 'libs/iota/extendedApi';
+
+import SeedStoreCore from './SeedStoreCore';
 
 // Prefix for seed account titles stored in Keychain
 const ACC_PREFIX = 'account';
 
-class Keychain {
+class Keychain extends SeedStoreCore {
     /**
      * Init the vault
      * @param {array} key - Account decryption key
      * @param {string} accountId - Account identifier
      */
     constructor(key, accountId) {
+        super();
+
         return (async () => {
             this.key = key.slice(0);
             if (accountId) {
@@ -125,7 +130,7 @@ class Keychain {
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
 
-            if (account.account === `${ACC_MAIN}-salt`) {
+            if (account.account === `${ACC_MAIN}-salt` || account.account === ALIAS_REALM) {
                 continue;
             }
 
@@ -154,6 +159,8 @@ class Keychain {
             seed[i % seed.length] = 0;
         }
 
+        Electron.garbageCollect();
+
         return addresses;
     };
 
@@ -170,7 +177,15 @@ class Keychain {
      */
     prepareTransfers = async (transfers, options = null) => {
         const seed = await this.getSeed(true);
-        return prepareTransfersAsync()(seed, transfers, options);
+        const transfer = await prepareTransfersAsync()(seed, transfers, options);
+
+        for (let i = 0; i < seed.length * 3; i++) {
+            seed[i % seed.length] = 0;
+        }
+
+        Electron.garbageCollect();
+
+        return transfer;
     };
 
     /**

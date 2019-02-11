@@ -13,9 +13,10 @@ import { assignAccountIndexIfNecessary } from 'actions/accounts';
 import { mapStorageToState as mapStorageToStateAction } from 'actions/wallet';
 import { mapStorageToState } from 'libs/storageToStateMappers';
 import persistElectronStorage from 'libs/storage';
+import { getEncryptionKey } from 'libs/realm';
 import { changeIotaNode } from 'libs/iota';
 import { parse } from 'libs/utils';
-import { initialiseSync as initialiseStorage, realm } from 'storage';
+import { initialise as initialiseStorage, realm } from 'storage';
 import createPlugin from 'bugsnag-react';
 
 import Index from 'ui/Index';
@@ -33,81 +34,87 @@ export const bugsnagClient = bugsnag({
     user: { id: Electron.getUuid() },
 });
 
-// Initialise (Realm) storage
-initialiseStorage();
-
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
-/* eslint-disable no-new */
-new Promise((resolve, reject) => {
-    /* eslint-enable no-new */
-    persistElectronStorage.getAllKeys((err, keys) => (err ? reject(err) : resolve(keys)));
-})
-    .then((keys) => {
-        const getItemAsync = (key) =>
-            new Promise((resolve, reject) => {
-                persistElectronStorage.getItem(key, (err, item) => (err ? reject(err) : resolve(item)));
-            });
-
-        return keys.reduce(
-            (promise, key) =>
-                promise.then((result) =>
-                    getItemAsync(key).then((item) => {
-                        result[key.split(':')[1]] = parse(item);
-
-                        return result;
-                    }),
-                ),
-            Promise.resolve({}),
-        );
-    })
-    .then((oldPersistedData) => {
-        // TODO: Also check version & completedMigration state prop
-        const hasDataToMigrate = !isEmpty(oldPersistedData);
-
-        // Get persisted data from Realm storage
-        const persistedDataFromRealm = mapStorageToState();
-        const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
-
-        // Change provider on global iota instance
-        const node = get(data, 'settings.node');
-        changeIotaNode(node);
-
-        // Update store with persisted state
+if (Electron.mode === 'tray') {
+    Electron.onEvent('store.update', (payload) => {
+        const data = JSON.parse(payload);
         store.dispatch(mapStorageToStateAction(data));
+    });
+} else {
+    initialiseStorage(getEncryptionKey)
+        .then(() => {
+            return new Promise((resolve, reject) => {
+                persistElectronStorage.getAllKeys((err, keys) => (err ? reject(err) : resolve(keys)));
+            });
+        })
+        .then((keys) => {
+            const getItemAsync = (key) =>
+                new Promise((resolve, reject) => {
+                    persistElectronStorage.getItem(key, (err, item) => (err ? reject(err) : resolve(item)));
+                });
 
-        // Assign accountIndex to every account in accountInfo if it is not assigned already
-        store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+            return keys.reduce(
+                (promise, key) =>
+                    promise.then((result) =>
+                        getItemAsync(key).then((item) => {
+                            result[key.split(':')[1]] = parse(item);
 
-        if (Electron.mode === 'tray') {
-            // Add Realm change listener to sync read-only Tray app with Main app
+                            return result;
+                        }),
+                    ),
+                Promise.resolve({}),
+            );
+        })
+        .then((oldPersistedData) => {
+            // TODO: Also check version & completedMigration state prop
+            const hasDataToMigrate = !isEmpty(oldPersistedData);
+
+            // Get persisted data from Realm storage
+            const persistedDataFromRealm = mapStorageToState();
+            const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+
+            // Change provider on global iota instance
+            const node = get(data, 'settings.node');
+            changeIotaNode(node);
+
+            // Update store with persisted state
+            store.dispatch(mapStorageToStateAction(data));
+
+            // Assign accountIndex to every account in accountInfo if it is not assigned already
+            store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+
+            // Proxy realm changes to Tray application
             realm.addListener('change', () => {
                 const data = mapStorageToState();
-                store.dispatch(mapStorageToStateAction(data));
+                Electron.storeUpdate(JSON.stringify(data));
             });
-        } else {
+
             // Start Tray application if enabled in settings
             const isTrayEnabled = get(data, 'settings.isTrayEnabled');
             Electron.setTray(isTrayEnabled);
-        }
 
-        render(
-            <ErrorBoundary>
-                <Redux store={store}>
-                    <I18nextProvider i18n={i18next}>
-                        <Router>
-                            {Electron.mode === 'tray' ? (
-                                <Tray />
-                            ) : (
-                                <React.Fragment>
-                                    <Alerts />
-                                    <Index />
-                                </React.Fragment>
-                            )}
-                        </Router>
-                    </I18nextProvider>
-                </Redux>
-            </ErrorBoundary>,
-            document.getElementById('root'),
-        );
-    });
+            // Show Wallet window after inital store update
+            Electron.focus();
+        });
+}
+
+render(
+    <ErrorBoundary>
+        <Redux store={store}>
+            <I18nextProvider i18n={i18next}>
+                <Router>
+                    {Electron.mode === 'tray' ? (
+                        <Tray />
+                    ) : (
+                        <React.Fragment>
+                            <Alerts />
+                            <Index />
+                        </React.Fragment>
+                    )}
+                </Router>
+            </I18nextProvider>
+        </Redux>
+    </ErrorBoundary>,
+    document.getElementById('root'),
+);

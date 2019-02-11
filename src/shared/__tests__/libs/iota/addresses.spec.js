@@ -20,13 +20,21 @@ import {
     latestAddressBalance,
 } from '../../__samples__/addresses';
 import transactions, {
-    newZeroValueTransaction,
+    newZeroValueAttachedTransaction,
     confirmedZeroValueTransactions,
     unconfirmedValueTransactions,
+    LATEST_MILESTONE,
+    LATEST_MILESTONE_INDEX,
+    LATEST_SOLID_SUBTANGLE_MILESTONE,
+    LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
 } from '../../__samples__/transactions';
-import { newZeroValueTransactionTrytes } from '../../__samples__/trytes';
+import {
+    newZeroValueTransactionTrytes,
+    milestoneTrytes,
+    newZeroValueAttachedTransactionTrytes,
+} from '../../__samples__/trytes';
 import mockAccounts from '../../__samples__/accounts';
-import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import { iota, quorum, SwitchingConfig } from '../../../libs/iota/index';
 import { IRI_API_VERSION } from '../../../config';
 import { EMPTY_TRANSACTION_TRYTES, EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
 
@@ -563,6 +571,7 @@ describe('libs: iota/addresses', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
                         .persist()
@@ -572,6 +581,20 @@ describe('libs: iota/addresses', () => {
                                 const addresses = body.addresses;
 
                                 return { states: map(addresses, () => true) };
+                            } else if (body.command === 'getNodeInfo') {
+                                return {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                };
+                            } else if (body.command === 'getTrytes') {
+                                return {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                };
                             }
 
                             return {};
@@ -587,22 +610,6 @@ describe('libs: iota/addresses', () => {
                         .isAddressUsedAsync()(addressObject)
                         .then((isUsed) => expect(isUsed).to.equal(true));
                 });
-
-                describe('when address is marked unspent locally', () => {
-                    it('should return false', () => {
-                        const addressObject = {
-                            address: 'U'.repeat(81),
-                            balance: 0,
-                            index: 0,
-                            checksum: 'NXELTUENX',
-                            spent: { local: false, remote: true },
-                        };
-
-                        const isUsed = addressesUtils.isAddressUsedSync(addressObject, []);
-
-                        expect(isUsed).to.equal(false);
-                    });
-                });
             });
 
             describe('when address is not spent from (wereAddressesSpentFron)', () => {
@@ -613,6 +620,7 @@ describe('libs: iota/addresses', () => {
                                 'Content-Type': 'application/json',
                                 'X-IOTA-API-Version': IRI_API_VERSION,
                             },
+                            filteringScope: () => true,
                         })
                             .filteringRequestBody(() => '*')
                             .persist()
@@ -624,6 +632,20 @@ describe('libs: iota/addresses', () => {
                                     return { states: map(addresses, () => false) };
                                 } else if (body.command === 'findTransactions') {
                                     return { hashes: ['9'.repeat(81)] };
+                                } else if (body.command === 'getNodeInfo') {
+                                    return {
+                                        appVersion: '1',
+                                        latestMilestone: LATEST_MILESTONE,
+                                        latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                        latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                        latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                    };
+                                } else if (body.command === 'getTrytes') {
+                                    return {
+                                        trytes: includes(body.hashes, LATEST_MILESTONE)
+                                            ? milestoneTrytes
+                                            : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                    };
                                 }
 
                                 return {};
@@ -649,6 +671,7 @@ describe('libs: iota/addresses', () => {
                                     'Content-Type': 'application/json',
                                     'X-IOTA-API-Version': IRI_API_VERSION,
                                 },
+                                filteringScope: () => true,
                             })
                                 .filteringRequestBody(() => '*')
                                 .persist()
@@ -661,7 +684,21 @@ describe('libs: iota/addresses', () => {
                                     } else if (body.command === 'findTransactions') {
                                         return { hashes: [] };
                                     } else if (body.command === 'getBalances') {
-                                        return { balances: { balances: map(body.addresses, () => '10') } };
+                                        return { balances: map(body.addresses, () => '10') };
+                                    } else if (body.command === 'getNodeInfo') {
+                                        return {
+                                            appVersion: '1',
+                                            latestMilestone: LATEST_MILESTONE,
+                                            latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                            latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                            latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                        };
+                                    } else if (body.command === 'getTrytes') {
+                                        return {
+                                            trytes: includes(body.hashes, LATEST_MILESTONE)
+                                                ? milestoneTrytes
+                                                : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                        };
                                     }
 
                                     return {};
@@ -686,6 +723,7 @@ describe('libs: iota/addresses', () => {
                                     'Content-Type': 'application/json',
                                     'X-IOTA-API-Version': IRI_API_VERSION,
                                 },
+                                filteringScope: () => true,
                             })
                                 .filteringRequestBody(() => '*')
                                 .persist()
@@ -698,7 +736,21 @@ describe('libs: iota/addresses', () => {
                                     } else if (body.command === 'findTransactions') {
                                         return { hashes: [] };
                                     } else if (body.command === 'getBalances') {
-                                        return { balances: { balances: map(body.addresses, () => '0') } };
+                                        return { balances: map(body.addresses, () => '0') };
+                                    } else if (body.command === 'getNodeInfo') {
+                                        return {
+                                            appVersion: '1',
+                                            latestMilestone: LATEST_MILESTONE,
+                                            latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                            latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                            latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                        };
+                                    } else if (body.command === 'getTrytes') {
+                                        return {
+                                            trytes: includes(body.hashes, LATEST_MILESTONE)
+                                                ? milestoneTrytes
+                                                : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                        };
                                     }
 
                                     return {};
@@ -728,6 +780,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -740,6 +793,20 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, () => false) };
                         } else if (command === 'getBalances') {
                             return { balances: map(addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -813,6 +880,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -834,6 +902,20 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, (address) => resultMap[address].spent) };
                         } else if (command === 'getBalances') {
                             return { balances: map(addresses, (address) => resultMap[address].balance) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -927,6 +1009,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -938,6 +1021,20 @@ describe('libs: iota/addresses', () => {
                             return { states: map(addresses, (address) => resultMap[address].spent) };
                         } else if (command === 'getBalances') {
                             return { balances: map(addresses, (address) => resultMap[address].balance) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1016,140 +1113,348 @@ describe('libs: iota/addresses', () => {
     });
 
     describe('#getFullAddressHistory', () => {
-        let firstBatchOfAddresses;
-        let firstBatchOfBalances;
-        let firstBatchOfSpentStatuses;
-        let findTransactions;
-        let getBalances;
-        let wereAddressesSpentFrom;
-
-        let addressGenFn;
+        let addresses;
         let seedStore;
-
-        let sandbox;
-
+        let batchSize;
         before(() => {
+            batchSize = 10;
+            addresses = Array(20)
+                .fill()
+                .map((_, i) => String.fromCharCode(65 + i).repeat(81));
+
             seedStore = {
-                generateAddress: () => Promise.resolve('A'.repeat(81)),
+                generateAddress: (options) => {
+                    return Promise.resolve(addresses.slice(options.index, options.index + options.total));
+                },
             };
-            firstBatchOfAddresses = [
-                'A'.repeat(81),
-                'B'.repeat(81),
-                'C'.repeat(81),
-                'D'.repeat(81),
-                'E'.repeat(81),
-                'F'.repeat(81),
-                'G'.repeat(81),
-                'H'.repeat(81),
-                'I'.repeat(81),
-                'J'.repeat(81),
-            ];
-            firstBatchOfBalances = Array(10)
-                .fill()
-                .map((v, i) => i.toString());
-            firstBatchOfSpentStatuses = Array(10)
-                .fill()
-                .map((v, i) => i % 2 === 0);
         });
 
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
+        describe('when no address in the first batch of generated addresses has any associated meta', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            return { states: map(body.addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: map(body.addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
 
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-            addressGenFn = sandbox.stub(seedStore, 'generateAddress');
-
-            // First batch
-            addressGenFn.onCall(0).resolves(firstBatchOfAddresses);
-
-            // Second batch
-            addressGenFn
-                .onCall(1)
-                .resolves(firstBatchOfAddresses.map((address) => address.substring(0, address.length - 1).concat('9')));
-
-            findTransactions = sandbox.stub(iota.api, 'findTransactions');
-
-            // Return hashes on the very first call i.e. call made for findTransactions with first batch of addresses
-            findTransactions.onCall(0).yields(null, ['9'.repeat(81)]);
-
-            // Return no hashes for the second call i.e. call made for findTransactions with second batch of addresses
-            findTransactions.onCall(1).yields(null, []);
-
-            // Return hashes for the third call i.e. call made for findTransactions with last address of first batch
-            findTransactions.onCall(2).yields(null, ['U'.repeat(81)]);
-
-            getBalances = sandbox.stub(iota.api, 'getBalances');
-
-            // Return balances for the very first call i.e. getBalances with first batch of addresses
-            getBalances.onCall(0).yields(null, { balances: firstBatchOfBalances });
-
-            // Return 0 balances for the second call i.e. getBalances with second batch of addresses
-            getBalances.onCall(1).yields(null, {
-                balances: Array(10)
-                    .fill()
-                    .map(() => '0'),
+                        return {};
+                    });
             });
 
-            // Return balances for the third call i.e. call made for getBalances with last address of first batch
-            getBalances.onCall(2).yields(null, { balances: ['0'] });
+            afterEach(() => {
+                nock.cleanAll();
+            });
 
-            wereAddressesSpentFrom = sandbox.stub(iota.api, 'wereAddressesSpentFrom');
+            it('should not call generateAddress method on seedStore more than once', () => {
+                sinon.spy(seedStore, 'generateAddress');
 
-            // Return spent statuses for the very first call i.e. wereAddressesSpentFrom with first batch of addresses
-            wereAddressesSpentFrom.onCall(0).yields(null, firstBatchOfSpentStatuses);
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then(() => {
+                        expect(seedStore.generateAddress.calledOnce).to.equal(true);
+                        seedStore.generateAddress.restore();
+                    })
+                    .catch((error) => {
+                        // Restore seedStore spy
+                        seedStore.generateAddress.restore();
 
-            // Return spent statuses for the second call i.e. wereAddressesSpentFrom with second batch of addresses
-            wereAddressesSpentFrom.onCall(1).yields(
-                null,
-                Array(10)
-                    .fill()
-                    .map(() => false),
-            );
-
-            // Return spent statuses for the third call
-            // i.e. call made for wereAddressesSpentFrom with last address of first batch
-            wereAddressesSpentFrom.onCall(2).yields(null, [false]);
+                        throw error;
+                    });
+            });
         });
 
-        afterEach(() => {
-            sandbox.restore();
+        describe('when some addresses in the first batch of generated addresses have positive balance', () => {
+            beforeEach(() => {
+                const addressMetaMap = reduce(
+                    addresses,
+                    (acc, address, index) => {
+                        acc[address] = {
+                            balance: index === batchSize - 1 ? '10' : '0',
+                            spent: false,
+                        };
+
+                        return acc;
+                    },
+                    {},
+                );
+
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            return { states: map(body.addresses, (address) => addressMetaMap[address].spent) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: map(body.addresses, (address) => addressMetaMap[address].balance) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should call generateAddress method on seedStore twice', () => {
+                sinon.spy(seedStore, 'generateAddress');
+
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then(() => {
+                        expect(seedStore.generateAddress.calledTwice).to.equal(true);
+                        seedStore.generateAddress.restore();
+                    })
+                    .catch((error) => {
+                        // Restore seedStore spy
+                        seedStore.generateAddress.restore();
+
+                        throw error;
+                    });
+            });
+
+            it('should return addresses till one unused', () => {
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then((addressData) => {
+                        expect(addressData.addresses).to.eql(addresses.slice(0, batchSize + 1));
+                    });
+            });
+
+            it('should return correct balances', () => {
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then((addressData) => {
+                        const expectedBalances = Array(batchSize + 1)
+                            .fill()
+                            .map((_, i) => (i === batchSize - 1 ? 10 : 0));
+                        expect(addressData.balances).to.eql(expectedBalances);
+                    });
+            });
         });
 
-        it('should return addresses till one unused', () => {
-            return addressesUtils
-                .getFullAddressHistory()(seedStore)
-                .then((history) => {
-                    expect(history.addresses).to.eql([...firstBatchOfAddresses, `${'A'.repeat(80)}9`]);
-                });
+        describe('when some addresses in the first batch of generated addresses are spent', () => {
+            beforeEach(() => {
+                const addressMetaMap = reduce(
+                    addresses,
+                    (acc, address, index) => {
+                        acc[address] = {
+                            balance: '0',
+                            spent: index === batchSize - 1,
+                        };
+
+                        return acc;
+                    },
+                    {},
+                );
+
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            return { states: map(body.addresses, (address) => addressMetaMap[address].spent) };
+                        } else if (body.command === 'findTransactions') {
+                            return { hashes: [] };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: map(body.addresses, (address) => addressMetaMap[address].balance) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should call generateAddress method on seedStore twice', () => {
+                sinon.spy(seedStore, 'generateAddress');
+
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then(() => {
+                        expect(seedStore.generateAddress.calledTwice).to.equal(true);
+                        seedStore.generateAddress.restore();
+                    })
+                    .catch((error) => {
+                        // Restore seedStore spy
+                        seedStore.generateAddress.restore();
+
+                        throw error;
+                    });
+            });
+
+            it('should return addresses till one unused', () => {
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then((addressData) => {
+                        expect(addressData.addresses).to.eql(addresses.slice(0, batchSize + 1));
+                    });
+            });
+
+            it('should return correct remote spend statuses', () => {
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then((addressData) => {
+                        const expectedSpendStatuses = Array(batchSize + 1)
+                            .fill()
+                            .map((_, i) => i === batchSize - 1);
+                        const actualRemoteSpendStatuses = addressData.wereSpent.map((status) => status.remote);
+
+                        expect(actualRemoteSpendStatuses).to.eql(expectedSpendStatuses);
+                    });
+            });
         });
 
-        it('should return transaction hashes associated with addresses', () => {
-            return addressesUtils
-                .getFullAddressHistory()(seedStore)
-                .then((history) => {
-                    expect(history.hashes).to.eql(['9'.repeat(81)]);
-                });
-        });
+        describe('when some addresses in the first batch of generated addresses have transaction hashes', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        if (body.command === 'wereAddressesSpentFrom') {
+                            return { states: map(body.addresses, () => false) };
+                        } else if (body.command === 'findTransactions') {
+                            return {
+                                hashes: includes(body.addresses, addresses[batchSize - 1]) ? ['9'.repeat(81)] : [],
+                            };
+                        } else if (body.command === 'getBalances') {
+                            return { balances: map(body.addresses, () => false) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
 
-        it('should return balances associated with addresses', () => {
-            return addressesUtils
-                .getFullAddressHistory()(seedStore)
-                .then((history) => {
-                    expect(history.balances).to.eql([...firstBatchOfBalances.map((balance) => parseInt(balance)), 0]);
-                });
-        });
+                        return {};
+                    });
+            });
 
-        it('should return (local & remote) spent statuses for addresses', () => {
-            return addressesUtils
-                .getFullAddressHistory()(seedStore)
-                .then((history) => {
-                    expect(history.wereSpent).to.eql([
-                        ...map(firstBatchOfSpentStatuses, (status, idx) => ({
-                            local: false,
-                            remote: firstBatchOfSpentStatuses[idx],
-                        })),
-                        { local: false, remote: false },
-                    ]);
-                });
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should call generateAddress method on seedStore twice', () => {
+                sinon.spy(seedStore, 'generateAddress');
+
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then(() => {
+                        expect(seedStore.generateAddress.calledTwice).to.equal(true);
+                        seedStore.generateAddress.restore();
+                    })
+                    .catch((error) => {
+                        // Restore seedStore spy
+                        seedStore.generateAddress.restore();
+
+                        throw error;
+                    });
+            });
+
+            it('should return addresses till one unused', () => {
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then((addressData) => {
+                        expect(addressData.addresses).to.eql(addresses.slice(0, batchSize + 1));
+                    });
+            });
+
+            it('should return correct transaction hashes', () => {
+                return addressesUtils
+                    .getFullAddressHistory()(seedStore, {})
+                    .then((addressData) => {
+                        expect(addressData.hashes).to.eql(['9'.repeat(81)]);
+                    });
+            });
         });
     });
 
@@ -1175,6 +1480,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1187,7 +1493,21 @@ describe('libs: iota/addresses', () => {
                         } else if (body.command === 'findTransactions') {
                             return { hashes: ['9'.repeat(81)] };
                         } else if (body.command === 'getBalances') {
-                            return { balances: { balances: map(body.addresses, () => '0') } };
+                            return { balances: map(body.addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1217,6 +1537,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1229,7 +1550,21 @@ describe('libs: iota/addresses', () => {
                         } else if (body.command === 'findTransactions') {
                             return { hashes: [] };
                         } else if (body.command === 'getBalances') {
-                            return { balances: { balances: map(body.addresses, () => '0') } };
+                            return { balances: map(body.addresses, () => '0') };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1259,6 +1594,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1333,17 +1669,29 @@ describe('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'getBalances') {
                             return {
-                                balances: {
-                                    balances: reduce(
-                                        addresses,
-                                        (acc, address) => {
-                                            acc.push(resultMap[address].balance);
+                                balances: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc.push(resultMap[address].balance);
 
-                                            return acc;
-                                        },
-                                        [],
-                                    ),
-                                },
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                             };
                         }
 
@@ -1715,6 +2063,7 @@ describe('libs: iota/addresses', () => {
                             'Content-Type': 'application/json',
                             'X-IOTA-API-Version': IRI_API_VERSION,
                         },
+                        filteringScope: () => true,
                     })
                         .filteringRequestBody(() => '*')
                         .persist()
@@ -1726,6 +2075,18 @@ describe('libs: iota/addresses', () => {
                                 getBalances: { balances: map(addresses, () => '0') },
                                 findTransactions: { hashes: [] },
                                 wereAddressesSpentFrom: { states: map(addresses, () => false) },
+                                getNodeInfo: {
+                                    appVersion: '1',
+                                    latestMilestone: LATEST_MILESTONE,
+                                    latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                    latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                    latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                                },
+                                getTrytes: {
+                                    trytes: includes(body.hashes, LATEST_MILESTONE)
+                                        ? milestoneTrytes
+                                        : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                                },
                             };
 
                             return resultMap[body.command] || {};
@@ -1868,6 +2229,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1887,6 +2249,20 @@ describe('libs: iota/addresses', () => {
                             );
 
                             return { states: map(addresses, (address) => resultMap[address]) };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -1951,6 +2327,11 @@ describe('libs: iota/addresses', () => {
             seedStore = {
                 generateAddress: () => Promise.resolve('A'.repeat(81)),
                 prepareTransfers: () => Promise.resolve([EMPTY_TRANSACTION_TRYTES]),
+                performPow: () =>
+                    Promise.resolve({
+                        trytes: newZeroValueAttachedTransactionTrytes,
+                        transactionObjects: newZeroValueAttachedTransaction,
+                    }),
             };
         });
 
@@ -1961,6 +2342,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -1981,6 +2363,20 @@ describe('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'attachToTangle') {
                             return { trytes: newZeroValueTransactionTrytes };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -2019,6 +2415,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -2037,6 +2434,20 @@ describe('libs: iota/addresses', () => {
                             };
                         } else if (body.command === 'attachToTangle') {
                             return { trytes: newZeroValueTransactionTrytes };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -2077,7 +2488,7 @@ describe('libs: iota/addresses', () => {
                         null,
                     )
                     .then((result) => {
-                        expect(result.attachedTransactions).to.eql(newZeroValueTransaction);
+                        expect(result.attachedTransactions).to.eql(newZeroValueAttachedTransaction);
                     });
             });
         });
@@ -2107,6 +2518,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -2120,6 +2532,20 @@ describe('libs: iota/addresses', () => {
                             return { hashes: [] };
                         } else if (body.command === 'getBalances') {
                             return { balances: { balances: map(body.addresses, () => '0') } };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
                         }
 
                         return {};
@@ -2146,6 +2572,7 @@ describe('libs: iota/addresses', () => {
                         'Content-Type': 'application/json',
                         'X-IOTA-API-Version': IRI_API_VERSION,
                     },
+                    filteringScope: () => true,
                 })
                     .filteringRequestBody(() => '*')
                     .persist()
@@ -2204,17 +2631,29 @@ describe('libs: iota/addresses', () => {
                             };
                         } else if (command === 'getBalances') {
                             return {
-                                balances: {
-                                    balances: reduce(
-                                        addresses,
-                                        (acc, address) => {
-                                            acc.push(resultMap[address].balance);
+                                balances: reduce(
+                                    addresses,
+                                    (acc, address) => {
+                                        acc.push(resultMap[address].balance);
 
-                                            return acc;
-                                        },
-                                        [],
-                                    ),
-                                },
+                                        return acc;
+                                    },
+                                    [],
+                                ),
+                            };
+                        } else if (body.command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (body.command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
                             };
                         }
 
@@ -2282,7 +2721,7 @@ describe('libs: iota/addresses', () => {
         beforeEach(() => {
             sandbox = sinon.sandbox.create();
 
-            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, true, false, true]);
+            sandbox.stub(quorum, 'wereAddressesSpentFrom').resolves([false, true, false, true]);
         });
 
         afterEach(() => {
@@ -2399,6 +2838,158 @@ describe('libs: iota/addresses', () => {
             );
 
             expect(result).to.eql(expectedAddressData);
+        });
+    });
+
+    describe('#isAnyAddressSpent', () => {
+        let addresses;
+
+        before(() => {
+            addresses = map(['U', 'A', 'S', '9'], (char) => char.repeat(81));
+        });
+
+        describe('when all addresses are unspent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => false) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return false', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(false));
+            });
+        });
+
+        describe('when all addresses are spent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, () => true) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return true', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(true));
+            });
+        });
+
+        describe('when some addresses are spent', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                    filteringScope: () => true,
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { addresses, command } = body;
+
+                        if (command === 'wereAddressesSpentFrom') {
+                            return { states: map(addresses, (_, idx) => idx % 2 === 0) };
+                        } else if (command === 'getNodeInfo') {
+                            return {
+                                appVersion: '1',
+                                latestMilestone: LATEST_MILESTONE,
+                                latestSolidSubtangleMilestone: LATEST_SOLID_SUBTANGLE_MILESTONE,
+                                latestMilestoneIndex: LATEST_MILESTONE_INDEX,
+                                latestSolidSubtangleMilestoneIndex: LATEST_SOLID_SUBTANGLE_MILESTONE_INDEX,
+                            };
+                        } else if (command === 'getTrytes') {
+                            return {
+                                trytes: includes(body.hashes, LATEST_MILESTONE)
+                                    ? milestoneTrytes
+                                    : map(body.hashes, () => EMPTY_TRANSACTION_TRYTES),
+                            };
+                        }
+
+                        return {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should return true', () => {
+                return addressesUtils
+                    .isAnyAddressSpent()(addresses)
+                    .then((isSpent) => expect(isSpent).to.equal(true));
+            });
         });
     });
 });

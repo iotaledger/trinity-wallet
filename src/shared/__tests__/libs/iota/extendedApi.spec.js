@@ -3,7 +3,7 @@ import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import nock from 'nock';
-import { getIotaInstance, isNodeHealthy } from '../../../libs/iota/extendedApi';
+import { getIotaInstance, isNodeHealthy, allowsRemotePow } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import { newZeroValueTransactionTrytes } from '../../__samples__/trytes';
 import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
@@ -34,7 +34,44 @@ describe('libs: iota/extendedApi', () => {
         });
     });
 
-    describe.skip('#isNodeHealthy', () => {
+    describe('#isNodeHealthy', () => {
+        describe('when node runs an unsupported release', () => {
+            beforeEach(() => {
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .persist()
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const { command } = body;
+
+                        const resultMap = {
+                            getNodeInfo: {
+                                appVersion: '0.0.0-RC2',
+                            },
+                        };
+
+                        return resultMap[command] || {};
+                    });
+            });
+
+            afterEach(() => {
+                nock.cleanAll();
+            });
+
+            it('should throw with an error "Node version not supported"', () => {
+                return isNodeHealthy()
+                    .then(() => {
+                        throw new Error();
+                    })
+                    .catch((error) => expect(error.message).to.equal('Node version not supported'));
+            });
+        });
+
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 nock('http://localhost:14265', {
@@ -51,6 +88,7 @@ describe('libs: iota/extendedApi', () => {
 
                         const resultMap = {
                             getNodeInfo: {
+                                appVersion: '0.0.0',
                                 latestMilestone: EMPTY_HASH_TRYTES,
                                 latestSolidSubtangleMilestone: 'U'.repeat(81),
                             },
@@ -89,6 +127,7 @@ describe('libs: iota/extendedApi', () => {
 
                         const resultMap = {
                             getNodeInfo: {
+                                appVersion: '0.0.0',
                                 latestMilestone: EMPTY_HASH_TRYTES,
                                 latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
                             },
@@ -128,6 +167,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestoneIndex: 426550,
                                     latestSolidSubtangleMilestoneIndex: 426550 - 1,
                                     latestMilestone: 'U'.repeat(81),
@@ -165,6 +205,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestoneIndex: 426550,
                                     latestSolidSubtangleMilestoneIndex: 426550 - 1,
                                     latestMilestone: 'U'.repeat(81),
@@ -218,6 +259,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestone: 'U'.repeat(81),
                                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                                 },
@@ -253,6 +295,7 @@ describe('libs: iota/extendedApi', () => {
 
                             const resultMap = {
                                 getNodeInfo: {
+                                    appVersion: '0.0.0',
                                     latestMilestone: 'U'.repeat(81),
                                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                                 },
@@ -283,6 +326,76 @@ describe('libs: iota/extendedApi', () => {
 
                 it('should return true', () => {
                     return isNodeHealthy().then((result) => expect(result).to.equal(true));
+                });
+            });
+        });
+    });
+
+    describe('#allowsRemotePow', () => {
+        describe('when has updated IRI version (version that has "features" prop in nodeInfo)', () => {
+            describe('when has listed "RemotePOW" as a feature', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            if (command === 'getNodeInfo') {
+                                return {
+                                    features: ['RemotePOW', 'zeroMessageQueue'],
+                                };
+                            }
+
+                            return {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return true', () => {
+                    return allowsRemotePow('http://localhost:14265').then((res) => expect(res).to.equal(true));
+                });
+            });
+
+            describe('when has not listed "RemotePOW" as a feature', () => {
+                beforeEach(() => {
+                    nock('http://localhost:14265', {
+                        reqheaders: {
+                            'Content-Type': 'application/json',
+                            'X-IOTA-API-Version': IRI_API_VERSION,
+                        },
+                    })
+                        .filteringRequestBody(() => '*')
+                        .persist()
+                        .post('/', '*')
+                        .reply(200, (_, body) => {
+                            const { command } = body;
+
+                            if (command === 'getNodeInfo') {
+                                return {
+                                    features: ['zeroMessageQueue'],
+                                };
+                            }
+
+                            return {};
+                        });
+                });
+
+                afterEach(() => {
+                    nock.cleanAll();
+                });
+
+                it('should return false', () => {
+                    return allowsRemotePow('http://localhost:14265').then((res) => expect(res).to.equal(false));
                 });
             });
         });

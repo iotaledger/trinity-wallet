@@ -12,9 +12,11 @@ import { promoteTransaction, retryFailedTransaction } from 'shared-modules/actio
 import {
     getTransactionsForSelectedAccount,
     getSelectedAccountName,
+    getSelectedAccountMeta,
     getAddressesForSelectedAccount,
 } from 'shared-modules/selectors/accounts';
 import { getThemeFromState } from 'shared-modules/selectors/global';
+import SeedStore from 'libs/SeedStore';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'shared-modules/libs/utils';
 import { toggleModalActivity, updateModalProps } from 'shared-modules/actions/ui';
@@ -23,7 +25,6 @@ import WithManualRefresh from 'ui/components/ManualRefresh';
 import TransactionRow from 'ui/components/TransactionRow';
 import { width, height } from 'libs/dimensions';
 import { isAndroid } from 'libs/device';
-import { getPowFn } from 'libs/nativeModules';
 import CtaButton from 'ui/components/CtaButton';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
@@ -69,6 +70,8 @@ class History extends Component {
         theme: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Account meta for selected account */
+        selectedAccountMeta: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
         /** @ignore */
@@ -111,6 +114,8 @@ class History extends Component {
         isModalActive: PropTypes.bool,
         /** @ignore */
         modalContent: PropTypes.string,
+        /** @ignore */
+        password: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -140,6 +145,7 @@ class History extends Component {
                         newProps.isAutoPromoting ||
                         newProps.isPromotingTransaction ||
                         newProps.isRetryingFailedTransaction,
+                    isRetryingFailedTransaction: newProps.isRetryingFailedTransaction,
                     bundleIsBeingPromoted:
                         newProps.currentlyPromotingBundleHash === modalProps.bundle && !newBundleProps.persistence,
                 });
@@ -183,6 +189,8 @@ class History extends Component {
             mode,
             t,
             selectedAccountName,
+            selectedAccountMeta,
+            password,
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
@@ -198,7 +206,8 @@ class History extends Component {
             unit: formatUnit(item.value),
         });
 
-        const proofOfWorkFunction = getPowFn();
+        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+
         const formattedTransfers = map(relevantTransfers, (transfer) => {
             const {
                 timestamp,
@@ -240,9 +249,8 @@ class History extends Component {
                             isRetryingFailedTransaction,
                             currentlyPromotingBundleHash,
                             retryFailedTransaction: (bundle) =>
-                                this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
-                            promote: (bundle) =>
-                                this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
+                                this.props.retryFailedTransaction(selectedAccountName, bundle, seedStore),
+                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName, seedStore),
                             hideModal: () => this.props.toggleModalActivity(),
                             generateAlert: (type, title, message) => this.props.generateAlert(type, title, message),
                             bundle,
@@ -341,6 +349,7 @@ class History extends Component {
 const mapStateToProps = (state) => ({
     transactions: getTransactionsForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
+    selectedAccountMeta: getSelectedAccountMeta(state),
     addresses: getAddressesForSelectedAccount(state),
     mode: state.settings.mode,
     theme: getThemeFromState(state),
@@ -355,6 +364,7 @@ const mapStateToProps = (state) => ({
     modalProps: state.ui.modalProps,
     isModalActive: state.ui.isModalActive,
     modalContent: state.ui.modalContent,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

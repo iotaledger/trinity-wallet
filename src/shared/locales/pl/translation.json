@@ -121,6 +121,7 @@
         "nodeDuplicatedExplanation": "Ten serwer znajduje się już na liście.",
         "nodeAutoChanged": "Autom. zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
+        "touchSensor": "Przyłóż palec do czytnika",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
         "masterKey": "Seed IOTA jest głównym kluczem do Twoich funduszy.",
         "seedThief": "Jeśli ktoś inny zdobędzie ten klucz, będzie mógł on wykraść Twoje środki IOTA.",
@@ -159,7 +160,8 @@
         "forceUpdate": "Zaktualizuj aplikację, aby kontynuować",
         "forceUpdateExplanation": "Dostępna jest aktualizacja krytyczna. Zaktualizuj aplikację teraz.",
         "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików."
+        "missingPermissionExplanation": "Aby wykonać tę funkcję, potrzebny jest dostęp do systemu plików.",
+        "swipeToConfirm": "Przesuń palcem, aby potwierdzić"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -297,7 +299,8 @@
         "tag": "Tag",
         "generateAnAddress": "Wygeneruj adres",
         "generateAnAddressTitle": "Wygeneruj adres",
-        "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji."
+        "generateAnAddressExplanation": "Należy wygenerować adres przed użyciem tej funkcji.",
+        "generateAddressInformation": "Wygeneruj nowy adres odbioru, za każdym razem, gdy chcesz otrzymać środki IOTA"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
@@ -333,6 +336,7 @@
         "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sumę kontrolną.",
+        "invalidAddressExplanation4": "Sprawdź czy wprowadziłeś adres poprawnie.",
         "invalidAddressExplanationGeneric": "Poprawny adres powinien składać się z 90 znaków i zawierać wielkie litery A-Z oraz cyfry 9.",
         "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
@@ -586,12 +590,19 @@
         "fingerprintAuthFailedExplanation": "Nie rozpoznano odcisku palca. Spróbuj ponownie.",
         "status": "Status",
         "fingerprintUnavailable": "Autoryzacja odciskiem palca niedostępna",
+        "deviceLocked": "Logowanie wyłączone na 30 sekund",
         "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
-        "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć funkcję autoryzacji odciskiem palca",
+        "notSupported": "Urządzenie nie obsługuje uwierzytelniania biometrycznego",
+        "notConfigured": "Uwierzytelnianie biometryczne nie zostało skonfigurowane w ustawieniach urządzenia",
+        "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć funkcję autoryzacji odciskiem palca.",
         "buttonInstructionsEnable": "Naciśnij poniższy przycisk, aby włączyć funkcję autoryzacji odciskiem palca.",
         "buttonInstructionsDisableIPhoneX": "Naciśnij poniższy przycisk, aby wyłączyć Face ID",
         "buttonInstructionsEnableIPhoneX": "Naciśnij poniższy przycisk, aby włączyć Face ID",
-        "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować"
+        "instructionsLogin": "Przyłóż palec do czytnika, aby się zalogować",
+        "systemCancelledAuth": "Uwierzytelnienie zostało anulowane przez Twoje urządzenie",
+        "userCancelledAuth": "Żądanie uwierzytelnienia zostało anulowane",
+        "passwordFallback": "Powróć do uwierzytelniania hasłem",
+        "noPassword": "Hasło nie jest ustawione w urządzeniu"
     },
     "transferConfirmation": {
         "youAreAbout": "Masz zamiar wysłać {{contents}} na adres",
@@ -671,6 +682,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Sprawdzanie kondycji serwera",
         "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",
+        "validatingTransactionAddresses": "Sprawdzanie adresów transakcji",
         "syncingAccount": "Synchronizacja konta",
         "preparingInputs": "Przygotowywanie danych wejściowych",
         "preparingTransfers": "Przygotowywanie transferów",

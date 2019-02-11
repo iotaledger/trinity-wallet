@@ -59,13 +59,14 @@ export const isValidAddressObject = (addressObject) => {
 export const preserveAddressLocalSpendStatus = (existingAddressData, newAddressData) =>
     map(newAddressData, (addressObject) => {
         const seenAddress = find(existingAddressData, { address: addressObject.address });
+        const existingLocalSpendStatus = get(seenAddress, 'spent.local');
 
-        if (seenAddress && isBoolean(get(seenAddress, 'spent.local'))) {
-            const { spent: { local } } = seenAddress;
+        if (seenAddress && isBoolean(existingLocalSpendStatus)) {
+            const newLocalSpendStatus = addressObject.spent.local;
 
             return {
                 ...addressObject,
-                spent: { ...addressObject.spent, local: local || get(seenAddress, 'spent.local') },
+                spent: { ...addressObject.spent, local: existingLocalSpendStatus || newLocalSpendStatus },
             };
         }
 
@@ -512,19 +513,17 @@ export const filterSpentAddressData = (provider) => (addressData, transactions) 
 };
 
 /**
- *   Communicates with ledger and checks if the addresses are spent from.
+ *   Communicates with ledger and checks if the any address is spent.
  *
- *   @method shouldAllowSendingToAddress
+ *   @method isAnyAddressSpent
  *   @param {string} [provider]
  *
  *   @returns {function(array): Promise<boolean>}
  **/
-export const shouldAllowSendingToAddress = (provider) => (addresses) => {
-    return wereAddressesSpentFromAsync(provider)(addresses).then((wereSpent) => {
-        const spentAddresses = filter(addresses, (address, idx) => wereSpent[idx]);
-
-        return !spentAddresses.length;
-    });
+export const isAnyAddressSpent = (provider) => (addresses) => {
+    return wereAddressesSpentFromAsync(provider)(addresses).then((spendStatuses) =>
+        some(spendStatuses, (spendStatus) => spendStatus === true),
+    );
 };
 
 /**
@@ -720,9 +719,9 @@ export const filterAddressDataWithPendingIncomingTransactions = (addressData, tr
  *   @method attachAndFormatAddress
  *   @param {string} [provider]
  *
- *   @returns {function(string, number, number, object, object, function): Promise<object>}
+ *   @returns {function(string, number, number, object, object): Promise<object>}
  **/
-export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState, powFn) => {
+export const attachAndFormatAddress = (provider) => (address, index, balance, seedStore, accountState) => {
     let attachedTransactions = [];
 
     return findTransactionsAsync(provider)({ addresses: [address] })
@@ -731,7 +730,7 @@ export const attachAndFormatAddress = (provider) => (address, index, balance, se
                 throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
             }
 
-            return sendTransferAsync(provider, powFn)(
+            return sendTransferAsync(provider)(
                 seedStore,
                 prepareTransferArray(address, 0, '', accountState.addressData),
             );

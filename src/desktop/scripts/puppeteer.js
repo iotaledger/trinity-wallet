@@ -10,6 +10,11 @@ const fs = require('fs');
 
 const PORT = process.env.PORT || 1074;
 const appPath = path.join(__dirname, '../');
+const settings = require('../package.json');
+
+if (!fs.existsSync(`${appPath}/shots/`)) {
+    fs.mkdirSync(`${appPath}/shots/`);
+}
 
 const app = express();
 
@@ -56,7 +61,7 @@ const screenshotsDone = () => {
     server.close();
 };
 
-const inject = () => {
+const inject = ({ version }) => {
     window.Electron = {
         mode: 'puppeteer',
         getOS: () => {
@@ -68,6 +73,10 @@ const inject = () => {
         getChecksum: () => {
             return 'ABC';
         },
+        getVersion: () => {
+            return version;
+        },
+        garbageCollect: () => {},
         setOnboardingSeed: () => {},
         readKeychain: async () => {},
         getUuid: async () => '',
@@ -80,6 +89,10 @@ const inject = () => {
         setStorage: async () => {},
         screenshot,
         screenshotsDone,
+        ledger: {
+            addListener: () => {},
+            removeListener: () => {},
+        },
     };
 };
 
@@ -110,7 +123,7 @@ const takeShots = async () => {
 
     await page.exposeFunction('screenshot', screenshot);
     await page.exposeFunction('screenshotsDone', screenshotsDone);
-    await page.evaluateOnNewDocument(inject);
+    await page.evaluateOnNewDocument(inject, settings);
 
     await page.goto(`http://localhost:${PORT}/index.html`);
 };
