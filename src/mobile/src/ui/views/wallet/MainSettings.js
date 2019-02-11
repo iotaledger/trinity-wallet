@@ -4,12 +4,11 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import i18next from 'shared-modules/libs/i18next';
-import { navigator } from 'libs/navigation';
 import timer from 'react-native-timer';
 import { toggleModalActivity } from 'shared-modules/actions/ui';
 import { getLabelFromLocale } from 'shared-modules/libs/i18n';
 import { getThemeFromState } from 'shared-modules/selectors/global';
-import { setSetting, clearWalletData } from 'shared-modules/actions/wallet';
+import { setSetting } from 'shared-modules/actions/wallet';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 import { renderSettingsRows } from 'ui/components/SettingsContent';
 
@@ -36,15 +35,12 @@ export class MainSettings extends Component {
         /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
-        clearWalletData: PropTypes.func.isRequired,
-        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
         this.openLogoutModal = this.openLogoutModal.bind(this);
-        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -64,41 +60,8 @@ export class MainSettings extends Component {
         this.props.toggleModalActivity('logoutConfirmation', {
             style: { flex: 1 },
             hideModal: () => this.props.toggleModalActivity(),
-            logout: this.logout,
             theme,
         });
-    }
-
-    /**
-     * Clears temporary wallet data and navigates to login screen
-     * @method logout
-     */
-    logout() {
-        const { theme: { body } } = this.props;
-        this.props.toggleModalActivity();
-        timer.setTimeout(
-            'delayLogout',
-            () => {
-                navigator.setStackRoot('login', {
-                    animations: {
-                        setStackRoot: {
-                            enable: false,
-                        },
-                    },
-                    layout: {
-                        backgroundColor: body.bg,
-                        orientation: ['portrait'],
-                    },
-                    statusBar: {
-                        backgroundColor: body.bg,
-                    },
-                });
-                this.props.clearWalletData();
-                delete global.passwordHash;
-                // gc
-            },
-            500,
-        );
     }
 
     renderSettingsContent() {
@@ -157,7 +120,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setSetting,
-    clearWalletData,
     toggleModalActivity,
 };
 

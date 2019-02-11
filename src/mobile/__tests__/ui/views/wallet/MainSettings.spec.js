@@ -32,7 +32,6 @@ const getProps = (overrides) =>
             theme,
             themeName: 'custom',
             setSetting: noop,
-            clearWalletData: noop,
             toggleModalActivity: noop,
             t: (arg) => arg,
         },
@@ -59,10 +58,6 @@ describe('Testing MainSettings component', () => {
 
         it('should require a theme object as a prop', () => {
             expect(MainSettings.propTypes.theme).toEqual(PropTypes.object.isRequired);
-        });
-
-        it('should require a clearWalletData function as a prop', () => {
-            expect(MainSettings.propTypes.clearWalletData).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a toggleModalActivity function as a prop', () => {
