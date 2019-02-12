@@ -120,7 +120,7 @@ class Ledger {
 
             callback();
 
-            const callbackAbort = (e, message) => {
+            const callbackAbort = (_e, message) => {
                 if (message && message.abort) {
                     rejected = true;
 
@@ -135,6 +135,14 @@ class Ledger {
 
             ipc.on('ledger', callbackAbort);
         });
+    }
+
+    /**
+     * Retrieves the largest supported number of transactions
+     * @returns {number}
+     */
+    async getAppMaxBundleSize() {
+        return await this.iota.getAppMaxBundleSize();
     }
 
     /**

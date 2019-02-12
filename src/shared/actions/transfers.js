@@ -487,7 +487,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         null,
                     );
                 })
-                .then((inputs) => {
+                .then(async (inputs) => {
                     // Input selection prepares inputs sequentially starting from the first address with balance
                     // If total balance is less than transfer value, do not allow transaction.
                     if (get(inputs, 'totalBalance') < value) {
@@ -524,8 +524,10 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                         throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                     }
 
+                    const maxInputs = await seedStore.getMaxInputs();
+
                     // Check if input count does not exceed maximum supported by the SeedStore type
-                    if (seedStore.maxInputs && inputs.inputs.length > seedStore.maxInputs) {
+                    if (maxInputs && inputs.inputs.length > maxInputs) {
                         throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
                     }
 

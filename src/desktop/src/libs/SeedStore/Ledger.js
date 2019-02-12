@@ -41,9 +41,11 @@ class Ledger extends SeedStoreCore {
      * Return max supported input count
      * @returns {number}
      */
-    get maxInputs() {
-        return 2;
-    }
+    getMaxInputs = async () => {
+        await this.getSeed();
+        const maxinputs = await Electron.ledger.getAppMaxBundleSize();
+        return maxinputs;
+    };
 
     /**
      * Placeholder for Trinity compatibillity
@@ -138,7 +140,7 @@ class Ledger extends SeedStoreCore {
                 awaitTransaction: { address: options.address, value: transfers.reduce((a, b) => a + b.value, 0) },
             });
 
-            const trytes = await seed.signTransaction(transfers, options.inputs, remainder);
+            const trytes = await seed.perpareTransfers(transfers, options.inputs, remainder);
             Electron.send('ledger', { awaitTransaction: false });
 
             Electron.ledger.removeListener(connectionListener);
