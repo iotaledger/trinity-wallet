@@ -1,9 +1,11 @@
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import values from 'lodash/values';
 import omit from 'lodash/omit';
 import cloneDeep from 'lodash/cloneDeep';
 import { createAndStoreBoxInKeychain, getSecretBoxFromKeychainAndOpenIt, keychain, ALIAS_SEEDS } from 'libs/keychain';
 import { prepareTransfersAsync } from 'shared-modules/libs/iota/extendedApi';
+import { trytesToTrits, tritsToChars } from 'shared-modules/libs/iota/converter';
 import { getAddressGenFn, getMultiAddressGenFn } from 'libs/nativeModules';
 import SeedStoreCore from './SeedStoreCore';
 
@@ -91,15 +93,15 @@ class Keychain extends SeedStoreCore {
      * @returns {promise}
      */
     generateAddress = async (options) => {
-        const seed = await this.getSeed();
-
+        const seed = values(await this.getSeed());
         if (options.total && options.total > 1) {
             const genFn = getMultiAddressGenFn();
-            return await genFn(seed, options.index, options.security, options.total);
+            const addressesTrits = await genFn(seed, options.index, options.security, options.total);
+            return map(addressesTrits, (addressTrits) => tritsToChars(addressTrits));
         }
-
         const genFn = getAddressGenFn();
-        return await genFn(seed, options.index, options.security);
+        const addressTrits = await genFn(seed, options.index, options.security);
+        return tritsToChars(addressTrits);
     };
 
     /**
@@ -116,7 +118,8 @@ class Keychain extends SeedStoreCore {
      */
     getSeed = async () => {
         const seeds = await this.getSeeds();
-        return seeds[this.accountId];
+        // temp: seed to be stored as Int8Array
+        return trytesToTrits(seeds[this.accountId]);
     };
 
     /**

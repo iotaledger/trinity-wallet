@@ -4,11 +4,20 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.ReadableNativeArray;
-
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.GuardedResultAsyncTask;
 import com.facebook.react.bridge.ReactContext;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.iota.mobile.Converter.readableArrayToByteArray;
+import static org.iota.mobile.Converter.byteArrayToWritableArray;
+
 
 public class EntangledAndroid extends ReactContextBaseJavaModule {
     private final ReactContext mContext;
@@ -24,27 +33,28 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void generateAddress(String seed, int index, int security, Promise promise) {
-      String address = Interface.generateAddress(seed, index, security);
-      promise.resolve(address);
+    public void generateAddress(ReadableArray seed, int index, int security, Promise promise) {
+        byte[] seedByteArr = readableArrayToByteArray(seed);
+        byte[] addressByteArr = Interface.iota_sign_address_gen_trits(seedByteArr, index, security);
+        WritableArray addressWritableArr = byteArrayToWritableArray(addressByteArr);
+        promise.resolve(addressWritableArr);
     }
 
     @ReactMethod
-    public void generateAddresses(final String seed, final int index, final int security, final int total, final Promise promise) {
+    public void generateAddresses(final ReadableArray seed, final int index, final int security, final int total, final Promise promise) {
+        byte[] seedByteArr = readableArrayToByteArray(seed);
         new GuardedResultAsyncTask<ReadableNativeArray>(mContext) {
             @Override
             protected ReadableNativeArray doInBackgroundGuarded() {
                 WritableNativeArray addresses = new WritableNativeArray();
                 int i = 0;
                 int addressIndex = index;
-
                 do {
-                    String address = Interface.generateAddress(seed, addressIndex, security);
-                    addresses.pushString(address);
+                    byte[] address = Interface.iota_sign_address_gen_trits(seedByteArr, addressIndex, security);
+                    addresses.pushArray(byteArrayToWritableArray(address));
                     i++;
                     addressIndex++;
                 } while (i < total);
-
                 return addresses;
             }
 
@@ -57,15 +67,16 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getDigest(String trytes, Promise promise) {
-      String digest = Interface.getDigest(trytes);
-
+      String digest = Interface.iota_digest(trytes);
       promise.resolve(digest);
     }
 
     @ReactMethod
-    public void generateSignature(String trytes, int index, int security, String bundleHash, Promise promise) {
-      String signature = Interface.generateSignature(trytes, index, security, bundleHash);
-      promise.resolve(signature);
+    public void generateSignature(ReadableArray seed, int index, int security, String bundleHash, Promise promise) {
+        byte[] seedByteArr = readableArrayToByteArray(seed);
+        byte[] signatureByteArr = Interface.iota_sign_signature_gen_trits(seedByteArr, index, security, bundleHash.getBytes());
+        WritableArray signatureWritableArr = byteArrayToWritableArray(signatureByteArr);
+        promise.resolve(signatureWritableArr);
     }
 
     @ReactMethod
@@ -73,7 +84,7 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
         new GuardedResultAsyncTask<String>(mContext) {
             @Override
             protected String doInBackgroundGuarded() {
-                String nonce = Interface.doPOW(trytes, mwm);
+                String nonce = Interface.iota_pow_trytes(trytes, mwm);
                 return nonce;
             }
 
