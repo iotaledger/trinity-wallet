@@ -89,6 +89,10 @@ class Login extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        setTimeout(() => Electron.garbageCollect(), 1000);
+    }
+
     /**
      * Update 2fa code value and trigger authentication once necessary length is reached
      * @param {string} value - Code value
@@ -293,4 +297,7 @@ const mapDispatchToProps = {
     getAccountInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Login));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(withI18n()(Login));

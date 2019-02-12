@@ -99,6 +99,9 @@ class SeedInput extends React.PureComponent {
             }));
 
             const seed = input.split('').map((char) => charToByte(char));
+
+            input = null;
+
             Electron.garbageCollect();
 
             this.props.onChange(seed);
