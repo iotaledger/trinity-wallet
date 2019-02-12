@@ -6195,9 +6195,12 @@
       }
     },
     "i18next": {
-      "version": "14.1.1",
-      "resolved": "https://registry.npmjs.org/i18next/-/i18next-14.1.1.tgz",
-      "integrity": "sha512-HItn9RHLyrDqe6pw6qXMYHGPHNc3y1FZndJfBlD6k4sRS0FAlYLvqCDVIWFc1XultBgsv348TtvL/lleG6JgBg=="
+      "version": "15.0.2",
+      "resolved": "https://registry.npmjs.org/i18next/-/i18next-15.0.2.tgz",
+      "integrity": "sha512-u+XzxPOpg99VJBVxUp5Ko3fXX2+ivXnAJ4N/zHCjfV60wmuVLM1gwgaS2MEtvSve8rnM27ezt2aF3g3tgBj8CQ==",
+      "requires": {
+        "@babel/runtime": "^7.3.1"
+      }
     },
     "iconv-lite": {
       "version": "0.4.24",
