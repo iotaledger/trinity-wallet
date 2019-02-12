@@ -77,7 +77,7 @@ class Migration extends React.Component {
                     <article>
                         <Progress
                             type="large"
-                            progress={Math.round(activeStepIndex / activeSteps.length * 100)}
+                            progress={Math.round((activeStepIndex + 1) / activeSteps.length * 100)}
                             subtitle={activeSteps[activeStepIndex]}
                         />
                     </article>
