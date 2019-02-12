@@ -367,6 +367,16 @@ ipc.on('request.deepLink', () => {
 });
 
 /**
+ * Proxy store update event to tray window
+ */
+
+ipc.on('store.update', (_e, payload) => {
+    if (process.platform === 'darwin' && windows.tray && !windows.tray.isDestroyed()) {
+        windows.tray.webContents.send('store.update', payload);
+    }
+});
+
+/**
  * Proxy menu update event to tray window
  */
 ipc.on('menu.update', (e, payload) => {
