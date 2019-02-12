@@ -72,9 +72,10 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void generateSignature(ReadableArray seed, int index, int security, String bundleHash, Promise promise) {
+    public void generateSignature(ReadableArray seed, int index, int security, ReadableArray bundleHash, Promise promise) {
         byte[] seedByteArr = readableArrayToByteArray(seed);
-        byte[] signatureByteArr = Interface.iota_sign_signature_gen_trits(seedByteArr, index, security, bundleHash.getBytes());
+        byte[] bundleHashByteArr = readableArrayToByteArray(bundleHash);
+        byte[] signatureByteArr = Interface.iota_sign_signature_gen_trits(seedByteArr, index, security, bundleHashByteArr);
         WritableArray signatureWritableArr = byteArrayToWritableArray(signatureByteArr);
         promise.resolve(signatureWritableArr);
     }
