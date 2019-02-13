@@ -11,10 +11,6 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.GuardedResultAsyncTask;
 import com.facebook.react.bridge.ReactContext;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.iota.mobile.Converter.readableArrayToByteArray;
 import static org.iota.mobile.Converter.byteArrayToWritableArray;
 
