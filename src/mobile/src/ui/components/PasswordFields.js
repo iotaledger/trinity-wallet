@@ -116,10 +116,11 @@ class PasswordFields extends Component {
                             this.reentry.focus();
                         }
                     }}
-                    secureTextEntry
                     testID="setPassword-passwordbox"
                     theme={theme}
                     value={this.props.password}
+                    secureTextEntry
+                    isPasswordInput
                 />
                 <CustomTextInput
                     onRef={(c) => {
@@ -134,10 +135,11 @@ class PasswordFields extends Component {
                     autoCorrect={false}
                     enablesReturnKeyAutomatically
                     returnKeyType="done"
-                    secureTextEntry
                     testID="setPassword-reentrybox"
                     theme={theme}
                     value={this.props.reentry}
+                    secureTextEntry
+                    isPasswordInput
                 />
             </View>
         );

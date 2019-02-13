@@ -21,8 +21,6 @@ import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
-import { UInt8ToString } from 'libs/crypto'; //temp
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -84,7 +82,7 @@ class SeedReentry extends Component {
     constructor() {
         super();
         this.state = {
-            reenteredSeed: '',
+            reenteredSeed: null,
         };
     }
 
@@ -110,7 +108,7 @@ class SeedReentry extends Component {
     onDonePress() {
         const { t, theme: { body } } = this.props;
         const { reenteredSeed } = this.state;
-        if (reenteredSeed === UInt8ToString(global.onboardingSeed)) {
+        if (reenteredSeed === global.onboardingSeed) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }

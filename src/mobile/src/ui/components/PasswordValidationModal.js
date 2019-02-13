@@ -45,7 +45,7 @@ export class PasswordValidationModal extends PureComponent {
     constructor() {
         super();
         this.state = {
-            password: '',
+            password: null,
         };
     }
 
@@ -80,6 +80,7 @@ export class PasswordValidationModal extends PureComponent {
                             onSubmitEditing={() => this.props.validatePassword(password)}
                             theme={theme}
                             value={this.state.password}
+                            isPasswordInput
                         />
                     </ModalView>
                 </View>

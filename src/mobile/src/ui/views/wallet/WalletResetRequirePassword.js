@@ -70,7 +70,7 @@ class WalletResetRequirePassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
+            password: null,
         };
         this.goBack = this.goBack.bind(this);
         this.resetWallet = this.resetWallet.bind(this);
@@ -208,6 +208,7 @@ class WalletResetRequirePassword extends Component {
                                     returnKeyType="done"
                                     theme={theme}
                                     secureTextEntry
+                                    isPasswordInput
                                 />
                             </AnimatedComponent>
                             <View style={{ flex: 0.1 }} />
