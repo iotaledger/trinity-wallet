@@ -54,11 +54,18 @@ class About extends React.PureComponent {
                     <Icon icon="iota" size={48} />
                     <h1>Trinity Wallet</h1>
                     <h2>
-                        v{settings.version} <small>BETA</small>
+                        v{settings.version} <small>ALPHA</small>
                     </h2>
 
                     <article>
                         <Scrollbar>
+                            <h5>0.5.0 alpha</h5>
+                            <ul>
+                                <li>- Update: Add node quorum</li>
+                                <li>- Update: Use Realm for account data persistance</li>
+                                <li>- Fix: Account names containing [] crashes wallet</li>
+                                <li>- Fix: Remove drag region from update bar on Windows</li>
+                            </ul>
                             <h5>0.4.6</h5>
                             <ul>
                                 <li>- Fix: Unexpected wallet behaviour with account names starting with a number</li>

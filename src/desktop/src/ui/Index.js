@@ -19,6 +19,7 @@ import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { dismissAlert, generateAlert } from 'actions/alerts';
 
+import Alpha from 'ui/global/Alpha';
 import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
@@ -198,6 +199,10 @@ class App extends React.Component {
         const data = await fetchVersions();
         const versionId = Electron.getVersion();
 
+        if (versionId.indexOf('alpha') > -1) {
+            return;
+        }
+
         if (data.desktopBlacklist && data.desktopBlacklist.includes(versionId)) {
             this.props.forceUpdate();
         } else if (data.latestDesktop && versionId !== data.latestDesktop) {
@@ -292,6 +297,7 @@ class App extends React.Component {
                 <UpdateProgress />
                 <Theme history={history} />
                 <Ledger />
+                <Alpha />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
