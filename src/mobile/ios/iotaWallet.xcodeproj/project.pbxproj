@@ -76,7 +76,7 @@
 		CBDE11BC21AEFFFE00CA1909 /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5562C207BA79E00BA0A7F /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBDE11BF21AF008D00CA1909 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB5577D5219F221E00B698BF /* libLottieReactNative.a */; };
 		CBEA4C9421494823007DA583 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEA4C912149481F007DA583 /* libReactNativeNavigation.a */; };
-		CBEC7C012108D78900F0020D /* libRNFastCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEC7C002108D77100F0020D /* libRNFastCrypto.a */; };
+		CBF1F1EE21623D8900509A54 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC5565A207BA79E00BA0A7F /* libReact.a */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
 		D07D1D9D21444F2D88F12F73 /* builtin_modules in Resources */ = {isa = PBXBuildFile; fileRef = 42679A0E830D4AD2A0F60146 /* builtin_modules */; };
@@ -613,13 +613,6 @@
 			remoteGlobalIDString = 7B49FEBB1E95090800DEB3EA;
 			remoteInfo = ReactNativeNavigationTests;
 		};
-		CBEC7BFF2108D77100F0020D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A01220F4B33D4A79B53254ED /* RNFastCrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNFastCrypto;
-		};
 		CD481D22B9AD23CF851BD7CA4F49E762 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B8B9BB680BF96F04B35C8CF2291F3DF7 /* Lottie.xcodeproj */;
@@ -769,7 +762,6 @@
 		9B7786DA8E9F4FBCA1CD37AF /* QrCode.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = QrCode.xcodeproj; path = "../node_modules/react-native-qr-scanner/ios/QrCode.xcodeproj"; sourceTree = "<group>"; };
 		9E17389EF3AB0C14C6843EF1892D81D4 /* KCKeepAwake.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KCKeepAwake.xcodeproj; path = "../node_modules/react-native-keep-awake/ios/KCKeepAwake.xcodeproj"; sourceTree = "<group>"; };
 		9EE76A96BDAFEB3F2332A2982168E1CE /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
-		A01220F4B33D4A79B53254ED /* RNFastCrypto.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFastCrypto.xcodeproj; path = "../node_modules/react-native-fast-crypto/ios/RNFastCrypto.xcodeproj"; sourceTree = "<group>"; };
 		A1FAED857304034D3DCD87D13F961C48 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A402C8584E5EA99F404511B6FE64D661 /* iotaWallet-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWallet-release-config.xcconfig"; sourceTree = "<group>"; };
 		A9DBF0EEB7DBFA315A0D6839E79A5924 /* iotaWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iotaWalletUITests.swift; sourceTree = "<group>"; };
@@ -847,7 +839,6 @@
 				60F7E4242125EBE7005355C7 /* libRNDocumentPicker.a in Frameworks */,
 				CB305F0421185EF800657575 /* libRNFetchBlob.a in Frameworks */,
 				CBDE11BB21AEFFFE00CA1909 /* Lottie.framework in Frameworks */,
-				CBEC7C012108D78900F0020D /* libRNFastCrypto.a in Frameworks */,
 				601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */,
 				6020D31A21A5065300159E5A /* Lottie.framework in Frameworks */,
 				601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */,
@@ -1161,7 +1152,7 @@
 				2D84DC61092C2CB09498AB83CAA9B91F /* RNSecureRandom.xcodeproj */,
 				33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */,
 				78457F3624D0D3C241289BCB545E290E /* ReactNativeFingerprintScanner.xcodeproj */,
-				A01220F4B33D4A79B53254ED /* RNFastCrypto.xcodeproj */,
+				E5626B12C0A7C28841B2397915C53A9D /* ReactNativeNavigation.xcodeproj */,
 				68D1880393EB486F98F90D04 /* RNNodeJsMobile.xcodeproj */,
 
 				6BA32972BAD24F7ABBA45866 /* RealmReact.xcodeproj */,
@@ -1374,14 +1365,6 @@
 			children = (
 				CBEA4C912149481F007DA583 /* libReactNativeNavigation.a */,
 				CBEA4C932149481F007DA583 /* ReactNativeNavigationTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CBEC7BFC2108D77000F0020D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CBEC7C002108D77100F0020D /* libRNFastCrypto.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1796,10 +1779,6 @@
 				{
 					ProductGroup = B500B74394DFA466050CC553274A3B29 /* Products */;
 					ProjectRef = 8B49115E102EED64D1B7D7AC047F1ABF /* RNExitApp.xcodeproj */;
-				},
-				{
-					ProductGroup = CBEC7BFC2108D77000F0020D /* Products */;
-					ProjectRef = A01220F4B33D4A79B53254ED /* RNFastCrypto.xcodeproj */;
 				},
 				{
 					ProductGroup = CB305EFF21185EEC00657575 /* Products */;
@@ -2340,13 +2319,6 @@
 			fileType = wrapper.cfbundle;
 			path = ReactNativeNavigationTests.xctest;
 			remoteRef = CBEA4C922149481F007DA583 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CBEC7C002108D77100F0020D /* libRNFastCrypto.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFastCrypto.a;
-			remoteRef = CBEC7BFF2108D77100F0020D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CBEF619F59D7EBCE4196DF4E7471DFA3 /* libRNFS.a */ = {
