@@ -5,6 +5,7 @@ import { withI18n, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { clearVault } from 'libs/crypto';
+import { getEncryptionKey, ALIAS_REALM } from 'libs/realm';
 
 import {
     changePowSettings,
@@ -13,7 +14,6 @@ import {
     setTray,
     setNotifications,
     setProxy,
-    resetWallet,
 } from 'actions/settings';
 
 import { generateAlert } from 'actions/alerts';
@@ -44,6 +44,10 @@ class Advanced extends PureComponent {
         /** @ignore */
         setProxy: PropTypes.func.isRequired,
         /** @ignore */
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        /** @ignore */
         setNotifications: PropTypes.func.isRequired,
         /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
@@ -55,8 +59,6 @@ class Advanced extends PureComponent {
         lockScreenTimeout: PropTypes.number.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** @ignore */
-        resetWallet: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -97,19 +99,18 @@ class Advanced extends PureComponent {
      * @returns {undefined}
      */
     resetWallet = async () => {
-        const { t, generateAlert, resetWallet } = this.props;
+        const { t, generateAlert, history } = this.props;
 
         try {
-            await reinitialiseStorage();
-            resetWallet();
-
-            clearVault();
+            history.push('/');
             
+            await clearVault(ALIAS_REALM);
             localStorage.clear();
             Electron.clearStorage();
 
+            await reinitialiseStorage(getEncryptionKey);
             location.reload();
-        } catch (err) {
+        } catch (_err) {
             generateAlert(
                 'error',
                 t('changePassword:incorrectPassword'),
@@ -330,7 +331,6 @@ const mapDispatchToProps = {
     setTray,
     setNotifications,
     setProxy,
-    resetWallet,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18n()(Advanced));
