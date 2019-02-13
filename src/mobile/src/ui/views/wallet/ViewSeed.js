@@ -113,8 +113,6 @@ class ViewSeed extends Component {
     static propTypes = {
         /** @ignore */
         seedIndex: PropTypes.number.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Type for selected account */
@@ -161,6 +159,9 @@ class ViewSeed extends Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
+        delete this.state.seed;
+        delete this.state.password;
+        // gc
     }
 
     /**
@@ -170,17 +171,15 @@ class ViewSeed extends Component {
      * @returns {Promise<void>}
      */
     async viewSeed() {
-        const { password, selectedAccountName, selectedAccountMeta, t } = this.props;
+        const { selectedAccountName, selectedAccountMeta, t } = this.props;
         const pwdHash = await hash(this.state.password);
 
-        if (isEqual(password, pwdHash)) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
-            const seed = await seedStore.getSeed();
-
+        if (isEqual(global.passwordHash, pwdHash)) {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](pwdHash, selectedAccountName);
             if (isAndroid) {
                 FlagSecure.activate();
             }
-            this.setState({ seed });
+            this.setState({ seed: await seedStore.getSeed() });
             this.setState({ showSeed: true });
         } else {
             this.props.generateAlert(
@@ -318,7 +317,7 @@ class ViewSeed extends Component {
                                     />
                                 </View>
                             )}
-                        {this.state.password.length === 0 && <View style={styles.viewButtonContainer} />}
+                        {!this.state.password.length > 0 && <View style={styles.viewButtonContainer} />}
                         <View style={{ flex: 1 }} />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -340,7 +339,6 @@ class ViewSeed extends Component {
 
 const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
-    password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     theme: getThemeFromState(state),

@@ -1,4 +1,3 @@
-import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -11,16 +10,16 @@ import {
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'shared-modules/actions/home';
 import { markTaskAsDone } from 'shared-modules/actions/accounts';
-import { setPassword, setSetting, setDeepLink } from 'shared-modules/actions/wallet';
+import { setSetting, setDeepLink } from 'shared-modules/actions/wallet';
 import { setUserActivity, toggleModalActivity } from 'shared-modules/actions/ui';
 import { generateAlert } from 'shared-modules/actions/alerts';
 import { parseAddress } from 'shared-modules/libs/iota/utils';
 import { getThemeFromState } from 'shared-modules/selectors/global';
 import timer from 'react-native-timer';
-import { hash } from 'libs/keychain';
 import UserInactivity from 'ui/components/UserInactivity';
 import TopBar from 'ui/components/TopBar';
 import WithUserActivity from 'ui/components/UserActivity';
+import WithLogout from 'ui/components/Logout';
 import PollComponent from 'ui/components/Poll';
 import Tabs from 'ui/components/Tabs';
 import Tab from 'ui/components/Tab';
@@ -58,8 +57,6 @@ class Home extends Component {
         inactive: PropTypes.bool.isRequired,
         /** @ignore */
         minimised: PropTypes.bool.isRequired,
-        /** Hash for wallet's password */
-        storedPasswordHash: PropTypes.object.isRequired,
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
         /** @ignore */
@@ -98,11 +95,14 @@ class Home extends Component {
         currentRoute: PropTypes.string.isRequired,
         /** @ignore */
         isKeyboardActive: PropTypes.bool.isRequired,
+        /** Triggered when login from inactivity is pressed */
+        onInactivityLoginPress: PropTypes.func.isRequired,
+        /** Clears temporary wallet data and navigates to login screen */
+        logout: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
-        this.onLoginPress = this.onLoginPress.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
         this.topBarHeight = new Animated.Value(Styling.topbarHeight);
@@ -153,23 +153,22 @@ class Home extends Component {
                 }),
             ]).start();
         }
+        if (this.props.inactive && !newProps.inactive) {
+            this.userInactivity.setActiveFromComponent();
+        }
     }
 
     shouldComponentUpdate(newProps) {
         const { isSyncing, isSendingTransfer, isTransitioning } = this.props;
-
         if (isSyncing !== newProps.isSyncing) {
             return false;
         }
-
         if (isSendingTransfer !== newProps.isSendingTransfer) {
             return false;
         }
-
         if (isTransitioning !== newProps.isTransitioning) {
             return false;
         }
-
         return true;
     }
 
@@ -180,29 +179,6 @@ class Home extends Component {
             this.props.toggleModalActivity();
         }
         timer.clearTimeout('iOSKeyboardTimeout');
-    }
-
-    /**
-     * Validates user provided password and sets wallet state as active
-     * @param {string} password
-     * @returns {Promise<void>}
-     */
-    async onLoginPress(password) {
-        const { t, storedPasswordHash } = this.props;
-        if (!password) {
-            return this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        }
-        const passwordHash = await hash(password);
-        if (!isEqual(passwordHash, storedPasswordHash)) {
-            this.props.generateAlert(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
-        } else {
-            this.props.setUserActivity({ inactive: false });
-            this.userInactivity.setActiveFromComponent();
-        }
     }
 
     /**
@@ -313,8 +289,10 @@ class Home extends Component {
                     this.userInactivity = c;
                 }}
                 timeForInactivity={300000}
+                timeForLogout={1800000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
+                logout={this.props.logout}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     {(!inactive && (
@@ -364,7 +342,7 @@ class Home extends Component {
                     )) || (
                         <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
                             <EnterPassword
-                                onLoginPress={this.onLoginPress}
+                                onLoginPress={this.props.onInactivityLoginPress}
                                 backgroundColor={body.bg}
                                 negativeColor={negative.color}
                                 positiveColor={positive.color}
@@ -386,7 +364,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    storedPasswordHash: state.wallet.password,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: getThemeFromState(state),
@@ -408,7 +385,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    setPassword,
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,
@@ -418,5 +394,5 @@ const mapDispatchToProps = {
 };
 
 export default WithUserActivity()(
-    withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
+    WithLogout()(withNamespaces(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home))),
 );

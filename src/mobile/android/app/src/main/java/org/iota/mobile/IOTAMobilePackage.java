@@ -16,6 +16,7 @@ public class IOTAMobilePackage implements ReactPackage {
 
         modules.add(new EntangledAndroid(reactContext));
         modules.add(new Argon2Android(reactContext));
+        modules.add(new GarbageCollectorAndroid(reactContext));
 
         return modules;
     }

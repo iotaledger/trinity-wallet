@@ -21,6 +21,8 @@ import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
+import { stringToUInt8 } from 'libs/crypto'; //temp
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -77,8 +79,6 @@ class UseExistingSeed extends Component {
     static propTypes = {
         /** @ignore */
         accountNames: PropTypes.array.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
         /** Determines whether addition of new seed is allowed */
         shouldPreventAction: PropTypes.bool.isRequired,
         /** @ignore */
@@ -112,6 +112,8 @@ class UseExistingSeed extends Component {
 
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
+        delete this.state.seed;
+        // gc
     }
 
     /**
@@ -131,9 +133,8 @@ class UseExistingSeed extends Component {
      */
     onQRRead(data) {
         const { t } = this.props;
-        const dataString = data.toString();
         this.hideModal();
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (data.toString().length === 81 && data.toString().match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
@@ -157,15 +158,14 @@ class UseExistingSeed extends Component {
      * @method fetchAccountInfo
      */
     async fetchAccountInfo(seed, accountName) {
-        const { password, theme: { body } } = this.props;
+        const { theme: { body } } = this.props;
 
-        const seedStore = new SeedStore.keychain(password);
+        const seedStore = await new SeedStore.keychain(global.passwordHash);
         await seedStore.addAccount(accountName, seed);
 
         this.props.setAccountInfoDuringSetup({
             name: accountName,
             meta: { type: 'keychain' },
-            seed,
             completed: true,
             usedExistingSeed: true,
         });
@@ -194,7 +194,7 @@ class UseExistingSeed extends Component {
      * @param {string} accountName
      */
     async addExistingSeed(seed, accountName) {
-        const { t, accountNames, password, shouldPreventAction } = this.props;
+        const { t, accountNames, shouldPreventAction } = this.props;
         if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',
@@ -226,9 +226,10 @@ class UseExistingSeed extends Component {
             if (shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
+            const seedStore = await new SeedStore.keychain(global.passwordHash);
 
-            const seedStore = new SeedStore.keychain(password);
-            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
+            const seedUInt8 = stringToUInt8(seed);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seedUInt8);
 
             if (!isUniqueSeed) {
                 return this.props.generateAlert(
@@ -238,7 +239,7 @@ class UseExistingSeed extends Component {
                 );
             }
 
-            return this.fetchAccountInfo(seed, accountName);
+            return this.fetchAccountInfo(seedUInt8, accountName);
         }
     }
 
@@ -319,11 +320,13 @@ class UseExistingSeed extends Component {
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
                             seed={seed}
+                            isSeedInput
                         />
                         <View style={{ flex: 0.5 }} />
                         <SeedVaultImport
                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                             onSeedImport={(seed) => {
+                                // gc?
                                 this.setState({ seed });
                                 this.hideModal();
                             }}
@@ -363,7 +366,6 @@ class UseExistingSeed extends Component {
 
 const mapStateToProps = (state) => ({
     accountNames: getAccountNamesFromState(state),
-    password: state.wallet.password,
     theme: getThemeFromState(state),
     shouldPreventAction: shouldPreventAction(state),
 });

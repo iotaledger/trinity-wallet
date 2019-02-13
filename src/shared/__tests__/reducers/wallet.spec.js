@@ -7,7 +7,6 @@ describe('Reducer: wallet', () => {
             const initialState = {
                 ready: false,
                 password: {},
-                seed: Array(82).join(' '),
                 seedIndex: 0,
                 currentSetting: 'mainSettings',
                 transitionBalance: 0,
@@ -22,86 +21,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
-        });
-    });
-
-    describe('IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP', () => {
-        describe('when seed is defined as a prop in action.payload', () => {
-            it('should set action.payload.seed to state.seed', () => {
-                const initialState = {
-                    seed: 'foo',
-                };
-
-                const action = {
-                    type: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
-                    payload: { seed: 'bar' },
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    seed: 'bar',
-                };
-
-                expect(newState).to.eql(expectedState);
-            });
-        });
-
-        describe('when seed is not defined as a prop in action.payload', () => {
-            it('should not update state.seed', () => {
-                const initialState = {
-                    seed: 'foo',
-                };
-
-                const action = {
-                    type: 'IOTA/ACCOUNTS/SET_ACCOUNT_INFO_DURING_SETUP',
-                    payload: { randomProp: 'bar' },
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    seed: 'foo',
-                };
-
-                expect(newState).to.eql(expectedState);
-            });
-        });
-    });
-
-    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
-        it('should assign "seed" in payload to "seed" prop in state', () => {
-            const initialState = {
-                seed: '',
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { seed: '9'.repeat(81) },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seed: '9'.repeat(81),
-            };
-
-            expect(newState.seed).to.eql(expectedState.seed);
-        });
-
-        it('should assign negation of "isGenerated" in payload to "usedExistingSeed" prop in state', () => {
-            const initialState = {
-                usedExistingSeed: true,
-            };
-
-            const action = {
-                type: 'IOTA/UI/SET_ONBOARDING_SEED',
-                payload: { isGenerated: true },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                usedExistingSeed: false,
-            };
-
-            expect(newState.usedExistingSeed).to.eql(expectedState.usedExistingSeed);
         });
     });
 
@@ -249,26 +168,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(newState.deepLinkActive).to.eql(expectedState.deepLinkActive);
-        });
-    });
-
-    describe('IOTA/WALLET/CLEAR_SEED', () => {
-        it('should assign payload to "seed" in state', () => {
-            const initialState = {
-                seed: '9'.repeat(81),
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/CLEAR_SEED',
-                payload: '',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                seed: '',
-            };
-
-            expect(newState).to.eql(expectedState);
         });
     });
 

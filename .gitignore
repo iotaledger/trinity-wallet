@@ -123,3 +123,27 @@ realm-object-server/
 
 # NPM lockfiles
 package-lock.json
+
+# Created by https://www.gitignore.io/api/cmake
+# Edit at https://www.gitignore.io/?templates=cmake
+
+### CMake ###
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+
+# End of https://www.gitignore.io/api/cmake
+
+# Android NDK
+.externalNativeBuild
+
+# Android JavaScriptCore
+libjsc.so
+libc++_shared.so

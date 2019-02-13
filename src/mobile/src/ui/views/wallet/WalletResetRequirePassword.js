@@ -56,8 +56,6 @@ class WalletResetRequirePassword extends Component {
         /** Component ID */
         componentId: PropTypes.string.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         resetWallet: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -71,11 +69,9 @@ class WalletResetRequirePassword extends Component {
 
     constructor() {
         super();
-
         this.state = {
             password: '',
         };
-
         this.goBack = this.goBack.bind(this);
         this.resetWallet = this.resetWallet.bind(this);
     }
@@ -90,6 +86,8 @@ class WalletResetRequirePassword extends Component {
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress');
+        delete this.state.password;
+        // gc
     }
 
     /**
@@ -105,9 +103,7 @@ class WalletResetRequirePassword extends Component {
      * @method isAuthenticated
      */
     async isAuthenticated() {
-        const { password } = this.props;
-        const pwdHash = await hash(this.state.password);
-        return isEqual(password, pwdHash);
+        return isEqual(global.passwordHash, await hash(this.state.password));
     }
 
     /**
@@ -235,7 +231,6 @@ class WalletResetRequirePassword extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

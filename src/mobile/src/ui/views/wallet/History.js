@@ -118,11 +118,22 @@ class History extends Component {
         password: PropTypes.object.isRequired,
     };
 
+    constructor() {
+        super();
+        this.state = {
+            transactionData: [],
+        };
+    }
+
+    async componentWillMount() {
+        this.setState({ transactionData: await this.prepTransactions() });
+    }
+
     componentDidMount() {
         leaveNavigationBreadcrumb('History');
     }
 
-    componentWillReceiveProps(newProps) {
+    async componentWillReceiveProps(newProps) {
         const {
             isRetryingFailedTransaction,
             isAutoPromoting,
@@ -132,6 +143,10 @@ class History extends Component {
             modalContent,
             theme: { primary, secondary },
         } = this.props;
+
+        if (this.props.selectedAccountName !== newProps.selectedAccountName) {
+            this.setState({ transactionData: await this.prepTransactions() });
+        }
         // FIXME: Overly-complex ugly code. Think of a new updateModalProps approach.
         if (isModalActive && modalContent === 'transactionHistory') {
             const newBundleProps = newProps.transactions[modalProps.bundle];
@@ -183,7 +198,7 @@ class History extends Component {
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
-    prepTransactions() {
+    async prepTransactions() {
         const {
             transactions,
             theme: { primary, secondary, body, bar, dark },
@@ -207,7 +222,7 @@ class History extends Component {
             unit: formatUnit(item.value),
         });
 
-        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+        const seedStore = await new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
 
         const formattedTransfers = map(relevantTransfers, (transfer) => {
             const {
@@ -284,9 +299,8 @@ class History extends Component {
         return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
-    renderTransactions() {
+    renderTransactions(data) {
         const { theme: { primary }, t, isRefreshing } = this.props;
-        const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
         return (
@@ -334,13 +348,11 @@ class History extends Component {
     }
 
     render() {
-        const transactions = this.renderTransactions();
-
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.2 }} />
-                    <View style={styles.listView}>{transactions}</View>
+                    <View style={styles.listView}>{this.renderTransactions(this.state.transactionData)}</View>
                 </View>
             </TouchableWithoutFeedback>
         );

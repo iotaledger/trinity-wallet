@@ -281,7 +281,6 @@ const mapStateToProps = (state) => ({
     additionalAccountName: state.accounts.accountInfoDuringSetup.name,
     ui: state.ui,
     currency: state.settings.currency,
-    onboarding: state.ui.onboarding,
     forceUpdate: state.wallet.forceUpdate,
 });
 

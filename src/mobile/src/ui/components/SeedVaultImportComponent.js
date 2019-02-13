@@ -89,6 +89,7 @@ export class SeedVaultImportComponent extends Component {
     componentWillUnmount() {
         this.props.onRef(undefined);
         nodejs.channel.removeAllListeners();
+        delete this.state.seedVault;
     }
 
     /**

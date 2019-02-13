@@ -60,8 +60,6 @@ class Disable2FA extends Component {
         t: PropTypes.func.isRequired,
         /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
-        /** @ignore */
-        password: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -81,7 +79,7 @@ class Disable2FA extends Component {
      * Attempts to disable 2FA, fails if the token is not correct
      */
     disable2FA() {
-        return getTwoFactorAuthKeyFromKeychain(this.props.password)
+        return getTwoFactorAuthKeyFromKeychain(global.passwordHash)
             .then((key) => {
                 const verified = authenticator.verifyToken(key, this.state.token);
                 if (verified) {
@@ -177,7 +175,6 @@ class Disable2FA extends Component {
 
 const mapStateToProps = (state) => ({
     theme: getThemeFromState(state),
-    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

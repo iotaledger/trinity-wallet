@@ -140,7 +140,6 @@ export class SnapshotTransition extends Component {
         /** @ignore */
         isAttachingToTangle: PropTypes.bool.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
         activeStepIndex: PropTypes.number.isRequired,
         /** @ignore */
         activeSteps: PropTypes.array.isRequired,
@@ -186,9 +185,9 @@ export class SnapshotTransition extends Component {
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
-        const { transitionAddresses, selectedAccountName, selectedAccountMeta, password } = this.props;
-        setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+        const { transitionAddresses, selectedAccountName, selectedAccountMeta } = this.props;
+        setTimeout(async () => {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.completeSnapshotTransition(seedStore, selectedAccountName, transitionAddresses);
         }, 300);
     }
@@ -198,11 +197,11 @@ export class SnapshotTransition extends Component {
      * @method onBalanceIncompletePress
      */
     onBalanceIncompletePress() {
-        const { transitionAddresses, password, selectedAccountName, selectedAccountMeta } = this.props;
+        const { transitionAddresses, selectedAccountName, selectedAccountMeta } = this.props;
         const currentIndex = transitionAddresses.length;
         this.props.setBalanceCheckFlag(false);
-        setTimeout(() => {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+        setTimeout(async () => {
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.generateAddressesAndGetBalance(seedStore, currentIndex);
         }, 300);
     }
@@ -212,10 +211,10 @@ export class SnapshotTransition extends Component {
      * Finds balance for those addresses and displays a modal asking the user to confirm the balance
      * @method onSnapshotTransitionPress
      */
-    onSnapshotTransitionPress() {
-        const { addresses, shouldPreventAction, password, selectedAccountName, selectedAccountMeta, t } = this.props;
+    async onSnapshotTransitionPress() {
+        const { addresses, shouldPreventAction, selectedAccountName, selectedAccountMeta, t } = this.props;
         if (!shouldPreventAction) {
-            const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+            const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
             this.props.transitionForSnapshot(seedStore, addresses);
         } else {
             this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
@@ -363,7 +362,6 @@ const mapStateToProps = (state) => ({
     transitionBalance: state.wallet.transitionBalance,
     balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,
-    password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
     selectedAccountMeta: getSelectedAccountMeta(state),
     shouldPreventAction: shouldPreventAction(state),

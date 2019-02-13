@@ -34,7 +34,7 @@ export class EnterPasswordOnLogin extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Password text */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.string,
         /** Verify two factor authentication token */
         /** @param {string} password - user's password */
         onLoginPress: PropTypes.func.isRequired,

@@ -144,6 +144,7 @@ class EnterPassword extends Component {
                             widget="fingerprint"
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
+                            value={this.state.password}
                         />
                     </View>
                     <View style={styles.bottomContainer}>

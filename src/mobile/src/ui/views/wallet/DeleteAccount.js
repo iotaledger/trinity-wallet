@@ -95,8 +95,6 @@ class DeleteAccount extends Component {
         /** @ignore */
         setSetting: PropTypes.func.isRequired,
         /** @ignore */
-        password: PropTypes.object.isRequired,
-        /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -118,7 +116,6 @@ class DeleteAccount extends Component {
 
     constructor() {
         super();
-
         this.state = {
             pressedContinue: false,
             password: '',
@@ -127,6 +124,11 @@ class DeleteAccount extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('DeleteAccount');
+    }
+
+    componentWillUnmount() {
+        delete this.state.password;
+        // gc
     }
 
     /**
@@ -149,12 +151,11 @@ class DeleteAccount extends Component {
      * @method onContinuePress
      */
     async onContinuePress() {
-        const { password, t, isAutoPromoting } = this.props;
+        const { t, isAutoPromoting } = this.props;
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
-        const pwdHash = await hash(this.state.password);
-        if (isEqual(password, pwdHash)) {
+        if (isEqual(global.passwordHash, await hash(this.state.password))) {
             if (isAutoPromoting || this.props.shouldPreventAction) {
                 return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
             }
@@ -173,8 +174,8 @@ class DeleteAccount extends Component {
      * @method delete
      */
     async delete() {
-        const { password, selectedAccountName, selectedAccountMeta } = this.props;
-        const seedStore = new SeedStore[selectedAccountMeta.type](password, selectedAccountName);
+        const { selectedAccountName, selectedAccountMeta } = this.props;
+        const seedStore = await new SeedStore[selectedAccountMeta.type](global.passwordHash, selectedAccountName);
         await seedStore.removeAccount();
         this.props.deleteAccount(selectedAccountName);
     }
@@ -272,7 +273,6 @@ class DeleteAccount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    password: state.wallet.password,
     theme: getThemeFromState(state),
     isAutoPromoting: state.polling.isAutoPromoting,
     selectedAccountName: getSelectedAccountName(state),

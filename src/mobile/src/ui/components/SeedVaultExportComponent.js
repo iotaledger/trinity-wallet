@@ -84,21 +84,18 @@ class SeedVaultExportComponent extends Component {
         onRef: PropTypes.func.isRequired,
         /** Determines whether user needs to enter wallet password */
         isAuthenticated: PropTypes.bool.isRequired,
-        /** @ignore */
-        storedPasswordHash: PropTypes.object.isRequired,
         /** Triggered when user enters the correct wallet password */
         setAuthenticated: PropTypes.func,
-        /** Sets seed variable in parent component following successful SeedVault import */
-        setSeed: PropTypes.func.isRequired,
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             password: '',
             reentry: '',
             path: '',
             saveToDownloadFolder: false,
+            seed: props.seed,
         };
     }
 
@@ -122,6 +119,10 @@ class SeedVaultExportComponent extends Component {
         if (this.state.path !== '' && !this.state.saveToDownloadFolder) {
             RNFetchBlob.fs.unlink(this.state.path);
         }
+        delete this.state.password;
+        delete this.state.reentry;
+        delete this.state.seed;
+        // gc
     }
 
     /**
@@ -225,7 +226,7 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        return nodejs.channel.send('export:' + this.state.seed + ':' + this.state.password);
     }
 
     /**
@@ -264,19 +265,21 @@ class SeedVaultExportComponent extends Component {
      * @method validateWalletPassword
      */
     async validateWalletPassword() {
-        const { t, storedPasswordHash, selectedAccountName, selectedAccountMeta } = this.props;
+        const { t, selectedAccountName, selectedAccountMeta } = this.props;
         const { password } = this.state;
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
             const enteredPasswordHash = await hash(password);
-            if (isEqual(enteredPasswordHash, storedPasswordHash)) {
-                const seedStore = new SeedStore[selectedAccountMeta.type](enteredPasswordHash, selectedAccountName);
-                const seed = await seedStore.getSeed();
-
-                this.props.setSeed(seed);
+            if (isEqual(enteredPasswordHash, global.passwordHash)) {
+                const seedStore = await new SeedStore[selectedAccountMeta.type](
+                    enteredPasswordHash,
+                    selectedAccountName,
+                );
+                this.setState({ seed: await seedStore.getSeed() });
+                delete this.state.seed;
+                // gc
                 this.props.setAuthenticated(true);
-                this.setState({ password: '' });
                 return this.navigateToStep('isViewingGeneralInfo');
             }
             this.props.generateAlert(
@@ -405,7 +408,6 @@ const mapStateToProps = (state) => ({
     selectedAccountMeta: getSelectedAccountMeta(state),
     theme: getThemeFromState(state),
     minimised: state.ui.minimised,
-    storedPasswordHash: state.wallet.password,
 });
 
 const mapDispatchToProps = {

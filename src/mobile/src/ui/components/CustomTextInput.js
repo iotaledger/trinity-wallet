@@ -145,10 +145,10 @@ class CustomTextInput extends Component {
         isPasswordValid: PropTypes.bool,
         /** Determines strength of password */
         passwordStrength: PropTypes.number,
-        /** Entered seed */
-        seed: PropTypes.string,
         /** Determines whether text input is for seeds */
         isSeedInput: PropTypes.bool,
+        /** Text input value */
+        value: PropTypes.any,
     };
 
     static defaultProps = {
@@ -171,7 +171,7 @@ class CustomTextInput extends Component {
         onRef: () => {},
         isPasswordValid: false,
         passwordStrength: 0,
-        seed: '',
+        value: '',
     };
 
     constructor(props) {
@@ -184,6 +184,7 @@ class CustomTextInput extends Component {
             this.props.onRef(this);
         }
     }
+
     componentWillUnmount() {
         if (this.props.onRef) {
             this.props.onRef(null);
@@ -211,25 +212,25 @@ class CustomTextInput extends Component {
     }
 
     getChecksumValue() {
-        const { seed } = this.props;
+        const { value } = this.props;
         let checksumValue = '...';
-
-        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+        if (value === null) {
+            return checksumValue;
+        } else if (value.length !== 0 && !value.match(VALID_SEED_REGEX)) {
             checksumValue = '!';
-        } else if (seed.length !== 0 && seed.length < MAX_SEED_LENGTH) {
+        } else if (value.length !== 0 && value.length < MAX_SEED_LENGTH) {
             checksumValue = '< 81';
-        } else if (seed.length > MAX_SEED_LENGTH) {
+        } else if (value.length > MAX_SEED_LENGTH) {
             checksumValue = '> 81';
-        } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
-            checksumValue = getChecksum(seed);
+        } else if (value.length === 81 && value.match(VALID_SEED_REGEX)) {
+            checksumValue = getChecksum(value);
         }
-
         return checksumValue;
     }
 
     getChecksumStyle() {
-        const { theme, seed } = this.props;
-        if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
+        const { theme, value } = this.props;
+        if (value && value.length === 81 && value.match(VALID_SEED_REGEX)) {
             return { color: theme.primary.color };
         }
         return { color: theme.body.color };
@@ -341,12 +342,10 @@ class CustomTextInput extends Component {
             fingerprintAuthentication,
             isPasswordValid,
             passwordStrength,
-            seed,
             isSeedInput,
             ...restProps
         } = this.props;
         const { isFocused } = this.state;
-
         return (
             <View style={[styles.fieldContainer, containerStyle, isSeedInput && styles.seedInput]}>
                 {label && (
@@ -424,7 +423,7 @@ class CustomTextInput extends Component {
                     {fingerprintAuthentication &&
                         this.renderFingerprintAuthentication({ borderLeftColor: theme.input.alt })}
                 </View>
-                {seed.length > 0 && (
+                {isSeedInput && (
                     <View style={{ width: containerStyle.width, alignItems: 'flex-end' }}>
                         <View
                             style={[

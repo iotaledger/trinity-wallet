@@ -21,6 +21,8 @@ import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
+import { UInt8ToString } from 'libs/crypto'; //temp
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -74,8 +76,6 @@ class SeedReentry extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
-        seed: PropTypes.string.isRequired,
-        /** @ignore */
         minimised: PropTypes.bool.isRequired,
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
@@ -84,7 +84,7 @@ class SeedReentry extends Component {
     constructor() {
         super();
         this.state = {
-            seed: '',
+            reenteredSeed: '',
         };
     }
 
@@ -99,6 +99,8 @@ class SeedReentry extends Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
+        delete this.state.reenteredSeed;
+        // gc
     }
 
     /**
@@ -106,8 +108,9 @@ class SeedReentry extends Component {
      * @method onDonePress
      */
     onDonePress() {
-        const { t, seed, theme: { body } } = this.props;
-        if (this.state.seed === seed) {
+        const { t, theme: { body } } = this.props;
+        const { reenteredSeed } = this.state;
+        if (reenteredSeed === UInt8ToString(global.onboardingSeed)) {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
@@ -128,8 +131,9 @@ class SeedReentry extends Component {
                     backgroundColor: body.bg,
                 },
             });
-            this.setState({ seed: '' });
-        } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
+            delete this.state.reenteredSeed;
+            // gc
+        } else if (reenteredSeed.length === MAX_SEED_LENGTH && reenteredSeed.match(VALID_SEED_REGEX)) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         } else {
             this.props.generateAlert(
@@ -146,6 +150,8 @@ class SeedReentry extends Component {
      */
     onBackPress() {
         navigator.pop(this.props.componentId);
+        delete this.state.reenteredSeed;
+        // gc
     }
 
     /**
@@ -166,9 +172,7 @@ class SeedReentry extends Component {
         const dataString = data.toString();
         const { t } = this.props;
         if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
-            this.setState({
-                seed: data,
-            });
+            this.setState({ reenteredSeed: data });
         } else {
             this.props.generateAlert(
                 'error',
@@ -198,7 +202,6 @@ class SeedReentry extends Component {
     };
 
     render() {
-        const { seed } = this.state;
         const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
@@ -242,7 +245,7 @@ class SeedReentry extends Component {
                                             label={t('global:seed')}
                                             onChangeText={(text) => {
                                                 if (text.match(VALID_SEED_REGEX) || text.length === 0) {
-                                                    this.setState({ seed: text.toUpperCase() });
+                                                    this.setState({ reenteredSeed: text.toUpperCase() });
                                                 }
                                             }}
                                             maxLength={MAX_SEED_LENGTH}
@@ -252,10 +255,9 @@ class SeedReentry extends Component {
                                             returnKeyType="done"
                                             onSubmitEditing={() => this.onDonePress()}
                                             theme={theme}
-                                            value={seed}
+                                            value={this.state.reenteredSeed}
                                             widget="qr"
                                             onQRPress={() => this.onQRPress()}
-                                            seed={seed}
                                             isSeedInput
                                         />
                                     </AnimatedComponent>
@@ -269,7 +271,8 @@ class SeedReentry extends Component {
                                         <SeedVaultImport
                                             openPasswordValidationModal={() => this.showModal('passwordValidation')}
                                             onSeedImport={(seed) => {
-                                                this.setState({ seed });
+                                                // gc?
+                                                this.setState({ reenteredSeed: seed });
                                                 this.props.toggleModalActivity();
                                             }}
                                             onRef={(ref) => {
@@ -303,7 +306,6 @@ class SeedReentry extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.wallet.seed,
     theme: getThemeFromState(state),
     minimised: state.ui.minimised,
 });
