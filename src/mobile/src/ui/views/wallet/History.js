@@ -146,6 +146,7 @@ class History extends Component {
                         newProps.isPromotingTransaction ||
                         newProps.isRetryingFailedTransaction,
                     isRetryingFailedTransaction: newProps.isRetryingFailedTransaction,
+                    isFailedTransaction: !newBundleProps.broadcasted,
                     bundleIsBeingPromoted:
                         newProps.currentlyPromotingBundleHash === modalProps.bundle && !newBundleProps.persistence,
                 });

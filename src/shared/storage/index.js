@@ -170,7 +170,7 @@ class Account {
 
         realm.write(() => {
             // Create account with new name.
-            realm.create('Account', assign({}, accountData, { accountName: to }));
+            realm.create('Account', assign({}, accountData, { name: to }));
             // Delete account with old name.
             realm.delete(accountData);
         });

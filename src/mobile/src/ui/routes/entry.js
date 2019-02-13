@@ -95,6 +95,7 @@ const renderInitialScreen = (initialScreen, state) => {
             drawBehind: true,
             backgroundColor: theme.body.bg,
         },
+        popGesture: false,
     };
 
     Navigation.setDefaultOptions(options);
@@ -203,7 +204,7 @@ onAppStart()
             const { settings: { versions, completedMigration } } = reduxState;
 
             if (
-                versions.buildNumber < 42 &&
+                versions.buildNumber < 43 &&
                 completedMigration === false &&
                 // Also check if there is persisted data in AsyncStorage that needs to be migrated
                 // If this check is omitted, the condition will be satisfied on a fresh install.
