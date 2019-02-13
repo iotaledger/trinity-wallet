@@ -229,7 +229,7 @@ class Login extends React.Component {
     };
 
     render() {
-        const { forceUpdate, t, addingAdditionalAccount, ui } = this.props;
+        const { forceUpdate, t, addingAdditionalAccount, ui, completedMigration } = this.props;
         const { verifyTwoFA, code, shouldMigrate } = this.state;
 
         if (ui.isFetchingAccountInfo) {
@@ -242,7 +242,7 @@ class Login extends React.Component {
             );
         }
 
-        if (shouldMigrate) {
+        if (shouldMigrate && !completedMigration) {
             return <Migration />;
         }
 

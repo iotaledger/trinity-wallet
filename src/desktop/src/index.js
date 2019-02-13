@@ -40,43 +40,46 @@ if (Electron.mode === 'tray') {
         store.dispatch(mapStorageToStateAction(data));
     });
 } else {
-    initialiseStorage(getEncryptionKey).then(() => {
-        const oldPersistedData = Electron.getAllStorage();
-        const hasDataToMigrate = !isEmpty(oldPersistedData);
+    initialiseStorage(getEncryptionKey)
+        .then(() => {
+            const oldPersistedData = Electron.getAllStorage();
+            const hasDataToMigrate = !isEmpty(oldPersistedData);
 
-        if (hasDataToMigrate) {
-            Object.assign(oldPersistedData.settings, {
-                completedMigration: false,
+            if (hasDataToMigrate) {
+                Object.assign(oldPersistedData.settings, {
+                    completedMigration: false,
+                });
+            }
+
+            // Get persisted data from Realm storage
+            const persistedDataFromRealm = mapStorageToState();
+            const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+
+            // Change provider on global iota instance
+            const node = get(data, 'settings.node');
+            changeIotaNode(node);
+
+            // Update store with persisted state
+            store.dispatch(mapStorageToStateAction(data));
+
+            // Assign accountIndex to every account in accountInfo if it is not assigned already
+            store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
+
+            // Proxy realm changes to Tray application
+            realm.addListener('change', () => {
+                const data = mapStorageToState();
+                Electron.storeUpdate(JSON.stringify(data));
             });
-        }
 
-        // Get persisted data from Realm storage
-        const persistedDataFromRealm = mapStorageToState();
-        const data = hasDataToMigrate ? oldPersistedData : persistedDataFromRealm;
+            // Start Tray application if enabled in settings
+            const isTrayEnabled = get(data, 'settings.isTrayEnabled');
+            Electron.setTray(isTrayEnabled);
 
-        // Change provider on global iota instance
-        const node = get(data, 'settings.node');
-        changeIotaNode(node);
-
-        // Update store with persisted state
-        store.dispatch(mapStorageToStateAction(data));
-
-        // Assign accountIndex to every account in accountInfo if it is not assigned already
-        store.dispatch(assignAccountIndexIfNecessary(get(data, 'accounts.accountInfo')));
-
-        // Proxy realm changes to Tray application
-        realm.addListener('change', () => {
-            const data = mapStorageToState();
-            Electron.storeUpdate(JSON.stringify(data));
-        });
-
-        // Start Tray application if enabled in settings
-        const isTrayEnabled = get(data, 'settings.isTrayEnabled');
-        Electron.setTray(isTrayEnabled);
-
-        // Show Wallet window after inital store update
-        Electron.focus();
-    });
+            // Show Wallet window after inital store update
+            Electron.focus();
+        })
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
 }
 
 render(
