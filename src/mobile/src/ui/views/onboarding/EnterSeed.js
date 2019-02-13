@@ -22,6 +22,7 @@ import { isAndroid } from 'libs/device';
 import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
@@ -172,7 +173,7 @@ class EnterSeed extends React.Component {
         const dataString = data.toString();
         const { t } = this.props;
         if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
-            this.setState({ seed: data });
+            this.setState({ seed: trytesToTrits(data) });
         } else if (dataString.length !== MAX_SEED_LENGTH) {
             this.props.generateAlert(
                 'error',

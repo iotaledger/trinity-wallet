@@ -20,6 +20,7 @@ import SeedVaultImport from 'ui/components/SeedVaultImportComponent';
 import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -170,7 +171,7 @@ class SeedReentry extends Component {
         const dataString = data.toString();
         const { t } = this.props;
         if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
-            this.setState({ reenteredSeed: data });
+            this.setState({ reenteredSeed: trytesToTrits(data) });
         } else {
             this.props.generateAlert(
                 'error',

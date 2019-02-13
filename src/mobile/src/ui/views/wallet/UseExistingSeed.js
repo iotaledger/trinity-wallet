@@ -21,6 +21,7 @@ import { width, height } from 'libs/dimensions';
 import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -135,7 +136,7 @@ class UseExistingSeed extends Component {
         this.hideModal();
         if (data.toString().length === 81 && data.toString().match(VALID_SEED_REGEX)) {
             this.setState({
-                seed: data,
+                seed: trytesToTrits(data),
             });
         } else {
             timer.setTimeout(
