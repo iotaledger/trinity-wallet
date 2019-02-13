@@ -140,7 +140,7 @@ class Ledger extends SeedStoreCore {
                 awaitTransaction: { address: options.address, value: transfers.reduce((a, b) => a + b.value, 0) },
             });
 
-            const trytes = await seed.perpareTransfers(transfers, options.inputs, remainder);
+            const trytes = await seed.prepareTransfers(transfers, options.inputs, remainder);
             Electron.send('ledger', { awaitTransaction: false });
 
             Electron.ledger.removeListener(connectionListener);
