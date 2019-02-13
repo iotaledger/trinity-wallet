@@ -34,9 +34,9 @@ export class EnterPasswordOnLogin extends Component {
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** Password text */
-        password: PropTypes.string,
+        password: PropTypes.object,
         /** Verify two factor authentication token */
-        /** @param {string} password - user's password */
+        /** @param {object} password - user's password */
         onLoginPress: PropTypes.func.isRequired,
         /** Navigate to node selection screen */
         navigateToNodeOptions: PropTypes.func.isRequired,
@@ -110,6 +110,7 @@ export class EnterPasswordOnLogin extends Component {
                             widget="fingerprintDisabled"
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.openModal}
+                            isPasswordInput
                         />
                     </View>
                     <View style={styles.bottomContainer}>

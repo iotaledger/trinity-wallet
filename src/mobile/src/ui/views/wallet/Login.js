@@ -1,3 +1,4 @@
+import size from 'lodash/size';
 import { withNamespaces } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -113,7 +114,7 @@ class Login extends Component {
             return;
         }
         this.animationOutType = ['fadeOut'];
-        if (this.state.password.length === 0) {
+        if (size(this.state.password) === 0) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             let pwdHash = await hash(this.state.password);

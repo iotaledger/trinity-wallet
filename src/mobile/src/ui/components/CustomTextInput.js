@@ -6,6 +6,8 @@ import { width, height } from 'libs/dimensions';
 import { Styling } from 'ui/theme/general';
 import { Icon } from 'ui/theme/icons';
 import { isAndroid } from 'libs/device';
+import { stringToUInt8 } from 'libs/crypto';
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -147,6 +149,8 @@ class CustomTextInput extends Component {
         passwordStrength: PropTypes.number,
         /** Determines whether text input is for seeds */
         isSeedInput: PropTypes.bool,
+        /** Determines whether text input is for passwords */
+        isPasswordInput: PropTypes.bool,
         /** Text input value */
         value: PropTypes.any,
     };
@@ -172,6 +176,8 @@ class CustomTextInput extends Component {
         isPasswordValid: false,
         passwordStrength: 0,
         value: '',
+        isSeedInput: false,
+        isPasswordInput: false,
     };
 
     constructor(props) {
@@ -197,6 +203,16 @@ class CustomTextInput extends Component {
 
     onBlur() {
         this.setState({ isFocused: false });
+    }
+
+    onChangeText(text) {
+        const { isPasswordInput, isSeedInput } = this.props;
+        if (isPasswordInput) {
+            return stringToUInt8(text);
+        } else if (isSeedInput) {
+            return trytesToTrits(text);
+        }
+        return text;
     }
 
     /**
@@ -297,7 +313,6 @@ class CustomTextInput extends Component {
      */
     renderFingerprintAuthentication(widgetBorderColor) {
         const { theme, onFingerprintPress, containerStyle, widget } = this.props;
-
         return (
             <View style={[styles.widgetContainer, widgetBorderColor]}>
                 <TouchableOpacity
@@ -318,7 +333,6 @@ class CustomTextInput extends Component {
      */
     renderCurrencyConversion(conversionText) {
         const { theme, height } = this.props;
-
         return (
             <View style={[styles.conversionTextContainer, { height }]}>
                 <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>
@@ -412,7 +426,7 @@ class CustomTextInput extends Component {
                         style={[styles.textInput, { color: theme.input.color }]}
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
-                        onChangeText={onChangeText}
+                        onChangeText={(text) => this.onChangeText(text)}
                         selectionColor={theme.input.alt}
                         underlineColorAndroid="transparent"
                     />

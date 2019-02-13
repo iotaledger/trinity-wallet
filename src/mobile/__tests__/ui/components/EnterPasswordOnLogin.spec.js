@@ -33,8 +33,8 @@ describe('Testing EnterPasswordOnLogin component', () => {
             expect(EnterPasswordOnLogin.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a password string as a prop', () => {
-            expect(EnterPasswordOnLogin.propTypes.password).toEqual(PropTypes.string);
+        it('should require a password object as a prop', () => {
+            expect(EnterPasswordOnLogin.propTypes.password).toEqual(PropTypes.object);
         });
 
         it('should require a onLoginPress function as a prop', () => {

@@ -22,8 +22,6 @@ import { Styling } from 'ui/theme/general';
 import Header from 'ui/components/Header';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
-import { stringToUInt8 } from 'libs/crypto'; //temp
-
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
@@ -89,7 +87,7 @@ class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seed: '',
+            seed: null,
         };
     }
 
@@ -126,8 +124,8 @@ class EnterSeed extends React.Component {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            global.onboardingSeed = stringToUInt8(seed);
-            // gc
+            global.onboardingSeed = seed;
+
             // Since this seed was not generated in Trinity, mark "usedExistingSeed" as true.
             this.props.setAccountInfoDuringSetup({ usedExistingSeed: true });
             navigator.push('setAccountName', {

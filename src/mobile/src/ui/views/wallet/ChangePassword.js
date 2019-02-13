@@ -84,9 +84,9 @@ class ChangePassword extends Component {
     constructor() {
         super();
         this.state = {
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            currentPassword: null,
+            newPassword: null,
+            newPasswordReentry: null,
         };
     }
 
@@ -157,6 +157,7 @@ class ChangePassword extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             secureTextEntry
+                            isPasswordInput
                         />
                         <PasswordFields
                             onRef={(ref) => {

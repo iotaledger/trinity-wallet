@@ -118,7 +118,7 @@ class DeleteAccount extends Component {
         super();
         this.state = {
             pressedContinue: false,
-            password: '',
+            password: null,
         };
     }
 
@@ -239,6 +239,7 @@ class DeleteAccount extends Component {
                                     theme={theme}
                                     secureTextEntry
                                     value={this.state.password}
+                                    isPasswordInput
                                 />
                             </View>
                         )}

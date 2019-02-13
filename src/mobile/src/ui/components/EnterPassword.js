@@ -56,7 +56,7 @@ class EnterPassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
+            password: null,
         };
         this.activateFingerprintScanner = this.activateFingerprintScanner.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -145,6 +145,7 @@ class EnterPassword extends Component {
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
                             value={this.state.password}
+                            isPasswordInput
                         />
                     </View>
                     <View style={styles.bottomContainer}>

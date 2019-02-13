@@ -21,8 +21,6 @@ import { Icon } from 'ui/theme/icons';
 import { Styling } from 'ui/theme/general';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
 
-import { stringToUInt8 } from 'libs/crypto'; //temp
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -101,7 +99,7 @@ class UseExistingSeed extends Component {
         super(props);
 
         this.state = {
-            seed: '',
+            seed: null,
             accountName: '',
         };
     }
@@ -228,8 +226,7 @@ class UseExistingSeed extends Component {
             }
             const seedStore = await new SeedStore.keychain(global.passwordHash);
 
-            const seedUInt8 = stringToUInt8(seed);
-            const isUniqueSeed = await seedStore.isUniqueSeed(seedUInt8);
+            const isUniqueSeed = await seedStore.isUniqueSeed(seed);
 
             if (!isUniqueSeed) {
                 return this.props.generateAlert(
@@ -239,7 +236,7 @@ class UseExistingSeed extends Component {
                 );
             }
 
-            return this.fetchAccountInfo(seedUInt8, accountName);
+            return this.fetchAccountInfo(seed, accountName);
         }
     }
 

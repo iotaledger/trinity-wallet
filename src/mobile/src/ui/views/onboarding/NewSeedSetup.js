@@ -23,8 +23,7 @@ import { Icon } from 'ui/theme/icons';
 import Header from 'ui/components/Header';
 import { isAndroid } from 'libs/device';
 import { leaveNavigationBreadcrumb } from 'libs/bugsnag';
-
-import { stringToUInt8 } from 'libs/crypto'; //temp
+import { trytesToTrits } from 'shared-modules/libs/iota/converter';
 
 const styles = StyleSheet.create({
     container: {
@@ -157,7 +156,7 @@ class NewSeedSetup extends Component {
             FlagSecure.deactivate();
         }
         if (this.state.hasGeneratedSeed) {
-            global.onboardingSeed = stringToUInt8(this.state.seed);
+            global.onboardingSeed = trytesToTrits(this.state.seed);
             navigator.push('saveYourSeed', {
                 animations: {
                     push: {

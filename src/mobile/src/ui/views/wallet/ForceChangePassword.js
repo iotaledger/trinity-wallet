@@ -95,9 +95,9 @@ class ForceChangePassword extends Component {
         super();
 
         this.state = {
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
+            currentPassword: null,
+            newPassword: null,
+            newPasswordReentry: null,
         };
     }
 
@@ -201,6 +201,7 @@ class ForceChangePassword extends Component {
         widget = 'empty',
         isPasswordValid = false,
         passwordStrength = 0,
+        isPasswordInput = true,
     ) {
         const { theme } = this.props;
         const props = {
@@ -219,6 +220,7 @@ class ForceChangePassword extends Component {
             widget,
             isPasswordValid,
             passwordStrength,
+            isPasswordInput,
         };
 
         return <CustomTextInput {...props} />;
