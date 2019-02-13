@@ -442,7 +442,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 if (!lastTritIsZero) {
                     throw new Error(Errors.INVALID_LAST_TRIT);
                 }
-                return typeof seedStore.getMaxInputs === 'function' ? seedStore.getMaxInputs() : Promise.resolve(0);
+                return seedStore.getMaxInputs();
             })
             .then((maxInputResponse) => {
                 maxInputs = maxInputResponse;
@@ -538,7 +538,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
 
                         // Check if input count does not exceed maximum supported by the SeedStore type
                         if (maxInputs && inputs.inputs.length > maxInputs) {
-                            throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, seedStore.maxInputs));
+                            throw new Error(Errors.MAX_INPUTS_EXCEEDED(inputs.inputs.length, maxInputs));
                         }
 
                         transferInputs = get(inputs, 'inputs');
