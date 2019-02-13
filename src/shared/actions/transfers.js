@@ -442,7 +442,7 @@ export const makeTransaction = (seedStore, receiveAddress, value, message, accou
                 if (!lastTritIsZero) {
                     throw new Error(Errors.INVALID_LAST_TRIT);
                 }
-                return seedStore.getMaxInputs();
+                return typeof seedStore.getMaxInputs === 'function' ? seedStore.getMaxInputs() : Promise.resolve(0);
             })
             .then((maxInputResponse) => {
                 maxInputs = maxInputResponse;
