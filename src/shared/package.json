@@ -22,7 +22,7 @@
         "bignumber.js": "^8.0.1",
         "i18next": "^12.0.0",
         "iota.lib.js": "git+https://git@github.com/iotaledger/iota.js#develop",
-        "lodash": "^4.17.10",
+        "lodash": "^4.17.11",
         "moment": "^2.22.2",
         "moment-timezone": "^0.5.21",
         "proxy-polyfill": "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7",
@@ -33,7 +33,6 @@
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
         "reselect": "^4.0.0",
-        "tinycolor2": "^1.4.1",
         "url-parse": "^1.4.3",
         "valid-url": "^1.0.9",
         "zxcvbn": "^4.4.2"

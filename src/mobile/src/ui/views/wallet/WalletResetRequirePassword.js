@@ -139,11 +139,10 @@ class WalletResetRequirePassword extends Component {
     async resetWallet() {
         const { t } = this.props;
         if (await this.isAuthenticated()) {
-            this.redirectToInitialScreen();
-
             reinitialiseStorage(getEncryptionKey)
                 .then(() => clearKeychain())
                 .then(() => {
+                    this.redirectToInitialScreen();
                     // resetWallet action creator resets the whole state object to default values
                     // https://github.com/iotaledger/trinity-wallet/blob/develop/src/shared/store.js#L37
                     this.props.resetWallet();
